@@ -1,0 +1,36 @@
+@startuml
+participant Administrativo
+activate Administrativo
+Administrativo -> DefinirCompetenciaUI: 1 Nova Competência Técnica
+activate DefinirCompetenciaUI
+DefinirCompetenciaUI --> Administrativo: \n\n2 Solicita dados \n(Código Único, Descrição Breve,\n Descrição Detalhada, Área de Atividade)
+deactivate DefinirCompetenciaUI 
+Administrativo -> DefinirCompetenciaUI: \n3 Introduz os dados solicitados
+activate DefinirCompetenciaUI
+DefinirCompetenciaUI -> DefinirCompetenciaController: 4 novaCompTec(codUnica, dBreve, dDetalhada, areaAtiv)
+activate DefinirCompetenciaController
+DefinirCompetenciaController -> Plataforma: 5 compTecnica=novaCompTec(codUnica, dBreve, dDetalhada, areaAtiv)
+activate Plataforma
+Plataforma --> "compTecnica:CompTec"**: 6 criar(codUnica, dBreve, dDetalhada, areaAtiv) 
+deactivate Plataforma
+DefinirCompetenciaController -> Plataforma: 7 validaCompTec(compTecnica)
+activate Plataforma
+deactivate Plataforma
+DefinirCompetenciaUI --> Administrativo: 8 Apresenta dados e solicita confirmação
+deactivate Plataforma
+deactivate DefinirCompetenciaController
+deactivate DefinirCompetenciaUI
+Administrativo -> DefinirCompetenciaUI: 9 Confirma os dados
+activate DefinirCompetenciaUI
+DefinirCompetenciaUI -> DefinirCompetenciaController: 10 registarCompTec()
+activate DefinirCompetenciaController
+DefinirCompetenciaController -> Plataforma: 11 registarCompTec(compTecnica)
+activate Plataforma
+Plataforma -> Plataforma: 12 validaCompTec(compTecnica)
+Plataforma -> Plataforma: 13 adicionarCompTec(compTecnica)
+deactivate Plataforma
+deactivate DefinirCompetenciaController
+DefinirCompetenciaUI --> Administrativo: 14 Competência Técnica adicionada com sucesso
+deactivate DefinirCompetenciaUI
+deactivate Administrativo
+@enduml

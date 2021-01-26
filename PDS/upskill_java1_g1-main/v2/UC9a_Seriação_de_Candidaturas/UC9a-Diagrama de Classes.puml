@@ -1,0 +1,54 @@
+@startuml
+
+title UC9a - Seriação de Candidaturas
+
+left to right direction
+
+class Plataforma << Singleton >> {
+    String: designacao
+}
+
+class Colaborador {
+    String: nome
+    Funcao funcao
+    ContactoTelefonico contactoTelefonico
+    Email email
+    Password password
+}
+
+class ContactoTelefonico {}
+
+class Email {}
+
+class Password {}
+
+class Funcao {}
+
+class UC9a_UI {
+    --
+    getListCandidaturas()
+    seriar(listaCandidaturas)
+}
+
+class UC9a_Ctrl {
+    --
+    getListCandidaturas()
+    seriar(listaCandidaturas)
+}
+
+class UC9a_Strategy {
+    seriar(listaCandidaturas, regimeSeriacao)
+}
+
+Plataforma o-- Colaborador
+Colaborador -- ContactoTelefonico
+Colaborador -- Email
+Colaborador -- Funcao
+Colaborador -- Password
+Colaborador ..> UC9a_UI
+UC9a_UI ..> UC9a_Ctrl
+UC9a_Ctrl ..> UC9a_Strategy
+UC9a_Strategy ..> UC9a_Ctrl
+UC9a_Ctrl ..> Plataforma
+
+@enduml

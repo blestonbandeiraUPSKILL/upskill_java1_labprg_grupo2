@@ -1,0 +1,39 @@
+@startuml
+
+participant ColabOrg
+activate ColabOrg
+ColabOrg -> DefinirTarefaUI : 1. Criar nova Organização
+activate CriarOrganizaçãoUI
+CriarOrganizaçãoUI --> ColabOrg : 2. \
+deactivate CriarOrganizaçãoUI
+ColabOrg -> CriarOrganizaçãoUI :3. Introduz dados Solicitados
+
+
+ColabOrg -> DefinirTarefaUI :4. Introduz dados solicitados
+activate DefinirTarefaUI
+DefinirTarefaUI -> DefinirTarefaCTRL : 5. novaTarefa(desig,descInf,descTec,prazo,custo,categ)
+activate DefinirTarefaCTRL
+DefinirTarefaCTRL -> Plataforma : 6. tarefa=novaTarefa(desig,descInf,descTec,prazo,custo,categ)
+activate Plataforma
+Plataforma --> "tarefa:Tarefa"**: 7. criar(desig,descInf,descTec,prazo,custo,categ)
+deactivate Plataforma
+DefinirTarefaCTRL -> Plataforma : 8. validaTarefa(tarefa)
+activate Plataforma
+deactivate Plataforma
+DefinirTarefaUI --> ColabOrg : 9. Apresenta dados e solicita confirmação
+deactivate DefinirTarefaCTRL
+deactivate DefinirTarefaUI
+ColabOrg -> DefinirTarefaUI : 10. Confirma dados
+activate DefinirTarefaUI
+DefinirTarefaUI -> DefinirTarefaCTRL : 11. registarTarefa()
+activate DefinirTarefaCTRL
+DefinirTarefaCTRL -> Plataforma : 12. registarTarefa(tarefa)
+activate Plataforma
+Plataforma -> Plataforma : 13. validaTarefa(tarefa)
+Plataforma -> Plataforma : 14. addTarefa(tarefa)
+deactivate Plataforma
+DefinirTarefaUI --> ColabOrg : 15. Tarefa adicionada com sucesso
+deactivate DefinirTarefaCTRL
+deactivate DefinirTarefaUI
+deactivate ColabOrg
+@enduml

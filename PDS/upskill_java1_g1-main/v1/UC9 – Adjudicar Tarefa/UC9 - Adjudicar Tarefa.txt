@@ -1,0 +1,85 @@
+@startuml
+title UC9 - Adjudicar Tarefa
+
+participant ColaboradorOrganizacao
+
+activate ColaboradorOrganizacao 
+
+ColaboradorOrganizacao --> UC9_UI: 1 consultar tarefas publicadas e por adjudicar
+activate UC9_UI
+UC9_UI --> UC9_Ctrl: getListaTarefasPorAdjudicar()
+activate UC9_Ctrl
+UC9_Ctrl --> Plataforma: getListaTarefasPorAdjudicar()
+activate Plataforma 
+
+Plataforma --> UC9_Ctrl: \nreturns listaTarefasPorAdjudicar[]
+deactivate Plataforma
+
+UC9_Ctrl --> UC9_UI: \nreturns listaTarefasPorAdjudicar[]
+deactivate UC9_Ctrl
+
+UC9_UI --> ColaboradorOrganizacao: lista de tarefas por adjudicar
+deactivate UC9_UI
+
+ColaboradorOrganizacao --> UC9_UI: consultar tipo de regime de seriação
+activate UC9_UI
+UC9_UI --> UC9_Ctrl: getTipoRegimeSeriacao()
+activate UC9_Ctrl
+UC9_Ctrl --> Plataforma: getTipoRegimeSeriacao()
+activate Plataforma
+
+Plataforma --> UC9_Ctrl: returns tipoRegimeSeriacao
+deactivate Plataforma
+
+UC9_Ctrl --> UC9_UI: returns tipoRegimeSeriacao
+deactivate UC9_UI
+
+UC9_UI --> ColaboradorOrganizacao: tipo de regime de seriação
+
+alt regime de seriacao(Subjectiva Opcional) 
+ColaboradorOrganizacao --> UC9_UI: aed
+else regime de seriacao(Subjectiva Obrigatoria) 
+else regime de seriacao(Automatica) 
+
+
+
+
+
+
+Plataforma --> UC9_Ctrl: 7 returns compTec[]
+deactivate Plataforma
+
+UC9_Ctrl --> UC9_UI: 9 returns compTec[]
+deactivate UC9_Ctrl
+
+deactivate UC9_UI 
+ColaboradorOrganizacao --> UC9_UI: \n11 Introduz os dados solicitados
+activate UC9_UI
+UC9_UI --> UC9_Ctrl: 12 novaCategTarefa(areaActiv, descricao, listCompTec)
+activate UC9_Ctrl
+UC9_Ctrl --> Plataforma: 13 catTarefa=novaCategTarefa(areaActiv, descricao, listCompTec)
+activate Plataforma
+UC9_Ctrl --> Plataforma: 14 atribuirID()
+Plataforma --> "catTarefa:CategTarefa"**: 15 criar(id, areaActiv, descript, listCompTec) 
+deactivate Plataforma
+UC9_Ctrl --> Plataforma: 16 validaCategTarefa(catTarefa)
+activate Plataforma
+deactivate Plataforma
+UC9_UI --> ColaboradorOrganizacao: 17 Apresenta dados e solicita confirmação
+deactivate Plataforma
+deactivate UC9_Ctrl
+deactivate UC9_UI
+ColaboradorOrganizacao --> UC9_UI: 18 Confirma os dados
+activate UC9_UI
+UC9_UI --> UC9_Ctrl: 19 registarCategTarefa()
+activate UC9_Ctrl
+UC9_Ctrl --> Plataforma: 20 registarCategTarefa(catTarefa)
+activate Plataforma
+Plataforma --> Plataforma: 21 validaCategTarefa(catTarefa)
+Plataforma --> Plataforma: 22 adicionarCategTarefa(catTarefa)
+deactivate Plataforma
+deactivate UC9_Ctrl
+UC9_UI --> ColaboradorOrganizacao: 23 Categoria de tarefa adicionada com sucesso
+deactivate UC9_UI
+deactivate ColaboradorOrganizacao
+@enduml

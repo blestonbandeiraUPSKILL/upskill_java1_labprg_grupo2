@@ -1,0 +1,40 @@
+@startuml
+title UC2 - Definir área de atividade\n
+
+left to right direction
+
+Class Plataforma <<Singleton>>{
+    -designacao
+    --
+    validaAreaAtividade()
+    adicionaAreaAtividade()
+}
+
+Class Administrativo{
+    -nome
+}
+
+Class UC2_UI{
+    novaArea()
+    registaAreaAtividade()
+}
+
+Class UC2_CTRL{
+    area=novaArea()
+    criar()
+    registaAreaAtividade()
+}
+
+Class AreaAtividade{
+    -codUnico
+    -desBreve
+    -desDetalhada
+}
+
+Plataforma --o Administrativo
+Administrativo --> UC2_UI
+UC2_UI --> UC2_CTRL
+UC2_CTRL --> AreaAtividade
+UC2_CTRL --> Plataforma
+
+@enduml
