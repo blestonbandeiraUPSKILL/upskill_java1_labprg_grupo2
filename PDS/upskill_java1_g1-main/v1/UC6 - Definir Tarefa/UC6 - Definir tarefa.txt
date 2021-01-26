@@ -1,0 +1,35 @@
+@startuml
+participant ColabOrg
+activate ColabOrg
+ColabOrg -> DefinirTarefaUI : 1. Definir nova Tarefa
+activate DefinirTarefaUI
+DefinirTarefaUI --> ColabOrg : \n2. Solicita Dados\n(designação, descrição informal, descrição técnica, \nestimativa de prazo e custo, categoria de tarefa)
+deactivate DefinirTarefaUI
+ColabOrg -> DefinirTarefaUI :3. Introduz dados solicitados
+activate DefinirTarefaUI
+DefinirTarefaUI -> DefinirTarefaCTRL : 4. novaTarefa(desig,descInf,descTec,prazo,custo,categ)
+activate DefinirTarefaCTRL
+DefinirTarefaCTRL -> Plataforma : 5. tarefa=novaTarefa(desig,descInf,descTec,prazo,custo,categ)
+activate Plataforma
+Plataforma --> "tarefa:Tarefa"**: 6. criar(desig,descInf,descTec,prazo,custo,categ)
+deactivate Plataforma
+DefinirTarefaCTRL -> Plataforma : 7. validaTarefa(tarefa)
+activate Plataforma
+deactivate Plataforma
+DefinirTarefaUI --> ColabOrg : 8. Apresenta dados e solicita confirmação
+deactivate DefinirTarefaCTRL
+deactivate DefinirTarefaUI
+ColabOrg -> DefinirTarefaUI : 9. Confirma dados
+activate DefinirTarefaUI
+DefinirTarefaUI -> DefinirTarefaCTRL : 10. registarTarefa()
+activate DefinirTarefaCTRL
+DefinirTarefaCTRL -> Plataforma : 11. registarTarefa(tarefa)
+activate Plataforma
+Plataforma -> Plataforma : 12. validaTarefa(tarefa)
+Plataforma -> Plataforma : 13. addTarefa(tarefa)
+deactivate Plataforma
+DefinirTarefaUI --> ColabOrg : 14. Tarefa adicionada com sucesso
+deactivate DefinirTarefaCTRL
+deactivate DefinirTarefaUI
+deactivate ColabOrg
+@enduml

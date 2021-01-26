@@ -1,0 +1,3 @@
+definir novos uc's
+reescrever uc's
+fazer diagramas de classes 

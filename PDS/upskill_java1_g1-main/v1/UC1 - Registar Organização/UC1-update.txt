@@ -1,0 +1,15 @@
+
+@startuml
+activate User
+User->CriarOrg_UI:Criar a Organização
+activate CriarOrg_UI
+CriarOrg_UI-->User:introduza o Nome da Organização, NIF, endereço postal, Telefone, endereço Web, e-mail, dados Colaborador
+User->CriarOrg_UI:introduz dados Solicitados
+deactivate User
+CriarOrg_UI->CriarOrg_CTRL: criarOrg(Nome,NIF,endereço,Telf,Web,email,NomeColab,FunçãoColab,TelfColab,emailColab)
+deactivate CriarOrg_UI
+activate CriarOrg_CTRL
+CriarOrg_CTRL-> Plataforma: criarOrg(Nome,NIF,endereço,Telf,Web,email,NomeColab,FunçãoColab,TelfColab,emailColab)
+activate Plataforma
+Plataforma
+@enduml
