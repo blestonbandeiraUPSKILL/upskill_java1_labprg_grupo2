@@ -7,9 +7,10 @@
 - [Caroline Duarte](https://github.com/carol-duarte)
 - [Marta Silvestre](https://github.com/Marta-Silvestre)
 
-## Glossário
+## Documentação
 
 - [Glossário](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Sprint%202/Glossario.md)
+- [Modelo de Domínio()
 
 ## Links úteis
 
