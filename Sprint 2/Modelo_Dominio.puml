@@ -88,7 +88,7 @@ Freelancer"0..1" -- "1"Utilizador: actua como >
 Administrativo"0..1" -- "1"Utilizador: actua como >
 Colaborador"0..1" -- "1"Utilizador: actua como >
 Categoria"*" -- CompetenciaTecnica: requer >
-CompetenciaTecnica - CaracterCT
+(Categoria, CompetenciaTecnica) . CaracterCT
 
 
 @enduml
