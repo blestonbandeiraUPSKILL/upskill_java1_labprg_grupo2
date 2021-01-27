@@ -1,0 +1,10 @@
+@startuml
+participant "Utilizador Não Registado"
+"Utilizador Não Registado" -> RegistarOrganizacaoUI : 1. Introduz os dados solicitados
+activate RegistarOrganizacaoUI
+RegistarOrganizacaoUI -> RegistarOrganizacaoController: 2. novaOrganizacao(nome,NIF,endLOcal,endCodPOstal,endLocalidade,tlf,site,email,nomeG,funcao,tlfG,emailG)
+activate RegistarOrganizacaoController
+RegistarOrganizacaoController -> Plataforma: 3. ro=getRegistoOrganizacoes()
+activate Plataforma
+deactivate Plataforma
+@enduml
