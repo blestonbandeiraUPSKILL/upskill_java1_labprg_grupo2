@@ -1,0 +1,40 @@
+@startuml
+
+
+class Plataforma{
+}
+class Organizacao{
+}
+class Administrativo{
+}
+class Colaborador{
+}
+class Freelancer{
+}
+
+class Tarefa{
+}
+class CompetenciaTecnica{
+}
+class AreaAtividade{
+}
+class Categoria {
+}
+
+Administrativo"1..*"-->"1"Plataforma:trabalha na
+Plataforma "1" --> "*" Freelancer
+Plataforma "1" --> "*" Organizacao
+Freelancer "1" --> "*" CompetenciaTecnica: tem
+Freelancer "1" --> "*" Tarefa: candidata-se a 
+Organizacao "1" --> "1" Colaborador:tem gestor
+Organizacao "1" --> "*" Colaborador:tem
+Administrativo "1.." -->"1.."AreaAtividade:define
+Administrativo "1.." -->"1.."Categoria:define
+Administrativo "1.." -->"1.."CompetenciaTecnica:define
+Colaborador --> Tarefa:cria
+Colaborador -->Tarefa: gestor publica
+
+
+
+
+@enduml

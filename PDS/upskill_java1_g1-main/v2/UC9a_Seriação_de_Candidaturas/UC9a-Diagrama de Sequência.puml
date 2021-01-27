@@ -1,0 +1,41 @@
+@startuml
+
+title UC9a - Seriação de Candidaturas
+
+participant Colaborador
+participant UC9a_UI
+participant UC9a_Ctrl
+participant UC9a_Strategy
+participant Plataforma  << Singleton >> 
+
+activate Colaborador
+Colaborador -> UC9a_UI: solicita lista das candidaturas \nà tarefa cujo período de apresentação \nde candidaturas terminou
+activate UC9a_UI
+UC9a_UI -> UC9a_Ctrl: getListCandidaturas()
+activate UC9a_Ctrl
+UC9a_Ctrl -> Plataforma:getListCandidaturas()
+activate Plataforma
+Plataforma --> UC9a_Ctrl: listaCandidaturas
+deactivate Plataforma
+UC9a_Ctrl --> UC9a_UI: listaCandidaturas
+UC9a_UI --> Colaborador: lista de candidaturas à tarefa
+
+deactivate UC9a_UI
+deactivate UC9a_Ctrl
+
+Colaborador -> UC9a_UI: solicita a seriação \ndas candidaturas apresentadas
+activate UC9a_UI
+UC9a_UI -> UC9a_Ctrl: seriar(listaCandidaturas)
+activate UC9a_Ctrl
+UC9a_Ctrl -> UC9a_Strategy: seriar(listaCandidaturas, regimeSeriacao)
+activate UC9a_Strategy
+UC9a_Strategy --> UC9a_Ctrl: listaSeriada
+deactivate UC9a_Strategy
+UC9a_Ctrl --> UC9a_UI: listaSeriada
+deactivate UC9a_Ctrl
+UC9a_UI --> Colaborador: candidatura seleccionada com \nbase nos critérios de seriação
+deactivate UC9a_UI
+deactivate Colaborador
+
+
+@enduml

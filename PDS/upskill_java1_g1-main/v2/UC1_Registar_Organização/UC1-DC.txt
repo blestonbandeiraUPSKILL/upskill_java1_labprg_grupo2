@@ -1,0 +1,38 @@
+@startuml
+title UC1 - Registar Organização
+left to right direction
+
+class Plataforma <<Singleton>>{
+designacao
+--
+registarOrganização()
+}
+
+class Organização {
+NIF
+codigoPostal
+Telefone
+web
+email
+nifGestor
+
+}
+
+class UC1_UI {
+--
+registarOrganização()
+}
+
+class UC1_CTRL{
+--
+registarOrganização()
+}
+
+
+
+
+Organização --o Plataforma
+UC1_UI --> UC1_CTRL
+UC1_CTRL --> Organização
+
+@enduml

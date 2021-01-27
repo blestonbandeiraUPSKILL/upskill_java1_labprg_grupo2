@@ -1,0 +1,46 @@
+@startuml
+participant GestorOrg
+activate GestorOrg
+GestorOrg -> ColaboradoresUI: 1.Introduz dados de login
+activate ColaboradoresUI
+ColaboradoresUI -> ColaboradoresCTRL: 2.novoLogin()
+activate ColaboradoresCTRL
+ColaboradoresCTRL -> Plataforma: 3.login=novoLogin()
+activate Plataforma
+Plataforma -> Plataforma: 4.validaLogin()
+deactivate Plataforma
+deactivate ColaboradoresCTRL
+ColaboradoresUI --> GestorOrg: 6.Login efetuado com sucesso
+deactivate ColaboradoresUI
+GestorOrg -> ColaboradoresUI: \n7.novo Colaborador
+activate ColaboradoresUI
+ColaboradoresUI --> GestorOrg: \n\n8.Solicita dados\n(nome, função, contacto telefónico, endereço de email)
+deactivate ColaboradoresUI
+GestorOrg -> ColaboradoresUI: \n9.Introduz dados
+activate ColaboradoresUI
+ColaboradoresUI -> ColaboradoresCTRL: 10.novoColaborador(nome, func,tlf,email)
+activate ColaboradoresCTRL
+ColaboradoresCTRL -> Plataforma: 11.colaborador=novoColaborador(nome, func,tlf,email)
+activate Plataforma
+Plataforma --> "colaborador:Colaborador"**: 12.criar(nome, func,tlf,email)
+deactivate Plataforma
+ColaboradoresCTRL -> Plataforma: 13.validaColaborador(colaborador)
+activate Plataforma
+deactivate Plataforma
+deactivate ColaboradoresCTRL
+ColaboradoresUI --> GestorOrg: 14.Apresenta dados e solicita confirmação
+deactivate ColaboradoresUI
+GestorOrg -> ColaboradoresUI: \n15.Confirma dados
+activate ColaboradoresUI
+ColaboradoresUI -> ColaboradoresCTRL: 16.registaColaborador()
+activate ColaboradoresCTRL
+ColaboradoresCTRL -> Plataforma: 17.registaColaborador(colaborador)
+activate Plataforma
+Plataforma -> Plataforma: 18.validaColaborador(colaborador)
+Plataforma -> Plataforma: 19.adicionaColaborador(colaborador)
+deactivate Plataforma
+deactivate ColaboradoresCTRL
+ColaboradoresUI --> GestorOrg: 20.Colaborador adicionado com sucesso
+deactivate ColaboradoresUI
+deactivate GestorOrg
+@enduml
