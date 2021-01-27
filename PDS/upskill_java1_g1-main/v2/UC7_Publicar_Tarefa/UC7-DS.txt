@@ -1,0 +1,48 @@
+@startuml
+
+participant Colaborador
+participant UC7_UI
+participant UC7_Ctrl
+participant Plataforma << Singleton >>
+participant AnuncioTarefa
+
+title UC7 - Publicar Tarefa
+activate Colaborador
+Colaborador->UC7_UI:iniciar
+activate UC7_UI
+UC7_UI->UC7_Ctrl:showPrivateTarefas(orgNIF)
+activate UC7_Ctrl
+UC7_Ctrl->Plataforma: showPrivateTarefas(orgNIF)
+activate Plataforma
+alt privateTarefas[] tem elementos
+Plataforma-->UC7_Ctrl: lista de privateTarefas
+deactivate Plataforma
+UC7_Ctrl-->UC7_UI: lista de privateTarefas
+deactivate UC7_Ctrl
+UC7_UI-->Colaborador:lista de tarefas por publicar 
+deactivate UC7_UI
+Colaborador->UC7_UI: seleciona tarefa para publicar
+activate UC7_UI
+Colaborador -> UC7_UI: adiciona \nperiodo de publicitação, \n período de apresentação de candidaturas, \nperíodo de seriação e adjudicação, \n regime seriação
+
+deactivate Colaborador
+UC7_UI->UC7_Ctrl:criarAnuncio(tarefa, periodoPub, periodoCand, periodoAdj, tipoSeriacao)
+activate UC7_Ctrl
+UC7_Ctrl->AnuncioTarefa:criarAnuncio(tarefa, periodoPub, periodoCand, periodoAdj, tipoSeriacao)
+activate AnuncioTarefa
+AnuncioTarefa-->UC7_Ctrl:anuncioTarefa
+deactivate AnuncioTarefa
+UC7_Ctrl->Plataforma: save(anuncioTarefa)
+activate Plataforma
+Plataforma-->Plataforma:add(anuncioTarefa)
+Plataforma-->UC7_Ctrl: ok
+deactivate Plataforma
+UC7_Ctrl-->UC7_UI: ok
+deactivate UC7_Ctrl
+UC7_UI-->Colaborador: ok
+deactivate UC7_UI
+activate Colaborador
+UC7_UI<--Colaborador: terminar
+deactivate Colaborador
+
+@enduml
