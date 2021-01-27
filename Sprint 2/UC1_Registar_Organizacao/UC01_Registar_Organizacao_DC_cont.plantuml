@@ -1,0 +1,34 @@
+@startuml
+title UC01 - Registar Organização - Diagrama de Classes (Interface AlgoritmoGeradorPasswords)
+
+top to bottom direction
+
+interface AlgoritmoGeradorPasswords {
++String geraPassword(String nomeG, String emailG)
+}
+
+class AlgoritmoGeradorPasswordsAdapter1 {
++String geraPassword(String nome, String email)
+}
+
+class AlgoritmoGeradorPasswordsAdapter2 {
++String geraPassword(String nome, String email)
+}
+
+class AlgoritmoExterno1API {
++String randomPassword()
++String randomPassword(Integer minChars, Integer maxChars)
+}
+
+class AlgoritmoExterno2API {
++Password generatePassword()
++Password generatePassword(String feedChars)
++Password generatePassword(Integer strength)
++Password generatePassword(Integer strength, String feedChars)
+}
+
+AlgoritmoGeradorPasswords <|.. AlgoritmoGeradorPasswordsAdapter1
+AlgoritmoGeradorPasswordsAdapter1 --> AlgoritmoExterno1API
+AlgoritmoGeradorPasswords <|.. AlgoritmoGeradorPasswordsAdapter2
+AlgoritmoGeradorPasswordsAdapter2 --> AlgoritmoExterno2API
+@enduml
