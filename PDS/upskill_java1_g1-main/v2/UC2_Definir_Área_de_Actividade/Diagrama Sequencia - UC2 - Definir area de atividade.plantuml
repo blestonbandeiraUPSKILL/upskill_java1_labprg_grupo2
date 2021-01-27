@@ -1,0 +1,39 @@
+@startuml
+title UC2 - Definir área de atividade\n
+
+participant Administrativo
+activate Administrativo
+Administrativo -> UC2_UI: Nova Área de atividade
+UC2_UI --> Administrativo: \n\nSolicita dados \n(Código Único, Descrição Breve,\n Descrição Detalhada)
+deactivate UC2_UI 
+Administrativo -> UC2_UI: \nIntroduz os dados solicitados
+activate UC2_UI
+UC2_UI -> UC2_CTRL: novaArea(codUnica, dBreve, dDetalhada)
+activate UC2_CTRL
+UC2_CTRL -> Plataforma: area=novaArea(codUnica, dBreve, dDetalhada)
+activate Plataforma
+deactivate Plataforma
+UC2_CTRL -> AreaAtividade: criar(codUnica, dBreve, dDetalhada)
+activate AreaAtividade
+AreaAtividade --> UC2_CTRL: a1
+deactivate AreaAtividade
+UC2_CTRL --> UC2_UI: a1
+UC2_UI --> Administrativo: Apresenta dados e solicita confirmação
+deactivate Plataforma
+deactivate UC2_CTRL
+deactivate UC2_UI
+Administrativo -> UC2_UI: Confirma os dados
+activate UC2_UI
+UC2_UI -> UC2_CTRL: registaAreaAtividade()
+activate UC2_CTRL
+UC2_CTRL -> Plataforma: registaAreaAtividade(area)
+activate Plataforma
+Plataforma -> Plataforma: validaAreaAtividade(area)
+Plataforma -> Plataforma: adicionarAreaAtividade(area)
+deactivate Plataforma
+deactivate UC2_CTRL
+UC2_UI --> Administrativo: Área de Atividade adicionada com sucesso
+deactivate UC2_UI
+deactivate Administrativo
+
+@enduml

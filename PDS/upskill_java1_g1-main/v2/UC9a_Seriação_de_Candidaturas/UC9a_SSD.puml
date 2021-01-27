@@ -1,0 +1,10 @@
+@startuml
+
+title UC9a - Seriação de Candidaturas
+
+Colaborador -> Sistema: solicita lista de candidaturas por seriar
+Sistema -> Colaborador: lista de candidaturas por seriar
+Colaborador -> Sistema: solicita a seriação das candidaturas
+Sistema -> Colaborador: lista de candidaturas seriadas
+
+@enduml
