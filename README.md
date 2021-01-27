@@ -7,6 +7,20 @@
 - [Caroline Duarte](https://github.com/carol-duarte)
 - [Marta Silvestre](https://github.com/Marta-Silvestre)
 
+## Documentação
+
+- [Glossário](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Sprint%202/Glossario.md)
+- [Modelo de Domínio](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Sprint%202/Modelo%20de%20Dom%C3%ADnio.png)
+
+#### Use Cases
+
+- [UC01 - Registar Organização]()
+- [UC02 - Definir Área de Actividade]()
+- [UC03 - Definir Categoria de Tarefa]()
+- [UC04 - Esoecificar Competência Técnica]()
+- [UC05 - Especificar Colaborador de Organização ]()
+- [UC06 - Especificar Tarefa]()
+
 ## Links úteis
 
 - [Trabalho desenvolvido no módulo PDS](https://github.com/ajorgesantosp/upskill_java1_g1)

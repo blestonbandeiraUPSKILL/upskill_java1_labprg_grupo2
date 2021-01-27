@@ -1,0 +1,94 @@
+@startuml
+title Modelo de Domínio
+
+left to right direction
+class Plataforma {
+    -String designacao
+}
+
+class AreaActividade {
+    -String codigo
+    -String descBreve
+    -String descDetalhada
+}
+
+class CompetenciaTecnica {
+    -String codigo
+    -String descBreve
+    -String descDetalhada
+}
+
+class Organizacao {
+    -String nome
+    -String NIF
+    -String website
+    -String telefone
+    -String email
+}
+
+class Tarefa {
+    -String referencia
+    -String designacao
+    -String descInformal
+    -String descTecnica
+    -Integer duracaoEst
+    -Double custoEst
+}
+
+class CaracterCT {
+    -Boolean obrigatoria
+}
+
+class Categoria {
+    -String id
+    -String descricao 
+}
+
+class Colaborador {
+    -String nome
+    -String funcao
+    -String telefone
+    -String email
+}
+
+class EnderecoPostal {
+    -String local
+    -String codPostal
+    -String localidade
+}
+
+class Freelancer {
+
+}
+
+class Administrativo {
+
+}
+
+class Utilizador {
+    -String nome
+    -String email
+    -String password
+}
+
+Plataforma"1" -- "*"Organizacao: tem registadas >
+Plataforma"1" -- "*"Freelancer: tem/usa >
+Plataforma"1" -- "*"Administrativo: tem >
+Plataforma"1" -- "*"AreaActividade: possui >
+Plataforma"1" -- "*"CompetenciaTecnica: possui >
+Plataforma"1" -- "*"Categoria: possui >
+Tarefa"*" -- "1"Categoria: enquadra-se em >
+Tarefa"*" -- "1"Colaborador: especificada por >
+CompetenciaTecnica"*" -- "*"AreaActividade: referente a >
+Organizacao"1" -- "*"Tarefa: possui >
+Organizacao"1" -- EnderecoPostal: localizada em >
+Organizacao"1" -- "1"Colaborador: tem gestor >
+Organizacao"1" -- "1..*"Colaborador: tem >
+Freelancer"0..1" -- "1"Utilizador: actua como >
+Administrativo"0..1" -- "1"Utilizador: actua como >
+Colaborador"0..1" -- "1"Utilizador: actua como >
+Categoria"*" -- CompetenciaTecnica: requer >
+(Categoria, CompetenciaTecnica) . CaracterCT
+
+
+@enduml

@@ -1,0 +1,78 @@
+@startuml
+title UC01 - Registar Organização - Diagrama de classes
+
+top to bottom direction
+
+class RegistarOrganizacaoUI {
+}
+
+class RegistarOrganizacaoController {
++novaOrganizacao(nome, NIF, endLocal, endCodPOstal, endLocalidade, tlf, site, email, nomeG, funcao, tlfG, emailG, pwd)
++registaOrganizacao()
+}
+
+class Organizacao {
+-String nome
+-String NIF
+-String website
+-String telefone
+-String email
++Organizacao(nome,NIF,website,telefone,email,endereco,gestorColaborador)
++EnderecoPOstal novoEndereco(local,codPostal,localidade)
++Colaborador novoColaborador(nome,funcao,tlf,email)
+}
+
+class Colaborador {
+-String nome
+-String funcao
+-String telefone
+-String email
++Colaborador(nome,funcao,tlf,email)
++String getNome()
++String getEmail()
+}
+
+class EnderecoPostal {
+-String local
+-String codPostal
+-String localidade
++EnderecoPostal(local,codPostal,localidade)
+}
+
+class RegistoOrganizacoes {
++Organizacao novaOrganizacao(nome, NIF, endLocal, endCodPOstal, endLocalidade, tlf, site, email, nomeG, funcao, tlfG, emailG)
++validaOrganizacao(Organizacao org)
++registaOrganizacao(Organizacao org)
+-addOrganizacao (Organizacao org)
+-registaGestorComoUtilizador(Colaborador colab)
+-enviaPwd(String emailG, String pwd)
+}
+
+class AutorizacaoFacade {
++registaUtilizadorComPapeis(nomeG,emailG,pwd,listaPapel)
+}
+
+class AlgoritmoGeradorPasswords {
++String geraPassword(String nomeG, String emailG)
+}
+
+class Plataforma {
+-String designacao
++RegistoOrganizacoes getRegistoOrganizacoes()
++AutorizacaoFacade getAutorizacaoFacade()
++AlgoritmoGeradorPasswords getAlgoritmoGeradorPwd()
+}
+
+RegistarOrganizacaoUI -- RegistarOrganizacaoController
+RegistarOrganizacaoController --> RegistoOrganizacoes
+RegistarOrganizacaoController --> Organizacao
+RegistarOrganizacaoController --> Plataforma
+Organizacao "1"-->"1..*" Colaborador : tem
+Organizacao "1"-->"1" Colaborador : tem gestor
+Organizacao "1"-->"1" EnderecoPostal : localizada em
+RegistoOrganizacoes "1"-->"*" Organizacao : tem registadas
+RegistoOrganizacoes --> AutorizacaoFacade
+RegistoOrganizacoes --> AlgoritmoGeradorPasswords
+RegistoOrganizacoes --> Colaborador
+RegistoOrganizacoes --> EnderecoPostal
+@enduml
