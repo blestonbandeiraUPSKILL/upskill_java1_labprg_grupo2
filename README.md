@@ -18,7 +18,7 @@
 - [UC02 - Definir Área de Actividade]()
 - [UC03 - Definir Categoria de Tarefa]()
 - [UC04 - Esoecificar Competência Técnica]()
-- [UC05 - Especificar Colaborador de Organização ]()
+- [UC05 - Especificar Colaborador de Organização ](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Sprint%202/UC5_Especificar_Colaborador_Organizacao/UC5_Especificar_Colaborador_Organiza%C3%A7%C3%A3o.md)
 - [UC06 - Especificar Tarefa]()
 
 ## Links úteis
