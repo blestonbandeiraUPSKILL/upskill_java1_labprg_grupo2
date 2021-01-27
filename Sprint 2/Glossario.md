@@ -13,7 +13,7 @@
 |  <a name="CompetenciaTecnica">Competência Técnica</a> |  Refere-se a um conjunto de conhecimentos e competências (habilidades) necessárias à execução de tarefas de uma determinada categoria. |
 | CT  |  Acrónimo de [Competência Técnica](#CompetenciaTecnica). |
 | <a name="Freelancer">Freelancer</a>  |  Pessoa individual que trabalha por conta própria e não está necessariamente comprometida com uma entidade empregadora ([organização](#Organizacao)) específica a longo prazo. |
-| <a name="Gestor de Organizacao">Gestor de Organização</a>  | Corresponde ao papel desempenhado por um [Colaborador](#ColaboradorOrganizacao) dessa Organização na própria [Organização](#Organizacao).  |
+| <a name="GestorOrganizacao">Gestor de Organização</a>  | Corresponde ao papel desempenhado por um [Colaborador](#ColaboradorOrganizacao) dessa Organização na própria [Organização](#Organizacao).  |
 |  Implantação (de Software) | Processo que visa colocar um determinado software em produção. Nos casos mais simples, pode corresponder simplesmente à actividade de instalação desse software. Contudo, este processo pode implicar também outras actividades como activação, configuração, etc.  |
 | NIF  | Acrónimo para Número de Identificação Fiscal.  |
 |  <a name="Organizacao">Organização</a> |  Pessoa colectiva que pretende contratar freelancers para a realização de tarefas necessárias à actividade da mesma. |
