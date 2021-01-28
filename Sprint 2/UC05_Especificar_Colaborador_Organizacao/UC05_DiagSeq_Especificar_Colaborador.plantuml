@@ -43,6 +43,7 @@ UI -> CTRL : 3.1: registaColaborador()
 activate CTRL
 CTRL -> Plataforma : 3.1.1: agp=getAlgoritmoGeradorPasswords()
 activate Plataforma
+deactivate Plataforma
 CTRL -> "agp: getAlgoritmoGeradorPasswords" : 3.1.2: password=getPassword()
 activate "agp: getAlgoritmoGeradorPasswords"
 deactivate "agp: getAlgoritmoGeradorPasswords"
