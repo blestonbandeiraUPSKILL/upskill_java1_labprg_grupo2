@@ -45,6 +45,18 @@ os dados ao gestor de organização, pedindo que os confirme;
 5. O gestor de organização confirma os dados inseridos;
 6. O sistema regista os dados do colaborador e informa o gestor de que a operação foi realizada com sucesso.
 
+**_Fluxos Alternativos:_**
+
+1. O Gestor da Organização cancela o processo de inserir/especificar um colaborador. 
+    a. O caso de uso termina.
+2. O Gestor da Organização verifica que não existem mais colaboradores para inserir. 
+    a. O caso de uso termina.
+3. O Gestor da Organização introduz dados inválidos:    
+    a. O sistema permite a correção dos dados introduzidos (Passo 3). 
+    b. O Gestor da Organização não altera os dados. c. O caso de uso termina.
+4. O sistema deteta que os dados (ou algum subconjunto dos dados) introduzidos devem ser únicos e que já existem no sistema: 
+    a. O sistema alerta o gestor para o facto.
+    b. O sistema permite a sua alteração (passo 3). c. O Gestor da Organização não altera os dados. O caso de uso termina.
 
 ### Diagrama de Sequência de Sistema ###
 
