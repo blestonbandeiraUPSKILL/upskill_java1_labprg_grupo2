@@ -29,8 +29,6 @@ sistema valida e apresenta os dados ao administrativo, pedindo que os confirme. 
 * É criada/definida com sucesso uma categoria de tarefa, que fica disponível para a associação de tarefas.
 
 ### Cenário de sucesso principal
-
-1. O colaborador inicia o registo de organização.
 1.	O administrativo inicia o processo de definição de categoria de tarefa.
 2.	A plataforma devolve a lista de áreas de actividade e competências técnicas existentes na plataforma.
 3.	O administrativo seleciona uma área de actividade, juntamente com as competências técnicas, definindo o grau mínimo exigido para as mesmas, assim como se são obrigatórias ou opcionais.
