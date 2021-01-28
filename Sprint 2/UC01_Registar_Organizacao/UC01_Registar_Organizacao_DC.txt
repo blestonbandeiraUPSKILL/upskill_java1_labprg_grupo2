@@ -1,5 +1,5 @@
 @startuml
-title UC01 - Registar Organização - Diagrama de classes
+title UC01 - Registar Organização - Diagrama de Classes
 
 top to bottom direction
 
@@ -52,7 +52,7 @@ class AutorizacaoFacade {
 +registaUtilizadorComPapeis(nomeG,emailG,pwd,listaPapel)
 }
 
-class AlgoritmoGeradorPasswords {
+interface AlgoritmoGeradorPasswords {
 +String geraPassword(String nomeG, String emailG)
 }
 
@@ -63,16 +63,53 @@ class Plataforma {
 +AlgoritmoGeradorPasswords getAlgoritmoGeradorPwd()
 }
 
-RegistarOrganizacaoUI -- RegistarOrganizacaoController
-RegistarOrganizacaoController --> RegistoOrganizacoes
-RegistarOrganizacaoController --> Organizacao
-RegistarOrganizacaoController --> Plataforma
+RegistarOrganizacaoUI ..> RegistarOrganizacaoController
+RegistarOrganizacaoController ..> RegistoOrganizacoes
+RegistarOrganizacaoController ..> Organizacao
+RegistarOrganizacaoController ..> Plataforma
 Organizacao "1"-->"1..*" Colaborador : tem
 Organizacao "1"-->"1" Colaborador : tem gestor
 Organizacao "1"-->"1" EnderecoPostal : localizada em
 RegistoOrganizacoes "1"-->"*" Organizacao : tem registadas
-RegistoOrganizacoes --> AutorizacaoFacade
-RegistoOrganizacoes --> AlgoritmoGeradorPasswords
-RegistoOrganizacoes --> Colaborador
-RegistoOrganizacoes --> EnderecoPostal
+RegistoOrganizacoes ..> AutorizacaoFacade
+RegistoOrganizacoes ..> AlgoritmoGeradorPasswords
+RegistoOrganizacoes ..> Colaborador
+RegistoOrganizacoes ..> EnderecoPostal
+
+newpage
+
+interface AlgoritmoGeradorPasswords {
++String geraPassword(String nomeG, String emailG)
+}
+
+note left
+Esta interface será alvo de múltiplas implementações,
+uma por cada algoritmo externo que tenha que ser suportado.
+end note
+
+class AlgoritmoGeradorPasswordsAdapter1 {
++String geraPassword(String nome, String email)
+}
+
+class AlgoritmoGeradorPasswordsAdapter2 {
++String geraPassword(String nome, String email)
+}
+
+class AlgoritmoExterno1API {
++String randomPassword()
++String randomPassword(Integer minChars, Integer maxChars)
+}
+
+class AlgoritmoExterno2API {
++Password generatePassword()
++Password generatePassword(String feedChars)
++Password generatePassword(Integer strength)
++Password generatePassword(Integer strength, String feedChars)
+}
+
+AlgoritmoGeradorPasswords <|.. AlgoritmoGeradorPasswordsAdapter1
+AlgoritmoGeradorPasswordsAdapter1 --> AlgoritmoExterno1API
+AlgoritmoGeradorPasswords <|.. AlgoritmoGeradorPasswordsAdapter2
+AlgoritmoGeradorPasswordsAdapter2 --> AlgoritmoExterno2API
+
 @enduml

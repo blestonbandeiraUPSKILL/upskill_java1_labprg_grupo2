@@ -7,10 +7,12 @@ O colaborador de organização inicia a especificação de uma tarefa. O sistema
 ![UC6_Especificar_Tarefa_SSD.png](UC6_Especificar_Tarefa_SSD.png)
 
 ## Excerto do modelo de domínio <br/>
-|[UC6_Especificar_Tarefa_Modelo_Dominio.png](UC6_Especificar_Tarefa_Modelo_Dominio.png)
+![UC6_Especificar_Tarefa_Modelo_Dominio.png](UC6_Especificar_Tarefa_Modelo_Dominio.png)
 
 ## Diagrama de sequência <br/>
-![]()
+![UC06_Especificar_Tarefa_Diagrama_Sequencia.png](UC06_Especificar_Tarefa_Diagrama_Sequencia.png)
+
+![UC06_Especificar_Tarefa_ref_Diagrama_Sequencia.png](UC06_Especificar_Tarefa_ref_Diagrama_Sequencia.png)
 
 ## Diagrama de classes <br/>
 ![]()
