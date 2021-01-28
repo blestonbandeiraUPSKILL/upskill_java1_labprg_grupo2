@@ -15,7 +15,7 @@
 
 #### Use Cases
 
-- [UC01 - Registar Organização]()
+- [UC01 - Registar Organização](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Sprint%202/UC01_Registar_Organizacao/UC01_Registar_Organizacao.md)
 - [UC02 - Definir Área de Actividade]()
 - [UC03 - Definir Categoria de Tarefa]()
 - [UC04 - Esoecificar Competência Técnica]()
