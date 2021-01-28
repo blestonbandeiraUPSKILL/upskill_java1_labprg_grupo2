@@ -39,7 +39,7 @@ deactivate ":Plataforma"
 ":UI" --> Administrativo: 2.2: Mostra a lista de competências técnicas associadas à área de atividade especificada e solicita a escolha de uma delas
 deactivate ":UI"
 
-":CTRL" -> "rct:RegistoCompetenciasTecnicas" : 2.1.3: at = getListaCompetecnciasTecnicas(at)
+":CTRL" -> "rct:RegistoCompetenciasTecnicas" : 2.1.3: at = getListaCompetenciasTecnicas(at)
 activate "rct:RegistoCompetenciasTecnicas"
 deactivate "rct:RegistoCompetenciasTecnicas"
 
