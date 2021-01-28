@@ -36,7 +36,7 @@ class RepositorioCategoria {
     categoria(catCod)
 }
 
-class EspecificarTarefaRegistoOrganizacoes {
+class RepositorioOrganizacao {
     -List<Organizacao>
     -organizacao
     --
@@ -88,6 +88,18 @@ class Categoria {
     -String descricao
 }
 
+class Email {
+    -String email
+    --
+    validaEMail(email)
+}
+
+class Password {
+    -String password
+    --
+    -validaPassword(password)
+}
+
 Colaborador"0..1" --|> "1"Utilizador
 EspecificarTarefaUI ..> EspecificarTarefasCTRL
 EspecificarTarefasCTRL ..> Plataforma
@@ -100,5 +112,7 @@ RepositorioColaborador --> Colaborador
 RepositorioTarefa ---> Tarefa
 RepositorioCategoria --> Categoria
 Plataforma <-- Tarefa
+Utilizador --> Email
+Utilizador --> Password
 
 @enduml
