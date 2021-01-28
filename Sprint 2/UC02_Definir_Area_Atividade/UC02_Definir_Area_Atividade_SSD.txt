@@ -1,0 +1,15 @@
+@startuml
+title UC02 - Definir Área de Atividade - Diagrama de Sequência de Sistema
+
+Actor Administrativo
+
+Administrativo -> Sistema: 1. Nova área de atividade
+Sistema --> Administrativo: 2. Solicita dados (código, descrição breve e detalhada)
+
+Administrativo -> Sistema: 3. Introduz os dados solicitados
+Sistema --> Administrativo: 4. Apresenta os dados e solicita confirmação
+
+Administrativo -> Sistema: 5. Confirma os dados introduzidos
+Sistema --> Administrativo: 6. Operação bem sucedida
+
+@enduml
