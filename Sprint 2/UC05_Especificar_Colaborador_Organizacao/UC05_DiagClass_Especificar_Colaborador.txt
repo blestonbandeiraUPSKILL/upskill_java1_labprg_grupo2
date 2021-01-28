@@ -5,6 +5,8 @@ left to right direction
 
 class Plataforma <<Singleton>> {
     -String designacao
+    --
+    getRegistoOrganizacoes()
 }
 
 class EspecificarColaboradorUI{
@@ -16,15 +18,8 @@ class EspecificarColaboradorUI{
 
 class EspecificarColaboradorCTRL{
     --
-    getGestaoUtilizadoresFacade()
-    getSessaoAtual()
-    getEmailUtilizador()
-    getRegistoOrganizacoes()
-    getOrganizacaoByEmailUtilizador(email)
     novoColaborador(nome, funcao, telefone, email)
     validaColaborador(c)
-    getAlgoritmoGeradorPasswords()
-    getPassword()
     registaColaborador(c)
     registaUtilizadorComPapel(nome, email, password, "colaborador")
 
@@ -50,18 +45,34 @@ class Utilizador {
     -Password password
 }
 class GestaoUtilizadoresFacade{
-
+    getGestaoUtilizadoresFacade()
 }
 class SessaoAtual{
+    getSessaoAtual()
+}
+class SessaoUtilizador{
+    getEmailUtilizador()
+}
 
+class RegistoOrganizacoes{
+    getOrganizacaoByEmailUtilizador(email)
 }
 interface AlgoritmoGeradorPasswords{
-
+    getAlgoritmoGeradorPasswords()
 }
 class Password{
-
+getPassword()
 }
 class UtilizadorComPapel{
 
 }
+class Colaborador{
+
+}
+
+EspecificarColaboradorUI ..> EspecificarColaboradorCTRL
+EspecificarColaboradorCTRL ..> Plataforma
+EspecificarColaboradorCTRL ..> GestaoUtilizadoresFacade
+EspecificarColaboradorCTRL ..> SessaoUtilizador
+
 @enduml
