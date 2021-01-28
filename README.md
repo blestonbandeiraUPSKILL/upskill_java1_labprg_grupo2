@@ -22,7 +22,6 @@
 - [UC05 - Especificar Colaborador de Organização ](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Sprint%202/UC05_Especificar_Colaborador_Organizacao/UC05_Especificar_Colaborador_Organiza%C3%A7%C3%A3o.md)
 - [UC06 - Especificar Tarefa](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Sprint%202/UC06_Especificar_Tarefa/UC6_Especificar_Tarefa.md)
 
-
 ## Links úteis
 
 - [Trabalho desenvolvido no módulo PDS](https://github.com/ajorgesantosp/upskill_java1_g1)
