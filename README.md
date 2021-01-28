@@ -1,4 +1,4 @@
-# Projecto PDS - Turma Java 1 - Testes
+# Turma Java 1 - T4J 
 
 ## Grupo 2
 
