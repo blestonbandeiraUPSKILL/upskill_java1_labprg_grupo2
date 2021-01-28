@@ -16,8 +16,7 @@ class EspecificarTarefaUI {
 
 class EspecificarTarefasCTRL {
     --
-    getListaCategorias()
-    getRegistoCategorias()
+   
     getRegistoOrganizacoes()
     getOrganizacaoByEmail(email)
     
@@ -37,6 +36,9 @@ class RepositorioTarefa {
 class RepositorioCategoria {
     -List<Categoria>
     -categoria(catCod)
+    --
+    allCategorias()
+    categoria(catCod)
 }
 
 class EspecificarTarefaRegistoOrganizacoes {
