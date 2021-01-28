@@ -1,0 +1,48 @@
+@startuml
+
+title UC06 - Especificar Tarefa
+left to right direction
+
+class Plataforma <<Singleton>> {
+    -String designacao
+}
+
+class Organizacao {
+    -String nome
+    -String NIF
+    -String website
+    -String telefone
+    -String email
+}
+
+class Colaborador {
+    -String nome
+    -String funcao
+    -String telefone
+    -String email
+}
+
+class Tarefa {
+    -String referencia
+    -String designacao
+    -String descInformal
+    -String decTecnica
+    -Integer duracaoEst
+    -Double custoEst
+}
+
+class Utilizador {
+    -String nome
+    -String email
+    -String password
+}
+
+class Categoria {
+    -String id
+    -String descricao
+}
+
+
+
+@enduml
+

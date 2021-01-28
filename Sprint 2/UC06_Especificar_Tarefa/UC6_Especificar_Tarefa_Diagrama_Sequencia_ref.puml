@@ -1,0 +1,26 @@
+@startuml
+
+title UC06 - Especificar Tarefa (myEmail)
+
+participant "s:Sessao" as Sessao
+participant GestaoUtilizadores
+participant "guf:GestaoUtilizadoresFacade" as GestaoUtilizadoresFacade
+participant "sessao:SessaoUtilizador" as SessaoUtilizador
+
+
+ -> Sessao: 1: email = getMyEmail()
+activate Sessao
+Sessao -> GestaoUtilizadores: 1.1: gu = getGestaoUtilizadoresFacade()
+activate GestaoUtilizadores
+deactivate GestaoUtilizadores
+Sessao -> GestaoUtilizadoresFacade: 1.2: sessao = getSessaoActual()
+activate GestaoUtilizadoresFacade
+deactivate GestaoUtilizadoresFacade
+Sessao -> SessaoUtilizador: 1.3: email = getEmailUtilizador()
+activate SessaoUtilizador
+deactivate SessaoUtilizador
+deactivate Sessao
+
+
+
+@enduml

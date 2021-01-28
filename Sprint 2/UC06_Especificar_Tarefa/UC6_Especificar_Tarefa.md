@@ -12,6 +12,8 @@ O colaborador de organização inicia a especificação de uma tarefa. O sistema
 ## Diagrama de sequência <br/>
 ![UC06_Especificar_Tarefa_Diagrama_Sequencia.png](UC06_Especificar_Tarefa_Diagrama_Sequencia.png)
 
+![UC06_Especificar_Tarefa_ref_Diagrama_Sequencia.png](UC06_Especificar_Tarefa_ref_Diagrama_Sequencia.png)
+
 ## Diagrama de classes <br/>
 ![]()
 
