@@ -60,16 +60,19 @@ os dados ao gestor de organização, pedindo que os confirme;
 
 ### Diagrama de Sequência de Sistema ###
 
-![UC5-SSD](UC5_SSD_Especificar_Colaborador.png)
+![UC05-SSD](UC05_SSD_Especificar_Colaborador.png)
 
 
 ### Excerto do Modelo de Domínio ###
 
-![UC5-DiagSequ](UC5_ExcertoMD_Especificar_Colaborador.png)
+![UC05-DiagSequ](UC05_ExcertoMD_Especificar_Colaborador.png)
 
 
 ### UC5 - Diagrama de Sequência ###
 
-![UC5-DiagSequ](UC5_DiagSeq_Especificar_Colaborador.png)
+![UC05-DiagSequ](UC05_DiagSeq_Especificar_Colaborador.png)
 
+
+
+##### [Voltar ao início](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/README.md)
 
