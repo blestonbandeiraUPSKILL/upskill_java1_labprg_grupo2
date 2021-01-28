@@ -1,0 +1,18 @@
+@startuml
+
+title UC01 - Registar Organização - Diagrama de Sequência de Sistema
+
+actor "Utilizador Não Registado"
+activate "Utilizador Não Registado"
+
+skinparam sequenceMessageAlign left
+"Utilizador Não Registado" -> Sistema: 1. Registar Organização
+Sistema --> "Utilizador Não Registado": 2. Solicita dados da organização (nome, NIF, endereço, telefone, website, email) e sobre o gestor (nome, funçao, telefone, email)
+
+"Utilizador Não Registado" -> Sistema: 3. Introduz os dados solicitados
+"Utilizador Não Registado" <-- Sistema: 4. Apresenta os dados inseridos e solicita confirmação
+
+"Utilizador Não Registado" -> Sistema: 5. Confirma os dados inseridos
+"Utilizador Não Registado" <-- Sistema: 6. Operação bem sucedida
+
+@enduml
