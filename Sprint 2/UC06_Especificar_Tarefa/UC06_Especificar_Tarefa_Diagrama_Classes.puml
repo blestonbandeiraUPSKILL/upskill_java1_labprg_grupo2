@@ -16,11 +16,6 @@ class EspecificarTarefaUI {
 
 class EspecificarTarefasCTRL {
     --
-   
-    getRegistoOrganizacoes()
-    getOrganizacaoByEmail(email)
-    
-
     novaTarefa(ref, designacao, descInformal, descTecnica, duracao, custo, cat, colab)
     registaTarefa(t)
 }
@@ -35,7 +30,7 @@ class RepositorioTarefa {
 
 class RepositorioCategoria {
     -List<Categoria>
-    -categoria(catCod)
+    -categoria
     --
     allCategorias()
     categoria(catCod)
@@ -43,6 +38,10 @@ class RepositorioCategoria {
 
 class EspecificarTarefaRegistoOrganizacoes {
     -List<Organizacao>
+    -organizacao
+    --
+    -allOrganizacoes()
+    -organizacaoByEmail(email)
 }
 
 class RepositorioColaborador {
