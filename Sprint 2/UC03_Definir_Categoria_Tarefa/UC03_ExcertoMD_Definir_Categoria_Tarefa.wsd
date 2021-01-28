@@ -1,0 +1,53 @@
+@startuml
+
+title UC03 - Definir Categoria de Tarefa
+
+class Plataforma{
+    String designacao
+}
+
+class Categoria{
+  String id
+  String descricao
+}
+
+class AreaAtividade{
+  String codigo
+  String descBreve
+  String descDetalhada
+}
+
+class CompetenciaTecnica{
+  String codigo
+  String descBreve
+  String descDetalhada
+}
+
+Class CaraterCT{
+  Boolean obrigatoria
+}
+
+Class GrauProficiencia{
+  Integer valor
+  String designacao
+}
+
+Plataforma "1" - "*" Categoria: possui >
+
+Plataforma "1" --- "*" AreaAtividade: possui >
+
+Categoria "*" -- "1" AreaAtividade: enquadra-se em >
+
+Plataforma "1" --- "*" CompetenciaTecnica: possui >
+
+Categoria "*" ---- "*" CompetenciaTecnica: requer >
+
+CompetenciaTecnica "*" -- "1" AreaAtividade: referente a >
+
+CompetenciaTecnica "1" - "*" GrauProficiencia: aplica >
+
+CaraterCT "*" -- "1" GrauProficiencia: exige (como mínimo) >
+
+(Categoria, CompetenciaTecnica) . CaraterCT
+
+@enduml
