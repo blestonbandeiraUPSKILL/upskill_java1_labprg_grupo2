@@ -1,25 +1,31 @@
 # UC02 – Definir Área de Actividade
 
 ## Formato Breve
+
 O administrador inicia a definição de uma nova área de actividade. O sistema solicita os dados necessários (código único, descrição breve e descrição detalhada). O administrador introduz os dados solicitados. O sistema valida e apresenta os dados ao administrado, pedindo que os confirme. O administrativo confirma. O sistema regista os dados e informa o administrado do sucesso da operação.
 
 ## Formato Completo
 
 
 ### Ator Principal
+
 Administrativo
 
 ### Partes interessadas e seus interesses
+
 Administrativo: pretende definir as áreas de atividade para que possa posteriormente catalogar as competências técnicas e categorias de tarefas.
 T4J: pretende que a plataforma permita catalogar as competências técnicas e as categorias de tarefas em áreas de atividade.
 
 ### Pré-condições
+
 O administrativo tem de estar registado na plataforma.
 
 ### Pós-condições
+
 A informação da área de atividade é registada no sistema.
 
 ### Cenário de sucesso principal
+
 1.	O administrativo inicia a definição de uma nova área de atividade.
 2.	O sistema solicita os dados necessários (código único e descrição breve e detalhada).
 3.	O administrativo introduz os dados solicitados.
@@ -28,6 +34,7 @@ A informação da área de atividade é registada no sistema.
 6.	O sistema regista os dados e informa o administrativo do sucesso da operação.
 
 ### Extensões (ou fluxos alternativos)
+
 1.	O administrativo solicita o cancelamento da definição da área de atividade. O caso de uso termina.
 2.	Dados mínimos obrigatórios em falta:
 a.	O sistema informa quais os dados em falta.
