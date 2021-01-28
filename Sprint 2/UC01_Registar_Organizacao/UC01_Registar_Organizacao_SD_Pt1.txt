@@ -41,4 +41,5 @@ deactivate "ro:RegistoOrganizacoes"
 deactivate ":RegistarOrganizacaoController"
 ":RegistarOrganizacaoUI" --> "Utilizador Não Registado" : 17 operação bem sucedida
 deactivate ":RegistarOrganizacaoUI"
+
 @enduml

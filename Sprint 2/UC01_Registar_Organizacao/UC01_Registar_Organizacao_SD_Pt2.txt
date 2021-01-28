@@ -1,4 +1,5 @@
 @startuml
+
 note over "alg:AlgoritmoGeradorPasswords"
 É uma instância de qualquer classe
 que implemente esta interface.
@@ -28,4 +29,5 @@ deactivate "aut:AutorizacaoFacade"
 activate "ro:RegistoOrganizacoes"
 deactivate "ro:RegistoOrganizacoes"
 deactivate "ro:RegistoOrganizacoes"
+
 @enduml
