@@ -7,7 +7,7 @@ O colaborador de organização inicia a especificação de uma tarefa. O sistema
 ![UC6_Especificar_Tarefa_SSD.png](UC6_Especificar_Tarefa_SSD.png)
 
 ## Excerto do modelo de domínio <br/>
-|[UC6_Especificar_Tarefa_Modelo_Dominio.png](UC6_Especificar_Tarefa_Modelo_Dominio.png)
+![UC6_Especificar_Tarefa_Modelo_Dominio.png](UC6_Especificar_Tarefa_Modelo_Dominio.png)
 
 ## Diagrama de sequência <br/>
 ![UC06_Especificar_Tarefa_Diagrama_Sequencia.png](UC06_Especificar_Tarefa_Diagrama_Sequencia.png)
@@ -15,6 +15,6 @@ O colaborador de organização inicia a especificação de uma tarefa. O sistema
 ![UC06_Especificar_Tarefa_ref_Diagrama_Sequencia.png](UC06_Especificar_Tarefa_ref_Diagrama_Sequencia.png)
 
 ## Diagrama de classes <br/>
-![]()
+![UC06_Especificar_Tarefa_Diagrama_Classes.png](UC06_Especificar_Tarefa_Diagrama_Classes.png)
 
 ##### [Voltar ao início](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/README.md)
