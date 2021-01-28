@@ -1,0 +1,112 @@
+@startuml
+title UC03 - Definir Categoria de Tarefa
+
+class Plataforma <<Singleton>> {
+    -String designacao
+}
+
+class DefinirCategoriaTarefaUI{
+   getListaAreasAtividade()
+   novaAreaAtividade(descricao, codAreaAtividade)
+   getGrausProficiencia(codCompetencia)
+   setProficienciaObrigatoriedade(codGrau, obrigatoria)
+   registaCategoria()
+}
+
+class DefinirCategoriaTarefaCTRL{
+   getRegistoAreasAtividade()
+   getListaAreasAtividade()
+   getAreaAtividade(codAreaAtividade)
+   getRegistoCompetenciasTecnicas(codAreaAtividade)
+   getListaCompetenciasTecnicas(at)
+   getRegistoCategorias()
+   novaCategoria(descricao, at)
+   getCompetenciaTecnica(codCompetencia)
+   getGrausProficiencia(ct)
+   getGrauProficiencia(codGrau)
+   novaCaracterizacao(ct, gp, obrigatoria)
+   registaCategoria(c)
+}
+
+class RegistoAreasAtividade{
+    - List<AreaAtividade>
+}
+
+class RegistoCategoria{
+    - List<Categoria>
+}
+
+class RegistoCompetenciasTecnicas{
+    - List<CompetenciaTecnica>
+}
+
+class AreaAtividade{
+    String codigo
+    String descBreve
+    String descDetalhada
+}
+
+class Categoria{
+    String id 
+    String descricao
+}
+
+class CompetenciaTecnica{
+    String codigo
+    String descBreve
+    String descDetalhada
+}
+
+class GrauProficiencia{
+    Integer valor
+    String designacao
+}
+
+class CaracterCT{
+    Boolean obrigatoria
+}
+
+class CaracterizacaoCT{
+    
+}
+
+class RepositorioAreaAtividade{
+    -List<AreaAtividade>
+    -AreaAtividade(codAreaAtividade)
+}
+
+class RepositorioCategoria{
+    -List<Categoria>
+    -Categoria(codCompetencia)
+}
+
+class RepositorioCompetenciaTecnica{
+    -List<CompetenciaTecnica>
+    -CompetenciaTecnica(codCompetencia)
+}
+
+DefinirCategoriaTarefaUI ..> DefinirCategoriaTarefaCTRL
+
+DefinirCategoriaTarefaCTRL ..> Plataforma
+
+DefinirCategoriaTarefaCTRL ..> RegistoAreasAtividade
+
+DefinirCategoriaTarefaCTRL ..> RegistoCategoria
+
+DefinirCategoriaTarefaCTRL ..> RegistoCompetenciasTecnicas
+
+RegistoAreasAtividade --> RepositorioAreaAtividade
+
+RegistoCategoria --> RepositorioCategoria
+
+RegistoCompetenciasTecnicas --> RepositorioCompetenciaTecnica
+
+RepositorioAreaAtividade "1" --> "*" AreaAtividade: possui >
+
+RepositorioCategoria "1" --> "*"  Categoria: possui >
+
+RepositorioCompetenciaTecnica "1" --> "*" CompetenciaTecnica: possui >
+
+
+
+@enduml

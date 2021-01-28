@@ -1,0 +1,67 @@
+@startuml
+
+title UC05 - Especificar Colaborador
+left to right direction
+
+class Plataforma <<Singleton>> {
+    -String designacao
+}
+
+class EspecificarColaboradorUI{
+    --
+    -novoColaborador(nome, funcao, telefone, email)
+    -registaColaborador()
+
+}
+
+class EspecificarColaboradorCTRL{
+    --
+    getGestaoUtilizadoresFacade()
+    getSessaoAtual()
+    getEmailUtilizador()
+    getRegistoOrganizacoes()
+    getOrganizacaoByEmailUtilizador(email)
+    novoColaborador(nome, funcao, telefone, email)
+    validaColaborador(c)
+    getAlgoritmoGeradorPasswords()
+    getPassword()
+    registaColaborador(c)
+    registaUtilizadorComPapel(nome, email, password, "colaborador")
+
+}
+class Organizacao {
+    -String nome
+    -String NIF
+    -String website
+    -String telefone
+    -Email email
+}
+
+class Colaborador {
+    -String nome
+    -String funcao
+    -String telefone
+    -Email email
+    -Organizacao organizacao
+}
+class Utilizador {
+    -String nome
+    -Email email
+    -Password password
+}
+class GestaoUtilizadoresFacade{
+
+}
+class SessaoAtual{
+
+}
+interface AlgoritmoGeradorPasswords{
+
+}
+class Password{
+
+}
+class UtilizadorComPapel{
+
+}
+@enduml
