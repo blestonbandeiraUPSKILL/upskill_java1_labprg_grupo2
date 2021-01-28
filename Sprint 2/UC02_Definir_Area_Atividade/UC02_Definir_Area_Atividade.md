@@ -5,17 +5,18 @@ O administrador inicia a definição de uma nova área de actividade. O sistema 
 
 ## Formato Completo
 
-### Ator primário
+
+### Ator Principal
 Administrativo
 
 ### Partes interessadas e seus interesses
 Administrativo: pretende definir as áreas de atividade para que possa posteriormente catalogar as competências técnicas e categorias de tarefas.
 T4J: pretende que a plataforma permita catalogar as competências técnicas e as categorias de tarefas em áreas de atividade.
 
-### Pré-condições<br/>
+### Pré-condições
 O administrativo tem de estar registado na plataforma.
 
-### Pós-condições<br/>
+### Pós-condições
 A informação da área de atividade é registada no sistema.
 
 ### Cenário de sucesso principal
