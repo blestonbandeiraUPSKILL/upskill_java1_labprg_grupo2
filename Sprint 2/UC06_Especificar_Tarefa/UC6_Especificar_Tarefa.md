@@ -15,6 +15,6 @@ O colaborador de organização inicia a especificação de uma tarefa. O sistema
 ![UC06_Especificar_Tarefa_ref_Diagrama_Sequencia.png](UC06_Especificar_Tarefa_ref_Diagrama_Sequencia.png)
 
 ## Diagrama de classes <br/>
-![]()
+![UC06_Especificar_Tarefa_Diagrama_Classes.png](UC06_Especificar_Tarefa_Diagrama_Classes.png)
 
 ##### [Voltar ao início](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/README.md)
