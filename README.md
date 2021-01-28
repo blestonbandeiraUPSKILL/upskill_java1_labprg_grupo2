@@ -17,7 +17,7 @@
 - [UC01 - Registar Organização]()
 - [UC02 - Definir Área de Actividade]()
 - [UC03 - Definir Categoria de Tarefa](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/tree/main/Sprint%202/UC03_Definir_Categoria_Tarefa)
-- [UC04 - Esoecificar Competência Técnica](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/tree/main/Sprint%202/UC04_Especificar_Competencia_Tecnica)
+- [UC04 - Especificar Competência Técnica](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/tree/main/Sprint%202/UC04_Especificar_Competencia_Tecnica)
 - [UC05 - Especificar Colaborador de Organização ]()
 - [UC06 - Especificar Tarefa]()
 
