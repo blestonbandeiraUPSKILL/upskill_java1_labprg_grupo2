@@ -99,4 +99,5 @@ RepositorioColaborador --> Colaborador
 RepositorioTarefa ---> Tarefa
 RepositorioCategoria --> Categoria
 Plataforma <-- Tarefa
+
 @enduml
