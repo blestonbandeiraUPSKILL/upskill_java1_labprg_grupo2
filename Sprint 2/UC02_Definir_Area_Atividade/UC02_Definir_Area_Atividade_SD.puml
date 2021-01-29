@@ -6,7 +6,7 @@ participant Administrativo
 participant DefinirAreaUI
 participant DefinirAreaCTRL
 participant Plataforma <<Singleton>>
-participant "rat:RegistoAreasAtividade" as RepositorioAreaAtividade
+participant "rat:RepositorioAreaAtividade" as RepositorioAreaAtividade
 participant "area:AreaAtividade" as AreaAtividade
 
 Administrativo -> DefinirAreaUI: 1. nova área de atividade
