@@ -13,7 +13,7 @@ O Colaborador da organização de organização inicia a especificação de uma 
 
 - Colaborador da organização: pretende adicionar uma nova tarefa ao sistema.
 - Organização: pretende que as tarefas a realizar sejam introduzidas no sistema.
-- Plataforma: pretende que as organizações e seus Colaborador da organizaçãoes consigam adicionar tarefas ao sistema
+- T4J: pretende que as organizações e seus Colaborador da organizaçãoes consigam adicionar tarefas ao sistema
 
 **_Pré-condições:_**
 
