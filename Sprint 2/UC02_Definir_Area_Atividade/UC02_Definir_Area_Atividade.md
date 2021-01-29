@@ -52,9 +52,9 @@ O administrador inicia a definição de uma nova área de actividade. O sistema 
 ![UC02_Definir_Area_Atividade_MD](UC02_Definir_Area_Atividade_MD.png)
 
 ## Diagrama de Sequência
-![UC02_Definir_Area_Atividade_SD](UC02_Definir_Area_Atividade_SD.png)
+![UC02_Definir_Area_Actividade_Diagrama_Sequencia](UC02_Definir_Area_Actividade_Diagrama_Sequencia.png)
 
 ## Diagrama de Classes
-![UC02_Definir_Area_Atividade_DC](UC02_Definir_Area_Atividade_DC.png)
+![UC02_Definir_Area_Atividade_Diagrama_Classes](UC02_Definir_Area_Atividade_Diagrama_Classes.png)
 
 ##### [Voltar ao início](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/tree/main/README.md)

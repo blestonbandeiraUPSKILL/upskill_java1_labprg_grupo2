@@ -59,7 +59,7 @@ do sucesso da operação.
 ![UC01_Registar_Organizacao_Modelo_Dominio](UC01_Registar_Organizacao_Modelo_Dominio.png)
 
 ## Diagrama de Sequência
-![UC01_Registar_Organizacao_Diagrama_Sequencia_Pt1](UC01_Registar_Organizaçao_Diagrama_Sequencia_Pt1.png)
+![UC01_Registar_Organizacao_Diagrama_Sequencia_Pt1](UC01_Registar_Organizacao_Diagrama_Sequencia_Pt1.png)
 ![UC01_Registar_Organizacao_Diagrama_Sequencia_Pt2](UC01_Registar_Organizacao_Diagrama_Sequencia_Pt2.png)
 <br/>
 
