@@ -63,4 +63,8 @@ sistema valida e apresenta os dados ao administrativo, pedindo que os confirme. 
 ## Diagrama de Classes
 ![UC03_DiagClas_Definir_Categoria_Tarefa](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Sprint%202/UC03_Definir_Categoria_Tarefa/UC03_DiagClas_Definir_Categoria_Tarefa.png)
 
+## Cenários de Testes
+![UC03_Definir_Categoria_Tarefa_Test_Scenario](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Sprint%202/UC03_Definir_Categoria_Tarefa/UC03_Definir_Categoria_Tarefa_Test_Scenario.xlsx)
+
+
 ##### [Voltar ao início](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/tree/main/README.md)
