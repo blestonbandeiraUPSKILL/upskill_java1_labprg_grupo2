@@ -14,30 +14,12 @@ class DefinirCategoriaTarefaUI{
 }
 
 class DefinirCategoriaTarefaCTRL{
-   getRegistoAreasAtividade()
-   getListaAreasAtividade()
-   getAreaAtividade(codAreaAtividade)
-   getRegistoCompetenciasTecnicas(codAreaAtividade)
-   getListaCompetenciasTecnicas(at)
    getRegistoCategorias()
    novaCategoria(descricao, at)
-   getCompetenciaTecnica(codCompetencia)
    getGrausProficiencia(ct)
    getGrauProficiencia(codGrau)
    novaCaracterizacao(ct, gp, obrigatoria)
    registaCategoria(c)
-}
-
-class RegistoAreasAtividade{
-    - List<AreaAtividade>
-}
-
-class RegistoCategoria{
-    - List<Categoria>
-}
-
-class RegistoCompetenciasTecnicas{
-    - List<CompetenciaTecnica>
 }
 
 class AreaAtividade{
@@ -46,15 +28,15 @@ class AreaAtividade{
     String descDetalhada
 }
 
-class Categoria{
-    String id 
-    String descricao
-}
-
 class CompetenciaTecnica{
     String codigo
     String descBreve
     String descDetalhada
+}
+
+class Categoria{
+    String id 
+    String descricao
 }
 
 class GrauProficiencia{
@@ -70,43 +52,46 @@ class CaracterizacaoCT{
     
 }
 
-class RepositorioAreaAtividade{
+class RepositorioAreaAtividade <<Singleton>>{
     -List<AreaAtividade>
+    -AreaAtividade
+    --
+    -allAreasAtividade()
     -AreaAtividade(codAreaAtividade)
 }
 
-class RepositorioCategoria{
-    -List<Categoria>
-    -Categoria(codCompetencia)
-}
-
-class RepositorioCompetenciaTecnica{
+class RepositorioCompetenciaTecnica <<Singleton>>{
     -List<CompetenciaTecnica>
+    -CompetenciaTecnica
+    --
+    -allCompetenciasTecnicas()
     -CompetenciaTecnica(codCompetencia)
 }
+
+class RepositorioCategoria <<Singleton>>{
+    -List<Categoria>
+    -Categoria
+    --
+    -allCategorias()
+    -Categoria(codCat)
+}
+
+
 
 DefinirCategoriaTarefaUI ..> DefinirCategoriaTarefaCTRL
 
 DefinirCategoriaTarefaCTRL ..> Plataforma
 
-DefinirCategoriaTarefaCTRL ..> RegistoAreasAtividade
+DefinirCategoriaTarefaCTRL ..> RepositorioAreaAtividade
 
-DefinirCategoriaTarefaCTRL ..> RegistoCategoria
+DefinirCategoriaTarefaCTRL ..> RepositorioCategoria
 
-DefinirCategoriaTarefaCTRL ..> RegistoCompetenciasTecnicas
+DefinirCategoriaTarefaCTRL ..> RepositorioCompetenciaTecnica
 
-RegistoAreasAtividade --> RepositorioAreaAtividade
+RepositorioAreaAtividade "1" --> "1..*" AreaAtividade: possui >
 
-RegistoCategoria --> RepositorioCategoria
+RepositorioCategoria "1" --> "1..*"  Categoria: possui >
 
-RegistoCompetenciasTecnicas --> RepositorioCompetenciaTecnica
-
-RepositorioAreaAtividade "1" --> "*" AreaAtividade: possui >
-
-RepositorioCategoria "1" --> "*"  Categoria: possui >
-
-RepositorioCompetenciaTecnica "1" --> "*" CompetenciaTecnica: possui >
-
-
+RepositorioCompetenciaTecnica "1" --> "1..*" CompetenciaTecnica: possui >
 
 @enduml
