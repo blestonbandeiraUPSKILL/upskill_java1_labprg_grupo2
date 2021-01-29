@@ -9,7 +9,7 @@ class Plataforma <<Singleton>> {
 
 class EspecificarTarefaUI {
     --
-    getListaCategorias()
+    allCategorias()
     novaTarefa(ref, designacao, descInformal, descTecnica, duracao, custo, catCod)
     registaTarefa(t)
 }
@@ -110,12 +110,7 @@ RepositorioColaborador"1" --> "1..*"Colaborador
 RepositorioTarefa"1" --> "1..*"Tarefa
 RepositorioCategoria"1" --> "1..*"Categoria
 Plataforma <-- Tarefa
-<<<<<<< HEAD
 Utilizador"1" --> "1"Email
 Utilizador"1" --> "1"Password
-=======
-Utilizador --> Email
-Utilizador --> Password
->>>>>>> 29465432f30c4aad2acbd414a5669998ac6f886a
 
 @enduml

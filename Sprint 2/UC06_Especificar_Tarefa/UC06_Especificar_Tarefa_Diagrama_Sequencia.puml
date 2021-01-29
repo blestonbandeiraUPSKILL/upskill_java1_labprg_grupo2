@@ -37,19 +37,19 @@ end ref
 CTRL -> Plataforma: 2.1.2: ro = getRepositorioOrganizacao
 activate Plataforma
 deactivate Plataforma
-CTRL -> RepositorioOrganizacao: 2.1.3: o = getOrganizacaoByEmailUtilizador(email)
+CTRL -> RepositorioOrganizacao: 2.1.3: o = organizacaoByEmail(email)
 activate RepositorioOrganizacao
 deactivate RepositorioOrganizacao
 CTRL -> Organizacao: 2.1.4: rt = getRepositorioTarefa()
 activate Organizacao
 deactivate Organizacao
-CTRL -> RepositorioCategoria: 2.1.5: cat = getCategoria(catCod)
+CTRL -> RepositorioCategoria: 2.1.5: cat = categoria(catCod)
 activate RepositorioCategoria
 deactivate RepositorioCategoria
 CTRL -> Organizacao: 2.1.6: rc = getRepositorioColaborador()
 activate Organizacao
 deactivate Organizacao
-CTRL -> RepositorioColaborador: 2.1.7: colab = getColaboradorByEmail(email)
+CTRL -> RepositorioColaborador: 2.1.7: colab = colaboradorByEmail(email)
 activate RepositorioColaborador
 deactivate RepositorioColaborador
 CTRL -> RepositorioTarefa: 2.1.8: t = novaTarefa(ref, designacao, descInformal, descTecnica, duracao, custo, cat, colab)
