@@ -3,45 +3,47 @@
 title UC03 - Definir Categoria da Tarefa
 
 actor Administrador
+participant ":Sistema" as Sistema 
+
 activate Administrador
 
-Administrador -> ":Sistema" : 1 inicia definição de nova categoria de tarefa
-activate ":Sistema"
+Administrador -> Sistema: 1: inicia definição de nova categoria de tarefa
+activate Sistema
 
-":Sistema" --> Administrador: 2 mostra a lista de áreas de atividade e solicita descrição da categoria de tarefa e a escolha de uma área de atividade
-deactivate ":Sistema"
+Sistema --> Administrador: 2: mostra a lista de áreas de atividade e solicita descrição da categoria de tarefa e a escolha de uma área de atividade
+deactivate Sistema
 
-Administrador -> ":Sistema": 3 introduz a descrição e seleciona a área de atividade pretendida
-activate ":Sistema"
+Administrador -> Sistema: 3: introduz a descrição e seleciona a área de atividade pretendida
+activate Sistema
 
-":Sistema" --> Administrador: 4 mostra a lista de competências técnicas associadas à área de atividade especificada e solicita a escolha de uma delas
-deactivate ":Sistema"
+Sistema --> Administrador: 4: mostra a lista de competências técnicas associadas à área de atividade especificada e solicita a escolha de uma delas
+deactivate Sistema
 
 loop
 
-Administrador -> ":Sistema": 5 seleciona competência técnica solicitada
-activate ":Sistema"
+Administrador -> Sistema: 5 seleciona competência técnica solicitada
+activate Sistema
 
-":Sistema" --> Administrador: 6 mostra graus de proficiência relativos à competência técnica selecionada
-deactivate ":Sistema"
+Sistema --> Administrador: 6 mostra graus de proficiência relativos à competência técnica selecionada
+deactivate Sistema
 
-Administrador -> ":Sistema": 7 seleciona o grau de proficiência mínimo
-activate ":Sistema"
+Administrador -> Sistema: 7 seleciona o grau de proficiência mínimo
+activate Sistema
 
-":Sistema" --> Administrador: 8 solicita indicação do seu caráter (i.e. obrigatória ou desejável)
-deactivate ":Sistema"
+Sistema --> Administrador: 8 solicita indicação do seu caráter (i.e. obrigatória ou desejável)
+deactivate Sistema
 
-Administrador -> ":Sistema": 9 introduz informação pedida
-activate ":Sistema"
+Administrador -> Sistema: 9: introduz informação pedida
+activate Sistema
 
 end
 
-":Sistema" --> Administrador: 10 apresenta dados e solicita confirmação
-deactivate ":Sistema"
+Sistema --> Administrador: 10: apresenta dados e solicita confirmação
+deactivate Sistema
 
-Administrador -> ":Sistema": 11 confirma
-activate ":Sistema"
+Administrador -> Sistema: 11: confirma
+activate Sistema
 
-":Sistema" --> Administrador: 12 informa operação bem sucedida
-deactivate ":Sistema"
+Sistema --> Administrador: 12: informa operação bem sucedida
+deactivate Sistema
 @enduml

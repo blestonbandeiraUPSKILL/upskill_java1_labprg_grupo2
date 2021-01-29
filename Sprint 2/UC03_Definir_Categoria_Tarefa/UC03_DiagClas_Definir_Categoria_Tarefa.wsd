@@ -49,7 +49,6 @@ class CaraterCT{
 }
 
 class CaracterizacaoCT{
-    
 }
 
 class RepositorioAreaAtividade <<Singleton>>{

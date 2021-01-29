@@ -52,7 +52,7 @@ sistema valida e apresenta os dados ao administrativo, pedindo que os confirme. 
 
 
 ## SSD
-![UC03_Definir_Categoria_Tarefa](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Sprint%202/UC03_Definir_Categoria_Tarefa/UC03_Definir_Categoria_Tarefa.png)
+![UC03_Definir_Categoria_Tarefa_Diagrama_Sequencia_Sistema](UC03_Definir_Categoria_Tarefa_Diagrama_Sequencia_Sistema.png)
 
 ## Excerto do Modelo de Domínio
 ![UC03_ExcertoMD_Definir_Categoria_Tarefa](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Sprint%202/UC03_Definir_Categoria_Tarefa/UC03_ExcertoMD_Definir_Categoria_Tarefa.png)
