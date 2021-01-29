@@ -34,16 +34,16 @@ O Colaborador da organização de organização inicia a especificação de uma 
 6. O sistema regista os dados e informa o Colaborador da organização do sucesso da operação.
 
 **_Fluxos Alternativos:_**
-1. O Colaborador da organização cancala o processo de especificação de uma tarefa.
+1. O Colaborador da organização cancala o processo de especificação de uma tarefa.<br/>
     a. O caso de uso termina.
-2. O Colaborador da organização verifica que não existem mais tarefas para inserir.
+2. O Colaborador da organização verifica que não existem mais tarefas para inserir.<br/>
     a. O caso de uso termina.
-3. O Colaborador da organização introduz dados inválidos.
-    a. O sistema permite a introdução dos dados válidos (passo 3).
+3. O Colaborador da organização introduz dados inválidos.<br/>
+    a. O sistema permite a introdução dos dados válidos (passo 3).<br/>
     b. O Colaborador da organização não altera os dados. O caso de uso termina.
-4. O sistema detecta que os dados (ou algum subconjunto dos dados) introduzidos devem ser únicos e que já existem no sistema:
-    a. O sistema alerta o Colaborador da organização para o facto.
-    b. O sistema permite a sua alteração.
+4. O sistema detecta que os dados (ou algum subconjunto dos dados) introduzidos devem ser únicos e que já existem no sistema:<br/>
+    a. O sistema alerta o Colaborador da organização para o facto.<br/>
+    b. O sistema permite a sua alteração.<br/>
     c. O Colaborador da organização não altera os dados. O caso de uso termina.
 
 ## Diagrama de Sequência do Sistema <br/>
