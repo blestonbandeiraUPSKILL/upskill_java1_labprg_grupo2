@@ -71,8 +71,7 @@ class RepositorioCategoria <<Singleton>>{
     -Categoria categoria
     --
     -allCategorias()
-    -Categoria(codCat)
-    
+    -Categoria(codCat)    
 }
 
 DefinirCategoriaTarefaUI ..> DefinirCategoriaTarefaCTRL
