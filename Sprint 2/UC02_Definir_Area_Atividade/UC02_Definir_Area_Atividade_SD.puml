@@ -1,0 +1,48 @@
+@startuml
+title UC02 - Definir Área de Actividade - Diagrama de Sequência
+
+actor Administrativo
+participant Administrativo
+participant DefinirAreaUI
+participant DefinirAreaCTRL
+participant Plataforma <<Singleton>>
+participant "rat:RegistoAreasAtividade" as RepositorioAreaAtividade
+participant "area:AreaAtividade" as AreaAtividade
+
+Administrativo -> DefinirAreaUI: 1. nova área de atividade
+activate Administrativo
+activate DefinirAreaUI
+DefinirAreaUI --> Administrativo: 2. solicita dados(código, descrição breve e descrição detalhada)
+deactivate DefinirAreaUI
+
+Administrativo -> DefinirAreaUI: 3. introduz os dados solicitados
+activate DefinirAreaUI
+DefinirAreaUI -> DefinirAreaCTRL: 4. novaAreaAtividade(cod, descBreve, descDet)
+activate DefinirAreaCTRL
+DefinirAreaCTRL -> Plataforma: 5. rat = getRegistoAreasAtividade()
+activate Plataforma
+deactivate Plataforma
+DefinirAreaCTRL -> RepositorioAreaAtividade: 6. area = novaAreaAtividade(cod, descBreve, descDet)
+activate RepositorioAreaAtividade
+RepositorioAreaAtividade --> AreaAtividade: 7. create(cod, descBreve, descDet)
+
+deactivate RepositorioAreaAtividade
+DefinirAreaCTRL -> RepositorioAreaAtividade: 8. validaAreaAtividade(area)
+
+activate RepositorioAreaAtividade
+deactivate RepositorioAreaAtividade
+deactivate DefinirAreaCTRL
+DefinirAreaUI --> Administrativo: 9. apresenta dados e solicita confirmação
+deactivate DefinirAreaUI
+Administrativo -> DefinirAreaUI: 10. confirma
+activate DefinirAreaUI
+activate DefinirAreaCTRL
+DefinirAreaUI -> DefinirAreaCTRL: 11. registaAreaAtividade()
+DefinirAreaCTRL -> RepositorioAreaAtividade: 12. registaAreaAtividade(area)
+activate RepositorioAreaAtividade
+RepositorioAreaAtividade -> RepositorioAreaAtividade: 13. validaAreaAtividade(area)
+RepositorioAreaAtividade -> RepositorioAreaAtividade: 14. addAreaAtividade(area)
+deactivate RepositorioAreaAtividade
+DefinirAreaUI --> Administrativo: 15. operação bem sucedida
+
+@enduml
