@@ -63,4 +63,8 @@ os dados. O sistema regista os dados e informa o administrativo do sucesso da op
 ## Diagrama de Classes
 ![UC04_DiagClas_Especificar_Competencia_Tecnica](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Sprint%202/UC04_Especificar_Competencia_Tecnica/UC04_DiagClas_Especificar_Competencia_Tecnica.png)
 
+## Cenários de Testes
+![UC04_Especificar_Competencia_Tecnica_Test_Scenario](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Sprint%202/UC04_Especificar_Competencia_Tecnica/UC04_Especificar_Competencia_Tecnica_Test_Scenario.xlsx)
+
+
 ##### [Voltar ao início](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/tree/main/README.md)
