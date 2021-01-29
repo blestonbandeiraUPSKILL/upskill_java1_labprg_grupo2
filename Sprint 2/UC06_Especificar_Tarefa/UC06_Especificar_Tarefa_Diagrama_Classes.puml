@@ -16,12 +16,6 @@ class EspecificarTarefaUI {
 
 class EspecificarTarefasCTRL {
     --
-    getListaCategorias()
-    getRegistoCategorias()
-    getRegistoOrganizacoes()
-    getOrganizacaoByEmail(email)
-    
-
     novaTarefa(ref, designacao, descInformal, descTecnica, duracao, custo, cat, colab)
     registaTarefa(t)
 }
@@ -36,11 +30,18 @@ class RepositorioTarefa {
 
 class RepositorioCategoria {
     -List<Categoria>
-    -categoria(catCod)
+    -categoria
+    --
+    allCategorias()
+    categoria(catCod)
 }
 
-class EspecificarTarefaRegistoOrganizacoes {
+class RepositorioOrganizacao {
     -List<Organizacao>
+    -organizacao
+    --
+    -allOrganizacoes()
+    -organizacaoByEmail(email)
 }
 
 class RepositorioColaborador {
@@ -86,6 +87,7 @@ class Categoria {
 }
 
 class Email {
+<<<<<<< HEAD
     -String designacao
     --
     validaEmail(email)
@@ -95,6 +97,17 @@ class Password {
     -String designacao
     --
     validaPassword(password)
+=======
+    -String email
+    --
+    validaEMail(email)
+}
+
+class Password {
+    -String password
+    --
+    -validaPassword(password)
+>>>>>>> 29465432f30c4aad2acbd414a5669998ac6f886a
 }
 
 Colaborador"0..1" --|> "1"Utilizador
@@ -109,7 +122,12 @@ RepositorioColaborador"1" --> "1..*"Colaborador
 RepositorioTarefa"1" --> "1..*"Tarefa
 RepositorioCategoria"1" --> "1..*"Categoria
 Plataforma <-- Tarefa
+<<<<<<< HEAD
 Utilizador"1" --> "1"Email
 Utilizador"1" --> "1"Password
+=======
+Utilizador --> Email
+Utilizador --> Password
+>>>>>>> 29465432f30c4aad2acbd414a5669998ac6f886a
 
 @enduml
