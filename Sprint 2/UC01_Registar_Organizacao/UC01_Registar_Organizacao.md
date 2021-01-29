@@ -53,17 +53,17 @@ do sucesso da operação.
   c. O colaborador não altera os dados. O caso de uso termina.
 
 ## SSD
-![UC01_Registar_Organizacao_SSD](UC01_Registar_Organizacao_SSD.png)
+![UC01_Registar_Organização_Diagrama_Sequência_Sistema](UC01_Registar_Organização_Diagrama_Sequência_Sistema.png)
 
 ## Excerto do Modelo de Domínio
-![UC01_Registar_Organizacao_MD](UC01_Registar_Organizacao_MD.png)
+![UC01_Registar_Organização_Modelo_Dominio](UC01_Registar_Organização_Modelo_Dominio.png)
 
 ## Diagrama de Sequência
-![UC01_Registar_Organizacao_SD_Pt1](UC01_Registar_Organizacao_SD_Pt1.png)
+![UC01_Registar_Organização_Diagrama_Classes_page1](UC01_Registar_Organização_Diagrama_Classes_page1.png)
 ![UC01_Registar_Organizacao_SD_Pt2](UC01_Registar_Organizacao_SD_Pt2.png)
 
 ## Diagrama de Classes
-![UC01_Registar_Organizacao_DC_Pt1](UC01_Registar_Organizacao_DC_Pt1.png)
-![UC01_Registar_Organizacao_DC_Pt2](UC01_Registar_Organizacao_DC_Pt2.png)
+![UC01Registar_Organização_Diagrama_Sequência_Pt1](UC01Registar_Organização_Diagrama_Sequência_Pt1.png)
+![UC01_Registar_Organizacao-Diagrama_Sequencia_Pt2](UC01_Registar_Organizacao-Diagrama_Sequencia_Pt2.png)
 
 ##### [Voltar ao início](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/tree/main/README.md)
