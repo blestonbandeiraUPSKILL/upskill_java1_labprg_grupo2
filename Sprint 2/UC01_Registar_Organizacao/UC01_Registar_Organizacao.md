@@ -63,7 +63,7 @@ do sucesso da operação.
 ![UC01_Registar_Organizacao_SD_Pt2](UC01_Registar_Organizacao_SD_Pt2.png)
 
 ## Diagrama de Classes
-![UC01Registar_Organização_Diagrama_Sequência_Pt1](UC01Registar_Organização_Diagrama_Sequência_Pt1.png)
-![UC01_Registar_Organizacao-Diagrama_Sequencia_Pt2](UC01_Registar_Organizacao-Diagrama_Sequencia_Pt2.png)
+![UC01_Registar_Organizaçao_Diagrama_Sequencia_Pt1](UC01_Registar_Organizaçao_Diagrama_Sequencia_Pt1.png)
+![UC01_Registar_Organizacao_Diagrama_Sequencia_Pt2](UC01_Registar_Organizacao_Diagrama_Sequencia_Pt2.png)
 
 ##### [Voltar ao início](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/tree/main/README.md)
