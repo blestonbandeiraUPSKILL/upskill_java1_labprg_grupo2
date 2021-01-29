@@ -1,4 +1,4 @@
-# UC01-Registar Organização
+# UC01 - Registar Organização
 
 ## Formato Breve
 
@@ -53,17 +53,19 @@ do sucesso da operação.
   c. O colaborador não altera os dados. O caso de uso termina.
 
 ## SSD
-![UC01_Registar_Organização_Diagrama_Sequência_Sistema](UC01_Registar_Organização_Diagrama_Sequência_Sistema.png)
+![UC01_Registar_Organizacao_Diagrama_Sequencia_Sistema](UC01_Registar_Organizacao_Diagrama_Sequencia_Sistema.png)
 
 ## Excerto do Modelo de Domínio
-![UC01_Registar_Organização_Modelo_Dominio](UC01_Registar_Organização_Modelo_Dominio.png)
+![UC01_Registar_Organizacao_Modelo_Dominio](UC01_Registar_Organizacao_Modelo_Dominio.png)
 
 ## Diagrama de Sequência
-![UC01_Registar_Organização_Diagrama_Classes_page1](UC01_Registar_Organização_Diagrama_Classes_page1.png)
-![UC01_Registar_Organizacao_SD_Pt2](UC01_Registar_Organizacao_SD_Pt2.png)
+![UC01_Registar_Organizacao_Diagrama_Sequencia_Pt1](UC01_Registar_Organizaçao_Diagrama_Sequencia_Pt1.png)
+![UC01_Registar_Organizacao_Diagrama_Sequencia_Pt2](UC01_Registar_Organizacao_Diagrama_Sequencia_Pt2.png)
+<br/>
+
 
 ## Diagrama de Classes
-![UC01_Registar_Organizaçao_Diagrama_Sequencia_Pt1](UC01_Registar_Organizaçao_Diagrama_Sequencia_Pt1.png)
-![UC01_Registar_Organizacao_Diagrama_Sequencia_Pt2](UC01_Registar_Organizacao_Diagrama_Sequencia_Pt2.png)
+![UC01_Registar_Organizacao_Diagrama_Classes_page1](UC01_Registar_Organizacao_Diagrama_Classes_page1.png)
+![UC01_Registar_Organizacao_Diagrama_Classes_page2](UC01_Registar_Organizacao_Diagrama_Classes_page2.png)
 
 ##### [Voltar ao início](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/tree/main/README.md)
