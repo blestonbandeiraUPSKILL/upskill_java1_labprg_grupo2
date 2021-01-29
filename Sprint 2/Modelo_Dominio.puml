@@ -90,8 +90,8 @@ Organizacao"1" -- "*"Tarefa: possui >
 Organizacao"1" -- EnderecoPostal: localizada em >
 Organizacao"1" -- "1"Colaborador: tem gestor >
 Organizacao"1" -- "1..*"Colaborador: tem >
-Freelancer"0..1" -- "1"Utilizador: actua como >
-Administrativo"0..1" -- "1"Utilizador: actua como >
+Freelancer"0..1" -- "1"Utilizador: actua como <
+Administrativo"0..1" -- "1"Utilizador: actua como <
 Colaborador"0..1" -- "1"Utilizador: actua como <
 Categoria"*" -- CompetenciaTecnica: requer >
 (Categoria, CompetenciaTecnica) . CaracterCT
