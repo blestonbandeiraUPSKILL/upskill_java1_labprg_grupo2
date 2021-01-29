@@ -1,0 +1,53 @@
+@startuml
+
+title UC01 - Registar Organização - Diagrama de Sequência
+
+actor "Utilizador Não Registado" as UtilizadorNaoRegistado
+participant ":RegistarOrganizacaoUI" as RegistarOrganizacaoUI
+participant ":RegistarOrganizacaoController" as RegistarOrganizaoController
+participant ":Plataforma" as Plataforma
+participant "ro:RepositorioOrganizacao" as RepositorioOrganizacao
+participant "colab:Colaborador" as Colaborador
+participant "org:Organizacao" as Organizacao
+participant "end:EnderecoPostal" as EnderecoPostal
+
+UtilizadorNaoRegistado -> RegistarOrganizacaoUI: 1 Introduz os dados solicitados
+activate RegistarOrganizacaoUI
+RegistarOrganizacaoUI ->  RegistarOrganizaoController: 2 novaOrganizacao(nome, NIF, endLocal, endCodPostal,\nendLocalidade, tlf, site, email, nomeG, função, tlfG, emailG)
+activate RegistarOrganizaoController
+RegistarOrganizaoController -> Plataforma : 3 no = allOrganizacoes()
+activate Plataforma
+deactivate Plataforma
+RegistarOrganizaoController -> RepositorioOrganizacao : 4 org = novaOrganizacao(nome, NIF, endLocal, endCodPostal,\nendLocalidade, tlf, site, email, nomeG, função, tlfG, emailG)
+activate RepositorioOrganizacao
+RepositorioOrganizacao -> Organizacao : 5 end = novoEndereco(endLocal, endCodPostal, endLocalidade)
+activate Organizacao
+deactivate Organizacao
+Organizacao -> EnderecoPostal ** : 6  create(endLocal, endCodPostal, endLocalidade)
+RepositorioOrganizacao -> Organizacao : 7 gestor = registarGestor(nomeG, tlfG, emailG)
+activate Organizacao
+deactivate Organizacao
+Organizacao --> Colaborador ** : 8 create(nomeG, função, tlfG, emailG)
+RepositorioOrganizacao --> Organizacao ** : 9 create(nome, NIF, end, tlf, site, email, colab)
+deactivate RepositorioOrganizacao
+RegistarOrganizaoController -> RepositorioOrganizacao : 10 validaOrganizacao(org)
+activate RepositorioOrganizacao
+deactivate RepositorioOrganizacao
+deactivate RegistarOrganizaoController
+RegistarOrganizacaoUI --> UtilizadorNaoRegistado : 11 apresenta dados e solicita confirmação
+deactivate RegistarOrganizacaoUI
+UtilizadorNaoRegistado -> RegistarOrganizacaoUI : 12 confirma
+activate RegistarOrganizacaoUI
+RegistarOrganizacaoUI -> RegistarOrganizaoController : 13 registaOrganizacao()
+activate RegistarOrganizaoController
+RegistarOrganizaoController -> RepositorioOrganizacao : 14 registaOrganizacao(org)
+activate RepositorioOrganizacao
+RepositorioOrganizacao -> RepositorioOrganizacao : 15 validaOrganizacao(org)
+ref over Plataforma, Organizacao : UC1_SD_RegistarGestorComoUtilizador
+RepositorioOrganizacao -> RepositorioOrganizacao : 16 addOrganizacao(org)
+deactivate RepositorioOrganizacao
+deactivate RegistarOrganizaoController
+RegistarOrganizacaoUI --> UtilizadorNaoRegistado : 17 operação bem sucedida
+deactivate RegistarOrganizacaoUI
+
+@enduml
