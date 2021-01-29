@@ -14,24 +14,24 @@ do sucesso da operação.
 
 ## Formato Completo
 
-### Actor Principal
+**_Ator Primário:_**
 
-* Colaborador da Organização
+- Colaborador da Organização
 
-### Partes interessadas e seus interesses
+**_Partes interessadas e seus interesses:_**
 
-* Organização: pretende ficar registada na plataforma
-* T4J: pretende que as organizações se registem
+- Organização: pretende ficar registada na plataforma
+- T4J: pretende que as organizações se registem
 
-### Pré-condições
+**_Pré-condições:_**
 
 * A plataforma tem de permitir o registo de organizações
 
-### Pós-condições
+**_Pós-condições_**
 
 * A organização fica registada na plataforma
 
-### Cenário de sucesso principal
+**_Cenário de sucesso principal:_**
 
 1. O colaborador inicia o registo de organização.
 2. O sistema solicita os dados necessários (Nome Organização, NIF, Endereço, Telefone, Email).
@@ -40,29 +40,29 @@ do sucesso da operação.
 5. O colaborador confirma os dados.
 6. O sistema regista os dados e informa o colaborador do sucesso da operação.
 
-### Fluxos alternativos
+**_Fluxos Alternativos:_**
 
 1. O colaborador solicita o cancelamento do registo da organização. O caso de uso termina.
-2. Dados mínimos obrigatórios em falta:
-- O sistema informa quais os dados em falta.
-- O sistema permite a introdução dos dados em falta.
-- O colaborador não insere os dados. O caso de uso termina.
-3. O sistema deteta que os dados (ou algum subconjunto dos dados) introduzidos devem ser únicos e que já existem no sistema:
-- O sistema alerta o colaborador para o facto.
-- O sistema permite a sua alteração.
-- O colaborador não altera os dados. O caso de uso termina.
+2. Dados mínimos obrigatórios em falta: <br/>
+  a. O sistema informa quais os dados em falta. <br/>
+  b. O sistema permite a introdução dos dados em falta. <br/>
+  c. O colaborador não insere os dados. O caso de uso termina.
+3. O sistema deteta que os dados (ou algum subconjunto dos dados) introduzidos devem ser únicos e que já existem no sistema:<br/>
+  a. O sistema alerta o colaborador para o facto.<br/>
+  b. O sistema permite a sua alteração.<br/>
+  c. O colaborador não altera os dados. O caso de uso termina.
 
-### SSD
+## SSD
 ![UC01_Registar_Organizacao_SSD](UC01_Registar_Organizacao_SSD.png)
 
-### Excerto do Modelo de Domínio
+## Excerto do Modelo de Domínio
 ![UC01_Registar_Organizacao_MD](UC01_Registar_Organizacao_MD.png)
 
-### Diagrama de Sequência
+## Diagrama de Sequência
 ![UC01_Registar_Organizacao_SD_Pt1](UC01_Registar_Organizacao_SD_Pt1.png)
 ![UC01_Registar_Organizacao_SD_Pt2](UC01_Registar_Organizacao_SD_Pt2.png)
 
-### Diagrama de Classes
+## Diagrama de Classes
 ![UC01_Registar_Organizacao_DC_Pt1](UC01_Registar_Organizacao_DC_Pt1.png)
 ![UC01_Registar_Organizacao_DC_Pt2](UC01_Registar_Organizacao_DC_Pt2.png)
 
