@@ -1,0 +1,61 @@
+@startuml
+title UC04 - Especificar Competência Técnica
+
+class Plataforma <<Singleton>> {
+    -String designacao
+}
+
+class EspecificarCompetenciaTecnicaUI{
+   getListaAreasAtividade()
+   novaCompetenciaTecnica(codCompetencia, descBreve, descDetalhada, codAreaAtividade)
+   novoGrau(valor,designacao)
+   registaCompetenciaTecnica()
+}
+
+class EspecificarCompetenciaTecnicaCTRL{
+   getRegistoAreasAtividade()
+   getListaAreasAtividade()
+   getAreaAtividade(codAreaAtividade)
+   getRegistoCompetenciasTecnicas()
+   novaCompetenciaTecnica(codCompetencia, descBreve, descDetalhada, at
+   registaCompetenciaTecnica(ct)
+}
+
+class RegistoAreasAtividade{
+    - List<AreaAtividade>
+}
+
+class RegistoCompetenciasTecnicas{
+    - List<CompetenciaTecnica>
+}
+
+class AreaAtividade{
+    String codigo
+    String descBreve
+    String descDetalhada
+}
+
+class CompetenciaTecnica{
+    String codigo
+    String descBreve
+    String descDetalhada
+}
+
+class GrauProficiencia{
+    Integer valor
+    String designacao
+}
+
+class RepositorioAreaAtividade{
+    -List<AreaAtividade>
+    -AreaAtividade(codAreaAtividade)
+}
+
+class RepositorioCompetenciaTecnica{
+    -List<CompetenciaTecnica>
+    -CompetenciaTecnica(codCompetencia)
+}
+
+EspecificarCompetenciaTecnicaUI ..> EspecificarCompetenciaTecnicaCTRL
+
+@enduml
