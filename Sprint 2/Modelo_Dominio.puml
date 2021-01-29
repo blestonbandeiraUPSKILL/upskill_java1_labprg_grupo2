@@ -58,17 +58,23 @@ class EnderecoPostal {
 }
 
 class Freelancer {
-
 }
 
 class Administrativo {
-
 }
 
 class Utilizador {
     -String nome
     -String email
     -String password
+}
+
+class Password {
+    String password
+}
+
+class Email {
+    String email
 }
 
 Plataforma"1" -- "*"Organizacao: tem registadas >
