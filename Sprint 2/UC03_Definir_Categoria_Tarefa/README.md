@@ -8,27 +8,29 @@ sistema valida e apresenta os dados ao administrativo, pedindo que os confirme. 
 
 ## Formato Completo
 
-**_Ator Primário:_**
+### Actor Principal
 
-- Administrativo
+* Administrativo
 
-**_Partes interessadas e seus interesses:_**s
+### Partes interessadas e seus interesses
 
-- Administrativo: pretende criar categorias de tarefa uma vez que a existência delas é um requisito para a criação de tarefas na  plataforma.
-- Colaborador da organização: pretende ter uma oferta variada de categorias de tarefa às quais possa associar as tarefas que cria.
-- T4J: pretende que a plataforma atribua com sucesso as tarefas publicadas por organizações, a candidatos (freelancers) que se propõem a realizá-las.
+* Administrativo: pretende criar categorias de tarefa uma vez que a existência delas é um requisito para a criação de tarefas na  plataforma.
+* Colaborador da organização: pretende ter uma oferta variada de categorias de tarefa às quais possa associar as tarefas que cria.
+* T4J: pretende que a plataforma atribua com sucesso as tarefas publicadas por organizações, a candidatos (freelancers) que se propõem a realizá-las.
 
-**_Pré-condições:_**
+### Pré-condições
 
-- A plataforma tem que ter pelo menos um Administrativo registado.
-- É necessário que já exista pelo menos uma área de actividade à qual se possam associar categorias de tarefas.
-- É necessário que existam competências técnicas definidas que possam ser associadas às diferentes categorias de tarefas.
+1. A plataforma tem que ter pelo menos um Administrativo registado.
+2.	É necessário que já exista pelo menos uma área de actividade à qual se possam associar categorias de tarefas.
+3.	É necessário que existam competências técnicas definidas que possam ser associadas às diferentes categorias de tarefas.
 
-**_Pós-condições_**
+### Pós-condições
 
-- É criada/definida com sucesso uma categoria de tarefa, que fica disponível para a associação de tarefas.
+* É criada/definida com sucesso uma categoria de tarefa, que fica disponível para a associação de tarefas.
 
-**_Cenário de sucesso principal:_**
+### Cenário de sucesso principal
+
+1. O colaborador inicia o registo de organização.
 1.	O administrativo inicia o processo de definição de categoria de tarefa.
 2.	A plataforma devolve a lista de áreas de actividade e competências técnicas existentes na plataforma.
 3.	O administrativo seleciona uma área de actividade, juntamente com as competências técnicas, definindo o grau mínimo exigido para as mesmas, assim como se são obrigatórias ou opcionais.
@@ -38,17 +40,17 @@ sistema valida e apresenta os dados ao administrativo, pedindo que os confirme. 
 7.	O Administrativo confirma o registo, e a categoria de tarefa é então registada na plataforma.
 8.	O caso de uso termina.
 
-**_Fluxos Alternativos:_**
+### Fluxos alternativos
 
-1. A plataforma não tem nenhuma área de actividade definida.<br/>
-  a. O caso de uso termina.
-2. A plataforma não tem nenhuma categoria de tarefa definida.<br/>
-  a. O caso de uso termina.
-3. O administrador não pretende associar nenhuma competência técnica à categoria de tarefa, associando a categoria de tarefa apenas a uma área de actividade.<br/>
-  a. O caso de uso decorre de acordo com o fluxo principal, mas não são escolhidas, inseridas, nem validadas competência técnicas associadas a esta categoria de tarefa.
-4. O sistema detecta algum erro durante a validação dos dados.<br/>
-  a. O sistema solicita ao administrador a correção dos erros.<br/>
-  b. O caso de uso decorre de acordo com o fluxo principal.
+1. A plataforma não tem nenhuma área de actividade definida.
+*  a. O caso de uso termina.
+2. A plataforma não tem nenhuma categoria de tarefa definida.
+*  a. O caso de uso termina.
+3. O administrador não pretende associar nenhuma competência técnica à categoria de tarefa, associando a categoria de tarefa apenas a uma área de actividade
+*  a. O caso de uso decorre de acordo com o fluxo principal, mas não são escolhidas, inseridas, nem validadas competência técnicas associadas a esta categoria de tarefa.
+4. O sistema detecta algum erro durante a validação dos dados.
+*  a. O sistema solicita ao administrador a correção dos erros.
+*  b. O caso de uso decorre de acordo com o fluxo principal.
 
 
 ## SSD
