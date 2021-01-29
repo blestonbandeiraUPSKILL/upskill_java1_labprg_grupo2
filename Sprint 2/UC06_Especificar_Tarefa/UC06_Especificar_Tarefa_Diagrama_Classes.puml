@@ -87,17 +87,6 @@ class Categoria {
 }
 
 class Email {
-<<<<<<< HEAD
-    -String designacao
-    --
-    validaEmail(email)
-}
-
-class Password {
-    -String designacao
-    --
-    validaPassword(password)
-=======
     -String email
     --
     validaEMail(email)
@@ -107,7 +96,6 @@ class Password {
     -String password
     --
     -validaPassword(password)
->>>>>>> 29465432f30c4aad2acbd414a5669998ac6f886a
 }
 
 Colaborador"0..1" --|> "1"Utilizador
