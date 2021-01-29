@@ -59,10 +59,8 @@ class Organizacao {
 }
 
 class Colaborador {
-    -String nome
     -String funcao
     -String telefone
-    -Email email
     -Organizacao organizacao
 }
 
@@ -87,17 +85,31 @@ class Categoria {
     -String descricao
 }
 
+class Email {
+    -String designacao
+    --
+    validaEmail(email)
+}
+
+class Password {
+    -String designacao
+    --
+    validaPassword(password)
+}
+
 Colaborador"0..1" --|> "1"Utilizador
 EspecificarTarefaUI ..> EspecificarTarefasCTRL
 EspecificarTarefasCTRL ..> Plataforma
 EspecificarTarefasCTRL ..> RepositorioCategoria
 EspecificarTarefasCTRL ..> RepositorioTarefa
 EspecificarTarefasCTRL ..> RepositorioOrganizacao
-RepositorioOrganizacao --> Organizacao
+RepositorioOrganizacao"1" --> "1.."Organizacao
 EspecificarTarefasCTRL ..> RepositorioColaborador
-RepositorioColaborador --> Colaborador
-RepositorioTarefa ---> Tarefa
-RepositorioCategoria --> Categoria
+RepositorioColaborador"1" --> "1..*"Colaborador
+RepositorioTarefa"1" --> "1..*"Tarefa
+RepositorioCategoria"1" --> "1..*"Categoria
 Plataforma <-- Tarefa
+Utilizador"1" --> "1"Email
+Utilizador"1" --> "1"Password
 
 @enduml
