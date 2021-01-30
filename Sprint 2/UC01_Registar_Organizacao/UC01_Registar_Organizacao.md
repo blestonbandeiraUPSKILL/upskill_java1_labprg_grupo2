@@ -52,23 +52,22 @@ do sucesso da operação.
   b. O sistema permite a sua alteração.<br/>
   c. O colaborador não altera os dados. O caso de uso termina.
 
-## SSD
+## Diagrama de Sequência do Sistema <br/>
 ![UC01_Registar_Organizacao_Diagrama_Sequencia_Sistema](UC01_Registar_Organizacao_Diagrama_Sequencia_Sistema.png)
 
-## Excerto do Modelo de Domínio
+## Excerto do Modelo de Domínio <br/>
 ![UC01_Registar_Organizacao_Modelo_Dominio](UC01_Registar_Organizacao_Modelo_Dominio.png)
 
-## Diagrama de Sequência
+## Diagrama de Sequência <br/>
 ![UC01_Registar_Organizacao_Diagrama_Sequencia_Pt1](UC01_Registar_Organizacao_Diagrama_Sequencia_Pt1.png)
 ![UC01_Registar_Organizacao_Diagrama_Sequencia_Pt2](UC01_Registar_Organizacao_Diagrama_Sequencia_Pt2.png)
-<br/>
 
 
-## Diagrama de Classes
+## Diagrama de Classes <br/>
 ![UC01_Registar_Organizacao_Diagrama_Classes_page1](UC01_Registar_Organizacao_Diagrama_Classes_page1.png)
 ![UC01_Registar_Organizacao_Diagrama_Classes_page2](UC01_Registar_Organizacao_Diagrama_Classes_page2.png)
 
-## Plano de Testes
+## Plano de Testes <br/>
 
 
 ##### [Voltar ao início](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/tree/main/README.md)

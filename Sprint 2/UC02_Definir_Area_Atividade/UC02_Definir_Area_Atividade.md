@@ -45,18 +45,18 @@ O administrador inicia a definição de uma nova área de actividade. O sistema 
   b.	O sistema permite a sua alteração (passo 3).<br/>
   c.	O administrativo não altera os dados. O caso de uso termina.
 
-## SSD
+## Diagrama de Sequência do Sistema <br/>
 ![UC02_Definir_Area_Atividade_SSD](UC02_Definir_Area_Atividade_SSD.png)
 
-## Excerto do Modelo de Domínio
+## Excerto do Modelo de Domínio <br/>
 ![UC02_Definir_Area_Atividade_MD](UC02_Definir_Area_Atividade_MD.png)
 
-## Diagrama de Sequência
+## Diagrama de Sequência <br/>
 ![UC02_Definir_Area_Actividade_Diagrama_Sequencia](UC02_Definir_Area_Actividade_Diagrama_Sequencia.png)
 
-## Diagrama de Classes
+## Diagrama de Classes <br/>
 ![UC02_Definir_Area_Atividade_Diagrama_Classes](UC02_Definir_Area_Atividade_Diagrama_Classes.png)
 
-## Plano de Testes
+## Plano de Testes <br/>
 
 ##### [Voltar ao início](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/tree/main/README.md)

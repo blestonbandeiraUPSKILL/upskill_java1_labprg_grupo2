@@ -58,21 +58,26 @@ os dados ao gestor de organização, pedindo que os confirme;
     a. O sistema alerta o gestor para o facto.
     b. O sistema permite a sua alteração (passo 3). c. O Gestor da Organização não altera os dados. O caso de uso termina.
 
-### Diagrama de Sequência de Sistema ###
+## Diagrama de Sequência de Sistema 
 
 ![UC05-SSD](UC05_SSD_Especificar_Colaborador.png)
 
 
-### Excerto do Modelo de Domínio ###
+## Excerto do Modelo de Domínio 
 
 ![UC05-DiagSequ](UC05_ExcertoMD_Especificar_Colaborador.png)
 
 
-### UC5 - Diagrama de Sequência ###
+## Diagrama de sequência <br/>
 
-![UC05-DiagSequ](UC05_DiagSeq_Especificar_Colaborador.png)
+![UC05_Especificar_Colaborador_Diagrama_Sequencia]UC05_Especificar_Colaborador_Diagrama_Sequencia.png)
 
+## Diagrama de Classes <br/>
+![UC05_Especificar_Colaborador_Diagrama_Classes](UC05_Especificar_Colaborador_Diagrama_Classes.png)
 
+## Plano de Testes <br/>
+
+[UC5 - Especificar Colaborador de Organização - Plano de Testes](UC05_Especificar_Colaborador_Organizacao_Plano_Testes.md)
 
 ##### [Voltar ao início](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/README.md)
 

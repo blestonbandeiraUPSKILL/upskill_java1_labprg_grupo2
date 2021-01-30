@@ -1,12 +1,13 @@
 @startuml
 
 title UC05 - Especificar Colaborador
+
 left to right direction
 
 class Plataforma <<Singleton>> {
     -String designacao
     --
-    getRegistoOrganizacoes()
+    getRepositorioOrganizacao()
 }
 
 class EspecificarColaboradorUI{
@@ -22,8 +23,8 @@ class EspecificarColaboradorCTRL{
     validaColaborador(c)
     registaColaborador(c)
     registaUtilizadorComPapel(nome, email, password, "colaborador")
-
 }
+
 class Organizacao {
     -String nome
     -String NIF
@@ -33,46 +34,71 @@ class Organizacao {
 }
 
 class Colaborador {
-    -String nome
     -String funcao
     -String telefone
-    -Email email
     -Organizacao organizacao
 }
+
 class Utilizador {
     -String nome
     -Email email
     -Password password
 }
+
 class GestaoUtilizadoresFacade{
     getGestaoUtilizadoresFacade()
 }
+
 class SessaoAtual{
+    --
     getSessaoAtual()
 }
+
 class SessaoUtilizador{
+    --
     getEmailUtilizador()
 }
 
-class RegistoOrganizacoes{
-    getOrganizacaoByEmailUtilizador(email)
+class RepositorioOrganizacao{
+    --
+    organizacaoByEmailUtilizador(email)
 }
+
 interface AlgoritmoGeradorPasswords{
     getAlgoritmoGeradorPasswords()
 }
+
 class Password{
-getPassword()
+    String password
+    --
+    getPassword()
 }
+
 class UtilizadorComPapel{
-
 }
-class Colaborador{
 
+
+class Email {
+    -String email
+    --
+    getEmailUtilizador()
 }
 
 EspecificarColaboradorUI ..> EspecificarColaboradorCTRL
 EspecificarColaboradorCTRL ..> Plataforma
 EspecificarColaboradorCTRL ..> GestaoUtilizadoresFacade
 EspecificarColaboradorCTRL ..> SessaoUtilizador
+Organizacao -- Colaborador: possui >
+Colaborador --|> UtilizadorComPapel
+UtilizadorComPapel --|> Utilizador
+Email -- Utilizador: < possui
+Password -- Utilizador: < possui
+Email -- Organizacao: < possui
+Organizacao -- RepositorioOrganizacao
+Colaborador -- SessaoAtual: tem >
+EspecificarColaboradorCTRL ..> UtilizadorComPapel
+EspecificarColaboradorCTRL ..> AlgoritmoGeradorPasswords
+Plataforma ..> RepositorioOrganizacao
+
 
 @enduml
