@@ -26,6 +26,7 @@ class Organizacao {
 class Colaborador {
     -String funcao
     -String telefone
+    -Organizacao organizacao
     --
     +Colaborador(nome,funcao,tlf,email)
     +String getNome()

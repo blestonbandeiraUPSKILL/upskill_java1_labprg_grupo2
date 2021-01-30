@@ -12,14 +12,12 @@ class Organizacao {
     -String NIF
     -String website
     -String telefone
-    -String email
+    -Email email
 }
 
 class Colaborador {
-    -String nome
     -String funcao
     -String telefone
-    -String email
 }
 
 class Tarefa {
@@ -33,7 +31,15 @@ class Tarefa {
 
 class Utilizador {
     -String nome
+    -Email email
+    -Email password
+}
+
+class Email {
     -String email
+}
+
+class Password {
     -String password
 }
 
@@ -48,7 +54,10 @@ Colaborador"1" -- "*"Tarefa: especificada por <
 Organizacao"1" -- "*"Tarefa: possui >
 Tarefa"*" -- "1"Categoria: enquadra-se em >
 Plataforma"1" -- "*"Categoria: possui >
-Colaborador"0..1" -- "1"Utilizador: actua como >
+Colaborador"0..1" --|> "1"Utilizador: actua como <
+Utilizador "1" -- "1"Email: possui >
+Utilizador "1" -- "1"Password: possui >
+Organização "1" -- "1"Email: possui >
 
 
 @enduml
