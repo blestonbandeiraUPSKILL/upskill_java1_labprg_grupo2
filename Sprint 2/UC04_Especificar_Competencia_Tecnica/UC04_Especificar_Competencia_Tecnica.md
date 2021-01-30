@@ -51,19 +51,19 @@ os dados. O sistema regista os dados e informa o administrativo do sucesso da op
   b. O sistema permite a sua alteração (passo 3).<br/>
   c. O Administrativo não altera os dados. O caso de uso termina.
 
-## SSD
+## Diagrama de Sequência do Sistema
 ![UC04_Especificar_Competencia_Tecnica_SSD.](UC04_Especificar_Competencia_Tecnica_SSD.png)
 
 ## Excerto do Modelo de Domínio
 ![UC04_Especificar_Competencia_Tecnica_Modelo_Dominio](UC04_Especificar_Competencia_Tecnica_Modelo_Dominio.png)
 
-## Diagrama de Sequência
+## Diagrama de sequência <br/>
 ![UC04_Especificar_Competencia_Tecnica_Diagrama_Sequencia](UC04_Especificar_Competencia_Tecnica_Diagrama_Sequencia.png)
 
-## Diagrama de Classes
+## Diagrama de Classes <br/>
 ![UC04_Especificar_Competencia_Tecnica_Diagrama_Classes](UC04_Especificar_Competencia_Tecnica_Diagrama_Classes.png)
 
-## Plano de Testes
+## Plano de Testes <br/>
 [UC04 - Especificar Competência Técnica - Plano de Testes](UC04_Especificar_Competencia_Tecnica_Plano_Testes.md)
 
 

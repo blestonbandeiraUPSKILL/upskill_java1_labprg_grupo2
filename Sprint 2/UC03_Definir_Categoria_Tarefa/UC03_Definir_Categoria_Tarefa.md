@@ -52,19 +52,19 @@ sistema valida e apresenta os dados ao administrativo, pedindo que os confirme. 
     b. O caso de uso decorre de acordo com o fluxo principal.
 
 
-## SSD
+## Diagrama de Sequência do Sistema
 ![UC03_Definir_Categoria_Tarefa_Diagrama_Sequencia_Sistema](UC03_Definir_Categoria_Tarefa_Diagrama_Sequencia_Sistema.png)
 
 ## Excerto do Modelo de Domínio
 ![UC03_Definir_Categoria_Tarefa_Modelo_Dominio]UC03_Definir_Categoria_Tarefa_Modelo_Dominio.png)
 
-## Diagrama de Sequência
+## Diagrama de sequência <br/>
 ![UC03_Definir_Categoria_Tarefa_Diagrama_Sequencia](UC03_Definir_Categoria_Tarefa_Diagrama_Sequencia.png)
 
-## Diagrama de Classes
+## Diagrama de Classes <br/>
 ![UC03_Definir_Categoria_Tarefa_Diagrama_Classes](UC03_Definir_Categoria_Tarefa_Diagrama_Classes.png)
 
-## Plano de Testes
+## Plano de Testes <br/>
 [UC03 - Definir Categoria de Tarefa - Plano de Testes](UC03_Definir_Categoria_Tarefa_Test_Scenario.md)
 
 ##### [Voltar ao início](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/tree/main/README.md)

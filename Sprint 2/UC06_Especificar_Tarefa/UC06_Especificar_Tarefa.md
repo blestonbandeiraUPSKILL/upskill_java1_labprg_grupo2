@@ -49,7 +49,7 @@ O Colaborador da organização de organização inicia a especificação de uma 
 ## Diagrama de Sequência do Sistema <br/>
 ![UC06_Especificar_Tarefa_SSD.png](UC06_Especificar_Tarefa_SSD.png)
 
-## Excerto do modelo de domínio <br/>
+## Excerto do Modelo de Domínio <br/>
 ![UC06_Especificar_Tarefa_Modelo_Dominio.png](UC06_Especificar_Tarefa_Modelo_Dominio.png)
 
 ## Diagrama de sequência <br/>
@@ -59,5 +59,10 @@ O Colaborador da organização de organização inicia a especificação de uma 
 
 ## Diagrama de classes <br/>
 ![UC06_Especificar_Tarefa_Diagrama_Classes.png](UC06_Especificar_Tarefa_Diagrama_Classes.png)
+
+
+## Plano de Testes <br/>
+
+[UC6 - Especificar Tarefa - Plano de Testes](UC06_Especificar_Tarefa_Plano_Testes.md)
 
 ##### [Voltar ao início](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/README.md)
