@@ -14,19 +14,9 @@ class EspecificarCompetenciaTecnicaUI{
 
 class EspecificarCompetenciaTecnicaCTRL{
    getRegistoAreasAtividade()
-   getListaAreasAtividade()
-   getAreaAtividade(codAreaAtividade)
    getRegistoCompetenciasTecnicas()
    novaCompetenciaTecnica(codCompetencia, descBreve, descDetalhada, at
    registaCompetenciaTecnica(ct)
-}
-
-class RegistoAreasAtividade{
-    - List<AreaAtividade>
-}
-
-class RegistoCompetenciasTecnicas{
-    - List<CompetenciaTecnica>
 }
 
 class AreaAtividade{
@@ -46,16 +36,34 @@ class GrauProficiencia{
     String designacao
 }
 
-class RepositorioAreaAtividade{
+class RepositorioAreaAtividade <<Singleton>>{
     -List<AreaAtividade>
+    -AreaAtividade
+    --
+    -allAreasAtividade()
     -AreaAtividade(codAreaAtividade)
 }
 
-class RepositorioCompetenciaTecnica{
+class RepositorioCompetenciaTecnica <<Singleton>>{
     -List<CompetenciaTecnica>
+    -CompetenciaTecnica
+    --
+    -allCompetenciasTecnicas()
     -CompetenciaTecnica(codCompetencia)
 }
 
 EspecificarCompetenciaTecnicaUI ..> EspecificarCompetenciaTecnicaCTRL
+
+EspecificarCompetenciaTecnicaCTRL ..> Plataforma
+
+EspecificarCompetenciaTecnicaCTRL ..> RepositorioAreaAtividade
+
+EspecificarCompetenciaTecnicaCTRL ..> RepositorioCompetenciaTecnica
+
+RepositorioAreaAtividade "1" --> "1..*" AreaAtividade
+
+RepositorioCompetenciaTecnica "1" --> "1..*" CompetenciaTecnica
+
+CompetenciaTecnica --> GrauProficiencia
 
 @enduml
