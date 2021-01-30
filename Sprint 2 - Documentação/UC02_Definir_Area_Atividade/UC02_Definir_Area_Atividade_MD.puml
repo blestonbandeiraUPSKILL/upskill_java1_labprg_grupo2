@@ -1,0 +1,18 @@
+@startuml
+title UC02 - Definir Área de Atividade - Excerto do Modelo de Domínio
+
+left to right direction
+
+class Plataforma <<Singleton>> {
+    -String designacao
+}
+
+class AreaAtividade {
+    -String codigo
+    -String descBreve
+    -String descDetalhada
+}
+
+Plataforma "1"--"*" AreaAtividade : possui >
+
+@enduml
