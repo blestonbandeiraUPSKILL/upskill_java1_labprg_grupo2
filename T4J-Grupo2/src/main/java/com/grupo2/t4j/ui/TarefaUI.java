@@ -9,10 +9,10 @@ import java.util.ResourceBundle;
 
 public class TarefaUI implements Initializable {
 
-    private JanelaPrincipalUI janelaPrincipalUI;
+    private StartingPageUI startingPageUI;
 
-    public void associarParentUI(JanelaPrincipalUI janelaPrincipalUI) {
-        this.janelaPrincipalUI = janelaPrincipalUI;
+    public void associarParentUI(StartingPageUI startingPageUI) {
+        this.startingPageUI = startingPageUI;
     }
 
     @Override
