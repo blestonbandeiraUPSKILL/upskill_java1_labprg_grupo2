@@ -68,4 +68,7 @@ do sucesso da operação.
 ![UC01_Registar_Organizacao_Diagrama_Classes_page1](UC01_Registar_Organizacao_Diagrama_Classes_page1.png)
 ![UC01_Registar_Organizacao_Diagrama_Classes_page2](UC01_Registar_Organizacao_Diagrama_Classes_page2.png)
 
+## Plano de Testes
+
+
 ##### [Voltar ao início](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/tree/main/README.md)

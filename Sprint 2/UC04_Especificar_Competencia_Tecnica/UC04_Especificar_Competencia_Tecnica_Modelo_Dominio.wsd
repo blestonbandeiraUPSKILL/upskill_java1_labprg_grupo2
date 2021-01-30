@@ -2,7 +2,7 @@
 
 title UC04 - Especificar Competência Técnica
 
-class Plataforma{
+class Plataforma <<Singleton>>{
     String designacao
 }
 
@@ -24,11 +24,8 @@ class AreaAtividade{
 }
 
 Plataforma "1" -- "*" CompetenciaTecnica: possui >
-
 CompetenciaTecnica "1" --- "*" GrauProficiencia: aplica >
-
 CompetenciaTecnica "*" --- "1" AreaAtividade: referente a >
-
 Plataforma "1" -- "*" AreaAtividade: possui >
 
 @enduml

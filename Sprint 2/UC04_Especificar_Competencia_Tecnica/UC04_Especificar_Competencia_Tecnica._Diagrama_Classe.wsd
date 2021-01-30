@@ -6,17 +6,19 @@ class Plataforma <<Singleton>> {
 }
 
 class EspecificarCompetenciaTecnicaUI{
-   getListaAreasAtividade()
-   novaCompetenciaTecnica(codCompetencia, descBreve, descDetalhada, codAreaAtividade)
-   novoGrau(valor,designacao)
-   registaCompetenciaTecnica()
+    --
+    allAreasAtividade()
+    novaCompetenciaTecnica(codCompetencia, descBreve, descDetalhada, codAreaAtividade)
+    novoGrauProficiencia(valor,designacao)
+    registaCompetenciaTecnica()
 }
 
 class EspecificarCompetenciaTecnicaCTRL{
-   getRegistoAreasAtividade()
-   getRegistoCompetenciasTecnicas()
-   novaCompetenciaTecnica(codCompetencia, descBreve, descDetalhada, at
-   registaCompetenciaTecnica(ct)
+    --
+    getRepositorioAreaAtividade()
+    getRepositorioCompetenciaTecnica()
+    novaCompetenciaTecnica(codCompetencia, descBreve, descDetalhada, at
+    registaCompetenciaTecnica(ct)
 }
 
 class AreaAtividade{
@@ -41,7 +43,7 @@ class RepositorioAreaAtividade <<Singleton>>{
     -AreaAtividade
     --
     -allAreasAtividade()
-    -AreaAtividade(codAreaAtividade)
+    -areaAtividade(codAreaAtividade)
 }
 
 class RepositorioCompetenciaTecnica <<Singleton>>{
@@ -49,21 +51,15 @@ class RepositorioCompetenciaTecnica <<Singleton>>{
     -CompetenciaTecnica
     --
     -allCompetenciasTecnicas()
-    -CompetenciaTecnica(codCompetencia)
+    -competenciaTecnica(codCompetencia)
 }
 
 EspecificarCompetenciaTecnicaUI ..> EspecificarCompetenciaTecnicaCTRL
-
 EspecificarCompetenciaTecnicaCTRL ..> Plataforma
-
 EspecificarCompetenciaTecnicaCTRL ..> RepositorioAreaAtividade
-
 EspecificarCompetenciaTecnicaCTRL ..> RepositorioCompetenciaTecnica
-
 RepositorioAreaAtividade "1" --> "1..*" AreaAtividade
-
 RepositorioCompetenciaTecnica "1" --> "1..*" CompetenciaTecnica
-
 CompetenciaTecnica --> GrauProficiencia
 
 @enduml
