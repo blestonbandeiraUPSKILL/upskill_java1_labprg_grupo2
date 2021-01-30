@@ -1,2 +1,4 @@
-package com.grupo2.t4j.grupo2.repository;public class RepositorioUtilizador {
+package com.grupo2.t4j.repository;
+
+public class RepositorioUtilizador {
 }
