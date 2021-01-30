@@ -70,7 +70,7 @@ os dados ao gestor de organização, pedindo que os confirme;
 
 ## Diagrama de sequência <br/>
 
-![UC05_Especificar_Colaborador_Diagrama_Sequencia]UC05_Especificar_Colaborador_Diagrama_Sequencia.png)
+![UC05_Especificar_Colaborador_Diagrama_Sequencia](UC05_Especificar_Colaborador_Diagrama_Sequencia.png)
 
 ## Diagrama de Classes <br/>
 ![UC05_Especificar_Colaborador_Diagrama_Classes](UC05_Especificar_Colaborador_Diagrama_Classes.png)
