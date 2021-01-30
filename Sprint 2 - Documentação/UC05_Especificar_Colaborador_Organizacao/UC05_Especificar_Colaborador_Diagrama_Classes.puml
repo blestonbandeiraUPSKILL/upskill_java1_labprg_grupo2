@@ -88,7 +88,6 @@ EspecificarColaboradorUI ..> EspecificarColaboradorCTRL
 EspecificarColaboradorCTRL ..> Plataforma
 EspecificarColaboradorCTRL ..> GestaoUtilizadoresFacade
 EspecificarColaboradorCTRL ..> SessaoUtilizador
-<<<<<<< HEAD:Sprint 2 - Documentação/UC05_Especificar_Colaborador_Organizacao/UC05_Especificar_Colaborador_Diagrama_Classes.puml
 Organizacao -- Colaborador: possui >
 Colaborador --|> UtilizadorComPapel
 UtilizadorComPapel --|> Utilizador
@@ -102,17 +101,4 @@ EspecificarColaboradorCTRL ..> AlgoritmoGeradorPasswords
 Plataforma ..> RepositorioOrganizacao
 
 
-=======
-EspecificarColaboradorCTRL ..> RegistoOrganizacoes
-RegistoOrganizacoes --> Organizacao
-Organizacao --> Colaborador
-RegistoOrganizacoes..> AlgoritmoGeradorPasswords
-Colaborador --> Utilizador
-Utilizador --> Password
-AlgoritmoGeradorPasswords ..> Password
-Utilizador ..> SessaoUtilizador
-SessaoUtilizador ..> UtilizadorComPapel
-UtilizadorComPapel..>Utilizador
-SessaoUtilizador ..>SessaoAtual
->>>>>>> UC5_Docs:Sprint 2/UC05_Especificar_Colaborador_Organizacao/UC05_DiagClass_Especificar_Colaborador.txt
 @enduml
