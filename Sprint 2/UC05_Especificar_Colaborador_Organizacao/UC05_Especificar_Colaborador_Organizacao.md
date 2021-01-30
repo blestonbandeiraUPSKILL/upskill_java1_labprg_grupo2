@@ -60,12 +60,12 @@ os dados ao gestor de organização, pedindo que os confirme;
 
 ## Diagrama de Sequência de Sistema 
 
-![UC05-SSD](UC05_SSD_Especificar_Colaborador.png)
+![UC5_Especificar_Colaborador_Organizacao_SSD](UC5_Especificar_Colaborador_Organizacao_SSD.png)
 
 
 ## Excerto do Modelo de Domínio 
 
-![UC05-DiagSequ](UC05_ExcertoMD_Especificar_Colaborador.png)
+![UC5_Especificar_Colaborador_Organizacao](UC5_Especificar_Colaborador_Organizacao.png)
 
 
 ## Diagrama de sequência <br/>

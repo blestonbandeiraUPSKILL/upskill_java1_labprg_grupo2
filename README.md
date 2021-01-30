@@ -19,7 +19,7 @@
 - [UC02 - Definir Área de Actividade](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Sprint%202/UC02_Definir_Area_Atividade/UC02_Definir_Area_Atividade.md)
 - [UC03 - Definir Categoria de Tarefa](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Sprint%202/UC03_Definir_Categoria_Tarefa/UC03_Definir_Categoria_Tarefa.md)
 - [UC04 - Especificar Competência Técnica](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Sprint%202/UC04_Especificar_Competencia_Tecnica/UC04_Especificar_Competencia_Tecnica.md)
-- [UC05 - Especificar Colaborador de Organização ](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Sprint%202/UC05_Especificar_Colaborador_Organizacao/UC05_Especificar_Colaborador_Organiza%C3%A7%C3%A3o.md)
+- [UC05 - Especificar Colaborador de Organização ](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Sprint%202/UC05_Especificar_Colaborador_Organizacao/UC05_Especificar_Colaborador_Organizacao.md)
 - [UC06 - Especificar Tarefa](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Sprint%202/UC06_Especificar_Tarefa/UC06_Especificar_Tarefa.md)
 
 ## Links úteis
