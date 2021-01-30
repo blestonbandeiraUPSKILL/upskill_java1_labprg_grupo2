@@ -1,3 +1,5 @@
+##### [Voltar ao início](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/tree/main/README.md)
+
 # UC02 – Definir Área de Actividade
 
 ## Formato Breve
@@ -58,5 +60,6 @@ O administrador inicia a definição de uma nova área de actividade. O sistema 
 ![UC02_Definir_Area_Atividade_Diagrama_Classes](UC02_Definir_Area_Atividade_Diagrama_Classes.png)
 
 ## Plano de Testes <br/>
+[UC02 - Definir Área de Atividade - Plano de Testes](UC02_Definir_Area_Atividade_Plano_Testes.md)
 
 ##### [Voltar ao início](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/tree/main/README.md)
