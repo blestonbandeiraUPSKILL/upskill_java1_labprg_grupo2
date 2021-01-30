@@ -29,7 +29,7 @@ do sucesso da operação.
 
 **_Pós-condições_**
 
-* A organização fica registada na plataforma
+- A organização fica registada na plataforma
 
 **_Cenário de sucesso principal:_**
 
