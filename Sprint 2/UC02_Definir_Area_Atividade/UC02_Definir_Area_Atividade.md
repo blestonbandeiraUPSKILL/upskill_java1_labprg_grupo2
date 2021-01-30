@@ -57,4 +57,6 @@ O administrador inicia a definição de uma nova área de actividade. O sistema 
 ## Diagrama de Classes
 ![UC02_Definir_Area_Atividade_Diagrama_Classes](UC02_Definir_Area_Atividade_Diagrama_Classes.png)
 
+## Plano de Testes
+
 ##### [Voltar ao início](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/tree/main/README.md)

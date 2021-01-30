@@ -33,21 +33,13 @@ Class GrauProficiencia{
 }
 
 Plataforma "1" - "*" Categoria: possui >
-
 Plataforma "1" --- "*" AreaAtividade: possui >
-
 Categoria "*" -- "1" AreaAtividade: enquadra-se em >
-
 Plataforma "1" --- "*" CompetenciaTecnica: possui >
-
 Categoria "*" ---- "*" CompetenciaTecnica: requer >
-
 CompetenciaTecnica "*" -- "1" AreaAtividade: referente a >
-
 CompetenciaTecnica "1" - "*" GrauProficiencia: aplica >
-
 CaraterCT "*" -- "1" GrauProficiencia: exige (como mínimo) >
-
 (Categoria, CompetenciaTecnica) . CaraterCT
 
 @enduml

@@ -52,19 +52,19 @@ os dados. O sistema regista os dados e informa o administrativo do sucesso da op
   c. O Administrativo não altera os dados. O caso de uso termina.
 
 ## SSD
-![UC04_Especificar_Competencia_Tecnica](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Sprint%202/UC04_Especificar_Competencia_Tecnica/UC04_Especificar_Competencia_Tecnica.png)
+![UC04_Especificar_Competencia_Tecnica_SSD.](UC04_Especificar_Competencia_Tecnica_SSD.png)
 
 ## Excerto do Modelo de Domínio
-![UC04_ExcertoMD_Especificar_Competencia_Tecnica](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Sprint%202/UC04_Especificar_Competencia_Tecnica/UC04_ExcertoMD_Especificar_Competencia_Tecnica.png)
+![UC04_Especificar_Competencia_Tecnica_Modelo_Dominio](UC04_Especificar_Competencia_Tecnica_Modelo_Dominio.png)
 
 ## Diagrama de Sequência
-![UC04_DiagSeq_Especificar_Competencia_Tecnica](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Sprint%202/UC04_Especificar_Competencia_Tecnica/UC04_DiagSeq_Especificar_Competencia_Tecnica.png)
+![UC04_Especificar_Competencia_Tecnica_Diagrama_Sequencia](UC04_Especificar_Competencia_Tecnica_Diagrama_Sequencia.png)
 
 ## Diagrama de Classes
-![UC04_DiagClas_Especificar_Competencia_Tecnica](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Sprint%202/UC04_Especificar_Competencia_Tecnica/UC04_DiagClas_Especificar_Competencia_Tecnica.png)
+![UC04_Especificar_Competencia_Tecnica_Diagrama_Classes](UC04_Especificar_Competencia_Tecnica_Diagrama_Classes.png)
 
-## Cenários de Testes
-![UC04_Especificar_Competencia_Tecnica_Test_Scenario](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Sprint%202/UC04_Especificar_Competencia_Tecnica/UC04_Especificar_Competencia_Tecnica_Test_Scenario.xlsx)
+## Plano de Testes
+![UC04_Especificar_Competencia_Tecnica_Test_Scenario.xlsx]UC04_Especificar_Competencia_Tecnica_Test_Scenario.xlsx)
 
 
 ##### [Voltar ao início](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/tree/main/README.md)
