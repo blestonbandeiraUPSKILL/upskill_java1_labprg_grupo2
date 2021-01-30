@@ -65,6 +65,6 @@ sistema valida e apresenta os dados ao administrativo, pedindo que os confirme. 
 ![UC03_Definir_Categoria_Tarefa_Diagrama_Classes](UC03_Definir_Categoria_Tarefa_Diagrama_Classes.png)
 
 ## Plano de Testes
-|[UC03_Definir_Categoria_Tarefa_Test_Scenario](UC03_Definir_Categoria_Tarefa_Test_Scenario.xlsx)
+|[UC03 - Plano de Testes](UC03_Definir_Categoria_Tarefa_Test_Scenario.md)
 
 ##### [Voltar ao início](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/tree/main/README.md)
