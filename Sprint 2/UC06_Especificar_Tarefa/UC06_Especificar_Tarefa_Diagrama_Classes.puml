@@ -20,7 +20,7 @@ class EspecificarTarefasCTRL {
     registaTarefa(t)
 }
 
-class RepositorioTarefa {
+class RepositorioTarefa <<Singleton>> {
     List<Tarefa> tarefas
     --
     create(ref, designacao, descInformal, descTecnica, duracao, custo, cat, colab)
@@ -28,7 +28,7 @@ class RepositorioTarefa {
     add(t)
 }
 
-class RepositorioCategoria {
+class RepositorioCategoria <<Singleton>>{
     -List<Categoria>
     -categoria
     --
@@ -36,7 +36,7 @@ class RepositorioCategoria {
     categoria(catCod)
 }
 
-class RepositorioOrganizacao {
+class RepositorioOrganizacao <<Singleton>> {
     -List<Organizacao>
     -organizacao
     --
@@ -44,7 +44,7 @@ class RepositorioOrganizacao {
     -organizacaoByEmail(email)
 }
 
-class RepositorioColaborador {
+class RepositorioColaborador <<Singleton>> {
     List<Colaborador> listaColab
     --
     allColaboradores()
