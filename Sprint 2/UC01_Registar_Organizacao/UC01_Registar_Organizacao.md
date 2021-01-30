@@ -68,6 +68,7 @@ do sucesso da operação.
 ![UC01_Registar_Organizacao_Diagrama_Classes_page2](UC01_Registar_Organizacao_Diagrama_Classes_page2.png)
 
 ## Plano de Testes <br/>
+[UC01 - Registar Organização - Plano de Testes](UC01_Registar_Organizacao_Plano_Testes.md)
 
 
 ##### [Voltar ao início](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/tree/main/README.md)
