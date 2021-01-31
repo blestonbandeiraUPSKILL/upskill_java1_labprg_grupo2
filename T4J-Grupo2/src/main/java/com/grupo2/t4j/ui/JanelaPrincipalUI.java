@@ -25,14 +25,14 @@ public class JanelaPrincipalUI implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
-            FXMLLoader loaderTarefa = new FXMLLoader(getClass().getResource("com/grupo2/t4j/fxml/TarefaScene.fxml"));
+            FXMLLoader loaderTarefa = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/TarefaScene.fxml"));
             Parent rootTarefa = loaderTarefa.load();
 
-            FXMLLoader loaderColaborador = new FXMLLoader(getClass().getResource("com/grupo2/t4j/fxml/ColaboradorScene.fxml"));
-            Parent rootColaborador = loaderColaborador.load();
+           /* FXMLLoader loaderColaborador = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/ColaboradorScene.fxml"));
+            Parent rootColaborador = loaderColaborador.load();*/
 
             Scene sceneTarefa = new Scene(rootTarefa);
-            Scene sceneColaborador = new Scene(rootColaborador);
+            //Scene sceneColaborador = new Scene(rootColaborador);
 
             Stage adicionarStage = new Stage();
             adicionarStage.initModality(Modality.APPLICATION_MODAL);;
