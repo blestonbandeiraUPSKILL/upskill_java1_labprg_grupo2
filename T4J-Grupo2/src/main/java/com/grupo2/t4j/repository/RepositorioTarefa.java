@@ -1,2 +1,4 @@
-package com.grupo2.t4j.grupo2.repository;public class RepositorioTarefa {
+package com.grupo2.t4j.repository;
+
+public class RepositorioTarefa {
 }
