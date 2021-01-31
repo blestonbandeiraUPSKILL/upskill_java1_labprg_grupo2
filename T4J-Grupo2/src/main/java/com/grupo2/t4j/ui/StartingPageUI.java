@@ -13,10 +13,9 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class JanelaPrincipalUI implements Initializable {
+public class StartingPageUI implements Initializable {
 
     private ApplicationController applicationController;
-    private StartingPageUI startingPageUI;
 
     public ApplicationController getApplicationController() {
         return applicationController;
@@ -25,14 +24,14 @@ public class JanelaPrincipalUI implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
-            FXMLLoader loaderTarefa = new FXMLLoader(getClass().getResource("com/grupo2/t4j/fxml/TarefaScene.fxml"));
-            Parent rootTarefa = loaderTarefa.load();
+            FXMLLoader loaderLogin = new FXMLLoader(getClass().getResource("com/grupo2/t4j/fxml/JanelaPrincipalScene.fxml"));
+            Parent rootLogin = loaderLogin.load();
 
-            FXMLLoader loaderColaborador = new FXMLLoader(getClass().getResource("com/grupo2/t4j/fxml/ColaboradorScene.fxml"));
-            Parent rootColaborador = loaderColaborador.load();
+            FXMLLoader loaderRegister = new FXMLLoader(getClass().getResource("com/grupo2/t4j/fxml/RegisterOrgScene.fxml"));
+            Parent rootRegister = loaderRegister.load();
 
-            Scene sceneTarefa = new Scene(rootTarefa);
-            Scene sceneColaborador = new Scene(rootColaborador);
+            Scene sceneLogin = new Scene(rootLogin);
+            Scene sceneRegister = new Scene(rootRegister);
 
             Stage adicionarStage = new Stage();
             adicionarStage.initModality(Modality.APPLICATION_MODAL);;
@@ -40,8 +39,8 @@ public class JanelaPrincipalUI implements Initializable {
 
             applicationController = new ApplicationController();
 
-//            TarefaUI tarefaUI = loaderTarefa.getController();
-//            tarefaUI.associarParentUI(this);
+            JanelaPrincipalUI janelaPrincipalUI = loaderLogin.getController();
+            janelaPrincipalUI.associarParentUI(this);
         }
         catch (IOException exception) {
             exception.printStackTrace();
@@ -50,9 +49,5 @@ public class JanelaPrincipalUI implements Initializable {
                     "Erro",
                     exception.getMessage());
         }
-    }
-
-    public void associarParentUI(StartingPageUI startingPageUI) {
-        this.startingPageUI = startingPageUI;
     }
 }
