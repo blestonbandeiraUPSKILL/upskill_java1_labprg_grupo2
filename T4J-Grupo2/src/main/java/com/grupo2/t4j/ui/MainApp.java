@@ -19,12 +19,10 @@ public class MainApp extends Application {
 
     public static final String TITULO_APLICACAO = "Tasks 4 Joe";
 
-    private static Scene scene;
-
     @Override
     public void start(Stage stage) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("com/grupo2/t4j/fxml/StartingPageScene.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/StartingPageScene.fxml"));
             Parent root = loader.load();
 
             Scene scene = new Scene(root);

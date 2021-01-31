@@ -24,10 +24,10 @@ public class StartingPageUI implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
-            FXMLLoader loaderLogin = new FXMLLoader(getClass().getResource("com/grupo2/t4j/fxml/JanelaPrincipalScene.fxml"));
+            FXMLLoader loaderLogin = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/JanelaPrincipalScene.fxml"));
             Parent rootLogin = loaderLogin.load();
 
-            FXMLLoader loaderRegister = new FXMLLoader(getClass().getResource("com/grupo2/t4j/fxml/RegisterOrgScene.fxml"));
+            FXMLLoader loaderRegister = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/RegisterOrgScene.fxml"));
             Parent rootRegister = loaderRegister.load();
 
             Scene sceneLogin = new Scene(rootLogin);
