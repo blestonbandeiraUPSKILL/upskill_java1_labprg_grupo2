@@ -14,14 +14,43 @@ public class CompetenciaTecnica {
     private String descricaoBreve;
     private String descricaoDetalhada;
     private GrauProficiencia grau;
+<<<<<<< HEAD
+    
+/**
+ * Construtor Competencia Tecnica Completo
+ * @param codigo
+ * @param descricaoBreve
+ * @param descricaoDetalhada
+ * @param obrigatoria 
+ */
+    public CompetenciaTecnica(String codigo, String descricaoBreve, String descricaoDetalhada, boolean obrigatoria) {
+=======
 
     public CompetenciaTecnica(String codigo, String descricaoBreve, String descricaoDetalhada) {
+>>>>>>> c2705aa357a950ee1e162eec970147b6b084acda
         this.codigo = codigo;
         this.descricaoBreve = descricaoBreve;
         this.descricaoDetalhada = descricaoDetalhada;
         this.grau=grau;
     }
+<<<<<<< HEAD
+/**
+ * Construtor Classe Competencia Tecnica
+ * @param compTec 
+ */
+    public CompetenciaTecnica(CompetenciaTecnica compTec){
+        setCodigo(codigo);
+        setDescricaoBreve(descricaoBreve);
+        setDescricaoDetalhada(descricaoDetalhada);
+        setGrau(grau);
+    }
+    
+    /**
+     * @return the codigo
+     */
+=======
 
+>>>>>>> c2705aa357a950ee1e162eec970147b6b084acda
     public String getCodigo() {
         return codigo;
     }
