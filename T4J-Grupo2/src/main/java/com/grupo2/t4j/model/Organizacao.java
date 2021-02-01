@@ -75,4 +75,23 @@ public class Organizacao {
         this.email = email;
     }
     
+    public String getNome(){
+        return nome;
+    }
+    
+    public String getNif(){
+        return NIF;
+    }
+    
+    public String getWebsite(){
+        return website;
+    }
+    
+    public String getTelefone(){
+        return telefone;
+    }
+    
+    public Email getEmail(){
+        return email;
+    }    
 }
