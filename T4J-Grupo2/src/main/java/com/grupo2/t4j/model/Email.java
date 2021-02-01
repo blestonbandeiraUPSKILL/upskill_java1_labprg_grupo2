@@ -47,4 +47,9 @@ public class Email {
         }
         return eValido;
     }
+    
+    @Override
+    public String toString(){
+        return email;
+    }
 }

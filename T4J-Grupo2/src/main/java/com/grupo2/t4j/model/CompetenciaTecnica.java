@@ -18,7 +18,7 @@ public class CompetenciaTecnica {
     private String descricaoBreve;
     private String descricaoDetalhada;
     private GrauProficiencia grau;
-    private boolean obrigatoria;
+    
 /**
  * Construtor Competencia Tecnica Completo
  * @param codigo
@@ -31,8 +31,6 @@ public class CompetenciaTecnica {
         this.descricaoBreve = descricaoBreve;
         this.descricaoDetalhada = descricaoDetalhada;
         this.grau=grau;
-        this.obrigatoria=obrigatoria;
-        
     }
 /**
  * Construtor Classe Competencia Tecnica
@@ -45,22 +43,6 @@ public class CompetenciaTecnica {
         setGrau(grau);
     }
     
-  
-
-    /**
-     * @return the obrigatoria
-     */
-    public boolean isObrigatoria() {
-        return obrigatoria;
-    }
-
-    /**
-     * @param obrigatoria the obrigatoria to set
-     */
-    public void setObrigatoria(boolean obrigatoria) {
-        this.obrigatoria = obrigatoria;
-    }
-
     /**
      * @return the codigo
      */

@@ -12,8 +12,10 @@ package com.grupo2.t4j.model;
 public class CaracterizacaoCT {
     private boolean obrigatoria;
 
+
     public CaracterizacaoCT(boolean obrigatoria) {
         this.obrigatoria = obrigatoria;
+
     }
 
     /**
