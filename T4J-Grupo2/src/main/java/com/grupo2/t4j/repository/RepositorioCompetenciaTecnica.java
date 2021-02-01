@@ -5,6 +5,7 @@
  */
 package com.grupo2.t4j.repository;
 
+import com.grupo2.t4j.exception.CompetenciaTecnicaDuplicadaException;
 import com.grupo2.t4j.model.Categoria;
 import com.grupo2.t4j.model.CompetenciaTecnica;
 import java.util.ArrayList;
@@ -17,25 +18,41 @@ import java.util.List;
 public class RepositorioCompetenciaTecnica {
     List<CompetenciaTecnica> listaCompTecnicas= new ArrayList<>();
     
-    public RepositorioCompetenciaTecnica (List<CompetenciaTecnica> listaCompTecnicas){
-        this.listaCompTecnicas=listaCompTecnicas;
+    /**
+     * Adiciona uma competência técnica à lista de Competencias Técnicas
+     * @param competenciaTecnica
+     * @throws CompetenciaTecnicaDuplicadaException 
+     */
+    public void addCompetenciaTecnica(CompetenciaTecnica competenciaTecnica) throws CompetenciaTecnicaDuplicadaException {
+        CompetenciaTecnica ct = getCompetenciaTecnicaByCodigo(competenciaTecnica.getCodigo());
+        if (ct == null) {
+            this.listaCompTecnicas.add(competenciaTecnica);
+        } else {
+            throw new CompetenciaTecnicaDuplicadaException(ct.getCodigo() + ": Competencia Tecnica já existe");
+        }
     }
-
+/**
+ * Atualiza a lista de Competências Técnicas
+ * @param listaCompTecnicas 
+ */
     public void setListaCompTecnicas(List<CompetenciaTecnica> listaCompTecnicas) {
         this.listaCompTecnicas = listaCompTecnicas;
     }
+    
+    /**
+     * Devolve a lista de competências técnicas
+     * @return 
+     */
     public ArrayList<CompetenciaTecnica> getCompetenciasTecnicas() {
         
       return new ArrayList<CompetenciaTecnica>(listaCompTecnicas);
     }
     
-    public CompetenciaTecnica getCompetenciaTecnica(String id) {
-        CompetenciaTecnica ct = getCompetenciaTecnicaByCodigo(id);
-        if (ct != null) {
-            return new CompetenciaTecnica(ct);
-        }
-        return null;
-    }
+   /**
+    * Devolve uma competência técnica de acordo com o seu código
+    * @param codigo
+    * @return 
+    */
     public CompetenciaTecnica getCompetenciaTecnicaByCodigo(String codigo) {
         CompetenciaTecnica compTec = null;
         for (int i = 0; i < this.listaCompTecnicas.size(); i++) {
