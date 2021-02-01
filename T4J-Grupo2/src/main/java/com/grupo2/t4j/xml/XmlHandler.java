@@ -2,7 +2,7 @@ package com.grupo2.t4j.xml;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
-import com.grupo2.t4j.dto.ErroDTO;
+import com.grupo2.t4j.dto.*;
 
 import java.io.IOException;
 import java.util.logging.Level;
@@ -32,10 +32,10 @@ public class XmlHandler {
         return null;
     }
 
-    /*public static String serializePessoaDTO2XML(PessoaDTO pessoaDTO) {
+    public static String serializeUtilizadorDTO2XML(UtilizadorDTO utilizadorDTO) {
         try {
             XmlMapper xmlMapper = new XmlMapper();
-            String xml = xmlMapper.writeValueAsString(pessoaDTO);
+            String xml = xmlMapper.writeValueAsString(utilizadorDTO);
             return xml;
         } catch (JsonProcessingException ex) {
             Logger.getLogger(XmlHandler.class.getName()).log(Level.SEVERE, null, ex);
@@ -43,10 +43,10 @@ public class XmlHandler {
         return null;
     }
 
-    public static PessoaDTO deSerializeXML2PessoaDTO(String xmlData) {
+    public static UtilizadorDTO deSerializeXML2UtilizadorDTO(String xmlData) {
         try {
             XmlMapper xmlMapper = new XmlMapper();
-            PessoaDTO data = xmlMapper.readValue(xmlData, PessoaDTO.class);
+            UtilizadorDTO data = xmlMapper.readValue(xmlData, UtilizadorDTO.class);
             return data;
         } catch (IOException ex) {
             Logger.getLogger(XmlHandler.class.getName()).log(Level.SEVERE, null, ex);
@@ -54,10 +54,10 @@ public class XmlHandler {
         return null;
     }
 
-    public static String serializeListaPessoaDTO2XML(ListaPessoaDTO listaPessoaDTO) {
+    public static String serializeListaUtilizadorDTO2XML(ListaUtilizadorDTO listaUtilizadorDTO) {
         try {
             XmlMapper xmlMapper = new XmlMapper();
-            String xml = xmlMapper.writeValueAsString(listaPessoaDTO);
+            String xml = xmlMapper.writeValueAsString(listaUtilizadorDTO);
             return xml;
         } catch (JsonProcessingException ex) {
             Logger.getLogger(XmlHandler.class.getName()).log(Level.SEVERE, null, ex);
@@ -65,10 +65,10 @@ public class XmlHandler {
         return null;
     }
 
-    public static ListaPessoaDTO deSerializeXML2ListaPessoaDTO(String xmlData) {
+    public static ListaUtilizadorDTO deSerializeXML2ListaUtilizadorDTO(String xmlData) {
         try {
             XmlMapper xmlMapper = new XmlMapper();
-            ListaPessoaDTO data = xmlMapper.readValue(xmlData, ListaPessoaDTO.class);
+            ListaUtilizadorDTO data = xmlMapper.readValue(xmlData, ListaUtilizadorDTO.class);
             return data;
         } catch (IOException ex) {
             Logger.getLogger(XmlHandler.class.getName()).log(Level.SEVERE, null, ex);
@@ -76,10 +76,10 @@ public class XmlHandler {
         return null;
     }
 
-    public static String serializeFuncionarioDTO2XML(FuncionarioDTO funcionarioDTO) {
+    public static String serializeColaboradorDTO2XML(ColaboradorDTO colaboradorDTO) {
         try {
             XmlMapper xmlMapper = new XmlMapper();
-            String xml = xmlMapper.writeValueAsString(funcionarioDTO);
+            String xml = xmlMapper.writeValueAsString(colaboradorDTO);
             return xml;
         } catch (JsonProcessingException ex) {
             Logger.getLogger(XmlHandler.class.getName()).log(Level.SEVERE, null, ex);
@@ -87,10 +87,10 @@ public class XmlHandler {
         return null;
     }
 
-    public static FuncionarioDTO deSerializeXML2FuncionarioDTO(String xmlData) {
+    public static ColaboradorDTO deSerializeXML2ColaboradorDTO(String xmlData) {
         try {
             XmlMapper xmlMapper = new XmlMapper();
-            FuncionarioDTO data = xmlMapper.readValue(xmlData, FuncionarioDTO.class);
+            ColaboradorDTO data = xmlMapper.readValue(xmlData, ColaboradorDTO.class);
             return data;
         } catch (IOException ex) {
             Logger.getLogger(XmlHandler.class.getName()).log(Level.SEVERE, null, ex);
@@ -98,10 +98,10 @@ public class XmlHandler {
         return null;
     }
 
-    public static String serializeListaFuncionarioDTO2XML(ListaFuncionarioDTO listaFuncionarioDTO) {
+    public static String serializeListaColaboradorDTO2XML(ListaColaboradorDTO listaColaboradorDTO) {
         try {
             XmlMapper xmlMapper = new XmlMapper();
-            String xml = xmlMapper.writeValueAsString(listaFuncionarioDTO);
+            String xml = xmlMapper.writeValueAsString(listaColaboradorDTO);
             return xml;
         } catch (JsonProcessingException ex) {
             Logger.getLogger(XmlHandler.class.getName()).log(Level.SEVERE, null, ex);
@@ -109,14 +109,14 @@ public class XmlHandler {
         return null;
     }
 
-    public static ListaFuncionarioDTO deSerializeXML2ListaFuncionarioDTO(String xmlData) {
+    public static ListaColaboradorDTO deSerializeXML2ListaColaboradorDTO(String xmlData) {
         try {
             XmlMapper xmlMapper = new XmlMapper();
-            ListaFuncionarioDTO data = xmlMapper.readValue(xmlData, ListaFuncionarioDTO.class);
+            ListaColaboradorDTO data = xmlMapper.readValue(xmlData, ListaColaboradorDTO.class);
             return data;
         } catch (IOException ex) {
             Logger.getLogger(XmlHandler.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
-    }*/
+    }
 }

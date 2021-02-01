@@ -55,5 +55,22 @@ public class Utilizador {
     
     public Password getPassword(){
         return password;
-    }  
+    }
+
+    /**
+     * vejam se esta vale a pena:
+     */
+    /*private boolean eNomeValido(String nome){
+        if(nome == null){
+            return false;
+        }
+        if(nome.length() < 3){
+            return false;
+        }
+        for(int i=0;i<nome.length();i++){
+            if(nome.charAt(i) >= '0' && nome.charAt(i) <= '9')
+                return false;
+        }
+        return true;
+    }*/
 }
