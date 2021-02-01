@@ -11,7 +11,7 @@ package com.grupo2.t4j.repository;
  */
 
 import com.grupo2.t4j.model.*;
-import com.grupo2.t4j.exception.UtilizadorDuplicadoException;
+import com.grupo2.t4j.exception.*;
 import java.util.ArrayList;
 import java.util.List;
 
