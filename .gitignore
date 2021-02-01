@@ -24,3 +24,5 @@ hs_err_pid*
 *.bak
 *.bak
 /T4JGrupo2/nbproject/
+/T4J-Grupo2/nbproject/
+/T4J-Grupo2/target/
