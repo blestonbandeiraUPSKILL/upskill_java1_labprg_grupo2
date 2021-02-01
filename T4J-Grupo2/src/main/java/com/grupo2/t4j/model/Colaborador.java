@@ -10,11 +10,35 @@ package com.grupo2.t4j.model;
  * @author acris
  */
 public class Colaborador {
-
-    Colaborador(String diogo_Ventura, String diogorochacom, String paSsWoRd, String rh, String string) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    
+    private String funcao;
+    private String telefone;
+    
+    public Colaborador(String funcao, String telefone){
+        setFuncao(funcao);
+        setTelefone(telefone);
     }
-
     
+    public final void setFuncao(String funcao){
+        if (funcao == null || funcao.trim().isEmpty()) {
+            throw new IllegalArgumentException("Função é inválida!");
+        }
+        this.funcao = funcao;
+    }
     
+     public final void setTelefone(String telefone) {
+        int numero = Integer.parseInt(telefone);
+        if (numero < 100000000 || numero > 999999999) {
+            throw new IllegalArgumentException("Número é inválido!");
+        }
+        this.telefone = telefone;
+    }
+     
+     public String getFuncao(){
+        return funcao;
+    }
+    
+    public String getTelefone(){
+        return telefone;
+    }
 }

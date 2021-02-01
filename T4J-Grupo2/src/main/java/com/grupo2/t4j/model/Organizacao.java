@@ -16,16 +16,19 @@ public class Organizacao {
     
     private String nome;
     private String NIF;
-    private String website;
+    private Website websiteOrg;
     private String telefone;
-    private Email email;
+    private Email emailOrg;
     
-    public Organizacao(String nome, String NIF, String website, String telefone, Email email){
+    public Organizacao(){
+    }
+    
+    public Organizacao(String nome, String NIF, Website websiteOrg, String telefone, Email emailOrg){
         setNome(nome);
         setNif(NIF);
-        setWebsite(website);
+        this.websiteOrg = new Website(websiteOrg);
         setTelefone(telefone);
-        setEmail(email);
+        this.emailOrg = new Email(emailOrg);
     }
     
     public final void setNome(String nome) {
@@ -44,13 +47,8 @@ public class Organizacao {
         }
     }
     
-    public void setWebsite(String website){
-        if(eURL(website)){
-            this.website = website;
-        }
-        else{
-            throw new IllegalArgumentException("O endereço do website é inválido!");
-        }
+    public void setWebsite(Website websiteOrg){
+        this.websiteOrg = websiteOrg;
     }
     
     public final void setTelefone(String telefone) {
@@ -59,20 +57,32 @@ public class Organizacao {
             throw new IllegalArgumentException("Número é inválido!");
         }
         this.telefone = telefone;
-    }
+    }  
     
-    // Dica de: https://qastack.com.br/programming/2230676/how-to-check-for-a-valid-url-in-java
-    
-    public boolean eURL(String url) {
-        try {
-            (new java.net.URL(url)).openStream().close();
-            return true;
-        } catch (Exception ex) { }
-            return false;
-    }
     
     public final void setEmail(Email email){
-        this.email = email;
+        this.emailOrg = emailOrg;
     }
     
+    public String getNome(){
+        return nome;
+    }
+    
+    public String getNif(){
+        return NIF;
+    }
+    
+    public Website getWebsite(){
+        Website website = new Website(websiteOrg);
+        return website;
+    }
+    
+    public String getTelefone(){
+        return telefone;
+    }
+    
+    public Email getEmail(){
+        Email email = new Email(emailOrg);
+        return email;
+    }    
 }
