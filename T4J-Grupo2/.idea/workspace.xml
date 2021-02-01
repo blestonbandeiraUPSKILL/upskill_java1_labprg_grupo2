@@ -5,13 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d18a0f53-1ac6-4480-aa36-45ca0219a8b6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/RegisterOrgUI.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/StartingPageUI.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/grupo2/t4j/fxml/RegisterOrgScene.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/grupo2/t4j/fxml/StartingPageScene.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/JanelaPrincipalUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/JanelaPrincipalUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/MainApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/MainApp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/TarefaUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/TarefaUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Exemplo/T4J/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Exemplo/T4J/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Exemplo/T4J/T4J.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../Exemplo/T4J/T4J.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Exemplo/T4J/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Exemplo/T4J/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Exemplo/T4J/src/main/java/model/UsersAPIAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Exemplo/T4J/src/main/java/model/UsersAPIAdapter.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,9 +35,21 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Cliente-Autarquias/AutarquiaCLI" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="preferences.JavaFX" />
   </component>
   <component name="RecentsManager">
@@ -76,8 +85,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1612032310461</updated>
+      <workItem from="1612170086980" duration="2829000" />
     </task>
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -89,20 +102,18 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/MainApp.java</url>
-          <line>27</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
     <select />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/T4J_Grupo2$MainApp.ic" NAME="MainApp Coverage Results" MODIFIED="1612128627946" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.grupo2.t4j.ui.*</FILTER>
+    </SUITE>
   </component>
 </project>

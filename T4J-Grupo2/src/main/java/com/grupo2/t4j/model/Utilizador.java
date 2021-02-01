@@ -15,19 +15,10 @@ public class Utilizador {
     private Email email;
     private Password password;
     
-    public Utilizador(){
-    }
-    
     public Utilizador(String nome, Email email, Password password){
         setNome(nome);
         setEmail(email);
         setPassword(password);
-    }
-    
-    public Utilizador(Utilizador utilizador){
-        setNome(utilizador.nome);
-        setEmail(utilizador.email);
-        setPassword(utilizador.password);
     }
     
     public final void setNome(String nome){
