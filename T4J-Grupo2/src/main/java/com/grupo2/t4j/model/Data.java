@@ -9,7 +9,7 @@ import com.grupo2.t4j.model.Mes;
 import java.time.LocalDate;
 import java.util.Calendar;
 
-public class Data implements  Comparable<Data>{
+public class Data implements Comparable<Data>{
 
     private int ano;
     private Mes mes;
@@ -158,6 +158,16 @@ public class Data implements  Comparable<Data>{
         totalDias += dia;
 
         return totalDias;
+    }
+
+    public int getIdade(Data dataNascimento) {
+        int idade = Data.dataActual().getAno() - dataNascimento.getAno();
+        if (Data.dataActual().getMes() < dataNascimento.getMes()
+                || ((Data.dataActual().getMes() == dataNascimento.getMes())
+                && Data.dataActual().getDia() < dataNascimento.getDia())) {
+            return idade - 1;
+        }
+        return idade;
     }
 
 
