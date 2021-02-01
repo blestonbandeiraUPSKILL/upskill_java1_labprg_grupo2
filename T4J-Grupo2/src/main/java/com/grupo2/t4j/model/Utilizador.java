@@ -10,5 +10,9 @@ package com.grupo2.t4j.model;
  * @author acris
  */
 public class Utilizador {
+   
+    private String nome;
+    private Email email;
+    private Password password;
     
 }
