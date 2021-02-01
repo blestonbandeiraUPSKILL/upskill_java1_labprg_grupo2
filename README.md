@@ -12,7 +12,6 @@
 - [Glossário](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Sprint%202%20-%20Documenta%C3%A7%C3%A3o/Glossario.md)
 - [Modelo de Domínio](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Sprint%202%20-%20Documenta%C3%A7%C3%A3o/Modelo%20de%20Dom%C3%ADnio.png)
 - [Diagrama de Casos de Uso](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Sprint%202%20-%20Documenta%C3%A7%C3%A3o/Diagrama_Casos_Uso/Diagrama_Casos_Uso.png)
-
 - [Requisitos Funcionais e Não Funcionais](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Sprint%202%20-%20Documenta%C3%A7%C3%A3o/Requisitos_Funcionais_e_Nao_Funcionais.md)
 
 #### Use Cases
