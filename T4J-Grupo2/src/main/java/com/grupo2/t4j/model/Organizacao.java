@@ -7,7 +7,7 @@ package com.grupo2.t4j.model;
 
 /**
  *
- * @author acris
+ * @author CAD
  */
 
 import com.grupo2.t4j.exception.*;
