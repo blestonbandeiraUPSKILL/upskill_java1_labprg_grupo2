@@ -1,5 +1,9 @@
 package com.grupo2.t4j.xml;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.dataformat.xml.XmlMapper;
+import com.grupo2.t4j.dto.ErroDTO;
+
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
