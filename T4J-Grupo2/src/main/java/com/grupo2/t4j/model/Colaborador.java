@@ -41,4 +41,9 @@ public class Colaborador {
     public String getTelefone(){
         return telefone;
     }
+    
+    @Override
+    public Email getEmail(){
+        return super.getEmail();
+    }
 }
