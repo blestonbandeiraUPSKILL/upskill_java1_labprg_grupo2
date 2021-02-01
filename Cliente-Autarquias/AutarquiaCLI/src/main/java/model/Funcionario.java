@@ -5,6 +5,10 @@
  */
 package model;
 
+/**
+ * Esta classe vai corresponder à classe Colaborador
+ */
+
 import exception.NumeroFuncionarioInvalidoException;
 
 import java.io.Serializable;

@@ -5,72 +5,27 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d18a0f53-1ac6-4480-aa36-45ca0219a8b6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../Cliente-Autarquias/AutarquiaCLI/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Cliente-Autarquias/AutarquiaCLI/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Cliente-Autarquias/AutarquiaCLI/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Cliente-Autarquias/AutarquiaCLI/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Cliente-Autarquias/AutarquiaCLI/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Cliente-Autarquias/AutarquiaCLI/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Cliente-Autarquias/AutarquiaCLI/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Cliente-Autarquias/AutarquiaCLI/AutarquiaCLI.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Cliente-Autarquias/AutarquiaCLI/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Cliente-Autarquias/AutarquiaCLI/src/main/java/exception/ConversaoException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Cliente-Autarquias/AutarquiaCLI/src/main/java/exception/DataInvalidaException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Cliente-Autarquias/AutarquiaCLI/src/main/java/exception/NifInvalidoException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Cliente-Autarquias/AutarquiaCLI/src/main/java/exception/NomePessoaInvalidoException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Cliente-Autarquias/AutarquiaCLI/src/main/java/model/Data.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Cliente-Autarquias/AutarquiaCLI/src/main/java/model/Funcionario.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Cliente-Autarquias/AutarquiaCLI/src/main/java/model/Pessoa.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Cliente-Autarquias/Client-Side Programming.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Cliente-Autarquias/UPskill - Laboratório de Programação - 2º Sprint (atualização gestão de utilizadores).pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../UPskill - Laboratório de Programação - 2º Sprint v3.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Users REST API.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Sprint 2 - Documentação/Client-Side Programming.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Sprint 2 - Documentação/UPskill - Laboratório de Programação - 2º Sprint v3.pdf" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Cliente-Autarquias/AutarquiaCLI/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_annotations_2_11_4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Cliente-Autarquias/AutarquiaCLI/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_core_2_11_4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Cliente-Autarquias/AutarquiaCLI/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_databind_2_11_4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Cliente-Autarquias/AutarquiaCLI/.idea/libraries/Maven__com_fasterxml_jackson_dataformat_jackson_dataformat_xml_2_11_4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Cliente-Autarquias/AutarquiaCLI/.idea/libraries/Maven__com_fasterxml_jackson_module_jackson_module_jaxb_annotations_2_11_4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Cliente-Autarquias/AutarquiaCLI/.idea/libraries/Maven__com_fasterxml_woodstox_woodstox_core_6_2_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Cliente-Autarquias/AutarquiaCLI/.idea/libraries/Maven__jakarta_activation_jakarta_activation_api_1_2_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Cliente-Autarquias/AutarquiaCLI/.idea/libraries/Maven__jakarta_xml_bind_jakarta_xml_bind_api_2_3_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Cliente-Autarquias/AutarquiaCLI/.idea/libraries/Maven__org_codehaus_woodstox_stax2_api_4_2_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Cliente-Autarquias/AutarquiaCLI/src/main/java/dto/ErroDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Cliente-Autarquias/AutarquiaCLI/src/main/java/dto/FuncionarioDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Cliente-Autarquias/AutarquiaCLI/src/main/java/dto/ListaFuncionarioDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Cliente-Autarquias/AutarquiaCLI/src/main/java/dto/ListaPessoaDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Cliente-Autarquias/AutarquiaCLI/src/main/java/dto/Mapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Cliente-Autarquias/AutarquiaCLI/src/main/java/dto/PessoaDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Cliente-Autarquias/AutarquiaCLI/AutarquiaCLI.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../Cliente-Autarquias/AutarquiaCLI/AutarquiaCLI.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Cliente-Autarquias/AutarquiaCLI/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Cliente-Autarquias/AutarquiaCLI/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Cliente-Autarquias/AutarquiaCLI/src/main/java/dto/DataDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Cliente-Autarquias/AutarquiaCLI/src/main/java/dto/DataDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Cliente-Autarquias/AutarquiaCLI/src/main/java/model/Funcionario.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Cliente-Autarquias/AutarquiaCLI/src/main/java/model/Funcionario.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../T4JGrupo2/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../T4JGrupo2/.idea/compiler.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../T4JGrupo2/.idea/encodings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../T4JGrupo2/.idea/jarRepositories.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../T4JGrupo2/.idea/libraries/Maven__org_apiguardian_apiguardian_api_1_1_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../T4JGrupo2/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_api_5_6_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../T4JGrupo2/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_engine_5_6_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../T4JGrupo2/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_params_5_6_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../T4JGrupo2/.idea/libraries/Maven__org_junit_platform_junit_platform_commons_1_6_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../T4JGrupo2/.idea/libraries/Maven__org_junit_platform_junit_platform_engine_1_6_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../T4JGrupo2/.idea/libraries/Maven__org_opentest4j_opentest4j_1_2_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../T4JGrupo2/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../T4JGrupo2/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../T4JGrupo2/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../T4JGrupo2/T4JGrupo2.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../T4JGrupo2/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../T4JGrupo2/src/main/java/controller/AplicacaoController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../T4JGrupo2/src/main/java/model/Administrativo.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../T4JGrupo2/src/main/java/model/Categoria.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../T4JGrupo2/src/main/java/model/Colaborador.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../T4JGrupo2/src/main/java/model/Email.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../T4JGrupo2/src/main/java/model/EnderecoPostal.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../T4JGrupo2/src/main/java/model/Organizacao.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../T4JGrupo2/src/main/java/model/Password.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../T4JGrupo2/src/main/java/model/Plataforma.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../T4JGrupo2/src/main/java/model/Tarefa.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../T4JGrupo2/src/main/java/model/Utilizador.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../T4JGrupo2/src/main/java/repositorios/RepositorioCategoria.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../T4JGrupo2/src/main/java/repositorios/RepositorioColaborador.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../T4JGrupo2/src/main/java/repositorios/RepositorioEmail.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../T4JGrupo2/src/main/java/repositorios/RepositorioOrganizacao.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../T4JGrupo2/src/main/java/repositorios/RepositorioTarefa.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../T4JGrupo2/src/main/java/repositorios/RepositorioUtilizador.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../T4JGrupo2/src/test/java/model/AdministrativoTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../T4JGrupo2/src/test/java/model/CategoriaTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../T4JGrupo2/src/test/java/model/ColaboradorTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../T4JGrupo2/src/test/java/model/EmailTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../T4JGrupo2/src/test/java/model/EnderecoPostalTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../T4JGrupo2/src/test/java/model/OrganizacaoTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../T4JGrupo2/src/test/java/model/PasswordTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../T4JGrupo2/src/test/java/model/PlataformaTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../T4JGrupo2/src/test/java/model/TarefaTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../T4JGrupo2/src/test/java/model/UtilizadorTest.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -147,7 +102,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1612032310461</updated>
-      <workItem from="1612170086980" duration="1746000" />
+      <workItem from="1612170086980" duration="2344000" />
     </task>
     <servers />
   </component>
