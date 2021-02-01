@@ -7,28 +7,16 @@ package com.grupo2.t4j.model;
 
 /**
  *
- * @author CAD
+ * @author acris
  */
-public class Colaborador extends Utilizador{
+public class Colaborador {
     
     private String funcao;
     private String telefone;
     
-    public Colaborador(String nome, Email email, Password password){
-        super(nome, email, password);
-    }
-    
-    public Colaborador(String nome, Email email, Password password, String funcao, 
-            String telefone){
-        super(nome, email, password);
+    public Colaborador(String funcao, String telefone){
         setFuncao(funcao);
         setTelefone(telefone);
-    }
-    
-    public Colaborador (Colaborador colaborador){
-        super(colaborador.getNome(), colaborador.getEmail(), colaborador.getPassword());
-        setFuncao(colaborador.funcao);
-        setTelefone(colaborador.telefone);                
     }
     
     public final void setFuncao(String funcao){
@@ -52,5 +40,10 @@ public class Colaborador extends Utilizador{
     
     public String getTelefone(){
         return telefone;
+    }
+    
+    @Override
+    public Email getEmail(){
+        return super.getEmail();
     }
 }

@@ -4,14 +4,14 @@
  * and open the template in the editor.
  */
 package com.grupo2.t4j.exception;
-
 /**
  *
  * @author CAD
  */
-public class UtilizadorDuplicadoException extends RuntimeException{
+
+public class ColaboradorDuplicadoException extends RuntimeException{
     
-    public UtilizadorDuplicadoException(String s){
+    public ColaboradorDuplicadoException(String s){
         super(s);
     }
 }

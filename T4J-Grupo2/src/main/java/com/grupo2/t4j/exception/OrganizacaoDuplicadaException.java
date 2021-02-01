@@ -7,8 +7,12 @@ package com.grupo2.t4j.exception;
 
 /**
  *
- * @author acris
+ * @author CAD
  */
-public class CompetenciaTecnicaDuplicadaException {
-    
+
+public class OrganizacaoDuplicadaException extends RuntimeException{
+
+    public OrganizacaoDuplicadaException(String s){
+        super(s);
+    }
 }
