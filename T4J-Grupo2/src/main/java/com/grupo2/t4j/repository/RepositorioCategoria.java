@@ -1,12 +1,17 @@
 package com.grupo2.t4j.repository;
 
-import Exceptions.CategoriaDuplicadaException;
+import com.grupo2.t4j.exception.CategoriaDuplicadaException;
 import com.grupo2.t4j.model.Categoria;
 import java.util.ArrayList;
 import java.util.List;
 
 public class RepositorioCategoria {
     private List<Categoria> listaCategorias = new ArrayList<>();
+    
+    
+    public RepositorioCategoria(List<Categoria> listaCategorias){
+        this.listaCategorias=listaCategorias;
+    }
     
     
     public void addCategoria(Categoria categoria) throws CategoriaDuplicadaException {
