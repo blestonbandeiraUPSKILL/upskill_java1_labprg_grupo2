@@ -24,6 +24,7 @@ public class Email {
     public Email (Email email){
         setEmail(email.email);
     }
+    
     public void setEmail(String email){
         if(eEmailValido(email)){
             this.email = email;
