@@ -1,0 +1,124 @@
+@startuml
+
+title UC01 - Registar Organização - Diagrama de Classes
+
+class RegistarOrganizacaoUI {
+}
+
+class RegistarOrganizacaoController {
+    --
+    +novaOrganizacao(nome, NIF, endLocal, endCodPOstal, endLocalidade, tlf, site, email, nomeG, funcao, tlfG, emailG, pwd)
+    +registaOrganizacao()
+}
+
+class Organizacao {
+    -String nome
+    -String NIF
+    -String website
+    -String telefone
+    -String email
+    --
+    +Organizacao(nome, NIF, website, telefone, email, endereco, gestorColaborador)
+    +EnderecoPostal novoEndereco(local, codPostal, localidade)
+    +Colaborador novoColaborador(nome, funcao, tlf, email)
+}
+
+class Colaborador {
+    -String funcao
+    -String telefone
+    -Organizacao organizacao
+    --
+    +Colaborador(nome,funcao,tlf,email)
+    +String getNome()
+    +String getEmail()
+}
+
+class EnderecoPostal {
+    -String local
+    -String codPostal
+    -String localidade
+    --
+    +EnderecoPostal(local, codPostal, localidade)
+}
+
+class RegistoOrganizacoes {
+    --
+    +Organizacao novaOrganizacao(nome, NIF, endLocal, endCodPOstal, endLocalidade, tlf, site, email, nomeG, funcao, tlfG, emailG)
+    +validaOrganizacao(Organizaocao org)
+    +registaOrganizacao(Organizacao org)
+    -addOrganizacao(Organizacao org)
+    -registaGestorComoUtilizador(Colaborador colab)
+    -enviaPwd(Email emailG, Password pwd)
+}
+
+class AutorizacaoFacade {
+    --
+    +registaUtilizadorComPapeis(nomeG,emailG,pwd,listaPapel)
+}
+
+interface AlgoritmoGeradorPasswords {
+    --
+    +geraPassword(nomeG, emailG)
+}
+
+class Plataforma {
+    -String designacao
+    --
+    +RepositorioOrganizacoes allOrganizacoes()
+    +AutorizacaoFacade getAutorizacaoFacade()
+    +AlgoritmoGeradorPasswords getAlgoritmoGeradorPwd()
+}
+
+RegistarOrganizacaoUI ..> RegistarOrganizacaoController
+RegistarOrganizacaoController ..> RegistoOrganizacoes
+RegistarOrganizacaoController ..> Organizacao
+RegistarOrganizacaoController ..> Plataforma
+Organizacao "1"-->"1..*" Colaborador : tem
+Organizacao "1"-->"1" Colaborador : tem gestor
+Organizacao "1"-->"1" EnderecoPostal : localizada em
+RegistoOrganizacoes "1"-->"*" Organizacao : tem registadas
+RegistoOrganizacoes ..> AutorizacaoFacade
+RegistoOrganizacoes ..> AlgoritmoGeradorPasswords
+RegistoOrganizacoes ..> Colaborador
+RegistoOrganizacoes ..> EnderecoPostal
+
+newpage
+
+interface AlgoritmoGeradorPasswords {
+    --
+    +String geraPassword(String nomeG, String emailG)
+}
+
+note left
+Esta interface será alvo de múltiplas implementações,
+uma por cada algoritmo externo que tenha que ser suportado.
+end note
+
+class AlgoritmoGeradorPasswordsAdapter1 {
+    --
+    +String geraPassword(String nome, Email email)
+}
+
+class AlgoritmoGeradorPasswordsAdapter2 {
+    --
+    +String geraPassword(String nome, Email email)
+}
+
+class AlgoritmoExterno1API {
+    +String randomPassword()
+    +String randomPassword(Integer minChars, Integer maxChars)
+}
+
+class AlgoritmoExterno2API {
+    +Password generatePassword()
+    +Password generatePassword(String feedChars)
+    +Password generatePassword(Integer strength)
+    +Password generatePassword(Integer strength, String feedChars)
+}
+
+AlgoritmoGeradorPasswords <|.. AlgoritmoGeradorPasswordsAdapter1
+AlgoritmoGeradorPasswordsAdapter1 --> AlgoritmoExterno1API
+AlgoritmoGeradorPasswords <|.. AlgoritmoGeradorPasswordsAdapter2
+AlgoritmoGeradorPasswordsAdapter2 --> AlgoritmoExterno2API
+
+@enduml

@@ -1,0 +1,65 @@
+@startuml
+title UC04 - Especificar Competência Técnica
+
+class Plataforma <<Singleton>> {
+    -String designacao
+}
+
+class EspecificarCompetenciaTecnicaUI{
+    --
+    allAreasAtividade()
+    novaCompetenciaTecnica(codCompetencia, descBreve, descDetalhada, codAreaAtividade)
+    novoGrauProficiencia(valor,designacao)
+    registaCompetenciaTecnica()
+}
+
+class EspecificarCompetenciaTecnicaCTRL{
+    --
+    getRepositorioAreaAtividade()
+    getRepositorioCompetenciaTecnica()
+    novaCompetenciaTecnica(codCompetencia, descBreve, descDetalhada, at
+    registaCompetenciaTecnica(ct)
+}
+
+class AreaAtividade{
+    String codigo
+    String descBreve
+    String descDetalhada
+}
+
+class CompetenciaTecnica{
+    String codigo
+    String descBreve
+    String descDetalhada
+}
+
+class GrauProficiencia{
+    Integer valor
+    String designacao
+}
+
+class RepositorioAreaAtividade <<Singleton>>{
+    -List<AreaAtividade>
+    -AreaAtividade
+    --
+    -allAreasAtividade()
+    -areaAtividade(codAreaAtividade)
+}
+
+class RepositorioCompetenciaTecnica <<Singleton>>{
+    -List<CompetenciaTecnica>
+    -CompetenciaTecnica
+    --
+    -allCompetenciasTecnicas()
+    -competenciaTecnica(codCompetencia)
+}
+
+EspecificarCompetenciaTecnicaUI ..> EspecificarCompetenciaTecnicaCTRL
+EspecificarCompetenciaTecnicaCTRL ..> Plataforma
+EspecificarCompetenciaTecnicaCTRL ..> RepositorioAreaAtividade
+EspecificarCompetenciaTecnicaCTRL ..> RepositorioCompetenciaTecnica
+RepositorioAreaAtividade "1" --> "1..*" AreaAtividade
+RepositorioCompetenciaTecnica "1" --> "1..*" CompetenciaTecnica
+CompetenciaTecnica --> GrauProficiencia
+
+@enduml

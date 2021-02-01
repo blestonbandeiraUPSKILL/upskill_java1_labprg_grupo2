@@ -1,0 +1,69 @@
+@startuml
+
+actor "Gestor da Organização" as GestorOrganizacao
+participant ":EspecificarColaboradorOrganizacaoUI" as EspecificarColaboradorOrganizacaoUI
+participant ":EspecificarColaboradorOrganizacaoCTRL" as EspecificarColaboradorOrganizacaoCTRL
+participant "gu:GestãoUtilizadoresFacade" as GestaoUtilizadoresFacade
+participant "sessao:SessaoUtilizador" as SessaoUtilizador
+participant "ro:RepositorioOrganizacao" as RepositorioOrganizacao
+participant "o:Organizacao" as Organizacao
+participant "c:Colaborador" as Colaborador
+participant "agp:getAlgoritmoGeradorPasswords" as AlgoritmoGeradorPasswords
+
+activate GestorOrganizacao
+GestorOrganizacao -> EspecificarColaboradorOrganizacaoUI: 1: Inicia a especificação de um colaborador da Organização
+activate EspecificarColaboradorOrganizacaoUI
+EspecificarColaboradorOrganizacaoUI --> GestorOrganizacao: 1.1: Solicita os dados
+deactivate EspecificarColaboradorOrganizacaoUI
+GestorOrganizacao -> EspecificarColaboradorOrganizacaoUI: 2: Introduz os dados
+activate EspecificarColaboradorOrganizacaoUI
+EspecificarColaboradorOrganizacaoUI -> EspecificarColaboradorOrganizacaoCTRL: 2.1: novoColaborador(nome, funcao, telefone, email)
+activate EspecificarColaboradorOrganizacaoCTRL
+EspecificarColaboradorOrganizacaoCTRL -> Plataforma: 2.1.1: gu = getGestaoUtilizadoresFacade()
+activate Plataforma
+deactivate Plataforma
+
+EspecificarColaboradorOrganizacaoCTRL -> GestaoUtilizadoresFacade: 2.1.2: sessao = getSessaoAtual()
+activate GestaoUtilizadoresFacade
+EspecificarColaboradorOrganizacaoUI -> GestorOrganizacao: 2.2: Apresenta dados e solicita confirmação
+deactivate EspecificarColaboradorOrganizacaoUI
+deactivate GestaoUtilizadoresFacade
+EspecificarColaboradorOrganizacaoCTRL -> SessaoUtilizador: 2.1.3: email = getEmailUtilizador() 
+activate SessaoUtilizador
+deactivate SessaoUtilizador
+EspecificarColaboradorOrganizacaoCTRL -> Plataforma: 2.1.4: ro = getRepositorioOrganizacao()
+activate Plataforma
+deactivate Plataforma
+EspecificarColaboradorOrganizacaoCTRL -> RepositorioOrganizacao: 2.1.5: o = organizacaoByEmailUtilizador(email)
+activate RepositorioOrganizacao
+deactivate RepositorioOrganizacao
+EspecificarColaboradorOrganizacaoCTRL -> Organizacao: 2.1.6: c = novoColaborador(nome, funcao, telefone, email)
+activate Organizacao
+create Colaborador
+Organizacao -> Colaborador: 2.1.6.1: create (nome, funcao, telefone, email)
+deactivate Organizacao
+EspecificarColaboradorOrganizacaoCTRL -> Organizacao : 2.1.7: validaColaborador(c)
+deactivate EspecificarColaboradorOrganizacaoCTRL
+activate  Organizacao 
+deactivate Organizacao
+GestorOrganizacao -> EspecificarColaboradorOrganizacaoUI: 3: Confirma
+activate EspecificarColaboradorOrganizacaoUI
+EspecificarColaboradorOrganizacaoUI -> EspecificarColaboradorOrganizacaoCTRL: 3.1: registaColaborador()
+activate EspecificarColaboradorOrganizacaoCTRL
+EspecificarColaboradorOrganizacaoCTRL -> Plataforma: 3.1.1: agp = getAlgoritmoGeradorPasswords()
+activate Plataforma
+deactivate Plataforma
+EspecificarColaboradorOrganizacaoCTRL -> AlgoritmoGeradorPasswords: 3.1.2: password = getPassword()
+activate AlgoritmoGeradorPasswords
+deactivate AlgoritmoGeradorPasswords
+EspecificarColaboradorOrganizacaoUI --> GestorOrganizacao: 3.2: Informa operação bem sucedida
+deactivate EspecificarColaboradorOrganizacaoUI
+EspecificarColaboradorOrganizacaoCTRL -> Organizacao: 3.1.3: registaColaborador(c)
+Organizacao -> Organizacao : 3.1.3.1: validaColaborador(c)
+Organizacao -> Organizacao : 3.1.3.2: addColaborador(c)
+EspecificarColaboradorOrganizacaoCTRL -> GestaoUtilizadoresFacade: 3.1.4: registaUtilizadorComPapel(nome, email, password, "colaborador")
+ref over EspecificarColaboradorOrganizacaoCTRL
+Email SD1
+end ref
+
+@enduml

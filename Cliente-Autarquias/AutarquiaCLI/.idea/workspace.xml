@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="93a9afbf-b1a6-4eb7-8fa9-1fb37412cebd" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Exemplo/T4J/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../Exemplo/T4J/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../T4J-Grupo2/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../T4J-Grupo2/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../T4J-Grupo2/src/main/java/com/grupo2/t4j/model/Data.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../T4J-Grupo2/src/main/java/com/grupo2/t4j/model/Data.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../T4JGrupo2/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../T4JGrupo2/.idea/compiler.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../T4JGrupo2/.idea/encodings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../T4JGrupo2/.idea/jarRepositories.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../T4JGrupo2/.idea/libraries/Maven__org_apiguardian_apiguardian_api_1_1_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../T4JGrupo2/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_api_5_6_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../T4JGrupo2/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_engine_5_6_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../T4JGrupo2/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_params_5_6_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../T4JGrupo2/.idea/libraries/Maven__org_junit_platform_junit_platform_commons_1_6_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../T4JGrupo2/.idea/libraries/Maven__org_junit_platform_junit_platform_engine_1_6_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../T4JGrupo2/.idea/libraries/Maven__org_opentest4j_opentest4j_1_2_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../T4JGrupo2/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../T4JGrupo2/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../T4JGrupo2/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../T4JGrupo2/T4JGrupo2.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../T4JGrupo2/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../T4JGrupo2/src/main/java/controller/AplicacaoController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../T4JGrupo2/src/main/java/model/Administrativo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../T4JGrupo2/src/main/java/model/Categoria.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../T4JGrupo2/src/main/java/model/Colaborador.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../T4JGrupo2/src/main/java/model/Email.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../T4JGrupo2/src/main/java/model/EnderecoPostal.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../T4JGrupo2/src/main/java/model/Organizacao.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../T4JGrupo2/src/main/java/model/Password.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../T4JGrupo2/src/main/java/model/Plataforma.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../T4JGrupo2/src/main/java/model/Tarefa.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../T4JGrupo2/src/main/java/model/Utilizador.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../T4JGrupo2/src/main/java/repositorios/RepositorioCategoria.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../T4JGrupo2/src/main/java/repositorios/RepositorioColaborador.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../T4JGrupo2/src/main/java/repositorios/RepositorioEmail.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../T4JGrupo2/src/main/java/repositorios/RepositorioOrganizacao.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../T4JGrupo2/src/main/java/repositorios/RepositorioTarefa.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../T4JGrupo2/src/main/java/repositorios/RepositorioUtilizador.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../T4JGrupo2/src/test/java/model/AdministrativoTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../T4JGrupo2/src/test/java/model/CategoriaTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../T4JGrupo2/src/test/java/model/ColaboradorTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../T4JGrupo2/src/test/java/model/EmailTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../T4JGrupo2/src/test/java/model/EnderecoPostalTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../T4JGrupo2/src/test/java/model/OrganizacaoTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../T4JGrupo2/src/test/java/model/PasswordTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../T4JGrupo2/src/test/java/model/PlataformaTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../T4JGrupo2/src/test/java/model/TarefaTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../T4JGrupo2/src/test/java/model/UtilizadorTest.java" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="AnnotationType" />
+        <option value="Enum" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="ProjectId" id="1nsPNL7CfCbrgdSQnstrkj8OOH8" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="dto" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="AutarquiaCliApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="AutarquiaCliApplication" />
+      <module name="AutarquiaCLI" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.AutarquiaCliApplication" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="93a9afbf-b1a6-4eb7-8fa9-1fb37412cebd" name="Default Changelist" comment="" />
+      <created>1612175794942</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1612175794942</updated>
+      <workItem from="1612175797131" duration="2852000" />
+      <workItem from="1612178993470" duration="13560000" />
+      <workItem from="1612209142927" duration="487000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="CUSTOM_BOOLEAN_PROPERTIES">
+                <map>
+                  <entry key="Show.Git.Branches" value="false" />
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
+</project>
