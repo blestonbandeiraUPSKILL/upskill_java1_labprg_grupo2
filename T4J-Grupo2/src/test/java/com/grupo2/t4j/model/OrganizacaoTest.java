@@ -43,4 +43,15 @@ public class OrganizacaoTest {
         fail("The test case is a prototype.");
     }
     
+    public void addColaborador(){
+        //Arrange
+        Organizacao o1= new Organizacao("Casa Rocha", "123456789", "casarocha.pt", "912345678","casa@rocha.com");
+        Colaborador c1= new Colaborador("Diogo Ventura", "diogo@rocha.com", "PaSsWoRd", "RH", "923456781");
+        //Act
+        o1.addColaborador(c1);
+        
+        //Assert
+        assertTrue(o1.getColaboradores().contains(c1));
+    }
+    
 }
