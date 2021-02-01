@@ -5,13 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d18a0f53-1ac6-4480-aa36-45ca0219a8b6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../Cliente-Autarquias/AutarquiaCLI/src/main/java/AutarquiaCliApplication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Cliente-Autarquias/AutarquiaCLI/src/main/java/ui/UIData.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Cliente-Autarquias/AutarquiaCLI/src/main/java/ui/UIFuncionario.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Cliente-Autarquias/AutarquiaCLI/src/main/java/ui/UIGeral.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Cliente-Autarquias/AutarquiaCLI/src/main/java/ui/UIPessoa.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Cliente-Autarquias/AutarquiaCLI/src/main/java/utils/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Cliente-Autarquias/AutarquiaCLI/src/main/java/utils/Constants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Exemplo/T4J/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Exemplo/T4J/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Exemplo/T4J/T4J.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../Exemplo/T4J/T4J.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Exemplo/T4J/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Exemplo/T4J/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Exemplo/T4J/src/main/java/model/UsersAPIAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Exemplo/T4J/src/main/java/model/UsersAPIAdapter.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -88,7 +85,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1612032310461</updated>
-      <workItem from="1612170086980" duration="2344000" />
+      <workItem from="1612170086980" duration="2829000" />
     </task>
     <servers />
   </component>

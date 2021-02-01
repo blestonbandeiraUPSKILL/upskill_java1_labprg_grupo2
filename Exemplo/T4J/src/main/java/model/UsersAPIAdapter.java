@@ -5,8 +5,6 @@
  */
 package model;
 
-import com.sun.security.ntlm.Client;
-
 /**
  *
  * @author nunocastro
