@@ -1,0 +1,40 @@
+@startuml
+activate User
+User->UC10_UI:aceder a tarefa
+activate UC10_UI
+UC10_UI-->User:introduza o nome da tarefa
+User->UC10_UI:introduz nome da tarefa
+deactivate User
+UC10_UI->UC10_Controller:consultarTarefa(nomeTarefa)
+deactivate UC10_UI
+activate UC10_Controller
+UC10_Controller-->Plataforma:findTarefa(nomeTarefa)
+activate Plataforma
+Plataforma-->UC10_Controller: exist
+alt exist true
+UC10_Controller--> UC10_UI: dados da tarefa
+UC10_UI -->User: dados da tarefa
+else exist false
+deactivate Plataforma
+UC10_Controller->Tarefa: create(nomeTarefa)
+activate Tarefa
+Tarefa-->UC10_Controller:t1
+deactivate Tarefa
+UC10_Controller ->Plataforma:adicionarTarefa(t1)
+activate Plataforma
+Plataforma->Plataforma:adicionar(t1)
+Plataforma-->UC10_Controller:sucesso
+deactivate Plataforma
+UC10_Controller -->UC10_UI:sucesso
+deactivate UC10_Controller
+activate UC10_UI
+UC10_UI-->User:Tarefa registada com sucesso
+deactivate UC10_UI
+activate User
+deactivate User
+end
+
+
+
+
+@enduml

@@ -1,0 +1,45 @@
+@startuml
+activate ColaboradorOrg
+ColaboradorOrg->PublicarTarefa_UI:iniciar
+activate PublicarTarefa_UI
+PublicarTarefa_UI->PublicarTarefa_Controller:showTarefas(orgNIF)
+activate PublicarTarefa_Controller
+PublicarTarefa_Controller->Plataforma: showTarefas(orgNIF)
+activate Plataforma
+alt privateTarefas[] tem elementos
+Plataforma-->PublicarTarefa_Controller: returns privateTarefas[]
+deactivate Plataforma
+PublicarTarefa_Controller-->PublicarTarefa_UI: returns privateTarefas[]
+deactivate PublicarTarefa_Controller
+PublicarTarefa_UI-->ColaboradorOrg:lista de tarefas por publicar
+deactivate PublicarTarefa_UI
+ColaboradorOrg->PublicarTarefa_UI: seleciona tarefa para publicar
+activate PublicarTarefa_UI
+deactivate ColaboradorOrg
+PublicarTarefa_UI->PublicarTarefa_Controller:publicarTarefa(tarefa)
+PublicarTarefa_Controller->Tarefa:publicarTarefa(tarefa)
+activate PublicarTarefa_Controller
+Tarefa-->PublicarTarefa_Controller:success
+PublicarTarefa_Controller->Plataforma: validação
+activate Plataforma
+Plataforma-->Plataforma:isPublic == true
+Plataforma-->PublicarTarefa_Controller: ok
+deactivate Plataforma
+PublicarTarefa_Controller-->PublicarTarefa_UI: ok
+deactivate PublicarTarefa_Controller
+PublicarTarefa_UI-->ColaboradorOrg: ok
+deactivate PublicarTarefa_UI
+activate ColaboradorOrg
+PublicarTarefa_UI<--ColaboradorOrg: terminar
+deactivate ColaboradorOrg
+else privateTarefas[] não tem elementos
+Plataforma-->PublicarTarefa_Controller: não existem tarefas privadas
+deactivate Plataforma
+PublicarTarefa_Controller-->PublicarTarefa_UI: não existem tarefas privadas
+deactivate PublicarTarefa_Controller
+PublicarTarefa_UI-->ColaboradorOrg:não existem tarefas privadas
+deactivate PublicarTarefa_UI
+ColaboradorOrg->PublicarTarefa_UI: terminar
+
+end
+@enduml

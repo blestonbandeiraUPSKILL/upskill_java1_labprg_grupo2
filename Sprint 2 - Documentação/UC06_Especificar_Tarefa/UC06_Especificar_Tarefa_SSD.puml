@@ -1,0 +1,13 @@
+@startuml
+title UC6 - Especificar Tarefa
+
+actor "Colaborador de Organização" as Colaborador
+participant ":Sistema" as Sistema
+
+Colaborador -> Sistema: 1 inicia a especificação de uma tarefa
+Sistema --> Colaborador: 2 solicita os dados \n(referência, designação, descrição informal \ne de carácter técnico, duração, custo, categoria)
+Colaborador -> Sistema: 3 introduz os dados solicitados
+Sistema --> Colaborador: 4 apresenta os dados e solicita confirmação
+Colaborador -> Sistema: 5 confirma os dados
+Sistema --> Colaborador: 6 informa o sucesso da operação
+@enduml

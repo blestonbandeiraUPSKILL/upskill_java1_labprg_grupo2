@@ -1,0 +1,49 @@
+@startuml
+participant Administrativo
+activate Administrativo
+Administrativo -> DefinirCategTarefaUI: 1 Nova Categoria Tarefa
+activate DefinirCategTarefaUI
+DefinirCategTarefaUI -> DefinirCategTarefaController: 2 getAreasActividade()
+activate DefinirCategTarefaController
+DefinirCategTarefaUI -> DefinirCategTarefaController: 3 getCompTecnicas()
+DefinirCategTarefaController -> Plataforma: 4 getAreasActividade()
+activate Plataforma
+DefinirCategTarefaController -> Plataforma: 5 getCompTecnicas()
+Plataforma -> DefinirCategTarefaController: \n6 returns areas[]
+Plataforma -> DefinirCategTarefaController: 7 returns compTec[]
+deactivate Plataforma
+DefinirCategTarefaController -> DefinirCategTarefaUI: 8 returns areas[]
+DefinirCategTarefaController -> DefinirCategTarefaUI: 9 returns compTec[]
+deactivate DefinirCategTarefaController
+DefinirCategTarefaUI --> Administrativo: \n\n10 Solicita dados \n(Área de actividade, Descrição, Lista de Competências Técnicas)
+deactivate DefinirCategTarefaUI 
+Administrativo -> DefinirCategTarefaUI: \n11 Introduz os dados solicitados
+activate DefinirCategTarefaUI
+DefinirCategTarefaUI -> DefinirCategTarefaController: 12 novaCategTarefa(areaActiv, descricao, listCompTec)
+activate DefinirCategTarefaController
+DefinirCategTarefaController -> Plataforma: 13 catTarefa=novaCategTarefa(areaActiv, descricao, listCompTec)
+activate Plataforma
+DefinirCategTarefaController -> Plataforma: 14 atribuirID()
+Plataforma --> "catTarefa:CategTarefa"**: 15 criar(id, areaActiv, descript, listCompTec) 
+deactivate Plataforma
+DefinirCategTarefaController -> Plataforma: 16 validaCategTarefa(catTarefa)
+activate Plataforma
+deactivate Plataforma
+DefinirCategTarefaUI --> Administrativo: 17 Apresenta dados e solicita confirmação
+deactivate Plataforma
+deactivate DefinirCategTarefaController
+deactivate DefinirCategTarefaUI
+Administrativo -> DefinirCategTarefaUI: 18 Confirma os dados
+activate DefinirCategTarefaUI
+DefinirCategTarefaUI -> DefinirCategTarefaController: 19 registarCategTarefa()
+activate DefinirCategTarefaController
+DefinirCategTarefaController -> Plataforma: 20 registarCategTarefa(catTarefa)
+activate Plataforma
+Plataforma -> Plataforma: 21 validaCategTarefa(catTarefa)
+Plataforma -> Plataforma: 22 adicionarCategTarefa(catTarefa)
+deactivate Plataforma
+deactivate DefinirCategTarefaController
+DefinirCategTarefaUI --> Administrativo: 23 Categoria de tarefa adicionada com sucesso
+deactivate DefinirCategTarefaUI
+deactivate Administrativo
+@enduml

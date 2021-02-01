@@ -1,0 +1,18 @@
+@startuml
+
+left to right direction 
+actor Freelancer
+actor ColaboradorOrganização
+actor GestorOrganização
+actor Administrativo
+actor UtilizadorNaoRegistado
+
+note right of Freelancer : Actor identificado mas ainda sem casos de uso concretos
+
+ColaboradorOrganização --> (UC6 - Especificar Tarefa)
+GestorOrganização --> (UC5 - Especificar Colaborador da Organizaçao)
+Administrativo --> (UC2 - Definir Area de Atividade)
+Administrativo --> (UC3 - Definir Categoria)
+Administrativo --> (UC4 - Especificar Competencia Técnica)
+UtilizadorNaoRegistado --> (UC1 - Registar Organização)
+@enduml
