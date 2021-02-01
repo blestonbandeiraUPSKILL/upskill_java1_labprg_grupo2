@@ -5,18 +5,53 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="93a9afbf-b1a6-4eb7-8fa9-1fb37412cebd" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../../T4J-Grupo2/src/main/java/com/grupo2/t4j/dto/DataDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../T4J-Grupo2/src/main/java/com/grupo2/t4j/model/UsersAPI.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../T4J-Grupo2/src/main/java/com/grupo2/t4j/model/UsersAPIAdapter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../T4J-Grupo2/src/main/java/com/grupo2/t4j/utils/Constants.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../T4J-Grupo2/src/main/java/com/grupo2/t4j/utils/Response.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../T4J-Grupo2/src/main/java/com/grupo2/t4j/xml/XmlHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Exemplo/T4J/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../Exemplo/T4J/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../T4J-Grupo2/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../T4J-Grupo2/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../T4J-Grupo2/T4J-Grupo2.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../../T4J-Grupo2/T4J-Grupo2.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../T4J-Grupo2/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../T4J-Grupo2/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../T4J-Grupo2/src/main/java/com/grupo2/t4j/model/Data.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../T4J-Grupo2/src/main/java/com/grupo2/t4j/model/Data.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../T4J-Grupo2/src/main/java/com/grupo2/t4j/network/HttpConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../T4J-Grupo2/src/main/java/com/grupo2/t4j/network/HttpConnection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../T4J-Grupo2/target/classes/com/grupo2/t4j/fxml/RegisterOrgScene.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/../../T4J-Grupo2/target/classes/com/grupo2/t4j/fxml/RegisterOrgScene.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../T4JGrupo2/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../T4JGrupo2/.idea/compiler.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../T4JGrupo2/.idea/encodings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../T4JGrupo2/.idea/jarRepositories.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../T4JGrupo2/.idea/libraries/Maven__org_apiguardian_apiguardian_api_1_1_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../T4JGrupo2/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_api_5_6_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../T4JGrupo2/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_engine_5_6_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../T4JGrupo2/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_params_5_6_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../T4JGrupo2/.idea/libraries/Maven__org_junit_platform_junit_platform_commons_1_6_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../T4JGrupo2/.idea/libraries/Maven__org_junit_platform_junit_platform_engine_1_6_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../T4JGrupo2/.idea/libraries/Maven__org_opentest4j_opentest4j_1_2_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../T4JGrupo2/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../T4JGrupo2/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../T4JGrupo2/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../T4JGrupo2/T4JGrupo2.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../T4JGrupo2/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../T4JGrupo2/src/main/java/controller/AplicacaoController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../T4JGrupo2/src/main/java/model/Administrativo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../T4JGrupo2/src/main/java/model/Categoria.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../T4JGrupo2/src/main/java/model/Colaborador.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../T4JGrupo2/src/main/java/model/Email.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../T4JGrupo2/src/main/java/model/EnderecoPostal.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../T4JGrupo2/src/main/java/model/Organizacao.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../T4JGrupo2/src/main/java/model/Password.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../T4JGrupo2/src/main/java/model/Plataforma.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../T4JGrupo2/src/main/java/model/Tarefa.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../T4JGrupo2/src/main/java/model/Utilizador.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../T4JGrupo2/src/main/java/repositorios/RepositorioCategoria.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../T4JGrupo2/src/main/java/repositorios/RepositorioColaborador.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../T4JGrupo2/src/main/java/repositorios/RepositorioEmail.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../T4JGrupo2/src/main/java/repositorios/RepositorioOrganizacao.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../T4JGrupo2/src/main/java/repositorios/RepositorioTarefa.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../T4JGrupo2/src/main/java/repositorios/RepositorioUtilizador.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../T4JGrupo2/src/test/java/model/AdministrativoTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../T4JGrupo2/src/test/java/model/CategoriaTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../T4JGrupo2/src/test/java/model/ColaboradorTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../T4JGrupo2/src/test/java/model/EmailTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../T4JGrupo2/src/test/java/model/EnderecoPostalTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../T4JGrupo2/src/test/java/model/OrganizacaoTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../T4JGrupo2/src/test/java/model/PasswordTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../T4JGrupo2/src/test/java/model/PlataformaTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../T4JGrupo2/src/test/java/model/TarefaTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../T4JGrupo2/src/test/java/model/UtilizadorTest.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,10 +82,9 @@
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../Linguagem de Programação Java/java/5 - Ficheiros/3 - Atleta" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -71,15 +105,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -99,7 +131,8 @@
       <option name="presentableId" value="Default" />
       <updated>1612175794942</updated>
       <workItem from="1612175797131" duration="2852000" />
-      <workItem from="1612178993470" duration="13553000" />
+      <workItem from="1612178993470" duration="13560000" />
+      <workItem from="1612209142927" duration="487000" />
     </task>
     <servers />
   </component>

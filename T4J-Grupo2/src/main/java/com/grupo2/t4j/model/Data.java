@@ -1,4 +1,4 @@
-package com.blb.atleta.model;
+package com.grupo2.t4j.model;
 
 
 import com.grupo2.t4j.exception.DiaInvalidoException;
