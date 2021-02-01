@@ -7,7 +7,7 @@ package com.grupo2.t4j.model;
 
 /**
  *
- * @author acris
+ * @author CAD
  */
 
 import com.grupo2.t4j.exception.*;
@@ -19,16 +19,28 @@ public class Organizacao {
     private Website websiteOrg;
     private String telefone;
     private Email emailOrg;
+    private Colaborador colabGestor;
     
     public Organizacao(){
     }
     
-    public Organizacao(String nome, String NIF, Website websiteOrg, String telefone, Email emailOrg){
+    public Organizacao(String nome, String NIF, Website websiteOrg, String telefone, 
+            Email emailOrg, Colaborador colabGestor){
         setNome(nome);
         setNif(NIF);
         this.websiteOrg = new Website(websiteOrg);
         setTelefone(telefone);
         this.emailOrg = new Email(emailOrg);
+        this.colabGestor = new Colaborador(colabGestor);
+    }
+    
+    public Organizacao(Organizacao organizacao){
+        setNome(organizacao.nome);
+        setNif(organizacao.NIF);
+        this.websiteOrg = new Website(organizacao.websiteOrg);
+        setTelefone(organizacao.telefone);
+        this.emailOrg = new Email(organizacao.emailOrg);
+        this.colabGestor = new Colaborador(organizacao.colabGestor);
     }
     
     public final void setNome(String nome) {
