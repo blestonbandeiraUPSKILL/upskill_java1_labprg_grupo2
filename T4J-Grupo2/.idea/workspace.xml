@@ -4,55 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d18a0f53-1ac6-4480-aa36-45ca0219a8b6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../Cliente-Autarquias/AutarquiaCLI/pom.xml" afterDir="false" />
+    <list default="true" id="8ca9f66f-f143-4134-afe5-eb7245bd0a9c" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/utils/Constants.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/utils/Response.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/xml/XmlHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Users REST API.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Cliente-Autarquias/AutarquiaCLI/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Cliente-Autarquias/AutarquiaCLI/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Exemplo/T4J/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Exemplo/T4J/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/T4J-Grupo2.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/T4J-Grupo2.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/model/Data.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/model/Data.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../T4JGrupo2/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../T4JGrupo2/.idea/compiler.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../T4JGrupo2/.idea/encodings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../T4JGrupo2/.idea/jarRepositories.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../T4JGrupo2/.idea/libraries/Maven__org_apiguardian_apiguardian_api_1_1_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../T4JGrupo2/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_api_5_6_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../T4JGrupo2/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_engine_5_6_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../T4JGrupo2/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_params_5_6_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../T4JGrupo2/.idea/libraries/Maven__org_junit_platform_junit_platform_commons_1_6_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../T4JGrupo2/.idea/libraries/Maven__org_junit_platform_junit_platform_engine_1_6_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../T4JGrupo2/.idea/libraries/Maven__org_opentest4j_opentest4j_1_2_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../T4JGrupo2/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../T4JGrupo2/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../T4JGrupo2/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../T4JGrupo2/T4JGrupo2.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../T4JGrupo2/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../T4JGrupo2/src/main/java/controller/AplicacaoController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../T4JGrupo2/src/main/java/model/Administrativo.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../T4JGrupo2/src/main/java/model/Categoria.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../T4JGrupo2/src/main/java/model/Colaborador.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../T4JGrupo2/src/main/java/model/Email.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../T4JGrupo2/src/main/java/model/EnderecoPostal.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../T4JGrupo2/src/main/java/model/Organizacao.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../T4JGrupo2/src/main/java/model/Password.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../T4JGrupo2/src/main/java/model/Plataforma.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../T4JGrupo2/src/main/java/model/Tarefa.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../T4JGrupo2/src/main/java/model/Utilizador.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../T4JGrupo2/src/main/java/repositorios/RepositorioCategoria.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../T4JGrupo2/src/main/java/repositorios/RepositorioColaborador.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../T4JGrupo2/src/main/java/repositorios/RepositorioEmail.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../T4JGrupo2/src/main/java/repositorios/RepositorioOrganizacao.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../T4JGrupo2/src/main/java/repositorios/RepositorioTarefa.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../T4JGrupo2/src/main/java/repositorios/RepositorioUtilizador.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../T4JGrupo2/src/test/java/model/AdministrativoTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../T4JGrupo2/src/test/java/model/CategoriaTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../T4JGrupo2/src/test/java/model/ColaboradorTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../T4JGrupo2/src/test/java/model/EmailTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../T4JGrupo2/src/test/java/model/EnderecoPostalTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../T4JGrupo2/src/test/java/model/OrganizacaoTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../T4JGrupo2/src/test/java/model/PasswordTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../T4JGrupo2/src/test/java/model/PlataformaTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../T4JGrupo2/src/test/java/model/TarefaTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../T4JGrupo2/src/test/java/model/UtilizadorTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,7 +32,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="ProjectId" id="1nniZG3OEVMcmmeOaXnRq7x6lIS" />
-  <component name="ProjectLevelVcsManager">
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="ProjectViewState">
@@ -84,7 +45,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/exception" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/utils" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -98,6 +59,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\blest\Desktop\Sprints\upskill_java1_labprg_grupo2\T4J-Grupo2\src\main\java\com\grupo2\t4j\utils" />
       <recent name="C:\Users\blest\Desktop\Sprints\upskill_java1_labprg_grupo2\T4J-Grupo2\src\main\java\com\grupo2\t4j\exception" />
       <recent name="C:\Users\blest\Desktop\Sprints\upskill_java1_labprg_grupo2\T4J-Grupo2\src\main\java\com\grupo2\t4j\model" />
       <recent name="C:\Users\blest\Desktop\Sprints\upskill_java1_labprg_grupo2\T4J-Grupo2\src\main\java\com\grupo2\t4j" />
@@ -123,13 +85,15 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
-      <option name="TEST_OBJECT" value="class" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -151,6 +115,9 @@
       <workItem from="1612170086980" duration="3910000" />
     </task>
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
