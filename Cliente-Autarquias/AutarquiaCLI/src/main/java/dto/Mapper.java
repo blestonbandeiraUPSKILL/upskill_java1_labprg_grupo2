@@ -42,6 +42,7 @@ public class Mapper {
                 pessoasDTO.add(pessoaDTO);
             }
             catch (NullPointerException exception) {
+                exception.printStackTrace();
                 //não adiciona
             }
         }
@@ -61,6 +62,7 @@ public class Mapper {
                 pessoas.add(pessoa);
             }
             catch (NullPointerException exception) {
+                exception.printStackTrace();
                 //não adiciona
             }
         }
@@ -76,5 +78,46 @@ public class Mapper {
                 funcionario.getCargo());
     }
 
-    public static Funcionario funcionario
+    public static Funcionario funcionarioDTO2Funcionario(FuncionarioDTO funcionarioDTO) throws NullPointerException {
+        return new Funcionario(funcionarioDTO.getNif(),
+                funcionarioDTO.getNome(),
+                dataDTO2Data(funcionarioDTO.getNascimento()),
+                funcionarioDTO.getNumeroFuncionario(),
+                funcionarioDTO.getCargo());
+    }
+    public static ListaFuncionarioDTO listaFuncionario2ListaFuncionarioDTO(ArrayList<Funcionario> funcionarios) throws NullPointerException {
+        ArrayList<FuncionarioDTO> funcionariosDTO = new ArrayList<>();
+        for (Funcionario funcionario : funcionarios) {
+            try {
+                FuncionarioDTO funcionarioDTO = funcionario2FuncionarioDTO(funcionario);
+                funcionariosDTO.add(funcionarioDTO);
+            }
+            catch (NullPointerException exception) {
+                exception.printStackTrace();
+                //não adiciona
+            }
+
+        }
+
+        ListaFuncionarioDTO listaFuncionarioDTO = new ListaFuncionarioDTO();
+        listaFuncionarioDTO.setFuncionarios(funcionariosDTO);
+        return listaFuncionarioDTO;
+    }
+
+    public static ArrayList<Funcionario> listaFuncionarioDTO2ListaFuncionario(ListaFuncionarioDTO listaFuncionarioDTO) throws  NullPointerException {
+        ArrayList<Funcionario> funcionarios = new ArrayList<>();
+        ArrayList<FuncionarioDTO> funcionarioDTOS = new ArrayList<>();
+
+        for(FuncionarioDTO funcionarioDTO : funcionarioDTOS) {
+            try {
+                Funcionario funcionario = funcionarioDTO2Funcionario(funcionarioDTO);
+                funcionarios.add(funcionario);
+            }
+            catch (NullPointerException exception) {
+                exception.printStackTrace();
+                //não adiciona
+            }
+        }
+        return funcionarios;
+    }
 }
