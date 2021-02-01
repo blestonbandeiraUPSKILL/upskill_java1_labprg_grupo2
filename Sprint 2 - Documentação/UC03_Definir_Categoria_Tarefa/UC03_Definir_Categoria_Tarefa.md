@@ -58,7 +58,7 @@ sistema valida e apresenta os dados ao administrativo, pedindo que os confirme. 
 ![UC03_Definir_Categoria_Tarefa_Diagrama_Sequencia_Sistema](UC03_Definir_Categoria_Tarefa_Diagrama_Sequencia_Sistema.png)
 
 ## Excerto do Modelo de Domínio
-![UC03_Definir_Categoria_Tarefa_Modelo_Dominio]UC03_Definir_Categoria_Tarefa_Modelo_Dominio.png)
+![UC03_Definir_Categoria_Tarefa_Modelo_Dominio](UC03_Definir_Categoria_Tarefa_Modelo_Dominio.png)
 
 ## Diagrama de sequência <br/>
 ![UC03_Definir_Categoria_Tarefa_Diagrama_Sequencia](UC03_Definir_Categoria_Tarefa_Diagrama_Sequencia.png)
