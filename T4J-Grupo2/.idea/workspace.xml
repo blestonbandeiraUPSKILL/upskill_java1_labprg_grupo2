@@ -5,27 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d18a0f53-1ac6-4480-aa36-45ca0219a8b6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../Cliente-Autarquias/AutarquiaCLI/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_annotations_2_11_4.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Cliente-Autarquias/AutarquiaCLI/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_core_2_11_4.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Cliente-Autarquias/AutarquiaCLI/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_databind_2_11_4.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Cliente-Autarquias/AutarquiaCLI/.idea/libraries/Maven__com_fasterxml_jackson_dataformat_jackson_dataformat_xml_2_11_4.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Cliente-Autarquias/AutarquiaCLI/.idea/libraries/Maven__com_fasterxml_jackson_module_jackson_module_jaxb_annotations_2_11_4.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Cliente-Autarquias/AutarquiaCLI/.idea/libraries/Maven__com_fasterxml_woodstox_woodstox_core_6_2_3.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Cliente-Autarquias/AutarquiaCLI/.idea/libraries/Maven__jakarta_activation_jakarta_activation_api_1_2_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Cliente-Autarquias/AutarquiaCLI/.idea/libraries/Maven__jakarta_xml_bind_jakarta_xml_bind_api_2_3_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Cliente-Autarquias/AutarquiaCLI/.idea/libraries/Maven__org_codehaus_woodstox_stax2_api_4_2_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Cliente-Autarquias/AutarquiaCLI/src/main/java/dto/ErroDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Cliente-Autarquias/AutarquiaCLI/src/main/java/dto/FuncionarioDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Cliente-Autarquias/AutarquiaCLI/src/main/java/dto/ListaFuncionarioDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Cliente-Autarquias/AutarquiaCLI/src/main/java/dto/ListaPessoaDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Cliente-Autarquias/AutarquiaCLI/src/main/java/dto/Mapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Cliente-Autarquias/AutarquiaCLI/src/main/java/dto/PessoaDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Cliente-Autarquias/AutarquiaCLI/AutarquiaCLI.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../Cliente-Autarquias/AutarquiaCLI/AutarquiaCLI.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Cliente-Autarquias/AutarquiaCLI/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Cliente-Autarquias/AutarquiaCLI/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Cliente-Autarquias/AutarquiaCLI/src/main/java/dto/DataDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Cliente-Autarquias/AutarquiaCLI/src/main/java/dto/DataDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Cliente-Autarquias/AutarquiaCLI/src/main/java/model/Funcionario.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Cliente-Autarquias/AutarquiaCLI/src/main/java/model/Funcionario.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Exemplo/T4J/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Exemplo/T4J/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Exemplo/T4J/T4J.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../Exemplo/T4J/T4J.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Exemplo/T4J/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Exemplo/T4J/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Exemplo/T4J/src/main/java/model/UsersAPIAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Exemplo/T4J/src/main/java/model/UsersAPIAdapter.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -102,7 +85,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1612032310461</updated>
-      <workItem from="1612170086980" duration="2344000" />
+      <workItem from="1612170086980" duration="2829000" />
     </task>
     <servers />
   </component>

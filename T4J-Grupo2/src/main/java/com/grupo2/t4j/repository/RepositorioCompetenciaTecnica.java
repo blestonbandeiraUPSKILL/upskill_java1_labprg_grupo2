@@ -5,7 +5,6 @@
  */
 package com.grupo2.t4j.repository;
 
-import com.grupo2.t4j.model.Categoria;
 import com.grupo2.t4j.model.CompetenciaTecnica;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,31 +20,25 @@ public class RepositorioCompetenciaTecnica {
         this.listaCompTecnicas=listaCompTecnicas;
     }
 
+    public List<CompetenciaTecnica> getListaCompTecnicas() {
+        return listaCompTecnicas;
+    }
+
     public void setListaCompTecnicas(List<CompetenciaTecnica> listaCompTecnicas) {
         this.listaCompTecnicas = listaCompTecnicas;
     }
-    public ArrayList<CompetenciaTecnica> getCompetenciasTecnicas() {
-        
-      return new ArrayList<CompetenciaTecnica>(listaCompTecnicas);
-    }
-    
-    public CompetenciaTecnica getCompetenciaTecnica(String id) {
-        CompetenciaTecnica ct = getCompetenciaTecnicaByCodigo(id);
-        if (ct != null) {
-            return new CompetenciaTecnica(ct);
-        }
-        return null;
-    }
-    public CompetenciaTecnica getCompetenciaTecnicaByCodigo(String codigo) {
-        CompetenciaTecnica compTec = null;
+   /* public ArrayList<CompetenciaTecnica> getCompetenciaTecnica() {
+        CompetenciaTecnica compTecnica;
+        ArrayList<CompetenciaTecnica> lista = new ArrayList<>();
         for (int i = 0; i < this.listaCompTecnicas.size(); i++) {
-            compTec = this.listaCompTecnicas.get(i);
-            if (compTec.getCodigo().equals(codigo)) {
-                CompetenciaTecnica copia = new CompetenciaTecnica(compTec);
-                return copia;
-               
+            compTecnica = this.listaCompTecnicas.get(i);
+            if (pessoa instanceof Funcionario) {
             }
+            Funcionario copia = new Funcionario((Funcionario) pessoa);
+            lista.add(copia);
         }
-        return null;
-    }
+
+        return lista;
+    }*/
+    
 }

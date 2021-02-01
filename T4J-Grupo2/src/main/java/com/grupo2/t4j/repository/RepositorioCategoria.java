@@ -34,6 +34,4 @@ public class RepositorioCategoria {
         return null;
     }
     
-    
-    
 }
