@@ -7,8 +7,5 @@ import javafx.fxml.FXML;
 
 public class ApplicationController {
 
-    public ApplicationController() {
-
-    }
 
 }
