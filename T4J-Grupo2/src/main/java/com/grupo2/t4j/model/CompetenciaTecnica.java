@@ -22,6 +22,12 @@ public class CompetenciaTecnica {
         this.grau=grau;
     }
 
+    public CompetenciaTecnica(CompetenciaTecnica compTec){
+        setCodigo(codigo);
+        setDescricaoBreve(descricaoBreve);
+        setDescricaoDetalhada(descricaoDetalhada);
+        setGrau(grau);
+    }
     public String getCodigo() {
         return codigo;
     }
@@ -44,6 +50,14 @@ public class CompetenciaTecnica {
 
     public void setDescricaoDetalhada(String descricaoDetalhada) {
         this.descricaoDetalhada = descricaoDetalhada;
+    }
+
+    public GrauProficiencia getGrau() {
+        return grau;
+    }
+
+    public void setGrau(GrauProficiencia grau) {
+        this.grau = grau;
     }
     
     
