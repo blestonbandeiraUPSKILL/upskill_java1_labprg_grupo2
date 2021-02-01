@@ -12,6 +12,17 @@
       <change beforePath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/JanelaPrincipalUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/JanelaPrincipalUI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/MainApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/MainApp.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/TarefaUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/TarefaUI.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/exception/DiaInvalidoException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/exception/MesInvalidoException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/model/Data.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/model/DiaDaSemana.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/model/Mes.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/network/HttpConnection.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/network/HttpRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/network/HttpRequestType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/network/HttpResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/network/HttpStatusCode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,9 +52,29 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/exception" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="preferences.JavaFX" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\blest\Desktop\Sprints\upskill_java1_labprg_grupo2\T4J-Grupo2\src\main\java\com\grupo2\t4j\exception" />
+      <recent name="C:\Users\blest\Desktop\Sprints\upskill_java1_labprg_grupo2\T4J-Grupo2\src\main\java\com\grupo2\t4j\model" />
+      <recent name="C:\Users\blest\Desktop\Sprints\upskill_java1_labprg_grupo2\T4J-Grupo2\src\main\java\com\grupo2\t4j" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\blest\Desktop\Sprints\upskill_java1_labprg_grupo2\T4J-Grupo2\src\main\java\com\grupo2\t4j\model" />
+    </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.grupo2.t4j.ui" />
     </key>
@@ -62,6 +93,17 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Application.MainApp" />
@@ -76,6 +118,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1612032310461</updated>
+      <workItem from="1612170086980" duration="3910000" />
     </task>
     <servers />
   </component>
