@@ -5,15 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d18a0f53-1ac6-4480-aa36-45ca0219a8b6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../Cliente-Autarquias/AutarquiaCLI/src/main/java/network/HttpConnection.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Cliente-Autarquias/AutarquiaCLI/src/main/java/network/HttpRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Cliente-Autarquias/AutarquiaCLI/src/main/java/network/HttpRequestType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Cliente-Autarquias/AutarquiaCLI/src/main/java/network/HttpResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Cliente-Autarquias/AutarquiaCLI/src/main/java/network/HttpStatusCode.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Cliente-Autarquias/AutarquiaCLI/src/main/java/utils/Constants.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Cliente-Autarquias/AutarquiaCLI/src/main/java/utils/Response.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Cliente-Autarquias/AutarquiaCLI/src/main/java/xml/XmlHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Cliente-Autarquias/AutarquiaCLI/src/main/java/dto/Mapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Cliente-Autarquias/AutarquiaCLI/src/main/java/dto/Mapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Cliente-Autarquias/AutarquiaCLI/src/main/java/controller/PessoasController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
