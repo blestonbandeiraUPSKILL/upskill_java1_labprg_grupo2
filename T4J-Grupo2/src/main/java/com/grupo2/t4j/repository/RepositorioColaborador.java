@@ -31,6 +31,7 @@ public class RepositorioColaborador {
     public RepositorioColaborador(List<Colaborador> listaColaboradores){
         this.listaColaboradores = listaColaboradores;
     }
+    
     public void addColaborador(Colaborador colaborador) throws ColaboradorDuplicadoException {
         Colaborador c = getColaboradorByEmail(colaborador.getEmail());
         if (c == null) {
