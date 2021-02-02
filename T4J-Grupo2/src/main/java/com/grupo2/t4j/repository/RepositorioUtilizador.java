@@ -22,7 +22,6 @@ public class RepositorioUtilizador {
     public RepositorioUtilizador(List<Utilizador> listaUtilizadores){
         this.listaUtilizadores = listaUtilizadores;
     }
-    
     public void addUtilizador(Utilizador utilizador) throws UtilizadorDuplicadoException {
         Utilizador u = getUtilizadorByEmail(utilizador.getEmail());
         if (u == null) {
@@ -44,3 +43,4 @@ public class RepositorioUtilizador {
         return null;
     }
 }
+
