@@ -12,8 +12,13 @@ package com.grupo2.t4j.model;
 public class Plataforma {
 
     /**
+<<<<<<< Updated upstream
      * Atributos Plataforma
      */
+=======
+    * Atributos Plataforma
+    */
+>>>>>>> Stashed changes
     private String designacao;
     private String designacao;
     private static Plataforma plataforma;
@@ -27,13 +32,22 @@ public class Plataforma {
     private IAlgoritmoGeradorPasswords algoritmoGeradorPasswords;
     private UsersAPI usersAPI;
 
+    /**
+     * Construtor Classe Plataforma
+     */
     public Plataforma() {
     }
 
+    /**
+     * @return the designacao
+     */
     public String getDesignacao() {
         return designacao;
     }
 
+    /**
+     * @param designacao the designacao to set
+     */    
     public void setDesignacao(String designacao) {
         this.designacao = designacao;
     }
