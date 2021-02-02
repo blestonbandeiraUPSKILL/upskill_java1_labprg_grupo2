@@ -16,12 +16,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RepositorioColaborador {
+    
+    private static RepositorioColaborador instance;
 
     private List<Colaborador> listaColaboradores = new ArrayList<>();
+    
+    /*public static RepositorioColaborador getInstance(){
+        if (instance == null){
+            instance = new RepositorioColaborador();
+        }
+        return instance;
+    }*/
     
     public RepositorioColaborador(List<Colaborador> listaColaboradores){
         this.listaColaboradores = listaColaboradores;
     }
+    
     public void addColaborador(Colaborador colaborador) throws ColaboradorDuplicadoException {
         Colaborador c = getColaboradorByEmail(colaborador.getEmail());
         if (c == null) {

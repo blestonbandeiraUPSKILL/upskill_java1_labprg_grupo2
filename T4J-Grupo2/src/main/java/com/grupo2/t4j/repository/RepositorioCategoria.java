@@ -6,9 +6,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RepositorioCategoria {
+    private static RepositorioCategoria instance;
     private List<Categoria> listaCategorias = new ArrayList<>();
+    
+    public static RepositorioCategoria getInstance(){
+        if (instance == null){
+            instance = new RepositorioCategoria();
+        }
+        return instance;
+    }
    /**
-    * Adiciona uma categoria Ã  lista de categorias
+    * Adiciona uma categoria a  lista de categorias
     * @param categoria
     * @throws CategoriaDuplicadaException 
     */

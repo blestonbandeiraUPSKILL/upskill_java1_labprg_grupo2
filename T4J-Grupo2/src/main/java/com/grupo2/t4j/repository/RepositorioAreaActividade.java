@@ -10,5 +10,13 @@ package com.grupo2.t4j.repository;
  * @author acris
  */
 public class RepositorioAreaActividade {
+    private static RepositorioAreaActividade instance;
+    
+    public static RepositorioAreaActividade getInstance(){
+        if (instance == null){
+            instance = new RepositorioAreaActividade();
+        }
+        return instance;
+    }
     
 }
