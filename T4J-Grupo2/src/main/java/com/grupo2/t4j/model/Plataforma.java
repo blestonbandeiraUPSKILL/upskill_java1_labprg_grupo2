@@ -10,5 +10,18 @@ package com.grupo2.t4j.model;
  * @author acris
  */
 public class Plataforma {
-    
+
+    private String designacao;
+
+    public Plataforma() {
+    }
+
+    public String getDesignacao() {
+        return designacao;
+    }
+
+    public void setDesignacao(String designacao) {
+        this.designacao = designacao;
+    }
+
 }
