@@ -41,7 +41,7 @@ public class UsersAPIAdapter {
             case HttpStatusCode.OK:
                 return true;
             case HttpStatusCode.Conflict:
-                return false
+                return false;
         }
         return false;
     }
