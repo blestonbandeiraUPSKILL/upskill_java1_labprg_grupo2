@@ -19,7 +19,7 @@ public class RepositorioCompetenciaTecnica {
     List<CompetenciaTecnica> listaCompTecnicas= new ArrayList<>();
     
     /**
-     * Adiciona uma competÃªncia tÃ©cnica Ã  lista de Competencias TÃ©cnicas
+     * Adiciona uma competencia tecnica a lista de Competencias Tecnicas
      * @param competenciaTecnica
      * @throws com.grupo2.t4j.exception.CompetenciaTecnicaDuplicadaException
      * @throws CompetenciaTecnicaDuplicadaException 
@@ -33,7 +33,7 @@ public class RepositorioCompetenciaTecnica {
         }
     }
 /**
- * Atualiza a lista de CompetÃªncias TÃ©cnicas
+ * Atualiza a lista de Competencias Tecnicas
  * @param listaCompTecnicas 
  */
     public void setListaCompTecnicas(List<CompetenciaTecnica> listaCompTecnicas) {
@@ -41,7 +41,7 @@ public class RepositorioCompetenciaTecnica {
     }
     
     /**
-     * Devolve a lista de competÃªncias tÃ©cnicas
+     * Devolve a lista de competÃªncias tecnicas
      * @return 
      */
     public ArrayList<CompetenciaTecnica> getCompetenciasTecnicas() {
@@ -50,7 +50,7 @@ public class RepositorioCompetenciaTecnica {
     }
     
    /**
-    * Devolve uma competÃªncia tÃ©cnica de acordo com o seu cÃ³digo
+    * Devolve uma competencia tecnica de acordo com o seu codigo
     * @param codigo
     * @return 
     */

@@ -5,6 +5,8 @@
  */
 package com.grupo2.t4j.model;
 
+import com.grupo2.t4j.exception.DescricaoInvalidaException;
+
 /**
  *
  * @author acris
@@ -18,7 +20,7 @@ public class CompetenciaTecnica {
     private String descricaoBreve;
     private String descricaoDetalhada;
     private GrauProficiencia grau;
-    private boolean obrigatoria;
+    
 /**
  * Construtor Competencia Tecnica Completo
  * @param codigo
@@ -26,12 +28,12 @@ public class CompetenciaTecnica {
  * @param descricaoDetalhada
  * @param obrigatoria 
  */
-    public CompetenciaTecnica(String codigo, String descricaoBreve, String descricaoDetalhada, boolean obrigatoria) {
+    public CompetenciaTecnica(String codigo, String descricaoBreve, String descricaoDetalhada) {
         this.codigo = codigo;
         this.descricaoBreve = descricaoBreve;
         this.descricaoDetalhada = descricaoDetalhada;
-        this.grau=grau;
-        this.obrigatoria=obrigatoria;
+        //this.grau=grau;
+        
         
     }
 /**
@@ -42,24 +44,12 @@ public class CompetenciaTecnica {
         setCodigo(codigo);
         setDescricaoBreve(descricaoBreve);
         setDescricaoDetalhada(descricaoDetalhada);
-        setGrau(grau);
+        
     }
     
   
 
-    /**
-     * @return the obrigatoria
-     */
-    public boolean isObrigatoria() {
-        return obrigatoria;
-    }
-
-    /**
-     * @param obrigatoria the obrigatoria to set
-     */
-    public void setObrigatoria(boolean obrigatoria) {
-        this.obrigatoria = obrigatoria;
-    }
+    
 
     /**
      * @return the codigo
@@ -86,7 +76,11 @@ public class CompetenciaTecnica {
      * @param descricaoBreve the descricaoBreve to set
      */
     public void setDescricaoBreve(String descricaoBreve) {
-        this.descricaoBreve = descricaoBreve;
+        if (descricaoBreve == null || descricaoBreve.trim().isEmpty()) {
+            throw new DescricaoInvalidaException("Deve introduzir uma descrição válida!");
+        } else {
+            this.descricaoBreve = descricaoBreve;
+        }
     }
 
     /**
@@ -100,7 +94,11 @@ public class CompetenciaTecnica {
      * @param descricaoDetalhada the descricaoDetalhada to set
      */
     public void setDescricaoDetalhada(String descricaoDetalhada) {
-        this.descricaoDetalhada = descricaoDetalhada;
+        if (descricaoDetalhada == null || descricaoDetalhada.trim().isEmpty()) {
+            throw new DescricaoInvalidaException("Deve introduzir uma descrição válida!");
+        } else {
+            this.descricaoDetalhada = descricaoDetalhada;
+        }
     }
 
     /**
