@@ -17,18 +17,18 @@ import java.util.List;
  * @author acris
  */
 public class RepositorioCompetenciaTecnica {
-    public static RepositorioCompetenciaTecnica repositorio;
+    public static RepositorioCompetenciaTecnica instance;
     List<CompetenciaTecnica> listaCompTecnicas= new ArrayList<>();
     
     /**
      * Devolve uma instancia static de RepositorioCompetenciaTecnica
      * @return 
      */
-    public static RepositorioCompetenciaTecnica getRepositorio(){
-        if (repositorio == null){
-            repositorio = new RepositorioCompetenciaTecnica();
+    public static RepositorioCompetenciaTecnica getInstance(){
+        if (instance == null){
+            instance = new RepositorioCompetenciaTecnica();
         }
-        return repositorio;
+        return instance;
     }
     /**
      * Adiciona uma competencia tecnica a lista de Competencias Tecnicas
