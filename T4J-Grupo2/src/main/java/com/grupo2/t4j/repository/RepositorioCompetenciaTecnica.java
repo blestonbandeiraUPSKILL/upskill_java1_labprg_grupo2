@@ -17,18 +17,30 @@ import java.util.List;
  * @author acris
  */
 public class RepositorioCompetenciaTecnica {
+    public static RepositorioCompetenciaTecnica repositorio;
     List<CompetenciaTecnica> listaCompTecnicas= new ArrayList<>();
     
+    /**
+     * Devolve uma instancia static de RepositorioCompetenciaTecnica
+     * @return 
+     */
+    public static RepositorioCompetenciaTecnica getRepositorio(){
+        if (repositorio == null){
+            repositorio = new RepositorioCompetenciaTecnica();
+        }
+        return repositorio;
+    }
     /**
      * Adiciona uma competencia tecnica a lista de Competencias Tecnicas
      * @param competenciaTecnica
      * @throws com.grupo2.t4j.exception.CompetenciaTecnicaDuplicadaException
      * @throws CompetenciaTecnicaDuplicadaException 
      */
-    public void addCompetenciaTecnica(CompetenciaTecnica competenciaTecnica) throws CompetenciaTecnicaDuplicadaException {
+    public boolean addCompetenciaTecnica(CompetenciaTecnica competenciaTecnica) throws CompetenciaTecnicaDuplicadaException {
         CompetenciaTecnica ct = getCompetenciaTecnicaByCodigo(competenciaTecnica.getCodigo());
         if (ct == null) {
             this.listaCompTecnicas.add(competenciaTecnica);
+            return true;
         } else {
             throw new CompetenciaTecnicaDuplicadaException(ct.getCodigo() + ": Competencia Tecnica já existe");
         }
