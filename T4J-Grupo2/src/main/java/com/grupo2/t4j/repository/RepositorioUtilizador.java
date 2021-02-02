@@ -50,8 +50,8 @@ public class RepositorioUtilizador {
     
     public static RepositorioUtilizador getInstance() {
         if(RepositorioUtilizador.repositorioUtilizador == null) {
-            List<Utilizador> newlistaUtilizadores = new ArrayList<>();
-            RepositorioUtilizador.repositorioUtilizador = new RepositorioUtilizador(Plataforma.getInstance(), newlistaUtilizadores);
+            List<Utilizador> newListaUtilizadores = new ArrayList<>();
+            RepositorioUtilizador.repositorioUtilizador = new RepositorioUtilizador(Plataforma.getInstance(), newListaUtilizadores);
         }
         return repositorioUtilizador;
     }
