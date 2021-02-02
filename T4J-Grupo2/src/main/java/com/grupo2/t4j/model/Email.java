@@ -19,7 +19,9 @@ public class Email implements IEmail {
     private String to;
     private String subject;
     private String text;
-    
+
+    public Email() {
+    }
     public Email (String email){
         setEmail(email);
     }
@@ -81,6 +83,6 @@ public class Email implements IEmail {
 
     @Override
     public void send() {
-        System.out.println("Email enviavo para " + getTo());
+        System.out.println("Email enviado para " + getTo());
     }
 }

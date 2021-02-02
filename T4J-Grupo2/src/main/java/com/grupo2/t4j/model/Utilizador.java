@@ -17,6 +17,11 @@ public class Utilizador {
     
    public Utilizador(){
    }
+
+   public Utilizador(String nome, Email email){
+       setNome(nome);
+       setEmail(email);
+   }
     
     public Utilizador(String nome, Email email, Password password){
         setNome(nome);
@@ -55,7 +60,6 @@ public class Utilizador {
     
     public Password getPassword(){
         return password;
-
     }  
 }
 

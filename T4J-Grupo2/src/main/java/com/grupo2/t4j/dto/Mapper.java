@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public class Mapper {
 
-    public static DataDTO data2DataDTO(Data data) throws NullPointerException {
+    /*public static DataDTO data2DataDTO(Data data) throws NullPointerException {
         return new DataDTO(data.getDia(), data.getMes(), data.getAno());
     }
 
@@ -109,4 +109,6 @@ public class Mapper {
         }
         return colaboradores;
     }
+
+     */
 }

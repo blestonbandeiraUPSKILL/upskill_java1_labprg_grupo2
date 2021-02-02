@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/Cliente-Autarquias/AutarquiaCLI/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Exemplo/T4J/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Exemplo/T4J/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/T4J-Grupo2/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/T4J-Grupo2/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cafetaria/ecafeteria-base/ecafeteria.app.backoffice.console/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cafetaria/ecafeteria-base/ecafeteria.app.backoffice.console/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cafetaria/ecafeteria-base/ecafeteria.app.bootstrap/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cafetaria/ecafeteria-base/ecafeteria.app.bootstrap/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cafetaria/ecafeteria-base/ecafeteria.app.common.console/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cafetaria/ecafeteria-base/ecafeteria.app.pos.console/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cafetaria/ecafeteria-base/ecafeteria.app.pos.console/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cafetaria/ecafeteria-base/ecafeteria.app.user.console/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cafetaria/ecafeteria-base/ecafeteria.app.user.console/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cafetaria/ecafeteria-base/ecafeteria.bootstrappers/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cafetaria/ecafeteria-base/ecafeteria.bootstrappers/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cafetaria/ecafeteria-base/ecafeteria.core/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cafetaria/ecafeteria-base/ecafeteria.core/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cafetaria/ecafeteria-base/ecafeteria.daemon.booking/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cafetaria/ecafeteria-base/ecafeteria.daemon.booking/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cafetaria/ecafeteria-base/ecafeteria.persistence.impl/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cafetaria/ecafeteria-base/ecafeteria.persistence.impl/src/main/resources" charset="UTF-8" />
+  </component>
+</project>

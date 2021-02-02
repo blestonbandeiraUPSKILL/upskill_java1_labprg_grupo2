@@ -16,23 +16,24 @@ public class RegistarOrganizacaoController {
         this.plataforma = Plataforma.getInstance();
     }
 
-    public void novaOrganizacao(String nome, String nif, String enderecoLocal, String enderecoPostal,
-                                String localidade, String telefone, Website website,
-                                Email email,String nomeGestor, String funcao,
-                                String telefoneGestor, Email emailGestor) {
+    public void novaOrganizacao(String nome, String nif, String arruamento,
+                                String numeroPorta, String localidade, String codigoPostal,
+                                String telefone, Website website, Email emailOrganizacao,
+                                String nomeGestor, String funcao, String telefoneGestor,
+                                Email emailGestor) throws Exception {
         repositorioOrganizacao = plataforma.getRepositorioOrganizacao();
-        organizacao = repositorioOrganizacao.novaOrganizacao(nome, nif, enderecoLocal, enderecoPostal, localidade,
-                telefone, website, email, nomeGestor, funcao, telefoneGestor, emailGestor);
+        organizacao = repositorioOrganizacao.novaOrganizacao(nome, nif, arruamento, numeroPorta, localidade, codigoPostal,
+                telefone, website, emailOrganizacao, nomeGestor, funcao, telefoneGestor, emailGestor);
 
         if (repositorioOrganizacao.validaOrganizacao(organizacao)) {
-
+            repositorioOrganizacao.addOrganizacao(organizacao);
         }
-      /*  else {
+        else {
             throw new Exception();
-        }*/
+        }
+    }
 
-        /*public void registaOrganizacao() throws Exception {
-            registaOrganizacao.registaOrganizacao(organizacao);
-        }*/
+    public void registaOrganizacao() throws Exception {
+        repositorioOrganizacao.registaOrganizacao(organizacao);
     }
 }
