@@ -18,13 +18,13 @@ public class Colaborador extends Utilizador{
         super();
     }
 
-    /*public Colaborador(String nome, Email email, Password password){
+    public Colaborador(String nome, Email email, Password password){
         super(nome, email, password);
-    }*/
+    }
 
-    public Colaborador(String nome, Email email, Password password, String funcao,
+    public Colaborador(String nome, Email email, String funcao,
             String telefone){
-        super(nome, email, password);
+        super(nome, email);
         setFuncao(funcao);
         setTelefone(telefone);
     }

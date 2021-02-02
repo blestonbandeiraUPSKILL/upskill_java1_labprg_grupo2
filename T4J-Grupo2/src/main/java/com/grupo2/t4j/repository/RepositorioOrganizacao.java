@@ -36,7 +36,7 @@ public class RepositorioOrganizacao {
                                        String nomeGestor, String funcao, String telefoneGestor,
                                        Email emailGestor) {
         EnderecoPostal endereco = Organizacao.novoEndereco(arruamento, numeroPorta, localidade, codigoPostal);
-        //colabGestor = Organizacao.novoColaborador(nomeGestor, funcao, telefoneGestor, emailGestor);
+        colabGestor = Organizacao.novoColaborador(nomeGestor, funcao, telefoneGestor, emailGestor);
 
         return new Organizacao(nome, nif, endereco, telefone, website, emailOrganizacao, colabGestor);
     }
@@ -54,20 +54,20 @@ public class RepositorioOrganizacao {
     public void registaOrganizacao(Organizacao organizacao) throws Exception {
         if(validaOrganizacao(organizacao)) {
             IAlgoritmoGeradorPasswords algoritmoGeradorPasswords = plataforma.getAlgoritmoGeradorPwd();
-            Password password = algoritmoGeradorPasswords.geraPassword();
+            Password password = new Password(algoritmoGeradorPasswords.geraPassword());
 
-           plataforma.getUsersAPI().registerUserWithRoles(colaborador.getEmailGestor(), colaborador.getEmailGestor(), password, "gestor,colaborador");
+           plataforma.getUsersAPI().registerUserWithRoles(colabGestor.getEmail(), colabGestor.getEmail(), password, "gestor,colaborador");
 
             addOrganizacao(organizacao);
 
             //gravar
 
             //Enviar email com credenciais de acesso
-            /*Email email = new Email();
-            email.setTo(colaborador.getEmailGestor());
+            Email email = new Email();
+            email.setTo(colabGestor.getEmail().toString());
             email.setSubject("Envio de credenciais para acesso à plataforma");
-            email.setText("username " + colaborador.getEmailGestor() + " ... password " + password);
-            email.send();*/
+            email.setText("username " + colabGestor.getEmail() + " ... password " + password);
+            email.send();
         }
         else {
             throw new Exception();
@@ -82,7 +82,6 @@ public class RepositorioOrganizacao {
             throw new OrganizacaoDuplicadaException(o.getNif() + ": Organização já registada!");
         }
     }
-
     
     private Organizacao getOrganizacaoByNif(String NIF) {
         Organizacao organizacao = null;

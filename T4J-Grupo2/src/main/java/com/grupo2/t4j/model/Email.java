@@ -19,7 +19,9 @@ public class Email implements IEmail {
     private String to;
     private String subject;
     private String text;
-    
+
+    public Email() {
+    }
     public Email (String email){
         setEmail(email);
     }

@@ -27,7 +27,7 @@ public class RepositorioUtilizadorTest {
     public void setUp() {
     }
 
-    @Test
+    /*@Test
     public void testAddUtilizador() {
         //Arrange
         RepositorioUtilizador ru1 = new RepositorioUtilizador();

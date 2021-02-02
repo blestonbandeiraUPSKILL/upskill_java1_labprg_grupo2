@@ -23,7 +23,7 @@ public class UsersAPI {
         return "";
     }
 
-    public boolean registerUserWithRoles(String username, Email email, Password password, String rolenames) {
+    public boolean registerUserWithRoles(Email username, Email email, Password password, String rolenames) {
         return usersAPIAdapter.registerUserWithRoles(username, email, password, rolenames);
     }
 }

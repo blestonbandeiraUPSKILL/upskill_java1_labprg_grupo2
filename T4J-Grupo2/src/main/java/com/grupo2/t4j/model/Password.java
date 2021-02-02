@@ -9,7 +9,7 @@ package com.grupo2.t4j.model;
  *
  * @author CAD
  */
-public class Password {
+public class  Password {
 
     private String password;
     
