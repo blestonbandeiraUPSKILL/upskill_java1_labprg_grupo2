@@ -2,14 +2,9 @@ package com.grupo2.t4j.controller;
 
 import com.grupo2.t4j.dto.ColaboradorDTO;
 import com.grupo2.t4j.dto.ErroDTO;
-import com.grupo2.t4j.dto.ListaColaboradorDTO;
-import com.grupo2.t4j.dto.Mapper;
-import com.grupo2.t4j.model.Colaborador;
 import com.grupo2.t4j.network.*;
 import com.grupo2.t4j.utils.Response;
 import com.grupo2.t4j.xml.XmlHandler;
-
-import java.util.ArrayList;
 
 public class ColaboradoresController {
 

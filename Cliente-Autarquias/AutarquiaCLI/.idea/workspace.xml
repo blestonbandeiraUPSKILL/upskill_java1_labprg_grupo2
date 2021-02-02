@@ -5,19 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="21ac7501-8735-41b9-901f-79619be0daad" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../../T4J-Grupo2/src/main/java/com/grupo2/t4j/controller/ColaboradoresController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../T4J-Grupo2/src/main/java/com/grupo2/t4j/controller/UtilizadoresController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../T4J-Grupo2/src/main/java/com/grupo2/t4j/dto/ColaboradorDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../T4J-Grupo2/src/main/java/com/grupo2/t4j/dto/ListaColaboradorDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../T4J-Grupo2/src/main/java/com/grupo2/t4j/dto/ListaUtilizadorDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../T4J-Grupo2/src/main/java/com/grupo2/t4j/dto/UtilizadorDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../T4J-Grupo2/src/main/java/com/grupo2/t4j/exception/ConversaoException.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../T4J-Grupo2/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../T4J-Grupo2/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../T4J-Grupo2/src/main/java/com/grupo2/t4j/controller/UtilizadoresController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../T4J-Grupo2/src/main/java/com/grupo2/t4j/controller/UtilizadoresController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../T4J-Grupo2/src/main/java/com/grupo2/t4j/dto/Mapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../T4J-Grupo2/src/main/java/com/grupo2/t4j/dto/Mapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../T4J-Grupo2/src/main/java/com/grupo2/t4j/model/Colaborador.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../T4J-Grupo2/src/main/java/com/grupo2/t4j/model/Colaborador.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../T4J-Grupo2/src/main/java/com/grupo2/t4j/model/Utilizador.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../T4J-Grupo2/src/main/java/com/grupo2/t4j/model/Utilizador.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../T4J-Grupo2/src/main/java/com/grupo2/t4j/xml/XmlHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../T4J-Grupo2/src/main/java/com/grupo2/t4j/xml/XmlHandler.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,7 +71,7 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="93a9afbf-b1a6-4eb7-8fa9-1fb37412cebd" name="Default Changelist" comment="" />
+      <changelist id="21ac7501-8735-41b9-901f-79619be0daad" name="Default Changelist" comment="" />
       <created>1612175794942</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -88,6 +79,7 @@
       <workItem from="1612175797131" duration="2852000" />
       <workItem from="1612178993470" duration="13560000" />
       <workItem from="1612209142927" duration="487000" />
+      <workItem from="1612254517634" duration="1705000" />
     </task>
     <servers />
   </component>

@@ -42,7 +42,7 @@ public class OrganizacaoTest {
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
-    
+/*
     public void addColaborador(){
         //Arrange
         Organizacao o1= new Organizacao("Casa Rocha", "123456789", "casarocha.pt", "912345678","casa@rocha.com");
@@ -52,6 +52,6 @@ public class OrganizacaoTest {
         
         //Assert
         assertTrue(o1.getColaboradores().contains(c1));
-    }
+    }*/
     
 }
