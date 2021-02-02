@@ -11,7 +11,24 @@ package com.grupo2.t4j.model;
  */
 public class Plataforma {
 
+<<<<<<< Updated upstream
     private String designacao;
+=======
+    /**
+     * Atributos Plataforma
+     */
+    private String designacao;
+    private static Plataforma plataforma;
+    private RepositorioOrganizacao repositorioOrganizacao;
+    private RepositorioCategoria repositorioCategoria;
+    private RepositorioColaborador repositorioColaborador;
+    private RepositorioCompetenciaTecnica repositorioCompetenciaTecnica;
+    private RepositorioTarefa repositorioTarefa;
+    private RepositorioUtilizador repositorioUtilizador;
+
+    private IAlgoritmoGeradorPasswords algoritmoGeradorPasswords;
+    private UsersAPI usersAPI;
+>>>>>>> Stashed changes
 
     public Plataforma() {
     }
