@@ -10,5 +10,5 @@ package com.grupo2.t4j.controller;
  * @author acris
  */
 public class RegistarCategoriaController {
-    
+    //public boolean registarCategoria(String id, String)
 }
