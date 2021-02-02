@@ -147,6 +147,17 @@ public class CompetenciaTecnica {
             throw new AreaActividadeInexistenteException ("A área de actividade não existe");
         }
     }
+
+    /**
+     * Representacao textual da classe competencia tecnica
+     * @return 
+     */
+    @Override
+    public String toString() {
+        return "CompetenciaTecnica{" + "codigo: " + codigo + ",/ndescricaoBreve: " 
+                + descricaoBreve + ", /ndescricaoDetalhada: " + descricaoDetalhada +
+                ", /nareaActividade: " + areaActividade + ", /ngrau=" + grau + '}';
+    }
     
     
     
