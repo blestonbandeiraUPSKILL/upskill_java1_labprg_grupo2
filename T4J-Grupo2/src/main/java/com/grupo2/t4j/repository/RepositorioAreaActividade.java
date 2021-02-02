@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.grupo2.t4j.controller;
+package com.grupo2.t4j.repository;
 
 /**
  *
  * @author acris
  */
-public class RegistarCategoriaController {
-    //public boolean registarCategoria(String id, String)
+public class RepositorioAreaActividade {
+    
 }
