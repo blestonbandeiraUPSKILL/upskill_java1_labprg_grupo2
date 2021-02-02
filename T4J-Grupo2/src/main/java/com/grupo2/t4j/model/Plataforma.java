@@ -13,6 +13,11 @@ import com.grupo2.t4j.repository.*;
  */
 public class Plataforma {
 
+  /**
+     * Atributos Plataforma
+     */
+
+    private String designacao;
     private static Plataforma plataforma;
     private RepositorioOrganizacao repositorioOrganizacao;
     private RepositorioCategoria repositorioCategoria;
@@ -24,6 +29,10 @@ public class Plataforma {
     private IAlgoritmoGeradorPasswords algoritmoGeradorPasswords;
     private UsersAPI usersAPI;
 
+
+    /**
+     * Construtor Classe Plataforma
+     */
     public Plataforma() {
         //algoritmoGeradorPasswords = new AlgoritmoGeradorPasswords();
         usersAPI = new UsersAPI();
@@ -33,6 +42,20 @@ public class Plataforma {
         //repositorioUtilizador = new RepositorioUtilizador();
         repositorioCompetenciaTecnica = new RepositorioCompetenciaTecnica();
         repositorioTarefa = new RepositorioTarefa();
+    }
+
+    /**
+     * @return the designacao
+     */
+    public String getDesignacao() {
+        return designacao;
+    }
+
+    /**
+     * @param designacao the designacao to set
+     */    
+    public void setDesignacao(String designacao) {
+        this.designacao = designacao;
     }
 
     public static Plataforma getInstance() {
@@ -73,4 +96,5 @@ public class Plataforma {
     public UsersAPI getUsersAPI() {
         return usersAPI;
     }
+
 }
