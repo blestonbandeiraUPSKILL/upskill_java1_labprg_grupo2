@@ -5,10 +5,18 @@
  */
 package com.grupo2.t4j.controller;
 
+import com.grupo2.t4j.model.CompetenciaTecnica;
+import com.grupo2.t4j.repository.RepositorioAreaActividade;
+import com.grupo2.t4j.repository.RepositorioCompetenciaTecnica;
+
 /**
  *
  * @author acris
  */
 public class RegistarComptetenciaTecnicaController {
     
+    /*public boolean registarCompetenciaTecnica(String codCT, String codAT, String descBreve, String descDetalhada){
+        CompetenciaTecnica compTec = new CompetenciaTecnica (codCT, RepositorioAreaActividade.getAreaAtividadeByCodigo(codAT), descBreve, descDetalhada);
+        return RepositorioCompetenciaTecnica.getRepositorio().addCompetenciaTecnica(compTec);
+    }*/
 }
