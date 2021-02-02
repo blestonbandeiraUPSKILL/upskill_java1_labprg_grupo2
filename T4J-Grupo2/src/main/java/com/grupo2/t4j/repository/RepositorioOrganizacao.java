@@ -20,7 +20,7 @@ public class RepositorioOrganizacao {
 
     private List<Organizacao> listaOrganizacoes = new ArrayList<>();
     private Plataforma plataforma;
-    Colaborador colaborador;
+    Colaborador colabGestor;
 
     public RepositorioOrganizacao(Plataforma plataforma) {
         this.plataforma = plataforma;
@@ -30,15 +30,15 @@ public class RepositorioOrganizacao {
         this.listaOrganizacoes = listaOrganizacoes;
     }
 
-    public Organizacao novaOrganizacao(String nome, String nif, String enderecoLocal,
-                                       String enderecoPostal, String localidade,
+    public Organizacao novaOrganizacao(String nome, String nif, String arruamento,
+                                       String numeroPorta, String localidade, String codigoPostal,
                                        String telefone, Website website, Email emailOrganizacao,
                                        String nomeGestor, String funcao, String telefoneGestor,
                                        Email emailGestor) {
-        EnderecoPostal endereco = Organizacao.novoEndereco(enderecoLocal, enderecoPostal, localidade);
+        EnderecoPostal endereco = Organizacao.novoEndereco(arruamento, numeroPorta, localidade, codigoPostal);
         //colaborador = Organizacao.novoColaborador(nomeGestor, funcao, telefoneGestor, emailGestor);
 
-        return new Organizacao(nome, nif, endereco, telefone, website, emailOrganizacao, colaborador);
+        return new Organizacao(nome, nif, endereco, telefone, website, emailOrganizacao, colabGestor);
     }
 
     public boolean validaOrganizacao(Organizacao organizacao) {

@@ -18,9 +18,9 @@ public class Colaborador extends Utilizador{
         super();
     }
 
-    public Colaborador(String nome, Email email, Password password){
+    /*public Colaborador(String nome, Email email, Password password){
         super(nome, email, password);
-    }
+    }*/
 
     public Colaborador(String nome, Email email, Password password, String funcao,
             String telefone){
