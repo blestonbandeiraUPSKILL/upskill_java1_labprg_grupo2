@@ -16,8 +16,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RepositorioUtilizador {
-    
+    private static RepositorioUtilizador instance;
     private List<Utilizador> listaUtilizadores = new ArrayList<>();
+    
+    /*public static RepositorioUtilizador getInstance(){
+        if (instance == null){
+            instance = new RepositorioUtilizador();
+        }
+        return instance;
+    }*/
     
     public RepositorioUtilizador(List<Utilizador> listaUtilizadores){
         this.listaUtilizadores = listaUtilizadores;
