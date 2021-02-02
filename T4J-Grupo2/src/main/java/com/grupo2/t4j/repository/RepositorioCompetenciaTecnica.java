@@ -54,7 +54,7 @@ public class RepositorioCompetenciaTecnica {
     }
     
     /**
-     * Devolve a lista de competÃªncias tecnicas
+     * Devolve a lista de competencias tecnicas
      * @return 
      */
     public ArrayList<CompetenciaTecnica> getCompetenciasTecnicas() {

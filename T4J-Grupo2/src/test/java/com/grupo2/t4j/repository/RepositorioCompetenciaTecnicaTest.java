@@ -5,10 +5,11 @@
  */
 package com.grupo2.t4j.repository;
 
+import org.junit.Test;
 import com.grupo2.t4j.exception.CompetenciaTecnicaDuplicadaException;
 import com.grupo2.t4j.model.CompetenciaTecnica;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+//import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
@@ -35,7 +36,7 @@ public class RepositorioCompetenciaTecnicaTest {
         //Assert
         assertTrue(rc1.getCompetenciasTecnicas().contains(ct1));
     }
-    /*@Test(expected = CompetenciaTecnicaDuplicadaException.class)
+    @Test(expected = CompetenciaTecnicaDuplicadaException.class)
     public void testAddCompetenciaTecnicaDuplicada() {
         //Arrange
         RepositorioCompetenciaTecnica rc1= new RepositorioCompetenciaTecnica();
@@ -44,7 +45,7 @@ public class RepositorioCompetenciaTecnicaTest {
         rc1.addCompetenciaTecnica(ct1);
         
         
-    }*/
+    }
     /*@Test(expected = DescricaoInvalidaException.class)
     public void testAddCompetenciaDescricaoInvalida() {
         //Arrange
@@ -66,6 +67,14 @@ public class RepositorioCompetenciaTecnicaTest {
 
     @Test
     public void testGetCompetenciaTecnicaByCodigo() {
+    }
+
+    @org.junit.Test
+    public void testGetRepositorio() {
+    }
+
+    @org.junit.Test
+    public void testGetCompetenciasTecnicasByAreaActividade() {
     }
     
 }
