@@ -11,6 +11,9 @@ package com.grupo2.t4j.model;
  */
 public class AreaActividade {
 
+/**
+ * Atributos AreaAtividade
+ */
     private String codigo;
     private String descBreve;
     private String descDetalhada;
