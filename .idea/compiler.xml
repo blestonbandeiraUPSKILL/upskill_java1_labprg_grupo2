@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="daemon.booking" />
+        <module name="persistence.impl" />
+        <module name="core" />
+        <module name="app.user.console" />
+        <module name="AutarquiaCLI" />
+        <module name="bootstrappers" />
+        <module name="app.bootstrap" />
+        <module name="app.backoffice.console" />
+        <module name="T4J-Grupo2" />
+        <module name="T4J" />
+        <module name="app.pos.console" />
+        <module name="app.common.console" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="app.backoffice.console" target="1.8" />
+      <module name="app.bootstrap" target="1.8" />
+      <module name="app.common.console" target="1.8" />
+      <module name="app.pos.console" target="1.8" />
+      <module name="app.user.console" target="1.8" />
+      <module name="AutarquiaCLI" target="1.8" />
+      <module name="bootstrappers" target="1.8" />
+      <module name="core" target="1.8" />
+      <module name="daemon.booking" target="1.8" />
+      <module name="ecafeteria" target="1.8" />
+      <module name="persistence.impl" target="1.8" />
+      <module name="T4J" target="1.8" />
+      <module name="T4J-Grupo2" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

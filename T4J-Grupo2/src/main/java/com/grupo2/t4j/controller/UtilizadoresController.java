@@ -13,7 +13,7 @@ import java.util.ArrayList;
 
 public class UtilizadoresController {
 
-    public static Response getUtilizadores(String uri) {
+   /* public static Response getUtilizadores(String uri) {
         Response response = null;
         HttpRequest httpRequest = new HttpRequest(HttpRequestType.GET, uri, "");
         HttpResponse httpResponse = HttpConnection.makeRequest(httpRequest);
@@ -111,6 +111,6 @@ public class UtilizadoresController {
         }
         return response;
     }
-
+*/
 
 }
