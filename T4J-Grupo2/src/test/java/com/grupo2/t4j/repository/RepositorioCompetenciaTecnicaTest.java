@@ -5,6 +5,7 @@
  */
 package com.grupo2.t4j.repository;
 
+import com.grupo2.t4j.exception.CompetenciaTecnicaDuplicadaException;
 import com.grupo2.t4j.model.CompetenciaTecnica;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -34,6 +35,17 @@ public class RepositorioCompetenciaTecnicaTest {
         //Assert
         assertTrue(rc1.getCompetenciasTecnicas().contains(ct1));
     }
+    /*@Test(expected = CompetenciaTecnicaDuplicadaException.class)
+    public void testAddCompetenciaTecnicaDuplicada() {
+        //Arrange
+        RepositorioCompetenciaTecnica rc1= new RepositorioCompetenciaTecnica();
+        CompetenciaTecnica ct1= new CompetenciaTecnica("1234", "Jogo do Galo", "Jogo para duas pessoas");
+        //Act
+        rc1.addCompetenciaTecnica(ct1);
+        
+        
+    }*/
+    
 
     @Test
     public void testSetListaCompTecnicas() {

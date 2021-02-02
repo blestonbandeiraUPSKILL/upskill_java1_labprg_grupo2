@@ -6,6 +6,7 @@
 package com.grupo2.t4j.repository;
 
 import com.grupo2.t4j.exception.CompetenciaTecnicaDuplicadaException;
+import com.grupo2.t4j.model.AreaActividade;
 import com.grupo2.t4j.model.Categoria;
 import com.grupo2.t4j.model.CompetenciaTecnica;
 import java.util.ArrayList;
@@ -65,5 +66,17 @@ public class RepositorioCompetenciaTecnica {
             }
         }
         return null;
+    }
+    
+    public ArrayList<CompetenciaTecnica> getCompetenciasTecnicasByAreaAtividade(AreaActividade at) {
+        ArrayList<CompetenciaTecnica> compTecPorAt = new ArrayList<>();
+
+        for (CompetenciaTecnica ct : listaCompTecnicas) {
+            if (ct.getAreaActividade().equals(at)) {
+                compTecPorAt.add(ct);
+            }
+        }
+
+        return compTecPorAt;
     }
 }
