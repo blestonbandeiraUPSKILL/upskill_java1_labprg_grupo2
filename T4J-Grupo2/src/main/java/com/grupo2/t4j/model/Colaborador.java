@@ -7,26 +7,47 @@ package com.grupo2.t4j.model;
 
 /**
  *
- * @author acris
+ * @author CAD
  */
-public class Colaborador {
+public class Colaborador extends Utilizador{
     
     private String funcao;
     private String telefone;
-    
-    public Colaborador(String funcao, String telefone){
+
+    public Colaborador() {
+        super();
+    }
+
+    public Colaborador(String nome, Email email, Password password){
+        super(nome, email, password);
+    }
+
+    public Colaborador(String nome, Email email, Password password, String funcao,
+            String telefone){
+        super(nome, email, password);
         setFuncao(funcao);
         setTelefone(telefone);
     }
-    
+
+    public Colaborador(String nomeGestor, Email emailGestor, String funcao, String telefoneGestor) {
+        super(nomeGestor, emailGestor);
+        setFuncao(funcao);
+        setTelefone(telefoneGestor);
+    }
+    public Colaborador (Colaborador colaborador){
+        super(colaborador.getNome(), colaborador.getEmail(), colaborador.getPassword());
+        setFuncao(colaborador.funcao);
+        setTelefone(colaborador.telefone);
+    }
+
     public final void setFuncao(String funcao){
         if (funcao == null || funcao.trim().isEmpty()) {
             throw new IllegalArgumentException("Função é inválida!");
         }
         this.funcao = funcao;
     }
-    
-     public final void setTelefone(String telefone) {
+
+    public final void setTelefone(String telefone) {
         int numero = Integer.parseInt(telefone);
         if (numero < 100000000 || numero > 999999999) {
             throw new IllegalArgumentException("Número é inválido!");
@@ -34,16 +55,11 @@ public class Colaborador {
         this.telefone = telefone;
     }
      
-     public String getFuncao(){
+    public String getFuncao(){
         return funcao;
     }
     
     public String getTelefone(){
         return telefone;
-    }
-    
-    @Override
-    public Email getEmail(){
-        return super.getEmail();
     }
 }
