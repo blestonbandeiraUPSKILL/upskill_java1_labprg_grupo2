@@ -5,6 +5,7 @@
  */
 package com.grupo2.t4j.model;
 
+import com.grupo2.t4j.exception.AreaActividadeInexistenteException;
 import com.grupo2.t4j.exception.DescricaoInvalidaException;
 
 /**
@@ -19,6 +20,7 @@ public class CompetenciaTecnica {
     private String codigo;
     private String descricaoBreve;
     private String descricaoDetalhada;
+    private AreaActividade areaActividade;
     private GrauProficiencia grau;
     
 /**
@@ -26,13 +28,30 @@ public class CompetenciaTecnica {
  * @param codigo
  * @param descricaoBreve
  * @param descricaoDetalhada
- * @param obrigatoria 
+ *
+ */
+    public CompetenciaTecnica(String codigo, String descricaoBreve, String descricaoDetalhada, AreaActividade areaActividade) {
+        this.codigo = codigo;
+        this.descricaoBreve = descricaoBreve;
+        this.descricaoDetalhada = descricaoDetalhada;
+        this.areaActividade=areaActividade;
+        //this.grau=grau;
+        
+        
+    }
+    
+    /**
+ * Construtor Competencia Tecnica 
+ * @param codigo
+ * @param descricaoBreve
+ * @param descricaoDetalhada
+ *
  */
     public CompetenciaTecnica(String codigo, String descricaoBreve, String descricaoDetalhada) {
         this.codigo = codigo;
         this.descricaoBreve = descricaoBreve;
         this.descricaoDetalhada = descricaoDetalhada;
-        //this.grau=grau;
+        
         
         
     }
@@ -45,11 +64,7 @@ public class CompetenciaTecnica {
         setDescricaoBreve(descricaoBreve);
         setDescricaoDetalhada(descricaoDetalhada);
         
-    }
-    
-  
-
-    
+    } 
 
     /**
      * @return the codigo
@@ -113,6 +128,24 @@ public class CompetenciaTecnica {
      */
     public void setGrau(GrauProficiencia grau) {
         this.grau = grau;
+    }
+
+    /**
+     * @return the areaActividade
+     */
+    public AreaActividade getAreaActividade() {
+        return areaActividade;
+    }
+
+    /**
+     * @param areaActividade the areaActividade to set
+     */
+    public void setAreaActividade(AreaActividade areaActividade) {
+        if (areaActividade != null) {
+            this.areaActividade = areaActividade;
+        }else {
+            throw new AreaActividadeInexistenteException ("A área de actividade não existe");
+        }
     }
     
     
