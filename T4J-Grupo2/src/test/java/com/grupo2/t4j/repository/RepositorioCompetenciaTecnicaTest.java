@@ -45,7 +45,16 @@ public class RepositorioCompetenciaTecnicaTest {
         
         
     }*/
-    
+    /*@Test(expected = DescricaoInvalidaException.class)
+    public void testAddCompetenciaDescricaoInvalida() {
+        //Arrange
+        RepositorioCompetenciaTecnica rc1= new RepositorioCompetenciaTecnica();
+        CompetenciaTecnica ct1= new CompetenciaTecnica("1234", "Jogo do Galo", "Jogo para duas pessoas");
+        //Act
+        rc1.addCompetenciaTecnica(ct1);
+        
+        
+    }*/
 
     @Test
     public void testSetListaCompTecnicas() {
