@@ -11,12 +11,12 @@ public class RepositorioCategoria {
     
     public static RepositorioCategoria getInstance(){
         if (instance == null){
-            instance = new RepositorioCompetenciaTecnica();
+            instance = new RepositorioCategoria();
         }
         return instance;
     }
    /**
-    * Adiciona uma categoria Ã  lista de categorias
+    * Adiciona uma categoria a  lista de categorias
     * @param categoria
     * @throws CategoriaDuplicadaException 
     */
