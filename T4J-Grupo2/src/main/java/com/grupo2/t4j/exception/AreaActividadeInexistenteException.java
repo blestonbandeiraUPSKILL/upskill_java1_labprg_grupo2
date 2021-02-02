@@ -7,11 +7,10 @@ package com.grupo2.t4j.exception;
 
 /**
  *
- * @author CAD
+ * @author acris
  */
-public class UtilizadorDuplicadoException extends RuntimeException{
-
-    public UtilizadorDuplicadoException(String s){
+public class AreaActividadeInexistenteException extends RuntimeException{
+    public AreaActividadeInexistenteException(String s) {
         super(s);
     }
 }

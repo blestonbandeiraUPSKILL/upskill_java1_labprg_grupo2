@@ -6,6 +6,7 @@
 package com.grupo2.t4j.repository;
 
 import com.grupo2.t4j.exception.CompetenciaTecnicaDuplicadaException;
+import com.grupo2.t4j.model.AreaActividade;
 import com.grupo2.t4j.model.Categoria;
 import com.grupo2.t4j.model.CompetenciaTecnica;
 import java.util.ArrayList;
@@ -16,24 +17,36 @@ import java.util.List;
  * @author acris
  */
 public class RepositorioCompetenciaTecnica {
+    public static RepositorioCompetenciaTecnica repositorio;
     List<CompetenciaTecnica> listaCompTecnicas= new ArrayList<>();
     
     /**
-     * Adiciona uma competÃªncia tÃ©cnica Ã  lista de Competencias TÃ©cnicas
+     * Devolve uma instancia static de RepositorioCompetenciaTecnica
+     * @return 
+     */
+    public static RepositorioCompetenciaTecnica getRepositorio(){
+        if (repositorio == null){
+            repositorio = new RepositorioCompetenciaTecnica();
+        }
+        return repositorio;
+    }
+    /**
+     * Adiciona uma competencia tecnica a lista de Competencias Tecnicas
      * @param competenciaTecnica
      * @throws com.grupo2.t4j.exception.CompetenciaTecnicaDuplicadaException
      * @throws CompetenciaTecnicaDuplicadaException 
      */
-    public void addCompetenciaTecnica(CompetenciaTecnica competenciaTecnica) throws CompetenciaTecnicaDuplicadaException {
+    public boolean addCompetenciaTecnica(CompetenciaTecnica competenciaTecnica) throws CompetenciaTecnicaDuplicadaException {
         CompetenciaTecnica ct = getCompetenciaTecnicaByCodigo(competenciaTecnica.getCodigo());
         if (ct == null) {
             this.listaCompTecnicas.add(competenciaTecnica);
+            return true;
         } else {
             throw new CompetenciaTecnicaDuplicadaException(ct.getCodigo() + ": Competencia Tecnica já existe");
         }
     }
 /**
- * Atualiza a lista de CompetÃªncias TÃ©cnicas
+ * Atualiza a lista de Competencias Tecnicas
  * @param listaCompTecnicas 
  */
     public void setListaCompTecnicas(List<CompetenciaTecnica> listaCompTecnicas) {
@@ -41,7 +54,7 @@ public class RepositorioCompetenciaTecnica {
     }
     
     /**
-     * Devolve a lista de competÃªncias tÃ©cnicas
+     * Devolve a lista de competÃªncias tecnicas
      * @return 
      */
     public ArrayList<CompetenciaTecnica> getCompetenciasTecnicas() {
@@ -50,7 +63,7 @@ public class RepositorioCompetenciaTecnica {
     }
     
    /**
-    * Devolve uma competÃªncia tÃ©cnica de acordo com o seu cÃ³digo
+    * Devolve uma competencia tecnica de acordo com o seu codigo
     * @param codigo
     * @return 
     */
@@ -65,5 +78,21 @@ public class RepositorioCompetenciaTecnica {
             }
         }
         return null;
+    }
+    /**
+     * Devolve uma lista de competencias tecnicas por area de actividade
+     * @param at
+     * @return 
+     */
+    public ArrayList<CompetenciaTecnica> getCompetenciasTecnicasByAreaActividade(AreaActividade at) {
+        ArrayList<CompetenciaTecnica> compTecPorAt = new ArrayList<>();
+
+        for (CompetenciaTecnica ct : listaCompTecnicas) {
+            if (ct.getAreaActividade().equals(at)) {
+                compTecPorAt.add(ct);
+            }
+        }
+
+        return compTecPorAt;
     }
 }

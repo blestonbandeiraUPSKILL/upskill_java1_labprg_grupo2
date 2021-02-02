@@ -10,10 +10,15 @@ package com.grupo2.t4j.model;
  * @author acris
  */
 public class CaracterizacaoCT {
+    
+    private CompetenciaTecnica ct;
+    private GrauProficiencia gp;
     private boolean obrigatoria;
 
 
-    public CaracterizacaoCT(boolean obrigatoria) {
+    public CaracterizacaoCT(CompetenciaTecnica ct, GrauProficiencia gp, boolean obrigatoria) {
+        this.ct=ct;
+        this.gp=gp;
         this.obrigatoria = obrigatoria;
 
     }

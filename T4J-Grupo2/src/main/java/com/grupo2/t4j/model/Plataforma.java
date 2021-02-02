@@ -5,21 +5,18 @@
  */
 package com.grupo2.t4j.model;
 
+import com.grupo2.t4j.repository.*;
+
 /**
  *
  * @author acris
  */
 public class Plataforma {
 
-    /**
-<<<<<<< Updated upstream
+  /**
      * Atributos Plataforma
      */
-=======
-    * Atributos Plataforma
-    */
->>>>>>> Stashed changes
-    private String designacao;
+
     private String designacao;
     private static Plataforma plataforma;
     private RepositorioOrganizacao repositorioOrganizacao;
@@ -32,10 +29,19 @@ public class Plataforma {
     private IAlgoritmoGeradorPasswords algoritmoGeradorPasswords;
     private UsersAPI usersAPI;
 
+
     /**
      * Construtor Classe Plataforma
      */
     public Plataforma() {
+        //algoritmoGeradorPasswords = new AlgoritmoGeradorPasswords();
+        usersAPI = new UsersAPI();
+        repositorioOrganizacao = new RepositorioOrganizacao(this);
+        repositorioCategoria = new RepositorioCategoria();
+        //repositorioColaborador = new RepositorioColaborador();
+        //repositorioUtilizador = new RepositorioUtilizador();
+        repositorioCompetenciaTecnica = new RepositorioCompetenciaTecnica();
+        repositorioTarefa = new RepositorioTarefa();
     }
 
     /**
@@ -50,6 +56,45 @@ public class Plataforma {
      */    
     public void setDesignacao(String designacao) {
         this.designacao = designacao;
+    }
+
+    public static Plataforma getInstance() {
+        if(Plataforma.plataforma == null) {
+            Plataforma.plataforma = new Plataforma();
+        }
+        return plataforma;
+    }
+
+    public RepositorioOrganizacao getRepositorioOrganizacao() {
+        return repositorioOrganizacao;
+    }
+
+    public RepositorioCategoria getRepositorioCategoria() {
+        return repositorioCategoria;
+    }
+
+    public IAlgoritmoGeradorPasswords getAlgoritmoGeradorPwd() {
+        return algoritmoGeradorPasswords;
+    }
+
+    public RepositorioColaborador getRepositorioColaborador() {
+        return repositorioColaborador;
+    }
+
+    public RepositorioCompetenciaTecnica getRepositorioCompetenciaTecnica() {
+        return repositorioCompetenciaTecnica;
+    }
+
+    public RepositorioTarefa getRepositorioTarefa() {
+        return repositorioTarefa;
+    }
+
+    public RepositorioUtilizador getRepositorioUtilizador() {
+        return repositorioUtilizador;
+    }
+
+    public UsersAPI getUsersAPI() {
+        return usersAPI;
     }
 
 }

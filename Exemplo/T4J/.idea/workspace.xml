@@ -5,7 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="feea71a2-db5f-4ec9-8cc5-60e134972341" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../../T4J-Grupo2/src/main/java/com/grupo2/t4j/model/Data.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../T4J-Grupo2/src/main/java/com/grupo2/t4j/model/Data.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../T4J-Grupo2/src/main/java/com/grupo2/t4j/model/IAlgoritmoGeradorPasswords.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../T4J-Grupo2/src/main/java/com/grupo2/t4j/model/UsersAPI.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../T4J-Grupo2/src/main/java/com/grupo2/t4j/model/UsersAPIAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Cliente-Autarquias/AutarquiaCLI/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../Cliente-Autarquias/AutarquiaCLI/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../T4J-Grupo2/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../T4J-Grupo2/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../T4J-Grupo2/src/main/java/com/grupo2/t4j/model/Colaborador.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../T4J-Grupo2/src/main/java/com/grupo2/t4j/model/Colaborador.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../T4J-Grupo2/src/main/java/com/grupo2/t4j/model/Organizacao.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../T4J-Grupo2/src/main/java/com/grupo2/t4j/model/Organizacao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../T4J-Grupo2/src/main/java/com/grupo2/t4j/model/Plataforma.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../T4J-Grupo2/src/main/java/com/grupo2/t4j/model/Plataforma.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../T4J-Grupo2/src/main/java/com/grupo2/t4j/model/Utilizador.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../T4J-Grupo2/src/main/java/com/grupo2/t4j/model/Utilizador.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../T4J-Grupo2/src/main/java/com/grupo2/t4j/repository/RepositorioOrganizacao.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../T4J-Grupo2/src/main/java/com/grupo2/t4j/repository/RepositorioOrganizacao.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,17 +65,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Application.FXMain" />
@@ -81,6 +80,11 @@
       <option name="presentableId" value="Default" />
       <updated>1612191485052</updated>
       <workItem from="1612191488792" duration="4376000" />
+<<<<<<< HEAD
+      <workItem from="1612259946858" duration="6264000" />
+=======
+      <workItem from="1612259946858" duration="5939000" />
+>>>>>>> 70ff16d80a3c9f90ad92df3532cc9ededab29b98
     </task>
     <servers />
   </component>
@@ -97,6 +101,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
