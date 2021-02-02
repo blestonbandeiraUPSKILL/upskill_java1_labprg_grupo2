@@ -103,8 +103,8 @@ public class Organizacao {
         return new EnderecoPostal(enderecoLocal, enderecoPostal, localidade);
     }
 
-    public static Colaborador novoColaborador(String nomeGestor, String funcao, String telefoneGestor, Email emailGestor ) {
+   /* public static Colaborador novoColaborador(String nomeGestor, String funcao, String telefoneGestor, Email emailGestor ) {
         return new Colaborador(nomeGestor, emailGestor, funcao, telefoneGestor);
-    }
+    }*/
 
 }
