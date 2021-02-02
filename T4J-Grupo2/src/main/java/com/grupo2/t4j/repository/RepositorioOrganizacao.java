@@ -36,7 +36,7 @@ public class RepositorioOrganizacao {
                                        String nomeGestor, String funcao, String telefoneGestor,
                                        Email emailGestor) {
         EnderecoPostal endereco = Organizacao.novoEndereco(enderecoLocal, enderecoPostal, localidade);
-        colaborador = Organizacao.novoColaborador(nomeGestor, funcao, telefoneGestor, emailGestor);
+        //colaborador = Organizacao.novoColaborador(nomeGestor, funcao, telefoneGestor, emailGestor);
 
         return new Organizacao(nome, nif, endereco, telefone, website, emailOrganizacao, colaborador);
     }
@@ -50,18 +50,18 @@ public class RepositorioOrganizacao {
             IAlgoritmoGeradorPasswords algoritmoGeradorPasswords = plataforma.getAlgoritmoGeradorPwd();
             Password password = algoritmoGeradorPasswords.geraPassword();
 
-            plataforma.getUsersAPI().registerUserWithRoles(colaborador.getEmailGestor(), colaborador.getEmailGestor(), password, "gestor,colaborador");
+           // plataforma.getUsersAPI().registerUserWithRoles(colaborador.getEmailGestor(), colaborador.getEmailGestor(), password, "gestor,colaborador");
 
             addOrganizacao(organizacao);
 
             //gravar
 
             //Enviar email com credenciais de acesso
-            Email email = new Email();
+            /*Email email = new Email();
             email.setTo(colaborador.getEmailGestor());
             email.setSubject("Envio de credenciais para acesso à plataforma");
             email.setText("username " + colaborador.getEmailGestor() + " ... password " + password);
-            email.send();
+            email.send();*/
         }
         else {
             throw new Exception();

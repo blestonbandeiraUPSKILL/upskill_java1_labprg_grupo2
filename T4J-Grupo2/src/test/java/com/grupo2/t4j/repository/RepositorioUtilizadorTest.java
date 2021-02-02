@@ -20,22 +20,22 @@ public class RepositorioUtilizadorTest {
 
     public RepositorioUtilizadorTest() {
     }
-    
+
     @BeforeEach
     public void setUp() {
     }
 
-    @Test
+    /*@Test
     public void testAddUtilizador() {
         //Arrange
         RepositorioUtilizador ru1 = new RepositorioUtilizador();
         Utilizador u1= new Utilizador("Carol", "carol@upskill.pt", "12345678");
         //Act
         u1.addUtilizador(ru1);
-        
+
         //Assert
         assertTrue(ru1.getUtilizadores().contains(u1));
-    }
+    }*/
 
     @Test
     public void testSetListaUtilizadores() {

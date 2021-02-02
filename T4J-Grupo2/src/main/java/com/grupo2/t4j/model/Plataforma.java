@@ -25,7 +25,7 @@ public class Plataforma {
     private UsersAPI usersAPI;
 
     public Plataforma() {
-        algoritmoGeradorPasswords = new AlgoritmoGeradorPasswords();
+        //algoritmoGeradorPasswords = new AlgoritmoGeradorPasswords();
         usersAPI = new UsersAPI();
         repositorioOrganizacao = new RepositorioOrganizacao(this);
         repositorioCategoria = new RepositorioCategoria();
