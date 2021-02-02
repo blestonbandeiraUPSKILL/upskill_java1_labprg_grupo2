@@ -5,11 +5,9 @@
  */
 package com.grupo2.t4j.repository;
 
-
 import com.grupo2.t4j.exception.CompetenciaTecnicaDuplicadaException;
 import com.grupo2.t4j.model.AreaActividade;
 import com.grupo2.t4j.model.Categoria;
-
 import com.grupo2.t4j.model.CompetenciaTecnica;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,36 +19,68 @@ import java.util.List;
 public class RepositorioCompetenciaTecnica {
     List<CompetenciaTecnica> listaCompTecnicas= new ArrayList<>();
     
-    public RepositorioCompetenciaTecnica (List<CompetenciaTecnica> listaCompTecnicas){
-        this.listaCompTecnicas=listaCompTecnicas;
+    /**
+     * Adiciona uma competencia tecnica a lista de Competencias Tecnicas
+     * @param competenciaTecnica
+     * @throws com.grupo2.t4j.exception.CompetenciaTecnicaDuplicadaException
+     * @throws CompetenciaTecnicaDuplicadaException 
+     */
+    public void addCompetenciaTecnica(CompetenciaTecnica competenciaTecnica) throws CompetenciaTecnicaDuplicadaException {
+        CompetenciaTecnica ct = getCompetenciaTecnicaByCodigo(competenciaTecnica.getCodigo());
+        if (ct == null) {
+            this.listaCompTecnicas.add(competenciaTecnica);
+        } else {
+            throw new CompetenciaTecnicaDuplicadaException(ct.getCodigo() + ": Competencia Tecnica já existe");
+        }
     }
-
-    public List<CompetenciaTecnica> getListaCompTecnicas() {
-        return listaCompTecnicas;
-    }
-
+/**
+ * Atualiza a lista de Competencias Tecnicas
+ * @param listaCompTecnicas 
+ */
     public void setListaCompTecnicas(List<CompetenciaTecnica> listaCompTecnicas) {
         this.listaCompTecnicas = listaCompTecnicas;
     }
-}
-   /* public ArrayList<CompetenciaTecnica> getCompetenciaTecnica() {
-        CompetenciaTecnica compTecnica;
-        ArrayList<CompetenciaTecnica> lista = new ArrayList<>();
-        for (int i = 0; i < this.listaCompTecnicas.size(); i++) {
-            compTecnica = this.listaCompTecnicas.get(i);
-            if (pessoa instanceof Funcionario) {
-            }
-            Funcionario copia = new Funcionario((Funcionario) pessoa);
-            lista.add(copia);
-        }
-
-        return null;
+    
+    /**
+     * Devolve a lista de competÃªncias tecnicas
+     * @return 
+     */
+    public ArrayList<CompetenciaTecnica> getCompetenciasTecnicas() {
+        
+      return new ArrayList<CompetenciaTecnica>(listaCompTecnicas);
     }
     
+   /**
+    * Devolve uma competencia tecnica de acordo com o seu codigo
+    * @param codigo
+    * @return 
+    */
+    public CompetenciaTecnica getCompetenciaTecnicaByCodigo(String codigo) {
+        CompetenciaTecnica compTec = null;
+        for (int i = 0; i < this.listaCompTecnicas.size(); i++) {
+            compTec = this.listaCompTecnicas.get(i);
+            if (compTec.getCodigo().equals(codigo)) {
+                CompetenciaTecnica copia = new CompetenciaTecnica(compTec);
+                return copia;
+               
+            }
+        }
+        return null;
+    }
+    /**
+     * Devolve uma lista de competencias tecnicas por area de actividade
+     * @param at
+     * @return 
+     */
+    public ArrayList<CompetenciaTecnica> getCompetenciasTecnicasByAreaActividade(AreaActividade at) {
+        ArrayList<CompetenciaTecnica> compTecPorAt = new ArrayList<>();
 
+        for (CompetenciaTecnica ct : listaCompTecnicas) {
+            if (ct.getAreaActividade().equals(at)) {
+                compTecPorAt.add(ct);
+            }
+        }
 
-
-        return lista;
-    }*/
-    
-
+        return compTecPorAt;
+    }
+}

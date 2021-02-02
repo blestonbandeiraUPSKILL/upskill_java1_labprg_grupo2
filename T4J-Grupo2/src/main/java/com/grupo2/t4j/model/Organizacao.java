@@ -7,7 +7,7 @@ package com.grupo2.t4j.model;
 
 /**
  *
- * @author acris
+ * @author CAD
  */
 
 import com.grupo2.t4j.exception.*;
@@ -16,16 +16,32 @@ public class Organizacao {
     
     private String nome;
     private String NIF;
-    private String website;
+    private Website websiteOrg;
     private String telefone;
-    private Email email;
+    private Email emailOrg;
+    private EnderecoPostal enderecoPostal;
+    private Colaborador colabGestor;
     
-    public Organizacao(String nome, String NIF, String website, String telefone, Email email){
+    public Organizacao(){
+    }
+    
+    public Organizacao(String nome, String NIF, EnderecoPostal enderecoPostal, String telefone,
+                       Website websiteOrg, Email emailOrg, Colaborador colabGestor){
         setNome(nome);
         setNif(NIF);
-        setWebsite(website);
+        this.websiteOrg = new Website(websiteOrg);
         setTelefone(telefone);
-        setEmail(email);
+        this.emailOrg = new Email(emailOrg);
+        this.colabGestor = new Colaborador(colabGestor);
+    }
+    
+    public Organizacao(Organizacao organizacao){
+        setNome(organizacao.nome);
+        setNif(organizacao.NIF);
+        this.websiteOrg = new Website(organizacao.websiteOrg);
+        setTelefone(organizacao.telefone);
+        this.emailOrg = new Email(organizacao.emailOrg);
+        this.colabGestor = new Colaborador(organizacao.colabGestor);
     }
     
     public final void setNome(String nome) {
@@ -44,13 +60,8 @@ public class Organizacao {
         }
     }
     
-    public void setWebsite(String website){
-        if(eURL(website)){
-            this.website = website;
-        }
-        else{
-            throw new IllegalArgumentException("O endereço do website é inválido!");
-        }
+    public void setWebsite(Website websiteOrg){
+        this.websiteOrg = websiteOrg;
     }
     
     public final void setTelefone(String telefone) {
@@ -59,20 +70,11 @@ public class Organizacao {
             throw new IllegalArgumentException("Número é inválido!");
         }
         this.telefone = telefone;
-    }
+    }  
     
-    // Dica de: https://qastack.com.br/programming/2230676/how-to-check-for-a-valid-url-in-java
-    
-    public boolean eURL(String url) {
-        try {
-            (new java.net.URL(url)).openStream().close();
-            return true;
-        } catch (Exception ex) { }
-            return false;
-    }
     
     public final void setEmail(Email email){
-        this.email = email;
+        this.emailOrg = emailOrg;
     }
     
     public String getNome(){
@@ -83,7 +85,8 @@ public class Organizacao {
         return NIF;
     }
     
-    public String getWebsite(){
+    public Website getWebsite(){
+        Website website = new Website(websiteOrg);
         return website;
     }
     
@@ -92,6 +95,16 @@ public class Organizacao {
     }
     
     public Email getEmail(){
+        Email email = new Email(emailOrg);
         return email;
-    }    
+    }
+
+    public static EnderecoPostal novoEndereco(String enderecoLocal, String enderecoPostal, String localidade) {
+        return new EnderecoPostal(enderecoLocal, enderecoPostal, localidade);
+    }
+
+    public static Colaborador novoColaborador(String nomeGestor, String funcao, String telefoneGestor, Email emailGestor ) {
+        return new Colaborador(nomeGestor, emailGestor, funcao, telefoneGestor);
+    }
+
 }
