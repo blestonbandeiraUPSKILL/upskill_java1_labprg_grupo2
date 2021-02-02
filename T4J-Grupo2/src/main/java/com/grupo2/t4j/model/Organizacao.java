@@ -19,13 +19,14 @@ public class Organizacao {
     private Website websiteOrg;
     private String telefone;
     private Email emailOrg;
+    private EnderecoPostal enderecoPostal;
     private Colaborador colabGestor;
     
     public Organizacao(){
     }
     
-    public Organizacao(String nome, String NIF, Website websiteOrg, String telefone, 
-            Email emailOrg, Colaborador colabGestor){
+    public Organizacao(String nome, String NIF, EnderecoPostal enderecoPostal, String telefone,
+                       Website websiteOrg, Email emailOrg, Colaborador colabGestor){
         setNome(nome);
         setNif(NIF);
         this.websiteOrg = new Website(websiteOrg);
@@ -96,5 +97,14 @@ public class Organizacao {
     public Email getEmail(){
         Email email = new Email(emailOrg);
         return email;
-    }    
+    }
+
+    public static EnderecoPostal novoEndereco(String enderecoLocal, String enderecoPostal, String localidade) {
+        return new EnderecoPostal(enderecoLocal, enderecoPostal, localidade);
+    }
+
+    public static Colaborador novoColaborador(String nomeGestor, String funcao, String telefoneGestor, Email emailGestor ) {
+        return new Colaborador(nomeGestor, emailGestor, funcao, telefoneGestor);
+    }
+
 }

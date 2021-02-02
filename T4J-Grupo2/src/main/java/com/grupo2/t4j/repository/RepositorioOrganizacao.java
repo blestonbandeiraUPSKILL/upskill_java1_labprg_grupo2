@@ -36,7 +36,7 @@ public class RepositorioOrganizacao {
                                        String nomeGestor, String funcao, String telefoneGestor,
                                        Email emailGestor) {
         EnderecoPostal endereco = Organizacao.novoEndereco(enderecoLocal, enderecoPostal, localidade);
-        colaborador = Organizacao.novoColaborador(nomeGestor, funcao, telefoneGestor, emailGestor;
+        colaborador = Organizacao.novoColaborador(nomeGestor, funcao, telefoneGestor, emailGestor);
 
         return new Organizacao(nome, nif, endereco, telefone, website, emailOrganizacao, colaborador);
     }
