@@ -19,16 +19,17 @@ public class Organizacao {
     private Website websiteOrg;
     private String telefone;
     private Email emailOrg;
-    private EnderecoPostal enderecoPostal;
+    private EnderecoPostal enderecoOrg;
     private Colaborador colabGestor;
     
     public Organizacao(){
     }
     
-    public Organizacao(String nome, String NIF, EnderecoPostal enderecoPostal, String telefone,
+    public Organizacao(String nome, String NIF, EnderecoPostal enderecoOrg, String telefone,
                        Website websiteOrg, Email emailOrg, Colaborador colabGestor){
         setNome(nome);
         setNif(NIF);
+        this.enderecoOrg = new EnderecoPostal(enderecoOrg);
         this.websiteOrg = new Website(websiteOrg);
         setTelefone(telefone);
         this.emailOrg = new Email(emailOrg);
@@ -38,6 +39,7 @@ public class Organizacao {
     public Organizacao(Organizacao organizacao){
         setNome(organizacao.nome);
         setNif(organizacao.NIF);
+        this.enderecoOrg = new EnderecoPostal(organizacao.enderecoOrg);
         this.websiteOrg = new Website(organizacao.websiteOrg);
         setTelefone(organizacao.telefone);
         this.emailOrg = new Email(organizacao.emailOrg);
@@ -60,6 +62,10 @@ public class Organizacao {
         }
     }
     
+    public void setEnderecoPostal(EnderecoPostal enderecoOrg){
+        this.enderecoOrg = enderecoOrg;
+    }
+    
     public void setWebsite(Website websiteOrg){
         this.websiteOrg = websiteOrg;
     }
@@ -73,7 +79,7 @@ public class Organizacao {
     }  
     
     
-    public final void setEmail(Email email){
+    public final void setEmail(Email emailOrg){
         this.emailOrg = emailOrg;
     }
     
@@ -83,6 +89,11 @@ public class Organizacao {
     
     public String getNif(){
         return NIF;
+    }
+    
+    public EnderecoPostal getEnderecoPostal(){
+        EnderecoPostal endereco = new EnderecoPostal(enderecoOrg);
+        return endereco;
     }
     
     public Website getWebsite(){
@@ -99,8 +110,9 @@ public class Organizacao {
         return email;
     }
 
-    public static EnderecoPostal novoEndereco(String enderecoLocal, String enderecoPostal, String localidade) {
-        return new EnderecoPostal(enderecoLocal, enderecoPostal, localidade);
+    public static EnderecoPostal novoEndereco(String arruamento, String numeroPorta,
+            String localidade, String codigoPostal) {
+        return new EnderecoPostal(arruamento, numeroPorta, localidade, codigoPostal);
     }
 
    /* public static Colaborador novoColaborador(String nomeGestor, String funcao, String telefoneGestor, Email emailGestor ) {
