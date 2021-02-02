@@ -16,12 +16,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RepositorioUtilizador {
+        
+    private static RepositorioUtilizador repositorioUtilizador;
     
+    private Plataforma plataforma;
     private List<Utilizador> listaUtilizadores = new ArrayList<>();
     
-    public RepositorioUtilizador(List<Utilizador> listaUtilizadores){
-        this.listaUtilizadores = listaUtilizadores;
+    public RepositorioUtilizador(Plataforma plataforma, List<Utilizador> listaUtilizadores){
+        repositorioUtilizador.plataforma = plataforma;
+        repositorioUtilizador.listaUtilizadores = listaUtilizadores;
     }
+          
     public void addUtilizador(Utilizador utilizador) throws UtilizadorDuplicadoException {
         Utilizador u = getUtilizadorByEmail(utilizador.getEmail());
         if (u == null) {
@@ -41,6 +46,6 @@ public class RepositorioUtilizador {
             }
         }
         return null;
-    }
+    }    
 }
 
