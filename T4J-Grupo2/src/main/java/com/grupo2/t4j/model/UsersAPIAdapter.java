@@ -1,7 +1,10 @@
 package com.grupo2.t4j.model;
 
 import com.grupo2.t4j.network.*;
+<<<<<<< HEAD
 import org.json.JSONObject;
+=======
+>>>>>>> 70ff16d80a3c9f90ad92df3532cc9ededab29b98
 
 public class UsersAPIAdapter {
 
@@ -21,6 +24,7 @@ public class UsersAPIAdapter {
             switch (httpResponse.getStatus()) {
 
                 case HttpStatusCode.OK:
+<<<<<<< HEAD
                     break;
 
                 case HttpStatusCode.Conflict:
@@ -56,6 +60,10 @@ public class UsersAPIAdapter {
                 return true;
 
 
+=======
+                    brea
+            }
+>>>>>>> 70ff16d80a3c9f90ad92df3532cc9ededab29b98
         }
     }
 }
