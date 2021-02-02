@@ -46,6 +46,14 @@ public class RepositorioUtilizador {
             }
         }
         return null;
-    }    
+    }   
+    
+    public static RepositorioUtilizador getInstance() {
+        if(RepositorioUtilizador.repositorioUtilizador == null) {
+            List<Utilizador> newlistaUtilizadores = new ArrayList<>();
+            RepositorioUtilizador.repositorioUtilizador = new RepositorioUtilizador(Plataforma.getInstance(), newlistaUtilizadores);
+        }
+        return repositorioUtilizador;
+    }
 }
 
