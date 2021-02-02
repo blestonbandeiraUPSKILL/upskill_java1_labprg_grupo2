@@ -69,5 +69,7 @@ public class UsersAPIAdapter {
         return false;
     }
 
-    public boolean registerUser(String username, Email emaikl)
+    public boolean registerUser(String username, Email email, Password password) {
+        String url = "/registerUser?app_context=" + getContext() + "?username=" + username + "?"
+    }
 }
