@@ -1,7 +1,7 @@
 package com.grupo2.t4j.network;
 
-import dto.ErroDTO;
-import xml.XmlHandler;
+import com.grupo2.t4j.dto.ErroDTO;
+import com.grupo2.t4j.xml.XmlHandler;
 
 import java.io.*;
 import java.net.HttpURLConnection;
@@ -73,7 +73,7 @@ public class HttpConnection {
             resCode = httpConn.getResponseCode();
             body = readBody(httpConn.getInputStream());
         } catch (MalformedURLException e) {
-//this is for normalize the error events according to the way is handled by the WS
+            //this is for normalize the error events according to the way is handled by the WS
             resCode = HttpStatusCode.Conflict;
             body = XmlHandler.serializeErroDTO2XML(new ErroDTO(e));
         } catch (IOException e) {

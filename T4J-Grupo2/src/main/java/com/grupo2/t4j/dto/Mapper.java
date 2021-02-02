@@ -1,6 +1,8 @@
 package com.grupo2.t4j.dto;
 
+import com.grupo2.t4j.model.Colaborador;
 import com.grupo2.t4j.model.Data;
+import com.grupo2.t4j.model.Utilizador;
 
 import java.util.ArrayList;
 
@@ -14,21 +16,21 @@ public class Mapper {
         return new Data(dataDTO.getDia(), dataDTO.getMes(), dataDTO.getAno());
     }
 
-    /*public static PessoaDTO pessoa2PessoaDTO(Pessoa pessoa) throws NullPointerException {
-        return new PessoaDTO(pessoa.getNif(), pessoa.getNome(), data2DataDTO(pessoa.getNascimento()));
+    public static UtilizadorDTO utilizador2utilizadorDTO(Utilizador utilizador) throws NullPointerException {
+        return new UtilizadorDTO(utilizador.getNome(), utilizador.getEmail(), utilizador.getPassword());
     }
 
-    public static Pessoa pessoaDTO2Pessoa(PessoaDTO pessoaDTO) throws NullPointerException {
-        return new Pessoa(pessoaDTO.getNif(), pessoaDTO.getNome(), dataDTO2Data(pessoaDTO.getNascimento()));
+    public static Utilizador utilizadorDTO2Utilizador(UtilizadorDTO utilizadorDTO) throws NullPointerException {
+        return new Utilizador(utilizadorDTO.getNome(), utilizadorDTO.getEmail(), utilizadorDTO.getPassword());
     }
 
-    public static ListaPessoaDTO listaPessoa2ListaPessoaDTO(ArrayList<Pessoa> pessoas) throws NullPointerException {
-        ArrayList<PessoaDTO> pessoasDTO = new ArrayList<>();
+    public static ListaUtilizadorDTO listaUtilizador2ListaUtilizadorDTO(ArrayList<Utilizador> utilizadores) throws NullPointerException {
+        ArrayList<UtilizadorDTO> utilizadoresDTO = new ArrayList<>();
 
-        for (Pessoa pessoa : pessoas) {
+        for (Utilizador utilizador : utilizadores) {
             try {
-                PessoaDTO pessoaDTO = pessoa2PessoaDTO(pessoa);
-                pessoasDTO.add(pessoaDTO);
+                UtilizadorDTO utilizadorDTO = utilizador2utilizadorDTO(utilizador);
+                utilizadoresDTO.add(utilizadorDTO);
             }
             catch (NullPointerException exception) {
                 exception.printStackTrace();
@@ -36,19 +38,49 @@ public class Mapper {
             }
         }
 
-        ListaPessoaDTO listaPessoaDTO = new ListaPessoaDTO();
-        listaPessoaDTO.setPessoas(pessoasDTO);
-        return listaPessoaDTO;
+        ListaUtilizadorDTO listaUtilizadorDTO = new ListaUtilizadorDTO();
+        listaUtilizadorDTO.setUtilizadores(utilizadoresDTO);
+        return listaUtilizadorDTO;
     }
 
-    public static ArrayList<Pessoa> listaPessoaDTO2ListaPessoa(ListaPessoaDTO listaPessoaDTO) throws NullPointerException{
-        ArrayList<Pessoa> pessoas = new ArrayList<>();
-        ArrayList<PessoaDTO> pessoasDTO = listaPessoaDTO.getPessoas();
+    public static ArrayList<Utilizador> listaUtilizadorDTO2ListaUtilizador(ListaUtilizadorDTO listaUtilizadorDTO) throws NullPointerException{
+        ArrayList<Utilizador> utilizadores = new ArrayList<>();
+        ArrayList<UtilizadorDTO> utilizadoresDTO = listaUtilizadorDTO.getUtilizadores();
 
-        for (PessoaDTO pessoaDTO: pessoasDTO) {
+        for (UtilizadorDTO utilizadorDTO : utilizadoresDTO) {
             try {
-                Pessoa pessoa = pessoaDTO2Pessoa(pessoaDTO);
-                pessoas.add(pessoa);
+                Utilizador utilizador = utilizadorDTO2Utilizador(utilizadorDTO);
+                utilizadores.add(utilizador);
+            }
+            catch (NullPointerException exception) {
+                exception.printStackTrace();
+                //não adiciona
+            }
+        }
+        return utilizadores;
+    }
+
+    public static ColaboradorDTO colaborador2ColaboradorDTO (Colaborador colaborador) throws NullPointerException {
+        return new ColaboradorDTO(colaborador.getNome(),
+                colaborador.getEmail(),
+                colaborador.getPassword(),
+                colaborador.getFuncao(),
+                colaborador.getTelefone());
+    }
+
+    public static Colaborador colaboradorDTO2Colaborador (ColaboradorDTO colaboradorDTO) throws NullPointerException {
+        return new Colaborador(colaboradorDTO.getNome(),
+                colaboradorDTO.getEmail(),
+                colaboradorDTO.getPassword(),
+                colaboradorDTO.getFuncao(),
+                colaboradorDTO.getTelefone());
+    }
+    public static ListaColaboradorDTO listacolaborador2ListaColaboradorDTO (ArrayList<Colaborador> colaboradores) throws NullPointerException {
+        ArrayList<ColaboradorDTO> colaboradoresDTO = new ArrayList<>();
+        for (Colaborador colaborador : colaboradores) {
+            try {
+                ColaboradorDTO colaboradorDTO = colaborador2ColaboradorDTO(colaborador);
+                colaboradoresDTO.add(colaboradorDTO);
             }
             catch (NullPointerException exception) {
                 exception.printStackTrace();
@@ -56,57 +88,25 @@ public class Mapper {
             }
         }
 
-        return pessoas;
+        ListaColaboradorDTO listaColaboradorDTO = new ListaColaboradorDTO();
+        listaColaboradorDTO.setColaboradores(colaboradoresDTO);
+        return listaColaboradorDTO;
     }
 
-    public static FuncionarioDTO funcionario2FuncionarioDTO(Funcionario funcionario) throws NullPointerException {
-        return new FuncionarioDTO(funcionario.getNif(),
-                funcionario.getNome(),
-                data2DataDTO(funcionario.getNascimento()),
-                funcionario.getNumeroFuncionario(),
-                funcionario.getCargo());
-    }
+    public static ArrayList<Colaborador> listaColaboradorDTO2ListaColaborador (ListaColaboradorDTO listaColaboradorDTO) throws  NullPointerException {
+        ArrayList<Colaborador> colaboradores = new ArrayList<>();
+        ArrayList<ColaboradorDTO> colaboradoresDTO = new ArrayList<>();
 
-    public static Funcionario funcionarioDTO2Funcionario(FuncionarioDTO funcionarioDTO) throws NullPointerException {
-        return new Funcionario(funcionarioDTO.getNif(),
-                funcionarioDTO.getNome(),
-                dataDTO2Data(funcionarioDTO.getNascimento()),
-                funcionarioDTO.getNumeroFuncionario(),
-                funcionarioDTO.getCargo());
-    }
-    public static ListaFuncionarioDTO listaFuncionario2ListaFuncionarioDTO(ArrayList<Funcionario> funcionarios) throws NullPointerException {
-        ArrayList<FuncionarioDTO> funcionariosDTO = new ArrayList<>();
-        for (Funcionario funcionario : funcionarios) {
+        for(ColaboradorDTO colaboradorDTO : colaboradoresDTO) {
             try {
-                FuncionarioDTO funcionarioDTO = funcionario2FuncionarioDTO(funcionario);
-                funcionariosDTO.add(funcionarioDTO);
-            }
-            catch (NullPointerException exception) {
-                exception.printStackTrace();
-                //não adiciona
-            }
-
-        }
-
-        ListaFuncionarioDTO listaFuncionarioDTO = new ListaFuncionarioDTO();
-        listaFuncionarioDTO.setFuncionarios(funcionariosDTO);
-        return listaFuncionarioDTO;
-    }
-
-    public static ArrayList<Funcionario> listaFuncionarioDTO2ListaFuncionario(ListaFuncionarioDTO listaFuncionarioDTO) throws  NullPointerException {
-        ArrayList<Funcionario> funcionarios = new ArrayList<>();
-        ArrayList<FuncionarioDTO> funcionarioDTOS = new ArrayList<>();
-
-        for(FuncionarioDTO funcionarioDTO : funcionarioDTOS) {
-            try {
-                Funcionario funcionario = funcionarioDTO2Funcionario(funcionarioDTO);
-                funcionarios.add(funcionario);
+                Colaborador colaborador = colaboradorDTO2Colaborador(colaboradorDTO);
+                colaboradores.add(colaborador);
             }
             catch (NullPointerException exception) {
                 exception.printStackTrace();
                 //não adiciona
             }
         }
-        return funcionarios;
-    }*/
+        return colaboradores;
+    }
 }
