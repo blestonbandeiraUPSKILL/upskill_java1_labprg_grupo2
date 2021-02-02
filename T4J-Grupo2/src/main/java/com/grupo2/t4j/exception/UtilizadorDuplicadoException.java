@@ -10,7 +10,7 @@ package com.grupo2.t4j.exception;
  * @author CAD
  */
 public class UtilizadorDuplicadoException extends RuntimeException{
-    
+   
     public UtilizadorDuplicadoException(String s){
         super(s);
     }
