@@ -5,10 +5,23 @@
  */
 package com.grupo2.t4j.model;
 
+import com.grupo2.t4j.repository.RepositorioOrganizacao;
+
 /**
  *
  * @author acris
  */
 public class Plataforma {
+
+    private static Plataforma plataforma;
+    private RepositorioOrganizacao repositorioOrganizacao;
+    private IAlgoritmoGeradorPasswords algoritmoGeradorPasswords;
+    private UsersAPI usersAPI;
+
+    public Plataforma() {
+        algoritmoGeradorPasswords = new AlgoritmoGeradorPasswords();
+        usersAPI = new UsersAPI();
+        repositorioOrganizacao = new RepositorioOrganizacao(this);
+    }
     
 }

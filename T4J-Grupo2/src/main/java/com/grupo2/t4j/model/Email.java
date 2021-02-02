@@ -13,9 +13,12 @@ package com.grupo2.t4j.model;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Email {
+public class Email implements IEmail {
    
     private String email;
+    private String to;
+    private String subject;
+    private String text;
     
     public Email (String email){
         setEmail(email);
@@ -24,7 +27,19 @@ public class Email {
     public Email (Email email){
         setEmail(email.email);
     }
-    
+
+    public String getTo() {
+        return to;
+    }
+
+    public String getSubject() {
+        return subject;
+    }
+
+    public String getText() {
+        return text;
+    }
+
     public void setEmail(String email){
         if(eEmailValido(email)){
             this.email = email;
@@ -48,9 +63,24 @@ public class Email {
         }
         return eValido;
     }
-    
+
     @Override
-    public String toString(){
-        return email;
+    public void setTo(String email) {
+       setEmail(email);
+    }
+
+    @Override
+    public void setSubject(String subject) {
+        this.subject = subject;
+    }
+
+    @Override
+    public void setText(String text) {
+        this.text = text;
+    }
+
+    @Override
+    public void send() {
+        System.out.println("Email enviavo para " + getTo());
     }
 }

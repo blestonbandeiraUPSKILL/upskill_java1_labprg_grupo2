@@ -13,6 +13,8 @@ public class Colaborador extends Utilizador{
     
     private String funcao;
     private String telefone;
+    private String nomeGestor;
+    private Email emailGestor;
 
     public Colaborador() {
         super();
