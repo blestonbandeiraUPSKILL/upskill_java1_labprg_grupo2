@@ -67,8 +67,12 @@ public class RepositorioCompetenciaTecnica {
         }
         return null;
     }
-    
-    public ArrayList<CompetenciaTecnica> getCompetenciasTecnicasByAreaAtividade(AreaActividade at) {
+    /**
+     * Devolve uma lista de competencias tecnicas por area de actividade
+     * @param at
+     * @return 
+     */
+    public ArrayList<CompetenciaTecnica> getCompetenciasTecnicasByAreaActividade(AreaActividade at) {
         ArrayList<CompetenciaTecnica> compTecPorAt = new ArrayList<>();
 
         for (CompetenciaTecnica ct : listaCompTecnicas) {
