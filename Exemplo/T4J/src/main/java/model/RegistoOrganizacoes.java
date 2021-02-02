@@ -23,6 +23,7 @@ public class RegistoOrganizacoes {
     private List<Organizacao> ListaOrganizacoes = new ArrayList<Organizacao>();
     private Plataforma plataforma;
     Colaborador colab;
+
     public RegistoOrganizacoes(Plataforma plataforma){
         this.plataforma = plataforma;
     };

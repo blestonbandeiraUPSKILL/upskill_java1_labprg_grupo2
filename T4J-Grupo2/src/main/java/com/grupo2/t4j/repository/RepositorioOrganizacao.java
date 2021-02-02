@@ -36,13 +36,19 @@ public class RepositorioOrganizacao {
                                        String nomeGestor, String funcao, String telefoneGestor,
                                        Email emailGestor) {
         EnderecoPostal endereco = Organizacao.novoEndereco(arruamento, numeroPorta, localidade, codigoPostal);
-        //colaborador = Organizacao.novoColaborador(nomeGestor, funcao, telefoneGestor, emailGestor);
+        //colabGestor = Organizacao.novoColaborador(nomeGestor, funcao, telefoneGestor, emailGestor);
 
         return new Organizacao(nome, nif, endereco, telefone, website, emailOrganizacao, colabGestor);
     }
 
-    public boolean validaOrganizacao(Organizacao organizacao) {
-        return true;
+    public boolean validaOrganizacao(Organizacao organizacao) throws IllegalArgumentException{
+
+        try {
+            return true;
+        }
+        catch (OrganizacaoInvalidaException exception) {
+            return false;
+        }
     }
 
     public void registaOrganizacao(Organizacao organizacao) throws Exception {
@@ -50,7 +56,7 @@ public class RepositorioOrganizacao {
             IAlgoritmoGeradorPasswords algoritmoGeradorPasswords = plataforma.getAlgoritmoGeradorPwd();
             Password password = algoritmoGeradorPasswords.geraPassword();
 
-           // plataforma.getUsersAPI().registerUserWithRoles(colaborador.getEmailGestor(), colaborador.getEmailGestor(), password, "gestor,colaborador");
+           plataforma.getUsersAPI().registerUserWithRoles(colaborador.getEmailGestor(), colaborador.getEmailGestor(), password, "gestor,colaborador");
 
             addOrganizacao(organizacao);
 
