@@ -9,8 +9,6 @@ package com.grupo2.t4j.exception;
  *
  * @author acris
  */
-public class CompetenciaTecnicaDuplicadaException extends RuntimeException{
-    public CompetenciaTecnicaDuplicadaException(String s) {
-        super(s);
-    }
+public class CompetenciaTecnicaDuplicadaException {
+    
 }

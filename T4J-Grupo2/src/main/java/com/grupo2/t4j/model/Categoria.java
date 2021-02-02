@@ -5,7 +5,6 @@
  */
 package com.grupo2.t4j.model;
 
-import com.grupo2.t4j.exception.DescricaoInvalidaException;
 import java.util.List;
 
 /**
@@ -45,11 +44,7 @@ public class Categoria {
     }
 
     public void setDescricao(String descricao) {
-        if (descricao == null || descricao.trim().isEmpty()) {
-            throw new DescricaoInvalidaException("Deve introduzir uma descrição válida!");
-        } else {
-            this.descricao = descricao;
-        }
+        this.descricao = descricao;
     }
 
     public AreaActividade getAt() {
