@@ -13,7 +13,7 @@ public class UsersAPI {
         return usersAPIAdapter.login(user_id, password);
     }
 
-    public boolean logout() {
+    /*public boolean logout() {
         return usersAPIAdapter.logout();
     }
 
@@ -25,5 +25,5 @@ public class UsersAPI {
 
     public registerUserWithRoles(String username, Email email, Password password, String rolenames) {
         return usersAPIAdapter.registerUserWithRoles(username, email, password, rolenames);
-    }
+    }*/
 }

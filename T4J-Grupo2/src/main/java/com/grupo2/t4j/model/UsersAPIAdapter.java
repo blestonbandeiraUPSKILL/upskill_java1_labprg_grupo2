@@ -1,10 +1,8 @@
 package com.grupo2.t4j.model;
 
 import com.grupo2.t4j.network.*;
-<<<<<<< HEAD
+
 import org.json.JSONObject;
-=======
->>>>>>> 70ff16d80a3c9f90ad92df3532cc9ededab29b98
 
 public class UsersAPIAdapter {
 
@@ -24,7 +22,7 @@ public class UsersAPIAdapter {
             switch (httpResponse.getStatus()) {
 
                 case HttpStatusCode.OK:
-<<<<<<< HEAD
+
                     break;
 
                 case HttpStatusCode.Conflict:
@@ -37,7 +35,7 @@ public class UsersAPIAdapter {
     }
 
     public boolean login(String user_id, Password password) {
-        String url = "/login?app_contect=" + getContext() + "?username=" + user_id + "?password=" + password;
+        String url = "/login?app_context=" + getContext() + "?username=" + user_id + "?password=" + password;
         HttpRequest httpRequest = new HttpRequest(HttpRequestType.POST, url, "");
         HttpResponse httpResponse = HttpConnection.makeRequest(httpRequest);
 
@@ -50,7 +48,7 @@ public class UsersAPIAdapter {
         return false;
     }
 
-    public boolean logout() {
+  /*  public boolean logout() {
         String url = "/logout?app_context=" + getContext();
         HttpRequest httpRequest = new HttpRequest(HttpRequestType.POST, url, "");
         HttpResponse httpResponse = HttpConnection.makeRequest(httpRequest);
@@ -59,11 +57,8 @@ public class UsersAPIAdapter {
             case HttpStatusCode.OK:
                 return true;
 
-
-=======
-                    brea
             }
->>>>>>> 70ff16d80a3c9f90ad92df3532cc9ededab29b98
+
         }
-    }
+    }*/
 }

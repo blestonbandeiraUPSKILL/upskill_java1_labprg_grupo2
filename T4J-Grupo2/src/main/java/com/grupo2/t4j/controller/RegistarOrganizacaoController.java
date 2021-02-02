@@ -27,12 +27,12 @@ public class RegistarOrganizacaoController {
         if (repositorioOrganizacao.validaOrganizacao(organizacao)) {
 
         }
-        else {
+      /*  else {
             throw new Exception();
-        }
+        }*/
 
-        public void registaOrganizacao() throws Exception {
+        /*public void registaOrganizacao() throws Exception {
             registaOrganizacao.registaOrganizacao(organizacao);
-        }
+        }*/
     }
 }
