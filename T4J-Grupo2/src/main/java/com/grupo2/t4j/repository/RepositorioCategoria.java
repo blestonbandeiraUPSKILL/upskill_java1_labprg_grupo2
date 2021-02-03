@@ -15,6 +15,17 @@ public class RepositorioCategoria {
         }
         return instance;
     }
+    
+   /* public Categoria novaCategoria(String id, String descricao, AreaActividade at,
+                                       CompetenciaTecnica ct, Caracter, String codigoPostal,
+                                       String telefone, Website website, Email emailOrganizacao,
+                                       String nomeGestor, String funcao, String telefoneGestor,
+                                       Email emailGestor) {
+        EnderecoPostal endereco = Organizacao.novoEndereco(arruamento, numeroPorta, localidade, codigoPostal);
+        //colaborador = Organizacao.novoColaborador(nomeGestor, funcao, telefoneGestor, emailGestor);
+
+        return new Organizacao(nome, nif, endereco, telefone, website, emailOrganizacao, colabGestor);
+    }*/
    /**
     * Adiciona uma categoria a  lista de categorias
     * @param categoria
