@@ -24,6 +24,7 @@ public class RegisterOrgUI implements Initializable {
     private Scene sceneRegisterOrg;
 
     public void registarOrganizacaoCancel(ActionEvent actionEvent) {
+
     }
 
     @Override
@@ -31,7 +32,6 @@ public class RegisterOrgUI implements Initializable {
         try {
             FXMLLoader loaderRegister = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/RegisterOrgScene.fxml"));
             Parent rootRegisterOrg = loaderRegister.load();
-
             sceneRegisterOrg = new Scene(rootRegisterOrg);
 
             adicionarStage = new Stage();
