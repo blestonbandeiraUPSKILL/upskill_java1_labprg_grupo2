@@ -84,9 +84,8 @@ public class Email implements IEmail {
     @Override
     public void send() {
 
-        System.out.println("Email enviavo para " + getTo());
-    }
         System.out.println("Email enviado para " + getTo());
     }
-
 }
+
+
