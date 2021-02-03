@@ -99,10 +99,11 @@ public class Organizacao {
 
     public Organizacao(String nomeOrganizacao, String nif, String telefone,
                        String website, String email, EnderecoPostal enderecoPostal) {
+        Website website1 = new Website(website);
         setNome(nomeOrganizacao);
         setNif(nif);
         setTelefone(telefone);
-        setWebsite(new Website(website));
+        setWebsite(website1);
         setEmail(new Email(email));
         setEnderecoPostal(enderecoPostal);
     }
