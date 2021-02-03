@@ -56,7 +56,7 @@ public class RepositorioOrganizacao {
             IAlgoritmoGeradorPasswords algoritmoGeradorPasswords = plataforma.getAlgoritmoGeradorPwd();
             Password password = new Password(algoritmoGeradorPasswords.geraPassword());
 
-           plataforma.getUsersAPI().registerUserWithRoles(colabGestor.getEmail(), colabGestor.getEmail(), password, "gestor,colaborador");
+           plataforma.getUsersAPI().registerUserWithRoles(colabGestor.getNome(), colabGestor.getEmail(), password, "gestor,colaborador");
 
             addOrganizacao(organizacao);
 
