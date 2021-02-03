@@ -12,6 +12,7 @@ package com.grupo2.t4j.model;
 public class GrauProficiencia {
     private int grau;
     private String designacao;
+    private static final char SEPARADOR = ';';
 
     public GrauProficiencia(int grau, String designacao) {
         setGrau(grau);
@@ -34,7 +35,10 @@ public class GrauProficiencia {
         this.designacao = designacao;
     }
     
-    
+    @Override
+    public String toString() {
+        return String.format("%d%c%s", grau, SEPARADOR, designacao);
+    }
     
     
 }

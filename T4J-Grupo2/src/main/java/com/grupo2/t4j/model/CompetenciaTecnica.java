@@ -24,7 +24,7 @@ public class CompetenciaTecnica implements Serializable{
     private String descricaoBreve;
     private String descricaoDetalhada;
     private AreaActividade areaActividade;
-    private GrauProficiencia grau; //Possivelmente substituir por CaracterizacaoCT cct
+    private CaracterizacaoCT cct;
     
     private static final char SEPARADOR = ';';
     
@@ -35,12 +35,12 @@ public class CompetenciaTecnica implements Serializable{
  * @param descricaoDetalhada
  *
  */
-    public CompetenciaTecnica(String codigo, String descricaoBreve, String descricaoDetalhada, AreaActividade areaActividade) {
+    public CompetenciaTecnica(String codigo, String descricaoBreve, String descricaoDetalhada, AreaActividade areaActividade, CaracterizacaoCT cct) {
         this.codigo = codigo;
         this.descricaoBreve = descricaoBreve;
         this.descricaoDetalhada = descricaoDetalhada;
         this.areaActividade=areaActividade;
-        //this.grau=grau;
+        this.cct=cct;
         
         
     }
@@ -122,18 +122,18 @@ public class CompetenciaTecnica implements Serializable{
     }
 
     /**
-     * @return the grau
+     * @return the cct
      */
-    public GrauProficiencia getGrau() {
-        return grau;
+    public CaracterizacaoCT getCct() {
+        return cct;
     }
 
     /**
-     * @param grau the grau to set
+     * @param cct the cct to set
      */
-    public void setGrau(GrauProficiencia grau) {
-        this.grau = grau;
-    }
+    public void setCct(CaracterizacaoCT cct) {
+        this.cct = cct;
+    } 
 
     /**
      * @return the areaActividade
@@ -161,14 +161,30 @@ public class CompetenciaTecnica implements Serializable{
     public String toString() {
         return "CompetenciaTecnica{" + "codigo: " + codigo + ",/ndescricaoBreve: " 
                 + descricaoBreve + ", /ndescricaoDetalhada: " + descricaoDetalhada +
-                ", /nareaActividade: " + areaActividade + ", /ngrau=" + grau + '}';
+                ", /nareaActividade: " + areaActividade + ", /ngrau=" + cct + '}';
     }
     
     public String toStringExport() {
-        return String.format("%s%c%s%c%s%c%s", codigo, SEPARADOR, descricaoBreve, SEPARADOR, areaActividade.toString(), SEPARADOR, grau.toString());
+        return String.format("%s%c%s%c%s%c%s", codigo, SEPARADOR, descricaoBreve, SEPARADOR, areaActividade.toString(), SEPARADOR, cct.toString());
     }
    
-     public String[] getCompetenciaComoArray(String linha) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    /* public String[] getCompetenciaComoArray(String compTecnica) {
+        String[] dados = compTecnica.trim().split(String.valueOf(SEPARADOR));
+        int nrAtributos = 8;
+
+        if (dados.length == nrAtributos) {
+            try {
+                new CompetenciaTecnica(dados[0],dados[1], Integer.parseInt(dados[0]));
+                
+                return dados;
+            }
+            catch(Exception ex) {
+                throw new RuntimeException("Dados Inválidos do Contacto");
+            }
+        }
+
+        throw new RuntimeException("Dados Inválidos do Contacto");
+    }    }
+*/
+   
 }
