@@ -28,7 +28,7 @@ public class Email implements IEmail {
         setEmail(email.email);
     }
 
-    public String getTo() {
+    /*public String getTo() {
         return to;
     }
 
@@ -38,7 +38,7 @@ public class Email implements IEmail {
 
     public String getText() {
         return text;
-    }
+    }*/
 
     public void setEmail(String email){
         if(eEmailValido(email)){
@@ -64,7 +64,7 @@ public class Email implements IEmail {
         return eValido;
     }
 
-    @Override
+    /*@Override
     public void setTo(String email) {
        setEmail(email);
     }
@@ -82,5 +82,5 @@ public class Email implements IEmail {
     @Override
     public void send() {
         System.out.println("Email enviavo para " + getTo());
-    }
+    }*/
 }

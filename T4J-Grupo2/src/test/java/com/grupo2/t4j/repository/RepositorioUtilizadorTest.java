@@ -28,7 +28,7 @@ public class RepositorioUtilizadorTest {
     @Test
     public void testAddUtilizador() {
         //Arrange
-        RepositorioUtilizador ru1 = new RepositorioUtilizador();
+        RepositorioUtilizador ru1 = ru1.getInstance();
         Utilizador u1= new Utilizador("Carol", "carol@upskill.pt", "12345678");
         //Act
         u1.addUtilizador(ru1);
