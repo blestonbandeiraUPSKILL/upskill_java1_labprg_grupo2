@@ -1,5 +1,7 @@
 package com.grupo2.t4j.model;
 
+import org.json.JSONObject;
+
 public class UsersAPI {
 
     UsersAPIAdapter usersAPIAdapter;
@@ -19,11 +21,27 @@ public class UsersAPI {
 
     public String getEmail() {
         String session = usersAPIAdapter.getSession();
-
-        return "";
+        JSONObject bodyJSON = new JSONObject(session);
+        return bodyJSON.getString("email");
     }
 
     public boolean registerUserWithRoles(String username, Email email, Password password, String rolenames) {
         return usersAPIAdapter.registerUserWithRoles(username, email, password, rolenames);
     }
+
+    public boolean registerUser(String username, Email email, Password password){
+        return usersAPIAdapter.registerUser(username, email, password);
+    }
+
+    public String getContext() {
+        return usersAPIAdapter.getContext();
+    }
+
+    public String getRole() {
+        String session = usersAPIAdapter.getSession();
+        JSONObject bodyJSON = new JSONObject(session);
+        return bodyJSON.getString("rolenames");
+    }
+
+
 }
