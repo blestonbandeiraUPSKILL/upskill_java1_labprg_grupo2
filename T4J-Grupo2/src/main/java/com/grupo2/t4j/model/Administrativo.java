@@ -7,8 +7,54 @@ package com.grupo2.t4j.model;
 
 /**
  *
- * @author acris
+ * @author CAD
  */
 public class Administrativo {
     
+    private String nome;
+    private Email email;
+    private Password password;
+    
+   public Administrativo(){
+   }
+    
+    public Administrativo(String nome, Email email, Password password){
+        setNome(nome);
+        setEmail(email);
+        setPassword(password);
+    }
+    
+    public Administrativo(Administrativo administrativo){
+        setNome(administrativo.nome);
+        setEmail(administrativo.email);
+        setPassword(administrativo.password);
+    }
+    
+    public final void setNome(String nome){
+        if (nome == null || nome.trim().isEmpty()) {
+            throw new IllegalArgumentException("Nome é inválido!");
+        }
+        this.nome = nome;
+    }
+    
+    public final void setEmail(Email email){
+        this.email = email;
+    }
+    
+    public final void setPassword(Password password){
+        this.password = password;
+    }
+    
+    public String getNome(){
+        return nome;
+    }
+    
+    public Email getEmail(){
+        return email;
+    }  
+    
+    public Password getPassword(){
+        return password;
+    }  
 }
+
