@@ -7,18 +7,18 @@ class RegistarOrganizacaoUI {
 
 class RegistarOrganizacaoController {
     --
-    +novaOrganizacao(nome, NIF, endLocal, endCodPostal, endLocalidade, tlf, site, email, nomeG, funcao, tlfG, emailG, pwd)
+    +novaOrganizacao(nome, NIF, endLocal, enderacoPostal, endLocalidade, tlf, websiteOrg, emailOrg, nomeG, funcao, tlfG, emailG, pwd)
     +registaOrganizacao()
 }
 
 class Organizacao {
     -String nome
     -String NIF
-    -String website
+    -Website websiteOrg
     -String telefone
-    -String email
+    -Email emailOrg
     --
-    +Organizacao(nome, NIF, website, telefone, email, endereco, gestorColaborador)
+    +Organizacao(nome, NIF, websiteOrg, telefone, emailOrg, enderecoOrg, gestorColaborador)
     +EnderecoPostal novoEndereco(local, codPostal, localidade)
     +Colaborador novoColaborador(nome, funcao, tlf, email)
 }
@@ -47,7 +47,7 @@ class RegistoOrganizacoes {
     +validaOrganizacao(Organizacao org)
     +registaOrganizacao(Organizacao org)
     -addOrganizacao(Organizacao org)
-    -registaGestorComoUtilizador(Colaborador colab)
+    -registaGestorComoUtilizador(Colaborador colabGestor)
     -enviaPwd(Email emailG, Password pwd)
 }
 
