@@ -24,6 +24,18 @@ public class Utilizador {
         setPassword(password);
     }
     
+    public Utilizador(String nome, String emailUt, Password password){
+        setNome(nome);
+        this.email = new Email(emailUt);
+        setPassword(password);
+    }
+    
+    public Utilizador(String nome, String emailUt, String passUt){
+        setNome(nome);
+        this.email = new Email(emailUt);
+        this.password = new Password(passUt);
+    }
+    
     public Utilizador(Utilizador utilizador){
         setNome(utilizador.nome);
         setEmail(utilizador.email);
