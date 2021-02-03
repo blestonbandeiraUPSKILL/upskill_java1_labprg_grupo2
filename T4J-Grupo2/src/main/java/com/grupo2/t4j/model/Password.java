@@ -26,7 +26,7 @@ public class  Password {
             this.password = password;
         }
         else{
-            throw new IllegalArgumentException("A senha informada não é válida!");
+            throw new IllegalArgumentException("A password não é válida!");
         }
     }
         

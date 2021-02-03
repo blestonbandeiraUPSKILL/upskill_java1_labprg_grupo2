@@ -1,5 +1,6 @@
 package com.grupo2.t4j.repository;
 
+
 import com.grupo2.t4j.exception.CategoriaDuplicadaException;
 import com.grupo2.t4j.model.Categoria;
 import java.util.ArrayList;
@@ -7,7 +8,11 @@ import java.util.List;
 
 public class RepositorioCategoria {
     private static RepositorioCategoria instance;
-    private List<Categoria> listaCategorias = new ArrayList<>();
+    private List<Categoria> listaCategorias;
+    
+    private RepositorioCategoria(){
+        listaCategorias=new ArrayList<>();
+    }
     
     public static RepositorioCategoria getInstance(){
         if (instance == null){
@@ -36,11 +41,11 @@ public class RepositorioCategoria {
         if (c == null) {
             this.listaCategorias.add(categoria);
         } else {
-            throw new CategoriaDuplicadaException(c.getId() + ": Categoria jÃ¡ existe");
+            throw new CategoriaDuplicadaException(c.getId() + ": Categoria ja existe");
         }
     }
     /**
-     * Retorina uma cÃ³pida da categoria referente a um determinado id
+     * Retorina uma copida da categoria referente a um determinado id
      * @param id
      * @return copia
      */

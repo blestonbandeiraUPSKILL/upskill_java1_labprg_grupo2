@@ -37,10 +37,10 @@ public class Plataforma {
         //algoritmoGeradorPasswords = new AlgoritmoGeradorPasswords();
         usersAPI = new UsersAPI();
         repositorioOrganizacao = new RepositorioOrganizacao(this);
-        repositorioCategoria = new RepositorioCategoria();
+        repositorioCategoria = RepositorioCategoria.getInstance();
         //repositorioColaborador = new RepositorioColaborador();
         //repositorioUtilizador = new RepositorioUtilizador();
-        repositorioCompetenciaTecnica = new RepositorioCompetenciaTecnica();
+        repositorioCompetenciaTecnica = RepositorioCompetenciaTecnica.getInstance();
         repositorioTarefa = new RepositorioTarefa();
     }
 
