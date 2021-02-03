@@ -40,10 +40,6 @@ public class StartingPageUI implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
-            FXMLLoader loaderLogin = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/JanelaPrincipalScene.fxml"));
-            Parent rootLogin = loaderLogin.load();
-            sceneLogin = new Scene(rootLogin);
-
             FXMLLoader loaderRegister = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/RegisterOrgScene.fxml"));
             Parent rootRegisterOrg = loaderRegister.load();
             sceneRegisterOrg = new Scene(rootRegisterOrg);
@@ -51,14 +47,20 @@ public class StartingPageUI implements Initializable {
             FXMLLoader loaderGestor = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/GestorLogadoScene.fxml"));
             Parent rootGestor = loaderGestor.load();
             sceneGestor = new Scene(rootGestor);
+            GestorLogadoUI gestorLogadoUI = loaderGestor.getController();
+            gestorLogadoUI.associarParentUI(this);
 
             FXMLLoader loaderColaborador = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/ColaboradorLogadoScene.fxml"));
             Parent rootColaborador = loaderColaborador.load();
             sceneColaborador = new Scene(rootColaborador);
+            ColaboradorLogadoUI colaboradorLogadoUI = loaderColaborador.getController();
+            colaboradorLogadoUI.associarParentUI(this);
 
             FXMLLoader loaderAdministrativo = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/AdministrativoLogadoScene.fxml"));
             Parent rootAdministrativo = loaderAdministrativo.load();
             sceneAdministrativo = new Scene(rootAdministrativo);
+            AdministrativoLogadoUI administrativoLogadoUI = loaderAdministrativo.getController();
+            administrativoLogadoUI.associarParentUI(this);
 
             adicionarStage = new Stage();
             adicionarStage.initModality(Modality.APPLICATION_MODAL);;
@@ -66,8 +68,6 @@ public class StartingPageUI implements Initializable {
 
             applicationController = new ApplicationController();
 
-            JanelaPrincipalUI janelaPrincipalUI = loaderLogin.getController();
-            janelaPrincipalUI.associarParentUI(this);
         }
         catch (IOException exception) {
             exception.printStackTrace();
