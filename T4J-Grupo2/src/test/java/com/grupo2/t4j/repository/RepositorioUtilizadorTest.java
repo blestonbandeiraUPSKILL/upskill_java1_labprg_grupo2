@@ -17,9 +17,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class RepositorioUtilizadorTest {
-    
-    private static RepositorioUtilizador repositorioUtilizador;
-    
+       
     public RepositorioUtilizadorTest() {
     }
 
