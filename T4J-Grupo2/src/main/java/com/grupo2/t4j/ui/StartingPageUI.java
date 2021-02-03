@@ -43,6 +43,8 @@ public class StartingPageUI implements Initializable {
             FXMLLoader loaderRegister = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/RegisterOrgScene.fxml"));
             Parent rootRegisterOrg = loaderRegister.load();
             sceneRegisterOrg = new Scene(rootRegisterOrg);
+            RegisterOrgUI registerOrgUI = loaderRegister.getController();
+            registerOrgUI.associarParentUI(this);
 
             FXMLLoader loaderGestor = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/GestorLogadoScene.fxml"));
             Parent rootGestor = loaderGestor.load();

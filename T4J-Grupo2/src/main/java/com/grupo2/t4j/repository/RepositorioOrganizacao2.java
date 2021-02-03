@@ -3,14 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  *//*
+*/
+/*
 
 package com.grupo2.t4j.repository;
+
+*//*
 
 */
 /**
  *
  * @author CAD
- */
+ *//*
+
 
 
 import com.grupo2.t4j.model.*;
@@ -130,3 +135,4 @@ public class RepositorioOrganizacao2 {
         }
         return null;
     }
+*/
