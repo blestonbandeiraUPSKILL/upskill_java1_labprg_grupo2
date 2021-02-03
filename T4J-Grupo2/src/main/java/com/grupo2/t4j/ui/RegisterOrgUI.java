@@ -54,10 +54,10 @@ public class RegisterOrgUI implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        try {
-            FXMLLoader loaderStart = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/StartingPageScene.fxml"));
+       /* try {
+            *//*FXMLLoader loaderStart = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/StartingPageScene.fxml"));
             Parent rootStart = loaderStart.load();
-            sceneStart = new Scene(rootStart);
+            sceneStart = new Scene(rootStart);*//*
 
             adicionarStage = new Stage();
             adicionarStage.initModality(Modality.APPLICATION_MODAL);
@@ -71,7 +71,7 @@ public class RegisterOrgUI implements Initializable {
                     MainApp.TITULO_APLICACAO,
                     "Erro",
                     exception.getMessage());
-        }
+        }*/
     }
 
 /*    RegistarOrganizacaoController(RegistarOrganizacaoController registarOrganizacaoController) {
