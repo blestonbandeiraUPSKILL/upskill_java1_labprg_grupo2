@@ -99,6 +99,7 @@ public class RegisterOrgUI implements Initializable {
                         txtEmailOrganizacao.getText(), new EnderecoPostal(txtEndArruamentoOrganizacao.getText(),
                         txtEndPortaOrganizacao.getText(), txtEndLocalidadeOrganizacao.getText(),
                         txtEndCodPostalOrganizacao.getText()));
+
         Node node = (Node) actionEvent.getSource();
         Stage stage = (Stage) node.getScene().getWindow();
         stage.close();

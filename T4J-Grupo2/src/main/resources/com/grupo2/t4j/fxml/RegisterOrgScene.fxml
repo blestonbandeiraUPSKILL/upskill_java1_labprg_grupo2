@@ -115,7 +115,7 @@
                         <Insets left="20.0" right="20.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField fx:id="txtWebsiteOrganizacao" promptText="website" GridPane.rowIndex="7">
+                  <TextField fx:id="txtWebsiteOrganizacao" promptText="website" text="http://" GridPane.rowIndex="7">
                      <GridPane.margin>
                         <Insets left="20.0" right="20.0" />
                      </GridPane.margin>
