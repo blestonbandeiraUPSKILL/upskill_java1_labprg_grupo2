@@ -38,8 +38,14 @@ public class EmailTest {
     }
 
     @Test
-    public void testSomeMethod() {
-        // TODO review the generated test code and remove the default call to fail.
+    public void testEmailCorreto() {
+        
+        String email;
+        System.out.println("Digitando um email válido:");
+        email = "carol@gmail.com";
+        Email testeEmail = new Email(email);
+        
+        
         fail("The test case is a prototype.");
     }
     

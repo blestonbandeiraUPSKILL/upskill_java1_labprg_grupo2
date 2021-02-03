@@ -9,40 +9,78 @@ package com.grupo2.t4j.model;
  *
  * @author acris
  */
+import com.grupo2.t4j.exception.*;
+
 public class AreaActividade {
 
 /**
- * Atributos AreaAtividade
+ * O código único de cada Área de Actividade.
  */
     private String codigo;
+    
+/**
+ * A descrição breve da Área de Actividade.
+ */
     private String descBreve;
-    private String descDetalhada;
+
+/**
+ * A descrição detalhada da Área de Actividade.
+ */
+   private String descDetalhada;
 
     public AreaActividade() {
     }
-
-    public String getCodigo() {
-        return codigo;
+    
+    public AreaActividade(String codigo, String descBreve, String descDetalhada){
+        setCodigo(codigo);
+        setDescBreve(descBreve);
+        setDescDetalhada(descDetalhada);
+    }
+    
+    public AreaActividade(AreaActividade areaActividade){
+        setCodigo(areaActividade.codigo);
+        setDescBreve(areaActividade.descBreve);
+        setDescDetalhada(areaActividade.descDetalhada);
     }
 
     public void setCodigo(String codigo) {
+        if (codigo == null || codigo.trim().isEmpty()) {
+            throw new AreaActividadeDuplicadaException("Código de Área de Actividade "
+                    + "já existe!");
+        }
         this.codigo = codigo;
     }
-
+    
+    public void setDescBreve(String descBreve) {
+        if (descBreve == null || descBreve.trim().isEmpty() || descBreve.length() < 5) {
+            throw new IllegalArgumentException("Descrição breve é obrigatória!");
+        }
+        this.descBreve = descBreve;
+    }
+    
+    public void setDescDetalhada(String descDetalhada) {
+        if (descDetalhada == null || descDetalhada.trim().isEmpty() || descDetalhada.length() < 10) {
+            throw new IllegalArgumentException("Descrição detalhada é obrigatória!");
+        }
+        this.descDetalhada = descDetalhada;
+    }
+    
+    public String getCodigo() {
+        return codigo;
+    }
+    
     public String getDescBreve() {
         return descBreve;
-    }
-
-    public void setDescBreve(String descBreve) {
-        this.descBreve = descBreve;
     }
 
     public String getDescDetalhada() {
         return descDetalhada;
     }
-
-    public void setDescDetalhada(String descDetalhada) {
-        this.descDetalhada = descDetalhada;
+    
+    @Override
+    
+    public String toString(){
+        return String.format("A Área de Actividade de código %s tem: /n Descrição "
+                + "breve: %s. /n Descrição detalhada: %s.", codigo, descBreve, descDetalhada );
     }
-
 }
