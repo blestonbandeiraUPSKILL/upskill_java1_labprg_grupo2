@@ -161,12 +161,12 @@ public class Organizacao {
         return email;
     }
 
-    /*public static EnderecoPostal novoEndereco(String arruamento, String numeroPorta,
+    public static EnderecoPostal novoEndereco(String arruamento, String numeroPorta,
             String localidade, String codigoPostal) {
         return new EnderecoPostal(arruamento, numeroPorta, localidade, codigoPostal);
-    }*/
+    }
 
-    /*public static Colaborador novoColaborador(String nomeGestor, String funcao, String telefoneGestor, Email emailGestor ) {
+    public static Colaborador novoColaborador(String nomeGestor, String funcao, String telefoneGestor, Email emailGestor ) {
         return new Colaborador(nomeGestor, emailGestor, funcao, telefoneGestor);
-    }*/
+    }
 }

@@ -41,7 +41,12 @@ public class Utilizador {
         setEmail(utilizador.email);
         setPassword(utilizador.password);
     }
-    
+
+    public Utilizador(String nomeGestor, Email emailGestor) {
+        setNome(nomeGestor);
+        setEmail(emailGestor);
+    }
+
     public final void setNome(String nome){
         if (nome == null || nome.trim().isEmpty()) {
             throw new IllegalArgumentException("Nome é inválido!");

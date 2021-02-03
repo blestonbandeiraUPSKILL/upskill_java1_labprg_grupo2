@@ -38,7 +38,7 @@ public class RepositorioOrganizacao {
         EnderecoPostal endereco = Organizacao.novoEndereco(arruamento, numeroPorta, localidade, codigoPostal);
         colabGestor = Organizacao.novoColaborador(nomeGestor, funcao, telefoneGestor, emailGestor);
 
-        return new Organizacao(nome, nif, endereco, telefone, website, emailOrganizacao, colabGestor);
+        return new Organizacao(nome, nif, endereco, website, telefone, emailOrganizacao, colabGestor);
     }
 
     public boolean validaOrganizacao(Organizacao organizacao) throws IllegalArgumentException{
