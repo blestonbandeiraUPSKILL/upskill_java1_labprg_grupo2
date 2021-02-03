@@ -15,6 +15,7 @@ public class CaracterizacaoCT {
     private GrauProficiencia gp;
     private boolean obrigatoria;
 
+    private static final char SEPARADOR = ';';
 
     public CaracterizacaoCT(CompetenciaTecnica ct, GrauProficiencia gp, boolean obrigatoria) {
         this.ct=ct;
@@ -37,5 +38,8 @@ public class CaracterizacaoCT {
         this.obrigatoria = obrigatoria;
     }
     
-    
+    @Override
+    public String toString() {
+        return String.format("%s%c%s%c%b", ct.toString(), SEPARADOR, gp.toString(), SEPARADOR, obrigatoria);
+    }
 }
