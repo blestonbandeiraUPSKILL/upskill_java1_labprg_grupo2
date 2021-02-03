@@ -1,6 +1,7 @@
 package com.grupo2.t4j.ui;
 
 import com.grupo2.t4j.controller.ApplicationController;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
@@ -16,6 +17,9 @@ import java.util.ResourceBundle;
 public class StartingPageUI implements Initializable {
 
     private ApplicationController applicationController;
+    private Stage adicionarStage;
+    private Scene sceneRegisterOrg;
+    private Scene sceneLogin;
 
     public ApplicationController getApplicationController() {
         return applicationController;
@@ -28,12 +32,12 @@ public class StartingPageUI implements Initializable {
             Parent rootLogin = loaderLogin.load();
 
             FXMLLoader loaderRegister = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/RegisterOrgScene.fxml"));
-            Parent rootRegister = loaderRegister.load();
+            Parent rootRegisterOrg = loaderRegister.load();
 
-            Scene sceneLogin = new Scene(rootLogin);
-            Scene sceneRegister = new Scene(rootRegister);
+            sceneLogin = new Scene(rootLogin);
+            sceneRegisterOrg = new Scene(rootRegisterOrg);
 
-            Stage adicionarStage = new Stage();
+            adicionarStage = new Stage();
             adicionarStage.initModality(Modality.APPLICATION_MODAL);;
             adicionarStage.setResizable(false);
 
@@ -49,5 +53,11 @@ public class StartingPageUI implements Initializable {
                     "Erro",
                     exception.getMessage());
         }
+    }
+
+    public void registarOrganizacao(ActionEvent actionEvent) {
+        adicionarStage.setScene(sceneRegisterOrg);
+        adicionarStage.setTitle("Registar Organização");
+        adicionarStage.show();
     }
 }

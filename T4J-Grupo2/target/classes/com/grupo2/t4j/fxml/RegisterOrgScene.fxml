@@ -11,30 +11,119 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-
-<BorderPane maxHeight="700.0" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="350.0" style="-fx-background-color: #c4c4c4;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-   <center>
-      <GridPane maxHeight="700.0" prefWidth="600.0" style="-fx-background-color: #c4c4c4;" BorderPane.alignment="CENTER">
-        <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        </rowConstraints>
+<BorderPane maxHeight="400.0" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" style="-fx-background-color: #c4c4c4;" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/1">
+   <top>
+      <BorderPane BorderPane.alignment="CENTER_RIGHT">
+         <BorderPane.margin>
+            <Insets left="5.0" right="5.0" top="5.0" />
+         </BorderPane.margin>
+         <right>
+            <Label alignment="CENTER_RIGHT" style="-fx-background-color: #000000;" text="Dados da organização" textFill="WHITE" BorderPane.alignment="CENTER">
+               <font>
+                  <Font name="Calibri" size="18.0" />
+               </font>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </Label>
+         </right>
+         <left>
+            <Label BorderPane.alignment="CENTER">
+               <graphic>
+                  <Label alignment="CENTER_RIGHT" style="-fx-background-color: #000000;" text="Passo 1/2" textFill="WHITE">
+                     <font>
+                        <Font name="Calibri" size="14.0" />
+                     </font>
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                  </Label>
+               </graphic>
+            </Label>
+         </left>
+      </BorderPane>
+   </top>
+   <right>
+      <FlowPane prefHeight="311.0" prefWidth="337.0" BorderPane.alignment="CENTER">
          <children>
-            <Label text="Nome">
+            <GridPane prefHeight="215.0" prefWidth="327.0">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+               </columnConstraints>
+               <children>
+                  <Label text="Endereço Postal" GridPane.rowIndex="9">
+                     <GridPane.margin>
+                        <Insets left="20.0" />
+                     </GridPane.margin>
+                     <font>
+                        <Font name="Calibri" size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField promptText="arruamento" GridPane.rowIndex="11">
+                     <GridPane.margin>
+                        <Insets left="20.0" right="20.0" />
+                     </GridPane.margin>
+                  </TextField>
+                  <TextField promptText="número porta" GridPane.rowIndex="13">
+                     <GridPane.margin>
+                        <Insets left="20.0" right="20.0" />
+                     </GridPane.margin>
+                  </TextField>
+                  <TextField promptText="localidade" GridPane.rowIndex="15">
+                     <GridPane.margin>
+                        <Insets left="20.0" right="20.0" />
+                     </GridPane.margin>
+                  </TextField>
+                  <TextField promptText="código postal" GridPane.rowIndex="17">
+                     <GridPane.margin>
+                        <Insets left="20.0" right="20.0" />
+                     </GridPane.margin>
+                  </TextField>
+               </children>
+               <rowConstraints>
+                  <RowConstraints />
+                  <RowConstraints />
+                  <RowConstraints />
+                  <RowConstraints />
+                  <RowConstraints />
+                  <RowConstraints />
+                  <RowConstraints />
+                  <RowConstraints />
+                  <RowConstraints />
+                  <RowConstraints />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                  <RowConstraints />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                  <RowConstraints />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                  <RowConstraints />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                  <RowConstraints />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" />
+               </rowConstraints>
+            </GridPane>
+         </children>
+      </FlowPane>
+   </right>
+   <left>
+      <GridPane maxHeight="700.0" prefHeight="311.0" prefWidth="320.0" style="-fx-background-color: #c4c4c4;" BorderPane.alignment="CENTER">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <Label maxHeight="400.0" maxWidth="700.0" text="Nome da Organização">
                <GridPane.margin>
                   <Insets left="20.0" />
                </GridPane.margin>
@@ -50,23 +139,25 @@
                   <Font name="Calibri" size="14.0" />
                </font>
             </Label>
-            <Label text="Endereço Postal" GridPane.rowIndex="4">
+            <TextField promptText="nome da organização" GridPane.rowIndex="1">
                <GridPane.margin>
-                  <Insets left="20.0" />
+                  <Insets left="20.0" right="20.0" />
                </GridPane.margin>
+            </TextField>
+            <TextField promptText="nif" GridPane.rowIndex="3">
+               <GridPane.margin>
+                  <Insets left="20.0" right="20.0" />
+               </GridPane.margin>
+            </TextField>
+            <Label text="Contacto telefónico" GridPane.rowIndex="4">
                <font>
                   <Font name="Calibri" size="14.0" />
                </font>
-            </Label>
-            <Label text="Contacto telefónico" GridPane.rowIndex="6">
                <GridPane.margin>
                   <Insets left="20.0" />
                </GridPane.margin>
-               <font>
-                  <Font name="Calibri" size="14.0" />
-               </font>
             </Label>
-            <Label text="Website" GridPane.rowIndex="8">
+            <Label text="Website" GridPane.rowIndex="6">
                <GridPane.margin>
                   <Insets left="20.0" />
                </GridPane.margin>
@@ -74,7 +165,7 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <Label text="e-Mail" GridPane.rowIndex="10">
+            <Label text="e-Mail" GridPane.rowIndex="8">
                <GridPane.margin>
                   <Insets left="20.0" />
                </GridPane.margin>
@@ -82,41 +173,26 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <TextField GridPane.rowIndex="1">
+            <TextField promptText="contacto telefónico" GridPane.rowIndex="5">
                <GridPane.margin>
-                  <Insets left="20.0" right="100.0" />
+                  <Insets left="20.0" right="20.0" />
                </GridPane.margin>
             </TextField>
-            <TextField GridPane.rowIndex="3">
+            <TextField promptText="website" GridPane.rowIndex="7">
                <GridPane.margin>
-                  <Insets left="20.0" right="100.0" />
+                  <Insets left="20.0" right="20.0" />
                </GridPane.margin>
             </TextField>
-            <TextField GridPane.rowIndex="5">
+            <TextField promptText="email da Organização" GridPane.rowIndex="9">
                <GridPane.margin>
-                  <Insets left="20.0" right="100.0" />
-               </GridPane.margin>
-            </TextField>
-            <TextField GridPane.rowIndex="7">
-               <GridPane.margin>
-                  <Insets left="20.0" right="100.0" />
-               </GridPane.margin>
-            </TextField>
-            <TextField GridPane.rowIndex="9">
-               <GridPane.margin>
-                  <Insets left="20.0" right="100.0" />
-               </GridPane.margin>
-            </TextField>
-            <TextField GridPane.rowIndex="11">
-               <GridPane.margin>
-                  <Insets left="20.0" right="100.0" />
+                  <Insets left="20.0" right="20.0" />
                </GridPane.margin>
             </TextField>
          </children>
       </GridPane>
-   </center>
+   </left>
    <bottom>
-      <FlowPane alignment="CENTER" prefHeight="52.0" prefWidth="340.0" BorderPane.alignment="CENTER">
+      <FlowPane alignment="CENTER_RIGHT" prefHeight="52.0" prefWidth="340.0" BorderPane.alignment="CENTER_RIGHT">
          <children>
             <Button defaultButton="true" mnemonicParsing="false" text="Continuar">
                <FlowPane.margin>
@@ -143,17 +219,4 @@
          </BorderPane.margin>
       </FlowPane>
    </bottom>
-   <top>
-      <Label style="-fx-background-color: #000000;" text="Dados da organização" textFill="WHITE" BorderPane.alignment="CENTER_LEFT">
-         <font>
-            <Font name="Calibri" size="18.0" />
-         </font>
-         <padding>
-            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-         </padding>
-         <BorderPane.margin>
-            <Insets left="5.0" top="5.0" />
-         </BorderPane.margin>
-      </Label>
-   </top>
 </BorderPane>
