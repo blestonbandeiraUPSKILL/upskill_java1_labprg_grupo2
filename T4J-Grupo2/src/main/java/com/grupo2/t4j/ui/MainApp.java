@@ -36,7 +36,7 @@ public class MainApp extends Application {
                     Alert alerta = AlertsUI.criarAlerta(Alert.AlertType.CONFIRMATION,
                             TITULO_APLICACAO,
                             "Confirmação da acção",
-                            "Deseja mesmo encerrar a aplicação'");
+                            "Deseja mesmo encerrar a aplicação?");
 
                     if (alerta.showAndWait().get() == ButtonType.CANCEL) {
                         windowEvent.consume();

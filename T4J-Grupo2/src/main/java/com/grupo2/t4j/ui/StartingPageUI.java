@@ -1,6 +1,7 @@
 package com.grupo2.t4j.ui;
 
 import com.grupo2.t4j.controller.ApplicationController;
+import com.grupo2.t4j.controller.RegistarOrganizacaoController;
 import com.grupo2.t4j.model.Password;
 import com.grupo2.t4j.model.UsersAPIAdapter;
 import javafx.event.ActionEvent;
@@ -21,6 +22,7 @@ import java.util.ResourceBundle;
 public class StartingPageUI implements Initializable {
 
     UsersAPIAdapter usersAPIAdapter;
+    RegistarOrganizacaoController registarOrganizacaoController;
     private ApplicationController applicationController;
     private Stage adicionarStage;
     private Scene sceneRegisterOrg;
@@ -82,7 +84,7 @@ public class StartingPageUI implements Initializable {
 
     public void registarOrganizacao(ActionEvent actionEvent) {
         adicionarStage.setScene(sceneRegisterOrg);
-        adicionarStage.setTitle("Registar Organização");
+        adicionarStage.setTitle("Registar Organização - Dados Organização");
         adicionarStage.show();
     }
 
