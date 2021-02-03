@@ -43,16 +43,18 @@ public class Colaborador extends Utilizador{
         setTelefone(telefone);
     }
 
-    /*public Colaborador(String nomeGestor, Email emailGestor, String funcao, String telefoneGestor) {
+    public Colaborador(String nomeGestor, Email emailGestor, String funcao, String telefoneGestor) {
         super(nomeGestor, emailGestor);
         setFuncao(funcao);
         setTelefone(telefoneGestor);
-    }*/
+    }
+
     public Colaborador (Colaborador colaborador){
         super(colaborador.getNome(), colaborador.getEmail(), colaborador.getPassword());
         setFuncao(colaborador.funcao);
         setTelefone(colaborador.telefone);
     }
+
 
     public final void setFuncao(String funcao){
         if (funcao == null || funcao.trim().isEmpty()) {
