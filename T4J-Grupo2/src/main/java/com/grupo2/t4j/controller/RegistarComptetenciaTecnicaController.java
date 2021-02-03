@@ -17,6 +17,6 @@ public class RegistarComptetenciaTecnicaController {
     
     /*public boolean registarCompetenciaTecnica(String codCT, String codAT, String descBreve, String descDetalhada){
         CompetenciaTecnica compTec = new CompetenciaTecnica (codCT, RepositorioAreaActividade.getAreaAtividadeByCodigo(codAT), descBreve, descDetalhada);
-        return RepositorioCompetenciaTecnica.getRepositorio().addCompetenciaTecnica(compTec);
+        return RepositorioCompetenciaTecnica.getInstance().addCompetenciaTecnica(compTec);
     }*/
 }
