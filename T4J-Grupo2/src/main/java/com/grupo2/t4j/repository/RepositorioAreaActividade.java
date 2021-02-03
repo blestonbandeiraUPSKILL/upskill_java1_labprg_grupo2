@@ -19,17 +19,25 @@ public class RepositorioAreaActividade {
     
     private static RepositorioAreaActividade repositorioAreaActividade;
     
-    private Plataforma plataforma;
-    private List<AreaActividade> listaAreasActividade = new ArrayList<>();
+    private List<AreaActividade> listaAreasActividade;
     
-    public RepositorioAreaActividade(Plataforma plataforma, List<AreaActividade> listaAreasActividade){
-        repositorioAreaActividade.plataforma = plataforma;
-        repositorioAreaActividade.listaAreasActividade = listaAreasActividade;
+    private RepositorioAreaActividade(){
+        listaAreasActividade = new ArrayList<>();
     }
     
     public void addAreaActividade(AreaActividade areaActividade) throws AreaActividadeDuplicadaException {
         AreaActividade aa = getAreaActividadeByCodigo(areaActividade.getCodigo());
         if (aa == null) {
+            this.listaAreasActividade.add(areaActividade);
+        } else {
+            throw new AreaActividadeDuplicadaException(aa.getCodigo() + ": Área de Actividade já registada!");
+        }
+    }
+    
+    public void addAreaActividade(String codigo, String descBreve, String descDetalhada) throws AreaActividadeDuplicadaException {
+        AreaActividade aa = getAreaActividadeByCodigo(codigo);
+        if (aa == null) {
+            AreaActividade areaActividade = new AreaActividade(codigo, descBreve, descDetalhada);
             this.listaAreasActividade.add(areaActividade);
         } else {
             throw new AreaActividadeDuplicadaException(aa.getCodigo() + ": Área de Actividade já registada!");
@@ -49,9 +57,8 @@ public class RepositorioAreaActividade {
     } 
     
     public static RepositorioAreaActividade getInstance(){
-        if(RepositorioAreaActividade.repositorioAreaActividade == null) {
-            List<AreaActividade> newlistaAreasActividade = new ArrayList<>();
-            RepositorioAreaActividade.repositorioAreaActividade = new RepositorioAreaActividade(Plataforma.getInstance(), newlistaAreasActividade);
+        if(repositorioAreaActividade == null) {
+            repositorioAreaActividade = new RepositorioAreaActividade();
         }
         return repositorioAreaActividade;
     }

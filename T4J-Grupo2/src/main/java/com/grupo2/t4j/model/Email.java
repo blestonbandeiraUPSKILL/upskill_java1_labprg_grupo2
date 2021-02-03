@@ -85,5 +85,6 @@ public class Email implements IEmail {
     public void send() {
         System.out.println("Email enviado para " + getTo());
     }
-
 }
+
+

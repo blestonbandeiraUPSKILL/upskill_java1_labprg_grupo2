@@ -22,23 +22,39 @@ public class Colaborador extends Utilizador{
         super(nome, email, password);
     }
 
-    public Colaborador(String nome, Email email, String funcao,
+    public Colaborador(String nome, Email email, Password password, String funcao,
             String telefone){
-        super(nome, email);
+        super(nome, email, password);
+        setFuncao(funcao);
+        setTelefone(telefone);
+    }
+    
+    public Colaborador(String nome, String emailCol, Password password, String funcao,
+            String telefone){
+        super(nome, emailCol, password);
+        setFuncao(funcao);
+        setTelefone(telefone);
+    }
+    
+    public Colaborador(String nome, String emailCol, String passCol, String funcao,
+            String telefone){
+        super(nome, emailCol, passCol);
         setFuncao(funcao);
         setTelefone(telefone);
     }
 
-    /*public Colaborador(String nomeGestor, Email emailGestor, String funcao, String telefoneGestor) {
+    public Colaborador(String nomeGestor, Email emailGestor, String funcao, String telefoneGestor) {
         super(nomeGestor, emailGestor);
         setFuncao(funcao);
         setTelefone(telefoneGestor);
-    }*/
+    }
+
     public Colaborador (Colaborador colaborador){
         super(colaborador.getNome(), colaborador.getEmail(), colaborador.getPassword());
         setFuncao(colaborador.funcao);
         setTelefone(colaborador.telefone);
     }
+
 
     public final void setFuncao(String funcao){
         if (funcao == null || funcao.trim().isEmpty()) {

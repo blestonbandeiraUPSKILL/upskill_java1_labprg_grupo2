@@ -25,8 +25,9 @@ public class Organizacao {
     public Organizacao(){
     }
     
-    public Organizacao(String nome, String NIF, EnderecoPostal enderecoOrg, String telefone,
-                       Website websiteOrg, Email emailOrg, Colaborador colabGestor){
+    public Organizacao(String nome, String NIF, EnderecoPostal enderecoOrg, 
+            Website websiteOrg, String telefone, Email emailOrg, Colaborador 
+            colabGestor){
         setNome(nome);
         setNif(NIF);
         this.enderecoOrg = new EnderecoPostal(enderecoOrg);
@@ -34,6 +35,56 @@ public class Organizacao {
         setTelefone(telefone);
         this.emailOrg = new Email(emailOrg);
         this.colabGestor = new Colaborador(colabGestor);
+    }
+    
+    public Organizacao(String nome, String NIF, String arruamento, String numeroPorta,
+            String localidade, String codigoPostal, Website websiteOrg, String telefone,
+            Email emailOrg, Colaborador colabGestor){
+        setNome(nome);
+        setNif(NIF);
+        this.enderecoOrg = new EnderecoPostal(arruamento, numeroPorta, localidade, codigoPostal);
+        this.websiteOrg = new Website(websiteOrg);
+        setTelefone(telefone);
+        this.emailOrg = new Email(emailOrg);
+        this.colabGestor = new Colaborador(colabGestor);
+    }
+    
+    public Organizacao(String nome, String NIF, String arruamento, String numeroPorta,
+            String localidade, String codigoPostal, String website, String telefone,
+            String email, Colaborador colabGestor){
+        setNome(nome);
+        setNif(NIF);
+        this.enderecoOrg = new EnderecoPostal(arruamento, numeroPorta, localidade, codigoPostal);
+        this.websiteOrg = new Website(website);
+        setTelefone(telefone);
+        this.emailOrg = new Email(email);
+        this.colabGestor = new Colaborador(colabGestor);
+    }
+    
+    public Organizacao(String nome, String NIF, String arruamento, String numeroPorta,
+            String localidade, String codigoPostal, String website, String telefone,
+            String email, String nomeColab, String emailColab, Password password,
+            String funcao, String telefoneColab){
+        setNome(nome);
+        setNif(NIF);
+        this.enderecoOrg = new EnderecoPostal(arruamento, numeroPorta, localidade, codigoPostal);
+        this.websiteOrg = new Website(website);
+        setTelefone(telefone);
+        this.emailOrg = new Email(email);
+        this.colabGestor = new Colaborador(nomeColab, emailColab, password, funcao, telefoneColab);
+    }
+    
+    public Organizacao(String nome, String NIF, String arruamento, String numeroPorta,
+            String localidade, String codigoPostal, String website, String telefone,
+            String email, String nomeColab, String emailColab, String passColab,
+            String funcao, String telefoneColab){
+        setNome(nome);
+        setNif(NIF);
+        this.enderecoOrg = new EnderecoPostal(arruamento, numeroPorta, localidade, codigoPostal);
+        this.websiteOrg = new Website(website);
+        setTelefone(telefone);
+        this.emailOrg = new Email(email);
+        this.colabGestor = new Colaborador(nomeColab, emailColab, passColab, funcao, telefoneColab);
     }
     
     public Organizacao(Organizacao organizacao){
@@ -118,5 +169,4 @@ public class Organizacao {
     public static Colaborador novoColaborador(String nomeGestor, String funcao, String telefoneGestor, Email emailGestor ) {
         return new Colaborador(nomeGestor, emailGestor, funcao, telefoneGestor);
     }
-
 }

@@ -15,18 +15,25 @@ public class Utilizador {
     private Email email;
     private Password password;
     
-   public Utilizador(){
-   }
-
-   public Utilizador(String nome, Email email){
-       setNome(nome);
-       setEmail(email);
-   }
-    
+    public Utilizador(){
+    }
+     
     public Utilizador(String nome, Email email, Password password){
         setNome(nome);
         setEmail(email);
         setPassword(password);
+    }
+    
+    public Utilizador(String nome, String emailUt, Password password){
+        setNome(nome);
+        this.email = new Email(emailUt);
+        setPassword(password);
+    }
+    
+    public Utilizador(String nome, String emailUt, String passUt){
+        setNome(nome);
+        this.email = new Email(emailUt);
+        this.password = new Password(passUt);
     }
     
     public Utilizador(Utilizador utilizador){
@@ -34,7 +41,12 @@ public class Utilizador {
         setEmail(utilizador.email);
         setPassword(utilizador.password);
     }
-    
+
+    public Utilizador(String nomeGestor, Email emailGestor) {
+        setNome(nomeGestor);
+        setEmail(emailGestor);
+    }
+
     public final void setNome(String nome){
         if (nome == null || nome.trim().isEmpty()) {
             throw new IllegalArgumentException("Nome é inválido!");

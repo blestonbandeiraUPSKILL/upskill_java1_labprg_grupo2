@@ -23,6 +23,8 @@ public class EnderecoPostal {
         setLocalidade(localidade);
         setCodigoPostal(codigoPostal);        
     }
+
+
     
     public EnderecoPostal(EnderecoPostal endereco){
         setArruamento(endereco.arruamento);

@@ -94,9 +94,9 @@ public class FicheiroRepositorioCompetenciaTecnica {
         }
     }
 
-   /* public RepositorioCompetenciaTecnica importarTexto(File ficheiro) {
+    /*public RepositorioCompetenciaTecnica importarTexto(File ficheiro) {
         try {
-            RepositorioCompetenciaTecnica lista = new RepositorioCompetenciaTecnica.getInstance();
+            RepositorioCompetenciaTecnica lista = RepositorioCompetenciaTecnica.getInstance();
             Scanner in = new Scanner(ficheiro);
 
             try {
@@ -112,7 +112,7 @@ public class FicheiroRepositorioCompetenciaTecnica {
                 in.close();
             }
         } catch (IOException ex) {
-            return new RepositorioCompetenciaTecnica.getInstance();
+            return RepositorioCompetenciaTecnica.getInstance();
         }
     }*/
 }

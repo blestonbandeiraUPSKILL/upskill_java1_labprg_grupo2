@@ -17,24 +17,49 @@ import java.util.List;
 
 public class RepositorioColaborador {
     
-    private static RepositorioColaborador instance;
+    private static RepositorioColaborador repositorioColaborador;
 
-    private List<Colaborador> listaColaboradores = new ArrayList<>();
+    private List<Colaborador> listaColaboradores;
     
-    /*public static RepositorioColaborador getInstance(){
-        if (instance == null){
-            instance = new RepositorioColaborador();
-        }
-        return instance;
-    }*/
-    
-    public RepositorioColaborador(List<Colaborador> listaColaboradores){
-        this.listaColaboradores = listaColaboradores;
+    private RepositorioColaborador(){
+        listaColaboradores = new ArrayList<>();
     }
     
     public void addColaborador(Colaborador colaborador) throws ColaboradorDuplicadoException {
         Colaborador c = getColaboradorByEmail(colaborador.getEmail());
         if (c == null) {
+            this.listaColaboradores.add(colaborador);
+        } else {
+            throw new ColaboradorDuplicadoException(c.getEmail() + ": Colaborador já registado!");
+        }
+    }
+    
+    public void addColaborador(String nome, Email email, Password password, String funcao, String telefone) throws ColaboradorDuplicadoException {
+        Colaborador c = getColaboradorByEmail(email);
+        if (c == null) {
+            Colaborador colaborador = new Colaborador(nome, email, password, funcao, telefone);
+            this.listaColaboradores.add(colaborador);
+        } else {
+            throw new ColaboradorDuplicadoException(c.getEmail() + ": Colaborador já registado!");
+        }
+    }
+    
+    public void addColaborador(String nome, String emailCol, Password password, String funcao, String telefone) throws ColaboradorDuplicadoException {
+        Email email = new Email(emailCol);
+        Colaborador c = getColaboradorByEmail(email);
+        if (c == null) {
+            Colaborador colaborador = new Colaborador(nome, email, password, funcao, telefone);
+            this.listaColaboradores.add(colaborador);
+        } else {
+            throw new ColaboradorDuplicadoException(c.getEmail() + ": Colaborador já registado!");
+        }
+    }
+    
+    public void addColaborador(String nome, String emailCol, String passCol, String funcao, String telefone) throws ColaboradorDuplicadoException {
+        Email email = new Email(emailCol);
+        Colaborador c = getColaboradorByEmail(email);
+        if (c == null) {
+            Colaborador colaborador = new Colaborador(nome, emailCol, passCol, funcao, telefone);
             this.listaColaboradores.add(colaborador);
         } else {
             throw new ColaboradorDuplicadoException(c.getEmail() + ": Colaborador já registado!");
@@ -52,4 +77,11 @@ public class RepositorioColaborador {
         }
         return null;
     }
+        
+    public static RepositorioColaborador getInstance(){
+        if (repositorioColaborador == null){
+            repositorioColaborador = new RepositorioColaborador();
+        }
+        return repositorioColaborador;
+    }    
 }

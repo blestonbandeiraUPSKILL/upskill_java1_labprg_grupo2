@@ -7,12 +7,15 @@ package com.grupo2.t4j.model;
 
 import com.grupo2.t4j.exception.AreaActividadeInexistenteException;
 import com.grupo2.t4j.exception.DescricaoInvalidaException;
+import java.io.Serializable;
 
 /**
  *
  * @author acris
  */
-public class CompetenciaTecnica {
+public class CompetenciaTecnica implements Serializable{
+
+   
     
    /**
     * Atributos Competencia Tecnica
@@ -21,7 +24,9 @@ public class CompetenciaTecnica {
     private String descricaoBreve;
     private String descricaoDetalhada;
     private AreaActividade areaActividade;
-    private GrauProficiencia grau;
+    private CaracterizacaoCT cct;
+    
+    private static final char SEPARADOR = ';';
     
 /**
  * Construtor Competencia Tecnica Completo
@@ -30,12 +35,12 @@ public class CompetenciaTecnica {
  * @param descricaoDetalhada
  *
  */
-    public CompetenciaTecnica(String codigo, String descricaoBreve, String descricaoDetalhada, AreaActividade areaActividade) {
+    public CompetenciaTecnica(String codigo, String descricaoBreve, String descricaoDetalhada, AreaActividade areaActividade, CaracterizacaoCT cct) {
         this.codigo = codigo;
         this.descricaoBreve = descricaoBreve;
         this.descricaoDetalhada = descricaoDetalhada;
         this.areaActividade=areaActividade;
-        //this.grau=grau;
+        this.cct=cct;
         
         
     }
@@ -117,18 +122,18 @@ public class CompetenciaTecnica {
     }
 
     /**
-     * @return the grau
+     * @return the cct
      */
-    public GrauProficiencia getGrau() {
-        return grau;
+    public CaracterizacaoCT getCct() {
+        return cct;
     }
 
     /**
-     * @param grau the grau to set
+     * @param cct the cct to set
      */
-    public void setGrau(GrauProficiencia grau) {
-        this.grau = grau;
-    }
+    public void setCct(CaracterizacaoCT cct) {
+        this.cct = cct;
+    } 
 
     /**
      * @return the areaActividade
@@ -156,9 +161,30 @@ public class CompetenciaTecnica {
     public String toString() {
         return "CompetenciaTecnica{" + "codigo: " + codigo + ",/ndescricaoBreve: " 
                 + descricaoBreve + ", /ndescricaoDetalhada: " + descricaoDetalhada +
-                ", /nareaActividade: " + areaActividade + ", /ngrau=" + grau + '}';
+                ", /nareaActividade: " + areaActividade + ", /ngrau=" + cct + '}';
     }
     
-    
-    
+    public String toStringExport() {
+        return String.format("%s%c%s%c%s%c%s", codigo, SEPARADOR, descricaoBreve, SEPARADOR, areaActividade.toString(), SEPARADOR, cct.toString());
+    }
+   
+    /* public String[] getCompetenciaComoArray(String compTecnica) {
+        String[] dados = compTecnica.trim().split(String.valueOf(SEPARADOR));
+        int nrAtributos = 8;
+
+        if (dados.length == nrAtributos) {
+            try {
+                new CompetenciaTecnica(dados[0],dados[1], Integer.parseInt(dados[0]));
+                
+                return dados;
+            }
+            catch(Exception ex) {
+                throw new RuntimeException("Dados Inválidos do Contacto");
+            }
+        }
+
+        throw new RuntimeException("Dados Inválidos do Contacto");
+    }    }
+*/
+   
 }
