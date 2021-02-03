@@ -34,6 +34,28 @@ public class RepositorioAdministrativo {
         }
     }
     
+    public void addAdministrador(String nome, Email email, Password password) throws AdministrativoDuplicadoException {
+        Administrativo a = getAdministrativoByEmail(email);
+        if (a == null) {
+            Administrativo administrativo = new Administrativo(nome, email, password);
+            this.listaAdministradores.add(administrativo);
+        } else {
+            throw new AdministrativoDuplicadoException(a.getEmail() + ": Administrador já registado");
+        }
+    }
+    
+    public void addAdministrador(String nome, String email, String password) throws AdministrativoDuplicadoException {
+        Email emailAd = new Email(email);
+        Administrativo a = getAdministrativoByEmail(emailAd);
+        if (a == null) {
+            Password passAdm = new Password(password);
+            Administrativo administrativo = new Administrativo(nome, emailAd, passAdm);
+            this.listaAdministradores.add(administrativo);
+        } else {
+            throw new AdministrativoDuplicadoException(a.getEmail() + ": Administrador já registado");
+        }
+    }
+    
     private Administrativo getAdministrativoByEmail(Email email) {
         Administrativo administrativo = null;
         for (int i = 0; i < this.listaAdministradores.size(); i++) {

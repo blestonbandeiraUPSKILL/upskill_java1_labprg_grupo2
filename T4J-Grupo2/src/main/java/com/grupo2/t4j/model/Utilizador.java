@@ -15,14 +15,9 @@ public class Utilizador {
     private Email email;
     private Password password;
     
-   public Utilizador(){
-   }
-
-   public Utilizador(String nome, Email email){
-       setNome(nome);
-       setEmail(email);
-   }
-    
+    public Utilizador(){
+    }
+     
     public Utilizador(String nome, Email email, Password password){
         setNome(nome);
         setEmail(email);

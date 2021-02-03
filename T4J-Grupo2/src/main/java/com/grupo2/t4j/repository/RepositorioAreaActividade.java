@@ -34,6 +34,16 @@ public class RepositorioAreaActividade {
         }
     }
     
+    public void addAreaActividade(String codigo, String descBreve, String descDetalhada) throws AreaActividadeDuplicadaException {
+        AreaActividade aa = getAreaActividadeByCodigo(codigo);
+        if (aa == null) {
+            AreaActividade areaActividade = new AreaActividade(codigo, descBreve, descDetalhada);
+            this.listaAreasActividade.add(areaActividade);
+        } else {
+            throw new AreaActividadeDuplicadaException(aa.getCodigo() + ": Área de Actividade já registada!");
+        }
+    }
+    
     private AreaActividade getAreaActividadeByCodigo(String codigo) {
         AreaActividade areaActividade = null;
         for (int i = 0; i < this.listaAreasActividade.size(); i++) {
