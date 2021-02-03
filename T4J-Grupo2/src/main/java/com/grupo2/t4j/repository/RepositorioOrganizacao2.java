@@ -10,7 +10,7 @@ package com.grupo2.t4j.repository;
 /**
  *
  * @author CAD
- *//*
+ */
 
 
 import com.grupo2.t4j.model.*;
@@ -24,21 +24,68 @@ public class RepositorioOrganizacao2 {
     
     private List<Organizacao> listaOrganizacoes;
     
+    private Plataforma plataforma;
+    private Colaborador colabGestor;
+    
     private RepositorioOrganizacao2() {
         listaOrganizacoes = new ArrayList<>();
     }
     
-    public Organizacao novaOrganizacao(String nome, String nif, String arruamento,
-                                       String numeroPorta, String localidade, String codigoPostal,
-                                       String telefone, Website website, Email emailOrganizacao,
-                                       String nomeGestor, String funcao, String telefoneGestor,
-                                       Email emailGestor) {
-        EnderecoPostal endereco = Organizacao.novoEndereco(arruamento, numeroPorta, localidade, codigoPostal);
-        colabGestor = Organizacao.novoColaborador(nomeGestor, funcao, telefoneGestor, emailGestor);
-
-        return new Organizacao(nome, nif, endereco, telefone, website, emailOrganizacao, colabGestor);
+    public void addOrganizacao(Organizacao organizacao) throws OrganizacaoDuplicadaException {
+        Organizacao o = getOrganizacaoByNif(organizacao.getNif());
+        if (o == null) {
+            this.listaOrganizacoes.add(organizacao);
+        } else {
+            throw new OrganizacaoDuplicadaException(o.getNif() + ": Organização já registada!");
+        }
     }
-
+    
+    public void addOrganizacao(String nome, String NIF, EnderecoPostal enderecoOrg, 
+            Website websiteOrg, String telefone, Email emailOrg, Colaborador 
+            colabGestor) throws OrganizacaoDuplicadaException {
+        Organizacao o = getOrganizacaoByNif(NIF);
+        if (o == null) {
+            Organizacao organizacao = new Organizacao(nome, NIF, enderecoOrg, websiteOrg,
+            telefone, emailOrg, colabGestor);
+            this.listaOrganizacoes.add(organizacao);
+        } else {
+            throw new OrganizacaoDuplicadaException(o.getNif() + ": Organização já registada!");
+        }
+    }
+    
+    public void addOrganizacao(String nome, String NIF, String arruamento, String numeroPorta,
+            String localidade, String codigoPostal, Website websiteOrg, String telefone,
+            Email emailOrg, Colaborador colabGestor) throws OrganizacaoDuplicadaException {
+        Organizacao o = getOrganizacaoByNif(NIF);
+        if (o == null) {
+            EnderecoPostal enderecoOrg = new EnderecoPostal(arruamento, numeroPorta,
+            localidade, codigoPostal);
+            Organizacao organizacao = new Organizacao(nome, NIF, enderecoOrg, websiteOrg,
+            telefone, emailOrg, colabGestor);
+            this.listaOrganizacoes.add(organizacao);
+        } else {
+            throw new OrganizacaoDuplicadaException(o.getNif() + ": Organização já registada!");
+        }
+    }
+    
+    public void addOrganizacao(String nome, String NIF, String arruamento, String numeroPorta,
+            String localidade, String codigoPostal, Website websiteOrg, String telefone,
+            Email emailOrg, String nomeColab, String emailColab, Password password,
+            String funcao, String telefoneColab) throws OrganizacaoDuplicadaException {
+        Organizacao o = getOrganizacaoByNif(NIF);
+        if (o == null) {
+            EnderecoPostal enderecoOrg = new EnderecoPostal(arruamento, numeroPorta,
+            localidade, codigoPostal);
+            Colaborador gestor = new Colaborador(nomeColab, emailColab, password, 
+                    funcao, telefoneColab);
+            Organizacao organizacao = new Organizacao(nome, NIF, enderecoOrg, websiteOrg,
+            telefone, emailOrg, gestor);
+            this.listaOrganizacoes.add(organizacao);
+        } else {
+            throw new OrganizacaoDuplicadaException(o.getNif() + ": Organização já registada!");
+        }
+    }
+    
     public boolean validaOrganizacao(Organizacao organizacao) throws IllegalArgumentException{
 
         try {
@@ -71,15 +118,6 @@ public class RepositorioOrganizacao2 {
             throw new Exception();
         }
     }
-
-    public void addOrganizacao(Organizacao organizacao) throws OrganizacaoDuplicadaException {
-        Organizacao o = getOrganizacaoByNif(organizacao.getNif());
-        if (o == null) {
-            this.listaOrganizacoes.add(organizacao);
-        } else {
-            throw new OrganizacaoDuplicadaException(o.getNif() + ": Organização já registada!");
-        }
-    }
     
     private Organizacao getOrganizacaoByNif(String NIF) {
         Organizacao organizacao = null;
@@ -92,6 +130,3 @@ public class RepositorioOrganizacao2 {
         }
         return null;
     }
-}
-}
-*/
