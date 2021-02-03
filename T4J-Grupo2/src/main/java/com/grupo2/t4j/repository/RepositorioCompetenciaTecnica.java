@@ -17,28 +17,32 @@ import java.util.List;
  * @author acris
  */
 public class RepositorioCompetenciaTecnica {
+
     public static RepositorioCompetenciaTecnica instance;
     List<CompetenciaTecnica> listaCompTecnicas;
-    
-    
-    private RepositorioCompetenciaTecnica(){
+
+    private RepositorioCompetenciaTecnica() {
         listaCompTecnicas = new ArrayList<>();
     }
+
     /**
      * Devolve uma instancia static de RepositorioCompetenciaTecnica
-     * @return 
+     *
+     * @return
      */
-    public static RepositorioCompetenciaTecnica getInstance(){
-        if (instance == null){
+    public static RepositorioCompetenciaTecnica getInstance() {
+        if (instance == null) {
             instance = new RepositorioCompetenciaTecnica();
         }
         return instance;
     }
+
     /**
      * Adiciona uma competencia tecnica a lista de Competencias Tecnicas
+     *
      * @param competenciaTecnica
      * @throws com.grupo2.t4j.exception.CompetenciaTecnicaDuplicadaException
-     * @throws CompetenciaTecnicaDuplicadaException 
+     * @throws CompetenciaTecnicaDuplicadaException
      */
     public boolean addCompetenciaTecnica(CompetenciaTecnica competenciaTecnica) throws CompetenciaTecnicaDuplicadaException {
         CompetenciaTecnica ct = getCompetenciaTecnicaByCodigo(competenciaTecnica.getCodigo());
@@ -49,28 +53,32 @@ public class RepositorioCompetenciaTecnica {
             throw new CompetenciaTecnicaDuplicadaException(ct.getCodigo() + ": Competencia Tecnica já existe");
         }
     }
-/**
- * Atualiza a lista de Competencias Tecnicas
- * @param listaCompTecnicas 
- */
+
+    /**
+     * Atualiza a lista de Competencias Tecnicas
+     *
+     * @param listaCompTecnicas
+     */
     public void setListaCompTecnicas(List<CompetenciaTecnica> listaCompTecnicas) {
         this.listaCompTecnicas = listaCompTecnicas;
     }
-    
+
     /**
      * Devolve a lista de competencias tecnicas
-     * @return 
+     *
+     * @return
      */
     public ArrayList<CompetenciaTecnica> getCompetenciasTecnicas() {
-        
-      return new ArrayList<CompetenciaTecnica>(listaCompTecnicas);
+
+        return new ArrayList<CompetenciaTecnica>(listaCompTecnicas);
     }
-    
-   /**
-    * Devolve uma competencia tecnica de acordo com o seu codigo
-    * @param codigo
-    * @return 
-    */
+
+    /**
+     * Devolve uma competencia tecnica de acordo com o seu codigo
+     *
+     * @param codigo
+     * @return
+     */
     public CompetenciaTecnica getCompetenciaTecnicaByCodigo(String codigo) {
         CompetenciaTecnica compTec = null;
         for (int i = 0; i < this.listaCompTecnicas.size(); i++) {
@@ -78,15 +86,17 @@ public class RepositorioCompetenciaTecnica {
             if (compTec.getCodigo().equals(codigo)) {
                 CompetenciaTecnica copia = new CompetenciaTecnica(compTec);
                 return copia;
-               
+
             }
         }
         return null;
     }
+
     /**
      * Devolve uma lista de competencias tecnicas por area de actividade
+     *
      * @param at
-     * @return 
+     * @return
      */
     public ArrayList<CompetenciaTecnica> getCompetenciasTecnicasByAreaActividade(AreaActividade at) {
         ArrayList<CompetenciaTecnica> compTecPorAt = new ArrayList<>();
@@ -98,5 +108,13 @@ public class RepositorioCompetenciaTecnica {
         }
 
         return compTecPorAt;
+    }
+
+    public String[] getListaComoArray() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public boolean isVazia() {
+        return listaCompTecnicas.isEmpty();
     }
 }

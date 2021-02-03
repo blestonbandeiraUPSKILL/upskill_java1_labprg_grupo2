@@ -7,12 +7,17 @@ package com.grupo2.t4j.model;
 
 import com.grupo2.t4j.exception.AreaActividadeInexistenteException;
 import com.grupo2.t4j.exception.DescricaoInvalidaException;
+import java.io.Serializable;
 
 /**
  *
  * @author acris
  */
-public class CompetenciaTecnica {
+public class CompetenciaTecnica implements Serializable{
+
+    static String[] getCompetenciaComoArray(String linha) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
    /**
     * Atributos Competencia Tecnica

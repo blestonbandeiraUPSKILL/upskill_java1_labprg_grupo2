@@ -19,12 +19,10 @@ public class RepositorioAdministrativo {
     
     private static RepositorioAdministrativo repositorioAdministrativo;
     
-    private Plataforma plataforma;
-    private List<Administrativo> listaAdministradores = new ArrayList<>();
+    private List<Administrativo> listaAdministradores;
     
-    public RepositorioAdministrativo(Plataforma plataforma, List<Administrativo> listaAdministradores){
-        repositorioAdministrativo.plataforma = plataforma;
-        repositorioAdministrativo.listaAdministradores = listaAdministradores;
+    private RepositorioAdministrativo(){
+        listaAdministradores = new ArrayList<>();
     }
           
     public void addAdministrador(Administrativo administrativo) throws AdministrativoDuplicadoException {
@@ -32,7 +30,7 @@ public class RepositorioAdministrativo {
         if (a == null) {
             this.listaAdministradores.add(administrativo);
         } else {
-            throw new AdministrativoDuplicadoException(a.getEmail() + ": Utilizador já registado");
+            throw new AdministrativoDuplicadoException(a.getEmail() + ": Administrador já registado");
         }
     }
     
@@ -49,9 +47,8 @@ public class RepositorioAdministrativo {
     }   
     
     public static RepositorioAdministrativo getInstance() {
-        if(RepositorioAdministrativo.repositorioAdministrativo == null) {
-            List<Administrativo> newListaAdministradores = new ArrayList<>();
-            RepositorioAdministrativo.repositorioAdministrativo = new RepositorioAdministrativo(Plataforma.getInstance(), newListaAdministradores);
+        if(repositorioAdministrativo == null) {
+            repositorioAdministrativo = new RepositorioAdministrativo();
         }
         return repositorioAdministrativo;
     }
