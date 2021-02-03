@@ -7,7 +7,7 @@ class RegistarOrganizacaoUI {
 
 class RegistarOrganizacaoController {
     --
-    +novaOrganizacao(nome, NIF, endLocal, endCodPOstal, endLocalidade, tlf, site, email, nomeG, funcao, tlfG, emailG, pwd)
+    +novaOrganizacao(nome, NIF, endLocal, endCodPostal, endLocalidade, tlf, site, email, nomeG, funcao, tlfG, emailG, pwd)
     +registaOrganizacao()
 }
 
@@ -43,8 +43,8 @@ class EnderecoPostal {
 
 class RegistoOrganizacoes {
     --
-    +Organizacao novaOrganizacao(nome, NIF, endLocal, endCodPOstal, endLocalidade, tlf, site, email, nomeG, funcao, tlfG, emailG)
-    +validaOrganizacao(Organizaocao org)
+    +Organizacao novaOrganizacao(nome, NIF, endLocal, endCodPostal, endLocalidade, tlf, site, email, nomeG, funcao, tlfG, emailG)
+    +validaOrganizacao(Organizacao org)
     +registaOrganizacao(Organizacao org)
     -addOrganizacao(Organizacao org)
     -registaGestorComoUtilizador(Colaborador colab)
