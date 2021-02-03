@@ -11,10 +11,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="400.0" maxWidth="-Infinity"
-            minHeight="-Infinity" minWidth="-Infinity"
-            prefHeight="400.0" prefWidth="700.0" style="-fx-background-color: #c4c4c4;"
-            xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.RegisterOrgUI">
+<BorderPane maxHeight="400.0" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" style="-fx-background-color: #c4c4c4;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.RegisterOrgUI">
    <bottom>
       <FlowPane alignment="CENTER_RIGHT" prefHeight="52.0" prefWidth="340.0" BorderPane.alignment="CENTER_RIGHT">
          <children>
@@ -79,12 +76,12 @@
                         <Font name="Calibri" size="14.0" />
                      </font>
                   </Label>
-                  <TextField promptText="nome da organização" GridPane.rowIndex="1">
+                  <TextField fx:id="txtNomeOrganizacao" promptText="nome da organização" GridPane.rowIndex="1">
                      <GridPane.margin>
                         <Insets left="20.0" right="20.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField promptText="nif" GridPane.rowIndex="3">
+                  <TextField fx:id="txtNIFOrganizacao" promptText="nif" GridPane.rowIndex="3">
                      <GridPane.margin>
                         <Insets left="20.0" right="20.0" />
                      </GridPane.margin>
@@ -113,17 +110,17 @@
                         <Font name="Calibri" size="14.0" />
                      </font>
                   </Label>
-                  <TextField promptText="contacto telefónico" GridPane.rowIndex="5">
+                  <TextField fx:id="txtTelefoneOrganizacao" promptText="contacto telefónico" GridPane.rowIndex="5">
                      <GridPane.margin>
                         <Insets left="20.0" right="20.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField promptText="website" GridPane.rowIndex="7">
+                  <TextField fx:id="txtWebsiteOrganizacao" promptText="website" GridPane.rowIndex="7">
                      <GridPane.margin>
                         <Insets left="20.0" right="20.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField promptText="email da Organização" GridPane.rowIndex="9">
+                  <TextField fx:id="txtEmailOrganizacao" promptText="email da Organização" GridPane.rowIndex="9">
                      <GridPane.margin>
                         <Insets left="20.0" right="20.0" />
                      </GridPane.margin>
@@ -148,22 +145,22 @@
                         <Font name="Calibri" size="14.0" />
                      </font>
                   </Label>
-                  <TextField promptText="arruamento" GridPane.rowIndex="11">
+                  <TextField fx:id="txtEndArruamentoOrganizacao" promptText="arruamento" GridPane.rowIndex="11">
                      <GridPane.margin>
                         <Insets left="20.0" right="20.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField promptText="número porta" GridPane.rowIndex="13">
+                  <TextField fx:id="txtEndPortaOrganizacao" promptText="número porta" GridPane.rowIndex="13">
                      <GridPane.margin>
                         <Insets left="20.0" right="20.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField promptText="localidade" GridPane.rowIndex="15">
+                  <TextField fx:id="txtEndLocalidadeOrganizacao" promptText="localidade" GridPane.rowIndex="15">
                      <GridPane.margin>
                         <Insets left="20.0" right="20.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField promptText="código postal" GridPane.rowIndex="17">
+                  <TextField fx:id="txtEndCodPostalOrganizacao" promptText="código postal" GridPane.rowIndex="17">
                      <GridPane.margin>
                         <Insets left="20.0" right="20.0" />
                      </GridPane.margin>
