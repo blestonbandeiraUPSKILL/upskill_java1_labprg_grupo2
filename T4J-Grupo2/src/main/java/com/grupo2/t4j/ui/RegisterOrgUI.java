@@ -4,6 +4,7 @@ import com.grupo2.t4j.controller.ApplicationController;
 import com.grupo2.t4j.controller.RegistarOrganizacaoController;
 import com.grupo2.t4j.model.*;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -12,10 +13,13 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.Window;
+import javafx.stage.WindowEvent;
 
 import java.io.IOException;
 import java.net.URL;
@@ -54,8 +58,23 @@ public class RegisterOrgUI implements Initializable {
     Button btnRegistarOrganizacaoCancel;
 
     public void registarOrganizacaoCancel(ActionEvent actionEvent) {
-        Stage stage = (Stage) btnRegistarOrganizacaoCancel.getScene().getWindow();
-        stage.close();
+        Window window = btnRegistarOrganizacaoCancel.getScene().getWindow();
+        window.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent windowEvent) {
+                Alert alerta = AlertsUI.criarAlerta(Alert.AlertType.CONFIRMATION,
+                        MainApp.TITULO_APLICACAO,
+                        "Confirmação da acção",
+                        "Tem a certeza que quer voltar à página inicial, cancelando o actual registo?");
+
+                if (alerta.showAndWait().get() == ButtonType.CANCEL) {
+                    windowEvent.consume();
+                }
+            }
+        });
+
+        window.fireEvent(new WindowEvent(window, WindowEvent.WINDOW_CLOSE_REQUEST));
+
     }
 
     @Override
