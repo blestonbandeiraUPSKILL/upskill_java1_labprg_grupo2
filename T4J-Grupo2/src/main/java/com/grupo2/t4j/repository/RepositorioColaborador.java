@@ -17,19 +17,12 @@ import java.util.List;
 
 public class RepositorioColaborador {
     
-    private static RepositorioColaborador instance;
+    private static RepositorioColaborador repositorioColaborador;
 
-    private List<Colaborador> listaColaboradores = new ArrayList<>();
+    private List<Colaborador> listaColaboradores;
     
-    /*public static RepositorioColaborador getInstance(){
-        if (instance == null){
-            instance = new RepositorioColaborador();
-        }
-        return instance;
-    }*/
-    
-    public RepositorioColaborador(List<Colaborador> listaColaboradores){
-        this.listaColaboradores = listaColaboradores;
+    private RepositorioColaborador(){
+        listaColaboradores = new ArrayList<>();
     }
     
     public void addColaborador(Colaborador colaborador) throws ColaboradorDuplicadoException {
@@ -52,4 +45,11 @@ public class RepositorioColaborador {
         }
         return null;
     }
+        
+    public static RepositorioColaborador getInstance(){
+        if (repositorioColaborador == null){
+            repositorioColaborador = new RepositorioColaborador();
+        }
+        return repositorioColaborador;
+    }    
 }

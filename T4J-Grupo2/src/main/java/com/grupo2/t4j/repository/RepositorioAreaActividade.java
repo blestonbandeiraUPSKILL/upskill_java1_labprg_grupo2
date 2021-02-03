@@ -19,12 +19,10 @@ public class RepositorioAreaActividade {
     
     private static RepositorioAreaActividade repositorioAreaActividade;
     
-    private Plataforma plataforma;
-    private List<AreaActividade> listaAreasActividade = new ArrayList<>();
+    private List<AreaActividade> listaAreasActividade;
     
-    public RepositorioAreaActividade(Plataforma plataforma, List<AreaActividade> listaAreasActividade){
-        repositorioAreaActividade.plataforma = plataforma;
-        repositorioAreaActividade.listaAreasActividade = listaAreasActividade;
+    private RepositorioAreaActividade(){
+        listaAreasActividade = new ArrayList<>();
     }
     
     public void addAreaActividade(AreaActividade areaActividade) throws AreaActividadeDuplicadaException {
@@ -49,9 +47,8 @@ public class RepositorioAreaActividade {
     } 
     
     public static RepositorioAreaActividade getInstance(){
-        if(RepositorioAreaActividade.repositorioAreaActividade == null) {
-            List<AreaActividade> newlistaAreasActividade = new ArrayList<>();
-            RepositorioAreaActividade.repositorioAreaActividade = new RepositorioAreaActividade(Plataforma.getInstance(), newlistaAreasActividade);
+        if(repositorioAreaActividade == null) {
+            repositorioAreaActividade = new RepositorioAreaActividade();
         }
         return repositorioAreaActividade;
     }

@@ -19,7 +19,6 @@ public class RepositorioUtilizador {
         
     private static RepositorioUtilizador repositorioUtilizador;
     
-    private Plataforma plataforma;
     private List<Utilizador> listaUtilizadores;
     
     private RepositorioUtilizador(){
