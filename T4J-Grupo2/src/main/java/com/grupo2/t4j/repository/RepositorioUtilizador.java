@@ -32,7 +32,7 @@ public class RepositorioUtilizador {
         if (u == null) {
             this.listaUtilizadores.add(utilizador);
         } else {
-            throw new UtilizadorDuplicadoException(u.getEmail() + ": Utilizador já registado");
+            throw new UtilizadorDuplicadoException(u.getEmail() + ": Utilizador já registado!");
         }
     }
     
