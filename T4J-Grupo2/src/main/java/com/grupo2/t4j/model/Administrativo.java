@@ -24,6 +24,19 @@ public class Administrativo {
         setPassword(password);
     }
     
+    public Administrativo(String nome, String emailAdm, Password password){
+        setNome(nome);
+        this.email = new Email(emailAdm); 
+        setPassword(password);
+    }
+    
+    public Administrativo(String nome, String emailAdm, String passAdm){
+        setNome(nome);
+        this.email = new Email(emailAdm); 
+        this.password = new Password(passAdm);
+    }
+    
+    
     public Administrativo(Administrativo administrativo){
         setNome(administrativo.nome);
         setEmail(administrativo.email);
