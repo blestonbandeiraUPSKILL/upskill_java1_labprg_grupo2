@@ -15,9 +15,7 @@ import java.io.Serializable;
  */
 public class CompetenciaTecnica implements Serializable{
 
-    static String[] getCompetenciaComoArray(String linha) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+   
     
    /**
     * Atributos Competencia Tecnica
@@ -26,7 +24,9 @@ public class CompetenciaTecnica implements Serializable{
     private String descricaoBreve;
     private String descricaoDetalhada;
     private AreaActividade areaActividade;
-    private GrauProficiencia grau;
+    private GrauProficiencia grau; //Possivelmente substituir por CaracterizacaoCT cct
+    
+    private static final char SEPARADOR = ';';
     
 /**
  * Construtor Competencia Tecnica Completo
@@ -164,6 +164,11 @@ public class CompetenciaTecnica implements Serializable{
                 ", /nareaActividade: " + areaActividade + ", /ngrau=" + grau + '}';
     }
     
-    
-    
+    public String toStringExport() {
+        return String.format("%s%c%s%c%s%c%s", codigo, SEPARADOR, descricaoBreve, SEPARADOR, areaActividade.toString(), SEPARADOR, grau.toString());
+    }
+   
+     public String[] getCompetenciaComoArray(String linha) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
