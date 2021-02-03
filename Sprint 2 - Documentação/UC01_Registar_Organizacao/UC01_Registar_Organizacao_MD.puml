@@ -11,26 +11,27 @@ class Plataforma <<Singleton>> {
 class Organização {
     -String nome
     -String NIF
-    -String website
+    -Website website
     -String telefone
-    -String email
+    -Email Email
 }
 
 class Colaborador {
-    String funcao
-    String telefone
+    -String funcao
+    -String telefone
 }
 
 class EnderecoPostal {
-    String local
-    String codPostal
-    String localidade
+    -String arruamento
+    -String numeroPorta
+    -String localidade
+    -String codigoPostal
 }
 
 class Utilizador {
-    String nome
-    String email
-    String password
+    -String nome
+    -Email email
+    -Password password
 }
 
 class AlgoritmoExternoGeracaoPwd {

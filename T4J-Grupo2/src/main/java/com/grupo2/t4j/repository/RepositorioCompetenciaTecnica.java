@@ -18,8 +18,12 @@ import java.util.List;
  */
 public class RepositorioCompetenciaTecnica {
     public static RepositorioCompetenciaTecnica instance;
-    List<CompetenciaTecnica> listaCompTecnicas= new ArrayList<>();
+    List<CompetenciaTecnica> listaCompTecnicas;
     
+    
+    private RepositorioCompetenciaTecnica(){
+        listaCompTecnicas = new ArrayList<>();
+    }
     /**
      * Devolve uma instancia static de RepositorioCompetenciaTecnica
      * @return 
