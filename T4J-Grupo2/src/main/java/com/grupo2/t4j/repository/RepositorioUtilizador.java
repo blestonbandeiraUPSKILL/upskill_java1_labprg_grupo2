@@ -20,11 +20,10 @@ public class RepositorioUtilizador {
     private static RepositorioUtilizador repositorioUtilizador;
     
     private Plataforma plataforma;
-    private List<Utilizador> listaUtilizadores = new ArrayList<>();
+    private List<Utilizador> listaUtilizadores;
     
-    public RepositorioUtilizador(Plataforma plataforma, List<Utilizador> listaUtilizadores){
-        repositorioUtilizador.plataforma = plataforma;
-        repositorioUtilizador.listaUtilizadores = listaUtilizadores;
+    private RepositorioUtilizador(){
+        listaUtilizadores = new ArrayList<>();
     }
           
     public void addUtilizador(Utilizador utilizador) throws UtilizadorDuplicadoException {
@@ -49,9 +48,8 @@ public class RepositorioUtilizador {
     }   
     
     public static RepositorioUtilizador getInstance() {
-        if(RepositorioUtilizador.repositorioUtilizador == null) {
-            List<Utilizador> newListaUtilizadores = new ArrayList<>();
-            RepositorioUtilizador.repositorioUtilizador = new RepositorioUtilizador(Plataforma.getInstance(), newListaUtilizadores);
+        if(repositorioUtilizador == null) {
+            repositorioUtilizador = new RepositorioUtilizador();
         }
         return repositorioUtilizador;
     }
