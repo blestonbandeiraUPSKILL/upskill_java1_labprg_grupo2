@@ -25,7 +25,7 @@ public class RepositorioCompetenciaTecnicaTest {
     public void setUp() {
     }
 
-    @Test
+    /*@Test
     public void testAddCompetenciaTecnica() {
         //Arrange
         RepositorioCompetenciaTecnica rc1= new RepositorioCompetenciaTecnica();
@@ -35,8 +35,9 @@ public class RepositorioCompetenciaTecnicaTest {
         
         //Assert
         assertTrue(rc1.getCompetenciasTecnicas().contains(ct1));
-    }
-    @Test(expected = CompetenciaTecnicaDuplicadaException.class)
+    }*/
+
+   /* @Test(expected = CompetenciaTecnicaDuplicadaException.class)
     public void testAddCompetenciaTecnicaDuplicada() {
         //Arrange
         RepositorioCompetenciaTecnica rc1= new RepositorioCompetenciaTecnica();
@@ -45,7 +46,7 @@ public class RepositorioCompetenciaTecnicaTest {
         rc1.addCompetenciaTecnica(ct1);
         
         
-    }
+    }*/
     /*@Test(expected = DescricaoInvalidaException.class)
     public void testAddCompetenciaDescricaoInvalida() {
         //Arrange

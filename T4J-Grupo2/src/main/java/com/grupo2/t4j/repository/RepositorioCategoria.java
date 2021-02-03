@@ -1,5 +1,6 @@
 package com.grupo2.t4j.repository;
 
+
 import com.grupo2.t4j.exception.CategoriaDuplicadaException;
 import com.grupo2.t4j.model.Categoria;
 import java.util.ArrayList;
