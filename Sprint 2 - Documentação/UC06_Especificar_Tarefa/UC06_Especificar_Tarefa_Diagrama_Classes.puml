@@ -41,7 +41,7 @@ class RepositorioOrganizacao <<Singleton>> {
     -organizacao
     --
     -allOrganizacoes()
-    -organizacaoByEmail(email)
+    -organizacaoByNif(NIF)
 }
 
 class RepositorioColaborador <<Singleton>> {
@@ -54,7 +54,8 @@ class RepositorioColaborador <<Singleton>> {
 class Organizacao {
     -String nome
     -String NIF
-    -String website
+    -EnderecoPostal enderecoPostal
+    -Website website
     -String telefone
     -Email email
 }
