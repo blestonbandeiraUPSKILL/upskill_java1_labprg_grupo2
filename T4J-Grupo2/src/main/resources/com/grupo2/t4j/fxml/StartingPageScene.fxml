@@ -53,7 +53,7 @@
       </BorderPane>
    </center>
    <bottom>
-      <Button fx:id="btnRegistarOrganizacao" maxHeight="0.0" mnemonicParsing="false" style="-fx-background-color: #000000;" text="Quero registar a minha Organização" textFill="WHITE" BorderPane.alignment="CENTER">
+      <Button fx:id="btnRegistarOrganizacao" maxHeight="0.0" mnemonicParsing="false" onAction="#registarOrganizacao" style="-fx-background-color: #000000;" text="Quero registar a minha Organização" textFill="WHITE" BorderPane.alignment="CENTER">
          <BorderPane.margin>
             <Insets bottom="20.0" />
          </BorderPane.margin>

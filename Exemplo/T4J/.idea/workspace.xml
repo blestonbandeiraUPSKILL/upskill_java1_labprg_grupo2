@@ -5,16 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="feea71a2-db5f-4ec9-8cc5-60e134972341" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../../T4J-Grupo2/src/main/resources/com/grupo2/t4j/fxml/RegisterColaboradorOrgScene.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../T4J-Grupo2/src/main/java/com/grupo2/t4j/ui/RegisterGestorOrgUI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../T4J-Grupo2/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../T4J-Grupo2/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../T4J-Grupo2/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../T4J-Grupo2/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../T4J-Grupo2/src/main/java/com/grupo2/t4j/controller/ApplicationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../T4J-Grupo2/src/main/java/com/grupo2/t4j/controller/ApplicationController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../T4J-Grupo2/src/main/java/com/grupo2/t4j/model/UsersAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../T4J-Grupo2/src/main/java/com/grupo2/t4j/model/UsersAPI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../T4J-Grupo2/src/main/java/com/grupo2/t4j/repository/RepositorioOrganizacao.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../T4J-Grupo2/src/main/java/com/grupo2/t4j/repository/RepositorioOrganizacao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../T4J-Grupo2/src/main/java/com/grupo2/t4j/ui/RegisterOrgUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../T4J-Grupo2/src/main/java/com/grupo2/t4j/ui/RegisterOrgUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../T4J-Grupo2/src/main/java/com/grupo2/t4j/ui/StartingPageUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../T4J-Grupo2/src/main/java/com/grupo2/t4j/ui/StartingPageUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../T4J-Grupo2/src/main/resources/com/grupo2/t4j/fxml/RegisterColaboradorOrgScene.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/../../T4J-Grupo2/src/main/resources/com/grupo2/t4j/fxml/RegisterGestorOrgScene.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../T4J-Grupo2/src/main/resources/com/grupo2/t4j/fxml/RegisterOrgScene.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/../../T4J-Grupo2/src/main/resources/com/grupo2/t4j/fxml/RegisterOrgScene.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../T4J-Grupo2/src/main/resources/com/grupo2/t4j/fxml/StartingPageScene.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/../../T4J-Grupo2/src/main/resources/com/grupo2/t4j/fxml/StartingPageScene.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../T4J-Grupo2/target/classes/com/grupo2/t4j/fxml/RegisterOrgScene.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/../../T4J-Grupo2/target/classes/com/grupo2/t4j/fxml/RegisterOrgScene.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../T4J-Grupo2/target/classes/com/grupo2/t4j/fxml/StartingPageScene.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/../../T4J-Grupo2/target/classes/com/grupo2/t4j/fxml/StartingPageScene.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -83,7 +82,7 @@
       <workItem from="1612259946858" duration="6264000" />
       <workItem from="1612259946858" duration="5939000" />
       <workItem from="1612281314672" duration="5834000" />
-      <workItem from="1612340089362" duration="1242000" />
+      <workItem from="1612340089362" duration="1853000" />
     </task>
     <servers />
   </component>
