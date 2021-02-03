@@ -22,9 +22,9 @@ public class Colaborador extends Utilizador{
         super(nome, email, password);
     }
 
-    public Colaborador(String nome, Email email, String funcao,
+    public Colaborador(String nome, Email email, Password password, String funcao,
             String telefone){
-        super(nome, email);
+        super(nome, email, password);
         setFuncao(funcao);
         setTelefone(telefone);
     }
