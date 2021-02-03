@@ -21,10 +21,12 @@ import java.util.ResourceBundle;
 public class RegisterOrgUI implements Initializable {
 
     private RegistarOrganizacaoController registarOrganizacaoController;
+    private StartingPageUI startingPageUI;
     private ApplicationController applicationController;
     private Stage adicionarStage;
     private Scene sceneLogin;
     private Scene sceneStart;
+    private Scene sceneRegisterGestor;
 
     @FXML
     TextField txtNomeOrganizacao;
@@ -54,16 +56,18 @@ public class RegisterOrgUI implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
         try {
-            FXMLLoader loaderStart = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/StartingPageScene.fxml"));
-            Parent rootStart = loaderStart.load();
-            sceneStart = new Scene(rootStart);
+            FXMLLoader loaderRegisterGestor = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/RegisterGestorOrgScene.fxml"));
+            Parent rootRegisterGestor = loaderRegisterGestor.load();
+
 
             adicionarStage = new Stage();
             adicionarStage.initModality(Modality.APPLICATION_MODAL);
             adicionarStage.setResizable(false);
 
             applicationController = new ApplicationController();
+
         }
         catch (IOException exception) {
             exception.printStackTrace();
@@ -72,6 +76,14 @@ public class RegisterOrgUI implements Initializable {
                     "Erro",
                     exception.getMessage());
         }
+    }
+
+    public void irPaginaDadosGestor(ActionEvent actionEvent) {
+        adicionarStage.setScene(sceneRegisterGestor);
+    }
+
+    public void associarParentUI(StartingPageUI startingPageUI) {
+        this.startingPageUI = startingPageUI;
     }
 
 /*    RegistarOrganizacaoController(RegistarOrganizacaoController registarOrganizacaoController) {
