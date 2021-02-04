@@ -149,8 +149,8 @@ public class Utilizador implements Serializable{
      */   
     @Override
     public String toString(){
-        return String.format("O utilizador %s tem os seguintes dados: /nEmail: "
-                + "%s /nPassword: %s", nome, email, password);
+        return String.format("O utilizador %s tem os seguintes dados: %nEmail: "
+                + "%s /%Password: %s", nome, email.getEmailText(), password.getPasswordText());
     }
     
     /**
@@ -159,6 +159,6 @@ public class Utilizador implements Serializable{
      */
     public String toStringSemPass(){
         return String.format("O utilizador %s tem o seguinte email registado: %s", 
-                nome, email);
+                nome, email.getEmailText());
     }
 }
