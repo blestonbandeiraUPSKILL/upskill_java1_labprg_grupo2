@@ -84,5 +84,17 @@ public class RepositorioUtilizador {
         }
         return repositorioUtilizador;
     }
+    
+    public void setListaUtilizadores(List<Utilizador> listaUtilizadores){
+        this.listaUtilizadores = listaUtilizadores;
+    }
+    
+    public ArrayList<Utilizador> getListaUtilizadores(){
+        return new ArrayList<Utilizador>(listaUtilizadores);
+    }
+    
+    public boolean isVazia() {
+        return listaUtilizadores.isEmpty();
+    }
 }
 
