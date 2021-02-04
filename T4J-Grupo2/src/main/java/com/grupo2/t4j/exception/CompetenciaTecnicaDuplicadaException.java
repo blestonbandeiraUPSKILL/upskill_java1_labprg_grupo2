@@ -9,7 +9,7 @@ package com.grupo2.t4j.exception;
  *
  * @author acris
  */
-public class CompetenciaTecnicaDuplicadaException extends RuntimeException{
+public class CompetenciaTecnicaDuplicadaException extends IllegalArgumentException{
     public CompetenciaTecnicaDuplicadaException(String s) {
         super(s);
     }
