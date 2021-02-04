@@ -9,8 +9,8 @@ package com.grupo2.t4j.exception;
  *
  * @author acris
  */
-public class CompetenciaTecnicaDuplicadaException extends IllegalArgumentException{
-    public CompetenciaTecnicaDuplicadaException(String s) {
+public class CodigoInvalidoException extends IllegalArgumentException{
+    public CodigoInvalidoException(String s) {
         super(s);
     }
 }

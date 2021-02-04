@@ -14,7 +14,7 @@ import org.junit.jupiter.api.BeforeAll;
 
 /**
  *
- * @author blest
+ * @author CAD
  */
 public class EmailTest {
     

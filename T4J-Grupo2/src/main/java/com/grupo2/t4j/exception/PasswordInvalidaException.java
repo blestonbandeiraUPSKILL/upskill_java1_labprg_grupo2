@@ -7,10 +7,11 @@ package com.grupo2.t4j.exception;
 
 /**
  *
- * @author acris
+ * @author CAD
  */
-public class CompetenciaTecnicaDuplicadaException extends IllegalArgumentException{
-    public CompetenciaTecnicaDuplicadaException(String s) {
+public class PasswordInvalidaException extends IllegalArgumentException {
+    
+    public PasswordInvalidaException(String s) {
         super(s);
     }
 }

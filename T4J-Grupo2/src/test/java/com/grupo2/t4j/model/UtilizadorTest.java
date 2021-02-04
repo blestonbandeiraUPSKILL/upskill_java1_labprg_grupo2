@@ -65,7 +65,7 @@ public class UtilizadorTest {
     
     @Test (expected = IllegalArgumentException.class)
     public void testCriarUtilizadorPasswordFormaIncorreta() {
-        
+       
         Utilizador u4 = new Utilizador("Fulano", "fulano@upskill.pt", "123");
              
     }
