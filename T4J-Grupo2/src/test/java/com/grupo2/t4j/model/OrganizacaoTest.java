@@ -51,7 +51,7 @@ public class OrganizacaoTest {
         
         Email email = new Email("t4j@t4j.pt");
         
-        Organizacao o1 = new Organizacao("", "111222333", endereco, website,
+        Organizacao o1 = new Organizacao("T4J", "111222333", endereco, website,
                 "999888777", email , colabGestor);
         
         assertEquals("T4J", o1.getNome());
