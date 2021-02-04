@@ -86,7 +86,7 @@ public class StartingPageUI implements Initializable {
         adicionarStage.show();
     }
 
-    public void login(ActionEvent actionEvent) throws IOException{
+    public void login(ActionEvent actionEvent) {
 
         if(usersAPIAdapter.login(txtEmailLogin.getText(), new Password(txtPasswordLogin.getText()))) {
             switch (applicationController.getRole()) {
