@@ -65,9 +65,9 @@ public class CompetenciaTecnica implements Serializable{
  * @param compTec 
  */
     public CompetenciaTecnica(CompetenciaTecnica compTec){
-        setCodigo(codigo);
-        setDescricaoBreve(descricaoBreve);
-        setDescricaoDetalhada(descricaoDetalhada);
+        setCodigo(compTec.codigo);
+        setDescricaoBreve(compTec.descricaoBreve);
+        setDescricaoDetalhada(compTec.descricaoDetalhada);
         
     } 
 
