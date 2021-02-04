@@ -28,6 +28,9 @@
                                     <Button fx:id="btn_addareaAtividade" alignment="BOTTOM_RIGHT" mnemonicParsing="false" prefHeight="0.0" prefWidth="104.0" text="Confirmar" />
                                  </children>
                               </FlowPane>
+                              <TextField layoutX="15.0" layoutY="30.0" text="Código" />
+                              <TextField layoutX="15.0" layoutY="80.0" text="Descrição Breve" />
+                              <TextArea layoutX="300.0" layoutY="30.0" prefHeight="200.0" prefWidth="200.0" text="Descrição Detalhada" />
                            </children>
                         </AnchorPane>
                   </content>
