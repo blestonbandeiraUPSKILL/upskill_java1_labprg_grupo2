@@ -15,7 +15,7 @@
    <bottom>
       <FlowPane alignment="CENTER_RIGHT" prefHeight="52.0" prefWidth="340.0" BorderPane.alignment="CENTER_RIGHT">
          <children>
-            <Button defaultButton="true" mnemonicParsing="false" text="Continuar">
+            <Button fx:id="btnIrPaginaGestor" defaultButton="true" mnemonicParsing="false" onAction="#irPaginaGestorComDados" text="Continuar">
                <FlowPane.margin>
                   <Insets right="5.0" />
                </FlowPane.margin>
@@ -76,12 +76,12 @@
                         <Font name="Calibri" size="14.0" />
                      </font>
                   </Label>
-                  <TextField promptText="nome da organização" GridPane.rowIndex="1">
+                  <TextField fx:id="txtNomeOrganizacao" promptText="nome da organização" GridPane.rowIndex="1">
                      <GridPane.margin>
                         <Insets left="20.0" right="20.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField promptText="nif" GridPane.rowIndex="3">
+                  <TextField fx:id="txtNIFOrganizacao" promptText="nif" GridPane.rowIndex="3">
                      <GridPane.margin>
                         <Insets left="20.0" right="20.0" />
                      </GridPane.margin>
@@ -110,17 +110,17 @@
                         <Font name="Calibri" size="14.0" />
                      </font>
                   </Label>
-                  <TextField promptText="contacto telefónico" GridPane.rowIndex="5">
+                  <TextField fx:id="txtTelefoneOrganizacao" promptText="contacto telefónico" GridPane.rowIndex="5">
                      <GridPane.margin>
                         <Insets left="20.0" right="20.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField promptText="website" GridPane.rowIndex="7">
+                  <TextField fx:id="txtWebsiteOrganizacao" promptText="website" text="http://" GridPane.rowIndex="7">
                      <GridPane.margin>
                         <Insets left="20.0" right="20.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField promptText="email da Organização" GridPane.rowIndex="9">
+                  <TextField fx:id="txtEmailOrganizacao" promptText="email da Organização" GridPane.rowIndex="9">
                      <GridPane.margin>
                         <Insets left="20.0" right="20.0" />
                      </GridPane.margin>
@@ -145,22 +145,22 @@
                         <Font name="Calibri" size="14.0" />
                      </font>
                   </Label>
-                  <TextField promptText="arruamento" GridPane.rowIndex="11">
+                  <TextField fx:id="txtEndArruamentoOrganizacao" promptText="arruamento" GridPane.rowIndex="11">
                      <GridPane.margin>
                         <Insets left="20.0" right="20.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField promptText="número porta" GridPane.rowIndex="13">
+                  <TextField fx:id="txtEndPortaOrganizacao" promptText="número porta" GridPane.rowIndex="13">
                      <GridPane.margin>
                         <Insets left="20.0" right="20.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField promptText="localidade" GridPane.rowIndex="15">
+                  <TextField fx:id="txtEndLocalidadeOrganizacao" promptText="localidade" GridPane.rowIndex="15">
                      <GridPane.margin>
                         <Insets left="20.0" right="20.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField promptText="código postal" GridPane.rowIndex="17">
+                  <TextField fx:id="txtEndCodPostalOrganizacao" promptText="código postal" GridPane.rowIndex="17">
                      <GridPane.margin>
                         <Insets left="20.0" right="20.0" />
                      </GridPane.margin>
@@ -215,8 +215,8 @@
             <RowConstraints maxHeight="303.3333282470703" minHeight="10.0" prefHeight="242.00001017252603" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="Dados Gestor" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-            <Button mnemonicParsing="false" text="Dados Organização" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+            <Button fx:id="btnIrPaginaDadosGestor" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#irPaginaGestorComDados" style="-fx-background-color: #c4c4c4;" text="Dados Gestor" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+            <Button mnemonicParsing="false" style="-fx-background-color: #c4c4c4; -fx-border-color: #000000;" text="Dados Organização" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                <GridPane.margin>
                   <Insets top="10.0" />
                </GridPane.margin>

@@ -16,7 +16,7 @@ public class UsersAPIAdapter {
         this.app_key = app_key;
     }
 
-    private String getContext() {
+    public String getContext() {
         Response response = null;
         if(app_context.equals("")) {
             String url = "/context?app_key=" + app_key;
@@ -26,16 +26,15 @@ public class UsersAPIAdapter {
             switch (httpResponse.getStatus()) {
 
                 case HttpStatusCode.OK:
-                    response = new Response(HttpStatusCode.OK, "app_context");
+                    JSONObject bodyJSON = new JSONObject(httpResponse.getBody().replaceAll("\\[|\\]", ""));
+                    app_context = bodyJSON.getString("app_context");
                     break;
 
                 case HttpStatusCode.Conflict:
-                    ErroDTO erroDTO = XmlHandler.deSerializeXML2ErroDTO(httpResponse.getBody());
-                    response = new Response(HttpStatusCode.Conflict, erroDTO.getMensagemErro());
+                    JSONObject errorJSON = new JSONObject(httpResponse.getBody().replaceAll("\\[|\\]", ""));
+                    app_context = errorJSON.getString("error");
                     break;
             }
-            JSONObject bodyJSON = new JSONObject(httpResponse.getBody().replaceAll("\\[|\\]", ""));
-            app_context = bodyJSON.getString("app_context");
         }
         return app_context;
     }

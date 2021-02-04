@@ -34,6 +34,38 @@ public class RepositorioUtilizador {
         }
     }
     
+    public void addUtilizador(String nome, Email email, Password password) throws UtilizadorDuplicadoException {
+        Utilizador u = getUtilizadorByEmail(email);
+        if (u == null) {
+            Utilizador utilizador = new Utilizador(nome, email, password);
+            this.listaUtilizadores.add(utilizador);
+        } else {
+            throw new UtilizadorDuplicadoException(u.getEmail() + ": Utilizador já registado!");
+        }
+    }
+    
+    public void addUtilizador(String nome, String emailUt, Password password) throws UtilizadorDuplicadoException {
+        Email email = new Email(emailUt);
+        Utilizador u = getUtilizadorByEmail(email);
+        if (u == null) {
+            Utilizador utilizador = new Utilizador(nome, email, password);
+            this.listaUtilizadores.add(utilizador);
+        } else {
+            throw new UtilizadorDuplicadoException(u.getEmail() + ": Utilizador já registado!");
+        }
+    }
+    
+    public void addUtilizador(String nome, String emailUt, String passUt) throws UtilizadorDuplicadoException {
+        Email email = new Email(emailUt);
+        Utilizador u = getUtilizadorByEmail(email);
+        if (u == null) {
+            Utilizador utilizador = new Utilizador(nome, emailUt, passUt);
+            this.listaUtilizadores.add(utilizador);
+        } else {
+            throw new UtilizadorDuplicadoException(u.getEmail() + ": Utilizador já registado!");
+        }
+    }
+    
     private Utilizador getUtilizadorByEmail(Email email) {
         Utilizador utilizador = null;
         for (int i = 0; i < this.listaUtilizadores.size(); i++) {

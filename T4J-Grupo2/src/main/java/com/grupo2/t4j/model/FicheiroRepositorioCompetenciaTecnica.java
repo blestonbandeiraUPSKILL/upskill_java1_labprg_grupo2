@@ -49,15 +49,15 @@ public class FicheiroRepositorioCompetenciaTecnica {
         }
     }
 
-    /*public RepositorioCompetenciaTecnica desserializar() {
+    public RepositorioCompetenciaTecnica desserializar() {
         return desserializar(NOME_FICHEIRO_SERIALIZAR);
-    }*/
+    }
 
-   /* public RepositorioCompetenciaTecnica desserializar(String nomeFicheiro) {
+    public RepositorioCompetenciaTecnica desserializar(String nomeFicheiro) {
         return desserializar(new File(nomeFicheiro));
-    }*/
+    }
 
-   /* public RepositorioCompetenciaTecnica desserializar(File ficheiro) {
+    public RepositorioCompetenciaTecnica desserializar(File ficheiro) {
         RepositorioCompetenciaTecnica repositorioCompTec;
         try {
             ObjectInputStream in = new ObjectInputStream(
@@ -70,11 +70,12 @@ public class FicheiroRepositorioCompetenciaTecnica {
                 in.close();
             }
         } catch (IOException | ClassNotFoundException ex) {
-            return new RepositorioCompetenciaTecnica.getInstance();
+            return RepositorioCompetenciaTecnica.getInstance();
         }
-    }*/
+    }
 
-    public boolean exportarTexto(File ficheiro, RepositorioCompetenciaTecnica repositorioCompTec) {
+    ////////////////Código para guardar ficheiro de texto, caso necessário (Com erros)/////////////////////////////
+    /*public boolean exportarTexto(File ficheiro, RepositorioCompetenciaTecnica repositorioCompTec) {
         try {
             PrintWriter out = new PrintWriter(ficheiro);
             String[] repositorioCompTecParaFicheiro = repositorioCompTec.getInstance().getListaComoArray();
@@ -92,11 +93,11 @@ public class FicheiroRepositorioCompetenciaTecnica {
         } catch (IOException ex) {
             return false;
         }
-    }
+    }*/
 
-   /* public RepositorioCompetenciaTecnica importarTexto(File ficheiro) {
+    /*public RepositorioCompetenciaTecnica importarTexto(File ficheiro) {
         try {
-            RepositorioCompetenciaTecnica lista = new RepositorioCompetenciaTecnica.getInstance();
+            RepositorioCompetenciaTecnica lista = RepositorioCompetenciaTecnica.getInstance();
             Scanner in = new Scanner(ficheiro);
 
             try {
@@ -112,7 +113,7 @@ public class FicheiroRepositorioCompetenciaTecnica {
                 in.close();
             }
         } catch (IOException ex) {
-            return new RepositorioCompetenciaTecnica.getInstance();
+            return RepositorioCompetenciaTecnica.getInstance();
         }
     }*/
 }

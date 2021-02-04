@@ -24,12 +24,29 @@ public class Utilizador {
         setPassword(password);
     }
     
+    public Utilizador(String nome, String emailUt, Password password){
+        setNome(nome);
+        this.email = new Email(emailUt);
+        setPassword(password);
+    }
+    
+    public Utilizador(String nome, String emailUt, String passUt){
+        setNome(nome);
+        this.email = new Email(emailUt);
+        this.password = new Password(passUt);
+    }
+    
     public Utilizador(Utilizador utilizador){
         setNome(utilizador.nome);
         setEmail(utilizador.email);
         setPassword(utilizador.password);
     }
-    
+
+    public Utilizador(String nomeGestor, Email emailGestor) {
+        setNome(nomeGestor);
+        setEmail(emailGestor);
+    }
+
     public final void setNome(String nome){
         if (nome == null || nome.trim().isEmpty()) {
             throw new IllegalArgumentException("Nome é inválido!");
