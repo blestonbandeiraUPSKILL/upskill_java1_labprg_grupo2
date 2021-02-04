@@ -7,9 +7,9 @@
     <list default="true" id="8ca9f66f-f143-4134-afe5-eb7245bd0a9c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/ConfirmarRegistoOrgUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/ConfirmarRegistoOrgUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/StartingPageUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/StartingPageUI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/com/grupo2/t4j/fxml/ConfirmarRegistoOrgScene.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/grupo2/t4j/fxml/ConfirmarRegistoOrgScene.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/grupo2/t4j/repository/RepositorioCompetenciaTecnicaTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/grupo2/t4j/repository/RepositorioCompetenciaTecnicaTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/grupo2/t4j/fxml/RegisterOrgScene.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/grupo2/t4j/fxml/RegistarOrgEGestorScene.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/grupo2/t4j/fxml/RegistarOrgEGestorScene.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -96,7 +96,7 @@
       <recent name="com.grupo2.t4j.ui" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.RepositorioCompetenciaTecnicaTest.testAddCompetenciaTecnicaDuplicada">
+  <component name="RunManager" selected="Application.MainApp">
     <configuration name="MainApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.grupo2.t4j.ui.MainApp" />
       <module name="T4J-Grupo2" />
@@ -121,6 +121,21 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="RepositorioCompetenciaTecnicaTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="T4J-Grupo2" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.grupo2.t4j.repository.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.grupo2.t4j.repository" />
+      <option name="MAIN_CLASS_NAME" value="com.grupo2.t4j.repository.RepositorioCompetenciaTecnicaTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="RepositorioCompetenciaTecnicaTest.testAddCompetenciaTecnicaDuplicada" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="T4J-Grupo2" />
       <extension name="coverage">
@@ -139,8 +154,9 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.RepositorioCompetenciaTecnicaTest.testAddCompetenciaTecnicaDuplicada" />
         <item itemvalue="Application.MainApp" />
+        <item itemvalue="JUnit.RepositorioCompetenciaTecnicaTest" />
+        <item itemvalue="JUnit.RepositorioCompetenciaTecnicaTest.testAddCompetenciaTecnicaDuplicada" />
       </list>
     </recent_temporary>
   </component>
@@ -157,7 +173,7 @@
       <workItem from="1612278510565" duration="13643000" />
       <workItem from="1612340112749" duration="13338000" />
       <workItem from="1612365555112" duration="10636000" />
-      <workItem from="1612426677059" duration="13440000" />
+      <workItem from="1612426677059" duration="17134000" />
     </task>
     <servers />
   </component>
