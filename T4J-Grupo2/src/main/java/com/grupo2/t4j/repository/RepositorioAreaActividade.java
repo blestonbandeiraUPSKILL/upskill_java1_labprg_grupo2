@@ -16,16 +16,36 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ *
+ * @author Geral
+ */
 public class RepositorioAreaActividade implements Serializable{
     
+    /**
+     * Define uma instância estática do Repositório em que estão registadas todas
+     * as Áreas de Actividade da plataforma
+     */
     private static RepositorioAreaActividade repositorioAreaActividade;
     
+    /**
+     * Define o atributo da classe RepositorioAreaActividade como uma lista de
+     * tipos da classe AreaActividade
+     */
     private List<AreaActividade> listaAreasActividade;
     
+    /**
+     * Inicializa o Repositório de Areas de Actividade
+     */
     private RepositorioAreaActividade(){
         listaAreasActividade = new ArrayList<>();
     }
     
+    /**
+     * Adiciona uma Área de Actividade à lista de Áreas de Actividade
+     * @param areaActividade do tipo da classe AreaActividade
+     * @throws AreaActividadeDuplicadaException
+     */
     public void addAreaActividade(AreaActividade areaActividade) throws AreaActividadeDuplicadaException {
         AreaActividade aa = getAreaActividadeByCodigo(areaActividade.getCodigo());
         if (aa == null) {
@@ -35,6 +55,13 @@ public class RepositorioAreaActividade implements Serializable{
         }
     }
     
+    /**
+     * Adiciona uma Área de Actividade à lista de Áreas de Actividade
+     * @param codigo o código único de cada Área de Actividade.
+     * @param descBreve a descrição breve da Área de Actividade.
+     * @param descDetalhada a descrição detalhada da Área de Actividade.
+     * @throws AreaActividadeDuplicadaException
+     */
     public void addAreaActividade(String codigo, String descBreve, String descDetalhada) throws AreaActividadeDuplicadaException {
         AreaActividade aa = getAreaActividadeByCodigo(codigo);
         if (aa == null) {
@@ -45,6 +72,30 @@ public class RepositorioAreaActividade implements Serializable{
         }
     }
     
+    /**
+     * Atualiza a lista de Áreas de Actividade
+     *
+     * @param listaAreasActividade
+     */
+    public void setListaAreasActividade(List<AreaActividade> listaAreasActividade) {
+        this.listaAreasActividade = listaAreasActividade;
+    }
+
+    /**
+     * Devolve a lista de Áreas de Actividade
+     *
+     * @return 
+     */
+    public ArrayList<AreaActividade> getListaAreasActividade() {
+
+        return new ArrayList<AreaActividade>(listaAreasActividade);
+    }
+    
+    /**
+     * Devolve uma Área de Actividade de acordo com o código registado
+     * @param codigo o código único de cada Área de Actividade.
+     * @return AreaActividade registada
+     */
     private AreaActividade getAreaActividadeByCodigo(String codigo) {
         AreaActividade areaActividade = null;
         for (int i = 0; i < this.listaAreasActividade.size(); i++) {
@@ -57,11 +108,23 @@ public class RepositorioAreaActividade implements Serializable{
         return null;
     } 
     
+    /**
+     * Devolve uma instância estática do Repositório de Áreas de Actividade
+     * @return RepositorioAreaActividade
+     */
     public static RepositorioAreaActividade getInstance(){
         if(repositorioAreaActividade == null) {
             repositorioAreaActividade = new RepositorioAreaActividade();
         }
         return repositorioAreaActividade;
+    }
+    
+    /**
+     * Informa se a lista de Áreas de Actividade está ou não vazia
+     * @return 
+     */
+    public boolean isVazia() {
+        return listaAreasActividade.isEmpty();
     }
     
 }
