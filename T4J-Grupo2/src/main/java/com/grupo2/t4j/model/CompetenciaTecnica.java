@@ -6,6 +6,7 @@
 package com.grupo2.t4j.model;
 
 import com.grupo2.t4j.exception.AreaActividadeInexistenteException;
+import com.grupo2.t4j.exception.CodigoInvalidoException;
 import com.grupo2.t4j.exception.DescricaoInvalidaException;
 import java.io.Serializable;
 
@@ -29,26 +30,35 @@ public class CompetenciaTecnica implements Serializable{
     private static final char SEPARADOR = ';';
     
 /**
- * Construtor Competencia Tecnica Completo
+ * Construtor CompetenciaTecnica Completo
  * @param codigo
  * @param descricaoBreve
  * @param descricaoDetalhada
  *
  */
     public CompetenciaTecnica(String codigo, String descricaoBreve, String descricaoDetalhada, AreaActividade areaActividade, CaracterizacaoCT cct) {
-        this.codigo = codigo;
-        this.descricaoBreve = descricaoBreve;
-        this.descricaoDetalhada = descricaoDetalhada;
-        this.areaActividade=areaActividade;
-        this.cct=cct;    
+        setCodigo(codigo);
+        setDescricaoBreve(descricaoBreve);
+        setDescricaoDetalhada(descricaoDetalhada);
+        setAreaActividade(areaActividade);
+        setCct(cct);    
     }
-    
+    /**
+     * Construtor CompetenciaTecnica
+     * @param codigo
+     * @param descricaoBreve
+     * @param descricaoDetalhada
+     * @param areaActividade 
+     */
     public CompetenciaTecnica(String codigo, String descricaoBreve, String descricaoDetalhada, AreaActividade areaActividade){
-        
+        setCodigo(codigo);
+        setDescricaoBreve(descricaoBreve);
+        setDescricaoDetalhada(descricaoDetalhada);
+        setAreaActividade(areaActividade);
     }
     
     /**
- * Construtor Competencia Tecnica 
+ * Construtor CompetenciaTecnica 
  * @param codigo
  * @param descricaoBreve
  * @param descricaoDetalhada
@@ -60,14 +70,13 @@ public class CompetenciaTecnica implements Serializable{
         setDescricaoDetalhada(descricaoDetalhada);    
     }
 /**
- * Construtor Classe Competencia Tecnica
+ * Construtor Competencia Tecnica
  * @param compTec 
  */
     public CompetenciaTecnica(CompetenciaTecnica compTec){
         setCodigo(compTec.codigo);
         setDescricaoBreve(compTec.descricaoBreve);
         setDescricaoDetalhada(compTec.descricaoDetalhada);
-        
     } 
 
     /**
@@ -80,8 +89,12 @@ public class CompetenciaTecnica implements Serializable{
     /**
      * @param codigo the codigo to set
      */
-    public void setCodigo(String codigo) {
-        this.codigo = codigo;
+    public void setCodigo(String codigo) throws CodigoInvalidoException{
+        if (codigo == null || codigo.trim().isEmpty()) {
+            throw new CodigoInvalidoException("Deve introduzir uma descrição válida!");
+        } else {
+            this.codigo = codigo;
+        }
     }
 
     /**
@@ -112,7 +125,7 @@ public class CompetenciaTecnica implements Serializable{
     /**
      * @param descricaoDetalhada the descricaoDetalhada to set
      */
-    public void setDescricaoDetalhada(String descricaoDetalhada) {
+    public void setDescricaoDetalhada(String descricaoDetalhada) throws DescricaoInvalidaException{
         if (descricaoDetalhada == null || descricaoDetalhada.trim().isEmpty()) {
             throw new DescricaoInvalidaException("Deve introduzir uma descrição válida!");
         } else {

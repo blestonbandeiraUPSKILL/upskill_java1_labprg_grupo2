@@ -26,19 +26,7 @@ public class RepositorioCompetenciaTecnicaTest {
     public void setUp() {
     }
 
-    @Test
-    public void testAddCompetenciaTecnica() {
-        //Arrange
-        RepositorioCompetenciaTecnica rc1=  RepositorioCompetenciaTecnica.getInstance();
-        CompetenciaTecnica ct1= new CompetenciaTecnica("1234", "Jogo do Galo", "Jogo para duas pessoas");
-        
-        //Act
-        rc1.addCompetenciaTecnica(ct1);
-        
-        
-        //Assert
-        assertTrue(rc1.getCompetenciasTecnicas().contains(ct1));
-    }
+    
 
     @Test(expected = CompetenciaTecnicaDuplicadaException.class)
     public void testAddCompetenciaTecnicaDuplicada() {
@@ -59,10 +47,22 @@ public class RepositorioCompetenciaTecnicaTest {
         RepositorioCompetenciaTecnica rc1= RepositorioCompetenciaTecnica.getInstance();;
         CompetenciaTecnica ct1= new CompetenciaTecnica("1235", "", "Jogo para duas pessoas");
         //Act
+        rc1.addCompetenciaTecnica(ct1);    
+    }
+    @Test
+    public void testAddCompetenciaTecnica() {
+        //Arrange
+        RepositorioCompetenciaTecnica rc1=  RepositorioCompetenciaTecnica.getInstance();
+        CompetenciaTecnica ct1= new CompetenciaTecnica("123456", "Jogo do Galo", "Jogo para duas pessoas");
+        
+        //Act
         rc1.addCompetenciaTecnica(ct1);
         
         
+        //Assert
+        assertTrue(rc1.getCompetenciasTecnicas().contains(ct1));
     }
+    
     @Test
     public void testSetListaCompTecnicas() {
     }
