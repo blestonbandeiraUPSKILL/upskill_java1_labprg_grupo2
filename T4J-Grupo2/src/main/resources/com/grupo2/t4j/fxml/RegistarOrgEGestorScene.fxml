@@ -63,47 +63,47 @@
                         <Font name="Calibri" size="14.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="txtNomeOrganizacao" promptText="nome da organização" GridPane.columnIndex="1">
+                  <TextField fx:id="txtNomeOrganizacao" promptText="nome da organização" text="t4j" GridPane.columnIndex="1">
                      <font>
                         <Font name="Calibri" size="14.0" />
                      </font>
                   </TextField>
-                  <TextField fx:id="txtNif" promptText="número de identificação de pessoa colectiva" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  <TextField fx:id="txtNif" promptText="número de identificação de pessoa colectiva" text="888777666" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <font>
                         <Font name="Calibri" size="14.0" />
                      </font>
                   </TextField>
-                  <TextField fx:id="txtTelefoneOrganizacao" promptText="contacto telefónico da organização" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                  <TextField fx:id="txtTelefoneOrganizacao" promptText="contacto telefónico da organização" text="999666777" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <font>
                         <Font name="Calibri" size="14.0" />
                      </font>
                   </TextField>
-                  <TextField fx:id="txtWebsite" text="http://" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                  <TextField fx:id="txtWebsite" text="http://www.t4j.com" GridPane.columnIndex="1" GridPane.rowIndex="3">
                      <font>
                         <Font name="Calibri" size="14.0" />
                      </font>
                   </TextField>
-                  <TextField fx:id="txtEmailOrganizacao" promptText="email da organização" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                  <TextField fx:id="txtEmailOrganizacao" promptText="email da organização" text="t4j@t4j.com" GridPane.columnIndex="1" GridPane.rowIndex="4">
                      <font>
                         <Font name="Calibri" size="14.0" />
                      </font>
                   </TextField>
-                  <TextField fx:id="txtEndArruamento" promptText="rua" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                  <TextField fx:id="txtEndArruamento" promptText="rua" text="rua das flores" GridPane.columnIndex="1" GridPane.rowIndex="5">
                      <font>
                         <Font name="Calibri" size="14.0" />
                      </font>
                   </TextField>
-                  <TextField fx:id="txtEndPorta" promptText="número de porta" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                  <TextField fx:id="txtEndPorta" promptText="número de porta" text="13" GridPane.columnIndex="1" GridPane.rowIndex="6">
                      <font>
                         <Font name="Calibri" size="14.0" />
                      </font>
                   </TextField>
-                  <TextField fx:id="txtEndLocalidade" promptText="localidade" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                  <TextField fx:id="txtEndLocalidade" promptText="localidade" text="faro" GridPane.columnIndex="1" GridPane.rowIndex="7">
                      <font>
                         <Font name="Calibri" size="14.0" />
                      </font>
                   </TextField>
-                  <TextField fx:id="txtEndCodPostal" promptText="código postal" GridPane.columnIndex="1" GridPane.rowIndex="8">
+                  <TextField fx:id="txtEndCodPostal" promptText="código postal" text="8000" GridPane.columnIndex="1" GridPane.rowIndex="8">
                      <font>
                         <Font name="Calibri" size="14.0" />
                      </font>
@@ -144,7 +144,7 @@
                         <Font name="Calibri" size="14.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="txtNomeGestor" promptText="nome do gestor" GridPane.rowIndex="1">
+                  <TextField fx:id="txtNomeGestor" promptText="nome do gestor" text="António" GridPane.rowIndex="1">
                      <GridPane.margin>
                         <Insets />
                      </GridPane.margin>
@@ -152,12 +152,12 @@
                         <Font name="Calibri" size="14.0" />
                      </font>
                   </TextField>
-                  <TextField fx:id="txtTelefoneGestor" promptText="contacto telefónico do gestor" GridPane.rowIndex="3">
+                  <TextField fx:id="txtTelefoneGestor" promptText="contacto telefónico do gestor" text="999888777" GridPane.rowIndex="3">
                      <font>
                         <Font name="Calibri" size="14.0" />
                      </font>
                   </TextField>
-                  <TextField fx:id="txtEmailGestor" promptText="email do gestor" GridPane.rowIndex="5">
+                  <TextField fx:id="txtEmailGestor" promptText="email do gestor" text="antonio@t4j.com" GridPane.rowIndex="5">
                      <font>
                         <Font name="Calibri" size="14.0" />
                      </font>
