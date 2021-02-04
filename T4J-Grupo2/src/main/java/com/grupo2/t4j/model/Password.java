@@ -9,6 +9,9 @@ package com.grupo2.t4j.model;
  *
  * @author CAD
  */
+
+import com.grupo2.t4j.exception.*;
+
 public class  Password {
 
     private String password;
@@ -26,7 +29,7 @@ public class  Password {
             this.password = password;
         }
         else{
-            throw new IllegalArgumentException("A password não é válida!");
+            throw new PasswordInvalidaException("A password não é válida!");
         }
     }
     
