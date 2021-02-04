@@ -215,7 +215,7 @@
             <RowConstraints maxHeight="303.3333282470703" minHeight="10.0" prefHeight="242.00001017252603" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button fx:id="btnIrPaginaDadosGestor" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#irPaginaGestorComDados" style="-fx-background-color: #c4c4c4;" text="Dados Gestor" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" style="-fx-background-color: #c4c4c4;" text="Dados Gestor" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
             <Button mnemonicParsing="false" style="-fx-background-color: #c4c4c4; -fx-border-color: #000000;" text="Dados Organização" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                <GridPane.margin>
                   <Insets top="10.0" />

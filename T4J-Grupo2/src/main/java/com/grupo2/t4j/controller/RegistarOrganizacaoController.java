@@ -13,7 +13,7 @@ public class RegistarOrganizacaoController {
         this.plataforma = Plataforma.getInstance();
     }
 
-    public void novaOrganizacao(String nome, String nif, String arruamento,
+    public Organizacao novaOrganizacao(String nome, String nif, String arruamento,
                                 String numeroPorta, String localidade, String codigoPostal,
                                 String telefone, Website website, Email emailOrganizacao,
                                 String nomeGestor, Email emailGestor,  String telefoneGestor,
@@ -28,6 +28,7 @@ public class RegistarOrganizacaoController {
         else {
             throw new Exception();
         }
+        return organizacao;
     }
 
     public void registaOrganizacao() throws Exception {

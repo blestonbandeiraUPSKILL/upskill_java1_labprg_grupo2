@@ -25,7 +25,7 @@ public class StartingPageUI implements Initializable {
     RegistarOrganizacaoController registarOrganizacaoController;
     private ApplicationController applicationController;
     private Stage adicionarStage;
-    private Scene sceneRegisterOrg;
+    private Scene sceneRegistarOrganizacao;
     private Scene sceneLogin;
     private Scene sceneGestor;
     private Scene sceneAdministrativo;
@@ -42,11 +42,11 @@ public class StartingPageUI implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
-            FXMLLoader loaderRegister = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/RegisterOrgScene.fxml"));
-            Parent rootRegisterOrg = loaderRegister.load();
-            sceneRegisterOrg = new Scene(rootRegisterOrg);
-            RegisterOrgUI registerOrgUI = loaderRegister.getController();
-            registerOrgUI.associarParentUI(this);
+            FXMLLoader loaderRegistarOrg = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/RegistarOrgEGestorScene.fxml"));
+            Parent rootRegistarOrg = loaderRegistarOrg.load();
+            sceneRegistarOrganizacao = new Scene(rootRegistarOrg);
+            RegistarOrgEGestorUI registarOrgEGestorUI = loaderRegistarOrg.getController();
+            registarOrgEGestorUI.associarParentUI(this);
 
             FXMLLoader loaderGestor = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/GestorLogadoScene.fxml"));
             Parent rootGestor = loaderGestor.load();
@@ -83,8 +83,8 @@ public class StartingPageUI implements Initializable {
     }
 
     public void registarOrganizacao(ActionEvent actionEvent) {
-        adicionarStage.setScene(sceneRegisterOrg);
-        adicionarStage.setTitle("Registar Organização - Dados Organização");
+        adicionarStage.setScene(sceneRegistarOrganizacao);
+        adicionarStage.setTitle("Registar Organização");
         adicionarStage.show();
     }
 
