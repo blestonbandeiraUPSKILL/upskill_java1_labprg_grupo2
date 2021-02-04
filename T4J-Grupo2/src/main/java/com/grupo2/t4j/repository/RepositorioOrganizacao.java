@@ -19,16 +19,22 @@ import java.util.List;
 
 public class RepositorioOrganizacao implements Serializable{
 
+    private static RepositorioOrganizacao instance;
+
     private List<Organizacao> listaOrganizacoes = new ArrayList<>();
     private Plataforma plataforma;
     Colaborador colabGestor;
 
-    public RepositorioOrganizacao(Plataforma plataforma) {
-        this.plataforma = plataforma;
+    private RepositorioOrganizacao() {
+        listaOrganizacoes = new ArrayList<>();
     }
-    
-    public RepositorioOrganizacao(List<Organizacao> listaOrganizacoes){
-        this.listaOrganizacoes = listaOrganizacoes;
+
+    public static RepositorioOrganizacao getInstance() {
+        if(instance == null) {
+            instance = new RepositorioOrganizacao();
+        }
+        return instance;
+
     }
 
     public Organizacao novaOrganizacao(String nome, String nif, String arruamento,

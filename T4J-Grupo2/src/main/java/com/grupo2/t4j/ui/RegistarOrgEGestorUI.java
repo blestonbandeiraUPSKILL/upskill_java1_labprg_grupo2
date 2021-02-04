@@ -83,6 +83,7 @@ public class RegistarOrgEGestorUI implements Initializable {
 
     public void avancarRegistoComDados(ActionEvent actionEvent) throws Exception {
         try {
+            repositorioOrganizacao.getInstance();
             FXMLLoader loaderConfirmarRegisto = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/ConfirmarRegistoOrgScene.fxml"));
             Parent rootConfirmarRegisto = loaderConfirmarRegisto.load();
             adicionarStage.setUserData(
