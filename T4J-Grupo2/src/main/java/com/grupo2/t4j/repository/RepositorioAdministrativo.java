@@ -105,6 +105,25 @@ public class RepositorioAdministrativo {
     }
     
     /**
+     * Atualiza a lista de Administrativos
+     *
+     * @param listaAdministradores
+     */
+    public void setListaAdministradores(List<Administrativo> listaAdministradores) {
+        this.listaAdministradores = listaAdministradores;
+    }
+
+    /**
+     * Devolve a lista de Administrativos
+     *
+     * @return 
+     */
+    public ArrayList<Administrativo> getListaAdministradores() {
+
+        return new ArrayList<Administrativo>(listaAdministradores);
+    }
+    
+    /**
      * Devolve um Administrativo de acordo com o email registado
      * @param email o email do Administrador
      * @return Administrativo registado
@@ -130,5 +149,13 @@ public class RepositorioAdministrativo {
             repositorioAdministrativo = new RepositorioAdministrativo();
         }
         return repositorioAdministrativo;
+    }
+    
+    /**
+     * Informa se a lista de Administradores está ou não vazia
+     * @return 
+     */
+    public boolean isVazia() {
+        return listaAdministradores.isEmpty();
     }
 }

@@ -15,10 +15,18 @@ import java.io.Serializable;
 public class Administrativo implements Serializable {
     
     /**
-     * Atributos da classe Administrativo
+     * O nome do Administrativo
      */
     private String nome;
+    
+    /**
+     * O email do Administrativo
+     */
     private Email email;
+    
+    /**
+     * A password do Administrativo
+     */
     private Password password;
     
     /**
@@ -75,7 +83,7 @@ public class Administrativo implements Serializable {
     
     /**
      * Verifica a validade do parâmetro recebido e regista o nome do Administrador
-     * @param nome
+     * @param nome o nome do Administrador
      */
     public final void setNome(String nome){
         if (nome == null || nome.trim().isEmpty()) {
@@ -86,7 +94,7 @@ public class Administrativo implements Serializable {
     
     /**
      * Regista o email do Administrador
-     * @param email
+     * @param email o email do Administrador
      */
     public final void setEmail(Email email){
         this.email = email;
@@ -94,7 +102,7 @@ public class Administrativo implements Serializable {
     
     /**
      * Regista a password do Administrador
-     * @param password
+     * @param password a password do Administrador
      */
     public final void setPassword(Password password){
         this.password = password;
@@ -132,6 +140,15 @@ public class Administrativo implements Serializable {
     public String toString(){
         return String.format("O administrador %s tem os seguintes dados: /nEmail: "
                 + "%s /nPassword: %s", nome, email, password);
+    }
+    
+    /**
+     * Representação textual da classe Administrativo sem a password
+     * @return Nome e email do Administrador
+     */
+    public String toStringSemPass(){
+        return String.format("O administrador %s tem o seguinte email registado: %s", 
+                nome, email);
     }
 }
 
