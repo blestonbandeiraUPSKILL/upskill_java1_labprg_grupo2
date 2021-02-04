@@ -5,16 +5,17 @@
  */
 package com.grupo2.t4j.model;
 
+import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.*;
+import com.grupo2.t4j.exception.*;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
 
 /**
  *
- * @author blest
+ * @author CAD
  */
 public class AdministrativoTest {
     
@@ -38,9 +39,34 @@ public class AdministrativoTest {
     }
 
     @Test
-    public void testSomeMethod() {
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    public void testCriarAdministrativo() {
+        
+        Administrativo a1= new Administrativo("Fulano", "fulano@upskill.pt", "12345678");
+        
+        assertEquals("Fulano", a1.getNome());
+        assertEquals("fulano@upskill.pt", a1.getEmail().getEmailText());
+        assertEquals("12345678", a1.getPassword().getPasswordText());
+    }
+    
+    @Test (expected = NomeInvalidoException.class)
+    public void testCriarAdministrativoNomeIncorreto() {
+        
+        Administrativo a2 = new Administrativo("", "fulano@upskill.pt", "12345678");
+             
+    }
+    
+    @Test (expected = IllegalArgumentException.class)
+    public void testCriarAdministrativoFormaIncorreta() {
+        
+        Administrativo a3 = new Administrativo("Fulano", "fulano", "12345678");
+             
+    }
+    
+    @Test (expected = PasswordInvalidaException.class)
+    public void testCriarAdministrativoPasswordFormaIncorreta() {
+       
+        Administrativo a4 = new Administrativo("Fulano", "fulano@upskill.pt", "123");
+             
     }
     
 }
