@@ -95,7 +95,7 @@ public class CompetenciaTecnica implements Serializable{
     /**
      * @param descricaoBreve the descricaoBreve to set
      */
-    public void setDescricaoBreve(String descricaoBreve) {
+    public void setDescricaoBreve(String descricaoBreve) throws DescricaoInvalidaException {
         if (descricaoBreve == null || descricaoBreve.trim().isEmpty()) {
             throw new DescricaoInvalidaException("Deve introduzir uma descrição válida!");
         } else {
