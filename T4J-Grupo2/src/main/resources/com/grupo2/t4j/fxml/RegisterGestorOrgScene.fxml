@@ -11,43 +11,47 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="400.0"
-            maxWidth="-Infinity"
-            minHeight="-Infinity"
-            minWidth="-Infinity"
-            prefHeight="300.0" prefWidth="350.0"
-            style="-fx-background-color: #c4c4c4;"
-            xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.grupo2.t4j.ui.RegisterGestorOrgUI">
-   <top>
-      <BorderPane BorderPane.alignment="CENTER_RIGHT">
-         <BorderPane.margin>
-            <Insets left="5.0" right="5.0" top="5.0" />
-         </BorderPane.margin>
-         <right>
-            <Label style="-fx-background-color: #000000;" text="Adicionar Gestor" textFill="WHITE" BorderPane.alignment="CENTER">
+<BorderPane maxHeight="400.0" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="400.0" style="-fx-background-color: #c4c4c4;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.RegisterGestorOrgUI">
+   <bottom>
+      <FlowPane alignment="CENTER_RIGHT" prefHeight="52.0" prefWidth="340.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="btnConfirmarRegistoOrganizacao" defaultButton="true" mnemonicParsing="false" onAction="#confirmarRegistoOrganizacao" text="Registar">
+               <FlowPane.margin>
+                  <Insets right="5.0" />
+               </FlowPane.margin>
                <font>
-                  <Font name="Calibri" size="18.0" />
+                  <Font size="14.0" />
                </font>
-               <padding>
-                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-               </padding>
-            </Label>
-         </right>
-         <left>
-            <Label style="-fx-background-color: #000000;" text="Passo 2/2" textFill="WHITE" BorderPane.alignment="CENTER">
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-               <padding>
-                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-               </padding>
-            </Label>
-         </left>
-      </BorderPane>
+            </Button>
+            <Button fx:id="btnCancelarRegistoGestor" alignment="CENTER" cancelButton="true" contentDisplay="CENTER" mnemonicParsing="false" onAction="#registarGestorCancel" text="Cancelar">
+               <FlowPane.margin>
+                  <Insets left="5.0" />
+               </FlowPane.margin>
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+         </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <BorderPane.margin>
+            <Insets left="5.0" right="5.0" />
+         </BorderPane.margin>
+      </FlowPane>
+   </bottom>
+   <top>
+      <Label alignment="CENTER_RIGHT" style="-fx-background-color: #000000;" text="Adicionar Gestor" textFill="WHITE" BorderPane.alignment="CENTER_RIGHT">
+         <font>
+            <Font name="Calibri" size="18.0" />
+         </font>
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+      </Label>
    </top>
-   <left>
-      <GridPane maxHeight="700.0" prefHeight="311.0" prefWidth="320.0" style="-fx-background-color: #c4c4c4;" BorderPane.alignment="CENTER">
+   <center>
+      <GridPane maxHeight="700.0" prefHeight="216.0" prefWidth="367.0" style="-fx-background-color: #c4c4c4;" BorderPane.alignment="CENTER">
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
          </columnConstraints>
@@ -62,16 +66,19 @@
          <children>
             <Label maxHeight="400.0" maxWidth="700.0" text="Nome do Colaborador/Gestor">
                <GridPane.margin>
-                  <Insets left="20.0" />
+                  <Insets left="20.0" right="100.0" />
                </GridPane.margin>
                <font>
                   <Font name="Calibri" size="14.0" />
                </font>
             </Label>
-            <TextField promptText="nome do colaborador/gestor" GridPane.rowIndex="1">
+            <TextField fx:id="txtNomeGestor" promptText="nome do gestor" GridPane.rowIndex="1">
                <GridPane.margin>
                   <Insets left="20.0" right="20.0" />
                </GridPane.margin>
+               <font>
+                  <Font name="Calibri" size="14.0" />
+               </font>
             </TextField>
             <Label text="Contacto telefónico" GridPane.rowIndex="2">
                <font>
@@ -89,45 +96,39 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <TextField promptText="contacto telefónico" GridPane.rowIndex="3">
+            <TextField fx:id="txtTelefoneGestor" promptText="contacto telefónico do gestor" GridPane.rowIndex="3">
                <GridPane.margin>
                   <Insets left="20.0" right="20.0" />
                </GridPane.margin>
+               <font>
+                  <Font name="Calibri" size="14.0" />
+               </font>
             </TextField>
-            <TextField promptText="email da Organização" GridPane.rowIndex="5">
+            <TextField fx:id="txtEmailGestor" promptText="email do gestor" GridPane.rowIndex="5">
                <GridPane.margin>
                   <Insets left="20.0" right="20.0" />
                </GridPane.margin>
+               <font>
+                  <Font name="Calibri" size="14.0" />
+               </font>
             </TextField>
          </children>
       </GridPane>
-   </left>
-   <bottom>
-      <FlowPane alignment="CENTER_RIGHT" prefHeight="52.0" prefWidth="340.0" BorderPane.alignment="CENTER">
+   </center>
+   <left>
+      <GridPane prefHeight="216.0" prefWidth="141.0" BorderPane.alignment="CENTER">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="35.0" minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="35.0" minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
          <children>
-            <Button defaultButton="true" mnemonicParsing="false" text="Continuar">
-               <FlowPane.margin>
-                  <Insets right="5.0" />
-               </FlowPane.margin>
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Button>
-            <Button alignment="CENTER" cancelButton="true" contentDisplay="CENTER" mnemonicParsing="false" text="Cancelar">
-               <FlowPane.margin>
-                  <Insets left="5.0" />
-               </FlowPane.margin>
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Button>
+            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" style="-fx-background-color: #c4c4c4; -fx-border-color: #000000;" text="Dados Gestor" GridPane.halignment="CENTER" />
+            <Button fx:id="btnIrPaginaOrganizacao" mnemonicParsing="false" onAction="#IrPaginaOrganizacaoComDados" style="-fx-background-color: #c4c4c4;" text="Dados Organização" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
          </children>
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
-         <BorderPane.margin>
-            <Insets left="5.0" right="5.0" />
-         </BorderPane.margin>
-      </FlowPane>
-   </bottom>
+      </GridPane>
+   </left>
 </BorderPane>
