@@ -108,7 +108,7 @@ public class Colaborador extends Utilizador implements Serializable{
     }
 
 
-     * Construtor da classe Colaborador para uso específico de Gestor de Organização
+    /* Construtor da classe Colaborador para uso específico de Gestor de Organização
      * @param nomeGestor o nome do Gestor da Organização
      * @param emailGestor o email do Gestor da Organização
      * @param funcao a função do Gestor da Organização
