@@ -73,6 +73,18 @@ public class RepositorioCompetenciaTecnicaTest {
 
     @Test
     public void testGetCompetenciaTecnicaByCodigo() {
+        
+        //Arrange
+        RepositorioCompetenciaTecnica rc1=  RepositorioCompetenciaTecnica.getInstance();
+        CompetenciaTecnica ct1= new CompetenciaTecnica("123456", "Jogo do Galo", "Jogo para duas pessoas");
+        rc1.addCompetenciaTecnica(ct1);
+        
+        //Act
+        CompetenciaTecnica ct2 = new CompetenciaTecnica(rc1.getCompetenciaTecnicaByCodigo(ct1.getCodigo()));
+        
+        //
+        assertEquals(ct1.toString(), ct2.toString());
+        
     }
 
     @org.junit.Test
