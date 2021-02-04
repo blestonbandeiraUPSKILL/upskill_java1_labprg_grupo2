@@ -5,12 +5,12 @@
  */
 package com.grupo2.t4j.model;
 
+import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
 
 /**
  *
@@ -42,11 +42,19 @@ public class EmailTest {
         
         String email;
         System.out.println("Digitando um email válido:");
-        email = "carol@gmail.com";
+        email = "fulano@gmail.com";
         Email testeEmail = new Email(email);
         
-        
-        fail("The test case is a prototype.");
+        assertEquals("fulano@gmail.com",testeEmail.getEmailText());
     }
     
+    @Test (expected = IllegalArgumentException.class)
+    public void testEmailIncorreto() {
+        
+        String emailErrado;
+        System.out.println("Digitando um email inválido:");
+        emailErrado = "fulano";
+        Email testeEmailErrado = new Email(emailErrado);
+                
+    }
 }
