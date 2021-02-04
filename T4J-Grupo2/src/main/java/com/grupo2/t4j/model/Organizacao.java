@@ -96,7 +96,18 @@ public class Organizacao {
         this.emailOrg = new Email(organizacao.emailOrg);
         this.colabGestor = new Colaborador(organizacao.colabGestor);
     }
-    
+
+    public Organizacao(String nomeOrganizacao, String nif, String telefone,
+                       String website, String email, EnderecoPostal enderecoPostal) {
+        Website website1 = new Website(website);
+        setNome(nomeOrganizacao);
+        setNif(nif);
+        setTelefone(telefone);
+        setWebsite(website1);
+        setEmail(new Email(email));
+        setEnderecoPostal(enderecoPostal);
+    }
+
     public final void setNome(String nome) {
         if (nome == null || nome.trim().isEmpty()) {
             throw new IllegalArgumentException("Nome é inválido!");

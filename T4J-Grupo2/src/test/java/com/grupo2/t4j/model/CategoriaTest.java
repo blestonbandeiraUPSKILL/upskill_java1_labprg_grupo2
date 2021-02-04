@@ -23,6 +23,8 @@ public class CategoriaTest {
     
     @BeforeAll
     public static void setUpClass() {
+        AreaActividade at= new AreaActividade ("123","acvb", "gfcgv");
+        
     }
     
     @AfterAll
@@ -31,6 +33,7 @@ public class CategoriaTest {
     
     @BeforeEach
     public void setUp() {
+       // Categoria ct1 = new Categoria (at,"jhfk",)
     }
     
     @AfterEach

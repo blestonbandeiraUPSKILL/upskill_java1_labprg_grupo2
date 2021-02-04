@@ -38,8 +38,17 @@ public class CaracterizacaoCT {
         this.obrigatoria = obrigatoria;
     }
     
+    public String boolean2String(boolean obrigatoria){
+        if (obrigatoria == true){
+            return "Obrigatório";
+        } else {
+            return "Opcional";
+        }
+    }
+    
     @Override
     public String toString() {
-        return String.format("%s%c%s%c%b", ct.toString(), SEPARADOR, gp.toString(), SEPARADOR, obrigatoria);
+        return String.format("Competência Técnica: %s;%nGrau de Proficiência Mínimo: %s%nCarácter: %s."
+                ,ct.getDescricaoBreve(),gp.getDesignacao(),boolean2String(obrigatoria));
     }
 }
