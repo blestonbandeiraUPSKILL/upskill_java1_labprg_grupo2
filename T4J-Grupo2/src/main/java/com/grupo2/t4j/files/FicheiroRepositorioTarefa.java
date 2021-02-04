@@ -6,8 +6,8 @@
 package com.grupo2.t4j.files;
 
 import static com.grupo2.t4j.files.FicheiroRepositorioCategoria.NOME_FICHEIRO_SERIALIZAR;
-import com.grupo2.t4j.repository.RepositorioAreaActividade;
-import com.grupo2.t4j.repository.RepositorioCategoria;
+import com.grupo2.t4j.repository.RepositorioColaborador;
+import com.grupo2.t4j.repository.RepositorioTarefa;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -19,25 +19,25 @@ import java.io.ObjectOutputStream;
  *
  * @author acris
  */
-public class FicheiroRepositorioAreaAcividade {
-    public static final String NOME_FICHEIRO_SERIALIZAR = "RepositorioAreaActividade.ltf";
-    public FicheiroRepositorioAreaAcividade() {
+public class FicheiroRepositorioTarefa {
+    public static final String NOME_FICHEIRO_SERIALIZAR = "RepositorioTarefa.ltf";
+    public FicheiroRepositorioTarefa() {
     }
 
-    public boolean serializar(RepositorioAreaActividade repositorioAreaActividade) {
-        return serializar(NOME_FICHEIRO_SERIALIZAR, repositorioAreaActividade);
+    public boolean serializar(RepositorioTarefa repositorioTarefa) {
+        return serializar(NOME_FICHEIRO_SERIALIZAR, repositorioTarefa);
     }
 
-    public boolean serializar(String nomeFicheiro, RepositorioAreaActividade repositorioAreaActividade) {
-        return serializar(new File(nomeFicheiro), repositorioAreaActividade);
+    public boolean serializar(String nomeFicheiro, RepositorioTarefa repositorioTarefa) {
+        return serializar(new File(nomeFicheiro), repositorioTarefa);
     }
 
-    public boolean serializar(File ficheiro, RepositorioAreaActividade repositorioAreaActividade) {
+    public boolean serializar(File ficheiro, RepositorioTarefa repositorioTarefa) {
         try {
             ObjectOutputStream out = new ObjectOutputStream(
                     new FileOutputStream(ficheiro));
             try {
-                out.writeObject(repositorioAreaActividade);
+                out.writeObject(repositorioTarefa);
                 
                 return true;
             } finally {
@@ -48,30 +48,28 @@ public class FicheiroRepositorioAreaAcividade {
         }
     }
 
-    public RepositorioAreaActividade desserializar() {
+    public RepositorioTarefa desserializar() {
         return desserializar(NOME_FICHEIRO_SERIALIZAR);
     }
 
-    public RepositorioAreaActividade desserializar(String nomeFicheiro) {
+    public RepositorioTarefa desserializar(String nomeFicheiro) {
         return desserializar(new File(nomeFicheiro));
     }
 
-    public RepositorioAreaActividade desserializar(File ficheiro) {
-        RepositorioAreaActividade repositorioAreaActividade;
+    public RepositorioTarefa desserializar(File ficheiro) {
+        RepositorioTarefa repositorioTarefa;
         try {
             ObjectInputStream in = new ObjectInputStream(
                     new FileInputStream(ficheiro));
             try {
-                repositorioAreaActividade = (RepositorioAreaActividade) in.readObject();
+                repositorioTarefa = (RepositorioTarefa) in.readObject();
                 
-                return repositorioAreaActividade;
+                return repositorioTarefa;
             } finally {
                 in.close();
             }
         } catch (IOException | ClassNotFoundException ex) {
-            return RepositorioAreaActividade.getInstance();
+            return RepositorioTarefa.getInstance();
         }
     }
-
-   
 }

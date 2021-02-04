@@ -5,10 +5,12 @@
  */
 package com.grupo2.t4j.model;
 
+import java.io.Serializable;
+
 /**
  *
  * @author acris
  */
-public class Tarefa {
+public class Tarefa implements Serializable{
     
 }

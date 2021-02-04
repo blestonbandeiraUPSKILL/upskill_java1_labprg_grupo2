@@ -11,8 +11,9 @@ package com.grupo2.t4j.model;
  */
 
 import com.grupo2.t4j.exception.*;
+import java.io.Serializable;
         
-public class Organizacao {
+public class Organizacao implements Serializable{
     
     private String nome;
     private String NIF;
