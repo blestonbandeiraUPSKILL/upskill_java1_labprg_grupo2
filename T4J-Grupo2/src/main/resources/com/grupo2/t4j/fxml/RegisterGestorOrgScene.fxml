@@ -64,7 +64,7 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <Label maxHeight="400.0" maxWidth="700.0" text="Nome do Colaborador/Gestor">
+            <Label maxHeight="400.0" maxWidth="700.0" text="Nome do Gestor">
                <GridPane.margin>
                   <Insets left="20.0" right="100.0" />
                </GridPane.margin>
@@ -88,7 +88,7 @@
                   <Insets left="20.0" />
                </GridPane.margin>
             </Label>
-            <Label text="e-Mail" GridPane.rowIndex="4">
+            <Label text="email" GridPane.rowIndex="4">
                <GridPane.margin>
                   <Insets left="20.0" />
                </GridPane.margin>
