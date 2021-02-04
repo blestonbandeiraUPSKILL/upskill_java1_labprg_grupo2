@@ -5,11 +5,13 @@
  */
 package com.grupo2.t4j.model;
 
+import java.io.Serializable;
+
 /**
  *
  * @author CAD
  */
-public class Administrativo {
+public class Administrativo implements Serializable{
     
     private String nome;
     private Email email;
