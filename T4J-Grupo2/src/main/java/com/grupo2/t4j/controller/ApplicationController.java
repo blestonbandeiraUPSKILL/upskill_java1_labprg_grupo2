@@ -6,6 +6,7 @@ import com.grupo2.t4j.model.Plataforma;
 import javafx.event.ActionEvent;
 import javafx.scene.Node;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 public class ApplicationController {
 
@@ -21,11 +22,5 @@ public class ApplicationController {
         return Plataforma.getInstance().getUsersAPI().getRole();
     }
 
-    public void preencherDados(ActionEvent actionEvent) {
-        Node node = (Node) actionEvent.getSource();
-        Stage stage = (Stage) node.getScene().getWindow();
 
-        Organizacao organizacao = (Organizacao) stage.getUserData();
-
-    }
 }

@@ -19,6 +19,7 @@ import javafx.stage.Window;
 import javafx.stage.WindowEvent;
 
 
+import java.awt.event.MouseEvent;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -54,8 +55,9 @@ public class ConfirmarRegistoOrgUI implements Initializable {
         adicionarStage = new Stage();
         adicionarStage.initModality(Modality.APPLICATION_MODAL);
         adicionarStage.setResizable(false);
-        Window window = btnCancelarRegisto.getScene().getWindow();
-        Organizacao organizacao = (Organizacao) window.getUserData();
+
+        applicationController = new ApplicationController();
+        Organizacao organizacao = (Organizacao) adicionarStage.getUserData();
 
         txtConfNomeOrganizacao.setText(organizacao.getNome());
         txtConfNif.setText(organizacao.getNif());
@@ -69,9 +71,6 @@ public class ConfirmarRegistoOrgUI implements Initializable {
         txtConfNomeGestor.setText(organizacao.getNomeGestor());
         txtConfTelefoneGestor.setText(organizacao.getTelefoneGestor());
         txtConfEmailGestor.setText(organizacao.getEmailGestor().toString());
-
-
-        applicationController = new ApplicationController();
     }
 
     public void voltarPaginaRegistoComDados(ActionEvent actionEvent) {
@@ -81,7 +80,7 @@ public class ConfirmarRegistoOrgUI implements Initializable {
     public void gravarOrganizacao(ActionEvent actionEvent) {
     }
 
-    public void cancelarRegisto(ActionEvent actionEvent) {
+    public void cancelarRegisto() {
         Window window = btnCancelarRegisto.getScene().getWindow();
         window.setOnCloseRequest(new EventHandler<WindowEvent>() {
             @Override
@@ -98,4 +97,5 @@ public class ConfirmarRegistoOrgUI implements Initializable {
 
         window.fireEvent(new WindowEvent(window, WindowEvent.WINDOW_CLOSE_REQUEST));
     }
+
 }
