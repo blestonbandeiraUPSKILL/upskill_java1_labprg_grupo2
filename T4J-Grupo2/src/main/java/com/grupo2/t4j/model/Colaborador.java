@@ -13,6 +13,7 @@ public class Colaborador extends Utilizador{
     
     private String funcao;
     private String telefone;
+    private Rolename rolename;
 
     public Colaborador() {
         super();
@@ -20,6 +21,13 @@ public class Colaborador extends Utilizador{
 
     public Colaborador(String nome, Email email, Password password){
         super(nome, email, password);
+    }
+
+    public Colaborador(String nome, Email email, String telefone, Rolename rolename) {
+        setNome(nome);
+        setEmail(email);
+        setTelefone(telefone);
+        this.rolename = rolename;
     }
 
     public Colaborador(String nome, Email email, Password password, String funcao,
@@ -41,12 +49,6 @@ public class Colaborador extends Utilizador{
         super(nome, emailCol, passCol);
         setFuncao(funcao);
         setTelefone(telefone);
-    }
-
-    public Colaborador(String nomeGestor, Email emailGestor, String funcao, String telefoneGestor) {
-        super(nomeGestor, emailGestor);
-        setFuncao(funcao);
-        setTelefone(telefoneGestor);
     }
 
     public Colaborador (Colaborador colaborador){
