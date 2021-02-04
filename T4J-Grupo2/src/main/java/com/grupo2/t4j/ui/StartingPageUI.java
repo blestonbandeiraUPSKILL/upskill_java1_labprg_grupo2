@@ -49,11 +49,11 @@ public class StartingPageUI implements Initializable {
             RegistarOrgEGestorUI registarOrgEGestorUI = loaderRegistarOrg.getController();
             registarOrgEGestorUI.associarParentUI(this);
 
-            FXMLLoader loaderConfirmarRegistoOrg = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/ConfirmarRegistoOrgScene.fxml"));
-            Parent rootConfirmarRegistoOrg = loaderConfirmarRegistoOrg.load();
-            sceneConfirmarRegistoOrg = new Scene(rootConfirmarRegistoOrg);
-            ConfirmarRegistoOrgUI confirmarRegistoOrgUI = loaderConfirmarRegistoOrg.getController();
-            confirmarRegistoOrgUI.associarParentUI(this);
+//            FXMLLoader loaderConfirmarRegistoOrg = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/ConfirmarRegistoOrgScene.fxml"));
+//            Parent rootConfirmarRegistoOrg = loaderConfirmarRegistoOrg.load();
+//            sceneConfirmarRegistoOrg = new Scene(rootConfirmarRegistoOrg);
+//            ConfirmarRegistoOrgUI confirmarRegistoOrgUI = loaderConfirmarRegistoOrg.getController();
+//            confirmarRegistoOrgUI.associarParentUI(this);
 
             FXMLLoader loaderGestor = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/GestorLogadoScene.fxml"));
             Parent rootGestor = loaderGestor.load();

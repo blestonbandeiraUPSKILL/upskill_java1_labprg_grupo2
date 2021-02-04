@@ -129,13 +129,17 @@ public class Organizacao implements Serializable{
     }*/
     
     public Organizacao(Organizacao organizacao){
-        setNome(organizacao.nome);
-        setNif(organizacao.NIF);
-        this.enderecoOrg = new EnderecoPostal(organizacao.enderecoOrg);
-        this.websiteOrg = new Website(organizacao.websiteOrg);
-        setTelefone(organizacao.telefone);
-        this.emailOrg = new Email(organizacao.emailOrg);
-        this.colabGestor = new Colaborador(organizacao.colabGestor);
+        setNome(organizacao.getNome());
+        setNif(organizacao.getNif());
+        this.enderecoOrg = new EnderecoPostal(organizacao.getEnderecoPostal());
+        this.websiteOrg = new Website(organizacao.getWebsite());
+        setTelefone(organizacao.getTelefone());
+        this.emailOrg = new Email(organizacao.getEmail());
+        this.colabGestor = new Colaborador(organizacao.getColabGestor());
+    }
+
+    public Colaborador getColabGestor() {
+        return colabGestor;
     }
 
     public Organizacao(String nomeOrganizacao, String nif, String telefone,

@@ -16,6 +16,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.Window;
@@ -32,6 +33,7 @@ public class RegistarOrgEGestorUI implements Initializable {
     private ApplicationController applicationController;
     private StartingPageUI startingPageUI;
     private Stage adicionarStage;
+
     private Scene sceneConfirmarRegisto;
 
     @FXML TextField txtNomeOrganizacao;
@@ -83,35 +85,37 @@ public class RegistarOrgEGestorUI implements Initializable {
 
     public void avancarRegistoComDados(ActionEvent actionEvent) throws Exception {
         try {
-            repositorioOrganizacao = repositorioOrganizacao.getInstance();
-            FXMLLoader loaderConfirmarRegisto = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/ConfirmarRegistoOrgScene.fxml"));
-            Parent rootConfirmarRegisto = loaderConfirmarRegisto.load();
-            adicionarStage.setUserData(
-                    repositorioOrganizacao.novaOrganizacao(
-                            txtNomeOrganizacao.getText(),
-                            txtNif.getText(),
-                            txtEndArruamento.getText(),
-                            txtEndPorta.getText(),
-                            txtEndLocalidade.getText(),
-                            txtEndCodPostal.getText(),
-                            txtTelefoneOrganizacao.getText(),
-                            new Website(txtWebsite.getText()),
-                            new Email(txtEmailOrganizacao.getText()),
-                            txtNomeGestor.getText(),
-                            new Email(txtEmailGestor.getText()),
-                            txtTelefoneGestor.getText(),
-                            Rolename.GESTOR
-                    ));
-
+            Organizacao novaOrganizacao = RepositorioOrganizacao.getInstance().novaOrganizacao(
+                    txtNomeOrganizacao.getText(),
+                    txtNif.getText(),
+                    txtEndArruamento.getText(),
+                    txtEndPorta.getText(),
+                    txtEndLocalidade.getText(),
+                    txtEndCodPostal.getText(),
+                    txtTelefoneOrganizacao.getText(),
+                    new Website(txtWebsite.getText()),
+                    new Email(txtEmailOrganizacao.getText()),
+                    txtNomeGestor.getText(),
+                    new Email(txtEmailGestor.getText()),
+                    txtTelefoneGestor.getText(),
+                    Rolename.GESTOR
+            );
             Node node = (Node) actionEvent.getSource();
             Stage stage = (Stage) node.getScene().getWindow();
             stage.close();
 
+            FXMLLoader loaderConfirmarRegisto = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/ConfirmarRegistoOrgScene.fxml"));
+            Parent rootConfirmarRegisto = loaderConfirmarRegisto.load();
+            RepositorioOrganizacao repositorioOrganizacao = RepositorioOrganizacao.getInstance();
+            repositorioOrganizacao.setOrganizacao(novaOrganizacao);
+
+            RepositorioOrganizacao.getInstance().setOrganizacao(novaOrganizacao);
+
             sceneConfirmarRegisto = new Scene(rootConfirmarRegisto);
 
-            adicionarStage.setScene(sceneConfirmarRegisto);
-            adicionarStage.setTitle("Registar Organização");
-            adicionarStage.show();
+            stage.setScene(sceneConfirmarRegisto);
+            stage.setTitle("Registar Organização");
+            stage.show();
         }
         catch (IOException exception) {
             exception.printStackTrace();

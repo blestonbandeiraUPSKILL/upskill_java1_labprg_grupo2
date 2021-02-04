@@ -152,7 +152,11 @@ public class Colaborador extends Utilizador implements Serializable{
         }
         this.telefone = telefone;
     }
-     
+
+    public Rolename getRolename() {
+        return rolename;
+    }
+
     /**
      * Devolve a função do colaborador
      * @return funcao

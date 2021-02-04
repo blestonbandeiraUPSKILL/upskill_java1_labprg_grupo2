@@ -23,7 +23,29 @@ public class RepositorioOrganizacao implements Serializable{
 
     private List<Organizacao> listaOrganizacoes = new ArrayList<>();
     private Plataforma plataforma;
+    private Organizacao organizacao;
     Colaborador colabGestor;
+
+    public Organizacao getOrganizacao() {
+        return organizacao;
+    }
+
+    public void setOrganizacao(Organizacao organizacao) {
+        novaOrganizacao(organizacao.getNome(),
+                organizacao.getNif(),
+                organizacao.getEnderecoPostal().getArruamento(),
+                organizacao.getEnderecoPostal().getPorta(),
+                organizacao.getEnderecoPostal().getLocalidade(),
+                organizacao.getEnderecoPostal().getCodigoPostal(),
+                organizacao.getTelefone(),
+                organizacao.getWebsite(),
+                organizacao.getEmail(),
+                organizacao.getColabGestor().getNome(),
+                organizacao.getColabGestor().getEmail(),
+                organizacao.getColabGestor().getTelefone(),
+                organizacao.getColabGestor().getRolename()
+                );
+    }
 
     private RepositorioOrganizacao() {
         listaOrganizacoes = new ArrayList<>();

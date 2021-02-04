@@ -4,6 +4,7 @@ import com.grupo2.t4j.controller.ApplicationController;
 import com.grupo2.t4j.model.Organizacao;
 import com.grupo2.t4j.repository.RepositorioOrganizacao;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -13,13 +14,12 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 import javafx.stage.WindowEvent;
 
-
-import java.awt.event.MouseEvent;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -52,12 +52,19 @@ public class ConfirmarRegistoOrgUI implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+        preencherDados();
+
         adicionarStage = new Stage();
         adicionarStage.initModality(Modality.APPLICATION_MODAL);
         adicionarStage.setResizable(false);
 
         applicationController = new ApplicationController();
-        Organizacao organizacao = (Organizacao) adicionarStage.getUserData();
+
+    }
+
+    public void preencherDados() {
+        Organizacao organizacao = RepositorioOrganizacao.getInstance().getOrganizacao();
 
         txtConfNomeOrganizacao.setText(organizacao.getNome());
         txtConfNif.setText(organizacao.getNif());
