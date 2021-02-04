@@ -10,8 +10,9 @@ package com.grupo2.t4j.model;
  * @author acris
  */
 import com.grupo2.t4j.exception.*;
+import java.io.Serializable;
 
-public class AreaActividade {
+public class AreaActividade implements Serializable{
     /**
      * Separador para exportar ficheiro
      */
