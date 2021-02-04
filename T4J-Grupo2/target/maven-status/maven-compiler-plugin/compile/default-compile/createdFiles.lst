@@ -27,7 +27,6 @@ com\grupo2\t4j\network\HttpRequest.class
 com\grupo2\t4j\dto\ListaColaboradorDTO.class
 com\grupo2\t4j\model\Mes$3.class
 com\grupo2\t4j\exception\DescricaoInvalidaException.class
-com\grupo2\t4j\model\FicheiroRepositorioCompetenciaTecnica.class
 com\grupo2\t4j\ui\TarefaUI.class
 com\grupo2\t4j\model\GrauProficiencia.class
 com\grupo2\t4j\controller\UtilizadoresController.class
