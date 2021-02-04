@@ -17,6 +17,7 @@
                   <content>
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefWidth="200.0">
                            <children>
+                              <BorderPane prefHeight="200.0" prefWidth="200.0" />
                               <Button fx:id="btn_addareaAtividade" alignment="BOTTOM_RIGHT" mnemonicParsing="false" text="Adicionar" />
                            </children>
                         </AnchorPane>
@@ -26,7 +27,15 @@
                      <content>
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
-                              <TextFlow layoutX="14.0" layoutY="14.0" prefHeight="250.0" prefWidth="600.0" />
+                              <BorderPane prefHeight="200.0" prefWidth="200.0">
+                                 <bottom>
+                                    <FlowPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                                       <children>
+                                          <Button fx:id="btn_addcategoriaTarefa" alignment="BOTTOM_RIGHT" mnemonicParsing="false" text="Adicionar" />
+                                       </children>
+                                    </FlowPane>
+                                 </bottom>
+                              </BorderPane>
                            </children>
                         </AnchorPane>
                      </content>
@@ -35,14 +44,17 @@
                      <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
-                              <TextFlow layoutX="14.0" layoutY="14.0" prefHeight="250.0" prefWidth="600.0" />
+                              <BorderPane prefHeight="200.0" prefWidth="200.0" />
                            </children>
                         </AnchorPane>
                      </content>
                   </Tab>
               </tabs>
             </TabPane>
-         </top></BorderPane>
+         </top>
+         <left>
+            <FlowPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+         </left></BorderPane>
    </center>
    <top>
       <Label style="-fx-background-color: #000000;" text="Área do Administrador" textFill="WHITE" BorderPane.alignment="CENTER_RIGHT">
