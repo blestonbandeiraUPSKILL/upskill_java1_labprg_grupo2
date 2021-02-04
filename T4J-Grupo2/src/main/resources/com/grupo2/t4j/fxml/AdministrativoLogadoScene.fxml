@@ -15,7 +15,11 @@
               <tabs>
                 <Tab text="Áreas de Atividade">
                   <content>
-                    <AnchorPane minHeight="0.0" minWidth="0.0" prefWidth="200.0" />
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefWidth="200.0">
+                           <children>
+                              <Button fx:id="btn_addareaAtividade" alignment="BOTTOM_RIGHT" mnemonicParsing="false" text="Adicionar" />
+                           </children>
+                        </AnchorPane>
                   </content>
                 </Tab>
                 <Tab text="Categorias de Tarefa">
@@ -47,11 +51,4 @@
          </padding>
       </Label>
    </top>
-   <bottom>
-      <FlowPane alignment="BOTTOM_RIGHT" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-         <children>
-            <Button fx:id="btn_addareaAtividade" alignment="BOTTOM_RIGHT" mnemonicParsing="false" text="Adicionar" />
-         </children>
-      </FlowPane>
-   </bottom>
 </BorderPane>
