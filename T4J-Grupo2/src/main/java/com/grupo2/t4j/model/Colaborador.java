@@ -55,7 +55,6 @@ public class Colaborador extends Utilizador implements Serializable{
 
     public Colaborador (Colaborador colaborador){
         super(colaborador.getNome(), colaborador.getEmail(), colaborador.getPassword());
-        setFuncao(colaborador.funcao);
         setTelefone(colaborador.telefone);
     }
 

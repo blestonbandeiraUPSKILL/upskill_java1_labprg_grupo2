@@ -90,7 +90,7 @@ public class RegisterOrgUI implements Initializable {
         window.fireEvent(new WindowEvent(window, WindowEvent.WINDOW_CLOSE_REQUEST));
     }
 
-    public void irPaginaGestorComDados(ActionEvent actionEvent) {
+  /*  public void irPaginaGestorComDados(ActionEvent actionEvent) {
         Organizacao novaOrganizacao = new Organizacao
                 (txtNomeOrganizacao.getText(), txtNIFOrganizacao.getText(),
                         txtTelefoneOrganizacao.getText(), txtWebsiteOrganizacao.getText(),
@@ -119,7 +119,7 @@ public class RegisterOrgUI implements Initializable {
                     exception.getMessage());
         }
     }
-
+*/
 
 
 
