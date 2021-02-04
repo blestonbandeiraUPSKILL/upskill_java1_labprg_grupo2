@@ -121,4 +121,17 @@ public class RegistarOrgEGestorUI implements Initializable {
                     exception.getMessage());
         }
     }
+
+    /* public void confirmarDados() throws IOException {
+        try {
+            registarOrganizacaoController.registaOrganizacao();
+        }
+        catch (IOException exception) {
+            exception.printStackTrace();
+            AlertsUI.criarAlerta(Alert.AlertType.ERROR,
+                    MainApp.TITULO_APLICACAO,
+                    "Erro nos dados da organização.",
+                    exception.getMessage()).show();
+        }
+    }*/
 }
