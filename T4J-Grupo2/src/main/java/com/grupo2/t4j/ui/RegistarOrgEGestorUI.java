@@ -57,11 +57,7 @@ public class RegistarOrgEGestorUI implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        adicionarStage = new Stage();
-        adicionarStage.initModality(Modality.APPLICATION_MODAL);
-        adicionarStage.setResizable(false);
 
-        applicationController = new ApplicationController();
     }
 
     public void cancelarRegisto(ActionEvent actionEvent) {
@@ -85,7 +81,7 @@ public class RegistarOrgEGestorUI implements Initializable {
 
     public void avancarRegistoComDados(ActionEvent actionEvent) throws Exception {
         try {
-            Organizacao novaOrganizacao = RepositorioOrganizacao.getInstance().novaOrganizacao(
+            RepositorioOrganizacao.getInstance().setOrganizacao(repositorioOrganizacao.novaOrganizacao(
                     txtNomeOrganizacao.getText(),
                     txtNif.getText(),
                     txtEndArruamento.getText(),
@@ -99,23 +95,17 @@ public class RegistarOrgEGestorUI implements Initializable {
                     new Email(txtEmailGestor.getText()),
                     txtTelefoneGestor.getText(),
                     Rolename.GESTOR
-            );
-            Node node = (Node) actionEvent.getSource();
-            Stage stage = (Stage) node.getScene().getWindow();
-            stage.close();
+            ));
 
             FXMLLoader loaderConfirmarRegisto = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/ConfirmarRegistoOrgScene.fxml"));
             Parent rootConfirmarRegisto = loaderConfirmarRegisto.load();
-            RepositorioOrganizacao repositorioOrganizacao = RepositorioOrganizacao.getInstance();
-            repositorioOrganizacao.setOrganizacao(novaOrganizacao);
-
-            RepositorioOrganizacao.getInstance().setOrganizacao(novaOrganizacao);
 
             sceneConfirmarRegisto = new Scene(rootConfirmarRegisto);
+            adicionarStage = new Stage();
+            adicionarStage.setScene(sceneConfirmarRegisto);
+            adicionarStage.setTitle("Confirmar Dados");
+            adicionarStage.show();
 
-            stage.setScene(sceneConfirmarRegisto);
-            stage.setTitle("Registar Organização");
-            stage.show();
         }
         catch (IOException exception) {
             exception.printStackTrace();

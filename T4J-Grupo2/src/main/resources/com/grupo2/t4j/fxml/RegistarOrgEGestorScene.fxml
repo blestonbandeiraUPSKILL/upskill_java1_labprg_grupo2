@@ -103,7 +103,7 @@
                         <Font name="Calibri" size="14.0" />
                      </font>
                   </TextField>
-                  <TextField fx:id="txtEndCodPostal" promptText="código postal" text="8000" GridPane.columnIndex="1" GridPane.rowIndex="8">
+                  <TextField fx:id="txtEndCodPostal" promptText="código postal" text="8000-000" GridPane.columnIndex="1" GridPane.rowIndex="8">
                      <font>
                         <Font name="Calibri" size="14.0" />
                      </font>
