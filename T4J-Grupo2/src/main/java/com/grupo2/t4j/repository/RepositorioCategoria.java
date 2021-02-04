@@ -8,11 +8,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RepositorioCategoria implements Serializable{
+
     private static RepositorioCategoria instance;
     private List<Categoria> listaCategorias;
     
     private RepositorioCategoria(){
-        listaCategorias=new ArrayList<>();
+        listaCategorias = new ArrayList<>();
     }
     
     public static RepositorioCategoria getInstance(){

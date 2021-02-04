@@ -13,30 +13,37 @@ package com.grupo2.t4j.repository;
 
 import com.grupo2.t4j.model.*;
 import com.grupo2.t4j.exception.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RepositorioOrganizacao {
+public class RepositorioOrganizacao implements Serializable{
+
+    private static RepositorioOrganizacao instance;
 
     private List<Organizacao> listaOrganizacoes = new ArrayList<>();
     private Plataforma plataforma;
     Colaborador colabGestor;
 
-    public RepositorioOrganizacao(Plataforma plataforma) {
-        this.plataforma = plataforma;
+    private RepositorioOrganizacao() {
+        listaOrganizacoes = new ArrayList<>();
     }
-    
-    public RepositorioOrganizacao(List<Organizacao> listaOrganizacoes){
-        this.listaOrganizacoes = listaOrganizacoes;
+
+    public static RepositorioOrganizacao getInstance() {
+        if(instance == null) {
+            instance = new RepositorioOrganizacao();
+        }
+        return instance;
+
     }
 
     public Organizacao novaOrganizacao(String nome, String nif, String arruamento,
                                        String numeroPorta, String localidade, String codigoPostal,
                                        String telefone, Website website, Email emailOrganizacao,
-                                       String nomeGestor, String funcao, String telefoneGestor,
-                                       Email emailGestor) {
+                                       String nomeGestor, Email emailGestor, String telefoneGestor,
+                                       Rolename rolename) {
         EnderecoPostal endereco = Organizacao.novoEndereco(arruamento, numeroPorta, localidade, codigoPostal);
-        colabGestor = Organizacao.novoColaborador(nomeGestor, funcao, telefoneGestor, emailGestor);
+        colabGestor = Organizacao.novoColaborador(nomeGestor, emailGestor, telefoneGestor, rolename);
 
         return new Organizacao(nome, nif, endereco, website, telefone, emailOrganizacao, colabGestor);
     }

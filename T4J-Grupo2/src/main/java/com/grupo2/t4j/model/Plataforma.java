@@ -36,7 +36,7 @@ public class Plataforma {
     public Plataforma() {
         //algoritmoGeradorPasswords = new AlgoritmoGeradorPasswords();
         usersAPI = new UsersAPI();
-        repositorioOrganizacao = new RepositorioOrganizacao(this);
+        repositorioOrganizacao = RepositorioOrganizacao.getInstance();
         repositorioCategoria = RepositorioCategoria.getInstance();
         //repositorioColaborador = new RepositorioColaborador();
         //repositorioUtilizador = new RepositorioUtilizador();
