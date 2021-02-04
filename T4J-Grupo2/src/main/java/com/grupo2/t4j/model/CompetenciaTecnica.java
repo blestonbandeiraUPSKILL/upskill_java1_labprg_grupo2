@@ -40,8 +40,10 @@ public class CompetenciaTecnica implements Serializable{
         this.descricaoBreve = descricaoBreve;
         this.descricaoDetalhada = descricaoDetalhada;
         this.areaActividade=areaActividade;
-        this.cct=cct;
-        
+        this.cct=cct;    
+    }
+    
+    public CompetenciaTecnica(String codigo, String descricaoBreve, String descricaoDetalhada, AreaActividade areaActividade){
         
     }
     
@@ -53,12 +55,9 @@ public class CompetenciaTecnica implements Serializable{
  *
  */
     public CompetenciaTecnica(String codigo, String descricaoBreve, String descricaoDetalhada) {
-        this.codigo = codigo;
-        this.descricaoBreve = descricaoBreve;
-        this.descricaoDetalhada = descricaoDetalhada;
-        
-        
-        
+        setCodigo(codigo);
+        setDescricaoBreve(descricaoBreve);
+        setDescricaoDetalhada(descricaoDetalhada);    
     }
 /**
  * Construtor Classe Competencia Tecnica
