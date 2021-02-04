@@ -57,6 +57,20 @@ public class RegisterOrgUI implements Initializable {
     @FXML
     Button btnRegistarOrganizacaoCancel;
 
+    public void associarParentUI(StartingPageUI startingPageUI) {
+        this.startingPageUI = startingPageUI;
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+
+        adicionarStage = new Stage();
+        adicionarStage.initModality(Modality.APPLICATION_MODAL);
+        adicionarStage.setResizable(false);
+
+        applicationController = new ApplicationController();
+    }
+
     public void registarOrganizacaoCancel(ActionEvent actionEvent) {
         Window window = btnRegistarOrganizacaoCancel.getScene().getWindow();
         window.setOnCloseRequest(new EventHandler<WindowEvent>() {
@@ -74,25 +88,9 @@ public class RegisterOrgUI implements Initializable {
         });
 
         window.fireEvent(new WindowEvent(window, WindowEvent.WINDOW_CLOSE_REQUEST));
-
     }
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-
-        adicionarStage = new Stage();
-        adicionarStage.initModality(Modality.APPLICATION_MODAL);
-        adicionarStage.setResizable(false);
-
-        applicationController = new ApplicationController();
-
-    }
-
-    public void associarParentUI(StartingPageUI startingPageUI) {
-        this.startingPageUI = startingPageUI;
-    }
-
-    public void irPaginaGestorComDados(ActionEvent actionEvent) {
+  /*  public void irPaginaGestorComDados(ActionEvent actionEvent) {
         Organizacao novaOrganizacao = new Organizacao
                 (txtNomeOrganizacao.getText(), txtNIFOrganizacao.getText(),
                         txtTelefoneOrganizacao.getText(), txtWebsiteOrganizacao.getText(),
@@ -121,7 +119,7 @@ public class RegisterOrgUI implements Initializable {
                     exception.getMessage());
         }
     }
-
+*/
 
 
 

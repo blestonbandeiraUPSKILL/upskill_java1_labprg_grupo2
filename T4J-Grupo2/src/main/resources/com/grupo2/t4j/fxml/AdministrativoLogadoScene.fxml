@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
@@ -10,19 +11,44 @@
    <center>
       <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <top>
-            <MenuBar BorderPane.alignment="CENTER">
-              <menus>
-                <Menu mnemonicParsing="false" text="Áreas de Atividade">
-                  <items>
-                    <MenuItem mnemonicParsing="false" text="Close" />
-                  </items>
-                </Menu>
-              </menus>
-            </MenuBar>
-         </top></BorderPane>
+            <TabPane prefHeight="250.0" prefWidth="700.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+              <tabs>
+                <Tab text="Áreas de Atividade">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefWidth="200.0">
+                           <children>
+                              <TextFlow layoutX="14.0" layoutY="14.0" prefHeight="250.0" prefWidth="600.0" />
+                           </children>
+                        </AnchorPane>
+                  </content>
+                </Tab>
+                <Tab text="Categorias de Tarefa">
+                     <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <TextFlow layoutX="14.0" layoutY="14.0" prefHeight="250.0" prefWidth="600.0" />
+                           </children>
+                        </AnchorPane>
+                     </content>
+                </Tab>
+                  <Tab text="Competências Técnicas">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <TextFlow layoutX="14.0" layoutY="14.0" prefHeight="250.0" prefWidth="600.0" />
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </Tab>
+              </tabs>
+            </TabPane>
+         </top>
+         <bottom>
+            <Button fx:id="btn_addareaAtividade" alignment="TOP_RIGHT" mnemonicParsing="false" text="Adicionar" BorderPane.alignment="CENTER" />
+         </bottom></BorderPane>
    </center>
    <top>
-      <Label style="-fx-background-color: #000000;" text="Área de Atividade" textFill="WHITE" BorderPane.alignment="CENTER_RIGHT">
+      <Label style="-fx-background-color: #000000;" text="Área do Administrador" textFill="WHITE" BorderPane.alignment="CENTER_RIGHT">
          <padding>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </padding>

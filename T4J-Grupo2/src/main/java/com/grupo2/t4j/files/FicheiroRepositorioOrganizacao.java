@@ -20,7 +20,7 @@ import java.io.ObjectOutputStream;
  * @author acris
  */
 public class FicheiroRepositorioOrganizacao {
-   /* public static final String NOME_FICHEIRO_SERIALIZAR = "RepositorioOrganizacao.ltf";
+    public static final String NOME_FICHEIRO_SERIALIZAR = "RepositorioOrganizacao.ltf";
     public FicheiroRepositorioOrganizacao() {
     }
 
@@ -71,5 +71,5 @@ public class FicheiroRepositorioOrganizacao {
         } catch (IOException | ClassNotFoundException ex) {
             return RepositorioOrganizacao.getInstance();
         }
-    }*/
+    }
 }

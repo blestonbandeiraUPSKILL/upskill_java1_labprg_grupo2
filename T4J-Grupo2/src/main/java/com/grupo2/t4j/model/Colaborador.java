@@ -26,6 +26,7 @@ public class Colaborador extends Utilizador implements Serializable{
     /**
      * 
      */
+
     private Rolename rolename;
 
     /**
@@ -52,13 +53,14 @@ public class Colaborador extends Utilizador implements Serializable{
      * @param telefone
      * @param rolename 
      */
+
     public Colaborador(String nome, Email email, String telefone, Rolename rolename) {
         setNome(nome);
         setEmail(email);
         setTelefone(telefone);
         this.rolename = rolename;
     }
-    
+  
     /**
      * Construtor completo da classe Colaborador 
      * @param nome o nome do Colaborador
@@ -67,6 +69,7 @@ public class Colaborador extends Utilizador implements Serializable{
      * @param funcao a função do Colaborador da organização
      * @param telefone o telefone do Colaborador da organização
      */
+
     public Colaborador(String nome, Email email, Password password, String funcao,
             String telefone){
         super(nome, email, password);
@@ -104,7 +107,7 @@ public class Colaborador extends Utilizador implements Serializable{
         setTelefone(telefone);
     }
 
-    /**
+
      * Construtor da classe Colaborador para uso específico de Gestor de Organização
      * @param nomeGestor o nome do Gestor da Organização
      * @param emailGestor o email do Gestor da Organização
