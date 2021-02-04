@@ -33,10 +33,10 @@ public class RepositorioOrganizacao {
     public Organizacao novaOrganizacao(String nome, String nif, String arruamento,
                                        String numeroPorta, String localidade, String codigoPostal,
                                        String telefone, Website website, Email emailOrganizacao,
-                                       String nomeGestor, String funcao, String telefoneGestor,
-                                       Email emailGestor) {
+                                       String nomeGestor, Email emailGestor, String telefoneGestor,
+                                       Rolename rolename) {
         EnderecoPostal endereco = Organizacao.novoEndereco(arruamento, numeroPorta, localidade, codigoPostal);
-        colabGestor = Organizacao.novoColaborador(nomeGestor, funcao, telefoneGestor, emailGestor);
+        colabGestor = Organizacao.novoColaborador(nomeGestor, emailGestor, telefoneGestor, rolename);
 
         return new Organizacao(nome, nif, endereco, website, telefone, emailOrganizacao, colabGestor);
     }

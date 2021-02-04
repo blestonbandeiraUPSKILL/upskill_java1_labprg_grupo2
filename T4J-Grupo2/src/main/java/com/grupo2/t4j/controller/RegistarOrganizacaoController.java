@@ -1,9 +1,6 @@
 package com.grupo2.t4j.controller;
 
-import com.grupo2.t4j.model.Email;
-import com.grupo2.t4j.model.Organizacao;
-import com.grupo2.t4j.model.Plataforma;
-import com.grupo2.t4j.model.Website;
+import com.grupo2.t4j.model.*;
 import com.grupo2.t4j.repository.RepositorioOrganizacao;
 
 public class RegistarOrganizacaoController {
@@ -19,11 +16,11 @@ public class RegistarOrganizacaoController {
     public void novaOrganizacao(String nome, String nif, String arruamento,
                                 String numeroPorta, String localidade, String codigoPostal,
                                 String telefone, Website website, Email emailOrganizacao,
-                                String nomeGestor, String funcao, String telefoneGestor,
-                                Email emailGestor) throws Exception {
+                                String nomeGestor, Email emailGestor,  String telefoneGestor,
+                                Rolename rolename) throws Exception {
         repositorioOrganizacao = plataforma.getRepositorioOrganizacao();
         organizacao = repositorioOrganizacao.novaOrganizacao(nome, nif, arruamento, numeroPorta, localidade, codigoPostal,
-                telefone, website, emailOrganizacao, nomeGestor, funcao, telefoneGestor, emailGestor);
+                telefone, website, emailOrganizacao, nomeGestor, emailGestor, telefoneGestor, rolename);
 
         if (repositorioOrganizacao.validaOrganizacao(organizacao)) {
             repositorioOrganizacao.addOrganizacao(organizacao);

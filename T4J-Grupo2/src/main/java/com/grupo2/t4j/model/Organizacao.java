@@ -24,7 +24,7 @@ public class Organizacao {
     private Colaborador colabGestor;
     
     private static final EnderecoPostal ENDERECO_POR_OMISSAO = new EnderecoPostal("Rua ", "s/n", "Portugal", "1111-111");
-    private static final Website WEBSITE_POR_OMISSAO = new Website("http://***");
+    private static final Website WEBSITE_POR_OMISSAO = new Website("***");
     private static final String TELEFONE_ORG_POR_OMISSAO = "999999999";
         
     public Organizacao(){
@@ -192,7 +192,7 @@ public class Organizacao {
         return new EnderecoPostal(arruamento, numeroPorta, localidade, codigoPostal);
     }
 
-    public static Colaborador novoColaborador(String nomeGestor, String funcao, String telefoneGestor, Email emailGestor ) {
-        return new Colaborador(nomeGestor, emailGestor, funcao, telefoneGestor);
+    public static Colaborador novoColaborador(String nomeGestor, Email emailGestor, String telefoneGestor, Rolename rolename) {
+        return new Colaborador(nomeGestor, emailGestor, telefoneGestor, rolename);
     }
 }
