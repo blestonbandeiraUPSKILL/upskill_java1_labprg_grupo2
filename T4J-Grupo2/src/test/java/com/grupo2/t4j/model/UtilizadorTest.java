@@ -52,7 +52,7 @@ public class UtilizadorTest {
     @Test (expected = NomeInvalidoException.class)
     public void testCriarUtilizadorNomeIncorreto() {
         
-        Utilizador u2 = new Utilizador("Oi", "fulano@upskill.pt", "12345678");
+        Utilizador u2 = new Utilizador("", "fulano@upskill.pt", "12345678");
              
     }
     
