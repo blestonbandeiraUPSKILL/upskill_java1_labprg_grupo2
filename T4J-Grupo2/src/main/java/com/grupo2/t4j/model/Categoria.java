@@ -15,15 +15,16 @@ import java.util.List;
 public class Categoria {
     
     private String id;
+    private static int id2=0;
     private String descricao;
     private AreaActividade at;
     private List<CompetenciaTecnica> compTecnicas;
     
-    public Categoria (String id, String descricao, AreaActividade at, List<CompetenciaTecnica> compTecnicas){
-        setId(id);
+    public Categoria (String descricao, AreaActividade at, List<CompetenciaTecnica> compTecnicas){
         this.descricao=descricao;
         this.at=at;
         this.compTecnicas=compTecnicas;
+        this.id = geradorId(descricao, id2);
     }
     public Categoria (Categoria categoria){
         setId(id);
@@ -37,6 +38,7 @@ public class Categoria {
     }
 
     public void setId(String id) {
+        
         this.id = id;
     }
 
@@ -68,4 +70,12 @@ public class Categoria {
         this.compTecnicas = compTecnicas;
     }
     
+    public String geradorId(String descricao,int id2){
+        id2++;
+        StringBuilder s = new StringBuilder();
+        s.append(descricao);
+        s.append("_");
+        s.append(id2);
+        return s.toString();
+    }
 }
