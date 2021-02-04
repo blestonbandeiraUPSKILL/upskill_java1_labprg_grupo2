@@ -111,11 +111,5 @@ public class RepositorioCompetenciaTecnica implements Serializable{
         return compTecPorAt;
     }
 
-    public String[] getListaComoArray() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    public boolean isVazia() {
-        return listaCompTecnicas.isEmpty();
-    }
+   
 }
