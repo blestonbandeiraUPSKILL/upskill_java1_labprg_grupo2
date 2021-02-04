@@ -5,16 +5,17 @@
  */
 package com.grupo2.t4j.model;
 
+import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.*;
+import com.grupo2.t4j.exception.PasswordInvalidaException;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
 
 /**
  *
- * @author blest
+ * @author CAD
  */
 public class PasswordTest {
     
@@ -38,9 +39,23 @@ public class PasswordTest {
     }
 
     @Test
-    public void testSomeMethod() {
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    public void testaPasswordFormaCorreta() {
+        
+        String password;
+        System.out.println("Digitando uma password válida:");
+        password = "12345678";
+        Password testePass = new Password(password);
+        
+        assertEquals("12345678",testePass.getPasswordText());
+    }
+    
+    @Test (expected = PasswordInvalidaException.class)
+    public void testPasswordIncorreto() {
+        
+        String passInv;
+        System.out.println("Digitando uma password inválida:");
+        passInv = "123";
+        Password testePassInv = new Password(passInv);                
     }
     
 }
