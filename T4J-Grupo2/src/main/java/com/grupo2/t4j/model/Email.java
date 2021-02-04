@@ -41,6 +41,10 @@ public class Email implements IEmail {
     public String getText() {
         return text;
     }
+    
+     public String getEmailText() {
+        return email;
+    }
 
     public void setEmail(String email){
         if(eEmailValido(email)){

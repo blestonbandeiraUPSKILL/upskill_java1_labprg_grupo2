@@ -109,7 +109,7 @@ public class RepositorioUtilizador implements Serializable{
      * @param email o email do Utilizador
      * @return Utilizador registado
      */
-    private Utilizador getUtilizadorByEmail(Email email) {
+    public Utilizador getUtilizadorByEmail(Email email) {
         Utilizador utilizador = null;
         for (int i = 0; i < this.listaUtilizadores.size(); i++) {
             utilizador = this.listaUtilizadores.get(i);

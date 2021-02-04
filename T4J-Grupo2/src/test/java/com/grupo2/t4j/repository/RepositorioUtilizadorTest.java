@@ -30,13 +30,25 @@ public class RepositorioUtilizadorTest {
     @Test
     public void testAddUtilizador() {
         //Arrange
-        /*RepositorioUtilizador ru1;
+        RepositorioUtilizador ru1 = RepositorioUtilizador.getInstance();
         
         Utilizador u1= new Utilizador("Carol", "carol@upskill.pt", "12345678");
         //Act
         ru1.addUtilizador(u1);
         //Assert
-        assertTrue(ru1.getListaUtilizadores().contains(u1));*/
+        assertTrue(ru1.getListaUtilizadores().contains(u1));
+    }
+    
+    @Test 
+    public void testAddUtilizadorErroNome() {
+        //Arrange
+        RepositorioUtilizador ru1 = RepositorioUtilizador.getInstance();
+        
+        Utilizador u1= new Utilizador("Oi", "carol@upskill.pt", "12345678");
+        //Act
+        ru1.addUtilizador(u1);
+        //Assert
+        assertTrue(ru1.getListaUtilizadores().contains(u1));
     }
 
     @Test
@@ -49,5 +61,15 @@ public class RepositorioUtilizadorTest {
 
     @Test
     public void testGetUtilizadorByEmail() {
+         //Arrange
+        RepositorioUtilizador ru1 = RepositorioUtilizador.getInstance();
+        Email email = new Email("carol@upskill.pt");
+        Utilizador u2 = ru1.getUtilizadorByEmail(email);
+         //Act
+        u2.toString();
+        //u2.toStringSemPass();
+        //Assert
+        assertEquals("Carol",u2.getNome());
+        assertEquals("carol@upskill.pt",u2.getEmail().toString());
     }
 }
