@@ -12,12 +12,13 @@ package com.grupo2.t4j.repository;
 
 import com.grupo2.t4j.model.*;
 import com.grupo2.t4j.exception.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RepositorioUtilizador {
-    
-    /**
+public class RepositorioUtilizador implements Serializable{
+
+     /**
      * Define uma instância estática do Repositório em que estão registados todos
      * os Utilizadores da plataforma
      */

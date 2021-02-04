@@ -5,6 +5,11 @@
  */
 package com.grupo2.t4j.model;
 
+import org.apache.commons.validator.UrlValidator;
+
+import static org.apache.commons.validator.UrlValidator.ALLOW_ALL_SCHEMES;
+import static org.apache.commons.validator.UrlValidator.NO_FRAGMENTS;
+
 /**
  *
  * @author CAD
@@ -33,10 +38,8 @@ public class Website {
     // Dica de: https://qastack.com.br/programming/2230676/how-to-check-for-a-valid-url-in-java
     
     public boolean eURL(String url) {
-        try {
-            (new java.net.URL(url)).openStream().close();
-            return true;
-        } catch (Exception ex) { }
-            return false;
+        UrlValidator urlValidator = new UrlValidator();
+        return urlValidator.isValid(url);
+
     }
 }

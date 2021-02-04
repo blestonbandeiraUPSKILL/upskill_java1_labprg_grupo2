@@ -17,6 +17,7 @@ C:\Users\blest\Desktop\Sprints\upskill_java1_labprg_grupo2\T4J-Grupo2\src\main\j
 C:\Users\blest\Desktop\Sprints\upskill_java1_labprg_grupo2\T4J-Grupo2\src\main\java\com\grupo2\t4j\repository\RepositorioAreaActividade.java
 C:\Users\blest\Desktop\Sprints\upskill_java1_labprg_grupo2\T4J-Grupo2\src\main\java\com\grupo2\t4j\ui\TarefaUI.java
 C:\Users\blest\Desktop\Sprints\upskill_java1_labprg_grupo2\T4J-Grupo2\src\main\java\com\grupo2\t4j\repository\RepositorioEmail.java
+C:\Users\blest\Desktop\Sprints\upskill_java1_labprg_grupo2\T4J-Grupo2\src\main\java\com\grupo2\t4j\repository\RepositorioOrganizacao2.java
 C:\Users\blest\Desktop\Sprints\upskill_java1_labprg_grupo2\T4J-Grupo2\src\main\java\com\grupo2\t4j\controller\ColaboradoresController.java
 C:\Users\blest\Desktop\Sprints\upskill_java1_labprg_grupo2\T4J-Grupo2\src\main\java\com\grupo2\t4j\network\HttpRequest.java
 C:\Users\blest\Desktop\Sprints\upskill_java1_labprg_grupo2\T4J-Grupo2\src\main\java\com\grupo2\t4j\ui\GestorLogadoUI.java
@@ -43,6 +44,7 @@ C:\Users\blest\Desktop\Sprints\upskill_java1_labprg_grupo2\T4J-Grupo2\src\main\j
 C:\Users\blest\Desktop\Sprints\upskill_java1_labprg_grupo2\T4J-Grupo2\src\main\java\com\grupo2\t4j\model\CompetenciaTecnica.java
 C:\Users\blest\Desktop\Sprints\upskill_java1_labprg_grupo2\T4J-Grupo2\src\main\java\com\grupo2\t4j\exception\ColaboradorDuplicadoException.java
 C:\Users\blest\Desktop\Sprints\upskill_java1_labprg_grupo2\T4J-Grupo2\src\main\java\com\grupo2\t4j\model\Email.java
+C:\Users\blest\Desktop\Sprints\upskill_java1_labprg_grupo2\T4J-Grupo2\src\main\java\com\grupo2\t4j\model\FicheiroRepositorioCompetenciaTecnica.java
 C:\Users\blest\Desktop\Sprints\upskill_java1_labprg_grupo2\T4J-Grupo2\src\main\java\com\grupo2\t4j\network\HttpConnection.java
 C:\Users\blest\Desktop\Sprints\upskill_java1_labprg_grupo2\T4J-Grupo2\src\main\java\com\grupo2\t4j\exception\OrganizacaoInvalidaException.java
 C:\Users\blest\Desktop\Sprints\upskill_java1_labprg_grupo2\T4J-Grupo2\src\main\java\com\grupo2\t4j\dto\UtilizadorDTO.java

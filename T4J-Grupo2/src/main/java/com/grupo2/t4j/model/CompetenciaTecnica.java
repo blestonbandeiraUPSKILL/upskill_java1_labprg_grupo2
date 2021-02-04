@@ -165,16 +165,20 @@ public class CompetenciaTecnica implements Serializable{
     }
     
     public String toStringExport() {
-        return String.format("%s%c%s%c%s%c%s", codigo, SEPARADOR, descricaoBreve, SEPARADOR, areaActividade.toString(), SEPARADOR, cct.toString());
+        return String.format("s%c%s%c%s", areaActividade.toString(), SEPARADOR, cct.toString());
     }
+    
+    /*public String toStringExport() {
+        return String.format("%s%c%s%c%s%c%s", codigo, SEPARADOR, descricaoBreve, SEPARADOR, areaActividade.toString(), SEPARADOR, cct.toString());
+    }*/
    
-    /* public String[] getCompetenciaComoArray(String compTecnica) {
+   /* public String[] getCompetenciaComoArray(String compTecnica) {
         String[] dados = compTecnica.trim().split(String.valueOf(SEPARADOR));
         int nrAtributos = 8;
 
         if (dados.length == nrAtributos) {
             try {
-                new CompetenciaTecnica(dados[0],dados[1], Integer.parseInt(dados[0]));
+                new CompetenciaTecnica(dados[0],dados[1], dados[2], Integer.parseInt(dados[0]));
                 
                 return dados;
             }
@@ -184,7 +188,7 @@ public class CompetenciaTecnica implements Serializable{
         }
 
         throw new RuntimeException("Dados Inválidos do Contacto");
-    }    }
-*/
+    }*/   
+
    
 }

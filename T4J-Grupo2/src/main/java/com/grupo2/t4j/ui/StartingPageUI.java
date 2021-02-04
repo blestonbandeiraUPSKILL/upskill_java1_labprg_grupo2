@@ -1,6 +1,7 @@
 package com.grupo2.t4j.ui;
 
 import com.grupo2.t4j.controller.ApplicationController;
+import com.grupo2.t4j.controller.RegistarOrganizacaoController;
 import com.grupo2.t4j.model.Password;
 import com.grupo2.t4j.model.UsersAPIAdapter;
 import javafx.event.ActionEvent;
@@ -21,6 +22,7 @@ import java.util.ResourceBundle;
 public class StartingPageUI implements Initializable {
 
     UsersAPIAdapter usersAPIAdapter;
+    RegistarOrganizacaoController registarOrganizacaoController;
     private ApplicationController applicationController;
     private Stage adicionarStage;
     private Scene sceneRegisterOrg;
@@ -43,6 +45,8 @@ public class StartingPageUI implements Initializable {
             FXMLLoader loaderRegister = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/RegisterOrgScene.fxml"));
             Parent rootRegisterOrg = loaderRegister.load();
             sceneRegisterOrg = new Scene(rootRegisterOrg);
+            RegisterOrgUI registerOrgUI = loaderRegister.getController();
+            registerOrgUI.associarParentUI(this);
 
             FXMLLoader loaderGestor = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/GestorLogadoScene.fxml"));
             Parent rootGestor = loaderGestor.load();
@@ -53,14 +57,14 @@ public class StartingPageUI implements Initializable {
             FXMLLoader loaderColaborador = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/ColaboradorLogadoScene.fxml"));
             Parent rootColaborador = loaderColaborador.load();
             sceneColaborador = new Scene(rootColaborador);
-            ColaboradorLogadoUI colaboradorLogadoUI = loaderColaborador.getController();
-            colaboradorLogadoUI.associarParentUI(this);
+            /*ColaboradorLogadoUI colaboradorLogadoUI = loaderColaborador.getController();
+            colaboradorLogadoUI.associarParentUI(this);*/
 
             FXMLLoader loaderAdministrativo = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/AdministrativoLogadoScene.fxml"));
             Parent rootAdministrativo = loaderAdministrativo.load();
             sceneAdministrativo = new Scene(rootAdministrativo);
-            AdministrativoLogadoUI administrativoLogadoUI = loaderAdministrativo.getController();
-            administrativoLogadoUI.associarParentUI(this);
+           /* AdministrativoLogadoUI administrativoLogadoUI = loaderAdministrativo.getController();
+            administrativoLogadoUI.associarParentUI(this);*/
 
             adicionarStage = new Stage();
             adicionarStage.initModality(Modality.APPLICATION_MODAL);;
@@ -80,7 +84,7 @@ public class StartingPageUI implements Initializable {
 
     public void registarOrganizacao(ActionEvent actionEvent) {
         adicionarStage.setScene(sceneRegisterOrg);
-        adicionarStage.setTitle("Registar Organização");
+        adicionarStage.setTitle("Registar Organização - Dados Organização");
         adicionarStage.show();
     }
 

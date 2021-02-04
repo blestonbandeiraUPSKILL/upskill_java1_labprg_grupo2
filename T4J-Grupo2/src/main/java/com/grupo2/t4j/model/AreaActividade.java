@@ -10,8 +10,13 @@ package com.grupo2.t4j.model;
  * @author acris
  */
 import com.grupo2.t4j.exception.*;
+import java.io.Serializable;
 
-public class AreaActividade {
+public class AreaActividade implements Serializable{
+    /**
+     * Separador para exportar ficheiro
+     */
+    private static final char SEPARADOR = ';';
 
 /**
  * O código único de cada Área de Actividade.
@@ -82,5 +87,9 @@ public class AreaActividade {
     public String toString(){
         return String.format("A Área de Actividade de código %s tem: /n Descrição "
                 + "breve: %s. /n Descrição detalhada: %s.", codigo, descBreve, descDetalhada );
+    }
+    
+    public String toStringExport(){
+        return String.format("%s%c%s%c%s", codigo, SEPARADOR, descBreve, SEPARADOR, descDetalhada);
     }
 }

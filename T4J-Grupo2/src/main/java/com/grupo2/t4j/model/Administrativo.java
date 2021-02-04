@@ -5,15 +5,15 @@
  */
 package com.grupo2.t4j.model;
 
+import java.io.Serializable;
+
 /**
  *
  * @author CAD
  */
 
-import java.io.Serializable;
-
-public class Administrativo implements Serializable {
-    
+public class Administrativo implements Serializable{
+   
     /**
      * O nome do Administrativo
      */

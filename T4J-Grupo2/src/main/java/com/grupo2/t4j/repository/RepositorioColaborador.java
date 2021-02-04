@@ -12,10 +12,11 @@ package com.grupo2.t4j.repository;
 
 import com.grupo2.t4j.model.*;
 import com.grupo2.t4j.exception.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RepositorioColaborador {
+public class RepositorioColaborador implements Serializable{
     
     private static RepositorioColaborador repositorioColaborador;
 
