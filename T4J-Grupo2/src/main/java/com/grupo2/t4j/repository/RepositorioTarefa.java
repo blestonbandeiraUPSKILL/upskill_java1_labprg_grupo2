@@ -1,6 +1,8 @@
 package com.grupo2.t4j.repository;
 
-public class RepositorioTarefa {
+import java.io.Serializable;
+
+public class RepositorioTarefa implements Serializable{
     private static RepositorioTarefa instance;
     
     

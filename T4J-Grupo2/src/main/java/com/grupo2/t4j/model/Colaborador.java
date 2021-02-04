@@ -5,11 +5,13 @@
  */
 package com.grupo2.t4j.model;
 
+import java.io.Serializable;
+
 /**
  *
  * @author CAD
  */
-public class Colaborador extends Utilizador{
+public class Colaborador extends Utilizador implements Serializable{
     
     private String funcao;
     private String telefone;

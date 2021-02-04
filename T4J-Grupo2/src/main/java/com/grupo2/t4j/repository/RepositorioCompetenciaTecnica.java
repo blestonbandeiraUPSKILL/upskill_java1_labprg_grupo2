@@ -9,6 +9,7 @@ import com.grupo2.t4j.exception.CompetenciaTecnicaDuplicadaException;
 import com.grupo2.t4j.model.AreaActividade;
 import com.grupo2.t4j.model.Categoria;
 import com.grupo2.t4j.model.CompetenciaTecnica;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,7 +17,7 @@ import java.util.List;
  *
  * @author acris
  */
-public class RepositorioCompetenciaTecnica {
+public class RepositorioCompetenciaTecnica implements Serializable{
 
     public static RepositorioCompetenciaTecnica instance;
     List<CompetenciaTecnica> listaCompTecnicas;

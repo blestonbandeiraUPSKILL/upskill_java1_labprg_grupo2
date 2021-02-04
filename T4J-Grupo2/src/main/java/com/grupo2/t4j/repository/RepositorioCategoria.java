@@ -3,10 +3,11 @@ package com.grupo2.t4j.repository;
 
 import com.grupo2.t4j.exception.CategoriaDuplicadaException;
 import com.grupo2.t4j.model.Categoria;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RepositorioCategoria {
+public class RepositorioCategoria implements Serializable{
     private static RepositorioCategoria instance;
     private List<Categoria> listaCategorias;
     
