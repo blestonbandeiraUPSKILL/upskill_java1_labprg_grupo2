@@ -5,16 +5,17 @@
  */
 package com.grupo2.t4j.model;
 
+import com.grupo2.t4j.exception.*;
+import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
 
 /**
  *
- * @author blest
+ * @author CAD
  */
 public class OrganizacaoTest {
     
@@ -23,6 +24,7 @@ public class OrganizacaoTest {
     
     @BeforeAll
     public static void setUpClass() {
+                
     }
     
     @AfterAll
@@ -38,20 +40,84 @@ public class OrganizacaoTest {
     }
 
     @Test
-    public void testSomeMethod() {
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-/*
-    public void addColaborador(){
-        //Arrange
-        Organizacao o1= new Organizacao("Casa Rocha", "123456789", "casarocha.pt", "912345678","casa@rocha.com");
-        Colaborador c1= new Colaborador("Diogo Ventura", "diogo@rocha.com", "PaSsWoRd", "RH", "923456781");
-        //Act
-        o1.addColaborador(c1);
+    public void testCriarOrganizacao() {
+                
+        Colaborador colabGestor = new Colaborador("Fulano", "fulano@upskill.pt", "12345678", 
+        "Gestor", "999888777");
         
-        //Assert
-        assertTrue(o1.getColaboradores().contains(c1));
-    }*/
+        EnderecoPostal endereco = new EnderecoPostal("rua", "s/n", "Portugal", "1111-222");
+        
+        Website website = new Website("http://www.t4j.pt");
+        
+        Email email = new Email("t4j@t4j.pt");
+        
+        Organizacao o1 = new Organizacao("", "111222333", endereco, website,
+                "999888777", email , colabGestor);
+        
+        assertEquals("T4J", o1.getNome());
+        assertEquals("111222333", o1.getNif());
+        assertEquals("rua", o1.getEnderecoPostal().getArruamento());
+        assertEquals("s/n", o1.getEnderecoPostal().getPorta());
+        assertEquals("Portugal", o1.getEnderecoPostal().getLocalidade());
+        assertEquals("1111-222", o1.getEnderecoPostal().getCodigoPostal());
+        assertEquals("http://www.t4j.pt", o1.getWebsite().getWebsiteText());
+        assertEquals("999888777", o1.getTelefone());
+        assertEquals("t4j@t4j.pt", o1.getEmail().getEmailText());
+        
+        /* Colaborador Gestor já testado em ColaboradorTest 
+           Endereço Postal já testado em EnderecoPostalTest
+           Website já testado em WebsiteTest
+           Email já testado em EmailTest
+        */
+    }
     
+    @Test (expected = IllegalArgumentException.class)
+    public void testCriarOrganizacaoNomeIncorreto() {
+        
+        Colaborador colabGestor = new Colaborador("Fulano", "fulano@upskill.pt", "12345678", 
+        "Gestor", "999888777");
+        
+        EnderecoPostal endereco = new EnderecoPostal("rua", "s/n", "Portugal", "1111-222");
+        
+        Website website = new Website("http://www.t4j.pt");
+        
+        Email email = new Email("t4j@t4j.pt");
+        
+        Organizacao o2 = new Organizacao("", "111222333", endereco, website,
+                "999888777", email , colabGestor);
+              
+    }
+    
+    @Test (expected = NifInvalidoException.class)
+    public void testCriarOrganizacaoNifInvalido() {
+        
+        Colaborador colabGestor = new Colaborador("Fulano", "fulano@upskill.pt", "12345678", 
+        "Gestor", "999888777");
+        
+        EnderecoPostal endereco = new EnderecoPostal("rua", "s/n", "Portugal", "1111-222");
+        
+        Website website = new Website("http://www.t4j.pt");
+        
+        Email email = new Email("t4j@t4j.pt");
+        
+        Organizacao o3 = new Organizacao("T4J", "111", endereco, website,
+                "999888777", email , colabGestor);
+              
+    }
+        
+    @Test (expected = IllegalArgumentException.class)
+    public void testCriarOrganizacaoTelefoneInvalido() {
+       
+        Colaborador colabGestor = new Colaborador("Fulano", "fulano@upskill.pt", "12345678", 
+        "Gestor", "999888777");
+        
+        EnderecoPostal endereco = new EnderecoPostal("rua", "s/n", "Portugal", "1111-222");
+        
+        Website website = new Website("http://www.t4j.pt");
+        
+        Email email = new Email("t4j@t4j.pt");
+        
+        Organizacao o4 = new Organizacao("T4J", "111222333", endereco, website,
+                    "999", email , colabGestor);
+    }
 }

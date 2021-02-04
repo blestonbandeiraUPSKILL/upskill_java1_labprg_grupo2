@@ -5,7 +5,7 @@
  */
 package com.grupo2.t4j.model;
 
-import com.grupo2.t4j.exception.NomeInvalidoException;
+import com.grupo2.t4j.exception.*;
 import org.junit.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.AfterEach;
@@ -16,7 +16,7 @@ import org.junit.jupiter.api.BeforeAll;
 
 /**
  *
- * @author blest
+ * @author CAD
  */
 public class UtilizadorTest {
     
@@ -63,7 +63,7 @@ public class UtilizadorTest {
              
     }
     
-    @Test (expected = IllegalArgumentException.class)
+    @Test (expected = PasswordInvalidaException.class)
     public void testCriarUtilizadorPasswordFormaIncorreta() {
        
         Utilizador u4 = new Utilizador("Fulano", "fulano@upskill.pt", "123");
