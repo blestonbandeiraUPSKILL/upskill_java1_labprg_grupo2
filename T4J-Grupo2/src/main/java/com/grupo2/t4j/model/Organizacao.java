@@ -16,12 +16,17 @@ public class Organizacao {
     
     private String nome;
     private String NIF;
+    private EnderecoPostal enderecoOrg;
     private Website websiteOrg;
     private String telefone;
     private Email emailOrg;
-    private EnderecoPostal enderecoOrg;
+    
     private Colaborador colabGestor;
     
+    private static final EnderecoPostal ENDERECO_POR_OMISSAO = new EnderecoPostal("Rua ", "s/n", "Portugal", "1111-111");
+    private static final Website WEBSITE_POR_OMISSAO = new Website("http://***");
+    private static final String TELEFONE_ORG_POR_OMISSAO = "999999999";
+        
     public Organizacao(){
     }
     
@@ -85,6 +90,16 @@ public class Organizacao {
         setTelefone(telefone);
         this.emailOrg = new Email(email);
         this.colabGestor = new Colaborador(nomeColab, emailColab, passColab, funcao, telefoneColab);
+    }
+    
+    public Organizacao(String nome, String NIF, String email,Colaborador colabGestor){
+        setNome(nome);
+        setNif(NIF);
+        this.enderecoOrg = ENDERECO_POR_OMISSAO;
+        this.websiteOrg = WEBSITE_POR_OMISSAO;
+        setTelefone(TELEFONE_ORG_POR_OMISSAO);
+        this.emailOrg = new Email(email);
+        this.colabGestor = new Colaborador(colabGestor);
     }
     
     public Organizacao(Organizacao organizacao){
