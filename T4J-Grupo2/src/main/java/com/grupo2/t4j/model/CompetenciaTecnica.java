@@ -159,36 +159,8 @@ public class CompetenciaTecnica implements Serializable{
      */
     @Override
     public String toString() {
-        return "CompetenciaTecnica{" + "codigo: " + codigo + ",/ndescricaoBreve: " 
-                + descricaoBreve + ", /ndescricaoDetalhada: " + descricaoDetalhada +
-                ", /nareaActividade: " + areaActividade + ", /ngrau=" + cct + '}';
+        return String.format("Competencia Tecnica: %nID: %s%nDescricao Breve:"
+                + " %s%n Descricao Detalhada: %s%n", codigo, descricaoBreve, descricaoDetalhada);
     }
     
-    public String toStringExport() {
-        return String.format("s%c%s%c%s", areaActividade.toString(), SEPARADOR, cct.toString());
-    }
-    
-    /*public String toStringExport() {
-        return String.format("%s%c%s%c%s%c%s", codigo, SEPARADOR, descricaoBreve, SEPARADOR, areaActividade.toString(), SEPARADOR, cct.toString());
-    }*/
-   
-   /* public String[] getCompetenciaComoArray(String compTecnica) {
-        String[] dados = compTecnica.trim().split(String.valueOf(SEPARADOR));
-        int nrAtributos = 8;
-
-        if (dados.length == nrAtributos) {
-            try {
-                new CompetenciaTecnica(dados[0],dados[1], dados[2], Integer.parseInt(dados[0]));
-                
-                return dados;
-            }
-            catch(Exception ex) {
-                throw new RuntimeException("Dados Inválidos do Contacto");
-            }
-        }
-
-        throw new RuntimeException("Dados Inválidos do Contacto");
-    }*/   
-
-   
 }

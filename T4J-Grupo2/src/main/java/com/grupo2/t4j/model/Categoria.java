@@ -15,18 +15,48 @@ import java.util.List;
  */
 public class Categoria implements Serializable{
     
+    /**
+     * 
+     */
     private String id;
+    
+    /**
+     * 
+     */
     private static int id2=0;
+    
+    /**
+     * 
+     */
     private String descricao;
+    
+    /**
+     * 
+     */
     private AreaActividade at;
+    
+    /**
+     * 
+     */
     private List<CompetenciaTecnica> compTecnicas;
     
+    /**
+     *
+     * @param descricao
+     * @param at
+     * @param compTecnicas
+     */
     public Categoria (String descricao, AreaActividade at, List<CompetenciaTecnica> compTecnicas){
         this.descricao=descricao;
         this.at=at;
         this.compTecnicas=compTecnicas;
         this.id = geradorId(descricao, id2);
     }
+
+    /**
+     *
+     * @param categoria
+     */
     public Categoria (Categoria categoria){
         setId(id);
         setDescricao(descricao);
@@ -34,19 +64,35 @@ public class Categoria implements Serializable{
         setCompTecnicas(compTecnicas);
     }
 
+    /**
+     *
+     * @return
+     */
     public String getId() {
         return id;
     }
 
+    /**
+     *
+     * @param id
+     */
     public void setId(String id) {
         
         this.id = id;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getDescricao() {
         return descricao;
     }
 
+    /**
+     *
+     * @param descricao
+     */
     public void setDescricao(String descricao) {
         if (descricao == null || descricao.trim().isEmpty()) {
             throw new DescricaoInvalidaException("Deve introduzir uma descrição válida!");
@@ -55,22 +101,44 @@ public class Categoria implements Serializable{
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public AreaActividade getAt() {
         return at;
     }
 
+    /**
+     *
+     * @param at
+     */
     public void setAt(AreaActividade at) {
         this.at = at;
     }
 
+    /**
+     *
+     * @return
+     */
     public List<CompetenciaTecnica> getCompTecnicas() {
         return compTecnicas;
     }
 
+    /**
+     *
+     * @param compTecnicas
+     */
     public void setCompTecnicas(List<CompetenciaTecnica> compTecnicas) {
         this.compTecnicas = compTecnicas;
     }
     
+    /**
+     *
+     * @param descricao
+     * @param id2
+     * @return
+     */
     public String geradorId(String descricao,int id2){
         id2++;
         StringBuilder s = new StringBuilder();

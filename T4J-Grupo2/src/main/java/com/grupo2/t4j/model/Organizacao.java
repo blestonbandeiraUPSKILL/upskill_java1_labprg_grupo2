@@ -12,7 +12,8 @@ package com.grupo2.t4j.model;
 
 import com.grupo2.t4j.exception.*;
 import java.io.Serializable;
-        
+import java.util.Objects;
+
 public class Organizacao implements Serializable{
     
     private String nome;
@@ -25,19 +26,25 @@ public class Organizacao implements Serializable{
     private Colaborador colabGestor;
     
     private static final EnderecoPostal ENDERECO_POR_OMISSAO = new EnderecoPostal("Rua ", "s/n", "Portugal", "1111-111");
-    private static final Website WEBSITE_POR_OMISSAO = new Website("***");
+    //private static final Website WEBSITE_POR_OMISSAO = new Website("");
     private static final String TELEFONE_ORG_POR_OMISSAO = "999999999";
         
     public Organizacao(){
     }
     
-    public Organizacao(String nome, String NIF, EnderecoPostal enderecoOrg, 
+    public Organizacao(String nome, String NIF, EnderecoPostal enderecoOrg,
             Website websiteOrg, String telefone, Email emailOrg, Colaborador 
             colabGestor){
+        if (websiteOrg instanceof Website) {
+            this.websiteOrg = websiteOrg;
+        }
+        else {
+            this.websiteOrg = new Website(Objects.requireNonNull(websiteOrg));
+        }
         setNome(nome);
         setNif(NIF);
         this.enderecoOrg = new EnderecoPostal(enderecoOrg);
-        this.websiteOrg = new Website(websiteOrg);
+        //this.websiteOrg = new Website(websiteOrg);
         setTelefone(telefone);
         this.emailOrg = new Email(emailOrg);
         this.colabGestor = new Colaborador(colabGestor);
@@ -49,7 +56,13 @@ public class Organizacao implements Serializable{
         setNome(nome);
         setNif(NIF);
         this.enderecoOrg = new EnderecoPostal(arruamento, numeroPorta, localidade, codigoPostal);
-        this.websiteOrg = new Website(websiteOrg);
+        if (websiteOrg instanceof Website) {
+            this.websiteOrg = websiteOrg;
+        }
+        else {
+            this.websiteOrg = new Website(websiteOrg);
+        }
+        //this.websiteOrg = new Website(websiteOrg);
         setTelefone(telefone);
         this.emailOrg = new Email(emailOrg);
         this.colabGestor = new Colaborador(colabGestor);
@@ -61,7 +74,13 @@ public class Organizacao implements Serializable{
         setNome(nome);
         setNif(NIF);
         this.enderecoOrg = new EnderecoPostal(arruamento, numeroPorta, localidade, codigoPostal);
-        this.websiteOrg = new Website(website);
+        if (websiteOrg instanceof Website) {
+            this.websiteOrg = websiteOrg;
+        }
+        else {
+            this.websiteOrg = new Website(websiteOrg);
+        }
+        //this.websiteOrg = new Website(website);
         setTelefone(telefone);
         this.emailOrg = new Email(email);
         this.colabGestor = new Colaborador(colabGestor);
@@ -74,7 +93,13 @@ public class Organizacao implements Serializable{
         setNome(nome);
         setNif(NIF);
         this.enderecoOrg = new EnderecoPostal(arruamento, numeroPorta, localidade, codigoPostal);
-        this.websiteOrg = new Website(website);
+        //this.websiteOrg = new Website(website);
+        if (websiteOrg instanceof Website) {
+            this.websiteOrg = websiteOrg;
+        }
+        else {
+            this.websiteOrg = new Website(websiteOrg);
+        }
         setTelefone(telefone);
         this.emailOrg = new Email(email);
         this.colabGestor = new Colaborador(nomeColab, emailColab, password, funcao, telefoneColab);
@@ -93,7 +118,7 @@ public class Organizacao implements Serializable{
         this.colabGestor = new Colaborador(nomeColab, emailColab, passColab, funcao, telefoneColab);
     }
     
-    public Organizacao(String nome, String NIF, String email,Colaborador colabGestor){
+   /* public Organizacao(String nome, String NIF, String email,Colaborador colabGestor){
         setNome(nome);
         setNif(NIF);
         this.enderecoOrg = ENDERECO_POR_OMISSAO;
@@ -101,7 +126,7 @@ public class Organizacao implements Serializable{
         setTelefone(TELEFONE_ORG_POR_OMISSAO);
         this.emailOrg = new Email(email);
         this.colabGestor = new Colaborador(colabGestor);
-    }
+    }*/
     
     public Organizacao(Organizacao organizacao){
         setNome(organizacao.nome);
@@ -114,12 +139,11 @@ public class Organizacao implements Serializable{
     }
 
     public Organizacao(String nomeOrganizacao, String nif, String telefone,
-                       String website, String email, EnderecoPostal enderecoPostal) {
-        Website website1 = new Website(website);
+                       Website website, Email email, EnderecoPostal enderecoPostal) {
         setNome(nomeOrganizacao);
         setNif(nif);
         setTelefone(telefone);
-        setWebsite(website1);
+        setWebsite(website);
         setEmail(new Email(email));
         setEnderecoPostal(enderecoPostal);
     }
