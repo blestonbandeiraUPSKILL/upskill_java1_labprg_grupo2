@@ -6,6 +6,7 @@
 package com.grupo2.t4j.model;
 
 import java.io.Serializable;
+import com.grupo2.t4j.exception.*;
 
 /**
  *
@@ -97,7 +98,7 @@ public class Utilizador implements Serializable{
      */
     public final void setNome(String nome){
         if (nome == null || nome.trim().isEmpty()) {
-            throw new IllegalArgumentException("Nome é inválido!");
+            throw new NomeInvalidoException("Nome é inválido!");
         }
         this.nome = nome;
     }
