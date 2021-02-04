@@ -5,12 +5,14 @@
  */
 package com.grupo2.t4j.model;
 
+import com.grupo2.t4j.model.*;
+import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+
 
 /**
  *
@@ -38,9 +40,13 @@ public class UtilizadorTest {
     }
 
     @Test
-    public void testSomeMethod() {
+    public void testCreateUtilizador() {
         
-        fail("The test case is a prototype.");
+        Utilizador u1= new Utilizador("Fulano", "fulano@upskill.pt", "12345678");
+        
+        assertEquals("Fulano", u1.getNome());
+        assertEquals("fulano@upskill.pt", u1.getEmail().getEmailText());
+        assertEquals("12345678", u1.getPassword().getPasswordText());
     }
     
 }
