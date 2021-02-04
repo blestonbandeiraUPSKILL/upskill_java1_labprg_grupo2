@@ -15,11 +15,7 @@
               <tabs>
                 <Tab text="Áreas de Atividade">
                   <content>
-                    <AnchorPane minHeight="0.0" minWidth="0.0" prefWidth="200.0">
-                           <children>
-                              <TextFlow layoutX="14.0" layoutY="14.0" prefHeight="250.0" prefWidth="600.0" />
-                           </children>
-                        </AnchorPane>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefWidth="200.0" />
                   </content>
                 </Tab>
                 <Tab text="Categorias de Tarefa">
@@ -42,10 +38,7 @@
                   </Tab>
               </tabs>
             </TabPane>
-         </top>
-         <bottom>
-            <Button fx:id="btn_addareaAtividade" alignment="TOP_RIGHT" mnemonicParsing="false" text="Adicionar" BorderPane.alignment="CENTER" />
-         </bottom></BorderPane>
+         </top></BorderPane>
    </center>
    <top>
       <Label style="-fx-background-color: #000000;" text="Área do Administrador" textFill="WHITE" BorderPane.alignment="CENTER_RIGHT">
@@ -54,4 +47,11 @@
          </padding>
       </Label>
    </top>
+   <bottom>
+      <FlowPane alignment="BOTTOM_RIGHT" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="btn_addareaAtividade" alignment="BOTTOM_RIGHT" mnemonicParsing="false" text="Adicionar" />
+         </children>
+      </FlowPane>
+   </bottom>
 </BorderPane>
