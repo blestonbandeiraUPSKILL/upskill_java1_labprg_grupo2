@@ -40,7 +40,7 @@ public class RepositorioCompetenciaTecnicaTest {
         assertTrue(rc1.getCompetenciasTecnicas().contains(ct1));
     }
 
-    /*@Test(expected = CompetenciaTecnicaDuplicadaException.class)
+    @Test(expected = CompetenciaTecnicaDuplicadaException.class)
     public void testAddCompetenciaTecnicaDuplicada() {
         //Arrange
         RepositorioCompetenciaTecnica rc1= RepositorioCompetenciaTecnica.getInstance();
@@ -52,7 +52,8 @@ public class RepositorioCompetenciaTecnicaTest {
         rc1.addCompetenciaTecnica(ct2);
         
         
-    }*//*
+    }
+    /*
     @Test(expected = DescricaoInvalidaException.class)
     public void testAddCompetenciaDescricaoInvalida() {
         //Arrange
