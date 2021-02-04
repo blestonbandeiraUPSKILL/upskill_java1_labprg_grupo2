@@ -20,6 +20,7 @@ import java.io.ObjectOutputStream;
  * @author acris
  */
 public class FicheiroRepositorioColaborador {
+    public static final String NOME_FICHEIRO_SERIALIZAR = "RepositorioColaborador.ltf";
      public FicheiroRepositorioColaborador() {
     }
 
