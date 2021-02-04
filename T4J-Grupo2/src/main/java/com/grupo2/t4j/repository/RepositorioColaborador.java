@@ -18,14 +18,30 @@ import java.util.List;
 
 public class RepositorioColaborador implements Serializable{
     
+    /**
+     * Define uma instância estática do Repositório em que estão registados todos
+     * os Colaboradores da plataforma
+     */
     private static RepositorioColaborador repositorioColaborador;
-
+    
+    /**
+     * Define o atributo da classe RepositorioColaborador como uma lista de
+     * tipos da classe Colaborador
+     */
     private List<Colaborador> listaColaboradores;
     
+    /**
+     * Inicializa o Repositório de Colaboradores
+     */
     private RepositorioColaborador(){
         listaColaboradores = new ArrayList<>();
     }
     
+    /**
+     * Adiciona um Colaborador à lista de Colaboradores
+     * @param colaborador do tipo da classe Colaborador
+     * @throws ColaboradorDuplicadoException
+     */
     public void addColaborador(Colaborador colaborador) throws ColaboradorDuplicadoException {
         Colaborador c = getColaboradorByEmail(colaborador.getEmail());
         if (c == null) {
@@ -35,6 +51,15 @@ public class RepositorioColaborador implements Serializable{
         }
     }
     
+    /**
+     * Adiciona um Colaborador à lista de Colaboradores
+     * @param nome o nome do Colaborador
+     * @param email o email do Colaborador em formato da classe Email
+     * @param password a password do Colaborador em formato da classe Password
+     * param funcao a função do Colaborador da organização
+     * @param telefone o telefone do Colaborador da organização
+     * @throws ColaboradorDuplicadoException
+     */
     public void addColaborador(String nome, Email email, Password password, String funcao, String telefone) throws ColaboradorDuplicadoException {
         Colaborador c = getColaboradorByEmail(email);
         if (c == null) {
@@ -45,6 +70,15 @@ public class RepositorioColaborador implements Serializable{
         }
     }
     
+    /**
+     * Adiciona um Colaborador à lista de Colaboradores
+     * @param nome o nome do Colaborador
+     * @param emailCol o email do Colaborador em formato String
+     * @param password a password do Colaborador em formato da classe Password
+     * @param funcao a função do Colaborador da organização
+     * @param telefone o telefone do Colaborador da organização
+     * @throws ColaboradorDuplicadoException
+     */
     public void addColaborador(String nome, String emailCol, Password password, String funcao, String telefone) throws ColaboradorDuplicadoException {
         Email email = new Email(emailCol);
         Colaborador c = getColaboradorByEmail(email);
@@ -56,6 +90,15 @@ public class RepositorioColaborador implements Serializable{
         }
     }
     
+    /**
+     * Adiciona um Colaborador à lista de Colaboradores
+     * @param nome o nome do Colaborador
+     * @param emailCol o email do Colaborador em formato String
+     * @param passCol a password do Colaborador em formato String
+     * @param funcao a função do Colaborador da organização
+     * @param telefone o telefone do Colaborador da organização
+     * @throws ColaboradorDuplicadoException
+     */
     public void addColaborador(String nome, String emailCol, String passCol, String funcao, String telefone) throws ColaboradorDuplicadoException {
         Email email = new Email(emailCol);
         Colaborador c = getColaboradorByEmail(email);
@@ -67,6 +110,11 @@ public class RepositorioColaborador implements Serializable{
         }
     }
     
+    /**
+     * Devolve um Colaborador de acordo com o email registado
+     * @param email o email do Colaborador 
+     * @return Colaborador registado
+     */
     private Colaborador getColaboradorByEmail(Email email) {
         Colaborador colaborador = null;
         for (int i = 0; i < this.listaColaboradores.size(); i++) {
@@ -79,10 +127,38 @@ public class RepositorioColaborador implements Serializable{
         return null;
     }
         
+    /**
+     * Devolve uma instância estática do Repositório de Colaboradores
+     * @return RepositorioColaborador
+     */
     public static RepositorioColaborador getInstance(){
         if (repositorioColaborador == null){
             repositorioColaborador = new RepositorioColaborador();
         }
         return repositorioColaborador;
-    }    
+    }  
+    
+    /**
+     * Atualiza a lista de Colaboradores
+     * @param listaColaboradores
+     */
+    public void setListaColaboradores(List<Colaborador> listaColaboradores){
+        this.listaColaboradores = listaColaboradores;
+    }
+    
+    /**
+     * Deevolve a lista de Colaboradores
+     * @return
+     */
+    public ArrayList<Colaborador> getListaColaboradores(){
+        return new ArrayList<Colaborador>(listaColaboradores);
+    }
+    
+    /**
+     * Informa se a lista de Colaboradores está ou não vazia
+     * @return
+     */
+    public boolean isVazia() {
+        return listaColaboradores.isEmpty();
+    }
 }
