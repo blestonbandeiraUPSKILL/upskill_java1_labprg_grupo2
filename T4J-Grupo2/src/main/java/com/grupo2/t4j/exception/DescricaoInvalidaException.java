@@ -9,7 +9,7 @@ package com.grupo2.t4j.exception;
  *
  * @author acris
  */
-public class DescricaoInvalidaException extends RuntimeException{
+public class DescricaoInvalidaException extends IllegalArgumentException{
     public DescricaoInvalidaException(String s) {
         super(s);
     }
