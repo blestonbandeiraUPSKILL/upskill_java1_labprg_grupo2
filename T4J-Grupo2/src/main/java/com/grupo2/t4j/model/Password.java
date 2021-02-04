@@ -29,6 +29,10 @@ public class  Password {
             throw new IllegalArgumentException("A password não é válida!");
         }
     }
+    
+    public String getPasswordText(){
+        return password;
+    }
         
     private static boolean eSenhaValida(String password){
         if(password == null){
