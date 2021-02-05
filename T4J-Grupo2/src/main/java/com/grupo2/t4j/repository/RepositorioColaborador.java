@@ -43,11 +43,12 @@ public class RepositorioColaborador implements Serializable{
      * @throws ColaboradorDuplicadoException
      */
     public void addColaborador(Colaborador colaborador) throws ColaboradorDuplicadoException {
-        Colaborador c = getColaboradorByEmail(colaborador.getEmail());
+        Colaborador c = getColaboradorByEmail(colaborador.getEmail().getEmailText());
         if (c == null) {
             this.listaColaboradores.add(colaborador);
         } else {
-            throw new ColaboradorDuplicadoException(c.getEmail() + ": Colaborador já registado!");
+            throw new ColaboradorDuplicadoException(c.getEmail().getEmailText()
+                    + ": Colaborador já registado!");
         }
     }
     
@@ -61,12 +62,13 @@ public class RepositorioColaborador implements Serializable{
      * @throws ColaboradorDuplicadoException
      */
     public void addColaborador(String nome, Email email, Password password, String funcao, String telefone) throws ColaboradorDuplicadoException {
-        Colaborador c = getColaboradorByEmail(email);
+        Colaborador c = getColaboradorByEmail(email.getEmailText());
         if (c == null) {
             Colaborador colaborador = new Colaborador(nome, email, password, funcao, telefone);
             this.listaColaboradores.add(colaborador);
         } else {
-            throw new ColaboradorDuplicadoException(c.getEmail() + ": Colaborador já registado!");
+            throw new ColaboradorDuplicadoException(c.getEmail().getEmailText()
+                    + ": Colaborador já registado!");
         }
     }
     
@@ -80,13 +82,13 @@ public class RepositorioColaborador implements Serializable{
      * @throws ColaboradorDuplicadoException
      */
     public void addColaborador(String nome, String emailCol, Password password, String funcao, String telefone) throws ColaboradorDuplicadoException {
-        Email email = new Email(emailCol);
-        Colaborador c = getColaboradorByEmail(email);
+        Colaborador c = getColaboradorByEmail(emailCol);
         if (c == null) {
-            Colaborador colaborador = new Colaborador(nome, email, password, funcao, telefone);
+            Colaborador colaborador = new Colaborador(nome, emailCol, password, funcao, telefone);
             this.listaColaboradores.add(colaborador);
         } else {
-            throw new ColaboradorDuplicadoException(c.getEmail() + ": Colaborador já registado!");
+            throw new ColaboradorDuplicadoException(c.getEmail().getEmailText()
+                    + ": Colaborador já registado!");
         }
     }
     
@@ -100,26 +102,26 @@ public class RepositorioColaborador implements Serializable{
      * @throws ColaboradorDuplicadoException
      */
     public void addColaborador(String nome, String emailCol, String passCol, String funcao, String telefone) throws ColaboradorDuplicadoException {
-        Email email = new Email(emailCol);
-        Colaborador c = getColaboradorByEmail(email);
+        Colaborador c = getColaboradorByEmail(emailCol);
         if (c == null) {
             Colaborador colaborador = new Colaborador(nome, emailCol, passCol, funcao, telefone);
             this.listaColaboradores.add(colaborador);
         } else {
-            throw new ColaboradorDuplicadoException(c.getEmail() + ": Colaborador já registado!");
+            throw new ColaboradorDuplicadoException(c.getEmail().getEmailText() 
+                    + ": Colaborador já registado!");
         }
     }
     
     /**
      * Devolve um Colaborador de acordo com o email registado
-     * @param email o email do Colaborador 
+     * @param emailCol o email em String do Colaborador 
      * @return Colaborador registado
      */
-    private Colaborador getColaboradorByEmail(Email email) {
+    public Colaborador getColaboradorByEmail(String emailCol) {
         Colaborador colaborador = null;
         for (int i = 0; i < this.listaColaboradores.size(); i++) {
             colaborador = this.listaColaboradores.get(i);
-            if (colaborador.getEmail().equals(email)) {
+            if (colaborador.getEmail().getEmailText().equals(emailCol)) {
                 return colaborador;
             }
         }

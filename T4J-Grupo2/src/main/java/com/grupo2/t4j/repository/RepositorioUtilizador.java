@@ -22,7 +22,7 @@ public class RepositorioUtilizador implements Serializable{
      * Define uma instância estática do Repositório em que estão registados todos
      * os Utilizadores da plataforma
      */
-    private static RepositorioUtilizador repositorioUtilizador;
+    public static RepositorioUtilizador repositorioUtilizador;
     
     /**
      * Define o atributo da classe RepositorioUtilizador como uma lista de
@@ -43,11 +43,12 @@ public class RepositorioUtilizador implements Serializable{
      * @throws UtilizadorDuplicadoException
      */
     public void addUtilizador(Utilizador utilizador) throws UtilizadorDuplicadoException {
-        Utilizador u = getUtilizadorByEmail(utilizador.getEmail());
+        Utilizador u = getUtilizadorByEmail(utilizador.getEmail().getEmailText());
         if (u == null) {
             this.listaUtilizadores.add(utilizador);
         } else {
-            throw new UtilizadorDuplicadoException(u.getEmail() + ": Utilizador já registado!");
+            throw new UtilizadorDuplicadoException(u.getEmail().getEmailText()
+                    + ": Utilizador já registado!");
         }
     }
     
@@ -59,12 +60,13 @@ public class RepositorioUtilizador implements Serializable{
      * @throws UtilizadorDuplicadoException
      */
     public void addUtilizador(String nome, Email email, Password password) throws UtilizadorDuplicadoException {
-        Utilizador u = getUtilizadorByEmail(email);
+        Utilizador u = getUtilizadorByEmail(email.getEmailText());
         if (u == null) {
             Utilizador utilizador = new Utilizador(nome, email, password);
             this.listaUtilizadores.add(utilizador);
         } else {
-            throw new UtilizadorDuplicadoException(u.getEmail() + ": Utilizador já registado!");
+            throw new UtilizadorDuplicadoException(u.getEmail().getEmailText()
+                    + ": Utilizador já registado!");
         }
     }
     
@@ -77,12 +79,13 @@ public class RepositorioUtilizador implements Serializable{
      */
     public void addUtilizador(String nome, String emailUt, Password password) throws UtilizadorDuplicadoException {
         Email email = new Email(emailUt);
-        Utilizador u = getUtilizadorByEmail(email);
+        Utilizador u = getUtilizadorByEmail(email.getEmailText());
         if (u == null) {
             Utilizador utilizador = new Utilizador(nome, email, password);
             this.listaUtilizadores.add(utilizador);
         } else {
-            throw new UtilizadorDuplicadoException(u.getEmail() + ": Utilizador já registado!");
+            throw new UtilizadorDuplicadoException(u.getEmail().getEmailText()
+                    + ": Utilizador já registado!");
         }
     }
     
@@ -94,26 +97,26 @@ public class RepositorioUtilizador implements Serializable{
      * @throws UtilizadorDuplicadoException
      */
     public void addUtilizador(String nome, String emailUt, String passUt) throws UtilizadorDuplicadoException {
-        Email email = new Email(emailUt);
-        Utilizador u = getUtilizadorByEmail(email);
+        Utilizador u = getUtilizadorByEmail(emailUt);
         if (u == null) {
             Utilizador utilizador = new Utilizador(nome, emailUt, passUt);
             this.listaUtilizadores.add(utilizador);
         } else {
-            throw new UtilizadorDuplicadoException(u.getEmail() + ": Utilizador já registado!");
+            throw new UtilizadorDuplicadoException(u.getEmail().getEmailText()
+                    + ": Utilizador já registado!");
         }
     }
     
     /**
      * Devolve um Utilizador de acordo com o email registado
-     * @param email o email do Utilizador
+     * @param emailUt o email em String do Utilizador
      * @return Utilizador registado
      */
-    public Utilizador getUtilizadorByEmail(Email email) {
+    public Utilizador getUtilizadorByEmail(String emailUt) {
         Utilizador utilizador = null;
         for (int i = 0; i < this.listaUtilizadores.size(); i++) {
             utilizador = this.listaUtilizadores.get(i);
-            if (utilizador.getEmail().equals(email)) {
+            if (utilizador.getEmail().getEmailText().equals(emailUt)) {
                 return utilizador;
             }
         }
