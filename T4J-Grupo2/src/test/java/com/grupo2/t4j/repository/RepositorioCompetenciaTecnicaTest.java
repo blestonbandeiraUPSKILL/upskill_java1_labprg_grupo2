@@ -38,9 +38,10 @@ public class RepositorioCompetenciaTecnicaTest {
         //Act
         rc1.addCompetenciaTecnica(ct1);
         rc1.addCompetenciaTecnica(ct2);
-        
-        
+
+
     }
+
     @Test(expected = DescricaoInvalidaException.class)
     public void testAddCompetenciaDescricaoInvalida() {
         //Arrange

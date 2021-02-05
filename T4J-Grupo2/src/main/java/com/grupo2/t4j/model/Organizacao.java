@@ -220,4 +220,18 @@ public class Organizacao implements Serializable{
     public static Colaborador novoColaborador(String nomeGestor, Email emailGestor, String telefoneGestor, Rolename rolename) {
         return new Colaborador(nomeGestor, emailGestor, telefoneGestor, rolename);
     }
+
+    public String getNomeGestor() {
+        return colabGestor.getNome();
+    }
+
+    public String getTelefoneGestor() {
+        return colabGestor.getTelefone();
+    }
+
+    public Email getEmailGestor() {
+        return colabGestor.getEmail();
+    }
+
+
 }

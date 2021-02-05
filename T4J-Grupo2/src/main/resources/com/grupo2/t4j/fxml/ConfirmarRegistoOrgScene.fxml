@@ -15,7 +15,7 @@
    <center>
       <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <left>
-            <GridPane prefHeight="315.0" prefWidth="460.0" BorderPane.alignment="CENTER">
+            <GridPane prefHeight="330.0" prefWidth="385.0" BorderPane.alignment="CENTER">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="150.0" minWidth="10.0" prefWidth="150.0" />
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="285.0" minWidth="10.0" prefWidth="285.0" />
@@ -63,39 +63,39 @@
                         <Font name="Calibri" size="14.0" />
                      </font>
                   </Label>
-                  <TextField editable="false" GridPane.columnIndex="1">
+                  <TextField fx:id="txtConfNomeOrganizacao" disable="true" editable="false" GridPane.columnIndex="1">
                      <font>
                         <Font name="Calibri" size="14.0" />
                      </font></TextField>
-                  <TextField editable="false" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  <TextField fx:id="txtConfNif" disable="true" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <font>
                         <Font name="Calibri" size="14.0" />
                      </font></TextField>
-                  <TextField editable="false" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                  <TextField fx:id="txtConfTelefoneOrganizacao" disable="true" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <font>
                         <Font name="Calibri" size="14.0" />
                      </font></TextField>
-                  <TextField editable="false" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                  <TextField fx:id="txtConfWebsite" disable="true" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="3">
                      <font>
                         <Font name="Calibri" size="14.0" />
                      </font></TextField>
-                  <TextField editable="false" prefHeight="25.0" prefWidth="188.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                  <TextField fx:id="txtConfEmailOrganizacao" disable="true" editable="false" prefHeight="25.0" prefWidth="188.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                      <font>
                         <Font name="Calibri" size="14.0" />
                      </font></TextField>
-                  <TextField editable="false" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                  <TextField fx:id="txtConfEndArruamento" disable="true" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="5">
                      <font>
                         <Font name="Calibri" size="14.0" />
                      </font></TextField>
-                  <TextField editable="false" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                  <TextField fx:id="txtConfEndPorta" disable="true" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="6">
                      <font>
                         <Font name="Calibri" size="14.0" />
                      </font></TextField>
-                  <TextField editable="false" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                  <TextField fx:id="txtConfEndLocalidade" disable="true" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="7">
                      <font>
                         <Font name="Calibri" size="14.0" />
                      </font></TextField>
-                  <TextField editable="false" GridPane.columnIndex="1" GridPane.rowIndex="8">
+                  <TextField fx:id="txtConfEndCodPostal" disable="true" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="8">
                      <font>
                         <Font name="Calibri" size="14.0" />
                      </font></TextField>
@@ -106,7 +106,7 @@
             </GridPane>
          </left>
          <right>
-            <GridPane prefHeight="315.0" prefWidth="230.0" BorderPane.alignment="CENTER">
+            <GridPane prefHeight="335.0" prefWidth="290.0" BorderPane.alignment="CENTER">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
               </columnConstraints>
@@ -135,18 +135,27 @@
                         <Font name="Calibri" size="14.0" />
                      </font>
                   </Label>
-                  <TextField editable="false" GridPane.rowIndex="1">
+                  <TextField fx:id="txtConfNomeGestor" disable="true" editable="false" GridPane.rowIndex="1">
                      <font>
                         <Font name="Calibri" size="14.0" />
-                     </font></TextField>
-                  <TextField editable="false" GridPane.rowIndex="3">
+                     </font>
+                     <GridPane.margin>
+                        <Insets right="50.0" />
+                     </GridPane.margin></TextField>
+                  <TextField fx:id="txtConfTelefoneGestor" disable="true" editable="false" GridPane.rowIndex="3">
                      <font>
                         <Font name="Calibri" size="14.0" />
-                     </font></TextField>
-                  <TextField editable="false" GridPane.rowIndex="5">
+                     </font>
+                     <GridPane.margin>
+                        <Insets right="50.0" />
+                     </GridPane.margin></TextField>
+                  <TextField fx:id="txtConfEmailGestor" disable="true" editable="false" GridPane.rowIndex="5">
                      <font>
                         <Font name="Calibri" size="14.0" />
-                     </font></TextField>
+                     </font>
+                     <GridPane.margin>
+                        <Insets right="50.0" />
+                     </GridPane.margin></TextField>
                </children>
                <BorderPane.margin>
                   <Insets right="15.0" />
@@ -168,14 +177,22 @@
    <bottom>
       <FlowPane alignment="CENTER_RIGHT" columnHalignment="CENTER" prefHeight="50.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
-            <Button defaultButton="true" mnemonicParsing="false" text="Confirmar Registo">
+            <Button fx:id="btnConfirmarRegisto" defaultButton="true" mnemonicParsing="false" onAction="#gravarOrganizacao" text="Confirmar Registo">
                <font>
                   <Font name="Calibri" size="14.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" text="Editar Dados">
+            <Button fx:id="btnEditarDados" mnemonicParsing="false" onAction="#voltarPaginaRegistoComDados" text="Editar Dados">
                <FlowPane.margin>
                   <Insets left="10.0" right="10.0" />
+               </FlowPane.margin>
+               <font>
+                  <Font name="Calibri" size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnCancelarRegisto" mnemonicParsing="false" onAction="#cancelarRegisto" text="Cancelar Registo">
+               <FlowPane.margin>
+                  <Insets right="10.0" />
                </FlowPane.margin>
                <font>
                   <Font name="Calibri" size="14.0" />
