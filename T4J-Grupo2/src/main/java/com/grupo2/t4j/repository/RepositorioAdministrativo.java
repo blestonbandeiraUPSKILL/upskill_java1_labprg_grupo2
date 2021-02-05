@@ -22,7 +22,7 @@ public class RepositorioAdministrativo implements Serializable{
      * Define uma instância estática do Repositório em que estão registados todos
      * os Administrativos da plataforma
      */
-    private static RepositorioAdministrativo repositorioAdministrativo;
+    public static RepositorioAdministrativo repositorioAdministrativo;
     
     /**
      * Define o atributo da classe RepositorioAdministrativo como uma lista de
@@ -137,7 +137,7 @@ public class RepositorioAdministrativo implements Serializable{
         Administrativo administrativo = null;
         for (int i = 0; i < this.listaAdministrativos.size(); i++) {
             administrativo = this.listaAdministrativos.get(i);
-            if (administrativo.getEmail().equals(email)) {
+            if (administrativo.getEmail().getEmailText().equals(email.getEmailText())) {
                 return administrativo;
             }
         }        
