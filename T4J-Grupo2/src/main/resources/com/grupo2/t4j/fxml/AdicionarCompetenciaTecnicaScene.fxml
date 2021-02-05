@@ -11,7 +11,7 @@
    <center>
       <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <top>
-            <TabPane prefHeight="250.0" prefWidth="700.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+            <TabPane prefHeight="281.0" prefWidth="700.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
               <tabs>
                 <Tab disable="true" text="Áreas de Atividade">
                   <content>
@@ -59,7 +59,7 @@
             </TabPane>
          </top>
          <bottom>
-            <FlowPane prefHeight="50.0" prefWidth="220.0" BorderPane.alignment="CENTER">
+            <FlowPane prefHeight="52.0" prefWidth="700.0" BorderPane.alignment="CENTER">
                <children>
                   <ComboBox prefWidth="210.0" promptText="Área de Atividade">
                      <FlowPane.margin>
@@ -86,7 +86,7 @@
          </bottom></BorderPane>
    </center>
    <top>
-      <Label style="-fx-background-color: #000000;" text="Área do Administrador" textFill="WHITE" BorderPane.alignment="CENTER_RIGHT">
+      <Label style="-fx-background-color: #000000;" text="Área do Administrativo" textFill="WHITE" BorderPane.alignment="CENTER_RIGHT">
          <padding>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </padding>
