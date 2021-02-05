@@ -30,8 +30,6 @@ public class ConfirmarRegistoOrgUI implements Initializable {
     private RegistarOrganizacaoController registarOrganizacaoController;
     private RegistarOrgEGestorUI registarOrgEGestorUI;
     private Stage adicionarStage;
-    private Scene sceneStartingPage;
-    private Scene sceneRegistarOrgEGestor;
 
     @FXML TextField txtConfNomeOrganizacao;
     @FXML TextField txtConfNif;
