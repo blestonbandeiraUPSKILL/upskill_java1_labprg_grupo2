@@ -1,21 +1,30 @@
 package com.grupo2.t4j.ui;
 
+import com.grupo2.t4j.controller.RegistarTarefaController;
 import com.grupo2.t4j.model.AreaActividade;
 import com.grupo2.t4j.model.Categoria;
 import com.grupo2.t4j.model.CompetenciaTecnica;
+import com.grupo2.t4j.model.Tarefa;
 import javafx.fxml.Initializable;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.stage.Window;
+import javafx.stage.WindowEvent;
 
 public class ColaboradorLogadoUI implements Initializable {
+    
+    private RegistarTarefaController registarTarefaController;
     
     @FXML
     private ComboBox<AreaActividade> cmbAreaActividade;
@@ -55,30 +64,56 @@ public class ColaboradorLogadoUI implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        
+        cmbAreaActividade.getItems().setAll(registarTarefaController.getListaActividades());
 
     }
     
     @FXML
     private void selectAreaActAction(ActionEvent event) {
+        AreaActividade areaActividade = cmbAreaActividade.getSelectionModel().getSelectedItem();
+        cmbCategoriaTarefa.getItems().setAll(registarTarefaController.getListaCategoriaPorAreaActividade(areaActividade));
     }
 
     @FXML
     private void selectCatTarAction(ActionEvent event) {
+        Categoria categoriaTarefa = cmbCategoriaTarefa.getSelectionModel().getSelectedItem();
+        listViewCompTec.getItems().setAll(RegistarTarefaController.getCompetenciasTecnicasByCategoria());
     }
 
     @FXML
     private void registarTarefaAction(ActionEvent event) {
+        registarTarefaController = new RegistarTarefaController();
+        
     }
 
     @FXML
     private void CancelarAction(ActionEvent event) {
+        Window window = btnCancelar.getScene().getWindow();
+        window.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent windowEvent) {
+                Alert alerta = AlertsUI.criarAlerta(Alert.AlertType.CONFIRMATION,
+                        MainApp.TITULO_APLICACAO,
+                        "Confirmação da acção",
+                        "Tem a certeza que quer voltar à página inicial, cancelando o actual registo?");
+
+                if (alerta.showAndWait().get() == ButtonType.CANCEL) {
+                    windowEvent.consume();
+                }
+            }
+        });
+
+        window.fireEvent(new WindowEvent(window, WindowEvent.WINDOW_CLOSE_REQUEST));
     }
 
     @FXML
     private void selectArAct(ActionEvent event) {
+        AreaActividade arAct = cmbArAct.getSelectionModel().getSelectedItem();
     }
 
     @FXML
     private void selectCategoriaAction(ActionEvent event) {
+        Categoria categoria = cmbCategoria.getSelectionModel().getSelectedItem();
     }
 }
