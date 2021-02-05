@@ -7,6 +7,7 @@ package com.grupo2.t4j.model;
 
 import com.grupo2.t4j.exception.DescricaoInvalidaException;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -23,7 +24,7 @@ public class Categoria implements Serializable{
     /**
      * 
      */
-    private static int id2=0;
+    private int id2=0;
     
     /**
      * 
@@ -38,7 +39,7 @@ public class Categoria implements Serializable{
     /**
      * 
      */
-    private List<CompetenciaTecnica> compTecnicas;
+    private List<CaracterizacaoCT> compTecnicasCaracter=new ArrayList<>();
     
     /**
      *
@@ -46,10 +47,10 @@ public class Categoria implements Serializable{
      * @param at
      * @param compTecnicas
      */
-    public Categoria (String descricao, AreaActividade at, List<CompetenciaTecnica> compTecnicas){
-        this.descricao=descricao;
-        this.at=at;
-        this.compTecnicas=compTecnicas;
+    public Categoria (String descricao, AreaActividade at, List<CaracterizacaoCT> compTecnicasCaracter){
+        setDescricao(descricao);
+        setAt(at);
+        setCompTecnicasCaracter(compTecnicasCaracter);
         this.id = geradorId(descricao, id2);
     }
 
@@ -61,7 +62,7 @@ public class Categoria implements Serializable{
         setId(id);
         setDescricao(descricao);
         setAt(at);
-        setCompTecnicas(compTecnicas);
+        setCompTecnicasCaracter(compTecnicasCaracter);
     }
 
     /**
@@ -121,16 +122,16 @@ public class Categoria implements Serializable{
      *
      * @return
      */
-    public List<CompetenciaTecnica> getCompTecnicas() {
-        return compTecnicas;
+    public List<CaracterizacaoCT> getCompTecnicasCaracter() {
+        return new ArrayList<CaracterizacaoCT>(compTecnicasCaracter);
     }
 
     /**
      *
      * @param compTecnicas
      */
-    public void setCompTecnicas(List<CompetenciaTecnica> compTecnicas) {
-        this.compTecnicas = compTecnicas;
+    public void setCompTecnicasCaracter(List<CaracterizacaoCT> compTecnicasCaracter) {
+        this.compTecnicasCaracter = compTecnicasCaracter;
     }
     
     /**
@@ -146,5 +147,27 @@ public class Categoria implements Serializable{
         s.append("_");
         s.append(id2);
         return s.toString();
+    }
+    /**
+     * Representação textual da lista de competencias tecnicas de uma categoria
+     * @return 
+     */
+    public String toStringCompTec (){
+        StringBuilder s = new StringBuilder();
+        for (CaracterizacaoCT cct : this.compTecnicasCaracter) {
+            s.append("->");
+            s.append(cct.toString());
+            s.append("\n");
+        }
+        return s.toString();
+    }
+    
+    /**
+     * Representação textual da categoria de tarefa
+     * @return 
+     */
+    @Override
+    public String toString(){
+        return String.format("%s; %s; %s", descricao, at.getDescBreve(), toStringCompTec());
     }
 }
