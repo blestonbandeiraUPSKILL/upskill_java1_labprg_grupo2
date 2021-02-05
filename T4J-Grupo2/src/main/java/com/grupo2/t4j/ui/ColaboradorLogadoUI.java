@@ -65,7 +65,7 @@ public class ColaboradorLogadoUI implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        
+        RegistarTarefaController registarTarefasController = new RegistarTarefaController();
         cmbAreaActividade.getItems().setAll(registarTarefaController.getListaAreasActividade());
 
     }
