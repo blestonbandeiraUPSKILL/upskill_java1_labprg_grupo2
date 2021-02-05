@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.fxml.AdministrativoLogadoSceneController">
    <center>
       <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <top>
@@ -18,32 +18,36 @@
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="467.0" prefWidth="700.0">
                            <children>
                               <FlowPane layoutX="200.0" prefHeight="200.0" prefWidth="0.0" />
-                              <Button fx:id="btn_addareaAtividade" alignment="BOTTOM_RIGHT" layoutX="590.0" layoutY="270.0" mnemonicParsing="false" text="Adicionar" />
+                              <Button fx:id="btn_addareaAtividade" alignment="BOTTOM_RIGHT" layoutX="586.0" layoutY="260.0" mnemonicParsing="false" text="Adicionar" />
+                              <Label layoutX="17.0" layoutY="23.0" text="Lista de Áreas de Atividade registadas:" />
+                              <TextArea fx:id="listaareasAtividade" layoutX="14.0" layoutY="50.0" prefHeight="250.0" prefWidth="500.0" />
+                              <ScrollBar layoutX="491.0" layoutY="51.0" orientation="VERTICAL" prefHeight="248.0" prefWidth="22.0" />
                            </children>
                         </AnchorPane>
                   </content>
                 </Tab>
-                <Tab text="Categorias de Tarefa">
+                  <Tab text="Categorias de Tarefa">
                      <content>
-                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="253.0" prefWidth="700.0">
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="467.0" prefWidth="700.0">
                            <children>
-                              <BorderPane prefHeight="200.0" prefWidth="200.0" />
-                              <FlowPane alignment="TOP_RIGHT" layoutX="486.0" layoutY="160.0" prefHeight="154.0" prefWidth="200.0">
-                                 <children>
-                                    <Button fx:id="btn_addcategoriaTarefa" alignment="TOP_RIGHT" layoutX="590.0" mnemonicParsing="false" prefHeight="0.0" prefWidth="100.0" text="Adicionar" />
-                                 </children>
-                              </FlowPane>
+                              <FlowPane layoutX="200.0" prefHeight="200.0" prefWidth="0.0" />
+                              <Button fx:id="btn_addcategoriaTarefa" alignment="BOTTOM_RIGHT" layoutX="586.0" layoutY="260.0" mnemonicParsing="false" text="Adicionar" />
+                              <Label layoutX="17.0" layoutY="23.0" text="Lista de Categorias de Tarefa registadas:" />
+                              <TextArea fx:id="listacategoriasTarefa" layoutX="14.0" layoutY="50.0" prefHeight="250.0" prefWidth="500.0" />
+                              <ScrollBar layoutX="491.0" layoutY="51.0" orientation="VERTICAL" prefHeight="248.0" prefWidth="22.0" />
                            </children>
                         </AnchorPane>
                      </content>
-                </Tab>
+                  </Tab>
                   <Tab text="Competências Técnicas">
                      <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="467.0" prefWidth="700.0">
                            <children>
-                              <BorderPane prefHeight="200.0" prefWidth="200.0" />
-                              <FlowPane prefHeight="200.0" prefWidth="200.0" />
-                              <Button fx:id="btn_addcompetenciaTecnica" layoutX="586.0" layoutY="145.0" mnemonicParsing="false" text="Adicionar" />
+                              <FlowPane layoutX="200.0" prefHeight="200.0" prefWidth="0.0" />
+                              <Button fx:id="btn_addcompetenciaTecnica" alignment="BOTTOM_RIGHT" layoutX="586.0" layoutY="260.0" mnemonicParsing="false" text="Adicionar" />
+                              <Label layoutX="17.0" layoutY="23.0" text="Lista de Competências Técnicas registadas:" />
+                              <TextArea fx:id="listacompetenciasTecnicas" layoutX="14.0" layoutY="50.0" prefHeight="250.0" prefWidth="500.0" />
+                              <ScrollBar layoutX="491.0" layoutY="51.0" orientation="VERTICAL" prefHeight="248.0" prefWidth="22.0" />
                            </children>
                         </AnchorPane>
                      </content>
