@@ -2,6 +2,7 @@ package com.grupo2.t4j.ui;
 
 import com.grupo2.t4j.controller.RegistarTarefaController;
 import com.grupo2.t4j.model.AreaActividade;
+import com.grupo2.t4j.model.CaracterizacaoCT;
 import com.grupo2.t4j.model.Categoria;
 import com.grupo2.t4j.model.CompetenciaTecnica;
 import com.grupo2.t4j.model.Tarefa;
@@ -31,7 +32,7 @@ public class ColaboradorLogadoUI implements Initializable {
     @FXML
     private ComboBox<Categoria> cmbCategoriaTarefa;
     @FXML
-    private ListView<CompetenciaTecnica> listViewCompTec;
+    private ListView<CaracterizacaoCT> listViewCompTec;
     @FXML
     private Button btnRegistarTarefa;
     @FXML
@@ -65,7 +66,7 @@ public class ColaboradorLogadoUI implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         
-        cmbAreaActividade.getItems().setAll(registarTarefaController.getListaActividades());
+        cmbAreaActividade.getItems().setAll(registarTarefaController.getListaAreasActividade());
 
     }
     
@@ -78,7 +79,7 @@ public class ColaboradorLogadoUI implements Initializable {
     @FXML
     private void selectCatTarAction(ActionEvent event) {
         Categoria categoriaTarefa = cmbCategoriaTarefa.getSelectionModel().getSelectedItem();
-        listViewCompTec.getItems().setAll(registarTarefaController.getCompetenciasTecnicasByCategoria());
+        listViewCompTec.getItems().setAll(registarTarefaController.getCompetenciasTecnicasByCategoria(categoriaTarefa));
     }
 
     /*@FXML

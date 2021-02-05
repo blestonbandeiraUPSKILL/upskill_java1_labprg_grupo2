@@ -44,6 +44,9 @@ public class Tarefa implements Serializable{
      */
     private double custoEst;
     
+    private AreaActividade at;
+    private Categoria ct;
+    
     /**
      * Construtor vazio da classe Tarefa.
      */
@@ -62,6 +65,26 @@ public class Tarefa implements Serializable{
      */
     public Tarefa(String referencia, String designacao, String descInformal, String descTecnica,
     int duracaoEst, double custoEst){
+        setReferencia(referencia);
+        setDesignacao(designacao);
+        setDescInformal(descInformal);
+        setDescTecnica(descTecnica);
+        setDuracaoEst(duracaoEst);
+        setCustoEst(custoEst);
+    }
+    /**
+     * Construtor completo da classe Tarefa
+     * @param referencia a referência única de uma tarefa em uma Organização.
+     * @param designacao a designação da tarefa.
+     * @param descInformal a descrição informal da tarefa.
+     * @param descTecnica a descrição técnica da tarefa.
+     * @param duracaoEst a duração estimada da tarefa em dias.
+     * @param custoEst o custo estimado da tarefa em euros.
+     */
+    public Tarefa(AreaActividade at, Categoria ct,String referencia, String designacao, String descInformal, String descTecnica,
+    int duracaoEst, double custoEst){
+        setAt(at);
+        setCt(ct);
         setReferencia(referencia);
         setDesignacao(designacao);
         setDescInformal(descInformal);
@@ -196,6 +219,35 @@ public class Tarefa implements Serializable{
     public double getCustoEst(){
         return custoEst;
     }
+
+    /**
+     * Devolve a area de actividade
+     * @return at
+     */
+    public AreaActividade getAt() {
+        return at;
+    }
+
+    public void setAt(AreaActividade areaActividade) {
+        if (areaActividade != null) {
+            this.at = areaActividade;
+        }else {
+            throw new AreaActividadeInexistenteException ("A área de actividade não existe");
+        }
+    }
+
+    public Categoria getCt() {
+        return ct;
+    }
+
+    public void setCt(Categoria ct) {
+        if (ct != null) {
+            this.ct = ct;
+        }else {
+            throw new CategoriaInexistenteException ("A categoria não existe");
+        }
+    }
+    
     
     /**
      * Representação textual da classe Tarefa

@@ -75,6 +75,32 @@ public class RepositorioTarefa implements Serializable{
                     ": Tarefa já registada");
         }
     }
+    /**
+     * Adiciona uma Tarefa à lista de Tarefas
+     * @param areaActividade a area de actividade em que se enquadra a tarefa
+     * @param categoria a categoria em que se enquadra a tarefa
+     * @param referencia a referência única de uma tarefa em uma Organização.
+     * @param designacao a designação da tarefa.
+     * @param descInformal a descrição informal da tarefa.
+     * @param descTecnica a descrição técnica da tarefa.
+     * @param duracaoEst a duração estimada da tarefa em dias.
+     * @param custoEst o custo estimado da tarefa em euros.
+     * @throws TarefaDuplicadaException
+     */
+    public boolean addTarefa(AreaActividade areaActividade, Categoria categoria, String referencia, String designacao, String descInformal, 
+            String descTecnica, int duracaoEst, double custoEst) throws 
+            TarefaDuplicadaException {
+        Tarefa t = getTarefaByReferencia(referencia);
+        if (t == null) {
+            Tarefa tarefa = new Tarefa(referencia, designacao, descInformal, 
+            descTecnica, duracaoEst, custoEst);
+            return this.listaTarefas.add(tarefa);
+        } else {
+            throw new TarefaDuplicadaException(t.getReferencia() + 
+                    ": Tarefa já registada");
+        }
+        
+    }
     
     /**
      * Devolve uma Tarefa de acordo com a referência indicada
