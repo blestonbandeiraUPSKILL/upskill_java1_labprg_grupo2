@@ -59,21 +59,21 @@ public class RepositorioOrganizacao implements Serializable{
 
     public void registaOrganizacao(Organizacao organizacao) throws Exception {
         if(validaOrganizacao(organizacao)) {
-            IAlgoritmoGeradorPasswords algoritmoGeradorPasswords = plataforma.getAlgoritmoGeradorPwd();
+            /*IAlgoritmoGeradorPasswords algoritmoGeradorPasswords = plataforma.getAlgoritmoGeradorPwd();
             Password password = new Password(algoritmoGeradorPasswords.geraPassword());
 
-           plataforma.getUsersAPI().registerUserWithRoles(colabGestor.getNome(), colabGestor.getEmail(), password, "gestor,colaborador");
-
+            plataforma.getUsersAPI().registerUserWithRoles(colabGestor.getNome(), colabGestor.getEmail(), password, "gestor,colaborador");
+*/
             addOrganizacao(organizacao);
 
             //gravar
 
             //Enviar email com credenciais de acesso
-            Email email = new Email();
+       /*     Email email = new Email();
             email.setTo(colabGestor.getEmail().toString());
             email.setSubject("Envio de credenciais para acesso à plataforma");
             email.setText("username " + colabGestor.getEmail() + " ... password " + password);
-            email.send();
+            email.send();*/
         }
         else {
             throw new Exception();

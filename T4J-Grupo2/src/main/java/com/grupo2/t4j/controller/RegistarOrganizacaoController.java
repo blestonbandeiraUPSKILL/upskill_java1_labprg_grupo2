@@ -40,6 +40,6 @@ public class RegistarOrganizacaoController {
     }
 
     public void registaOrganizacao() throws Exception {
-        repositorioOrganizacao.registaOrganizacao(organizacao);
+        RepositorioOrganizacao.getInstance().registaOrganizacao(organizacao);
     }
 }

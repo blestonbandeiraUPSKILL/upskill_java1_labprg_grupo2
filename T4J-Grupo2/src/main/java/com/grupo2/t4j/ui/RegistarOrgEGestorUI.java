@@ -111,18 +111,8 @@ public class RegistarOrgEGestorUI implements Initializable {
         adicionarStage.setScene(sceneConfirmarRegisto);
         adicionarStage.setTitle("Confirmar Dados");
         adicionarStage.show();
+        btnAvancarRegisto.getScene().getWindow().hide();
     }
 
-    /* public void confirmarDados() throws IOException {
-        try {
-            registarOrganizacaoController.registaOrganizacao();
-        }
-        catch (IOException exception) {
-            exception.printStackTrace();
-            AlertsUI.criarAlerta(Alert.AlertType.ERROR,
-                    MainApp.TITULO_APLICACAO,
-                    "Erro nos dados da organização.",
-                    exception.getMessage()).show();
-        }
-    }*/
+
 }

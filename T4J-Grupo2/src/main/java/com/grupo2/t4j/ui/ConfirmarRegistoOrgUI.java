@@ -20,6 +20,7 @@ import javafx.stage.Stage;
 import javafx.stage.Window;
 import javafx.stage.WindowEvent;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -58,7 +59,7 @@ public class ConfirmarRegistoOrgUI implements Initializable {
         adicionarStage.setResizable(false);
 
         applicationController = new ApplicationController();
-        /*registarOrganizacaoController = new RegistarOrganizacaoController();*/
+        registarOrganizacaoController = new RegistarOrganizacaoController();
         Organizacao organizacao = RegistarOrganizacaoController.getOrganizacao();
         if (organizacao != null) {
             try {
@@ -90,7 +91,22 @@ public class ConfirmarRegistoOrgUI implements Initializable {
 
     }
 
-    public void gravarOrganizacao(ActionEvent actionEvent) {
+    public void gravarOrganizacao(ActionEvent actionEvent) throws Exception {
+
+        try {
+            registarOrganizacaoController.registaOrganizacao();
+            AlertsUI.criarAlerta(Alert.AlertType.CONFIRMATION,
+                    MainApp.TITULO_APLICACAO,
+                    "Sucesso",
+                    "Organização registada com sucesso!");
+        }
+        catch (IOException exception) {
+            exception.printStackTrace();
+            AlertsUI.criarAlerta(Alert.AlertType.ERROR,
+                    MainApp.TITULO_APLICACAO,
+                    "Erro nos dados da organização.",
+                    exception.getMessage()).show();
+        }
     }
 
     public void cancelarRegisto() {
