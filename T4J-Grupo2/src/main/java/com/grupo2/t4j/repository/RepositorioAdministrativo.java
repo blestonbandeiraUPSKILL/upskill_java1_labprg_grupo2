@@ -47,7 +47,8 @@ public class RepositorioAdministrativo implements Serializable{
         if (a == null) {
             this.listaAdministradores.add(administrativo);
         } else {
-            throw new AdministrativoDuplicadoException(a.getEmail() + ": Administrador já registado");
+            throw new AdministrativoDuplicadoException(a.getEmail().getEmailText() + 
+                    ": Administrador já registado");
         }
     }
     
@@ -64,7 +65,8 @@ public class RepositorioAdministrativo implements Serializable{
             Administrativo administrativo = new Administrativo(nome, email, password);
             this.listaAdministradores.add(administrativo);
         } else {
-            throw new AdministrativoDuplicadoException(a.getEmail() + ": Administrador já registado");
+            throw new AdministrativoDuplicadoException(a.getEmail().getEmailText() + 
+                    ": Administrador já registado");
         }
     }
     
@@ -82,7 +84,8 @@ public class RepositorioAdministrativo implements Serializable{
             Administrativo administrativo = new Administrativo(nome, emailAd, password);
             this.listaAdministradores.add(administrativo);
         } else {
-            throw new AdministrativoDuplicadoException(a.getEmail() + ": Administrador já registado");
+            throw new AdministrativoDuplicadoException(a.getEmail().getEmailText() 
+                    + ": Administrador já registado");
         }
     }
     
@@ -101,7 +104,8 @@ public class RepositorioAdministrativo implements Serializable{
             Administrativo administrativo = new Administrativo(nome, emailAd, passAdm);
             this.listaAdministradores.add(administrativo);
         } else {
-            throw new AdministrativoDuplicadoException(a.getEmail() + ": Administrador já registado");
+            throw new AdministrativoDuplicadoException(a.getEmail().getEmailText() 
+                    + ": Administrador já registado");
         }
     }
     
@@ -131,13 +135,16 @@ public class RepositorioAdministrativo implements Serializable{
      */
     public Administrativo getAdministrativoByEmail(Email email) {
         Administrativo administrativo = null;
+        String emailText = email.getEmailText();
         for (int i = 0; i < this.listaAdministradores.size(); i++) {
             administrativo = this.listaAdministradores.get(i);
             if (administrativo.getEmail().equals(email)) {
                 Administrativo copia = new Administrativo(administrativo);
                 return copia;
             }
-        }
+        }        
+        /*throw new AdministrativoInexistenteException (email.getEmailText()
+            + " : este email não tem nenhum Administrativo correspondente registado!");*/
         return null;
     }   
     
