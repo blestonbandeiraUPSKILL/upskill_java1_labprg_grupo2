@@ -66,7 +66,8 @@ public class RepositorioAdministrativoTest {
         ra2.addAdministrativo(a2);
     }
     
-    /*@Test
+    //Não deu certo este teste
+    @Test
     public void testGetAdministrativoByEmail() {
         
         RepositorioAdministrativo ra1 = RepositorioAdministrativo.getInstance();
@@ -77,14 +78,13 @@ public class RepositorioAdministrativoTest {
         ra1.addAdministrativo(a1);
         ra1.addAdministrativo(a2);
         
-        Email emailA1 = new Email(a1.getEmail());
+        Email emailA1 = new Email(a1.getEmail().getEmailText());
         Email emailA2 = new Email(a2.getEmail());
         
-        //Administrativo a3 = ra1.
+        Administrativo a3 = ra1.getAdministrativoByEmail(emailA1);
         
-        //System.out.println(a3.getNome());
+        assertEquals(a1,a3);
                 
-        assertEquals("Fulano", ra1.getAdministrativoByEmail(emailA1).getNome());
         System.out.println("Teste 2 ok");
     }
     
@@ -107,5 +107,5 @@ public class RepositorioAdministrativoTest {
         Email emailA0 = new Email("fulano@upskill.pt");
         assertEquals(lista.get(0).getEmail().getEmailText(),emailA0.getEmailText());
         
-    }*/
+    }
 }

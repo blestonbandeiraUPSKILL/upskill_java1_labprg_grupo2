@@ -96,13 +96,12 @@ public class RepositorioAreaActividade implements Serializable{
      * @param codigo o código único de cada Área de Actividade.
      * @return AreaActividade registada
      */
-    private AreaActividade getAreaActividadeByCodigo(String codigo) {
+    public AreaActividade getAreaActividadeByCodigo(String codigo) {
         AreaActividade areaActividade = null;
         for (int i = 0; i < this.listaAreasActividade.size(); i++) {
             areaActividade = this.listaAreasActividade.get(i);
             if (areaActividade.getCodigo().equals(codigo)) {
-                AreaActividade copia = new AreaActividade(areaActividade);
-                return copia;
+                return areaActividade;
             }
         }
         return null;
