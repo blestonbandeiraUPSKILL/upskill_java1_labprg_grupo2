@@ -57,7 +57,7 @@ public class CategoriaTest {
        
     }
 
-    @Test
+   /* @Test
     public void toStringCompTecTest() {
         //Arrange
         int id =1;
@@ -79,5 +79,5 @@ public class CategoriaTest {
         //Assert
         assertEquals(expectedResult, result);
         
-    }
+    }*/
 }
