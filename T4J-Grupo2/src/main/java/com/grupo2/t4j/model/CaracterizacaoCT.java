@@ -48,7 +48,7 @@ public class CaracterizacaoCT {
     
     @Override
     public String toString() {
-        return String.format("Competência Técnica: %s;%nGrau de Proficiência Mínimo: %s%nCarácter: %s."
+        return String.format("Competência Técnica: %s;%nGrau de Proficiência Mínimo: %s;%nCarácter: %s."
                 ,ct.getDescricaoBreve(),gp.getDesignacao(),boolean2String(obrigatoria));
     }
 }
