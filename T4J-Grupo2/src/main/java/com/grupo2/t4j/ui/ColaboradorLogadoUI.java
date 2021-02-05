@@ -65,7 +65,7 @@ public class ColaboradorLogadoUI implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         
-        cmbAreaActividade.getItems().setAll(registarTarefaController.getListaActividades());
+        cmbAreaActividade.getItems().setAll(registarTarefaController.getListaAreasActividade());
 
     }
     
@@ -78,7 +78,7 @@ public class ColaboradorLogadoUI implements Initializable {
     @FXML
     private void selectCatTarAction(ActionEvent event) {
         Categoria categoriaTarefa = cmbCategoriaTarefa.getSelectionModel().getSelectedItem();
-        listViewCompTec.getItems().setAll(registarTarefaController.getCompetenciasTecnicasByCategoria());
+        listViewCompTec.getItems().setAll(registarTarefaController.getCompetenciasTecnicasByCategoria(categoriaTarefa));
     }
 
     @FXML
