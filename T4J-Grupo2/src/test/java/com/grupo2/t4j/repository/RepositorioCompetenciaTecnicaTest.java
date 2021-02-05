@@ -64,14 +64,7 @@ public class RepositorioCompetenciaTecnicaTest {
         assertTrue(rc1.getCompetenciasTecnicas().contains(ct1));
     }
     
-    @Test
-    public void testSetListaCompTecnicas() {
-    }
-
-    @Test
-    public void testGetCompetenciasTecnicas() {
-    }
-
+    
     @Test
     public void testGetCompetenciaTecnicaByCodigo() {
         
@@ -86,10 +79,6 @@ public class RepositorioCompetenciaTecnicaTest {
         //
         assertEquals(ct1.toString(), ct2.toString());
         
-    }
-
-    @org.junit.Test
-    public void testGetRepositorio() {
     }
 
     @org.junit.Test

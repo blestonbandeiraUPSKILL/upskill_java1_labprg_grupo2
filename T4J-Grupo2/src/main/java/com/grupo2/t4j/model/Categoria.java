@@ -17,32 +17,32 @@ import java.util.List;
 public class Categoria implements Serializable{
     
     /**
-     * 
+     * O identificador da Categoria
      */
     private String id;
     
     /**
-     * 
+     * Parte do gerador de id
      */
     private int id2=0;
     
     /**
-     * 
+     * Descricao da categor
      */
     private String descricao;
     
     /**
-     * 
+     * Area de actividade a que se refere a categoria
      */
     private AreaActividade at;
     
     /**
-     * 
+     * Lista de coompetencias tecnicas tipicamente necessarias para a categoria
      */
     private List<CaracterizacaoCT> compTecnicasCaracter=new ArrayList<>();
     
     /**
-     *
+     *Construtor Categoria
      * @param descricao
      * @param at
      * @param compTecnicas
@@ -55,7 +55,7 @@ public class Categoria implements Serializable{
     }
 
     /**
-     *
+     *Construtor Categoria
      * @param categoria
      */
     public Categoria (Categoria categoria){
@@ -66,7 +66,7 @@ public class Categoria implements Serializable{
     }
 
     /**
-     *
+     *Devolve o Id da categoria
      * @return
      */
     public String getId() {
@@ -74,7 +74,7 @@ public class Categoria implements Serializable{
     }
 
     /**
-     *
+     *Atualiza o id da categoria
      * @param id
      */
     public void setId(String id) {
@@ -83,7 +83,7 @@ public class Categoria implements Serializable{
     }
 
     /**
-     *
+     *Retorna a descricao da categoria
      * @return
      */
     public String getDescricao() {
@@ -91,7 +91,7 @@ public class Categoria implements Serializable{
     }
 
     /**
-     *
+     *Atualiza a descricao da categoria
      * @param descricao
      */
     public void setDescricao(String descricao) {
@@ -103,7 +103,7 @@ public class Categoria implements Serializable{
     }
 
     /**
-     *
+     *Retorna a Area de Actividade a que se refere a categoria
      * @return
      */
     public AreaActividade getAt() {
@@ -111,7 +111,7 @@ public class Categoria implements Serializable{
     }
 
     /**
-     *
+     *Atualiza a Area de Actividade
      * @param at
      */
     public void setAt(AreaActividade at) {
@@ -119,7 +119,7 @@ public class Categoria implements Serializable{
     }
 
     /**
-     *
+     *Devolve uma lista de competencias tencicas necessarias para a categoria com a respetiva caracterizacao
      * @return
      */
     public List<CaracterizacaoCT> getCompTecnicasCaracter() {
@@ -127,7 +127,7 @@ public class Categoria implements Serializable{
     }
 
     /**
-     *
+     *Atualiza a lista de competencias tecnicas caracterizadas
      * @param compTecnicas
      */
     public void setCompTecnicasCaracter(List<CaracterizacaoCT> compTecnicasCaracter) {
@@ -135,7 +135,7 @@ public class Categoria implements Serializable{
     }
     
     /**
-     *
+     *Gera um id baseado na descricao da categoria
      * @param descricao
      * @param id2
      * @return

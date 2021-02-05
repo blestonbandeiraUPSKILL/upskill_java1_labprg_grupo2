@@ -42,12 +42,19 @@ public class RepositorioCategoriaTest {
         
         //Act
         rc1.addCategoria(cat1);
-        
-        
-        
-       
-
-
+    }
+    @Test
+    public void testgetCategoriaById() {
+        //Arrange
+        RepositorioCategoria rc1= RepositorioCategoria.getInstance();
+        AreaActividade at= new AreaActividade ("12345","Cozinhar", "Cozinheiro");
+        List <CaracterizacaoCT> compTec = new ArrayList<>();
+        Categoria cat1 = new Categoria ("Chef", at, compTec);
+        rc1.addCategoria(cat1);
+        //Act
+        Categoria c1 = rc1.getCategoriaById("Chef_1");
+        //Assert
+        assertEquals(cat1,c1);
     }
     
     @Test

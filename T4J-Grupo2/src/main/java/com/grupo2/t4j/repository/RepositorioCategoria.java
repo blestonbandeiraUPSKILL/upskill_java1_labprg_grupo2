@@ -13,10 +13,16 @@ public class RepositorioCategoria implements Serializable{
     private static RepositorioCategoria instance;
     private List<Categoria> listaCategorias;
     
+    /**
+     * Construtor do repositorio
+     */
     private RepositorioCategoria(){
         listaCategorias = new ArrayList<>();
     }
-    
+    /**
+     * Garante que existe apenas um repositorio para categorias
+     * @return 
+     */
     public static RepositorioCategoria getInstance(){
         if (instance == null){
             instance = new RepositorioCategoria();
@@ -24,16 +30,7 @@ public class RepositorioCategoria implements Serializable{
         return instance;
     }
     
-   /* public Categoria novaCategoria(String id, String descricao, AreaActividade at,
-                                       CompetenciaTecnica ct, Caracter, String codigoPostal,
-                                       String telefone, Website website, Email emailOrganizacao,
-                                       String nomeGestor, String funcao, String telefoneGestor,
-                                       Email emailGestor) {
-        EnderecoPostal endereco = Organizacao.novoEndereco(arruamento, numeroPorta, localidade, codigoPostal);
-        //colaborador = Organizacao.novoColaborador(nomeGestor, funcao, telefoneGestor, emailGestor);
-
-        return new Organizacao(nome, nif, endereco, telefone, website, emailOrganizacao, colabGestor);
-    }*/
+   
    /**
     * Adiciona uma categoria a  lista de categorias
     * @param categoria
@@ -52,7 +49,7 @@ public class RepositorioCategoria implements Serializable{
      * @param id
      * @return copia
      */
-    private Categoria getCategoriaById(String id) {
+    public Categoria getCategoriaById(String id) {
         Categoria categoria = null;
         for (int i = 0; i < this.listaCategorias.size(); i++) {
             categoria = this.listaCategorias.get(i);
@@ -65,7 +62,7 @@ public class RepositorioCategoria implements Serializable{
     }
     
     /**
-     * Retorna umz lista de categorias referentes a uma determinada Area de Actividade
+     * Retorna uma lista de categorias referentes a uma determinada Area de Actividade
      * @param at
      * @return 
      */
