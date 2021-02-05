@@ -19,27 +19,23 @@ import java.util.List;
  * @author acris
  */
 public class RegistarTarefaController {
-    
-    private RepositorioCategoria repositorioCategoria;
-    private RepositorioAreaActividade repositorioAreaActividade;
-    private RepositorioTarefa repositorioTarefa;
 
     public List<CaracterizacaoCT> getCompetenciasTecnicasByCategoria(Categoria categoria) { //Vai buscar a lista de Competencias Tecnicas da Categoria
         return categoria.getCompTecnicasCaracter();
     }
 
     public List<AreaActividade> getListaAreasActividade() {
-        return repositorioAreaActividade.getListaAreasActividade();
+        return RepositorioAreaActividade.getInstance().getListaAreasActividade();
     }
 
     public List<Categoria> getListaCategoriaPorAreaActividade(AreaActividade areaActividade) {
-        return repositorioCategoria.getCategoriasByAreaActividade(areaActividade);
+        return RepositorioCategoria.getInstance().getCategoriasByAreaActividade(areaActividade);
     }
 
     public boolean registarTarefa(AreaActividade areaActividade, Categoria categoria, 
             String referencia, String designacao, String descricaoInformal, 
             String descricaoTecnica, String duracao, String custo) {
-       return repositorioTarefa.addTarefa(areaActividade, categoria, referencia,
+       return RepositorioTarefa.getInstance().addTarefa(areaActividade, categoria, referencia,
                designacao, descricaoInformal, descricaoTecnica, Integer.parseInt(duracao),
                Double.parseDouble(custo));
     }
