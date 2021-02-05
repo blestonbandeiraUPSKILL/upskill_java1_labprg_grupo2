@@ -23,13 +23,7 @@ public class ApplicationController {
         return Plataforma.getInstance().getUsersAPI().getRole();
     }
 
-   public Organizacao getOrganizacao() {
-        return RepositorioOrganizacao.getInstance().getOrganizacao();
-   }
 
-   public void setOrganizacao(Organizacao organizacao) {
-        RepositorioOrganizacao.getInstance().setOrganizacao(organizacao);
-   }
 
 
 }

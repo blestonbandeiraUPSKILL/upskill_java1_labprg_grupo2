@@ -188,7 +188,7 @@
    <bottom>
       <FlowPane alignment="CENTER_RIGHT" columnHalignment="CENTER" prefHeight="50.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="btnAvancarRegisto" defaultButton="true" mnemonicParsing="false" onMouseClicked="#avancarRegistoComDados" text="Avançar">
+            <Button fx:id="btnAvancarRegisto" defaultButton="true" mnemonicParsing="false" onAction="#avancarRegistoComDados" text="Avançar">
                <font>
                   <Font name="Calibri" size="14.0" />
                </font>

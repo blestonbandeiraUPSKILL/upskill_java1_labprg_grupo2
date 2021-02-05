@@ -1,6 +1,7 @@
 package com.grupo2.t4j.ui;
 
 import com.grupo2.t4j.controller.ApplicationController;
+import com.grupo2.t4j.controller.RegistarOrganizacaoController;
 import com.grupo2.t4j.model.Organizacao;
 import com.grupo2.t4j.repository.RepositorioOrganizacao;
 import javafx.event.ActionEvent;
@@ -25,6 +26,7 @@ import java.util.ResourceBundle;
 public class ConfirmarRegistoOrgUI implements Initializable {
 
     private ApplicationController applicationController;
+    private RegistarOrganizacaoController registarOrganizacaoController;
     private StartingPageUI startingPageUI;
     private Stage adicionarStage;
     private Scene sceneStartingPage;
@@ -56,27 +58,32 @@ public class ConfirmarRegistoOrgUI implements Initializable {
         adicionarStage.setResizable(false);
 
         applicationController = new ApplicationController();
-        Organizacao organizacao = applicationController.getOrganizacao();
+        registarOrganizacaoController = new RegistarOrganizacaoController();
+        Organizacao organizacao = registarOrganizacaoController.getOrganizacao();
         if (organizacao != null) {
-            txtConfNomeOrganizacao.setText(organizacao.getNome());
-            txtConfNif.setText(organizacao.getNif());
-            txtConfTelefoneOrganizacao.setText(organizacao.getTelefone());
-            txtConfWebsite.setText(organizacao.getTelefone());
-            txtConfEmailOrganizacao.setText(organizacao.getEmail().toString());
-            txtConfEndArruamento.setText(organizacao.getEnderecoPostal().getArruamento());
-            txtConfEndPorta.setText(organizacao.getEnderecoPostal().getPorta());
-            txtConfEndLocalidade.setText(organizacao.getEnderecoPostal().getLocalidade());
-            txtConfEndCodPostal.setText(organizacao.getEnderecoPostal().getCodigoPostal());
-            txtConfNomeGestor.setText(organizacao.getNomeGestor());
-            txtConfTelefoneGestor.setText(organizacao.getTelefoneGestor());
-            txtConfEmailGestor.setText(organizacao.getEmailGestor().toString());
+            try {
+                txtConfNomeOrganizacao.setText(organizacao.getNome());
+                txtConfNif.setText(organizacao.getNif());
+                txtConfTelefoneOrganizacao.setText(organizacao.getTelefone());
+                txtConfWebsite.setText(organizacao.getTelefone());
+                txtConfEmailOrganizacao.setText(organizacao.getEmail().toString());
+                txtConfEndArruamento.setText(organizacao.getEnderecoPostal().getArruamento());
+                txtConfEndPorta.setText(organizacao.getEnderecoPostal().getPorta());
+                txtConfEndLocalidade.setText(organizacao.getEnderecoPostal().getLocalidade());
+                txtConfEndCodPostal.setText(organizacao.getEnderecoPostal().getCodigoPostal());
+                txtConfNomeGestor.setText(organizacao.getNomeGestor());
+                txtConfTelefoneGestor.setText(organizacao.getTelefoneGestor());
+                txtConfEmailGestor.setText(organizacao.getEmailGestor().toString());
+
+            } catch (Exception exception) {
+                exception.printStackTrace();
+                AlertsUI.criarAlerta(Alert.AlertType.ERROR,
+                        MainApp.TITULO_APLICACAO,
+                        "Erro",
+                        exception.getMessage());
+            }
         }
-        else {
-            AlertsUI.criarAlerta(Alert.AlertType.ERROR,
-                    MainApp.TITULO_APLICACAO,
-                    "Erro",
-                  "Não há dados para mostrar");
-        }
+
     }
 
     public void voltarPaginaRegistoComDados(ActionEvent actionEvent) {

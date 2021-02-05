@@ -1,10 +1,8 @@
 package com.grupo2.t4j.ui;
 
 import com.grupo2.t4j.controller.ApplicationController;
-import com.grupo2.t4j.model.Email;
-import com.grupo2.t4j.model.Rolename;
-import com.grupo2.t4j.model.UsersAPIAdapter;
-import com.grupo2.t4j.model.Website;
+import com.grupo2.t4j.controller.RegistarOrganizacaoController;
+import com.grupo2.t4j.model.*;
 import com.grupo2.t4j.repository.RepositorioOrganizacao;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -29,6 +27,7 @@ public class RegistarOrgEGestorUI implements Initializable {
 
     UsersAPIAdapter usersAPIAdapter;
     private RepositorioOrganizacao repositorioOrganizacao;
+    private RegistarOrganizacaoController registarOrganizacaoController;
     private ApplicationController applicationController;
     private StartingPageUI startingPageUI;
     private Stage adicionarStage;
@@ -56,21 +55,7 @@ public class RegistarOrgEGestorUI implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        try {
-            FXMLLoader loaderConfirmarRegisto = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/ConfirmarRegistoOrgScene.fxml"));
-            Parent rootConfirmarRegisto = loaderConfirmarRegisto.load();
 
-            sceneConfirmarRegisto = new Scene(rootConfirmarRegisto);
-            adicionarStage = new Stage();
-
-        }
-        catch (IOException exception) {
-        exception.printStackTrace();
-        AlertsUI.criarAlerta(Alert.AlertType.ERROR,
-                MainApp.TITULO_APLICACAO,
-                "Erro",
-                exception.getMessage());
-        }
     }
 
     public void cancelarRegisto(ActionEvent actionEvent) {
@@ -93,21 +78,33 @@ public class RegistarOrgEGestorUI implements Initializable {
     }
 
     public void avancarRegistoComDados(ActionEvent actionEvent) throws Exception {
-        applicationController.setOrganizacao(repositorioOrganizacao.novaOrganizacao(
-                txtNomeOrganizacao.getText(),
-                txtNif.getText(),
-                txtEndArruamento.getText(),
-                txtEndPorta.getText(),
-                txtEndLocalidade.getText(),
-                txtEndCodPostal.getText(),
-                txtTelefoneOrganizacao.getText(),
-                new Website(txtWebsite.getText()),
-                new Email(txtEmailOrganizacao.getText()),
-                txtNomeGestor.getText(),
-                new Email(txtEmailGestor.getText()),
-                txtTelefoneGestor.getText(),
-                Rolename.GESTOR
-        ));
+        registarOrganizacaoController = new RegistarOrganizacaoController();
+        adicionarStage = new Stage();
+
+        FXMLLoader loaderConfirmarRegisto = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/ConfirmarRegistoOrgScene.fxml"));
+        Parent rootConfirmarRegisto = loaderConfirmarRegisto.load();
+
+        loaderConfirmarRegisto.setController(registarOrganizacaoController);
+
+        Organizacao organizacao = new Organizacao(
+                );
+
+        registarOrganizacaoController.setOrganizacao(new Organizacao
+                (txtNomeOrganizacao.getText(),
+                        txtNif.getText(),
+                        txtEndArruamento.getText(),
+                        txtEndPorta.getText(),
+                        txtEndLocalidade.getText(),
+                        txtEndCodPostal.getText(),
+                        txtTelefoneOrganizacao.getText(),
+                        txtWebsite.getText(),
+                        txtEmailOrganizacao.getText(),
+                        txtNomeGestor.getText(),
+                        txtEmailGestor.getText(),
+                        txtTelefoneGestor.getText(),
+                        Rolename.GESTOR));
+
+        sceneConfirmarRegisto = new Scene(rootConfirmarRegisto);
 
         adicionarStage.setScene(sceneConfirmarRegisto);
         adicionarStage.setTitle("Confirmar Dados");

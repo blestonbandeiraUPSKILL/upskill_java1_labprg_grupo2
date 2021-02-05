@@ -9,6 +9,14 @@ public class RegistarOrganizacaoController {
     private RepositorioOrganizacao repositorioOrganizacao;
     private Organizacao organizacao;
 
+    public Organizacao getOrganizacao() {
+        return organizacao;
+    }
+
+    public void setOrganizacao(Organizacao organizacao) {
+        this.organizacao = organizacao;
+    }
+
     public RegistarOrganizacaoController() {
         this.plataforma = Plataforma.getInstance();
     }
@@ -18,7 +26,7 @@ public class RegistarOrganizacaoController {
                                 String telefone, Website website, Email emailOrganizacao,
                                 String nomeGestor, Email emailGestor,  String telefoneGestor,
                                 Rolename rolename) throws Exception {
-        repositorioOrganizacao = plataforma.getRepositorioOrganizacao();
+        repositorioOrganizacao = RepositorioOrganizacao.getInstance();
         organizacao = repositorioOrganizacao.novaOrganizacao(nome, nif, arruamento, numeroPorta, localidade, codigoPostal,
                 telefone, website, emailOrganizacao, nomeGestor, emailGestor, telefoneGestor, rolename);
 
