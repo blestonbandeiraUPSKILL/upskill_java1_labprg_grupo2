@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="491.0" prefWidth="596.0" style="-fx-background-color: #c4c4c4;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.fxml.ColaboradorLogadoSceneController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="491.0" prefWidth="596.0" style="-fx-background-color: #c4c4c4;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.ColaboradorLogadoUI">
    <top>
       <Label style="-fx-background-color: #000000;" text="Área do Colaborador" textFill="WHITE" BorderPane.alignment="CENTER_RIGHT">
          <padding>
