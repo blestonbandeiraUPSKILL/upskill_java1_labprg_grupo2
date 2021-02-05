@@ -21,7 +21,7 @@ public class Website {
     private String website;
     
     public Website (String website){
-        this.website = website;
+        setWebsite(website);
     }
     
     public Website (Website website){

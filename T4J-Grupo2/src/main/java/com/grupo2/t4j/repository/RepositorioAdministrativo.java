@@ -137,7 +137,7 @@ public class RepositorioAdministrativo implements Serializable{
         Administrativo administrativo = null;
         for (int i = 0; i < this.listaAdministrativos.size(); i++) {
             administrativo = this.listaAdministrativos.get(i);
-            if (administrativo.getEmail().getEmailText().equals(email.getEmailText())) {
+            if (administrativo.getEmail().equals(email)) {
                 return administrativo;
             }
         }        

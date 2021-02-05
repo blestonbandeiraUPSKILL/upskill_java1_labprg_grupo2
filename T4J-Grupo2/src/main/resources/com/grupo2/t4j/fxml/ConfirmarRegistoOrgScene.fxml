@@ -75,7 +75,7 @@
                         <Font name="Calibri" size="14.0" />
                     </font>
                  </TextField>
-                 <TextField disable="true" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                 <TextField fx:id="txtConfTelefoneOrganizacao" disable="true" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="2">
                     <font>
                         <Font name="Calibri" size="14.0" />
                     </font>

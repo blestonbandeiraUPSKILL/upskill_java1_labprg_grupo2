@@ -120,8 +120,7 @@ public class RepositorioColaborador implements Serializable{
         for (int i = 0; i < this.listaColaboradores.size(); i++) {
             colaborador = this.listaColaboradores.get(i);
             if (colaborador.getEmail().equals(email)) {
-                Colaborador copia = new Colaborador(colaborador);
-                return copia;
+                return colaborador;
             }
         }
         return null;

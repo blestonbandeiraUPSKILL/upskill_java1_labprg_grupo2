@@ -114,8 +114,7 @@ public class RepositorioUtilizador implements Serializable{
         for (int i = 0; i < this.listaUtilizadores.size(); i++) {
             utilizador = this.listaUtilizadores.get(i);
             if (utilizador.getEmail().equals(email)) {
-                Utilizador copia = new Utilizador(utilizador);
-                return copia;
+                return utilizador;
             }
         }
         return null;
