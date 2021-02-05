@@ -3,6 +3,7 @@ package com.grupo2.t4j.controller;
 import com.grupo2.t4j.model.Organizacao;
 import com.grupo2.t4j.model.Password;
 import com.grupo2.t4j.model.Plataforma;
+import com.grupo2.t4j.repository.RepositorioOrganizacao;
 import javafx.event.ActionEvent;
 import javafx.scene.Node;
 import javafx.stage.Stage;
@@ -21,6 +22,8 @@ public class ApplicationController {
     public String getRole() {
         return Plataforma.getInstance().getUsersAPI().getRole();
     }
+
+
 
 
 }

@@ -20,7 +20,7 @@ public class RepositorioAdministrativo implements Serializable{
     
     /**
      * Define uma instância estática do Repositório em que estão registados todos
-     * os Administradores da plataforma
+     * os Administrativos da plataforma
      */
     private static RepositorioAdministrativo repositorioAdministrativo;
     
@@ -28,24 +28,24 @@ public class RepositorioAdministrativo implements Serializable{
      * Define o atributo da classe RepositorioAdministrativo como uma lista de
      * tipos da classe Administrativo
      */
-    private List<Administrativo> listaAdministradores;
+    private List<Administrativo> listaAdministrativos;
     
     /**
      * Inicializa o Repositório de Administrativos
      */
     private RepositorioAdministrativo(){
-        listaAdministradores = new ArrayList<>();
+        listaAdministrativos = new ArrayList<>();
     }
           
     /**
-     * Adiciona um Administrador à lista de Administradores 
+     * Adiciona um Administrativo à lista de Administrativos
      * @param administrativo do tipo da classe Administrativo
      * @throws AdministrativoDuplicadoException
      */
-    public void addAdministrador(Administrativo administrativo) throws AdministrativoDuplicadoException {
+    public void addAdministrativo(Administrativo administrativo) throws AdministrativoDuplicadoException {
         Administrativo a = getAdministrativoByEmail(administrativo.getEmail());
         if (a == null) {
-            this.listaAdministradores.add(administrativo);
+            this.listaAdministrativos.add(administrativo);
         } else {
             throw new AdministrativoDuplicadoException(a.getEmail().getEmailText() + 
                     ": Administrador já registado");
@@ -53,17 +53,17 @@ public class RepositorioAdministrativo implements Serializable{
     }
     
     /**
-     * Adiciona um Administrador à lista de Administradores 
-     * @param nome o nome do Administrador
-     * @param email o email do Administrador em formato da classe Email
-     * @param password a password do Administrador em formato da classe Password
+     * Adiciona um Administrativo à lista de Administradores 
+     * @param nome o nome do Administrativo
+     * @param email o email do Administrativo em formato da classe Email
+     * @param password a password do Administrativo em formato da classe Password
      * @throws AdministrativoDuplicadoException
      */
-    public void addAdministrador(String nome, Email email, Password password) throws AdministrativoDuplicadoException {
+    public void addAdministrativo(String nome, Email email, Password password) throws AdministrativoDuplicadoException {
         Administrativo a = getAdministrativoByEmail(email);
         if (a == null) {
             Administrativo administrativo = new Administrativo(nome, email, password);
-            this.listaAdministradores.add(administrativo);
+            this.listaAdministrativos.add(administrativo);
         } else {
             throw new AdministrativoDuplicadoException(a.getEmail().getEmailText() + 
                     ": Administrador já registado");
@@ -71,18 +71,18 @@ public class RepositorioAdministrativo implements Serializable{
     }
     
     /**
-     * Adiciona um Administrador à lista de Administradores 
-     * @param nome o nome do Administrador
-     * @param email  o email do Administrador em formato String
-     * @param password a password do Administrador em formato da classe Password
+     * Adiciona um Administrativo à lista de Administrativos
+     * @param nome o nome do Administrativo
+     * @param email  o email do Administrativo em formato String
+     * @param password a password do Administrativo em formato da classe Password
      * @throws AdministrativoDuplicadoException
      */
-    public void addAdministrador(String nome, String email, Password password) throws AdministrativoDuplicadoException {
+    public void addAdministrativo(String nome, String email, Password password) throws AdministrativoDuplicadoException {
         Email emailAd = new Email(email);
         Administrativo a = getAdministrativoByEmail(emailAd);
         if (a == null) {
             Administrativo administrativo = new Administrativo(nome, emailAd, password);
-            this.listaAdministradores.add(administrativo);
+            this.listaAdministrativos.add(administrativo);
         } else {
             throw new AdministrativoDuplicadoException(a.getEmail().getEmailText() 
                     + ": Administrador já registado");
@@ -90,19 +90,19 @@ public class RepositorioAdministrativo implements Serializable{
     }
     
     /**
-     * Adiciona um Administrador à lista de Administradores 
-     * @param nome o nome do Administrador
-     * @param email  o email do Administrador em formato String
-     * @param password a password do Administrador em formato String
+     * Adiciona um Administrativo à lista de Administrativos
+     * @param nome o nome do Administrativo
+     * @param email  o email do Administrativo em formato String
+     * @param password a password do Administrativo em formato String
      * @throws AdministrativoDuplicadoException
      */
-    public void addAdministrador(String nome, String email, String password) throws AdministrativoDuplicadoException {
+    public void addAdministrativo(String nome, String email, String password) throws AdministrativoDuplicadoException {
         Email emailAd = new Email(email);
         Administrativo a = getAdministrativoByEmail(emailAd);
         if (a == null) {
             Password passAdm = new Password(password);
             Administrativo administrativo = new Administrativo(nome, emailAd, passAdm);
-            this.listaAdministradores.add(administrativo);
+            this.listaAdministrativos.add(administrativo);
         } else {
             throw new AdministrativoDuplicadoException(a.getEmail().getEmailText() 
                     + ": Administrador já registado");
@@ -112,10 +112,10 @@ public class RepositorioAdministrativo implements Serializable{
     /**
      * Atualiza a lista de Administrativos
      *
-     * @param listaAdministradores
+     * @param listaAdministrativos
      */
-    public void setListaAdministradores(List<Administrativo> listaAdministradores) {
-        this.listaAdministradores = listaAdministradores;
+    public void setListaAdministrativos(List<Administrativo> listaAdministrativos) {
+        this.listaAdministrativos = listaAdministrativos;
     }
 
     /**
@@ -123,28 +123,24 @@ public class RepositorioAdministrativo implements Serializable{
      *
      * @return 
      */
-    public ArrayList<Administrativo> getListaAdministradores() {
+    public ArrayList<Administrativo> getListaAdministrativos() {
 
-        return new ArrayList<Administrativo>(listaAdministradores);
+        return new ArrayList<Administrativo>(listaAdministrativos);
     }
     
     /**
      * Devolve um Administrativo de acordo com o email registado
-     * @param email o email do Administrador
+     * @param email o email do Administrativo
      * @return Administrativo registado
      */
     public Administrativo getAdministrativoByEmail(Email email) {
         Administrativo administrativo = null;
-        String emailText = email.getEmailText();
-        for (int i = 0; i < this.listaAdministradores.size(); i++) {
-            administrativo = this.listaAdministradores.get(i);
+        for (int i = 0; i < this.listaAdministrativos.size(); i++) {
+            administrativo = this.listaAdministrativos.get(i);
             if (administrativo.getEmail().equals(email)) {
-                Administrativo copia = new Administrativo(administrativo);
-                return copia;
+                return administrativo;
             }
         }        
-        /*throw new AdministrativoInexistenteException (email.getEmailText()
-            + " : este email não tem nenhum Administrativo correspondente registado!");*/
         return null;
     }   
     
@@ -160,10 +156,10 @@ public class RepositorioAdministrativo implements Serializable{
     }
     
     /**
-     * Informa se a lista de Administradores está ou não vazia
+     * Informa se a lista de Administrativos está ou não vazia
      * @return 
      */
     public boolean isVazia() {
-        return listaAdministradores.isEmpty();
+        return listaAdministrativos.isEmpty();
     }
 }

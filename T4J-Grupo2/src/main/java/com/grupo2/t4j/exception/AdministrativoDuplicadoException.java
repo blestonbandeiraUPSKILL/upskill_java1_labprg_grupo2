@@ -9,7 +9,7 @@ package com.grupo2.t4j.exception;
  *
  * @author CAD
  */
-public class AdministrativoDuplicadoException extends RuntimeException{
+public class AdministrativoDuplicadoException extends IllegalArgumentException{
 
     public AdministrativoDuplicadoException(String s){
         super(s);

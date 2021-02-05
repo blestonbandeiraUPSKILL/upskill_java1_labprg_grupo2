@@ -1,9 +1,11 @@
 package com.grupo2.t4j.ui;
 
 import com.grupo2.t4j.controller.ApplicationController;
+import com.grupo2.t4j.controller.RegistarOrganizacaoController;
 import com.grupo2.t4j.model.Organizacao;
 import com.grupo2.t4j.repository.RepositorioOrganizacao;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -18,16 +20,14 @@ import javafx.stage.Stage;
 import javafx.stage.Window;
 import javafx.stage.WindowEvent;
 
-
-import java.awt.event.MouseEvent;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class ConfirmarRegistoOrgUI implements Initializable {
 
-    private RepositorioOrganizacao repositorioOrganizacao;
     private ApplicationController applicationController;
-    private StartingPageUI startingPageUI;
+    private RegistarOrganizacaoController registarOrganizacaoController;
+    private RegistarOrgEGestorUI registarOrgEGestorUI;
     private Stage adicionarStage;
     private Scene sceneStartingPage;
     private Scene sceneRegistarOrgEGestor;
@@ -46,31 +46,44 @@ public class ConfirmarRegistoOrgUI implements Initializable {
     @FXML TextField txtConfEmailGestor;
     @FXML Button btnCancelarRegisto;
 
-    public void associarParentUI(StartingPageUI startingPageUI) {
-        this.startingPageUI = startingPageUI;
+    public void associarParentUI(RegistarOrgEGestorUI registarOrgEGestorUI) {
+        this.registarOrgEGestorUI = registarOrgEGestorUI;
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
         adicionarStage = new Stage();
         adicionarStage.initModality(Modality.APPLICATION_MODAL);
         adicionarStage.setResizable(false);
 
         applicationController = new ApplicationController();
-        Organizacao organizacao = (Organizacao) adicionarStage.getUserData();
+        /*registarOrganizacaoController = new RegistarOrganizacaoController();*/
+        Organizacao organizacao = RegistarOrganizacaoController.getOrganizacao();
+        if (organizacao != null) {
+            try {
+                txtConfNomeOrganizacao.setText(organizacao.getNome());
+                txtConfNif.setText(organizacao.getNif());
+                txtConfTelefoneOrganizacao.setText(organizacao.getTelefone());
+                txtConfWebsite.setText(organizacao.getTelefone());
+                txtConfEmailOrganizacao.setText(organizacao.getEmail().toString());
+                txtConfEndArruamento.setText(organizacao.getEnderecoPostal().getArruamento());
+                txtConfEndPorta.setText(organizacao.getEnderecoPostal().getPorta());
+                txtConfEndLocalidade.setText(organizacao.getEnderecoPostal().getLocalidade());
+                txtConfEndCodPostal.setText(organizacao.getEnderecoPostal().getCodigoPostal());
+                txtConfNomeGestor.setText(organizacao.getNomeGestor());
+                txtConfTelefoneGestor.setText(organizacao.getTelefoneGestor());
+                txtConfEmailGestor.setText(organizacao.getEmailGestor().toString());
 
-        txtConfNomeOrganizacao.setText(organizacao.getNome());
-        txtConfNif.setText(organizacao.getNif());
-        txtConfTelefoneOrganizacao.setText(organizacao.getTelefone());
-        txtConfWebsite.setText(organizacao.getTelefone());
-        txtConfEmailOrganizacao.setText(organizacao.getEmail().toString());
-        txtConfEndArruamento.setText(organizacao.getEnderecoPostal().getArruamento());
-        txtConfEndPorta.setText(organizacao.getEnderecoPostal().getPorta());
-        txtConfEndLocalidade.setText(organizacao.getEnderecoPostal().getLocalidade());
-        txtConfEndCodPostal.setText(organizacao.getEnderecoPostal().getCodigoPostal());
-        txtConfNomeGestor.setText(organizacao.getNomeGestor());
-        txtConfTelefoneGestor.setText(organizacao.getTelefoneGestor());
-        txtConfEmailGestor.setText(organizacao.getEmailGestor().toString());
+            } catch (Exception exception) {
+                exception.printStackTrace();
+                AlertsUI.criarAlerta(Alert.AlertType.ERROR,
+                        MainApp.TITULO_APLICACAO,
+                        "Erro",
+                        exception.getMessage());
+            }
+        }
+
     }
 
     public void voltarPaginaRegistoComDados(ActionEvent actionEvent) {
@@ -94,7 +107,6 @@ public class ConfirmarRegistoOrgUI implements Initializable {
                 }
             }
         });
-
         window.fireEvent(new WindowEvent(window, WindowEvent.WINDOW_CLOSE_REQUEST));
     }
 
