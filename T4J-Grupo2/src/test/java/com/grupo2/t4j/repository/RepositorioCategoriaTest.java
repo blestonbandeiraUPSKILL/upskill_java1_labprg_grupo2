@@ -5,9 +5,15 @@
  */
 package com.grupo2.t4j.repository;
 
+import com.grupo2.t4j.exception.CategoriaDuplicadaException;
+import com.grupo2.t4j.exception.DescricaoInvalidaException;
+import org.junit.Test;
+import com.grupo2.t4j.model.AreaActividade;
+import com.grupo2.t4j.model.CaracterizacaoCT;
 import com.grupo2.t4j.model.Categoria;
+import java.util.ArrayList;
+import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
@@ -24,16 +30,37 @@ public class RepositorioCategoriaTest {
         
     }
 
- /*   @Test
+
+    @Test(expected = DescricaoInvalidaException.class)
+    public void testAddDescricaoInvalida() {
+        //Arrange
+        //Arrange
+        RepositorioCategoria rc1= RepositorioCategoria.getInstance();
+        AreaActividade at= new AreaActividade ("123","Cozinha", "Cozinheiro de 2ª");
+        List <CaracterizacaoCT> compTec = new ArrayList<>();
+        Categoria cat1 = new Categoria ("", at, compTec);
+        
+        //Act
+        rc1.addCategoria(cat1);
+        
+        
+        
+       
+
+
+    }
+    
+    @Test
     public void testAddCategoria() {
         //Arrange
-        RepositorioCategoria rc1= new RepositorioCategoria();
-        Categoria c1= new Categoria("21","Jogo do Galo", "piu", "auau");
+        RepositorioCategoria rc1= RepositorioCategoria.getInstance();
+        AreaActividade at= new AreaActividade ("123","Cozinha", "Cozinheiro de 2ª");
+        List <CaracterizacaoCT> compTec = new ArrayList<>();
+        Categoria cat1 = new Categoria ("Cozinheiro", at, compTec);
         //Act
-        rc1.addCategoria(c1);
+        rc1.addCategoria(cat1);
         
         //Assert
-        assertTrue(rc11.getCategorias().contains(c1));
-    }*/
-    
+        assertTrue(rc1.getCategorias().contains(cat1));
+    }
 }
