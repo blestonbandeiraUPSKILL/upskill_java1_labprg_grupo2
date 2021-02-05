@@ -94,11 +94,19 @@ public class ConfirmarRegistoOrgUI implements Initializable {
     public void gravarOrganizacao(ActionEvent actionEvent) throws Exception {
 
         try {
-            registarOrganizacaoController.registaOrganizacao();
-            AlertsUI.criarAlerta(Alert.AlertType.CONFIRMATION,
-                    MainApp.TITULO_APLICACAO,
-                    "Sucesso",
-                    "Organização registada com sucesso!");
+            if(registarOrganizacaoController.registaOrganizacao()) {
+                AlertsUI.criarAlerta(Alert.AlertType.CONFIRMATION,
+                        MainApp.TITULO_APLICACAO,
+                        "Sucesso",
+                        "Organização registada com sucesso!");
+            }
+            else {
+                AlertsUI.criarAlerta(Alert.AlertType.ERROR,
+                        MainApp.TITULO_APLICACAO,
+                        "Erro",
+                        "Algo correu mal. Por favor tente de novo.");
+            }
+
         }
         catch (IOException exception) {
             exception.printStackTrace();

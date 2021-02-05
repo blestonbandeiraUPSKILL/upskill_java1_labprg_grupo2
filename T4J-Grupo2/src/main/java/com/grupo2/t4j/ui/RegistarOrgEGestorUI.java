@@ -105,12 +105,11 @@ public class RegistarOrgEGestorUI implements Initializable {
         Parent rootConfirmarRegisto = loaderConfirmarRegisto.load();
         loaderConfirmarRegisto.setController(registarOrganizacaoController);
         sceneConfirmarRegisto = new Scene(rootConfirmarRegisto);
-        /*ConfirmarRegistoOrgUI confirmarRegistoOrgUI = loaderConfirmarRegisto.getController();
-        confirmarRegistoOrgUI.associarParentUI(this);
-*/
+
         adicionarStage.setScene(sceneConfirmarRegisto);
         adicionarStage.setTitle("Confirmar Dados");
         adicionarStage.show();
+
         btnAvancarRegisto.getScene().getWindow().hide();
     }
 

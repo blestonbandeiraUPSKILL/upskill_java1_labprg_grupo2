@@ -57,7 +57,7 @@ public class RepositorioOrganizacao implements Serializable{
         }
     }
 
-    public void registaOrganizacao(Organizacao organizacao) throws Exception {
+    public boolean registaOrganizacao(Organizacao organizacao) throws Exception {
         if(validaOrganizacao(organizacao)) {
             /*IAlgoritmoGeradorPasswords algoritmoGeradorPasswords = plataforma.getAlgoritmoGeradorPwd();
             Password password = new Password(algoritmoGeradorPasswords.geraPassword());
@@ -78,6 +78,7 @@ public class RepositorioOrganizacao implements Serializable{
         else {
             throw new Exception();
         }
+        return true;
     }
 
     public void addOrganizacao(Organizacao organizacao) throws OrganizacaoDuplicadaException {
