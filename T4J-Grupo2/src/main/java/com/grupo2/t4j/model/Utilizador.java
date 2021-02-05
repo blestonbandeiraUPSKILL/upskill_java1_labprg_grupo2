@@ -147,11 +147,11 @@ public class Utilizador implements Serializable{
      * Representação textual da classe Utilizador
      * @return Nome, email e password do Utilizador
      */   
-    @Override
+  /*  @Override
     public String toString(){
         return String.format("O utilizador %s tem os seguintes dados: %nEmail: "
                 + "%s /%Password: %s", nome, email.getEmailText(), password.getPasswordText());
-    }
+    }*/
     
     /**
      * Representação textual da classe Utilizador sem a password

@@ -21,7 +21,7 @@ public class RepositorioOrganizacao implements Serializable{
 
     private static RepositorioOrganizacao instance;
 
-    private List<Organizacao> listaOrganizacoes = new ArrayList<>();
+    private List<Organizacao> listaOrganizacoes;
     private Plataforma plataforma;
     Colaborador colabGestor;
 
@@ -34,7 +34,6 @@ public class RepositorioOrganizacao implements Serializable{
             instance = new RepositorioOrganizacao();
         }
         return instance;
-
     }
 
     public Organizacao novaOrganizacao(String nome, String nif, String arruamento,

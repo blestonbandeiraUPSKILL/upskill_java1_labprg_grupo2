@@ -21,7 +21,7 @@ public class Website {
     private String website;
     
     public Website (String website){
-        setWebsite(website);
+        this.website = website;
     }
     
     public Website (Website website){
@@ -30,7 +30,7 @@ public class Website {
     
     public void setWebsite(String website){
         if(eURL(website)){
-            this.website = website;
+            this.website = String.valueOf(website);
         }
         else{
             throw new WebsiteInvalidoException("O endereço do website é inválido!");
