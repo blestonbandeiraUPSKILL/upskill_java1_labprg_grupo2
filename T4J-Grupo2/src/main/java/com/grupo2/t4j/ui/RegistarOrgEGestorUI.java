@@ -105,24 +105,13 @@ public class RegistarOrgEGestorUI implements Initializable {
         Parent rootConfirmarRegisto = loaderConfirmarRegisto.load();
         loaderConfirmarRegisto.setController(registarOrganizacaoController);
         sceneConfirmarRegisto = new Scene(rootConfirmarRegisto);
-        /*ConfirmarRegistoOrgUI confirmarRegistoOrgUI = loaderConfirmarRegisto.getController();
-        confirmarRegistoOrgUI.associarParentUI(this);
-*/
+
         adicionarStage.setScene(sceneConfirmarRegisto);
         adicionarStage.setTitle("Confirmar Dados");
         adicionarStage.show();
+
+        btnAvancarRegisto.getScene().getWindow().hide();
     }
 
-    /* public void confirmarDados() throws IOException {
-        try {
-            registarOrganizacaoController.registaOrganizacao();
-        }
-        catch (IOException exception) {
-            exception.printStackTrace();
-            AlertsUI.criarAlerta(Alert.AlertType.ERROR,
-                    MainApp.TITULO_APLICACAO,
-                    "Erro nos dados da organização.",
-                    exception.getMessage()).show();
-        }
-    }*/
+
 }

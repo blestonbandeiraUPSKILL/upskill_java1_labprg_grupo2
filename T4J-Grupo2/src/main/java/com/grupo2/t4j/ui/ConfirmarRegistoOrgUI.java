@@ -20,6 +20,7 @@ import javafx.stage.Stage;
 import javafx.stage.Window;
 import javafx.stage.WindowEvent;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -58,22 +59,22 @@ public class ConfirmarRegistoOrgUI implements Initializable {
         adicionarStage.setResizable(false);
 
         applicationController = new ApplicationController();
-        /*registarOrganizacaoController = new RegistarOrganizacaoController();*/
+        registarOrganizacaoController = new RegistarOrganizacaoController();
         Organizacao organizacao = RegistarOrganizacaoController.getOrganizacao();
         if (organizacao != null) {
             try {
                 txtConfNomeOrganizacao.setText(organizacao.getNome());
                 txtConfNif.setText(organizacao.getNif());
                 txtConfTelefoneOrganizacao.setText(organizacao.getTelefone().toString());
-                txtConfWebsite.setText(organizacao.getWebsite().toString());
-                txtConfEmailOrganizacao.setText(organizacao.getEmail().toString());
+                txtConfWebsite.setText(organizacao.getWebsite().getWebsiteText());
+                txtConfEmailOrganizacao.setText(organizacao.getEmail().getEmailText());
                 txtConfEndArruamento.setText(organizacao.getEnderecoPostal().getArruamento());
                 txtConfEndPorta.setText(organizacao.getEnderecoPostal().getPorta());
                 txtConfEndLocalidade.setText(organizacao.getEnderecoPostal().getLocalidade());
                 txtConfEndCodPostal.setText(organizacao.getEnderecoPostal().getCodigoPostal());
                 txtConfNomeGestor.setText(organizacao.getNomeGestor());
-                txtConfTelefoneGestor.setText(organizacao.getTelefoneGestor().toString());
-                txtConfEmailGestor.setText(organizacao.getEmailGestor().toString());
+                txtConfTelefoneGestor.setText(organizacao.getTelefoneGestor());
+                txtConfEmailGestor.setText(organizacao.getEmailGestor().getEmailText());
 
             } catch (Exception exception) {
                 exception.printStackTrace();
@@ -90,7 +91,30 @@ public class ConfirmarRegistoOrgUI implements Initializable {
 
     }
 
-    public void gravarOrganizacao(ActionEvent actionEvent) {
+    public void gravarOrganizacao(ActionEvent actionEvent) throws Exception {
+
+        try {
+            if(registarOrganizacaoController.registaOrganizacao()) {
+                AlertsUI.criarAlerta(Alert.AlertType.CONFIRMATION,
+                        MainApp.TITULO_APLICACAO,
+                        "Sucesso",
+                        "Organização registada com sucesso!");
+            }
+            else {
+                AlertsUI.criarAlerta(Alert.AlertType.ERROR,
+                        MainApp.TITULO_APLICACAO,
+                        "Erro",
+                        "Algo correu mal. Por favor tente de novo.");
+            }
+
+        }
+        catch (IOException exception) {
+            exception.printStackTrace();
+            AlertsUI.criarAlerta(Alert.AlertType.ERROR,
+                    MainApp.TITULO_APLICACAO,
+                    "Erro nos dados da organização.",
+                    exception.getMessage()).show();
+        }
     }
 
     public void cancelarRegisto() {

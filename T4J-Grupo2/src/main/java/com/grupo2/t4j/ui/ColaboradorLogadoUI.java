@@ -82,7 +82,7 @@ public class ColaboradorLogadoUI implements Initializable {
         listViewCompTec.getItems().setAll(registarTarefaController.getCompetenciasTecnicasByCategoria(categoriaTarefa));
     }
 
-    @FXML
+    /*@FXML
     private void registarTarefaAction(ActionEvent event) {
         try {
         registarTarefaController = new RegistarTarefaController();
@@ -99,7 +99,7 @@ public class ColaboradorLogadoUI implements Initializable {
             AlertsUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO, "Erro nos dados.",
                     iae.getMessage()).show();
         }
-    }
+    }*/
 
     @FXML
     private void CancelarAction(ActionEvent event) {
