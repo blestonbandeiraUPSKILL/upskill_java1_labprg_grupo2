@@ -74,15 +74,26 @@ public class RepositorioCompetenciaTecnicaTest {
         rc1.addCompetenciaTecnica(ct1);
         
         //Act
-        CompetenciaTecnica ct2 = new CompetenciaTecnica(rc1.getCompetenciaTecnicaByCodigo(ct1.getCodigo()));
+        CompetenciaTecnica ct2 = rc1.getCompetenciaTecnicaByCodigo("123456");
         
         //
-        assertEquals(ct1.toString(), ct2.toString());
+        assertEquals(ct1, ct2);
         
     }
 
-    @org.junit.Test
+    /*@Test
     public void testGetCompetenciasTecnicasByAreaActividade() {
-    }
+        //Arrange
+        RepositorioCompetenciaTecnica rc1=  RepositorioCompetenciaTecnica.getInstance();
+        CompetenciaTecnica ct1= new CompetenciaTecnica("123456", "Jogo do Galo", "Jogo para duas pessoas");
+        rc1.addCompetenciaTecnica(ct1);
+        
+        //Act
+        CompetenciaTecnica ct2 = rc1.getCompetenciasTecnicasByAreaActividade("123456");
+        
+        //
+        assertEquals(ct1, ct2);
+        
+    }*/
     
 }

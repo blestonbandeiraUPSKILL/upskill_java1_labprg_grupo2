@@ -85,8 +85,7 @@ public class RepositorioCompetenciaTecnica implements Serializable{
         for (int i = 0; i < this.listaCompTecnicas.size(); i++) {
             compTec = this.listaCompTecnicas.get(i);
             if (compTec.getCodigo().equals(codigo)) {
-                CompetenciaTecnica copia = new CompetenciaTecnica(compTec);
-                return copia;
+                return compTec;
 
             }
         }
