@@ -72,7 +72,7 @@ public class ConfirmarRegistoOrgUI implements Initializable {
                 txtConfEndLocalidade.setText(organizacao.getEnderecoPostal().getLocalidade());
                 txtConfEndCodPostal.setText(organizacao.getEnderecoPostal().getCodigoPostal());
                 txtConfNomeGestor.setText(organizacao.getNomeGestor());
-                txtConfTelefoneGestor.setText(organizacao.getTelefoneGestor());
+                txtConfTelefoneGestor.setText(organizacao.getTelefoneGestor().toString());
                 txtConfEmailGestor.setText(organizacao.getEmailGestor().toString());
 
             } catch (Exception exception) {
