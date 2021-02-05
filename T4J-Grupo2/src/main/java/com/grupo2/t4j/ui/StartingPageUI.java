@@ -5,15 +5,20 @@ import com.grupo2.t4j.controller.RegistarOrganizacaoController;
 import com.grupo2.t4j.model.Password;
 import com.grupo2.t4j.model.UsersAPIAdapter;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.Window;
+import javafx.stage.WindowEvent;
 
 import java.io.IOException;
 import java.net.URL;
@@ -29,10 +34,9 @@ public class StartingPageUI implements Initializable {
     private Scene sceneGestor;
     private Scene sceneAdministrativo;
     private Scene sceneColaborador;
-    @FXML
-    TextField txtEmailLogin;
-    @FXML
-    TextField txtPasswordLogin;
+    @FXML TextField txtEmailLogin;
+    @FXML TextField txtPasswordLogin;
+    @FXML Button btnSair;
 
     public ApplicationController getApplicationController() {
         return applicationController;
@@ -119,5 +123,23 @@ public class StartingPageUI implements Initializable {
                     "Erro ao validar os dados",
                     "Dados de login inválidos");
         }
+    }
+
+    public void sairApp(ActionEvent actionEvent) {
+        Window window = btnSair.getScene().getWindow();
+        window.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent windowEvent) {
+                Alert alerta = AlertsUI.criarAlerta(Alert.AlertType.CONFIRMATION,
+                        MainApp.TITULO_APLICACAO,
+                        "Confirmação da acção",
+                        "Tem a certeza que quer sair da aplicação?");
+
+                if (alerta.showAndWait().get() == ButtonType.CANCEL) {
+                    windowEvent.consume();
+                }
+            }
+        });
+        window.fireEvent(new WindowEvent(window, WindowEvent.WINDOW_CLOSE_REQUEST));
     }
 }

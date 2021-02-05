@@ -148,6 +148,7 @@ public class Organizacao implements Serializable{
         setNome(nomeOrganizacao);
         setNif(nif);
         setEnderecoPostal(new EnderecoPostal(arruamento, numeroPorta, localidade, codPostal));
+        setTelefone(telefoneOrg);
         setWebsite(new Website(website));
         setEmail(new Email(emailOrg));
         setColabGestor(nomeGestor, emailGestor, telefoneGestor, role);
@@ -227,7 +228,7 @@ public class Organizacao implements Serializable{
     }
 
     public String getTelefone(){
-        return telefone;
+        return telefone.toString();
     }
 
     public Email getEmail(){
@@ -248,7 +249,7 @@ public class Organizacao implements Serializable{
     }
 
     public String getTelefoneGestor() {
-        return colabGestor.getTelefone();
+        return colabGestor.getTelefone().toString();
     }
 
     public Email getEmailGestor() {
