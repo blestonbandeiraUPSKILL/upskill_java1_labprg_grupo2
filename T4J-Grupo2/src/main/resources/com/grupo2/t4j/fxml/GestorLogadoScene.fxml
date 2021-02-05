@@ -1,14 +1,236 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
 <?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.BorderPane?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.grupo2.t4j.ui.GestorLogadoUI"
-            prefHeight="400.0" prefWidth="600.0">
-
-</AnchorPane>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="491.0" prefWidth="596.0" style="-fx-background-color: #c4c4c4;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.fxml.ColaboradorLogadoSceneController">
+   <top>
+      <Label style="-fx-background-color: #000000;" text="Área do Gestor" textFill="WHITE" BorderPane.alignment="CENTER_RIGHT">
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+      </Label>
+   </top>
+   <center>
+      <BorderPane prefHeight="400.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <center>
+            <TabPane prefHeight="385.0" prefWidth="596.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+              <tabs>
+                  <Tab text="Registar Colaborador">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <VBox prefHeight="228.0" prefWidth="589.0">
+                                 <children>
+                                    <Label text="Nome do Colaborador">
+                                       <VBox.margin>
+                                          <Insets top="30.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                    <TextField fx:id="txtReferencia2" promptText="nome do colaborador">
+                                       <VBox.margin>
+                                          <Insets right="10.0" />
+                                       </VBox.margin>
+                                    </TextField>
+                                    <Label text="Função" />
+                                    <TextField fx:id="txtDesignacao2" promptText="função do colaborador na organização">
+                                       <VBox.margin>
+                                          <Insets right="10.0" />
+                                       </VBox.margin>
+                                    </TextField>
+                                    <Label text="Contacto Telefónico" />
+                                    <TextField fx:id="txtDuracao2" promptText="XXXXXXXXX">
+                                       <VBox.margin>
+                                          <Insets right="10.0" />
+                                       </VBox.margin>
+                                    </TextField>
+                                    <Label text="Email do Colaborador" />
+                                    <TextField fx:id="txtCusto2" promptText="email@organizacao.pt">
+                                       <VBox.margin>
+                                          <Insets right="10.0" />
+                                       </VBox.margin>
+                                    </TextField>
+                                 </children>
+                                 <padding>
+                                    <Insets left="60.0" right="60.0" />
+                                 </padding>
+                              </VBox>
+                              <Button fx:id="btnRegistarTarefa2" layoutX="144.0" layoutY="218.0" mnemonicParsing="false" onAction="#registarTarefaAction" text="Registar Colaborador" />
+                              <Button fx:id="btnCancelar2" layoutX="298.0" layoutY="218.0" mnemonicParsing="false" onAction="#CancelarAction" text="Cancelar Registo" />
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </Tab>
+                  <Tab text="Consultar Tarefas">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <VBox alignment="CENTER" layoutX="3.0" layoutY="4.0" prefHeight="428.0" prefWidth="589.0">
+                                 <children>
+                                    <Label text="Seleccionar Área de Actividade">
+                                       <VBox.margin>
+                                          <Insets bottom="10.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                    <ComboBox fx:id="cmbArAct" onAction="#selectArAct" prefHeight="25.0" prefWidth="211.0" promptText="Escolha a Área de Actividade">
+                                       <VBox.margin>
+                                          <Insets bottom="20.0" />
+                                       </VBox.margin>
+                                    </ComboBox>
+                                    <Label text="Seleccionar Categoria de Tarefa">
+                                       <VBox.margin>
+                                          <Insets bottom="10.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                    <ComboBox fx:id="cmbCategoria" onAction="#selectCategoriaAction" prefHeight="25.0" prefWidth="210.0" promptText="Escolha a Categoria">
+                                       <VBox.margin>
+                                          <Insets bottom="20.0" />
+                                       </VBox.margin>
+                                    </ComboBox>
+                                    <Label text="Tarefas Registadas">
+                                       <VBox.margin>
+                                          <Insets bottom="10.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                    <ListView fx:id="listViewTarefas" prefHeight="200.0" prefWidth="491.0">
+                                       <VBox.margin>
+                                          <Insets left="50.0" right="50.0" />
+                                       </VBox.margin>
+                                    </ListView>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </AnchorPane>
+                    </content>
+                  </Tab>
+                  <Tab text="Especificar Tarefas">
+                     <content>
+                        <BorderPane prefHeight="408.0" prefWidth="596.0">
+                           <bottom>
+                              <FlowPane alignment="CENTER" prefHeight="79.0" prefWidth="596.0" BorderPane.alignment="CENTER">
+                                 <children>
+                                    <Button fx:id="btnRegistarTarefa1" mnemonicParsing="false" onAction="#registarTarefaAction" text="Registar Tarefa">
+                                       <FlowPane.margin>
+                                          <Insets right="10.0" />
+                                       </FlowPane.margin>
+                                    </Button>
+                                    <Button fx:id="btnCancelar1" mnemonicParsing="false" onAction="#CancelarAction" text="Cancelar Registo">
+                                       <FlowPane.margin>
+                                          <Insets left="10.0" />
+                                       </FlowPane.margin>
+                                    </Button>
+                                 </children>
+                              </FlowPane>
+                           </bottom>
+                           <left>
+                              <VBox prefHeight="363.0" prefWidth="235.0" BorderPane.alignment="CENTER">
+                                 <children>
+                                    <Label alignment="CENTER" text="Seleccionar Área de Actividade">
+                                       <VBox.margin>
+                                          <Insets left="35.0" top="20.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                    <ComboBox fx:id="cmbAreaActividade1" onAction="#selectAreaActAction" prefHeight="25.0" prefWidth="213.0" promptText="Escolha a Área de Actividade">
+                                       <VBox.margin>
+                                          <Insets left="10.0" top="5.0" />
+                                       </VBox.margin>
+                                    </ComboBox>
+                                    <Label alignment="CENTER" text="Seleccionar Categoria de Tarefa">
+                                       <VBox.margin>
+                                          <Insets left="35.0" top="20.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                    <ComboBox fx:id="cmbCategoriaTarefa1" onAction="#selectCatTarAction" prefHeight="25.0" prefWidth="213.0" promptText="Escolha a Categoria de Tarefa">
+                                       <VBox.margin>
+                                          <Insets left="10.0" top="5.0" />
+                                       </VBox.margin>
+                                    </ComboBox>
+                                    <Label alignment="CENTER" text="Competencias Técnicas Requeridas">
+                                       <VBox.margin>
+                                          <Insets left="25.0" top="20.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                    <ListView fx:id="listViewCompTec1" prefHeight="132.0" prefWidth="235.0">
+                                       <VBox.margin>
+                                          <Insets left="10.0" right="10.0" top="5.0" />
+                                       </VBox.margin>
+                                    </ListView>
+                                 </children>
+                                 <BorderPane.margin>
+                                    <Insets left="5.0" />
+                                 </BorderPane.margin>
+                              </VBox>
+                           </left>
+                           <right>
+                              <VBox prefHeight="346.0" prefWidth="325.0" BorderPane.alignment="CENTER">
+                                 <children>
+                                    <Label text="Referência">
+                                       <VBox.margin>
+                                          <Insets top="15.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                    <TextField fx:id="txtReferencia1">
+                                       <VBox.margin>
+                                          <Insets right="10.0" />
+                                       </VBox.margin>
+                                    </TextField>
+                                    <Label text="Designação" />
+                                    <TextField fx:id="txtDesignacao1">
+                                       <VBox.margin>
+                                          <Insets right="10.0" />
+                                       </VBox.margin>
+                                    </TextField>
+                                    <Label text="Descrição Informal" />
+                                    <TextArea fx:id="txtDescricaoInformal1" prefHeight="66.0" prefWidth="315.0">
+                                       <VBox.margin>
+                                          <Insets right="10.0" />
+                                       </VBox.margin>
+                                    </TextArea>
+                                    <Label text="Descrição de Carácter Técnico" />
+                                    <TextArea fx:id="txtDescricaoTecnica1" prefHeight="63.0" prefWidth="325.0">
+                                       <VBox.margin>
+                                          <Insets right="10.0" />
+                                       </VBox.margin>
+                                    </TextArea>
+                                    <Label text="Estimativa de Duração (dias)" />
+                                    <TextField fx:id="txtDuracao1">
+                                       <VBox.margin>
+                                          <Insets right="10.0" />
+                                       </VBox.margin>
+                                    </TextField>
+                                    <Label text="Estimativa de Custo (€)" />
+                                    <TextField fx:id="txtCusto1">
+                                       <VBox.margin>
+                                          <Insets right="10.0" />
+                                       </VBox.margin>
+                                    </TextField>
+                                 </children>
+                              </VBox>
+                           </right>
+                        </BorderPane>
+                     </content>
+                  </Tab>
+                <Tab text="Publicar Tarefas">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <Label prefHeight="150.0" prefWidth="600.0" text="Esta funcionalidade ainda não está implementada">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                  </content>
+                </Tab>
+              </tabs>
+            </TabPane>
+         </center>
+      </BorderPane>
+   </center>
+</BorderPane>
