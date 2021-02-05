@@ -2,6 +2,7 @@ package com.grupo2.t4j.ui;
 
 import com.grupo2.t4j.controller.RegistarTarefaController;
 import com.grupo2.t4j.model.AreaActividade;
+import com.grupo2.t4j.model.CaracterizacaoCT;
 import com.grupo2.t4j.model.Categoria;
 import com.grupo2.t4j.model.CompetenciaTecnica;
 import com.grupo2.t4j.model.Tarefa;
@@ -31,7 +32,7 @@ public class ColaboradorLogadoUI implements Initializable {
     @FXML
     private ComboBox<Categoria> cmbCategoriaTarefa;
     @FXML
-    private ListView<CompetenciaTecnica> listViewCompTec;
+    private ListView<CaracterizacaoCT> listViewCompTec;
     @FXML
     private Button btnRegistarTarefa;
     @FXML
