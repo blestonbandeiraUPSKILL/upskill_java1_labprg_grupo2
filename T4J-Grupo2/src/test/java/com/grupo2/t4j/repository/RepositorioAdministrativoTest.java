@@ -54,7 +54,6 @@ public class RepositorioAdministrativoTest {
         System.out.println("Teste 1 ok");
     }   
     
-    // Não deu certo este
     @Test (expected = AdministrativoDuplicadoException.class)
     public void testAddAdministrativoDuplicado() {
         
@@ -78,15 +77,12 @@ public class RepositorioAdministrativoTest {
         
         ra1.addAdministrativo(a1);
         ra1.addAdministrativo(a2);
-        
-        Email emailA1 = new Email(a1.getEmail().getEmailText());
-        Email emailA2 = new Email(a2.getEmail());
-        
-        Administrativo a3 = ra1.getAdministrativoByEmail(emailA1);
+           
+        Administrativo a3 = ra1.getAdministrativoByEmail("fulano@upskill.pt");
+        Administrativo a4 = ra1.getAdministrativoByEmail(a2.getEmail().getEmailText());
         
         assertEquals(a1,a3);
-                
-        System.out.println("Teste 2 ok");
+        assertEquals(a2,a4);        
     }
     
     @Test

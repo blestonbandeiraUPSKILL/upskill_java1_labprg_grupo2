@@ -43,7 +43,7 @@ public class RepositorioAdministrativo implements Serializable{
      * @throws AdministrativoDuplicadoException
      */
     public void addAdministrativo(Administrativo administrativo) throws AdministrativoDuplicadoException {
-        Administrativo a = getAdministrativoByEmail(administrativo.getEmail());
+        Administrativo a = getAdministrativoByEmail(administrativo.getEmail().getEmailText());
         if (a == null) {
             this.listaAdministrativos.add(administrativo);
         } else {
@@ -60,7 +60,7 @@ public class RepositorioAdministrativo implements Serializable{
      * @throws AdministrativoDuplicadoException
      */
     public void addAdministrativo(String nome, Email email, Password password) throws AdministrativoDuplicadoException {
-        Administrativo a = getAdministrativoByEmail(email);
+        Administrativo a = getAdministrativoByEmail(email.getEmailText());
         if (a == null) {
             Administrativo administrativo = new Administrativo(nome, email, password);
             this.listaAdministrativos.add(administrativo);
@@ -77,8 +77,7 @@ public class RepositorioAdministrativo implements Serializable{
      * @param password a password do Administrativo em formato da classe Password
      * @throws AdministrativoDuplicadoException
      */
-    public void addAdministrativo(String nome, String email, Password password) throws AdministrativoDuplicadoException {
-        Email emailAd = new Email(email);
+    public void addAdministrativo(String nome, String emailAd, Password password) throws AdministrativoDuplicadoException {
         Administrativo a = getAdministrativoByEmail(emailAd);
         if (a == null) {
             Administrativo administrativo = new Administrativo(nome, emailAd, password);
@@ -96,8 +95,7 @@ public class RepositorioAdministrativo implements Serializable{
      * @param password a password do Administrativo em formato String
      * @throws AdministrativoDuplicadoException
      */
-    public void addAdministrativo(String nome, String email, String password) throws AdministrativoDuplicadoException {
-        Email emailAd = new Email(email);
+    public void addAdministrativo(String nome, String emailAd, String password) throws AdministrativoDuplicadoException {
         Administrativo a = getAdministrativoByEmail(emailAd);
         if (a == null) {
             Password passAdm = new Password(password);
@@ -130,14 +128,14 @@ public class RepositorioAdministrativo implements Serializable{
     
     /**
      * Devolve um Administrativo de acordo com o email registado
-     * @param email o email do Administrativo
+     * @param emailAdm o email em String do Administrativo
      * @return Administrativo registado
      */
-    public Administrativo getAdministrativoByEmail(Email email) {
+    public Administrativo getAdministrativoByEmail(String emailAdm) {
         Administrativo administrativo = null;
         for (int i = 0; i < this.listaAdministrativos.size(); i++) {
             administrativo = this.listaAdministrativos.get(i);
-            if (administrativo.getEmail().equals(email)) {
+            if (administrativo.getEmail().getEmailText().equals(emailAdm)) {
                 return administrativo;
             }
         }        

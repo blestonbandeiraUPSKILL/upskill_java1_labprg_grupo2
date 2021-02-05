@@ -40,7 +40,6 @@ public class RepositorioColaboradorTest {
         assertTrue(rc1.getListaColaboradores().contains(c1));
     }
     
-    // Não deu certo este
     @Test (expected = ColaboradorDuplicadoException.class)
     public void testAddColaboradorDuplicado() {
        
@@ -66,7 +65,6 @@ public class RepositorioColaboradorTest {
          rc1.addColaborador(c1);
     }
     
-    // Não deu certo este
     @Test
     public void testGetColaboradorByEmail() {
         
@@ -74,17 +72,17 @@ public class RepositorioColaboradorTest {
         
         Colaborador c1= new Colaborador("Fulano", "fulano@upskill.pt", "12345678",
         "Gestor", "999888777");
-        Colaborador c2= new Colaborador("Fulano", "fulano@upskill.pt", "12345678",
+        Colaborador c2= new Colaborador("Beltrano", "beltrano@upskill.pt", "12345678",
         "Gestor", "999888777");
         
-        Email email1 = new Email("fulano@upskill.pt");
-        Email email2 = new Email("beltrano@upskill.pt");
+        rc1.addColaborador(c1);
+        rc1.addColaborador(c2);
+                
+        Colaborador c3 = rc1.getColaboradorByEmail("fulano@upskill.pt");
+        Colaborador c4 = rc1.getColaboradorByEmail(c2.getEmail().getEmailText());
         
-        Utilizador u3 = ru1.getUtilizadorByEmail(email1);
-        Utilizador u4 = ru1.getUtilizadorByEmail(u2.getEmail());
-        
-        assertEquals(u1,u3);
-        assertEquals(u2,u4);
+        assertEquals(c1,c3);
+        assertEquals(c2,c4);
         
     }
 }

@@ -39,7 +39,6 @@ public class RepositorioUtilizadorTest {
         assertTrue(ru1.getListaUtilizadores().contains(u1));
     }
     
-    // Não deu certo este
     @Test (expected = UtilizadorDuplicadoException.class)
     public void testAddUtilizadorDuplicado() {
        
@@ -62,7 +61,7 @@ public class RepositorioUtilizadorTest {
         ru1.addUtilizador(u1);
     }
     
-    // Não deu certo este
+    
     @Test
     public void testGetUtilizadorByEmail() {
         
@@ -73,12 +72,9 @@ public class RepositorioUtilizadorTest {
         
         ru1.addUtilizador(u1);
         ru1.addUtilizador(u2); 
-        
-        Email email1 = new Email("fulano@upskill.pt");
-        Email email2 = new Email("beltrano@upskill.pt");
-        
-        Utilizador u3 = ru1.getUtilizadorByEmail(email1);
-        Utilizador u4 = ru1.getUtilizadorByEmail(u2.getEmail());
+                
+        Utilizador u3 = ru1.getUtilizadorByEmail("fulano@upskill.pt");
+        Utilizador u4 = ru1.getUtilizadorByEmail(u2.getEmail().getEmailText());
         
         assertEquals(u1,u3);
         assertEquals(u2,u4);
