@@ -1,23 +1,22 @@
 package com.grupo2.t4j.ui;
 
 import com.grupo2.t4j.controller.ApplicationController;
-import com.grupo2.t4j.controller.RegistarOrganizacaoController;
-import com.grupo2.t4j.model.*;
+import com.grupo2.t4j.model.Email;
+import com.grupo2.t4j.model.Rolename;
+import com.grupo2.t4j.model.UsersAPIAdapter;
+import com.grupo2.t4j.model.Website;
 import com.grupo2.t4j.repository.RepositorioOrganizacao;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 import javafx.stage.WindowEvent;
@@ -57,7 +56,21 @@ public class RegistarOrgEGestorUI implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        try {
+            FXMLLoader loaderConfirmarRegisto = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/ConfirmarRegistoOrgScene.fxml"));
+            Parent rootConfirmarRegisto = loaderConfirmarRegisto.load();
 
+            sceneConfirmarRegisto = new Scene(rootConfirmarRegisto);
+            adicionarStage = new Stage();
+
+        }
+        catch (IOException exception) {
+        exception.printStackTrace();
+        AlertsUI.criarAlerta(Alert.AlertType.ERROR,
+                MainApp.TITULO_APLICACAO,
+                "Erro",
+                exception.getMessage());
+        }
     }
 
     public void cancelarRegisto(ActionEvent actionEvent) {
@@ -80,40 +93,26 @@ public class RegistarOrgEGestorUI implements Initializable {
     }
 
     public void avancarRegistoComDados(ActionEvent actionEvent) throws Exception {
-        try {
-            RepositorioOrganizacao.getInstance().setOrganizacao(repositorioOrganizacao.novaOrganizacao(
-                    txtNomeOrganizacao.getText(),
-                    txtNif.getText(),
-                    txtEndArruamento.getText(),
-                    txtEndPorta.getText(),
-                    txtEndLocalidade.getText(),
-                    txtEndCodPostal.getText(),
-                    txtTelefoneOrganizacao.getText(),
-                    new Website(txtWebsite.getText()),
-                    new Email(txtEmailOrganizacao.getText()),
-                    txtNomeGestor.getText(),
-                    new Email(txtEmailGestor.getText()),
-                    txtTelefoneGestor.getText(),
-                    Rolename.GESTOR
-            ));
+        applicationController.setOrganizacao(repositorioOrganizacao.novaOrganizacao(
+                txtNomeOrganizacao.getText(),
+                txtNif.getText(),
+                txtEndArruamento.getText(),
+                txtEndPorta.getText(),
+                txtEndLocalidade.getText(),
+                txtEndCodPostal.getText(),
+                txtTelefoneOrganizacao.getText(),
+                new Website(txtWebsite.getText()),
+                new Email(txtEmailOrganizacao.getText()),
+                txtNomeGestor.getText(),
+                new Email(txtEmailGestor.getText()),
+                txtTelefoneGestor.getText(),
+                Rolename.GESTOR
+        ));
 
-            FXMLLoader loaderConfirmarRegisto = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/ConfirmarRegistoOrgScene.fxml"));
-            Parent rootConfirmarRegisto = loaderConfirmarRegisto.load();
+        adicionarStage.setScene(sceneConfirmarRegisto);
+        adicionarStage.setTitle("Confirmar Dados");
+        adicionarStage.show();
 
-            sceneConfirmarRegisto = new Scene(rootConfirmarRegisto);
-            adicionarStage = new Stage();
-            adicionarStage.setScene(sceneConfirmarRegisto);
-            adicionarStage.setTitle("Confirmar Dados");
-            adicionarStage.show();
-
-        }
-        catch (IOException exception) {
-            exception.printStackTrace();
-            AlertsUI.criarAlerta(Alert.AlertType.ERROR,
-                    MainApp.TITULO_APLICACAO,
-                    "Erro",
-                    exception.getMessage());
-        }
     }
 
     /* public void confirmarDados() throws IOException {
