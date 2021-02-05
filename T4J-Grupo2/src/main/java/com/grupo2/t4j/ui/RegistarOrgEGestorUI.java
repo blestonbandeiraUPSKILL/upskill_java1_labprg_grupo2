@@ -25,10 +25,7 @@ import java.util.ResourceBundle;
 
 public class RegistarOrgEGestorUI implements Initializable {
 
-    UsersAPIAdapter usersAPIAdapter;
-    private RepositorioOrganizacao repositorioOrganizacao;
     private RegistarOrganizacaoController registarOrganizacaoController;
-    private ApplicationController applicationController;
     private StartingPageUI startingPageUI;
     private Stage adicionarStage;
 
@@ -82,34 +79,38 @@ public class RegistarOrgEGestorUI implements Initializable {
         adicionarStage = new Stage();
 
         FXMLLoader loaderConfirmarRegisto = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/ConfirmarRegistoOrgScene.fxml"));
+
+                String nomeOrganizacao = txtNomeOrganizacao.getText();
+                String nif = txtNif.getText();
+                String arruamento = txtEndArruamento.getText();
+                String numeroPorta = txtEndPorta.getText();
+                String localidade = txtEndLocalidade.getText();
+                String codPostal = txtEndCodPostal.getText();
+                String telefoneOrg = txtTelefoneOrganizacao.getText();
+                String website = txtWebsite.getText();
+                String emailOrg = txtEmailOrganizacao.getText();
+                String nomeGestor = txtNomeGestor.getText();
+                String emailGestor = txtEmailGestor.getText();
+                String telefoneGestor = txtTelefoneGestor.getText();
+                Rolename role = Rolename.GESTOR;
+
+        Organizacao organizacao = new Organizacao(nomeOrganizacao,
+                nif, arruamento, numeroPorta,
+                localidade, codPostal, telefoneOrg,
+                website, emailOrg, nomeGestor,
+                emailGestor, telefoneGestor, role);
+
+        RegistarOrganizacaoController.setOrganizacao(organizacao);
+
         Parent rootConfirmarRegisto = loaderConfirmarRegisto.load();
-
         loaderConfirmarRegisto.setController(registarOrganizacaoController);
-
-        Organizacao organizacao = new Organizacao(
-                );
-
-        registarOrganizacaoController.setOrganizacao(new Organizacao
-                (txtNomeOrganizacao.getText(),
-                        txtNif.getText(),
-                        txtEndArruamento.getText(),
-                        txtEndPorta.getText(),
-                        txtEndLocalidade.getText(),
-                        txtEndCodPostal.getText(),
-                        txtTelefoneOrganizacao.getText(),
-                        txtWebsite.getText(),
-                        txtEmailOrganizacao.getText(),
-                        txtNomeGestor.getText(),
-                        txtEmailGestor.getText(),
-                        txtTelefoneGestor.getText(),
-                        Rolename.GESTOR));
-
         sceneConfirmarRegisto = new Scene(rootConfirmarRegisto);
-
+        /*ConfirmarRegistoOrgUI confirmarRegistoOrgUI = loaderConfirmarRegisto.getController();
+        confirmarRegistoOrgUI.associarParentUI(this);
+*/
         adicionarStage.setScene(sceneConfirmarRegisto);
         adicionarStage.setTitle("Confirmar Dados");
         adicionarStage.show();
-
     }
 
     /* public void confirmarDados() throws IOException {

@@ -22,15 +22,13 @@ import java.util.ResourceBundle;
 public class StartingPageUI implements Initializable {
 
     UsersAPIAdapter usersAPIAdapter;
-    RegistarOrganizacaoController registarOrganizacaoController;
-    private ApplicationController applicationController = new ApplicationController();
+    private ApplicationController applicationController;
     private Stage adicionarStage;
     private Scene sceneRegistarOrganizacao;
     private Scene sceneLogin;
     private Scene sceneGestor;
     private Scene sceneAdministrativo;
     private Scene sceneColaborador;
-    private Scene sceneConfirmarRegistoOrg;
     @FXML
     TextField txtEmailLogin;
     @FXML
@@ -48,12 +46,6 @@ public class StartingPageUI implements Initializable {
             sceneRegistarOrganizacao = new Scene(rootRegistarOrg);
             RegistarOrgEGestorUI registarOrgEGestorUI = loaderRegistarOrg.getController();
             registarOrgEGestorUI.associarParentUI(this);
-
-            FXMLLoader loaderConfirmarRegistoOrg = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/ConfirmarRegistoOrgScene.fxml"));
-            Parent rootConfirmarRegistoOrg = loaderConfirmarRegistoOrg.load();
-            sceneConfirmarRegistoOrg = new Scene(rootConfirmarRegistoOrg);
-            ConfirmarRegistoOrgUI confirmarRegistoOrgUI = loaderConfirmarRegistoOrg.getController();
-            confirmarRegistoOrgUI.associarParentUI(this);
 
             FXMLLoader loaderGestor = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/GestorLogadoScene.fxml"));
             Parent rootGestor = loaderGestor.load();

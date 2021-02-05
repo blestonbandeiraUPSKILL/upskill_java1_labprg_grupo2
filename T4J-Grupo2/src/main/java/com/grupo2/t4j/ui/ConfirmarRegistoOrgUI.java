@@ -27,7 +27,7 @@ public class ConfirmarRegistoOrgUI implements Initializable {
 
     private ApplicationController applicationController;
     private RegistarOrganizacaoController registarOrganizacaoController;
-    private StartingPageUI startingPageUI;
+    private RegistarOrgEGestorUI registarOrgEGestorUI;
     private Stage adicionarStage;
     private Scene sceneStartingPage;
     private Scene sceneRegistarOrgEGestor;
@@ -46,8 +46,8 @@ public class ConfirmarRegistoOrgUI implements Initializable {
     @FXML TextField txtConfEmailGestor;
     @FXML Button btnCancelarRegisto;
 
-    public void associarParentUI(StartingPageUI startingPageUI) {
-        this.startingPageUI = startingPageUI;
+    public void associarParentUI(RegistarOrgEGestorUI registarOrgEGestorUI) {
+        this.registarOrgEGestorUI = registarOrgEGestorUI;
     }
 
     @Override
@@ -58,8 +58,8 @@ public class ConfirmarRegistoOrgUI implements Initializable {
         adicionarStage.setResizable(false);
 
         applicationController = new ApplicationController();
-        registarOrganizacaoController = new RegistarOrganizacaoController();
-        Organizacao organizacao = registarOrganizacaoController.getOrganizacao();
+        /*registarOrganizacaoController = new RegistarOrganizacaoController();*/
+        Organizacao organizacao = RegistarOrganizacaoController.getOrganizacao();
         if (organizacao != null) {
             try {
                 txtConfNomeOrganizacao.setText(organizacao.getNome());

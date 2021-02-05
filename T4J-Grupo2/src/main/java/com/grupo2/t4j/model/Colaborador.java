@@ -177,22 +177,22 @@ public class Colaborador extends Utilizador implements Serializable{
      * Representação textual da classe Colaborador
      * @return Nome, função, email, telefone e password do Colaborador
      */   
-    @Override
+  /*  @Override
     public String toString(){
         return String.format("O colaborador %s tem os seguintes dados: %nfuncao: %s"
                 + " %nEmail: %s %nTelefone: %s %nPassword: %s", super.getNome(), 
                 funcao, super.getEmail().getEmailText(), telefone, 
                 super.getPassword().getPasswordText());
-    }
+    }*/
     
     /**
      * Representação textual da classe Colaborador sem a password
      * @return Nome, função, email  e telefone do Utilizador
      */
-    @Override
+  /*  @Override
     public String toStringSemPass(){
         return String.format("O colaborador %s tem os seguintes dados: %nfuncao: %s"
                 + " %nEmail: %s %nTelefone: %s", super.getNome(), 
                 funcao, super.getEmail().getEmailText(), telefone);
-    }   
+    }  */
 }

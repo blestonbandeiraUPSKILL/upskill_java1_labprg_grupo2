@@ -7,14 +7,14 @@ public class RegistarOrganizacaoController {
 
     private Plataforma plataforma;
     private RepositorioOrganizacao repositorioOrganizacao;
-    private Organizacao organizacao;
+    private static Organizacao organizacao;
 
-    public Organizacao getOrganizacao() {
-        return organizacao;
+    public static Organizacao getOrganizacao() {
+        return RegistarOrganizacaoController.organizacao;
     }
 
-    public void setOrganizacao(Organizacao organizacao) {
-        this.organizacao = organizacao;
+    public static void setOrganizacao(Organizacao organizacao) {
+        RegistarOrganizacaoController.organizacao = organizacao;
     }
 
     public RegistarOrganizacaoController() {
