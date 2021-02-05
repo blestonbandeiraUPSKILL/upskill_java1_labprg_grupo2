@@ -89,25 +89,24 @@ public class Organizacao implements Serializable{
         this.colabGestor = new Colaborador(colabGestor);
     }*/
     
-    /*public Organizacao(String nome, String NIF, String arruamento, String numeroPorta,
+    public Organizacao(String nome, String NIF, String arruamento, String numeroPorta,
             String localidade, String codigoPostal, String website, String telefone,
-            String email, String nomeColab, String emailColab, Password password,
-            String funcao, String telefoneColab){
+            String email, String nomeColab, String emailColab, String telefoneColab, Rolename gestor){
         setNome(nome);
         setNif(NIF);
         this.enderecoOrg = new EnderecoPostal(arruamento, numeroPorta, localidade, codigoPostal);
-        setWebsite(website);
+        setWebsite(new Website(website));
         //this.websiteOrg = new Website(website);
-       *//* if (websiteOrg instanceof Website) {
+        if (websiteOrg instanceof Website) {
             this.websiteOrg = websiteOrg;
         }
         else {
             this.websiteOrg = new Website(websiteOrg);
-        }*//*
+        }
         setTelefone(telefone);
         this.emailOrg = new Email(email);
-        this.colabGestor = new Colaborador(nomeColab, emailColab, password, funcao, telefoneColab);
-    }*/
+        this.colabGestor = new Colaborador(nomeColab, new Email(emailColab), telefoneColab, Rolename.GESTOR);
+    }
     
     public Organizacao(String nome, String NIF, String arruamento, String numeroPorta,
             String localidade, String codigoPostal, String website, String telefone,
@@ -157,6 +156,7 @@ public class Organizacao implements Serializable{
         setEmail(emailOrg);
         this.colabGestor = new Colaborador(nomeGestor, emailGestor, telefoneGestor, gestor);
     }
+
 
     public Colaborador getColabGestor() {
         return colabGestor;

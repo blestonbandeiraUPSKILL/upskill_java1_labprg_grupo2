@@ -13,7 +13,7 @@ import com.grupo2.t4j.repository.RepositorioCompetenciaTecnica;
  *
  * @author acris
  */
-public class RegistarComptetenciaTecnicaController {
+public class RegistarCompetenciaTecnicaController {
     
     /*public boolean registarCompetenciaTecnica(String codCT, String codAT, String descBreve, String descDetalhada){
         CompetenciaTecnica compTec = new CompetenciaTecnica (codCT, RepositorioAreaActividade.getAreaAtividadeByCodigo(codAT), descBreve, descDetalhada);
