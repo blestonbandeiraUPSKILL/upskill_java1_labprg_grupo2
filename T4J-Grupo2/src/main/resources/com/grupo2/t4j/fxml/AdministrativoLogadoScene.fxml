@@ -54,7 +54,7 @@
          </top></BorderPane>
    </center>
    <top>
-      <Label style="-fx-background-color: #000000;" text="Área do Administrador" textFill="WHITE" BorderPane.alignment="CENTER_RIGHT">
+      <Label style="-fx-background-color: #000000;" text="Área do Administrativo" textFill="WHITE" BorderPane.alignment="CENTER_RIGHT">
          <padding>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </padding>
