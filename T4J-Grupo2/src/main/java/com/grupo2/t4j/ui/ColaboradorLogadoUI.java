@@ -78,13 +78,26 @@ public class ColaboradorLogadoUI implements Initializable {
     @FXML
     private void selectCatTarAction(ActionEvent event) {
         Categoria categoriaTarefa = cmbCategoriaTarefa.getSelectionModel().getSelectedItem();
-        listViewCompTec.getItems().setAll(RegistarTarefaController.getCompetenciasTecnicasByCategoria());
+        listViewCompTec.getItems().setAll(registarTarefaController.getCompetenciasTecnicasByCategoria());
     }
 
     @FXML
     private void registarTarefaAction(ActionEvent event) {
+        try {
         registarTarefaController = new RegistarTarefaController();
-        
+        boolean adicionou = registarTarefaController.registarTarefa(
+                cmbAreaActividade.getSelectionModel().getSelectedItem(),
+                cmbCategoriaTarefa.getSelectionModel().getSelectedItem(),
+                txtReferencia.getText(), txtDesignacao.getText(), 
+                txtDescricaoInformal.getText(), txtDescricaoTecnica.getText(),
+                txtDuracao.getText(), txtCusto.getText());
+        AlertsUI.criarAlerta(Alert.AlertType.INFORMATION, MainApp.TITULO_APLICACAO, "Registar tarefa.",
+                    adicionou ? "Tarefa registada com sucesso."
+                            : "Não foi possível registar a tarefa.").show();
+        } catch (IllegalArgumentException iae) {
+            AlertsUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO, "Erro nos dados.",
+                    iae.getMessage()).show();
+        }
     }
 
     @FXML
