@@ -41,7 +41,7 @@ public class Plataforma {
         //repositorioColaborador = new RepositorioColaborador();
         //repositorioUtilizador = new RepositorioUtilizador();
         repositorioCompetenciaTecnica = RepositorioCompetenciaTecnica.getInstance();
-        repositorioTarefa = new RepositorioTarefa();
+        //repositorioTarefa = new RepositorioTarefa();
     }
 
     /**

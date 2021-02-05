@@ -64,8 +64,8 @@ public class ConfirmarRegistoOrgUI implements Initializable {
             try {
                 txtConfNomeOrganizacao.setText(organizacao.getNome());
                 txtConfNif.setText(organizacao.getNif());
-                txtConfTelefoneOrganizacao.setText(organizacao.getTelefone());
-                txtConfWebsite.setText(organizacao.getTelefone());
+                txtConfTelefoneOrganizacao.setText(organizacao.getTelefone().toString());
+                txtConfWebsite.setText(organizacao.getWebsite().toString());
                 txtConfEmailOrganizacao.setText(organizacao.getEmail().toString());
                 txtConfEndArruamento.setText(organizacao.getEnderecoPostal().getArruamento());
                 txtConfEndPorta.setText(organizacao.getEnderecoPostal().getPorta());
