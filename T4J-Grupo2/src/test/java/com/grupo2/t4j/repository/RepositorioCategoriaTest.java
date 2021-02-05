@@ -42,12 +42,19 @@ public class RepositorioCategoriaTest {
         
         //Act
         rc1.addCategoria(cat1);
-        
-        
-        
-       
-
-
+    }
+    @Test
+    public void testgetCategoriaById() {
+        //Arrange
+        RepositorioCategoria rc1= RepositorioCategoria.getInstance();
+        AreaActividade at= new AreaActividade ("12345","Cozinhar", "Cozinheiro");
+        List <CaracterizacaoCT> compTec = new ArrayList<>();
+        Categoria cat1 = new Categoria ("Chef", at, compTec);
+        rc1.addCategoria(cat1);
+        //Act
+        Categoria c1 = rc1.getCategoriaById("Chef_1");
+        //Assert
+        assertEquals(cat1,c1);
     }
     
     @Test
@@ -62,5 +69,22 @@ public class RepositorioCategoriaTest {
         
         //Assert
         assertTrue(rc1.getCategorias().contains(cat1));
+    }
+    
+    @Test
+    public void testGetCategoriasByAreaActividade() {
+        //Arrange
+        AreaActividade at= new AreaActividade ("123","Cozinha", "Cozinheiro de 2ª");
+        RepositorioCategoria rc1=  RepositorioCategoria.getInstance();
+        List <CaracterizacaoCT> compTec = new ArrayList<>();
+        Categoria cat1 = new Categoria ("Cozinheiro", at, compTec);
+        rc1.addCategoria(cat1);
+        
+        //Act
+        ArrayList<Categoria> cat2 = rc1.getCategoriasByAreaActividade(at);
+        
+        //
+        assertTrue(cat2.contains(cat1));
+        
     }
 }
