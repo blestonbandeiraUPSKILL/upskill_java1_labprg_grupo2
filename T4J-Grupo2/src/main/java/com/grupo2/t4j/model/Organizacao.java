@@ -235,6 +235,14 @@ public class Organizacao implements Serializable{
         Email email = new Email(emailOrg);
         return email;
     }
+    
+    @Override
+    public String toString(){
+        return String.format("A organização registada tem os seguintes dados: %nNome da"
+            + "Organização: %s %n/NIF: %s %n%s %nTelefone: %s %nWebsite: %s %nEmail: %s"
+                + "%nNome do Gestor: %s", nome, NIF, enderecoOrg.toString(), telefone,
+                websiteOrg.getWebsiteText(), emailOrg.getEmailText(), colabGestor.getNome());
+    }
 
     public static EnderecoPostal novoEndereco(String arruamento, String numeroPorta,
             String localidade, String codigoPostal) {

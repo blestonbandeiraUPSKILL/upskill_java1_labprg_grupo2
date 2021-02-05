@@ -129,7 +129,7 @@ public class RepositorioAdministrativo implements Serializable{
      * @param email o email do Administrador
      * @return Administrativo registado
      */
-    private Administrativo getAdministrativoByEmail(Email email) {
+    public Administrativo getAdministrativoByEmail(Email email) {
         Administrativo administrativo = null;
         for (int i = 0; i < this.listaAdministradores.size(); i++) {
             administrativo = this.listaAdministradores.get(i);

@@ -12,6 +12,10 @@ package com.grupo2.t4j.model;
 
 import  com.grupo2.t4j.exception.*;
 
+/**
+ *
+ * @author Geral
+ */
 public class EnderecoPostal {
 
     private String arruamento;
@@ -19,7 +23,13 @@ public class EnderecoPostal {
     private String localidade;
     private String codigoPostal;
     
-
+    /**
+     *
+     * @param arruamento
+     * @param numeroPorta
+     * @param localidade
+     * @param codigoPostal
+     */
     public EnderecoPostal(String arruamento, String numeroPorta, String localidade, String codigoPostal) {
         setArruamento(arruamento);
         setPorta(numeroPorta);
@@ -27,6 +37,10 @@ public class EnderecoPostal {
         setCodigoPostal(codigoPostal);        
     }
   
+    /**
+     *
+     * @param endereco
+     */
     public EnderecoPostal(EnderecoPostal endereco){
         setArruamento(endereco.arruamento);
         setPorta(endereco.numeroPorta);
@@ -34,22 +48,42 @@ public class EnderecoPostal {
         setCodigoPostal(endereco.codigoPostal); 
     }
 
+    /**
+     *
+     * @return
+     */
     public String getArruamento() {
         return arruamento;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getPorta() {
         return numeroPorta;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getLocalidade() {
         return localidade;
     }
     
+    /**
+     *
+     * @return
+     */
     public String getCodigoPostal() {
         return codigoPostal;
     }
 
+    /**
+     *
+     * @param arruamento
+     */
     public void setArruamento(String arruamento) {
         if (arruamento == null || arruamento.trim().isEmpty()) {
             throw new NomeInvalidoException("Arruamento é inválido!");
@@ -57,6 +91,10 @@ public class EnderecoPostal {
         this.arruamento = arruamento;
     }
     
+    /**
+     *
+     * @param numeroPorta
+     */
     public void setPorta(String numeroPorta) {
         if (numeroPorta == null || numeroPorta.trim().isEmpty()) {
             throw new NomeInvalidoException("Número de porta é inválido!");
@@ -64,6 +102,10 @@ public class EnderecoPostal {
         this.numeroPorta = numeroPorta;
     }
 
+    /**
+     *
+     * @param localidade
+     */
     public void setLocalidade(String localidade) {
         if (localidade == null || localidade.trim().isEmpty()) {
             throw new NomeInvalidoException("Localidade é inválida!");
@@ -71,6 +113,10 @@ public class EnderecoPostal {
         this.localidade = localidade;
     }
     
+    /**
+     *
+     * @param codigoPostal
+     */
     public void setCodigoPostal(String codigoPostal) {
         if (eCPValido(codigoPostal)){
             this.codigoPostal = codigoPostal;
@@ -80,6 +126,18 @@ public class EnderecoPostal {
         }
     }
     
+    @Override
+    public String toString(){
+        return String.format("Endereço: %nArruamento: %s"
+                + " %nNúmero de Porta: %s %nLocalidade: %s %nCódigo Postal: %s", arruamento, 
+                numeroPorta,localidade, codigoPostal);
+    }
+    
+    /**
+     *
+     * @param codigoPostal
+     * @return
+     */
     public static boolean eCPValido(String codigoPostal){
         boolean eValido = false;
         char [] cp = codigoPostal.toCharArray();

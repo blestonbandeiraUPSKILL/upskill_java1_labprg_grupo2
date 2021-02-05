@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.fxml.AdicionarCompetenciaTecnicaSceneController">
    <center>
       <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <top>
@@ -18,9 +18,9 @@
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefWidth="350.0">
                            <children>
                               <BorderPane prefHeight="300.0" prefWidth="200.0" />
-                              <TextField layoutX="15.0" layoutY="50.0" prefHeight="39.0" prefWidth="139.0" />
-                              <TextField layoutX="15.0" layoutY="155.0" prefHeight="42.0" prefWidth="241.0" />
-                              <TextArea layoutX="273.0" layoutY="50.0" prefHeight="147.0" prefWidth="417.0" />
+                              <TextField fx:id="btn_codigo" layoutX="15.0" layoutY="50.0" prefHeight="39.0" prefWidth="139.0" />
+                              <TextField fx:id="btn_descBreve" layoutX="15.0" layoutY="155.0" prefHeight="42.0" prefWidth="241.0" />
+                              <TextArea fx:id="btn_descDetalhada" layoutX="273.0" layoutY="50.0" prefHeight="147.0" prefWidth="417.0" />
                               <Label layoutX="25.0" layoutY="21.0" text="Código" />
                               <Label layoutX="25.0" layoutY="122.0" text="Descrição breve" />
                               <Label layoutX="282.0" layoutY="21.0" text="Descrição detalhada" />

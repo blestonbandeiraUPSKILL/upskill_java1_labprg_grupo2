@@ -2,6 +2,7 @@ package com.grupo2.t4j.repository;
 
 
 import com.grupo2.t4j.exception.CategoriaDuplicadaException;
+import com.grupo2.t4j.model.AreaActividade;
 import com.grupo2.t4j.model.Categoria;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -47,7 +48,7 @@ public class RepositorioCategoria implements Serializable{
         }
     }
     /**
-     * Retorina uma copida da categoria referente a um determinado id
+     * Retorna uma copida da categoria referente a um determinado id
      * @param id
      * @return copia
      */
@@ -63,6 +64,30 @@ public class RepositorioCategoria implements Serializable{
         return null;
     }
     
+    /**
+     * Retorna umz lista de categorias referentes a uma determinada Area de Actividade
+     * @param at
+     * @return 
+     */
+    public ArrayList<Categoria> getCategoriasByAreaActividade(AreaActividade at) {
+        ArrayList<Categoria> categoriaPorAt = new ArrayList<>();
+
+        for (Categoria cat : listaCategorias) {
+            if (cat.getAt().equals(at)) {
+                categoriaPorAt.add(cat);
+            }
+        }
+
+        return categoriaPorAt;
+    }
     
+    /**
+     * Retorna a lista de todas as categorias registadas
+     * @return 
+     */
+    public ArrayList<Categoria> getCategorias() {
+
+        return new ArrayList<Categoria>(listaCategorias);
+    }
     
 }

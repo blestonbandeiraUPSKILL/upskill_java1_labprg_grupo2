@@ -179,9 +179,10 @@ public class Colaborador extends Utilizador implements Serializable{
      */   
     @Override
     public String toString(){
-        return String.format("O colaborador %s tem os seguintes dados: /nfuncao: %s"
-                + " /nEmail: %s /nTelefone: %s /nPassword: %s", super.getNome(), 
-                funcao, super.getEmail(), telefone, super.getPassword());
+        return String.format("O colaborador %s tem os seguintes dados: %nfuncao: %s"
+                + " %nEmail: %s %nTelefone: %s %nPassword: %s", super.getNome(), 
+                funcao, super.getEmail().getEmailText(), telefone, 
+                super.getPassword().getPasswordText());
     }
     
     /**
@@ -190,8 +191,8 @@ public class Colaborador extends Utilizador implements Serializable{
      */
     @Override
     public String toStringSemPass(){
-        return String.format("O colaborador %s tem os seguintes dados: /nfuncao: %s"
-                + " /nEmail: %s /nTelefone: %s", super.getNome(), 
-                funcao, super.getEmail(), telefone);
+        return String.format("O colaborador %s tem os seguintes dados: %nfuncao: %s"
+                + " %nEmail: %s %nTelefone: %s", super.getNome(), 
+                funcao, super.getEmail().getEmailText(), telefone);
     }   
 }

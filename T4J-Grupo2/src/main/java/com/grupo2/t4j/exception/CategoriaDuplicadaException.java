@@ -9,7 +9,7 @@ package com.grupo2.t4j.exception;
  *
  * @author acris
  */
-public class CategoriaDuplicadaException extends RuntimeException{
+public class CategoriaDuplicadaException extends IllegalArgumentException{
     public CategoriaDuplicadaException(String s) {
         super(s);
     }
