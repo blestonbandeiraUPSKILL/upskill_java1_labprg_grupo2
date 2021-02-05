@@ -8,8 +8,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.BorderPane?>
 
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="491.0" prefWidth="596.0" style="-fx-background-color: #c4c4c4;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="491.0" prefWidth="596.0" style="-fx-background-color: #c4c4c4;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.fxml.ColaboradorLogadoSceneController">
    <top>
       <Label style="-fx-background-color: #000000;" text="Área do Colaborador" textFill="WHITE" BorderPane.alignment="CENTER_RIGHT">
          <padding>
@@ -33,7 +32,7 @@
                                           <Insets left="35.0" top="20.0" />
                                        </VBox.margin>
                                     </Label>
-                                    <ComboBox prefHeight="25.0" prefWidth="213.0" promptText="Escolha a Área de Actividade">
+                                    <ComboBox fx:id="cmbAreaActividade" onAction="#selectAreaActAction" prefHeight="25.0" prefWidth="213.0" promptText="Escolha a Área de Actividade">
                                        <VBox.margin>
                                           <Insets left="10.0" top="5.0" />
                                        </VBox.margin>
@@ -43,7 +42,7 @@
                                           <Insets left="35.0" top="20.0" />
                                        </VBox.margin>
                                     </Label>
-                                    <ComboBox prefHeight="25.0" prefWidth="213.0" promptText="Escolha a Categoria de Tarefa">
+                                    <ComboBox fx:id="cmbCategoriaTarefa" onAction="#selectCatTarAction" prefHeight="25.0" prefWidth="213.0" promptText="Escolha a Categoria de Tarefa">
                                        <VBox.margin>
                                           <Insets left="10.0" top="5.0" />
                                        </VBox.margin>
@@ -53,7 +52,7 @@
                                           <Insets left="25.0" top="20.0" />
                                        </VBox.margin>
                                     </Label>
-                                    <ListView prefHeight="132.0" prefWidth="235.0">
+                                    <ListView fx:id="listViewCompTec" prefHeight="132.0" prefWidth="235.0">
                                        <VBox.margin>
                                           <Insets left="10.0" right="10.0" top="5.0" />
                                        </VBox.margin>
@@ -72,37 +71,37 @@
                                           <Insets top="15.0" />
                                        </VBox.margin>
                                     </Label>
-                                    <TextField>
+                                    <TextField fx:id="txtReferencia">
                                        <VBox.margin>
                                           <Insets right="10.0" />
                                        </VBox.margin>
                                     </TextField>
                                     <Label text="Designação" />
-                                    <TextField>
+                                    <TextField fx:id="txtDesignacao">
                                        <VBox.margin>
                                           <Insets right="10.0" />
                                        </VBox.margin>
                                     </TextField>
                                     <Label text="Descrição Informal" />
-                                    <TextArea prefHeight="66.0" prefWidth="315.0">
+                                    <TextArea fx:id="txtDescricaoInformal" prefHeight="66.0" prefWidth="315.0">
                                        <VBox.margin>
                                           <Insets right="10.0" />
                                        </VBox.margin>
                                     </TextArea>
                                     <Label text="Descrição de Carácter Técnico" />
-                                    <TextArea prefHeight="63.0" prefWidth="325.0">
+                                    <TextArea fx:id="txtDescricaoTecnica" prefHeight="63.0" prefWidth="325.0">
                                        <VBox.margin>
                                           <Insets right="10.0" />
                                        </VBox.margin>
                                     </TextArea>
                                     <Label text="Estimativa de Duração (dias)" />
-                                    <TextField>
+                                    <TextField fx:id="txtDuracao">
                                        <VBox.margin>
                                           <Insets right="10.0" />
                                        </VBox.margin>
                                     </TextField>
                                     <Label text="Estimativa de Custo (€)" />
-                                    <TextField>
+                                    <TextField fx:id="txtCusto">
                                        <VBox.margin>
                                           <Insets right="10.0" />
                                        </VBox.margin>
@@ -113,12 +112,12 @@
                            <bottom>
                               <FlowPane alignment="CENTER" prefHeight="79.0" prefWidth="596.0" BorderPane.alignment="CENTER">
                                  <children>
-                                    <Button mnemonicParsing="false" text="Registar Tarefa">
+                                    <Button fx:id="btnRegistarTarefa" mnemonicParsing="false" onAction="#registarTarefaAction" text="Registar Tarefa">
                                        <FlowPane.margin>
                                           <Insets right="10.0" />
                                        </FlowPane.margin>
                                     </Button>
-                                    <Button mnemonicParsing="false" text="Cancelar">
+                                    <Button fx:id="btnCancelar" mnemonicParsing="false" onAction="#CancelarAction" text="Cancelar Registo">
                                        <FlowPane.margin>
                                           <Insets left="10.0" />
                                        </FlowPane.margin>
@@ -140,7 +139,7 @@
                                           <Insets bottom="10.0" />
                                        </VBox.margin>
                                     </Label>
-                                    <ComboBox prefHeight="25.0" prefWidth="211.0" promptText="Escolha a Área de Actividade">
+                                    <ComboBox fx:id="cmbArAct" onAction="#selectArAct" prefHeight="25.0" prefWidth="211.0" promptText="Escolha a Área de Actividade">
                                        <VBox.margin>
                                           <Insets bottom="20.0" />
                                        </VBox.margin>
@@ -150,7 +149,7 @@
                                           <Insets bottom="10.0" />
                                        </VBox.margin>
                                     </Label>
-                                    <ComboBox prefHeight="25.0" prefWidth="210.0" promptText="Escolha a Categoria">
+                                    <ComboBox fx:id="cmbCategoria" onAction="#selectCategoriaAction" prefHeight="25.0" prefWidth="210.0" promptText="Escolha a Categoria">
                                        <VBox.margin>
                                           <Insets bottom="20.0" />
                                        </VBox.margin>
@@ -160,7 +159,7 @@
                                           <Insets bottom="10.0" />
                                        </VBox.margin>
                                     </Label>
-                                    <ListView prefHeight="200.0" prefWidth="491.0">
+                                    <ListView fx:id="listViewTarefas" prefHeight="200.0" prefWidth="491.0">
                                        <VBox.margin>
                                           <Insets left="50.0" right="50.0" />
                                        </VBox.margin>
