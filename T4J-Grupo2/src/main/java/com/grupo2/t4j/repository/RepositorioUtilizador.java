@@ -22,7 +22,7 @@ public class RepositorioUtilizador implements Serializable{
      * Define uma instância estática do Repositório em que estão registados todos
      * os Utilizadores da plataforma
      */
-    private static RepositorioUtilizador repositorioUtilizador;
+    public static RepositorioUtilizador repositorioUtilizador;
     
     /**
      * Define o atributo da classe RepositorioUtilizador como uma lista de

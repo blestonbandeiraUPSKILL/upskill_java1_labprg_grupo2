@@ -54,6 +54,7 @@ public class RepositorioAdministrativoTest {
         System.out.println("Teste 1 ok");
     }   
     
+    // Não deu certo este
     @Test (expected = AdministrativoDuplicadoException.class)
     public void testAddAdministrativoDuplicado() {
         

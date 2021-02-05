@@ -12,9 +12,9 @@ package com.grupo2.t4j.repository;
 
 import com.grupo2.t4j.model.*;
 import com.grupo2.t4j.repository.*;
+import com.grupo2.t4j.exception.*;
 import org.junit.Test;
 import org.junit.jupiter.api.BeforeEach;
-//import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class RepositorioUtilizadorTest {
@@ -29,47 +29,59 @@ public class RepositorioUtilizadorTest {
 
     @Test
     public void testAddUtilizador() {
-        //Arrange
+       
         RepositorioUtilizador ru1 = RepositorioUtilizador.getInstance();
         
-        Utilizador u1= new Utilizador("Carol", "carol@upskill.pt", "12345678");
-        //Act
+        Utilizador u1= new Utilizador("Fulano", "fulano@upskill.pt", "12345678");
+      
         ru1.addUtilizador(u1);
-        //Assert
+        
         assertTrue(ru1.getListaUtilizadores().contains(u1));
     }
     
-    @Test 
-    public void testAddUtilizadorErroNome() {
-        //Arrange
+    // Não deu certo este
+    @Test (expected = UtilizadorDuplicadoException.class)
+    public void testAddUtilizadorDuplicado() {
+       
         RepositorioUtilizador ru1 = RepositorioUtilizador.getInstance();
         
-        Utilizador u1= new Utilizador("Oi", "carol@upskill.pt", "12345678");
-        //Act
+        Utilizador u1= new Utilizador("Fulano", "fulano@upskill.pt", "12345678");
+        Utilizador u2= new Utilizador("Fulano", "fulano@upskill.pt", "12345678");
+        
         ru1.addUtilizador(u1);
-        //Assert
-        assertTrue(ru1.getListaUtilizadores().contains(u1));
+        ru1.addUtilizador(u2);              
     }
-
-    @Test
-    public void testSetListaUtilizadores() {
+    
+    @Test (expected = NomeInvalidoException.class)
+    public void testAddUtilizadorErroNome() {
+        
+        RepositorioUtilizador ru1 = RepositorioUtilizador.getInstance();
+        
+        Utilizador u1= new Utilizador("", "fulano@upskill.pt", "12345678");
+        
+        ru1.addUtilizador(u1);
     }
-
-    @Test
-    public void testGetUtilizadores() {
-    }
-
+    
+    // Não deu certo este
     @Test
     public void testGetUtilizadorByEmail() {
-         //Arrange
+        
         RepositorioUtilizador ru1 = RepositorioUtilizador.getInstance();
-        Email email = new Email("carol@upskill.pt");
-        Utilizador u2 = ru1.getUtilizadorByEmail(email);
-         //Act
-        u2.toString();
-        //u2.toStringSemPass();
-        //Assert
-        assertEquals("Carol",u2.getNome());
-        assertEquals("carol@upskill.pt",u2.getEmail().toString());
+        
+        Utilizador u1 = new Utilizador("Fulano", "fulano@upskill.pt", "12345678");
+        Utilizador u2 = new Utilizador("Beltrano", "beltrano@upskill.pt", "12345678");
+        
+        ru1.addUtilizador(u1);
+        ru1.addUtilizador(u2); 
+        
+        Email email1 = new Email("fulano@upskill.pt");
+        Email email2 = new Email("beltrano@upskill.pt");
+        
+        Utilizador u3 = ru1.getUtilizadorByEmail(email1);
+        Utilizador u4 = ru1.getUtilizadorByEmail(u2.getEmail());
+        
+        assertEquals(u1,u3);
+        assertEquals(u2,u4);
+        
     }
 }
