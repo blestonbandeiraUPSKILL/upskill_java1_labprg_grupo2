@@ -65,15 +65,15 @@ public class ConfirmarRegistoOrgUI implements Initializable {
                 txtConfNomeOrganizacao.setText(organizacao.getNome());
                 txtConfNif.setText(organizacao.getNif());
                 txtConfTelefoneOrganizacao.setText(organizacao.getTelefone().toString());
-                txtConfWebsite.setText(organizacao.getWebsite().toString());
-                txtConfEmailOrganizacao.setText(organizacao.getEmail().toString());
+                txtConfWebsite.setText(organizacao.getWebsite().getWebsiteText());
+                txtConfEmailOrganizacao.setText(organizacao.getEmail().getEmailText());
                 txtConfEndArruamento.setText(organizacao.getEnderecoPostal().getArruamento());
                 txtConfEndPorta.setText(organizacao.getEnderecoPostal().getPorta());
                 txtConfEndLocalidade.setText(organizacao.getEnderecoPostal().getLocalidade());
                 txtConfEndCodPostal.setText(organizacao.getEnderecoPostal().getCodigoPostal());
                 txtConfNomeGestor.setText(organizacao.getNomeGestor());
-                txtConfTelefoneGestor.setText(organizacao.getTelefoneGestor().toString());
-                txtConfEmailGestor.setText(organizacao.getEmailGestor().toString());
+                txtConfTelefoneGestor.setText(organizacao.getTelefoneGestor());
+                txtConfEmailGestor.setText(organizacao.getEmailGestor().getEmailText());
 
             } catch (Exception exception) {
                 exception.printStackTrace();
