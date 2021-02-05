@@ -8,7 +8,9 @@ package com.grupo2.t4j.repository;
 import org.junit.Test;
 import com.grupo2.t4j.exception.CompetenciaTecnicaDuplicadaException;
 import com.grupo2.t4j.exception.DescricaoInvalidaException;
+import com.grupo2.t4j.model.AreaActividade;
 import com.grupo2.t4j.model.CompetenciaTecnica;
+import java.util.ArrayList;
 import org.junit.jupiter.api.BeforeEach;
 //import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
@@ -81,19 +83,20 @@ public class RepositorioCompetenciaTecnicaTest {
         
     }
 
-    /*@Test
+    @Test
     public void testGetCompetenciasTecnicasByAreaActividade() {
         //Arrange
+        AreaActividade at= new AreaActividade ("123","Cozinha", "Cozinheiro de 2ª");
         RepositorioCompetenciaTecnica rc1=  RepositorioCompetenciaTecnica.getInstance();
-        CompetenciaTecnica ct1= new CompetenciaTecnica("123456", "Jogo do Galo", "Jogo para duas pessoas");
+        CompetenciaTecnica ct1= new CompetenciaTecnica("123456", "Jogo do Galo", "Jogo para duas pessoas",at);
         rc1.addCompetenciaTecnica(ct1);
         
         //Act
-        CompetenciaTecnica ct2 = rc1.getCompetenciasTecnicasByAreaActividade("123456");
+        ArrayList<CompetenciaTecnica> ct2 = rc1.getCompetenciasTecnicasByAreaActividade(at);
         
         //
-        assertEquals(ct1, ct2);
+        assertTrue(ct2.contains(ct1));
         
-    }*/
+    }
     
 }

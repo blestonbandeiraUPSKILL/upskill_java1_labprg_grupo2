@@ -70,4 +70,21 @@ public class RepositorioCategoriaTest {
         //Assert
         assertTrue(rc1.getCategorias().contains(cat1));
     }
+    
+    @Test
+    public void testGetCategoriasByAreaActividade() {
+        //Arrange
+        AreaActividade at= new AreaActividade ("123","Cozinha", "Cozinheiro de 2ª");
+        RepositorioCategoria rc1=  RepositorioCategoria.getInstance();
+        List <CaracterizacaoCT> compTec = new ArrayList<>();
+        Categoria cat1 = new Categoria ("Cozinheiro", at, compTec);
+        rc1.addCategoria(cat1);
+        
+        //Act
+        ArrayList<Categoria> cat2 = rc1.getCategoriasByAreaActividade(at);
+        
+        //
+        assertTrue(cat2.contains(cat1));
+        
+    }
 }
