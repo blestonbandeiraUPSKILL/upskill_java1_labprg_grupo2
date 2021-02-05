@@ -54,8 +54,8 @@ public class RepositorioCategoria implements Serializable{
         for (int i = 0; i < this.listaCategorias.size(); i++) {
             categoria = this.listaCategorias.get(i);
             if (categoria.getId().equals(id)) {
-                Categoria copia = new Categoria(categoria);
-                return copia;
+               // Categoria copia = new Categoria(categoria);
+                return categoria;
             }
         }
         return null;
