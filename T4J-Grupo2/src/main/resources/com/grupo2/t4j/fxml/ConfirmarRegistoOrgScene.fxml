@@ -40,7 +40,7 @@
                         <Font name="Calibri" size="14.0" />
                     </font>
                  </Label>
-                 <Label text="NIF" GridPane.rowIndex="1">
+                 <Label text="NIPC" GridPane.rowIndex="1">
                     <font>
                         <Font name="Calibri" size="14.0" />
                     </font>

@@ -138,12 +138,12 @@ public class AreaActividade implements Serializable{
      * Representação textual da classe Área de Actividade
      * @return codigo, descBreve e descDetalhada
      */ 
-   /* @Override
+    @Override    
     public String toString(){
         return String.format("A Área de Actividade de código %s tem: %nDescrição "
                 + "breve: %s. %nDescrição detalhada: %s.", codigo, descBreve, descDetalhada );
     }
-    */
+    
     /**
      * Representação textual da classe Área de Actividade no formato expresso
      * @return codigo, descBreve e descDetalhada

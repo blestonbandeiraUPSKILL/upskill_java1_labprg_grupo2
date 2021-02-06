@@ -37,6 +37,7 @@ public class StartingPageUI implements Initializable {
     @FXML TextField txtEmailLogin;
     @FXML TextField txtPasswordLogin;
     @FXML Button btnSair;
+    @FXML Button btnAdministrativoLogado;
 
     public ApplicationController getApplicationController() {
         return applicationController;
@@ -50,26 +51,6 @@ public class StartingPageUI implements Initializable {
             sceneRegistarOrganizacao = new Scene(rootRegistarOrg);
             RegistarOrgEGestorUI registarOrgEGestorUI = loaderRegistarOrg.getController();
             registarOrgEGestorUI.associarParentUI(this);
-
-            FXMLLoader loaderGestor = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/GestorLogadoScene.fxml"));
-            Parent rootGestor = loaderGestor.load();
-            sceneGestor = new Scene(rootGestor);
-            GestorLogadoUI gestorLogadoUI = loaderGestor.getController();
-            gestorLogadoUI.associarParentUI(this);
-
-            /*
-            FXMLLoader loaderColaborador = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/ColaboradorLogadoScene.fxml"));
-            Parent rootColaborador = loaderColaborador.load();
-            sceneColaborador = new Scene(rootColaborador);
-            ColaboradorLogadoUI colaboradorLogadoUI = loaderColaborador.getController();
-            colaboradorLogadoUI.associarParentUI(this);
-            */
-
-            FXMLLoader loaderAdministrativo = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/AdministrativoLogadoScene.fxml"));
-            Parent rootAdministrativo = loaderAdministrativo.load();
-            sceneAdministrativo = new Scene(rootAdministrativo);
-            AdministrativoLogadoUI administrativoLogadoUI = loaderAdministrativo.getController();
-            administrativoLogadoUI.associarParentUI(this);
 
             adicionarStage = new Stage();
             adicionarStage.initModality(Modality.APPLICATION_MODAL);;
@@ -143,5 +124,71 @@ public class StartingPageUI implements Initializable {
             }
         });
         window.fireEvent(new WindowEvent(window, WindowEvent.WINDOW_CLOSE_REQUEST));
+    }
+
+    public void navigateAdministrativoLogado(ActionEvent actionEvent) throws IOException {
+       try {
+           FXMLLoader loaderAdministrativo = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/AdministrativoLogadoScene.fxml"));
+           Parent rootAdministrativo = loaderAdministrativo.load();
+           sceneAdministrativo = new Scene(rootAdministrativo);
+           AdministrativoLogadoUI administrativoLogadoUI = loaderAdministrativo.getController();
+           administrativoLogadoUI.associarParentUI(this);
+
+           adicionarStage.setScene(sceneAdministrativo);
+           adicionarStage.setTitle("T4J - Administrativo");
+           adicionarStage.show();
+           btnAdministrativoLogado.getScene().getWindow().hide();
+       }
+       catch (IOException exception) {
+           exception.printStackTrace();
+           AlertsUI.criarAlerta(Alert.AlertType.ERROR,
+                   MainApp.TITULO_APLICACAO,
+                   "Erro",
+                   exception.getMessage());
+       }
+
+    }
+
+    public void navigateGestorLogado(ActionEvent actionEvent) {
+        try {
+            FXMLLoader loaderGestor = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/GestorLogadoScene.fxml"));
+            Parent rootGestor = loaderGestor.load();
+            sceneGestor = new Scene(rootGestor);
+            GestorLogadoUI gestorLogadoUI = loaderGestor.getController();
+            gestorLogadoUI.associarParentUI(this);
+
+            adicionarStage.setScene(sceneGestor);
+            adicionarStage.setTitle("T4J - Gestor da Organização");
+            adicionarStage.show();
+        }
+        catch (IOException exception) {
+            exception.printStackTrace();
+            AlertsUI.criarAlerta(Alert.AlertType.ERROR,
+                    MainApp.TITULO_APLICACAO,
+                    "Erro",
+                    exception.getMessage());
+        }
+    }
+
+    public void navigateColaboradorLogado(ActionEvent actionEvent) {
+        try {
+            FXMLLoader loaderColaborador = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/ColaboradorLogadoScene.fxml"));
+            Parent rootColaborador = loaderColaborador.load();
+            sceneColaborador = new Scene(rootColaborador);
+            ColaboradorLogadoUI colaboradorLogadoUI = loaderColaborador.getController();
+            colaboradorLogadoUI.associarParentUI(this);
+
+            adicionarStage.setScene(sceneColaborador);
+            adicionarStage.setTitle("T4J - Colaborador");
+            adicionarStage.show();
+
+        }
+        catch (IOException exception) {
+            exception.printStackTrace();
+            AlertsUI.criarAlerta(Alert.AlertType.ERROR,
+                    MainApp.TITULO_APLICACAO,
+                    "Erro",
+                    exception.getMessage());
+        }
     }
 }
