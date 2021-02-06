@@ -9,6 +9,7 @@ import com.grupo2.t4j.exception.CompetenciaTecnicaDuplicadaException;
 import com.grupo2.t4j.model.AreaActividade;
 import com.grupo2.t4j.model.Categoria;
 import com.grupo2.t4j.model.CompetenciaTecnica;
+import com.grupo2.t4j.model.GrauProficiencia;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -49,6 +50,16 @@ public class RepositorioCompetenciaTecnica implements Serializable{
         CompetenciaTecnica ct = getCompetenciaTecnicaByCodigo(competenciaTecnica.getCodigo());
         if (ct == null) {
             this.listaCompTecnicas.add(competenciaTecnica);
+            return true;
+        } else {
+            throw new CompetenciaTecnicaDuplicadaException(ct.getCodigo() + ": Competencia Tecnica já existe");
+        }
+    }
+    public boolean addCompetenciaTecnica(String codigo, String descricaoBreve, String descricaoDetalhada, AreaActividade at, GrauProficiencia gp){
+        CompetenciaTecnica ct = getCompetenciaTecnicaByCodigo(codigo);
+        if (ct == null) {
+            CompetenciaTecnica compTec = new CompetenciaTecnica(codigo, descricaoBreve, descricaoDetalhada, at, gp);
+            this.listaCompTecnicas.add(compTec);
             return true;
         } else {
             throw new CompetenciaTecnicaDuplicadaException(ct.getCodigo() + ": Competencia Tecnica já existe");
