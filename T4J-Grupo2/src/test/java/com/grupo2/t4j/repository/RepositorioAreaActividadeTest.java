@@ -102,12 +102,11 @@ public class RepositorioAreaActividadeTest {
         raa1.addAreaActividade(aa2);
         
         List<AreaActividade> lista = raa1.getListaAreasActividade();
-<<<<<<< HEAD
-=======
+
         
         assertEquals(lista.get(0),aa1);
         assertEquals(lista.get(1),aa2);
->>>>>>> f0c7c68725f70bf9353f2eb06dd476d868c91b0f
+
         
     }
 }

@@ -1,5 +1,7 @@
 package com.grupo2.t4j.ui;
 
+import com.grupo2.t4j.model.AreaActividade;
+import com.grupo2.t4j.model.CompetenciaTecnica;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -12,12 +14,34 @@ import javafx.stage.WindowEvent;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 
 public class AdicionarCategoriaTarefaUI implements Initializable {
 
     private AdministrativoLogadoUI administrativoLogadoUI;
 
-    @FXML Button btnCancelar;
+    @FXML
+    private Button btnConfirmar;
+
+    @FXML
+    private TextArea txtDescricaoDetalhada;
+
+    @FXML
+    private ListView<CompetenciaTecnica> listViewCompTecCat;
+
+    @FXML
+    private Button btnCancelar;
+
+    @FXML
+    private Button btnAddCompTecCat;
+
+    @FXML
+    private ComboBox<AreaActividade> cmbAreaActividade;
+
+    @FXML
+    private TextField txtDescricaoBreve;
 
     public void associarParentUI(AdministrativoLogadoUI administrativoLogadoUI) {
         this.administrativoLogadoUI = administrativoLogadoUI;
@@ -45,5 +69,16 @@ public class AdicionarCategoriaTarefaUI implements Initializable {
             }
         });
         window.fireEvent(new WindowEvent(window, WindowEvent.WINDOW_CLOSE_REQUEST));
+    }
+    @FXML
+    void registarCategoriaAction(ActionEvent event) {
+
+    }
+
+    
+
+    @FXML
+    void addCompTec2Cat(ActionEvent event) {
+
     }
 }
