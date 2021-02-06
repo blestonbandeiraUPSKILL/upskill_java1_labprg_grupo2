@@ -9,6 +9,20 @@ package com.grupo2.t4j.controller;
  *
  * @author CAD
  */
+
+import com.grupo2.t4j.model.Colaborador;
+import com.grupo2.t4j.repository.RepositorioColaborador;
+import java.util.List;
+
 public class RegistarColaboradorController {
     
+    private RepositorioColaborador repositorioColaborador;
+
+    public boolean registarColaborador(String nome, String emailCol, String funcao, String telefone) {
+        return repositorioColaborador.getInstance().verificacaoAddColaborador(nome, emailCol, funcao, telefone);
+    }
+
+    public List<Colaborador> getColaboradores() {
+        return repositorioColaborador.getInstance().getListaColaboradores();
+    }
 }

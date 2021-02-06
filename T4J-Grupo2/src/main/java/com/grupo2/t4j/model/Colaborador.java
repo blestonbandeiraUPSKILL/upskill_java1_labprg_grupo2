@@ -28,6 +28,12 @@ public class Colaborador extends Utilizador implements Serializable{
      */
 
     private Rolename rolename;
+    
+    /**
+     * Password inicial de um Colaborador em processo de registo - antes de receber 
+     * a password oficial por email.
+     */
+    private static final Password PASSWORD_POR_OMISSAO = new Password("00000000");
 
     /**
      * Construtor vazio da classe Colaborador
@@ -106,7 +112,19 @@ public class Colaborador extends Utilizador implements Serializable{
         setFuncao(funcao);
         setTelefone(telefone);
     }
-
+    
+    /**
+     * Construtor da classe Colaborador com Password oficial ainda a ser gerada
+     * @param nome o nome do Colaborador
+     * @param emailCol o email do Colaborador em formato String
+     * @param funcao a função do Colaborador da organização
+     * @param telefone o telefone do Colaborador da organização     * 
+     */
+    public Colaborador(String nome, String emailCol, String funcao, String telefone){
+        super(nome, emailCol, PASSWORD_POR_OMISSAO);
+        setFuncao(funcao);
+        setTelefone(telefone);
+    }
 
     /* Construtor da classe Colaborador para uso específico de Gestor de Organização
      * @param nomeGestor o nome do Gestor da Organização
