@@ -75,18 +75,18 @@ public class AdicionarCategoriaTarefaUI implements Initializable {
         window.fireEvent(new WindowEvent(window, WindowEvent.WINDOW_CLOSE_REQUEST));
     }
 
-    @FXML
+  /*  @FXML
     void registarCategoriaAction(ActionEvent event) {
         try {
             registarCategoriaController = new RegistarCategoriaController();
 
             boolean adicionou = registarCategoriaController.registarCategoria(
 
-            )
+            );
         }
 
 
-    }
+    }*/
 
     @FXML
     public void addCompTec2Cat(ActionEvent event) {

@@ -28,10 +28,15 @@ public class Categoria implements Serializable{
     private int id2=0;
     
     /**
-     * Descricao da categor
+     * Descricao breve da categoria
      */
-    private String descricao;
-    
+    private String descBreve;
+
+    /**
+     * Descrição detalhada da categoria
+     */
+    private String descDetalhada;
+
     /**
      * Area de actividade a que se refere a categoria
      */
@@ -40,19 +45,21 @@ public class Categoria implements Serializable{
     /**
      * Lista de coompetencias tecnicas tipicamente necessarias para a categoria
      */
-    private List<CaracterizacaoCT> compTecnicasCaracter=new ArrayList<>();
+    private List<CaracterizacaoCT> caracterizacaoCTS = new ArrayList<>();
     
     /**
      *Construtor Categoria
-     * @param descricao
+     * @param descBreve
+     * @param descDetalhada
      * @param at
-     * @param compTecnicas
+     * @param caracterizacaoCTS
      */
-    public Categoria (String descricao, AreaActividade at, List<CaracterizacaoCT> compTecnicasCaracter){
-        setDescricao(descricao);
+    public Categoria (String descBreve, String descDetalhada, AreaActividade at, List<CaracterizacaoCT> caracterizacaoCTS){
+        setDescBreve(descBreve);
+        setDescDetalhada(descDetalhada);
         setAt(at);
-        setCompTecnicasCaracter(compTecnicasCaracter);
-        this.id = geradorId(descricao, id2);
+        setCompTecnicasCaracter(caracterizacaoCTS);
+        setId(descBreve, id2);
     }
 
     /**
@@ -60,10 +67,11 @@ public class Categoria implements Serializable{
      * @param categoria
      */
     public Categoria (Categoria categoria){
-        setId(id);
-        setDescricao(descricao);
-        setAt(at);
-        setCompTecnicasCaracter(compTecnicasCaracter);
+        setId(categoria.descBreve, id2);
+        setDescBreve(categoria.descBreve);
+        setDescDetalhada(categoria.descDetalhada);
+        setAt(categoria.at);
+        setCompTecnicasCaracter(categoria.caracterizacaoCTS);
     }
 
     /**
@@ -76,30 +84,49 @@ public class Categoria implements Serializable{
 
     /**
      *Atualiza o id da categoria
-     * @param id
+     * @param descBreve, id2
      */
-    public void setId(String id) {
+    public void setId(String descBreve, int id2) {
         
-        this.id = id;
+        this.id = geradorId(descBreve, id2);
+    }
+
+    /**
+     *
+     * Devolve a descrição detalhada da categoria
+     *
+     * @return descDetalhada;
+     */
+    public String getDescDetalhada() {
+        return descDetalhada;
     }
 
     /**
      *Retorna a descricao da categoria
      * @return
      */
-    public String getDescricao() {
-        return descricao;
+    public String getDescBreve() {
+        return descBreve;
     }
 
     /**
      *Atualiza a descricao da categoria
-     * @param descricao
+     * @param descBreve
      */
-    public void setDescricao(String descricao) {
-        if (descricao == null || descricao.trim().isEmpty()) {
-            throw new DescricaoInvalidaException("Deve introduzir uma descrição válida!");
+    public void setDescBreve(String descBreve) {
+        if (descBreve == null || descBreve.trim().isEmpty()) {
+            throw new DescricaoInvalidaException("Deve introduzir uma descrição breve válida!");
         } else {
-            this.descricao = descricao;
+            this.descBreve = descBreve;
+        }
+    }
+
+    public void setDescDetalhada(String descDetalhada) {
+        if(descDetalhada == null || descDetalhada.trim().isEmpty()) {
+            throw new DescricaoInvalidaException("Deve introduzir uma descrição detalhada válida!");
+        }
+        else {
+            this.descDetalhada = descDetalhada;
         }
     }
 
@@ -113,7 +140,7 @@ public class Categoria implements Serializable{
 
     /**
      *Atualiza a Area de Actividade
-     * @param at
+     * @param areaActividade
      */
     public void setAt(AreaActividade areaActividade) {
         if (areaActividade != null) {
@@ -128,27 +155,27 @@ public class Categoria implements Serializable{
      * @return
      */
     public List<CaracterizacaoCT> getCompTecnicasCaracter() {
-        return new ArrayList<CaracterizacaoCT>(compTecnicasCaracter);
+        return new ArrayList<CaracterizacaoCT>(caracterizacaoCTS);
     }
 
     /**
      *Atualiza a lista de competencias tecnicas caracterizadas
-     * @param compTecnicas
+     * @param caracterizacaoCTS
      */
-    public void setCompTecnicasCaracter(List<CaracterizacaoCT> compTecnicasCaracter) {
-        this.compTecnicasCaracter = compTecnicasCaracter;
+    public void setCompTecnicasCaracter(List<CaracterizacaoCT> caracterizacaoCTS) {
+        this.caracterizacaoCTS = caracterizacaoCTS;
     }
     
     /**
-     *Gera um id baseado na descricao da categoria
-     * @param descricao
+     *Gera um id baseado na descBreve da categoria
+     * @param descBreve
      * @param id2
      * @return
      */
-    public String geradorId(String descricao,int id2){
+    public String geradorId(String descBreve,int id2){
         id2++;
         StringBuilder s = new StringBuilder();
-        s.append(descricao);
+        s.append(descBreve);
         s.append("_");
         s.append(id2);
         return s.toString();
@@ -159,7 +186,7 @@ public class Categoria implements Serializable{
      */
     public String toStringCompTec (){
         StringBuilder s = new StringBuilder();
-        for (CaracterizacaoCT cct : this.compTecnicasCaracter) {
+        for (CaracterizacaoCT cct : this.caracterizacaoCTS) {
             s.append("->");
             s.append(cct.toString());
             s.append("\n");
@@ -173,6 +200,6 @@ public class Categoria implements Serializable{
      */
     @Override
     public String toString(){
-        return String.format("%s; %s; %s", descricao, at.getDescBreve(), toStringCompTec());
+        return String.format("%s; %s; %s", descBreve, at.getDescBreve(), toStringCompTec());
     }
 }

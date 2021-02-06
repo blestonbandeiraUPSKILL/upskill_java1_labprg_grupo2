@@ -6,6 +6,7 @@
 package com.grupo2.t4j.controller;
 
 import com.grupo2.t4j.model.AreaActividade;
+import com.grupo2.t4j.model.CaracterizacaoCT;
 import com.grupo2.t4j.model.CompetenciaTecnica;
 import com.grupo2.t4j.model.GrauProficiencia;
 import com.grupo2.t4j.repository.RepositorioAreaActividade;
@@ -24,9 +25,10 @@ public class RegistarCompetenciaTecnicaController {
 
     public boolean registarCompetenciaTecnica(
             String codigo,
+            AreaActividade at,
             String descricaoBreve,
-            String descricaoDetalhada, AreaActividade at, GrauProficiencia gp) {
-        return RepositorioCompetenciaTecnica.getInstance().addCompetenciaTecnica(codigo, descricaoBreve, descricaoDetalhada, at, gp);
+            String descricaoDetalhada) {
+        return RepositorioCompetenciaTecnica.getInstance().addCompetenciaTecnica(codigo, at, descricaoBreve, descricaoDetalhada);
     }
     
     /*public boolean registarCompetenciaTecnica(String codCT, String codAT, String descBreve, String descDetalhada){
@@ -37,4 +39,6 @@ public class RegistarCompetenciaTecnicaController {
     public List<AreaActividade> getListaAreaActividade() {
         return RepositorioAreaActividade.getInstance().getListaAreasActividade();
     }
+
+
 }

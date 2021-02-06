@@ -5,8 +5,7 @@
  */
 package com.grupo2.t4j.controller;
 
-import com.grupo2.t4j.model.AreaActividade;
-import com.grupo2.t4j.model.CompetenciaTecnica;
+import com.grupo2.t4j.model.*;
 import com.grupo2.t4j.repository.RepositorioCategoriaTarefa;
 
 import java.util.List;
@@ -20,10 +19,11 @@ public class RegistarCategoriaController {
     public boolean registarCategoriaController (AreaActividade areaActividade,
                                                 String descBreve,
                                                 String descDetalhada,
-                                                List<CompetenciaTecnica> competenciasTecnicas) {
-        return RepositorioCategoriaTarefa.getInstance().addCategoria(areaActividade, descBreve, descDetalhada, competenciasTecnicas);
+                                                List<CaracterizacaoCT> ccts) {
 
-        );
+        return RepositorioCategoriaTarefa.getInstance().addCategoria(
+                 descBreve, descDetalhada, areaActividade, ccts);
+
     }
 
 

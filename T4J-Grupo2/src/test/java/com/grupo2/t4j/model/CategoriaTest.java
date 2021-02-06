@@ -31,7 +31,7 @@ public class CategoriaTest {
     public void setUp() throws Exception {
     }
     
-    @Test
+   /* @Test
     public void novaCategoriaTest() {
         //Arrange
         AreaActividade at= new AreaActividade ("123","Cozinha", "Cozinheiro de 2ª");
@@ -46,16 +46,16 @@ public class CategoriaTest {
         //Assert
         assertEquals(expectedResult, result);
         
-    }
+    }*/
     
-    @Test (expected = DescricaoInvalidaException.class)
+  /*  @Test (expected = DescricaoInvalidaException.class)
     public void novaCategoriaInvalidaTest() {
        
         AreaActividade at= new AreaActividade ("223","Cozinha", "Cozinheiro de 2ª");
         List <CaracterizacaoCT> compTec = new ArrayList<>(); 
         Categoria ct1 = new Categoria ("", at, compTec);
        
-    }
+    }*/
 
    /* @Test
     public void toStringCompTecTest() {

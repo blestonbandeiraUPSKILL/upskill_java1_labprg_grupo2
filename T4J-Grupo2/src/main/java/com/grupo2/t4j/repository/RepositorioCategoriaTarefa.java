@@ -47,11 +47,11 @@ public class RepositorioCategoriaTarefa implements Serializable{
 
     public boolean addCategoria(AreaActividade areaActividade,
                                 String descBreve, String descDetalhada,
-                                List<CompetenciaTecnica> competenciaTecnicas, String codigo, CaracterizacaoCT cct, GrauProficiencia gp) throws CategoriaDuplicadaException {
+                                List<CompetenciaTecnica> competenciaTecnicas, String codigo, List<CaracterizacaoCT> ccts) throws CategoriaDuplicadaException {
         Categoria c = getCategoriaById(codigo);
         if (c == null) {
 
-            Categoria cat = new Categoria(areaActividade, descBreve, descDetalhada, cct);
+            Categoria cat = new Categoria(descBreve, descDetalhada, areaActividade, ccts);
             this.listaCategorias.add(cat);
             return true;
         } else {
@@ -102,5 +102,13 @@ public class RepositorioCategoriaTarefa implements Serializable{
 
         return new ArrayList<Categoria>(listaCategorias);
     }
-    
+
+    public boolean addCategoria(String descBreve,
+                                String descDetalhada,
+                                AreaActividade areaActividade,
+                                List<CaracterizacaoCT> ccts) {
+
+       return listaCategorias.add(new Categoria(descBreve, descDetalhada, areaActividade, ccts));
+
+    }
 }
