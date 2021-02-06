@@ -175,12 +175,14 @@ public class ColaboradorLogadoUI implements Initializable {
     @FXML
     private void selectCategoriaAction(ActionEvent event) {
         Categoria categoria = cmbCategoria.getSelectionModel().getSelectedItem();
+
     }
 
     public void updateListViewTarefas(ActionEvent actionEvent) {
     }
 
     public void navigateAddTarefa(ActionEvent actionEvent) {
+
     }
 
     /*public void registarTarefaAction(ActionEvent actionEvent) {

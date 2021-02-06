@@ -26,7 +26,6 @@ public class CompetenciaTecnica implements Serializable{
     private String descricaoDetalhada;
     private AreaActividade areaActividade;
     private CaracterizacaoCT cct;
-    private GrauProficiencia gp;
     
     private static final char SEPARADOR = ';';
     
@@ -43,19 +42,6 @@ public class CompetenciaTecnica implements Serializable{
         setDescricaoDetalhada(descricaoDetalhada);
         setAreaActividade(areaActividade);
         setCct(cct);    
-    }
-    /**
-     * Construtor CompetenciaTecnica
-     * @param codigo
-     * @param descricaoBreve
-     * @param descricaoDetalhada
-     * @param areaActividade 
-     */
-    public CompetenciaTecnica(String codigo, String descricaoBreve, String descricaoDetalhada, AreaActividade areaActividade){
-        setCodigo(codigo);
-        setDescricaoBreve(descricaoBreve);
-        setDescricaoDetalhada(descricaoDetalhada);
-        setAreaActividade(areaActividade);
     }
     
     /**
@@ -80,12 +66,11 @@ public class CompetenciaTecnica implements Serializable{
         setDescricaoDetalhada(compTec.descricaoDetalhada);
     }
 
-    public CompetenciaTecnica(String codigo, String descricaoBreve, String descricaoDetalhada, AreaActividade at, GrauProficiencia gp) {
+    public CompetenciaTecnica(String codigo, String descricaoBreve, String descricaoDetalhada, AreaActividade at) {
         setCodigo(codigo);
         setDescricaoBreve(descricaoBreve);
         setDescricaoDetalhada(descricaoDetalhada);
         setAreaActividade(at);
-        this.gp = gp;
     }
 
     /**

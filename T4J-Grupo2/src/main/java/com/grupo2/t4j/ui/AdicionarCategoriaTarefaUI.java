@@ -1,5 +1,6 @@
 package com.grupo2.t4j.ui;
 
+import com.grupo2.t4j.controller.RegistarCategoriaController;
 import com.grupo2.t4j.model.AreaActividade;
 import com.grupo2.t4j.model.CompetenciaTecnica;
 import java.io.IOException;
@@ -26,32 +27,22 @@ import javafx.stage.Stage;
 public class AdicionarCategoriaTarefaUI implements Initializable {
 
     private AdministrativoLogadoUI administrativoLogadoUI;
-    private CaracterizarCompetenciaTecnicaUI caracterizarCompetenciaTecnicaUI;
     private Scene sceneCaracterizarCompetenciaTecnica;
     private Stage adicionarStage;
     private Scene sceneStartingPage;
+    private RegistarCategoriaController registarCategoriaController;
 
 
-    @FXML
-    private Button btnConfirmar;
 
-    @FXML
-    private TextArea txtDescricaoDetalhada;
+    @FXML TextField txtDescricaoBreve;
+    @FXML TextArea txtDescricaoDetalhada;
+    @FXML Button btnConfirmar;
+    @FXML Button btnCancelar;
+    @FXML Button btnAddCompTecCat;
+    @FXML ComboBox<AreaActividade> cmbAreaActividade;
+    @FXML ListView<CompetenciaTecnica> listViewCompTecCat;
 
-    @FXML
-    private ListView<CompetenciaTecnica> listViewCompTecCat;
 
-    @FXML
-    private Button btnCancelar;
-
-    @FXML
-    private Button btnAddCompTecCat;
-
-    @FXML
-    private ComboBox<AreaActividade> cmbAreaActividade;
-
-    @FXML
-    private TextField txtDescricaoBreve;
 
     public void associarParentUI(AdministrativoLogadoUI administrativoLogadoUI) {
         this.administrativoLogadoUI = administrativoLogadoUI;
@@ -59,8 +50,6 @@ public class AdicionarCategoriaTarefaUI implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
-
 
         adicionarStage = new Stage();
         adicionarStage.initModality(Modality.APPLICATION_MODAL);;
@@ -85,8 +74,17 @@ public class AdicionarCategoriaTarefaUI implements Initializable {
         });
         window.fireEvent(new WindowEvent(window, WindowEvent.WINDOW_CLOSE_REQUEST));
     }
+
     @FXML
     void registarCategoriaAction(ActionEvent event) {
+        try {
+            registarCategoriaController = new RegistarCategoriaController();
+
+            boolean adicionou = registarCategoriaController.registarCategoria(
+
+            )
+        }
+
 
     }
 
@@ -97,8 +95,7 @@ public class AdicionarCategoriaTarefaUI implements Initializable {
             Parent rootAddCompTec2Cat = loaderAddCompTec2Cat.load();
             sceneCaracterizarCompetenciaTecnica= new Scene(rootAddCompTec2Cat);
             sceneCaracterizarCompetenciaTecnica.getStylesheets().add("/com/grupo2/t4j/style/app.css");
-            /*CaracterizarCompetenciaTecnicaUI caracterizarCompetenciaTecnicaUI = loaderAddCompTec2Cat.getController();
-            caracterizarCompetenciaTecnicaUI.associarParentUI(this);*/
+
         }
         catch (IOException exception) {
             exception.printStackTrace();

@@ -23,7 +23,7 @@ public class RegistarAreaActividadeController {
     }
 
     public List<AreaActividade> getAreasActividade() {
-        return repositorioAreaActividade.getInstance().getListaAreasActividade();
+        return RepositorioAreaActividade.getInstance().getListaAreasActividade();
     }
 
 

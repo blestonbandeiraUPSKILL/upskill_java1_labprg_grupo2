@@ -76,7 +76,11 @@ public class AdicionarCompetenciaTecnicaUI implements Initializable {
                     cmbAreaActividade.getSelectionModel().getSelectedItem(),
                     cmbGrauProficiencia.getSelectionModel().getSelectedItem());
 
-            AlertsUI.criarAlerta(Alert.AlertType.INFORMATION, MainApp.TITULO_APLICACAO, "Registar Competencia Tecnica.",
+            //listViewCompTecnicasPorSelecionarCategoriaTarefa.getItems().setAll(plataformaController.getCompetenciasTecnicasByAreaAtividade(comboBoxAreaAtividadeCategoriaTarefa.getValue()));
+
+            AlertsUI.criarAlerta(Alert.AlertType.INFORMATION,
+                    MainApp.TITULO_APLICACAO,
+                    "Registar Competencia Tecnica.",
                         adicionou ? "Competencia Tecnica registada com sucesso."
                                 : "Não foi possível registar a Competencia Tecncia.").show();
         }

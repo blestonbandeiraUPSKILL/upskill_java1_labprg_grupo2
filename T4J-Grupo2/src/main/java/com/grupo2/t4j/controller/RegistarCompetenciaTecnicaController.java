@@ -22,7 +22,9 @@ public class RegistarCompetenciaTecnicaController {
         return RepositorioCompetenciaTecnica.getInstance().getCompetenciasTecnicas();
     }*/
 
-    public boolean registarCompetenciaTecnica(String codigo, String descricaoBreve, 
+    public boolean registarCompetenciaTecnica(
+            String codigo,
+            String descricaoBreve,
             String descricaoDetalhada, AreaActividade at, GrauProficiencia gp) {
         return RepositorioCompetenciaTecnica.getInstance().addCompetenciaTecnica(codigo, descricaoBreve, descricaoDetalhada, at, gp);
     }
