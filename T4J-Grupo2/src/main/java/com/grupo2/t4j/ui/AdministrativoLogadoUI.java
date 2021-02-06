@@ -107,7 +107,9 @@ public class AdministrativoLogadoUI implements Initializable {
     }
 
     public void updateListViewAreaActividade() {
-        listaAreasAtividade.setItems(FXCollections.observableArrayList(registarAreaActividadeController.getAreasActividade()));
+        listaAreasAtividade.getItems().setAll(registarAreaActividadeController.getAreasActividade());
+        //listaAreasAtividade.setItems(FXCollections.observableArrayList(registarAreaActividadeController.getAreasActividade()));
+       
 
     }
 }
