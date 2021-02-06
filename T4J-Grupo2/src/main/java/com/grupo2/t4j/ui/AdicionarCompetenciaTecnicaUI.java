@@ -49,8 +49,14 @@ public class AdicionarCompetenciaTecnicaUI implements Initializable {
     }
 
     public void initialize(URL location, ResourceBundle resources) {
+        ComboBox<GrauProficiencia> cmbGrauProficiencia = new ComboBox<>();
+        ComboBox<AreaActividade> cmbAreaActividade = new ComboBox<>();
+        registarCompetenciaTecnicaController = new RegistarCompetenciaTecnicaController();
+
+
         cmbGrauProficiencia.getItems().setAll(GrauProficiencia.values());
         cmbAreaActividade.getItems().setAll(registarCompetenciaTecnicaController.getListaAreaActividade());
+
         registarCompetenciaTecnicaController = new RegistarCompetenciaTecnicaController();
         adicionarStage = new Stage();
         adicionarStage.initModality(Modality.APPLICATION_MODAL);;
@@ -62,7 +68,7 @@ public class AdicionarCompetenciaTecnicaUI implements Initializable {
     @FXML
     public void addCompetenciaTecnicaAction(ActionEvent event) {
         try {
-            registarCompetenciaTecnicaController = new RegistarCompetenciaTecnicaController();
+
             boolean adicionou = registarCompetenciaTecnicaController.registarCompetenciaTecnica(
                     txtCodigo.getText(),
                     txtDescricaoBreve.getText(),
