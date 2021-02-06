@@ -82,9 +82,10 @@ public class AdicionarAreaAtividadeUI implements Initializable {
                     txtCodigo.getText().trim(),
                     txtDescricaoBreve.getText().trim(),
                     areaDescricaoDetalhada.getText().trim());
-            //if(adicionou) {
+
+            if(adicionou) {
                 administrativoLogadoUI.updateListViewAreaActividade();
-            //}
+            }
 
             AlertsUI.criarAlerta(Alert.AlertType.INFORMATION,
                     MainApp.TITULO_APLICACAO,

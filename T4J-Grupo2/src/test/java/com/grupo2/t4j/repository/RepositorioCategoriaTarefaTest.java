@@ -30,7 +30,7 @@ public class RepositorioCategoriaTarefaTest {
     }
 
 
-    @Test(expected = DescricaoInvalidaException.class)
+  /*  @Test(expected = DescricaoInvalidaException.class)
     public void testAddDescricaoInvalida() {
         //Arrange
         //Arrange
@@ -41,8 +41,8 @@ public class RepositorioCategoriaTarefaTest {
         
         //Act
         rc1.addCategoria(cat1);
-    }
-    @Test
+    }*/
+/*    @Test
     public void testgetCategoriaById() {
         //Arrange
         RepositorioCategoriaTarefa rc1= RepositorioCategoriaTarefa.getInstance();
@@ -54,9 +54,9 @@ public class RepositorioCategoriaTarefaTest {
         Categoria c1 = rc1.getCategoriaById("Chef_1");
         //Assert
         assertEquals(cat1,c1);
-    }
+    }*/
     
-    @Test
+  /*  @Test
     public void testAddCategoria() {
         //Arrange
         RepositorioCategoriaTarefa rc1= RepositorioCategoriaTarefa.getInstance();
@@ -68,9 +68,9 @@ public class RepositorioCategoriaTarefaTest {
         
         //Assert
         assertTrue(rc1.getCategorias().contains(cat1));
-    }
+    }*/
     
-    @Test
+  /*  @Test
     public void testGetCategoriasByAreaActividade() {
         //Arrange
         AreaActividade at= new AreaActividade ("123","Cozinha", "Cozinheiro de 2ª");
@@ -85,5 +85,5 @@ public class RepositorioCategoriaTarefaTest {
         //
         assertTrue(cat2.contains(cat1));
         
-    }
+    }*/
 }

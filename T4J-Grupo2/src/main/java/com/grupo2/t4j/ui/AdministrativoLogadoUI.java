@@ -6,6 +6,7 @@ import com.grupo2.t4j.repository.RepositorioAreaActividade;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -13,9 +14,12 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ListView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.Window;
+import javafx.stage.WindowEvent;
 
 import java.io.IOException;
 import java.net.URL;
@@ -36,7 +40,7 @@ public class AdministrativoLogadoUI implements Initializable {
     @FXML Button btnAddAreaAtividade;
     @FXML Button btnAddCategoriaTarefa;
     @FXML Button btnAddCompetenciaTecnica;
-    @FXML Button btnSair;
+    @FXML Button btnSairAreaActividade;
     @FXML ListView<AreaActividade> listaAreasAtividade;
 
 
@@ -54,7 +58,7 @@ public class AdministrativoLogadoUI implements Initializable {
 
         listaAreasAtividade = new ListView<AreaActividade>();
 
-        //updateListViewAreaActividade();
+        updateListViewAreaActividade();
 
 
     }
@@ -136,6 +140,26 @@ public class AdministrativoLogadoUI implements Initializable {
             FXMLLoader loaderStartingPage = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/StartingPageScene.fxml"));
             Parent rootStartingPage = loaderStartingPage.load();
             sceneStartingPage = new Scene(rootStartingPage);
+
+            Window window = btnSairAreaActividade.getScene().getWindow();
+            window.setOnCloseRequest(new EventHandler<WindowEvent>() {
+                @Override
+                public void handle(WindowEvent windowEvent) {
+                    Alert alerta = AlertsUI.criarAlerta(Alert.AlertType.CONFIRMATION,
+                            MainApp.TITULO_APLICACAO,
+                            "Confirmação da acção",
+                            "Tem a certeza que pretende terminar a sessão??");
+
+                    if (alerta.showAndWait().get() == ButtonType.CANCEL) {
+                        windowEvent.consume();
+                    }
+                }
+            });
+            window.fireEvent(new WindowEvent(window, WindowEvent.WINDOW_CLOSE_REQUEST));
+
+            adicionarStage.setScene(sceneStartingPage);
+            adicionarStage.setTitle(MainApp.TITULO_APLICACAO);
+            adicionarStage.show();
         }
         catch (IOException exception) {
             exception.printStackTrace();
@@ -145,10 +169,8 @@ public class AdministrativoLogadoUI implements Initializable {
                     exception.getMessage());
         }
 
-        adicionarStage.setScene(sceneStartingPage);
-        adicionarStage.setTitle(MainApp.TITULO_APLICACAO);
-        adicionarStage.show();
-        btnAddAreaAtividade.getScene().getWindow().hide();
+
+
     }
 
     public void updateListViewCategoriasTarefa(ActionEvent actionEvent) {

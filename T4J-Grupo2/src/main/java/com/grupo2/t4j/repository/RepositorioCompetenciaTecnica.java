@@ -6,10 +6,8 @@
 package com.grupo2.t4j.repository;
 
 import com.grupo2.t4j.exception.CompetenciaTecnicaDuplicadaException;
-import com.grupo2.t4j.model.AreaActividade;
-import com.grupo2.t4j.model.Categoria;
-import com.grupo2.t4j.model.CompetenciaTecnica;
-import com.grupo2.t4j.model.GrauProficiencia;
+import com.grupo2.t4j.model.*;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -62,10 +60,13 @@ public class RepositorioCompetenciaTecnica implements Serializable{
         }
     }
 
-    public boolean addCompetenciaTecnica(String codigo, String descricaoBreve, String descricaoDetalhada, AreaActividade at, GrauProficiencia gp){
+    public boolean addCompetenciaTecnica(String codigo,
+                                         AreaActividade at,
+                                         String descricaoBreve,
+                                         String descricaoDetalhada){
         CompetenciaTecnica ct = getCompetenciaTecnicaByCodigo(codigo);
         if (ct == null) {
-            CompetenciaTecnica compTec = new CompetenciaTecnica(codigo, descricaoBreve, descricaoDetalhada, at, GrauProficiencia.BOM);
+            CompetenciaTecnica compTec = new CompetenciaTecnica(codigo, descricaoBreve, descricaoDetalhada, at);
             this.listaCompTecnicas.add(compTec);
             return true;
         } else {

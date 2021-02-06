@@ -36,12 +36,13 @@ public class AdicionarCompetenciaTecnicaUI implements Initializable {
     private Stage adicionarStage;
 
     @FXML Button btnConfirmar;
-    @FXML TextArea txtDescricaoDetalhada;
     @FXML Button btnCancelar;
-    @FXML ComboBox<AreaActividade> cmbAreaActividade;
-    @FXML ComboBox<GrauProficiencia> cmbGrauProficiencia;
+    @FXML TextArea txtDescricaoDetalhada;
     @FXML TextField txtCodigo;
     @FXML TextField txtDescricaoBreve;
+    @FXML ComboBox<AreaActividade> cmbAreaActividade;
+    @FXML ComboBox<GrauProficiencia> cmbGrauProficiencia;
+
     
 
     public void associarParentUI(AdministrativoLogadoUI administrativoLogadoUI) {
@@ -71,12 +72,15 @@ public class AdicionarCompetenciaTecnicaUI implements Initializable {
 
             boolean adicionou = registarCompetenciaTecnicaController.registarCompetenciaTecnica(
                     txtCodigo.getText(),
-                    txtDescricaoBreve.getText(),
-                    txtDescricaoDetalhada.getText(),
                     cmbAreaActividade.getSelectionModel().getSelectedItem(),
-                    cmbGrauProficiencia.getSelectionModel().getSelectedItem());
+                    txtDescricaoBreve.getText(),
+                    txtDescricaoDetalhada.getText());
 
-            AlertsUI.criarAlerta(Alert.AlertType.INFORMATION, MainApp.TITULO_APLICACAO, "Registar Competencia Tecnica.",
+            //listViewCompTecnicasPorSelecionarCategoriaTarefa.getItems().setAll(plataformaController.getCompetenciasTecnicasByAreaAtividade(comboBoxAreaAtividadeCategoriaTarefa.getValue()));
+
+            AlertsUI.criarAlerta(Alert.AlertType.INFORMATION,
+                    MainApp.TITULO_APLICACAO,
+                    "Registar Competencia Tecnica.",
                         adicionou ? "Competencia Tecnica registada com sucesso."
                                 : "Não foi possível registar a Competencia Tecncia.").show();
         }

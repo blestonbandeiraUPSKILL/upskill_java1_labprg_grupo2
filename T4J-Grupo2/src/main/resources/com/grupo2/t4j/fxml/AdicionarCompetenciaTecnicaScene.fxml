@@ -51,7 +51,7 @@
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefWidth="350.0">
                            <children>
                               <BorderPane prefHeight="300.0" prefWidth="200.0" />
-                              <TextField layoutX="15.0" layoutY="50.0" prefHeight="39.0" prefWidth="139.0">
+                              <TextField fx:id="txtCodgo" layoutX="15.0" layoutY="50.0" prefHeight="39.0" prefWidth="139.0">
                                  <font>
                                     <Font name="Calibri" size="14.0" />
                                  </font></TextField>
@@ -110,11 +110,6 @@
                         <ComboBox fx:id="cmbAreaActividade" promptText="Área de Atividade">
                            <FlowPane.margin>
                               <Insets right="10.0" />
-                           </FlowPane.margin>
-                        </ComboBox>
-                        <ComboBox fx:id="cmbGrauProficiencia" promptText="Grau de Proficiência">
-                           <FlowPane.margin>
-                              <Insets left="10.0" />
                            </FlowPane.margin>
                         </ComboBox>
                      </children>

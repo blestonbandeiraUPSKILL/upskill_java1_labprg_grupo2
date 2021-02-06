@@ -10,45 +10,24 @@ package com.grupo2.t4j.model;
  * @author acris
  */
 public class CaracterizacaoCT {
-    
-    private CompetenciaTecnica ct;
+
     private GrauProficiencia gp;
-    private boolean obrigatoria;
+    private Obrigatoriedade obrigatoriedade;
+    private CompetenciaTecnica competenciaTecnica;
 
-   
-
-    public CaracterizacaoCT(CompetenciaTecnica ct, GrauProficiencia gp, boolean obrigatoria) {
-        this.ct=ct;
-        this.gp=gp;
-        this.obrigatoria = obrigatoria;
-
+    public CaracterizacaoCT(GrauProficiencia gp, Obrigatoriedade obrigatoriedade,
+                            CompetenciaTecnica competenciaTecnica) {
+        this.gp = gp;
+        this.obrigatoriedade = obrigatoriedade;
+        this.competenciaTecnica = competenciaTecnica;
     }
 
     /**
-     * @return the obrigatoria
+     * @param obrigatoriedade the obrigatoria to set
      */
-    public boolean isObrigatoria() {
-        return obrigatoria;
+    public void setObrigatoriedade(Obrigatoriedade obrigatoriedade) {
+        this.obrigatoriedade = obrigatoriedade;
     }
 
-    /**
-     * @param obrigatoria the obrigatoria to set
-     */
-    public void setObrigatoria(boolean obrigatoria) {
-        this.obrigatoria = obrigatoria;
-    }
-    
-    public String boolean2String(boolean obrigatoria){
-        if (obrigatoria == true){
-            return "Obrigatório";
-        } else {
-            return "Opcional";
-        }
-    }
-    
-    @Override
-    public String toString() {
-        return String.format("Competência Técnica: %s;%nGrau de Proficiência Mínimo: %s;%nCarácter: %s."
-                ,ct.getDescricaoBreve(),gp ,boolean2String(obrigatoria));
-    }
+
 }

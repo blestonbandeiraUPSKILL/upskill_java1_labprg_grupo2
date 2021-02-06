@@ -2,8 +2,8 @@ package com.grupo2.t4j.repository;
 
 
 import com.grupo2.t4j.exception.CategoriaDuplicadaException;
-import com.grupo2.t4j.model.AreaActividade;
-import com.grupo2.t4j.model.Categoria;
+import com.grupo2.t4j.model.*;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -44,6 +44,22 @@ public class RepositorioCategoriaTarefa implements Serializable{
             throw new CategoriaDuplicadaException(c.getId() + ": Categoria ja existe");
         }
     }
+
+    public boolean addCategoria(AreaActividade areaActividade,
+                                String descBreve, String descDetalhada,
+                                List<CompetenciaTecnica> competenciaTecnicas, String codigo, List<CaracterizacaoCT> ccts) throws CategoriaDuplicadaException {
+        Categoria c = getCategoriaById(codigo);
+        if (c == null) {
+
+            Categoria cat = new Categoria(descBreve, descDetalhada, areaActividade, ccts);
+            this.listaCategorias.add(cat);
+            return true;
+        } else {
+            throw new CategoriaDuplicadaException(c.getId() + ": Categoria ja existe");
+        }
+
+    }
+
     /**
      * Retorna uma copida da categoria referente a um determinado id
      * @param id
@@ -86,5 +102,13 @@ public class RepositorioCategoriaTarefa implements Serializable{
 
         return new ArrayList<Categoria>(listaCategorias);
     }
-    
+
+    public boolean addCategoria(String descBreve,
+                                String descDetalhada,
+                                AreaActividade areaActividade,
+                                List<CaracterizacaoCT> ccts) {
+
+       return listaCategorias.add(new Categoria(descBreve, descDetalhada, areaActividade, ccts));
+
+    }
 }
