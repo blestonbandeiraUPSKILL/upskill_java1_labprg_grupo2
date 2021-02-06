@@ -12,10 +12,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Window;
 import javafx.stage.WindowEvent;
 
@@ -25,38 +22,33 @@ import javafx.stage.WindowEvent;
  * @author acris
  */
 public class AdicionarAreaAtividadeUI implements Initializable {
-    
+
+    private AdministrativoLogadoUI administrativoLogadoUI;
     private RegistarAreaActividadeController registarAreaActividadeController;
     
-    @FXML
-    private Button btnCancelar;
+    @FXML Button btnCancelar;
 
-    @FXML
-    private Button btnAddAreaAtividade;
+    @FXML Button btnAddAreaAtividade;
 
-    @FXML
-    private TextField txtCodigo;
+    @FXML TextField txtCodigo;
 
-    @FXML
-    private TextField txtDescricaoBreve;
+    @FXML TextField txtDescricaoBreve;
     
-    @FXML
-    private TextField txtDescricaoDetalhada;
-    
-    private StartingPageUI startingPageUI;
-    
-    public void associarParentUI(StartingPageUI startingPageUI) {
-        this.startingPageUI = startingPageUI;
+    @FXML TextArea areaDescricaoDetalhada;
+
+
+    public void associarParentUI(AdministrativoLogadoUI administrativoLogadoUI) {
+        this.administrativoLogadoUI = administrativoLogadoUI;
     }
 
     /**
-     * Initializes the controller class.
+     * Initializes the controller (UI) class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         RegistarAreaActividadeController registarAreaActividadeController = new RegistarAreaActividadeController();
     }   
-    
+
     @FXML
     void cancelarAction(ActionEvent event) {
         Window window = btnCancelar.getScene().getWindow();
@@ -66,7 +58,7 @@ public class AdicionarAreaAtividadeUI implements Initializable {
                 Alert alerta = AlertsUI.criarAlerta(Alert.AlertType.CONFIRMATION,
                         MainApp.TITULO_APLICACAO,
                         "Confirmação da acção",
-                        "Tem a certeza que quer voltar à página inicial, cancelando o actual registo?");
+                        "Tem a certeza que quer voltar à página anterior, cancelando o actual registo?");
 
                 if (alerta.showAndWait().get() == ButtonType.CANCEL) {
                     windowEvent.consume();
@@ -82,14 +74,19 @@ public class AdicionarAreaAtividadeUI implements Initializable {
     void registarAreaAction(ActionEvent event) {
         try{
             registarAreaActividadeController = new RegistarAreaActividadeController();
-            boolean adicionou = registarAreaActividadeController.registarAreaActividade( 
-                    txtCodigo.getText(),txtDescricaoBreve.getText(),
-                    txtDescricaoDetalhada.getText()
-                );
-        AlertsUI.criarAlerta(Alert.AlertType.INFORMATION, MainApp.TITULO_APLICACAO, "Registar Área de Actividade.",
+
+            boolean adicionou = registarAreaActividadeController.registarAreaActividade(
+                    txtCodigo.getText(),
+                    txtDescricaoBreve.getText(),
+                    areaDescricaoDetalhada.getText());
+
+            AlertsUI.criarAlerta(Alert.AlertType.INFORMATION,
+                    MainApp.TITULO_APLICACAO,
+                    "Registar Área de Actividade.",
                     adicionou ? "Área de Actividade registada com sucesso."
-                            : "Não foi possível registar a Área de Actividade.").show();
-        } catch (IllegalArgumentException iae) {
+                                : "Não foi possível registar a Área de Actividade.").show();
+        }
+        catch (IllegalArgumentException iae) {
             AlertsUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO, "Erro nos dados.",
                     iae.getMessage()).show();
         

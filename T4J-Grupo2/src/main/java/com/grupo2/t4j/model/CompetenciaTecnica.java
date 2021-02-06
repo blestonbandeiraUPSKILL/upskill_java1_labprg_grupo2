@@ -26,6 +26,7 @@ public class CompetenciaTecnica implements Serializable{
     private String descricaoDetalhada;
     private AreaActividade areaActividade;
     private CaracterizacaoCT cct;
+    private GrauProficiencia gp;
     
     private static final char SEPARADOR = ';';
     
@@ -77,7 +78,15 @@ public class CompetenciaTecnica implements Serializable{
         setCodigo(compTec.codigo);
         setDescricaoBreve(compTec.descricaoBreve);
         setDescricaoDetalhada(compTec.descricaoDetalhada);
-    } 
+    }
+
+    public CompetenciaTecnica(String codigo, String descricaoBreve, String descricaoDetalhada, AreaActividade at, GrauProficiencia gp) {
+        setCodigo(codigo);
+        setDescricaoBreve(descricaoBreve);
+        setDescricaoDetalhada(descricaoDetalhada);
+        setAreaActividade(at);
+        this.gp = gp;
+    }
 
     /**
      * @return the codigo

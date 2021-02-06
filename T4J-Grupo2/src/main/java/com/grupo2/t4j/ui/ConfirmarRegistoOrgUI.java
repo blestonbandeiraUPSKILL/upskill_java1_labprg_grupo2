@@ -28,7 +28,6 @@ public class ConfirmarRegistoOrgUI implements Initializable {
 
     private ApplicationController applicationController;
     private RegistarOrganizacaoController registarOrganizacaoController;
-    private RegistarOrgEGestorUI registarOrgEGestorUI;
     private Stage adicionarStage;
 
     @FXML TextField txtConfNomeOrganizacao;
@@ -44,10 +43,6 @@ public class ConfirmarRegistoOrgUI implements Initializable {
     @FXML TextField txtConfTelefoneGestor;
     @FXML TextField txtConfEmailGestor;
     @FXML Button btnCancelarRegisto;
-
-    public void associarParentUI(RegistarOrgEGestorUI registarOrgEGestorUI) {
-        this.registarOrgEGestorUI = registarOrgEGestorUI;
-    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -89,11 +84,11 @@ public class ConfirmarRegistoOrgUI implements Initializable {
 
     }
 
-    public void gravarOrganizacao(ActionEvent actionEvent) throws Exception {
+    public void addOrganizacao(ActionEvent actionEvent) throws Exception {
 
         try {
             if(registarOrganizacaoController.registaOrganizacao()) {
-                AlertsUI.criarAlerta(Alert.AlertType.CONFIRMATION,
+                AlertsUI.criarAlerta(Alert.AlertType.INFORMATION,
                         MainApp.TITULO_APLICACAO,
                         "Sucesso",
                         "Organização registada com sucesso!");

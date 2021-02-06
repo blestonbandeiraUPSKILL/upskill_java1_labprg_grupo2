@@ -1,25 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.text.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import java.lang.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollBar?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.AdministrativoLogadoUI">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" style="-fx-background-color: #c4c4c4;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.AdministrativoLogadoUI">
    <center>
       <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <top>
-            <TabPane prefHeight="358.0" prefWidth="700.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+            <TabPane prefHeight="358.0" prefWidth="700.0" style="-fx-background-color: #c4c4c4;" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
               <tabs>
                 <Tab text="Áreas de Atividade">
                   <content>
-                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="467.0" prefWidth="700.0">
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="467.0" prefWidth="700.0" style="-fx-background-color: #c4c4c4;">
                            <children>
                               <FlowPane layoutX="200.0" prefHeight="200.0" prefWidth="0.0" />
-                              <Button fx:id="btn_addareaAtividade" alignment="BOTTOM_RIGHT" layoutX="586.0" layoutY="260.0" mnemonicParsing="false" text="Adicionar" />
-                              <Label layoutX="17.0" layoutY="23.0" text="Lista de Áreas de Atividade registadas:" />
+                              <Button fx:id="btnAddAreaAtividade" alignment="BOTTOM_RIGHT" layoutX="586.0" layoutY="260.0" mnemonicParsing="false" onAction="#addAreaActividade" style="-fx-background-color: #000000;" text="Adicionar" textFill="WHITE">
+                                 <font>
+                                    <Font name="Calibri" size="14.0" />
+                                 </font>
+                              </Button>
+                              <Label layoutX="17.0" layoutY="23.0" text="Áreas de Atividade registadas:">
+                                 <font>
+                                    <Font name="Calibri" size="16.0" />
+                                 </font>
+                              </Label>
                               <TextArea fx:id="listaareasAtividade" layoutX="14.0" layoutY="50.0" prefHeight="250.0" prefWidth="500.0" />
                               <ScrollBar layoutX="491.0" layoutY="51.0" orientation="VERTICAL" prefHeight="248.0" prefWidth="22.0" />
                            </children>
@@ -31,9 +44,18 @@
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="467.0" prefWidth="700.0">
                            <children>
                               <FlowPane layoutX="200.0" prefHeight="200.0" prefWidth="0.0" />
-                              <Button fx:id="btn_addcategoriaTarefa" alignment="BOTTOM_RIGHT" layoutX="586.0" layoutY="260.0" mnemonicParsing="false" text="Adicionar" />
-                              <Label layoutX="17.0" layoutY="23.0" text="Lista de Categorias de Tarefa registadas:" />
-                              <TextArea fx:id="listacategoriasTarefa" layoutX="14.0" layoutY="50.0" prefHeight="250.0" prefWidth="500.0" />
+                              <Button fx:id="btn_addcategoriaTarefa" alignment="BOTTOM_RIGHT" layoutX="586.0" layoutY="260.0" mnemonicParsing="false" style="-fx-background-color: #000000;" text="Adicionar" textFill="WHITE">
+                                 <font>
+                                    <Font name="Calibri" size="14.0" />
+                                 </font></Button>
+                              <Label layoutX="17.0" layoutY="23.0" text="Categorias de Tarefa registadas:">
+                                 <font>
+                                    <Font name="Calibri" size="16.0" />
+                                 </font></Label>
+                              <TextArea fx:id="listacategoriasTarefa" layoutX="14.0" layoutY="50.0" prefHeight="250.0" prefWidth="500.0">
+                                 <font>
+                                    <Font name="Calibri" size="14.0" />
+                                 </font></TextArea>
                               <ScrollBar layoutX="491.0" layoutY="51.0" orientation="VERTICAL" prefHeight="248.0" prefWidth="22.0" />
                            </children>
                         </AnchorPane>
@@ -44,8 +66,14 @@
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="467.0" prefWidth="700.0">
                            <children>
                               <FlowPane layoutX="200.0" prefHeight="200.0" prefWidth="0.0" />
-                              <Button fx:id="btn_addcompetenciaTecnica" alignment="BOTTOM_RIGHT" layoutX="586.0" layoutY="260.0" mnemonicParsing="false" text="Adicionar" />
-                              <Label layoutX="17.0" layoutY="23.0" text="Lista de Competências Técnicas registadas:" />
+                              <Button fx:id="btn_addcompetenciaTecnica" alignment="BOTTOM_RIGHT" layoutX="586.0" layoutY="260.0" mnemonicParsing="false" style="-fx-background-color: #000000;" text="Adicionar" textFill="WHITE">
+                                 <font>
+                                    <Font name="Calibri" size="14.0" />
+                                 </font></Button>
+                              <Label layoutX="17.0" layoutY="23.0" text="Competências Técnicas registadas:">
+                                 <font>
+                                    <Font name="Calibri" size="16.0" />
+                                 </font></Label>
                               <TextArea fx:id="listacompetenciasTecnicas" layoutX="14.0" layoutY="50.0" prefHeight="250.0" prefWidth="500.0" />
                               <ScrollBar layoutX="491.0" layoutY="51.0" orientation="VERTICAL" prefHeight="248.0" prefWidth="22.0" />
                            </children>
@@ -61,6 +89,9 @@
          <padding>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </padding>
+         <font>
+            <Font name="Calibri" size="18.0" />
+         </font>
       </Label>
    </top>
 </BorderPane>
