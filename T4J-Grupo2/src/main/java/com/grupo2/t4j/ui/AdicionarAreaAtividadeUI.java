@@ -13,6 +13,8 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import javafx.stage.Window;
 import javafx.stage.WindowEvent;
 
@@ -25,17 +27,13 @@ public class AdicionarAreaAtividadeUI implements Initializable {
 
     private AdministrativoLogadoUI administrativoLogadoUI;
     private RegistarAreaActividadeController registarAreaActividadeController;
+    private Stage adicionarStage;
     
     @FXML Button btnCancelar;
-
     @FXML Button btnAddAreaAtividade;
-
     @FXML TextField txtCodigo;
-
     @FXML TextField txtDescricaoBreve;
-    
     @FXML TextArea areaDescricaoDetalhada;
-
 
     public void associarParentUI(AdministrativoLogadoUI administrativoLogadoUI) {
         this.administrativoLogadoUI = administrativoLogadoUI;
@@ -47,6 +45,9 @@ public class AdicionarAreaAtividadeUI implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         RegistarAreaActividadeController registarAreaActividadeController = new RegistarAreaActividadeController();
+        adicionarStage = new Stage();
+        adicionarStage.initModality(Modality.APPLICATION_MODAL);;
+        adicionarStage.setResizable(false);
     }   
 
     @FXML
