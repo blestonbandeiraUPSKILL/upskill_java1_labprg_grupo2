@@ -47,43 +47,44 @@ public class RepositorioOrganizacao implements Serializable{
         return new Organizacao(nome, nif, endereco, website, telefone, emailOrganizacao, colabGestor);
     }
 
-    public boolean validaOrganizacao(Organizacao organizacao) throws IllegalArgumentException{
-
-        try {
-            return true;
-        }
-        catch (OrganizacaoInvalidaException exception) {
-            return false;
-        }
-    }
+//    public boolean validaOrganizacao(Organizacao organizacao) throws IllegalArgumentException{
+//
+//        try {
+//            return true;
+//        }
+//        catch (OrganizacaoInvalidaException exception) {
+//            return false;
+//        }
+//    }
 
     public boolean registaOrganizacao(Organizacao organizacao) throws Exception {
-        if(validaOrganizacao(organizacao)) {
-            /*IAlgoritmoGeradorPasswords algoritmoGeradorPasswords = plataforma.getAlgoritmoGeradorPwd();
-            Password password = new Password(algoritmoGeradorPasswords.geraPassword());
-
-            plataforma.getUsersAPI().registerUserWithRoles(colabGestor.getNome(), colabGestor.getEmail(), password, "gestor,colaborador");
-*/
-            addOrganizacao(organizacao);
-
-            //gravar
-
-            //Enviar email com credenciais de acesso
-       /*     Email email = new Email();
-            email.setTo(colabGestor.getEmail().toString());
-            email.setSubject("Envio de credenciais para acesso à plataforma");
-            email.setText("username " + colabGestor.getEmail() + " ... password " + password);
-            email.send();*/
-        }
-        else {
-            throw new Exception();
-        }
+        addOrganizacao(organizacao);
+//        if(validaOrganizacao(organizacao)) {
+//            /*IAlgoritmoGeradorPasswords algoritmoGeradorPasswords = plataforma.getAlgoritmoGeradorPwd();
+//            Password password = new Password(algoritmoGeradorPasswords.geraPassword());
+//
+//            plataforma.getUsersAPI().registerUserWithRoles(colabGestor.getNome(), colabGestor.getEmail(), password, "gestor,colaborador");
+//*/
+//
+//
+//            //gravar
+//
+//            //Enviar email com credenciais de acesso
+//       /*     Email email = new Email();
+//            email.setTo(colabGestor.getEmail().toString());
+//            email.setSubject("Envio de credenciais para acesso à plataforma");
+//            email.setText("username " + colabGestor.getEmail() + " ... password " + password);
+//            email.send();*/
+//        }
+//        else {
+//            throw new Exception();
+//        }
         return true;
     }
 
     public void addOrganizacao(Organizacao organizacao) throws OrganizacaoDuplicadaException {
         Organizacao o = getOrganizacaoByNif(organizacao.getNif());
-        if (o == null) {
+        if (o == null && !listaOrganizacoes.contains(o)) {
             this.listaOrganizacoes.add(organizacao);
         } else {
             throw new OrganizacaoDuplicadaException(o.getNif() + ": Organização já registada!");

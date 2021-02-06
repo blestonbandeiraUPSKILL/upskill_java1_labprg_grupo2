@@ -26,16 +26,17 @@ public class RegistarOrganizacaoController {
                                 String telefone, Website website, Email emailOrganizacao,
                                 String nomeGestor, Email emailGestor,  String telefoneGestor,
                                 Rolename rolename) throws Exception {
-        repositorioOrganizacao = RepositorioOrganizacao.getInstance();
-        organizacao = repositorioOrganizacao.novaOrganizacao(nome, nif, arruamento, numeroPorta, localidade, codigoPostal,
+        organizacao = RepositorioOrganizacao.getInstance().novaOrganizacao(nome, nif, arruamento, numeroPorta, localidade, codigoPostal,
                 telefone, website, emailOrganizacao, nomeGestor, emailGestor, telefoneGestor, rolename);
 
-        if (repositorioOrganizacao.validaOrganizacao(organizacao)) {
-            repositorioOrganizacao.addOrganizacao(organizacao);
-        }
-        else {
-            throw new Exception();
-        }
+        RepositorioOrganizacao.getInstance().addOrganizacao(organizacao);
+
+//        if (repositorioOrganizacao.validaOrganizacao(organizacao)) {
+//
+//        }
+//        else {
+//            throw new Exception();
+//        }
         return organizacao;
     }
 

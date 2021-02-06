@@ -175,7 +175,7 @@
    </top>
    <bottom>
        <FlowPane alignment="CENTER_RIGHT" columnHalignment="CENTER" prefHeight="50.0" prefWidth="600.0" BorderPane.alignment="CENTER">
-           <Button fx:id="btnGravarOrganizacao" defaultButton="true" mnemonicParsing="false" onAction="#gravarOrganizacao" text="Confirmar Registo">
+           <Button fx:id="btnGravarOrganizacao" defaultButton="true" mnemonicParsing="false" onAction="#addOrganizacao" text="Confirmar Registo">
               <font>
                   <Font name="Calibri" size="14.0" />
               </font>
