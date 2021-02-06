@@ -23,9 +23,15 @@ public class MainApp extends Application {
     public void start(Stage stage) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/StartingPageScene.fxml"));
+            //FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/ColaboradorLogadoScene.fxml"));
+            //FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/AdministrativoLogadoScene.fxml"));
+            //FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/ColaboradorLogadoScene.fxml"));
+            //FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/GestorLogadoScene.fxml"));
+
             Parent root = loader.load();
 
             Scene scene = new Scene(root);
+            scene.getStylesheets().add("/com/grupo2/t4j/style/app.css");
 
             stage.setTitle(TITULO_APLICACAO);
             stage.setScene(scene);

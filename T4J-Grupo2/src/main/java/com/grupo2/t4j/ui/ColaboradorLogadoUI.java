@@ -2,6 +2,7 @@ package com.grupo2.t4j.ui;
 
 import com.grupo2.t4j.controller.RegistarTarefaController;
 import com.grupo2.t4j.model.AreaActividade;
+import com.grupo2.t4j.model.CaracterizacaoCT;
 import com.grupo2.t4j.model.Categoria;
 import com.grupo2.t4j.model.CompetenciaTecnica;
 import com.grupo2.t4j.model.Tarefa;
@@ -31,7 +32,7 @@ public class ColaboradorLogadoUI implements Initializable {
     @FXML
     private ComboBox<Categoria> cmbCategoriaTarefa;
     @FXML
-    private ListView<CompetenciaTecnica> listViewCompTec;
+    private ListView<CaracterizacaoCT> listViewCompTec;
     @FXML
     private Button btnRegistarTarefa;
     @FXML
@@ -64,8 +65,8 @@ public class ColaboradorLogadoUI implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        
-        cmbAreaActividade.getItems().setAll(registarTarefaController.getListaActividades());
+        RegistarTarefaController registarTarefasController = new RegistarTarefaController();
+        cmbAreaActividade.getItems().setAll(registarTarefasController.getListaAreasActividade());
 
     }
     
@@ -78,11 +79,11 @@ public class ColaboradorLogadoUI implements Initializable {
     @FXML
     private void selectCatTarAction(ActionEvent event) {
         Categoria categoriaTarefa = cmbCategoriaTarefa.getSelectionModel().getSelectedItem();
-        listViewCompTec.getItems().setAll(registarTarefaController.getCompetenciasTecnicasByCategoria());
+        listViewCompTec.getItems().setAll(registarTarefaController.getCompetenciasTecnicasByCategoria(categoriaTarefa));
     }
 
     @FXML
-    private void registarTarefaAction(ActionEvent event) {
+    public void registarTarefaAction(ActionEvent event) {
         try {
         registarTarefaController = new RegistarTarefaController();
         boolean adicionou = registarTarefaController.registarTarefa(
@@ -129,4 +130,7 @@ public class ColaboradorLogadoUI implements Initializable {
     private void selectCategoriaAction(ActionEvent event) {
         Categoria categoria = cmbCategoria.getSelectionModel().getSelectedItem();
     }
+
+    /*public void registarTarefaAction(ActionEvent actionEvent) {
+    }*/
 }

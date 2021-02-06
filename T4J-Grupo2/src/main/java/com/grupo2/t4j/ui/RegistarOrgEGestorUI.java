@@ -1,9 +1,8 @@
 package com.grupo2.t4j.ui;
 
-import com.grupo2.t4j.controller.ApplicationController;
 import com.grupo2.t4j.controller.RegistarOrganizacaoController;
-import com.grupo2.t4j.model.*;
-import com.grupo2.t4j.repository.RepositorioOrganizacao;
+import com.grupo2.t4j.model.Organizacao;
+import com.grupo2.t4j.model.Rolename;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -74,55 +73,52 @@ public class RegistarOrgEGestorUI implements Initializable {
         window.fireEvent(new WindowEvent(window, WindowEvent.WINDOW_CLOSE_REQUEST));
     }
 
-    public void avancarRegistoComDados(ActionEvent actionEvent) throws Exception {
+    public void avancarRegistoComDados(ActionEvent actionEvent) throws IOException {
         registarOrganizacaoController = new RegistarOrganizacaoController();
         adicionarStage = new Stage();
 
-        FXMLLoader loaderConfirmarRegisto = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/ConfirmarRegistoOrgScene.fxml"));
+        try {
+            FXMLLoader loaderConfirmarRegisto = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/ConfirmarRegistoOrgScene.fxml"));
 
-                String nomeOrganizacao = txtNomeOrganizacao.getText();
-                String nif = txtNif.getText();
-                String arruamento = txtEndArruamento.getText();
-                String numeroPorta = txtEndPorta.getText();
-                String localidade = txtEndLocalidade.getText();
-                String codPostal = txtEndCodPostal.getText();
-                String telefoneOrg = txtTelefoneOrganizacao.getText();
-                String website = txtWebsite.getText();
-                String emailOrg = txtEmailOrganizacao.getText();
-                String nomeGestor = txtNomeGestor.getText();
-                String emailGestor = txtEmailGestor.getText();
-                String telefoneGestor = txtTelefoneGestor.getText();
-                Rolename role = Rolename.GESTOR;
+            String nomeOrganizacao = txtNomeOrganizacao.getText();
+            String nif = txtNif.getText();
+            String arruamento = txtEndArruamento.getText();
+            String numeroPorta = txtEndPorta.getText();
+            String localidade = txtEndLocalidade.getText();
+            String codPostal = txtEndCodPostal.getText();
+            String telefoneOrg = txtTelefoneOrganizacao.getText();
+            String website = txtWebsite.getText();
+            String emailOrg = txtEmailOrganizacao.getText();
+            String nomeGestor = txtNomeGestor.getText();
+            String emailGestor = txtEmailGestor.getText();
+            String telefoneGestor = txtTelefoneGestor.getText();
+            Rolename role = Rolename.GESTOR;
 
-        Organizacao organizacao = new Organizacao(nomeOrganizacao,
-                nif, arruamento, numeroPorta,
-                localidade, codPostal, telefoneOrg,
-                website, emailOrg, nomeGestor,
-                emailGestor, telefoneGestor, role);
+            Organizacao organizacao = new Organizacao(nomeOrganizacao,
+                    nif, arruamento, numeroPorta,
+                    localidade, codPostal, telefoneOrg,
+                    website, emailOrg, nomeGestor,
+                    emailGestor, telefoneGestor, role);
 
-        RegistarOrganizacaoController.setOrganizacao(organizacao);
+            RegistarOrganizacaoController.setOrganizacao(organizacao);
 
-        Parent rootConfirmarRegisto = loaderConfirmarRegisto.load();
-        loaderConfirmarRegisto.setController(registarOrganizacaoController);
-        sceneConfirmarRegisto = new Scene(rootConfirmarRegisto);
-        /*ConfirmarRegistoOrgUI confirmarRegistoOrgUI = loaderConfirmarRegisto.getController();
-        confirmarRegistoOrgUI.associarParentUI(this);
-*/
-        adicionarStage.setScene(sceneConfirmarRegisto);
-        adicionarStage.setTitle("Confirmar Dados");
-        adicionarStage.show();
+            Parent rootConfirmarRegisto = loaderConfirmarRegisto.load();
+            loaderConfirmarRegisto.setController(registarOrganizacaoController);
+            sceneConfirmarRegisto = new Scene(rootConfirmarRegisto);
+
+            adicionarStage.setScene(sceneConfirmarRegisto);
+            adicionarStage.setTitle("Confirmar Dados");
+            adicionarStage.show();
+
+            btnAvancarRegisto.getScene().getWindow().hide();
+        } catch (IOException exception) {
+            exception.printStackTrace();
+            Alert alerta = AlertsUI.criarAlerta(Alert.AlertType.ERROR,
+                    MainApp.TITULO_APLICACAO,
+                    "Erro",
+                    exception.getMessage());
+        }
     }
 
-    /* public void confirmarDados() throws IOException {
-        try {
-            registarOrganizacaoController.registaOrganizacao();
-        }
-        catch (IOException exception) {
-            exception.printStackTrace();
-            AlertsUI.criarAlerta(Alert.AlertType.ERROR,
-                    MainApp.TITULO_APLICACAO,
-                    "Erro nos dados da organização.",
-                    exception.getMessage()).show();
-        }
-    }*/
+
 }

@@ -10,6 +10,8 @@ package com.grupo2.t4j.model;
  * @author acris
  */
 import com.grupo2.t4j.exception.*;
+import com.grupo2.t4j.repository.RepositorioAreaActividade;
+
 import java.io.Serializable;
 
 /**
@@ -71,9 +73,12 @@ public class AreaActividade implements Serializable{
      */
     public void setCodigo(String codigo) {
         if (codigo == null || codigo.trim().isEmpty()) {
+            throw new AreaActividadeDuplicadaException("O Código da Área de Actividade é um campo obrigatório!");
+        }
+       /* if (RepositorioAreaActividade.getInstance().getAreaActividadeByCodigo(codigo).equals(codigo)) {
             throw new AreaActividadeDuplicadaException("Código de Área de Actividade "
                     + "já existe!");
-        }
+        }*/
         this.codigo = codigo;
     }
     
@@ -82,8 +87,11 @@ public class AreaActividade implements Serializable{
      * @param descBreve a descrição breve da Área de Actividade
      */
     public void setDescBreve(String descBreve) {
-        if (descBreve == null || descBreve.trim().isEmpty() || descBreve.length() < 5) {
+        if (descBreve == null || descBreve.trim().isEmpty()) {
             throw new IllegalArgumentException("Descrição breve é obrigatória!");
+        }
+        if (descBreve.length() < 5) {
+            throw new IllegalArgumentException("Descrição breve tem de ter pelo menos 5 caracteres!");
         }
         this.descBreve = descBreve;
     }
@@ -93,8 +101,11 @@ public class AreaActividade implements Serializable{
      * @param descDetalhada a descrição detalhada da Área de Actividade
      */
     public void setDescDetalhada(String descDetalhada) {
-        if (descDetalhada == null || descDetalhada.trim().isEmpty() || descDetalhada.length() < 10) {
+        if (descDetalhada == null || descDetalhada.trim().isEmpty()) {
             throw new IllegalArgumentException("Descrição detalhada é obrigatória!");
+        }
+        if (descDetalhada.length() < 10) {
+            throw new IllegalArgumentException("Descrição detalhada tem de ter um comprimento superior a 10 caracteres!");
         }
         this.descDetalhada = descDetalhada;
     }

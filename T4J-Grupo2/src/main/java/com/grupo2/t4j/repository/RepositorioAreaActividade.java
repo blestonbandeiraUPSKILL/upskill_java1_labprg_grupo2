@@ -62,11 +62,11 @@ public class RepositorioAreaActividade implements Serializable{
      * @param descDetalhada a descrição detalhada da Área de Actividade.
      * @throws AreaActividadeDuplicadaException
      */
-    public void addAreaActividade(String codigo, String descBreve, String descDetalhada) throws AreaActividadeDuplicadaException {
+    public boolean addAreaActividade(String codigo, String descBreve, String descDetalhada) throws AreaActividadeDuplicadaException {
         AreaActividade aa = getAreaActividadeByCodigo(codigo);
         if (aa == null) {
             AreaActividade areaActividade = new AreaActividade(codigo, descBreve, descDetalhada);
-            this.listaAreasActividade.add(areaActividade);
+            return listaAreasActividade.add(areaActividade);
         } else {
             throw new AreaActividadeDuplicadaException(aa.getCodigo() + ": Área de Actividade já registada!");
         }
@@ -86,9 +86,9 @@ public class RepositorioAreaActividade implements Serializable{
      *
      * @return 
      */
-    public ArrayList<AreaActividade> getListaAreasActividade() {
+    public List<AreaActividade> getListaAreasActividade() {
 
-        return new ArrayList<AreaActividade>(listaAreasActividade);
+        return listaAreasActividade;
     }
     
     /**
@@ -97,9 +97,8 @@ public class RepositorioAreaActividade implements Serializable{
      * @return AreaActividade registada
      */
     public AreaActividade getAreaActividadeByCodigo(String codigo) {
-        AreaActividade areaActividade = null;
         for (int i = 0; i < this.listaAreasActividade.size(); i++) {
-            areaActividade = this.listaAreasActividade.get(i);
+            AreaActividade areaActividade = this.listaAreasActividade.get(i);
             if (areaActividade.getCodigo().equals(codigo)) {
                 return areaActividade;
             }

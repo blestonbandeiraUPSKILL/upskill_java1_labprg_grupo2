@@ -19,16 +19,25 @@ import java.util.List;
 
 public class RepositorioOrganizacao implements Serializable{
 
+    /**
+     * Atributos da classe Singleton RepositorioOrganizacao
+     */
     private static RepositorioOrganizacao instance;
-
     private List<Organizacao> listaOrganizacoes;
-    private Plataforma plataforma;
     Colaborador colabGestor;
 
+    /**
+     * Construtor da classe Singleton RepositorioOrganizacao
+     */
     private RepositorioOrganizacao() {
         listaOrganizacoes = new ArrayList<>();
     }
 
+    /**
+     * Devolve ou cria uma instância estática de RepositorioCompetenciaTecnica
+     *
+     * @return a instance existente ou criada
+     */
     public static RepositorioOrganizacao getInstance() {
         if(instance == null) {
             instance = new RepositorioOrganizacao();
@@ -36,6 +45,26 @@ public class RepositorioOrganizacao implements Serializable{
         return instance;
     }
 
+    /**
+     *
+     * Cria uma nova Organizacao usando os construtores dos objectos que a compõem
+     *
+     * @param nome nome da organização
+     * @param nif nif da organização
+     * @param arruamento rua, pertencente ao Endereço Postal
+     * @param numeroPorta número da porta, pertencente ao Endereço Postal
+     * @param localidade localidade, pertencente ao Endereço Postal
+     * @param codigoPostal código postal, pertencente ao Endereço Postal
+     * @param telefone contacto telefónico da organização
+     * @param website website da organização
+     * @param emailOrganizacao email da organização
+     * @param nomeGestor nome do colaborador que tem actua gestor na organização
+     * @param emailGestor email do colaborador que actua como gestor na organização
+     * @param telefoneGestor telefone do colaboraor que actua como gestor na organização
+     * @param rolename role do colaborador que actua como gestor na organização
+     *
+     * @return uma instância de Organizacao
+     */
     public Organizacao novaOrganizacao(String nome, String nif, String arruamento,
                                        String numeroPorta, String localidade, String codigoPostal,
                                        String telefone, Website website, Email emailOrganizacao,
@@ -47,57 +76,50 @@ public class RepositorioOrganizacao implements Serializable{
         return new Organizacao(nome, nif, endereco, website, telefone, emailOrganizacao, colabGestor);
     }
 
-    public boolean validaOrganizacao(Organizacao organizacao) throws IllegalArgumentException{
-
-        try {
-            return true;
-        }
-        catch (OrganizacaoInvalidaException exception) {
-            return false;
-        }
-    }
-
-    public void registaOrganizacao(Organizacao organizacao) throws Exception {
-        if(validaOrganizacao(organizacao)) {
-            IAlgoritmoGeradorPasswords algoritmoGeradorPasswords = plataforma.getAlgoritmoGeradorPwd();
-            Password password = new Password(algoritmoGeradorPasswords.geraPassword());
-
-           plataforma.getUsersAPI().registerUserWithRoles(colabGestor.getNome(), colabGestor.getEmail(), password, "gestor,colaborador");
-
-            addOrganizacao(organizacao);
-
-            //gravar
-
-            //Enviar email com credenciais de acesso
-            Email email = new Email();
-            email.setTo(colabGestor.getEmail().toString());
-            email.setSubject("Envio de credenciais para acesso à plataforma");
-            email.setText("username " + colabGestor.getEmail() + " ... password " + password);
-            email.send();
-        }
-        else {
-            throw new Exception();
-        }
-    }
-
-    public void addOrganizacao(Organizacao organizacao) throws OrganizacaoDuplicadaException {
+    /**
+     *
+     * Adiciona uma nova Organização ao RepositorioOrganizacao
+     *
+     * @param organizacao organização a ser adicionada
+     *
+     * @throws OrganizacaoDuplicadaException
+     * @return
+     */
+    public boolean addOrganizacao(Organizacao organizacao) throws OrganizacaoDuplicadaException {
         Organizacao o = getOrganizacaoByNif(organizacao.getNif());
         if (o == null) {
             this.listaOrganizacoes.add(organizacao);
+            return true;
         } else {
             throw new OrganizacaoDuplicadaException(o.getNif() + ": Organização já registada!");
         }
     }
-    
+
+    /**
+     *
+     * Procura no RepositorioOrganizacao por uma organização através do seu NIF
+     *
+     * @param NIF nif da organização a ser procurada
+     *
+     * @return a organização encontrada, caso exista
+     */
     private Organizacao getOrganizacaoByNif(String NIF) {
-        Organizacao organizacao = null;
         for (int i = 0; i < this.listaOrganizacoes.size(); i++) {
-            organizacao = this.listaOrganizacoes.get(i);
+            Organizacao organizacao = this.listaOrganizacoes.get(i);
             if (organizacao.getNif().equals(NIF)) {
-                Organizacao copia = new Organizacao(organizacao);
-                return copia;
+                return organizacao;
             }
         }
         return null;
     }
+
+    /**
+     * Devolve a lista de organizações no RepositorioOrganizacao
+     * @return
+     */
+    public ArrayList<Organizacao> getOrganizacoes() {
+        return new ArrayList<>(listaOrganizacoes);
+    }
+
+
 }

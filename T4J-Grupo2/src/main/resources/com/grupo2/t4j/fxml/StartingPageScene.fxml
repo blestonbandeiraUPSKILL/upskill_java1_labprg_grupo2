@@ -14,7 +14,7 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="600.0" style="-fx-background-color: #c4c4c4;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.StartingPageUI">
    <center>
-      <GridPane alignment="CENTER" prefHeight="133.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+      <GridPane alignment="CENTER" prefHeight="133.0" prefWidth="600.0" stylesheets="@../style/app.css" BorderPane.alignment="CENTER">
         <columnConstraints>
           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="451" minWidth="10.0" prefWidth="425" />
         </columnConstraints>
@@ -28,6 +28,9 @@
                <GridPane.margin>
                   <Insets />
                </GridPane.margin>
+               <font>
+                  <Font name="Calibri" size="24.0" />
+               </font>
             </Label>
             <TextField fx:id="txtPasswordLogin" alignment="CENTER" maxHeight="30.0" maxWidth="200.0" promptText="password" GridPane.rowIndex="2">
                <GridPane.margin>
@@ -58,7 +61,7 @@
                <children>
                   <VBox alignment="CENTER" prefHeight="46.0" prefWidth="287.0">
                      <children>
-                        <Button fx:id="btnRegistarOrganizacao" alignment="CENTER" maxHeight="0.0" mnemonicParsing="false" onAction="#registarOrganizacao" style="-fx-background-color: #000000;" text="Quero registar a minha Organização" textFill="WHITE">
+                        <Button fx:id="btnRegistarOrganizacao" alignment="CENTER" contentDisplay="CENTER" maxHeight="0.0" mnemonicParsing="false" onAction="#registarOrganizacao" style="-fx-background-color: #000000;" text="Quero registar a minha Organização" textFill="WHITE">
                            <padding>
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </padding>
@@ -89,11 +92,54 @@
             </FlowPane>
          </bottom>
          <top>
-            <Button fx:id="btnLogin" alignment="CENTER" mnemonicParsing="false" onAction="#login" text="Entrar" BorderPane.alignment="CENTER">
-               <padding>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-               </padding>
-            </Button>
+            <FlowPane alignment="CENTER" stylesheets="@../style/app.css" BorderPane.alignment="CENTER">
+               <children>
+                  <Button fx:id="btnLogin" alignment="CENTER" mnemonicParsing="false" onAction="#login" text="Entrar">
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                     <font>
+                        <Font name="Calibri" size="14.0" />
+                     </font>
+                     <FlowPane.margin>
+                        <Insets left="5.0" right="5.0" />
+                     </FlowPane.margin>
+                  </Button>
+                  <Button fx:id="btnAdministrativoLogado" mnemonicParsing="false" onAction="#navigateAdministrativoLogado" text="Administrativo">
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                     <font>
+                        <Font name="Calibri" size="14.0" />
+                     </font>
+                     <FlowPane.margin>
+                        <Insets left="5.0" right="5.0" />
+                     </FlowPane.margin>
+                  </Button>
+                  <Button fx:id="btnGestorLogado" mnemonicParsing="false" onAction="#navigateGestorLogado" text="Gestor">
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                     <font>
+                        <Font name="Calibri" size="14.0" />
+                     </font>
+                     <FlowPane.margin>
+                        <Insets left="5.0" right="5.0" />
+                     </FlowPane.margin>
+                  </Button>
+                  <Button fx:id="btnColaboradorLogado" mnemonicParsing="false" onAction="#navigateColaboradorLogado" text="Colaborador">
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                     <font>
+                        <Font name="Calibri" size="14.0" />
+                     </font>
+                     <FlowPane.margin>
+                        <Insets left="5.0" right="5.0" />
+                     </FlowPane.margin>
+                  </Button>
+               </children>
+            </FlowPane>
          </top>
       </BorderPane>
    </bottom>
