@@ -26,6 +26,7 @@ import javafx.stage.Stage;
 public class AdicionarCategoriaTarefaUI implements Initializable {
 
     private AdministrativoLogadoUI administrativoLogadoUI;
+    private CaracterizarCompetenciaTecnicaUI caracterizarCompetenciaTecnicaUI;
     private Scene sceneCaracterizarCompetenciaTecnica;
     private Stage adicionarStage;
     private Scene sceneStartingPage;
@@ -58,10 +59,12 @@ public class AdicionarCategoriaTarefaUI implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        //btnCancelar.getScene().getStylesheets().add("/style/app.css");
-        //adicionarStage = new Stage();
-        //adicionarStage.initModality(Modality.APPLICATION_MODAL);;
-        //adicionarStage.setResizable(false);
+
+
+
+        adicionarStage = new Stage();
+        adicionarStage.initModality(Modality.APPLICATION_MODAL);;
+        adicionarStage.setResizable(false);
     }
 
 
@@ -94,8 +97,8 @@ public class AdicionarCategoriaTarefaUI implements Initializable {
             Parent rootAddCompTec2Cat = loaderAddCompTec2Cat.load();
             sceneCaracterizarCompetenciaTecnica= new Scene(rootAddCompTec2Cat);
             sceneCaracterizarCompetenciaTecnica.getStylesheets().add("/com/grupo2/t4j/style/app.css");
-            CaracterizarCompetenciaTecnicaUI caracterizarCompetenciaTecnicaUI = loaderAddCompTec2Cat.getController();
-            caracterizarCompetenciaTecnicaUI.associarParentUI(this);
+            /*CaracterizarCompetenciaTecnicaUI caracterizarCompetenciaTecnicaUI = loaderAddCompTec2Cat.getController();
+            caracterizarCompetenciaTecnicaUI.associarParentUI(this);*/
         }
         catch (IOException exception) {
             exception.printStackTrace();
