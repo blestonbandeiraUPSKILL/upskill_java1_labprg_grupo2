@@ -82,8 +82,8 @@ public class ColaboradorLogadoUI implements Initializable {
         listViewCompTec.getItems().setAll(registarTarefaController.getCompetenciasTecnicasByCategoria(categoriaTarefa));
     }
 
-    /*@FXML
-    private void registarTarefaAction(ActionEvent event) {
+    @FXML
+    public void registarTarefaAction(ActionEvent event) {
         try {
         registarTarefaController = new RegistarTarefaController();
         boolean adicionou = registarTarefaController.registarTarefa(
@@ -99,7 +99,7 @@ public class ColaboradorLogadoUI implements Initializable {
             AlertsUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO, "Erro nos dados.",
                     iae.getMessage()).show();
         }
-    }*/
+    }
 
     @FXML
     private void CancelarAction(ActionEvent event) {
@@ -131,6 +131,6 @@ public class ColaboradorLogadoUI implements Initializable {
         Categoria categoria = cmbCategoria.getSelectionModel().getSelectedItem();
     }
 
-    public void registarTarefaAction(ActionEvent actionEvent) {
-    }
+    /*public void registarTarefaAction(ActionEvent actionEvent) {
+    }*/
 }
