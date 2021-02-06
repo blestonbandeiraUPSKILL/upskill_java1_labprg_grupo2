@@ -1,5 +1,10 @@
 package com.grupo2.t4j.ui;
 
+import com.grupo2.t4j.controller.RegistarAreaActividadeController;
+import com.grupo2.t4j.model.AreaActividade;
+import com.grupo2.t4j.repository.RepositorioAreaActividade;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -8,6 +13,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -22,10 +28,12 @@ public class AdministrativoLogadoUI implements Initializable {
     private Scene sceneAddAreaActividade;
     private Scene sceneAddCategoriaTarefa;
     private Scene sceneAddCompetenciaTecnica;
+    private RegistarAreaActividadeController registarAreaActividadeController;
 
     @FXML Button btnAddAreaAtividade;
     @FXML Button btnAddCategoriaTarefa;
     @FXML Button btnAddCompetenciaTecnica;
+    @FXML ListView<AreaActividade> listaAreasAtividade;
 
     public void associarParentUI(StartingPageUI startingPageUI) {
         this.startingPageUI = startingPageUI;
@@ -36,6 +44,13 @@ public class AdministrativoLogadoUI implements Initializable {
         adicionarStage = new Stage();
         adicionarStage.initModality(Modality.APPLICATION_MODAL);;
         adicionarStage.setResizable(false);
+
+        ListView<AreaActividade> listaAreasAtividade = new ListView<AreaActividade>();
+        listaAreasAtividade.setEditable(true);
+        ObservableList<AreaActividade> areasActividade = FXCollections.observableArrayList(RepositorioAreaActividade.getInstance().getListaAreasActividade());
+        listaAreasAtividade.getItems().setAll(areasActividade);
+
+
 
         try {
             FXMLLoader loaderAddAreaActividade = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/AdicionarAreaAtividadeScene.fxml"));
@@ -58,6 +73,8 @@ public class AdministrativoLogadoUI implements Initializable {
             sceneAddCompetenciaTecnica.getStylesheets().add("/com/grupo2/t4j/style/app.css");
             AdicionarCompetenciaTecnicaUI adicionarCompetenciaTecnicaUI = loaderAddCompetenciaTecnica.getController();
             adicionarCompetenciaTecnicaUI.associarParentUI(this);
+
+
 
         } catch (IOException exception) {
             exception.printStackTrace();
@@ -84,5 +101,11 @@ public class AdministrativoLogadoUI implements Initializable {
         adicionarStage.setScene(sceneAddCompetenciaTecnica);
         adicionarStage.setTitle("Adicionar Competência Técnica");
         adicionarStage.show();
+    }
+
+    public void updateListViewAreaActividade() {
+       listaAreasAtividade.getItems().setAll(registarAreaActividadeController.getAreasActividade());
+
+
     }
 }

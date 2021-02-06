@@ -45,7 +45,7 @@ public class AdicionarAreaAtividadeUI implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
-       registarAreaActividadeController = new RegistarAreaActividadeController();
+        registarAreaActividadeController = new RegistarAreaActividadeController();
         adicionarStage = new Stage();
         adicionarStage.initModality(Modality.APPLICATION_MODAL);;
         adicionarStage.setResizable(false);
@@ -87,9 +87,18 @@ public class AdicionarAreaAtividadeUI implements Initializable {
                     "Registar Área de Actividade.",
                     adicionou ? "Área de Actividade registada com sucesso."
                                 : "Não foi possível registar a Área de Actividade.").show();
+
+            if(adicionou) {
+                administrativoLogadoUI.updateListViewAreaActividade();
+            }
+            btnAddAreaAtividade.getScene().getWindow().hide();
+
+
         }
         catch (IllegalArgumentException iae) {
-            AlertsUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO, "Erro nos dados.",
+            AlertsUI.criarAlerta(Alert.AlertType.ERROR,
+                    MainApp.TITULO_APLICACAO,
+                    "Erro nos dados.",
                     iae.getMessage()).show();
         
         }
