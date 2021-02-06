@@ -5,14 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8ca9f66f-f143-4134-afe5-eb7245bd0a9c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/style/app.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Cliente-Autarquias/AutarquiaCLI/target/classes/.netbeans_automatic_build" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Cliente-Autarquias/AutarquiaCLI/target/test-classes/.netbeans_automatic_build" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/controller/RegistarTarefaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/controller/RegistarTarefaController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/files/FicheiroRepositorioAreaAcividade.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/files/FicheiroRepositorioAreaAcividade.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/files/FicheiroRepositorioCategoria.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/files/FicheiroRepositorioCategoria.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/model/AreaActividade.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/model/AreaActividade.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/model/Plataforma.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/model/Plataforma.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/repository/RepositorioCategoria.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/repository/RepositorioCategoriaTarefa.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/AdicionarAreaAtividadeUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/AdicionarAreaAtividadeUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/AdicionarCategoriaTarefaUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/AdicionarCategoriaTarefaUI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/AdministrativoLogadoUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/AdministrativoLogadoUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/MainApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/MainApp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/grupo2/t4j/fxml/AdicionarCategoriaTarefa.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/grupo2/t4j/fxml/AdicionarCategoriaTarefa.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/grupo2/t4j/fxml/ColaboradorLogadoScene.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/grupo2/t4j/fxml/ColaboradorLogadoScene.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/style/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/grupo2/t4j/style/app.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/grupo2/t4j/repository/RepositorioCategoriaTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/grupo2/t4j/repository/RepositorioCategoriaTarefaTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -86,6 +91,7 @@
       <recent name="C:\Users\blest\Desktop\Sprints\upskill_java1_labprg_grupo2\T4J-Grupo2\src\main\java\com\grupo2\t4j" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\blest\Desktop\Sprints\upskill_java1_labprg_grupo2\T4J-Grupo2\src\main\resources" />
       <recent name="C:\Users\blest\Desktop\Sprints\upskill_java1_labprg_grupo2\T4J-Grupo2\src\main\resources\style" />
       <recent name="C:\Users\blest\Desktop\Sprints\upskill_java1_labprg_grupo2\T4J-Grupo2\src\main\java\com\grupo2\t4j\model" />
     </key>
@@ -128,7 +134,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="RepositorioCategoriaTest.testgetCategoriaById" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="RepositorioCategoriaTarefaTest.testgetCategoriaById" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="T4J-Grupo2" />
       <extension name="coverage">
         <pattern>
@@ -137,7 +143,7 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="com.grupo2.t4j.repository" />
-      <option name="MAIN_CLASS_NAME" value="com.grupo2.t4j.repository.RepositorioCategoriaTest" />
+      <option name="MAIN_CLASS_NAME" value="com.grupo2.t4j.repository.RepositorioCategoriaTarefaTest" />
       <option name="METHOD_NAME" value="testgetCategoriaById" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
@@ -194,7 +200,7 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.MainApp" />
-        <item itemvalue="JUnit.RepositorioCategoriaTest.testgetCategoriaById" />
+        <item itemvalue="JUnit.RepositorioCategoriaTarefaTest.testgetCategoriaById" />
         <item itemvalue="JUnit.RepositorioCompetenciaTecnicaTest.testAddCompetenciaDescricaoInvalida" />
         <item itemvalue="JUnit.RepositorioCompetenciaTecnicaTest" />
         <item itemvalue="JUnit.UtilizadorTest.testCriarUtilizadorNomeIncorreto" />

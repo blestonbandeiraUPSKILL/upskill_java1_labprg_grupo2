@@ -8,24 +8,24 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RepositorioCategoria implements Serializable{
+public class RepositorioCategoriaTarefa implements Serializable{
 
-    private static RepositorioCategoria instance;
+    private static RepositorioCategoriaTarefa instance;
     private List<Categoria> listaCategorias;
     
     /**
      * Construtor do repositorio
      */
-    private RepositorioCategoria(){
+    private RepositorioCategoriaTarefa(){
         listaCategorias = new ArrayList<>();
     }
     /**
      * Garante que existe apenas um repositorio para categorias
      * @return 
      */
-    public static RepositorioCategoria getInstance(){
+    public static RepositorioCategoriaTarefa getInstance(){
         if (instance == null){
-            instance = new RepositorioCategoria();
+            instance = new RepositorioCategoriaTarefa();
         }
         return instance;
     }

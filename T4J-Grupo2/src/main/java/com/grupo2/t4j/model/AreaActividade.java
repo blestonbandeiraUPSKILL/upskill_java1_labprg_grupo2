@@ -10,6 +10,8 @@ package com.grupo2.t4j.model;
  * @author acris
  */
 import com.grupo2.t4j.exception.*;
+import com.grupo2.t4j.repository.RepositorioAreaActividade;
+
 import java.io.Serializable;
 
 /**
@@ -71,6 +73,9 @@ public class AreaActividade implements Serializable{
      */
     public void setCodigo(String codigo) {
         if (codigo == null || codigo.trim().isEmpty()) {
+            throw new AreaActividadeDuplicadaException("O Código da Área de Actividade é um campo obrigatório!");
+        }
+        if (RepositorioAreaActividade.getInstance().getAreaActividadeByCodigo(codigo).equals(codigo)) {
             throw new AreaActividadeDuplicadaException("Código de Área de Actividade "
                     + "já existe!");
         }

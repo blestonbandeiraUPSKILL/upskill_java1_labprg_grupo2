@@ -5,9 +5,8 @@
  */
 package com.grupo2.t4j.files;
 
-import static com.grupo2.t4j.files.FicheiroRepositorioCategoria.NOME_FICHEIRO_SERIALIZAR;
 import com.grupo2.t4j.repository.RepositorioAreaActividade;
-import com.grupo2.t4j.repository.RepositorioCategoria;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;

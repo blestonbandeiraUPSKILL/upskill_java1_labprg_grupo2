@@ -97,9 +97,8 @@ public class RepositorioAreaActividade implements Serializable{
      * @return AreaActividade registada
      */
     public AreaActividade getAreaActividadeByCodigo(String codigo) {
-        AreaActividade areaActividade = null;
         for (int i = 0; i < this.listaAreasActividade.size(); i++) {
-            areaActividade = this.listaAreasActividade.get(i);
+            AreaActividade areaActividade = this.listaAreasActividade.get(i);
             if (areaActividade.getCodigo().equals(codigo)) {
                 return areaActividade;
             }
