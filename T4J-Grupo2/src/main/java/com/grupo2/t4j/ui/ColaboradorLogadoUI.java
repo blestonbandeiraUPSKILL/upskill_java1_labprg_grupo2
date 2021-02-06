@@ -129,7 +129,7 @@ public class ColaboradorLogadoUI implements Initializable {
                 }
             });
             window.fireEvent(new WindowEvent(window, WindowEvent.WINDOW_CLOSE_REQUEST));
-            
+
             adicionarStage.setScene(sceneStartingPage);
             adicionarStage.setTitle(MainApp.TITULO_APLICACAO);
             adicionarStage.show();
