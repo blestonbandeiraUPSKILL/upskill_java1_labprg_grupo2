@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" style="-fx-background-color: c4c4c4;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.AdicionarCompetenciaTecnicaUI">
    <center>
       <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <top>
@@ -18,9 +18,9 @@
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefWidth="350.0">
                            <children>
                               <BorderPane prefHeight="300.0" prefWidth="200.0" />
-                              <TextField layoutX="15.0" layoutY="50.0" prefHeight="39.0" prefWidth="139.0" />
-                              <TextField layoutX="15.0" layoutY="140.0" prefHeight="42.0" prefWidth="241.0" />
-                              <TextArea layoutX="273.0" layoutY="50.0" prefHeight="175.0" prefWidth="417.0" />
+                              <TextField fx:id="txtCodigo" layoutX="15.0" layoutY="50.0" prefHeight="39.0" prefWidth="139.0" />
+                              <TextField fx:id="txtDescricaoBreve" layoutX="15.0" layoutY="140.0" prefHeight="42.0" prefWidth="241.0" />
+                              <TextArea fx:id="txtDescricaoDetalhada" layoutX="273.0" layoutY="50.0" prefHeight="175.0" prefWidth="417.0" />
                               <Label layoutX="25.0" layoutY="21.0" text="Código" />
                               <Label layoutX="25.0" layoutY="107.0" text="Descrição breve" />
                               <Label layoutX="282.0" layoutY="21.0" text="Descrição detalhada" />
@@ -61,22 +61,22 @@
          <bottom>
             <FlowPane prefHeight="52.0" prefWidth="700.0" BorderPane.alignment="CENTER">
                <children>
-                  <ComboBox prefWidth="210.0" promptText="Área de Atividade">
+                  <ComboBox fx:id="cmbAreaActividade" prefWidth="210.0" promptText="Área de Atividade">
                      <FlowPane.margin>
                         <Insets left="15.0" />
                      </FlowPane.margin>
                   </ComboBox>
-                  <ComboBox prefWidth="225.0" promptText="Grau de Proficiência">
+                  <ComboBox fx:id="cmbGrauProficiencia" prefWidth="225.0" promptText="Grau de Proficiência">
                      <FlowPane.margin>
                         <Insets left="10.0" />
                      </FlowPane.margin>
                   </ComboBox>
-                  <Button fx:id="btn_returnAreasAtividade" alignment="BOTTOM_RIGHT" mnemonicParsing="false" text="Cancelar">
+                  <Button fx:id="btnCancelar" alignment="BOTTOM_RIGHT" mnemonicParsing="false" text="Cancelar">
                      <FlowPane.margin>
                         <Insets left="25.0" right="10.0" />
                      </FlowPane.margin>
                   </Button>
-                  <Button fx:id="btn_addcompetenciaTecnica" alignment="BOTTOM_RIGHT" mnemonicParsing="false" prefHeight="0.0" prefWidth="104.0" text="Confirmar" />
+                  <Button fx:id="btnConfirmar" alignment="CENTER" mnemonicParsing="false" onAction="#addCompetenciaTecnicaAction" prefHeight="0.0" prefWidth="104.0" text="Confirmar" />
                </children>
             </FlowPane>
          </bottom></BorderPane>
