@@ -87,8 +87,8 @@ public class AdministrativoLogadoUI implements Initializable {
             Parent rootAddCategoriaTarefa = loaderAddCategoriaTarefa.load();
             sceneAddCategoriaTarefa = new Scene(rootAddCategoriaTarefa);
             sceneAddCategoriaTarefa.getStylesheets().add("/com/grupo2/t4j/style/app.css");
-            AdicionarCategoriaTarefaUI adicionarCategoriaTarefaUI = loaderAddCategoriaTarefa.getController();
-            adicionarCategoriaTarefaUI.associarParentUI(this);
+           /* AdicionarCategoriaTarefaUI adicionarCategoriaTarefaUI = loaderAddCategoriaTarefa.getController();
+            adicionarCategoriaTarefaUI.associarParentUI(this);*/
         }
         catch (IOException exception) {
             exception.printStackTrace();
