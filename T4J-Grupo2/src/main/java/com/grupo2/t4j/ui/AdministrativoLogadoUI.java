@@ -150,4 +150,10 @@ public class AdministrativoLogadoUI implements Initializable {
         adicionarStage.show();
         btnAddAreaAtividade.getScene().getWindow().hide();
     }
+
+    public void updateListViewCategoriasTarefa(ActionEvent actionEvent) {
+    }
+
+    public void updateListViewCompetenciasTecnicas(ActionEvent actionEvent) {
+    }
 }

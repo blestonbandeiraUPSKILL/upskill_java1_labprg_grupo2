@@ -146,7 +146,6 @@ public class StartingPageUI implements Initializable {
                    "Erro",
                    exception.getMessage());
        }
-
     }
 
     public void navigateGestorLogado(ActionEvent actionEvent) {

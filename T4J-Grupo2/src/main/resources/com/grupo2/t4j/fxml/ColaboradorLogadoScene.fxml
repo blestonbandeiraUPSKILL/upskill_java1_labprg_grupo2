@@ -11,250 +11,228 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="491.0" prefWidth="596.0" style="-fx-background-color: #c4c4c4;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.ColaboradorLogadoUI">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="700.0" style="-fx-background-color: #c4c4c4;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.ColaboradorLogadoUI">
    <top>
-      <Label style="-fx-background-color: #000000;" text="Área do Colaborador" textFill="WHITE" BorderPane.alignment="CENTER_RIGHT">
-         <padding>
-            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-         </padding>
+      <Label alignment="CENTER_RIGHT" style="-fx-background-color: #000000;" stylesheets="@../style/app.css" text="Área do Colaborador" textFill="WHITE" BorderPane.alignment="CENTER_RIGHT">
          <font>
             <Font name="Calibri" size="18.0" />
          </font>
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
       </Label>
    </top>
    <center>
-      <BorderPane prefHeight="400.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <center>
-            <TabPane prefHeight="385.0" prefWidth="596.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
-              <tabs>
-                  <Tab text="Consultar Tarefas">
-                    <content>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                           <children>
-                              <VBox alignment="CENTER" layoutX="3.0" layoutY="4.0" prefHeight="428.0" prefWidth="589.0">
-                                 <children>
-                                    <Label text="Seleccionar Área de Actividade">
-                                       <VBox.margin>
-                                          <Insets bottom="10.0" />
-                                       </VBox.margin>
-                                       <font>
-                                          <Font name="Calibri" size="14.0" />
-                                       </font>
-                                    </Label>
-                                    <ComboBox fx:id="cmbArAct" onAction="#selectArAct" prefHeight="25.0" prefWidth="211.0" promptText="Escolha a Área de Actividade">
-                                       <VBox.margin>
-                                          <Insets bottom="20.0" />
-                                       </VBox.margin>
-                                    </ComboBox>
-                                    <Label text="Seleccionar Categoria de Tarefa">
-                                       <VBox.margin>
-                                          <Insets bottom="10.0" />
-                                       </VBox.margin>
-                                       <font>
-                                          <Font name="Calibri" size="14.0" />
-                                       </font>
-                                    </Label>
-                                    <ComboBox fx:id="cmbCategoria" onAction="#selectCategoriaAction" prefHeight="25.0" prefWidth="210.0" promptText="Escolha a Categoria">
-                                       <VBox.margin>
-                                          <Insets bottom="20.0" />
-                                       </VBox.margin>
-                                    </ComboBox>
-                                    <Label text="Tarefas Registadas">
-                                       <VBox.margin>
-                                          <Insets bottom="10.0" />
-                                       </VBox.margin>
-                                       <font>
-                                          <Font name="Calibri" size="14.0" />
-                                       </font>
-                                    </Label>
-                                    <ListView fx:id="listViewTarefas" prefHeight="200.0" prefWidth="491.0">
-                                       <VBox.margin>
-                                          <Insets left="50.0" right="50.0" />
-                                       </VBox.margin>
-                                    </ListView>
-                                 </children>
-                              </VBox>
-                           </children>
-                        </AnchorPane>
-                    </content>
-                  </Tab>
-                <Tab text="Especificar Tarefas">
-                     <content>
-                        <BorderPane prefHeight="408.0" prefWidth="596.0">
-                           <left>
-                              <VBox prefHeight="363.0" prefWidth="235.0" BorderPane.alignment="CENTER">
-                                 <children>
-                                    <Label alignment="CENTER" text="Seleccionar Área de Actividade">
-                                       <VBox.margin>
-                                          <Insets left="20.0" top="20.0" />
-                                       </VBox.margin>
-                                       <font>
-                                          <Font name="Calibri" size="14.0" />
-                                       </font>
-                                    </Label>
-                                    <ComboBox fx:id="cmbAreaActividade" onAction="#selectAreaActAction" prefHeight="25.0" prefWidth="213.0" promptText="Escolha a Área de Actividade">
-                                       <VBox.margin>
-                                          <Insets left="10.0" top="5.0" />
-                                       </VBox.margin>
-                                    </ComboBox>
-                                    <Label alignment="CENTER" text="Seleccionar Categoria de Tarefa">
-                                       <VBox.margin>
-                                          <Insets left="20.0" top="20.0" />
-                                       </VBox.margin>
-                                       <font>
-                                          <Font name="Calibri" size="14.0" />
-                                       </font>
-                                    </Label>
-                                    <ComboBox fx:id="cmbCategoriaTarefa" onAction="#selectCatTarAction" prefHeight="25.0" prefWidth="213.0" promptText="Escolha a Categoria de Tarefa">
-                                       <VBox.margin>
-                                          <Insets left="10.0" top="5.0" />
-                                       </VBox.margin>
-                                    </ComboBox>
-                                    <Label alignment="CENTER" text="Competencias Técnicas Requeridas">
-                                       <VBox.margin>
-                                          <Insets left="15.0" top="20.0" />
-                                       </VBox.margin>
-                                       <font>
-                                          <Font name="Calibri" size="14.0" />
-                                       </font>
-                                    </Label>
-                                    <ListView fx:id="listViewCompTec" prefHeight="132.0" prefWidth="235.0">
-                                       <VBox.margin>
-                                          <Insets left="10.0" right="10.0" top="5.0" />
-                                       </VBox.margin>
-                                    </ListView>
-                                 </children>
-                                 <BorderPane.margin>
-                                    <Insets left="5.0" />
-                                 </BorderPane.margin>
-                              </VBox>
-                           </left>
-                           <right>
-                              <VBox prefHeight="346.0" prefWidth="325.0" BorderPane.alignment="CENTER">
-                                 <children>
-                                    <Label text="Referência">
-                                       <VBox.margin>
-                                          <Insets top="15.0" />
-                                       </VBox.margin>
-                                       <font>
-                                          <Font name="Calibri" size="14.0" />
-                                       </font>
-                                    </Label>
-                                    <TextField fx:id="txtReferencia">
-                                       <VBox.margin>
-                                          <Insets right="10.0" />
-                                       </VBox.margin>
-                                       <font>
-                                          <Font name="Calibri" size="14.0" />
-                                       </font>
-                                    </TextField>
-                                    <Label text="Designação">
-                                       <font>
-                                          <Font name="Calibri" size="14.0" />
-                                       </font></Label>
-                                    <TextField fx:id="txtDesignacao">
-                                       <VBox.margin>
-                                          <Insets right="10.0" />
-                                       </VBox.margin>
-                                       <font>
-                                          <Font name="Calibri" size="14.0" />
-                                       </font>
-                                    </TextField>
-                                    <Label text="Descrição Informal">
-                                       <font>
-                                          <Font name="Calibri" size="14.0" />
-                                       </font></Label>
-                                    <TextArea fx:id="txtDescricaoInformal" prefHeight="66.0" prefWidth="315.0">
-                                       <VBox.margin>
-                                          <Insets right="10.0" />
-                                       </VBox.margin>
-                                       <font>
-                                          <Font name="Calibri" size="14.0" />
-                                       </font>
-                                    </TextArea>
-                                    <Label text="Descrição de Carácter Técnico">
-                                       <font>
-                                          <Font name="Calibri" size="14.0" />
-                                       </font></Label>
-                                    <TextArea fx:id="txtDescricaoTecnica" prefHeight="63.0" prefWidth="325.0">
-                                       <VBox.margin>
-                                          <Insets right="10.0" />
-                                       </VBox.margin>
-                                       <font>
-                                          <Font name="Calibri" size="14.0" />
-                                       </font>
-                                    </TextArea>
-                                    <Label text="Estimativa de Duração (dias)">
-                                       <font>
-                                          <Font name="Calibri" size="14.0" />
-                                       </font></Label>
-                                    <TextField fx:id="txtDuracao">
-                                       <VBox.margin>
-                                          <Insets right="10.0" />
-                                       </VBox.margin>
-                                       <font>
-                                          <Font name="Calibri" size="14.0" />
-                                       </font>
-                                    </TextField>
-                                    <Label text="Estimativa de Custo (€)">
-                                       <font>
-                                          <Font name="Calibri" size="14.0" />
-                                       </font></Label>
-                                    <TextField fx:id="txtCusto">
-                                       <VBox.margin>
-                                          <Insets right="10.0" />
-                                       </VBox.margin>
-                                       <font>
-                                          <Font name="Calibri" size="14.0" />
-                                       </font>
-                                    </TextField>
-                                 </children>
-                              </VBox>
-                           </right>
-                           <bottom>
-                              <FlowPane alignment="CENTER_RIGHT" columnHalignment="CENTER" prefHeight="64.0" prefWidth="596.0" BorderPane.alignment="CENTER_RIGHT">
-                                 <children>
-                                    <Button fx:id="btnRegistarTarefa" alignment="CENTER_RIGHT" defaultButton="true" mnemonicParsing="false" onAction="#registarTarefaAction" text="Registar Tarefa">
-                                       <FlowPane.margin>
-                                          <Insets />
-                                       </FlowPane.margin>
-                                       <font>
-                                          <Font name="Calibri" size="14.0" />
-                                       </font>
-                                    </Button>
-                                    <Button fx:id="btnCancelar" alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#CancelarAction" text="Cancelar Registo">
-                                       <FlowPane.margin>
-                                          <Insets left="10.0" right="10.0" />
-                                       </FlowPane.margin>
-                                       <font>
-                                          <Font name="Calibri" size="14.0" />
-                                       </font>
-                                    </Button>
-                                 </children>
-                              </FlowPane>
-                           </bottom>
-                        </BorderPane>
-                     </content>
-                </Tab>
-                <Tab text="Publicar Tarefas">
-                  <content>
-                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                           <children>
-                              <Label alignment="CENTER" layoutY="104.0" prefHeight="176.0" prefWidth="600.0" text="Esta funcionalidade ainda não está implementada">
-                                 <font>
-                                    <Font name="Calibri" size="18.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </AnchorPane>
-                  </content>
-                </Tab>
-              </tabs>
+            <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+               <Tab text="Lista de Tarefas">
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <VBox alignment="CENTER" layoutX="533.0" layoutY="203.0"
+                           AnchorPane.bottomAnchor="19.666666666666686" AnchorPane.rightAnchor="71.0">
+                        <Button fx:id="btnUpdateListaTarefas" mnemonicParsing="false"
+                                onAction="#updateListViewTarefas" text="Actualizar Lista">
+                           <VBox.margin>
+                              <Insets bottom="10.0"/>
+                           </VBox.margin>
+                           <font>
+                              <Font name="Calibri" size="14.0"/>
+                           </font>
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+                           </padding>
+                        </Button>
+                        <Button fx:id="btnAddTarefa" alignment="CENTER" mnemonicParsing="false"
+                                onAction="#navigateAddTarefa" style="-fx-background-color: #000000;"
+                                text="Adicionar" textFill="WHITE">
+                           <VBox.margin>
+                              <Insets bottom="10.0" top="10.0"/>
+                           </VBox.margin>
+                           <font>
+                              <Font name="Calibri" size="14.0"/>
+                           </font>
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+                           </padding>
+                        </Button>
+                        <Button fx:id="btnSairListaTarefas" mnemonicParsing="false"
+                                onAction="#navigateStartingPage" text="Sair">
+                           <font>
+                              <Font name="Calibri" size="14.0"/>
+                           </font>
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+                           </padding>
+                           <VBox.margin>
+                              <Insets bottom="10.0" top="10.0"/>
+                           </VBox.margin>
+                        </Button>
+                     </VBox>
+                     <ListView layoutX="14.0" layoutY="35.0" prefHeight="298.0" prefWidth="441.0"
+                               AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="20.0"
+                               AnchorPane.rightAnchor="240.0" AnchorPane.topAnchor="50.0"/>
+                     <Label layoutX="20.0" layoutY="8.0" prefHeight="40.0" prefWidth="215.0"
+                            text="Tarefas Registadas" AnchorPane.bottomAnchor="341.0" AnchorPane.leftAnchor="20.0"
+                            AnchorPane.rightAnchor="465.0" AnchorPane.topAnchor="8.0">
+                        <font>
+                           <Font name="Calibri" size="16.0"/>
+                        </font>
+                     </Label>
+                     <VBox alignment="CENTER" layoutX="476.0" layoutY="35.0" prefHeight="155.0" prefWidth="209.0">
+                        <Label alignment="CENTER" text="Selccionar Área de Actividade">
+                           <VBox.margin>
+                              <Insets bottom="10.0"/>
+                           </VBox.margin>
+                           <font>
+                              <Font name="Calibri" size="14.0"/>
+                           </font>
+                        </Label>
+                        <ComboBox prefHeight="25.0" prefWidth="200.0" promptText="Escolha a Área de Actividade">
+                           <VBox.margin>
+                              <Insets bottom="10.0"/>
+                           </VBox.margin>
+                        </ComboBox>
+                        <Label alignment="CENTER" text="Seleccionar Categoria de Tarefa">
+                           <VBox.margin>
+                              <Insets bottom="10.0"/>
+                           </VBox.margin>
+                           <font>
+                              <Font name="Calibri" size="14.0"/>
+                           </font>
+                        </Label>
+                        <ComboBox prefWidth="200.0" promptText="Escolha a Categoria de Tarefa"/>
+                     </VBox>
+                  </AnchorPane>
+               </Tab>
+               <Tab text="Especificar Tarefa">
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <VBox alignment="TOP_CENTER" layoutX="20.0" layoutY="24.0" prefHeight="339.0"
+                           prefWidth="227.0">
+                        <Label text="Seleccionar Área de Actividade">
+                           <VBox.margin>
+                              <Insets top="20.0"/>
+                           </VBox.margin>
+                        </Label>
+                        <ComboBox prefHeight="25.0" prefWidth="225.0"
+                                  promptText="Escolha a Área de Actividade">
+                           <opaqueInsets>
+                              <Insets/>
+                           </opaqueInsets>
+                           <VBox.margin>
+                              <Insets bottom="10.0" top="10.0"/>
+                           </VBox.margin>
+                        </ComboBox>
+                        <Label text="Seleccionar Categoria de Tarefa">
+                           <VBox.margin>
+                              <Insets bottom="10.0" top="10.0"/>
+                           </VBox.margin>
+                        </Label>
+                        <ComboBox prefHeight="25.0" prefWidth="225.0"
+                                  promptText="Escolha a Categoria de Tarefa"/>
+                        <Label text="Competências Técnicas Requeridas">
+                           <VBox.margin>
+                              <Insets bottom="10.0" top="10.0"/>
+                           </VBox.margin>
+                        </Label>
+                        <ListView prefHeight="140.0" prefWidth="225.0"/>
+                     </VBox>
+                     <VBox alignment="TOP_CENTER" layoutX="288.0" layoutY="19.0" prefHeight="340.0"
+                           prefWidth="297.0">
+                        <Label text="Referência">
+                           <VBox.margin>
+                              <Insets bottom="5.0" top="5.0"/>
+                           </VBox.margin>
+                        </Label>
+                        <TextField>
+                           <VBox.margin>
+                              <Insets bottom="5.0"/>
+                           </VBox.margin>
+                        </TextField>
+                        <Label text="Designação">
+                           <VBox.margin>
+                              <Insets bottom="5.0"/>
+                           </VBox.margin>
+                        </Label>
+                        <TextField>
+                           <VBox.margin>
+                              <Insets bottom="5.0"/>
+                           </VBox.margin>
+                        </TextField>
+                        <Label text="Descrição Informal">
+                           <VBox.margin>
+                              <Insets bottom="5.0"/>
+                           </VBox.margin>
+                        </Label>
+                        <TextArea prefHeight="43.0" prefWidth="297.0">
+                           <VBox.margin>
+                              <Insets bottom="5.0"/>
+                           </VBox.margin>
+                        </TextArea>
+                        <Label text="Descrição de Carácter Técnico">
+                           <VBox.margin>
+                              <Insets bottom="5.0"/>
+                           </VBox.margin>
+                        </Label>
+                        <TextArea prefHeight="61.0" prefWidth="297.0">
+                           <VBox.margin>
+                              <Insets bottom="5.0"/>
+                           </VBox.margin>
+                        </TextArea>
+                        <Label text="Estimativa de Duração (dias)">
+                           <VBox.margin>
+                              <Insets bottom="5.0"/>
+                           </VBox.margin>
+                        </Label>
+                        <TextField>
+                           <VBox.margin>
+                              <Insets bottom="5.0"/>
+                           </VBox.margin>
+                        </TextField>
+                        <Label text="Estimativa de Custo (€)">
+                           <VBox.margin>
+                              <Insets bottom="5.0"/>
+                           </VBox.margin>
+                        </Label>
+                        <TextField>
+                           <VBox.margin>
+                              <Insets bottom="5.0"/>
+                           </VBox.margin>
+                        </TextField>
+                     </VBox>
+                     <VBox alignment="BOTTOM_CENTER" layoutX="585.0" layoutY="163.0" prefHeight="200.0"
+                           prefWidth="100.0">
+                        <Button defaultButton="true" mnemonicParsing="false" text="Confirmar">
+                           <VBox.margin>
+                              <Insets bottom="10.0" top="10.0"/>
+                           </VBox.margin>
+                           <font>
+                              <Font name="Calibri" size="14.0"/>
+                           </font>
+                        </Button>
+                        <Button mnemonicParsing="false" text="Cancelar">
+                           <VBox.margin>
+                              <Insets bottom="10.0" top="10.0"/>
+                           </VBox.margin>
+                           <font>
+                              <Font name="Calibri" size="14.0"/>
+                           </font>
+                        </Button>
+                     </VBox>
+                  </AnchorPane>
+               </Tab>
+               <Tab text="Publicar Tarefas">
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <Label layoutX="168.0" layoutY="158.0"
+                            text="Esta funcionalidade ainda não está implementada">
+                        <font>
+                           <Font name="Calibri" size="18.0"/>
+                        </font>
+                     </Label>
+                  </AnchorPane>
+               </Tab>
             </TabPane>
          </center>
       </BorderPane>
