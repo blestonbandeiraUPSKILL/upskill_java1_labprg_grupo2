@@ -66,7 +66,7 @@ public class RepositorioAreaActividade implements Serializable{
         AreaActividade aa = getAreaActividadeByCodigo(codigo);
         if (aa == null) {
             AreaActividade areaActividade = new AreaActividade(codigo, descBreve, descDetalhada);
-            return this.listaAreasActividade.add(areaActividade);
+            return listaAreasActividade.add(areaActividade);
         } else {
             throw new AreaActividadeDuplicadaException(aa.getCodigo() + ": Área de Actividade já registada!");
         }
@@ -88,7 +88,7 @@ public class RepositorioAreaActividade implements Serializable{
      */
     public List<AreaActividade> getListaAreasActividade() {
 
-        return new ArrayList<>(listaAreasActividade);
+        return listaAreasActividade;
     }
     
     /**

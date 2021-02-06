@@ -17,6 +17,7 @@ import org.junit.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import com.grupo2.t4j.model.*;
 import com.grupo2.t4j.exception.*;
+import java.util.List;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -101,7 +102,12 @@ public class RepositorioAreaActividadeTest {
         raa1.addAreaActividade(aa2);
         
         List<AreaActividade> lista = raa1.getListaAreasActividade();
+<<<<<<< HEAD
+=======
         
-        assertEquals(lista.get(0),aa1);        
+        assertEquals(lista.get(0),aa1);
+        assertEquals(lista.get(1),aa2);
+>>>>>>> f0c7c68725f70bf9353f2eb06dd476d868c91b0f
+        
     }
 }
