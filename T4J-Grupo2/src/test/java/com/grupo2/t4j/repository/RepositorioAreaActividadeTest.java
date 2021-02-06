@@ -11,6 +11,8 @@ package com.grupo2.t4j.repository;
  */
 
 import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import com.grupo2.t4j.model.*;
@@ -98,7 +100,7 @@ public class RepositorioAreaActividadeTest {
         raa1.addAreaActividade(aa1);
         raa1.addAreaActividade(aa2);
         
-        ArrayList<AreaActividade> lista = raa1.getListaAreasActividade();
+        List<AreaActividade> lista = raa1.getListaAreasActividade();
         
         assertEquals(lista.get(0),aa1);        
     }

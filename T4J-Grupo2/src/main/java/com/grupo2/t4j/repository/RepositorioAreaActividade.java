@@ -86,7 +86,7 @@ public class RepositorioAreaActividade implements Serializable{
      *
      * @return 
      */
-    public ArrayList<AreaActividade> getListaAreasActividade() {
+    public List<AreaActividade> getListaAreasActividade() {
 
         return new ArrayList<>(listaAreasActividade);
     }
