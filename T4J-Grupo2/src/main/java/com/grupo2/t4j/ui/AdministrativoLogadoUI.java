@@ -49,15 +49,9 @@ public class AdministrativoLogadoUI implements Initializable {
 
         registarAreaActividadeController = new RegistarAreaActividadeController();
 
-        AreaActividade a = new AreaActividade("aaaaaaa","bbbbbbbbb", "cccccccccccccccccccccc");
-
-        List<AreaActividade> lista = new ArrayList<>();
-        lista.add(a);
-
         listaAreasAtividade = new ListView<AreaActividade>();
-        listaAreasAtividade.getItems().setAll(lista);
 
-        //updateListViewAreaActividade();
+        updateListViewAreaActividade();
 
 
 
@@ -113,6 +107,7 @@ public class AdministrativoLogadoUI implements Initializable {
     }
 
     public void updateListViewAreaActividade() {
-        listaAreasAtividade.getItems().setAll(registarAreaActividadeController.getAreasActividade());
+        listaAreasAtividade.setItems(FXCollections.observableArrayList(registarAreaActividadeController.getAreasActividade()));
+
     }
 }
