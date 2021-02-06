@@ -49,7 +49,7 @@ public class RepositorioAreaActividade implements Serializable{
     public void addAreaActividade(AreaActividade areaActividade) throws AreaActividadeDuplicadaException {
         AreaActividade aa = getAreaActividadeByCodigo(areaActividade.getCodigo());
         if (aa == null) {
-            this.listaAreasActividade.add(areaActividade);
+            listaAreasActividade.add(areaActividade);
         } else {
             throw new AreaActividadeDuplicadaException(aa.getCodigo() + ": Área de Actividade já registada!");
         }

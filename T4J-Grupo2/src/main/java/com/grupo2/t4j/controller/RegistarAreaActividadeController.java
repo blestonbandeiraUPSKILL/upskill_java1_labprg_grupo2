@@ -15,13 +15,15 @@ import java.util.List;
  * @author acris
  */
 public class RegistarAreaActividadeController {
+    
+    private RepositorioAreaActividade repositorioAreaActividade;
 
     public boolean registarAreaActividade(String codigo, String descricaoBreve, String descricaoDetalhada) {
         return RepositorioAreaActividade.getInstance().addAreaActividade(codigo, descricaoBreve, descricaoDetalhada);
     }
 
     public List<AreaActividade> getAreasActividade() {
-        return RepositorioAreaActividade.getInstance().getListaAreasActividade();
+        return repositorioAreaActividade.getInstance().getListaAreasActividade();
     }
 
 
