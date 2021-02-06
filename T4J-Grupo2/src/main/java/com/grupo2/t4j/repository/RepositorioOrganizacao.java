@@ -83,11 +83,13 @@ public class RepositorioOrganizacao implements Serializable{
      * @param organizacao organização a ser adicionada
      *
      * @throws OrganizacaoDuplicadaException
+     * @return
      */
-    public void addOrganizacao(Organizacao organizacao) throws OrganizacaoDuplicadaException {
+    public boolean addOrganizacao(Organizacao organizacao) throws OrganizacaoDuplicadaException {
         Organizacao o = getOrganizacaoByNif(organizacao.getNif());
         if (o == null) {
             this.listaOrganizacoes.add(organizacao);
+            return true;
         } else {
             throw new OrganizacaoDuplicadaException(o.getNif() + ": Organização já registada!");
         }

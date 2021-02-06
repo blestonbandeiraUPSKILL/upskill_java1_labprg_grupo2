@@ -41,6 +41,6 @@ public class RegistarOrganizacaoController {
     }
 
     public boolean registaOrganizacao() throws Exception {
-        return RepositorioOrganizacao.getInstance().registaOrganizacao(organizacao);
+        return RepositorioOrganizacao.getInstance().addOrganizacao(organizacao);
     }
 }
