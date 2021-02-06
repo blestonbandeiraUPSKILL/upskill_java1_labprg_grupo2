@@ -12,6 +12,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -78,9 +79,12 @@ public class AdicionarAreaAtividadeUI implements Initializable {
             registarAreaActividadeController = new RegistarAreaActividadeController();
 
             boolean adicionou = registarAreaActividadeController.registarAreaActividade(
-                    txtCodigo.getText().toString(),
-                    txtDescricaoBreve.getText(),
-                    areaDescricaoDetalhada.getText());
+                    txtCodigo.getText().trim(),
+                    txtDescricaoBreve.getText().trim(),
+                    areaDescricaoDetalhada.getText().trim());
+            if(adicionou) {
+                administrativoLogadoUI.updateListViewAreaActividade();
+            }
 
             AlertsUI.criarAlerta(Alert.AlertType.INFORMATION,
                     MainApp.TITULO_APLICACAO,
@@ -88,11 +92,8 @@ public class AdicionarAreaAtividadeUI implements Initializable {
                     adicionou ? "Área de Actividade registada com sucesso."
                                 : "Não foi possível registar a Área de Actividade.").show();
 
-            if(adicionou) {
-                administrativoLogadoUI.updateListViewAreaActividade();
-            }
-            btnAddAreaAtividade.getScene().getWindow().hide();
 
+            closeAddAreaActividade(event);
 
         }
         catch (IllegalArgumentException iae) {
@@ -105,6 +106,12 @@ public class AdicionarAreaAtividadeUI implements Initializable {
 
     }
 
+    private void closeAddAreaActividade(ActionEvent event) {
+        this.txtCodigo.clear();
+        this.txtDescricaoBreve.clear();
+        this.areaDescricaoDetalhada.clear();
+        ((Node) event.getSource()).getScene().getWindow().hide();
+    }
 
-    
+
 }

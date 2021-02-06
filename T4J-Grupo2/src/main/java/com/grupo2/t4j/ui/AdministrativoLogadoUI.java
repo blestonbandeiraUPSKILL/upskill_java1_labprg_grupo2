@@ -19,6 +19,8 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class AdministrativoLogadoUI implements Initializable {
@@ -45,10 +47,17 @@ public class AdministrativoLogadoUI implements Initializable {
         adicionarStage.initModality(Modality.APPLICATION_MODAL);;
         adicionarStage.setResizable(false);
 
-        ListView<AreaActividade> listaAreasAtividade = new ListView<AreaActividade>();
-        listaAreasAtividade.setEditable(true);
-        ObservableList<AreaActividade> areasActividade = FXCollections.observableArrayList(RepositorioAreaActividade.getInstance().getListaAreasActividade());
-        listaAreasAtividade.getItems().setAll(areasActividade);
+        registarAreaActividadeController = new RegistarAreaActividadeController();
+
+        AreaActividade a = new AreaActividade("aaaaaaa","bbbbbbbbb", "cccccccccccccccccccccc");
+
+        List<AreaActividade> lista = new ArrayList<>();
+        lista.add(a);
+
+        listaAreasAtividade = new ListView<AreaActividade>();
+        listaAreasAtividade.getItems().setAll(lista);
+
+        //updateListViewAreaActividade();
 
 
 
@@ -104,8 +113,6 @@ public class AdministrativoLogadoUI implements Initializable {
     }
 
     public void updateListViewAreaActividade() {
-       listaAreasAtividade.getItems().setAll(registarAreaActividadeController.getAreasActividade());
-
-
+        listaAreasAtividade.getItems().setAll(registarAreaActividadeController.getAreasActividade());
     }
 }
