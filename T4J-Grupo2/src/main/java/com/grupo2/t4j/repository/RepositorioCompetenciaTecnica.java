@@ -20,17 +20,23 @@ import java.util.List;
  */
 public class RepositorioCompetenciaTecnica implements Serializable{
 
+    /**
+     * Atributos da classe Singletone RepositorioCompetenciaTecnica
+     */
     public static RepositorioCompetenciaTecnica instance;
     List<CompetenciaTecnica> listaCompTecnicas;
 
+    /**
+     * Construtor da classe Singleton RepositorioCompetenciaTecnica
+     */
     private RepositorioCompetenciaTecnica() {
         listaCompTecnicas = new ArrayList<>();
     }
 
     /**
-     * Devolve uma instancia static de RepositorioCompetenciaTecnica
+     * Devolve ou cria uma instância estática de RepositorioCompetenciaTecnica
      *
-     * @return
+     * @return a instance existente ou criada
      */
     public static RepositorioCompetenciaTecnica getInstance() {
         if (instance == null) {
@@ -55,10 +61,11 @@ public class RepositorioCompetenciaTecnica implements Serializable{
             throw new CompetenciaTecnicaDuplicadaException(ct.getCodigo() + ": Competencia Tecnica já existe");
         }
     }
+
     public boolean addCompetenciaTecnica(String codigo, String descricaoBreve, String descricaoDetalhada, AreaActividade at, GrauProficiencia gp){
         CompetenciaTecnica ct = getCompetenciaTecnicaByCodigo(codigo);
         if (ct == null) {
-            CompetenciaTecnica compTec = new CompetenciaTecnica(codigo, descricaoBreve, descricaoDetalhada, at, gp);
+            CompetenciaTecnica compTec = new CompetenciaTecnica(codigo, descricaoBreve, descricaoDetalhada, at, GrauProficiencia.BOM);
             this.listaCompTecnicas.add(compTec);
             return true;
         } else {
