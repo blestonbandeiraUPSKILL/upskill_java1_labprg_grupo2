@@ -27,6 +27,10 @@ public class AdministrativoLogadoUI implements Initializable {
     @FXML Button btnAddCategoriaTarefa;
     @FXML Button btnAddCompetenciaTecnica;
 
+    public void associarParentUI(StartingPageUI startingPageUI) {
+        this.startingPageUI = startingPageUI;
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         adicionarStage = new Stage();
@@ -40,11 +44,11 @@ public class AdministrativoLogadoUI implements Initializable {
             AdicionarAreaAtividadeUI adicionarAreaAtividadeUI = loaderAddAreaActividade.getController();
             adicionarAreaAtividadeUI.associarParentUI(this);
 
-           /* FXMLLoader loaderAddCategoriaTarefa = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/AdicionarCompetenciaTecnicaScene.fxml"));
+            FXMLLoader loaderAddCategoriaTarefa = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/AdicionarCompetenciaTecnicaScene.fxml"));
             Parent rootAddCategoriaTarefa = loaderAddCategoriaTarefa.load();
             sceneAddCategoriaTarefa = new Scene(rootAddCategoriaTarefa);
             AdicionarCategoriaTarefaUI adicionarCategoriaTarefaUI = loaderAddCategoriaTarefa.getController();
-            adicionarCategoriaTarefaUI.associarParentUI(this);*/
+            adicionarCategoriaTarefaUI.associarParentUI(this);
 
             FXMLLoader loaderAddCompetenciaTecnica = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/AdicionarCompetenciaTecnicaScene.fxml"));
             Parent rootAddCompetenciaTecnica = loaderAddCompetenciaTecnica.load();
@@ -61,25 +65,24 @@ public class AdministrativoLogadoUI implements Initializable {
         }
     }
 
-    public void associarParentUI(StartingPageUI startingPageUI) {
-        this.startingPageUI = startingPageUI;
-    }
+
 
     public void addAreaActividade(ActionEvent actionEvent) throws IOException {
+        //sceneAddAreaActividade.getStylesheets().add("/style/app.css");
         adicionarStage.setScene(sceneAddAreaActividade);
         adicionarStage.setTitle("Adicionar Área de Actividade");
         adicionarStage.show();
-
-
     }
 
     public void addCategoriaTarefa(ActionEvent actionEvent) {
+        //sceneAddCategoriaTarefa.getStylesheets().add("/style/app.css");
         adicionarStage.setScene(sceneAddCategoriaTarefa);
         adicionarStage.setTitle("Adicionar Categoria de Tarefa");
         adicionarStage.show();
     }
 
     public void addCompetenciaTecnica(ActionEvent actionEvent) {
+        //sceneAddCompetenciaTecnica.getStylesheets().add("/style/app.css");
         adicionarStage.setScene(sceneAddCompetenciaTecnica);
         adicionarStage.setTitle("Adicionar Competência Técnica");
         adicionarStage.show();

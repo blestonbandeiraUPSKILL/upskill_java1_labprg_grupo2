@@ -44,6 +44,8 @@ public class AdicionarAreaAtividadeUI implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        btnCancelar.getScene().getStylesheets().add("/style/app.css");
+
         RegistarAreaActividadeController registarAreaActividadeController = new RegistarAreaActividadeController();
         adicionarStage = new Stage();
         adicionarStage.initModality(Modality.APPLICATION_MODAL);;
