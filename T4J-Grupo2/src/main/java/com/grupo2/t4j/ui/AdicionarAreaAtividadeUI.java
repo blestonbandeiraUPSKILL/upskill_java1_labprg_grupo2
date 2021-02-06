@@ -74,7 +74,7 @@ public class AdicionarAreaAtividadeUI implements Initializable {
     }
 
     @FXML
-    void registarAreaAction(ActionEvent event) {
+    public void registarAreaAction(ActionEvent event) {
         try{
             registarAreaActividadeController = new RegistarAreaActividadeController();
 

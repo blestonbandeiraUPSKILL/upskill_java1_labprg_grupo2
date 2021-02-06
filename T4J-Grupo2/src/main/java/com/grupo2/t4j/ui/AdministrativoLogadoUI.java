@@ -83,12 +83,12 @@ public class AdministrativoLogadoUI implements Initializable {
 
     public void addCategoriaTarefa(ActionEvent actionEvent) {
         try {
-            FXMLLoader loaderAddCategoriaTarefa = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/AdicionarCompetenciaTecnicaScene.fxml"));
+            FXMLLoader loaderAddCategoriaTarefa = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/AdicionarCategoriaTarefa.fxml"));
             Parent rootAddCategoriaTarefa = loaderAddCategoriaTarefa.load();
             sceneAddCategoriaTarefa = new Scene(rootAddCategoriaTarefa);
             sceneAddCategoriaTarefa.getStylesheets().add("/com/grupo2/t4j/style/app.css");
-           /* AdicionarCategoriaTarefaUI adicionarCategoriaTarefaUI = loaderAddCategoriaTarefa.getController();
-            adicionarCategoriaTarefaUI.associarParentUI(this);*/
+            AdicionarCategoriaTarefaUI adicionarCategoriaTarefaUI = loaderAddCategoriaTarefa.getController();
+            adicionarCategoriaTarefaUI.associarParentUI(this);
         }
         catch (IOException exception) {
             exception.printStackTrace();

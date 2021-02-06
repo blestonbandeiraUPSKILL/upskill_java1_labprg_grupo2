@@ -20,6 +20,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class AdicionarCategoriaTarefaUI implements Initializable {
@@ -27,6 +28,8 @@ public class AdicionarCategoriaTarefaUI implements Initializable {
     private AdministrativoLogadoUI administrativoLogadoUI;
     private Scene sceneCaracterizarCompetenciaTecnica;
     private Stage adicionarStage;
+    private Scene sceneStartingPage;
+
 
     @FXML
     private Button btnConfirmar;
@@ -55,11 +58,14 @@ public class AdicionarCategoriaTarefaUI implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        btnCancelar.getScene().getStylesheets().add("/style/app.css");
+        //btnCancelar.getScene().getStylesheets().add("/style/app.css");
+        //adicionarStage = new Stage();
+        //adicionarStage.initModality(Modality.APPLICATION_MODAL);;
+        //adicionarStage.setResizable(false);
     }
 
 
-    void cancelarAction(ActionEvent event) {
+    public void cancelarAction(ActionEvent event) {
         Window window = btnCancelar.getScene().getWindow();
         window.setOnCloseRequest(new EventHandler<WindowEvent>() {
             @Override
@@ -82,7 +88,7 @@ public class AdicionarCategoriaTarefaUI implements Initializable {
     }
 
     @FXML
-    void addCompTec2Cat(ActionEvent event) {
+    public void addCompTec2Cat(ActionEvent event) {
         try {
             FXMLLoader loaderAddCompTec2Cat = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/CaracterizarCompetenciaTecnicaScene.fxml"));
             Parent rootAddCompTec2Cat = loaderAddCompTec2Cat.load();
