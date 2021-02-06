@@ -39,11 +39,19 @@
                                           <Font name="Calibri" size="14.0" />
                                        </font>
                                        <VBox.margin>
-                                          <Insets top="10.0" />
+                                          <Insets bottom="10.0" top="10.0" />
                                        </VBox.margin>
                                        <padding>
                                           <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                        </padding>
+                                    </Button>
+                                    <Button fx:id="btnSair" mnemonicParsing="false" onAction="#navigateStartingPage" text="Sair">
+                                       <font>
+                                          <Font name="Calibri" size="14.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets top="10.0" />
+                                       </VBox.margin>
                                     </Button>
                                  </children>
                               </VBox>
@@ -106,7 +114,7 @@
          </top></BorderPane>
    </center>
    <top>
-      <Label style="-fx-background-color: #000000;" text="Área do Administrativo" textFill="WHITE" BorderPane.alignment="CENTER_RIGHT">
+      <Label alignment="CENTER_RIGHT" style="-fx-background-color: #000000;" text="Área do Administrativo" textFill="WHITE" BorderPane.alignment="CENTER_RIGHT">
          <padding>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </padding>
