@@ -49,6 +49,8 @@ public class AdicionarCompetenciaTecnicaUI implements Initializable {
     }
 
     public void initialize(URL location, ResourceBundle resources) {
+        cmbGrauProficiencia.getItems().setAll(GrauProficiencia.values());
+        cmbAreaActividade.getItems().setAll(registarCompetenciaTecnicaController.getListaAreaActividade());
         registarCompetenciaTecnicaController = new RegistarCompetenciaTecnicaController();
         adicionarStage = new Stage();
         adicionarStage.initModality(Modality.APPLICATION_MODAL);;
