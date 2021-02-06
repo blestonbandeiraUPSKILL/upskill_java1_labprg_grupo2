@@ -20,7 +20,7 @@ public class Plataforma {
     private String designacao;
     private static Plataforma plataforma;
     private RepositorioOrganizacao repositorioOrganizacao;
-    private RepositorioCategoria repositorioCategoria;
+    private RepositorioCategoriaTarefa repositorioCategoriaTarefa;
     private RepositorioColaborador repositorioColaborador;
     private RepositorioCompetenciaTecnica repositorioCompetenciaTecnica;
     private RepositorioTarefa repositorioTarefa;
@@ -37,7 +37,7 @@ public class Plataforma {
         //algoritmoGeradorPasswords = new AlgoritmoGeradorPasswords();
         usersAPI = new UsersAPI();
         repositorioOrganizacao = RepositorioOrganizacao.getInstance();
-        repositorioCategoria = RepositorioCategoria.getInstance();
+        repositorioCategoriaTarefa = RepositorioCategoriaTarefa.getInstance();
         //repositorioColaborador = new RepositorioColaborador();
         //repositorioUtilizador = new RepositorioUtilizador();
         repositorioCompetenciaTecnica = RepositorioCompetenciaTecnica.getInstance();
@@ -69,8 +69,8 @@ public class Plataforma {
         return repositorioOrganizacao;
     }
 
-    public RepositorioCategoria getRepositorioCategoria() {
-        return repositorioCategoria;
+    public RepositorioCategoriaTarefa getRepositorioCategoria() {
+        return repositorioCategoriaTarefa;
     }
 
     public IAlgoritmoGeradorPasswords getAlgoritmoGeradorPwd() {

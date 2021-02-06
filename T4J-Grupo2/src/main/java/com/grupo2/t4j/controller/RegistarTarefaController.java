@@ -8,9 +8,8 @@ package com.grupo2.t4j.controller;
 import com.grupo2.t4j.model.AreaActividade;
 import com.grupo2.t4j.model.CaracterizacaoCT;
 import com.grupo2.t4j.model.Categoria;
-import com.grupo2.t4j.model.CompetenciaTecnica;
 import com.grupo2.t4j.repository.RepositorioAreaActividade;
-import com.grupo2.t4j.repository.RepositorioCategoria;
+import com.grupo2.t4j.repository.RepositorioCategoriaTarefa;
 import com.grupo2.t4j.repository.RepositorioTarefa;
 import java.util.List;
 
@@ -29,7 +28,7 @@ public class RegistarTarefaController {
     }
 
     public List<Categoria> getListaCategoriaPorAreaActividade(AreaActividade areaActividade) {
-        return RepositorioCategoria.getInstance().getCategoriasByAreaActividade(areaActividade);
+        return RepositorioCategoriaTarefa.getInstance().getCategoriasByAreaActividade(areaActividade);
     }
 
     public boolean registarTarefa(AreaActividade areaActividade, Categoria categoria, 

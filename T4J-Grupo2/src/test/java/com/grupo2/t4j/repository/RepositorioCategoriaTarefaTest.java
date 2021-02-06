@@ -5,7 +5,6 @@
  */
 package com.grupo2.t4j.repository;
 
-import com.grupo2.t4j.exception.CategoriaDuplicadaException;
 import com.grupo2.t4j.exception.DescricaoInvalidaException;
 import org.junit.Test;
 import com.grupo2.t4j.model.AreaActividade;
@@ -20,9 +19,9 @@ import static org.junit.jupiter.api.Assertions.*;
  *
  * @author acris
  */
-public class RepositorioCategoriaTest {
+public class RepositorioCategoriaTarefaTest {
     
-    public RepositorioCategoriaTest() {
+    public RepositorioCategoriaTarefaTest() {
     }
     
     @BeforeEach
@@ -35,7 +34,7 @@ public class RepositorioCategoriaTest {
     public void testAddDescricaoInvalida() {
         //Arrange
         //Arrange
-        RepositorioCategoria rc1= RepositorioCategoria.getInstance();
+        RepositorioCategoriaTarefa rc1= RepositorioCategoriaTarefa.getInstance();
         AreaActividade at= new AreaActividade ("123","Cozinha", "Cozinheiro de 2ª");
         List <CaracterizacaoCT> compTec = new ArrayList<>();
         Categoria cat1 = new Categoria ("", at, compTec);
@@ -46,7 +45,7 @@ public class RepositorioCategoriaTest {
     @Test
     public void testgetCategoriaById() {
         //Arrange
-        RepositorioCategoria rc1= RepositorioCategoria.getInstance();
+        RepositorioCategoriaTarefa rc1= RepositorioCategoriaTarefa.getInstance();
         AreaActividade at= new AreaActividade ("12345","Cozinhar", "Cozinheiro");
         List <CaracterizacaoCT> compTec = new ArrayList<>();
         Categoria cat1 = new Categoria ("Chef", at, compTec);
@@ -60,7 +59,7 @@ public class RepositorioCategoriaTest {
     @Test
     public void testAddCategoria() {
         //Arrange
-        RepositorioCategoria rc1= RepositorioCategoria.getInstance();
+        RepositorioCategoriaTarefa rc1= RepositorioCategoriaTarefa.getInstance();
         AreaActividade at= new AreaActividade ("123","Cozinha", "Cozinheiro de 2ª");
         List <CaracterizacaoCT> compTec = new ArrayList<>();
         Categoria cat1 = new Categoria ("Cozinheiro", at, compTec);
@@ -75,7 +74,7 @@ public class RepositorioCategoriaTest {
     public void testGetCategoriasByAreaActividade() {
         //Arrange
         AreaActividade at= new AreaActividade ("123","Cozinha", "Cozinheiro de 2ª");
-        RepositorioCategoria rc1=  RepositorioCategoria.getInstance();
+        RepositorioCategoriaTarefa rc1=  RepositorioCategoriaTarefa.getInstance();
         List <CaracterizacaoCT> compTec = new ArrayList<>();
         Categoria cat1 = new Categoria ("Cozinheiro", at, compTec);
         rc1.addCategoria(cat1);
