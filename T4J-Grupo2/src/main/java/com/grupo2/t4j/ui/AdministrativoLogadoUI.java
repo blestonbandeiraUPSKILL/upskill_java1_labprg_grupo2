@@ -2,9 +2,13 @@ package com.grupo2.t4j.ui;
 
 import com.grupo2.t4j.controller.RegistarAreaActividadeController;
 import com.grupo2.t4j.controller.RegistarCategoriaController;
+import com.grupo2.t4j.files.FicheiroRepositorioAreaActividade;
+import com.grupo2.t4j.files.FileChooserAreaActividade;
 import com.grupo2.t4j.model.AreaActividade;
 import com.grupo2.t4j.model.Categoria;
 import com.grupo2.t4j.model.CompetenciaTecnica;
+import com.grupo2.t4j.repository.RepositorioAreaActividade;
+import java.io.File;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -24,6 +28,7 @@ import javafx.stage.WindowEvent;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.stage.FileChooser;
 
 public class AdministrativoLogadoUI implements Initializable {
 
@@ -35,6 +40,14 @@ public class AdministrativoLogadoUI implements Initializable {
     private Scene sceneStartingPage;
     private RegistarAreaActividadeController registarAreaActividadeController;
     private RegistarCategoriaController registarCategoriaController;
+    
+    private FicheiroRepositorioAreaActividade ficheiroAt;
+    private RepositorioAreaActividade repositorioAreaActividade;
+    
+    
+    private static final String CABECALHO_IMPORTAR = "Importar Lista.";
+    private static final String CABECALHO_EXPORTAR = "Exportar Lista.";
+    
 
     @FXML Button btnAddAreaAtividade;
     @FXML Button btnAddCategoriaTarefa;
@@ -57,7 +70,7 @@ public class AdministrativoLogadoUI implements Initializable {
 
         registarAreaActividadeController = new RegistarAreaActividadeController();
         registarCategoriaController = new RegistarCategoriaController();
-
+     
     }
 
     public void addAreaActividade(ActionEvent actionEvent) throws IOException {
@@ -164,13 +177,65 @@ public class AdministrativoLogadoUI implements Initializable {
 
     }
 
+    public void updateListViewAreasActividade() {
+        listaAreasActividade.getItems().setAll(registarAreaActividadeController.getAreasActividade());
+    }
     public void updateListViewCategoriasTarefa(ActionEvent actionEvent) {
+        /*listaCategorias.getItems().setAll(registarCategoriaController.)*/
     }
 
     public void updateListViewCompetenciasTecnicas(ActionEvent actionEvent) {
     }
 
     public void exportAreasActividade(ActionEvent actionEvent) {
+        String descricao, extensao;
+
+        descricao = /*DESCRICAO_SERIALIZACAO*/ "Ficheiro Area de Atividade";
+        extensao = /*EXTENSAO_SERIALIZACAO*/".ltf";
+        FileChooser flChooser = FileChooserAreaActividade.criarFileChooserAreaActividade(descricao, extensao);
+        File ficheiroExportar = flChooser.showSaveDialog(listaAreasActividade.getScene().getWindow());
+
+        if (ficheiroExportar != null) {
+            boolean gravou = false;
+                gravou = registarAreaActividadeController.serializar(ficheiroExportar);
+                if (gravou) {
+                AlertsUI.criarAlerta(Alert.AlertType.INFORMATION, MainApp.TITULO_APLICACAO, CABECALHO_EXPORTAR,
+                        "Contactos exportados com sucesso.").show();
+            } else {
+                AlertsUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO, CABECALHO_EXPORTAR,
+                        "Problema a exportar a lista de contactos!").show();
+            }
+        } else {
+            AlertsUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO, CABECALHO_EXPORTAR,
+                    "Não foi seleccionado nenhum ficheiro!").show();
+        }
+    }
+    public void importAreasActividade(ActionEvent actionEvent) {
+        String descricao, extensao;
+
+        descricao = /*DESCRICAO_SERIALIZACAO*/"ficheiroTeste";
+        extensao = /*EXTENSAO_SERIALIZACAO*/"*.ltf";
+        FileChooser flChooser = FileChooserAreaActividade.criarFileChooserAreaActividade(descricao, extensao);
+        File ficheiroImportar = flChooser.showOpenDialog(listaAreasActividade.getScene().getWindow());
+
+        if (ficheiroImportar != null) {
+            int numeroAreasImportadas = 0;
+                numeroAreasImportadas = registarAreaActividadeController.desserializar(ficheiroImportar);
+            
+
+            if (numeroAreasImportadas > 0) {
+                updateListViewAreasActividade();
+
+                AlertsUI.criarAlerta(Alert.AlertType.INFORMATION, MainApp.TITULO_APLICACAO, CABECALHO_IMPORTAR,
+                        String.format("%d área(s) de actividade importada(s).", numeroAreasImportadas)).show();
+            } else {
+                AlertsUI.criarAlerta(Alert.AlertType.INFORMATION, MainApp.TITULO_APLICACAO, CABECALHO_IMPORTAR,
+                        "Ficheiro sem contactos telefónicos para importar!").show();
+            }
+        } else {
+            AlertsUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO, CABECALHO_IMPORTAR,
+                    "Não foi seleccionado nenhum ficheiro!").show();
+        }
     }
 
     public void exportCompetenciasTecnicas(ActionEvent actionEvent) {

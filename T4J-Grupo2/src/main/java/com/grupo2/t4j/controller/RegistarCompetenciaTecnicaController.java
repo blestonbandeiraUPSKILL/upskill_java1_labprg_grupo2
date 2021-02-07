@@ -54,7 +54,7 @@ public class RegistarCompetenciaTecnicaController {
         return RepositorioCompetenciaTecnica.getInstance().getCompetenciasTecnicas();
     }
 
-    public CaracterizacaoCT getCompetenciasTecnicasByCategoria(Categoria categoriaTarefa) {
+    /*public CaracterizacaoCT getCompetenciasTecnicasByCategoria(Categoria categoriaTarefa) {
         return RepositorioCompetenciaTecnica.getInstance().getCompetenciasTecnicasByAreaActividade(categoriaTarefa.getAt());
-    }
+    }*/
 }

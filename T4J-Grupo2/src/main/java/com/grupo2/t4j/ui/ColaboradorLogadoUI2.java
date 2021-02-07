@@ -79,7 +79,7 @@ public class ColaboradorLogadoUI2 implements Initializable {
     @FXML
     private void selectCatTarAction(ActionEvent event) {
         Categoria categoriaTarefa = cmbCategoriaTarefa.getSelectionModel().getSelectedItem();
-        listViewCompTec.getItems().add(registarCompetenciaTecnicaController.getCompetenciasTecnicasByCategoria(categoriaTarefa));
+        //listViewCompTec.getItems().add(registarCompetenciaTecnicaController.getCompetenciasTecnicasByCategoria(categoriaTarefa));
     }
 
     @FXML
