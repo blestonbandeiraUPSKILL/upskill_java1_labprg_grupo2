@@ -70,6 +70,8 @@ public class ColaboradorLogadoUI implements Initializable {
                 registarCategoriaController.getCategoriasByAreaActividade(
                         cmbAreaActividadeEspecificarTarefa.getSelectionModel().getSelectedItem()));
 
+        ListView listViewTarefas = new ListView();
+        ListView listViewCompetenciasTecnicas = new ListView();
         listViewTarefas.getItems().addAll(registarTarefaController.getListTarefas());
         listViewCompetenciasTecnicas.getItems().addAll(registarCompetenciaTecnicaController.getCompetenciasTecnicasByAreaActividade(
                 cmbAreaActividadeEspecificarTarefa.getSelectionModel().getSelectedItem()));
