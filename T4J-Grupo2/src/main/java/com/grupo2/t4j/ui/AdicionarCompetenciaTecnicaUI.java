@@ -7,6 +7,7 @@ package com.grupo2.t4j.ui;
 
 import com.grupo2.t4j.controller.RegistarCompetenciaTecnicaController;
 import com.grupo2.t4j.model.AreaActividade;
+import com.grupo2.t4j.model.CompetenciaTecnica;
 import com.grupo2.t4j.model.GrauProficiencia;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -53,35 +54,38 @@ public class AdicionarCompetenciaTecnicaUI implements Initializable {
 
     public void initialize(URL location, ResourceBundle resources) {
 
-        registarCompetenciaTecnicaController = new RegistarCompetenciaTecnicaController();
-
-
-        cmbGrauProficiencia.getItems().setAll(GrauProficiencia.values());
-        cmbAreaActividade.getItems().setAll(RepositorioAreaActividade.getInstance().getListaAreasActividade());
-
-        registarCompetenciaTecnicaController = new RegistarCompetenciaTecnicaController();
         adicionarStage = new Stage();
         adicionarStage.initModality(Modality.APPLICATION_MODAL);;
         adicionarStage.setResizable(false);
+        cmbAreaActividade.getItems().setAll(RepositorioAreaActividade.getInstance().getListaAreasActividade());
     }
 
 
 
     @FXML
-    public void addCompetenciaTecnicaAction(ActionEvent event) {
+    public void registarCompetenciaTecnicaAction(ActionEvent event) {
         try {
 
-            boolean adicionou = registarCompetenciaTecnicaController.registarCompetenciaTecnica(
-                    txtCodigo.getText(),
-                    cmbAreaActividade.getSelectionModel().getSelectedItem(),
-                    txtDescricaoBreve.getText(),
-                    txtDescricaoDetalhada.getText());
+            registarCompetenciaTecnicaController = new RegistarCompetenciaTecnicaController();
+
+            AreaActividade areaActividade = RepositorioAreaActividade.getInstance().getAreaActividadeByCodigo(cmbAreaActividade.getValue().toString());
+
+            CompetenciaTecnica competenciaTecnica = new CompetenciaTecnica(
+                    txtCodigo.getText().trim(),
+                    txtDescricaoBreve.getText().trim(),
+                    txtDescricaoDetalhada.getText().trim(),
+                    areaActividade);
+
+            boolean adicionou = registarCompetenciaTecnicaController.registarCompetenciaTecnica(competenciaTecnica);
+            if (adicionou) {
+                administrativoLogadoUI.listViewCompetenciasTecnicas.getItems().add(competenciaTecnica);
+            }
 
             AlertsUI.criarAlerta(Alert.AlertType.INFORMATION,
                     MainApp.TITULO_APLICACAO,
-                    "Registar Competencia Tecnica.",
+                    "Registar Competência Técnica.",
                         adicionou ? "Competencia Tecnica registada com sucesso."
-                                : "Não foi possível registar a Competencia Tecncia.").show();
+                                : "Não foi possível registar a Competência Técncia.").show();
         }
         catch (IllegalArgumentException iae) {
             AlertsUI.criarAlerta(Alert.AlertType.ERROR,

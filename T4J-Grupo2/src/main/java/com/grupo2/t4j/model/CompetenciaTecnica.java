@@ -103,7 +103,7 @@ public class CompetenciaTecnica implements Serializable{
      */
     public void setDescricaoBreve(String descricaoBreve) throws DescricaoInvalidaException {
         if (descricaoBreve == null || descricaoBreve.trim().isEmpty()) {
-            throw new DescricaoInvalidaException("Deve introduzir uma descrição válida!");
+            throw new DescricaoInvalidaException("Deve introduzir uma descrição breve válida!");
         } else {
             this.descricaoBreve = descricaoBreve;
         }
@@ -121,7 +121,7 @@ public class CompetenciaTecnica implements Serializable{
      */
     public void setDescricaoDetalhada(String descricaoDetalhada) throws DescricaoInvalidaException{
         if (descricaoDetalhada == null || descricaoDetalhada.trim().isEmpty()) {
-            throw new DescricaoInvalidaException("Deve introduzir uma descrição válida!");
+            throw new DescricaoInvalidaException("Deve introduzir uma descrição detalhada válida!");
         } else {
             this.descricaoDetalhada = descricaoDetalhada;
         }

@@ -88,7 +88,7 @@
                <bottom>
                   <FlowPane alignment="CENTER_RIGHT" prefHeight="47.0" prefWidth="700.0" BorderPane.alignment="CENTER_RIGHT">
                      <children>
-                        <Button fx:id="btnConfirmar" alignment="CENTER" defaultButton="true" mnemonicParsing="false" onAction="#addCompetenciaTecnicaAction" text="Confirmar">
+                        <Button fx:id="btnConfirmar" alignment="CENTER" defaultButton="true" mnemonicParsing="false" onAction="#registarCompetenciaTecnicaAction" text="Confirmar">
                            <font>
                               <Font name="Calibri" size="14.0" />
                            </font>

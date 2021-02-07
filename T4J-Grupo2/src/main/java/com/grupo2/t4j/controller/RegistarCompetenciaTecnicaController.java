@@ -41,4 +41,7 @@ public class RegistarCompetenciaTecnicaController {
     }
 
 
+    public boolean registarCompetenciaTecnica(CompetenciaTecnica competenciaTecnica) {
+        return RepositorioCompetenciaTecnica.getInstance().addCompetenciaTecnica(competenciaTecnica);
+    }
 }
