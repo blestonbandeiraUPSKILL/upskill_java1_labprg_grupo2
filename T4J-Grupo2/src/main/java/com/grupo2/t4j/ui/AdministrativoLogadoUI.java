@@ -23,8 +23,6 @@ import javafx.stage.WindowEvent;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
 
 public class AdministrativoLogadoUI implements Initializable {
@@ -41,7 +39,7 @@ public class AdministrativoLogadoUI implements Initializable {
     @FXML Button btnAddCategoriaTarefa;
     @FXML Button btnAddCompetenciaTecnica;
     @FXML Button btnSairAreaActividade;
-    @FXML ListView<AreaActividade> listaAreasAtividade;
+    @FXML ListView<AreaActividade> listaAreasActividade;
 
 
     public void associarParentUI(StartingPageUI startingPageUI) {
@@ -55,11 +53,6 @@ public class AdministrativoLogadoUI implements Initializable {
         adicionarStage.setResizable(false);
 
         registarAreaActividadeController = new RegistarAreaActividadeController();
-
-        listaAreasAtividade = new ListView<AreaActividade>();
-
-        updateListViewAreaActividade();
-
 
     }
 
@@ -127,12 +120,6 @@ public class AdministrativoLogadoUI implements Initializable {
         adicionarStage.setScene(sceneAddCompetenciaTecnica);
         adicionarStage.setTitle("Adicionar Competência Técnica");
         adicionarStage.show();
-    }
-
-    public void updateListViewAreaActividade() {
-        listaAreasAtividade.getItems().setAll(registarAreaActividadeController.getAreasActividade());
-        //listaAreasAtividade.setItems(FXCollections.observableArrayList(registarAreaActividadeController.getAreasActividade()));
-
     }
 
     public void navigateStartingPage(ActionEvent actionEvent) {

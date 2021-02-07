@@ -110,5 +110,7 @@ public class AdicionarCategoriaTarefaUI implements Initializable {
         adicionarStage.show();
     }
 
-    
+
+    public void registarCategoriaAction(ActionEvent actionEvent) {
+    }
 }

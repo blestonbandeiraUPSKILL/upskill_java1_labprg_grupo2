@@ -45,11 +45,13 @@ public class RepositorioAreaActividade implements Serializable{
      * Adiciona uma Área de Actividade à lista de Áreas de Actividade
      * @param areaActividade do tipo da classe AreaActividade
      * @throws AreaActividadeDuplicadaException
+     * @return
      */
-    public void addAreaActividade(AreaActividade areaActividade) throws AreaActividadeDuplicadaException {
+    public boolean addAreaActividade(AreaActividade areaActividade) throws AreaActividadeDuplicadaException {
         AreaActividade aa = getAreaActividadeByCodigo(areaActividade.getCodigo());
         if (aa == null) {
             listaAreasActividade.add(areaActividade);
+            return true;
         } else {
             throw new AreaActividadeDuplicadaException(aa.getCodigo() + ": Área de Actividade já registada!");
         }
@@ -124,5 +126,21 @@ public class RepositorioAreaActividade implements Serializable{
     public boolean isVazia() {
         return listaAreasActividade.isEmpty();
     }
-    
+
+ /*   public String listarAreasActividade(List<AreaActividade> listaAreasActividade) {
+        List<AreaActividade> listaTemp =  new ArrayList<>(listaAreasActividade);
+        StringBuilder stringBuilder = new StringBuilder();
+        for (AreaActividade areaActividade : listaTemp) {
+            stringBuilder.append(areaActividade);
+            stringBuilder.append("\n");
+        }
+        return stringBuilder.toString();
+    }*/
+
+    @Override
+    public String toString() {
+        return "RepositorioAreaActividade{" +
+                "listaAreasActividade=" + listaAreasActividade +
+                '}';
+    }
 }
