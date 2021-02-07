@@ -49,8 +49,6 @@ public class AdicionarCompetenciaTecnicaUI implements Initializable {
     @FXML ComboBox<AreaActividade> cmbAreaActividade;
     @FXML ComboBox<GrauProficiencia> cmbGrauProficiencia;
 
-    
-
     public void associarParentUI(AdministrativoLogadoUI administrativoLogadoUI) {
         this.administrativoLogadoUI = administrativoLogadoUI;
     }
@@ -64,10 +62,7 @@ public class AdicionarCompetenciaTecnicaUI implements Initializable {
         adicionarStage.setResizable(false);
         cmbAreaActividade.getItems().setAll(registarAreaActividadeController.getAreasActividade());
 
-
     }
-
-
 
     @FXML
     public void registarCompetenciaTecnicaAction(ActionEvent event) {

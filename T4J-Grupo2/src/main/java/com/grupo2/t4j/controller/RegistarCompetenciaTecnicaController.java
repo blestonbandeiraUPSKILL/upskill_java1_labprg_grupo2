@@ -6,9 +6,12 @@
 package com.grupo2.t4j.controller;
 
 import com.grupo2.t4j.model.AreaActividade;
+import com.grupo2.t4j.model.CaracterizacaoCT;
+import com.grupo2.t4j.model.Categoria;
 import com.grupo2.t4j.model.CompetenciaTecnica;
 import com.grupo2.t4j.repository.RepositorioAreaActividade;
 import com.grupo2.t4j.repository.RepositorioCompetenciaTecnica;
+
 import java.util.List;
 
 /**
@@ -49,5 +52,9 @@ public class RegistarCompetenciaTecnicaController {
 
     public List<CompetenciaTecnica> getCompetenciasTecnicas() {
         return RepositorioCompetenciaTecnica.getInstance().getCompetenciasTecnicas();
+    }
+
+    public CaracterizacaoCT getCompetenciasTecnicasByCategoria(Categoria categoriaTarefa) {
+        return RepositorioCompetenciaTecnica.getInstance().getCompetenciasTecnicasByAreaActividade(categoriaTarefa.getAt());
     }
 }
