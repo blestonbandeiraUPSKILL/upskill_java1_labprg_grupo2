@@ -113,4 +113,16 @@ public class RepositorioCategoriaTarefa implements Serializable{
        return listaCategorias.add(new Categoria(descBreve, descDetalhada, areaActividade, ccts));
 
     }
+    
+    public int adicionarListaCategorias(RepositorioCategoriaTarefa outraListaCategorias) {
+        int totalCategoriasAdicionadas = 0;
+        
+        for (Categoria categoria : outraListaCategorias.listaCategorias) {
+            boolean categoriaAdicionada = addCategoria(categoria);
+            if (categoriaAdicionada) {
+                totalCategoriasAdicionadas++;
+            }
+        }
+        return totalCategoriasAdicionadas;
+    }
 }

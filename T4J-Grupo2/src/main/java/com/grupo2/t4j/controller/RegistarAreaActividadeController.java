@@ -20,33 +20,6 @@ import java.util.List;
 public class RegistarAreaActividadeController /*implements Serializable*/{
     
     private FicheiroRepositorioAreaActividade ficheiroAt;
-    private RepositorioAreaActividade listaAreasActividade;
-    
-    public RegistarAreaActividadeController() {
-        ficheiroAt = new FicheiroRepositorioAreaActividade();
-        
-        desserializar();
-    }
-    public boolean serializar() {
-        return ficheiroAt.serializar(listaAreasActividade);
-    }
-
-    public boolean serializar(File ficheiroExportar) {
-        return ficheiroAt.serializar(ficheiroExportar, listaAreasActividade);
-    }
-
-    public void desserializar() {
-        listaAreasActividade = ficheiroAt.desserializar();
-    }
-
-    public int desserializar(File ficheiroImportar) {
-        RepositorioAreaActividade listaAreaActividadeImportada = ficheiroAt.desserializar(ficheiroImportar);
-
-        return listaAreasActividade.getInstance().adicionarListaAreasActividade(listaAreaActividadeImportada);
-    }
-
-    
-    
     private RepositorioAreaActividade repositorioAreaActividade;
 
     public boolean registarAreaActividade(String codigo, String descricaoBreve, String descricaoDetalhada) {
@@ -78,5 +51,27 @@ public class RegistarAreaActividadeController /*implements Serializable*/{
         return null;
     }
 
-    
+    //////FICHEIROS////////
+    public RegistarAreaActividadeController() {
+        ficheiroAt = new FicheiroRepositorioAreaActividade();
+        
+        desserializar();
+    }
+    public boolean serializar() {
+        return ficheiroAt.serializar(repositorioAreaActividade);
+    }
+
+    public boolean serializar(File ficheiroExportar) {
+        return ficheiroAt.serializar(ficheiroExportar, repositorioAreaActividade);
+    }
+
+    public void desserializar() {
+        repositorioAreaActividade = ficheiroAt.desserializar();
+    }
+
+    public int desserializar(File ficheiroImportar) {
+        RepositorioAreaActividade listaAreaActividadeImportada = ficheiroAt.desserializar(ficheiroImportar);
+
+        return repositorioAreaActividade.getInstance().adicionarListaAreasActividade(listaAreaActividadeImportada);
+    }
 }

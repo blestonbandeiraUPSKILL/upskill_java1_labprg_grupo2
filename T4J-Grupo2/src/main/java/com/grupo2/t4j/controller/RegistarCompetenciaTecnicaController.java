@@ -5,12 +5,14 @@
  */
 package com.grupo2.t4j.controller;
 
+import com.grupo2.t4j.files.FicheiroRepositorioCompetenciaTecnica;
 import com.grupo2.t4j.model.AreaActividade;
 import com.grupo2.t4j.model.CaracterizacaoCT;
 import com.grupo2.t4j.model.Categoria;
 import com.grupo2.t4j.model.CompetenciaTecnica;
 import com.grupo2.t4j.repository.RepositorioAreaActividade;
 import com.grupo2.t4j.repository.RepositorioCompetenciaTecnica;
+import java.io.File;
 
 import java.util.List;
 
@@ -23,6 +25,9 @@ public class RegistarCompetenciaTecnicaController {
     /*public List<CompetenciaTecnica> getListaCompetenciasTecnicas(){
         return RepositorioCompetenciaTecnica.getInstance().getCompetenciasTecnicas();
     }*/
+    
+    private FicheiroRepositorioCompetenciaTecnica ficheiroCompTec;
+    private RepositorioCompetenciaTecnica repositorioCompetenciaTecnica;
 
     public boolean registarCompetenciaTecnica(
             String codigo,
@@ -57,4 +62,28 @@ public class RegistarCompetenciaTecnicaController {
     /*public CaracterizacaoCT getCompetenciasTecnicasByCategoria(Categoria categoriaTarefa) {
         return RepositorioCompetenciaTecnica.getInstance().getCompetenciasTecnicasByAreaActividade(categoriaTarefa.getAt());
     }*/
+    
+    //////FICHEIROS////////
+    public RegistarCompetenciaTecnicaController() {
+        ficheiroCompTec = new FicheiroRepositorioCompetenciaTecnica();
+        
+        desserializar();
+    }
+    public boolean serializar() {
+        return ficheiroCompTec.serializar(repositorioCompetenciaTecnica);
+    }
+
+    public boolean serializar(File ficheiroExportar) {
+        return ficheiroCompTec.serializar(ficheiroExportar, repositorioCompetenciaTecnica);
+    }
+
+    public void desserializar() {
+        repositorioCompetenciaTecnica = ficheiroCompTec.desserializar();
+    }
+
+    public int desserializar(File ficheiroImportar) {
+        RepositorioCompetenciaTecnica listaCompetenciaTencicaImportada = ficheiroCompTec.desserializar(ficheiroImportar);
+
+        return repositorioCompetenciaTecnica.getInstance().adicionarListaCompetenciasTecnicas(listaCompetenciaTencicaImportada);
+    }
 }
