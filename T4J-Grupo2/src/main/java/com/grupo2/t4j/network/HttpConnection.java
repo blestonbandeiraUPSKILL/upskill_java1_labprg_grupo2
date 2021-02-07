@@ -1,8 +1,5 @@
 package com.grupo2.t4j.network;
 
-import com.grupo2.t4j.dto.ErroDTO;
-import com.grupo2.t4j.xml.XmlHandler;
-
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
@@ -50,7 +47,7 @@ public class HttpConnection {
             httpConn = (HttpURLConnection) urlConn;
             httpConn.setConnectTimeout(3000);
             httpConn.setRequestProperty("Content-Type", "application/xml");
-            switch (httpRequest.getType()){
+            switch (httpRequest.getType()) {
                 case GET:
                     httpConn.setRequestMethod("GET");
                     httpConn.setDoInput(true);
@@ -58,12 +55,12 @@ public class HttpConnection {
                 case POST:
                     httpConn.setRequestMethod("POST");
                     httpConn.setDoOutput(true);
-                    writeBody(httpConn.getOutputStream(), httpRequest.getBody());
+                    //writeBody(httpConn.getOutputStream(), httpRequest.getBody());
                     break;
                 case PUT:
                     httpConn.setRequestMethod("PUT");
                     httpConn.setDoOutput(true);
-                    writeBody(httpConn.getOutputStream(), httpRequest.getBody());
+                    //writeBody(httpConn.getOutputStream(), httpRequest.getBody());
                     break;
                 case DELETE:
                     httpConn.setRequestMethod("DELETE");
@@ -75,11 +72,9 @@ public class HttpConnection {
         } catch (MalformedURLException e) {
             //this is for normalize the error events according to the way is handled by the WS
             resCode = HttpStatusCode.Conflict;
-            body = XmlHandler.serializeErroDTO2XML(new ErroDTO(e));
         } catch (IOException e) {
-//this is for normalize the error events according to the way is handled by the WS
+            //this is for normalize the error events according to the way is handled by the WS
             resCode = HttpStatusCode.Conflict;
-            body = XmlHandler.serializeErroDTO2XML(new ErroDTO(e));
         }
         HttpResponse httpResponse = new HttpResponse(resCode, body);
         return httpResponse;

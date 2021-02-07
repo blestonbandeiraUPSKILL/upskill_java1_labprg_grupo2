@@ -1,9 +1,9 @@
 package com.grupo2.t4j.ui;
 
 import com.grupo2.t4j.controller.ApplicationController;
-import com.grupo2.t4j.controller.RegistarOrganizacaoController;
+import com.grupo2.t4j.controller.AutenticacaoController;
 import com.grupo2.t4j.model.Password;
-import com.grupo2.t4j.model.UsersAPIAdapter;
+import com.grupo2.t4j.api.UsersAPIAdapter;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -11,10 +11,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.Window;
@@ -28,6 +25,7 @@ public class StartingPageUI implements Initializable {
 
     UsersAPIAdapter usersAPIAdapter;
     private ApplicationController applicationController;
+    private AutenticacaoController autenticacaoController;
     private Stage adicionarStage;
     private Scene sceneRegistarOrganizacao;
     private Scene sceneLogin;
@@ -35,7 +33,7 @@ public class StartingPageUI implements Initializable {
     private Scene sceneAdministrativo;
     private Scene sceneColaborador;
     @FXML TextField txtEmailLogin;
-    @FXML TextField txtPasswordLogin;
+    @FXML PasswordField txtPasswordLogin;
     @FXML Button btnSair;
     @FXML Button btnAdministrativoLogado;
 
@@ -56,6 +54,7 @@ public class StartingPageUI implements Initializable {
             adicionarStage.initModality(Modality.APPLICATION_MODAL);;
             adicionarStage.setResizable(false);
 
+            autenticacaoController = new AutenticacaoController();
             applicationController = new ApplicationController();
 
         }
@@ -79,24 +78,24 @@ public class StartingPageUI implements Initializable {
         adicionarStage.show();
     }
 
-    public void login(ActionEvent actionEvent) {
+    public void login(ActionEvent actionEvent) throws IOException {
 
-        if(usersAPIAdapter.login(txtEmailLogin.getText(), new Password(txtPasswordLogin.getText()))) {
-            switch (applicationController.getRole()) {
-                case "gestor":
-                    adicionarStage.setScene(sceneGestor);
-                    adicionarStage.setTitle("T4J - Gestor da Organização");
-                    adicionarStage.show();
+        boolean login = autenticacaoController.login(txtEmailLogin.getText(), new Password(txtPasswordLogin.getText()));
+
+        if (login) {
+            txtEmailLogin.clear();
+            txtPasswordLogin.clear();
+
+
+            switch (autenticacaoController.getRole()) {
+                case GESTOR:
+                    navigateGestorLogado(actionEvent);
                     break;
-                case "administrativo":
-                    adicionarStage.setScene(sceneAdministrativo);
-                    adicionarStage.setTitle("T4J - Administrativo");
-                    adicionarStage.show();
+                case ADMINISTRATIVO:
+                    navigateAdministrativoLogado(actionEvent);
                     break;
-                case "colaborador":
-                    adicionarStage.setScene(sceneColaborador);
-                    adicionarStage.setTitle("T4J - Colaborador");
-                    adicionarStage.show();
+                case COLABORADOR:
+                    navigateColaboradorLogado(actionEvent);
                     break;
             }
         }

@@ -30,6 +30,10 @@ public class RegistarAreaActividadeController /*implements Serializable*/{
         return RepositorioAreaActividade.getInstance().getListaAreasActividade();
     }
 
+    public AreaActividade novaAreaActividade(String codigo, String descBreve, String descDetalhada) {
+        return RepositorioAreaActividade.getInstance().novaAreaActividade(codigo, descBreve, descDetalhada);
+    }
+
 
     public boolean registarAreaActividade(AreaActividade areaActividade) {
         return RepositorioAreaActividade.getInstance().addAreaActividade(areaActividade);
@@ -72,6 +76,6 @@ public class RegistarAreaActividadeController /*implements Serializable*/{
     public int desserializar(File ficheiroImportar) {
         RepositorioAreaActividade listaAreaActividadeImportada = ficheiroAt.desserializar(ficheiroImportar);
 
-        return repositorioAreaActividade.getInstance().adicionarListaAreasActividade(listaAreaActividadeImportada);
+        return RepositorioAreaActividade.getInstance().adicionarListaAreasActividade(listaAreaActividadeImportada);
     }
 }

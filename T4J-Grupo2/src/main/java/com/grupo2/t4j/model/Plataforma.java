@@ -5,6 +5,7 @@
  */
 package com.grupo2.t4j.model;
 
+import com.grupo2.t4j.controller.UsersAPI;
 import com.grupo2.t4j.repository.*;
 
 /**
@@ -26,7 +27,7 @@ public class Plataforma {
     private RepositorioTarefa repositorioTarefa;
     private RepositorioUtilizador repositorioUtilizador;
 
-    private IAlgoritmoGeradorPasswords algoritmoGeradorPasswords;
+    private AlgoritmoGeradorPasswords algoritmoGeradorPasswords;
     private UsersAPI usersAPI;
 
 
@@ -73,7 +74,7 @@ public class Plataforma {
         return repositorioCategoriaTarefa;
     }
 
-    public IAlgoritmoGeradorPasswords getAlgoritmoGeradorPwd() {
+    public AlgoritmoGeradorPasswords getAlgoritmoGeradorPwd() {
         return algoritmoGeradorPasswords;
     }
 

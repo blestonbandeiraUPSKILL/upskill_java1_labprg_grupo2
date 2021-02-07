@@ -56,6 +56,7 @@ public class AdicionarCompetenciaTecnicaUI implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
 
         registarAreaActividadeController = new RegistarAreaActividadeController();
+        registarCompetenciaTecnicaController = new RegistarCompetenciaTecnicaController();
 
         adicionarStage = new Stage();
         adicionarStage.initModality(Modality.APPLICATION_MODAL);;
@@ -67,18 +68,16 @@ public class AdicionarCompetenciaTecnicaUI implements Initializable {
     @FXML
     public void registarCompetenciaTecnicaAction(ActionEvent event) {
         try {
-
-            registarCompetenciaTecnicaController = new RegistarCompetenciaTecnicaController();
-
             AreaActividade areaActividade = registarAreaActividadeController.getAreaActividadeByCodigo(cmbAreaActividade.getValue().toString());
 
-            CompetenciaTecnica competenciaTecnica = new CompetenciaTecnica(
+            CompetenciaTecnica competenciaTecnica = registarCompetenciaTecnicaController.novaCompetenciaTecnica(
                     txtCodigo.getText().trim(),
                     txtDescricaoBreve.getText().trim(),
                     txtDescDetalhada.getText().trim(),
                     areaActividade);
 
             boolean adicionou = registarCompetenciaTecnicaController.registarCompetenciaTecnica(competenciaTecnica);
+
             if (adicionou) {
                 administrativoLogadoUI.listViewCompetenciasTecnicas.getItems().add(competenciaTecnica);
             }

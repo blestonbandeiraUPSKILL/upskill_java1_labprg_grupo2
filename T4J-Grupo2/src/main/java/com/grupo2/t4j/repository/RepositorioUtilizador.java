@@ -42,10 +42,12 @@ public class RepositorioUtilizador implements Serializable{
      * @param utilizador do tipo da classe Utilizador
      * @throws UtilizadorDuplicadoException
      */
-    public void addUtilizador(Utilizador utilizador) throws UtilizadorDuplicadoException {
+    public boolean
+    addUtilizador(Utilizador utilizador) throws UtilizadorDuplicadoException {
         Utilizador u = getUtilizadorByEmail(utilizador.getEmail().getEmailText());
         if (u == null) {
             this.listaUtilizadores.add(utilizador);
+            return true;
         } else {
             throw new UtilizadorDuplicadoException(u.getEmail().getEmailText()
                     + ": Utilizador já registado!");

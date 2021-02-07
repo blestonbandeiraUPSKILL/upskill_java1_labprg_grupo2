@@ -1,8 +1,13 @@
-package com.grupo2.t4j.model;
+package com.grupo2.t4j.controller;
 
+import com.grupo2.t4j.api.UsersAPIAdapter;
+import com.grupo2.t4j.model.Email;
+import com.grupo2.t4j.model.Password;
 import org.json.JSONObject;
 
-public class UsersAPI {
+import java.io.Serializable;
+
+public class UsersAPI implements Serializable {
 
     UsersAPIAdapter usersAPIAdapter;
 
@@ -27,10 +32,6 @@ public class UsersAPI {
 
     public boolean registerUserWithRoles(String username, Email email, Password password, String rolenames) {
         return usersAPIAdapter.registerUserWithRoles(username, email, password, rolenames);
-    }
-
-    public boolean registerUser(String username, Email email, Password password){
-        return usersAPIAdapter.registerUser(username, email, password);
     }
 
     public String getContext() {

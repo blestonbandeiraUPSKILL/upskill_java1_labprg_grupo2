@@ -7,6 +7,7 @@ package com.grupo2.t4j.model;
 
 import com.grupo2.t4j.exception.*;
 import java.io.Serializable;
+import java.util.List;
 
 /**
  *
@@ -46,6 +47,7 @@ public class Tarefa implements Serializable{
     
     private AreaActividade at;
     private Categoria ct;
+    private List<CaracterizacaoCT> ccts;
     
     /**
      * Construtor vazio da classe Tarefa.
@@ -105,7 +107,23 @@ public class Tarefa implements Serializable{
         setDuracaoEst(tarefa.duracaoEst);
         setCustoEst(tarefa.custoEst);
     }
-    
+
+    public Tarefa(AreaActividade areaActividade,
+                  Categoria categoriaTarefa,
+                  List<CaracterizacaoCT> caracterizacaoCTS,
+                  String referencia, String designacao,
+                  String descInformal, String descTecnica, int duracao, double custo) {
+        setAt(areaActividade);
+        setCt(categoriaTarefa);
+        setReferencia(referencia);
+        setDesignacao(designacao);
+        setDescInformal(descInformal);
+        setDescTecnica(descTecnica);
+        setDuracaoEst(duracao);
+        setCustoEst(custo);
+
+    }
+
     /**
      * Verifica a validade do parâmetro recebido e regista a referência da tarefa.
      * @param referencia a referência única de uma tarefa em uma Organização.
@@ -233,6 +251,15 @@ public class Tarefa implements Serializable{
             this.at = areaActividade;
         }else {
             throw new AreaActividadeInexistenteException ("A área de actividade não existe");
+        }
+    }
+
+    public void setCcts(List<CaracterizacaoCT> caracterizacaoCTS) {
+        if(caracterizacaoCTS != null) {
+            this.ccts = caracterizacaoCTS;
+        }
+        else {
+            throw new CaracterizacaoCTInexistenteException("A lista de competências técnicas caraxterizadas é inexistente!");
         }
     }
 

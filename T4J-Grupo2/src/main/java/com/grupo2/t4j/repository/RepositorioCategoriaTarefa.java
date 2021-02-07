@@ -29,7 +29,11 @@ public class RepositorioCategoriaTarefa implements Serializable{
         }
         return instance;
     }
-    
+
+    public Categoria novaCategoriaTarefa (String descBreve, String descDetalhada, AreaActividade areaActividade,
+                                List<CaracterizacaoCT> caracterizacaoCTS) {
+        return new Categoria(descBreve, descDetalhada, areaActividade, caracterizacaoCTS);
+    }
    
    /**
     * Adiciona uma categoria a  lista de categorias
@@ -41,20 +45,6 @@ public class RepositorioCategoriaTarefa implements Serializable{
         Categoria c = getCategoriaById(categoria.getId());
         if (c == null) {
             this.listaCategorias.add(categoria);
-            return true;
-        } else {
-            throw new CategoriaDuplicadaException(c.getId() + ": Categoria ja existe");
-        }
-
-    }
-
-    public boolean addCategoria(String descBreve, String descDetalhada,
-                                AreaActividade areaActividade, String codigo, List<CaracterizacaoCT> ccts) throws CategoriaDuplicadaException {
-        Categoria c = getCategoriaById(codigo);
-        if (c == null) {
-
-            Categoria cat = new Categoria(descBreve, descDetalhada, areaActividade, ccts);
-            this.listaCategorias.add(cat);
             return true;
         } else {
             throw new CategoriaDuplicadaException(c.getId() + ": Categoria ja existe");

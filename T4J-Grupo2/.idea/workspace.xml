@@ -5,14 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8ca9f66f-f143-4134-afe5-eb7245bd0a9c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/cssdialects.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/exception/CaracterizacaoCTInexistenteException.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/controller/RegistarCategoriaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/controller/RegistarCategoriaController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/controller/RegistarCompetenciaTecnicaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/controller/RegistarCompetenciaTecnicaController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/AdicionarCompetenciaTecnicaUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/AdicionarCompetenciaTecnicaUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/controller/RegistarTarefaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/controller/RegistarTarefaController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/model/CompetenciaTecnica.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/model/CompetenciaTecnica.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/model/Tarefa.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/model/Tarefa.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/repository/RepositorioCategoriaTarefa.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/repository/RepositorioCategoriaTarefa.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/repository/RepositorioTarefa.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/repository/RepositorioTarefa.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/ColaboradorLogadoUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/ColaboradorLogadoUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/MainApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/MainApp.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/com/grupo2/t4j/fxml/ColaboradorLogadoScene.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/grupo2/t4j/fxml/ColaboradorLogadoScene.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/grupo2/t4j/style/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/grupo2/t4j/style/app.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/grupo2/t4j/fxml/StartingPageScene.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/grupo2/t4j/fxml/StartingPageScene.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -101,8 +105,8 @@
       <recent name="com.grupo2.t4j.model" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="com.grupo2.t4j.exception" />
       <recent name="com.grupo2.t4j.ui" />
+      <recent name="com.grupo2.t4j.exception" />
     </key>
   </component>
   <component name="RunManager" selected="Application.MainApp">
@@ -183,7 +187,7 @@
       <module name="T4J-Grupo2" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.grupo2.t4j.model.*" />
+          <option name="PATTERN" value="com.grupo2.t4j.api.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -221,7 +225,7 @@
       <workItem from="1612426677059" duration="24229000" />
       <workItem from="1612620371258" duration="2078000" />
       <workItem from="1612622727099" duration="20977000" />
-      <workItem from="1612689708954" duration="23848000" />
+      <workItem from="1612689708954" duration="35817000" />
     </task>
     <servers />
   </component>
@@ -253,7 +257,7 @@
         </line-breakpoint>
         <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/grupo2/t4j/model/Utilizador.java</url>
-          <line>151</line>
+          <line>172</line>
           <option name="timeStamp" value="43" />
         </line-breakpoint>
         <line-breakpoint type="java-line">
@@ -261,10 +265,30 @@
           <line>119</line>
           <option name="timeStamp" value="48" />
         </line-breakpoint>
-        <line-breakpoint type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/grupo2/t4j/controller/RegistarCompetenciaTecnicaController.java</url>
-          <line>49</line>
-          <option name="timeStamp" value="56" />
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/grupo2/t4j/api/UsersAPIAdapter.java</url>
+          <line>45</line>
+          <option name="timeStamp" value="72" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/StartingPageUI.java</url>
+          <line>82</line>
+          <option name="timeStamp" value="74" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/StartingPageUI.java</url>
+          <line>84</line>
+          <option name="timeStamp" value="75" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/grupo2/t4j/api/UsersAPIAdapter.java</url>
+          <line>52</line>
+          <option name="timeStamp" value="76" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/grupo2/t4j/api/UsersAPIAdapter.java</url>
+          <line>56</line>
+          <option name="timeStamp" value="77" />
         </line-breakpoint>
         <breakpoint type="java-exception">
           <properties class="java.lang.IllegalArgumentException" package="java.lang" />

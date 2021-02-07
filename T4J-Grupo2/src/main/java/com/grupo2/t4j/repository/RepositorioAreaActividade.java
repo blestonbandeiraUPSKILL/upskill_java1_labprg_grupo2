@@ -53,7 +53,13 @@ public class RepositorioAreaActividade implements Serializable{
         }
         return totalAreasAdicionadas;
     }
-    
+
+    public AreaActividade novaAreaActividade(String codigo, String descBreve, String descDetalhada) {
+        return new AreaActividade(codigo, descBreve, descDetalhada);
+    }
+
+
+
     /**
      * Adiciona uma Área de Actividade à lista de Áreas de Actividade
      * @param areaActividade do tipo da classe AreaActividade
@@ -152,22 +158,13 @@ public class RepositorioAreaActividade implements Serializable{
         return listaAreasActividade.isEmpty();
     }
 
- /*   public String listarAreasActividade(List<AreaActividade> listaAreasActividade) {
-        List<AreaActividade> listaTemp =  new ArrayList<>(listaAreasActividade);
-        StringBuilder stringBuilder = new StringBuilder();
-        for (AreaActividade areaActividade : listaTemp) {
-            stringBuilder.append(areaActividade);
-            stringBuilder.append("\n");
-        }
-        return stringBuilder.toString();
-    }*/
-
     @Override
     public String toString() {
         return "RepositorioAreaActividade{" +
                 "listaAreasActividade=" + listaAreasActividade +
                 '}';
     }
+
 
 
 }
