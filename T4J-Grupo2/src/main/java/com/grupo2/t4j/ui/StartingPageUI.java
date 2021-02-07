@@ -85,8 +85,7 @@ public class StartingPageUI implements Initializable {
         if (login) {
             txtEmailLogin.clear();
             txtPasswordLogin.clear();
-
-
+            
             switch (autenticacaoController.getRole()) {
                 case GESTOR:
                     navigateGestorLogado(actionEvent);
