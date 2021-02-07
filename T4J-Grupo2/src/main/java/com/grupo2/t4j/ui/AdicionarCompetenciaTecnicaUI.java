@@ -75,7 +75,7 @@ public class AdicionarCompetenciaTecnicaUI implements Initializable {
 
             registarCompetenciaTecnicaController = new RegistarCompetenciaTecnicaController();
 
-            AreaActividade areaActividade = RepositorioAreaActividade.getInstance().getAreaActividadeByCodigo(cmbAreaActividade.getValue().toString());
+            AreaActividade areaActividade = registarAreaActividadeController.getAreaActividadeByCodigo(cmbAreaActividade.getValue().toString());
 
             CompetenciaTecnica competenciaTecnica = new CompetenciaTecnica(
                     txtCodigo.getText().trim(),
