@@ -141,6 +141,8 @@ public class GestorLogadoUI implements Initializable {
     @FXML
     void selectCatTarAction(ActionEvent event) {
 
-    }    
+    }
 
+    public void navigateStartingPage(ActionEvent actionEvent) {
+    }
 }
