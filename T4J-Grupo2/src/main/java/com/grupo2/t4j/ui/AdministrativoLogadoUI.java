@@ -172,4 +172,13 @@ public class AdministrativoLogadoUI implements Initializable {
 
     public void updateListViewCompetenciasTecnicas(ActionEvent actionEvent) {
     }
+
+    public void exportAreasActividade(ActionEvent actionEvent) {
+    }
+
+    public void exportCompetenciasTecnicas(ActionEvent actionEvent) {
+    }
+
+    public void exportCategoriasTarefa(ActionEvent actionEvent) {
+    }
 }
