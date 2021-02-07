@@ -128,6 +128,18 @@ public class RepositorioCompetenciaTecnica implements Serializable{
 
         return compTecPorAt;
     }
+    
+    public int adicionarListaCompetenciasTecnicas(RepositorioCompetenciaTecnica outraListaCompetenciasTecnicas) {
+        int totalCompetenciasAdicionadas = 0;
+        
+        for (CompetenciaTecnica ct : outraListaCompetenciasTecnicas.listaCompTecnicas) {
+            boolean areaActividadeAdicionada = addCompetenciaTecnica(ct);
+            if (areaActividadeAdicionada) {
+                totalCompetenciasAdicionadas++;
+            }
+        }
+        return totalCompetenciasAdicionadas;
+    }
 
    
 }

@@ -48,7 +48,7 @@
                               </Label>
                               <ListView fx:id="listaAreasActividade" layoutX="14.0" layoutY="48.0" prefHeight="260.0" prefWidth="475.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="210.0" AnchorPane.topAnchor="50.0" />
                               <Button fx:id="btnExportarAreasActividade" layoutX="579.0" layoutY="205.0" mnemonicParsing="false" onAction="#exportAreasActividade" text="Exportar Dados" />
-                              <Button fx:id="btnImportarAreasActividade1" layoutX="579.0" layoutY="167.0" mnemonicParsing="false" onAction="#importAreasActividade" text="Importar Dados" />
+                              <Button fx:id="btnImportarAreasActividade" layoutX="579.0" layoutY="167.0" mnemonicParsing="false" onAction="#importAreasActividade" text="Importar Dados" />
                            </children>
                         </AnchorPane>
                   </content>
@@ -78,6 +78,7 @@
                                  </children>
                               </VBox>
                               <Button fx:id="btnExportarCompetenciasTecnicas" layoutX="579.0" layoutY="205.0" mnemonicParsing="false" onAction="#exportCompetenciasTecnicas" text="Exportar Dados" />
+                              <Button fx:id="btnImportarCompetenciasTecnicas" layoutX="578.0" layoutY="167.0" mnemonicParsing="false" onAction="#importCompetenciasTecnicas" text="Importar Dados" />
                            </children>
                         </AnchorPane>
                      </content>
@@ -108,6 +109,7 @@
                               </VBox>
                               <ListView fx:id="listaCategorias" layoutX="14.0" layoutY="48.0" prefHeight="260.0" prefWidth="475.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="210.0" AnchorPane.topAnchor="50.0" />
                               <Button fx:id="btnExportarCategoriasTarefa" layoutX="579.0" layoutY="205.0" mnemonicParsing="false" onAction="#exportCategoriasTarefa" text="Exportar Dados" />
+                              <Button fx:id="btnImportarCategorias" layoutX="578.0" layoutY="167.0" mnemonicParsing="false" onAction="#importCategorias" text="Importar Dados" />
                            </children>
                         </AnchorPane>
                      </content>
