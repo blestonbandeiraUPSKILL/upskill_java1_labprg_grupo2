@@ -36,6 +36,41 @@
                         </AnchorPane>
                   </content>
                 </Tab>
+                  <Tab text="Competências Técnicas">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="290.0" prefWidth="700.0">
+                           <children>
+                              <TextField fx:id="txtCodigo" layoutX="23.0" layoutY="103.0" prefHeight="23.0" prefWidth="139.0">
+                                 <font>
+                                    <Font name="Calibri" size="14.0" />
+                                 </font></TextField>
+                              <TextArea fx:id="txtDescDetalhada" layoutX="362.0" layoutY="50.0" prefHeight="192.0" prefWidth="328.0">
+                                 <font>
+                                    <Font name="Calibri" size="14.0" />
+                                 </font></TextArea>
+                              <Label layoutX="25.0" layoutY="82.0" text="Código">
+                                 <font>
+                                    <Font name="Calibri" size="14.0" />
+                                 </font></Label>
+                              <Label layoutX="25.0" layoutY="137.0" text="Descrição breve">
+                                 <font>
+                                    <Font name="Calibri" size="14.0" />
+                                 </font></Label>
+                              <Label layoutX="366.0" layoutY="21.0" text="Descrição detalhada">
+                                 <font>
+                                    <Font name="Calibri" size="14.0" />
+                                 </font></Label>
+                              <ComboBox fx:id="cmbAreaActividade" layoutX="23.0" layoutY="45.0" promptText="Área de Atividade" />
+                              <TextArea layoutX="21.0" layoutY="158.0" prefHeight="83.0" prefWidth="321.0" />
+                              <Label layoutX="24.0" layoutY="21.0" text="Seleccione a Área de Actividade:">
+                                 <font>
+                                    <Font name="Calibri" size="14.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </Tab>
                 <Tab disable="true" text="Categorias de Tarefa">
                      <content>
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="253.0" prefWidth="700.0">
@@ -46,40 +81,6 @@
                         </AnchorPane>
                      </content>
                 </Tab>
-                  <Tab text="Competências Técnicas">
-                     <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefWidth="350.0">
-                           <children>
-                              <BorderPane prefHeight="300.0" prefWidth="200.0" />
-                              <TextField fx:id="txtCodgo" layoutX="15.0" layoutY="50.0" prefHeight="39.0" prefWidth="139.0">
-                                 <font>
-                                    <Font name="Calibri" size="14.0" />
-                                 </font></TextField>
-                              <TextField fx:id="txtDescBreve" layoutX="15.0" layoutY="153.0" prefHeight="42.0" prefWidth="300.0">
-                                 <font>
-                                    <Font name="Calibri" size="14.0" />
-                                 </font></TextField>
-                              <TextArea fx:id="txtDescDetalhada" layoutX="362.0" layoutY="50.0" prefHeight="147.0" prefWidth="328.0">
-                                 <font>
-                                    <Font name="Calibri" size="14.0" />
-                                 </font></TextArea>
-                              <Label layoutX="25.0" layoutY="21.0" text="Código">
-                                 <font>
-                                    <Font name="Calibri" size="14.0" />
-                                 </font></Label>
-                              <Label layoutX="25.0" layoutY="120.0" text="Descrição breve">
-                                 <font>
-                                    <Font name="Calibri" size="14.0" />
-                                 </font></Label>
-                              <Label layoutX="366.0" layoutY="21.0" text="Descrição detalhada">
-                                 <font>
-                                    <Font name="Calibri" size="14.0" />
-                                 </font></Label>
-                              <ScrollBar layoutX="667.0" layoutY="51.0" orientation="VERTICAL" prefHeight="145.0" prefWidth="22.0" />
-                           </children>
-                        </AnchorPane>
-                     </content>
-                  </Tab>
               </tabs>
             </TabPane>
          </top>
@@ -104,17 +105,6 @@
                      </children>
                   </FlowPane>
                </bottom>
-               <top>
-                  <FlowPane alignment="CENTER" prefHeight="36.0" prefWidth="700.0" BorderPane.alignment="CENTER">
-                     <children>
-                        <ComboBox fx:id="cmbAreaActividade" promptText="Área de Atividade">
-                           <FlowPane.margin>
-                              <Insets right="10.0" />
-                           </FlowPane.margin>
-                        </ComboBox>
-                     </children>
-                  </FlowPane>
-               </top>
             </BorderPane>
          </bottom></BorderPane>
    </center>

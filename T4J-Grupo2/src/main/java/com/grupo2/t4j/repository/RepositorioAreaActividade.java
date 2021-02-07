@@ -120,6 +120,17 @@ public class RepositorioAreaActividade implements Serializable{
         }
         return repositorioAreaActividade;
     }
+
+    //n funciona
+    public List<String> getListaAreasActividadeByDescBreve() {
+        List<AreaActividade> listaAreasActividade = getListaAreasActividade();
+        List<String> listaAreasActividadeByDescBreve = new ArrayList<>();
+        for(AreaActividade areaActividade : listaAreasActividade) {
+            String descBreve = areaActividade.getDescBreve();
+            listaAreasActividadeByDescBreve.add(descBreve);
+        }
+        return listaAreasActividadeByDescBreve;
+    }
     
     /**
      * Informa se a lista de Áreas de Actividade está ou não vazia
@@ -145,4 +156,6 @@ public class RepositorioAreaActividade implements Serializable{
                 "listaAreasActividade=" + listaAreasActividade +
                 '}';
     }
+
+
 }

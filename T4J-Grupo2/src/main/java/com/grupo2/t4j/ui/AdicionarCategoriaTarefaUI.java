@@ -95,7 +95,7 @@ public class AdicionarCategoriaTarefaUI implements Initializable {
 
             registarCategoriaController = new RegistarCategoriaController();
 
-            AreaActividade areaActividade = RepositorioAreaActividade.getInstance().getAreaActividadeByCodigo(cmbAreaActividade.getValue().toString());
+            AreaActividade areaActividade = repositorioAreaActividade.getAreaActividadeByCodigo(cmbAreaActividade.getValue().toString());
 
             Categoria categoria = new Categoria(
                     txtDescricaoBreve.getText().trim(),

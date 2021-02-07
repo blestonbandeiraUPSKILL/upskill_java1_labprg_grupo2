@@ -5,6 +5,7 @@
  */
 package com.grupo2.t4j.ui;
 
+import com.grupo2.t4j.controller.RegistarAreaActividadeController;
 import com.grupo2.t4j.controller.RegistarCompetenciaTecnicaController;
 import com.grupo2.t4j.model.AreaActividade;
 import com.grupo2.t4j.model.CompetenciaTecnica;
@@ -36,6 +37,7 @@ public class AdicionarCompetenciaTecnicaUI implements Initializable {
 
     private AdministrativoLogadoUI administrativoLogadoUI;
     private RegistarCompetenciaTecnicaController registarCompetenciaTecnicaController;
+    private RegistarAreaActividadeController registarAreaActividadeController;
     private Stage adicionarStage;
 
     @FXML Button btnConfirmar;
@@ -54,10 +56,14 @@ public class AdicionarCompetenciaTecnicaUI implements Initializable {
 
     public void initialize(URL location, ResourceBundle resources) {
 
+        registarAreaActividadeController = new RegistarAreaActividadeController();
+
         adicionarStage = new Stage();
         adicionarStage.initModality(Modality.APPLICATION_MODAL);;
         adicionarStage.setResizable(false);
-        cmbAreaActividade.getItems().setAll(RepositorioAreaActividade.getInstance().getListaAreasActividade());
+        cmbAreaActividade.getItems().setAll(registarAreaActividadeController.getAreasActividade());
+
+
     }
 
 
