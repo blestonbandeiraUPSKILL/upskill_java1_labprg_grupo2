@@ -52,20 +52,6 @@ public class RepositorioCategoriaTarefa implements Serializable{
 
     }
 
-    public boolean addCategoria(String descBreve, String descDetalhada,
-                                AreaActividade areaActividade, String codigo, List<CaracterizacaoCT> ccts) throws CategoriaDuplicadaException {
-        Categoria c = getCategoriaById(codigo);
-        if (c == null) {
-
-            Categoria cat = new Categoria(descBreve, descDetalhada, areaActividade, ccts);
-            this.listaCategorias.add(cat);
-            return true;
-        } else {
-            throw new CategoriaDuplicadaException(c.getId() + ": Categoria ja existe");
-        }
-
-    }
-
     /**
      * Retorna uma copida da categoria referente a um determinado id
      * @param id

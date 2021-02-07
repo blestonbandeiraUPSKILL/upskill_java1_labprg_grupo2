@@ -10,6 +10,7 @@ import com.grupo2.t4j.model.*;
 import com.grupo2.t4j.repository.RepositorioCategoriaTarefa;
 import java.io.File;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -42,6 +43,17 @@ public class RegistarCategoriaController {
 
     public List<Categoria> getCategoriasTarefa() {
         return RepositorioCategoriaTarefa.getInstance().getCategorias();    
+    }
+
+    public ArrayList<Categoria> getCategoriasByAreaActividade(AreaActividade at) {
+        ArrayList<Categoria> categoriaPorAt = new ArrayList<>();
+
+        for (Categoria cat : RepositorioCategoriaTarefa.getInstance().getCategoriasByAreaActividade(at)) {
+            if (cat.getAt().equals(at)) {
+                categoriaPorAt.add(cat);
+            }
+        }
+        return categoriaPorAt;
     }
     
     ////FICHEIROS//////
