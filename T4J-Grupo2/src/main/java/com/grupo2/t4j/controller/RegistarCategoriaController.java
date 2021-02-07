@@ -26,6 +26,9 @@ public class RegistarCategoriaController {
 
     }
 
+    public boolean registarCategoria(Categoria categoria) {
+        return RepositorioCategoriaTarefa.getInstance().addCategoria(categoria);
+    }
 
 
     //public boolean registarCategoria(String id, String)

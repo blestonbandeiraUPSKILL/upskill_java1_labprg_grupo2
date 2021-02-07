@@ -34,15 +34,18 @@ public class RepositorioCategoriaTarefa implements Serializable{
    /**
     * Adiciona uma categoria a  lista de categorias
     * @param categoria
-    * @throws CategoriaDuplicadaException 
+    * @throws CategoriaDuplicadaException
+    * @return
     */
-    public void addCategoria(Categoria categoria) throws CategoriaDuplicadaException {
+    public boolean addCategoria(Categoria categoria) throws CategoriaDuplicadaException {
         Categoria c = getCategoriaById(categoria.getId());
         if (c == null) {
             this.listaCategorias.add(categoria);
+            return true;
         } else {
             throw new CategoriaDuplicadaException(c.getId() + ": Categoria ja existe");
         }
+
     }
 
     public boolean addCategoria(AreaActividade areaActividade,

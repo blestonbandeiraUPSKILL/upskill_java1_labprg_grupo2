@@ -7,6 +7,8 @@ package com.grupo2.t4j.model;
 
 import com.grupo2.t4j.exception.AreaActividadeInexistenteException;
 import com.grupo2.t4j.exception.DescricaoInvalidaException;
+import com.grupo2.t4j.repository.RepositorioAreaActividade;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -144,7 +146,7 @@ public class Categoria implements Serializable{
      */
     public void setAt(AreaActividade areaActividade) {
         if (areaActividade != null) {
-            this.at = areaActividade;
+            this.at = RepositorioAreaActividade.getInstance().getAreaActividadeByCodigo(areaActividade.getCodigo());
         }else {
             throw new AreaActividadeInexistenteException ("A área de actividade não existe");
         }

@@ -57,6 +57,11 @@ public class AdicionarAreaAtividadeUI implements Initializable {
 
     @FXML
     void cancelarAction(ActionEvent event) {
+
+        this.txtCodigo.clear();
+        this.txtDescricaoBreve.clear();
+        this.areaDescricaoDetalhada.clear();
+
         Window window = btnCancelar.getScene().getWindow();
         window.setOnCloseRequest(new EventHandler<WindowEvent>() {
             @Override

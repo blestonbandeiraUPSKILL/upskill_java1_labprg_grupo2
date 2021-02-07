@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" style="-fx-background-color: #c4c4c4;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.AdministrativoLogadoUI">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" style="-fx-background-color: #c4c4c4;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.AdministrativoLogadoUI">
    <center>
       <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <top>
@@ -23,17 +23,6 @@
                            <children>
                               <VBox alignment="CENTER" layoutX="585.0" layoutY="260.0" AnchorPane.bottomAnchor="50.00000000000002" AnchorPane.rightAnchor="40.0">
                                  <children>
-                                    <Button fx:id="btnUpdateAreasActividade" alignment="CENTER" mnemonicParsing="false" onAction="#updateListViewAreaActividade" text="Actualizar Lista">
-                                       <VBox.margin>
-                                          <Insets bottom="10.0" />
-                                       </VBox.margin>
-                                       <padding>
-                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                       </padding>
-                                       <font>
-                                          <Font name="Calibri" size="14.0" />
-                                       </font>
-                                    </Button>
                                     <Button fx:id="btnAddAreaAtividade" alignment="CENTER" mnemonicParsing="false" onAction="#addAreaActividade" style="-fx-background-color: #000000;" text="Adicionar" textFill="WHITE">
                                        <font>
                                           <Font name="Calibri" size="14.0" />
@@ -79,17 +68,6 @@
                               </Label>
                               <VBox alignment="CENTER" layoutX="585.0" layoutY="260.0" AnchorPane.bottomAnchor="50.0" AnchorPane.rightAnchor="40.0">
                                  <children>
-                                    <Button fx:id="btnUpdateCategoriasTarefa" mnemonicParsing="false" onAction="#updateListViewCategoriasTarefa" text="Actualizar Lista">
-                                       <VBox.margin>
-                                          <Insets bottom="10.0" />
-                                       </VBox.margin>
-                                       <font>
-                                          <Font name="Calibri" size="14.0" />
-                                       </font>
-                                       <padding>
-                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                       </padding>
-                                    </Button>
                                     <Button fx:id="btnAddCategoriaTarefa" alignment="BOTTOM_RIGHT" mnemonicParsing="false" onAction="#addCategoriaTarefa" style="-fx-background-color: #000000;" text="Adicionar" textFill="WHITE">
                                        <font>
                                           <Font name="Calibri" size="14.0" />
@@ -114,7 +92,7 @@
                                     </Button>
                                  </children>
                               </VBox>
-                              <ListView layoutX="14.0" layoutY="48.0" prefHeight="260.0" prefWidth="475.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="210.0" AnchorPane.topAnchor="50.0" />
+                              <ListView fx:id="listaCategorias" layoutX="14.0" layoutY="48.0" prefHeight="260.0" prefWidth="475.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="210.0" AnchorPane.topAnchor="50.0" />
                            </children>
                         </AnchorPane>
                      </content>
@@ -130,17 +108,6 @@
                               <ListView layoutX="14.0" layoutY="48.0" prefHeight="260.0" prefWidth="475.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="210.0" AnchorPane.topAnchor="50.0" />
                               <VBox alignment="CENTER" layoutX="586.0" layoutY="260.0" AnchorPane.bottomAnchor="50.0" AnchorPane.rightAnchor="40.0">
                                  <children>
-                                    <Button fx:id="btnUpdateCompetenciasTecnicas" mnemonicParsing="false" onAction="#updateListViewCompetenciasTecnicas" text="Actualizar Lista">
-                                       <VBox.margin>
-                                          <Insets bottom="10.0" />
-                                       </VBox.margin>
-                                       <font>
-                                          <Font name="Calibri" size="14.0" />
-                                       </font>
-                                       <padding>
-                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                       </padding>
-                                    </Button>
                                     <Button fx:id="btnAddcompetenciaTecnica" alignment="BOTTOM_RIGHT" mnemonicParsing="false" onAction="#addCompetenciaTecnica" style="-fx-background-color: #000000;" text="Adicionar" textFill="WHITE">
                                        <font>
                                           <Font name="Calibri" size="14.0" />

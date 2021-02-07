@@ -1,7 +1,9 @@
 package com.grupo2.t4j.ui;
 
 import com.grupo2.t4j.controller.RegistarAreaActividadeController;
+import com.grupo2.t4j.controller.RegistarCategoriaController;
 import com.grupo2.t4j.model.AreaActividade;
+import com.grupo2.t4j.model.Categoria;
 import com.grupo2.t4j.repository.RepositorioAreaActividade;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -34,12 +36,14 @@ public class AdministrativoLogadoUI implements Initializable {
     private Scene sceneAddCompetenciaTecnica;
     private Scene sceneStartingPage;
     private RegistarAreaActividadeController registarAreaActividadeController;
+    private RegistarCategoriaController registarCategoriaController;
 
     @FXML Button btnAddAreaAtividade;
     @FXML Button btnAddCategoriaTarefa;
     @FXML Button btnAddCompetenciaTecnica;
     @FXML Button btnSairAreaActividade;
     @FXML ListView<AreaActividade> listaAreasActividade;
+    @FXML ListView<Categoria> listaCategorias;
 
 
     public void associarParentUI(StartingPageUI startingPageUI) {
@@ -53,6 +57,7 @@ public class AdministrativoLogadoUI implements Initializable {
         adicionarStage.setResizable(false);
 
         registarAreaActividadeController = new RegistarAreaActividadeController();
+        registarCategoriaController = new RegistarCategoriaController();
 
     }
 
