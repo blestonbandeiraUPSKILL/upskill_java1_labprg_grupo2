@@ -48,9 +48,8 @@ public class RepositorioCategoriaTarefa implements Serializable{
 
     }
 
-    public boolean addCategoria(AreaActividade areaActividade,
-                                String descBreve, String descDetalhada,
-                                List<CompetenciaTecnica> competenciaTecnicas, String codigo, List<CaracterizacaoCT> ccts) throws CategoriaDuplicadaException {
+    public boolean addCategoria(String descBreve, String descDetalhada,
+                                AreaActividade areaActividade, String codigo, List<CaracterizacaoCT> ccts) throws CategoriaDuplicadaException {
         Categoria c = getCategoriaById(codigo);
         if (c == null) {
 

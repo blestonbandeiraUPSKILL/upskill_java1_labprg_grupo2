@@ -10,7 +10,6 @@ package com.grupo2.t4j.model;
  * @author acris
  */
 import com.grupo2.t4j.exception.*;
-import com.grupo2.t4j.repository.RepositorioAreaActividade;
 
 import java.io.Serializable;
 

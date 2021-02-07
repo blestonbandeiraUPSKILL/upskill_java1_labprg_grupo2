@@ -34,6 +34,7 @@ public class AdicionarCategoriaTarefaUI implements Initializable {
     private Stage adicionarStage;
     private Scene sceneStartingPage;
     private RegistarCategoriaController registarCategoriaController;
+    private RepositorioAreaActividade repositorioAreaActividade;
 
 
 
@@ -90,15 +91,13 @@ public class AdicionarCategoriaTarefaUI implements Initializable {
         try {
 
             registarCategoriaController = new RegistarCategoriaController();
+            
 
-            List<CaracterizacaoCT> caracterizacaoCTS = addCompetenciaTecnica2CCTS();
-
-            AreaActividade areaActividade = RepositorioAreaActividade.getInstance().getAreaActividadeByCodigo(cmbAreaActividade.getValue().toString());
             Categoria categoria = new Categoria(
                     txtDescricaoBreve.getText().trim(),
                     txtDescricaoDetalhada.getText().trim(),
-                    areaActividade,
-                    caracterizacaoCTS);
+                    RepositorioAreaActividade.getInstance().getAreaActividadeByCodigo(cmbAreaActividade.getValue().toString()),
+                    addCompetenciaTecnica2CCTS());
 
             boolean adicionou = registarCategoriaController.registarCategoria(categoria);
 
@@ -136,6 +135,7 @@ public class AdicionarCategoriaTarefaUI implements Initializable {
 
     @FXML
     public List<CaracterizacaoCT> addCompetenciaTecnica2CCTS() {
+
         CaracterizacaoCT caracterizacaoCT = new CaracterizacaoCT(
                 cmbGrauProficiencia.getValue(),
                 cmbObrigatoriedade.getValue(),

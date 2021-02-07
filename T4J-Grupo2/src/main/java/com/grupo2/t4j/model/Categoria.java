@@ -145,8 +145,8 @@ public class Categoria implements Serializable{
      * @param areaActividade
      */
     public void setAt(AreaActividade areaActividade) {
-        if (areaActividade != null) {
-            this.at = RepositorioAreaActividade.getInstance().getAreaActividadeByCodigo(areaActividade.getCodigo());
+        if (RepositorioAreaActividade.getInstance().getAreaActividadeByCodigo(areaActividade.getCodigo()) != null) {
+            this.at = areaActividade;
         }else {
             throw new AreaActividadeInexistenteException ("A área de actividade não existe");
         }
