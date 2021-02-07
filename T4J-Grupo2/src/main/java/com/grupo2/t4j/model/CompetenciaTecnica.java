@@ -85,7 +85,7 @@ public class CompetenciaTecnica implements Serializable{
      */
     public void setCodigo(String codigo) throws CodigoInvalidoException{
         if (codigo == null || codigo.trim().isEmpty()) {
-            throw new CodigoInvalidoException("Deve introduzir uma descrição válida!");
+            throw new CodigoInvalidoException("Deve introduzir um código válido!");
         } else {
             this.codigo = codigo;
         }
