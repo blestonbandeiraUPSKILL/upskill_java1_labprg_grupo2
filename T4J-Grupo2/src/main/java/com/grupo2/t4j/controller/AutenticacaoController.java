@@ -2,7 +2,6 @@ package com.grupo2.t4j.controller;
 
 import com.grupo2.t4j.model.*;
 
-
 public class AutenticacaoController {
 
     public boolean login (String username, Password password) {
@@ -13,11 +12,10 @@ public class AutenticacaoController {
         return Plataforma.getInstance().getUsersAPI().logout();
     }
 
-/*    public Rolename getRole(){
-        switch ()
+    public Rolename getRole(){
+        return Rolename.valueOf(Plataforma.getInstance().getUsersAPI().getRole().toUpperCase());
 
-        return Plataforma.getInstance().getUsersAPI().getRole();
-    }*/
+    }
 
     public Email getEmail() {
         return new Email(Plataforma.getInstance().getUsersAPI().getEmail());

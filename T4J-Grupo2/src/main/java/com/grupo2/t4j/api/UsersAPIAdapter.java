@@ -32,17 +32,15 @@ public class UsersAPIAdapter implements Serializable {
      * @return context
      */
     public String getContext() {
-        if(app_context == null || app_context.equals("")) {
-            String url = "/context?app_key=" + app_key;
+        if (app_context == null || app_context.equals("")) {
+            String url = "context?app_key=" + app_key;
             HttpRequest httpRequest = new HttpRequest(HttpRequestType.GET, url);
             HttpResponse httpResponse = HttpConnection.makeRequest(httpRequest);
-
             switch (httpResponse.getStatus()) {
-
                 case HttpStatusCode.OK:
                     break;
-
                 case HttpStatusCode.Conflict:
+
                     break;
             }
             JSONObject bodyJSON = new JSONObject(httpResponse.getBody().replaceAll( "\\[|\\]", ""));
@@ -52,7 +50,7 @@ public class UsersAPIAdapter implements Serializable {
     }
 
     public boolean login(String user_id, Password password) {
-        String url = "/login?app_context=" + getContext() + "&user_id=" + user_id + "&password=" + password;
+        String url = "login?app_context=" + getContext() + "&user_id=" + user_id + "&password=" + password.getPasswordText();
         HttpRequest httpRequest = new HttpRequest(HttpRequestType.POST, url);
         HttpResponse httpResponse = HttpConnection.makeRequest(httpRequest);
 
@@ -66,7 +64,7 @@ public class UsersAPIAdapter implements Serializable {
     }
 
     public boolean logout() {
-        String url = "/logout?app_context=" + getContext();
+        String url = "logout?app_context=" + getContext();
         HttpRequest httpRequest = new HttpRequest(HttpRequestType.POST, url);
         HttpResponse httpResponse = HttpConnection.makeRequest(httpRequest);
 
@@ -81,7 +79,7 @@ public class UsersAPIAdapter implements Serializable {
     }
 
     public boolean registerUser(String username, Email email, Password password) {
-        String url = "/registerUser?app_context=" + getContext() + "&username=" + username + "&email=" + email
+        String url = "registerUser?app_context=" + getContext() + "&username=" + username + "&email=" + email
                 + "&password=" + password;
         HttpRequest httpRequest = new HttpRequest(HttpRequestType.POST, url);
         HttpResponse httpResponse = HttpConnection.makeRequest(httpRequest);
@@ -98,7 +96,7 @@ public class UsersAPIAdapter implements Serializable {
     }
 
     public boolean registerUserWithRoles(String username, Email email, Password password, String rolenames) {
-        String url = "/registerUserWithRoles?app_context=" + getContext() + "&username=" + username + "&email=" + email
+        String url = "registerUserWithRoles?app_context=" + getContext() + "&username=" + username + "&email=" + email
                 + "&password=" + password + "&rolenames=" + rolenames;
         HttpRequest httpRequest = new HttpRequest(HttpRequestType.POST, url);
         HttpResponse httpResponse = HttpConnection.makeRequest(httpRequest);
@@ -115,7 +113,7 @@ public class UsersAPIAdapter implements Serializable {
     }
 
     public String getSession() {
-        String url = "/session?app_context=" + getContext();
+        String url = "session?app_context=" + getContext();
         HttpRequest httpRequest = new HttpRequest(HttpRequestType.GET, url);
         HttpResponse httpResponse = HttpConnection.makeRequest(httpRequest);
 
