@@ -29,7 +29,11 @@ public class RepositorioCategoriaTarefa implements Serializable{
         }
         return instance;
     }
-    
+
+    public Categoria novaCategoriaTarefa (String descBreve, String descDetalhada, AreaActividade areaActividade,
+                                List<CaracterizacaoCT> caracterizacaoCTS) {
+        return new Categoria(descBreve, descDetalhada, areaActividade, caracterizacaoCTS);
+    }
    
    /**
     * Adiciona uma categoria a  lista de categorias

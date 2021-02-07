@@ -60,6 +60,11 @@ public class RepositorioCompetenciaTecnica implements Serializable{
         }
     }
 
+    public CompetenciaTecnica novaCompetenciaTecnica(String codigo, String descBreve,
+                                                     String descDetalhada, AreaActividade areaActividade) {
+        return new CompetenciaTecnica(codigo, descBreve, descDetalhada, areaActividade);
+    }
+
     public boolean addCompetenciaTecnica(String codigo,
                                          AreaActividade at,
                                          String descricaoBreve,

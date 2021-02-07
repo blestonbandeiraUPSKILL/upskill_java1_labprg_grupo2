@@ -85,8 +85,7 @@ public class AdicionarAreaAtividadeUI implements Initializable {
         try{
             registarAreaActividadeController = new RegistarAreaActividadeController();
 
-            AreaActividade areaActividade = new AreaActividade(
-                    txtCodigo.getText(),
+            AreaActividade areaActividade = registarAreaActividadeController.novaAreaActividade(txtCodigo.getText(),
                     txtDescricaoBreve.getText(),
                     areaDescricaoDetalhada.getText());
 

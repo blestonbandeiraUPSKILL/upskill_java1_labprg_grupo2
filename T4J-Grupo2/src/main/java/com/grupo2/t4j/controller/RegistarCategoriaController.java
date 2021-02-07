@@ -31,6 +31,11 @@ public class RegistarCategoriaController {
 
     }
 
+    public Categoria novaCategoriaTarefa(String descBreve, String descDetalhada,
+                                         AreaActividade areaActividade, List<CaracterizacaoCT> caracterizacaoCTS) {
+        return RepositorioCategoriaTarefa.getInstance().novaCategoriaTarefa(descBreve, descDetalhada, areaActividade, caracterizacaoCTS);
+    }
+
     public boolean registarCategoria(Categoria categoria) {
         return RepositorioCategoriaTarefa.getInstance().addCategoria(categoria);
     }
