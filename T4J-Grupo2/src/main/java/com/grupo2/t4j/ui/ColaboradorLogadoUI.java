@@ -69,7 +69,7 @@ public class ColaboradorLogadoUI implements Initializable {
 
 
     }
-    
+
 
     @FXML
     void navigateStartingPage(ActionEvent event) {
