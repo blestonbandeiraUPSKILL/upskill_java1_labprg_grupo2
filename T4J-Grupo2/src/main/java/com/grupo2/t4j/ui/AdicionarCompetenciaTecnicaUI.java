@@ -10,6 +10,8 @@ import com.grupo2.t4j.model.AreaActividade;
 import com.grupo2.t4j.model.GrauProficiencia;
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import com.grupo2.t4j.repository.RepositorioAreaActividade;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -50,13 +52,13 @@ public class AdicionarCompetenciaTecnicaUI implements Initializable {
     }
 
     public void initialize(URL location, ResourceBundle resources) {
-        ComboBox<GrauProficiencia> cmbGrauProficiencia = new ComboBox<>();
-        ComboBox<AreaActividade> cmbAreaActividade = new ComboBox<>();
+        //ComboBox<GrauProficiencia> cmbGrauProficiencia = new ComboBox<>();
+        //ComboBox<AreaActividade> cmbAreaActividade = new ComboBox<>();
         registarCompetenciaTecnicaController = new RegistarCompetenciaTecnicaController();
 
 
         cmbGrauProficiencia.getItems().setAll(GrauProficiencia.values());
-        cmbAreaActividade.getItems().setAll(registarCompetenciaTecnicaController.getListaAreaActividade());
+        cmbAreaActividade.getItems().setAll(RepositorioAreaActividade.getInstance().getListaAreasActividade());
 
         registarCompetenciaTecnicaController = new RegistarCompetenciaTecnicaController();
         adicionarStage = new Stage();

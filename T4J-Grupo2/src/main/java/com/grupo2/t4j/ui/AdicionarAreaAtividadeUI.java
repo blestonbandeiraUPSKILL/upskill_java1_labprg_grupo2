@@ -8,6 +8,9 @@ package com.grupo2.t4j.ui;
 import com.grupo2.t4j.controller.RegistarAreaActividadeController;
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import com.grupo2.t4j.model.AreaActividade;
+import com.grupo2.t4j.repository.RepositorioAreaActividade;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -54,6 +57,11 @@ public class AdicionarAreaAtividadeUI implements Initializable {
 
     @FXML
     void cancelarAction(ActionEvent event) {
+
+        this.txtCodigo.clear();
+        this.txtDescricaoBreve.clear();
+        this.areaDescricaoDetalhada.clear();
+
         Window window = btnCancelar.getScene().getWindow();
         window.setOnCloseRequest(new EventHandler<WindowEvent>() {
             @Override
@@ -78,13 +86,15 @@ public class AdicionarAreaAtividadeUI implements Initializable {
         try{
             registarAreaActividadeController = new RegistarAreaActividadeController();
 
-            boolean adicionou = registarAreaActividadeController.registarAreaActividade(
-                    txtCodigo.getText().trim(),
-                    txtDescricaoBreve.getText().trim(),
-                    areaDescricaoDetalhada.getText().trim());
+            AreaActividade areaActividade = new AreaActividade(
+                    txtCodigo.getText(),
+                    txtDescricaoBreve.getText(),
+                    areaDescricaoDetalhada.getText());
+
+            boolean adicionou = registarAreaActividadeController.registarAreaActividade(areaActividade);
 
             if(adicionou) {
-                administrativoLogadoUI.updateListViewAreaActividade();
+                administrativoLogadoUI.listaAreasActividade.getItems().add(areaActividade);
             }
 
             AlertsUI.criarAlerta(Alert.AlertType.INFORMATION,

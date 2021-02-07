@@ -1,21 +1,24 @@
 package com.grupo2.t4j.ui;
 
 import com.grupo2.t4j.controller.RegistarCategoriaController;
-import com.grupo2.t4j.model.AreaActividade;
-import com.grupo2.t4j.model.CompetenciaTecnica;
-import java.io.IOException;
+import com.grupo2.t4j.model.*;
+
+import com.grupo2.t4j.repository.RepositorioAreaActividade;
+import com.grupo2.t4j.repository.RepositorioCompetenciaTecnica;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.stage.Window;
 import javafx.stage.WindowEvent;
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
+
 import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
@@ -40,7 +43,10 @@ public class AdicionarCategoriaTarefaUI implements Initializable {
     @FXML Button btnCancelar;
     @FXML Button btnAddCompTecCat;
     @FXML ComboBox<AreaActividade> cmbAreaActividade;
-    @FXML ListView<CompetenciaTecnica> listViewCompTecCat;
+    @FXML ComboBox<GrauProficiencia> cmbGrauProficiencia;
+    @FXML ComboBox<Obrigatoriedade> cmbObrigatoriedade;
+    @FXML ComboBox<CompetenciaTecnica> cmbCompetenciaTecnica;
+    @FXML ListView<CaracterizacaoCT> listViewCompTecCat;
 
 
 
@@ -54,6 +60,10 @@ public class AdicionarCategoriaTarefaUI implements Initializable {
         adicionarStage = new Stage();
         adicionarStage.initModality(Modality.APPLICATION_MODAL);;
         adicionarStage.setResizable(false);
+        cmbAreaActividade.getItems().setAll(RepositorioAreaActividade.getInstance().getListaAreasActividade());
+        cmbGrauProficiencia.getItems().setAll(GrauProficiencia.values());
+        cmbObrigatoriedade.getItems().setAll(Obrigatoriedade.values());
+        cmbCompetenciaTecnica.getItems().setAll(RepositorioCompetenciaTecnica.getInstance().getCompetenciasTecnicas());
     }
 
 
@@ -75,40 +85,69 @@ public class AdicionarCategoriaTarefaUI implements Initializable {
         window.fireEvent(new WindowEvent(window, WindowEvent.WINDOW_CLOSE_REQUEST));
     }
 
-  /*  @FXML
+    @FXML
     void registarCategoriaAction(ActionEvent event) {
         try {
+
             registarCategoriaController = new RegistarCategoriaController();
 
-            boolean adicionou = registarCategoriaController.registarCategoria(
+            List<CaracterizacaoCT> caracterizacaoCTS = addCompetenciaTecnica2CCTS();
 
-            );
+            AreaActividade areaActividade = RepositorioAreaActividade.getInstance().getAreaActividadeByCodigo(cmbAreaActividade.getValue().toString());
+            Categoria categoria = new Categoria(
+                    txtDescricaoBreve.getText().trim(),
+                    txtDescricaoDetalhada.getText().trim(),
+                    areaActividade,
+                    caracterizacaoCTS);
+
+            boolean adicionou = registarCategoriaController.registarCategoria(categoria);
+
+            if(adicionou) {
+                administrativoLogadoUI.listaCategorias.getItems().add(categoria);
+            }
+
+            AlertsUI.criarAlerta(Alert.AlertType.INFORMATION,
+                    MainApp.TITULO_APLICACAO,
+                    "Registar Categoria de Tarefa.",
+                    adicionou ? "Categoria de Tarefa registada com sucesso."
+                            : "Não foi possível registar a Categoria de Tarefa.").show();
+
+            closeAddCatgoriaTarefa(event);
+
         }
-
-
-    }*/
-
-    @FXML
-    public void addCompTec2Cat(ActionEvent event) {
-        try {
-            FXMLLoader loaderAddCompTec2Cat = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/CaracterizarCompetenciaTecnicaScene.fxml"));
-            Parent rootAddCompTec2Cat = loaderAddCompTec2Cat.load();
-            sceneCaracterizarCompetenciaTecnica= new Scene(rootAddCompTec2Cat);
-            sceneCaracterizarCompetenciaTecnica.getStylesheets().add("/com/grupo2/t4j/style/app.css");
-
-        }
-        catch (IOException exception) {
-            exception.printStackTrace();
+        catch (IllegalArgumentException iae) {
             AlertsUI.criarAlerta(Alert.AlertType.ERROR,
                     MainApp.TITULO_APLICACAO,
-                    "Erro",
-                    exception.getMessage());
+                    "Erro nos dados.",
+                    iae.getMessage()).show();
+
         }
 
-        adicionarStage.setScene(sceneCaracterizarCompetenciaTecnica);
-        adicionarStage.setTitle("Adicionar Competência Técnica à Categoria");
-        adicionarStage.show();
+
     }
 
-    
+    private void closeAddCatgoriaTarefa(ActionEvent actionEvent) {
+        this.txtDescricaoBreve.clear();
+        this.txtDescricaoDetalhada.clear();
+        this.listViewCompTecCat.getItems().removeAll();
+
+        ((Node) actionEvent.getSource()).getScene().getWindow().hide();
+    }
+
+    @FXML
+    public List<CaracterizacaoCT> addCompetenciaTecnica2CCTS() {
+        CaracterizacaoCT caracterizacaoCT = new CaracterizacaoCT(
+                cmbGrauProficiencia.getValue(),
+                cmbObrigatoriedade.getValue(),
+                cmbCompetenciaTecnica.getValue());
+
+        List<CaracterizacaoCT> caracterizacaoCTS = new ArrayList<>();
+        caracterizacaoCTS.add(caracterizacaoCT);
+
+        listViewCompTecCat.getItems().add(caracterizacaoCT);
+
+        return caracterizacaoCTS;
+    }
+
+
 }

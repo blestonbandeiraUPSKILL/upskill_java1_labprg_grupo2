@@ -27,5 +27,7 @@ public class RegistarAreaActividadeController {
     }
 
 
-    
+    public boolean registarAreaActividade(AreaActividade areaActividade) {
+        return RepositorioAreaActividade.getInstance().addAreaActividade(areaActividade);
+    }
 }
