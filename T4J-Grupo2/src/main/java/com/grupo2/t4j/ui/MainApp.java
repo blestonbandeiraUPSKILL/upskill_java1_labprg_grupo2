@@ -31,7 +31,7 @@ public class MainApp extends Application {
             Parent root = loader.load();
 
             Scene scene = new Scene(root);
-            scene.getStylesheets().add("/com/grupo2/t4j/style/app.css");
+            scene.getStylesheets().addAll(this.getClass().getResource("/com/grupo2/t4j/style/app.css").toExternalForm());
 
             stage.setTitle(TITULO_APLICACAO);
             stage.setScene(scene);

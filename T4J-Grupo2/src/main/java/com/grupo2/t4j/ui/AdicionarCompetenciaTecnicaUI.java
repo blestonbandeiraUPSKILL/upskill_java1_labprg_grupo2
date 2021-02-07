@@ -49,8 +49,6 @@ public class AdicionarCompetenciaTecnicaUI implements Initializable {
     @FXML ComboBox<AreaActividade> cmbAreaActividade;
     @FXML ComboBox<GrauProficiencia> cmbGrauProficiencia;
 
-    
-
     public void associarParentUI(AdministrativoLogadoUI administrativoLogadoUI) {
         this.administrativoLogadoUI = administrativoLogadoUI;
     }
@@ -64,10 +62,7 @@ public class AdicionarCompetenciaTecnicaUI implements Initializable {
         adicionarStage.setResizable(false);
         cmbAreaActividade.getItems().setAll(registarAreaActividadeController.getAreasActividade());
 
-
     }
-
-
 
     @FXML
     public void registarCompetenciaTecnicaAction(ActionEvent event) {
@@ -75,7 +70,7 @@ public class AdicionarCompetenciaTecnicaUI implements Initializable {
 
             registarCompetenciaTecnicaController = new RegistarCompetenciaTecnicaController();
 
-            AreaActividade areaActividade = RepositorioAreaActividade.getInstance().getAreaActividadeByCodigo(cmbAreaActividade.getValue().toString());
+            AreaActividade areaActividade = registarAreaActividadeController.getAreaActividadeByCodigo(cmbAreaActividade.getValue().toString());
 
             CompetenciaTecnica competenciaTecnica = new CompetenciaTecnica(
                     txtCodigo.getText().trim(),

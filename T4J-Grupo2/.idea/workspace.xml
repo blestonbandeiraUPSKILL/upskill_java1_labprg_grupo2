@@ -5,13 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8ca9f66f-f143-4134-afe5-eb7245bd0a9c" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/cssdialects.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/controller/RegistarAreaActividadeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/controller/RegistarAreaActividadeController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/controller/RegistarCompetenciaTecnicaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/controller/RegistarCompetenciaTecnicaController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/model/CompetenciaTecnica.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/model/CompetenciaTecnica.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/AdicionarCategoriaTarefaUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/AdicionarCategoriaTarefaUI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/AdicionarCompetenciaTecnicaUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/AdicionarCompetenciaTecnicaUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/grupo2/t4j/fxml/AdicionarCompetenciaTecnicaScene.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/grupo2/t4j/fxml/AdicionarCompetenciaTecnicaScene.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/ColaboradorLogadoUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/ColaboradorLogadoUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/MainApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/MainApp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/grupo2/t4j/fxml/ColaboradorLogadoScene.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/grupo2/t4j/fxml/ColaboradorLogadoScene.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/grupo2/t4j/style/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/grupo2/t4j/style/app.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -220,7 +221,7 @@
       <workItem from="1612426677059" duration="24229000" />
       <workItem from="1612620371258" duration="2078000" />
       <workItem from="1612622727099" duration="20977000" />
-      <workItem from="1612689708954" duration="19756000" />
+      <workItem from="1612689708954" duration="23848000" />
     </task>
     <servers />
   </component>
@@ -262,23 +263,8 @@
         </line-breakpoint>
         <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/grupo2/t4j/controller/RegistarCompetenciaTecnicaController.java</url>
-          <line>46</line>
+          <line>49</line>
           <option name="timeStamp" value="56" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/AdicionarCompetenciaTecnicaUI.java</url>
-          <line>85</line>
-          <option name="timeStamp" value="62" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/AdicionarCompetenciaTecnicaUI.java</url>
-          <line>87</line>
-          <option name="timeStamp" value="63" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/AdicionarCompetenciaTecnicaUI.java</url>
-          <line>82</line>
-          <option name="timeStamp" value="65" />
         </line-breakpoint>
         <breakpoint type="java-exception">
           <properties class="java.lang.IllegalArgumentException" package="java.lang" />
