@@ -29,5 +29,11 @@ public class CaracterizacaoCT {
         this.obrigatoriedade = obrigatoriedade;
     }
 
-
+    @Override
+    public String toString() {
+        return "Grau de Proficiência: " + gp +
+                ", Obrigatoriedade: " + obrigatoriedade +
+                ", Competência Técnica: " + competenciaTecnica +
+                '}';
+    }
 }

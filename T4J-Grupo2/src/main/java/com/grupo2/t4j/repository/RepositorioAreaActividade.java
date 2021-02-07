@@ -12,6 +12,7 @@ package com.grupo2.t4j.repository;
 
 import com.grupo2.t4j.model.*;
 import com.grupo2.t4j.exception.*;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -48,7 +49,7 @@ public class RepositorioAreaActividade implements Serializable{
      * @return
      */
     public boolean addAreaActividade(AreaActividade areaActividade) throws AreaActividadeDuplicadaException {
-        AreaActividade aa = getAreaActividadeByCodigo(areaActividade.getCodigo());
+        AreaActividade aa = getAreaActividadeByCodigo(areaActividade.getCodigo().toString());
         if (aa == null) {
             listaAreasActividade.add(areaActividade);
             return true;
@@ -100,6 +101,7 @@ public class RepositorioAreaActividade implements Serializable{
      */
     public AreaActividade getAreaActividadeByCodigo(String codigo) {
         for (int i = 0; i < this.listaAreasActividade.size(); i++) {
+            //AreaActividade areaActividade = RepositorioAreaActividade.getInstance().getAreaActividadeByCodigo(codigo);
             AreaActividade areaActividade = this.listaAreasActividade.get(i);
             if (areaActividade.getCodigo().equals(codigo)) {
                 return areaActividade;
