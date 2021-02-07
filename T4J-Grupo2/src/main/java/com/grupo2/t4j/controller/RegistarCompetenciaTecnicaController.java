@@ -6,9 +6,7 @@
 package com.grupo2.t4j.controller;
 
 import com.grupo2.t4j.model.AreaActividade;
-import com.grupo2.t4j.model.CaracterizacaoCT;
 import com.grupo2.t4j.model.CompetenciaTecnica;
-import com.grupo2.t4j.model.GrauProficiencia;
 import com.grupo2.t4j.repository.RepositorioAreaActividade;
 import com.grupo2.t4j.repository.RepositorioCompetenciaTecnica;
 import java.util.List;
@@ -40,8 +38,16 @@ public class RegistarCompetenciaTecnicaController {
         return RepositorioAreaActividade.getInstance().getListaAreasActividade();
     }
 
+    public List<String> getListaAreaActividadeByDescBreve() {
+        return RepositorioAreaActividade.getInstance().getListaAreasActividadeByDescBreve();
+    }
+
 
     public boolean registarCompetenciaTecnica(CompetenciaTecnica competenciaTecnica) {
         return RepositorioCompetenciaTecnica.getInstance().addCompetenciaTecnica(competenciaTecnica);
+    }
+
+    public List<CompetenciaTecnica> getCompetenciasTecnicas() {
+        return RepositorioCompetenciaTecnica.getInstance().getCompetenciasTecnicas();
     }
 }

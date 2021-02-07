@@ -5,6 +5,7 @@
  */
 package com.grupo2.t4j.ui;
 
+import com.grupo2.t4j.controller.RegistarAreaActividadeController;
 import com.grupo2.t4j.controller.RegistarCompetenciaTecnicaController;
 import com.grupo2.t4j.model.AreaActividade;
 import com.grupo2.t4j.model.CompetenciaTecnica;
@@ -17,6 +18,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
@@ -36,13 +38,14 @@ public class AdicionarCompetenciaTecnicaUI implements Initializable {
 
     private AdministrativoLogadoUI administrativoLogadoUI;
     private RegistarCompetenciaTecnicaController registarCompetenciaTecnicaController;
+    private RegistarAreaActividadeController registarAreaActividadeController;
     private Stage adicionarStage;
 
     @FXML Button btnConfirmar;
     @FXML Button btnCancelar;
-    @FXML TextArea txtDescricaoDetalhada;
+    @FXML TextArea txtDescDetalhada;
     @FXML TextField txtCodigo;
-    @FXML TextField txtDescricaoBreve;
+    @FXML TextArea txtDescricaoBreve;
     @FXML ComboBox<AreaActividade> cmbAreaActividade;
     @FXML ComboBox<GrauProficiencia> cmbGrauProficiencia;
 
@@ -54,10 +57,14 @@ public class AdicionarCompetenciaTecnicaUI implements Initializable {
 
     public void initialize(URL location, ResourceBundle resources) {
 
+        registarAreaActividadeController = new RegistarAreaActividadeController();
+
         adicionarStage = new Stage();
         adicionarStage.initModality(Modality.APPLICATION_MODAL);;
         adicionarStage.setResizable(false);
-        cmbAreaActividade.getItems().setAll(RepositorioAreaActividade.getInstance().getListaAreasActividade());
+        cmbAreaActividade.getItems().setAll(registarAreaActividadeController.getAreasActividade());
+
+
     }
 
 
@@ -73,7 +80,7 @@ public class AdicionarCompetenciaTecnicaUI implements Initializable {
             CompetenciaTecnica competenciaTecnica = new CompetenciaTecnica(
                     txtCodigo.getText().trim(),
                     txtDescricaoBreve.getText().trim(),
-                    txtDescricaoDetalhada.getText().trim(),
+                    txtDescDetalhada.getText().trim(),
                     areaActividade);
 
             boolean adicionou = registarCompetenciaTecnicaController.registarCompetenciaTecnica(competenciaTecnica);
@@ -93,6 +100,15 @@ public class AdicionarCompetenciaTecnicaUI implements Initializable {
                     "Erro nos dados.",
                     iae.getMessage()).show();
         }
+
+        closeAddCompetenciaTecnica(event);
+    }
+
+    private void closeAddCompetenciaTecnica(ActionEvent event) {
+        this.txtCodigo.clear();
+        this.txtDescricaoBreve.clear();
+        this.txtDescDetalhada.clear();
+        ((Node) event.getSource()).getScene().getWindow().hide();
     }
 
     public void cancelarAction(ActionEvent actionEvent) {

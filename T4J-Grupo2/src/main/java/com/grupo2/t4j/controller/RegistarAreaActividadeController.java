@@ -30,4 +30,24 @@ public class RegistarAreaActividadeController {
     public boolean registarAreaActividade(AreaActividade areaActividade) {
         return RepositorioAreaActividade.getInstance().addAreaActividade(areaActividade);
     }
+
+    public List<String> getAreasActividadeByDescBreve() {
+        return RepositorioAreaActividade.getInstance().getListaAreasActividadeByDescBreve();
+    }
+
+    public AreaActividade getAreaActividadeByCodigo(String codigo) {
+       List<AreaActividade> listaAreasActividade = RepositorioAreaActividade.getInstance().getListaAreasActividade();
+        for (int i = 0; i < listaAreasActividade.size(); i++) {
+            //AreaActividade areaActividade = RepositorioAreaActividade.getInstance().getAreaActividadeByCodigo(codigo);
+            AreaActividade areaActividade = listaAreasActividade.get(i);
+            if (areaActividade.getCodigo().equals(codigo)) {
+                return areaActividade;
+            }
+        }
+        return null;
+    }
+
+    public List<AreaActividade> getListaAreasActividade() {
+        return RepositorioAreaActividade.getInstance().getListaAreasActividade();
+    }
 }
