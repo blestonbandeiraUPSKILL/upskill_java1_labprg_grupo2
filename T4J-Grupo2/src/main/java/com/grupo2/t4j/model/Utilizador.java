@@ -29,7 +29,12 @@ public class Utilizador implements Serializable{
      * A password do Utilizador
      */
     private Password password;
-    
+
+    /**
+     * O role do Utilizador
+     */
+    private Rolename rolename;
+
     /**
      * Construtor vazio da classe Utilizador
      */
@@ -90,6 +95,22 @@ public class Utilizador implements Serializable{
     public Utilizador(String nomeGestor, Email emailGestor) {
         setNome(nomeGestor);
         setEmail(emailGestor);
+    }
+
+    /**
+     *
+     * Construtor da classe Utilizador, que recebe o nome, uma password, o email e o seu papel
+     *
+     * @param nome o nome do Utilizador
+     * @param password a password do Utilizdor
+     * @param email o email do Utilizador
+     * @param rolename o papel do utilizador
+     */
+    public Utilizador(String nome, Password password, Email email, Rolename rolename) {
+        setNome(nome);
+        setPassword(password);
+        setEmail(email);
+        this.rolename = rolename;
     }
 
     /**

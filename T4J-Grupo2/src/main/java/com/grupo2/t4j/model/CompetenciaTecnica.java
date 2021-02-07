@@ -26,6 +26,7 @@ public class CompetenciaTecnica implements Serializable{
     private String descricaoDetalhada;
     private AreaActividade areaActividade;
     private CaracterizacaoCT cct;
+    private Categoria categoria;
     
     private static final char SEPARADOR = ';';
     
@@ -169,5 +170,5 @@ public class CompetenciaTecnica implements Serializable{
         return String.format("Competencia Tecnica: %nID: %s%nDescricao Breve:"
                 + " %s%n Descricao Detalhada: %s%n", codigo, descricaoBreve, descricaoDetalhada);
     }
-    
+
 }

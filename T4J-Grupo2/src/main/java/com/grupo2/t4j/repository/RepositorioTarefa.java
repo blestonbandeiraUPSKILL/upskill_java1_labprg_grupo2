@@ -36,7 +36,19 @@ public class RepositorioTarefa implements Serializable{
     private RepositorioTarefa(){
         listaTarefas = new ArrayList<>();
     }
-    
+
+    public Tarefa novaTarefa(AreaActividade areaActividade, Categoria categoriaTarefa,
+                              List<CaracterizacaoCT> caracterizacaoCTS,
+                              String referencia,
+                              String designacao,
+                              String descInformal,
+                              String descTecnica,
+                              int duracao,
+                              double custo) {
+        return new Tarefa(areaActividade, categoriaTarefa, caracterizacaoCTS,
+                referencia, designacao, descInformal, descTecnica, duracao, custo);
+    }
+
     /**
      * Adiciona uma Tarefa à lista de Tarefas
      * @param tarefa do tipo da classe Tarefa
