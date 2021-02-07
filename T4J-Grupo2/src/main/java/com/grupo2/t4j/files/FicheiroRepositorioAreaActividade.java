@@ -18,9 +18,9 @@ import java.io.ObjectOutputStream;
  *
  * @author acris
  */
-public class FicheiroRepositorioAreaAcividade {
+public class FicheiroRepositorioAreaActividade {
     public static final String NOME_FICHEIRO_SERIALIZAR = "RepositorioAreaActividade.ltf";
-    public FicheiroRepositorioAreaAcividade() {
+    public FicheiroRepositorioAreaActividade() {
     }
 
     public boolean serializar(RepositorioAreaActividade repositorioAreaActividade) {

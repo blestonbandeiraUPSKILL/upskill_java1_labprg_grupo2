@@ -42,6 +42,18 @@ public class RepositorioAreaActividade implements Serializable{
         listaAreasActividade = new ArrayList<>();
     }
     
+    public int adicionarListaAreasActividade(RepositorioAreaActividade outraListaAreasActividade) {
+        int totalAreasAdicionadas = 0;
+        
+        for (AreaActividade areaActividade : outraListaAreasActividade.listaAreasActividade) {
+            boolean areaActividadeAdicionada = addAreaActividade(areaActividade);
+            if (areaActividadeAdicionada) {
+                totalAreasAdicionadas++;
+            }
+        }
+        return totalAreasAdicionadas;
+    }
+    
     /**
      * Adiciona uma Área de Actividade à lista de Áreas de Actividade
      * @param areaActividade do tipo da classe AreaActividade

@@ -5,8 +5,11 @@
  */
 package com.grupo2.t4j.controller;
 
+import com.grupo2.t4j.files.FicheiroRepositorioAreaActividade;
 import com.grupo2.t4j.model.AreaActividade;
 import com.grupo2.t4j.repository.RepositorioAreaActividade;
+import java.io.File;
+import java.io.Serializable;
 
 import java.util.List;
 
@@ -14,7 +17,35 @@ import java.util.List;
  *
  * @author acris
  */
-public class RegistarAreaActividadeController {
+public class RegistarAreaActividadeController /*implements Serializable*/{
+    
+    private FicheiroRepositorioAreaActividade ficheiroAt;
+    private RepositorioAreaActividade listaAreasActividade;
+    
+    public RegistarAreaActividadeController() {
+        ficheiroAt = new FicheiroRepositorioAreaActividade();
+        
+        desserializar();
+    }
+    public boolean serializar() {
+        return ficheiroAt.serializar(listaAreasActividade);
+    }
+
+    public boolean serializar(File ficheiroExportar) {
+        return ficheiroAt.serializar(ficheiroExportar, listaAreasActividade);
+    }
+
+    public void desserializar() {
+        listaAreasActividade = ficheiroAt.desserializar();
+    }
+
+    public int desserializar(File ficheiroImportar) {
+        RepositorioAreaActividade listaAreaActividadeImportada = ficheiroAt.desserializar(ficheiroImportar);
+
+        return listaAreasActividade.getInstance().adicionarListaAreasActividade(listaAreaActividadeImportada);
+    }
+
+    
     
     private RepositorioAreaActividade repositorioAreaActividade;
 
@@ -47,7 +78,5 @@ public class RegistarAreaActividadeController {
         return null;
     }
 
-    public List<AreaActividade> getListaAreasActividade() {
-        return RepositorioAreaActividade.getInstance().getListaAreasActividade();
-    }
+    
 }
