@@ -143,4 +143,7 @@ public class GestorLogadoUI implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
 
     }
+
+    public void navigateStartingPage(ActionEvent actionEvent) {
+    }
 }
