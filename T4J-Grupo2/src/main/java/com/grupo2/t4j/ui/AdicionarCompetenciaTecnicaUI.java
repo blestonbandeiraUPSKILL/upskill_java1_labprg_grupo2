@@ -52,8 +52,7 @@ public class AdicionarCompetenciaTecnicaUI implements Initializable {
     }
 
     public void initialize(URL location, ResourceBundle resources) {
-        //ComboBox<GrauProficiencia> cmbGrauProficiencia = new ComboBox<>();
-        //ComboBox<AreaActividade> cmbAreaActividade = new ComboBox<>();
+
         registarCompetenciaTecnicaController = new RegistarCompetenciaTecnicaController();
 
 
@@ -77,8 +76,6 @@ public class AdicionarCompetenciaTecnicaUI implements Initializable {
                     cmbAreaActividade.getSelectionModel().getSelectedItem(),
                     txtDescricaoBreve.getText(),
                     txtDescricaoDetalhada.getText());
-
-            //listViewCompTecnicasPorSelecionarCategoriaTarefa.getItems().setAll(plataformaController.getCompetenciasTecnicasByAreaAtividade(comboBoxAreaAtividadeCategoriaTarefa.getValue()));
 
             AlertsUI.criarAlerta(Alert.AlertType.INFORMATION,
                     MainApp.TITULO_APLICACAO,

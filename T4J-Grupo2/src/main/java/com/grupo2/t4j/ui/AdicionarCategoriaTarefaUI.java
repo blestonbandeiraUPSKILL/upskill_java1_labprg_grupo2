@@ -35,6 +35,7 @@ public class AdicionarCategoriaTarefaUI implements Initializable {
     private Scene sceneStartingPage;
     private RegistarCategoriaController registarCategoriaController;
     private RepositorioAreaActividade repositorioAreaActividade;
+    private  List<CaracterizacaoCT> caracterizacaoCTS;
 
 
 
@@ -65,6 +66,8 @@ public class AdicionarCategoriaTarefaUI implements Initializable {
         cmbGrauProficiencia.getItems().setAll(GrauProficiencia.values());
         cmbObrigatoriedade.getItems().setAll(Obrigatoriedade.values());
         cmbCompetenciaTecnica.getItems().setAll(RepositorioCompetenciaTecnica.getInstance().getCompetenciasTecnicas());
+
+
     }
 
 
@@ -91,13 +94,14 @@ public class AdicionarCategoriaTarefaUI implements Initializable {
         try {
 
             registarCategoriaController = new RegistarCategoriaController();
-            
+
+            AreaActividade areaActividade = RepositorioAreaActividade.getInstance().getAreaActividadeByCodigo(cmbAreaActividade.getValue().toString());
 
             Categoria categoria = new Categoria(
                     txtDescricaoBreve.getText().trim(),
                     txtDescricaoDetalhada.getText().trim(),
-                    RepositorioAreaActividade.getInstance().getAreaActividadeByCodigo(cmbAreaActividade.getValue().toString()),
-                    addCompetenciaTecnica2CCTS());
+                    areaActividade,
+                    caracterizacaoCTS);
 
             boolean adicionou = registarCategoriaController.registarCategoria(categoria);
 
@@ -112,7 +116,6 @@ public class AdicionarCategoriaTarefaUI implements Initializable {
                             : "Não foi possível registar a Categoria de Tarefa.").show();
 
             closeAddCatgoriaTarefa(event);
-
         }
         catch (IllegalArgumentException iae) {
             AlertsUI.criarAlerta(Alert.AlertType.ERROR,
@@ -121,8 +124,6 @@ public class AdicionarCategoriaTarefaUI implements Initializable {
                     iae.getMessage()).show();
 
         }
-
-
     }
 
     private void closeAddCatgoriaTarefa(ActionEvent actionEvent) {
@@ -141,7 +142,7 @@ public class AdicionarCategoriaTarefaUI implements Initializable {
                 cmbObrigatoriedade.getValue(),
                 cmbCompetenciaTecnica.getValue());
 
-        List<CaracterizacaoCT> caracterizacaoCTS = new ArrayList<>();
+        caracterizacaoCTS = new ArrayList<>();
         caracterizacaoCTS.add(caracterizacaoCT);
 
         listViewCompTecCat.getItems().add(caracterizacaoCT);
