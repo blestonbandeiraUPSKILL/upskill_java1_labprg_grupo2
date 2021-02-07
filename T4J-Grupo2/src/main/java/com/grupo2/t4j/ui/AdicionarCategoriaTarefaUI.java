@@ -1,10 +1,10 @@
 package com.grupo2.t4j.ui;
 
+import com.grupo2.t4j.controller.RegistarAreaActividadeController;
 import com.grupo2.t4j.controller.RegistarCategoriaController;
+import com.grupo2.t4j.controller.RegistarCompetenciaTecnicaController;
 import com.grupo2.t4j.model.*;
 
-import com.grupo2.t4j.repository.RepositorioAreaActividade;
-import com.grupo2.t4j.repository.RepositorioCompetenciaTecnica;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -34,8 +34,9 @@ public class AdicionarCategoriaTarefaUI implements Initializable {
     private Stage adicionarStage;
     private Scene sceneStartingPage;
     private RegistarCategoriaController registarCategoriaController;
-    private RepositorioAreaActividade repositorioAreaActividade;
-    private  List<CaracterizacaoCT> caracterizacaoCTS;
+    private RegistarAreaActividadeController registarAreaActividadeController;
+    private RegistarCompetenciaTecnicaController registarCompetenciaTecnicaController;
+    private List<CaracterizacaoCT> caracterizacaoCTS;
 
 
 
@@ -59,14 +60,17 @@ public class AdicionarCategoriaTarefaUI implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
+        registarAreaActividadeController = new RegistarAreaActividadeController();
+        registarCategoriaController = new RegistarCategoriaController();
+        registarCompetenciaTecnicaController = new RegistarCompetenciaTecnicaController();
+
         adicionarStage = new Stage();
         adicionarStage.initModality(Modality.APPLICATION_MODAL);;
         adicionarStage.setResizable(false);
-        cmbAreaActividade.getItems().setAll(RepositorioAreaActividade.getInstance().getListaAreasActividade());
+        cmbAreaActividade.getItems().setAll(registarAreaActividadeController.getListaAreasActividade());
         cmbGrauProficiencia.getItems().setAll(GrauProficiencia.values());
         cmbObrigatoriedade.getItems().setAll(Obrigatoriedade.values());
-        cmbCompetenciaTecnica.getItems().setAll(RepositorioCompetenciaTecnica.getInstance().getCompetenciasTecnicas());
-
+        cmbCompetenciaTecnica.getItems().setAll(registarCompetenciaTecnicaController.getCompetenciasTecnicas());
 
     }
 
@@ -93,9 +97,7 @@ public class AdicionarCategoriaTarefaUI implements Initializable {
     void registarCategoriaAction(ActionEvent event) {
         try {
 
-            registarCategoriaController = new RegistarCategoriaController();
-
-            AreaActividade areaActividade = repositorioAreaActividade.getAreaActividadeByCodigo(cmbAreaActividade.getValue().toString());
+            AreaActividade areaActividade = registarAreaActividadeController.getAreaActividadeByCodigo(cmbAreaActividade.getValue().toString());
 
             Categoria categoria = new Categoria(
                     txtDescricaoBreve.getText().trim(),

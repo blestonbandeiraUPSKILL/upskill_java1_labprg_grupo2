@@ -25,9 +25,9 @@
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefWidth="350.0">
                            <children>
                               <BorderPane prefHeight="300.0" prefWidth="200.0" />
-                              <TextField fx:id="txtCodigo" layoutX="15.0" layoutY="50.0" prefHeight="39.0" prefWidth="139.0" />
-                              <TextField fx:id="txtDescricaoBreve" layoutX="15.0" layoutY="140.0" prefHeight="42.0" prefWidth="241.0" />
-                              <TextArea fx:id="txtDescricaoDetalhada" layoutX="273.0" layoutY="50.0" prefHeight="175.0" prefWidth="417.0" />
+                              <TextField layoutX="15.0" layoutY="50.0" prefHeight="39.0" prefWidth="139.0" />
+                              <TextField layoutX="15.0" layoutY="140.0" prefHeight="42.0" prefWidth="241.0" />
+                              <TextArea layoutX="273.0" layoutY="50.0" prefHeight="175.0" prefWidth="417.0" />
                               <Label layoutX="25.0" layoutY="21.0" text="Código" />
                               <Label layoutX="25.0" layoutY="107.0" text="Descrição breve" />
                               <Label layoutX="282.0" layoutY="21.0" text="Descrição detalhada" />
@@ -61,7 +61,7 @@
                                     <Font name="Calibri" size="14.0" />
                                  </font></Label>
                               <ComboBox fx:id="cmbAreaActividade" layoutX="23.0" layoutY="45.0" promptText="Área de Atividade" />
-                              <TextArea layoutX="21.0" layoutY="158.0" prefHeight="83.0" prefWidth="321.0" />
+                              <TextArea fx:id="txtDescricaoBreve" layoutX="21.0" layoutY="158.0" prefHeight="83.0" prefWidth="321.0" />
                               <Label layoutX="24.0" layoutY="21.0" text="Seleccione a Área de Actividade:">
                                  <font>
                                     <Font name="Calibri" size="14.0" />

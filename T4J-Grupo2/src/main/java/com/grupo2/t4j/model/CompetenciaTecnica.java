@@ -70,7 +70,8 @@ public class CompetenciaTecnica implements Serializable{
         setCodigo(codigo);
         setDescricaoBreve(descricaoBreve);
         setDescricaoDetalhada(descricaoDetalhada);
-        setAreaActividade(at);
+        //setAreaActividade(at);
+        this.areaActividade = at;
     }
 
     /**
