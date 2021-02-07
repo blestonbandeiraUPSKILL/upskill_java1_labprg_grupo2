@@ -16,7 +16,7 @@ import java.util.List;
  */
 public class RegistarCategoriaController {
 
-    public boolean registarCategoriaController (AreaActividade areaActividade,
+    public boolean registarCategoria (AreaActividade areaActividade,
                                                 String descBreve,
                                                 String descDetalhada,
                                                 List<CaracterizacaoCT> ccts) {
@@ -30,7 +30,5 @@ public class RegistarCategoriaController {
         return RepositorioCategoriaTarefa.getInstance().addCategoria(categoria);
     }
 
-
-    //public boolean registarCategoria(String id, String)
 }
 

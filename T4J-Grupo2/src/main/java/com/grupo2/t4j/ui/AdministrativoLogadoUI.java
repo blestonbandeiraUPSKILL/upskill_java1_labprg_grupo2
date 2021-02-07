@@ -4,6 +4,7 @@ import com.grupo2.t4j.controller.RegistarAreaActividadeController;
 import com.grupo2.t4j.controller.RegistarCategoriaController;
 import com.grupo2.t4j.model.AreaActividade;
 import com.grupo2.t4j.model.Categoria;
+import com.grupo2.t4j.model.CompetenciaTecnica;
 import com.grupo2.t4j.repository.RepositorioAreaActividade;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -41,9 +42,10 @@ public class AdministrativoLogadoUI implements Initializable {
     @FXML Button btnAddAreaAtividade;
     @FXML Button btnAddCategoriaTarefa;
     @FXML Button btnAddCompetenciaTecnica;
-    @FXML Button btnSairAreaActividade;
+    @FXML Button btnSair;
     @FXML ListView<AreaActividade> listaAreasActividade;
     @FXML ListView<Categoria> listaCategorias;
+    @FXML ListView<CompetenciaTecnica> listViewCompetenciasTecnicas;
 
 
     public void associarParentUI(StartingPageUI startingPageUI) {
@@ -133,7 +135,7 @@ public class AdministrativoLogadoUI implements Initializable {
             Parent rootStartingPage = loaderStartingPage.load();
             sceneStartingPage = new Scene(rootStartingPage);
 
-            Window window = btnSairAreaActividade.getScene().getWindow();
+            Window window = btnSair.getScene().getWindow();
             window.setOnCloseRequest(new EventHandler<WindowEvent>() {
                 @Override
                 public void handle(WindowEvent windowEvent) {

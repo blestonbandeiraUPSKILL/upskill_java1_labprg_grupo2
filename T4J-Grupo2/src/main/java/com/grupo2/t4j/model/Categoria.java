@@ -59,7 +59,8 @@ public class Categoria implements Serializable{
     public Categoria (String descBreve, String descDetalhada, AreaActividade at, List<CaracterizacaoCT> caracterizacaoCTS){
         setDescBreve(descBreve);
         setDescDetalhada(descDetalhada);
-        setAt(at);
+        //setAt(at);
+        this.at = at;
         setCompTecnicasCaracter(caracterizacaoCTS);
         setId(descBreve, id2);
     }
@@ -145,9 +146,11 @@ public class Categoria implements Serializable{
      * @param areaActividade
      */
     public void setAt(AreaActividade areaActividade) {
-        if (RepositorioAreaActividade.getInstance().getAreaActividadeByCodigo(areaActividade.getCodigo()) != null) {
+        if(areaActividade != null) {
+        //if (RepositorioAreaActividade.getInstance().getAreaActividadeByCodigo(areaActividade.getCodigo()) != null) {
             this.at = areaActividade;
-        }else {
+        }
+        else {
             throw new AreaActividadeInexistenteException ("A área de actividade não existe");
         }
     }
@@ -201,7 +204,14 @@ public class Categoria implements Serializable{
      * @return 
      */
     @Override
-    public String toString(){
-        return String.format("%s; %s; %s", descBreve, at.getDescBreve(), toStringCompTec());
+    public String toString() {
+        return "Categoria{" +
+                "id='" + id + '\'' +
+                ", id2=" + id2 +
+                ", descBreve='" + descBreve + '\'' +
+                ", descDetalhada='" + descDetalhada + '\'' +
+                ", at=" + at +
+                ", caracterizacaoCTS=" + caracterizacaoCTS +
+                '}';
     }
 }
