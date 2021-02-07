@@ -19,10 +19,7 @@ import java.io.Serializable;
  * @author Geral
  */
 public class AreaActividade implements Serializable{
-    /**
-     * Separador para exportar ficheiro
-     */
-    private static final char SEPARADOR = ';';
+    
 
 /**
  * O código único de cada Área de Actividade.
@@ -144,11 +141,5 @@ public class AreaActividade implements Serializable{
                 + "breve: %s. %nDescrição detalhada: %s.", codigo, descBreve, descDetalhada );
     }
     
-    /**
-     * Representação textual da classe Área de Actividade no formato expresso
-     * @return codigo, descBreve e descDetalhada
-     */
-    public String toStringExport(){
-        return String.format("%s%c%s%c%s", codigo, SEPARADOR, descBreve, SEPARADOR, descDetalhada);
-    }
+    
 }

@@ -14,6 +14,7 @@ import com.grupo2.t4j.model.*;
 import com.grupo2.t4j.exception.*;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -46,10 +47,10 @@ public class RepositorioAreaActividade implements Serializable{
      * @param areaActividade do tipo da classe AreaActividade
      * @throws AreaActividadeDuplicadaException
      */
-    public void addAreaActividade(AreaActividade areaActividade) throws AreaActividadeDuplicadaException {
+    public boolean addAreaActividade(AreaActividade areaActividade) throws AreaActividadeDuplicadaException {
         AreaActividade aa = getAreaActividadeByCodigo(areaActividade.getCodigo());
         if (aa == null) {
-            listaAreasActividade.add(areaActividade);
+            return listaAreasActividade.add(areaActividade);
         } else {
             throw new AreaActividadeDuplicadaException(aa.getCodigo() + ": Área de Actividade já registada!");
         }
@@ -66,7 +67,7 @@ public class RepositorioAreaActividade implements Serializable{
         AreaActividade aa = getAreaActividadeByCodigo(codigo);
         if (aa == null) {
             AreaActividade areaActividade = new AreaActividade(codigo, descBreve, descDetalhada);
-            return listaAreasActividade.add(areaActividade);
+            return this.listaAreasActividade.add(areaActividade);
         } else {
             throw new AreaActividadeDuplicadaException(aa.getCodigo() + ": Área de Actividade já registada!");
         }
@@ -88,7 +89,7 @@ public class RepositorioAreaActividade implements Serializable{
      */
     public List<AreaActividade> getListaAreasActividade() {
 
-        return listaAreasActividade;
+        return this.listaAreasActividade;
     }
     
     /**
@@ -125,4 +126,15 @@ public class RepositorioAreaActividade implements Serializable{
         return listaAreasActividade.isEmpty();
     }
     
+    
+    public String toString() {
+        List<AreaActividade> copia = new ArrayList<>(listaAreasActividade);
+        StringBuilder s = new StringBuilder();
+        for (AreaActividade areaActividade : copia) {
+            s.append(areaActividade);
+            s.append("\n");
+        }
+
+        return s.toString().trim();
+    }
 }

@@ -37,7 +37,7 @@ public class RepositorioCategoriaTarefa implements Serializable{
     * @throws CategoriaDuplicadaException 
     */
     public void addCategoria(Categoria categoria) throws CategoriaDuplicadaException {
-        Categoria c = getCategoriaById(categoria.getId());
+        Categoria c = getCategoriaByDescBreve(categoria.getDescBreve());
         if (c == null) {
             this.listaCategorias.add(categoria);
         } else {
@@ -47,29 +47,29 @@ public class RepositorioCategoriaTarefa implements Serializable{
 
     public boolean addCategoria(AreaActividade areaActividade,
                                 String descBreve, String descDetalhada,
-                                List<CompetenciaTecnica> competenciaTecnicas, String codigo, List<CaracterizacaoCT> ccts) throws CategoriaDuplicadaException {
-        Categoria c = getCategoriaById(codigo);
+                                List<CompetenciaTecnica> competenciaTecnicas, List<CaracterizacaoCT> ccts) throws CategoriaDuplicadaException {
+        Categoria c = getCategoriaByDescBreve(descBreve);
         if (c == null) {
 
             Categoria cat = new Categoria(descBreve, descDetalhada, areaActividade, ccts);
             this.listaCategorias.add(cat);
             return true;
         } else {
-            throw new CategoriaDuplicadaException(c.getId() + ": Categoria ja existe");
+            throw new CategoriaDuplicadaException(c.getDescBreve() + ": Categoria ja existe");
         }
 
     }
 
     /**
      * Retorna uma copida da categoria referente a um determinado id
-     * @param id
-     * @return copia
+     * @param descBreve
+     * @return categoria
      */
-    public Categoria getCategoriaById(String id) {
+    public Categoria getCategoriaByDescBreve(String descBreve) {
         Categoria categoria = null;
         for (int i = 0; i < this.listaCategorias.size(); i++) {
             categoria = this.listaCategorias.get(i);
-            if (categoria.getId().equals(id)) {
+            if (categoria.getDescBreve().equals(descBreve)) {
                // Categoria copia = new Categoria(categoria);
                 return categoria;
             }

@@ -7,6 +7,7 @@ package com.grupo2.t4j.controller;
 
 import com.grupo2.t4j.model.AreaActividade;
 import com.grupo2.t4j.repository.RepositorioAreaActividade;
+import java.util.ArrayList;
 
 import java.util.List;
 
@@ -19,11 +20,11 @@ public class RegistarAreaActividadeController {
     private RepositorioAreaActividade repositorioAreaActividade;
 
     public boolean registarAreaActividade(String codigo, String descricaoBreve, String descricaoDetalhada) {
-        return RepositorioAreaActividade.getInstance().addAreaActividade(codigo, descricaoBreve, descricaoDetalhada);
+        return repositorioAreaActividade.getInstance().addAreaActividade(new AreaActividade(codigo, descricaoBreve, descricaoDetalhada));
     }
 
     public List<AreaActividade> getAreasActividade() {
-        return RepositorioAreaActividade.getInstance().getListaAreasActividade();
+        return repositorioAreaActividade.getInstance().getListaAreasActividade();
     }
 
 

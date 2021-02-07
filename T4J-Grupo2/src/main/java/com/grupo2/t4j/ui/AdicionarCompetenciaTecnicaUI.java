@@ -58,7 +58,7 @@ public class AdicionarCompetenciaTecnicaUI implements Initializable {
         cmbGrauProficiencia.getItems().setAll(GrauProficiencia.values());
         cmbAreaActividade.getItems().setAll(registarCompetenciaTecnicaController.getListaAreaActividade());
 
-        registarCompetenciaTecnicaController = new RegistarCompetenciaTecnicaController();
+        //registarCompetenciaTecnicaController = new RegistarCompetenciaTecnicaController();
         adicionarStage = new Stage();
         adicionarStage.initModality(Modality.APPLICATION_MODAL);;
         adicionarStage.setResizable(false);

@@ -29,5 +29,4 @@ public class CaracterizacaoCT {
         this.obrigatoriedade = obrigatoriedade;
     }
 
-
 }

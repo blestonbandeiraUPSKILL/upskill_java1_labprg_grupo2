@@ -115,19 +115,22 @@ public class Categoria implements Serializable{
      */
     public void setDescBreve(String descBreve) {
         if (descBreve == null || descBreve.trim().isEmpty()) {
-            throw new DescricaoInvalidaException("Deve introduzir uma descrição breve válida!");
-        } else {
-            this.descBreve = descBreve;
+            throw new IllegalArgumentException("Descrição breve é obrigatória!");
         }
+        if (descBreve.length() < 5) {
+            throw new IllegalArgumentException("Descrição breve tem de ter pelo menos 5 caracteres!");
+        }
+        this.descBreve = descBreve;
     }
 
     public void setDescDetalhada(String descDetalhada) {
-        if(descDetalhada == null || descDetalhada.trim().isEmpty()) {
-            throw new DescricaoInvalidaException("Deve introduzir uma descrição detalhada válida!");
+        if (descDetalhada == null || descDetalhada.trim().isEmpty()) {
+            throw new IllegalArgumentException("Descrição detalhada é obrigatória!");
         }
-        else {
-            this.descDetalhada = descDetalhada;
+        if (descDetalhada.length() < 10) {
+            throw new IllegalArgumentException("Descrição detalhada tem de ter um comprimento superior a 10 caracteres!");
         }
+        this.descDetalhada = descDetalhada;
     }
 
     /**
