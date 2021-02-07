@@ -191,4 +191,18 @@ public class RepositorioColaborador implements Serializable{
     public boolean isVazia() {
         return listaColaboradores.isEmpty();
     }
+    
+    public int adicionarListaColaborador(RepositorioColaborador outraListaColaborador) {
+        int totalColaboradoresAdicionados = 0;
+        
+        for (Colaborador colaborador : outraListaColaborador.listaColaboradores) {
+            boolean colaboradorAdicionado = verificacaoAddColaborador(colaborador.getNome(),
+                    colaborador.getEmail().getEmailText(), colaborador.getFuncao(),
+            colaborador.getTelefone());
+            if (colaboradorAdicionado) {
+                totalColaboradoresAdicionados++;
+            }
+        }
+        return totalColaboradoresAdicionados;
+    }
 }
