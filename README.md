@@ -26,3 +26,13 @@
 ## Links úteis
 
 - [Trabalho desenvolvido no módulo PDS](https://github.com/ajorgesantosp/upskill_java1_g1)
+
+## Dados de login
+
+#### Gestor:
+* email: admingrupo2@upskill.pt
+* pass: teste123
+
+#### Colaborador:
+* email: colaboradorgrupo2@upskill.pt
+* pass: teste123
