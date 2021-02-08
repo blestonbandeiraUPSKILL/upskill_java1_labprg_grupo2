@@ -5,12 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8ca9f66f-f143-4134-afe5-eb7245bd0a9c" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/controller/RegistarColaboradorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/controller/RegistarColaboradorController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/ConfirmarRegistoOrgUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/ConfirmarRegistoOrgUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/MainApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/MainApp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/grupo2/t4j/model/ColaboradorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/grupo2/t4j/model/ColaboradorTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/grupo2/t4j/model/OrganizacaoTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/grupo2/t4j/model/OrganizacaoTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/grupo2/t4j/repository/RepositorioColaboradorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/grupo2/t4j/repository/RepositorioColaboradorTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Ficheiros/competências técnicas.ltf" beforeDir="false" afterPath="$PROJECT_DIR$/../Ficheiros/competências técnicas.ltf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Ficheiros/área de actividade.ltf" beforeDir="false" afterPath="$PROJECT_DIR$/../Ficheiros/área de actividade.ltf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/model/AreaActividade.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/model/AreaActividade.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/model/CompetenciaTecnica.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/model/CompetenciaTecnica.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/AdministrativoLogadoUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/AdministrativoLogadoUI.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,7 +59,7 @@
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
     <property name="extract.method.default.visibility" value="private" />
-    <property name="last_opened_file_path" value="E:/upskill_java1_labprg_grupo3-main" />
+    <property name="last_opened_file_path" value="$USER_HOME$/OneDrive - ATEC - Academia de Formação/Desktop/Upskill/OO/ExImpostosComEquals" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -94,6 +94,9 @@
     </key>
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
+    </key>
+    <key name="ExtractSuperBase.RECENT_KEYS">
+      <recent name="com.grupo2.t4j.model" />
     </key>
     <key name="CreateTestDialog.RecentsKey">
       <recent name="com.grupo2.t4j.model" />
@@ -259,13 +262,8 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/AdicionarCategoriaTarefaUI.java</url>
-          <line>91</line>
-          <option name="timeStamp" value="87" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/grupo2/t4j/repository/RepositorioCompetenciaTecnica.java</url>
-          <line>127</line>
-          <option name="timeStamp" value="88" />
+          <line>79</line>
+          <option name="timeStamp" value="89" />
         </line-breakpoint>
         <breakpoint type="java-exception">
           <properties class="java.lang.IllegalArgumentException" package="java.lang" />

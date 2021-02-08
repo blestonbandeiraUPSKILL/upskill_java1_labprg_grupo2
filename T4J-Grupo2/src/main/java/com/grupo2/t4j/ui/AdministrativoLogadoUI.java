@@ -196,7 +196,7 @@ public class AdministrativoLogadoUI implements Initializable {
         String descricao, extensao;
 
         descricao = /*DESCRICAO_SERIALIZACAO*/ "Ficheiro Area de Atividade";
-        extensao = /*EXTENSAO_SERIALIZACAO*/"*.ltf";
+        extensao = /*EXTENSAO_SERIALIZACAO*/"*.txt";
         FileChooser flChooser = FileChooserT4J.criarFileChooserT4J(descricao, extensao);
         File ficheiroExportar = flChooser.showSaveDialog(listaAreasActividade.getScene().getWindow());
 
@@ -219,7 +219,7 @@ public class AdministrativoLogadoUI implements Initializable {
         String descricao, extensao;
 
         descricao = /*DESCRICAO_SERIALIZACAO*/"Ficheiro Area de Atividade";
-        extensao = /*EXTENSAO_SERIALIZACAO*/"*.ltf";
+        extensao = /*EXTENSAO_SERIALIZACAO*/"*.txt";
         FileChooser flChooser = FileChooserT4J.criarFileChooserT4J(descricao, extensao);
         File ficheiroImportar = flChooser.showOpenDialog(listaAreasActividade.getScene().getWindow());
 
@@ -246,8 +246,8 @@ public class AdministrativoLogadoUI implements Initializable {
     public void exportCompetenciasTecnicas(ActionEvent actionEvent) {
         String descricao, extensao;
 
-        descricao = /*DESCRICAO_SERIALIZACAO*/ "Ficheiro Categoria";
-        extensao = /*EXTENSAO_SERIALIZACAO*/".ltf";
+        descricao = /*DESCRICAO_SERIALIZACAO*/ "Ficheiro Competência Técnica";
+        extensao = /*EXTENSAO_SERIALIZACAO*/".txt";
         FileChooser flChooser = FileChooserT4J.criarFileChooserT4J(descricao, extensao);
         File ficheiroExportar = flChooser.showSaveDialog(listViewCompetenciasTecnicas.getScene().getWindow());
 
@@ -270,7 +270,7 @@ public class AdministrativoLogadoUI implements Initializable {
         String descricao, extensao;
 
         descricao = /*DESCRICAO_SERIALIZACAO*/"Ficheiro Competencias Tecnicas";
-        extensao = /*EXTENSAO_SERIALIZACAO*/"*.ltf";
+        extensao = /*EXTENSAO_SERIALIZACAO*/"*.txt";
         FileChooser flChooser = FileChooserT4J.criarFileChooserT4J(descricao, extensao);
         File ficheiroImportar = flChooser.showOpenDialog(listViewCompetenciasTecnicas.getScene().getWindow());
 
@@ -298,7 +298,7 @@ public class AdministrativoLogadoUI implements Initializable {
         String descricao, extensao;
 
         descricao = /*DESCRICAO_SERIALIZACAO*/ "Ficheiro Categoria";
-        extensao = /*EXTENSAO_SERIALIZACAO*/".ltf";
+        extensao = /*EXTENSAO_SERIALIZACAO*/".txt";
         FileChooser flChooser = FileChooserT4J.criarFileChooserT4J(descricao, extensao);
         File ficheiroExportar = flChooser.showSaveDialog(listaCategorias.getScene().getWindow());
 
@@ -322,7 +322,7 @@ public class AdministrativoLogadoUI implements Initializable {
         String descricao, extensao;
 
         descricao = /*DESCRICAO_SERIALIZACAO*/"Ficheiro Categoria";
-        extensao = /*EXTENSAO_SERIALIZACAO*/"*.ltf";
+        extensao = /*EXTENSAO_SERIALIZACAO*/"*.txt";
         FileChooser flChooser = FileChooserT4J.criarFileChooserT4J(descricao, extensao);
         File ficheiroImportar = flChooser.showOpenDialog(listaCategorias.getScene().getWindow());
 

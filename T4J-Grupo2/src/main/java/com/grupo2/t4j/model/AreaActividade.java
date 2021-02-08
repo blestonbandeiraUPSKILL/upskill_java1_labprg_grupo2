@@ -12,6 +12,7 @@ package com.grupo2.t4j.model;
 import com.grupo2.t4j.exception.*;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 /**
  *
@@ -138,6 +139,21 @@ public class AreaActividade implements Serializable{
     public String toString(){
         return String.format("ID: %s; Descrição breve: %s; Descrição detalhada: %s.", codigo, descBreve, descDetalhada );
     }
-    
-   
+
+    @Override
+    public boolean equals(Object areaActividade) {
+        if (this == areaActividade)
+            return true;
+        if (areaActividade == null || getClass() != areaActividade.getClass())
+            return false;
+        AreaActividade that = (AreaActividade) areaActividade;
+        return Objects.equals(codigo, that.codigo)
+                && Objects.equals(descBreve, that.descBreve)
+                && Objects.equals(descDetalhada, that.descDetalhada);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(codigo, descBreve, descDetalhada);
+    }
 }

@@ -9,6 +9,7 @@ import com.grupo2.t4j.exception.AreaActividadeInexistenteException;
 import com.grupo2.t4j.exception.CodigoInvalidoException;
 import com.grupo2.t4j.exception.DescricaoInvalidaException;
 import java.io.Serializable;
+import java.util.Objects;
 
 /**
  *
@@ -170,4 +171,23 @@ public class CompetenciaTecnica implements Serializable{
         return String.format("ID: %s; Descrição breve: %s; Descrição detalhada: %s.", codigo, descricaoBreve, descricaoDetalhada );
     }
 
+    @Override
+    public boolean equals(Object competenciaTecnica) {
+        if (this == competenciaTecnica)
+            return true;
+        if (competenciaTecnica == null || getClass() != competenciaTecnica.getClass())
+            return false;
+        CompetenciaTecnica that = (CompetenciaTecnica) competenciaTecnica;
+        return Objects.equals(codigo, that.codigo)
+                && Objects.equals(descricaoBreve, that.descricaoBreve)
+                && Objects.equals(descricaoDetalhada, that.descricaoDetalhada)
+                && Objects.equals(areaActividade, that.areaActividade)
+                && Objects.equals(cct, that.cct)
+                && Objects.equals(categoria, that.categoria);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(codigo, descricaoBreve, descricaoDetalhada, areaActividade, cct, categoria);
+    }
 }
