@@ -7,7 +7,7 @@ public class RegistarOrganizacaoController {
 
     private Plataforma plataforma;
     private RepositorioOrganizacao repositorioOrganizacao;
-    private static Organizacao organizacao;
+    public static Organizacao organizacao;
 
     public static Organizacao getOrganizacao() {
         return RegistarOrganizacaoController.organizacao;
