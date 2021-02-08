@@ -65,8 +65,7 @@ public class RepositorioAdministrativoTest {
         ra1.addAdministrativo(a1);
         ra1.addAdministrativo(a2);
     }
-       
-    
+
     @Test
     public void testGetAdministrativoByEmail() {
         
