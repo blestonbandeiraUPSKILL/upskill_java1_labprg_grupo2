@@ -78,6 +78,7 @@ public class Utilizador implements Serializable{
         this.email = new Email(emailUt);
         this.password = new Password(passUt);
         setRolename(rolename);
+    }
     
     /**
      * Construtor da classe Utilizador com a password por omissão
@@ -130,7 +131,7 @@ public class Utilizador implements Serializable{
      * Verifica a validade do parâmetro recebido e regista o nome do Utilizador
      * @param nome o nome do Utilizador
      */
-    public final void setNome(String nome){
+    public void setNome(String nome){
         if (nome == null || nome.trim().isEmpty()) {
             throw new NomeInvalidoException("Nome é inválido!");
         }
@@ -141,7 +142,7 @@ public class Utilizador implements Serializable{
      * Regista o email do Utilizador
      * @param email o email do Utilizador
      */
-    public final void setEmail(Email email){
+    public void setEmail(Email email){
         this.email = email;
     }
     
@@ -149,7 +150,7 @@ public class Utilizador implements Serializable{
      * Regista a password do Utilizador
      * @param password a password do Utilizador
      */
-    public final void setPassword(Password password){
+    public void setPassword(Password password){
         this.password = password;
     }
     
@@ -157,7 +158,7 @@ public class Utilizador implements Serializable{
      * Regista o papel do Utilizador
      * @param rolename o papel do Utilizador
      */
-    public final void setRolename(Rolename rolename){
+    public void setRolename(Rolename rolename){
         this.rolename = rolename;
     }
     

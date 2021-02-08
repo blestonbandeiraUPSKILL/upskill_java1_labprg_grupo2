@@ -42,8 +42,7 @@ public class RepositorioUtilizador implements Serializable{
      * @param utilizador do tipo da classe Utilizador
      * @throws UtilizadorDuplicadoException
      */
-    public boolean
-    addUtilizador(Utilizador utilizador) throws UtilizadorDuplicadoException {
+    public boolean addUtilizador(Utilizador utilizador) throws UtilizadorDuplicadoException {
         Utilizador u = getUtilizadorByEmail(utilizador.getEmail().getEmailText());
         if (u == null) {
             this.listaUtilizadores.add(utilizador);
@@ -61,7 +60,7 @@ public class RepositorioUtilizador implements Serializable{
      * @param password a password do Utilizador em formato da classe Password
      * @throws UtilizadorDuplicadoException
      */
-    public void addUtilizador(String nome, Email email, Password password) throws UtilizadorDuplicadoException {
+    public boolean addUtilizador(String nome, Email email, Password password) throws UtilizadorDuplicadoException {
         Utilizador u = getUtilizadorByEmail(email.getEmailText());
         if (u == null) {
             Utilizador utilizador = new Utilizador(nome, email, password);
