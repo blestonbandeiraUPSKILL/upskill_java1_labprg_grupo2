@@ -22,6 +22,8 @@ public class CompetenciaTecnicaTest {
    @Test
     public void testCriarCompetenciaTecnica() {
         
+        
+        AreaActividade a1= new AreaActividade("123", "AreaActividade1", "AreaActividadeDescDetalhada");
         CompetenciaTecnica ct1= new CompetenciaTecnica("123", "CompetenciaTecnica1", "CompetenciaTecnicaDescDetalhada");
         
         assertEquals("123", ct1.getCodigo());
