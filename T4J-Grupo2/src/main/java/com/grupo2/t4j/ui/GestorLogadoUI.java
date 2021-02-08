@@ -1,20 +1,20 @@
 package com.grupo2.t4j.ui;
 
-import com.grupo2.t4j.controller.RegistarAreaActividadeController;
-import com.grupo2.t4j.controller.RegistarCategoriaController;
-import com.grupo2.t4j.controller.RegistarColaboradorController;
-import com.grupo2.t4j.controller.RegistarCompetenciaTecnicaController;
-import com.grupo2.t4j.controller.RegistarTarefaController;
+import com.grupo2.t4j.controller.*;
 import com.grupo2.t4j.files.FicheiroRepositorioColaborador;
 import com.grupo2.t4j.model.*;
 import com.grupo2.t4j.repository.RepositorioColaborador;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 
+import java.awt.geom.Area;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -38,65 +38,37 @@ public class GestorLogadoUI implements Initializable {
     private RegistarAreaActividadeController registarAreaActividadeController;
     private RegistarTarefaController registarTarefaController;
     private RegistarCompetenciaTecnicaController registarCompetenciaTecnicaController;
+    private AutenticacaoController autenticacaoController;
     
     private FicheiroRepositorioColaborador ficheiroC;
     private RepositorioColaborador repositorioColaborador;
 
+    @FXML TextField txtReferencia1;
+    @FXML TextField txtEmailColaborador;
+    @FXML TextField txtCustoEstTarefa;
+    @FXML TextField txtNomeColaborador;
+    @FXML TextField txtDuracao1;
+    @FXML TextField txtCusto1;
+    @FXML TextField txtTelefoneColaborador;
+    @FXML TextField txtRefTarefa;
+    @FXML TextField txtDuracaoTarefa;
+    @FXML TextField txtDesignTarefa;
 
-    @FXML private TextField txtReferencia1;
+    @FXML TextArea txtDescricaoInformal1;
+    @FXML TextArea txtDescInformalTarefa;
+    @FXML TextArea txtDescTecnicaTarefa;
 
-    @FXML private ComboBox<?> cmbArAct;
+    @FXML ListView<Tarefa> listViewTarefas;
+    @FXML ListView<?> listViewCompTecReq;
 
-    @FXML private TextField txtEmailColaborador;
-
-    @FXML private TextField txtDuracao1;
-
-    @FXML private TextField txtCusto1;
-
-    @FXML private TextArea txtDescricaoInformal1;
-
-    @FXML private TextField txtTelefoneColaborador;
-
-    @FXML private ListView<?> listViewTarefas;
-
-    @FXML private TextField txtNomeColaborador;
-    
-    @FXML private TextArea txtDescInformalTarefa;
-
-    @FXML private ComboBox<?> cmbCategoriaTarefaEspecificarTarefa;
-
-    @FXML private TextField txtRefTarefa;
-
-    @FXML private TextField txtDuracaoTarefa;
-
-    @FXML private TextField txtDesignTarefa;
-
-    @FXML private ComboBox<?> cmbCategoriaTarefaListaTarefas;
-
-    @FXML private TextArea txtDescTecnicaTarefa;
-
-    @FXML private ComboBox<?> cmbAreaActividadeListaTarefas;
+    @FXML ComboBox<Categoria> cmbCategoriaTarefaListaTarefas;
+    @FXML ComboBox<?> cmbAreaActividadeListaTarefas;
+    @FXML ComboBox<Categoria> cmbCategoriaTarefaEspecificarTarefa;
+    @FXML ComboBox<AreaActividade> cmbAreaActividadeEspecificarTarefa;
+    @FXML ComboBox<Area> cmbArAct;
 
     @FXML Button btnCancelarRegCol;
-    @FXML
-    private Button btnSairListaTarefas;
-
-    @FXML private ListView<?> listViewCompTecReq;
-
-    @FXML private TextField txtCustoEstTarefa;
-
-    @FXML private ComboBox<?> cmbAreaActividadeEspecificarTarefa;
-
-
-
-   /* @FXML ComboBox<AreaActividade> cmbAreaActividadeListaTarefas;
-    @FXML ComboBox<AreaActividade> cmbAreaActividadeEspecificarTarefa;
-    @FXML ComboBox<Categoria> cmbCategoriaTarefaListaTarefas;
-    @FXML ComboBox<Categoria> cmbCategoriaTarefaEspecificarTarefa;
-    @FXML ListView<Tarefa> listViewTarefas;
-    @FXML ListView<CaracterizacaoCT> listViewCaracterizacaoCTS;
-*/
-
+    @FXML Button btnLogout;
     
     public void associarParentUI(StartingPageUI startingPageUI) {
         this.startingPageUI = startingPageUI;
@@ -108,6 +80,7 @@ public class GestorLogadoUI implements Initializable {
         adicionarStage.initModality(Modality.APPLICATION_MODAL);;
         adicionarStage.setResizable(false);
 
+        autenticacaoController = new AutenticacaoController();
         registarColaboradorController = new RegistarColaboradorController();
         registarAreaActividadeController = new RegistarAreaActividadeController();
         registarCategoriaController = new RegistarCategoriaController();
@@ -140,6 +113,56 @@ public class GestorLogadoUI implements Initializable {
 
     }
 
+    void navigateStartingPage(ActionEvent event) {
+        try {
+            FXMLLoader loaderStartingPage = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/StartingPageScene.fxml"));
+            Parent rootStartingPage = loaderStartingPage.load();
+            sceneStartingPage = new Scene(rootStartingPage);
+
+            Window window = btnLogout.getScene().getWindow();
+            window.setOnCloseRequest(new EventHandler<WindowEvent>() {
+                @Override
+                public void handle(WindowEvent windowEvent) {
+                    Alert alerta = AlertsUI.criarAlerta(Alert.AlertType.CONFIRMATION,
+                            MainApp.TITULO_APLICACAO,
+                            "Confirmação da acção",
+                            "Tem a certeza que pretende terminar a sessão??");
+
+                    if (alerta.showAndWait().get() == ButtonType.CANCEL) {
+                        windowEvent.consume();
+                    }
+                }
+            });
+            window.fireEvent(new WindowEvent(window, WindowEvent.WINDOW_CLOSE_REQUEST));
+
+            adicionarStage.setScene(sceneStartingPage);
+            adicionarStage.setTitle(MainApp.TITULO_APLICACAO);
+            adicionarStage.show();
+
+        }
+        catch (IOException exception) {
+            exception.printStackTrace();
+            AlertsUI.criarAlerta(Alert.AlertType.ERROR,
+                    MainApp.TITULO_APLICACAO,
+                    "Erro",
+                    exception.getMessage());
+        }
+    }
+
+    public void logout(ActionEvent actionEvent) {
+        boolean logout = autenticacaoController.logout();
+        if (logout) {
+            navigateStartingPage(actionEvent);
+            Plataforma.getInstance().resetUserAPI();
+        }
+        else {
+            Alert alerta = AlertsUI.criarAlerta(Alert.AlertType.ERROR,
+                    MainApp.TITULO_APLICACAO,
+                    "Erro",
+                    "Não foi possível terminar a sessão.");
+        }
+    }
+
     @FXML
     public void cancelarRegColAction(ActionEvent event) {
         Window window = btnCancelarRegCol.getScene().getWindow();
@@ -160,7 +183,4 @@ public class GestorLogadoUI implements Initializable {
         window.fireEvent(new WindowEvent(window, WindowEvent.WINDOW_CLOSE_REQUEST));
     }
 
-
-    public void navigateStartingPage(ActionEvent actionEvent) {
-    }
 }

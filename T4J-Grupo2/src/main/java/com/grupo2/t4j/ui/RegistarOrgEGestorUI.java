@@ -44,6 +44,7 @@ public class RegistarOrgEGestorUI implements Initializable {
     @FXML TextField txtNomeGestor;
     @FXML TextField txtTelefoneGestor;
     @FXML TextField txtEmailGestor;
+    @FXML TextField txtPassword;
     @FXML Button btnAvancarRegisto;
     @FXML Button btnCancelarRegisto;
 
@@ -94,16 +95,32 @@ public class RegistarOrgEGestorUI implements Initializable {
             boolean registou = registarOrganizacaoController.registaOrganizacao(organizacao);
             if(registou) {
                 autenticacaoController.registarGestorComoUtilizador(organizacao.getColabGestor());
-                String pw = registarOrganizacaoController.organizacao.getColabGestor().getPassword().getPasswordText();
+                txtPassword.setText(registarOrganizacaoController.organizacao.getColabGestor().getPassword().getPasswordText());
                 AlertsUI.criarAlerta(Alert.AlertType.INFORMATION,
                     MainApp.TITULO_APLICACAO,
                     "Registar Organização.",
-                    registou ? ("Organização registada com sucesso.\n A sua password é " + pw)
+                    registou ? ("Organização registada com sucesso.")
                                 : "Não foi possível registar a Organização.").show();
 
 
+                    btnCancelarRegisto.
+                    /*txtNomeOrganizacao.clear();
+                    txtNif.clear();
+                    txtTelefoneOrganizacao.clear();
+                    txtWebsite.clear();
+                    txtEmailOrganizacao.clear();
+                    txtEndArruamento.clear();
+                    txtEndPorta.clear();
+                    txtEndLocalidade.clear();
+                    txtEndCodPostal.clear();
+                    txtNomeGestor.clear();
+                    txtTelefoneGestor.clear();
+                    txtEmailGestor.clear();
+                    txtPassword.clear();
+*/
 
-                closeAddOrganizacao(actionEvent);
+
+                //closeAddOrganizacao(actionEvent);
             }
             
             //String nomeOrganizacao = txtNomeOrganizacao.getText();
