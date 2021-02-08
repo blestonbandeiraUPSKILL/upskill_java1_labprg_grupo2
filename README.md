@@ -1,4 +1,4 @@
-# Turma Java 1 - T4J 
+# Turma Java 1 | T4J - TASKS FOR JOE
 
 ## Grupo 2
 
@@ -7,7 +7,7 @@
 - [Caroline Duarte](https://github.com/carol-duarte)
 - [Marta Silvestre](https://github.com/Marta-Silvestre)
 
-## Enunciado do SPRINT 2
+## Enunciado do SPRINT 2 (submissão no MOODLE até às 17h30 de 08/02/2021 - segunda-feira)
 - [Enunciado](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Sprint%202%20-%20Documenta%C3%A7%C3%A3o/Enunciado/Enunciado.md)
 
 ## Documentação
