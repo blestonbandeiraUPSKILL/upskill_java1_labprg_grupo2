@@ -52,7 +52,17 @@ public class RepositorioAdministrativoTest {
         
         assertTrue(ra1.getListaAdministrativos().contains(a1));
         System.out.println(ra1.getListaAdministrativos().get(0).toString());
-    }   
+    }  
+    
+    @Test
+    public void testAddAdministrativoRepo() {
+        
+        RepositorioAdministrativo ra1 = RepositorioAdministrativo.getInstance();
+                   
+        ra1.addAdministrativo("Fulano", "fulano@upskill.pt", "12345678");
+                
+        System.out.println(ra1.getListaAdministrativos().get(0).toString());
+    } 
     
     @Test (expected = AdministrativoDuplicadoException.class)
     public void testAddAdministrativoDuplicado() {

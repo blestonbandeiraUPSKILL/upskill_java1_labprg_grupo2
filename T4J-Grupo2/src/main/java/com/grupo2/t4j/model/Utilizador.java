@@ -116,17 +116,7 @@ public class Utilizador implements Serializable{
         setPassword(utilizador.password);
         setRolename(utilizador.rolename);
     }
-
-    /**
-     * Construtor da classe Utilizador para uso específico de Gestor de Organização
-     * @param nomeGestor o nome do Gestor da Organização
-     * @param emailGestor o email do Gestor da Organização
-     */
-   /* public Utilizador(String nomeGestor, Email emailGestor) {
-        setNome(nomeGestor);
-        setEmail(emailGestor);
-    }*/
-
+   
     /**
      * Verifica a validade do parâmetro recebido e regista o nome do Utilizador
      * @param nome o nome do Utilizador
@@ -200,8 +190,9 @@ public class Utilizador implements Serializable{
      */   
     @Override
     public String toString(){
-        return String.format("Nome utilizador: %s %nEmail:%s %nPassword: %s ", 
-                nome, email.getEmailText(), password.getPasswordText());
+        return String.format("Nome utilizador: %s %nEmail:%s %nPassword: %s "
+                + "%nRolename: %s", nome, email.getEmailText(), 
+                password.getPasswordText(), rolename.toString());
     }
     
     /**
@@ -209,7 +200,20 @@ public class Utilizador implements Serializable{
      * @return Nome e email do Utilizador
      */
     public String toStringSemPass(){
-        return String.format("Nome utilizador: %s %nEmail:%s", nome, 
-                email.getEmailText());
+        return String.format("Nome utilizador: %s %nEmail:%s %nRolename: %s", 
+                nome, email.getEmailText(), rolename.toString());
     }
+    
+    //////////////////////////////// Ver se precisa mesmo
+    
+     /**
+     * Construtor da classe Utilizador para uso específico de Gestor de Organização
+     * @param nomeGestor o nome do Gestor da Organização
+     * @param emailGestor o email do Gestor da Organização
+     */
+   /* public Utilizador(String nomeGestor, Email emailGestor) {
+        setNome(nomeGestor);
+        setEmail(emailGestor);
+    }*/
+
 }

@@ -26,7 +26,6 @@ public class Colaborador extends Utilizador implements Serializable{
     /**
      * 
      */
-
     private Rolename rolename;
     
     /**
@@ -90,6 +89,23 @@ public class Colaborador extends Utilizador implements Serializable{
         setFuncao(funcao);
         setTelefone(telefone);
     }
+    
+    /**
+     * Construtor da classe Colaborador com password por omissão (antes de receber 
+     * a password oficial por email - password = "00000000", e com Rolename de 
+     * COLABORADOR por omissão
+     * @param nome o nome do Colaborador
+     * @param emailCol o email do Colaborador em formato String
+     * @param funcao a função do Colaborador da organização
+     * @param telefone o telefone do Colaborador da organização
+     */
+
+    public Colaborador(String nome, String emailCol, String funcao,
+            String telefone){
+        super(nome, emailCol, ROLENAME_POR_OMISSAO);
+        setFuncao(funcao);
+        setTelefone(telefone);
+    }
        
     /**
      * Construtor da classe Colaborador
@@ -148,9 +164,10 @@ public class Colaborador extends Utilizador implements Serializable{
     @Override
     public String toString(){
         return String.format("Nome colaborador: %s  %nEmail: %s"
-                + "%nPassword: %s %nfuncao: %s %nTelefone: %s ", 
+                + "%nPassword: %s %nFuncao: %s %nTelefone: %s %nRolename: %s", 
                 super.getNome(), super.getEmail().getEmailText(),
-                super.getPassword().getPasswordText(), funcao, telefone);
+                super.getPassword().getPasswordText(), funcao, telefone, 
+                super.getRolename().toString());
     }
     
     /**
@@ -160,8 +177,8 @@ public class Colaborador extends Utilizador implements Serializable{
     @Override
     public String toStringSemPass(){
         return String.format("Nome colaborador: %s  %nEmail: %s"
-                + "%nfuncao: %s %nTelefone: %s ", 
+                + "%nfuncao: %s %nTelefone: %s %nRolename: %s ", 
                 super.getNome(), super.getEmail().getEmailText(),
-                funcao, telefone);
+                funcao, telefone, rolename.toString());
     }
 }
