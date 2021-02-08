@@ -92,7 +92,7 @@ public class ColaboradorLogadoUI implements Initializable {
     public void registarTarefa(ActionEvent actionEvent) {
         try {
             AreaActividade areaActividade = registarAreaActividadeController.getAreaActividadeByCodigo(
-                    cmbAreaActividadeEspecificarTarefa.getSelectionModel().getSelectedItem());
+                    cmbAreaActividadeEspecificarTarefa.getSelectionModel().getSelectedItem().toString());
      /*       Categoria categoriaTarefa = registarCategoriaController.getCategoriasByAreaActividade(
                     cmbCategoriaTarefaEspecificarTarefa.getSelectionModel().getSelectedItem(),
 

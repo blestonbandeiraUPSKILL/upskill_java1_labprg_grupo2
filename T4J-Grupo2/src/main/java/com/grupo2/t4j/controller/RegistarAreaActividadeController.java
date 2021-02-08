@@ -42,7 +42,7 @@ public class RegistarAreaActividadeController /*implements Serializable*/{
         return RepositorioAreaActividade.getInstance().getListaAreasActividadeByDescBreve();
     }
 
-    public AreaActividade getAreaActividadeByCodigo(AreaActividade codigo) {
+    public AreaActividade getAreaActividadeByCodigo(String codigo) {
        List<AreaActividade> listaAreasActividade = RepositorioAreaActividade.getInstance().getListaAreasActividade();
         for (int i = 0; i < listaAreasActividade.size(); i++) {
             AreaActividade areaActividade = listaAreasActividade.get(i);
