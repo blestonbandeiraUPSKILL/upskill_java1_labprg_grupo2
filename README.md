@@ -26,7 +26,8 @@
 ## Links úteis
 
 - [Trabalho desenvolvido no módulo PDS](https://github.com/ajorgesantosp/upskill_java1_g1)
-- [Plataforma TRELLO - usada para a gestão Agile do projeto usando a framework Scrum] (https://trello.com/b/atvb02FQ)
+- [Plataforma TRELLOusada para a gestão Agile do projeto usando a framework Scrum](https://trello.com/b/atvb02FQ)
+- [Enunciado]
 
 ## Dados de login
 
