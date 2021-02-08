@@ -82,15 +82,28 @@ public class ColaboradorLogadoUI implements Initializable {
 
         //tab Especificar Tarefa
         cmbAreaActividadeEspecificarTarefa.getItems().setAll(registarAreaActividadeController.getAreasActividade());
-        cmbCategoriaTarefaEspecificarTarefa.getItems().setAll(
+        cmbAreaActividadeEspecificarTarefa.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                updateCmbCategoriaTarefa(event);
+            }
+        });
+        /*cmbCategoriaTarefaEspecificarTarefa.getItems().setAll(
                 registarCategoriaController.getCategoriasByAreaActividade(
                         cmbAreaActividadeEspecificarTarefa.getSelectionModel().getSelectedItem()));
-
+*/
         ListView<CaracterizacaoCT> listViewCaracterizacaoCT = new ListView<>();
         listViewCaracterizacaoCT.getItems().addAll(registarCaracterizacaoCTController.getCaracterizacaoCTSByCompetenciaTecnica(
                 registarCompetenciaTecnicaController.getCompetenciasTecnicasByAreaActividade(
                         cmbAreaActividadeEspecificarTarefa.getSelectionModel().getSelectedItem())));
 
+    }
+
+    public void updateCmbCategoriaTarefa(ActionEvent event) {
+        List<Categoria> listaCategoriasTarefa = registarCategoriaController.getCategoriasByAreaActividade(
+                cmbAreaActividadeEspecificarTarefa.getSelectionModel().getSelectedItem());
+
+        cmbCategoriaTarefaEspecificarTarefa.getItems().addAll(listaCategoriasTarefa);
     }
 
     public void registarTarefa(ActionEvent actionEvent) {
@@ -111,6 +124,7 @@ public class ColaboradorLogadoUI implements Initializable {
                     Integer.parseInt(txtEstimativaDuracao.getText()),
                     Double.parseDouble(txtEstimativaCusto.getText()));
 
+            boolean adicionou = registarTarefaController.registarTarefa(tarefa);
         }
         catch (IllegalArgumentException iae) {
             AlertsUI.criarAlerta(Alert.AlertType.ERROR,

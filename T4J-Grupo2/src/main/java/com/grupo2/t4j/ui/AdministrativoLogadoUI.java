@@ -231,6 +231,7 @@ public class AdministrativoLogadoUI implements Initializable {
                     "Não foi seleccionado nenhum ficheiro!").show();
         }
     }
+
     public void importAreasActividade(ActionEvent actionEvent) {
         String descricao, extensao;
 
@@ -282,6 +283,7 @@ public class AdministrativoLogadoUI implements Initializable {
                     "Não foi seleccionado nenhum ficheiro!").show();
         }
     }
+
     public void importCompetenciasTecnicas(ActionEvent actionEvent) {
         String descricao, extensao;
 
