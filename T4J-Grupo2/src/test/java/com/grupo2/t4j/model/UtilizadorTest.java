@@ -2,7 +2,7 @@
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
- *//*
+ */
 
 package com.grupo2.t4j.model;
 
@@ -15,11 +15,10 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.BeforeAll;
 
 
-*/
 /**
  *
  * @author CAD
- *//*
+ */
 
 public class UtilizadorTest {
     
@@ -45,33 +44,22 @@ public class UtilizadorTest {
     @Test
     public void testCriarUtilizador() {
         
-        Utilizador u1= new Utilizador("Fulano", "fulano@upskill.pt", "12345678");
+        Utilizador u1= new Utilizador("Fulano", "fulano@upskill.pt");
         
         assertEquals("Fulano", u1.getNome());
-        assertEquals("fulano@upskill.pt", u1.getEmail().getEmailText());
-        assertEquals("12345678", u1.getPassword().getPasswordText());
+        assertEquals("fulano@upskill.pt", u1.getEmail().getEmailText());   
     }
     
     @Test (expected = NomeInvalidoException.class)
     public void testCriarUtilizadorNomeIncorreto() {
         
-        Utilizador u2 = new Utilizador("", "fulano@upskill.pt", "12345678");
+        Utilizador u1 = new Utilizador("", "fulano@upskill.pt");
              
     }
     
     @Test (expected = IllegalArgumentException.class)
     public void testCriarUtilizadorEmailFormaIncorreta() {
         
-        Utilizador u3 = new Utilizador("Fulano", "fulano", "12345678");
-             
-    }
-    
-    @Test (expected = PasswordInvalidaException.class)
-    public void testCriarUtilizadorPasswordFormaIncorreta() {
-       
-        Utilizador u4 = new Utilizador("Fulano", "fulano@upskill.pt", "123");
-             
-    }
-    
+        Utilizador u1 = new Utilizador("Fulano", "fulano");           
+    }   
 }
-*/
