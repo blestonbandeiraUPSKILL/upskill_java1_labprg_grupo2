@@ -136,7 +136,7 @@ public class AreaActividade implements Serializable{
      */ 
     @Override    
     public String toString(){
-        return String.format("ID: %s; Descrição breve: %s;Descrição detalhada: %s.", codigo, descBreve, descDetalhada );
+        return String.format("ID: %s; Descrição breve: %s; Descrição detalhada: %s.", codigo, descBreve, descDetalhada );
     }
     
    

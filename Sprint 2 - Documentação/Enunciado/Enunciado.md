@@ -1,0 +1,16 @@
+# T4J - TASKS FOR JOE
+
+- [Introdução]
+- [Gestão de Utilizadores]
+- [Casos de Teste]
+- [Análise e Design]
+- [API para Gestão de Utilizadores]
+- [Diagrama de Casos de Uso]
+- [Glossário]
+- [Modelo de Domínio]
+- [UC01 - Registar Organização]
+- [UC02 - Definir Área de Atividade]
+- [UC03 - Definir Categoria de Tarefa]
+- [UC04 - Especificar Competência Técnica]
+- [UC05 - Especificar Colaborador de Organização]
+- [UC06 - Especificar Tarefa]

@@ -17,14 +17,29 @@ import  com.grupo2.t4j.exception.*;
  * @author Geral
  */
 public class EnderecoPostal {
-
+    
+    /**
+     * O arruamento do endereço postal
+     */
     private String arruamento;
+    
+    /**
+     * O número da porta do endereço postal
+     */
     private String numeroPorta;
+    
+    /**
+     * A localidade do endereço postal
+     */
     private String localidade;
+    
+    /**
+     * O código postal 
+     */
     private String codigoPostal;
     
     /**
-     *
+     * Construtor completo de um endereço postal
      * @param arruamento
      * @param numeroPorta
      * @param localidade
@@ -38,7 +53,7 @@ public class EnderecoPostal {
     }
   
     /**
-     *
+     * Construtor de um endereço postal que recebe como parâmetro outro endereço postal
      * @param endereco
      */
     public EnderecoPostal(EnderecoPostal endereco){
@@ -49,39 +64,39 @@ public class EnderecoPostal {
     }
 
     /**
-     *
-     * @return
+     * Devolve o arruamento
+     * @return arruamento
      */
     public String getArruamento() {
         return arruamento;
     }
 
     /**
-     *
-     * @return
+     * Devolve a porta
+     * @return numeroPorta
      */
     public String getPorta() {
         return numeroPorta;
     }
 
     /**
-     *
-     * @return
+     * Devolve a localidade
+     * @return localidade
      */
     public String getLocalidade() {
         return localidade;
     }
     
     /**
-     *
-     * @return
+     * Devolve o código postal
+     * @return codigoPostal
      */
     public String getCodigoPostal() {
         return codigoPostal;
     }
 
     /**
-     *
+     * Define o arruamento
      * @param arruamento
      */
     public void setArruamento(String arruamento) {
@@ -92,7 +107,7 @@ public class EnderecoPostal {
     }
     
     /**
-     *
+     * Define o número da porta
      * @param numeroPorta
      */
     public void setPorta(String numeroPorta) {
@@ -103,7 +118,7 @@ public class EnderecoPostal {
     }
 
     /**
-     *
+     * Define a localidade
      * @param localidade
      */
     public void setLocalidade(String localidade) {
@@ -113,8 +128,8 @@ public class EnderecoPostal {
         this.localidade = localidade;
     }
     
-    /**
-     *
+    /** 
+     * Define o código postal
      * @param codigoPostal
      */
     public void setCodigoPostal(String codigoPostal) {
@@ -126,15 +141,19 @@ public class EnderecoPostal {
         }
     }
     
+    /**
+     * Representação textual da classe EnderecoPostal
+     * @return arruamento, número de porta, localidade e código postal
+     */
     @Override
     public String toString(){
-        return String.format("Endereço: %nArruamento: %s"
+        return String.format("Arruamento: %s"
                 + " %nNúmero de Porta: %s %nLocalidade: %s %nCódigo Postal: %s", arruamento, 
                 numeroPorta,localidade, codigoPostal);
     }
     
     /**
-     *
+     * Verifica o formato do código postal
      * @param codigoPostal
      * @return
      */
