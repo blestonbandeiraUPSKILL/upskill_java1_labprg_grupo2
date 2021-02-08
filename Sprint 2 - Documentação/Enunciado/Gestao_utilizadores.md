@@ -9,6 +9,8 @@ De acordo com o modelo do domínio, um “User” desempenha vários “Role” 
 Este componente disponibiliza as suas funcionalidades através de um Web Service que está em conformidade com o estilo arquitetural REST (Representational State Transfer). A utilização do serviço apenas é possível a quem conhecer uma chave que é obtida após registo. A T4J já efetuou esse registo e já possui a respetiva chave, que fornecerá posteriormente à equipa de desenvolvimento.
 Assim sendo, a documentação relevante com vista à sua utilização consiste na descrição dos métodos, endpoints, recursos, parâmetros e resultados de output esperados.
 
+![GU2](GU2.png)
+
 O Web Service disponibiliza os seguintes recursos:
 - “GET /context(String app_key)”: permite obter uma chave de contexto que identifica uma sessão de utilizador. Esta chave de contexto será necessária para executar todos os restantes métodos disponíveis.
 - “POST /registerUser(String app_context, String username, String email, String password)”: permite definir a existência de um novo utilizador que pode usar a aplicação;
