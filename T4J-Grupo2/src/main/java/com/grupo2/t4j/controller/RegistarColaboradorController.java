@@ -23,8 +23,8 @@ public class RegistarColaboradorController {
 
 
     public boolean registarColaborador(String nome, String emailCol, String funcao, 
-            String telefone) {
-        Colaborador col = new Colaborador(nome, emailCol, funcao, telefone);
+            String telefone, Rolename rolename) {
+        Colaborador col = new Colaborador(nome, emailCol, funcao, telefone, rolename);
         return repositorioColaborador.getInstance().addColaborador(col);
     }
     

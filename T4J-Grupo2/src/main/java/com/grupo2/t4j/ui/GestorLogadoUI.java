@@ -15,6 +15,7 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -42,62 +43,44 @@ public class GestorLogadoUI implements Initializable {
     private FicheiroRepositorioColaborador ficheiroC;
     private RepositorioColaborador repositorioColaborador;
 
-
+    /*
     @FXML private TextField txtReferencia1;
-
     @FXML private ComboBox<?> cmbArAct;
-
-    @FXML private TextField txtEmailColaborador;
-
     @FXML private TextField txtDuracao1;
-
     @FXML private TextField txtCusto1;
-
     @FXML private TextArea txtDescricaoInformal1;
-
-    @FXML private TextField txtTelefoneColaborador;
-
     @FXML private ListView<?> listViewTarefas;
-
-    @FXML private TextField txtNomeColaborador;
-    
     @FXML private TextArea txtDescInformalTarefa;
-
     @FXML private ComboBox<?> cmbCategoriaTarefaEspecificarTarefa;
-
     @FXML private TextField txtRefTarefa;
-
     @FXML private TextField txtDuracaoTarefa;
-
     @FXML private TextField txtDesignTarefa;
-
     @FXML private ComboBox<?> cmbCategoriaTarefaListaTarefas;
-
     @FXML private TextArea txtDescTecnicaTarefa;
-
     @FXML private ComboBox<?> cmbAreaActividadeListaTarefas;
-
-    @FXML Button btnCancelarRegCol;
-    @FXML
-    private Button btnSairListaTarefas;
-
     @FXML private ListView<?> listViewCompTecReq;
-
+    @FXML private Button btnSairListaTarefas;
     @FXML private TextField txtCustoEstTarefa;
-
     @FXML private ComboBox<?> cmbAreaActividadeEspecificarTarefa;
-
-
-
-   /* @FXML ComboBox<AreaActividade> cmbAreaActividadeListaTarefas;
+    @FXML ComboBox<AreaActividade> cmbAreaActividadeListaTarefas;
     @FXML ComboBox<AreaActividade> cmbAreaActividadeEspecificarTarefa;
     @FXML ComboBox<Categoria> cmbCategoriaTarefaListaTarefas;
     @FXML ComboBox<Categoria> cmbCategoriaTarefaEspecificarTarefa;
     @FXML ListView<Tarefa> listViewTarefas;
-    @FXML ListView<CaracterizacaoCT> listViewCaracterizacaoCTS;
-*/
-
+    @FXML ListView<CaracterizacaoCT> listViewCaracterizacaoCTS;*/
     
+    @FXML private TextField txtNomeColaborador;
+    
+    @FXML private TextField txtFuncaoColaborador;
+    
+    @FXML private TextField txtTelefoneColaborador;
+    
+    @FXML private TextField txtEmailColaborador;
+   
+    @FXML Button btnRegistarColaborador;
+    
+    @FXML Button btnCancelarRegCol;
+       
     public void associarParentUI(StartingPageUI startingPageUI) {
         this.startingPageUI = startingPageUI;
     }
@@ -109,10 +92,10 @@ public class GestorLogadoUI implements Initializable {
         adicionarStage.setResizable(false);
 
         registarColaboradorController = new RegistarColaboradorController();
-        registarAreaActividadeController = new RegistarAreaActividadeController();
+        /*registarAreaActividadeController = new RegistarAreaActividadeController();
         registarCategoriaController = new RegistarCategoriaController();
         registarTarefaController = new RegistarTarefaController();
-        registarCompetenciaTecnicaController = new RegistarCompetenciaTecnicaController();
+        registarCompetenciaTecnicaController = new RegistarCompetenciaTecnicaController();*/
 
         adicionarStage = new Stage();
         adicionarStage.initModality(Modality.APPLICATION_MODAL);;
@@ -137,7 +120,30 @@ public class GestorLogadoUI implements Initializable {
     
     @FXML
     public void registarColaboradorAction(ActionEvent event) {
-
+        try{
+            boolean adicionouCol = registarColaboradorController.registarColaborador(txtNomeColaborador.getText(),
+                    txtEmailColaborador.getText(), txtFuncaoColaborador.getText(),
+                    txtTelefoneColaborador.getText(), Rolename.COLABORADOR);
+            AlertsUI.criarAlerta(Alert.AlertType.INFORMATION,
+                    MainApp.TITULO_APLICACAO,
+                    "Registar Colaborador.",
+                        adicionouCol ? "Colaborador registado com sucesso."
+                                : "Não foi possível registar o Colaborador.").show();
+            }
+        catch (IllegalArgumentException iae) {
+            AlertsUI.criarAlerta(Alert.AlertType.ERROR,
+                    MainApp.TITULO_APLICACAO,
+                    "Erro nos dados.",
+                    iae.getMessage()).show();
+        }        
+    }
+    
+    private void closeAddColaborador(ActionEvent event) {
+        this.txtNomeColaborador.clear();
+        this.txtEmailColaborador.clear();
+        this.txtFuncaoColaborador.clear();
+        this.txtTelefoneColaborador.clear();
+        ((Node) event.getSource()).getScene().getWindow().hide();
     }
 
     @FXML
