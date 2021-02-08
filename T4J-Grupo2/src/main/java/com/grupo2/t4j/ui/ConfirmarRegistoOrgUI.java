@@ -2,6 +2,7 @@ package com.grupo2.t4j.ui;
 
 import com.grupo2.t4j.controller.RegistarOrganizacaoController;
 import com.grupo2.t4j.model.Organizacao;
+import com.grupo2.t4j.model.Password;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -80,14 +81,15 @@ public class ConfirmarRegistoOrgUI implements Initializable {
 
     public void addOrganizacao(ActionEvent actionEvent) throws Exception {
         Organizacao organizacao = registarOrganizacaoController.getOrganizacao();
+        
         try {
             boolean registou = registarOrganizacaoController.registaOrganizacao(organizacao);
             if(registou) {
-                
+                Password pw = registarOrganizacaoController.organizacao.getColabGestor().getPassword();
                 AlertsUI.criarAlerta(Alert.AlertType.INFORMATION,
                     MainApp.TITULO_APLICACAO,
                     "Registar Organização.",
-                    registou ? "Organização registada com sucesso."
+                    registou ? ("Organização registada com sucesso.\n A sua password é " + pw)
                                 : "Não foi possível registar a Organização.").show();
                 
                 closeAddOrganizacao(actionEvent);
