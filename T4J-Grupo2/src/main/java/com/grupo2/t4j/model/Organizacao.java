@@ -221,7 +221,7 @@ public class Organizacao implements Serializable{
         this.websiteOrg = new Website(website);
         setTelefone(telefone);
         this.emailOrg = new Email(email);
-        this.colabGestor = new Colaborador(nomeColab, emailColab, 
+        this.colabGestor = new Colaborador(nomeColab, new Email(emailColab),
                 funcao, telefoneColab, Rolename.GESTOR);
     }
        
@@ -423,12 +423,12 @@ public class Organizacao implements Serializable{
      */
     public static Colaborador novoColaborador(String nomeGestor, Email emailGestor, String telefoneGestor, Rolename rolename) {
         String funcao = "Gestor";
-        return new Colaborador(nomeGestor, emailGestor.getEmailText(), funcao, telefoneGestor, rolename);
+        return new Colaborador(nomeGestor, emailGestor, funcao, telefoneGestor, rolename);
     }
     
     private void setColabGestor(String nomeGestor, String emailGestor, String telefoneGestor, Rolename role) {
         String funcao = "Gestor";
-        colabGestor = new Colaborador(nomeGestor, emailGestor, funcao, telefoneGestor, role.GESTOR);
+        colabGestor = new Colaborador(nomeGestor, new Email(emailGestor), funcao, telefoneGestor, role.GESTOR);
     }
     
     /**

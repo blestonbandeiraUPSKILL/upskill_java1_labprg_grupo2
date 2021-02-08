@@ -111,14 +111,30 @@ public class GestorLogadoUI implements Initializable {
     @FXML
     public void registarColaboradorAction(ActionEvent event){
         
-        try{
-            boolean adicionouCol = registarColaboradorController.registarColaborador(txtNomeColaborador.getText(),
-                    txtEmailColaborador.getText(), txtFuncaoColaborador.getText(),
-                    txtTelefoneColaborador.getText(), Rolename.COLABORADOR);
-            int ultimoColAdd = registarColaboradorController.getColaboradores().size();
-            txtPasswordColaborador.setText(registarColaboradorController.getColaboradores().get(ultimoColAdd).getPassword().getPasswordText());
-            AlertsUI.criarAlerta(Alert.AlertType.INFORMATION, "Área do Gestor","Registar Colaborador.", adicionouCol ? "Colaborador registado com sucesso." : "Não foi possível registar o Colaborador.");
-        }catch (IllegalArgumentException iae) {
+        try {
+
+            Colaborador colaborador = registarColaboradorController.novoColaborador(
+                    txtNomeColaborador.getText(),
+                    new Email(txtEmailColaborador.getText()),
+                    txtFuncaoColaborador.getText(),
+                    txtTelefoneColaborador.getText(),
+                    Rolename.COLABORADOR);
+
+            boolean adicionouCol = registarColaboradorController.registarColaborador(colaborador);
+
+            if (adicionouCol) {
+                autenticacaoController.registarColaboradorComoUtilizador(colaborador);
+                txtPasswordColaborador.setText(registarColaboradorController.getColaboradorByEmail(colaborador.getEmail()).getPassword().getPasswordText());
+
+                AlertsUI.criarAlerta(Alert.AlertType.INFORMATION,
+                        MainApp.TITULO_APLICACAO,
+                        "Registar Colaborador.",
+                        adicionouCol ? ("Colaborador registado com sucesso.")
+                                : "Não foi possível registar o Colaborador.").show();
+            }
+
+        }
+        catch (IllegalArgumentException iae) {
             AlertsUI.criarAlerta(Alert.AlertType.ERROR,
                     MainApp.TITULO_APLICACAO,
                     "Erro nos dados.",
@@ -132,6 +148,7 @@ public class GestorLogadoUI implements Initializable {
         this.txtEmailColaborador.clear();
         this.txtFuncaoColaborador.clear();
         this.txtTelefoneColaborador.clear();
+        this.txtPasswordColaborador.clear();
     }
 
     @FXML

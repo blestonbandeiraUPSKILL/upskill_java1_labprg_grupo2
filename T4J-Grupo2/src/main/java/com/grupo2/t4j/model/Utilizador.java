@@ -86,7 +86,7 @@ public class Utilizador implements Serializable{
      * @param emailUt o email do Utilizador em formato String
      * @param rolename o papel do Utilizador na T4J
      */
-    public Utilizador (String nome, String emailUt, Rolename rolename){
+    public Utilizador (String nome, Email emailUt, Rolename rolename){
         setNome(nome);
         this.email = new Email(emailUt);
         //setPassword(PASSWORD_POR_OMISSAO);
