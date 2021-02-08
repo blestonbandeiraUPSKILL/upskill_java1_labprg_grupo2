@@ -1,5 +1,7 @@
 # T4J – TASKS FOR JOE
 
+## Introdução
+
 A startup Tasks for Joe (T4J) dedica-se a facilitar e promover o contacto entre pessoas que trabalham por conta própria (freelancers) e organizações que pretendem contratar alguém externo (outsourcing) para a realização de determinadas tarefas. Para promover e suportar o seu negócio, a T4J pretende desenvolver uma plataforma informática que, por um lado, permita que qualquer organização interessada possa registar-se na plataforma de forma a poder publicar tarefas e gerirem elas próprias o processo de adjudicação dessas tarefas a freelancers; e por outro lado, permita que os freelancers acedam facilmente a essas tarefas e possam candidatar-se à realização das mesmas.
 
 Desde já, perspetiva-se que a plataforma seja acedida por vários utilizadores com diferentes papeis, tais como:
@@ -17,7 +19,4 @@ Cada tarefa caracteriza-se por ter uma referência única por organização, uma
 
 A designação comercial da plataforma e outros dados que venham a ser relevantes devem ser especificados por configuração aquando da sua implantação.
 
-## GESTÃO DE UTILIZADORES
-
-O componente de gestão de utilizadores irá ser desenvolvido por outra equipa de desenvolvimento que também é responsável pela sua manutenção/evolução. Este componente visa satisfazer um conjunto de requisitos/funcionalidades genéricas e comuns a várias aplicações. A autenticação dos utilizadores será realizada com um identificador de utilizador e palavra-passe.
-Os conceitos principais abordados neste componente são apresentados de seguida.
+##### [Voltar ao Enunciado](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Sprint%202%20-%20Documenta%C3%A7%C3%A3o/Enunciado/Enunciado.md)
