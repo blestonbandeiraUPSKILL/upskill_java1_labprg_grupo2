@@ -22,13 +22,12 @@ public class RegistarColaboradorController {
     private FicheiroRepositorioColaborador ficheiroC;
 
     public boolean registarColaborador(String nome, String emailCol, String funcao, String telefone) {
-        return repositorioColaborador.getInstance().verificacaoAddColaborador(nome, emailCol, funcao, telefone);
+        Colaborador col = new Colaborador(nome, emailCol, funcao, telefone);
+        return repositorioColaborador.getInstance().addColaboradorVerif(col);
     }
     
-     public boolean registarColaborador(Colaborador colaborador) {
-        return repositorioColaborador.getInstance().verificacaoAddColaborador(colaborador.getNome(), 
-                colaborador.getEmail().getEmailText(), colaborador.getFuncao(), 
-                colaborador.getTelefone());
+    public boolean registarColaborador(Colaborador colaborador) {
+        return repositorioColaborador.getInstance().addColaboradorVerif(colaborador);
     }
 
     public List<Colaborador> getColaboradores() {
