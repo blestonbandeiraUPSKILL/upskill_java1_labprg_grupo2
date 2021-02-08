@@ -66,7 +66,7 @@ public class RepositorioAdministrativoTest {
         ra2.addAdministrativo(a2);
     }
     
-    //Não deu certo este teste
+    
     @Test
     public void testGetAdministrativoByEmail() {
         
