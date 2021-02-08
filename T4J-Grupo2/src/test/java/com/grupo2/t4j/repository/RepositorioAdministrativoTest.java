@@ -51,22 +51,21 @@ public class RepositorioAdministrativoTest {
         ra1.addAdministrativo(a1);
         
         assertTrue(ra1.getListaAdministrativos().contains(a1));
-        System.out.println("Teste 1 ok");
+        System.out.println(ra1.getListaAdministrativos().get(0).toString());
     }   
     
     @Test (expected = AdministrativoDuplicadoException.class)
     public void testAddAdministrativoDuplicado() {
         
-        RepositorioAdministrativo ra2 = RepositorioAdministrativo.getInstance();
+        RepositorioAdministrativo ra1 = RepositorioAdministrativo.getInstance();
         
         Administrativo a1 = new Administrativo("Fulano", "fulano@upskill.pt", "12345678");
         Administrativo a2 = new Administrativo("Fulano", "fulano@upskill.pt", "12345678");
         
-        ra2.addAdministrativo(a1);
-        ra2.addAdministrativo(a2);
+        ra1.addAdministrativo(a1);
+        ra1.addAdministrativo(a2);
     }
-    
-    //Não deu certo este teste
+
     @Test
     public void testGetAdministrativoByEmail() {
         
@@ -82,7 +81,7 @@ public class RepositorioAdministrativoTest {
         Administrativo a4 = ra1.getAdministrativoByEmail(a2.getEmail().getEmailText());
         
         assertEquals(a1,a3);
-        assertEquals(a2,a4);        
+        assertEquals(a2,a4); 
     }
     
     @Test
@@ -100,7 +99,7 @@ public class RepositorioAdministrativoTest {
         
         System.out.println(lista.get(0).toStringSemPass());
         System.out.println(lista.get(1).toString());   
-        System.out.println("Teste 3 ok");
+   
         Email emailA0 = new Email("fulano@upskill.pt");
         assertEquals(lista.get(0).getEmail().getEmailText(),emailA0.getEmailText());
         

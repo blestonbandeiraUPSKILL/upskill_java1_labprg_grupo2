@@ -11,10 +11,26 @@ package com.grupo2.t4j.model;
  */
 public class CaracterizacaoCT {
 
+    /**
+     * O grau de proficiencia da competencia tecnica
+     */
     private GrauProficiencia gp;
+    /**
+     * A obrigatoriedade da competencia tecnica
+     */
     private Obrigatoriedade obrigatoriedade;
+    
+    /**
+     * A competencia tecnica
+     */
     private CompetenciaTecnica competenciaTecnica;
 
+    /**
+     * Construtor completo para caracterizacao de uma competencia tecnica
+     * @param gp
+     * @param obrigatoriedade
+     * @param competenciaTecnica 
+     */
     public CaracterizacaoCT(GrauProficiencia gp, Obrigatoriedade obrigatoriedade,
                             CompetenciaTecnica competenciaTecnica) {
         this.gp = gp;
@@ -23,18 +39,22 @@ public class CaracterizacaoCT {
     }
 
     /**
-     * @param obrigatoriedade the obrigatoria to set
+     * Actualiza a obrigatoriedade da competencia tecnica
+     * @param obrigatoriedade the obrigatoriedade to set
      */
     public void setObrigatoriedade(Obrigatoriedade obrigatoriedade) {
         this.obrigatoriedade = obrigatoriedade;
     }
 
+    /**
+     * Representacao textual da competencia tecnica caracterizada
+     * @return 
+     */
     @Override
     public String toString() {
-        return "Grau de Proficiência: " + gp +
-                ", Obrigatoriedade: " + obrigatoriedade +
-                ", Competência Técnica: " + competenciaTecnica +
-                '}';
+        return String.format("Competência Tecnica: %s; Grau de Proficiencia: %s; "
+                + "Carácter: %s", competenciaTecnica.getDescricaoBreve(), gp.toString(), obrigatoriedade.toString());
+        
     }
 
     public CompetenciaTecnica getCompetenciaTecnica() {
