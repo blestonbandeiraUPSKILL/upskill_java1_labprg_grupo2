@@ -31,10 +31,12 @@ public class CategoriaTest {
     public void setUp() throws Exception {
     }
     
-   /* @Test
+    /*@Test
     public void novaCategoriaTest() {
         //Arrange
         AreaActividade at= new AreaActividade ("123","Cozinha", "Cozinheiro de 2ª");
+        CompetenciaTecnica ct1= new CompetenciaTecnica("123", "CompetenciaTecnica1", "CompetenciaTecnicaDescDetalhada");
+        CaracterizacaoCT cct = new CaracterizacaoCT(ct1,, true);
         List <CaracterizacaoCT> compTec = new ArrayList<>(); 
         Categoria ct1 = new Categoria ("Cozinheiro", at, compTec);
         String expectedResult = "Cozinheiro; Cozinha; ";
