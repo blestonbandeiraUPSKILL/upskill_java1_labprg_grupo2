@@ -167,8 +167,10 @@ public class Administrativo implements Serializable{
      */   
     @Override
     public String toString(){
-        return String.format("Nome administrativo: %s %nEmail: %s %nPassword: %s", 
-                nome, email.getEmailText(), password.getPasswordText());
+        return String.format("Nome administrativo: %s %nEmail: %s %nPassword: %s"
+                + "%nRolename: %s", 
+                nome, email.getEmailText(), password.getPasswordText(),
+                rolename.toString());
     }
     
     /**
@@ -176,8 +178,8 @@ public class Administrativo implements Serializable{
      * @return Nome e email do Administrador
      */
     public String toStringSemPass(){
-        return String.format("Nome administrativo: %s %nEmail: %s", 
-                nome, email.getEmailText());
+        return String.format("Nome administrativo: %s %nEmail: %s %nRolename: %s", 
+                nome, email.getEmailText(),rolename.toString());
     }
 }
 
