@@ -160,17 +160,7 @@ public class RepositorioColaborador implements Serializable{
         }
         return null;
     }
-    
-    public boolean addColaboradorVerif(Colaborador colaborador) throws ColaboradorDuplicadoException {
-        Colaborador col = getColaboradorByEmail(colaborador.getEmail().getEmailText());
-        if (col == null) {
-            this.listaColaboradores.add(colaborador);
-            return true;
-        } else {
-            throw new ColaboradorDuplicadoException(col.getEmail().getEmailText()
-                    + ": Colaborador já registado!");
-        }
-    }
+
     /*public boolean verificacaoAddColaborador(String nome, String emailCol, String funcao, String telefone){
         int tam = listaColaboradores.size();
         Colaborador ultimoColRegistado = listaColaboradores.get(tam-1);
@@ -221,7 +211,7 @@ public class RepositorioColaborador implements Serializable{
         int totalColaboradoresAdicionados = 0;
         
         for (Colaborador colaborador : outraListaColaborador.listaColaboradores) {
-            boolean colaboradorAdicionado = addColaboradorVerif(colaborador);
+            boolean colaboradorAdicionado = addColaborador(colaborador);
             if (colaboradorAdicionado) {
                 totalColaboradoresAdicionados++;
             }

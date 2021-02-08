@@ -5,15 +5,16 @@ import com.grupo2.t4j.files.FicheiroRepositorioColaborador;
 import com.grupo2.t4j.model.*;
 import com.grupo2.t4j.repository.RepositorioColaborador;
 import javafx.fxml.FXMLLoader;
+
+import java.io.IOException;
 import javafx.fxml.Initializable;
 
-import java.awt.geom.Area;
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -42,7 +43,7 @@ public class GestorLogadoUI implements Initializable {
     
     private FicheiroRepositorioColaborador ficheiroC;
     private RepositorioColaborador repositorioColaborador;
-
+    
     @FXML TextField txtReferencia1;
     @FXML TextField txtEmailColaborador;
     @FXML TextField txtCustoEstTarefa;
@@ -61,15 +62,16 @@ public class GestorLogadoUI implements Initializable {
     @FXML ListView<Tarefa> listViewTarefas;
     @FXML ListView<?> listViewCompTecReq;
 
-    @FXML ComboBox<Categoria> cmbCategoriaTarefaListaTarefas;
-    @FXML ComboBox<?> cmbAreaActividadeListaTarefas;
-    @FXML ComboBox<Categoria> cmbCategoriaTarefaEspecificarTarefa;
-    @FXML ComboBox<AreaActividade> cmbAreaActividadeEspecificarTarefa;
-    @FXML ComboBox<Area> cmbArAct;
+
+    @FXML private TextField txtFuncaoColaborador;
+
+
+    @FXML Button btnRegistarColaborador;
 
     @FXML Button btnCancelarRegCol;
+
     @FXML Button btnLogout;
-    
+       
     public void associarParentUI(StartingPageUI startingPageUI) {
         this.startingPageUI = startingPageUI;
     }
@@ -82,10 +84,11 @@ public class GestorLogadoUI implements Initializable {
 
         autenticacaoController = new AutenticacaoController();
         registarColaboradorController = new RegistarColaboradorController();
-        registarAreaActividadeController = new RegistarAreaActividadeController();
+        autenticacaoController = new AutenticacaoController();
+        /*registarAreaActividadeController = new RegistarAreaActividadeController();
         registarCategoriaController = new RegistarCategoriaController();
         registarTarefaController = new RegistarTarefaController();
-        registarCompetenciaTecnicaController = new RegistarCompetenciaTecnicaController();
+        registarCompetenciaTecnicaController = new RegistarCompetenciaTecnicaController();*/
 
         adicionarStage = new Stage();
         adicionarStage.initModality(Modality.APPLICATION_MODAL);;
@@ -110,9 +113,53 @@ public class GestorLogadoUI implements Initializable {
     
     @FXML
     public void registarColaboradorAction(ActionEvent event) {
-
+        try{
+            boolean adicionouCol = registarColaboradorController.registarColaborador(txtNomeColaborador.getText(),
+                    txtEmailColaborador.getText(), txtFuncaoColaborador.getText(),
+                    txtTelefoneColaborador.getText(), Rolename.COLABORADOR);
+            AlertsUI.criarAlerta(Alert.AlertType.INFORMATION,
+                    MainApp.TITULO_APLICACAO,
+                    "Registar Colaborador.",
+                        adicionouCol ? "Colaborador registado com sucesso."
+                                : "Não foi possível registar o Colaborador.").show();
+            }
+        catch (IllegalArgumentException iae) {
+            AlertsUI.criarAlerta(Alert.AlertType.ERROR,
+                    MainApp.TITULO_APLICACAO,
+                    "Erro nos dados.",
+                    iae.getMessage()).show();
+        }        
+    }
+    
+    private void closeAddColaborador(ActionEvent event) {
+        this.txtNomeColaborador.clear();
+        this.txtEmailColaborador.clear();
+        this.txtFuncaoColaborador.clear();
+        this.txtTelefoneColaborador.clear();
+        ((Node) event.getSource()).getScene().getWindow().hide();
     }
 
+    @FXML
+    public void cancelarRegColAction(ActionEvent event) {
+        Window window = btnCancelarRegCol.getScene().getWindow();
+        window.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent windowEvent) {
+                Alert alerta = AlertsUI.criarAlerta(Alert.AlertType.CONFIRMATION,
+                        MainApp.TITULO_APLICACAO,
+                        "Confirmação da acção",
+                        "Tem a certeza que quer voltar à página inicial, cancelando o actual registo?");
+
+                if (alerta.showAndWait().get() == ButtonType.CANCEL) {
+                    windowEvent.consume();
+                }
+            }
+        });
+
+        window.fireEvent(new WindowEvent(window, WindowEvent.WINDOW_CLOSE_REQUEST));
+    }
+
+    @FXML
     void navigateStartingPage(ActionEvent event) {
         try {
             FXMLLoader loaderStartingPage = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/StartingPageScene.fxml"));
@@ -161,26 +208,6 @@ public class GestorLogadoUI implements Initializable {
                     "Erro",
                     "Não foi possível terminar a sessão.");
         }
-    }
-
-    @FXML
-    public void cancelarRegColAction(ActionEvent event) {
-        Window window = btnCancelarRegCol.getScene().getWindow();
-        window.setOnCloseRequest(new EventHandler<WindowEvent>() {
-            @Override
-            public void handle(WindowEvent windowEvent) {
-                Alert alerta = AlertsUI.criarAlerta(Alert.AlertType.CONFIRMATION,
-                        MainApp.TITULO_APLICACAO,
-                        "Confirmação da acção",
-                        "Tem a certeza que quer voltar à página inicial, cancelando o actual registo?");
-
-                if (alerta.showAndWait().get() == ButtonType.CANCEL) {
-                    windowEvent.consume();
-                }
-            }
-        });
-
-        window.fireEvent(new WindowEvent(window, WindowEvent.WINDOW_CLOSE_REQUEST));
     }
 
 }
