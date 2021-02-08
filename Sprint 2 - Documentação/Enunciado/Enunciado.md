@@ -2,8 +2,8 @@
 
 - [Introdução](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Sprint%202%20-%20Documenta%C3%A7%C3%A3o/Enunciado/Intro.md)
 - [Gestão de Utilizadores](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Sprint%202%20-%20Documenta%C3%A7%C3%A3o/Enunciado/Gestao_utilizadores.md)
-- [Casos de Teste]()
-- [Análise e Design]()
+- [Casos de Teste](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Sprint%202%20-%20Documenta%C3%A7%C3%A3o/Enunciado/Casos_Teste.md)
+- [Análise e Design](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Sprint%202%20-%20Documenta%C3%A7%C3%A3o/Enunciado/Analise_Design.md)
 - [API para Gestão de Utilizadores]()
 - [Diagrama de Casos de Uso]()
 - [Glossário]()
