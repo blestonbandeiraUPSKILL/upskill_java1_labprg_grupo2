@@ -42,9 +42,9 @@ public class Utilizador implements Serializable{
     private static final Password PASSWORD_POR_OMISSAO = new Password("00000000");
     
     /**
-     * O papel do Utilizador por omissão - Colaborador - o papel mais básico.
+     * O papel do Utilizador por omissão.
      */
-    private static final Rolename ROLENAME_POR_OMISSAO = Rolename.COLABORADOR;
+    private static final Rolename ROLENAME_POR_OMISSAO = Rolename.UTILIZADOR;
     
     /**
      * Construtor vazio da classe Utilizador
@@ -63,22 +63,21 @@ public class Utilizador implements Serializable{
         setNome(nome);
         setEmail(email);
         setPassword(password);
-        this.rolename = rolename;
+        setRolename(rolename);
     }
     
     /**
      * Construtor completo da classe Utilizador só com Strings
      * @param nome o nome do Utilizador
      * @param emailUt o email do Utilizador em formato String
-     * @param password a password do Utilizador em formato String 
+     * @param passUt a password do Utilizador em formato String 
      * @param rolename o papel do Utilizador na T4J
      */
     public Utilizador(String nome, String emailUt, String passUt, Rolename rolename){
         setNome(nome);
         this.email = new Email(emailUt);
         this.password = new Password(passUt);
-        this.rolename = rolename;
-    }
+        setRolename(rolename);
     
     /**
      * Construtor da classe Utilizador com a password por omissão
@@ -86,13 +85,13 @@ public class Utilizador implements Serializable{
      * @param emailUt o email do Utilizador em formato String
      * @param rolename o papel do Utilizador na T4J
      */
-    public Utilizador(String nome, String emailUt, Rolename rolename){
+    public Utilizador (String nome, String emailUt, Rolename rolename){
         setNome(nome);
         this.email = new Email(emailUt);
         setPassword(PASSWORD_POR_OMISSAO);
-        this.rolename = rolename;
+        setRolename(rolename); 
     }
-    
+       
     /**
      * Construtor da classe Utilizador com a password por omissão e o papel
      * do utilizador por omissão
@@ -103,7 +102,7 @@ public class Utilizador implements Serializable{
         setNome(nome);
         this.email = new Email(emailUt);
         setPassword(PASSWORD_POR_OMISSAO);
-        this.rolename = ROLENAME_POR_OMISSAO;
+        setRolename(ROLENAME_POR_OMISSAO);
     }
     
     /**
@@ -114,7 +113,7 @@ public class Utilizador implements Serializable{
         setNome(utilizador.nome);
         setEmail(utilizador.email);
         setPassword(utilizador.password);
-        this.rolename = utilizador.rolename;
+        setRolename(utilizador.rolename);
     }
 
     /**
@@ -155,6 +154,14 @@ public class Utilizador implements Serializable{
     }
     
     /**
+     * Regista o papel do Utilizador
+     * @param rolename o papel do Utilizador
+     */
+    public final void setRolename(Rolename rolename){
+        this.rolename = rolename;
+    }
+    
+    /**
      * Retorna o nome do Utilizador
      * @return nome
      */
@@ -190,18 +197,18 @@ public class Utilizador implements Serializable{
      * Representação textual da classe Utilizador
      * @return Nome, email e password do Utilizador
      */   
-  /*  @Override
+    @Override
     public String toString(){
-        return String.format("O utilizador %s tem os seguintes dados: %nEmail: "
-                + "%s /%Password: %s", nome, email.getEmailText(), password.getPasswordText());
-    }*/
+        return String.format("Nome utilizador: %s %nEmail:%s %nPassword: %s ", 
+                nome, email.getEmailText(), password.getPasswordText());
+    }
     
     /**
      * Representação textual da classe Utilizador sem a password
      * @return Nome e email do Utilizador
      */
     public String toStringSemPass(){
-        return String.format("Nome do utilizador: %s %nEmail registado: %s", 
-                nome, email.getEmailText());
+        return String.format("Nome utilizador: %s %nEmail:%s", nome, 
+                email.getEmailText());
     }
 }
