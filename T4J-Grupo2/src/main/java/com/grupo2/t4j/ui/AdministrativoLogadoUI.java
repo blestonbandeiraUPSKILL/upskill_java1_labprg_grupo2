@@ -307,10 +307,10 @@ public class AdministrativoLogadoUI implements Initializable {
                 gravou = registarCategoriaController.serializar(ficheiroExportar);
                 if (gravou) {
                 AlertsUI.criarAlerta(Alert.AlertType.INFORMATION, MainApp.TITULO_APLICACAO, CABECALHO_EXPORTAR,
-                        "Contactos exportados com sucesso.").show();
+                        "Categorias exportados com sucesso.").show();
             } else {
                 AlertsUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO, CABECALHO_EXPORTAR,
-                        "Problema a exportar a lista de contactos!").show();
+                        "Problema a exportar a lista de categorias!").show();
             }
         } else {
             AlertsUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO, CABECALHO_EXPORTAR,
@@ -324,7 +324,7 @@ public class AdministrativoLogadoUI implements Initializable {
         descricao = /*DESCRICAO_SERIALIZACAO*/"Ficheiro Categoria";
         extensao = /*EXTENSAO_SERIALIZACAO*/"*.ltf";
         FileChooser flChooser = FileChooserT4J.criarFileChooserT4J(descricao, extensao);
-        File ficheiroImportar = flChooser.showOpenDialog(listaAreasActividade.getScene().getWindow());
+        File ficheiroImportar = flChooser.showOpenDialog(listaCategorias.getScene().getWindow());
 
         if (ficheiroImportar != null) {
             int numeroCategoriasImportadas = 0;
@@ -335,10 +335,10 @@ public class AdministrativoLogadoUI implements Initializable {
                 updateListViewCategoriasTarefa();
 
                 AlertsUI.criarAlerta(Alert.AlertType.INFORMATION, MainApp.TITULO_APLICACAO, CABECALHO_IMPORTAR,
-                        String.format("%d área(s) de actividade importada(s).", numeroCategoriasImportadas)).show();
+                        String.format("%d categoria(s) importada(s).", numeroCategoriasImportadas)).show();
             } else {
                 AlertsUI.criarAlerta(Alert.AlertType.INFORMATION, MainApp.TITULO_APLICACAO, CABECALHO_IMPORTAR,
-                        "Ficheiro sem contactos telefónicos para importar!").show();
+                        "Ficheiro sem categorias para importar!").show();
             }
         } else {
             AlertsUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO, CABECALHO_IMPORTAR,
