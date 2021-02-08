@@ -9,7 +9,7 @@
 - [Glossário](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Sprint%202%20-%20Documenta%C3%A7%C3%A3o/Enunciado/Glossario.md)
 - [Modelo de Domínio](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Sprint%202%20-%20Documenta%C3%A7%C3%A3o/Enunciado/Modelo_Dominio.md)
 - [UC01 - Registar Organização](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Sprint%202%20-%20Documenta%C3%A7%C3%A3o/Enunciado/UC01.md)
-- [UC02 - Definir Área de Atividade]()
+- [UC02 - Definir Área de Atividade](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Sprint%202%20-%20Documenta%C3%A7%C3%A3o/Enunciado/UC02.md)
 - [UC03 - Definir Categoria de Tarefa]()
 - [UC04 - Especificar Competência Técnica]()
 - [UC05 - Especificar Colaborador de Organização]()
