@@ -5,6 +5,10 @@ import java.security.SecureRandom;
 public class AlgoritmoGeradorPasswords implements IAlgoritmoGeradorPasswords {
 
 
+    /**
+     * Algoritmo gerador de passwords
+     * @return stringBuilder.toString();
+     */
     @Override
     public String geraPassword() {
 

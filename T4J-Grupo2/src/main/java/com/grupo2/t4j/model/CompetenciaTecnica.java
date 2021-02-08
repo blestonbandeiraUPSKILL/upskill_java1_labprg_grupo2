@@ -14,68 +14,91 @@ import java.io.Serializable;
  *
  * @author acris
  */
-public class CompetenciaTecnica implements Serializable{
+public class CompetenciaTecnica implements Serializable {
 
-   
-    
-   /**
-    * Atributos Competencia Tecnica
-    */
+    /**
+     * O codigo da competencia tencica
+     */
     private String codigo;
+
+    /**
+     * A descricao breve da competencia tecnica
+     */
     private String descricaoBreve;
+
+    /**
+     * A descricao detalhada da competencia tecnica
+     */
     private String descricaoDetalhada;
+
+    /**
+     * A area de actividade a que a competencia tecnica se refere
+     */
     private AreaActividade areaActividade;
+
+    /**
+     * A competencia tecnica caracterizada
+     */
     private CaracterizacaoCT cct;
-    private Categoria categoria;
-    
-    
-    
-/**
- * Construtor CompetenciaTecnica Completo
- * @param codigo
- * @param descricaoBreve
- * @param descricaoDetalhada
- *
- */
+
+    /**
+     * Construtor CompetenciaTecnica Completo
+     *
+     * @param codigo
+     * @param descricaoBreve
+     * @param descricaoDetalhada
+     *
+     */
     public CompetenciaTecnica(String codigo, String descricaoBreve, String descricaoDetalhada, AreaActividade areaActividade, CaracterizacaoCT cct) {
         setCodigo(codigo);
         setDescricaoBreve(descricaoBreve);
         setDescricaoDetalhada(descricaoDetalhada);
         setAreaActividade(areaActividade);
-        setCct(cct);    
+        setCct(cct);
     }
-    
+
     /**
- * Construtor CompetenciaTecnica 
- * @param codigo
- * @param descricaoBreve
- * @param descricaoDetalhada
- *
- */
+     * Construtor CompetenciaTecnica
+     *
+     * @param codigo
+     * @param descricaoBreve
+     * @param descricaoDetalhada
+     *
+     */
     public CompetenciaTecnica(String codigo, String descricaoBreve, String descricaoDetalhada) {
         setCodigo(codigo);
         setDescricaoBreve(descricaoBreve);
-        setDescricaoDetalhada(descricaoDetalhada);    
+        setDescricaoDetalhada(descricaoDetalhada);
     }
-/**
- * Construtor Competencia Tecnica
- * @param compTec 
- */
-    public CompetenciaTecnica(CompetenciaTecnica compTec){
+
+    /**
+     * Construtor Competencia Tecnica
+     *
+     * @param compTec
+     */
+    public CompetenciaTecnica(CompetenciaTecnica compTec) {
         setCodigo(compTec.codigo);
         setDescricaoBreve(compTec.descricaoBreve);
         setDescricaoDetalhada(compTec.descricaoDetalhada);
     }
 
+    /**
+     * Construtor competencia tecnica por parametros
+     *
+     * @param codigo
+     * @param descricaoBreve
+     * @param descricaoDetalhada
+     * @param at
+     */
     public CompetenciaTecnica(String codigo, String descricaoBreve, String descricaoDetalhada, AreaActividade at) {
         setCodigo(codigo);
         setDescricaoBreve(descricaoBreve);
-        setDescricaoDetalhada(descricaoDetalhada);
-        //setAreaActividade(at);
+        setDescricaoDetalhada(descricaoDetalhada);   
         this.areaActividade = at;
     }
 
     /**
+     * devolve o codigo da competencia tecnica
      * @return the codigo
      */
     public String getCodigo() {
@@ -83,9 +106,10 @@ public class CompetenciaTecnica implements Serializable{
     }
 
     /**
+     * Atualiza e valida o codigo da competencia tecnica
      * @param codigo the codigo to set
      */
-    public void setCodigo(String codigo) throws CodigoInvalidoException{
+    public void setCodigo(String codigo) throws CodigoInvalidoException {
         if (codigo == null || codigo.trim().isEmpty()) {
             throw new CodigoInvalidoException("Deve introduzir um código válido!");
         } else {
@@ -94,6 +118,7 @@ public class CompetenciaTecnica implements Serializable{
     }
 
     /**
+     * Devolve a descricao breve da competencia tecnica
      * @return the descricaoBreve
      */
     public String getDescricaoBreve() {
@@ -101,6 +126,7 @@ public class CompetenciaTecnica implements Serializable{
     }
 
     /**
+     * Atualiza e valida a descricao breve da competencia tecnica
      * @param descricaoBreve the descricaoBreve to set
      */
     public void setDescricaoBreve(String descricaoBreve) throws DescricaoInvalidaException {
@@ -112,6 +138,7 @@ public class CompetenciaTecnica implements Serializable{
     }
 
     /**
+     * Devolve a descricao detalhada da competencia tecnica
      * @return the descricaoDetalhada
      */
     public String getDescricaoDetalhada() {
@@ -119,9 +146,10 @@ public class CompetenciaTecnica implements Serializable{
     }
 
     /**
+     * Atualiza e valida a descricao detalhada da competencia tecnica
      * @param descricaoDetalhada the descricaoDetalhada to set
      */
-    public void setDescricaoDetalhada(String descricaoDetalhada) throws DescricaoInvalidaException{
+    public void setDescricaoDetalhada(String descricaoDetalhada) throws DescricaoInvalidaException {
         if (descricaoDetalhada == null || descricaoDetalhada.trim().isEmpty()) {
             throw new DescricaoInvalidaException("Deve introduzir uma descrição detalhada válida!");
         } else {
@@ -130,6 +158,7 @@ public class CompetenciaTecnica implements Serializable{
     }
 
     /**
+     * Devolve a caracterizacao da competencia tecnica
      * @return the cct
      */
     public CaracterizacaoCT getCct() {
@@ -137,13 +166,16 @@ public class CompetenciaTecnica implements Serializable{
     }
 
     /**
+     * Atualiza a caracterizacao da competencia tecnica
      * @param cct the cct to set
      */
     public void setCct(CaracterizacaoCT cct) {
         this.cct = cct;
-    } 
+    }
 
     /**
+     * Devolve a area de actividade a que se refere a competencia tecnica
+     * 
      * @return the areaActividade
      */
     public AreaActividade getAreaActividade() {
@@ -151,23 +183,26 @@ public class CompetenciaTecnica implements Serializable{
     }
 
     /**
+     * Atualiza a area de atividade a que se refere a competencia tecnica
+     * 
      * @param areaActividade the areaActividade to set
      */
     public void setAreaActividade(AreaActividade areaActividade) {
         if (areaActividade != null) {
             this.areaActividade = areaActividade;
-        }else {
-            throw new AreaActividadeInexistenteException ("A área de actividade não existe");
+        } else {
+            throw new AreaActividadeInexistenteException("A área de actividade não existe");
         }
     }
 
     /**
      * Representacao textual da classe competencia tecnica
-     * @return 
+     *
+     * @return
      */
     @Override
     public String toString() {
-        return String.format("ID: %s; Descrição breve: %s; Descrição detalhada: %s.", codigo, descricaoBreve, descricaoDetalhada );
+        return String.format("ID: %s; Descrição breve: %s; Descrição detalhada: %s.", codigo, descricaoBreve, descricaoDetalhada);
     }
 
 }
