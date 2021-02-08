@@ -94,13 +94,13 @@ public class RegistarOrgEGestorUI implements Initializable {
             String telefoneGestor = txtTelefoneGestor.getText();
             Rolename role = Rolename.GESTOR;
 
-            Organizacao organizacao = new Organizacao(nomeOrganizacao,
+           /* Organizacao organizacao = new Organizacao(nomeOrganizacao,
                     nif, arruamento, numeroPorta,
                     localidade, codPostal, telefoneOrg,
                     website, emailOrg, nomeGestor,
                     emailGestor, telefoneGestor, role);
-
-            RegistarOrganizacaoController.setOrganizacao(organizacao);
+*/
+           // RegistarOrganizacaoController.setOrganizacao(organizacao);
 
             Parent rootConfirmarRegisto = loaderConfirmarRegisto.load();
             loaderConfirmarRegisto.setController(registarOrganizacaoController);

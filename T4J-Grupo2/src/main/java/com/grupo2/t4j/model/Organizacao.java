@@ -86,7 +86,7 @@ public class Organizacao implements Serializable{
         this.colabGestor = new Colaborador(colabGestor);
     }
 
-    public Organizacao(String nome, String NIF, String arruamento, String numeroPorta,
+    /*public Organizacao(String nome, String NIF, String arruamento, String numeroPorta,
                        String localidade, String codigoPostal, String website, String telefone,
                        String email, String nomeColab, String emailColab, Password password,
                        String funcao, String telefoneColab){
@@ -103,7 +103,7 @@ public class Organizacao implements Serializable{
         setTelefone(telefone);
         this.emailOrg = new Email(email);
         this.colabGestor = new Colaborador(nomeColab, emailColab, password, funcao, telefoneColab);
-    }
+    }*/
 
     public Organizacao(String nome, String NIF, String arruamento, String numeroPorta,
                        String localidade, String codigoPostal, String website, String telefone,
@@ -138,7 +138,7 @@ public class Organizacao implements Serializable{
         this.colabGestor = new Colaborador(organizacao.getColabGestor());
     }
 
-    public Organizacao(String nomeOrganizacao, 
+    /*public Organizacao(String nomeOrganizacao,
                        String nif, String arruamento, 
                        String numeroPorta, String localidade, 
                        String codPostal, String telefoneOrg, 
@@ -152,11 +152,11 @@ public class Organizacao implements Serializable{
         setWebsite(new Website(website));
         setEmail(new Email(emailOrg));
         setColabGestor(nomeGestor, emailGestor, telefoneGestor, role);
-    }
+    }*/
 
-    private void setColabGestor(String nomeGestor, String emailGestor, String telefoneGestor, Rolename role) {
+   /* private void setColabGestor(String nomeGestor, String emailGestor, String telefoneGestor, Rolename role) {
         colabGestor = new Colaborador(nomeGestor, new Email(emailGestor), telefoneGestor, Rolename.GESTOR);
-    }
+    }*/
 
     public Colaborador getColabGestor() {
         return colabGestor;
@@ -240,9 +240,9 @@ public class Organizacao implements Serializable{
         return new EnderecoPostal(arruamento, numeroPorta, localidade, codigoPostal);
     }
 
-    public static Colaborador novoColaborador(String nomeGestor, Email emailGestor, String telefoneGestor, Rolename rolename) {
+   /* public static Colaborador novoColaborador(String nomeGestor, Email emailGestor, String telefoneGestor, Rolename rolename) {
         return new Colaborador(nomeGestor, emailGestor, telefoneGestor, rolename);
-    }
+    }*/
 
     public String getNomeGestor() {
         return colabGestor.getNome();
