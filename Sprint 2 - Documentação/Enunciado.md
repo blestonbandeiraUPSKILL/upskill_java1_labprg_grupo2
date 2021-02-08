@@ -10,3 +10,14 @@ Desde já, perspetiva-se que a plataforma seja acedida por vários utilizadores 
 - Freelancers: pessoas que se propõem a realizar as tarefas publicadas pelas organizações.
 
 As interações dos utilizadores supra mencionados devem ser precedidas de um processo de autenticação. A utilização da plataforma por outras pessoas é restrita ao registo de organizações. Aquando deste registo é obrigatório requerer o nome da organização, o seu número de identificação fiscal (NIF), o endereço postal, um contacto telefónico, um endereço web, um endereço de correio eletrónico (email) e os dados do colaborador responsável pelo registo (nome, função, contacto telefónico, endereço de email). Após o registo da organização, os seus colaboradores podem aceder imediatamente à plataforma.
+
+Tanto uma área de atividade como uma competência técnica caracterizam-se através de um código único, uma descrição breve e outra mais detalhada respetivamente. Uma competência técnica caracteriza-se ainda por ser referente a uma dada área de atividade. Por outro lado, cada categoria de tarefa caracteriza-se por um identificador interno (automático), uma descrição, a área de atividade em que se enquadra (apenas uma) e uma lista de competência técnicas tipicamente requeridas para a realização de tarefas dessa categoria. Algumas destas competências têm carácter obrigatório e outras apenas são desejáveis.
+
+Cada tarefa caracteriza-se por ter uma referência única por organização, uma designação, uma descrição informal e outra de carácter técnico, uma estimativa de duração e custo bem como a categoria em que a mesma se enquadra. Enquanto a mesma não for publicada, o acesso à tarefa é exclusivo aos colaboradores da organização respetiva.
+
+A designação comercial da plataforma e outros dados que venham a ser relevantes devem ser especificados por configuração aquando da sua implantação.
+
+## GESTÃO DE UTILIZADORES
+
+O componente de gestão de utilizadores irá ser desenvolvido por outra equipa de desenvolvimento que também é responsável pela sua manutenção/evolução. Este componente visa satisfazer um conjunto de requisitos/funcionalidades genéricas e comuns a várias aplicações. A autenticação dos utilizadores será realizada com um identificador de utilizador e palavra-passe.
+Os conceitos principais abordados neste componente são apresentados de seguida.
