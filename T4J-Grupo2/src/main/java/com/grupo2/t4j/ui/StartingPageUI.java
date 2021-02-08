@@ -35,6 +35,7 @@ public class StartingPageUI implements Initializable {
     @FXML TextField txtEmailLogin;
     @FXML PasswordField txtPasswordLogin;
     @FXML Button btnSair;
+    @FXML Button btnLogin;
     @FXML Button btnAdministrativoLogado;
 
     public ApplicationController getApplicationController() {
@@ -135,7 +136,7 @@ public class StartingPageUI implements Initializable {
            adicionarStage.setScene(sceneAdministrativo);
            adicionarStage.setTitle("T4J - Administrativo");
            adicionarStage.show();
-           btnAdministrativoLogado.getScene().getWindow().hide();
+           btnLogin.getScene().getWindow().hide();
        }
        catch (IOException exception) {
            exception.printStackTrace();
@@ -157,6 +158,8 @@ public class StartingPageUI implements Initializable {
             adicionarStage.setScene(sceneGestor);
             adicionarStage.setTitle("T4J - Gestor da Organização");
             adicionarStage.show();
+
+            btnLogin.getScene().getWindow().hide();
         }
         catch (IOException exception) {
             exception.printStackTrace();
@@ -165,6 +168,8 @@ public class StartingPageUI implements Initializable {
                     "Erro",
                     exception.getMessage());
         }
+
+
     }
 
     public void navigateColaboradorLogado(ActionEvent actionEvent) {
@@ -179,6 +184,7 @@ public class StartingPageUI implements Initializable {
             adicionarStage.setTitle("T4J - Colaborador");
             adicionarStage.show();
 
+            btnLogin.getScene().getWindow().hide();
         }
         catch (IOException exception) {
             exception.printStackTrace();
