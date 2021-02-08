@@ -11,32 +11,73 @@ import java.util.Calendar;
 
 public class Data implements Comparable<Data>{
 
+    /**
+     * O ano da data
+     */
     private int ano;
+    /**
+     * O mes da data
+     */
     private Mes mes;
+    /**
+     * O dia da data
+     */
     private int dia;
 
+    /**
+     * O ano da data por omissao
+     */
     private static final int ANO_POR_OMISSAO = 1;
+    
+    /**
+     * O mes da data por omissao
+     */
     private static final Mes MES_POR_OMISSAO = Mes.JANEIRO;
+    
+    /**
+     * O dia da data por omissao
+     */
     private static final int DIA_POR_OMISSAO = 1;
 
+    /**
+     * Construtor data por omissao
+     */
     public Data() {
         this.ano = ANO_POR_OMISSAO;
         this.mes = MES_POR_OMISSAO;
         this.dia = DIA_POR_OMISSAO;
     }
-
+    
+    
+/**
+ * Construtor data apenas com ano
+ * @param ano 
+ */
     public Data(int ano) {
         this.ano = ano;
     }
-
+/**
+ * Construtor com data local
+ * @param localDate 
+ */
     public Data(LocalDate localDate) {
         this(localDate.getYear(), localDate.getMonth().getValue(), localDate.getDayOfMonth());
     }
 
+    /**
+     * Construtor completo data
+     * @param ano
+     * @param mes
+     * @param dia 
+     */
     public Data(int ano, int mes, int dia) {
         setData(ano, mes, dia);
     }
 
+    /**
+     * Construtor copia
+     * @param outraData 
+     */
     public Data(Data outraData) {
        /* ano = outraData.ano;
         mes = outraData.mes;
@@ -45,18 +86,33 @@ public class Data implements Comparable<Data>{
         setData(outraData.ano, outraData.getMes(), outraData.dia);
     }
 
+    /**
+     * Devolve o ano da data
+     * @return ano
+     */
     public int getAno() {
         return ano;
     }
-
+/**
+ * Devolve o mes da data
+ * @return numero do mes
+ */
     public int getMes() {
         return mes.ordinal() + 1;
     }
-
+/**
+ * Devolve o dia da data
+ * @return 
+ */
     public int getDia() {
         return dia;
     }
-
+/**
+ * Atualiza e valida uma data
+ * @param ano
+ * @param mes
+ * @param dia 
+ */
     public final void setData(int ano, int mes, int dia) {
         this.ano = ano;
 
@@ -72,15 +128,28 @@ public class Data implements Comparable<Data>{
         this.dia = dia;
     }
 
+    /**
+     * Representacao textual da data no com dia da semana
+     * @return 
+     */
     @Override
     public String toString() {
         return String.format("%s, %d de %s de %d", diaDaSemana(), dia, mes, ano);
     }
 
+    /**
+     * Representacao textual da data com formato aaaa/mm/dd
+     * @return 
+     */
     public String toAnoMesDiaString() {
         return String.format("%04d/%02d/%02d", ano, mes.ordinal() + 1, dia);
     }
 
+    /**
+     * Verifica se duas datas são iguais
+     * @param outroObjecto
+     * @return 
+     */
     @Override
     public boolean equals(Object outroObjecto) {
         if (this == outroObjecto) {
@@ -95,11 +164,20 @@ public class Data implements Comparable<Data>{
                 (dia == outraData.dia);
     }
 
+    /**
+     * compara duas datas
+     * @param outraData
+     * @return 
+     */
     @Override
     public int compareTo(Data outraData) {
         return (outraData.isMaior(this)) ? -1 : (isMaior(outraData)) ? 1 : 0;
     }
 
+    /**
+     * Devolve o dia da semana a que se refere uma determinada data
+     * @return 
+     */
     public String diaDaSemana() {
         int totalDias = contaDias();
         totalDias = totalDias % 7;
@@ -107,6 +185,11 @@ public class Data implements Comparable<Data>{
         return DiaDaSemana.designacaoDiaDaSemana(totalDias);
     }
 
+    /**
+     * verifica se uma data e mais recente que outra
+     * @param outraData
+     * @return 
+     */
     public boolean isMaior(Data outraData) {
         int totalDias = contaDias();
         int totalDias1 = outraData.contaDias();
@@ -114,13 +197,23 @@ public class Data implements Comparable<Data>{
         return totalDias > totalDias1;
     }
 
+    /**
+     * devolve a diferenca de dias entre duas datas
+     * @param outraData
+     * @return 
+     */
     public int diferenca(Data outraData) {
         int totalDias = contaDias();
         int totalDias1 = outraData.contaDias();
 
         return Math.abs(totalDias - totalDias1);
     }
-
+    
+    /**
+     * devolve a diferenca de dias entre duas datas
+     * @param outraData
+     * @return 
+     */
     public int diferenca(int ano, int mes, int dia) {
         int totalDias = contaDias();
         Data outraData = new Data(ano, mes, dia);
@@ -128,13 +221,22 @@ public class Data implements Comparable<Data>{
 
         return Math.abs(totalDias - totalDias1);
     }
-
+    
+    /**
+     * verifica se um dado ano e bissexto
+     * @param ano
+     * @return 
+     */
     public static boolean isAnoBissexto(int ano) {
         return ano % 4 == 0 &&
                 ano % 100 != 0 ||
                 ano % 400 == 0;
     }
 
+    /**
+     * Devolve a data actual
+     * @return 
+     */
     public static Data dataActual() {
         Calendar hoje = Calendar.getInstance();
         int ano = hoje.get(Calendar.YEAR);
@@ -143,7 +245,11 @@ public class Data implements Comparable<Data>{
 
         return new Data(ano, mes, dia);
     }
-
+    
+    /**
+     * conta o númerp de dias desde o ano 1
+     * @return 
+     */
     public int contaDias() {
         int totalDias = 0;
 
@@ -160,6 +266,11 @@ public class Data implements Comparable<Data>{
         return totalDias;
     }
 
+    /**
+     * Determina uma idade de acordo com a data de nascimento
+     * @param dataNascimento
+     * @return 
+     */
     public int getIdade(Data dataNascimento) {
         int idade = Data.dataActual().getAno() - dataNascimento.getAno();
         if (Data.dataActual().getMes() < dataNascimento.getMes()
