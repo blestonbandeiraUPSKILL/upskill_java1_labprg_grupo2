@@ -65,7 +65,7 @@ public class RepositorioOrganizacao implements Serializable{
      *
      * @return uma instância de Organizacao
      */
-    /*public Organizacao novaOrganizacao(String nome, String nif, String arruamento,
+    public Organizacao novaOrganizacao(String nome, String nif, String arruamento,
                                        String numeroPorta, String localidade, String codigoPostal,
                                        String telefone, Website website, Email emailOrganizacao,
                                        String nomeGestor, Email emailGestor, String telefoneGestor,
@@ -74,7 +74,7 @@ public class RepositorioOrganizacao implements Serializable{
         colabGestor = Organizacao.novoColaborador(nomeGestor, emailGestor, telefoneGestor, rolename);
 
         return new Organizacao(nome, nif, endereco, website, telefone, emailOrganizacao, colabGestor);
-    }*/
+    }
 
     /**
      *
@@ -88,9 +88,10 @@ public class RepositorioOrganizacao implements Serializable{
     public boolean addOrganizacao(Organizacao organizacao) throws OrganizacaoDuplicadaException {
         Organizacao o = getOrganizacaoByNif(organizacao.getNif());
         if (o == null) {
-            this.listaOrganizacoes.add(organizacao);
-            return true;
-        } else {
+            
+            //return new Organizacao(organizacao);
+            return this.listaOrganizacoes.add(organizacao);
+            } else {
             throw new OrganizacaoDuplicadaException(o.getNif() + ": Organização já registada!");
         }
     }

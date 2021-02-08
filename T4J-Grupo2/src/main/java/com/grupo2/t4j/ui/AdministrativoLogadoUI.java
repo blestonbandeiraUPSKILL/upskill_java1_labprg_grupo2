@@ -4,7 +4,6 @@ import com.grupo2.t4j.controller.RegistarAreaActividadeController;
 import com.grupo2.t4j.controller.RegistarCategoriaController;
 import com.grupo2.t4j.controller.RegistarCompetenciaTecnicaController;
 import com.grupo2.t4j.files.FicheiroRepositorioAreaActividade;
-import com.grupo2.t4j.files.FileChooserAreaActividade;
 import com.grupo2.t4j.files.FileChooserT4J;
 import com.grupo2.t4j.model.AreaActividade;
 import com.grupo2.t4j.model.Categoria;
