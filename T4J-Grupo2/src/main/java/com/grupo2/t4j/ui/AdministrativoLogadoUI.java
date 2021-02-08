@@ -235,7 +235,7 @@ public class AdministrativoLogadoUI implements Initializable {
                         String.format("%d área(s) de actividade importada(s).", numeroAreasImportadas)).show();
             } else {
                 AlertsUI.criarAlerta(Alert.AlertType.INFORMATION, MainApp.TITULO_APLICACAO, CABECALHO_IMPORTAR,
-                        "Ficheiro sem áreas de actividade para importar telefónicos para importar!").show();
+                        "Ficheiro sem áreas de actividade para importar!").show();
             }
         } else {
             AlertsUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO, CABECALHO_IMPORTAR,
@@ -256,10 +256,10 @@ public class AdministrativoLogadoUI implements Initializable {
                 gravou = registarCompetenciaTecnicaController.serializar(ficheiroExportar);
                 if (gravou) {
                 AlertsUI.criarAlerta(Alert.AlertType.INFORMATION, MainApp.TITULO_APLICACAO, CABECALHO_EXPORTAR,
-                        "Contactos exportados com sucesso.").show();
+                        "Competências técnicas exportadas com sucesso.").show();
             } else {
                 AlertsUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO, CABECALHO_EXPORTAR,
-                        "Problema a exportar a lista de contactos!").show();
+                        "Problema a exportar a lista de competências técnicas!").show();
             }
         } else {
             AlertsUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO, CABECALHO_EXPORTAR,
@@ -283,10 +283,10 @@ public class AdministrativoLogadoUI implements Initializable {
                 updateListViewCompetenciasTecnicas();
 
                 AlertsUI.criarAlerta(Alert.AlertType.INFORMATION, MainApp.TITULO_APLICACAO, CABECALHO_IMPORTAR,
-                        String.format("%d área(s) de actividade importada(s).", numeroCompetenciasImportadas)).show();
+                        String.format("%d competência(s) de actividade importada(s).", numeroCompetenciasImportadas)).show();
             } else {
                 AlertsUI.criarAlerta(Alert.AlertType.INFORMATION, MainApp.TITULO_APLICACAO, CABECALHO_IMPORTAR,
-                        "Ficheiro sem contactos telefónicos para importar!").show();
+                        "Ficheiro sem competências técnicas para importar!").show();
             }
         } else {
             AlertsUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO, CABECALHO_IMPORTAR,
