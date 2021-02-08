@@ -98,4 +98,8 @@ public class Plataforma {
         return usersAPI;
     }
 
+    public void resetUserAPI() {
+        this.usersAPI = new UsersAPI();
+    }
+
 }

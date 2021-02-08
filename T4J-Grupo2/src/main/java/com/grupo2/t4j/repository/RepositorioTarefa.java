@@ -50,14 +50,14 @@ public class RepositorioTarefa implements Serializable{
         listaTarefas = new ArrayList<>();
     }
 
-    public Tarefa novaTarefa(AreaActividade areaActividade, Categoria categoriaTarefa,
-                              List<CaracterizacaoCT> caracterizacaoCTS,
-                              String referencia,
-                              String designacao,
-                              String descInformal,
-                              String descTecnica,
-                              int duracao,
-                              double custo) {
+    public Tarefa novaTarefa(AreaActividade areaActividade, ArrayList<Categoria> categoriaTarefa,
+                             List<CaracterizacaoCT> caracterizacaoCTS,
+                             String referencia,
+                             String designacao,
+                             String descInformal,
+                             String descTecnica,
+                             int duracao,
+                             double custo) {
         return new Tarefa(areaActividade, categoriaTarefa, caracterizacaoCTS,
                 referencia, designacao, descInformal, descTecnica, duracao, custo);
     }

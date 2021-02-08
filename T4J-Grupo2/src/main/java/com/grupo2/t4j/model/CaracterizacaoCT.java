@@ -56,4 +56,8 @@ public class CaracterizacaoCT {
                 + "Carácter: %s", competenciaTecnica.getDescricaoBreve(), gp.toString(), obrigatoriedade.toString());
         
     }
+
+    public CompetenciaTecnica getCompetenciaTecnica() {
+        return this.competenciaTecnica;
+    }
 }

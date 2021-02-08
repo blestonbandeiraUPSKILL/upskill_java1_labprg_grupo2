@@ -73,9 +73,6 @@ public class AdicionarCategoriaTarefaUI implements Initializable {
 
         cmbGrauProficiencia.getItems().setAll(GrauProficiencia.values());
         cmbObrigatoriedade.getItems().setAll(Obrigatoriedade.values());
-  /*      cmbCompetenciaTecnica.getItems().setAll(
-                registarCompetenciaTecnicaController.getCompetenciasTecnicasByAreaActividade(
-                cmbAreaActividade.getSelectionModel().getSelectedItem()));*/
 
         cmbAreaActividade.getItems().addAll(registarAreaActividadeController.getAreasActividade());
 
@@ -88,31 +85,11 @@ public class AdicionarCategoriaTarefaUI implements Initializable {
     }
 
     public void updateCmbCompetenciasTecnicas(ActionEvent actionEvent) {
-
         List<CompetenciaTecnica> listaCompetenciasTecnicas =
                 registarCompetenciaTecnicaController.getCompetenciasTecnicasByAreaActividade(
                 cmbAreaActividade.getSelectionModel().getSelectedItem());
 
-        /*ObservableList<AreaActividade> listaAreasActividade = FXCollections.observableList(
-                registarAreaActividadeController.getAreasActividade());
-        cmbAreaActividade.setItems(listaAreasActividade);
-
-        Map finalListaCompetenciasTecnicas2Map = listaCompetenciasTecnicas2Map;
-
-        cmbAreaActividade.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<AreaActividade>() {
-            @Override
-            public void changed(ObservableValue<? extends AreaActividade> observable, AreaActividade oldValue, AreaActividade newValue) {
-                ObservableList listaCompetenciasTecnicas = FXCollections.observableArrayList(
-                        (List) finalListaCompetenciasTecnicas2Map.get(newValue));
-                cmbCompetenciaTecnica.getItems().setAll(listaCompetenciasTecnicas);
-            }
-        });*/
-
         cmbCompetenciaTecnica.getItems().addAll(listaCompetenciasTecnicas);
-
-
-
-
     }
 
     public void cancelarAction(ActionEvent event) {
@@ -189,6 +166,9 @@ public class AdicionarCategoriaTarefaUI implements Initializable {
         caracterizacaoCTS.add(caracterizacaoCT);
 
         listViewCompTecCat.getItems().add(caracterizacaoCT);
+        cmbGrauProficiencia.setItems(null);
+        cmbObrigatoriedade.setItems(null);
+        cmbCompetenciaTecnica.setItems(null);
 
         return caracterizacaoCTS;
     }

@@ -1,14 +1,15 @@
 package com.grupo2.t4j.ui;
 
+import com.grupo2.t4j.controller.AutenticacaoController;
 import com.grupo2.t4j.controller.RegistarAreaActividadeController;
 import com.grupo2.t4j.controller.RegistarCategoriaController;
 import com.grupo2.t4j.controller.RegistarCompetenciaTecnicaController;
 import com.grupo2.t4j.files.FicheiroRepositorioAreaActividade;
-import com.grupo2.t4j.files.FileChooserAreaActividade;
 import com.grupo2.t4j.files.FileChooserT4J;
 import com.grupo2.t4j.model.AreaActividade;
 import com.grupo2.t4j.model.Categoria;
 import com.grupo2.t4j.model.CompetenciaTecnica;
+import com.grupo2.t4j.model.Plataforma;
 import com.grupo2.t4j.repository.RepositorioAreaActividade;
 import java.io.File;
 import javafx.event.ActionEvent;
@@ -43,14 +44,13 @@ public class AdministrativoLogadoUI implements Initializable {
     private RegistarAreaActividadeController registarAreaActividadeController;
     private RegistarCategoriaController registarCategoriaController;
     private RegistarCompetenciaTecnicaController registarCompetenciaTecnicaController;
+    private AutenticacaoController autenticacaoController;
     
     private FicheiroRepositorioAreaActividade ficheiroAt;
     private RepositorioAreaActividade repositorioAreaActividade;
-    
-    
+
     private static final String CABECALHO_IMPORTAR = "Importar Lista.";
     private static final String CABECALHO_EXPORTAR = "Exportar Lista.";
-    
 
     @FXML Button btnAddAreaAtividade;
     @FXML Button btnAddCategoriaTarefa;
@@ -74,6 +74,7 @@ public class AdministrativoLogadoUI implements Initializable {
         registarAreaActividadeController = new RegistarAreaActividadeController();
         registarCategoriaController = new RegistarCategoriaController();
         registarCompetenciaTecnicaController = new RegistarCompetenciaTecnicaController();
+        autenticacaoController = new AutenticacaoController();
      
     }
 
@@ -143,12 +144,23 @@ public class AdministrativoLogadoUI implements Initializable {
         adicionarStage.show();
     }
 
+    public void logout(ActionEvent actionEvent) {
+        boolean logout = autenticacaoController.logout();
+        if (logout) {
+            navigateStartingPage(actionEvent);
+            Plataforma.getInstance().resetUserAPI();
+        }
+        else {
+            Alert alerta = AlertsUI.criarAlerta(Alert.AlertType.ERROR,
+                    MainApp.TITULO_APLICACAO,
+                    "Erro",
+                    "Não foi possível terminar a sessão.");
+        }
+    }
+
+
     public void navigateStartingPage(ActionEvent actionEvent) {
         try {
-            FXMLLoader loaderStartingPage = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/StartingPageScene.fxml"));
-            Parent rootStartingPage = loaderStartingPage.load();
-            sceneStartingPage = new Scene(rootStartingPage);
-
             Window window = btnSair.getScene().getWindow();
             window.setOnCloseRequest(new EventHandler<WindowEvent>() {
                 @Override
@@ -156,7 +168,7 @@ public class AdministrativoLogadoUI implements Initializable {
                     Alert alerta = AlertsUI.criarAlerta(Alert.AlertType.CONFIRMATION,
                             MainApp.TITULO_APLICACAO,
                             "Confirmação da acção",
-                            "Tem a certeza que pretende terminar a sessão??");
+                            "Tem a certeza que pretende terminar a sessão?");
 
                     if (alerta.showAndWait().get() == ButtonType.CANCEL) {
                         windowEvent.consume();
@@ -165,6 +177,9 @@ public class AdministrativoLogadoUI implements Initializable {
             });
             window.fireEvent(new WindowEvent(window, WindowEvent.WINDOW_CLOSE_REQUEST));
 
+            FXMLLoader loaderStartingPage = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/StartingPageScene.fxml"));
+            Parent rootStartingPage = loaderStartingPage.load();
+            sceneStartingPage = new Scene(rootStartingPage);
             adicionarStage.setScene(sceneStartingPage);
             adicionarStage.setTitle(MainApp.TITULO_APLICACAO);
             adicionarStage.show();
@@ -192,11 +207,12 @@ public class AdministrativoLogadoUI implements Initializable {
         listViewCompetenciasTecnicas.getItems().setAll(registarCompetenciaTecnicaController.getCompetenciasTecnicas());
     }
 
+    ///////////////// Ficheiros /////////////////
     public void exportAreasActividade(ActionEvent actionEvent) {
         String descricao, extensao;
 
         descricao = /*DESCRICAO_SERIALIZACAO*/ "Ficheiro Area de Atividade";
-        extensao = /*EXTENSAO_SERIALIZACAO*/"*.ltf";
+        extensao = /*EXTENSAO_SERIALIZACAO*/"*.txt";
         FileChooser flChooser = FileChooserT4J.criarFileChooserT4J(descricao, extensao);
         File ficheiroExportar = flChooser.showSaveDialog(listaAreasActividade.getScene().getWindow());
 
@@ -219,7 +235,7 @@ public class AdministrativoLogadoUI implements Initializable {
         String descricao, extensao;
 
         descricao = /*DESCRICAO_SERIALIZACAO*/"Ficheiro Area de Atividade";
-        extensao = /*EXTENSAO_SERIALIZACAO*/"*.ltf";
+        extensao = /*EXTENSAO_SERIALIZACAO*/"*.txt";
         FileChooser flChooser = FileChooserT4J.criarFileChooserT4J(descricao, extensao);
         File ficheiroImportar = flChooser.showOpenDialog(listaAreasActividade.getScene().getWindow());
 
@@ -246,8 +262,8 @@ public class AdministrativoLogadoUI implements Initializable {
     public void exportCompetenciasTecnicas(ActionEvent actionEvent) {
         String descricao, extensao;
 
-        descricao = /*DESCRICAO_SERIALIZACAO*/ "Ficheiro Categoria";
-        extensao = /*EXTENSAO_SERIALIZACAO*/".ltf";
+        descricao = /*DESCRICAO_SERIALIZACAO*/ "Ficheiro Competência Técnica";
+        extensao = /*EXTENSAO_SERIALIZACAO*/".txt";
         FileChooser flChooser = FileChooserT4J.criarFileChooserT4J(descricao, extensao);
         File ficheiroExportar = flChooser.showSaveDialog(listViewCompetenciasTecnicas.getScene().getWindow());
 
@@ -270,7 +286,7 @@ public class AdministrativoLogadoUI implements Initializable {
         String descricao, extensao;
 
         descricao = /*DESCRICAO_SERIALIZACAO*/"Ficheiro Competencias Tecnicas";
-        extensao = /*EXTENSAO_SERIALIZACAO*/"*.ltf";
+        extensao = /*EXTENSAO_SERIALIZACAO*/"*.txt";
         FileChooser flChooser = FileChooserT4J.criarFileChooserT4J(descricao, extensao);
         File ficheiroImportar = flChooser.showOpenDialog(listViewCompetenciasTecnicas.getScene().getWindow());
 
@@ -298,7 +314,7 @@ public class AdministrativoLogadoUI implements Initializable {
         String descricao, extensao;
 
         descricao = /*DESCRICAO_SERIALIZACAO*/ "Ficheiro Categoria";
-        extensao = /*EXTENSAO_SERIALIZACAO*/".ltf";
+        extensao = /*EXTENSAO_SERIALIZACAO*/".txt";
         FileChooser flChooser = FileChooserT4J.criarFileChooserT4J(descricao, extensao);
         File ficheiroExportar = flChooser.showSaveDialog(listaCategorias.getScene().getWindow());
 
@@ -322,7 +338,7 @@ public class AdministrativoLogadoUI implements Initializable {
         String descricao, extensao;
 
         descricao = /*DESCRICAO_SERIALIZACAO*/"Ficheiro Categoria";
-        extensao = /*EXTENSAO_SERIALIZACAO*/"*.ltf";
+        extensao = /*EXTENSAO_SERIALIZACAO*/"*.txt";
         FileChooser flChooser = FileChooserT4J.criarFileChooserT4J(descricao, extensao);
         File ficheiroImportar = flChooser.showOpenDialog(listaCategorias.getScene().getWindow());
 
@@ -345,4 +361,6 @@ public class AdministrativoLogadoUI implements Initializable {
                     "Não foi seleccionado nenhum ficheiro!").show();
         }
     }
+
+
 }
