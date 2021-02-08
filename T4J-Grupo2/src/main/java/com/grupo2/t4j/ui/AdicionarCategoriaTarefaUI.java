@@ -41,8 +41,6 @@ public class AdicionarCategoriaTarefaUI implements Initializable {
     private RegistarCompetenciaTecnicaController registarCompetenciaTecnicaController;
     private List<CaracterizacaoCT> caracterizacaoCTS;
 
-
-
     @FXML TextField txtDescricaoBreve;
     @FXML TextArea txtDescricaoDetalhada;
     @FXML Button btnConfirmar;

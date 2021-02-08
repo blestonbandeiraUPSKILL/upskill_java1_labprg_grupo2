@@ -66,8 +66,9 @@ public class RepositorioTarefa implements Serializable{
      * Adiciona uma Tarefa à lista de Tarefas
      * @param tarefa do tipo da classe Tarefa
      * @throws TarefaDuplicadaException
+     * @return
      */
-    public void addTarefa(Tarefa tarefa) throws TarefaDuplicadaException {
+    public boolean addTarefa(Tarefa tarefa) throws TarefaDuplicadaException {
         Tarefa t = getTarefaByReferencia(tarefa.getReferencia());
         if (t == null) {
             this.listaTarefas.add(tarefa);
@@ -75,6 +76,7 @@ public class RepositorioTarefa implements Serializable{
             throw new TarefaDuplicadaException(t.getReferencia() + 
                     ": Tarefa já registada");
         }
+        return false;
     }
 
     public List<Categoria> getCategoriasByAreaActividade(AreaActividade areaActividade) {

@@ -4,6 +4,8 @@ import com.grupo2.t4j.controller.*;
 import com.grupo2.t4j.files.FicheiroRepositorioColaborador;
 import com.grupo2.t4j.model.*;
 import com.grupo2.t4j.repository.RepositorioColaborador;
+import javafx.fxml.FXMLLoader;
+
 import java.io.IOException;
 import javafx.fxml.Initializable;
 
@@ -12,7 +14,6 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -38,52 +39,34 @@ public class GestorLogadoUI implements Initializable {
     private RegistarAreaActividadeController registarAreaActividadeController;
     private RegistarTarefaController registarTarefaController;
     private RegistarCompetenciaTecnicaController registarCompetenciaTecnicaController;
+    private AutenticacaoController autenticacaoController;
     
     private FicheiroRepositorioColaborador ficheiroC;
     private RepositorioColaborador repositorioColaborador;
     
-    private AutenticacaoController autenticacaoController;
+    @FXML TextField txtReferencia1;
+    @FXML TextField txtEmailColaborador;
+    @FXML TextField txtCustoEstTarefa;
+    @FXML TextField txtNomeColaborador;
+    @FXML TextField txtDuracao1;
+    @FXML TextField txtCusto1;
+    @FXML TextField txtTelefoneColaborador;
+    @FXML TextField txtRefTarefa;
+    @FXML TextField txtDuracaoTarefa;
+    @FXML TextField txtDesignTarefa;
 
-    /*
-    @FXML private TextField txtReferencia1;
-    @FXML private ComboBox<?> cmbArAct;
-    @FXML private TextField txtDuracao1;
-    @FXML private TextField txtCusto1;
-    @FXML private TextArea txtDescricaoInformal1;
-    @FXML private ListView<?> listViewTarefas;
-    @FXML private TextArea txtDescInformalTarefa;
-    @FXML private ComboBox<?> cmbCategoriaTarefaEspecificarTarefa;
-    @FXML private TextField txtRefTarefa;
-    @FXML private TextField txtDuracaoTarefa;
-    @FXML private TextField txtDesignTarefa;
-    @FXML private ComboBox<?> cmbCategoriaTarefaListaTarefas;
-    @FXML private TextArea txtDescTecnicaTarefa;
-    @FXML private ComboBox<?> cmbAreaActividadeListaTarefas;
-    @FXML private ListView<?> listViewCompTecReq;
-    @FXML private Button btnSairListaTarefas;
-    @FXML private TextField txtCustoEstTarefa;
-    @FXML private ComboBox<?> cmbAreaActividadeEspecificarTarefa;
-    @FXML ComboBox<AreaActividade> cmbAreaActividadeListaTarefas;
-    @FXML ComboBox<AreaActividade> cmbAreaActividadeEspecificarTarefa;
-    @FXML ComboBox<Categoria> cmbCategoriaTarefaListaTarefas;
-    @FXML ComboBox<Categoria> cmbCategoriaTarefaEspecificarTarefa;
+    @FXML TextArea txtDescricaoInformal1;
+    @FXML TextArea txtDescInformalTarefa;
+    @FXML TextArea txtDescTecnicaTarefa;
+
     @FXML ListView<Tarefa> listViewTarefas;
-    @FXML ListView<CaracterizacaoCT> listViewCaracterizacaoCTS;*/
-    
-    @FXML private TextField txtNomeColaborador;
-    
+    @FXML ListView<?> listViewCompTecReq;
+
+
     @FXML private TextField txtFuncaoColaborador;
-    
-    @FXML private TextField txtTelefoneColaborador;
-    
-    @FXML private TextField txtEmailColaborador;
-    
     @FXML private TextField txtPasswordColaborador;
-   
     @FXML Button btnRegistarColaborador;
-    
     @FXML Button btnCancelarRegCol;
-    
     @FXML Button btnLogout;
        
     public void associarParentUI(StartingPageUI startingPageUI) {
@@ -96,6 +79,7 @@ public class GestorLogadoUI implements Initializable {
         adicionarStage.initModality(Modality.APPLICATION_MODAL);;
         adicionarStage.setResizable(false);
 
+        autenticacaoController = new AutenticacaoController();
         registarColaboradorController = new RegistarColaboradorController();
         autenticacaoController = new AutenticacaoController();
         /*registarAreaActividadeController = new RegistarAreaActividadeController();
@@ -127,14 +111,30 @@ public class GestorLogadoUI implements Initializable {
     @FXML
     public void registarColaboradorAction(ActionEvent event){
         
-        try{
-            boolean adicionouCol = registarColaboradorController.registarColaborador(txtNomeColaborador.getText(),
-                    txtEmailColaborador.getText(), txtFuncaoColaborador.getText(),
-                    txtTelefoneColaborador.getText(), Rolename.COLABORADOR);
-            int ultimoColAdd = registarColaboradorController.getColaboradores().size();
-            txtPasswordColaborador.setText(registarColaboradorController.getColaboradores().get(ultimoColAdd).getPassword().getPasswordText());
-            AlertsUI.criarAlerta(Alert.AlertType.INFORMATION, "Área do Gestor","Registar Colaborador.", adicionouCol ? "Colaborador registado com sucesso." : "Não foi possível registar o Colaborador.");
-        }catch (IllegalArgumentException iae) {
+        try {
+
+            Colaborador colaborador = registarColaboradorController.novoColaborador(
+                    txtNomeColaborador.getText(),
+                    new Email(txtEmailColaborador.getText()),
+                    txtFuncaoColaborador.getText(),
+                    txtTelefoneColaborador.getText(),
+                    Rolename.COLABORADOR);
+
+            boolean adicionouCol = registarColaboradorController.registarColaborador(colaborador);
+
+            if (adicionouCol) {
+                autenticacaoController.registarColaboradorComoUtilizador(colaborador);
+                txtPasswordColaborador.setText(registarColaboradorController.getColaboradorByEmail(colaborador.getEmail()).getPassword().getPasswordText());
+
+                AlertsUI.criarAlerta(Alert.AlertType.INFORMATION,
+                        MainApp.TITULO_APLICACAO,
+                        "Registar Colaborador.",
+                        adicionouCol ? ("Colaborador registado com sucesso.")
+                                : "Não foi possível registar o Colaborador.").show();
+            }
+
+        }
+        catch (IllegalArgumentException iae) {
             AlertsUI.criarAlerta(Alert.AlertType.ERROR,
                     MainApp.TITULO_APLICACAO,
                     "Erro nos dados.",
@@ -148,6 +148,7 @@ public class GestorLogadoUI implements Initializable {
         this.txtEmailColaborador.clear();
         this.txtFuncaoColaborador.clear();
         this.txtTelefoneColaborador.clear();
+        this.txtPasswordColaborador.clear();
     }
 
     @FXML
@@ -200,4 +201,5 @@ public class GestorLogadoUI implements Initializable {
                     "Não foi possível terminar a sessão.");
         }
     }
+
 }

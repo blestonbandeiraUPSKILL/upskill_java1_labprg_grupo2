@@ -44,7 +44,7 @@ public class Utilizador implements Serializable{
     /**
      * O papel do Utilizador por omissão.
      */
-    private static final Rolename ROLENAME_POR_OMISSAO = Rolename.UTILIZADOR;
+    private static final Rolename ROLENAME_POR_OMISSAO = Rolename.COLABORADOR;
     
     /**
      * Construtor vazio da classe Utilizador
@@ -86,10 +86,10 @@ public class Utilizador implements Serializable{
      * @param emailUt o email do Utilizador em formato String
      * @param rolename o papel do Utilizador na T4J
      */
-    public Utilizador (String nome, String emailUt, Rolename rolename){
+    public Utilizador (String nome, Email emailUt, Rolename rolename){
         setNome(nome);
         this.email = new Email(emailUt);
-        setPassword(PASSWORD_POR_OMISSAO);
+        //setPassword(PASSWORD_POR_OMISSAO);
         setRolename(rolename); 
     }
        
@@ -102,7 +102,7 @@ public class Utilizador implements Serializable{
     public Utilizador(String nome, String emailUt){
         setNome(nome);
         this.email = new Email(emailUt);
-        setPassword(PASSWORD_POR_OMISSAO);
+        //setPassword(PASSWORD_POR_OMISSAO);
         setRolename(ROLENAME_POR_OMISSAO);
     }
     

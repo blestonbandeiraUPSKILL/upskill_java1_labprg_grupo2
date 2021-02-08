@@ -28,7 +28,7 @@ public class AutenticacaoController {
 
         AlgoritmoGeradorPasswords algoritmoGeradorPasswords = Plataforma.getInstance().getAlgoritmoGeradorPwd();
         Password password = new Password(algoritmoGeradorPasswords.geraPassword());
-        System.out.println(password);
+        colaborador.setPassword(password);
 
         UsersAPI usersAPI = Plataforma.getInstance().getUsersAPI();
         Utilizador utilizador = new Utilizador(nome, email, password, Rolename.GESTOR);
@@ -43,7 +43,7 @@ public class AutenticacaoController {
 
         AlgoritmoGeradorPasswords algoritmoGeradorPasswords = Plataforma.getInstance().getAlgoritmoGeradorPwd();
         Password password = new Password(algoritmoGeradorPasswords.geraPassword());
-        System.out.println(password);
+        colaborador.setPassword(password);
 
         UsersAPI usersAPI = Plataforma.getInstance().getUsersAPI();
         Utilizador utilizador = new Utilizador(nome, email, password, Rolename.COLABORADOR);

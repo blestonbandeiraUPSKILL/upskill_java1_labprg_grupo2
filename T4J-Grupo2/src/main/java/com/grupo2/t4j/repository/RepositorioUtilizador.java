@@ -82,7 +82,7 @@ public class RepositorioUtilizador implements Serializable{
      * @param rolename o papel do Utilizador na T4J
      * @throws UtilizadorDuplicadoException
      */
-    public boolean addUtilizador(String nome, String emailUt, String passUt, Rolename rolename) 
+  /*  public boolean addUtilizador(String nome, String emailUt, String passUt, Rolename rolename)
             throws UtilizadorDuplicadoException {
         Utilizador u = getUtilizadorByEmail(emailUt);
         if (u == null) {
@@ -93,7 +93,7 @@ public class RepositorioUtilizador implements Serializable{
             throw new UtilizadorDuplicadoException(u.getEmail().getEmailText()
                     + ": Utilizador já registado!");
         }
-    }
+    }*/
     
     /**
      * Adiciona um Utilizador à lista de Utilizadores
@@ -102,7 +102,7 @@ public class RepositorioUtilizador implements Serializable{
      * @param rolename o papel do Utilizador na T4J
      * @throws UtilizadorDuplicadoException
      */
-    public boolean addUtilizador(String nome, String emailUt, Rolename rolename) 
+   /* public boolean addUtilizador(String nome, String emailUt, Rolename rolename)
             throws UtilizadorDuplicadoException {
         Utilizador u = getUtilizadorByEmail(emailUt);
         if (u == null) {
@@ -113,7 +113,7 @@ public class RepositorioUtilizador implements Serializable{
             throw new UtilizadorDuplicadoException(u.getEmail().getEmailText()
                     + ": Utilizador já registado!");
         }
-    }
+    }*/
     
     /**
      * Adiciona um Utilizador à lista de Utilizadores
@@ -121,7 +121,7 @@ public class RepositorioUtilizador implements Serializable{
      * @param emailUt o email do Utilizador em formato String
      * @throws UtilizadorDuplicadoException
      */
-    public boolean addUtilizador(String nome, String emailUt) 
+   /* public boolean addUtilizador(String nome, String emailUt)
             throws UtilizadorDuplicadoException {
         Utilizador u = getUtilizadorByEmail(emailUt);
         if (u == null) {
@@ -132,7 +132,7 @@ public class RepositorioUtilizador implements Serializable{
             throw new UtilizadorDuplicadoException(u.getEmail().getEmailText()
                     + ": Utilizador já registado!");
         }
-    }
+    }*/
     
     
     /**
