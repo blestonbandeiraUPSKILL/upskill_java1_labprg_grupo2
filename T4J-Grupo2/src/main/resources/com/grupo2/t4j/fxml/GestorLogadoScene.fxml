@@ -42,7 +42,7 @@
                           <children>
                              <VBox alignment="CENTER" layoutX="560.0" layoutY="201.0" AnchorPane.bottomAnchor="101.66666666666669" AnchorPane.rightAnchor="32.0">
                                 <children>
-                                   <Button fx:id="btnSairListaTarefas" mnemonicParsing="false" onAction="#navigateStartingPage" text="Sair">
+                                   <Button fx:id="btnLogout" mnemonicParsing="false" onAction="#navigateStartingPage" text="Sair">
                                       <font>
                                          <Font name="Calibri" size="16.0" />
                                       </font>

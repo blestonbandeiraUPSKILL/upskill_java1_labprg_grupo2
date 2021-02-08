@@ -1,13 +1,10 @@
 package com.grupo2.t4j.ui;
 
-import com.grupo2.t4j.controller.RegistarAreaActividadeController;
-import com.grupo2.t4j.controller.RegistarCategoriaController;
-import com.grupo2.t4j.controller.RegistarColaboradorController;
-import com.grupo2.t4j.controller.RegistarCompetenciaTecnicaController;
-import com.grupo2.t4j.controller.RegistarTarefaController;
+import com.grupo2.t4j.controller.*;
 import com.grupo2.t4j.files.FicheiroRepositorioColaborador;
 import com.grupo2.t4j.model.*;
 import com.grupo2.t4j.repository.RepositorioColaborador;
+import java.io.IOException;
 import javafx.fxml.Initializable;
 
 import java.net.URL;
@@ -15,7 +12,9 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -42,6 +41,8 @@ public class GestorLogadoUI implements Initializable {
     
     private FicheiroRepositorioColaborador ficheiroC;
     private RepositorioColaborador repositorioColaborador;
+    
+    private AutenticacaoController autenticacaoController;
 
     /*
     @FXML private TextField txtReferencia1;
@@ -80,6 +81,8 @@ public class GestorLogadoUI implements Initializable {
     @FXML Button btnRegistarColaborador;
     
     @FXML Button btnCancelarRegCol;
+    
+    @FXML Button btnLogout;
        
     public void associarParentUI(StartingPageUI startingPageUI) {
         this.startingPageUI = startingPageUI;
@@ -92,6 +95,7 @@ public class GestorLogadoUI implements Initializable {
         adicionarStage.setResizable(false);
 
         registarColaboradorController = new RegistarColaboradorController();
+        autenticacaoController = new AutenticacaoController();
         /*registarAreaActividadeController = new RegistarAreaActividadeController();
         registarCategoriaController = new RegistarCategoriaController();
         registarTarefaController = new RegistarTarefaController();
@@ -167,6 +171,54 @@ public class GestorLogadoUI implements Initializable {
     }
 
 
-    public void navigateStartingPage(ActionEvent actionEvent) {
+    @FXML
+    void navigateStartingPage(ActionEvent event) {
+        try {
+            FXMLLoader loaderStartingPage = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/StartingPageScene.fxml"));
+            Parent rootStartingPage = loaderStartingPage.load();
+            sceneStartingPage = new Scene(rootStartingPage);
+
+            Window window = btnLogout.getScene().getWindow();
+            window.setOnCloseRequest(new EventHandler<WindowEvent>() {
+                @Override
+                public void handle(WindowEvent windowEvent) {
+                    Alert alerta = AlertsUI.criarAlerta(Alert.AlertType.CONFIRMATION,
+                            MainApp.TITULO_APLICACAO,
+                            "Confirmação da acção",
+                            "Tem a certeza que pretende terminar a sessão??");
+
+                    if (alerta.showAndWait().get() == ButtonType.CANCEL) {
+                        windowEvent.consume();
+                    }
+                }
+            });
+            window.fireEvent(new WindowEvent(window, WindowEvent.WINDOW_CLOSE_REQUEST));
+
+            adicionarStage.setScene(sceneStartingPage);
+            adicionarStage.setTitle(MainApp.TITULO_APLICACAO);
+            adicionarStage.show();
+
+        }
+        catch (IOException exception) {
+            exception.printStackTrace();
+            AlertsUI.criarAlerta(Alert.AlertType.ERROR,
+                    MainApp.TITULO_APLICACAO,
+                    "Erro",
+                    exception.getMessage());
+        }
+    }
+
+    public void logout(ActionEvent actionEvent) {
+        boolean logout = autenticacaoController.logout();
+        if (logout) {
+            navigateStartingPage(actionEvent);
+            Plataforma.getInstance().resetUserAPI();
+        }
+        else {
+            Alert alerta = AlertsUI.criarAlerta(Alert.AlertType.ERROR,
+                    MainApp.TITULO_APLICACAO,
+                    "Erro",
+                    "Não foi possível terminar a sessão.");
+        }
     }
 }
