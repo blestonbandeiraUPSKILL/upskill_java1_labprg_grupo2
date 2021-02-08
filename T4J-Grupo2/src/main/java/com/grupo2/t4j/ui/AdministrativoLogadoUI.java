@@ -5,11 +5,11 @@ import com.grupo2.t4j.controller.RegistarAreaActividadeController;
 import com.grupo2.t4j.controller.RegistarCategoriaController;
 import com.grupo2.t4j.controller.RegistarCompetenciaTecnicaController;
 import com.grupo2.t4j.files.FicheiroRepositorioAreaActividade;
-import com.grupo2.t4j.files.FileChooserAreaActividade;
 import com.grupo2.t4j.files.FileChooserT4J;
 import com.grupo2.t4j.model.AreaActividade;
 import com.grupo2.t4j.model.Categoria;
 import com.grupo2.t4j.model.CompetenciaTecnica;
+import com.grupo2.t4j.model.Plataforma;
 import com.grupo2.t4j.repository.RepositorioAreaActividade;
 import java.io.File;
 import javafx.event.ActionEvent;
@@ -48,11 +48,9 @@ public class AdministrativoLogadoUI implements Initializable {
     
     private FicheiroRepositorioAreaActividade ficheiroAt;
     private RepositorioAreaActividade repositorioAreaActividade;
-    
-    
+
     private static final String CABECALHO_IMPORTAR = "Importar Lista.";
     private static final String CABECALHO_EXPORTAR = "Exportar Lista.";
-    
 
     @FXML Button btnAddAreaAtividade;
     @FXML Button btnAddCategoriaTarefa;
@@ -150,6 +148,7 @@ public class AdministrativoLogadoUI implements Initializable {
         boolean logout = autenticacaoController.logout();
         if (logout) {
             navigateStartingPage(actionEvent);
+            Plataforma.getInstance().resetUserAPI();
         }
         else {
             Alert alerta = AlertsUI.criarAlerta(Alert.AlertType.ERROR,
@@ -208,6 +207,7 @@ public class AdministrativoLogadoUI implements Initializable {
         listViewCompetenciasTecnicas.getItems().setAll(registarCompetenciaTecnicaController.getCompetenciasTecnicas());
     }
 
+    ///////////////// Ficheiros /////////////////
     public void exportAreasActividade(ActionEvent actionEvent) {
         String descricao, extensao;
 

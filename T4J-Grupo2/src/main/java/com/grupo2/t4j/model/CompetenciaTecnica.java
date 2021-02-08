@@ -42,6 +42,8 @@ public class CompetenciaTecnica implements Serializable {
      */
     private CaracterizacaoCT cct;
 
+    private Categoria categoria;
+
     /**
      * Construtor CompetenciaTecnica Completo
      *
@@ -219,10 +221,5 @@ public class CompetenciaTecnica implements Serializable {
                 && Objects.equals(areaActividade, that.areaActividade)
                 && Objects.equals(cct, that.cct)
                 && Objects.equals(categoria, that.categoria);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(codigo, descricaoBreve, descricaoDetalhada, areaActividade, cct, categoria);
     }
 }
