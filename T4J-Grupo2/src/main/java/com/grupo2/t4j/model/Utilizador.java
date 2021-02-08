@@ -31,10 +31,21 @@ public class Utilizador implements Serializable{
     private Password password;
 
     /**
-     * O role do Utilizador
+     * O papel do Utilizador
      */
     private Rolename rolename;
-
+    
+    /**
+     * Password inicial de um Utilizador em processo de registo - antes de receber 
+     * a password oficial por email.
+     */
+    private static final Password PASSWORD_POR_OMISSAO = new Password("00000000");
+    
+    /**
+     * O papel do Utilizador por omissão - Colaborador - o papel mais básico.
+     */
+    private static final Rolename ROLENAME_POR_OMISSAO = Rolename.COLABORADOR;
+    
     /**
      * Construtor vazio da classe Utilizador
      */
@@ -46,35 +57,53 @@ public class Utilizador implements Serializable{
      * @param nome o nome do Utilizador
      * @param email o email do Utilizador em formato da classe Email
      * @param password a password do Utilizador em formato da classe Password
+     * @param rolename o papel do Utilizador na T4J
      */
-    public Utilizador(String nome, Email email, Password password){
+    public Utilizador(String nome, Email email, Password password, Rolename rolename){
         setNome(nome);
         setEmail(email);
         setPassword(password);
+        this.rolename = rolename;
     }
     
     /**
-     * Construtor completo da classe Utilizador
+     * Construtor completo da classe Utilizador só com Strings
      * @param nome o nome do Utilizador
      * @param emailUt o email do Utilizador em formato String
-     * @param password a password do Utilizador em formato da classe Password     * 
+     * @param password a password do Utilizador em formato String 
+     * @param rolename o papel do Utilizador na T4J
      */
-    public Utilizador(String nome, String emailUt, Password password){
-        setNome(nome);
-        this.email = new Email(emailUt);
-        setPassword(password);
-    }
-    
-    /**
-     * Construtor completo da classe Utilizador
-     * @param nome o nome do Utilizador
-     * @param emailUt o email do Utilizador em formato String
-     * @param passUt a password do Utilizador em formato String
-     */
-    public Utilizador(String nome, String emailUt, String passUt){
+    public Utilizador(String nome, String emailUt, String passUt, Rolename rolename){
         setNome(nome);
         this.email = new Email(emailUt);
         this.password = new Password(passUt);
+        this.rolename = rolename;
+    }
+    
+    /**
+     * Construtor da classe Utilizador com a password por omissão
+     * @param nome o nome do Utilizador
+     * @param emailUt o email do Utilizador em formato String
+     * @param rolename o papel do Utilizador na T4J
+     */
+    public Utilizador(String nome, String emailUt, Rolename rolename){
+        setNome(nome);
+        this.email = new Email(emailUt);
+        setPassword(PASSWORD_POR_OMISSAO);
+        this.rolename = rolename;
+    }
+    
+    /**
+     * Construtor da classe Utilizador com a password por omissão e o papel
+     * do utilizador por omissão
+     * @param nome o nome do Utilizador
+     * @param emailUt o email do Utilizador em formato String
+     */
+    public Utilizador(String nome, String emailUt){
+        setNome(nome);
+        this.email = new Email(emailUt);
+        setPassword(PASSWORD_POR_OMISSAO);
+        this.rolename = ROLENAME_POR_OMISSAO;
     }
     
     /**
@@ -85,6 +114,7 @@ public class Utilizador implements Serializable{
         setNome(utilizador.nome);
         setEmail(utilizador.email);
         setPassword(utilizador.password);
+        this.rolename = utilizador.rolename;
     }
 
     /**
@@ -92,26 +122,10 @@ public class Utilizador implements Serializable{
      * @param nomeGestor o nome do Gestor da Organização
      * @param emailGestor o email do Gestor da Organização
      */
-    public Utilizador(String nomeGestor, Email emailGestor) {
+   /* public Utilizador(String nomeGestor, Email emailGestor) {
         setNome(nomeGestor);
         setEmail(emailGestor);
-    }
-
-    /**
-     *
-     * Construtor da classe Utilizador, que recebe o nome, uma password, o email e o seu papel
-     *
-     * @param nome o nome do Utilizador
-     * @param password a password do Utilizdor
-     * @param email o email do Utilizador
-     * @param rolename o papel do utilizador
-     */
-    public Utilizador(String nome, Password password, Email email, Rolename rolename) {
-        setNome(nome);
-        setPassword(password);
-        setEmail(email);
-        this.rolename = rolename;
-    }
+    }*/
 
     /**
      * Verifica a validade do parâmetro recebido e regista o nome do Utilizador
@@ -165,6 +179,14 @@ public class Utilizador implements Serializable{
     } 
     
     /**
+     * Retorna o rolename do Utilizador
+     * @return rolename
+     */
+    public Rolename getRolename(){
+        return rolename;
+    }
+    
+    /**
      * Representação textual da classe Utilizador
      * @return Nome, email e password do Utilizador
      */   
@@ -179,7 +201,7 @@ public class Utilizador implements Serializable{
      * @return Nome e email do Utilizador
      */
     public String toStringSemPass(){
-        return String.format("O utilizador %s tem o seguinte email registado: %s", 
+        return String.format("Nome do utilizador: %s %nEmail registado: %s", 
                 nome, email.getEmailText());
     }
 }
