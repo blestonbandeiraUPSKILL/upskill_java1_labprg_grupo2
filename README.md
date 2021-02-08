@@ -29,6 +29,10 @@
 
 ## Dados de login
 
+#### Administrativo:
+* email: administrativogrupo2@upskill.pt
+* pass: teste123
+
 #### Gestor:
 * email: admingrupo2@upskill.pt
 * pass: teste123
