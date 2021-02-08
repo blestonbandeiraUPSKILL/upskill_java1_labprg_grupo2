@@ -34,117 +34,70 @@ public class Colaborador extends Utilizador implements Serializable{
      * a password oficial por email.
      */
     private static final Password PASSWORD_POR_OMISSAO = new Password("00000000");
-
-    /**
-     * Construtor vazio da classe Colaborador
-     */
-    public Colaborador() {
-        super();
-    }
-
-    /**
-     * Construtor da classe Colaborador somente com parâmetros da classe Utilizador
-     * @param nome o nome do Colaborador
-     * @param email o email do Colaborador em formato da classe Email
-     * @param password a password do Colaborador em formato da classe Password
-     */
-    public Colaborador(String nome, Email email, Password password){
-        super(nome, email, password);
-    }
     
     /**
+     * Por definição, todos da classe Colaborador tem rolename Colaborador.
+     */
+    private static final Rolename ROLENAME_POR_DEFINICAO = Rolename.COLABORADOR;
+    
+    /**
+     * Construtor completo da classe Colaborador
+     * @param nome o nome do Colaborador
+     * @param email o email do Utilizador em formato da classe Email
+     * @param password a password do Utilizador em formato da classe Password
+     * @param funcao a função do Colaborador da organização
+     * @param telefone o telefone do Colaborador da organização
      * 
-     * @param nome
-     * @param email
-     * @param telefone
-     * @param rolename 
      */
 
-    public Colaborador(String nome, Email email, String telefone, Rolename rolename) {
-        setNome(nome);
-        setEmail(email);
+    public Colaborador(String nome, Email email, Password password, String funcao, 
+            String telefone) {
+        super(nome, email, password, ROLENAME_POR_DEFINICAO);
+        setFuncao(funcao);
         setTelefone(telefone);
-        this.rolename = rolename;
     }
-  
+    
     /**
-     * Construtor completo da classe Colaborador 
+     * Construtor completo da classe Colaborador
      * @param nome o nome do Colaborador
-     * @param email o email do Colaborador em formato da classe Email
-     * @param password a password do Colaborador em formato da classe Password
+     * @param emailCol o email do Utilizador em formato String
+     * @param passCol a password do Utilizador em formato String
+     * @param funcao a função do Colaborador da organização
+     * @param telefone o telefone do Colaborador da organização
+     * 
+     */
+
+    public Colaborador(String nome, String emailCol, String passCol,
+            String funcao, String telefone) {
+        super(nome, emailCol, passCol, ROLENAME_POR_DEFINICAO);
+        setFuncao(funcao);
+        setTelefone(telefone);
+    }
+      
+    /**
+     * Construtor da classe Colaborador com password por omissão (antes de receber 
+     * a password oficial por email - password = "00000000"
+     * @param nome o nome do Colaborador
+     * @param emailCol o email do Colaborador em formato String
      * @param funcao a função do Colaborador da organização
      * @param telefone o telefone do Colaborador da organização
      */
 
-    public Colaborador(String nome, Email email, Password password, String funcao,
+    public Colaborador(String nome, String emailCol, String funcao,
             String telefone){
-        super(nome, email, password);
+        super(nome, emailCol, ROLENAME_POR_DEFINICAO);
         setFuncao(funcao);
         setTelefone(telefone);
     }
-    
-    /**
-     * Construtor completo da classe Colaborador 
-     * @param nome o nome do Colaborador
-     * @param emailCol o email do Colaborador em formato String
-     * @param password a password do Colaborador em formato da classe Password
-     * @param funcao a função do Colaborador da organização
-     * @param telefone o telefone do Colaborador da organização
-     */
-    public Colaborador(String nome, String emailCol, Password password, String funcao,
-            String telefone){
-        super(nome, emailCol, password);
-        setFuncao(funcao);
-        setTelefone(telefone);
-    }
-    
-    /**
-     * Construtor completo da classe Colaborador 
-     * @param nome o nome do Colaborador
-     * @param emailCol o email do Colaborador em formato String
-     * @param passCol a password do Colaborador em formato String
-     * @param funcao a função do Colaborador da organização
-     * @param telefone o telefone do Colaborador da organização     * 
-     */
-    public Colaborador(String nome, String emailCol, String passCol, String funcao,
-            String telefone){
-        super(nome, emailCol, passCol);
-        setFuncao(funcao);
-        setTelefone(telefone);
-    }
-    
-    /**
-     * Construtor da classe Colaborador com Password oficial ainda a ser gerada
-     * @param nome o nome do Colaborador
-     * @param emailCol o email do Colaborador em formato String
-     * @param funcao a função do Colaborador da organização
-     * @param telefone o telefone do Colaborador da organização     * 
-     */
-    public Colaborador(String nome, String emailCol, String funcao, String telefone){
-        super(nome, emailCol, PASSWORD_POR_OMISSAO);
-        setFuncao(funcao);
-        setTelefone(telefone);
-    }
-
-    /* Construtor da classe Colaborador para uso específico de Gestor de Organização
-     * @param nomeGestor o nome do Gestor da Organização
-     * @param emailGestor o email do Gestor da Organização
-     * @param funcao a função do Gestor da Organização
-     * @param telefoneGestor o telefone do Gestor da Organização
-     */
-    /*public Colaborador(String nomeGestor, Email emailGestor, String funcao, String telefoneGestor) {
-        super(nomeGestor, emailGestor);
-        setFuncao(funcao);
-        setTelefone(telefoneGestor);
-    }*/
-
+       
     /**
      * Construtor da classe Colaborador
      * @param colaborador é do tipo da classe Colaborador
      */
     public Colaborador (Colaborador colaborador){
-        super(colaborador.getNome(), colaborador.getEmail(), colaborador.getPassword());
-        /*setFuncao(colaborador.funcao);*/
+        super(colaborador.getNome(), colaborador.getEmail(), colaborador.getPassword(),
+                ROLENAME_POR_DEFINICAO);                
+        setFuncao(colaborador.funcao);
         setTelefone(colaborador.telefone);
     }
 
@@ -171,10 +124,6 @@ public class Colaborador extends Utilizador implements Serializable{
         this.telefone = telefone;
     }
 
-    public Rolename getRolename() {
-        return rolename;
-    }
-
     /**
      * Devolve a função do colaborador
      * @return funcao
@@ -195,22 +144,23 @@ public class Colaborador extends Utilizador implements Serializable{
      * Representação textual da classe Colaborador
      * @return Nome, função, email, telefone e password do Colaborador
      */   
-  /*  @Override
+    @Override
     public String toString(){
-        return String.format("O colaborador %s tem os seguintes dados: %nfuncao: %s"
-                + " %nEmail: %s %nTelefone: %s %nPassword: %s", super.getNome(), 
-                funcao, super.getEmail().getEmailText(), telefone, 
-                super.getPassword().getPasswordText());
-    }*/
+        return String.format("Nome colaborador: %s  %nEmail: %s"
+                + "%nPassword: %s %nfuncao: %s %nTelefone: %s ", 
+                super.getNome(), super.getEmail().getEmailText(),
+                super.getPassword().getPasswordText(), funcao, telefone);
+    }
     
     /**
      * Representação textual da classe Colaborador sem a password
      * @return Nome, função, email  e telefone do Utilizador
      */
-  /*  @Override
+    @Override
     public String toStringSemPass(){
-        return String.format("O colaborador %s tem os seguintes dados: %nfuncao: %s"
-                + " %nEmail: %s %nTelefone: %s", super.getNome(), 
-                funcao, super.getEmail().getEmailText(), telefone);
-    }  */
+        return String.format("Nome colaborador: %s  %nEmail: %s"
+                + "%nfuncao: %s %nTelefone: %s ", 
+                super.getNome(), super.getEmail().getEmailText(),
+                funcao, telefone);
+    }
 }

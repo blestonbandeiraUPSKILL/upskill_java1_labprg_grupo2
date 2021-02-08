@@ -78,10 +78,17 @@ public class ConfirmarRegistoOrgUI implements Initializable {
     }
 
     public void addOrganizacao(ActionEvent actionEvent) throws Exception {
-
+        Organizacao organizacao = registarOrganizacaoController.getOrganizacao();
         try {
-            if(registarOrganizacaoController.registaOrganizacao()) {
+            boolean registou = registarOrganizacaoController.registaOrganizacao(organizacao);
+            if(registou) {
+                
                 AlertsUI.criarAlerta(Alert.AlertType.INFORMATION,
+                    MainApp.TITULO_APLICACAO,
+                    "Registar Organização.",
+                    registou ? "Organização registada com sucesso."
+                                : "Não foi possível registar a Organização.").show();
+                /*AlertsUI.criarAlerta(Alert.AlertType.INFORMATION,
                         MainApp.TITULO_APLICACAO,
                         "Sucesso",
                         "Organização registada com sucesso!");
@@ -90,7 +97,7 @@ public class ConfirmarRegistoOrgUI implements Initializable {
                 AlertsUI.criarAlerta(Alert.AlertType.ERROR,
                         MainApp.TITULO_APLICACAO,
                         "Erro",
-                        "Algo correu mal. Por favor tente de novo.");
+                        "Algo correu mal. Por favor tente de novo.");*/
             }
 
         }

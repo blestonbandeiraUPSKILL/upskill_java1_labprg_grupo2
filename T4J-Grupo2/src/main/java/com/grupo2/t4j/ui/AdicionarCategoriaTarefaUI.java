@@ -77,7 +77,8 @@ public class AdicionarCategoriaTarefaUI implements Initializable {
                 registarCompetenciaTecnicaController.getCompetenciasTecnicasByAreaActividade(
                 cmbAreaActividade.getSelectionModel().getSelectedItem()));*/
 
-        updateCmbCompetenciasTecnicas();
+       /* cmbAreaActividade.addEventFilter();
+                updateCmbCompetenciasTecnicas();*/
     }
 
     public void updateCmbCompetenciasTecnicas() {
