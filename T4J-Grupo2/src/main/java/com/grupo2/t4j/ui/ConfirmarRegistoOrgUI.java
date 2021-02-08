@@ -1,16 +1,12 @@
 package com.grupo2.t4j.ui;
 
-import com.grupo2.t4j.controller.ApplicationController;
 import com.grupo2.t4j.controller.RegistarOrganizacaoController;
 import com.grupo2.t4j.model.Organizacao;
-import com.grupo2.t4j.repository.RepositorioOrganizacao;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
@@ -26,7 +22,6 @@ import java.util.ResourceBundle;
 
 public class ConfirmarRegistoOrgUI implements Initializable {
 
-    private ApplicationController applicationController;
     private RegistarOrganizacaoController registarOrganizacaoController;
     private Stage adicionarStage;
 
@@ -51,7 +46,6 @@ public class ConfirmarRegistoOrgUI implements Initializable {
         adicionarStage.initModality(Modality.APPLICATION_MODAL);
         adicionarStage.setResizable(false);
 
-        applicationController = new ApplicationController();
         registarOrganizacaoController = new RegistarOrganizacaoController();
         Organizacao organizacao = RegistarOrganizacaoController.getOrganizacao();
         if (organizacao != null) {
@@ -138,7 +132,7 @@ public class ConfirmarRegistoOrgUI implements Initializable {
     }
     
     private void closeAddOrganizacao(ActionEvent event) {
-        /*this.txtCodigo.clear();
+      /*  this.txtCodigo.clear();
         this.txtDescricaoBreve.clear();
         this.areaDescricaoDetalhada.clear();*/
         ((Node) event.getSource()).getScene().getWindow().hide();

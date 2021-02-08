@@ -5,6 +5,11 @@ import com.grupo2.t4j.controller.RegistarCategoriaController;
 import com.grupo2.t4j.controller.RegistarCompetenciaTecnicaController;
 import com.grupo2.t4j.model.*;
 
+import com.sun.javafx.collections.MappingChange;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -15,9 +20,7 @@ import javafx.stage.Window;
 import javafx.stage.WindowEvent;
 
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
 
 import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
@@ -67,13 +70,50 @@ public class AdicionarCategoriaTarefaUI implements Initializable {
         adicionarStage = new Stage();
         adicionarStage.initModality(Modality.APPLICATION_MODAL);;
         adicionarStage.setResizable(false);
-        cmbAreaActividade.getItems().setAll(registarAreaActividadeController.getAreasActividade());
+
         cmbGrauProficiencia.getItems().setAll(GrauProficiencia.values());
         cmbObrigatoriedade.getItems().setAll(Obrigatoriedade.values());
-        cmbCompetenciaTecnica.getItems().setAll(registarCompetenciaTecnicaController.getCompetenciasTecnicas());
+  /*      cmbCompetenciaTecnica.getItems().setAll(
+                registarCompetenciaTecnicaController.getCompetenciasTecnicasByAreaActividade(
+                cmbAreaActividade.getSelectionModel().getSelectedItem()));*/
 
+        cmbAreaActividade.getItems().addAll(registarAreaActividadeController.getAreasActividade());
+
+        cmbAreaActividade.setOnAction(new EventHandler<ActionEvent>() {
+           @Override
+           public void handle(ActionEvent event) {
+               updateCmbCompetenciasTecnicas(event);
+           }
+        });
     }
 
+    public void updateCmbCompetenciasTecnicas(ActionEvent actionEvent) {
+
+        List<CompetenciaTecnica> listaCompetenciasTecnicas =
+                registarCompetenciaTecnicaController.getCompetenciasTecnicasByAreaActividade(
+                cmbAreaActividade.getSelectionModel().getSelectedItem());
+
+        /*ObservableList<AreaActividade> listaAreasActividade = FXCollections.observableList(
+                registarAreaActividadeController.getAreasActividade());
+        cmbAreaActividade.setItems(listaAreasActividade);
+
+        Map finalListaCompetenciasTecnicas2Map = listaCompetenciasTecnicas2Map;
+
+        cmbAreaActividade.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<AreaActividade>() {
+            @Override
+            public void changed(ObservableValue<? extends AreaActividade> observable, AreaActividade oldValue, AreaActividade newValue) {
+                ObservableList listaCompetenciasTecnicas = FXCollections.observableArrayList(
+                        (List) finalListaCompetenciasTecnicas2Map.get(newValue));
+                cmbCompetenciaTecnica.getItems().setAll(listaCompetenciasTecnicas);
+            }
+        });*/
+
+        cmbCompetenciaTecnica.getItems().addAll(listaCompetenciasTecnicas);
+
+
+
+
+    }
 
     public void cancelarAction(ActionEvent event) {
         Window window = btnCancelar.getScene().getWindow();

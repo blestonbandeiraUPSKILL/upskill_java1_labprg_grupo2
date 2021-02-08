@@ -21,7 +21,7 @@ public class RegistarOrganizacaoController {
         this.plataforma = Plataforma.getInstance();
     }
 
-    public Organizacao novaOrganizacao(String nome, String nif, String arruamento,
+    /*public Organizacao novaOrganizacao(String nome, String nif, String arruamento,
                                 String numeroPorta, String localidade, String codigoPostal,
                                 String telefone, Website website, Email emailOrganizacao,
                                 String nomeGestor, Email emailGestor,  String telefoneGestor,
@@ -38,7 +38,7 @@ public class RegistarOrganizacaoController {
 //            throw new Exception();
 //        }
         return organizacao;
-    }
+    }*/
 
     public boolean registaOrganizacao(Organizacao organizacao) throws Exception {
         return RepositorioOrganizacao.getInstance().addOrganizacao(organizacao);

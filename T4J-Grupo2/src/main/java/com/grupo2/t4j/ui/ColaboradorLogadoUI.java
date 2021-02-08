@@ -92,16 +92,12 @@ public class ColaboradorLogadoUI implements Initializable {
     public void registarTarefa(ActionEvent actionEvent) {
         try {
             AreaActividade areaActividade = registarAreaActividadeController.getAreaActividadeByCodigo(
-                    cmbAreaActividadeEspecificarTarefa.getSelectionModel().getSelectedItem().toString());
-     /*       Categoria categoriaTarefa = registarCategoriaController.getCategoriasByAreaActividade(
-                    cmbCategoriaTarefaEspecificarTarefa.getSelectionModel().getSelectedItem(),
+                    cmbAreaActividadeEspecificarTarefa.getSelectionModel().getSelectedItem().getCodigo());
+            ArrayList<Categoria> categoriaTarefa = registarCategoriaController.getCategoriasByAreaActividade(areaActividade);
 
-            );
+           /* Tarefa tarefa = registarTarefaController.novaTarefa(areaActividade, categoriaTarefa,
 
-            Tarefa tarefa = registarTarefaController.novaTarefa(areaActividade, categoriaTarefa,
-
-            )
-*/
+            )*/
         }
         catch (IllegalArgumentException iae) {
             AlertsUI.criarAlerta(Alert.AlertType.ERROR,
