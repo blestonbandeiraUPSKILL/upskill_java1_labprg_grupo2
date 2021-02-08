@@ -7,7 +7,7 @@
 - [API para Gestão de Utilizadores](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Sprint%202%20-%20Documenta%C3%A7%C3%A3o/Enunciado/API.md)
 - [Diagrama de Casos de Uso](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Sprint%202%20-%20Documenta%C3%A7%C3%A3o/Enunciado/Diagrama_Casos_Uso.md)
 - [Glossário](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Sprint%202%20-%20Documenta%C3%A7%C3%A3o/Enunciado/Glossario.md)
-- [Modelo de Domínio]()
+- [Modelo de Domínio](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Sprint%202%20-%20Documenta%C3%A7%C3%A3o/Enunciado/Modelo_Dominio.md)
 - [UC01 - Registar Organização]()
 - [UC02 - Definir Área de Atividade]()
 - [UC03 - Definir Categoria de Tarefa]()
