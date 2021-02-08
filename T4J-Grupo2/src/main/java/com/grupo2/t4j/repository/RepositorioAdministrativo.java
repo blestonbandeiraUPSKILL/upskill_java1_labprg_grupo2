@@ -42,10 +42,12 @@ public class RepositorioAdministrativo implements Serializable{
      * @param administrativo do tipo da classe Administrativo
      * @throws AdministrativoDuplicadoException
      */
-    public void addAdministrativo(Administrativo administrativo) throws AdministrativoDuplicadoException {
+    public boolean addAdministrativo(Administrativo administrativo) 
+            throws AdministrativoDuplicadoException {
         Administrativo a = getAdministrativoByEmail(administrativo.getEmail().getEmailText());
         if (a == null) {
             this.listaAdministrativos.add(administrativo);
+            return true;
         } else {
             throw new AdministrativoDuplicadoException(a.getEmail().getEmailText() + 
                     ": Administrador já registado");
@@ -59,11 +61,13 @@ public class RepositorioAdministrativo implements Serializable{
      * @param password a password do Administrativo em formato da classe Password
      * @throws AdministrativoDuplicadoException
      */
-    public void addAdministrativo(String nome, Email email, Password password) throws AdministrativoDuplicadoException {
+    public boolean addAdministrativo(String nome, Email email, Password password) 
+            throws AdministrativoDuplicadoException {
         Administrativo a = getAdministrativoByEmail(email.getEmailText());
         if (a == null) {
             Administrativo administrativo = new Administrativo(nome, email, password);
             this.listaAdministrativos.add(administrativo);
+            return true;
         } else {
             throw new AdministrativoDuplicadoException(a.getEmail().getEmailText() + 
                     ": Administrador já registado");
@@ -74,39 +78,21 @@ public class RepositorioAdministrativo implements Serializable{
      * Adiciona um Administrativo à lista de Administrativos
      * @param nome o nome do Administrativo
      * @param email  o email do Administrativo em formato String
-     * @param password a password do Administrativo em formato da classe Password
+     * @param passAd a password do Administrativo em formato String
      * @throws AdministrativoDuplicadoException
      */
-    public void addAdministrativo(String nome, String emailAd, Password password) throws AdministrativoDuplicadoException {
+    public boolean addAdministrativo(String nome, String emailAd, String passAd) throws AdministrativoDuplicadoException {
         Administrativo a = getAdministrativoByEmail(emailAd);
         if (a == null) {
-            Administrativo administrativo = new Administrativo(nome, emailAd, password);
+            Administrativo administrativo = new Administrativo(nome, emailAd, passAd);
             this.listaAdministrativos.add(administrativo);
+            return true;
         } else {
             throw new AdministrativoDuplicadoException(a.getEmail().getEmailText() 
                     + ": Administrador já registado");
         }
     }
-    
-    /**
-     * Adiciona um Administrativo à lista de Administrativos
-     * @param nome o nome do Administrativo
-     * @param email  o email do Administrativo em formato String
-     * @param password a password do Administrativo em formato String
-     * @throws AdministrativoDuplicadoException
-     */
-    public void addAdministrativo(String nome, String emailAd, String password) throws AdministrativoDuplicadoException {
-        Administrativo a = getAdministrativoByEmail(emailAd);
-        if (a == null) {
-            Password passAdm = new Password(password);
-            Administrativo administrativo = new Administrativo(nome, emailAd, passAdm);
-            this.listaAdministrativos.add(administrativo);
-        } else {
-            throw new AdministrativoDuplicadoException(a.getEmail().getEmailText() 
-                    + ": Administrador já registado");
-        }
-    }
-    
+       
     /**
      * Atualiza a lista de Administrativos
      *

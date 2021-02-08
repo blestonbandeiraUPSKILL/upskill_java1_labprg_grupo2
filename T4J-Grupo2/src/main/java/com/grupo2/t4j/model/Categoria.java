@@ -113,7 +113,7 @@ public class Categoria implements Serializable{
     }
 
     /**
-     *Atualiza a descricao da categoria
+     *Atualiza a descricao breve da categoria
      * @param descBreve
      */
     public void setDescBreve(String descBreve) {
@@ -123,7 +123,10 @@ public class Categoria implements Serializable{
             this.descBreve = descBreve;
         }
     }
-
+    /**
+     * Actualiza a descricao detalhada da categoria
+     * @param descDetalhada 
+     */
     public void setDescDetalhada(String descDetalhada) {
         if(descDetalhada == null || descDetalhada.trim().isEmpty()) {
             throw new DescricaoInvalidaException("Deve introduzir uma descrição detalhada válida!");
