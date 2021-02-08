@@ -31,6 +31,7 @@ public class RegistarCompetenciaTecnicaController {
     }
 
     public List<CompetenciaTecnica> getCompetenciasTecnicasByAreaActividade(AreaActividade areaActividade) {
+
        return RepositorioCompetenciaTecnica.getInstance().getCompetenciasTecnicasByAreaActividade(areaActividade);
     }
 

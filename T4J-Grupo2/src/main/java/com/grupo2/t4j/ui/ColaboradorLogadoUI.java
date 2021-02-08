@@ -1,13 +1,7 @@
 package com.grupo2.t4j.ui;
 
-import com.grupo2.t4j.controller.RegistarAreaActividadeController;
-import com.grupo2.t4j.controller.RegistarCategoriaController;
-import com.grupo2.t4j.controller.RegistarCompetenciaTecnicaController;
-import com.grupo2.t4j.controller.RegistarTarefaController;
-import com.grupo2.t4j.model.AreaActividade;
-import com.grupo2.t4j.model.Categoria;
-import com.grupo2.t4j.model.CompetenciaTecnica;
-import com.grupo2.t4j.model.Tarefa;
+import com.grupo2.t4j.controller.*;
+import com.grupo2.t4j.model.*;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -24,6 +18,7 @@ import javafx.stage.WindowEvent;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class ColaboradorLogadoUI implements Initializable {
@@ -33,6 +28,7 @@ public class ColaboradorLogadoUI implements Initializable {
     private RegistarAreaActividadeController registarAreaActividadeController;
     private RegistarTarefaController registarTarefaController;
     private RegistarCompetenciaTecnicaController registarCompetenciaTecnicaController;
+    private RegistarCaracterizacaoCTController registarCaracterizacaoCTController;
     private StartingPageUI startingPageUI;
     private Scene sceneStartingPage;
     private Stage adicionarStage;
@@ -44,7 +40,7 @@ public class ColaboradorLogadoUI implements Initializable {
     @FXML ComboBox<Categoria> cmbCategoriaTarefaListaTarefas;
     @FXML ComboBox<Categoria> cmbCategoriaTarefaEspecificarTarefa;
     @FXML ListView<Tarefa> listViewTarefas;
-    @FXML ListView<CompetenciaTecnica> listViewCompetenciasTecnicas;
+    @FXML ListView<CaracterizacaoCT> listViewCaracterizacaoCT;
     @FXML TextField txtReferencia;
     @FXML TextField txtDesignacao;
     @FXML TextArea txtDescInformal;
@@ -63,9 +59,10 @@ public class ColaboradorLogadoUI implements Initializable {
         registarCategoriaController = new RegistarCategoriaController();
         registarTarefaController = new RegistarTarefaController();
         registarCompetenciaTecnicaController = new RegistarCompetenciaTecnicaController();
+        registarCaracterizacaoCTController = new RegistarCaracterizacaoCTController();
 
         adicionarStage = new Stage();
-        adicionarStage.initModality(Modality.APPLICATION_MODAL);;
+        adicionarStage.initModality(Modality.APPLICATION_MODAL);
         adicionarStage.setResizable(false);
 
         //tab Lista de Tarefas
@@ -83,9 +80,12 @@ public class ColaboradorLogadoUI implements Initializable {
                 registarCategoriaController.getCategoriasByAreaActividade(
                         cmbAreaActividadeEspecificarTarefa.getSelectionModel().getSelectedItem()));
 
-        ListView<CompetenciaTecnica> listViewCompetenciasTecnicas = new ListView<>();
-        listViewCompetenciasTecnicas.getItems().addAll(registarCompetenciaTecnicaController.getCompetenciasTecnicasByAreaActividade(
-                cmbAreaActividadeEspecificarTarefa.getSelectionModel().getSelectedItem()));
+        ListView<CaracterizacaoCT> listViewCaracterizacaoCT = new ListView<>();
+        listViewCaracterizacaoCT.getItems().addAll(registarCaracterizacaoCTController.getCaracterizacaoCTSByCompetenciaTecnica(
+                registarCompetenciaTecnicaController.getCompetenciasTecnicasByAreaActividade(
+                        cmbAreaActividadeEspecificarTarefa.getSelectionModel().getSelectedItem())));
+
+
 
     }
 
@@ -93,11 +93,21 @@ public class ColaboradorLogadoUI implements Initializable {
         try {
             AreaActividade areaActividade = registarAreaActividadeController.getAreaActividadeByCodigo(
                     cmbAreaActividadeEspecificarTarefa.getSelectionModel().getSelectedItem().getCodigo());
-            ArrayList<Categoria> categoriaTarefa = registarCategoriaController.getCategoriasByAreaActividade(areaActividade);
+            ArrayList<Categoria> categoriasTarefa =
+                    registarCategoriaController.getCategoriasByAreaActividade(areaActividade);
 
-           /* Tarefa tarefa = registarTarefaController.novaTarefa(areaActividade, categoriaTarefa,
+            List<CaracterizacaoCT> caracterizacaoCTS = registarCaracterizacaoCTController.getCaracterizacaoCTSByCompetenciaTecnica(
+                    registarCompetenciaTecnicaController.getCompetenciasTecnicasByAreaActividade(areaActividade));
 
-            )*/
+
+            Tarefa tarefa = registarTarefaController.novaTarefa(areaActividade, categoriasTarefa, caracterizacaoCTS,
+                    txtReferencia.getText(),
+                    txtDesignacao.getText(),
+                    txtDescInformal.getText(),
+                    txtDescTecnica.getText(),
+                    Integer.parseInt(txtEstimativaDuracao.getText()),
+                    Double.parseDouble(txtEstimativaCusto.getText()));
+
         }
         catch (IllegalArgumentException iae) {
             AlertsUI.criarAlerta(Alert.AlertType.ERROR,
@@ -153,7 +163,7 @@ public class ColaboradorLogadoUI implements Initializable {
         this.txtDescTecnica.clear();
         this.txtEstimativaDuracao.clear();
         this.txtEstimativaCusto.clear();
-        this.listViewCompetenciasTecnicas.setItems(null);
+        this.listViewCaracterizacaoCT.setItems(null);
         this.cmbCategoriaTarefaEspecificarTarefa.setItems(null);
         this.cmbAreaActividadeEspecificarTarefa.setItems(null);
     }

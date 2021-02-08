@@ -1,5 +1,6 @@
 package com.grupo2.t4j.ui;
 
+import com.grupo2.t4j.controller.AutenticacaoController;
 import com.grupo2.t4j.controller.RegistarAreaActividadeController;
 import com.grupo2.t4j.controller.RegistarCategoriaController;
 import com.grupo2.t4j.controller.RegistarCompetenciaTecnicaController;
@@ -43,6 +44,7 @@ public class AdministrativoLogadoUI implements Initializable {
     private RegistarAreaActividadeController registarAreaActividadeController;
     private RegistarCategoriaController registarCategoriaController;
     private RegistarCompetenciaTecnicaController registarCompetenciaTecnicaController;
+    private AutenticacaoController autenticacaoController;
     
     private FicheiroRepositorioAreaActividade ficheiroAt;
     private RepositorioAreaActividade repositorioAreaActividade;
@@ -74,6 +76,7 @@ public class AdministrativoLogadoUI implements Initializable {
         registarAreaActividadeController = new RegistarAreaActividadeController();
         registarCategoriaController = new RegistarCategoriaController();
         registarCompetenciaTecnicaController = new RegistarCompetenciaTecnicaController();
+        autenticacaoController = new AutenticacaoController();
      
     }
 
@@ -143,12 +146,22 @@ public class AdministrativoLogadoUI implements Initializable {
         adicionarStage.show();
     }
 
+    public void logout(ActionEvent actionEvent) {
+        boolean logout = autenticacaoController.logout();
+        if (logout) {
+            navigateStartingPage(actionEvent);
+        }
+        else {
+            Alert alerta = AlertsUI.criarAlerta(Alert.AlertType.ERROR,
+                    MainApp.TITULO_APLICACAO,
+                    "Erro",
+                    "Não foi possível terminar a sessão.");
+        }
+    }
+
+
     public void navigateStartingPage(ActionEvent actionEvent) {
         try {
-            FXMLLoader loaderStartingPage = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/StartingPageScene.fxml"));
-            Parent rootStartingPage = loaderStartingPage.load();
-            sceneStartingPage = new Scene(rootStartingPage);
-
             Window window = btnSair.getScene().getWindow();
             window.setOnCloseRequest(new EventHandler<WindowEvent>() {
                 @Override
@@ -156,7 +169,7 @@ public class AdministrativoLogadoUI implements Initializable {
                     Alert alerta = AlertsUI.criarAlerta(Alert.AlertType.CONFIRMATION,
                             MainApp.TITULO_APLICACAO,
                             "Confirmação da acção",
-                            "Tem a certeza que pretende terminar a sessão??");
+                            "Tem a certeza que pretende terminar a sessão?");
 
                     if (alerta.showAndWait().get() == ButtonType.CANCEL) {
                         windowEvent.consume();
@@ -165,6 +178,9 @@ public class AdministrativoLogadoUI implements Initializable {
             });
             window.fireEvent(new WindowEvent(window, WindowEvent.WINDOW_CLOSE_REQUEST));
 
+            FXMLLoader loaderStartingPage = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/StartingPageScene.fxml"));
+            Parent rootStartingPage = loaderStartingPage.load();
+            sceneStartingPage = new Scene(rootStartingPage);
             adicionarStage.setScene(sceneStartingPage);
             adicionarStage.setTitle(MainApp.TITULO_APLICACAO);
             adicionarStage.show();
@@ -345,4 +361,6 @@ public class AdministrativoLogadoUI implements Initializable {
                     "Não foi seleccionado nenhum ficheiro!").show();
         }
     }
+
+
 }

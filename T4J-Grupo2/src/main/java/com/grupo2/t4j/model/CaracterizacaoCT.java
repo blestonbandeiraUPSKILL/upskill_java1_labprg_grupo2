@@ -36,4 +36,8 @@ public class CaracterizacaoCT {
                 ", Competência Técnica: " + competenciaTecnica +
                 '}';
     }
+
+    public CompetenciaTecnica getCompetenciaTecnica() {
+        return this.competenciaTecnica;
+    }
 }

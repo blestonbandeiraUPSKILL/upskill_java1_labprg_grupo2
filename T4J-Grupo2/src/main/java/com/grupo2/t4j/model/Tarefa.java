@@ -48,6 +48,7 @@ public class Tarefa implements Serializable{
     private AreaActividade at;
     private Categoria ct;
     private List<CaracterizacaoCT> ccts;
+    private List<Categoria> categoriaTarefa;
     
     /**
      * Construtor vazio da classe Tarefa.
@@ -109,12 +110,13 @@ public class Tarefa implements Serializable{
     }
 
     public Tarefa(AreaActividade areaActividade,
-                  Categoria categoriaTarefa,
+                  List<Categoria> categoriaTarefa,
                   List<CaracterizacaoCT> caracterizacaoCTS,
                   String referencia, String designacao,
                   String descInformal, String descTecnica, int duracao, double custo) {
         setAt(areaActividade);
-        setCt(categoriaTarefa);
+        this.categoriaTarefa = categoriaTarefa;
+        // setCt(categoriaTarefa);
         setReferencia(referencia);
         setDesignacao(designacao);
         setDescInformal(descInformal);
