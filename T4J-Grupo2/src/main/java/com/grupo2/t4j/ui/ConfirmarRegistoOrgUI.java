@@ -95,6 +95,9 @@ public class ConfirmarRegistoOrgUI implements Initializable {
                     "Registar Organização.",
                     registou ? "Organização registada com sucesso."
                                 : "Não foi possível registar a Organização.").show();
+                
+                closeAddOrganizacao(actionEvent);
+                
                 /*AlertsUI.criarAlerta(Alert.AlertType.INFORMATION,
                         MainApp.TITULO_APLICACAO,
                         "Sucesso",
@@ -132,6 +135,13 @@ public class ConfirmarRegistoOrgUI implements Initializable {
             }
         });
         window.fireEvent(new WindowEvent(window, WindowEvent.WINDOW_CLOSE_REQUEST));
+    }
+    
+    private void closeAddOrganizacao(ActionEvent event) {
+        /*this.txtCodigo.clear();
+        this.txtDescricaoBreve.clear();
+        this.areaDescricaoDetalhada.clear();*/
+        ((Node) event.getSource()).getScene().getWindow().hide();
     }
 
 }
