@@ -18,10 +18,7 @@ import java.io.Serializable;
  * @author Geral
  */
 public class AreaActividade implements Serializable{
-    /**
-     * Separador para exportar ficheiro
-     */
-    private static final char SEPARADOR = ';';
+    
 
 /**
  * O código único de cada Área de Actividade.
@@ -104,7 +101,7 @@ public class AreaActividade implements Serializable{
             throw new IllegalArgumentException("Descrição detalhada é obrigatória!");
         }
         if (descDetalhada.length() < 10) {
-            throw new IllegalArgumentException("Descrição detalhada tem de ter um comprimento superior a 10 caracteres!");
+            throw new IllegalArgumentException("Descrição detalhada tem de ter pelo menos 10 caracteres!");
         }
         this.descDetalhada = descDetalhada;
     }
@@ -139,15 +136,8 @@ public class AreaActividade implements Serializable{
      */ 
     @Override    
     public String toString(){
-        return String.format("A Área de Actividade de código %s tem: %nDescrição "
-                + "breve: %s. %nDescrição detalhada: %s.", codigo, descBreve, descDetalhada );
+        return String.format("ID: %s; Descrição breve: %s;Descrição detalhada: %s.", codigo, descBreve, descDetalhada );
     }
     
-    /**
-     * Representação textual da classe Área de Actividade no formato expresso
-     * @return codigo, descBreve e descDetalhada
-     */
-    public String toStringExport(){
-        return String.format("%s%c%s%c%s", codigo, SEPARADOR, descBreve, SEPARADOR, descDetalhada);
-    }
+   
 }
