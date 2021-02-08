@@ -70,7 +70,8 @@ public class AdicionarCategoriaTarefaUI implements Initializable {
         cmbAreaActividade.getItems().setAll(registarAreaActividadeController.getAreasActividade());
         cmbGrauProficiencia.getItems().setAll(GrauProficiencia.values());
         cmbObrigatoriedade.getItems().setAll(Obrigatoriedade.values());
-        cmbCompetenciaTecnica.getItems().setAll(registarCompetenciaTecnicaController.getCompetenciasTecnicas());
+        cmbCompetenciaTecnica.getItems().setAll(registarCompetenciaTecnicaController.getCompetenciasTecnicasByAreaActividade(
+                cmbAreaActividade.getSelectionModel().getSelectedItem()));
 
     }
 
