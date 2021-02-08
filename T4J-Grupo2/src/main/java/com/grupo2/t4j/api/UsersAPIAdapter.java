@@ -49,9 +49,9 @@ public class UsersAPIAdapter implements Serializable {
         return app_context;
     }
 
-    public boolean login(String user_id, Password password) {
+    public boolean login(String user_id, String password) {
 
-        String url = "login?app_context=" + getContext() + "&user_id=" + user_id + "&password=" + password.getPasswordText();
+        String url = "login?app_context=" + getContext() + "&user_id=" + user_id + "&password=" + password;
         HttpRequest httpRequest = new HttpRequest(HttpRequestType.POST, url);
         HttpResponse httpResponse = HttpConnection.makeRequest(httpRequest);
 

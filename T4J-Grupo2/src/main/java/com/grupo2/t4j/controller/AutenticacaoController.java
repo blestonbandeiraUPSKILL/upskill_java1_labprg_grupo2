@@ -4,7 +4,7 @@ import com.grupo2.t4j.model.*;
 
 public class AutenticacaoController {
 
-    public boolean login (String username, Password password) {
+    public boolean login (String username, String password) {
 
         return Plataforma.getInstance().getUsersAPI().login(username, password);
     }
