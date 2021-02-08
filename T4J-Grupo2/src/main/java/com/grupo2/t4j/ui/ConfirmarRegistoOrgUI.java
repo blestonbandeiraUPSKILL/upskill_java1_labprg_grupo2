@@ -6,6 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
@@ -131,7 +132,7 @@ public class ConfirmarRegistoOrgUI implements Initializable {
     }
     
     private void closeAddOrganizacao(ActionEvent event) {
-        /*this.txtCodigo.clear();
+      /*  this.txtCodigo.clear();
         this.txtDescricaoBreve.clear();
         this.areaDescricaoDetalhada.clear();*/
         ((Node) event.getSource()).getScene().getWindow().hide();
