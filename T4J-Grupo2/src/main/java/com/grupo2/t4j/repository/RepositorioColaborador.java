@@ -122,6 +122,30 @@ public class RepositorioColaborador implements Serializable{
     }
     
     /**
+     * Adiciona um Colaborador à lista de Colaboradores com password por omissão 
+     * (antes de receber a password oficial por email - password = "00000000", e 
+     * com Rolename de COLABORADOR por omissão
+     * @param nome o nome do Colaborador
+     * @param emailCol o email do Colaborador em formato String
+     * @param funcao a função do Colaborador da organização
+     * @param telefone o telefone do Colaborador da organização
+     * @throws ColaboradorDuplicadoException
+     */
+    public boolean addColaborador(String nome, String emailCol, String funcao, 
+            String telefone) throws ColaboradorDuplicadoException {
+        Colaborador c = getColaboradorByEmail(emailCol);
+        if (c == null) {
+            Colaborador colaborador = new Colaborador(nome, emailCol, funcao,
+                    telefone);
+            this.listaColaboradores.add(colaborador);
+            return true;
+        } else {
+            throw new ColaboradorDuplicadoException(c.getEmail().getEmailText()
+                    + ": Colaborador já registado!");
+        }
+    }
+    
+    /**
      * Devolve um Colaborador de acordo com o email registado
      * @param emailCol o email em String do Colaborador 
      * @return Colaborador registado
