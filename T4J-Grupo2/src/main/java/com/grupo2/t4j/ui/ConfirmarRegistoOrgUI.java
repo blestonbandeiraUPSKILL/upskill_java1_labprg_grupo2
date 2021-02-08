@@ -21,9 +21,9 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class ConfirmarRegistoOrgUI implements Initializable {
+//public class ConfirmarRegistoOrgUI implements Initializable {
 
-    private RegistarOrganizacaoController registarOrganizacaoController;
+   /* private RegistarOrganizacaoController registarOrganizacaoController;
     private Stage adicionarStage;
 
     @FXML TextField txtConfNomeOrganizacao;
@@ -104,9 +104,9 @@ public class ConfirmarRegistoOrgUI implements Initializable {
                         MainApp.TITULO_APLICACAO,
                         "Erro",
                         "Algo correu mal. Por favor tente de novo.");*/
-            }
+            //}
 
-        }
+        /*}
         catch (IOException exception) {
             exception.printStackTrace();
             AlertsUI.criarAlerta(Alert.AlertType.ERROR,
@@ -137,7 +137,7 @@ public class ConfirmarRegistoOrgUI implements Initializable {
       /*  this.txtCodigo.clear();
         this.txtDescricaoBreve.clear();
         this.areaDescricaoDetalhada.clear();*/
-        ((Node) event.getSource()).getScene().getWindow().hide();
-    }
+        /*((Node) event.getSource()).getScene().getWindow().hide();
+    }*/
 
-}
+//}
