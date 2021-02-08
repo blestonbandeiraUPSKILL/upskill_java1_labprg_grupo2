@@ -103,7 +103,7 @@ public class RegistarOrgEGestorUI implements Initializable {
                                 : "Não foi possível registar a Organização.").show();
 
 
-                    btnCancelarRegisto.
+//                    btnCancelarRegisto.
                     /*txtNomeOrganizacao.clear();
                     txtNif.clear();
                     txtTelefoneOrganizacao.clear();

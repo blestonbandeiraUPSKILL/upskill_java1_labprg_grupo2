@@ -35,7 +35,7 @@
                     <content>
                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                           <children>
-                             
+
 
                              <ListView fx:id="listViewTarefas" layoutX="14.0" layoutY="140.0" prefHeight="209.0" prefWidth="508.0" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="172.0" AnchorPane.topAnchor="140.0" />
                              <Label layoutX="25.0" layoutY="107.0" prefHeight="40.0" prefWidth="215.0" text="Tarefas Registadas" AnchorPane.bottomAnchor="242.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="460.0" AnchorPane.topAnchor="107.0">
