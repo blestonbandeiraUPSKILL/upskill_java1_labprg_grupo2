@@ -1,0 +1,3 @@
+# DIAGRAMA DE CASOS DE USO
+
+![DCU](DCU.png)
