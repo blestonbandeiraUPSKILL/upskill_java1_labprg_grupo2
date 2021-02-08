@@ -205,10 +205,10 @@ public class AdministrativoLogadoUI implements Initializable {
                 gravou = registarAreaActividadeController.serializar(ficheiroExportar);
                 if (gravou) {
                 AlertsUI.criarAlerta(Alert.AlertType.INFORMATION, MainApp.TITULO_APLICACAO, CABECALHO_EXPORTAR,
-                        "Contactos exportados com sucesso.").show();
+                        "Áreas de actividade exportadas com sucesso.").show();
             } else {
                 AlertsUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO, CABECALHO_EXPORTAR,
-                        "Problema a exportar a lista de contactos!").show();
+                        "Problema a exportar a lista de áreas de actividade!").show();
             }
         } else {
             AlertsUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO, CABECALHO_EXPORTAR,
@@ -235,7 +235,7 @@ public class AdministrativoLogadoUI implements Initializable {
                         String.format("%d área(s) de actividade importada(s).", numeroAreasImportadas)).show();
             } else {
                 AlertsUI.criarAlerta(Alert.AlertType.INFORMATION, MainApp.TITULO_APLICACAO, CABECALHO_IMPORTAR,
-                        "Ficheiro sem contactos telefónicos para importar!").show();
+                        "Ficheiro sem áreas de actividade para importar telefónicos para importar!").show();
             }
         } else {
             AlertsUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO, CABECALHO_IMPORTAR,
@@ -269,7 +269,7 @@ public class AdministrativoLogadoUI implements Initializable {
     public void importCompetenciasTecnicas(ActionEvent actionEvent) {
         String descricao, extensao;
 
-        descricao = /*DESCRICAO_SERIALIZACAO*/"Ficheiro Area de Atividade";
+        descricao = /*DESCRICAO_SERIALIZACAO*/"Ficheiro Competencias Tecnicas";
         extensao = /*EXTENSAO_SERIALIZACAO*/"*.ltf";
         FileChooser flChooser = FileChooserT4J.criarFileChooserT4J(descricao, extensao);
         File ficheiroImportar = flChooser.showOpenDialog(listViewCompetenciasTecnicas.getScene().getWindow());
