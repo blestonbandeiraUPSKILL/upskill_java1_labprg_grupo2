@@ -64,12 +64,9 @@ public class GestorLogadoUI implements Initializable {
 
 
     @FXML private TextField txtFuncaoColaborador;
-
-
+    @FXML private TextField txtPasswordColaborador;
     @FXML Button btnRegistarColaborador;
-
     @FXML Button btnCancelarRegCol;
-
     @FXML Button btnLogout;
        
     public void associarParentUI(StartingPageUI startingPageUI) {
@@ -112,18 +109,16 @@ public class GestorLogadoUI implements Initializable {
     }
     
     @FXML
-    public void registarColaboradorAction(ActionEvent event) {
+    public void registarColaboradorAction(ActionEvent event){
+        
         try{
             boolean adicionouCol = registarColaboradorController.registarColaborador(txtNomeColaborador.getText(),
                     txtEmailColaborador.getText(), txtFuncaoColaborador.getText(),
                     txtTelefoneColaborador.getText(), Rolename.COLABORADOR);
-            AlertsUI.criarAlerta(Alert.AlertType.INFORMATION,
-                    MainApp.TITULO_APLICACAO,
-                    "Registar Colaborador.",
-                        adicionouCol ? "Colaborador registado com sucesso."
-                                : "Não foi possível registar o Colaborador.").show();
-            }
-        catch (IllegalArgumentException iae) {
+            int ultimoColAdd = registarColaboradorController.getColaboradores().size();
+            txtPasswordColaborador.setText(registarColaboradorController.getColaboradores().get(ultimoColAdd).getPassword().getPasswordText());
+            AlertsUI.criarAlerta(Alert.AlertType.INFORMATION, "Área do Gestor","Registar Colaborador.", adicionouCol ? "Colaborador registado com sucesso." : "Não foi possível registar o Colaborador.");
+        }catch (IllegalArgumentException iae) {
             AlertsUI.criarAlerta(Alert.AlertType.ERROR,
                     MainApp.TITULO_APLICACAO,
                     "Erro nos dados.",
@@ -131,32 +126,12 @@ public class GestorLogadoUI implements Initializable {
         }        
     }
     
-    private void closeAddColaborador(ActionEvent event) {
+    @FXML
+    public void cancelarRegColAction(ActionEvent event) {
         this.txtNomeColaborador.clear();
         this.txtEmailColaborador.clear();
         this.txtFuncaoColaborador.clear();
         this.txtTelefoneColaborador.clear();
-        ((Node) event.getSource()).getScene().getWindow().hide();
-    }
-
-    @FXML
-    public void cancelarRegColAction(ActionEvent event) {
-        Window window = btnCancelarRegCol.getScene().getWindow();
-        window.setOnCloseRequest(new EventHandler<WindowEvent>() {
-            @Override
-            public void handle(WindowEvent windowEvent) {
-                Alert alerta = AlertsUI.criarAlerta(Alert.AlertType.CONFIRMATION,
-                        MainApp.TITULO_APLICACAO,
-                        "Confirmação da acção",
-                        "Tem a certeza que quer voltar à página inicial, cancelando o actual registo?");
-
-                if (alerta.showAndWait().get() == ButtonType.CANCEL) {
-                    windowEvent.consume();
-                }
-            }
-        });
-
-        window.fireEvent(new WindowEvent(window, WindowEvent.WINDOW_CLOSE_REQUEST));
     }
 
     @FXML
