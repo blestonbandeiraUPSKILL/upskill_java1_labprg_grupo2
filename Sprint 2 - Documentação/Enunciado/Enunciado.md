@@ -1,16 +1,16 @@
 # T4J - TASKS FOR JOE
 
-- [Introdução]
-- [Gestão de Utilizadores]
-- [Casos de Teste]
-- [Análise e Design]
-- [API para Gestão de Utilizadores]
-- [Diagrama de Casos de Uso]
-- [Glossário]
-- [Modelo de Domínio]
-- [UC01 - Registar Organização]
-- [UC02 - Definir Área de Atividade]
-- [UC03 - Definir Categoria de Tarefa]
-- [UC04 - Especificar Competência Técnica]
-- [UC05 - Especificar Colaborador de Organização]
-- [UC06 - Especificar Tarefa]
+- [Introdução](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Sprint%202%20-%20Documenta%C3%A7%C3%A3o/Enunciado/Intro.md)
+- [Gestão de Utilizadores](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Sprint%202%20-%20Documenta%C3%A7%C3%A3o/Enunciado/Gestao_utilizadores.md)
+- [Casos de Teste]()
+- [Análise e Design]()
+- [API para Gestão de Utilizadores]()
+- [Diagrama de Casos de Uso]()
+- [Glossário]()
+- [Modelo de Domínio]()
+- [UC01 - Registar Organização]()
+- [UC02 - Definir Área de Atividade]()
+- [UC03 - Definir Categoria de Tarefa]()
+- [UC04 - Especificar Competência Técnica]()
+- [UC05 - Especificar Colaborador de Organização]()
+- [UC06 - Especificar Tarefa]()
