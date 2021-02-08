@@ -71,7 +71,9 @@ public class StartingPageUI implements Initializable {
 
     public void login(ActionEvent actionEvent) throws IOException {
 
-        boolean login = autenticacaoController.login(txtEmailLogin.getText(), new Password(txtPasswordLogin.getText()));
+        boolean login = autenticacaoController.login(
+                txtEmailLogin.getText(),
+                txtPasswordLogin.getText());
 
         if (login) {
             txtEmailLogin.clear();

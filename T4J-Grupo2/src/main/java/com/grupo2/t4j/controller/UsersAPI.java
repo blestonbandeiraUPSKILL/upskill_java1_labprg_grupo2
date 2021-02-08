@@ -16,7 +16,7 @@ public class UsersAPI implements Serializable {
         usersAPIAdapter = new UsersAPIAdapter(app_key);
     }
 
-    public boolean login(String user_id, Password password) {
+    public boolean login(String user_id, String password) {
         return usersAPIAdapter.login(user_id, password);
     }
 
