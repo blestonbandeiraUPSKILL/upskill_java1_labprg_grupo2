@@ -33,16 +33,16 @@
                   <Font name="Calibri" size="24.0" />
                </font>
             </Label>
-            <PasswordField fx:id="txtPasswordLogin" alignment="CENTER" focusTraversable="false" maxHeight="30.0" maxWidth="200.0" promptText="password" GridPane.rowIndex="2">
-               <font>
-                  <Font name="Calibri" size="14.0" />
-               </font>
-            </PasswordField>
             <TextField fx:id="txtEmailLogin" alignment="CENTER" focusTraversable="false" maxHeight="30.0" maxWidth="200.0" promptText="email" GridPane.rowIndex="1">
                <font>
                   <Font name="Calibri" size="14.0" />
                </font>
             </TextField>
+            <PasswordField fx:id="txtPasswordLogin" alignment="CENTER" focusTraversable="false" maxHeight="30.0" maxWidth="200.0" promptText="password" GridPane.rowIndex="2">
+               <font>
+                  <Font name="Calibri" size="14.0" />
+               </font>
+            </PasswordField>
          </children>
          <BorderPane.margin>
             <Insets />
@@ -93,17 +93,6 @@
             <FlowPane alignment="CENTER" stylesheets="@../style/app.css" BorderPane.alignment="CENTER">
                <children>
                   <Button fx:id="btnLogin" alignment="CENTER" mnemonicParsing="false" onAction="#login" text="Entrar">
-                     <padding>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                     </padding>
-                     <font>
-                        <Font name="Calibri" size="14.0" />
-                     </font>
-                     <FlowPane.margin>
-                        <Insets left="5.0" right="5.0" />
-                     </FlowPane.margin>
-                  </Button>
-                  <Button fx:id="btnAdministrativoLogado" mnemonicParsing="false" onAction="#navigateAdministrativoLogado" text="Administrativo">
                      <padding>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </padding>

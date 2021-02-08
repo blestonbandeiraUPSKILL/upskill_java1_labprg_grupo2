@@ -103,7 +103,7 @@
                            <Insets bottom="10.0" top="10.0" />
                         </VBox.margin>
                      </Label>
-                     <ListView prefHeight="140.0" prefWidth="225.0" />
+                     <ListView fx:id="listViewCompetenciasTecnicas" prefHeight="140.0" prefWidth="225.0" />
                   </VBox>
                   <VBox alignment="TOP_CENTER" layoutX="288.0" layoutY="19.0" prefHeight="340.0" prefWidth="297.0">
                      <Label text="Referência">
@@ -111,7 +111,7 @@
                            <Insets bottom="5.0" top="5.0" />
                         </VBox.margin>
                      </Label>
-                     <TextField>
+                     <TextField fx:id="txtReferencia">
                         <VBox.margin>
                            <Insets bottom="5.0" />
                         </VBox.margin>
@@ -121,7 +121,7 @@
                            <Insets bottom="5.0" />
                         </VBox.margin>
                      </Label>
-                     <TextField>
+                     <TextField fx:id="txtDesignacao">
                         <VBox.margin>
                            <Insets bottom="5.0" />
                         </VBox.margin>
@@ -131,7 +131,7 @@
                            <Insets bottom="5.0" />
                         </VBox.margin>
                      </Label>
-                     <TextArea prefHeight="43.0" prefWidth="297.0">
+                     <TextArea fx:id="txtDescInformal" prefHeight="43.0" prefWidth="297.0">
                         <VBox.margin>
                            <Insets bottom="5.0" />
                         </VBox.margin>
@@ -141,7 +141,7 @@
                            <Insets bottom="5.0" />
                         </VBox.margin>
                      </Label>
-                     <TextArea prefHeight="61.0" prefWidth="297.0">
+                     <TextArea fx:id="txtDescTecnica" prefHeight="61.0" prefWidth="297.0">
                         <VBox.margin>
                            <Insets bottom="5.0" />
                         </VBox.margin>
@@ -151,7 +151,7 @@
                            <Insets bottom="5.0" />
                         </VBox.margin>
                      </Label>
-                     <TextField>
+                     <TextField fx:id="txtEstimativaDuracao">
                         <VBox.margin>
                            <Insets bottom="5.0" />
                         </VBox.margin>
@@ -161,14 +161,14 @@
                            <Insets bottom="5.0" />
                         </VBox.margin>
                      </Label>
-                     <TextField>
+                     <TextField fx:id="txtEstimativaCusto">
                         <VBox.margin>
                            <Insets bottom="5.0" />
                         </VBox.margin>
                      </TextField>
                   </VBox>
                   <VBox alignment="BOTTOM_CENTER" layoutX="594.0" layoutY="163.0" prefHeight="200.0" prefWidth="100.0">
-                     <Button defaultButton="true" mnemonicParsing="false" text="Confirmar">
+                     <Button fx:id="btnRegistarTarefa" defaultButton="true" mnemonicParsing="false" onAction="#registarTarefa" text="Confirmar">
                         <VBox.margin>
                            <Insets bottom="10.0" top="10.0" />
                         </VBox.margin>
@@ -176,7 +176,7 @@
                            <Font name="Calibri" size="14.0" />
                         </font>
                      </Button>
-                     <Button mnemonicParsing="false" text="Cancelar">
+                     <Button fx:id="btnCancelar" mnemonicParsing="false" onAction="#cancelarAction" text="Cancelar">
                         <VBox.margin>
                            <Insets bottom="10.0" top="10.0" />
                         </VBox.margin>

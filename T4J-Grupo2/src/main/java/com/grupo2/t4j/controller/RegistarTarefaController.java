@@ -28,7 +28,7 @@ public class RegistarTarefaController {
         return RepositorioAreaActividade.getInstance().getListaAreasActividade();
     }
 
-    public List<Categoria> getListaCategoriaPorAreaActividade(AreaActividade areaActividade) {
+    public List<Categoria> getListaCategoriaByAreaActividade(AreaActividade areaActividade) {
         return RepositorioCategoriaTarefa.getInstance().getCategoriasByAreaActividade(areaActividade);
     }
 
