@@ -38,7 +38,7 @@ public class Colaborador extends Utilizador implements Serializable{
     /**
      * Por definição, todos da classe Colaborador tem rolename Colaborador.
      */
-    private static final Rolename ROLENAME_POR_DEFINICAO = Rolename.COLABORADOR;
+    private static final Rolename ROLENAME_POR_OMISSAO = Rolename.COLABORADOR;
     
     /**
      * Construtor completo da classe Colaborador
@@ -47,12 +47,13 @@ public class Colaborador extends Utilizador implements Serializable{
      * @param password a password do Utilizador em formato da classe Password
      * @param funcao a função do Colaborador da organização
      * @param telefone o telefone do Colaborador da organização
+     * @param rolename o papel do colaborador na T4J
      * 
      */
 
     public Colaborador(String nome, Email email, Password password, String funcao, 
-            String telefone) {
-        super(nome, email, password, ROLENAME_POR_DEFINICAO);
+            String telefone, Rolename rolename) {
+        super(nome, email, password, rolename);
         setFuncao(funcao);
         setTelefone(telefone);
     }
@@ -68,8 +69,8 @@ public class Colaborador extends Utilizador implements Serializable{
      */
 
     public Colaborador(String nome, String emailCol, String passCol,
-            String funcao, String telefone) {
-        super(nome, emailCol, passCol, ROLENAME_POR_DEFINICAO);
+            String funcao, String telefone, Rolename rolename) {
+        super(nome, emailCol, passCol, rolename);
         setFuncao(funcao);
         setTelefone(telefone);
     }
@@ -84,8 +85,8 @@ public class Colaborador extends Utilizador implements Serializable{
      */
 
     public Colaborador(String nome, String emailCol, String funcao,
-            String telefone){
-        super(nome, emailCol, ROLENAME_POR_DEFINICAO);
+            String telefone, Rolename rolename){
+        super(nome, emailCol, rolename);
         setFuncao(funcao);
         setTelefone(telefone);
     }
@@ -96,7 +97,7 @@ public class Colaborador extends Utilizador implements Serializable{
      */
     public Colaborador (Colaborador colaborador){
         super(colaborador.getNome(), colaborador.getEmail(), colaborador.getPassword(),
-                ROLENAME_POR_DEFINICAO);                
+                colaborador.getRolename());               
         setFuncao(colaborador.funcao);
         setTelefone(colaborador.telefone);
     }
@@ -105,7 +106,7 @@ public class Colaborador extends Utilizador implements Serializable{
      * Verifica a validade do parâmetro recebido e regista a função do Colaborador
      * @param funcao a função do Colaborador
      */
-    public final void setFuncao(String funcao){
+    public void setFuncao(String funcao){
         if (funcao == null || funcao.trim().isEmpty()) {
             throw new IllegalArgumentException("Função é inválida!");
         }
@@ -116,7 +117,7 @@ public class Colaborador extends Utilizador implements Serializable{
      * Verifica a validade do parâmetro recebido e regista o telefone do Colaborador
      * @param telefone o telefone do Colaborador
      */
-    public final void setTelefone(String telefone) {
+    public void setTelefone(String telefone) {
         int numero = Integer.parseInt(telefone);
         if (numero < 100000000 || numero > 999999999) {
             throw new IllegalArgumentException("Número é inválido!");
