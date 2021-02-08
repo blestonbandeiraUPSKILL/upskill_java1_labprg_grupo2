@@ -63,10 +63,11 @@ public class RepositorioColaborador implements Serializable{
      * @throws ColaboradorDuplicadoException
      */
     public boolean addColaborador(String nome, Email email, Password password, String funcao, 
-            String telefone) throws ColaboradorDuplicadoException {
+            String telefone, Rolename rolename) throws ColaboradorDuplicadoException {
         Colaborador c = getColaboradorByEmail(email.getEmailText());
         if (c == null) {
-            Colaborador colaborador = new Colaborador(nome, email, password, funcao, telefone);
+            Colaborador colaborador = new Colaborador(nome, email, password, funcao, 
+                    telefone, rolename);
             this.listaColaboradores.add(colaborador);
             return true;
         } else {
@@ -85,10 +86,11 @@ public class RepositorioColaborador implements Serializable{
      * @throws ColaboradorDuplicadoException
      */
     public boolean addColaborador(String nome, String emailCol, String passCol, String funcao, 
-            String telefone) throws ColaboradorDuplicadoException {
+            String telefone, Rolename rolename) throws ColaboradorDuplicadoException {
         Colaborador c = getColaboradorByEmail(emailCol);
         if (c == null) {
-            Colaborador colaborador = new Colaborador(nome, emailCol, passCol, funcao, telefone);
+            Colaborador colaborador = new Colaborador(nome, emailCol, passCol, funcao, 
+                    telefone, rolename);
             this.listaColaboradores.add(colaborador);
             return true;
         } else {
@@ -106,10 +108,11 @@ public class RepositorioColaborador implements Serializable{
      * @throws ColaboradorDuplicadoException
      */
     public boolean addColaborador(String nome, String emailCol, String funcao, 
-            String telefone) throws ColaboradorDuplicadoException {
+            String telefone, Rolename rolename) throws ColaboradorDuplicadoException {
         Colaborador c = getColaboradorByEmail(emailCol);
         if (c == null) {
-            Colaborador colaborador = new Colaborador(nome, emailCol, funcao, telefone);
+            Colaborador colaborador = new Colaborador(nome, emailCol, funcao,
+                    telefone, rolename);
             this.listaColaboradores.add(colaborador);
             return true;
         } else {
