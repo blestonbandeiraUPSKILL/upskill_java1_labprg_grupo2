@@ -58,13 +58,16 @@ public class RepositorioUtilizador implements Serializable{
      * @param nome o nome do Utilizador
      * @param email o email do Utilizador em formato da classe Email
      * @param password a password do Utilizador em formato da classe Password
+     * @param rolename o papel do Utilizador na T4J
      * @throws UtilizadorDuplicadoException
      */
-    public boolean addUtilizador(String nome, Email email, Password password) throws UtilizadorDuplicadoException {
+    public boolean addUtilizador(String nome, Email email, Password password, Rolename rolename) 
+            throws UtilizadorDuplicadoException {
         Utilizador u = getUtilizadorByEmail(email.getEmailText());
         if (u == null) {
-            Utilizador utilizador = new Utilizador(nome, email, password);
+            Utilizador utilizador = new Utilizador(nome, email, password, rolename);
             this.listaUtilizadores.add(utilizador);
+            return true;
         } else {
             throw new UtilizadorDuplicadoException(u.getEmail().getEmailText()
                     + ": Utilizador já registado!");
@@ -75,38 +78,62 @@ public class RepositorioUtilizador implements Serializable{
      * Adiciona um Utilizador à lista de Utilizadores
      * @param nome o nome do Utilizador
      * @param emailUt o email do Utilizador em formato String
-     * @param password a password do Utilizador em formato da classe Password
+     * @param passUt a password do Utilizador em formato String 
+     * @param rolename o papel do Utilizador na T4J
      * @throws UtilizadorDuplicadoException
      */
-    public void addUtilizador(String nome, String emailUt, Password password) throws UtilizadorDuplicadoException {
-        Email email = new Email(emailUt);
-        Utilizador u = getUtilizadorByEmail(email.getEmailText());
-        if (u == null) {
-            Utilizador utilizador = new Utilizador(nome, email, password);
-            this.listaUtilizadores.add(utilizador);
-        } else {
-            throw new UtilizadorDuplicadoException(u.getEmail().getEmailText()
-                    + ": Utilizador já registado!");
-        }
-    }
-    
-    /**
-     * Adiciona um Utilizador à lista de Utilizadores
-     * @param nome o nome do Utilizador
-     * @param emailUt o email do Utilizador em formato String
-     * @param passUt a password do Utilizador em formato String
-     * @throws UtilizadorDuplicadoException
-     */
-    public void addUtilizador(String nome, String emailUt, String passUt) throws UtilizadorDuplicadoException {
+    public boolean addUtilizador(String nome, String emailUt, String passUt, Rolename rolename) 
+            throws UtilizadorDuplicadoException {
         Utilizador u = getUtilizadorByEmail(emailUt);
         if (u == null) {
-            Utilizador utilizador = new Utilizador(nome, emailUt, passUt);
+            Utilizador utilizador = new Utilizador(nome, emailUt, passUt, rolename);
             this.listaUtilizadores.add(utilizador);
+            return true;
         } else {
             throw new UtilizadorDuplicadoException(u.getEmail().getEmailText()
                     + ": Utilizador já registado!");
         }
     }
+    
+    /**
+     * Adiciona um Utilizador à lista de Utilizadores
+     * @param nome o nome do Utilizador
+     * @param emailUt o email do Utilizador em formato String
+     * @param rolename o papel do Utilizador na T4J
+     * @throws UtilizadorDuplicadoException
+     */
+    public boolean addUtilizador(String nome, String emailUt, Rolename rolename) 
+            throws UtilizadorDuplicadoException {
+        Utilizador u = getUtilizadorByEmail(emailUt);
+        if (u == null) {
+            Utilizador utilizador = new Utilizador(nome, emailUt, rolename);
+            this.listaUtilizadores.add(utilizador);
+            return true;
+        } else {
+            throw new UtilizadorDuplicadoException(u.getEmail().getEmailText()
+                    + ": Utilizador já registado!");
+        }
+    }
+    
+    /**
+     * Adiciona um Utilizador à lista de Utilizadores
+     * @param nome o nome do Utilizador
+     * @param emailUt o email do Utilizador em formato String
+     * @throws UtilizadorDuplicadoException
+     */
+    public boolean addUtilizador(String nome, String emailUt) 
+            throws UtilizadorDuplicadoException {
+        Utilizador u = getUtilizadorByEmail(emailUt);
+        if (u == null) {
+            Utilizador utilizador = new Utilizador(nome, emailUt);
+            this.listaUtilizadores.add(utilizador);
+            return true;
+        } else {
+            throw new UtilizadorDuplicadoException(u.getEmail().getEmailText()
+                    + ": Utilizador já registado!");
+        }
+    }
+    
     
     /**
      * Devolve um Utilizador de acordo com o email registado
