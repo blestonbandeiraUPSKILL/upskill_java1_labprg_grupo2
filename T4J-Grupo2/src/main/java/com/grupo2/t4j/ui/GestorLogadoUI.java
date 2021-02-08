@@ -6,6 +6,7 @@ import com.grupo2.t4j.controller.RegistarColaboradorController;
 import com.grupo2.t4j.controller.RegistarCompetenciaTecnicaController;
 import com.grupo2.t4j.controller.RegistarTarefaController;
 import com.grupo2.t4j.files.FicheiroRepositorioColaborador;
+import com.grupo2.t4j.model.*;
 import com.grupo2.t4j.repository.RepositorioColaborador;
 import javafx.fxml.Initializable;
 
@@ -40,28 +41,7 @@ public class GestorLogadoUI implements Initializable {
     
     private FicheiroRepositorioColaborador ficheiroC;
     private RepositorioColaborador repositorioColaborador;
-    
-    @FXML private Button btnCancelar1;
 
-    @FXML private TextArea txtDescricaoTecnica1;
-
-    @FXML private ComboBox<?> cmbAreaActividade1;
-
-    @FXML private Button btnCancelarRegCol;
-
-    @FXML private Button btnRegistarColaborador;
-
-    @FXML private Button btnRegistarTarefa1;
-
-    @FXML private TextField txtDesignacao1;
-
-    @FXML private ComboBox<?> cmbCategoria;
-
-    @FXML private TextField txtFuncaoColaborador;
-
-    @FXML private ComboBox<?> cmbCategoriaTarefa1;
-
-    @FXML private ListView<?> listViewCompTec1;
 
     @FXML private TextField txtReferencia1;
 
@@ -105,6 +85,16 @@ public class GestorLogadoUI implements Initializable {
     @FXML private TextField txtCustoEstTarefa;
 
     @FXML private ComboBox<?> cmbAreaActividadeEspecificarTarefa;
+
+    @FXML Button btnSairListaTarefas;
+    @FXML Button btnCancelarRegCol;
+    @FXML ComboBox<AreaActividade> cmbAreaActividadeListaTarefas;
+    @FXML ComboBox<AreaActividade> cmbAreaActividadeEspecificarTarefa;
+    @FXML ComboBox<Categoria> cmbCategoriaTarefaListaTarefas;
+    @FXML ComboBox<Categoria> cmbCategoriaTarefaEspecificarTarefa;
+    @FXML ListView<Tarefa> listViewTarefas;
+    @FXML ListView<CaracterizacaoCT> listViewCaracterizacaoCTS;
+
 
     
     public void associarParentUI(StartingPageUI startingPageUI) {
@@ -169,35 +159,6 @@ public class GestorLogadoUI implements Initializable {
         window.fireEvent(new WindowEvent(window, WindowEvent.WINDOW_CLOSE_REQUEST));
     }
 
-    @FXML
-    void selectArAct(ActionEvent event) {
-
-    }
-
-    @FXML
-    void selectCategoriaAction(ActionEvent event) {
-
-    }
-
-    @FXML
-    void registarTarefaAction(ActionEvent event) {
-
-    }
-
-    @FXML
-    void CancelarAction(ActionEvent event) {
-
-    }
-
-    @FXML
-    void selectAreaActAction(ActionEvent event) {
-
-    }
-
-    @FXML
-    void selectCatTarAction(ActionEvent event) {
-
-    }
 
     public void navigateStartingPage(ActionEvent actionEvent) {
     }

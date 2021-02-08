@@ -29,7 +29,20 @@ public class RepositorioTarefa implements Serializable{
      * tipos da classe Tarefa
      */
     private List<Tarefa> listaTarefas;
-    
+
+    private List<Categoria> listaCategorias;
+
+    /**
+     * Devolve uma instância estática do Repositório de Tarefas
+     * @return RepositorioTarefa
+     */
+    public static RepositorioTarefa getInstance(){
+        if (repositorioTarefa == null){
+            repositorioTarefa = new RepositorioTarefa();
+        }
+        return repositorioTarefa;
+    }
+
     /**
      * Inicializa o Repositório de Tarefas
      */
@@ -63,6 +76,18 @@ public class RepositorioTarefa implements Serializable{
                     ": Tarefa já registada");
         }
     }
+
+    public List<Categoria> getCategoriasByAreaActividade(AreaActividade areaActividade) {
+        ArrayList<Categoria> categoriaPorAt = new ArrayList<>();
+
+        for (Categoria cat : listaCategorias) {
+            if (cat.getAt().equals(areaActividade)) {
+                categoriaPorAt.add(cat);
+            }
+        }
+        return categoriaPorAt;
+    }
+
     
     /**
      * Adiciona uma Tarefa à lista de Tarefas
@@ -149,16 +174,7 @@ public class RepositorioTarefa implements Serializable{
         return new ArrayList<Tarefa>(listaTarefas);
     }
     
-    /**
-     * Devolve uma instância estática do Repositório de Tarefas
-     * @return RepositorioTarefa
-     */
-    public static RepositorioTarefa getInstance(){
-        if (repositorioTarefa == null){
-            repositorioTarefa = new RepositorioTarefa();
-        }
-        return repositorioTarefa;
-    }  
+
     
     /**
      * Informa se a lista de Tarefas está ou não vazia

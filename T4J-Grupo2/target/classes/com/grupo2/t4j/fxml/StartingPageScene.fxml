@@ -33,16 +33,16 @@
                   <Font name="Calibri" size="24.0" />
                </font>
             </Label>
-            <PasswordField fx:id="txtPasswordLogin" alignment="CENTER" focusTraversable="false" maxHeight="30.0" maxWidth="200.0" promptText="password" GridPane.rowIndex="2">
-               <font>
-                  <Font name="Calibri" size="14.0" />
-               </font>
-            </PasswordField>
             <TextField fx:id="txtEmailLogin" alignment="CENTER" focusTraversable="false" maxHeight="30.0" maxWidth="200.0" promptText="email" GridPane.rowIndex="1">
                <font>
                   <Font name="Calibri" size="14.0" />
                </font>
             </TextField>
+            <PasswordField fx:id="txtPasswordLogin" alignment="CENTER" focusTraversable="false" maxHeight="30.0" maxWidth="200.0" promptText="password" GridPane.rowIndex="2">
+               <font>
+                  <Font name="Calibri" size="14.0" />
+               </font>
+            </PasswordField>
          </children>
          <BorderPane.margin>
             <Insets />
