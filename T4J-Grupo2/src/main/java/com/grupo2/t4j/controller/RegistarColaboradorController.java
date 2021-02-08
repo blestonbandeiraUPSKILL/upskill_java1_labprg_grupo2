@@ -11,7 +11,7 @@ package com.grupo2.t4j.controller;
  */
 
 import com.grupo2.t4j.files.FicheiroRepositorioColaborador;
-import com.grupo2.t4j.model.Colaborador;
+import com.grupo2.t4j.model.*;
 import com.grupo2.t4j.repository.RepositorioColaborador;
 import java.io.File;
 import java.util.List;
@@ -21,8 +21,10 @@ public class RegistarColaboradorController {
     private RepositorioColaborador repositorioColaborador;
     private FicheiroRepositorioColaborador ficheiroC;
 
-    /*public boolean registarColaborador(String nome, String emailCol, String funcao, String telefone) {
-        Colaborador col = new Colaborador(nome, emailCol, funcao, telefone);
+
+    /*public boolean registarColaborador(String nome, String emailCol, String funcao, 
+            String telefone, Rolename rolename) {
+        Colaborador col = new Colaborador(nome, emailCol, funcao, telefone, rolename);
         return repositorioColaborador.getInstance().addColaboradorVerif(col);
     }*/
     
