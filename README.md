@@ -30,13 +30,13 @@
 ## Dados de login
 
 #### Administrativo:
-* email: administrativogrupo2@upskill.pt
+* email: admingrp2@upskill.pt
 * pass: teste123
 
 #### Gestor:
-* email: admingrupo2@upskill.pt
+* email: gestorgrp2@upskill.pt
 * pass: teste123
 
 #### Colaborador:
-* email: colaboradorgrupo2@upskill.pt
+* email: colabgrp2@upskill.pt
 * pass: teste123
