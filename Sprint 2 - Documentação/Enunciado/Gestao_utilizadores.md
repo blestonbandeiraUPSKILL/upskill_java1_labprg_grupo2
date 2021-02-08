@@ -3,6 +3,8 @@
 O componente de gestão de utilizadores irá ser desenvolvido por outra equipa de desenvolvimento que também é responsável pela sua manutenção/evolução. Este componente visa satisfazer um conjunto de requisitos/funcionalidades genéricas e comuns a várias aplicações. A autenticação dos utilizadores será realizada com um identificador de utilizador e palavra-passe.
 Os conceitos principais abordados neste componente são apresentados de seguida.
 
+![GU](GU.png)
+
 De acordo com o modelo do domínio, um “User” desempenha vários “Role” (i.e. funções), sendo que o mesmo “Role” também pode ser desempenhado por vários “User”.
 Este componente disponibiliza as suas funcionalidades através de um Web Service que está em conformidade com o estilo arquitetural REST (Representational State Transfer). A utilização do serviço apenas é possível a quem conhecer uma chave que é obtida após registo. A T4J já efetuou esse registo e já possui a respetiva chave, que fornecerá posteriormente à equipa de desenvolvimento.
 Assim sendo, a documentação relevante com vista à sua utilização consiste na descrição dos métodos, endpoints, recursos, parâmetros e resultados de output esperados.
