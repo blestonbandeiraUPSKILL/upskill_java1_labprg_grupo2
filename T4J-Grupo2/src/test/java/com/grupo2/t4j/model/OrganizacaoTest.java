@@ -2,7 +2,8 @@
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
- */
+ *//*
+
 package com.grupo2.t4j.model;
 
 import com.grupo2.t4j.exception.*;
@@ -13,10 +14,12 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.BeforeAll;
 
+*/
 /**
  *
  * @author CAD
- */
+ *//*
+
 public class OrganizacaoTest {
     
     public OrganizacaoTest() {
@@ -64,11 +67,13 @@ public class OrganizacaoTest {
         assertEquals("999888777", o1.getTelefone());
         assertEquals("t4j@t4j.pt", o1.getEmail().getEmailText());
         
-        /* Colaborador Gestor já testado em ColaboradorTest 
+        */
+/* Colaborador Gestor já testado em ColaboradorTest
            Endereço Postal já testado em EnderecoPostalTest
            Website já testado em WebsiteTest
            Email já testado em EmailTest
-        */
+        *//*
+
     }
     
     @Test (expected = IllegalArgumentException.class)
@@ -120,4 +125,4 @@ public class OrganizacaoTest {
         Organizacao o4 = new Organizacao("T4J", "111222333", endereco, website,
                     "999", email , colabGestor);
     }
-}
+}*/

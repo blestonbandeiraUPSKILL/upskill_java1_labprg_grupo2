@@ -77,6 +77,7 @@ public class GestorLogadoUI implements Initializable {
 
     @FXML private ComboBox<?> cmbAreaActividadeListaTarefas;
 
+    @FXML Button btnCancelarRegCol;
     @FXML
     private Button btnSairListaTarefas;
 
@@ -86,15 +87,15 @@ public class GestorLogadoUI implements Initializable {
 
     @FXML private ComboBox<?> cmbAreaActividadeEspecificarTarefa;
 
-    @FXML Button btnSairListaTarefas;
-    @FXML Button btnCancelarRegCol;
-    @FXML ComboBox<AreaActividade> cmbAreaActividadeListaTarefas;
+
+
+   /* @FXML ComboBox<AreaActividade> cmbAreaActividadeListaTarefas;
     @FXML ComboBox<AreaActividade> cmbAreaActividadeEspecificarTarefa;
     @FXML ComboBox<Categoria> cmbCategoriaTarefaListaTarefas;
     @FXML ComboBox<Categoria> cmbCategoriaTarefaEspecificarTarefa;
     @FXML ListView<Tarefa> listViewTarefas;
     @FXML ListView<CaracterizacaoCT> listViewCaracterizacaoCTS;
-
+*/
 
     
     public void associarParentUI(StartingPageUI startingPageUI) {

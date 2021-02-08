@@ -65,7 +65,7 @@ public class RepositorioOrganizacao implements Serializable{
      *
      * @return uma instância de Organizacao
      */
-    public Organizacao novaOrganizacao(String nome, String nif, String arruamento,
+    /*public Organizacao novaOrganizacao(String nome, String nif, String arruamento,
                                        String numeroPorta, String localidade, String codigoPostal,
                                        String telefone, Website website, Email emailOrganizacao,
                                        String nomeGestor, Email emailGestor, String telefoneGestor,
@@ -74,7 +74,7 @@ public class RepositorioOrganizacao implements Serializable{
         colabGestor = Organizacao.novoColaborador(nomeGestor, emailGestor, telefoneGestor, rolename);
 
         return new Organizacao(nome, nif, endereco, website, telefone, emailOrganizacao, colabGestor);
-    }
+    }*/
 
     /**
      *

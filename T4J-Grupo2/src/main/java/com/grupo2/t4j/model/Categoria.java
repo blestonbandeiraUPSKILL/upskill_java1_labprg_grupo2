@@ -205,13 +205,7 @@ public class Categoria implements Serializable{
      */
     @Override
     public String toString() {
-        return "Categoria{" +
-                "id='" + id + '\'' +
-                ", id2=" + id2 +
-                ", descBreve='" + descBreve + '\'' +
-                ", descDetalhada='" + descDetalhada + '\'' +
-                ", at=" + at +
-                ", caracterizacaoCTS=" + caracterizacaoCTS +
-                '}';
+        return String.format("ID: %s; Descrição breve: %s; Descrição detalhada: %s;", 
+                id, descBreve, descDetalhada);
     }
 }

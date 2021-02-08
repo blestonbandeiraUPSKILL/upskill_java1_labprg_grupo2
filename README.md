@@ -26,6 +26,8 @@
 ## Links úteis
 
 - [Trabalho desenvolvido no módulo PDS](https://github.com/ajorgesantosp/upskill_java1_g1)
+- [Plataforma TRELLOusada para a gestão Agile do projeto usando a framework Scrum](https://trello.com/b/atvb02FQ)
+- [Enunciado](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Sprint%202%20-%20Documenta%C3%A7%C3%A3o/Enunciado/Enunciado.md)
 
 ## Dados de login
 

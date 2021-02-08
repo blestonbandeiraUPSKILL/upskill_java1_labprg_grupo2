@@ -28,7 +28,7 @@ public class CompetenciaTecnica implements Serializable{
     private CaracterizacaoCT cct;
     private Categoria categoria;
     
-    private static final char SEPARADOR = ';';
+    
     
 /**
  * Construtor CompetenciaTecnica Completo
@@ -167,8 +167,7 @@ public class CompetenciaTecnica implements Serializable{
      */
     @Override
     public String toString() {
-        return String.format("Competencia Tecnica: %nID: %s%nDescricao Breve:"
-                + " %s%n Descricao Detalhada: %s%n", codigo, descricaoBreve, descricaoDetalhada);
+        return String.format("ID: %s; Descrição breve: %s; Descrição detalhada: %s.", codigo, descricaoBreve, descricaoDetalhada );
     }
 
 }

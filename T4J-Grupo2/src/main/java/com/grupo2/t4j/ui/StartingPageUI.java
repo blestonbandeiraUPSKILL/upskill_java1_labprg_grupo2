@@ -1,9 +1,7 @@
 package com.grupo2.t4j.ui;
 
-import com.grupo2.t4j.controller.ApplicationController;
 import com.grupo2.t4j.controller.AutenticacaoController;
 import com.grupo2.t4j.model.Password;
-import com.grupo2.t4j.api.UsersAPIAdapter;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -23,8 +21,6 @@ import java.util.ResourceBundle;
 
 public class StartingPageUI implements Initializable {
 
-    UsersAPIAdapter usersAPIAdapter;
-    private ApplicationController applicationController;
     private AutenticacaoController autenticacaoController;
     private Stage adicionarStage;
     private Scene sceneRegistarOrganizacao;
@@ -36,11 +32,6 @@ public class StartingPageUI implements Initializable {
     @FXML PasswordField txtPasswordLogin;
     @FXML Button btnSair;
     @FXML Button btnLogin;
-    @FXML Button btnAdministrativoLogado;
-
-    public ApplicationController getApplicationController() {
-        return applicationController;
-    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -56,7 +47,6 @@ public class StartingPageUI implements Initializable {
             adicionarStage.setResizable(false);
 
             autenticacaoController = new AutenticacaoController();
-            applicationController = new ApplicationController();
 
         }
         catch (IOException exception) {

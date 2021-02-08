@@ -2,13 +2,16 @@
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
- */
+ *//*
+
 package com.grupo2.t4j.repository;
 
+*/
 /**
  *
  * @author CAD
- */
+ *//*
+
 
 import com.grupo2.t4j.model.*;
 import com.grupo2.t4j.repository.*;
@@ -32,7 +35,7 @@ public class RepositorioUtilizadorTest {
        
         RepositorioUtilizador ru1 = RepositorioUtilizador.getInstance();
         
-        Utilizador u1= new Utilizador("Fulano", "fulano@upskill.pt", "12345678");
+       // Utilizador u1= new Utilizador("Fulano", "fulano@upskill.pt", "12345678");
       
         ru1.addUtilizador(u1);
         
@@ -50,7 +53,7 @@ public class RepositorioUtilizadorTest {
         ru1.addUtilizador(u1);
         ru1.addUtilizador(u2);              
     }
-    
+
     @Test (expected = NomeInvalidoException.class)
     public void testAddUtilizadorErroNome() {
         
@@ -81,3 +84,4 @@ public class RepositorioUtilizadorTest {
         
     }
 }
+*/

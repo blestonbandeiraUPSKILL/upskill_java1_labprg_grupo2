@@ -28,6 +28,7 @@ public class MainApp extends Application {
             //FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/ColaboradorLogadoScene.fxml"));
             //FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/GestorLogadoScene.fxml"));
 
+
             Parent root = loader.load();
 
             Scene scene = new Scene(root);

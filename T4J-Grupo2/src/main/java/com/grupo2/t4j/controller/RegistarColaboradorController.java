@@ -21,11 +21,12 @@ public class RegistarColaboradorController {
     private RepositorioColaborador repositorioColaborador;
     private FicheiroRepositorioColaborador ficheiroC;
 
-    public boolean registarColaborador(String nome, String emailCol, String funcao, 
+
+    /*public boolean registarColaborador(String nome, String emailCol, String funcao, 
             String telefone, Rolename rolename) {
         Colaborador col = new Colaborador(nome, emailCol, funcao, telefone, rolename);
         return repositorioColaborador.getInstance().addColaboradorVerif(col);
-    }
+    }*/
     
     public boolean registarColaborador(Colaborador colaborador) {
         return repositorioColaborador.getInstance().addColaboradorVerif(colaborador);

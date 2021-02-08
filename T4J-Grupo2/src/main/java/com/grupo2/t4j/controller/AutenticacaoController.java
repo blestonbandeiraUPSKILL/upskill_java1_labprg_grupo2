@@ -30,7 +30,7 @@ public class AutenticacaoController {
         System.out.println(password);
 
         UsersAPI usersAPI = Plataforma.getInstance().getUsersAPI();
-        Utilizador utilizador = new Utilizador(nome, password, email, Rolename.GESTOR);
+        Utilizador utilizador = new Utilizador(nome, email, password, Rolename.GESTOR);
 
         return usersAPI.registerUserWithRoles(nome, email, password, "gestor")
                 && Plataforma.getInstance().getRepositorioUtilizador().addUtilizador(utilizador);
@@ -45,7 +45,7 @@ public class AutenticacaoController {
         System.out.println(password);
 
         UsersAPI usersAPI = Plataforma.getInstance().getUsersAPI();
-        Utilizador utilizador = new Utilizador(nome, password, email, Rolename.COLABORADOR);
+        Utilizador utilizador = new Utilizador(nome, email, password, Rolename.COLABORADOR);
 
         return usersAPI.registerUserWithRoles(nome, email, password, "colaborador") &&
                 Plataforma.getInstance().getRepositorioUtilizador().addUtilizador(utilizador);
