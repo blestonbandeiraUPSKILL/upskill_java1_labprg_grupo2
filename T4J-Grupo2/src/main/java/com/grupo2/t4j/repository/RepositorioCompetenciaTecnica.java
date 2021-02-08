@@ -125,7 +125,7 @@ public class RepositorioCompetenciaTecnica implements Serializable{
     public ArrayList<CompetenciaTecnica> getCompetenciasTecnicasByAreaActividade(AreaActividade at) {
         ArrayList<CompetenciaTecnica> compTecPorAt = new ArrayList<>();
 
-        for (CompetenciaTecnica ct : getCompetenciasTecnicasByAreaActividade(at)) {
+        for (CompetenciaTecnica ct : listaCompTecnicas) {
             if (ct.getAreaActividade().equals(at)) {
                 compTecPorAt.add(ct);
             }
