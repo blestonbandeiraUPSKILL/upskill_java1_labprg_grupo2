@@ -180,7 +180,7 @@ public class Organizacao implements Serializable{
      */
     public Organizacao(String nome, String NIF, String arruamento, String numeroPorta,
                        String localidade, String codigoPostal, String website, String telefone,
-                       String email, String nomeColab, String emailColab, String passColab,
+                       String email, String nomeColab, Email emailColab, Password passColab,
                        String funcao, String telefoneColab){
         setNome(nome);
         setNif(NIF);

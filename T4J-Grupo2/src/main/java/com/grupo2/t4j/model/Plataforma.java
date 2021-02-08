@@ -35,14 +35,14 @@ public class Plataforma {
      * Construtor Classe Plataforma
      */
     public Plataforma() {
-        //algoritmoGeradorPasswords = new AlgoritmoGeradorPasswords();
+        algoritmoGeradorPasswords = new AlgoritmoGeradorPasswords();
         usersAPI = new UsersAPI();
         repositorioOrganizacao = RepositorioOrganizacao.getInstance();
         repositorioCategoriaTarefa = RepositorioCategoriaTarefa.getInstance();
-        //repositorioColaborador = new RepositorioColaborador();
-        //repositorioUtilizador = new RepositorioUtilizador();
+        repositorioColaborador = RepositorioColaborador.getInstance();
+        repositorioUtilizador =RepositorioUtilizador.getInstance();
         repositorioCompetenciaTecnica = RepositorioCompetenciaTecnica.getInstance();
-        //repositorioTarefa = new RepositorioTarefa();
+        repositorioTarefa = RepositorioTarefa.getInstance();
     }
 
     /**

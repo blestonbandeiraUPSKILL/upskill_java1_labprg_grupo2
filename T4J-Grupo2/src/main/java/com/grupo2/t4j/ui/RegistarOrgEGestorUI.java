@@ -1,11 +1,8 @@
 package com.grupo2.t4j.ui;
 
+import com.grupo2.t4j.controller.AutenticacaoController;
 import com.grupo2.t4j.controller.RegistarOrganizacaoController;
-import com.grupo2.t4j.model.Email;
-import com.grupo2.t4j.model.Organizacao;
-import com.grupo2.t4j.model.Password;
-import com.grupo2.t4j.model.Rolename;
-import com.grupo2.t4j.model.Website;
+import com.grupo2.t4j.model.*;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -30,6 +27,7 @@ public class RegistarOrgEGestorUI implements Initializable {
 
     private RegistarOrganizacaoController registarOrganizacaoController;
     private StartingPageUI startingPageUI;
+    private AutenticacaoController autenticacaoController;
     private Stage adicionarStage;
 
     private Scene sceneConfirmarRegisto;
@@ -55,6 +53,7 @@ public class RegistarOrgEGestorUI implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        autenticacaoController = new AutenticacaoController();
 
     }
 
@@ -94,13 +93,16 @@ public class RegistarOrgEGestorUI implements Initializable {
             
             boolean registou = registarOrganizacaoController.registaOrganizacao(organizacao);
             if(registou) {
-                Password pw = registarOrganizacaoController.organizacao.getColabGestor().getPassword();
+                autenticacaoController.registarGestorComoUtilizador(organizacao.getColabGestor());
+                String pw = registarOrganizacaoController.organizacao.getColabGestor().getPassword().getPasswordText();
                 AlertsUI.criarAlerta(Alert.AlertType.INFORMATION,
                     MainApp.TITULO_APLICACAO,
                     "Registar Organização.",
                     registou ? ("Organização registada com sucesso.\n A sua password é " + pw)
                                 : "Não foi possível registar a Organização.").show();
-                
+
+
+
                 closeAddOrganizacao(actionEvent);
             }
             
