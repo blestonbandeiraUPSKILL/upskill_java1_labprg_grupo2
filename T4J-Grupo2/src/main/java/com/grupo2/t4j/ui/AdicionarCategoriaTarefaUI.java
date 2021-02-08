@@ -77,20 +77,45 @@ public class AdicionarCategoriaTarefaUI implements Initializable {
                 registarCompetenciaTecnicaController.getCompetenciasTecnicasByAreaActividade(
                 cmbAreaActividade.getSelectionModel().getSelectedItem()));*/
 
-       /* cmbAreaActividade.addEventFilter();
-                updateCmbCompetenciasTecnicas();*/
+       cmbAreaActividade.setOnAction(new EventHandler<ActionEvent>() {
+           @Override
+           public void handle(ActionEvent event) {
+               Map listaCompetenciasTecnicas2Map = new HashMap<>();
+               listaCompetenciasTecnicas2Map = (Map) registarCompetenciaTecnicaController.getCompetenciasTecnicasByAreaActividade(
+                       cmbAreaActividade.getSelectionModel().getSelectedItem());
+
+
+               ObservableList<AreaActividade> listaAreasActividade = FXCollections.observableList(
+                       registarAreaActividadeController.getAreasActividade());
+               cmbAreaActividade.setItems(listaAreasActividade);
+
+               Map finalListaCompetenciasTecnicas2Map = listaCompetenciasTecnicas2Map;
+
+               cmbAreaActividade.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<AreaActividade>() {
+                   @Override
+                   public void changed(ObservableValue<? extends AreaActividade> observable, AreaActividade oldValue, AreaActividade newValue) {
+                       ObservableList listaCompetenciasTecnicas = FXCollections.observableArrayList(
+                               (List) finalListaCompetenciasTecnicas2Map.get(newValue));
+                       cmbCompetenciaTecnica.getItems().setAll(listaCompetenciasTecnicas);
+                   }
+               });
+           }
+       });
     }
 
-    public void updateCmbCompetenciasTecnicas() {
+    public void updateCmbCompetenciasTecnicas(ActionEvent actionEvent) {
 
         Map listaCompetenciasTecnicas2Map = new HashMap<>();
         listaCompetenciasTecnicas2Map = (Map) registarCompetenciaTecnicaController.getCompetenciasTecnicasByAreaActividade(
                 cmbAreaActividade.getSelectionModel().getSelectedItem());
 
 
-        ObservableList<AreaActividade> listaAreasActividade = FXCollections.observableList(registarAreaActividadeController.getAreasActividade());
+        ObservableList<AreaActividade> listaAreasActividade = FXCollections.observableList(
+                registarAreaActividadeController.getAreasActividade());
         cmbAreaActividade.setItems(listaAreasActividade);
+
         Map finalListaCompetenciasTecnicas2Map = listaCompetenciasTecnicas2Map;
+
         cmbAreaActividade.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<AreaActividade>() {
             @Override
             public void changed(ObservableValue<? extends AreaActividade> observable, AreaActividade oldValue, AreaActividade newValue) {
