@@ -7,7 +7,7 @@
 - [Caroline Duarte](https://github.com/carol-duarte)
 - [Marta Silvestre](https://github.com/Marta-Silvestre)
 
-## Enunciado do SPRINT 2
+## Enunciado do SPRINT 2 (submissão no MOODLE até às 9h de 09/02/2021; apresentação às 10h30 de 09/02/2021)
 - [Enunciado](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Sprint%202%20-%20Documenta%C3%A7%C3%A3o/Enunciado/Enunciado.md)
 
 ## Documentação
