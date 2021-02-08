@@ -23,6 +23,7 @@ import javafx.stage.WindowEvent;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class ColaboradorLogadoUI implements Initializable {
@@ -37,12 +38,19 @@ public class ColaboradorLogadoUI implements Initializable {
     private Stage adicionarStage;
 
     @FXML Button btnSairListaTarefas;
+    @FXML Button btnCancelar;
     @FXML ComboBox<AreaActividade> cmbAreaActividadeListaTarefas;
     @FXML ComboBox<AreaActividade> cmbAreaActividadeEspecificarTarefa;
     @FXML ComboBox<Categoria> cmbCategoriaTarefaListaTarefas;
     @FXML ComboBox<Categoria> cmbCategoriaTarefaEspecificarTarefa;
     @FXML ListView<Tarefa> listViewTarefas;
     @FXML ListView<CompetenciaTecnica> listViewCompetenciasTecnicas;
+    @FXML TextField txtReferencia;
+    @FXML TextField txtDesignacao;
+    @FXML TextArea txtDescInformal;
+    @FXML TextArea txtDescTecnica;
+    @FXML TextField txtEstimativaDuracao;
+    @FXML TextField txtEstimativaCusto;
 
     public void associarParentUI(StartingPageUI startingPageUI) {
         this.startingPageUI = startingPageUI;
@@ -60,23 +68,48 @@ public class ColaboradorLogadoUI implements Initializable {
         adicionarStage.initModality(Modality.APPLICATION_MODAL);;
         adicionarStage.setResizable(false);
 
+        //tab Lista de Tarefas
         cmbAreaActividadeListaTarefas.getItems().setAll(registarAreaActividadeController.getAreasActividade());
         cmbCategoriaTarefaListaTarefas.getItems().setAll(
                 registarCategoriaController.getCategoriasByAreaActividade(
                         cmbAreaActividadeListaTarefas.getSelectionModel().getSelectedItem()));
 
+        ListView<Tarefa> listViewTarefas = new ListView<>();
+        listViewTarefas.getItems().addAll(registarTarefaController.getListTarefas());
+
+        //tab Especificar Tarefa
         cmbAreaActividadeEspecificarTarefa.getItems().setAll(registarAreaActividadeController.getAreasActividade());
         cmbCategoriaTarefaEspecificarTarefa.getItems().setAll(
                 registarCategoriaController.getCategoriasByAreaActividade(
                         cmbAreaActividadeEspecificarTarefa.getSelectionModel().getSelectedItem()));
 
-        ListView listViewTarefas = new ListView();
-        ListView listViewCompetenciasTecnicas = new ListView();
-        listViewTarefas.getItems().addAll(registarTarefaController.getListTarefas());
+        ListView<CompetenciaTecnica> listViewCompetenciasTecnicas = new ListView<>();
         listViewCompetenciasTecnicas.getItems().addAll(registarCompetenciaTecnicaController.getCompetenciasTecnicasByAreaActividade(
                 cmbAreaActividadeEspecificarTarefa.getSelectionModel().getSelectedItem()));
 
+    }
 
+    public void registarTarefa(ActionEvent actionEvent) {
+        try {
+            AreaActividade areaActividade = registarAreaActividadeController.getAreaActividadeByCodigo(
+                    cmbAreaActividadeEspecificarTarefa.getSelectionModel().getSelectedItem());
+     /*       Categoria categoriaTarefa = registarCategoriaController.getCategoriasByAreaActividade(
+                    cmbCategoriaTarefaEspecificarTarefa.getSelectionModel().getSelectedItem(),
+
+            );
+
+            Tarefa tarefa = registarTarefaController.novaTarefa(areaActividade, categoriaTarefa,
+
+            )
+*/
+        }
+        catch (IllegalArgumentException iae) {
+            AlertsUI.criarAlerta(Alert.AlertType.ERROR,
+                    MainApp.TITULO_APLICACAO,
+                    "Erro nos dados.",
+                    iae.getMessage()).show();
+
+        }
     }
 
     @FXML
@@ -117,6 +150,17 @@ public class ColaboradorLogadoUI implements Initializable {
     }
 
 
+    public void cancelarAction(ActionEvent actionEvent) {
+        this.txtReferencia.clear();
+        this.txtDesignacao.clear();
+        this.txtDescInformal.clear();
+        this.txtDescTecnica.clear();
+        this.txtEstimativaDuracao.clear();
+        this.txtEstimativaCusto.clear();
+        this.listViewCompetenciasTecnicas.setItems(null);
+        this.cmbCategoriaTarefaEspecificarTarefa.setItems(null);
+        this.cmbAreaActividadeEspecificarTarefa.setItems(null);
+    }
 
 
 }

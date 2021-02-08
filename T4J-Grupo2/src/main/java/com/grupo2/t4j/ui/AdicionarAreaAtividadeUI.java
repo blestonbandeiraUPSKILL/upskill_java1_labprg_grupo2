@@ -49,6 +49,7 @@ public class AdicionarAreaAtividadeUI implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
 
         registarAreaActividadeController = new RegistarAreaActividadeController();
+
         adicionarStage = new Stage();
         adicionarStage.initModality(Modality.APPLICATION_MODAL);;
         adicionarStage.setResizable(false);
@@ -82,9 +83,8 @@ public class AdicionarAreaAtividadeUI implements Initializable {
 
     @FXML
     public void registarAreaAction(ActionEvent event) {
-        try{
-            registarAreaActividadeController = new RegistarAreaActividadeController();
 
+        try{
             AreaActividade areaActividade = registarAreaActividadeController.novaAreaActividade(txtCodigo.getText(),
                     txtDescricaoBreve.getText(),
                     areaDescricaoDetalhada.getText());
@@ -100,7 +100,6 @@ public class AdicionarAreaAtividadeUI implements Initializable {
                     "Registar Área de Actividade.",
                     adicionou ? "Área de Actividade registada com sucesso."
                                 : "Não foi possível registar a Área de Actividade.").show();
-
 
             closeAddAreaActividade(event);
 

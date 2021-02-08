@@ -73,7 +73,7 @@ public class ColaboradorLogadoUI2 implements Initializable {
     @FXML
     private void selectAreaActAction(ActionEvent event) {
         AreaActividade areaActividade = cmbAreaActividade.getSelectionModel().getSelectedItem();
-        cmbCategoriaTarefa.getItems().setAll(registarTarefaController.getListaCategoriaPorAreaActividade(areaActividade));
+        cmbCategoriaTarefa.getItems().setAll(registarTarefaController.getListaCategoriaByAreaActividade(areaActividade));
     }
 
     @FXML

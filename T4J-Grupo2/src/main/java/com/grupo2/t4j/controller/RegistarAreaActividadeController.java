@@ -9,7 +9,6 @@ import com.grupo2.t4j.files.FicheiroRepositorioAreaActividade;
 import com.grupo2.t4j.model.AreaActividade;
 import com.grupo2.t4j.repository.RepositorioAreaActividade;
 import java.io.File;
-import java.io.Serializable;
 
 import java.util.List;
 
@@ -43,10 +42,9 @@ public class RegistarAreaActividadeController /*implements Serializable*/{
         return RepositorioAreaActividade.getInstance().getListaAreasActividadeByDescBreve();
     }
 
-    public AreaActividade getAreaActividadeByCodigo(String codigo) {
+    public AreaActividade getAreaActividadeByCodigo(AreaActividade codigo) {
        List<AreaActividade> listaAreasActividade = RepositorioAreaActividade.getInstance().getListaAreasActividade();
         for (int i = 0; i < listaAreasActividade.size(); i++) {
-            //AreaActividade areaActividade = RepositorioAreaActividade.getInstance().getAreaActividadeByCodigo(codigo);
             AreaActividade areaActividade = listaAreasActividade.get(i);
             if (areaActividade.getCodigo().equals(codigo)) {
                 return areaActividade;
