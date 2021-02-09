@@ -7,11 +7,9 @@
 - [Caroline Duarte](https://github.com/carol-duarte)
 - [Marta Silvestre](https://github.com/Marta-Silvestre)
 
-## Enunciado do SPRINT 2
-- [Enunciado](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Sprint%202%20-%20Documenta%C3%A7%C3%A3o/Enunciado/Enunciado.md)
-
 ## Documentação
 
+- [Enunciado Sprint 2](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Sprint%202%20-%20Documenta%C3%A7%C3%A3o/Enunciado/Enunciado.md)
 - [Glossário](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Sprint%202%20-%20Documenta%C3%A7%C3%A3o/Glossario.md)
 - [Modelo de Domínio](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Sprint%202%20-%20Documenta%C3%A7%C3%A3o/Modelo%20de%20Dom%C3%ADnio.png)
 - [Diagrama de Casos de Uso](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Sprint%202%20-%20Documenta%C3%A7%C3%A3o/Diagrama_Casos_Uso/Diagrama_Casos_Uso.png)
