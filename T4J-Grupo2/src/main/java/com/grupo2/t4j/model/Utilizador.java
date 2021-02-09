@@ -39,7 +39,7 @@ public class Utilizador implements Serializable{
      * Password inicial de um Utilizador em processo de registo - antes de receber 
      * a password oficial por email.
      */
-    private static final Password PASSWORD_POR_OMISSAO = new Password("00000000");
+    //private static final Password PASSWORD_POR_OMISSAO = new Password("00000000");
     
     /**
      * O papel do Utilizador por omissão.
@@ -88,7 +88,7 @@ public class Utilizador implements Serializable{
      */
     public Utilizador (String nome, Email emailUt, Rolename rolename){
         setNome(nome);
-        this.email = new Email(emailUt);
+        this.email = emailUt;
         //setPassword(PASSWORD_POR_OMISSAO);
         setRolename(rolename); 
     }
@@ -187,9 +187,8 @@ public class Utilizador implements Serializable{
     /**
      * Representação textual da classe Utilizador
      * @return Nome, email e password do Utilizador
-     */   
-    @Override
-    public String toString(){
+     */
+    public String toStringComPass(){
         return String.format("Nome utilizador: %s %nEmail:%s %nPassword: %s "
                 + "%nRolename: %s", nome, email.getEmailText(), 
                 password.getPasswordText(), rolename.toString());
@@ -199,7 +198,8 @@ public class Utilizador implements Serializable{
      * Representação textual da classe Utilizador sem a password
      * @return Nome e email do Utilizador
      */
-    public String toStringSemPass(){
+    @Override
+    public String toString(){
         return String.format("Nome utilizador: %s %nEmail:%s %nRolename: %s", 
                 nome, email.getEmailText(), rolename.toString());
     }

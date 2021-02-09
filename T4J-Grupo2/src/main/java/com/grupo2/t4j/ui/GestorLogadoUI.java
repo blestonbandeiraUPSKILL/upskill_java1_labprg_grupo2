@@ -189,9 +189,11 @@ public class GestorLogadoUI implements Initializable {
     }
 
     public void logout(ActionEvent actionEvent) {
+
         boolean logout = autenticacaoController.logout();
         if (logout) {
             navigateStartingPage(actionEvent);
+
             Plataforma.getInstance().resetUserAPI();
         }
         else {
