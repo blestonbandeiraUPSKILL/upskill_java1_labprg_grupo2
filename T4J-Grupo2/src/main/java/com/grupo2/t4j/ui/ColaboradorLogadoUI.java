@@ -17,11 +17,11 @@ import javafx.stage.*;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
 public class ColaboradorLogadoUI implements Initializable {
+
 
     private RegistarCategoriaController registarCategoriaController;
     private RegistarAreaActividadeController registarAreaActividadeController;
@@ -32,9 +32,6 @@ public class ColaboradorLogadoUI implements Initializable {
     private StartingPageUI startingPageUI;
     private Scene sceneStartingPage;
     private Stage adicionarStage;
-   
-
-    private FicheiroRepositorioAreaActividade ficheiroRepositorioAreaActividade;
 
     private static final String CABECALHO_IMPORTAR = "Importar Lista.";
 
@@ -53,6 +50,7 @@ public class ColaboradorLogadoUI implements Initializable {
     @FXML TextArea txtDescTecnica;
     @FXML TextField txtEstimativaDuracao;
     @FXML TextField txtEstimativaCusto;
+    @FXML Button btnRegistarTarefa;
 
     public void associarParentUI(StartingPageUI startingPageUI) {
         this.startingPageUI = startingPageUI;
@@ -81,39 +79,20 @@ public class ColaboradorLogadoUI implements Initializable {
                updateCmbCategoriasTarefaLista(event);
            }
         });
-        /*cmbCategoriaTarefaListaTarefas.getItems().setAll(
-                registarCategoriaController.getCategoriasByAreaActividade(
-                        cmbAreaActividadeListaTarefas.getSelectionModel().getSelectedItem()));*/
 
         ListView<Tarefa> listViewTarefas = new ListView<>();
         listViewTarefas.getItems().addAll(registarTarefaController.getListTarefas());
 
         //tab Especificar Tarefa
         cmbAreaActividadeEspecificarTarefa.getItems().setAll(registarAreaActividadeController.getAreasActividade());
-<<<<<<< HEAD
-        
+
         cmbAreaActividadeEspecificarTarefa.setOnAction(new EventHandler<ActionEvent>() {
            @Override
            public void handle(ActionEvent event) {
                updateCmbCategoriasTarefaRegisto(event);
            }
         });
-        /*cmbCategoriaTarefaEspecificarTarefa.getItems().setAll(
-                registarCategoriaController.getCategoriasByAreaActividade(
-                        cmbAreaActividadeEspecificarTarefa.getSelectionModel().getSelectedItem()));*/
 
-=======
-        cmbAreaActividadeEspecificarTarefa.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                updateCmbCategoriaTarefa(event);
-            }
-        });
-        /*cmbCategoriaTarefaEspecificarTarefa.getItems().setAll(
-                registarCategoriaController.getCategoriasByAreaActividade(
-                        cmbAreaActividadeEspecificarTarefa.getSelectionModel().getSelectedItem()));
-*/
->>>>>>> 30bf0bf4eb42debb1daf89394e2cc9c300cc48ed
         ListView<CaracterizacaoCT> listViewCaracterizacaoCT = new ListView<>();
         cmbCategoriaTarefaEspecificarTarefa.setOnAction(new EventHandler<ActionEvent>() {
            @Override
@@ -121,13 +100,6 @@ public class ColaboradorLogadoUI implements Initializable {
                updateListViewCaracterizacaoCTS(event);
            }
         });
-        
-        /*listViewCaracterizacaoCT.getItems().addAll(registarCaracterizacaoCTController.getCaracterizacaoCTSByCompetenciaTecnica(
-                registarCompetenciaTecnicaController.getCompetenciasTecnicasByAreaActividade(
-                        cmbAreaActividadeEspecificarTarefa.getSelectionModel().getSelectedItem())));*/
-        
-        
-
     }
     
     public void updateListViewCaracterizacaoCTS(ActionEvent actionEvent){
@@ -143,35 +115,22 @@ public class ColaboradorLogadoUI implements Initializable {
 
         cmbCategoriaTarefaListaTarefas.getItems().addAll(listaCategoriasTarefa);
     }
+
     public void updateCmbCategoriasTarefaRegisto(ActionEvent actionEvent) {
         List<Categoria> listaCategoriasTarefa =
                 registarCategoriaController.getCategoriasByAreaActividade(
                 cmbAreaActividadeEspecificarTarefa.getSelectionModel().getSelectedItem());
 
-<<<<<<< HEAD
-        cmbCategoriaTarefaEspecificarTarefa.getItems().addAll(listaCategoriasTarefa);
-    }
-    
-=======
-    public void updateCmbCategoriaTarefa(ActionEvent event) {
-        List<Categoria> listaCategoriasTarefa = registarCategoriaController.getCategoriasByAreaActividade(
-                cmbAreaActividadeEspecificarTarefa.getSelectionModel().getSelectedItem());
 
         cmbCategoriaTarefaEspecificarTarefa.getItems().addAll(listaCategoriasTarefa);
     }
 
->>>>>>> 30bf0bf4eb42debb1daf89394e2cc9c300cc48ed
     public void registarTarefa(ActionEvent actionEvent) {
         try {
             AreaActividade areaActividade = registarAreaActividadeController.getAreaActividadeByCodigo(
                     cmbAreaActividadeEspecificarTarefa.getSelectionModel().getSelectedItem().getCodigo());
             
             Categoria categoria = cmbCategoriaTarefaEspecificarTarefa.getSelectionModel().getSelectedItem();
-            /*ArrayList<Categoria> categoriasTarefa =
-                    registarCategoriaController.getCategoriasByAreaActividade(areaActividade);
-
-            List<CaracterizacaoCT> caracterizacaoCTS = registarCaracterizacaoCTController.getCaracterizacaoCTSByCompetenciaTecnica(
-                    registarCompetenciaTecnicaController.getCompetenciasTecnicasByAreaActividade(areaActividade));*/
 
             Tarefa tarefa = registarTarefaController.novaTarefa(areaActividade, categoria,
                     txtReferencia.getText(),
@@ -180,19 +139,18 @@ public class ColaboradorLogadoUI implements Initializable {
                     txtDescTecnica.getText(),
                     Integer.parseInt(txtEstimativaDuracao.getText()),
                     Double.parseDouble(txtEstimativaCusto.getText()));
+
             boolean adicionou = registarTarefaController.registarTarefa(tarefa);
+
             if (adicionou){
                 listViewTarefas.getItems().add(tarefa);
-                
             }
             AlertsUI.criarAlerta(Alert.AlertType.INFORMATION,
                     MainApp.TITULO_APLICACAO,
                     "Registar Competência Técnica.",
                         adicionou ? "Competencia Tecnica registada com sucesso."
                                 : "Não foi possível registar a Competência Técncia.").show();
-                    
 
-            boolean adicionou = registarTarefaController.registarTarefa(tarefa);
         }
         catch (IllegalArgumentException iae) {
             AlertsUI.criarAlerta(Alert.AlertType.ERROR,

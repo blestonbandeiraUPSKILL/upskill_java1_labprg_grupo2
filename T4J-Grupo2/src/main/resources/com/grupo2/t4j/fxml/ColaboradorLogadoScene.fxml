@@ -1,10 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
@@ -19,11 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<<<<<<< HEAD
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="700.0" style="-fx-background-color: #c4c4c4;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.ColaboradorLogadoUI">
-=======
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" style="-fx-background-color: #c4c4c4;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.ColaboradorLogadoUI">
->>>>>>> 30bf0bf4eb42debb1daf89394e2cc9c300cc48ed
    <top>
       <Label alignment="CENTER_RIGHT" style="-fx-background-color: #000000;" stylesheets="@../style/app.css" text="Área do Colaborador" textFill="WHITE" BorderPane.alignment="CENTER_RIGHT">
          <font>
@@ -38,27 +29,12 @@
       <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <center>
             <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
-<<<<<<< HEAD
                <tabs>
                   <Tab text="Lista de Tarefas">
                      <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
-                              <VBox alignment="CENTER" layoutX="560.0" layoutY="201.0" AnchorPane.bottomAnchor="101.66666666666669" AnchorPane.rightAnchor="32.0">
-                                 <children>
-                                    <Button fx:id="btnLogout" mnemonicParsing="false" onAction="#logout" text="Sair">
-                                       <font>
-                                          <Font name="Calibri" size="16.0" />
-                                       </font>
-                                       <padding>
-                                          <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                                       </padding>
-                                       <VBox.margin>
-                                          <Insets bottom="10.0" top="10.0" />
-                                       </VBox.margin>
-                                    </Button>
-                                 </children>
-                              </VBox>
+                              <VBox alignment="CENTER" layoutX="560.0" layoutY="201.0" AnchorPane.bottomAnchor="101.66666666666669" AnchorPane.rightAnchor="32.0" />
                               <ListView fx:id="listViewTarefas" layoutX="14.0" layoutY="140.0" prefHeight="209.0" prefWidth="508.0" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="172.0" AnchorPane.topAnchor="140.0" />
                               <Label layoutX="25.0" layoutY="107.0" prefHeight="40.0" prefWidth="215.0" text="Tarefas Registadas" AnchorPane.bottomAnchor="242.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="460.0" AnchorPane.topAnchor="107.0">
                                  <font>
@@ -95,275 +71,127 @@
                   </Tab>
                   <Tab text="Especificar Tarefa">
                      <content>
-                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-=======
-               <Tab text="Lista de Tarefas">
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                     <VBox alignment="CENTER" layoutX="560.0" layoutY="201.0" AnchorPane.bottomAnchor="101.66666666666669" AnchorPane.rightAnchor="32.0" />
-                     <ListView fx:id="listViewTarefas" layoutX="14.0" layoutY="140.0" prefHeight="209.0" prefWidth="508.0" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="172.0" AnchorPane.topAnchor="140.0" />
-                     <Label layoutX="25.0" layoutY="107.0" prefHeight="40.0" prefWidth="215.0" text="Tarefas Registadas" AnchorPane.bottomAnchor="242.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="460.0" AnchorPane.topAnchor="107.0">
-                        <font>
-                           <Font name="Calibri" size="15.0" />
-                        </font>
-                     </Label>
-                     <Label alignment="CENTER" layoutX="24.0" layoutY="27.0" text="Seleccionar Área de Actividade">
-                        <font>
-                           <Font name="Calibri" size="14.0" />
-                        </font>
-                     </Label>
-                     <VBox layoutX="274.0" layoutY="24.0">
->>>>>>> 30bf0bf4eb42debb1daf89394e2cc9c300cc48ed
-                        <children>
-                           <VBox alignment="TOP_CENTER" layoutX="20.0" layoutY="24.0" prefHeight="339.0" prefWidth="227.0">
-                              <children>
-                                 <Label text="Seleccionar Área de Actividade">
-                                    <VBox.margin>
-                                       <Insets top="20.0" />
-                                    </VBox.margin>
-                                 </Label>
-                                 <ComboBox fx:id="cmbAreaActividadeEspecificarTarefa" prefHeight="25.0" prefWidth="225.0" promptText="Escolha a Área de Actividade">
-                                    <opaqueInsets>
-                                       <Insets />
-                                    </opaqueInsets>
-                                    <VBox.margin>
-                                       <Insets bottom="10.0" top="10.0" />
-                                    </VBox.margin>
-                                 </ComboBox>
-                                 <Label text="Seleccionar Categoria de Tarefa">
-                                    <VBox.margin>
-                                       <Insets bottom="10.0" top="10.0" />
-                                    </VBox.margin>
-                                 </Label>
-                                 <ComboBox fx:id="cmbCategoriaTarefaEspecificarTarefa" prefHeight="25.0" prefWidth="225.0" promptText="Escolha a Categoria de Tarefa" />
-                                 <Label text="Competências Técnicas Requeridas">
-                                    <VBox.margin>
-                                       <Insets bottom="10.0" top="10.0" />
-                                    </VBox.margin>
-                                 </Label>
-                                 <ListView fx:id="listViewCaracterizacaoCT" prefHeight="140.0" prefWidth="225.0" />
-                              </children>
-                           </VBox>
-                           <VBox alignment="TOP_CENTER" layoutX="288.0" layoutY="19.0" prefHeight="340.0" prefWidth="297.0">
-                              <children>
-                                 <Label text="Referência">
-                                    <VBox.margin>
-                                       <Insets bottom="5.0" top="5.0" />
-                                    </VBox.margin>
-                                 </Label>
-                                 <TextField fx:id="txtReferencia">
-                                    <VBox.margin>
-                                       <Insets bottom="5.0" />
-                                    </VBox.margin>
-                                 </TextField>
-                                 <Label text="Designação">
-                                    <VBox.margin>
-                                       <Insets bottom="5.0" />
-                                    </VBox.margin>
-                                 </Label>
-                                 <TextField fx:id="txtDesignacao">
-                                    <VBox.margin>
-                                       <Insets bottom="5.0" />
-                                    </VBox.margin>
-                                 </TextField>
-                                 <Label text="Descrição Informal">
-                                    <VBox.margin>
-                                       <Insets bottom="5.0" />
-                                    </VBox.margin>
-                                 </Label>
-                                 <TextArea fx:id="txtDescInformal" prefHeight="43.0" prefWidth="297.0">
-                                    <VBox.margin>
-                                       <Insets bottom="5.0" />
-                                    </VBox.margin>
-                                 </TextArea>
-                                 <Label text="Descrição de Carácter Técnico">
-                                    <VBox.margin>
-                                       <Insets bottom="5.0" />
-                                    </VBox.margin>
-                                 </Label>
-                                 <TextArea fx:id="txtDescTecnica" prefHeight="61.0" prefWidth="297.0">
-                                    <VBox.margin>
-                                       <Insets bottom="5.0" />
-                                    </VBox.margin>
-                                 </TextArea>
-                                 <Label text="Estimativa de Duração (dias)">
-                                    <VBox.margin>
-                                       <Insets bottom="5.0" />
-                                    </VBox.margin>
-                                 </Label>
-                                 <TextField fx:id="txtEstimativaDuracao">
-                                    <VBox.margin>
-                                       <Insets bottom="5.0" />
-                                    </VBox.margin>
-                                 </TextField>
-                                 <Label text="Estimativa de Custo (€)">
-                                    <VBox.margin>
-                                       <Insets bottom="5.0" />
-                                    </VBox.margin>
-                                 </Label>
-                                 <TextField fx:id="txtEstimativaCusto">
-                                    <VBox.margin>
-                                       <Insets bottom="5.0" />
-                                    </VBox.margin>
-                                 </TextField>
-                              </children>
-                           </VBox>
-                           <VBox alignment="BOTTOM_CENTER" layoutX="594.0" layoutY="163.0" prefHeight="200.0" prefWidth="100.0">
-                              <children>
-                                 <Button fx:id="btnRegistarTarefa" defaultButton="true" mnemonicParsing="false" onAction="#registarTarefa" text="Confirmar">
-                                    <VBox.margin>
-                                       <Insets bottom="10.0" top="10.0" />
-                                    </VBox.margin>
-                                    <font>
-                                       <Font name="Calibri" size="14.0" />
-                                    </font>
-                                 </Button>
-                                 <Button fx:id="btnCancelar" mnemonicParsing="false" onAction="#cancelarAction" text="Cancelar">
-                                    <VBox.margin>
-                                       <Insets bottom="10.0" top="10.0" />
-                                    </VBox.margin>
-                                    <font>
-                                       <Font name="Calibri" size="14.0" />
-                                    </font>
-                                 </Button>
-                              </children>
-                           </VBox>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <VBox alignment="TOP_CENTER" layoutX="20.0" layoutY="24.0" prefHeight="339.0" prefWidth="227.0">
+                                 <children>
+                                    <Label text="Seleccionar Área de Actividade">
+                                       <VBox.margin>
+                                          <Insets top="20.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                    <ComboBox fx:id="cmbAreaActividadeEspecificarTarefa" prefHeight="25.0" prefWidth="225.0" promptText="Escolha a Área de Actividade">
+                                       <opaqueInsets>
+                                          <Insets />
+                                       </opaqueInsets>
+                                       <VBox.margin>
+                                          <Insets bottom="10.0" top="10.0" />
+                                       </VBox.margin>
+                                    </ComboBox>
+                                    <Label text="Seleccionar Categoria de Tarefa">
+                                       <VBox.margin>
+                                          <Insets bottom="10.0" top="10.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                    <ComboBox fx:id="cmbCategoriaTarefaEspecificarTarefa" prefHeight="25.0" prefWidth="225.0" promptText="Escolha a Categoria de Tarefa" />
+                                    <Label text="Competências Técnicas Requeridas">
+                                       <VBox.margin>
+                                          <Insets bottom="10.0" top="10.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                    <ListView fx:id="listViewCaracterizacaoCT" prefHeight="140.0" prefWidth="225.0" />
+                                 </children>
+                              </VBox>
+                              <VBox alignment="TOP_CENTER" layoutX="288.0" layoutY="19.0" prefHeight="340.0" prefWidth="297.0">
+                                 <children>
+                                    <Label text="Referência">
+                                       <VBox.margin>
+                                          <Insets bottom="5.0" top="5.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                    <TextField fx:id="txtReferencia">
+                                       <VBox.margin>
+                                          <Insets bottom="5.0" />
+                                       </VBox.margin>
+                                    </TextField>
+                                    <Label text="Designação">
+                                       <VBox.margin>
+                                          <Insets bottom="5.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                    <TextField fx:id="txtDesignacao">
+                                       <VBox.margin>
+                                          <Insets bottom="5.0" />
+                                       </VBox.margin>
+                                    </TextField>
+                                    <Label text="Descrição Informal">
+                                       <VBox.margin>
+                                          <Insets bottom="5.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                    <TextArea fx:id="txtDescInformal" prefHeight="43.0" prefWidth="297.0">
+                                       <VBox.margin>
+                                          <Insets bottom="5.0" />
+                                       </VBox.margin>
+                                    </TextArea>
+                                    <Label text="Descrição de Carácter Técnico">
+                                       <VBox.margin>
+                                          <Insets bottom="5.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                    <TextArea fx:id="txtDescTecnica" prefHeight="61.0" prefWidth="297.0">
+                                       <VBox.margin>
+                                          <Insets bottom="5.0" />
+                                       </VBox.margin>
+                                    </TextArea>
+                                    <Label text="Estimativa de Duração (dias)">
+                                       <VBox.margin>
+                                          <Insets bottom="5.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                    <TextField fx:id="txtEstimativaDuracao">
+                                       <VBox.margin>
+                                          <Insets bottom="5.0" />
+                                       </VBox.margin>
+                                    </TextField>
+                                    <Label text="Estimativa de Custo (€)">
+                                       <VBox.margin>
+                                          <Insets bottom="5.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                    <TextField fx:id="txtEstimativaCusto">
+                                       <VBox.margin>
+                                          <Insets bottom="5.0" />
+                                       </VBox.margin>
+                                    </TextField>
+                                 </children>
+                              </VBox>
+                              <VBox alignment="BOTTOM_CENTER" layoutX="594.0" layoutY="163.0" prefHeight="200.0" prefWidth="100.0">
+                                 <children>
+                                    <Button fx:id="btnRegistarTarefa" defaultButton="true" mnemonicParsing="false" onAction="#registarTarefa" text="Confirmar">
+                                       <VBox.margin>
+                                          <Insets bottom="10.0" top="10.0" />
+                                       </VBox.margin>
+                                       <font>
+                                          <Font name="Calibri" size="14.0" />
+                                       </font>
+                                    </Button>
+                                    <Button fx:id="btnCancelar" mnemonicParsing="false" onAction="#cancelarAction" text="Cancelar">
+                                       <VBox.margin>
+                                          <Insets bottom="10.0" top="10.0" />
+                                       </VBox.margin>
+                                       <font>
+                                          <Font name="Calibri" size="14.0" />
+                                       </font>
+                                    </Button>
+                                 </children>
+                              </VBox>
                               <Button fx:id="btnImportAreaActividade" layoutY="2.0" mnemonicParsing="false" onAction="#importAreaActividade" prefHeight="25.0" prefWidth="170.0" text="Importar Áreas Actividade" />
                               <Button layoutX="168.0" layoutY="2.0" mnemonicParsing="false" text="Importar Categorias Tarefa" />
-                        </children>
-<<<<<<< HEAD
-                     </AnchorPane>
+                           </children>
+                        </AnchorPane>
                      </content>
-=======
-                     </VBox>
-                     <Label alignment="CENTER" layoutX="22.0" layoutY="76.0" text="Seleccionar Categoria de Tarefa">
-                        <font>
-                           <Font name="Calibri" size="14.0" />
-                        </font>
-                     </Label>
-                  </AnchorPane>
-               </Tab>
-               <Tab text="Especificar Tarefa">
-               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                  <VBox alignment="TOP_CENTER" layoutX="20.0" layoutY="24.0" prefHeight="339.0" prefWidth="227.0">
-                     <Label text="Seleccionar Área de Actividade">
-                        <VBox.margin>
-                           <Insets top="20.0" />
-                        </VBox.margin>
-                     </Label>
-                     <ComboBox fx:id="cmbAreaActividadeEspecificarTarefa" prefHeight="25.0" prefWidth="225.0" promptText="Escolha a Área de Actividade">
-                        <opaqueInsets>
-                           <Insets />
-                        </opaqueInsets>
-                        <VBox.margin>
-                           <Insets bottom="10.0" top="10.0" />
-                        </VBox.margin>
-                     </ComboBox>
-                     <Label text="Seleccionar Categoria de Tarefa">
-                        <VBox.margin>
-                           <Insets bottom="10.0" top="10.0" />
-                        </VBox.margin>
-                     </Label>
-                     <ComboBox fx:id="cmbCategoriaTarefaEspecificarTarefa" prefHeight="25.0" prefWidth="225.0" promptText="Escolha a Categoria de Tarefa" />
-                     <Label text="Competências Técnicas Requeridas">
-                        <VBox.margin>
-                           <Insets bottom="10.0" top="10.0" />
-                        </VBox.margin>
-                     </Label>
-                     <ListView fx:id="listViewCaracterizacaoCT" prefHeight="140.0" prefWidth="225.0" />
-                  </VBox>
-                  <VBox alignment="TOP_CENTER" layoutX="288.0" layoutY="19.0" prefHeight="340.0" prefWidth="297.0">
-                     <Label text="Referência">
-                        <VBox.margin>
-                           <Insets bottom="5.0" top="5.0" />
-                        </VBox.margin>
-                     </Label>
-                     <TextField fx:id="txtReferencia">
-                        <VBox.margin>
-                           <Insets bottom="5.0" />
-                        </VBox.margin>
-                     </TextField>
-                     <Label text="Designação">
-                        <VBox.margin>
-                           <Insets bottom="5.0" />
-                        </VBox.margin>
-                     </Label>
-                     <TextField fx:id="txtDesignacao">
-                        <VBox.margin>
-                           <Insets bottom="5.0" />
-                        </VBox.margin>
-                     </TextField>
-                     <Label text="Descrição Informal">
-                        <VBox.margin>
-                           <Insets bottom="5.0" />
-                        </VBox.margin>
-                     </Label>
-                     <TextArea fx:id="txtDescInformal" prefHeight="43.0" prefWidth="297.0">
-                        <VBox.margin>
-                           <Insets bottom="5.0" />
-                        </VBox.margin>
-                     </TextArea>
-                     <Label text="Descrição de Carácter Técnico">
-                        <VBox.margin>
-                           <Insets bottom="5.0" />
-                        </VBox.margin>
-                     </Label>
-                     <TextArea fx:id="txtDescTecnica" prefHeight="61.0" prefWidth="297.0">
-                        <VBox.margin>
-                           <Insets bottom="5.0" />
-                        </VBox.margin>
-                     </TextArea>
-                     <Label text="Estimativa de Duração (dias)">
-                        <VBox.margin>
-                           <Insets bottom="5.0" />
-                        </VBox.margin>
-                     </Label>
-                     <TextField fx:id="txtEstimativaDuracao">
-                        <VBox.margin>
-                           <Insets bottom="5.0" />
-                        </VBox.margin>
-                     </TextField>
-                     <Label text="Estimativa de Custo (€)">
-                        <VBox.margin>
-                           <Insets bottom="5.0" />
-                        </VBox.margin>
-                     </Label>
-                     <TextField fx:id="txtEstimativaCusto">
-                        <VBox.margin>
-                           <Insets bottom="5.0" />
-                        </VBox.margin>
-                     </TextField>
-                  </VBox>
-                  <VBox alignment="BOTTOM_CENTER" layoutX="594.0" layoutY="163.0" prefHeight="200.0" prefWidth="100.0">
-                     <Button fx:id="btnRegistarTarefa" defaultButton="true" mnemonicParsing="false" text="Confirmar">
-                        <VBox.margin>
-                           <Insets bottom="10.0" top="10.0" />
-                        </VBox.margin>
-                        <font>
-                           <Font name="Calibri" size="14.0" />
-                        </font>
-                     </Button>
-                     <Button fx:id="btnCancelar" mnemonicParsing="false" onAction="#cancelarAction" text="Cancelar">
-                        <VBox.margin>
-                           <Insets bottom="10.0" top="10.0" />
-                        </VBox.margin>
-                        <font>
-                           <Font name="Calibri" size="14.0" />
-                        </font>
-                     </Button>
-                  </VBox>
-                     <Button fx:id="btnImportAreaActividade" layoutY="2.0" mnemonicParsing="false" onAction="#importAreaActividade" prefHeight="25.0" prefWidth="170.0" text="Importar Áreas Actividade" />
-               </AnchorPane>
-            </Tab>
-               <Tab text="Publicar Tarefas">
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                     <Label layoutX="168.0" layoutY="158.0" text="Esta funcionalidade ainda não está implementada">
-                        <font>
-                           <Font name="Calibri" size="18.0" />
-                        </font>
-                     </Label>
-                  </AnchorPane>
->>>>>>> 30bf0bf4eb42debb1daf89394e2cc9c300cc48ed
-               </Tab>
+                  </Tab>
                   <Tab text="Publicar Tarefas">
                      <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">

@@ -75,7 +75,7 @@ public class RepositorioTarefa implements Serializable{
             throw new TarefaDuplicadaException(t.getReferencia() + 
                     ": Tarefa já registada");
         }
-        return false;
+
     }
 
     public List<Categoria> getCategoriasByAreaActividade(AreaActividade areaActividade) {

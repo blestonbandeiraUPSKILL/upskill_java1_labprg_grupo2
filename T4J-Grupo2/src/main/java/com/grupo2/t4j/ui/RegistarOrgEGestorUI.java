@@ -93,60 +93,25 @@ public class RegistarOrgEGestorUI implements Initializable {
                     txtTelefoneGestor.getText(),Rolename.GESTOR);
             
             boolean registou = registarOrganizacaoController.registaOrganizacao(organizacao);
+
             if(registou) {
-<<<<<<< HEAD
-                String pw = registarOrganizacaoController.organizacao.getColabGestor().getPassword().getPasswordText();
-=======
                 autenticacaoController.registarGestorComoUtilizador(organizacao.getColabGestor());
                 txtPassword.setText(registarOrganizacaoController.organizacao.getColabGestor().getPassword().getPasswordText());
->>>>>>> 30bf0bf4eb42debb1daf89394e2cc9c300cc48ed
+
                 AlertsUI.criarAlerta(Alert.AlertType.INFORMATION,
                     MainApp.TITULO_APLICACAO,
                     "Registar Organização.",
                     registou ? ("Organização registada com sucesso.")
                                 : "Não foi possível registar a Organização.").show();
 
-
-//                    btnCancelarRegisto.
-                    /*txtNomeOrganizacao.clear();
-                    txtNif.clear();
-                    txtTelefoneOrganizacao.clear();
-                    txtWebsite.clear();
-                    txtEmailOrganizacao.clear();
-                    txtEndArruamento.clear();
-                    txtEndPorta.clear();
-                    txtEndLocalidade.clear();
-                    txtEndCodPostal.clear();
-                    txtNomeGestor.clear();
-                    txtTelefoneGestor.clear();
-                    txtEmailGestor.clear();
-                    txtPassword.clear();
-*/
-
-
                 //closeAddOrganizacao(actionEvent);
             }
-            
-            //String nomeOrganizacao = txtNomeOrganizacao.getText();
-            //String nif = txtNif.getText();
-            //String arruamento = txtEndArruamento.getText();
-            //String numeroPorta = txtEndPorta.getText();
-            //String localidade = txtEndLocalidade.getText();
-            //String codPostal = txtEndCodPostal.getText();
-            //String telefoneOrg = txtTelefoneOrganizacao.getText();
-            //String website = txtWebsite.getText();
-            //String emailOrg = txtEmailOrganizacao.getText();
-            //String nomeGestor = txtNomeGestor.getText();
-            //String emailGestor = txtEmailGestor.getText();
-            //String telefoneGestor = txtTelefoneGestor.getText();
-            //Rolename role = Rolename.GESTOR;
 
            /*Organizacao organizacao = new Organizacao(nomeOrganizacao,
                     nif, arruamento, numeroPorta,
                     localidade, codPostal, telefoneOrg,
                     website, emailOrg, nomeGestor,
                     emailGestor, telefoneGestor, role);*/
-           
 
            // RegistarOrganizacaoController.setOrganizacao(organizacao);
 
