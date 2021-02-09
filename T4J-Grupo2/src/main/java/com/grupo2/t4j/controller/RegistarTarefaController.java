@@ -59,5 +59,8 @@ public class RegistarTarefaController {
         return RepositorioTarefa.getInstance().novaTarefa(areaActividade, categoriaTarefa,
                 referencia, designacao, descInformal, descTecnica, duracao, custo);
     }
-    
+
+    public boolean registarTarefa(Tarefa tarefa) {
+        return RepositorioTarefa.getInstance().addTarefa(tarefa);
+    }
 }

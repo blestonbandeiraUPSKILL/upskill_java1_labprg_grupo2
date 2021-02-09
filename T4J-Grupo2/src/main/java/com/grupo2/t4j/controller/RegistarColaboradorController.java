@@ -24,7 +24,7 @@ public class RegistarColaboradorController {
 
     public boolean registarColaborador(String nome, String emailCol, String funcao, 
             String telefone, Rolename rolename) {
-        Colaborador col = new Colaborador(nome, emailCol, funcao, telefone, rolename);
+        Colaborador col = new Colaborador(nome, new Email(emailCol), funcao, telefone, rolename);
         return repositorioColaborador.getInstance().addColaborador(col);
     }
     
@@ -58,5 +58,13 @@ public class RegistarColaboradorController {
         RepositorioColaborador listaColaboradorImportada = ficheiroC.desserializar(ficheiroImportar);
 
         return repositorioColaborador.getInstance().adicionarListaColaborador(listaColaboradorImportada);
+    }
+
+    public Colaborador getColaboradorByEmail(Email email) {
+        return RepositorioColaborador.getInstance().getColaboradorByEmail(email.getEmailText());
+    }
+
+    public Colaborador novoColaborador(String nome, Email email, String funcao, String telefone, Rolename colaborador) {
+        return RepositorioColaborador.getInstance().novoColaborador(nome, email, funcao, telefone, colaborador);
     }
 }

@@ -4,7 +4,7 @@ import com.grupo2.t4j.model.*;
 
 public class AutenticacaoController {
 
-    public boolean login (String username, Password password) {
+    public boolean login (String username, String password) {
 
         return Plataforma.getInstance().getUsersAPI().login(username, password);
     }
@@ -28,7 +28,7 @@ public class AutenticacaoController {
 
         AlgoritmoGeradorPasswords algoritmoGeradorPasswords = Plataforma.getInstance().getAlgoritmoGeradorPwd();
         Password password = new Password(algoritmoGeradorPasswords.geraPassword());
-        System.out.println(password);
+        colaborador.setPassword(password);
 
         UsersAPI usersAPI = Plataforma.getInstance().getUsersAPI();
         Utilizador utilizador = new Utilizador(nome, email, password, Rolename.GESTOR);
@@ -43,7 +43,7 @@ public class AutenticacaoController {
 
         AlgoritmoGeradorPasswords algoritmoGeradorPasswords = Plataforma.getInstance().getAlgoritmoGeradorPwd();
         Password password = new Password(algoritmoGeradorPasswords.geraPassword());
-        System.out.println(password);
+        colaborador.setPassword(password);
 
         UsersAPI usersAPI = Plataforma.getInstance().getUsersAPI();
         Utilizador utilizador = new Utilizador(nome, email, password, Rolename.COLABORADOR);

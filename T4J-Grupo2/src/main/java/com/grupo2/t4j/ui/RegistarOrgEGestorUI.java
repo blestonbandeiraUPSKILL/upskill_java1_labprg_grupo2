@@ -1,11 +1,8 @@
 package com.grupo2.t4j.ui;
 
+import com.grupo2.t4j.controller.AutenticacaoController;
 import com.grupo2.t4j.controller.RegistarOrganizacaoController;
-import com.grupo2.t4j.model.Email;
-import com.grupo2.t4j.model.Organizacao;
-import com.grupo2.t4j.model.Password;
-import com.grupo2.t4j.model.Rolename;
-import com.grupo2.t4j.model.Website;
+import com.grupo2.t4j.model.*;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -30,6 +27,7 @@ public class RegistarOrgEGestorUI implements Initializable {
 
     private RegistarOrganizacaoController registarOrganizacaoController;
     private StartingPageUI startingPageUI;
+    private AutenticacaoController autenticacaoController;
     private Stage adicionarStage;
 
     private Scene sceneConfirmarRegisto;
@@ -46,6 +44,7 @@ public class RegistarOrgEGestorUI implements Initializable {
     @FXML TextField txtNomeGestor;
     @FXML TextField txtTelefoneGestor;
     @FXML TextField txtEmailGestor;
+    @FXML TextField txtPassword;
     @FXML Button btnAvancarRegisto;
     @FXML Button btnCancelarRegisto;
 
@@ -55,6 +54,7 @@ public class RegistarOrgEGestorUI implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        autenticacaoController = new AutenticacaoController();
 
     }
 
@@ -94,14 +94,37 @@ public class RegistarOrgEGestorUI implements Initializable {
             
             boolean registou = registarOrganizacaoController.registaOrganizacao(organizacao);
             if(registou) {
+<<<<<<< HEAD
                 String pw = registarOrganizacaoController.organizacao.getColabGestor().getPassword().getPasswordText();
+=======
+                autenticacaoController.registarGestorComoUtilizador(organizacao.getColabGestor());
+                txtPassword.setText(registarOrganizacaoController.organizacao.getColabGestor().getPassword().getPasswordText());
+>>>>>>> 30bf0bf4eb42debb1daf89394e2cc9c300cc48ed
                 AlertsUI.criarAlerta(Alert.AlertType.INFORMATION,
                     MainApp.TITULO_APLICACAO,
                     "Registar Organização.",
-                    registou ? ("Organização registada com sucesso.\n A sua password é " + pw)
+                    registou ? ("Organização registada com sucesso.")
                                 : "Não foi possível registar a Organização.").show();
-                
-                closeAddOrganizacao(actionEvent);
+
+
+//                    btnCancelarRegisto.
+                    /*txtNomeOrganizacao.clear();
+                    txtNif.clear();
+                    txtTelefoneOrganizacao.clear();
+                    txtWebsite.clear();
+                    txtEmailOrganizacao.clear();
+                    txtEndArruamento.clear();
+                    txtEndPorta.clear();
+                    txtEndLocalidade.clear();
+                    txtEndCodPostal.clear();
+                    txtNomeGestor.clear();
+                    txtTelefoneGestor.clear();
+                    txtEmailGestor.clear();
+                    txtPassword.clear();
+*/
+
+
+                //closeAddOrganizacao(actionEvent);
             }
             
             //String nomeOrganizacao = txtNomeOrganizacao.getText();

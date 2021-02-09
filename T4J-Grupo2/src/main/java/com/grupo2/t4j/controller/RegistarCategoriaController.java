@@ -20,7 +20,7 @@ import java.util.List;
 public class RegistarCategoriaController {
     
     private FicheiroRepositorioCategoria ficheiroCat;
-    private RepositorioCategoriaTarefa listaCategorias;
+    private RepositorioCategoriaTarefa repositorioCategoria;
 
     public boolean registarCategoria (AreaActividade areaActividade,
                                                 String descBreve,
@@ -66,21 +66,21 @@ public class RegistarCategoriaController {
         desserializar();
     }
     public boolean serializar() {
-        return ficheiroCat.serializar(listaCategorias);
+        return ficheiroCat.serializar(repositorioCategoria);
     }
 
     public boolean serializar(File ficheiroExportar) {
-        return ficheiroCat.serializar(ficheiroExportar, listaCategorias);
+        return ficheiroCat.serializar(ficheiroExportar, repositorioCategoria);
     }
 
     public void desserializar() {
-        listaCategorias = ficheiroCat.desserializar();
+        repositorioCategoria = ficheiroCat.desserializar();
     }
 
     public int desserializar(File ficheiroImportar) {
         RepositorioCategoriaTarefa listaCategoriasImportada = ficheiroCat.desserializar(ficheiroImportar);
 
-        return listaCategorias.getInstance().adicionarListaCategorias(listaCategoriasImportada);
+        return RepositorioCategoriaTarefa.getInstance().adicionarListaCategorias(listaCategoriasImportada);
     }
 }
 

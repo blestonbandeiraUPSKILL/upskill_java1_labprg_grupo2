@@ -111,7 +111,7 @@ public class RepositorioColaborador implements Serializable{
             String telefone, Rolename rolename) throws ColaboradorDuplicadoException {
         Colaborador c = getColaboradorByEmail(emailCol);
         if (c == null) {
-            Colaborador colaborador = new Colaborador(nome, emailCol, funcao,
+            Colaborador colaborador = new Colaborador(nome, new Email(emailCol), funcao,
                     telefone, rolename);
             this.listaColaboradores.add(colaborador);
             return true;
@@ -217,5 +217,9 @@ public class RepositorioColaborador implements Serializable{
             }
         }
         return totalColaboradoresAdicionados;
+    }
+
+    public Colaborador novoColaborador(String nome, Email email, String funcao, String telefone, Rolename colaborador) {
+        return new Colaborador(nome, email, funcao, telefone, colaborador);
     }
 }

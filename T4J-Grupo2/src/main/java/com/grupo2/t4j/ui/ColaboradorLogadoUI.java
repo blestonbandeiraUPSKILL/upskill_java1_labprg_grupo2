@@ -90,6 +90,7 @@ public class ColaboradorLogadoUI implements Initializable {
 
         //tab Especificar Tarefa
         cmbAreaActividadeEspecificarTarefa.getItems().setAll(registarAreaActividadeController.getAreasActividade());
+<<<<<<< HEAD
         
         cmbAreaActividadeEspecificarTarefa.setOnAction(new EventHandler<ActionEvent>() {
            @Override
@@ -101,6 +102,18 @@ public class ColaboradorLogadoUI implements Initializable {
                 registarCategoriaController.getCategoriasByAreaActividade(
                         cmbAreaActividadeEspecificarTarefa.getSelectionModel().getSelectedItem()));*/
 
+=======
+        cmbAreaActividadeEspecificarTarefa.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                updateCmbCategoriaTarefa(event);
+            }
+        });
+        /*cmbCategoriaTarefaEspecificarTarefa.getItems().setAll(
+                registarCategoriaController.getCategoriasByAreaActividade(
+                        cmbAreaActividadeEspecificarTarefa.getSelectionModel().getSelectedItem()));
+*/
+>>>>>>> 30bf0bf4eb42debb1daf89394e2cc9c300cc48ed
         ListView<CaracterizacaoCT> listViewCaracterizacaoCT = new ListView<>();
         cmbCategoriaTarefaEspecificarTarefa.setOnAction(new EventHandler<ActionEvent>() {
            @Override
@@ -135,9 +148,19 @@ public class ColaboradorLogadoUI implements Initializable {
                 registarCategoriaController.getCategoriasByAreaActividade(
                 cmbAreaActividadeEspecificarTarefa.getSelectionModel().getSelectedItem());
 
+<<<<<<< HEAD
         cmbCategoriaTarefaEspecificarTarefa.getItems().addAll(listaCategoriasTarefa);
     }
     
+=======
+    public void updateCmbCategoriaTarefa(ActionEvent event) {
+        List<Categoria> listaCategoriasTarefa = registarCategoriaController.getCategoriasByAreaActividade(
+                cmbAreaActividadeEspecificarTarefa.getSelectionModel().getSelectedItem());
+
+        cmbCategoriaTarefaEspecificarTarefa.getItems().addAll(listaCategoriasTarefa);
+    }
+
+>>>>>>> 30bf0bf4eb42debb1daf89394e2cc9c300cc48ed
     public void registarTarefa(ActionEvent actionEvent) {
         try {
             AreaActividade areaActividade = registarAreaActividadeController.getAreaActividadeByCodigo(
@@ -169,6 +192,7 @@ public class ColaboradorLogadoUI implements Initializable {
                                 : "Não foi possível registar a Competência Técncia.").show();
                     
 
+            boolean adicionou = registarTarefaController.registarTarefa(tarefa);
         }
         catch (IllegalArgumentException iae) {
             AlertsUI.criarAlerta(Alert.AlertType.ERROR,
