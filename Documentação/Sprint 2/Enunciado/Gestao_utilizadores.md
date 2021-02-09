@@ -23,4 +23,4 @@ O Web Service disponibiliza os seguintes recursos:
 
 O Web Service associa à resposta a todos os pedidos realizados um HTTP response status code em concordância com a publicação RFC 2616, de junho de 1999, que definiu o HTTP/1.1. Por exemplo, serão devolvidos os códigos HTTP 200 (OK) a cada pedido corretamente processado, 401 (unauthorized) a cada pedido sem autorização (i.e. contexto inválido, credenciais inválidas, etc.) e 500 (internal error) para todas as situações representativas de erros internos do serviço.
 
-##### [Voltar ao Enunciado](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Documenta%C3%A7%C3%A3o/Sprint%202/Enunciado/Enunciado.md)
+##### [Voltar ao Enunciado](Enunciado.md)
