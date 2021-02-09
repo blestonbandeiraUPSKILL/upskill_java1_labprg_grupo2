@@ -22,4 +22,4 @@ O projeto Maven deve ser implementado recorrendo a um repositório do GitHub, cr
 
 O trabalho deverá ser submetido no Moodle até às 17:30 do dia 8 de fevereiro de 2021 (segunda-feira).
 
-##### [Voltar ao Enunciado](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Sprint%202%20-%20Documenta%C3%A7%C3%A3o/Enunciado/Enunciado.md)
+##### [Voltar ao Enunciado](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Documenta%C3%A7%C3%A3o/Sprint%202/Enunciado/Enunciado.md)
