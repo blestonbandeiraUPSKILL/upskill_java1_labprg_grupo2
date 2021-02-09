@@ -9,20 +9,20 @@
 
 ## Documentação
 
-- [Enunciado Sprint 2](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Sprint%202%20-%20Documenta%C3%A7%C3%A3o/Enunciado/Enunciado.md)
-- [Glossário](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Sprint%202%20-%20Documenta%C3%A7%C3%A3o/Glossario.md)
-- [Modelo de Domínio](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Sprint%202%20-%20Documenta%C3%A7%C3%A3o/Modelo%20de%20Dom%C3%ADnio.png)
-- [Diagrama de Casos de Uso](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Sprint%202%20-%20Documenta%C3%A7%C3%A3o/Diagrama_Casos_Uso/Diagrama_Casos_Uso.png)
-- [Requisitos Funcionais e Não Funcionais](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Sprint%202%20-%20Documenta%C3%A7%C3%A3o/Requisitos_Funcionais_e_Nao_Funcionais.md)
+- [Enunciado Sprint 2](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Documenta%C3%A7%C3%A3o/Sprint%202/Enunciado/Enunciado.md)
+- [Glossário](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Documenta%C3%A7%C3%A3o/Sprint%202/Glossario.md)
+- [Modelo de Domínio](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Documenta%C3%A7%C3%A3o/Sprint%202/Modelo%20de%20Dom%C3%ADnio.png)
+- [Diagrama de Casos de Uso](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Documenta%C3%A7%C3%A3o/Sprint%202/Diagrama_Casos_Uso/Diagrama_Casos_Uso.png)
+- [Requisitos Funcionais e Não Funcionais](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Documenta%C3%A7%C3%A3o/Sprint%202/Requisitos_Funcionais_e_Nao_Funcionais.md)
 
 #### Use Cases
 
-- [UC01 - Registar Organização](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Sprint%202%20-%20Documenta%C3%A7%C3%A3o/UC01_Registar_Organizacao/UC01_Registar_Organizacao.md)
-- [UC02 - Definir Área de Actividade](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Sprint%202%20-%20Documenta%C3%A7%C3%A3o/UC02_Definir_Area_Atividade/UC02_Definir_Area_Atividade.md)
-- [UC03 - Definir Categoria de Tarefa](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Sprint%202%20-%20Documenta%C3%A7%C3%A3o/UC03_Definir_Categoria_Tarefa/UC03_Definir_Categoria_Tarefa.md)
-- [UC04 - Especificar Competência Técnica](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Sprint%202%20-%20Documenta%C3%A7%C3%A3o/UC04_Especificar_Competencia_Tecnica/UC04_Especificar_Competencia_Tecnica.md)
-- [UC05 - Especificar Colaborador de Organização ](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Sprint%202%20-%20Documenta%C3%A7%C3%A3o/UC05_Especificar_Colaborador_Organizacao/UC05_Especificar_Colaborador_Organizacao.md)
-- [UC06 - Especificar Tarefa](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Sprint%202%20-%20Documenta%C3%A7%C3%A3o/UC06_Especificar_Tarefa/UC06_Especificar_Tarefa.md)
+- [UC01 - Registar Organização](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Documenta%C3%A7%C3%A3o/Sprint%202/UC01_Registar_Organizacao/UC01_Registar_Organizacao.md)
+- [UC02 - Definir Área de Actividade](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Documenta%C3%A7%C3%A3o/Sprint%202/UC02_Definir_Area_Atividade/UC02_Definir_Area_Atividade.md)
+- [UC03 - Definir Categoria de Tarefa](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Documenta%C3%A7%C3%A3o/Sprint%202/UC03_Definir_Categoria_Tarefa/UC03_Definir_Categoria_Tarefa.md)
+- [UC04 - Especificar Competência Técnica](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Documenta%C3%A7%C3%A3o/Sprint%202/UC04_Especificar_Competencia_Tecnica/UC04_Especificar_Competencia_Tecnica.md)
+- [UC05 - Especificar Colaborador de Organização ](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Documenta%C3%A7%C3%A3o/Sprint%202/UC05_Especificar_Colaborador_Organizacao/UC05_Especificar_Colaborador_Organizacao.md)
+- [UC06 - Especificar Tarefa](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Documenta%C3%A7%C3%A3o/Sprint%202/UC06_Especificar_Tarefa/UC06_Especificar_Tarefa.md)
 
 ## Links úteis
 
