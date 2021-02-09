@@ -19,4 +19,4 @@ Cada tarefa caracteriza-se por ter uma referência única por organização, uma
 
 A designação comercial da plataforma e outros dados que venham a ser relevantes devem ser especificados por configuração aquando da sua implantação.
 
-##### [Voltar ao Enunciado](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Sprint%202%20-%20Documenta%C3%A7%C3%A3o/Enunciado/Enunciado.md)
+##### [Voltar ao Enunciado](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Documenta%C3%A7%C3%A3o/Sprint%202/Enunciado/Enunciado.md)
