@@ -8,7 +8,9 @@ package com.grupo2.t4j.repository;
 import org.junit.Test;
 import com.grupo2.t4j.exception.CompetenciaTecnicaDuplicadaException;
 import com.grupo2.t4j.exception.DescricaoInvalidaException;
+import com.grupo2.t4j.model.AreaActividade;
 import com.grupo2.t4j.model.CompetenciaTecnica;
+import java.util.ArrayList;
 import org.junit.jupiter.api.BeforeEach;
 //import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
@@ -38,9 +40,10 @@ public class RepositorioCompetenciaTecnicaTest {
         //Act
         rc1.addCompetenciaTecnica(ct1);
         rc1.addCompetenciaTecnica(ct2);
-        
-        
+
+
     }
+
     @Test(expected = DescricaoInvalidaException.class)
     public void testAddCompetenciaDescricaoInvalida() {
         //Arrange
@@ -63,14 +66,7 @@ public class RepositorioCompetenciaTecnicaTest {
         assertTrue(rc1.getCompetenciasTecnicas().contains(ct1));
     }
     
-    @Test
-    public void testSetListaCompTecnicas() {
-    }
-
-    @Test
-    public void testGetCompetenciasTecnicas() {
-    }
-
+    
     @Test
     public void testGetCompetenciaTecnicaByCodigo() {
         
@@ -80,19 +76,27 @@ public class RepositorioCompetenciaTecnicaTest {
         rc1.addCompetenciaTecnica(ct1);
         
         //Act
-        CompetenciaTecnica ct2 = new CompetenciaTecnica(rc1.getCompetenciaTecnicaByCodigo(ct1.getCodigo()));
+        CompetenciaTecnica ct2 = rc1.getCompetenciaTecnicaByCodigo("123456");
         
         //
-        assertEquals(ct1.toString(), ct2.toString());
+        assertEquals(ct1, ct2);
         
     }
 
-    @org.junit.Test
-    public void testGetRepositorio() {
-    }
-
-    @org.junit.Test
+    @Test
     public void testGetCompetenciasTecnicasByAreaActividade() {
+        //Arrange
+        AreaActividade at= new AreaActividade ("123","Cozinha", "Cozinheiro de 2ª");
+        RepositorioCompetenciaTecnica rc1=  RepositorioCompetenciaTecnica.getInstance();
+        CompetenciaTecnica ct1= new CompetenciaTecnica("123456", "Jogo do Galo", "Jogo para duas pessoas",at);
+        rc1.addCompetenciaTecnica(ct1);
+        
+        //Act
+        ArrayList<CompetenciaTecnica> ct2 = rc1.getCompetenciasTecnicasByAreaActividade(at);
+        
+        //
+        assertTrue(ct2.contains(ct1));
+        
     }
     
 }

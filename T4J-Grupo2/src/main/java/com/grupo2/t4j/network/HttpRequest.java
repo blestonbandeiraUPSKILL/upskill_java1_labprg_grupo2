@@ -1,14 +1,16 @@
 package com.grupo2.t4j.network;
 
+import com.grupo2.t4j.utils.Constants;
+
 public class HttpRequest {
     private HttpRequestType type;
     private String url;
     private String body;
 
-    public HttpRequest(HttpRequestType type, String url, String body) {
+    public HttpRequest(HttpRequestType type, String url) {
         this.type = type;
-        this.url = url;
-        this.body = body;
+        this.url = Constants.HOST + url;
+
     }
 
     public HttpRequestType getType() {

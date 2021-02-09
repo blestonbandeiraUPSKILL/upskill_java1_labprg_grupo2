@@ -31,6 +31,22 @@ public class Administrativo implements Serializable{
     private Password password;
     
     /**
+     * O papel do Administrativo
+     */
+    private Rolename rolename; 
+    
+    /**
+     * Password inicial de um Administrativo em processo de registo - antes de receber 
+     * a password oficial por email.
+     */
+    private static final Password PASSWORD_POR_OMISSAO = new Password("00000000");
+    
+    /**
+     * O papel do Administrativo
+     */
+    private static final Rolename ROLENAME_POR_DEFINICAO = Rolename.ADMINISTRATIVO; 
+    
+    /**
      * Construtor vazio da classe Administrativo
      */
     public Administrativo(){
@@ -46,18 +62,7 @@ public class Administrativo implements Serializable{
         setNome(nome);
         setEmail(email);
         setPassword(password);
-    }
-    
-    /**
-     * Construtor completo da classe Administrativo
-     * @param nome o nome do Administrador
-     * @param emailAdm o email do Administrador em formato String
-     * @param password a password do Administrador em formato da classe Password
-     */
-    public Administrativo(String nome, String emailAdm, Password password){
-        setNome(nome);
-        this.email = new Email(emailAdm); 
-        setPassword(password);
+        setRolename(ROLENAME_POR_DEFINICAO);
     }
     
     /**
@@ -70,8 +75,22 @@ public class Administrativo implements Serializable{
         setNome(nome);
         this.email = new Email(emailAdm); 
         this.password = new Password(passAdm);
+        setRolename(ROLENAME_POR_DEFINICAO);
     }
     
+    /**
+     * Construtor da classe Administrativo com a password por omissão
+     * @param nome o nome do Administrador
+     * @param emailAdm o email do Administrador em formato String
+     * @param password a password do Administrador em formato da classe Password
+     */
+    public Administrativo(String nome, String emailAdm){
+        setNome(nome);
+        this.email = new Email(emailAdm); 
+        setPassword(PASSWORD_POR_OMISSAO);
+        setRolename(ROLENAME_POR_DEFINICAO);
+    }
+     
     /**
      * Construtor da classe Administrativo
      * @param administrativo é do tipo da classe Administrativo
@@ -80,13 +99,14 @@ public class Administrativo implements Serializable{
         setNome(administrativo.nome);
         setEmail(administrativo.email);
         setPassword(administrativo.password);
+        setRolename(ROLENAME_POR_DEFINICAO);
     }
     
     /**
      * Verifica a validade do parâmetro recebido e regista o nome do Administrador
      * @param nome o nome do Administrador
      */
-    public final void setNome(String nome){
+    public void setNome(String nome){
         if (nome == null || nome.trim().isEmpty()) {
             throw new NomeInvalidoException("Nome é inválido!");
         }
@@ -97,7 +117,7 @@ public class Administrativo implements Serializable{
      * Regista o email do Administrador
      * @param email o email do Administrador
      */
-    public final void setEmail(Email email){
+    public void setEmail(Email email){
         this.email = email;
     }
     
@@ -105,8 +125,16 @@ public class Administrativo implements Serializable{
      * Regista a password do Administrador
      * @param password a password do Administrador
      */
-    public final void setPassword(Password password){
+    public void setPassword(Password password){
         this.password = password;
+    }
+    
+    /**
+     * Regista o papel do Administrativo
+     * @param rolename o papel do Administrativo
+     */
+    public void setRolename(Rolename rolename){
+        this.rolename = rolename;
     }
     
     /**
@@ -139,8 +167,10 @@ public class Administrativo implements Serializable{
      */   
     @Override
     public String toString(){
-        return String.format("O administrador %s tem os seguintes dados: /nEmail: "
-                + "%s /nPassword: %s", nome, email, password);
+        return String.format("Nome administrativo: %s %nEmail: %s %nPassword: %s"
+                + "%nRolename: %s", 
+                nome, email.getEmailText(), password.getPasswordText(),
+                rolename.toString());
     }
     
     /**
@@ -148,8 +178,8 @@ public class Administrativo implements Serializable{
      * @return Nome e email do Administrador
      */
     public String toStringSemPass(){
-        return String.format("O administrador %s tem o seguinte email registado: %s", 
-                nome, email);
+        return String.format("Nome administrativo: %s %nEmail: %s %nRolename: %s", 
+                nome, email.getEmailText(),rolename.toString());
     }
 }
 

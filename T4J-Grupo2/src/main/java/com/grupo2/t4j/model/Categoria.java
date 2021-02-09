@@ -5,8 +5,12 @@
  */
 package com.grupo2.t4j.model;
 
+import com.grupo2.t4j.exception.AreaActividadeInexistenteException;
 import com.grupo2.t4j.exception.DescricaoInvalidaException;
+import com.grupo2.t4j.repository.RepositorioAreaActividade;
+
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -16,56 +20,65 @@ import java.util.List;
 public class Categoria implements Serializable{
     
     /**
-     * 
+     * O identificador da Categoria
      */
     private String id;
     
     /**
-     * 
+     * Parte do gerador de id
      */
-    private static int id2=0;
+    private int id2=0;
     
     /**
-     * 
+     * Descricao breve da categoria
      */
-    private String descricao;
-    
+    private String descBreve;
+
     /**
-     * 
+     * Descrição detalhada da categoria
+     */
+    private String descDetalhada;
+
+    /**
+     * Area de actividade a que se refere a categoria
      */
     private AreaActividade at;
     
     /**
-     * 
+     * Lista de coompetencias tecnicas tipicamente necessarias para a categoria
      */
-    private List<CompetenciaTecnica> compTecnicas;
+    private List<CaracterizacaoCT> caracterizacaoCTS = new ArrayList<>();
     
     /**
-     *
-     * @param descricao
+     *Construtor Categoria
+     * @param descBreve
+     * @param descDetalhada
      * @param at
-     * @param compTecnicas
+     * @param caracterizacaoCTS
      */
-    public Categoria (String descricao, AreaActividade at, List<CompetenciaTecnica> compTecnicas){
-        this.descricao=descricao;
-        this.at=at;
-        this.compTecnicas=compTecnicas;
-        this.id = geradorId(descricao, id2);
+    public Categoria (String descBreve, String descDetalhada, AreaActividade at, List<CaracterizacaoCT> caracterizacaoCTS){
+        setDescBreve(descBreve);
+        setDescDetalhada(descDetalhada);
+        //setAt(at);
+        this.at = at;
+        setCompTecnicasCaracter(caracterizacaoCTS);
+        setId(descBreve, id2);
     }
 
     /**
-     *
+     *Construtor Categoria
      * @param categoria
      */
     public Categoria (Categoria categoria){
-        setId(id);
-        setDescricao(descricao);
-        setAt(at);
-        setCompTecnicas(compTecnicas);
+        setId(categoria.descBreve, id2);
+        setDescBreve(categoria.descBreve);
+        setDescDetalhada(categoria.descDetalhada);
+        setAt(categoria.at);
+        setCompTecnicasCaracter(categoria.caracterizacaoCTS);
     }
 
     /**
-     *
+     *Devolve o Id da categoria
      * @return
      */
     public String getId() {
@@ -73,36 +86,58 @@ public class Categoria implements Serializable{
     }
 
     /**
-     *
-     * @param id
+     *Atualiza o id da categoria
+     * @param descBreve, id2
      */
-    public void setId(String id) {
+    public void setId(String descBreve, int id2) {
         
-        this.id = id;
+        this.id = geradorId(descBreve, id2);
     }
 
     /**
      *
+     * Devolve a descrição detalhada da categoria
+     *
+     * @return descDetalhada;
+     */
+    public String getDescDetalhada() {
+        return descDetalhada;
+    }
+
+    /**
+     *Retorna a descricao da categoria
      * @return
      */
-    public String getDescricao() {
-        return descricao;
+    public String getDescBreve() {
+        return descBreve;
     }
 
     /**
-     *
-     * @param descricao
+     *Atualiza a descricao breve da categoria
+     * @param descBreve
      */
-    public void setDescricao(String descricao) {
-        if (descricao == null || descricao.trim().isEmpty()) {
-            throw new DescricaoInvalidaException("Deve introduzir uma descrição válida!");
+    public void setDescBreve(String descBreve) {
+        if (descBreve == null || descBreve.trim().isEmpty()) {
+            throw new DescricaoInvalidaException("Deve introduzir uma descrição breve válida!");
         } else {
-            this.descricao = descricao;
+            this.descBreve = descBreve;
+        }
+    }
+    /**
+     * Actualiza a descricao detalhada da categoria
+     * @param descDetalhada 
+     */
+    public void setDescDetalhada(String descDetalhada) {
+        if(descDetalhada == null || descDetalhada.trim().isEmpty()) {
+            throw new DescricaoInvalidaException("Deve introduzir uma descrição detalhada válida!");
+        }
+        else {
+            this.descDetalhada = descDetalhada;
         }
     }
 
     /**
-     *
+     *Retorna a Area de Actividade a que se refere a categoria
      * @return
      */
     public AreaActividade getAt() {
@@ -110,41 +145,70 @@ public class Categoria implements Serializable{
     }
 
     /**
-     *
-     * @param at
+     *Atualiza a Area de Actividade
+     * @param areaActividade
      */
-    public void setAt(AreaActividade at) {
-        this.at = at;
+    public void setAt(AreaActividade areaActividade) {
+        if(areaActividade != null) {
+        //if (RepositorioAreaActividade.getInstance().getAreaActividadeByCodigo(areaActividade.getCodigo()) != null) {
+            this.at = areaActividade;
+        }
+        else {
+            throw new AreaActividadeInexistenteException ("A área de actividade não existe");
+        }
     }
 
     /**
-     *
+     *Devolve uma lista de competencias tencicas necessarias para a categoria com a respetiva caracterizacao
      * @return
      */
-    public List<CompetenciaTecnica> getCompTecnicas() {
-        return compTecnicas;
+    public List<CaracterizacaoCT> getCompTecnicasCaracter() {
+        return new ArrayList<CaracterizacaoCT>(caracterizacaoCTS);
     }
 
     /**
-     *
-     * @param compTecnicas
+     *Atualiza a lista de competencias tecnicas caracterizadas
+     * @param caracterizacaoCTS
      */
-    public void setCompTecnicas(List<CompetenciaTecnica> compTecnicas) {
-        this.compTecnicas = compTecnicas;
+    public void setCompTecnicasCaracter(List<CaracterizacaoCT> caracterizacaoCTS) {
+        this.caracterizacaoCTS = caracterizacaoCTS;
     }
     
     /**
-     *
-     * @param descricao
+     *Gera um id baseado na descBreve da categoria
+     * @param descBreve
      * @param id2
      * @return
      */
-    public String geradorId(String descricao,int id2){
+    public String geradorId(String descBreve,int id2){
         id2++;
         StringBuilder s = new StringBuilder();
-        s.append(descricao);
+        s.append(descBreve);
         s.append("_");
         s.append(id2);
         return s.toString();
+    }
+    /**
+     * Representação textual da lista de competencias tecnicas de uma categoria
+     * @return 
+     */
+    public String toStringCompTec (){
+        StringBuilder s = new StringBuilder();
+        for (CaracterizacaoCT cct : this.caracterizacaoCTS) {
+            s.append("->");
+            s.append(cct.toString());
+            s.append("\n");
+        }
+        return s.toString();
+    }
+    
+    /**
+     * Representação textual da categoria de tarefa
+     * @return 
+     */
+    @Override
+    public String toString() {
+        return String.format("ID: %s; Descrição breve: %s; Descrição detalhada: %s;", 
+                id, descBreve, descDetalhada);
     }
 }

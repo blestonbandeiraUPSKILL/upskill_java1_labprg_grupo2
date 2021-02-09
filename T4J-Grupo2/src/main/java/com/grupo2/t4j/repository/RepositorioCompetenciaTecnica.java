@@ -6,9 +6,8 @@
 package com.grupo2.t4j.repository;
 
 import com.grupo2.t4j.exception.CompetenciaTecnicaDuplicadaException;
-import com.grupo2.t4j.model.AreaActividade;
-import com.grupo2.t4j.model.Categoria;
-import com.grupo2.t4j.model.CompetenciaTecnica;
+import com.grupo2.t4j.model.*;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,17 +18,23 @@ import java.util.List;
  */
 public class RepositorioCompetenciaTecnica implements Serializable{
 
+    /**
+     * Atributos da classe Singletone RepositorioCompetenciaTecnica
+     */
     public static RepositorioCompetenciaTecnica instance;
     List<CompetenciaTecnica> listaCompTecnicas;
 
+    /**
+     * Construtor da classe Singleton RepositorioCompetenciaTecnica
+     */
     private RepositorioCompetenciaTecnica() {
         listaCompTecnicas = new ArrayList<>();
     }
 
     /**
-     * Devolve uma instancia static de RepositorioCompetenciaTecnica
+     * Devolve ou cria uma instância estática de RepositorioCompetenciaTecnica
      *
-     * @return
+     * @return a instance existente ou criada
      */
     public static RepositorioCompetenciaTecnica getInstance() {
         if (instance == null) {
@@ -55,6 +60,25 @@ public class RepositorioCompetenciaTecnica implements Serializable{
         }
     }
 
+    public CompetenciaTecnica novaCompetenciaTecnica(String codigo, String descBreve,
+                                                     String descDetalhada, AreaActividade areaActividade) {
+        return new CompetenciaTecnica(codigo, descBreve, descDetalhada, areaActividade);
+    }
+
+    public boolean addCompetenciaTecnica(String codigo,
+                                         AreaActividade at,
+                                         String descricaoBreve,
+                                         String descricaoDetalhada){
+        CompetenciaTecnica ct = getCompetenciaTecnicaByCodigo(codigo);
+        if (ct == null) {
+            CompetenciaTecnica compTec = new CompetenciaTecnica(codigo, descricaoBreve, descricaoDetalhada, at);
+            this.listaCompTecnicas.add(compTec);
+            return true;
+        } else {
+            throw new CompetenciaTecnicaDuplicadaException(ct.getCodigo() + ": Competencia Tecnica já existe");
+        }
+    }
+
     /**
      * Atualiza a lista de Competencias Tecnicas
      *
@@ -69,7 +93,7 @@ public class RepositorioCompetenciaTecnica implements Serializable{
      *
      * @return
      */
-    public ArrayList<CompetenciaTecnica> getCompetenciasTecnicas() {
+    public List<CompetenciaTecnica> getCompetenciasTecnicas() {
 
         return new ArrayList<CompetenciaTecnica>(listaCompTecnicas);
     }
@@ -85,8 +109,7 @@ public class RepositorioCompetenciaTecnica implements Serializable{
         for (int i = 0; i < this.listaCompTecnicas.size(); i++) {
             compTec = this.listaCompTecnicas.get(i);
             if (compTec.getCodigo().equals(codigo)) {
-                CompetenciaTecnica copia = new CompetenciaTecnica(compTec);
-                return copia;
+                return compTec;
 
             }
         }
@@ -109,6 +132,18 @@ public class RepositorioCompetenciaTecnica implements Serializable{
         }
 
         return compTecPorAt;
+    }
+    
+    public int adicionarListaCompetenciasTecnicas(RepositorioCompetenciaTecnica outraListaCompetenciasTecnicas) {
+        int totalCompetenciasAdicionadas = 0;
+        
+        for (CompetenciaTecnica ct : outraListaCompetenciasTecnicas.listaCompTecnicas) {
+            boolean areaActividadeAdicionada = addCompetenciaTecnica(ct);
+            if (areaActividadeAdicionada) {
+                totalCompetenciasAdicionadas++;
+            }
+        }
+        return totalCompetenciasAdicionadas;
     }
 
    

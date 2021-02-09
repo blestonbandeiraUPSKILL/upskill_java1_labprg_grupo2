@@ -10,17 +10,16 @@ package com.grupo2.t4j.model;
  * @author acris
  */
 import com.grupo2.t4j.exception.*;
+
 import java.io.Serializable;
+import java.util.Objects;
 
 /**
  *
  * @author Geral
  */
 public class AreaActividade implements Serializable{
-    /**
-     * Separador para exportar ficheiro
-     */
-    private static final char SEPARADOR = ';';
+    
 
 /**
  * O código único de cada Área de Actividade.
@@ -71,9 +70,12 @@ public class AreaActividade implements Serializable{
      */
     public void setCodigo(String codigo) {
         if (codigo == null || codigo.trim().isEmpty()) {
+            throw new AreaActividadeDuplicadaException("O Código da Área de Actividade é um campo obrigatório!");
+        }
+       /* if (RepositorioAreaActividade.getInstance().getAreaActividadeByCodigo(codigo).equals(codigo)) {
             throw new AreaActividadeDuplicadaException("Código de Área de Actividade "
                     + "já existe!");
-        }
+        }*/
         this.codigo = codigo;
     }
     
@@ -82,8 +84,11 @@ public class AreaActividade implements Serializable{
      * @param descBreve a descrição breve da Área de Actividade
      */
     public void setDescBreve(String descBreve) {
-        if (descBreve == null || descBreve.trim().isEmpty() || descBreve.length() < 5) {
+        if (descBreve == null || descBreve.trim().isEmpty()) {
             throw new IllegalArgumentException("Descrição breve é obrigatória!");
+        }
+        if (descBreve.length() < 5) {
+            throw new IllegalArgumentException("Descrição breve tem de ter pelo menos 5 caracteres!");
         }
         this.descBreve = descBreve;
     }
@@ -93,8 +98,11 @@ public class AreaActividade implements Serializable{
      * @param descDetalhada a descrição detalhada da Área de Actividade
      */
     public void setDescDetalhada(String descDetalhada) {
-        if (descDetalhada == null || descDetalhada.trim().isEmpty() || descDetalhada.length() < 10) {
+        if (descDetalhada == null || descDetalhada.trim().isEmpty()) {
             throw new IllegalArgumentException("Descrição detalhada é obrigatória!");
+        }
+        if (descDetalhada.length() < 10) {
+            throw new IllegalArgumentException("Descrição detalhada tem de ter pelo menos 10 caracteres!");
         }
         this.descDetalhada = descDetalhada;
     }
@@ -129,15 +137,23 @@ public class AreaActividade implements Serializable{
      */ 
     @Override    
     public String toString(){
-        return String.format("A Área de Actividade de código %s tem: /n Descrição "
-                + "breve: %s. /n Descrição detalhada: %s.", codigo, descBreve, descDetalhada );
+        return String.format("ID: %s; Descrição breve: %s; Descrição detalhada: %s.", codigo, descBreve, descDetalhada );
     }
-    
-    /**
-     * Representação textual da classe Área de Actividade no formato expresso
-     * @return codigo, descBreve e descDetalhada
-     */
-    public String toStringExport(){
-        return String.format("%s%c%s%c%s", codigo, SEPARADOR, descBreve, SEPARADOR, descDetalhada);
+
+    @Override
+    public boolean equals(Object areaActividade) {
+        if (this == areaActividade)
+            return true;
+        if (areaActividade == null || getClass() != areaActividade.getClass())
+            return false;
+        AreaActividade that = (AreaActividade) areaActividade;
+        return Objects.equals(codigo, that.codigo)
+                && Objects.equals(descBreve, that.descBreve)
+                && Objects.equals(descDetalhada, that.descDetalhada);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(codigo, descBreve, descDetalhada);
     }
 }

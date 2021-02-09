@@ -5,50 +5,61 @@
  */
 package com.grupo2.t4j.model;
 
+import java.io.Serializable;
+
 /**
  *
  * @author acris
  */
-public class CaracterizacaoCT {
-    
-    private CompetenciaTecnica ct;
+public class CaracterizacaoCT implements Serializable{
+
+    /**
+     * O grau de proficiencia da competencia tecnica
+     */
     private GrauProficiencia gp;
-    private boolean obrigatoria;
+    /**
+     * A obrigatoriedade da competencia tecnica
+     */
+    private Obrigatoriedade obrigatoriedade;
+    
+    /**
+     * A competencia tecnica
+     */
+    private CompetenciaTecnica competenciaTecnica;
 
-    private static final char SEPARADOR = ';';
-
-    public CaracterizacaoCT(CompetenciaTecnica ct, GrauProficiencia gp, boolean obrigatoria) {
-        this.ct=ct;
-        this.gp=gp;
-        this.obrigatoria = obrigatoria;
-
+    /**
+     * Construtor completo para caracterizacao de uma competencia tecnica
+     * @param gp
+     * @param obrigatoriedade
+     * @param competenciaTecnica 
+     */
+    public CaracterizacaoCT(GrauProficiencia gp, Obrigatoriedade obrigatoriedade,
+                            CompetenciaTecnica competenciaTecnica) {
+        this.gp = gp;
+        this.obrigatoriedade = obrigatoriedade;
+        this.competenciaTecnica = competenciaTecnica;
     }
 
     /**
-     * @return the obrigatoria
+     * Actualiza a obrigatoriedade da competencia tecnica
+     * @param obrigatoriedade the obrigatoriedade to set
      */
-    public boolean isObrigatoria() {
-        return obrigatoria;
+    public void setObrigatoriedade(Obrigatoriedade obrigatoriedade) {
+        this.obrigatoriedade = obrigatoriedade;
     }
 
     /**
-     * @param obrigatoria the obrigatoria to set
+     * Representacao textual da competencia tecnica caracterizada
+     * @return 
      */
-    public void setObrigatoria(boolean obrigatoria) {
-        this.obrigatoria = obrigatoria;
-    }
-    
-    public String boolean2String(boolean obrigatoria){
-        if (obrigatoria == true){
-            return "Obrigatório";
-        } else {
-            return "Opcional";
-        }
-    }
-    
     @Override
     public String toString() {
-        return String.format("Competência Técnica: %s;%nGrau de Proficiência Mínimo: %s%nCarácter: %s."
-                ,ct.getDescricaoBreve(),gp.getDesignacao(),boolean2String(obrigatoria));
+        return String.format("Competência Tecnica: %s; Grau de Proficiencia: %s; "
+                + "Carácter: %s", competenciaTecnica.getDescricaoBreve(), gp.toString(), obrigatoriedade.toString());
+        
+    }
+
+    public CompetenciaTecnica getCompetenciaTecnica() {
+        return this.competenciaTecnica;
     }
 }

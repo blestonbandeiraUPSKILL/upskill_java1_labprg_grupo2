@@ -1,4 +1,4 @@
-# Turma Java 1 - T4J 
+# Turma Java 1 | T4J - TASKS FOR JOE
 
 ## Grupo 2
 
@@ -6,6 +6,9 @@
 - [Bárbara Leston Bandeira](https://github.com/blestonbandeiraUPSKILL)
 - [Caroline Duarte](https://github.com/carol-duarte)
 - [Marta Silvestre](https://github.com/Marta-Silvestre)
+
+## Enunciado do SPRINT 2
+- [Enunciado](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Sprint%202%20-%20Documenta%C3%A7%C3%A3o/Enunciado/Enunciado.md)
 
 ## Documentação
 
@@ -26,3 +29,18 @@
 ## Links úteis
 
 - [Trabalho desenvolvido no módulo PDS](https://github.com/ajorgesantosp/upskill_java1_g1)
+- [Plataforma TRELLO usada para a gestão Agile do projeto usando a framework Scrum](https://trello.com/b/atvb02FQ)
+
+## Dados de login
+
+#### Administrativo:
+* email: admingrp2@upskill.pt
+* pass: teste123
+
+#### Gestor:
+* email: gestorgrp2@upskill.pt
+* pass: teste123
+
+#### Colaborador:
+* email: colabgrp2@upskill.pt
+* pass: teste123

@@ -7,8 +7,106 @@ package com.grupo2.t4j.repository;
 
 /**
  *
- * @author Geral
+ * @author CAD
  */
+
+import java.util.ArrayList;
+import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.*;
+import com.grupo2.t4j.model.*;
+import com.grupo2.t4j.exception.*;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.BeforeAll;
 public class RepositorioTarefaTest {
+
+    public RepositorioTarefaTest() {
+    }
+     
+    @BeforeAll
+    public static void setUpClass() {
+    }
     
+    @AfterAll
+    public static void tearDownClass() {
+    }
+    
+    @BeforeEach
+    public void setUp() {
+    }
+    
+    @AfterEach
+    public void tearDown() {
+    }
+
+    @Test
+    public void testAddTarefa() {
+        
+        RepositorioTarefa rt1 = RepositorioTarefa.getInstance();
+        
+        Tarefa t1= new Tarefa("T_001", "Design", "Design web", "Design Web em Android", 
+        14, 5000);
+        
+        rt1.addTarefa(t1);
+        
+        assertTrue(rt1.getListaTarefas().contains(t1));
+    }   
+    
+    @Test (expected = TarefaDuplicadaException.class)
+    public void testAddTarefaDuplicada() {
+        
+        RepositorioTarefa rt1 = RepositorioTarefa.getInstance();
+        
+        Tarefa t1= new Tarefa("T_001", "Design", "Design web", "Design Web em Android", 
+        14, 5000);
+        Tarefa t2= new Tarefa("T_001", "Design", "Design web", "Design Web em Android", 
+        14, 5000);
+        
+        rt1.addTarefa(t1);
+        rt1.addTarefa(t2);
+    }
+    
+    @Test
+    public void testGetTarefaByReferencia() {
+        
+        RepositorioTarefa rt1 = RepositorioTarefa.getInstance();
+        
+        Tarefa t1= new Tarefa("T_001", "Design", "Design web", "Design Web em Android", 
+        14, 5000);
+        Tarefa t2= new Tarefa("T_002", "Modelagem", "Modelo protótipo", "Protótipo em escala real", 
+        20, 10000);
+        
+        rt1.addTarefa(t1);
+        rt1.addTarefa(t2);
+             
+        Tarefa t3 = rt1.getTarefaByReferencia("T_002");
+        
+        Tarefa t4 = rt1.getTarefaByReferencia(t1.getReferencia());
+        
+        assertEquals(t2,t3);
+        
+        assertEquals(t1,t4);
+        
+        System.out.println("Teste 2 ok");
+    }
+    
+    @Test
+    public void testGetListaTarefas() {
+        
+         RepositorioTarefa rt1 = RepositorioTarefa.getInstance();
+        
+        Tarefa t1= new Tarefa("T_001", "Design", "Design web", "Design Web em Android", 
+        14, 5000);
+        Tarefa t2= new Tarefa("T_002", "Modelagem", "Modelo protótipo", "Protótipo em escala real", 
+        20, 10000);
+        
+        rt1.addTarefa(t1);
+        rt1.addTarefa(t2);
+        
+        ArrayList<Tarefa> lista = rt1.getListaTarefas();
+        
+        assertEquals(lista.get(0),t1);        
+        assertEquals(lista.get(1),t2);        
+    }
 }

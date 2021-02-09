@@ -33,7 +33,7 @@ public class CaracterizacaoCTTest {
     @Test
     public void testToString() {
     }
-    @Test
+    /*@Test
     public void boolean2StringTest() {
         //Arrange
         CompetenciaTecnica c1 = new CompetenciaTecnica("1234", "Jogo do Galo", "Jogo para duas pessoas");
@@ -46,6 +46,6 @@ public class CaracterizacaoCTTest {
         //Assert
         
         assertEquals(expectedResult, result);
-    }
+    }*/
     
 }

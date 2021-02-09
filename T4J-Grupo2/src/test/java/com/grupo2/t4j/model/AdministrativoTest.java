@@ -51,22 +51,18 @@ public class AdministrativoTest {
     @Test (expected = NomeInvalidoException.class)
     public void testCriarAdministrativoNomeIncorreto() {
         
-        Administrativo a2 = new Administrativo("", "fulano@upskill.pt", "12345678");
-             
+        Administrativo a1 = new Administrativo("", "fulano@upskill.pt", "12345678");
     }
     
     @Test (expected = IllegalArgumentException.class)
-    public void testCriarAdministrativoFormaIncorreta() {
+    public void testCriarAdministrativoEmailFormaIncorreta() {
         
-        Administrativo a3 = new Administrativo("Fulano", "fulano", "12345678");
-             
+        Administrativo a1 = new Administrativo("Fulano", "fulano", "12345678");
     }
     
     @Test (expected = PasswordInvalidaException.class)
     public void testCriarAdministrativoPasswordFormaIncorreta() {
        
         Administrativo a4 = new Administrativo("Fulano", "fulano@upskill.pt", "123");
-             
     }
-    
 }
