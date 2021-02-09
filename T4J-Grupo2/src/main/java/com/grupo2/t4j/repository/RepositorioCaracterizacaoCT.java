@@ -54,4 +54,15 @@ public class RepositorioCaracterizacaoCT implements Serializable {
         return caracterizacaoCTSbyCompetenciaTecnica;
 
     }
+
+    /*public List<CaracterizacaoCT> getCaracterizacaoCTSByCategoria(Categoria categoria) {
+        ArrayList<CaracterizacaoCT> caracterizacaoCTSbyCategoria = new ArrayList<>();
+        
+        for (CaracterizacaoCT cct : listaCaracterizacaoCTS) {
+            if (cct.equals(competenciasTecnicas)) {
+                caracterizacaoCTSbyCompetenciaTecnica.add(cct);
+            }
+        }
+        return caracterizacaoCTSbyCompetenciaTecnica;
+    }*/
 }

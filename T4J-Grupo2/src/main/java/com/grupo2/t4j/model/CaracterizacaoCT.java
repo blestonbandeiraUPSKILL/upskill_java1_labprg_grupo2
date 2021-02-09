@@ -5,11 +5,13 @@
  */
 package com.grupo2.t4j.model;
 
+import java.io.Serializable;
+
 /**
  *
  * @author acris
  */
-public class CaracterizacaoCT {
+public class CaracterizacaoCT implements Serializable{
 
     /**
      * O grau de proficiencia da competencia tecnica

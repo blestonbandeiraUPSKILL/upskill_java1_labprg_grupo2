@@ -36,25 +36,27 @@ public class RegistarTarefaController {
 
     public boolean registarTarefa(AreaActividade areaActividade, Categoria categoria, 
             String referencia, String designacao, String descricaoInformal, 
-            String descricaoTecnica, String duracao, String custo) {
+            String descricaoTecnica, int duracao, double custo) {
        return RepositorioTarefa.getInstance().addTarefa(areaActividade, categoria, referencia,
-               designacao, descricaoInformal, descricaoTecnica, Integer.parseInt(duracao),
-               Double.parseDouble(custo));
+               designacao, descricaoInformal, descricaoTecnica, duracao, custo);
     }
 
+    public boolean registarTarefa(Tarefa tarefa) {
+       return RepositorioTarefa.getInstance().addTarefa(tarefa);
+    }
+    
     public List<Tarefa> getListTarefas() {
         return RepositorioTarefa.getInstance().getListaTarefas();
     }
 
-    public Tarefa novaTarefa(AreaActividade areaActividade, ArrayList<Categoria> categoriaTarefa,
-                             List<CaracterizacaoCT> caracterizacaoCTS,
+    public Tarefa novaTarefa(AreaActividade areaActividade, Categoria categoriaTarefa,
                              String referencia,
                              String designacao,
                              String descInformal,
                              String descTecnica,
                              int duracao,
                              double custo) {
-        return RepositorioTarefa.getInstance().novaTarefa(areaActividade, categoriaTarefa, caracterizacaoCTS,
+        return RepositorioTarefa.getInstance().novaTarefa(areaActividade, categoriaTarefa,
                 referencia, designacao, descInformal, descTecnica, duracao, custo);
     }
     

@@ -344,7 +344,7 @@ public class AdministrativoLogadoUI implements Initializable {
 
         if (ficheiroImportar != null) {
             int numeroCategoriasImportadas = 0;
-                numeroCategoriasImportadas = registarAreaActividadeController.desserializar(ficheiroImportar);
+                numeroCategoriasImportadas = registarCategoriaController.desserializar(ficheiroImportar);
             
 
             if (numeroCategoriasImportadas > 0) {

@@ -25,4 +25,8 @@ public class RegistarCaracterizacaoCTController {
     public List<CaracterizacaoCT> getCaracterizacaoCTSByCompetenciaTecnica(List<CompetenciaTecnica> competenciasTecnicasByAreaActividade) {
         return RepositorioCaracterizacaoCT.getInstance().getCaracterizacaoCTSbyCompetenciaTecnica(competenciasTecnicasByAreaActividade);
     }
+
+    /*public List<CaracterizacaoCT> getCaracterizacaoCTSByCategoria(Categoria categoria) {
+        return RepositorioCaracterizacaoCT.getInstance().getCaracterizacaoCTSByCategoria(categoria);
+    }*/
 }

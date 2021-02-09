@@ -5,12 +5,14 @@
  */
 package com.grupo2.t4j.model;
 
+import java.io.Serializable;
+
 /**
  *
  * @author acris
  */
 
-public enum GrauProficiencia{ INICIANTE,
+public enum GrauProficiencia implements Serializable { INICIANTE,
                               BOM, 
                               EXPERIENTE, 
                               ESPECIALISTA}; 

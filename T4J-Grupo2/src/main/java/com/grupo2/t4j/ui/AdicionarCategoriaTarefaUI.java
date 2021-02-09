@@ -127,6 +127,7 @@ public class AdicionarCategoriaTarefaUI implements Initializable {
 
             if(adicionou) {
                 administrativoLogadoUI.listaCategorias.getItems().add(categoria);
+                
             }
 
             AlertsUI.criarAlerta(Alert.AlertType.INFORMATION,
@@ -166,9 +167,9 @@ public class AdicionarCategoriaTarefaUI implements Initializable {
         caracterizacaoCTS.add(caracterizacaoCT);
 
         listViewCompTecCat.getItems().add(caracterizacaoCT);
-        cmbGrauProficiencia.setItems(null);
-        cmbObrigatoriedade.setItems(null);
-        cmbCompetenciaTecnica.setItems(null);
+        cmbGrauProficiencia.getSelectionModel().clearSelection();
+        cmbObrigatoriedade.getSelectionModel().clearSelection();
+        cmbCompetenciaTecnica.getSelectionModel().clearSelection();
 
         return caracterizacaoCTS;
     }

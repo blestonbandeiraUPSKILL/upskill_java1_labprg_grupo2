@@ -50,15 +50,14 @@ public class RepositorioTarefa implements Serializable{
         listaTarefas = new ArrayList<>();
     }
 
-    public Tarefa novaTarefa(AreaActividade areaActividade, ArrayList<Categoria> categoriaTarefa,
-                             List<CaracterizacaoCT> caracterizacaoCTS,
+    public Tarefa novaTarefa(AreaActividade areaActividade, Categoria categoriaTarefa,
                              String referencia,
                              String designacao,
                              String descInformal,
                              String descTecnica,
                              int duracao,
                              double custo) {
-        return new Tarefa(areaActividade, categoriaTarefa, caracterizacaoCTS,
+        return new Tarefa(areaActividade, categoriaTarefa,
                 referencia, designacao, descInformal, descTecnica, duracao, custo);
     }
 
@@ -67,10 +66,10 @@ public class RepositorioTarefa implements Serializable{
      * @param tarefa do tipo da classe Tarefa
      * @throws TarefaDuplicadaException
      */
-    public void addTarefa(Tarefa tarefa) throws TarefaDuplicadaException {
+    public boolean addTarefa(Tarefa tarefa) throws TarefaDuplicadaException {
         Tarefa t = getTarefaByReferencia(tarefa.getReferencia());
         if (t == null) {
-            this.listaTarefas.add(tarefa);
+            return this.listaTarefas.add(tarefa);
         } else {
             throw new TarefaDuplicadaException(t.getReferencia() + 
                     ": Tarefa já registada");

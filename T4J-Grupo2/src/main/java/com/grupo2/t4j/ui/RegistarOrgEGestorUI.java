@@ -94,7 +94,7 @@ public class RegistarOrgEGestorUI implements Initializable {
             
             boolean registou = registarOrganizacaoController.registaOrganizacao(organizacao);
             if(registou) {
-                Password pw = registarOrganizacaoController.organizacao.getColabGestor().getPassword();
+                String pw = registarOrganizacaoController.organizacao.getColabGestor().getPassword().getPasswordText();
                 AlertsUI.criarAlerta(Alert.AlertType.INFORMATION,
                     MainApp.TITULO_APLICACAO,
                     "Registar Organização.",

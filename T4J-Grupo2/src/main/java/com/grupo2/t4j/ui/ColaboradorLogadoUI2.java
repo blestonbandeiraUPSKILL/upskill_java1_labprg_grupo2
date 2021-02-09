@@ -25,7 +25,7 @@ import java.util.ResourceBundle;
 
 public class ColaboradorLogadoUI2 implements Initializable {
     
-    private RegistarTarefaController registarTarefaController;
+    /*private RegistarTarefaController registarTarefaController;
     private RegistarCompetenciaTecnicaController registarCompetenciaTecnicaController;
     private StartingPageUI startingPageUI;
     private Scene sceneStartingPage;
@@ -50,11 +50,11 @@ public class ColaboradorLogadoUI2 implements Initializable {
 
     public void associarParentUI(StartingPageUI startingPageUI) {
         this.startingPageUI = startingPageUI;
-    }
+    }*/
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        adicionarStage = new Stage();
+        /*adicionarStage = new Stage();
         adicionarStage.initModality(Modality.APPLICATION_MODAL);;
         adicionarStage.setResizable(false);
 
@@ -66,11 +66,11 @@ public class ColaboradorLogadoUI2 implements Initializable {
         }
         else {
             cmbAreaActividade.getItems().setAll(registarTarefaController.getListaAreasActividade());
-        }
+        }*/
 
     }
     
-    @FXML
+    /*@FXML
     private void selectAreaActAction(ActionEvent event) {
         AreaActividade areaActividade = cmbAreaActividade.getSelectionModel().getSelectedItem();
         cmbCategoriaTarefa.getItems().setAll(registarTarefaController.getListaCategoriaByAreaActividade(areaActividade));
@@ -144,10 +144,10 @@ public class ColaboradorLogadoUI2 implements Initializable {
         }
 
         /*
-        btnAddAreaAtividade.getScene().getWindow().hide();*/
-    }
+        btnAddAreaAtividade.getScene().getWindow().hide();
+    }*/
 
-    @FXML
+    /*@FXML
     private void CancelarAction(ActionEvent event) {
         Window window = btnCancelar.getScene().getWindow();
         window.setOnCloseRequest(new EventHandler<WindowEvent>() {
