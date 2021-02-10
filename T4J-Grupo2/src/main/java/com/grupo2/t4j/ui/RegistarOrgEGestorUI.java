@@ -76,8 +76,6 @@ public class RegistarOrgEGestorUI implements Initializable {
 
         window.fireEvent(new WindowEvent(window, WindowEvent.WINDOW_CLOSE_REQUEST));
     }
-    
-    
 
     public void avancarRegistoComDados(ActionEvent actionEvent) throws IOException, Exception {
         registarOrganizacaoController = new RegistarOrganizacaoController();

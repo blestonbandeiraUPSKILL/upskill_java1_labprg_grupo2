@@ -123,6 +123,7 @@ public class GestorLogadoUI implements Initializable {
             boolean adicionouCol = registarColaboradorController.registarColaborador(colaborador);
 
             if (adicionouCol) {
+
                 autenticacaoController.registarColaboradorComoUtilizador(colaborador);
                 txtPasswordColaborador.setText(registarColaboradorController.getColaboradorByEmail(colaborador.getEmail()).getPassword().getPasswordText());
 
@@ -189,9 +190,11 @@ public class GestorLogadoUI implements Initializable {
     }
 
     public void logout(ActionEvent actionEvent) {
+
         boolean logout = autenticacaoController.logout();
         if (logout) {
             navigateStartingPage(actionEvent);
+
             Plataforma.getInstance().resetUserAPI();
         }
         else {

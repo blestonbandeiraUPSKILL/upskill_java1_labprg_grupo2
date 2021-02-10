@@ -51,4 +51,8 @@ public class AutenticacaoController {
         return usersAPI.registerUserWithRoles(nome, email, password, "colaborador") &&
                 Plataforma.getInstance().getRepositorioUtilizador().addUtilizador(utilizador);
     }
+
+    public void getContext() {
+
+    }
 }

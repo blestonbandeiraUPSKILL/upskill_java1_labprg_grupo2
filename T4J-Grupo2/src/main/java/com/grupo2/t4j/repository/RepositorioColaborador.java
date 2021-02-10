@@ -219,7 +219,7 @@ public class RepositorioColaborador implements Serializable{
         return totalColaboradoresAdicionados;
     }
 
-    public Colaborador novoColaborador(String nome, Email email, String funcao, String telefone, Rolename colaborador) {
-        return new Colaborador(nome, email, funcao, telefone, colaborador);
+    public Colaborador novoColaborador(String nome, Email email, String funcao, String telefone, Rolename rolename) {
+        return new Colaborador(nome, email, funcao, telefone, Rolename.COLABORADOR);
     }
 }

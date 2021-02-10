@@ -22,10 +22,12 @@ public class RegistarColaboradorController {
     private FicheiroRepositorioColaborador ficheiroC;
 
 
-    public boolean registarColaborador(String nome, String emailCol, String funcao, 
-            String telefone, Rolename rolename) {
-        Colaborador col = new Colaborador(nome, new Email(emailCol), funcao, telefone, rolename);
-        return repositorioColaborador.getInstance().addColaborador(col);
+    public Colaborador getColaboradorByEmail(Email email) {
+        return RepositorioColaborador.getInstance().getColaboradorByEmail(email.getEmailText());
+    }
+
+    public Colaborador novoColaborador(String nome, Email email, String funcao, String telefone, Rolename rolename) {
+        return RepositorioColaborador.getInstance().novoColaborador(nome, email, funcao, telefone, Rolename.COLABORADOR);
     }
     
     public boolean registarColaborador(Colaborador colaborador) {
@@ -60,11 +62,5 @@ public class RegistarColaboradorController {
         return repositorioColaborador.getInstance().adicionarListaColaborador(listaColaboradorImportada);
     }
 
-    public Colaborador getColaboradorByEmail(Email email) {
-        return RepositorioColaborador.getInstance().getColaboradorByEmail(email.getEmailText());
-    }
 
-    public Colaborador novoColaborador(String nome, Email email, String funcao, String telefone, Rolename colaborador) {
-        return RepositorioColaborador.getInstance().novoColaborador(nome, email, funcao, telefone, colaborador);
-    }
 }

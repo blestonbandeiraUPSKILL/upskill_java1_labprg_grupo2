@@ -32,7 +32,7 @@ public class Colaborador extends Utilizador implements Serializable{
      * Password inicial de um Colaborador em processo de registo - antes de receber 
      * a password oficial por email.
      */
-    private static final Password PASSWORD_POR_OMISSAO = new Password("00000000");
+//    private static final Password PASSWORD_POR_OMISSAO = new Password("00000000");
     
     /**
      * Por definição, todos da classe Colaborador tem rolename Colaborador.
@@ -164,9 +164,8 @@ public class Colaborador extends Utilizador implements Serializable{
     @Override
     public String toString(){
         return String.format("Nome colaborador: %s  %nEmail: %s"
-                + "%nPassword: %s %nFuncao: %s %nTelefone: %s %nRolename: %s", 
-                super.getNome(), super.getEmail().getEmailText(),
-                super.getPassword().getPasswordText(), funcao, telefone, 
+                + "%nFuncao: %s %nTelefone: %s %nRolename: %s",
+                super.getNome(), super.getEmail().getEmailText(), funcao, telefone,
                 super.getRolename().toString());
     }
     
@@ -174,7 +173,6 @@ public class Colaborador extends Utilizador implements Serializable{
      * Representação textual da classe Colaborador sem a password
      * @return Nome, função, email  e telefone do Utilizador
      */
-    @Override
     public String toStringSemPass(){
         return String.format("Nome colaborador: %s  %nEmail: %s"
                 + "%nfuncao: %s %nTelefone: %s %nRolename: %s ", 
