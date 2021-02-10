@@ -8,12 +8,14 @@
 | ADM  |  Acrónimo para [Administrativo](#Administrativo). |
 | <a name="AreaActividade">Área de Actividade</a>  | Representa a área de negócio/mercado em que se actua como, por exemplo, IT (Information Technologies), Marketing e Design.  |
 | AT  |  Acrónimo para [Área de Actividade](#AreaActividade). |
+| <a name="CandidatoFreelancer">Candidato a Freelancer | Pessoa singular que se candidata ao papel de freelancer.
 | Categoria (de [Tarefa](#Tarefa))  | Corresponde a uma descrição usada para catalogar uma ou mais tarefas (semelhantes), caracterizada por um identificador interno atribuído automaticamente, uma descrição, [área de actividade](#AreaActividade) em que se enquadra e uma lista de [competências técnicas](#CompetenciaTecnica) tipicamente requeridas para a realização de tarefas dessa categoria.  |
 |  <a name="ColaboradorOrganizacao">Colaborador de Organização</a> |Pessoa que exerce funções (e.g. especificar [tarefas](#Tarefa)) no âmbito de uma [Organização](#Organizacao).   |
 |  <a name="CompetenciaTecnica">Competência Técnica</a> |  Refere-se a um conjunto de conhecimentos e competências (habilidades) necessárias à execução de tarefas de uma determinada categoria. |
 | CT  |  Acrónimo de [Competência Técnica](#CompetenciaTecnica). |
 | <a name="Freelancer">Freelancer</a>  |  Pessoa individual que trabalha por conta própria e não está necessariamente comprometida com uma entidade empregadora ([organização](#Organizacao)) específica a longo prazo. |
 | <a name="GestorOrganizacao">Gestor de Organização</a>  | Corresponde ao papel desempenhado por um [Colaborador](#ColaboradorOrganizacao) dessa Organização na própria [Organização](#Organizacao).  |
+| <a name="GrauProficiencia">Grau de Proficiência </a>  | Corresponde ao grau de conhecimento que um [candidato a freelancer](#CandidatoFreelancer)[freelancer](#Freelancer) tem de uma [competência técnica](#CompetenciaTecnica).  |
 |  Implantação (de Software) | Processo que visa colocar um determinado software em produção. Nos casos mais simples, pode corresponder simplesmente à actividade de instalação desse software. Contudo, este processo pode implicar também outras actividades como activação, configuração, etc.  |
 | NIF  | Acrónimo para Número de Identificação Fiscal.  |
 |  <a name="Organizacao">Organização</a> |  Pessoa colectiva que pretende contratar freelancers para a realização de [tarefas](#Tarefa) necessárias à actividade da mesma. |
