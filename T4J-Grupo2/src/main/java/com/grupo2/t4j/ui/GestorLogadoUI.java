@@ -123,6 +123,7 @@ public class GestorLogadoUI implements Initializable {
             boolean adicionouCol = registarColaboradorController.registarColaborador(colaborador);
 
             if (adicionouCol) {
+
                 autenticacaoController.registarColaboradorComoUtilizador(colaborador);
                 txtPasswordColaborador.setText(registarColaboradorController.getColaboradorByEmail(colaborador.getEmail()).getPassword().getPasswordText());
 
