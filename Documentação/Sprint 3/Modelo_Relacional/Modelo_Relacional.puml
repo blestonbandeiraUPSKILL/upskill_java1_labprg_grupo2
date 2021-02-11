@@ -22,6 +22,7 @@ entity "Organizacao" {
 entity "Colaborador" {
     funcao: text
     telefone: text
+    gestor:boolean 
 }
 
 entity "Utilizador" {
@@ -165,7 +166,7 @@ entity "CaracterCT" {
 
 Plataforma ||--|{ Organizacao
 Plataforma ||--|{ Administrativo
-Plataforma ||--|{ Categoria
+AreaActividade ||--|{ Categoria
 Plataforma ||--|{ CompetenciaTecnica
 Plataforma ||--|{ AreaActividade
 Plataforma ||--|{ Freelancer
