@@ -8,7 +8,7 @@ activate "Colaborador da Organização"
 "Colaborador da Organização" -> ":Sistema" : 1 inicia a publicação de uma tarefa
 activate ":Sistema"
 
-":Sistema" --> "Colaborador da Organização": 2 mostra a lista de áreas de atividade e solicita descrição da categoria de tarefa e a escolha de uma área de atividade
+":Sistema" --> "Colaborador da Organização": 2 solicita a identificação da tarefa previamente criada
 deactivate ":Sistema"
 
 "Colaborador da Organização" -> ":Sistema": 3 introduz a identificaçao da tarefa
