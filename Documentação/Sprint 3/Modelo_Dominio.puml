@@ -26,6 +26,10 @@ class Organizacao {
     -String email
 }
 
+class TipoRegimento {
+    -String designacao
+    -String descricaoRegras
+}
 class Tarefa {
     -String referencia
     -String designacao
@@ -56,6 +60,32 @@ class EnderecoPostal {
 }
 
 class Freelancer {
+    -String NIF
+    -String telefone
+}
+
+class GrauProficiencia   {
+    -Integer valor
+    -String designacao
+}
+
+class ReconhecimentoCT {
+    -Data dataReconhecimento
+}
+
+class HabilitacaoAcademica {
+    -String grau
+    -String designacaoCurso
+    -String nomeInstituicao
+    -Double mediaCurso
+}
+
+class Candidatura {
+    -Date dataFimCandidatura
+    -Double valorPretendido
+    -Integer numeroDias
+    -String txtApresentacao
+    -String txtMotivacao
 }
 
 class Administrativo {
@@ -75,12 +105,44 @@ class Email {
     String email
 }
 
+class AlgoritmoGeradorPasswords {
+}
+
+class Anuncio {
+    -Data dataInicioPublicitacao
+    -Date dataFimPublicitacao
+    -Date dataInicioCandidatura
+    -Date dataFimCandidatura
+    -DateInicioSeriacao
+    -DateFimSeriacao
+}
+
+class ProcessoSeriacao {
+    -Date dataRealizacao
+}
+
+class Classificacao {
+    -Integer lugar
+}
+
 Plataforma"1" -- "*"Organizacao: tem registadas >
 Plataforma"1" -- "*"Freelancer: tem/usa >
 Plataforma"1" -- "*"Administrativo: tem >
 Plataforma"1" -- "*"AreaActividade: possui >
 Plataforma"1" -- "*"CompetenciaTecnica: possui >
 Plataforma"1" -- "*"Categoria: possui >
+Plataforma"1" -- "*"Anuncio: publicita >
+Plataforma"1" -- "*"TipoRegimento: suporta >
+Anuncio"*" -- "1"TipoRegimento: rege-se por >
+Anuncio"0..1" -- "1"Tarefa: publicita >
+Anuncio"*" -- "1"Colaborador: publicado por >
+Anuncio"1" -- "*"Candidatura: recebe >
+Anuncio"1" -- "0..1"ProcessoSeriacao: despoleta >
+ProcessoSeriacao"1" -- "*"Classificacao: resulta >
+ProcessoSeriacao"*" -- "1"TipoRegimento: decorre em concordância com >
+ProcessoSeriacao"1" -- "1..*"Colaborador: realizado por > 
+Candidatura"*" -- "1"Freelancer: realizada por >
+Tarefa"1" -- "0..1"Anuncio: Anuncio: dá origem >
 Tarefa"*" -- "1"Categoria: enquadra-se em >
 Tarefa"*" -- "1"Colaborador: especificada por >
 CompetenciaTecnica"*" -- "*"AreaActividade: referente a >
@@ -91,10 +153,17 @@ Organizacao"1" -- "1..*"Colaborador: tem >
 Freelancer"0..1" -- "1"Utilizador: actua como <
 Administrativo"0..1" -- "1"Utilizador: actua como <
 Colaborador"0..1" -- "1"Utilizador: actua como <
-Categoria"*" -- CompetenciaTecnica: requer >
+Categoria"*" -- "*"CompetenciaTecnica: requer >
 (Categoria, CompetenciaTecnica) . CaracterCT
+CaracterCT"*" -- GrauProficiencia: exige(como minimo) >
 Utilizador"1" -- "1"Email: possui >
 Utilizador"1" -- "1"Password: possui >
-
-
+Freelancer"0..1" -- "1"EnderecoPostal: tem >
+Freelancer"1" -- "*"ReconhecimentoCT: recebe(u) >
+Freelancer"1" -- "*"HabilitacaoAcademica: tem >
+Freelancer"0..1" -- Utilizador: actua como <
+Plataforma"1" -- AlgoritmoGeradorPasswords: recorre a >
+ReconhecimentoCT"*" -- "1"CompetenciaTecnica: relativa a >
+ReconhecimentoCT"*" -- "1"GrauProficiencia: reconhece >
+CompetenciaTecnica"1" -- "*"GrauProficiencia: aplica >
 @enduml
