@@ -1,0 +1,97 @@
+@startuml
+left to right direction
+
+title UC9 - Efectuar Candidatura
+
+class Plataforma {
+    String designacao
+}
+
+class Anuncio {
+    Data dataInicioPublicitacao
+    Data dataFimPublicitacao
+    Data dataInicioCandidatura
+    Data dataFimCandidatura
+    Data inicioSeriacao
+    Data fimSeriacao
+}
+
+class Categoria {
+    String id 
+    String descricao
+}
+
+class GrauProficiencia {
+    Integer valor
+    String designacao
+}
+class CaracterizacaoCT {
+    boolean obrigatoria
+}
+class CompetenciaTecnica {
+    String codigo
+    String descricaoBreve
+    String descricaoDetalhada
+}
+class Tarefa {
+    String referencia
+    String designacao
+    String descricaoInformal
+    String descricaoTecnica
+    Integer duracaoEstimada
+    double custoEstimado
+}
+
+class Freelancer {
+    String nome 
+    String NIF
+    String telefone
+    Email email
+}
+class Candidatura {
+    Data dataFimCandidatura
+    Double valorPretendido
+    Integer numeroDias
+    String txtApresentacao
+    String txtMotivacao
+}
+class HabilitacaoAcademica{
+    String grau
+    String designacaoCurso
+    String nomeInstituicao
+    Double mediaCurso
+}
+class ReconhecimentoCT {
+    Data dataReconhecimento
+}
+class UC9_UI{
+    --
+    showListaTarefasPublicadas(categoria)
+    getAnuncioTarefa(tarefa)
+    verificarCompetencias(freelancer, tarefa)
+}
+class UC9_CTRL{
+    --
+    showListaTarefasPublicadas(categoria)
+    getAnuncioTarefa(tarefa)
+    verificarCompetencias(freelancer, tarefa)
+}
+
+
+Freelancer - UC9_UI
+UC9_UI - UC9_CTRL
+UC9_CTRL - Plataforma
+Plataforma -|> Tarefa
+Plataforma -|> RepositorioTarefa
+Plataforma -|> Anuncio
+Tarefa --> Categoria
+Tarefa --> CompetenciaTecnica
+CompetenciaTecnica --> GrauProficiencia
+Anuncio --> Candidatura
+Categoria -> CaracterizacaoCT
+CaracterizacaoCT -> GrauProficiencia
+Freelancer -> ReconhecimentoCT
+ReconhecimentoCT -> HabilitacaoAcademica
+Candidatura -> ReconhecimentoCT
+
+@enduml
