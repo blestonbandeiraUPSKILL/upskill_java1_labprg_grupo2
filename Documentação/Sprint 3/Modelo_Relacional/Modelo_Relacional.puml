@@ -4,7 +4,7 @@ left to right direction
 title Modelo Relacional
 
 hide circle
-skinparam linetype ortho
+'skinparam linetype ortho
 
 entity "Plataforma" {
     designacao: text
@@ -60,9 +60,11 @@ entity "AreaActividade" {
 }
 
 entity "GrauProficiencia" {
-    valor: integer {PK}
-    designacao: text {PK}
-    codigoCompTecnica: text {PK, FK}
+    idGrauProficiencia: text {PK}
+    --
+    valor: integer 
+    designacao: text 
+    codigoCompTecnica: text {FK}
 }
 
 entity "Freelancer" {
@@ -118,6 +120,12 @@ entity "TipoRegimento" {
     descricaoRegras: text
 }
 
+entity "Classificacao" {
+    idClassificacao: integer {PK}
+    --
+    lugar: integer
+}
+
 entity "Candidatura" {
     idCandidatura: text {PK}
     --
@@ -129,15 +137,30 @@ entity "Candidatura" {
 }
 
 entity "HabilitacaoAcademica" {
-    grau: text {PK}
-    designacaoCurso: text {PK}
-    nomeInstituicao: text {PK}
+    idHabilitacaoAcademica {PK}
     --
+    grau: text 
+    designacaoCurso: text 
+    nomeInstituicao: text 
     mediaCurso: number
 }
 
 entity "ReconhecimentoCT" {
-    
+    dataReconhecimento: date {PK}
+    codigoCompTecnica: text {PK, FK}
+}
+
+entity "FreelancerHabAcademica" {
+    nomeFreelancer: text {PK, FK}
+    idHabilitacaoAcademica: text {PK, FK}
+}
+
+entity "FreelancerReconhecimentoCT" {
+    nomeFreelancer: text {PK, FK}
+
+}
+entity "CaracterCT" {
+    obrigatoria: boolean
 }
 
 Plataforma ||--|{ Organizacao
@@ -164,6 +187,13 @@ Freelancer ||--|| EnderecoPostal
 Candidatura ||--|| ProcessoSeriacao
 ProcessoSeriacao ||--|| TipoRegimento
 ProcessoSeriacao ||--|{ Classificacao
+Freelancer ||--|{ FreelancerHabAcademica
+HabilitacaoAcademica ||--|{ FreelancerHabAcademica
+Freelancer ||-|{ FreelancerReconhecimentoCT
+ReconhecimentoCT ||--|{ FreelancerReconhecimentoCT
+Reconhecimento }|--|| CompetenciaTecnica
+CaracterCT ||--|{ CompetenciaTecnica
+
 
 
 
