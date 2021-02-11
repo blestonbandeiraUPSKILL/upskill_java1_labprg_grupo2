@@ -4,21 +4,8 @@
 
 ## Conceitos
 
-_Administrativo:_ Colaborador da T4J responsável por realizar na plataforma várias atividades de suporte ao negócio, entre as quais, definir área de atividade, definir categorias de tarefas e especificar competências técnicas.
 
-_Área de atividade:_ Setor profissional em que a Pessoa Singular ou Organização se situa. Serve para organizar as tarefas em diferentes áreas profissionais.
 
-_Categoria de tarefa:_ Conjunto de tarefas exigidas para a realização de um trabalho requerido por uma Organização. É caracterizada por um identificador interno atribuído automaticamente, uma descrição, uma área de atividade em que se enquadra e uma lista de competências técnicas tipicamente requeridas para a realização de tarefas dessa categoria.
-
-_Código único:_ Caracteriza uma área de actividade ou uma competência técnica através de um código original e único que a identifica directamente.
-
-_Colaborador da T4J:_ Funcionário da empresa Tasks for Joe.
-
-_Colaborador de organização:_ Utilizador que pode ser indicado como gestor da organização aquando do registo da mesma na plataforma, responsável por especificar na plataforma outros colaboradores dessa mesma organização.
-
-_Competência desejável:_ Competência que se pretende que haja para a realização de uma tarefa. Não é fator eliminatório na seleção ou candidatura de um freelancer e/ou organização.
-
-_Competência obrigatória:_ Competência que é absolutamente necessário ter para a realização de uma tarefa. Constitui factor eliminatório de candidatura à oferta - um freelancer, ou organização, sem esta competência não pode realizar uma tarefa.
 
 _Competência técnica:_ Competência específica de âmbito técnico-prático, especificada por cada organização como componente obrigatória ou desejável para a realização de cada tarefa. Caracterizada através de um código único, uma descrição breve e outra mais detalhada.
 
