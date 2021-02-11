@@ -24,20 +24,20 @@ PublicarTarefaCTRL -> RepositorioTarefa: 1.1.2: lt = listaTarefas()
 activate RepositorioTarefa
 deactivate PublicarTarefaCTRL
 
-/'PublicarTarefaUI --> Colaborador: 1.2: Mostra a lista de tarefas
+PublicarTarefaUI --> Colaborador: 1.2: Mostra a lista de tarefas registadas e solicita a identificação da referência da tarefa a ser publicada
 deactivate PublicarTarefaUI
 
-Administrativo -> DefinirCategoriaTarefaUI: 2: Introduz a descrição e seleciona a área de atividade pretendida
-activate DefinirCategoriaTarefaUI
+Colaborador -> PublicarTarefaUI: 2: Introduz a referência da tarefa que deseja publicar
+activate PublicarTarefaUI
 
-DefinirCategoriaTarefaUI -> DefinirCategoriaTarefaCTRL: 2.1: lc = novaAreaAtividade(descricao, codAreaAtividade)
-activate DefinirCategoriaTarefaCTRL
+PublicarTarefaUI -> PublicarTarefaCTRL: 2.1: lt = listaTarefas(referencia)
+activate PublicarTarefaCTRL
 
-DefinirCategoriaTarefaCTRL -> RepositorioAreaAtividade : 2.1.1: at = areaAtividade(codAreaAtividade)
-activate RepositorioAreaAtividade
-deactivate RepositorioAreaAtividade
+PublicarTarefaCTRL -> RepositorioTarefa : 2.1.1: t = tarefa(referencia)
+activate RepositorioTarefa
+deactivate RepositorioTarefa
 
-DefinirCategoriaTarefaCTRL -> Plataforma : 2.1.2: rct = getRepositorioCompetenciaTecnica(codAreaAtividade)
+/'PublicarTarefaCTRL -> Plataforma : 2.1.2: rct = getRepositorioCompetenciaTecnica(codAreaAtividade)
 activate Plataforma
 deactivate Plataforma
 
