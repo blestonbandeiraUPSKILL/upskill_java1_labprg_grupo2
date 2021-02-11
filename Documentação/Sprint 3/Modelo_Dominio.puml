@@ -26,6 +26,10 @@ class Organizacao {
     -String email
 }
 
+class TipoRegimento {
+    -String designacao
+    -String descricaoRegras
+}
 class Tarefa {
     -String referencia
     -String designacao
@@ -56,6 +60,23 @@ class EnderecoPostal {
 }
 
 class Freelancer {
+    -String NIF
+    -String telefone
+}
+
+class GrauProficiencia   {
+    -Integer valor
+    -String designacao
+}
+
+class ReconhecimentoCT {
+}
+
+class HabilitacaoAcademica {
+    -String grau
+    -String designacaoCurso
+    -String nomeInstituicao
+    -Double mediaCurso
 }
 
 class Administrativo {
@@ -73,6 +94,19 @@ class Password {
 
 class Email {
     String email
+}
+
+class AlgoritmoGeradorPasswords {
+    
+}
+
+class Anuncio {
+    -Date dataInicioPublicitacao
+    -Date dataFimPublicitacao
+    -Date dataInicioCandidatura
+    -Date dataFimCandidatura
+    -DateInicioSeriacao
+    -DateFimSeriacao
 }
 
 Plataforma"1" -- "*"Organizacao: tem registadas >
@@ -95,6 +129,12 @@ Categoria"*" -- CompetenciaTecnica: requer >
 (Categoria, CompetenciaTecnica) . CaracterCT
 Utilizador"1" -- "1"Email: possui >
 Utilizador"1" -- "1"Password: possui >
-
-
+Freelancer"0..1" -- "1"EnderecoPostal: tem >
+Freelancer"1" -- "*"ReconhecimentoCT: recebe(u) >
+Freelancer"1" -- "*"HabilitacaoAcademica: tem >
+Freelancer"0..1" -- Utilizador: actua como <
+Plataforma"1" -- AlgoritmoGeradorPasswords: recorre a >
+ReconhecimentoCT"*" -- CompetenciaTecnica: relativa a >
+ReconhecimentoCT"*" -- GrauProficiencia: reconhece >
+CompetenciaTecnica"1" -- GrauProficiencia: aplica >
 @enduml
