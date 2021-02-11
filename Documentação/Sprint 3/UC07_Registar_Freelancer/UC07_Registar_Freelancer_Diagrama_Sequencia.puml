@@ -1,0 +1,42 @@
+@startuml
+
+title UC07 - Registar Freelancer
+
+activate User
+User->UC07_UI:create
+activate UC07_UI
+UC07_UI-->User:Introduza os dados
+User->UC07_UI:introduz nome, NIF, endPostal, telefone, email
+deactivate User
+
+UC07_UI->UC07_Controller:registarFreelancer(nome, NIF)
+deactivate UC07_UI
+activate UC07_Controller
+UC07_Controller-->Plataforma:findFreelancer(NIF)
+activate Plataforma
+Plataforma-->UC07_Controller: exist
+alt exist true
+UC07_Controller--> UC07_UI: freelancer já existe
+UC07_UI -->User: freelancer já existe
+else exist false
+deactivate Plataforma
+UC07_Controller->Freelancer: create(nome, NIF)
+activate Freelancer
+Freelancer-->UC07_Controller:f1
+deactivate Freelancer
+UC07_Controller ->Plataforma:adicionarFreelancer(f1)
+activate Plataforma
+Plataforma->Plataforma:adicionar(f1)
+Plataforma-->UC07_Controller:sucesso
+deactivate Plataforma
+UC07_Controller -->UC07_UI:sucesso
+deactivate UC07_Controller
+activate UC07_UI
+UC07_UI-->User:Freelancer registado com sucesso
+deactivate UC07_UI
+activate User
+deactivate User
+end
+
+
+@enduml

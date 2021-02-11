@@ -1,0 +1,34 @@
+@startuml
+
+title UC08 - Publicar Tarefa
+
+actor "Colaborador da Organização"
+activate "Colaborador da Organização"
+
+"Colaborador da Organização" -> ":Sistema" : 1 inicia a publicação de uma tarefa
+activate ":Sistema"
+
+":Sistema" --> "Colaborador da Organização": 2 solicita a identificação da tarefa previamente criada
+deactivate ":Sistema"
+
+"Colaborador da Organização" -> ":Sistema": 3 introduz a identificaçao da tarefa
+activate ":Sistema"
+
+":Sistema" --> "Colaborador da Organização": 4 solicita dados para a publicação da tarefa (i.e. período de publicação, período de apresentação de candidaturas, período de seriação, periodo de decisão e tipo de regimento aplicável)
+deactivate ":Sistema"
+
+"Colaborador da Organização" -> ":Sistema": 5 introduz os dados solicitados
+activate ":Sistema"
+
+":Sistema" --> "Colaborador da Organização": 6 apresenta os dados e solicita confirmação
+deactivate ":Sistema"
+
+"Colaborador da Organização" -> ":Sistema": 7 confirma
+activate ":Sistema"
+
+":Sistema" --> "Colaborador da Organização": 8 cria o anúncio e informa o sucesso da operação
+deactivate ":Sistema"
+
+deactivate "Colaborador da Organização"
+
+@enduml
