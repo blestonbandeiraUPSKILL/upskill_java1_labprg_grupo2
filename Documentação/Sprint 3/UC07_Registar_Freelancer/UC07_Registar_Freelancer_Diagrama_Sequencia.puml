@@ -2,4 +2,11 @@
 
 title UC07 - Registar Freelancer
 
+activate User
+User->UC07_UI:create
+activate UC07_UI
+UC07_UI-->User:Introduza os dados
+User->UC07_UI:introduz nome, NIF, endPostal, telefone, email
+deactivate User
+
 @enduml
