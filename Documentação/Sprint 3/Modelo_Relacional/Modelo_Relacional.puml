@@ -6,10 +6,6 @@ title Modelo Relacional
 hide circle
 'skinparam linetype ortho
 
-entity "Plataforma" {
-    designacao: text
-}
-
 entity "Organizacao" {
     nif: text {PK}     
     --
@@ -20,6 +16,7 @@ entity "Organizacao" {
 }
 
 entity "Colaborador" {
+    --
     funcao: text
     telefone: text
     gestor:boolean {NN}
@@ -39,33 +36,29 @@ entity "Administrativo" {
 entity "Categoria" {
     idCategoria: text {PK}
     --
-    descricao: text
+    descBreve: text {NN, UK}
+    descDetalhada: text
 }
 
 entity "CompetenciaTecnica" {
     codigoCompTecnica: text {PK}
     --
-    descBreve: text
+    descBreve: text {NN, UK}
     descDetalhada: text
-}
-
-entity "CategoriaCompTecnica" {
-    codigoCompTecnica: text {PK, FK}
-    idCategoria: text {PK, FK}
 }
 
 entity "AreaActividade" {
     codigoAreaActividade: text {PK}
     --
-    descBreve: text
+    descBreve: text {NN, UK}
     descDetalhada: text
 }
 
 entity "GrauProficiencia" {
     idGrauProficiencia: text {PK}
     --
-    valor: integer 
-    designacao: text 
+    valor: integer {NN}
+    designacao: text {NN}
     codigoCompTecnica: text {FK}
 }
 
@@ -78,9 +71,9 @@ entity "Freelancer" {
 entity "CandidatoFreelancer" {
     nif: text {PK}
     --
-    nome: text
-    email: text
-    telefone: text
+    nome: text {NN}
+    email: text {NN}
+    telefone: text {NN}
     enderecoPostal {FK}
 }
 
@@ -94,53 +87,53 @@ entity "EnderecoPostal" {
 entity "Tarefa" {
     referencia: text {PK}
     --
-    designacao: text
+    designacao: text {NN}
     descInformal: text
     descTecnica: text
-    duracaoEstimada: integer
-    custoEstimado: number
+    duracaoEstimada: integer {NN}
+    custoEstimado: number {NN}
 }
 
 entity "Anuncio" {
     idAnuncio {PK}
     --
-    dataInicioPublicacao: date
-    dataFimPublicacao: date
-    dataInicioCandidatura: date
-    dataFimCandidatura: date
-    dataInicioSeriacao
-    dataFimSeriacao
+    dataInicioPublicacao: date {NN}
+    dataFimPublicacao: date {NN}
+    dataInicioCandidatura: date {NN}
+    dataFimCandidatura: date {NN}
+    dataInicioSeriacao {NN} 
+    dataFimSeriacao {NN}
 }
 
 entity "ProcessoSeriacao" {
     idProcessoSeriacao: text {PK}
     --
-    dataRealizacao: date
+    dataRealizacao: date {NN}
     idTipoRegimento: text {FK}
 }
 
 entity "TipoRegimento" {
     idTipoRegimento: text {PK}
     --
-    designacao: text
-    descricaoRegras: text
+    designacao: text {NN, UK}
+    descricaoRegras: text {NN}
 }
 
 entity "Classificacao" {
     idClassificacao: integer {PK}
     --
-    lugar: integer
+    lugar: integer {NN, UK}
     idProcessoSeriacao: text {FK}
 }
 
 entity "Candidatura" {
     idCandidatura: text {PK}
     --
-    dataFimCandidatura: date
-    valorPretendido: number
-    numeroDias: integer
-    txtApresentacao: text
-    txtMotivacao: text
+    dataFimCandidatura: date {NN}
+    valorPretendido: number {NN}
+    numeroDias: integer {NN}
+    txtApresentacao: text {NN}
+    txtMotivacao: text {NN}
     idAnuncio: text {FK}
     idProcessoSeriacao: text {FK}
 }
@@ -148,16 +141,16 @@ entity "Candidatura" {
 entity "HabilitacaoAcademica" {
     idHabilitacaoAcademica {PK}
     --
-    grau: text 
-    designacaoCurso: text 
-    nomeInstituicao: text 
-    mediaCurso: number
+    grau: text {NN}
+    designacaoCurso: text {NN}
+    nomeInstituicao: text {NN}
+    mediaCurso: number {NN}
 }
 
 entity "ReconhecimentoCT" {
     idReconhecimntoCT: text {PK}
     --
-    dataReconhecimento: date
+    dataReconhecimento: date {NN}
     codigoCompTecnica: text {FK}
 }
 
@@ -172,15 +165,12 @@ entity "FreelancerReconhecimentoCT" {
 
 }
 entity "CaracterCT" {
-    obrigatoria: boolean
+    idCaracterCT: text {PK}
+    --
+    obrigatoria: boolean {NN}
 }
 
-Plataforma ||--|{ Organizacao
-Plataforma ||--|{ Administrativo
 AreaActividade ||--|{ Categoria
-Plataforma ||--|{ CompetenciaTecnica
-Plataforma ||--|{ AreaActividade
-Plataforma ||--|{ Freelancer
 Freelancer --|> Utilizador
 Administrativo --|> Utilizador
 AreaActividade ||--|{ CompetenciaTecnica
@@ -202,15 +192,8 @@ Freelancer ||--|{ FreelancerHabAcademica
 HabilitacaoAcademica ||--|{ FreelancerHabAcademica
 Freelancer ||-|{ FreelancerReconhecimentoCT
 ReconhecimentoCT ||--|{ FreelancerReconhecimentoCT
-Reconhecimento }|--|| CompetenciaTecnica
+ReconhecimentoCT }|--|| CompetenciaTecnica
 CaracterCT ||--|{ CompetenciaTecnica
-
-
-
-
-
-
-
 
 
 @enduml
