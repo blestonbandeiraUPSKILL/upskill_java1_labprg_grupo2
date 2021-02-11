@@ -1,6 +1,6 @@
 ##### [Voltar ao início](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/tree/main/README.md)
 
-# UC10 - 
+# UC10 - Seriar (não automaticamente) Candidaturas de Anúncio
 
 ## Formato Breve
 
@@ -55,7 +55,7 @@ O colaborador de organização inicia o processo não automático de seriação 
 
 
 ## Diagrama de Sequência do Sistema
-![UC08_Publicar_Tarefa](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Documenta%C3%A7%C3%A3o/Sprint%203/UC08_Publicar_Tarefa/UC08_Publicar_Tarefa.png)
+![UC10_Seriar_Nao_Aut_Cand_Anuncio](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Documenta%C3%A7%C3%A3o/Sprint%203/UC10_Seriar_(n%C3%A3o_automaticamente)_Candidaturas/UC10_Seriar_Nao_Aut_Cand_Anuncio.png)
 
 ## Excerto do Modelo de Domínio
 ![UC08_ExcertoMD_Publicar_Tarefa](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Documenta%C3%A7%C3%A3o/Sprint%203/UC08_Publicar_Tarefa/UC08_ExcertoMD_Publicar_Tarefa.png)
