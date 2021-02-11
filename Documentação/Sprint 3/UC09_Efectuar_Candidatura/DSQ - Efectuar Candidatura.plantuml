@@ -1,0 +1,93 @@
+@startuml
+
+participant Freelancer
+participant UC9_UI
+participant UC9_Ctrl
+participant Plataforma << Singleton >>
+participant RepositorioTarefas
+participant AnuncioTarefa
+
+title UC9 - Efectuar Candidatura
+
+activate Freelancer
+Freelancer->UC9_UI:iniciar
+activate UC9_UI
+UC9_UI->UC9_Ctrl:showListaTarefasPublicadas(categoria)
+activate UC9_Ctrl
+UC9_Ctrl->Plataforma: showListaTarefasPublicadas(categoria)
+activate Plataforma
+UC9_Ctrl->RepositorioTarefas: getTarefasPublicadas(categoria)
+activate RepositorioTarefas
+deactivate RepositorioTarefas 
+
+
+
+alt existem tarefas disponíveis
+RepositorioTarefas -->Plataforma: listaTarefasPublicadas
+deactivate RepositorioTarefas
+Plataforma-->UC9_Ctrl: listaTarefasPublicadas
+deactivate Plataforma
+UC9_Ctrl-->UC9_UI: listaTarefasPublicadas
+deactivate UC9_Ctrl
+UC9_UI-->Freelancer:lista de tarefas publicadas
+deactivate UC9_UI
+Freelancer->UC9_UI: selecciona a tarefa a candidatar-se
+activate UC9_UI
+UC9_UI -> UC9_Ctrl : getAnuncioTarefa(tarefa)
+activate UC9_Ctrl
+UC9_Ctrl->Plataforma: getAnuncioTarefa(tarefa)
+activate Plataforma
+Plataforma ->AnuncioTarefa: getAnuncioTarefa(tarefa)
+activate AnuncioTarefa
+AnuncioTarefa -> Plataforma: anuncio
+deactivate AnuncioTarefa
+Plataforma -> UC9_Ctrl: anuncio
+deactivate Plataforma
+UC9_Ctrl -> UC9_UI: anuncio
+deactivate UC9_Ctrl
+UC9_UI -> Freelancer: Anuncio da tarefa
+deactivate UC9_UI
+Freelancer -> UC9_UI: Candidata-se
+
+
+
+activate UC9_UI
+
+UC9_UI->UC9_Ctrl:verificarCompetencias(freelancer, tarefa)
+activate UC9_Ctrl
+UC9_Ctrl->AnuncioTarefa:verificarCompetencias(freelancer, tarefa)
+
+activate AnuncioTarefa
+
+AnuncioTarefa-->UC9_Ctrl:success
+deactivate AnuncioTarefa
+UC9_Ctrl->AnuncioTarefa: acrescentarCandidato(freelancer)
+activate AnuncioTarefa
+AnuncioTarefa-->UC9_Ctrl: ok
+deactivate AnuncioTarefa
+UC9_Ctrl-->UC9_UI: ok
+deactivate UC9_Ctrl
+UC9_UI-->Freelancer: ok
+
+UC9_UI<--Freelancer: terminar
+deactivate UC9_UI
+else não existem tarefas disponíveis
+activate Plataforma
+Plataforma-->UC9_Ctrl: false
+activate UC9_Ctrl
+
+deactivate Plataforma
+
+UC9_Ctrl-->UC9_UI: false
+deactivate UC9_Ctrl
+activate UC9_UI
+
+deactivate UC9_Ctrl
+UC9_UI-->Freelancer:não existem tarefas disponíveis
+
+
+Freelancer->UC9_UI: terminar
+deactivate UC9_UI
+deactivate Freelancer
+end
+@enduml
