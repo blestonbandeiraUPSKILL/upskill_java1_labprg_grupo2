@@ -11,25 +11,26 @@ entity "Plataforma" {
 }
 
 entity "Organizacao" {
-    nome: text {PK}
+    nif: text {PK}     
     --
-    nif: text
+    nome: text {NN}
     website: text
-    telefone: text
-    email: text
+    telefone: text {NN}
+    email: text {NN}
 }
 
 entity "Colaborador" {
     funcao: text
     telefone: text
-    gestor:boolean 
+    gestor:boolean {NN}
+    nifOrganizacao: text {FK}
 }
 
 entity "Utilizador" {
     email: text {PK}
     --
-    nome: text
-    password: text
+    nome: text {NN}
+    password: text {NN}
 }
 
 entity "Administrativo" {
@@ -112,12 +113,16 @@ entity "Anuncio" {
 }
 
 entity "ProcessoSeriacao" {
+    idProcessoSeriacao: text {PK}
+    --
     dataRealizacao: date
+    idTipoRegimento: text {FK}
 }
 
 entity "TipoRegimento" {
-    designacao: text {PK}
+    idTipoRegimento: text {PK}
     --
+    designacao: text
     descricaoRegras: text
 }
 
@@ -125,6 +130,7 @@ entity "Classificacao" {
     idClassificacao: integer {PK}
     --
     lugar: integer
+    idProcessoSeriacao: text {FK}
 }
 
 entity "Candidatura" {
@@ -135,6 +141,8 @@ entity "Candidatura" {
     numeroDias: integer
     txtApresentacao: text
     txtMotivacao: text
+    idAnuncio: text {FK}
+    idProcessoSeriacao: text {FK}
 }
 
 entity "HabilitacaoAcademica" {
@@ -147,17 +155,20 @@ entity "HabilitacaoAcademica" {
 }
 
 entity "ReconhecimentoCT" {
-    dataReconhecimento: date {PK}
-    codigoCompTecnica: text {PK, FK}
+    idReconhecimntoCT: text {PK}
+    --
+    dataReconhecimento: date
+    codigoCompTecnica: text {FK}
 }
 
 entity "FreelancerHabAcademica" {
-    nomeFreelancer: text {PK, FK}
+    emailFreelancer: text {PK, FK}
     idHabilitacaoAcademica: text {PK, FK}
 }
 
 entity "FreelancerReconhecimentoCT" {
-    nomeFreelancer: text {PK, FK}
+    emailFreelancer: text {PK, FK}
+    idReconhecimntoCT: text {PK, FK}
 
 }
 entity "CaracterCT" {
@@ -172,8 +183,7 @@ Plataforma ||--|{ AreaActividade
 Plataforma ||--|{ Freelancer
 Freelancer --|> Utilizador
 Administrativo --|> Utilizador
-Categoria ||--|{ CategoriaCompTecnica
-CompetenciaTecnica ||--|{ CategoriaCompTecnica
+AreaActividade ||--|{ CompetenciaTecnica
 CompetenciaTecnica ||--|{ GrauProficiencia
 Organizacao ||--|{ Tarefa
 Categoria ||--|{ Tarefa
