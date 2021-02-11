@@ -1,70 +1,25 @@
 @startuml
 
-left to right direction
-skinparam classAttributeIconSize 0
-
 title UC07 - Registar Freelancer
 
+class RegistarFreelancerUI {
+}
+
+class RegistarFreelancerController {
+}
+
+class RegistoFreelancer {
+}
+
 class Plataforma {
-  -String designacao
 }
 
 class Freelancer {
-  -String nome
-  -String NIF
-  -String telefone
-  -String email
 }
 
-class EnderecoPostal {
-    -String local
-    -String codPostal
-    -String localidade
+class AutorizacaoFacade {
 }
 
-class ReconhecimentoCT{
-    -Date dataReconhecimento
+interface AlgoritmoGeradorPasswords {
 }
-
-class AlgoritmoGeradorPasswords {
-
-}
-
-class HabilitacaoAcademica{
--String grau
--String designacaoCurso
--String nomeInstituicao
--Double mediaCurso
-
-}
-
-class CompetenciaTecnica {
-  -String codigo
-  -String descBreve
-  -String descDetalhada
-}
-
-class GrauProficiencia {
-    -Integer valor
-    -String designacao
-}
-
-class Utilizador {
-  -String nome
-  -String email
-  -String password
-}
-
-Plataforma "1" -- "*" CompetenciaTecnica : possui >
-Plataforma "1" -- "*" Freelancer : tem/usa >
-Plataforma "1" -- "1" AlgoritmoGeradorPasswords : recorre a >
-Freelancer "0..1" -- "1" EnderecoPostal : tem >
-Freelancer "1" -- "*" ReconhecimentoCT : recebe(u) >
-Freelancer "1" -- "*" HabilitacaoAcademica : tem >
-Freelancer "0..1" -- "1" Utilizador : atua como >
-AlgoritmoGeradorPasswords "1" -- "*" Utilizador : gera password >
-ReconhecimentoCT "*" -- "1" CompetenciaTecnica : relativa a >
-ReconhecimentoCT "*" -- "1" GrauProficiencia : reconhece >
-CompetenciaTecnica "1" -- "*" GrauProficiencia : aplica >
-
 @enduml

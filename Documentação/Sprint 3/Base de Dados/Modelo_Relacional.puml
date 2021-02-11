@@ -6,29 +6,28 @@ title Modelo Relacional
 hide circle
 'skinparam linetype ortho
 
-entity "Plataforma" {
-    designacao: text
-}
-
 entity "Organizacao" {
-    nome: text {PK}
+    nif: text {PK}     
     --
-    nif: text
+    nome: text {NN}
     website: text
-    telefone: text
-    email: text
+    telefone: text {NN}
+    email: text {NN}
 }
 
 entity "Colaborador" {
+    --
     funcao: text
     telefone: text
+    gestor:boolean {NN}
+    nifOrganizacao: text {FK}
 }
 
 entity "Utilizador" {
     email: text {PK}
     --
-    nome: text
-    password: text
+    nome: text {NN}
+    password: text {NN}
 }
 
 entity "Administrativo" {
@@ -37,33 +36,29 @@ entity "Administrativo" {
 entity "Categoria" {
     idCategoria: text {PK}
     --
-    descricao: text
+    descBreve: text {NN, UK}
+    descDetalhada: text
 }
 
 entity "CompetenciaTecnica" {
     codigoCompTecnica: text {PK}
     --
-    descBreve: text
+    descBreve: text {NN, UK}
     descDetalhada: text
-}
-
-entity "CategoriaCompTecnica" {
-    codigoCompTecnica: text {PK, FK}
-    idCategoria: text {PK, FK}
 }
 
 entity "AreaActividade" {
     codigoAreaActividade: text {PK}
     --
-    descBreve: text
+    descBreve: text {NN, UK}
     descDetalhada: text
 }
 
 entity "GrauProficiencia" {
     idGrauProficiencia: text {PK}
     --
-    valor: integer 
-    designacao: text 
+    valor: integer {NN}
+    designacao: text {NN}
     codigoCompTecnica: text {FK}
 }
 
@@ -76,9 +71,9 @@ entity "Freelancer" {
 entity "CandidatoFreelancer" {
     nif: text {PK}
     --
-    nome: text
-    email: text
-    telefone: text
+    nome: text {NN}
+    email: text {NN}
+    telefone: text {NN}
     enderecoPostal {FK}
 }
 
@@ -92,87 +87,94 @@ entity "EnderecoPostal" {
 entity "Tarefa" {
     referencia: text {PK}
     --
-    designacao: text
+    designacao: text {NN}
     descInformal: text
     descTecnica: text
-    duracaoEstimada: integer
-    custoEstimado: number
+    duracaoEstimada: integer {NN}
+    custoEstimado: number {NN}
 }
 
 entity "Anuncio" {
     idAnuncio {PK}
     --
-    dataInicioPublicacao: date
-    dataFimPublicacao: date
-    dataInicioCandidatura: date
-    dataFimCandidatura: date
-    dataInicioSeriacao
-    dataFimSeriacao
+    dataInicioPublicacao: date {NN}
+    dataFimPublicacao: date {NN}
+    dataInicioCandidatura: date {NN}
+    dataFimCandidatura: date {NN}
+    dataInicioSeriacao {NN} 
+    dataFimSeriacao {NN}
 }
 
 entity "ProcessoSeriacao" {
-    dataRealizacao: date
+    idProcessoSeriacao: text {PK}
+    --
+    dataRealizacao: date {NN}
+    idTipoRegimento: text {FK}
 }
 
 entity "TipoRegimento" {
-    designacao: text {PK}
+    idTipoRegimento: text {PK}
     --
-    descricaoRegras: text
+    designacao: text {NN, UK}
+    descricaoRegras: text {NN}
 }
 
 entity "Classificacao" {
     idClassificacao: integer {PK}
     --
-    lugar: integer
+    lugar: integer {NN, UK}
+    idProcessoSeriacao: text {FK}
 }
 
 entity "Candidatura" {
     idCandidatura: text {PK}
     --
-    dataFimCandidatura: date
-    valorPretendido: number
-    numeroDias: integer
-    txtApresentacao: text
-    txtMotivacao: text
+    dataFimCandidatura: date {NN}
+    valorPretendido: number {NN}
+    numeroDias: integer {NN}
+    txtApresentacao: text {NN}
+    txtMotivacao: text {NN}
+    idAnuncio: text {FK}
+    idProcessoSeriacao: text {FK}
 }
 
 entity "HabilitacaoAcademica" {
     idHabilitacaoAcademica {PK}
     --
-    grau: text 
-    designacaoCurso: text 
-    nomeInstituicao: text 
-    mediaCurso: number
+    grau: text {NN}
+    designacaoCurso: text {NN}
+    nomeInstituicao: text {NN}
+    mediaCurso: number {NN}
 }
 
 entity "ReconhecimentoCT" {
-    dataReconhecimento: date {PK}
-    codigoCompTecnica: text {PK, FK}
+    idReconhecimntoCT: text {PK}
+    --
+    dataReconhecimento: date {NN}
+    codigoCompTecnica: text {FK}
 }
 
 entity "FreelancerHabAcademica" {
-    nomeFreelancer: text {PK, FK}
+    emailFreelancer: text {PK, FK}
     idHabilitacaoAcademica: text {PK, FK}
 }
 
 entity "FreelancerReconhecimentoCT" {
-    nomeFreelancer: text {PK, FK}
+    emailFreelancer: text {PK, FK}
+    idReconhecimntoCT: text {PK, FK}
 
 }
+
 entity "CaracterCT" {
-    obrigatoria: boolean
+    idCaracterCT: text {PK}
+    --
+    obrigatoria: boolean {NN}
 }
 
-Plataforma ||--|{ Organizacao
-Plataforma ||--|{ Administrativo
-Plataforma ||--|{ Categoria
-Plataforma ||--|{ CompetenciaTecnica
-Plataforma ||--|{ AreaActividade
-Plataforma ||--|{ Freelancer
+AreaActividade ||--|{ Categoria
 Freelancer --|> Utilizador
 Administrativo --|> Utilizador
-Categoria ||--|{ CategoriaCompTecnica
-CompetenciaTecnica ||--|{ CategoriaCompTecnica
+AreaActividade ||--|{ CompetenciaTecnica
 CompetenciaTecnica ||--|{ GrauProficiencia
 Organizacao ||--|{ Tarefa
 Categoria ||--|{ Tarefa
@@ -191,15 +193,8 @@ Freelancer ||--|{ FreelancerHabAcademica
 HabilitacaoAcademica ||--|{ FreelancerHabAcademica
 Freelancer ||-|{ FreelancerReconhecimentoCT
 ReconhecimentoCT ||--|{ FreelancerReconhecimentoCT
-Reconhecimento }|--|| CompetenciaTecnica
+ReconhecimentoCT }|--|| CompetenciaTecnica
 CaracterCT ||--|{ CompetenciaTecnica
-
-
-
-
-
-
-
 
 
 @enduml
