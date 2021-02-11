@@ -1,0 +1,25 @@
+@startuml
+
+title UC07 - Registar Freelancer
+
+class RegistarFreelancerUI {
+}
+
+class RegistarFreelancerController {
+}
+
+class RegistoFreelancer {
+}
+
+class Plataforma {
+}
+
+class Freelancer {
+}
+
+class AutorizacaoFacade {
+}
+
+interface AlgoritmoGeradorPasswords {
+}
+@enduml
