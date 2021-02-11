@@ -62,3 +62,26 @@ anúncio e informa o Freelancer do sucesso da operação.
 4. O sistema deteta que o Freelancer já consta na lista de candidaturas àquela tarefa
     a. O sistema alerta o Freelancer para o facto.
     b. O caso de uso termina.
+
+    ## Diagrama de Sequência de Sistema 
+
+![UC9_Efectuar_Candidatura_SSD](UC9_Efectuar_Candidatura_SSD.png)
+
+
+## Excerto do Modelo de Domínio 
+
+![UC9_Efectuar_Candidatura_MD](UC9_Efectuar_Candidatura_MD.png)
+
+
+## Diagrama de sequência <br/>
+
+![UC9_Efectuar_Candidatura_DSQ](UC9_Efectuar_Candidatura_DSQ.png)
+
+## Diagrama de Classes <br/>
+![UC9_Efectuar_Candidatura_DC](UC9_Efectuar_Candidatura_DC.png)
+
+## Plano de Testes <br/>
+
+
+
+##### [Voltar ao início](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/README.md)
