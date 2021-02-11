@@ -1,0 +1,175 @@
+@startuml
+
+left to right direction
+title Modelo Relacional
+
+hide circle
+skinparam linetype ortho
+
+entity "Plataforma" {
+    designacao: text
+}
+
+entity "Organizacao" {
+    nome: text {PK}
+    --
+    nif: text
+    website: text
+    telefone: text
+    email: text
+}
+
+entity "Colaborador" {
+    funcao: text
+    telefone: text
+}
+
+entity "Utilizador" {
+    email: text {PK}
+    --
+    nome: text
+    password: text
+}
+
+entity "Administrativo" {
+}
+
+entity "Categoria" {
+    idCategoria: text {PK}
+    --
+    descricao: text
+}
+
+entity "CompetenciaTecnica" {
+    codigoCompTecnica: text {PK}
+    --
+    descBreve: text
+    descDetalhada: text
+}
+
+entity "CategoriaCompTecnica" {
+    codigoCompTecnica: text {PK, FK}
+    idCategoria: text {PK, FK}
+}
+
+entity "AreaActividade" {
+    codigoAreaActividade: text {PK}
+    --
+    descBreve: text
+    descDetalhada: text
+}
+
+entity "GrauProficiencia" {
+    valor: integer {PK}
+    designacao: text {PK}
+    codigoCompTecnica: text {PK, FK}
+}
+
+entity "Freelancer" {
+    nif: text {PK}
+    --
+    telefone: text
+}
+
+entity "CandidatoFreelancer" {
+    nif: text {PK}
+    --
+    nome: text
+    email: text
+    telefone: text
+    enderecoPostal {FK}
+}
+
+entity "EnderecoPostal" {
+    arruamento: text {PK}
+    numeroPorta: text {PK}
+    localidade: text {PK}
+    codigoPostal: text {PK}
+}
+
+entity "Tarefa" {
+    referencia: text {PK}
+    --
+    designacao: text
+    descInformal: text
+    descTecnica: text
+    duracaoEstimada: integer
+    custoEstimado: number
+}
+
+entity "Anuncio" {
+    idAnuncio {PK}
+    --
+    dataInicioPublicacao: date
+    dataFimPublicacao: date
+    dataInicioCandidatura: date
+    dataFimCandidatura: date
+    dataInicioSeriacao
+    dataFimSeriacao
+}
+
+entity "ProcessoSeriacao" {
+    dataRealizacao: date
+}
+
+entity "TipoRegimento" {
+    designacao: text {PK}
+    --
+    descricaoRegras: text
+}
+
+entity "Candidatura" {
+    idCandidatura: text {PK}
+    --
+    dataFimCandidatura: date
+    valorPretendido: number
+    numeroDias: integer
+    txtApresentacao: text
+    txtMotivacao: text
+}
+
+entity "HabilitacaoAcademica" {
+    grau: text {PK}
+    designacaoCurso: text {PK}
+    nomeInstituicao: text {PK}
+    --
+    mediaCurso: number
+}
+
+entity "ReconhecimentoCT" {
+    
+}
+
+Plataforma ||--|{ Organizacao
+Plataforma ||--|{ Administrativo
+Plataforma ||--|{ Categoria
+Plataforma ||--|{ CompetenciaTecnica
+Plataforma ||--|{ AreaActividade
+Plataforma ||--|{ Freelancer
+Freelancer --|> Utilizador
+Administrativo --|> Utilizador
+Categoria ||--|{ CategoriaCompTecnica
+CompetenciaTecnica ||--|{ CategoriaCompTecnica
+CompetenciaTecnica ||--|{ GrauProficiencia
+Organizacao ||--|{ Tarefa
+Categoria ||--|{ Tarefa
+Tarefa ||--o| Anuncio
+Organizacao ||--|{ Colaborador
+Colaborador --|> Utilizador
+CandidatoFreelancer ||--o| Freelancer
+Anuncio ||--|{ Candidatura
+Freelancer||--|{ Candidatura
+Organizacao ||--|| EnderecoPostal
+Freelancer ||--|| EnderecoPostal
+Candidatura ||--|| ProcessoSeriacao
+ProcessoSeriacao ||--|| TipoRegimento
+ProcessoSeriacao ||--|{ Classificacao
+
+
+
+
+
+
+
+
+@enduml
