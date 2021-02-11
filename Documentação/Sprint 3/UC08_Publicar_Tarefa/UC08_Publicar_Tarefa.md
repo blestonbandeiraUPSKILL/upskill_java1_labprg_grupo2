@@ -53,10 +53,10 @@ O colaborador da organização inicia a publicação de uma tarefa. O sistema so
     O caso de uso termina.
 
 ## Diagrama de Sequência do Sistema
-![UC08_Publicar_Tarefa](Uhttps://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Documenta%C3%A7%C3%A3o/Sprint%203/UC08_Publicar_Tarefa/UC08_Publicar_Tarefa.png)
+![UC08_Publicar_Tarefa](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Documenta%C3%A7%C3%A3o/Sprint%203/UC08_Publicar_Tarefa/UC08_Publicar_Tarefa.png)
 
 ## Excerto do Modelo de Domínio
-![UC03_Definir_Categoria_Tarefa_Modelo_Dominio](UC03_Definir_Categoria_Tarefa_Modelo_Dominio.png)
+![UC08_ExcertoMD_Publicar_Tarefa](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Documenta%C3%A7%C3%A3o/Sprint%203/UC08_Publicar_Tarefa/UC08_ExcertoMD_Publicar_Tarefa.png)
 
 ## Diagrama de sequência <br/>
 ![UC03_Definir_Categoria_Tarefa_Diagrama_Sequencia](UC03_Definir_Categoria_Tarefa_Diagrama_Sequencia.png)
