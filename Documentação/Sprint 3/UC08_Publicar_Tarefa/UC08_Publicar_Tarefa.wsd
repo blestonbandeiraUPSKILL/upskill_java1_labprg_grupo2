@@ -29,4 +29,6 @@ activate ":Sistema"
 ":Sistema" --> "Colaborador da Organização": 8 cria o anúncio e informa o sucesso da operação
 deactivate ":Sistema"
 
+deactivate "Colaborador da Organização"
+
 @enduml
