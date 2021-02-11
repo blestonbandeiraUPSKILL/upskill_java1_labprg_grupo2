@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="581px" preserveAspectRatio="none" style="width:899px;height:581px;" version="1.1" viewBox="0 0 899 581" width="899px" zoomAndPan="magnify"><defs><filter height="300%" id="f1cmosqor1u3b9" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><text fill="#000000" font-family="sans-serif" font-size="18" lengthAdjust="spacing" textLength="251" x="322.25" y="28.708">UC07 - Registar Freelancer</text><rect fill="#FFFFFF" filter="url(#f1cmosqor1u3b9)" height="345.5938" style="stroke:#A80036;stroke-width:1.0;" width="10" x="69" y="133.25"/><rect fill="#FFFFFF" filter="url(#f1cmosqor1u3b9)" height="29.1328" style="stroke:#A80036;stroke-width:1.0;" width="10" x="830" y="154.3828"/><rect fill="#FFFFFF" filter="url(#f1cmosqor1u3b9)" height="53.2656" style="stroke:#A80036;stroke-width:1.0;" width="10" x="830" y="212.6484"/><rect fill="#FFFFFF" filter="url(#f1cmosqor1u3b9)" height="60.2656" style="stroke:#A80036;stroke-width:1.0;" width="10" x="830" y="295.0469"/><rect fill="#FFFFFF" filter="url(#f1cmosqor1u3b9)" height="36.1328" style="stroke:#A80036;stroke-width:1.0;" width="10" x="830" y="384.4453"/><rect fill="#FFFFFF" filter="url(#f1cmosqor1u3b9)" height="29.1328" style="stroke:#A80036;stroke-width:1.0;" width="10" x="830" y="449.7109"/><rect fill="#FFFFFF" filter="url(#f1cmosqor1u3b9)" height="75.3984" style="stroke:#000000;stroke-width:2.0;" width="875.5" x="10" y="227.6484"/><rect fill="#FFFFFF" filter="url(#f1cmosqor1u3b9)" height="75.3984" style="stroke:#000000;stroke-width:2.0;" width="875.5" x="10" y="317.0469"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:5.0,5.0;" x1="74" x2="74" y1="123.25" y2="496.8438"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:5.0,5.0;" x1="834.5" x2="834.5" y1="123.25" y2="496.8438"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="102" x="20" y="119.9482">Administrador</text><ellipse cx="74" cy="49.9531" fill="#FEFECE" filter="url(#f1cmosqor1u3b9)" rx="8" ry="8" style="stroke:#A80036;stroke-width:2.0;"/><path d="M74,57.9531 L74,84.9531 M61,65.9531 L87,65.9531 M74,84.9531 L61,99.9531 M74,84.9531 L87,99.9531 " fill="none" filter="url(#f1cmosqor1u3b9)" style="stroke:#A80036;stroke-width:2.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="102" x="20" y="508.8389">Administrador</text><ellipse cx="74" cy="522.1406" fill="#FEFECE" filter="url(#f1cmosqor1u3b9)" rx="8" ry="8" style="stroke:#A80036;stroke-width:2.0;"/><path d="M74,530.1406 L74,557.1406 M61,538.1406 L87,538.1406 M74,557.1406 L61,572.1406 M74,557.1406 L87,572.1406 " fill="none" filter="url(#f1cmosqor1u3b9)" style="stroke:#A80036;stroke-width:2.0;"/><rect fill="#FEFECE" filter="url(#f1cmosqor1u3b9)" height="30.2969" style="stroke:#A80036;stroke-width:1.5;" width="77" x="794.5" y="87.9531"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="63" x="801.5" y="107.9482">:Sistema</text><rect fill="#FEFECE" filter="url(#f1cmosqor1u3b9)" height="30.2969" style="stroke:#A80036;stroke-width:1.5;" width="77" x="794.5" y="495.8438"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="63" x="801.5" y="515.8389">:Sistema</text><rect fill="#FFFFFF" filter="url(#f1cmosqor1u3b9)" height="345.5938" style="stroke:#A80036;stroke-width:1.0;" width="10" x="69" y="133.25"/><rect fill="#FFFFFF" filter="url(#f1cmosqor1u3b9)" height="29.1328" style="stroke:#A80036;stroke-width:1.0;" width="10" x="830" y="154.3828"/><rect fill="#FFFFFF" filter="url(#f1cmosqor1u3b9)" height="53.2656" style="stroke:#A80036;stroke-width:1.0;" width="10" x="830" y="212.6484"/><rect fill="#FFFFFF" filter="url(#f1cmosqor1u3b9)" height="60.2656" style="stroke:#A80036;stroke-width:1.0;" width="10" x="830" y="295.0469"/><rect fill="#FFFFFF" filter="url(#f1cmosqor1u3b9)" height="36.1328" style="stroke:#A80036;stroke-width:1.0;" width="10" x="830" y="384.4453"/><rect fill="#FFFFFF" filter="url(#f1cmosqor1u3b9)" height="29.1328" style="stroke:#A80036;stroke-width:1.0;" width="10" x="830" y="449.7109"/><polygon fill="#A80036" points="818,150.3828,828,154.3828,818,158.3828,822,154.3828" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="79" x2="824" y1="154.3828" y2="154.3828"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="130" x="86" y="149.3169">1 registar freelancer</text><polygon fill="#A80036" points="90,179.5156,80,183.5156,90,187.5156,86,183.5156" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="84" x2="834" y1="183.5156" y2="183.5156"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="574" x="96" y="178.4497">2 solicita os dados  do freelancer (nome, NIF, endereço postal, contacto telefónico, email)</text><polygon fill="#A80036" points="818,208.6484,828,212.6484,818,216.6484,822,212.6484" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="79" x2="824" y1="212.6484" y2="212.6484"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="197" x="86" y="207.5825">3 introduz os dados solicitados</text><path d="M10,227.6484 L88,227.6484 L88,234.6484 L78,244.6484 L10,244.6484 L10,227.6484 " fill="#EEEEEE" style="stroke:#000000;stroke-width:1.0;"/><rect fill="none" height="75.3984" style="stroke:#000000;stroke-width:2.0;" width="875.5" x="10" y="227.6484"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="33" x="25" y="240.7153">loop</text><polygon fill="#A80036" points="90,261.9141,80,265.9141,90,269.9141,86,265.9141" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="84" x2="834" y1="265.9141" y2="265.9141"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="727" x="96" y="260.8481">4 solicita habilitações académicas (grau, designação do curso, instituição que concedeu o grau e média do curso)</text><polygon fill="#A80036" points="818,291.0469,828,295.0469,818,299.0469,822,295.0469" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="79" x2="824" y1="295.0469" y2="295.0469"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="197" x="86" y="289.981">5 introduz os dados solicitados</text><path d="M10,317.0469 L88,317.0469 L88,324.0469 L78,334.0469 L10,334.0469 L10,317.0469 " fill="#EEEEEE" style="stroke:#000000;stroke-width:1.0;"/><rect fill="none" height="75.3984" style="stroke:#000000;stroke-width:2.0;" width="875.5" x="10" y="317.0469"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="33" x="25" y="330.1138">loop</text><polygon fill="#A80036" points="90,351.3125,80,355.3125,90,359.3125,86,355.3125" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="84" x2="834" y1="355.3125" y2="355.3125"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="668" x="96" y="350.2466">6 solicita reconhecimentos de competências técnicas (data, competência técnica e grau de proficiência)</text><polygon fill="#A80036" points="818,380.4453,828,384.4453,818,388.4453,822,384.4453" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="79" x2="824" y1="384.4453" y2="384.4453"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="197" x="86" y="379.3794">7 introduz os dados solicitados</text><polygon fill="#A80036" points="90,416.5781,80,420.5781,90,424.5781,86,420.5781" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="84" x2="834" y1="420.5781" y2="420.5781"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="264" x="96" y="415.5122">8 apresenta dados e solicita confirmação</text><polygon fill="#A80036" points="818,445.7109,828,449.7109,818,453.7109,822,449.7109" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="79" x2="824" y1="449.7109" y2="449.7109"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="69" x="86" y="444.645">9 confirma</text><polygon fill="#A80036" points="85,474.8438,75,478.8438,85,482.8438,81,478.8438" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="79" x2="834" y1="478.8438" y2="478.8438"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="174" x="91" y="473.7778">10 operação bem sucedida</text><!--MD5=[5c267271b0cea5b00a92d24ae4e37e97]
+@startuml
+title UC07 - Registar Freelancer
+
+actor Administrador
+participant ":Sistema" as Sistema
+
+activate Administrador
+
+Administrador -> Sistema : 1 registar freelancer
+activate Sistema
+
+Sistema - -> Administrador: 2 solicita os dados  do freelancer (nome, NIF, endereço postal, contacto telefónico, email)
+deactivate Sistema
+
+Administrador -> Sistema: 3 introduz os dados solicitados
+activate Sistema
+
+loop
+
+Sistema - -> Administrador: 4 solicita habilitações académicas (grau, designação do curso, instituição que concedeu o grau e média do curso)
+deactivate Sistema
+
+Administrador -> Sistema: 5 introduz os dados solicitados
+activate Sistema
+
+end
+
+loop
+
+Sistema - -> Administrador: 6 solicita reconhecimentos de competências técnicas (data, competência técnica e grau de proficiência)
+deactivate Sistema
+
+Administrador -> Sistema: 7 introduz os dados solicitados
+activate Sistema
+
+end
+
+Sistema - -> Administrador: 8 apresenta dados e solicita confirmação
+deactivate Sistema
+
+Administrador -> Sistema: 9 confirma
+activate Sistema
+
+Sistema - -> Administrador: 10 operação bem sucedida
+deactivate Sistema
+deactivate Administrador
+@enduml
+
+PlantUML version 1.2021.2beta6(Unknown compile time)
+(GPL source distribution)
+Java Runtime: Java(TM) SE Runtime Environment
+JVM: Java HotSpot(TM) 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg>
