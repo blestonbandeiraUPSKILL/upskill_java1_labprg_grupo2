@@ -42,7 +42,7 @@ O colaborador de organização inicia o processo não automático de seriação 
 
 ### Fluxos alternativos
 
-1.	1.	O colaborador cancela a seriação da tarefa.
+1.	O colaborador cancela a seriação da tarefa.
     a.	O caso de uso termina.
 2.	O sistema detecta que não existem tarefas publicadas por adjudicar.
     a.	O caso de uso termina.
