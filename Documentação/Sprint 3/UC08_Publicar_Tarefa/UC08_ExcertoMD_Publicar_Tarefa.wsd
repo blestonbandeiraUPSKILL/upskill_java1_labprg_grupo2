@@ -1,0 +1,65 @@
+@startuml
+left to right direction
+
+title UC08 - Publicar Tarefa
+
+class Plataforma{
+    -String designacao
+}
+
+class Anuncio{
+    -date dtInicioPublicitacao
+    -date dtFimPublicitacao
+    -date dtInicioCandidatura
+    -date dtFimCandidatura
+    -date dtInicioSeriacao
+    -date dtFimSeriacao
+}
+
+class Organizacao{
+  -String nome 
+  -String NIF 
+  -Website website
+  -String telefone
+}
+
+class Tarefa{
+  -String referencia
+  -String designacao
+  -String descInformal
+  -String descTecnica
+  -int duracaoEst
+  -double custoEst 
+}
+
+class TipoRegimento{
+  -String designacao
+  -String descricaoRegras
+}
+
+Class Colaborador{
+    String nome
+    String funcao
+    String telefone
+    Email email
+}
+
+Tarefa "*" -- "1" Colaborador: especificada por >
+
+Plataforma "1" --"*" Organizacao: tem registadas >
+
+Anuncio "0..1" -- "1" Tarefa: publicita >
+
+Anuncio "0..1" -- "1" Tarefa: < dá origem
+
+Plataforma "1" - "*" Anuncio: publicita >
+
+Plataforma "1" -up- "*" TipoRegimento: suporta >
+
+Organizacao "1" -- "*" Tarefa: possui >
+
+Anuncio "*" -- "1" TipoRegimento: rege-se por >
+
+Anuncio "*" ----- "1" Colaborador: publicado por >
+
+@enduml
