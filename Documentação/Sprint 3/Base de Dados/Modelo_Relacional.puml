@@ -164,6 +164,7 @@ entity "FreelancerReconhecimentoCT" {
     idReconhecimntoCT: text {PK, FK}
 
 }
+
 entity "CaracterCT" {
     idCaracterCT: text {PK}
     --
