@@ -1,0 +1,200 @@
+@startuml
+
+left to right direction
+title Modelo Relacional
+
+hide circle
+'skinparam linetype ortho
+
+entity "Organizacao" {
+    nif: text {PK}     
+    --
+    nome: text {NN}
+    website: text
+    telefone: text {NN}
+    email: text {NN}
+}
+
+entity "Colaborador" {
+    --
+    funcao: text
+    telefone: text
+    gestor:boolean {NN}
+    nifOrganizacao: text {FK}
+}
+
+entity "Utilizador" {
+    email: text {PK}
+    --
+    nome: text {NN}
+    password: text {NN}
+}
+
+entity "Administrativo" {
+}
+
+entity "Categoria" {
+    idCategoria: text {PK}
+    --
+    descBreve: text {NN, UK}
+    descDetalhada: text
+}
+
+entity "CompetenciaTecnica" {
+    codigoCompTecnica: text {PK}
+    --
+    descBreve: text {NN, UK}
+    descDetalhada: text
+}
+
+entity "AreaActividade" {
+    codigoAreaActividade: text {PK}
+    --
+    descBreve: text {NN, UK}
+    descDetalhada: text
+}
+
+entity "GrauProficiencia" {
+    idGrauProficiencia: text {PK}
+    --
+    valor: integer {NN}
+    designacao: text {NN}
+    codigoCompTecnica: text {FK}
+}
+
+entity "Freelancer" {
+    nif: text {PK}
+    --
+    telefone: text
+}
+
+entity "CandidatoFreelancer" {
+    nif: text {PK}
+    --
+    nome: text {NN}
+    email: text {NN}
+    telefone: text {NN}
+    enderecoPostal {FK}
+}
+
+entity "EnderecoPostal" {
+    arruamento: text {PK}
+    numeroPorta: text {PK}
+    localidade: text {PK}
+    codigoPostal: text {PK}
+}
+
+entity "Tarefa" {
+    referencia: text {PK}
+    --
+    designacao: text {NN}
+    descInformal: text
+    descTecnica: text
+    duracaoEstimada: integer {NN}
+    custoEstimado: number {NN}
+}
+
+entity "Anuncio" {
+    idAnuncio {PK}
+    --
+    dataInicioPublicacao: date {NN}
+    dataFimPublicacao: date {NN}
+    dataInicioCandidatura: date {NN}
+    dataFimCandidatura: date {NN}
+    dataInicioSeriacao {NN} 
+    dataFimSeriacao {NN}
+}
+
+entity "ProcessoSeriacao" {
+    idProcessoSeriacao: text {PK}
+    --
+    dataRealizacao: date {NN}
+    idTipoRegimento: text {FK}
+}
+
+entity "TipoRegimento" {
+    idTipoRegimento: text {PK}
+    --
+    designacao: text {NN, UK}
+    descricaoRegras: text {NN}
+}
+
+entity "Classificacao" {
+    idClassificacao: integer {PK}
+    --
+    lugar: integer {NN, UK}
+    idProcessoSeriacao: text {FK}
+}
+
+entity "Candidatura" {
+    idCandidatura: text {PK}
+    --
+    dataFimCandidatura: date {NN}
+    valorPretendido: number {NN}
+    numeroDias: integer {NN}
+    txtApresentacao: text {NN}
+    txtMotivacao: text {NN}
+    idAnuncio: text {FK}
+    idProcessoSeriacao: text {FK}
+}
+
+entity "HabilitacaoAcademica" {
+    idHabilitacaoAcademica {PK}
+    --
+    grau: text {NN}
+    designacaoCurso: text {NN}
+    nomeInstituicao: text {NN}
+    mediaCurso: number {NN}
+}
+
+entity "ReconhecimentoCT" {
+    idReconhecimntoCT: text {PK}
+    --
+    dataReconhecimento: date {NN}
+    codigoCompTecnica: text {FK}
+}
+
+entity "FreelancerHabAcademica" {
+    emailFreelancer: text {PK, FK}
+    idHabilitacaoAcademica: text {PK, FK}
+}
+
+entity "FreelancerReconhecimentoCT" {
+    emailFreelancer: text {PK, FK}
+    idReconhecimntoCT: text {PK, FK}
+
+}
+
+entity "CaracterCT" {
+    idCaracterCT: text {PK}
+    --
+    obrigatoria: boolean {NN}
+}
+
+AreaActividade ||--|{ Categoria
+Freelancer --|> Utilizador
+Administrativo --|> Utilizador
+AreaActividade ||--|{ CompetenciaTecnica
+CompetenciaTecnica ||--|{ GrauProficiencia
+Organizacao ||--|{ Tarefa
+Categoria ||--|{ Tarefa
+Tarefa ||--o| Anuncio
+Organizacao ||--|{ Colaborador
+Colaborador --|> Utilizador
+CandidatoFreelancer ||--o| Freelancer
+Anuncio ||--|{ Candidatura
+Freelancer||--|{ Candidatura
+Organizacao ||--|| EnderecoPostal
+Freelancer ||--|| EnderecoPostal
+Candidatura ||--|| ProcessoSeriacao
+ProcessoSeriacao ||--|| TipoRegimento
+ProcessoSeriacao ||--|{ Classificacao
+Freelancer ||--|{ FreelancerHabAcademica
+HabilitacaoAcademica ||--|{ FreelancerHabAcademica
+Freelancer ||-|{ FreelancerReconhecimentoCT
+ReconhecimentoCT ||--|{ FreelancerReconhecimentoCT
+ReconhecimentoCT }|--|| CompetenciaTecnica
+CaracterCT ||--|{ CompetenciaTecnica
+
+
+@enduml
