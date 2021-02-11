@@ -58,7 +58,7 @@ O colaborador de organização inicia o processo não automático de seriação 
 ![UC10_Seriar_Nao_Aut_Cand_Anuncio](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Documenta%C3%A7%C3%A3o/Sprint%203/UC10_Seriar_(n%C3%A3o_automaticamente)_Candidaturas/UC10_Seriar_Nao_Aut_Cand_Anuncio.png)
 
 ## Excerto do Modelo de Domínio
-![UC08_ExcertoMD_Publicar_Tarefa](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Documenta%C3%A7%C3%A3o/Sprint%203/UC08_Publicar_Tarefa/UC08_ExcertoMD_Publicar_Tarefa.png)
+![UC10_ExcertoMD_Seriar_Nao_Aut_Cand_Anuncio](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Documenta%C3%A7%C3%A3o/Sprint%203/UC10_Seriar_(n%C3%A3o_automaticamente)_Candidaturas/UC10_ExcertoMD_Seriar_Nao_Aut_Cand_Anuncio.png)
 
 ## Diagrama de sequência <br/>
 ![UC03_Definir_Categoria_Tarefa_Diagrama_Sequencia](UC03_Definir_Categoria_Tarefa_Diagrama_Sequencia.png)
