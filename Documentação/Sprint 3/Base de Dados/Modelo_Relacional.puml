@@ -12,14 +12,16 @@ entity "Organizacao" {
     nome: text {NN}
     website: text
     telefone: text {NN}
-    email: text {NN}
+    email: text {NN, UK}
+    emailGestor: text {FK, NN}
+    idEnderecoPostal: text {FK}
 }
 
 entity "Colaborador" {
+    email: text {PK, FK}
     --
     funcao: text
     telefone: text
-    gestor:boolean {NN}
     nifOrganizacao: text {FK}
 }
 
@@ -31,6 +33,8 @@ entity "Utilizador" {
 }
 
 entity "Administrativo" {
+    email: text {PK, FK}
+    --
 }
 
 entity "Categoria" {
@@ -38,6 +42,7 @@ entity "Categoria" {
     --
     descBreve: text {NN, UK}
     descDetalhada: text
+    codigoAreaActividade: text {FK}
 }
 
 entity "CompetenciaTecnica" {
@@ -45,6 +50,8 @@ entity "CompetenciaTecnica" {
     --
     descBreve: text {NN, UK}
     descDetalhada: text
+    idCaracterCT: text {FK}
+    codigoAreaActividade: text {FK}
 }
 
 entity "AreaActividade" {
@@ -57,41 +64,39 @@ entity "AreaActividade" {
 entity "GrauProficiencia" {
     idGrauProficiencia: text {PK}
     --
-    valor: integer {NN}
+    valor: integer {NN, UK}
     designacao: text {NN}
     codigoCompTecnica: text {FK}
 }
 
 entity "Freelancer" {
-    nif: text {PK}
+    email: text {PK, FK}
     --
     telefone: text
-}
-
-entity "CandidatoFreelancer" {
-    nif: text {PK}
-    --
-    nome: text {NN}
-    email: text {NN}
-    telefone: text {NN}
-    enderecoPostal {FK}
+    nif: text
+    idEnderecoPostal: text {FK}
 }
 
 entity "EnderecoPostal" {
-    arruamento: text {PK}
-    numeroPorta: text {PK}
-    localidade: text {PK}
-    codigoPostal: text {PK}
+    idEnderecoPostal: text {PK}
+    --
+    arruamento: text 
+    numeroPorta: text 
+    localidade: text 
+    codigoPostal: text 
 }
 
 entity "Tarefa" {
     referencia: text {PK}
+    nifOrganizacao: text {PK, FK}
     --
     designacao: text {NN}
     descInformal: text
     descTecnica: text
     duracaoEstimada: integer {NN}
     custoEstimado: number {NN}
+    idCategoria: texto {FK}
+    emailColaborador: texto {FK}
 }
 
 entity "Anuncio" {
@@ -132,10 +137,11 @@ entity "Candidatura" {
     dataFimCandidatura: date {NN}
     valorPretendido: number {NN}
     numeroDias: integer {NN}
-    txtApresentacao: text {NN}
-    txtMotivacao: text {NN}
+    txtApresentacao: text
+    txtMotivacao: text
     idAnuncio: text {FK}
     idProcessoSeriacao: text {FK}
+    emailFreelancer: text {FK}
 }
 
 entity "HabilitacaoAcademica" {
@@ -147,8 +153,8 @@ entity "HabilitacaoAcademica" {
     mediaCurso: number {NN}
 }
 
-entity "ReconhecimentoCT" {
-    idReconhecimntoCT: text {PK}
+entity "ReconhecimentoGP" {
+    idReconhecimntoGP: text {PK}
     --
     dataReconhecimento: date {NN}
     codigoCompTecnica: text {FK}
@@ -159,41 +165,34 @@ entity "FreelancerHabAcademica" {
     idHabilitacaoAcademica: text {PK, FK}
 }
 
-entity "FreelancerReconhecimentoCT" {
-    emailFreelancer: text {PK, FK}
-    idReconhecimntoCT: text {PK, FK}
-
-}
-
 entity "CaracterCT" {
     idCaracterCT: text {PK}
     --
     obrigatoria: boolean {NN}
+    grauProfMinimo: text {NN}
 }
 
 AreaActividade ||--|{ Categoria
-Freelancer --|> Utilizador
-Administrativo --|> Utilizador
+Freelancer |o--|| Utilizador
+Administrativo |o--|| Utilizador
 AreaActividade ||--|{ CompetenciaTecnica
 CompetenciaTecnica ||--|{ GrauProficiencia
-Organizacao ||--|{ Tarefa
+Colaborador ||--|{ Tarefa
 Categoria ||--|{ Tarefa
 Tarefa ||--o| Anuncio
 Organizacao ||--|{ Colaborador
-Colaborador --|> Utilizador
-CandidatoFreelancer ||--o| Freelancer
+Colaborador |o--|| Utilizador
 Anuncio ||--|{ Candidatura
-Freelancer||--|{ Candidatura
+Freelancer||--o{ Candidatura
 Organizacao ||--|| EnderecoPostal
 Freelancer ||--|| EnderecoPostal
-Candidatura ||--|| ProcessoSeriacao
-ProcessoSeriacao ||--|| TipoRegimento
+Candidatura }|--|| ProcessoSeriacao
+ProcessoSeriacao }|--|| TipoRegimento
 ProcessoSeriacao ||--|{ Classificacao
 Freelancer ||--|{ FreelancerHabAcademica
 HabilitacaoAcademica ||--|{ FreelancerHabAcademica
-Freelancer ||-|{ FreelancerReconhecimentoCT
-ReconhecimentoCT ||--|{ FreelancerReconhecimentoCT
-ReconhecimentoCT }|--|| CompetenciaTecnica
+ Freelancer ||--|{ ReconhecimentoGP
+ReconhecimentoGP }|--|| GrauProficiencia
 CaracterCT ||--|{ CompetenciaTecnica
 
 
