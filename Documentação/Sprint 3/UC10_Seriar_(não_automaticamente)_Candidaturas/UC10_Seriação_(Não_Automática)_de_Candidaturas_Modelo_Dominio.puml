@@ -1,7 +1,7 @@
 @startuml
 left to right direction
 
-title UC10 - Seriar (não automaticamente) Candidaturas de Anúncio
+title UC10 - Seriação (Não Automática) de Candidaturas
 
 class Plataforma{
     -String designacao

@@ -1,6 +1,7 @@
 ##### [Voltar ao início](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/tree/main/README.md)
 
-# UC10 - Seriar (não automaticamente) Candidaturas de Anúncio
+# title UC10 - Seriação (Não Automática) de Candidaturas
+
 
 ## Formato Breve
 
@@ -55,18 +56,18 @@ O colaborador de organização inicia o processo não automático de seriação 
 
 
 ## Diagrama de Sequência do Sistema
-![UC10_Seriar_Nao_Aut_Cand_SSD](UC10_Seriar_Nao_Aut_Cand_SSD.png)
+![UC10_Seriação_(Não_Automática)_de_Candidaturas_SSD](UC10_Seriação_(Não_Automática)_de_Candidaturas_SSD.png)
 
 ## Excerto do Modelo de Domínio
-![UC10_Seriar_Nao_Aut_Cand_Modelo_Dominio](UC10_Seriar_Nao_Aut_Cand_Modelo_Dominio.png)
+![UC10_Seriação_(Não_Automática)_de_Candidaturas_Modelo_Domin](UC10_Seriação_(Não_Automática)_de_Candidaturas_Modelo_Domin.png)
 
 ## Diagrama de sequência <br/>
-![UC10_Seriar_Nao_Aut_Cand_Diagrama_Sequencia](UC03_Definir_Categoria_Tarefa_Diagrama_Sequencia.png)
+![UC10_Seriação_(Não_Automática)_Candidaturas_DS](UC10_Seriação_(Não_Automática)_Candidaturas_DS.png)
 
 ## Diagrama de Classes <br/>
-![UC10_Seriar_Nao_Aut_Cand_Diagrama_Classes](UC03_Definir_Categoria_Tarefa_Diagrama_Classes.png)
+![UC10_Seriação_(Não_Automática)_de_Candidaturas_Diagrama_Classes](UC03_Definir_Categoria_Tarefa_Diagrama_Classes.png)
 
 ## Plano de Testes <br/>
-[UC03 - Definir Categoria de Tarefa - Plano de Testes](UC03_Definir_Categoria_Tarefa_Plano_Testes.md)
+[UC10 Seriação (Não Automática) de Candidaturas - Plano de Testes](UC10_Seriação_(Não_Automática)_de_Candidaturas_Plano_Testes.md)
 
 ##### [Voltar ao início](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/tree/main/README.md)
