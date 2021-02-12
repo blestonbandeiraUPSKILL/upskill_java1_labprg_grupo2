@@ -12,7 +12,7 @@ class Plataforma <<Singleton>> {
 
 class RegistarFreelancerUI{
     --
-    -novoFreelancer(nome, funcao, telefone, email)
+    -novoFreelancer(nome, NIF, endereço postal, telefone, email)
     -registaFreelancer()
 
 }
@@ -25,18 +25,18 @@ class RegistarFreelancerController{
     registaUtilizadorComPapel(nome, email, password, "freelancer")
 }
 
-class Organizacao {
+class Freelancer {
     -String nome
     -String NIF
-    -String website
     -String telefone
-    -Email email
+    -
 }
 
-class Freelancer {
-    -String funcao
-    -String telefone
-    -Organizacao organizacao
+class HabilitacaoAcademica {
+    -String ground
+    -String designacaoCurso
+    -String nomeInstituicao
+    -Double mediaCurso
 }
 
 class Utilizador {
@@ -88,7 +88,7 @@ RegistarFreelancerUI ..> RegistarFreelancerController
 RegistarFreelancerController ..> Plataforma
 RegistarFreelancerController ..> GestaoUtilizadoresFacade
 RegistarFreelancerController ..> SessaoUtilizador
-Organizacao -- Freelancer: possui >
+
 Freelancer --|> UtilizadorComPapel
 UtilizadorComPapel --|> Utilizador
 Email -- Utilizador: < possui
