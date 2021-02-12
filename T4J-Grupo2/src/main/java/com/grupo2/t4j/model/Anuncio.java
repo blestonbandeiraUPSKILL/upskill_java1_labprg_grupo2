@@ -280,14 +280,14 @@ public class Anuncio implements Serializable {
     
     /**
      * Verifica se uma data inserida como texto tem formato válido
-     * @param dataTexto - data em formato dd/mm/aaaa
+     * @param dataTexto - data em formato aaaa/mm/dd
      * @return a dataTexto em formato da classe Data
      */
-    private Data eFormaData(String dataTexto){
+    public Data eFormaData(String dataTexto){
         try{
-            int dia = Integer.parseInt(dataTexto.substring(0,1));
-            int mes = Integer.parseInt(dataTexto.substring(3,4));
-            int ano = Integer.parseInt(dataTexto.substring(6,9));
+            int dia = Integer.parseInt(dataTexto.substring(8,10));
+            int mes = Integer.parseInt(dataTexto.substring(5,7));
+            int ano = Integer.parseInt(dataTexto.substring(0,4));
             return new Data(ano, mes, dia);
         }
         catch(IllegalArgumentException iae){
