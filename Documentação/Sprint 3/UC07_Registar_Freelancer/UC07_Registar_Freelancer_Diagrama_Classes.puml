@@ -27,6 +27,8 @@ RegistarFreelancerUI --> RegistarFreelancerController
 RegistarFreelancerController --> Freelancer
 RegistarFreelancerController --> RegistoFreelancer
 RegistarFreelancerController --> Plataforma
+RegistoFreelancer --> AutorizacaoFacade
+RegistoFreelancer --> AlgoritmoGeradorPasswords
 
 
 @enduml
