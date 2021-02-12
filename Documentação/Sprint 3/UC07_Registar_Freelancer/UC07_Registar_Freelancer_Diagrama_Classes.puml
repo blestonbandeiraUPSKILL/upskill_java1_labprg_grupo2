@@ -22,4 +22,10 @@ class AutorizacaoFacade {
 
 interface AlgoritmoGeradorPasswords {
 }
+
+RegistarFreelancerUI --o RegistarFreelancerController
+Administrativo --> UC11_UI
+UC11_UI --> UC11_Controller
+UC11_Controller --> Freelancer
+
 @enduml
