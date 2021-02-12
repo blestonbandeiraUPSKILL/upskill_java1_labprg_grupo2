@@ -54,20 +54,20 @@ public class Anuncio implements Serializable {
     private  Data dtFimSeriacao;
     
     /**
-     * A data atual no formato data
+     * A data atual no formato da classe Data
      */
     Calendar cal = Calendar.getInstance();
     Data hoje = new Data(cal.get(Calendar.YEAR),cal.get(Calendar.MONTH),cal.get(Calendar.DAY_OF_MONTH));
 
     /**
-     *
-     * @param idAnuncio
-     * @param dtInicioPublicitacao
-     * @param dtFimPublicitacao
-     * @param dtInicioCandidatura
-     * @param dtFimCandidatura
-     * @param dtInicioSeriacao
-     * @param dtFimSeriacao
+     * Construtor completo da classe Anuncio
+     * @param idAnuncio - o id do Anúncio
+     * @param dtInicioPublicitacao - data de início da publicitação do anúncio
+     * @param dtFimPublicitacao - data do fim da publicitação do anúncio
+     * @param dtInicioCandidatura - data de início da candidatura do anúncio
+     * @param dtFimCandidatura - data do fim da candidatura do anúncio
+     * @param dtInicioSeriacao - data de início do processo de seriação do anúncio
+     * @param dtFimSeriacao - data do fim do processo de seriação do anúncio
      */
     public Anuncio(String idAnuncio,Data dtInicioPublicitacao, Data dtFimPublicitacao, Data 
             dtInicioCandidatura, Data dtFimCandidatura, Data dtInicioSeriacao,
@@ -96,8 +96,8 @@ public class Anuncio implements Serializable {
     }
   
     /**
-     *
-     * @param idAnuncio
+     * Define o id do Anuncio 
+     * @param idAnuncio - o id do Anúncio
      */
     public void setIdAnuncio(String idAnuncio){
         if (idAnuncio == null || idAnuncio.trim().isEmpty()) {
@@ -107,8 +107,8 @@ public class Anuncio implements Serializable {
     }
 
     /**
-     *
-     * @param dtInicioPublicitacao
+     * Define a data de início da publicitação do anúncio
+     * @param dtInicioPublicitacao  
      */
     public void setDtInicioPub(Data dtInicioPublicitacao) {
         if(dtInicioPublicitacao.compareTo(hoje) >= 0){
@@ -121,7 +121,7 @@ public class Anuncio implements Serializable {
     }
     
     /**
-     *
+     * Define a data do fim da publicitação do anúncio
      * @param dtFimPublicitacao
      */
     public void setDtFimPub(Data dtFimPublicitacao) {
@@ -135,7 +135,7 @@ public class Anuncio implements Serializable {
     }
     
     /**
-     *
+     * Define a data de início da candidatura do anúncio
      * @param dtInicioCandidatura
      */
     public void setDtInicioCand(Data dtInicioCandidatura) {
@@ -150,7 +150,7 @@ public class Anuncio implements Serializable {
     }
     
     /**
-     *
+     * Define a data do fim da candidatura do anúncio
      * @param dtFimCandidatura
      */
     public void setDtFimCand(Data dtFimCandidatura) {
@@ -166,7 +166,7 @@ public class Anuncio implements Serializable {
     }
     
     /**
-     *
+     * Define a data de início do processo de seriação do anúncio
      * @param dtInicioSeriacao
      */
     public void setDtInicioSeriacao(Data dtInicioSeriacao) {
@@ -183,7 +183,7 @@ public class Anuncio implements Serializable {
     }
     
     /**
-     *
+     * Define a data do fim do processo de seriação do anúncio
      * @param dtFimSeriacao
      */
     public void setDtFimSeriacao(Data dtFimSeriacao) {
@@ -200,15 +200,15 @@ public class Anuncio implements Serializable {
     }
     
     /**
-     *
-     * @return
+     * Devolve o id do Anuncio 
+     * @return idAnuncio
      */
     public String getIdAnuncio(){
         return idAnuncio;
     }
 
     /**
-     *
+     * Devolve a data de início da publicitação do anúncio
      * @return
      */
     public Data getDtInicioPub() {
@@ -216,23 +216,23 @@ public class Anuncio implements Serializable {
     }
     
     /**
-     *
-     * @return
+     * Devolve a data do fim da publicitação do anúncio
+     * @return dtFimPublicitacao
      */
     public Data getDtFimPub() {
        return dtFimPublicitacao;
     }
     
     /**
-     *
-     * @return
+     * Devolve a data de início da candidatura do anúncio
+     * @return dtInicioCandidatura
      */
     public Data getDtInicioCand() {
        return dtInicioCandidatura;
     }
     
     /**
-     *
+     * Devolve a data do fim da candidatura do anúncio
      * @return
      */
     public Data getDtFimCand() {
@@ -240,16 +240,16 @@ public class Anuncio implements Serializable {
     }
     
     /**
-     *
-     * @return
+     * Devolve a data de início do processo de seriação do anúncio
+     * @return dtInicioSeriacao
      */
     public Data getDtInicioSeriacao() {
        return dtInicioSeriacao;
     }
     
     /**
-     *
-     * @return
+     * Devolve a data do fim do processo de seriação do anúncio
+     * @return dtFimSeriacao
      */
     public Data getDtFimSeriacao() {
        return dtFimSeriacao; 
@@ -257,7 +257,8 @@ public class Anuncio implements Serializable {
     
     /**
      * Representação textual da classe Anuncio
-     * @return 
+     * @return o id do anúncio e as datas de: início e fim da publicitação, início
+     * e fim do período de candidatura e do início e do fim do período de seriação
      */   
     @Override
     public String toString(){
