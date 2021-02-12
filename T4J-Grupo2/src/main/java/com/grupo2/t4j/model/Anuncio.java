@@ -14,7 +14,7 @@ import com.grupo2.t4j.exception.*;
 
 /**
  *
- * @author Geral
+ * @author CAD
  */
 public class Anuncio implements Serializable {
     
@@ -56,8 +56,9 @@ public class Anuncio implements Serializable {
     /**
      * A data atual no formato da classe Data
      */
-    Calendar cal = Calendar.getInstance();
-    Data hoje = new Data(cal.get(Calendar.YEAR),cal.get(Calendar.MONTH),cal.get(Calendar.DAY_OF_MONTH));
+    private Calendar cal = Calendar.getInstance();
+    private Data hoje = new Data(cal.get(Calendar.YEAR),cal.get(Calendar.MONTH),
+            cal.get(Calendar.DAY_OF_MONTH));
 
     /**
      * Construtor completo da classe Anuncio
@@ -79,6 +80,28 @@ public class Anuncio implements Serializable {
         setDtFimCand(dtFimCandidatura);
         setDtInicioSeriacao(dtInicioSeriacao);
         setDtFimSeriacao(dtFimSeriacao);        
+    }
+    
+    /**
+     * Construtor completo da classe Anuncio com as datas em formato texto
+     * @param idAnuncio - o id do Anúncio
+     * @param txtDtInicioPublicitacao - data de início da publicitação do anúncio em formato texto
+     * @param txtDtFimPublicitacao - data do fim da publicitação do anúncio em formato texto
+     * @param txtDtInicioCandidatura - data de início da candidatura do anúncio em formato texto
+     * @param txtDtFimCandidatura - data do fim da candidatura do anúncio em formato texto
+     * @param txtDtInicioSeriacao - data de início do processo de seriação do anúncio em formato texto
+     * @param txtDtFimSeriacao - data do fim do processo de seriação do anúncio em formato texto
+     */
+    public Anuncio(String idAnuncio,String txtDtInicioPublicitacao, String txtDtFimPublicitacao, 
+            String txtDtInicioCandidatura, String txtDtFimCandidatura, String txtDtInicioSeriacao,
+            String txtDtFimSeriacao) {
+        setIdAnuncio(idAnuncio);
+        setDtInicioPub(eFormaData(txtDtInicioPublicitacao));
+        setDtFimPub(eFormaData(txtDtFimPublicitacao));
+        setDtInicioCand(eFormaData(txtDtInicioCandidatura));
+        setDtFimCand(eFormaData(txtDtFimCandidatura));
+        setDtInicioSeriacao(eFormaData(txtDtInicioSeriacao));
+        setDtFimSeriacao(eFormaData(txtDtFimSeriacao));        
     }
            
     /**
@@ -253,6 +276,23 @@ public class Anuncio implements Serializable {
      */
     public Data getDtFimSeriacao() {
        return dtFimSeriacao; 
+    }
+    
+    /**
+     * Verifica se uma data inserida como texto tem formato válido
+     * @param dataTexto - data em formato aaaa/mm/dd
+     * @return a dataTexto em formato da classe Data
+     */
+    public Data eFormaData(String dataTexto){
+        try{
+            int dia = Integer.parseInt(dataTexto.substring(8,10));
+            int mes = Integer.parseInt(dataTexto.substring(5,7));
+            int ano = Integer.parseInt(dataTexto.substring(0,4));
+            return new Data(ano, mes, dia);
+        }
+        catch(IllegalArgumentException iae){
+            throw new DataInvalidaException("A data informada é inválida!");
+        }
     }
     
     /**

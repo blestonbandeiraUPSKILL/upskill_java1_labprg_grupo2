@@ -35,9 +35,10 @@ public class RepositorioAnuncio implements Serializable{
     private List<Anuncio> listaAnuncios;
     
     /**
-     * Inicializa o Repositório de Colaboradores
+     * Inicializa o Repositório de Anúncios de uma organização
+     * @param organizacao - a organização a que se refere o repositório de anúncios
      */
-    public RepositorioAnuncio(){
+    public RepositorioAnuncio(Organizacao organizacao){
         listaAnuncios = new ArrayList<>();
     }
     
@@ -138,7 +139,7 @@ public class RepositorioAnuncio implements Serializable{
         }
         return totalAnunciosAdicionados;
     }
-
+      
     /**
      * Constrói um novo anúncio
      * @param idAnuncio - o id do Anúncio
