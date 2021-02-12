@@ -1,0 +1,36 @@
+@startuml
+
+title UC10 - Seriação de Candidaturas
+
+participant Colaborador
+participant SeriarCandidaturas_UI
+participant SeriarCandidaturas_Ctrl
+participant Plataforma  << Singleton >> 
+
+activate Colaborador
+Colaborador -> SeriarCandidaturas_UI: solicita lista das candidaturas \nà tarefa cujo período de apresentação \nde candidaturas terminou
+activate SeriarCandidaturas_UI
+SeriarCandidaturas_UI -> SeriarCandidaturas_Ctrl: getCandidaturas()
+activate SeriarCandidaturas_Ctrl
+SeriarCandidaturas_Ctrl -> Plataforma:getListCandidaturas()
+activate Plataforma
+Plataforma --> SeriarCandidaturas_Ctrl: listaCandidaturas
+deactivate Plataforma
+SeriarCandidaturas_Ctrl --> SeriarCandidaturas_UI: listaCandidaturas
+SeriarCandidaturas_UI --> Colaborador: lista de candidaturas à tarefa
+
+deactivate SeriarCandidaturas_UI
+deactivate SeriarCandidaturas_Ctrl
+
+Colaborador -> SeriarCandidaturas_UI: atribui classificação \nàs candidaturas apresentadas
+activate SeriarCandidaturas_UI
+SeriarCandidaturas_UI -> SeriarCandidaturas_Ctrl: ordenar(listaCandidaturas)
+activate SeriarCandidaturas_Ctrl
+SeriarCandidaturas_Ctrl --> SeriarCandidaturas_UI: listaOrdenada
+deactivate SeriarCandidaturas_Ctrl
+SeriarCandidaturas_UI --> Colaborador: candidatura seleccionada com \nbase nos critérios de seriação
+deactivate SeriarCandidaturas_UI
+deactivate Colaborador
+
+
+@enduml
