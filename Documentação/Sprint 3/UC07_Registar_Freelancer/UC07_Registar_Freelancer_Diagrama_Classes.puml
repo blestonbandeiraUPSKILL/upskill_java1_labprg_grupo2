@@ -12,7 +12,7 @@ class Plataforma <<Singleton>> {
 
 class RegistarFreelancerUI{
     --
-    -novoFreelancer(nome, funcao, telefone, email)
+    -novoFreelancer(nome, NIF, endereço postal, telefone, email)
     -registaFreelancer()
 
 }
