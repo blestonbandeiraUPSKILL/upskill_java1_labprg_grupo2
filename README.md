@@ -29,7 +29,7 @@
 ##### Sprint 3
 - [UC07 - Registar Freelancer](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Documenta%C3%A7%C3%A3o/Sprint%203/UC07_Registar_Freelancer/UC07.md)
 - [UC08 - Publicar Tarefa](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Documenta%C3%A7%C3%A3o/Sprint%203/UC08_Publicar_Tarefa/UC08_Publicar_Tarefa.md)
-- [UC09 - Efectuar Candidatura](UC09_Efectuar_Candidatura.md)
+- [UC09 - Efectuar Candidatura](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Documenta%C3%A7%C3%A3o/Sprint%203/UC09_Efectuar_Candidatura/UC09_Efectuar_Candidatura.md)
 - [UC10 - Seriar (não automaticamente) Candidaturas de Anúncio](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Documenta%C3%A7%C3%A3o/Sprint%203/UC10_Seriar_(n%C3%A3o_automaticamente)_Candidaturas/UC10_Seriar_Nao_Aut_Cand_Anuncio.md)
 
 ## Links úteis
