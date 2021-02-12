@@ -13,9 +13,12 @@ entity "Organizacao" {
     website: text
     telefone: text {NN}
     email: text {NN}
+    emailGestor: text {FK}
+    idEnderecoPostal: text {FK}
 }
 
 entity "Colaborador" {
+    email: text {PK, FK}
     --
     funcao: text
     telefone: text
@@ -31,6 +34,8 @@ entity "Utilizador" {
 }
 
 entity "Administrativo" {
+    email: text {PK, FK}
+    --
 }
 
 entity "Categoria" {
@@ -38,6 +43,7 @@ entity "Categoria" {
     --
     descBreve: text {NN, UK}
     descDetalhada: text
+    codigoAreaActividade: text {FK}
 }
 
 entity "CompetenciaTecnica" {
@@ -45,6 +51,8 @@ entity "CompetenciaTecnica" {
     --
     descBreve: text {NN, UK}
     descDetalhada: text
+    idCaracterCT: text {FK}
+    codigoAreaActividade: text {FK}
 }
 
 entity "AreaActividade" {
@@ -63,35 +71,33 @@ entity "GrauProficiencia" {
 }
 
 entity "Freelancer" {
-    nif: text {PK}
+    email: text {PK, FK}
     --
     telefone: text
-}
-
-entity "CandidatoFreelancer" {
-    nif: text {PK}
-    --
-    nome: text {NN}
-    email: text {NN}
-    telefone: text {NN}
-    enderecoPostal {FK}
+    nif: text
+    idEnderecoPostal: text {FK}
 }
 
 entity "EnderecoPostal" {
-    arruamento: text {PK}
-    numeroPorta: text {PK}
-    localidade: text {PK}
-    codigoPostal: text {PK}
+    idEnderecoPostal: text {PK}
+    --
+    arruamento: text 
+    numeroPorta: text 
+    localidade: text 
+    codigoPostal: text 
 }
 
 entity "Tarefa" {
     referencia: text {PK}
+    nifOrganizacao: text {PK, FK}
     --
     designacao: text {NN}
     descInformal: text
     descTecnica: text
     duracaoEstimada: integer {NN}
     custoEstimado: number {NN}
+    idCategoria: texto {FK}
+    emailColaborador: texto {FK}
 }
 
 entity "Anuncio" {
@@ -136,6 +142,7 @@ entity "Candidatura" {
     txtMotivacao: text {NN}
     idAnuncio: text {FK}
     idProcessoSeriacao: text {FK}
+    emailFreelancer: text {FK}
 }
 
 entity "HabilitacaoAcademica" {
@@ -172,22 +179,21 @@ entity "CaracterCT" {
 }
 
 AreaActividade ||--|{ Categoria
-Freelancer --|> Utilizador
-Administrativo --|> Utilizador
+Freelancer |o--|| Utilizador
+Administrativo |o--|| Utilizador
 AreaActividade ||--|{ CompetenciaTecnica
 CompetenciaTecnica ||--|{ GrauProficiencia
-Organizacao ||--|{ Tarefa
+Colaborador ||--|{ Tarefa
 Categoria ||--|{ Tarefa
 Tarefa ||--o| Anuncio
 Organizacao ||--|{ Colaborador
-Colaborador --|> Utilizador
-CandidatoFreelancer ||--o| Freelancer
+Colaborador |o--|| Utilizador
 Anuncio ||--|{ Candidatura
-Freelancer||--|{ Candidatura
+Freelancer||--o{ Candidatura
 Organizacao ||--|| EnderecoPostal
 Freelancer ||--|| EnderecoPostal
-Candidatura ||--|| ProcessoSeriacao
-ProcessoSeriacao ||--|| TipoRegimento
+Candidatura }|--|| ProcessoSeriacao
+ProcessoSeriacao }|--|| TipoRegimento
 ProcessoSeriacao ||--|{ Classificacao
 Freelancer ||--|{ FreelancerHabAcademica
 HabilitacaoAcademica ||--|{ FreelancerHabAcademica
