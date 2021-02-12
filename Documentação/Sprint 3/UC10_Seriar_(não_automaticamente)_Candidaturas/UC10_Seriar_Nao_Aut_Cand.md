@@ -55,16 +55,16 @@ O colaborador de organização inicia o processo não automático de seriação 
 
 
 ## Diagrama de Sequência do Sistema
-![UC10_Seriar_Nao_Aut_Cand_Anuncio](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Documenta%C3%A7%C3%A3o/Sprint%203/UC10_Seriar_(n%C3%A3o_automaticamente)_Candidaturas/UC10_Seriar_Nao_Aut_Cand_Anuncio.png)
+![UC10_Seriar_Nao_Aut_Cand_SSD](UC10_Seriar_Nao_Aut_Cand_SSD.png)
 
 ## Excerto do Modelo de Domínio
-![UC10_ExcertoMD_Seriar_Nao_Aut_Cand_Anuncio](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Documenta%C3%A7%C3%A3o/Sprint%203/UC10_Seriar_(n%C3%A3o_automaticamente)_Candidaturas/UC10_ExcertoMD_Seriar_Nao_Aut_Cand_Anuncio.png)
+![UC10_Seriar_Nao_Aut_Cand_Modelo_Dominio](UC10_Seriar_Nao_Aut_Cand_Modelo_Dominio.png)
 
 ## Diagrama de sequência <br/>
-![UC03_Definir_Categoria_Tarefa_Diagrama_Sequencia](UC03_Definir_Categoria_Tarefa_Diagrama_Sequencia.png)
+![UC10_Seriar_Nao_Aut_Cand_Diagrama_Sequencia](UC03_Definir_Categoria_Tarefa_Diagrama_Sequencia.png)
 
 ## Diagrama de Classes <br/>
-![UC03_Definir_Categoria_Tarefa_Diagrama_Classes](UC03_Definir_Categoria_Tarefa_Diagrama_Classes.png)
+![UC10_Seriar_Nao_Aut_Cand_Diagrama_Classes](UC03_Definir_Categoria_Tarefa_Diagrama_Classes.png)
 
 ## Plano de Testes <br/>
 [UC03 - Definir Categoria de Tarefa - Plano de Testes](UC03_Definir_Categoria_Tarefa_Plano_Testes.md)
