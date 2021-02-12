@@ -32,6 +32,7 @@ anúncio e informa o Freelancer do sucesso da operação.
 - O Freelancer deve ter as suas habilitações validadas;
 - Devem existir tarefas publicadas em período de candidatura;
 - O Freelancer deve ter login válido.
+- O Freelancer deve ter grau de proficiência igual ou superior ao mínimo definido nas competências técnicas obrigatórias.
 
 **_Pós-condições_**
 
