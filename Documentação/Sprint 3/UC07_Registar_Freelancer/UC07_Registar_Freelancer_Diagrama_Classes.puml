@@ -19,7 +19,7 @@ class RegistarFreelancerUI{
 
 class RegistarFreelancerController{
     --
-    novoFreelancer(nome, funcao, telefone, email)
+    novoFreelancer(NIF, telefone)
     validaFreelancer(c)
     registaFreelancer(c)
     registaUtilizadorComPapel(nome, email, password, "freelancer")
@@ -29,11 +29,11 @@ class Freelancer {
     -String nome
     -String NIF
     -String telefone
-    -
+    -Email email
 }
 
 class HabilitacaoAcademica {
-    -String ground
+    -String grau
     -String designacaoCurso
     -String nomeInstituicao
     -Double mediaCurso
