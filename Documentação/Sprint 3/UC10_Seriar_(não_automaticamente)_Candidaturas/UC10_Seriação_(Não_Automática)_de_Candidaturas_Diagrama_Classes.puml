@@ -14,21 +14,26 @@ class Colaborador {
 }
 
 
-class SeriarCandidaturas_UI {
+class SeriarCandidaturasUI {
     --
     getCandidaturas()
     ordenar(listaCandidaturas)
 }
 
-class SeriarCandidaturas_Ctrl {
+class SeriarCandidaturasCtrl {
     --
     getCandidaturas()
     ordenar(listaCandidaturas)
+}
+
+class RepositorioCandidatura {
+
 }
 
 Plataforma -- Colaborador
-Colaborador ..> SeriarCandidaturas_UI
-SeriarCandidaturas_UI ..> SeriarCandidaturas_Ctrl
-SeriarCandidaturas_Ctrl ..> Plataforma
+Colaborador ..> SeriarCandidaturasUI
+SeriarCandidaturasUI ..> SeriarCandidaturasCtrl
+SeriarCandidaturasCtrl ..> RepositorioCandidatura
+RepositorioCandidatura ..> Plataforma
 
 @enduml

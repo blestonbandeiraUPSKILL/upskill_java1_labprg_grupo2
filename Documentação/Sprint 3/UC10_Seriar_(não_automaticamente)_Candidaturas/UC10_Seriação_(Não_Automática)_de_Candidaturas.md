@@ -65,7 +65,7 @@ O colaborador de organização inicia o processo não automático de seriação 
 ![UC10_Seriação_(Não_Automática)_Candidaturas_DS](UC10_Seriação_(Não_Automática)_Candidaturas_DS.png)
 
 ## Diagrama de Classes <br/>
-![UC10_Seriação_(Não_Automática)_de_Candidaturas_Diagrama_Classes](UC03_Definir_Categoria_Tarefa_Diagrama_Classes.png)
+![UC10_Seriação_(Não_Automática)_Candidaturas_DC](UC10_Seriação_(Não_Automática)_Candidaturas_DC.png)
 
 ## Plano de Testes <br/>
 [UC10 Seriação (Não Automática) de Candidaturas - Plano de Testes](UC10_Seriação_(Não_Automática)_de_Candidaturas_Plano_Testes.md)
