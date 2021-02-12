@@ -32,11 +32,33 @@ class Freelancer {
     -Email email
 }
 
+class EnderecoPostal {
+    -String local
+    -String codPostal
+    -String localidade
+}
+
+class Email {
+
+}
+
+class ReconhecimentoCT {
+}
+
 class HabilitacaoAcademica {
     -String grau
     -String designacaoCurso
     -String nomeInstituicao
     -Double mediaCurso
+}
+
+class CompetenciaTecnica {
+
+}
+
+class GrauProficiencia {
+    -Integer valor
+    -String designacao
 }
 
 class Utilizador {
