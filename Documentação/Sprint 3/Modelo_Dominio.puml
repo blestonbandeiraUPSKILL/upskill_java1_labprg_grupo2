@@ -2,6 +2,7 @@
 title Modelo de Domínio
 
 left to right direction
+
 class Plataforma {
     -String designacao
 }

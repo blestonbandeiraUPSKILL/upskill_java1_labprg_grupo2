@@ -29,9 +29,9 @@ anúncio e informa o Freelancer do sucesso da operação.
 **_Pré-condições:_**
 
 - O Freelancer deve estar registado na plataforma;
-- O Freelancer deve ter as suas habilitações validadas;
 - Devem existir tarefas publicadas em período de candidatura;
 - O Freelancer deve ter login válido.
+- O Freelancer deve ter grau de proficiência igual ou superior ao mínimo definido nas competências técnicas obrigatórias.
 
 **_Pós-condições_**
 
@@ -82,6 +82,7 @@ anúncio e informa o Freelancer do sucesso da operação.
 
 ## Plano de Testes <br/>
 
+[UC9_Plano_Testes](UC9_Plano_testes.md)
 
 
 ##### [Voltar ao início](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/README.md)

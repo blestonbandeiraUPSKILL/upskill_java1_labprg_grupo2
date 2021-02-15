@@ -192,7 +192,7 @@ public class RepositorioColaborador implements Serializable{
     }
     
     /**
-     * Deevolve a lista de Colaboradores
+     * Devolve a lista de Colaboradores
      * @return
      */
     public ArrayList<Colaborador> getListaColaboradores(){

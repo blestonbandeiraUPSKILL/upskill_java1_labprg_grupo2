@@ -1,7 +1,7 @@
 @startuml
 left to right direction
 
-title UC10 - Seriar (não automaticamente) Candidaturas de Anúncio
+title UC10 - Seriação (Não Automática) de Candidaturas
 
 class Plataforma{
     -String designacao
@@ -59,27 +59,16 @@ class Freelancer{
 }
 
 Candidatura "*" -- "1" Freelancer: realizada por >
-
 Classificacao "0..1" -- "1" Candidatura: referente a >
-
 ProcessoSeriacao "1"- "*" Classificacao: resulta >
-
-Anuncio "1" - "0..1" ProcessoSeriacao: espoleta >
-
+Anuncio "1" - "0..1" ProcessoSeriacao: despoleta >
 Plataforma "1" -- "*" Anuncio: publicita >
-
 Plataforma "1" -- "*" Organizacao: tem registadas >
-
 ProcessoSeriacao "1"- "1..*" Colaborador: realizado por  >
-
 Anuncio "*" --- "1" Colaborador: publicado por >
-
 Organizacao "1" -- "1..*" Colaborador: tem >
-
 Anuncio "1" --- "*" Candidatura: recebe >
-
 Plataforma "1" - "*" TipoRegimento: suporta >
-
 Anuncio "1" -- "1" TipoRegimento: rege-se por >
 
 

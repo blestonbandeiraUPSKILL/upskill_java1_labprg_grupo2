@@ -12,8 +12,8 @@ entity "Organizacao" {
     nome: text {NN}
     website: text
     telefone: text {NN}
-    email: text {NN}
-    emailGestor: text {FK}
+    email: text {NN, UK}
+    emailGestor: text {FK, NN}
     idEnderecoPostal: text {FK}
 }
 
@@ -22,7 +22,6 @@ entity "Colaborador" {
     --
     funcao: text
     telefone: text
-    gestor:boolean {NN}
     nifOrganizacao: text {FK}
 }
 
@@ -65,7 +64,7 @@ entity "AreaActividade" {
 entity "GrauProficiencia" {
     idGrauProficiencia: text {PK}
     --
-    valor: integer {NN}
+    valor: integer {NN, UK}
     designacao: text {NN}
     codigoCompTecnica: text {FK}
 }
@@ -138,8 +137,8 @@ entity "Candidatura" {
     dataFimCandidatura: date {NN}
     valorPretendido: number {NN}
     numeroDias: integer {NN}
-    txtApresentacao: text {NN}
-    txtMotivacao: text {NN}
+    txtApresentacao: text
+    txtMotivacao: text
     idAnuncio: text {FK}
     idProcessoSeriacao: text {FK}
     emailFreelancer: text {FK}
@@ -154,8 +153,8 @@ entity "HabilitacaoAcademica" {
     mediaCurso: number {NN}
 }
 
-entity "ReconhecimentoCT" {
-    idReconhecimntoCT: text {PK}
+entity "ReconhecimentoGP" {
+    idReconhecimntoGP: text {PK}
     --
     dataReconhecimento: date {NN}
     codigoCompTecnica: text {FK}
@@ -166,16 +165,11 @@ entity "FreelancerHabAcademica" {
     idHabilitacaoAcademica: text {PK, FK}
 }
 
-entity "FreelancerReconhecimentoCT" {
-    emailFreelancer: text {PK, FK}
-    idReconhecimntoCT: text {PK, FK}
-
-}
-
 entity "CaracterCT" {
     idCaracterCT: text {PK}
     --
     obrigatoria: boolean {NN}
+    grauProfMinimo: text {NN}
 }
 
 AreaActividade ||--|{ Categoria
@@ -197,9 +191,8 @@ ProcessoSeriacao }|--|| TipoRegimento
 ProcessoSeriacao ||--|{ Classificacao
 Freelancer ||--|{ FreelancerHabAcademica
 HabilitacaoAcademica ||--|{ FreelancerHabAcademica
-Freelancer ||-|{ FreelancerReconhecimentoCT
-ReconhecimentoCT ||--|{ FreelancerReconhecimentoCT
-ReconhecimentoCT }|--|| CompetenciaTecnica
+ Freelancer ||--|{ ReconhecimentoGP
+ReconhecimentoGP }|--|| GrauProficiencia
 CaracterCT ||--|{ CompetenciaTecnica
 
 

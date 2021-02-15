@@ -23,6 +23,7 @@ deactivate Plataforma
 PublicarTarefaCTRL -> RepositorioTarefa: 1.1.2: lt = listaTarefas()
 activate RepositorioTarefa
 deactivate PublicarTarefaCTRL
+deactivate RepositorioTarefa
 
 PublicarTarefaUI --> Colaborador: 1.2: Mostra a lista de tarefas registadas e solicita a identificação da referência da tarefa a ser publicada
 deactivate PublicarTarefaUI

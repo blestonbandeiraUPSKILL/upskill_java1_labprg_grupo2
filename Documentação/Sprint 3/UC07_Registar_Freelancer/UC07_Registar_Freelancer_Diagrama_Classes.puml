@@ -2,24 +2,125 @@
 
 title UC07 - Registar Freelancer
 
-class RegistarFreelancerUI {
+left to right direction
+
+class Plataforma <<Singleton>> {
+    -String designacao
+    --
+    getRepositorioOrganizacao()
 }
 
-class RegistarFreelancerController {
+class RegistarFreelancerUI{
+    --
+    -novoFreelancer(nome, NIF, endereço postal, telefone, email)
+    -registaFreelancer()
+
 }
 
-class RegistoFreelancer {
-}
-
-class Plataforma {
+class RegistarFreelancerController{
+    --
+    novoFreelancer(NIF, telefone)
+    validaFreelancer(c)
+    registaFreelancer(c)
+    registaUtilizadorComPapel(nome, email, password, "freelancer")
 }
 
 class Freelancer {
+    -String nome
+    -String NIF
+    -String telefone
+    -Email email
 }
 
-class AutorizacaoFacade {
+class EnderecoPostal {
+    -String local
+    -String codPostal
+    -String localidade
 }
 
-interface AlgoritmoGeradorPasswords {
+class Email {
+
 }
+
+class ReconhecimentoCT {
+}
+
+class HabilitacaoAcademica {
+    -String grau
+    -String designacaoCurso
+    -String nomeInstituicao
+    -Double mediaCurso
+}
+
+class CompetenciaTecnica {
+
+}
+
+class GrauProficiencia {
+    -Integer valor
+    -String designacao
+}
+
+class Utilizador {
+    -String nome
+    -Email email
+    -Password password
+}
+
+class GestaoUtilizadoresFacade{
+    getGestaoUtilizadoresFacade()
+}
+
+class SessaoAtual{
+    --
+    getSessaoAtual()
+}
+
+class SessaoUtilizador{
+    --
+    getEmailUtilizador()
+}
+
+class RepositorioOrganizacao{
+    --
+    organizacaoByEmailUtilizador(email)
+}
+
+interface AlgoritmoGeradorPasswords{
+    getAlgoritmoGeradorPasswords()
+}
+
+class Password{
+    String password
+    --
+    getPassword()
+}
+
+class UtilizadorComPapel{
+}
+
+
+class Email {
+    -String email
+    --
+    getEmailUtilizador()
+}
+
+RegistarFreelancerUI ..> RegistarFreelancerController
+RegistarFreelancerController ..> Plataforma
+RegistarFreelancerController ..> GestaoUtilizadoresFacade
+RegistarFreelancerController ..> SessaoUtilizador
+
+Freelancer --|> UtilizadorComPapel
+UtilizadorComPapel --|> Utilizador
+Email -- Utilizador: < possui
+Password -- Utilizador: < possui
+Email -- Organizacao: < possui
+Organizacao -- RepositorioOrganizacao
+Freelancer -- SessaoAtual: tem >
+RegistarFreelancerController ..> UtilizadorComPapel
+RegistarFreelancerController ..> AlgoritmoGeradorPasswords
+Plataforma ..> RepositorioOrganizacao
+
+
 @enduml
