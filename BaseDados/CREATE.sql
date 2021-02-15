@@ -143,7 +143,7 @@ CREATE TABLE CompetenciaTecnica(
 CREATE TABLE CaracterCT(
     idCaracterCT varchar(20)
         CONSTRAINT pk_id_CaracterCT PRIMARY KEY,
-    obigatoria varchar(1),
+    obrigatoria varchar(1),
     grauProfMinimo varchar(20)
 );
 
