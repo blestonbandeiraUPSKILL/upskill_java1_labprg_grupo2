@@ -125,7 +125,7 @@ entity "TipoRegimento" {
 }
 
 entity "Classificacao" {
-    idClassificacao: integer {PK}
+    idClassificacao: text {PK}
     --
     lugar: integer {NN, UK}
     idProcessoSeriacao: text {FK}
