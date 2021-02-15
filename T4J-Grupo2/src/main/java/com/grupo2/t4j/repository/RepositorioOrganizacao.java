@@ -25,6 +25,7 @@ public class RepositorioOrganizacao implements Serializable{
     private static RepositorioOrganizacao instance;
     private List<Organizacao> listaOrganizacoes;
     Colaborador colabGestor;
+    private DBConnectionHandler dbConnectionHandler;
 
     /**
      * Construtor da classe Singleton RepositorioOrganizacao
