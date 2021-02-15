@@ -160,8 +160,6 @@ public class StartingPageUI implements Initializable {
                     "Erro",
                     exception.getMessage());
         }
-
-
     }
 
     public void navigateColaboradorLogado(ActionEvent actionEvent) {

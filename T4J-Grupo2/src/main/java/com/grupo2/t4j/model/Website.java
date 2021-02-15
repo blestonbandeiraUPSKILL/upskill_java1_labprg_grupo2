@@ -7,9 +7,6 @@ package com.grupo2.t4j.model;
 
 import org.apache.commons.validator.UrlValidator;
 
-import static org.apache.commons.validator.UrlValidator.ALLOW_ALL_SCHEMES;
-import static org.apache.commons.validator.UrlValidator.NO_FRAGMENTS;
-
 import com.grupo2.t4j.exception.WebsiteInvalidoException;
 
 /**
@@ -40,8 +37,6 @@ public class Website {
     public String getWebsiteText(){
         return website;
     }
-        
-    // Dica de: https://qastack.com.br/programming/2230676/how-to-check-for-a-valid-url-in-java
     
     public boolean eURL(String url) {
         UrlValidator urlValidator = new UrlValidator();
