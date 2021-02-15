@@ -13,3 +13,15 @@ CREATE TABLE Organizacao (
         CONSTRAINT nn_emailGestor_Organizacao NOT NULL,
     idEnderecoPostal varchar(20)    
 );
+
+CREATE TABLE Colaborador(
+    email varchar(20) 
+        CONSTRAINT pk_email_Colaborador PRIMARY KEY,
+    funcao varchar(20),
+    telefone varchar(9)
+);
+
+CREATE TABLE Administrativo(
+    email varchar(20)
+        CONSTRAINT pk_email_Administrativo PRIMARY KEY
+);
