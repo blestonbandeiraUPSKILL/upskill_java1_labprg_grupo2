@@ -68,6 +68,6 @@ O colaborador de organização inicia o processo não automático de seriação 
 ![UC10_Seriação_(Não_Automática)_Candidaturas_DC](UC10_Seriação_(Não_Automática)_Candidaturas_DC.png)
 
 ## Plano de Testes <br/>
-[UC10 Seriação (Não Automática) de Candidaturas - Plano de Testes](UC10_Seriação_(Não_Automática)_de_Candidaturas_Plano_Testes.md)
+[UC10 Seriação (Não Automática) de Candidaturas - Plano de Testes](UC10_Seriação_(Não_Automática)_de_Candidaturas_PlanoTestes.md)
 
 ##### [Voltar ao início](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/tree/main/README.md)
