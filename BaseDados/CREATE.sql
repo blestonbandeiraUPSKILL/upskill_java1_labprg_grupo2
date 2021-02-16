@@ -11,7 +11,7 @@ CREATE TABLE Organizacao (
         CONSTRAINT uk_email_Organizacao UNIQUE,
     emailGestor varchar(20)
         CONSTRAINT nn_emailGestor_Organizacao NOT NULL,
-    idEnderecoPostal varchar(20)    
+    idEnderecoPostal integer    
 );
 
 CREATE TABLE Colaborador(
@@ -32,11 +32,11 @@ CREATE TABLE Freelancer(
         CONSTRAINT pk_email_Freelancer PRIMARY KEY,
     telefone varchar(9),
     nif varchar(9),
-    idEnderecoPostal varchar(20)
+    idEnderecoPostal integer
 );
 
 CREATE TABLE EnderecoPostal(
-    idEnderecoPostal varchar(20)
+    idEnderecoPostal integer GENERATED AS IDENTITY
         CONSTRAINT pk_id_EnderecoPostal PRIMARY KEY,
     arruamento varchar(50),
     numeroPorta varchar(20),
@@ -64,7 +64,7 @@ CREATE TABLE Tarefa(
 );
 
 CREATE TABLE Anuncio(
-    idAnuncio varchar(20)
+    idAnuncio integer GENERATED AS IDENTITY
         CONSTRAINT pk_id_Anuncio PRIMARY KEY,
     dataInicioPublicacao date,
     dataFimPublicacao date,
@@ -82,20 +82,20 @@ CREATE TABLE Candidatura(
     numeroDias numeric,
     txtApresentacao varchar(250),
     txtMotivacao varchar(250),
-    idAnuncio varchar(20),
-    idProcessoSeriacao varchar(20),
+    idAnuncio integer,
+    idProcessoSeriacao integer,
     emailFreelancer  varchar(20)
 );
 
 CREATE TABLE ReconhecimentoGP(
-    idReconhecimentoGP varchar(20)
+    idReconhecimentoGP integer GENERATED AS IDENTITY
         CONSTRAINT pk_id_ReconhecimentoGP PRIMARY KEY,
     dataReconhecimento date,
     codigoCompetenciaTecnica varchar(20)
 );
 
 CREATE TABLE GrauProficiencia(
-    idGrauProficiencia varchar(20)
+    idGrauProficiencia integer GENERATED AS IDENTITY
         CONSTRAINT pk_id_GrauProficiencia PRIMARY KEY,
     valor integer,
     designacao varchar(100),
@@ -104,11 +104,11 @@ CREATE TABLE GrauProficiencia(
 
 CREATE TABLE FreelancerHabAcademica(
     emailFreelancer varchar(20),
-    idHabilitacaoAcademica varchar(20)
+    idHabilitacaoAcademica integer
 );
 
 CREATE TABLE HabilitacaoAcademica(
-    idHabilitacaoAcademica varchar(20)
+    idHabilitacaoAcademica integer GENERATED AS IDENTITY
         CONSTRAINT pk_id_HabilitacaoAcademica PRIMARY KEY,
     grau varchar(10),
     designacaoCurso varchar(50),
@@ -136,36 +136,36 @@ CREATE TABLE CompetenciaTecnica(
         CONSTRAINT pk_codigo_CompetenciaTecnica PRIMARY KEY,
     descBreve varchar(50),
     descDetalhada varchar(100),
-    idCaracterCT varchar(20),
+    idCaracterCT integer,
     codigoAreaActividade varchar(20)
 );
 
 CREATE TABLE CaracterCT(
-    idCaracterCT varchar(20)
+    idCaracterCT integer GENERATED AS IDENTITY
         CONSTRAINT pk_id_CaracterCT PRIMARY KEY,
     obrigatoria varchar(1),
     grauProfMinimo varchar(20)
 );
 
 CREATE TABLE ProcessoSeriacao(
-    idProcessoSeriacao varchar(20)
+    idProcessoSeriacao integer GENERATED AS IDENTITY
         CONSTRAINT pk_id_ProcessoSeriacao PRIMARY KEY,
     dataRealizacao date,
-    idTipoRegimento varchar(20)
+    idTipoRegimento integer
 );
 
 CREATE TABLE TipoRegimento(
-    idTipoRegimento varchar(20)
+    idTipoRegimento integer GENERATED AS IDENTITY
         CONSTRAINT pk_id_TipoRegimento PRIMARY KEY,
     designacao varchar(100),
     descricaoRegras varchar(250)
 );
 
 CREATE TABLE Classificacao(
-    idClassificacao varchar(20)
+    idClassificacao integer GENERATED AS IDENTITY
         CONSTRAINT pk_id_Classificacao PRIMARY KEY,
     lugar integer,
-    idProcessoSeriacao varchar(20)
+    idProcessoSeriacao integer
 );
 
 

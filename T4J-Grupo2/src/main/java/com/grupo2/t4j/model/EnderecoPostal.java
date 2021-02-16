@@ -19,13 +19,6 @@ import  com.grupo2.t4j.exception.*;
 public class EnderecoPostal {
 
     /**
-     * O identificador do Endereço Postal
-     */
-    private String idEnderecoPostal = "EndPostal - ";
-
-    private int contador = 1;
-
-    /**
      * O arruamento do endereço postal
      */
     private String arruamento;
@@ -57,7 +50,6 @@ public class EnderecoPostal {
         setPorta(numeroPorta);
         setLocalidade(localidade);
         setCodigoPostal(codigoPostal);
-        setIdEnderecoPostal(idEnderecoPostal);
     }
   
     /**
@@ -69,7 +61,6 @@ public class EnderecoPostal {
         setPorta(endereco.numeroPorta);
         setLocalidade(endereco.localidade);
         setCodigoPostal(endereco.codigoPostal);
-        setIdEnderecoPostal(idEnderecoPostal);
     }
 
     /**
@@ -102,10 +93,6 @@ public class EnderecoPostal {
      */
     public String getCodigoPostal() {
         return codigoPostal;
-    }
-
-    public String getIdEnderecoPostal() {
-        return idEnderecoPostal;
     }
 
     /**
@@ -152,11 +139,6 @@ public class EnderecoPostal {
         else{
             throw new NomeInvalidoException("Código Postal é inválido!");        
         }
-    }
-
-    public void setIdEnderecoPostal(String idEnderecoPostal) {
-        contador++;
-        this.idEnderecoPostal = idEnderecoPostal + contador;
     }
 
     /**

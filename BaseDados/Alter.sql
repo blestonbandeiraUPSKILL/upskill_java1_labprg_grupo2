@@ -222,3 +222,7 @@ ALTER TABLE TipoRegimento
 
 ALTER TABLE Classificacao
     MODIFY lugar UNIQUE;
+
+ALTER TABLE Utilizador
+    ADD rolename varchar(15) 
+        CONSTRAINT nn_Utilizador_rolename NOT NULL;
