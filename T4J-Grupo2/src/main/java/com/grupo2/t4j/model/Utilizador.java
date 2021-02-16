@@ -34,13 +34,7 @@ public class Utilizador implements Serializable{
      * O papel do Utilizador
      */
     private Rolename rolename;
-    
-    /**
-     * Password inicial de um Utilizador em processo de registo - antes de receber 
-     * a password oficial por email.
-     */
-    //private static final Password PASSWORD_POR_OMISSAO = new Password("00000000");
-    
+
     /**
      * O papel do Utilizador por omissão.
      */
@@ -59,9 +53,9 @@ public class Utilizador implements Serializable{
      * @param password a password do Utilizador em formato da classe Password
      * @param rolename o papel do Utilizador na T4J
      */
-    public Utilizador(String nome, Email email, Password password, Rolename rolename){
-        setNome(nome);
+    public Utilizador(Email email, String nome, Password password, Rolename rolename){
         setEmail(email);
+        setNome(nome);
         setPassword(password);
         setRolename(rolename);
     }
@@ -73,9 +67,9 @@ public class Utilizador implements Serializable{
      * @param passUt a password do Utilizador em formato String 
      * @param rolename o papel do Utilizador na T4J
      */
-    public Utilizador(String nome, String emailUt, String passUt, Rolename rolename){
-        setNome(nome);
+    public Utilizador(String emailUt, String nome, String passUt, Rolename rolename){
         this.email = new Email(emailUt);
+        setNome(nome);
         this.password = new Password(passUt);
         setRolename(rolename);
     }
@@ -86,10 +80,9 @@ public class Utilizador implements Serializable{
      * @param emailUt o email do Utilizador em formato String
      * @param rolename o papel do Utilizador na T4J
      */
-    public Utilizador (String nome, Email emailUt, Rolename rolename){
-        setNome(nome);
+    public Utilizador (Email emailUt, String nome, Rolename rolename){
         this.email = emailUt;
-        //setPassword(PASSWORD_POR_OMISSAO);
+        setNome(nome);
         setRolename(rolename); 
     }
        
@@ -99,10 +92,9 @@ public class Utilizador implements Serializable{
      * @param nome o nome do Utilizador
      * @param emailUt o email do Utilizador em formato String
      */
-    public Utilizador(String nome, String emailUt){
-        setNome(nome);
+    public Utilizador(String emailUt, String nome){
         this.email = new Email(emailUt);
-        //setPassword(PASSWORD_POR_OMISSAO);
+        setNome(nome);
         setRolename(ROLENAME_POR_OMISSAO);
     }
     
