@@ -102,6 +102,8 @@ entity "Tarefa" {
 entity "Anuncio" {
     idAnuncio {PK}
     --
+    referenciaTarefa: text {FK}
+    nifOrganizacao: text {FK}
     dataInicioPublicacao: date {NN}
     dataFimPublicacao: date {NN}
     dataInicioCandidatura: date {NN}
@@ -169,7 +171,7 @@ entity "CaracterCT" {
     idCaracterCT: text {PK}
     --
     obrigatoria: boolean {NN}
-    grauProfMinimo: text {NN}
+    grauProfMinimo: text {FK, NN}
 }
 
 AreaActividade ||--|{ Categoria
@@ -193,7 +195,7 @@ Freelancer ||--|{ FreelancerHabAcademica
 HabilitacaoAcademica ||--|{ FreelancerHabAcademica
  Freelancer ||--|{ ReconhecimentoGP
 ReconhecimentoGP }|--|| GrauProficiencia
-CaracterCT ||--|{ CompetenciaTecnica
+CaracterCT ||--|{ GrauProficiencia
 
 
 @enduml

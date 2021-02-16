@@ -25,7 +25,7 @@ public class DBConnectionHandler {
         statement = null;
     }
 
-    public void openConnection() throws SQLException {
+    public Connection openConnection() throws SQLException {
         try {
             String jdbcUrl = "jdbc:oracle:thin:@vsrvbd1.dei.isep.ipp.pt:1521/pdborcl";
 
@@ -41,6 +41,7 @@ public class DBConnectionHandler {
             exception.printStackTrace();
             exception.getMessage();
         }
+        return connection;
     }
 
     public String closeAll() {

@@ -6,9 +6,7 @@ import com.grupo2.t4j.model.*;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -83,12 +81,20 @@ public class RegistarOrgEGestorUI implements Initializable {
 
         try {
             //FXMLLoader loaderConfirmarRegisto = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/ConfirmarRegistoOrgScene.fxml"));
-            Organizacao organizacao = registarOrganizacaoController.novaOrganizacao(txtNomeOrganizacao.getText(),
-                    txtNif.getText(),txtEndArruamento.getText(),txtEndPorta.getText(),
-                    txtEndLocalidade.getText(),txtEndCodPostal.getText(),txtTelefoneOrganizacao.getText(),
-                    new Website(txtWebsite.getText()),new Email(txtEmailOrganizacao.getText()),
-                    txtNomeGestor.getText(),new Email(txtEmailGestor.getText()),
-                    txtTelefoneGestor.getText(),Rolename.GESTOR);
+            Organizacao organizacao = registarOrganizacaoController.novaOrganizacao(
+                    txtNomeOrganizacao.getText(),
+                    txtNif.getText(),
+                    new Website(txtWebsite.getText()),
+                    txtTelefoneOrganizacao.getText(),
+                    new Email(txtEmailOrganizacao.getText()),
+                    txtEndArruamento.getText(),
+                    txtEndPorta.getText(),
+                    txtEndLocalidade.getText(),
+                    txtEndCodPostal.getText(),
+                    new Email(txtEmailGestor.getText()),
+                    txtNomeGestor.getText(),
+                    txtTelefoneGestor.getText()
+            );
             
             boolean registou = registarOrganizacaoController.registaOrganizacao(organizacao);
 

@@ -226,3 +226,22 @@ ALTER TABLE Classificacao
 ALTER TABLE Utilizador
     ADD rolename varchar(15) 
         CONSTRAINT nn_Utilizador_rolename NOT NULL;
+
+ALTER TABLE CaracterCT
+    MODIFY grauProfMinimo integer;
+
+ALTER TABLE CaracterCT
+    ADD CONSTRAINT fk_CaracterCT_GRAUPROFMINIMO
+        FOREIGN KEY (GRAUPROFMINIMO)
+        REFERENCES GrauProficiencia(idGrauProficiencia);
+
+ALTER TABLE Anuncio
+    ADD referenciaTarefa varchar(10);
+
+ALTER TABLE Anuncio
+    ADD nifOrganizacao varchar(9);
+    
+ALTER TABLE Anuncio
+    ADD CONSTRAINT fk_Anuncio_Tarefa
+        FOREIGN KEY (referenciaTarefa, nifOrganizacao)
+        REFERENCES Tarefa(referencia, nifOrganizacao);

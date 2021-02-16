@@ -37,7 +37,7 @@ public class EnderecoPostal {
      * O código postal 
      */
     private String codigoPostal;
-    
+
     /**
      * Construtor completo de um endereço postal
      * @param arruamento

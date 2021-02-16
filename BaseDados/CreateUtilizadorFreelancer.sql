@@ -1,4 +1,4 @@
-CREATE OR REPLACE PROCEDURE createUtilizadorFreelancer(
+CREATE OR REPLACE PROCEDURE createFreelancer(
     p_email utilizador.email%type,
     p_nome utilizador.nome%type,
     p_password utilizador.password%type,

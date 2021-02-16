@@ -1,18 +1,16 @@
-CREATE OR REPLACE PROCEDURE createTipoRegimento(
-    p_designacao tiporegimento.designacao%type,
-    p_descricaoRegras tiporegimento.descricaoregras%type
+CREATE OR REPLACE PROCEDURE createAreaActividade(
+    p_codigoAreaActividade areaactividade.codigoareaactividade%type,
+    p_descBreve areaactividade.descbreve%type,
+    p_descDetalhada areaactividade.descdetalhada%type
     )
 IS
-    v_idTipoRegimento tiporegimento.idtiporegimento%type;
     
 BEGIN
 
-    INSERT INTO TipoRegimento
-        (designacao, descricaoRegras)
+    INSERT INTO AreaActividade
+        (codigoareaactividade, descbreve, descdetalhada)
     VALUES
-        (p_designacao, p_descricaoregras)
-    RETURNING idtiporegimento
-    INTO v_idTipoRegimento;
+        (p_codigoareaactividade, p_descbreve, p_descdetalhada);
     
 END;
 /

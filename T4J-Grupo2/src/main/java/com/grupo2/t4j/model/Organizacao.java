@@ -81,20 +81,19 @@ public class Organizacao implements Serializable{
      * @param emailOrg o email da organização
      * @param colabGestor o gestor da organização
      */
-    public Organizacao(String nome, String NIF, EnderecoPostal enderecoOrg,
-                       Website websiteOrg, String telefone, Email emailOrg, Colaborador
-                               colabGestor){
+    public Organizacao(String NIF, String nome, Website websiteOrg,
+                       String telefone, Email emailOrg, Colaborador colabGestor, EnderecoPostal enderecoOrg){
+        setNif(NIF);
+        setNome(nome);
         if (websiteOrg instanceof Website) {
             this.websiteOrg = websiteOrg;
         }
         else {
             this.websiteOrg = new Website(Objects.requireNonNull(websiteOrg));
         }
-        setNome(nome);
-        setNif(NIF);
-        this.enderecoOrg = new EnderecoPostal(enderecoOrg);
         setTelefone(telefone);
         this.emailOrg = new Email(emailOrg);
+        this.enderecoOrg = new EnderecoPostal(enderecoOrg);
         this.colabGestor = new Colaborador(colabGestor);
     }
 
@@ -188,7 +187,7 @@ public class Organizacao implements Serializable{
         this.websiteOrg = new Website(website);
         setTelefone(telefone);
         this.emailOrg = new Email(email);
-        this.colabGestor = new Colaborador(nomeColab, emailColab, passColab, 
+        this.colabGestor = new Colaborador(emailColab, nomeColab, passColab,
                 funcao, telefoneColab, Rolename.GESTOR);
     }
     
@@ -213,7 +212,7 @@ public class Organizacao implements Serializable{
      */
     public Organizacao(String nome, String NIF, String arruamento, String numeroPorta,
                        String localidade, String codigoPostal, String website, String telefone,
-                       String email, String nomeColab, String emailColab,
+                       String email, String emailColab, String nomeColab,
                        String funcao, String telefoneColab){
         setNome(nome);
         setNif(NIF);
@@ -221,7 +220,7 @@ public class Organizacao implements Serializable{
         this.websiteOrg = new Website(website);
         setTelefone(telefone);
         this.emailOrg = new Email(email);
-        this.colabGestor = new Colaborador(nomeColab, new Email(emailColab),
+        this.colabGestor = new Colaborador(new Email(emailColab), nomeColab,
                 funcao, telefoneColab, Rolename.GESTOR);
     }
        
@@ -393,26 +392,6 @@ public class Organizacao implements Serializable{
         return new EnderecoPostal(arruamento, numeroPorta, localidade, codigoPostal);
     }
     
-    /*public Organizacao(String nome, String NIF, String arruamento, String numeroPorta,
-                       String localidade, String codigoPostal, String website, String telefone,
-                       String email, String nomeColab, String emailColab, Password password,
-                       String funcao, String telefoneColab){
-        setNome(nome);
-        setNif(NIF);
-        this.enderecoOrg = new EnderecoPostal(arruamento, numeroPorta, localidade, codigoPostal);
-        //this.websiteOrg = new Website(website);
-        if (websiteOrg instanceof Website) {
-            this.websiteOrg = websiteOrg;
-        }
-        else {
-            this.websiteOrg = new Website(websiteOrg);
-        }
-        setTelefone(telefone);
-        this.emailOrg = new Email(email);
-        Password passCol = new Password()
-        this.colabGestor = new Colaborador(nomeColab, emailColab, password, funcao, telefoneColab);
-    }*/
-    
     /**
      *
      * @param nomeGestor
@@ -421,14 +400,14 @@ public class Organizacao implements Serializable{
      * @param rolename
      * @return
      */
-    public static Colaborador novoColaborador(String nomeGestor, Email emailGestor, String telefoneGestor, Rolename rolename) {
+    public static Colaborador novoColaborador(Email emailGestor, String nomeGestor, String telefoneGestor, Rolename rolename) {
         String funcao = "Gestor";
-        return new Colaborador(nomeGestor, emailGestor, funcao, telefoneGestor, rolename);
+        return new Colaborador(emailGestor, nomeGestor, funcao, telefoneGestor, rolename);
     }
     
-    private void setColabGestor(String nomeGestor, String emailGestor, String telefoneGestor, Rolename role) {
+    private void setColabGestor(String emailGestor, String nomeGestor, String telefoneGestor, Rolename role) {
         String funcao = "Gestor";
-        colabGestor = new Colaborador(nomeGestor, new Email(emailGestor), funcao, telefoneGestor, role.GESTOR);
+        colabGestor = new Colaborador(new Email(emailGestor), nomeGestor, funcao, telefoneGestor, role.GESTOR);
     }
     
     /**
