@@ -73,20 +73,12 @@ class Email {
 RegistarFreelancerUI ..> RegistarFreelancerController
 RegistarFreelancerController ..> SessaoUtilizador
 RegistarFreelancerController ..> Plataforma
-RegistarFreelancerController ..> AlgoritmoGeradorPasswords
-RegistarFreelancerController ..> GestaoUtilizadoresFacade
-RegistarFreelancerController ..> UtilizadorComPapel
 Freelancer --> ReconhecimentoGT: recebe(u) >
 ReconhecimentoGT --> CompetenciaTecnica: relativa a >
 CompetenciaTecnica --> GrauProficiencia: aplica >
 Freelancer --> HabilitacaoAcademica: tem >
 Freelancer --> EnderecoPostal: tem >
-
-UtilizadorComPapel --|> Utilizador
-Email -- Utilizador: < possui
-Password -- Utilizador: < possui
-
+Freelance
 Plataforma ..> RepositorioFreelancer
-
 
 @enduml
