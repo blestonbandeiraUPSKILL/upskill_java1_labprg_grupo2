@@ -12,7 +12,7 @@ public class FabricaRepositoriosInMemory implements FabricaRepositorios {
 
     @Override
     public RepositorioAnuncio getRepositorioAnuncio() {
-        return null;
+        return new RepositorioAnuncioInMemory();
     }
 
     @Override
@@ -22,37 +22,37 @@ public class FabricaRepositoriosInMemory implements FabricaRepositorios {
 
     @Override
     public RepositorioCaracterizacaoCT getRepositorioCaracterizacaoCT() {
-        return null;
+        return new RepositorioCaracterizacaoCTInMemory();
     }
 
     @Override
     public RepositorioCategoriaTarefa getRepositorioCategoriaTarefa() {
-        return null;
+        return new RepositorioCategoriaTarefaInMemory();
     }
 
     @Override
     public RepositorioColaborador getRepositorioColaborador() {
-        return null;
+        return new RepositorioColaboradorInMemory();
     }
 
     @Override
     public RepositorioCompetenciaTecnica getRepositorioCompetenciaTecnica() {
-        return null;
+        return new RepositorioCompetenciaTecnicaInMemory();
     }
 
     @Override
     public RepositorioOrganizacao getRepositorioOrganizacao() {
-        return null;
+        return new RepositorioOrganizacaoInMemory();
     }
 
     @Override
     public RepositorioTarefa getRepositorioTarefa() {
-        return null;
+        return new RepositorioTarefaInMemory();
     }
 
     @Override
     public RepositorioUtilizador getRepositorioUtilizador() {
-        return null;
+        return new RepositorioUtilizadorInMemory();
     }
 
 

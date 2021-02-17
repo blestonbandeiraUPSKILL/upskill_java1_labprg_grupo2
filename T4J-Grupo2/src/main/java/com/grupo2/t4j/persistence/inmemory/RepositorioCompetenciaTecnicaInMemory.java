@@ -8,6 +8,7 @@ package com.grupo2.t4j.persistence.inmemory;
 import com.grupo2.t4j.exception.CompetenciaTecnicaDuplicadaException;
 import com.grupo2.t4j.model.AreaActividade;
 import com.grupo2.t4j.model.CompetenciaTecnica;
+import com.grupo2.t4j.persistence.RepositorioCompetenciaTecnica;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -17,7 +18,7 @@ import java.util.List;
  *
  * @author acris
  */
-public class RepositorioCompetenciaTecnicaInMemory implements Serializable{
+public class RepositorioCompetenciaTecnicaInMemory implements Serializable, RepositorioCompetenciaTecnica {
 
     /**
      * Atributos da classe Singletone RepositorioCompetenciaTecnica
@@ -28,7 +29,7 @@ public class RepositorioCompetenciaTecnicaInMemory implements Serializable{
     /**
      * Construtor da classe Singleton RepositorioCompetenciaTecnica
      */
-    private RepositorioCompetenciaTecnicaInMemory() {
+    RepositorioCompetenciaTecnicaInMemory() {
         listaCompTecnicas = new ArrayList<>();
     }
 
@@ -52,7 +53,7 @@ public class RepositorioCompetenciaTecnicaInMemory implements Serializable{
      * @throws CompetenciaTecnicaDuplicadaException
      */
     public boolean addCompetenciaTecnica(CompetenciaTecnica competenciaTecnica) throws CompetenciaTecnicaDuplicadaException {
-        CompetenciaTecnica ct = getCompetenciaTecnicaByCodigo(competenciaTecnica.getCodigo());
+        CompetenciaTecnica ct = findByCodigo(competenciaTecnica.getCodigo());
         if (ct == null) {
             this.listaCompTecnicas.add(competenciaTecnica);
             return true;
@@ -61,54 +62,27 @@ public class RepositorioCompetenciaTecnicaInMemory implements Serializable{
         }
     }
 
-    public CompetenciaTecnica novaCompetenciaTecnica(String codigo, String descBreve,
-                                                     String descDetalhada, AreaActividade areaActividade) {
-        return new CompetenciaTecnica(codigo, descBreve, descDetalhada, areaActividade);
-    }
-
-    public boolean addCompetenciaTecnica(String codigo,
-                                         AreaActividade at,
-                                         String descricaoBreve,
-                                         String descricaoDetalhada){
-        CompetenciaTecnica ct = getCompetenciaTecnicaByCodigo(codigo);
+    @Override
+    public void save(String codigo, String descBreve, String descDetalhada, AreaActividade areaActividade) {
+        CompetenciaTecnica ct = findByCodigo(codigo);
         if (ct == null) {
-            CompetenciaTecnica compTec = new CompetenciaTecnica(codigo, descricaoBreve, descricaoDetalhada, at);
+            CompetenciaTecnica compTec = new CompetenciaTecnica(codigo, descBreve, descDetalhada, areaActividade);
             this.listaCompTecnicas.add(compTec);
-            return true;
-        } else {
+        }
+        else {
             throw new CompetenciaTecnicaDuplicadaException(ct.getCodigo() + ": Competencia Tecnica já existe");
         }
     }
 
-    /**
-     * Atualiza a lista de Competencias Tecnicas
-     *
-     * @param listaCompTecnicas
-     */
-    public void setListaCompTecnicas(List<CompetenciaTecnica> listaCompTecnicas) {
-        this.listaCompTecnicas = listaCompTecnicas;
-    }
-
-    /**
-     * Devolve a lista de competencias tecnicas
-     *
-     * @return
-     */
-    public List<CompetenciaTecnica> getCompetenciasTecnicas() {
-
+    @Override
+    public List<CompetenciaTecnica> getAll() {
         return new ArrayList<CompetenciaTecnica>(listaCompTecnicas);
     }
 
-    /**
-     * Devolve uma competencia tecnica de acordo com o seu codigo
-     *
-     * @param codigo
-     * @return
-     */
-    public CompetenciaTecnica getCompetenciaTecnicaByCodigo(String codigo) {
-        CompetenciaTecnica compTec = null;
+    @Override
+    public CompetenciaTecnica findByCodigo(String codigo) {
         for (int i = 0; i < this.listaCompTecnicas.size(); i++) {
-            compTec = this.listaCompTecnicas.get(i);
+            CompetenciaTecnica compTec = this.listaCompTecnicas.get(i);
             if (compTec.getCodigo().equals(codigo)) {
                 return compTec;
 
@@ -117,13 +91,8 @@ public class RepositorioCompetenciaTecnicaInMemory implements Serializable{
         return null;
     }
 
-    /**
-     * Devolve uma lista de competencias tecnicas por area de actividade
-     *
-     * @param at
-     * @return
-     */
-    public ArrayList<CompetenciaTecnica> getCompetenciasTecnicasByAreaActividade(AreaActividade at) {
+    @Override
+    public ArrayList<CompetenciaTecnica> findByAreaActividade(AreaActividade at) {
         ArrayList<CompetenciaTecnica> compTecPorAt = new ArrayList<>();
 
         for (CompetenciaTecnica ct : listaCompTecnicas) {
@@ -131,13 +100,12 @@ public class RepositorioCompetenciaTecnicaInMemory implements Serializable{
                 compTecPorAt.add(ct);
             }
         }
-
         return compTecPorAt;
     }
-    
+
     public int adicionarListaCompetenciasTecnicas(RepositorioCompetenciaTecnicaInMemory outraListaCompetenciasTecnicas) {
         int totalCompetenciasAdicionadas = 0;
-        
+
         for (CompetenciaTecnica ct : outraListaCompetenciasTecnicas.listaCompTecnicas) {
             boolean areaActividadeAdicionada = addCompetenciaTecnica(ct);
             if (areaActividadeAdicionada) {
@@ -146,6 +114,4 @@ public class RepositorioCompetenciaTecnicaInMemory implements Serializable{
         }
         return totalCompetenciasAdicionadas;
     }
-
-   
 }

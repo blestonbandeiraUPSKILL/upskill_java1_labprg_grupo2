@@ -13,22 +13,21 @@ package com.grupo2.t4j.persistence.database;
 
 import com.grupo2.t4j.exception.OrganizacaoDuplicadaException;
 import com.grupo2.t4j.model.*;
+import com.grupo2.t4j.persistence.RepositorioOrganizacao;
 
 import java.io.Serializable;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
-public class RepositorioOrganizacaoDatabase implements Serializable{
+public class RepositorioOrganizacaoDatabase implements Serializable, RepositorioOrganizacao {
 
     /**
      * Atributos da classe Singleton RepositorioOrganizacao
      */
-    private static RepositorioOrganizacaoDatabase instance;
-    private List<Organizacao> listaOrganizacoes;
-    Colaborador colabGestor;
-    private DBConnectionHandler dbConnectionHandler;
+    private static RepositorioOrganizacaoDatabase repositorioOrganizacaoDatabase;
     String jdbcUrl = "jdbc:oracle:thin:@vsrvbd1.dei.isep.ipp.pt:1521/pdborcl";
     String username = "UPSKILL_BD_TURMA1_04";
     String password = "qwerty";
@@ -41,38 +40,23 @@ public class RepositorioOrganizacaoDatabase implements Serializable{
     }
 
     /**
-     * Devolve ou cria uma instância estática de RepositorioCompetenciaTecnica
+     * Devolve ou cria uma instância estática de RepositorioOrganizacaoDatabase
      *
      * @return a instance existente ou criada
      */
     public static RepositorioOrganizacaoDatabase getInstance() throws SQLException {
-        if(instance == null) {
-            instance = new RepositorioOrganizacaoDatabase();
+        if(repositorioOrganizacaoDatabase == null) {
+            repositorioOrganizacaoDatabase = new RepositorioOrganizacaoDatabase();
         }
-        return instance;
+        return repositorioOrganizacaoDatabase;
     }
 
-    /**
-     *
-     * Cria uma nova Organizacao usando os construtores dos objectos que a compõem
-     *
-     * @param nome nome da organização
-     * @param nif nif da organização
-     * @param telefone contacto telefónico da organização
-     * @param website website da organização
-     * @param emailOrganizacao email da organização
 
-     * @return uma instância de Organizacao
-     */
-    public Organizacao novaOrganizacao(String nif, String nome, Website website,
-                                       String telefone, Email emailOrganizacao,
-                                       Colaborador gestor, EnderecoPostal enderecoPostal) {
-
-        return new Organizacao(nif, nome, website, telefone, emailOrganizacao, gestor, enderecoPostal);
-    }
-
-    public boolean createOrganizacao(Organizacao organizacao, Colaborador gestor,
-                                   EnderecoPostal enderecoPostal) throws SQLException {
+    @Override
+    public void save(String nif, String nome, Website website, String telefone,
+                     Email emailOrganizacao, Email emailGestor, String arruamento,
+                     String numeroPorta, String localidade, String codigoPostal,
+                     String nomeGestor, Password passwordGestor, Rolename rolename, String telefoneGestor, String funcaoGestor) throws SQLException {
 
         DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
         Connection connection = dbConnectionHandler.openConnection();
@@ -80,65 +64,50 @@ public class RepositorioOrganizacaoDatabase implements Serializable{
         CallableStatement callableStatementOrg = connection.prepareCall(
                 "{CALL createOrganizacao(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)} ");
 
-        try {
-            connection.setAutoCommit(false);
+        if (findByNif(nif) == null) {
 
-            callableStatementOrg.setString(1, organizacao.getNif());
-            callableStatementOrg.setString(2, organizacao.getNome());
-            callableStatementOrg.setString(3, organizacao.getWebsite().getWebsiteText());
-            callableStatementOrg.setString(4, organizacao.getTelefone());
-            callableStatementOrg.setString(5, organizacao.getEmail().getEmailText());
-            callableStatementOrg.setString(6, gestor.getEmail().getEmailText());
-            callableStatementOrg.setString(7, enderecoPostal.getArruamento());
-            callableStatementOrg.setString(8, enderecoPostal.getPorta());
-            callableStatementOrg.setString(9, enderecoPostal.getLocalidade());
-            callableStatementOrg.setString(10, enderecoPostal.getCodigoPostal());
-            callableStatementOrg.setString(11, gestor.getNome());
-            callableStatementOrg.setString(12, gestor.getPassword().getPasswordText());
-            callableStatementOrg.setString(13, gestor.getRolename().toString());
-            callableStatementOrg.setString(14, gestor.getTelefone());
-            callableStatementOrg.setString(15, gestor.getFuncao());
-
-            callableStatementOrg.executeQuery();
-
-            connection.commit();
-            connection.close();
-
-            return true;
-        }
-        catch (SQLException exceptionOrg) {
-            exceptionOrg.printStackTrace();
-            exceptionOrg.getSQLState();
             try {
-                System.err.print("Transaction is being rolled back");
-                connection.rollback();
-            }
-            catch (SQLException sqlException) {
-                sqlException.getErrorCode();
-            }
-        }
+                connection.setAutoCommit(false);
 
+                callableStatementOrg.setString(1, nif);
+                callableStatementOrg.setString(2, nome);
+                callableStatementOrg.setString(3, String.valueOf(website));
+                callableStatementOrg.setString(4, telefone);
+                callableStatementOrg.setString(5, String.valueOf(emailOrganizacao));
+                callableStatementOrg.setString(6, String.valueOf(emailGestor));
+                callableStatementOrg.setString(7, arruamento);
+                callableStatementOrg.setString(8, numeroPorta);
+                callableStatementOrg.setString(9, localidade);
+                callableStatementOrg.setString(10, codigoPostal);
+                callableStatementOrg.setString(11, nomeGestor);
+                callableStatementOrg.setString(12, String.valueOf(passwordGestor));
+                callableStatementOrg.setString(13, rolename.name());
+                callableStatementOrg.setString(14, telefoneGestor);
+                callableStatementOrg.setString(15, funcaoGestor);
+
+                callableStatementOrg.executeQuery();
+
+                connection.commit();
+                connection.close();
+
+            }
+            catch (SQLException exceptionOrg) {
+                exceptionOrg.printStackTrace();
+                exceptionOrg.getSQLState();
+                try {
+                    System.err.print("Transaction is being rolled back");
+                    connection.rollback();
+                }
+                catch (SQLException sqlException) {
+                    sqlException.getErrorCode();
+                }
+            }
+
+        } else {
+            throw new OrganizacaoDuplicadaException(nif + ": Organização com esse NIPC já registada!");
+        }
         connection.close();
         dbConnectionHandler.closeAll();
-        return false;
-    }
-
-    /**
-     *
-     * Adiciona uma nova Organização ao RepositorioOrganizacao
-     *
-     * @param organizacao organização a ser adicionada
-     *
-     * @throws OrganizacaoDuplicadaException
-     * @return
-     */
-    public boolean addOrganizacao(Organizacao organizacao) throws OrganizacaoDuplicadaException, SQLException {
-
-        if (find(organizacao.getNif())) {
-            return createOrganizacao(organizacao, organizacao.getColabGestor(), organizacao.getEnderecoPostal());
-            } else {
-            throw new OrganizacaoDuplicadaException(organizacao.getNif() + ": Organização com esse NIPC já registada!");
-        }
     }
 
     /**
@@ -149,7 +118,7 @@ public class RepositorioOrganizacaoDatabase implements Serializable{
      *
      * @return a organização encontrada, caso exista
      */
-    private boolean find(String nif) throws SQLException {
+    public Organizacao findByNif(String nif) throws SQLException {
 
         DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
         Connection connection = dbConnectionHandler.openConnection();
@@ -166,7 +135,7 @@ public class RepositorioOrganizacaoDatabase implements Serializable{
             connection.commit();
             connection.close();
 
-            return true;
+            return new Organizacao();
 
         } catch (SQLException exceptionOrg) {
             exceptionOrg.printStackTrace();
@@ -180,9 +149,14 @@ public class RepositorioOrganizacaoDatabase implements Serializable{
 
             connection.close();
             dbConnectionHandler.closeAll();
-            return false;
+            return null;
         }
 
+    }
+
+    @Override
+    public ArrayList<Organizacao> getAll() {
+        return null;
     }
 
 

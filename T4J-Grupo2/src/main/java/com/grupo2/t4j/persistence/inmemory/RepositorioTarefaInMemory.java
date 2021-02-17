@@ -14,12 +14,13 @@ import com.grupo2.t4j.exception.TarefaDuplicadaException;
 import com.grupo2.t4j.model.AreaActividade;
 import com.grupo2.t4j.model.Categoria;
 import com.grupo2.t4j.model.Tarefa;
+import com.grupo2.t4j.persistence.RepositorioTarefa;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RepositorioTarefaInMemory implements Serializable{
+public class RepositorioTarefaInMemory implements Serializable, RepositorioTarefa {
     
     /**
      * Define uma instância estática do Repositório em que estão registados todos
@@ -49,19 +50,8 @@ public class RepositorioTarefaInMemory implements Serializable{
     /**
      * Inicializa o Repositório de Tarefas
      */
-    private RepositorioTarefaInMemory(){
+    RepositorioTarefaInMemory(){
         listaTarefas = new ArrayList<>();
-    }
-
-    public Tarefa novaTarefa(AreaActividade areaActividade, Categoria categoriaTarefa,
-                             String referencia,
-                             String designacao,
-                             String descInformal,
-                             String descTecnica,
-                             int duracao,
-                             double custo) {
-        return new Tarefa(areaActividade, categoriaTarefa,
-                referencia, designacao, descInformal, descTecnica, duracao, custo);
     }
 
     /**
@@ -71,7 +61,7 @@ public class RepositorioTarefaInMemory implements Serializable{
      * @return
      */
     public boolean addTarefa(Tarefa tarefa) throws TarefaDuplicadaException {
-        Tarefa t = getTarefaByReferencia(tarefa.getReferencia());
+        Tarefa t = findByReferencia(tarefa.getReferencia());
         if (t == null) {
             return this.listaTarefas.add(tarefa);
         } else {
@@ -80,80 +70,31 @@ public class RepositorioTarefaInMemory implements Serializable{
         }
 
     }
-    
-    /**
-     * Adiciona uma Tarefa à lista de Tarefas
-     * @param referencia a referência única de uma tarefa em uma Organização.
-     * @param designacao a designação da tarefa.
-     * @param descInformal a descrição informal da tarefa.
-     * @param descTecnica a descrição técnica da tarefa.
-     * @param duracaoEst a duração estimada da tarefa em dias.
-     * @param custoEst o custo estimado da tarefa em euros.
-     * @throws TarefaDuplicadaException
-     */
-    public void addTarefa(String referencia, String designacao, String descInformal, 
-            String descTecnica, int duracaoEst, double custoEst) throws 
-            TarefaDuplicadaException {
-        Tarefa t = getTarefaByReferencia(referencia);
+
+    @Override
+    public void save(AreaActividade areaActividade, Categoria categoriaTarefa, String referencia,
+                     String designacao, String descInformal, String descTecnica, int duracao, double custo) {
+        Tarefa t = findByReferencia(referencia);
         if (t == null) {
-            Tarefa tarefa = new Tarefa(referencia, designacao, descInformal, 
-            descTecnica, duracaoEst, custoEst);
+            Tarefa tarefa = new Tarefa(referencia, designacao, descInformal,
+                    descTecnica, duracao, custo);
             this.listaTarefas.add(tarefa);
-        } else {
-            throw new TarefaDuplicadaException(t.getReferencia() + 
+        }
+        else {
+            throw new TarefaDuplicadaException(t.getReferencia() +
                     ": Tarefa já registada");
         }
     }
-    /**
-     * Adiciona uma Tarefa à lista de Tarefas
-     * @param areaActividade a area de actividade em que se enquadra a tarefa
-     * @param categoria a categoria em que se enquadra a tarefa
-     * @param referencia a referência única de uma tarefa em uma Organização.
-     * @param designacao a designação da tarefa.
-     * @param descInformal a descrição informal da tarefa.
-     * @param descTecnica a descrição técnica da tarefa.
-     * @param duracaoEst a duração estimada da tarefa em dias.
-     * @param custoEst o custo estimado da tarefa em euros.
-     * @throws TarefaDuplicadaException
-     */
-    public boolean addTarefa(AreaActividade areaActividade, Categoria categoria, String referencia, String designacao, String descInformal, 
-            String descTecnica, int duracaoEst, double custoEst) throws 
-            TarefaDuplicadaException {
-        Tarefa t = getTarefaByReferencia(referencia);
-        if (t == null) {
-            Tarefa tarefa = new Tarefa(referencia, designacao, descInformal, 
-            descTecnica, duracaoEst, custoEst);
-            return this.listaTarefas.add(tarefa);
-        } else {
-            throw new TarefaDuplicadaException(t.getReferencia() + 
-                    ": Tarefa já registada");
-        }
-        
-    }
-    
-    /**
-     * Devolve uma Tarefa de acordo com a referência indicada
-     * @param referencia a referência única da tarefa em uma Organização
-     * @return tarefa registada
-     */
-    public Tarefa getTarefaByReferencia(String referencia) {
-        Tarefa tarefa = null;
+
+    @Override
+    public Tarefa findByReferencia(String referencia) {
         for (int i = 0; i < this.listaTarefas.size(); i++) {
-            tarefa = this.listaTarefas.get(i);
+            Tarefa tarefa = this.listaTarefas.get(i);
             if (tarefa.getReferencia().equals(referencia)) {
                 return tarefa;
             }
-        }        
+        }
         return null;
-    }
-    
-     /**
-     * Atualiza a lista de Tarefas
-     *
-     * @param listaTarefas
-     */
-    public void setListaTarefas(List<Tarefa> listaTarefas) {
-        this.listaTarefas = listaTarefas;
     }
 
     /**
@@ -164,16 +105,6 @@ public class RepositorioTarefaInMemory implements Serializable{
     public ArrayList<Tarefa> getAll() {
 
         return new ArrayList<Tarefa>(listaTarefas);
-    }
-    
-
-    
-    /**
-     * Informa se a lista de Tarefas está ou não vazia
-     * @return 
-     */
-    public boolean isVazia() {
-        return listaTarefas.isEmpty();
     }
 
     //getAllByOrgPublicadas, getAllByOrgNaoPublicadas, getAllByOrg

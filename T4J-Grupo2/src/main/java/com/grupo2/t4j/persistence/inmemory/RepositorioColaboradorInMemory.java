@@ -14,12 +14,13 @@ import com.grupo2.t4j.exception.ColaboradorDuplicadoException;
 import com.grupo2.t4j.model.Colaborador;
 import com.grupo2.t4j.model.Email;
 import com.grupo2.t4j.model.Rolename;
+import com.grupo2.t4j.persistence.RepositorioColaborador;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RepositorioColaboradorInMemory implements Serializable{
+public class RepositorioColaboradorInMemory implements Serializable, RepositorioColaborador {
     
     /**
      * Define uma instância estática do Repositório em que estão registados todos
@@ -36,144 +37,10 @@ public class RepositorioColaboradorInMemory implements Serializable{
     /**
      * Inicializa o Repositório de Colaboradores
      */
-    private RepositorioColaboradorInMemory(){
+    RepositorioColaboradorInMemory(){
         listaColaboradores = new ArrayList<>();
     }
-    
-    /**
-     * Adiciona um Colaborador à lista de Colaboradores
-     * @param colaborador do tipo da classe Colaborador
-     * @throws ColaboradorDuplicadoException
-     */
-    public boolean addColaborador(Colaborador colaborador) throws ColaboradorDuplicadoException {
-        Colaborador c = getColaboradorByEmail(colaborador.getEmail().getEmailText());
-        if (c == null) {
-            this.listaColaboradores.add(colaborador);
-            return true;
-        } else {
-            throw new ColaboradorDuplicadoException(c.getEmail().getEmailText()
-                    + ": Colaborador já registado!");
-        }
-    }
-    
-    /**
-     * Adiciona um Colaborador à lista de Colaboradores
-     * @param nome o nome do Colaborador
-     * @param email o email do Colaborador em formato da classe Email
-     * @param funcao a função do Colaborador da organização
-     * @param telefone o telefone do Colaborador da organização
-     * @throws ColaboradorDuplicadoException
-     */
-    public boolean addColaborador(Email email, String nome,  String funcao,
-            String telefone, Rolename rolename) throws ColaboradorDuplicadoException {
-        Colaborador c = getColaboradorByEmail(email.getEmailText());
-        if (c == null) {
-            Colaborador colaborador = new Colaborador(email, nome, funcao,
-                    telefone, rolename);
-            this.listaColaboradores.add(colaborador);
-            return true;
-        } else {
-            throw new ColaboradorDuplicadoException(c.getEmail().getEmailText()
-                    + ": Colaborador já registado!");
-        }
-    }
-    
-    /**
-     * Adiciona um Colaborador à lista de Colaboradores
-     * @param nome o nome do Colaborador
-     * @param emailCol o email do Colaborador em formato String
-     * @param passCol a password do Colaborador em formato String
-     * @param funcao a função do Colaborador da organização
-     * @param telefone o telefone do Colaborador da organização
-     * @throws ColaboradorDuplicadoException
-     */
-    public boolean addColaborador(String emailCol, String nome, String passCol, String funcao,
-            String telefone, Rolename rolename) throws ColaboradorDuplicadoException {
-        Colaborador c = getColaboradorByEmail(emailCol);
-        if (c == null) {
-            Colaborador colaborador = new Colaborador(emailCol, nome, passCol, funcao,
-                    telefone, rolename);
-            this.listaColaboradores.add(colaborador);
-            return true;
-        } else {
-            throw new ColaboradorDuplicadoException(c.getEmail().getEmailText()
-                    + ": Colaborador já registado!");
-        }
-    }
-    
-    /**
-     * Adiciona um Colaborador à lista de Colaboradores
-     * @param nome o nome do Colaborador
-     * @param emailCol o email do Colaborador em formato String
-     * @param funcao a função do Colaborador da organização
-     * @param telefone o telefone do Colaborador da organização
-     * @throws ColaboradorDuplicadoException
-     */
-    public boolean addColaborador(String emailCol, String nome, String funcao,
-            String telefone, Rolename rolename) throws ColaboradorDuplicadoException {
-        Colaborador c = getColaboradorByEmail(emailCol);
-        if (c == null) {
-            Colaborador colaborador = new Colaborador(new Email(emailCol), nome, funcao,
-                    telefone, rolename);
-            this.listaColaboradores.add(colaborador);
-            return true;
-        } else {
-            throw new ColaboradorDuplicadoException(c.getEmail().getEmailText()
-                    + ": Colaborador já registado!");
-        }
-    }
-    
-   /* *//**
-     * Adiciona um Colaborador à lista de Colaboradores com
-     * Rolename de COLABORADOR por omissão
-     *
-     * @param nome o nome do Colaborador
-     * @param emailCol o email do Colaborador em formato String
-     * @param funcao a função do Colaborador da organização
-     * @param telefone o telefone do Colaborador da organização
-     * @throws ColaboradorDuplicadoException
-     *//*
-    public boolean addColaborador(String emailCol, String nome, String funcao,
-            String telefone) throws ColaboradorDuplicadoException {
-        Colaborador c = getColaboradorByEmail(emailCol);
-        if (c == null) {
-            Colaborador colaborador = new Colaborador(emailCol, nome, funcao,
-                    telefone);
-            this.listaColaboradores.add(colaborador);
-            return true;
-        } else {
-            throw new ColaboradorDuplicadoException(c.getEmail().getEmailText()
-                    + ": Colaborador já registado!");
-        }
-    }*/
-    
-    /**
-     * Devolve um Colaborador de acordo com o email registado
-     * @param emailCol o email em String do Colaborador 
-     * @return Colaborador registado
-     */
-    public Colaborador getColaboradorByEmail(String emailCol) {
-        Colaborador colaborador = null;
-        for (int i = 0; i < this.listaColaboradores.size(); i++) {
-            colaborador = this.listaColaboradores.get(i);
-            if (colaborador.getEmail().getEmailText().equals(emailCol)) {
-                return colaborador;
-            }
-        }
-        return null;
-    }
 
-    /*public boolean verificacaoAddColaborador(String nome, String emailCol, String funcao, String telefone){
-        int tam = listaColaboradores.size();
-        Colaborador ultimoColRegistado = listaColaboradores.get(tam-1);
-        if(emailCol.equals(ultimoColRegistado.getEmail().getEmailText())){
-            return true;
-        }
-        else{
-            return false;
-        }
-    }*/
-    
     /**
      * Devolve uma instância estática do Repositório de Colaboradores
      * @return RepositorioColaborador
@@ -183,35 +50,57 @@ public class RepositorioColaboradorInMemory implements Serializable{
             repositorioColaboradorInMemory = new RepositorioColaboradorInMemory();
         }
         return repositorioColaboradorInMemory;
-    }  
-    
-    /**
-     * Atualiza a lista de Colaboradores
-     * @param listaColaboradores
-     */
-    public void setListaColaboradores(List<Colaborador> listaColaboradores){
-        this.listaColaboradores = listaColaboradores;
     }
-    
+
     /**
-     * Devolve a lista de Colaboradores
-     * @return
+     * Adiciona um Colaborador à lista de Colaboradores
+     * @param colaborador do tipo da classe Colaborador
+     * @throws ColaboradorDuplicadoException
      */
-    public ArrayList<Colaborador> getListaColaboradores(){
+    public boolean addColaborador(Colaborador colaborador) throws ColaboradorDuplicadoException {
+        Colaborador c = findByEmail(colaborador.getEmail().getEmailText());
+        if (c == null) {
+            this.listaColaboradores.add(colaborador);
+            return true;
+        } else {
+            throw new ColaboradorDuplicadoException(c.getEmail().getEmailText()
+                    + ": Colaborador já registado!");
+        }
+    }
+
+    @Override
+    public void save(Email email, String nome, String funcao, String telefone, Rolename rolename) throws ColaboradorDuplicadoException {
+        Colaborador c = findByEmail(email.getEmailText());
+        if (c == null) {
+            Colaborador colaborador = new Colaborador(email, nome, funcao,
+                    telefone, rolename);
+            this.listaColaboradores.add(colaborador);
+
+        } else {
+            throw new ColaboradorDuplicadoException(c.getEmail().getEmailText()
+                    + ": Colaborador já registado!");
+        }
+    }
+
+    @Override
+    public Colaborador findByEmail(String emailCol) {
+        for (int i = 0; i < this.listaColaboradores.size(); i++) {
+            Colaborador colaborador = this.listaColaboradores.get(i);
+            if (colaborador.getEmail().getEmailText().equals(emailCol)) {
+                return colaborador;
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public ArrayList<Colaborador> getAll() {
         return new ArrayList<Colaborador>(listaColaboradores);
     }
-    
-    /**
-     * Informa se a lista de Colaboradores está ou não vazia
-     * @return
-     */
-    public boolean isVazia() {
-        return listaColaboradores.isEmpty();
-    }
-    
+
     public int adicionarListaColaborador(RepositorioColaboradorInMemory outraListaColaborador) {
         int totalColaboradoresAdicionados = 0;
-        
+
         for (Colaborador colaborador : outraListaColaborador.listaColaboradores) {
             boolean colaboradorAdicionado = addColaborador(colaborador);
             if (colaboradorAdicionado) {
@@ -219,9 +108,5 @@ public class RepositorioColaboradorInMemory implements Serializable{
             }
         }
         return totalColaboradoresAdicionados;
-    }
-
-    public Colaborador novoColaborador(Email email, String nome, String funcao, String telefone, Rolename rolename) {
-        return new Colaborador(email, nome, funcao, telefone, Rolename.COLABORADOR);
     }
 }

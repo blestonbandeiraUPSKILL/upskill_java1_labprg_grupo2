@@ -22,27 +22,9 @@ import java.util.List;
 public interface RepositorioAreaActividade {
 
     
-    int save(RepositorioAreaActividade outraListaAreasActividade);
+    void save(String codigo, String descBreve, String descDetalhada);
 
-    boolean addAreaActividade(AreaActividade areaActividade) throws AreaActividadeDuplicadaException;
-
-    /**
-     * Adiciona uma Área de Actividade à lista de Áreas de Actividade
-     * @param codigo o código único de cada Área de Actividade.
-     * @param descBreve a descrição breve da Área de Actividade.
-     * @param descDetalhada a descrição detalhada da Área de Actividade.
-     * @throws AreaActividadeDuplicadaException
-     */
-    boolean addAreaActividade(String codigo, String descBreve, String descDetalhada) throws AreaActividadeDuplicadaException;
-    
-
-    /**
-     * Devolve a lista de Áreas de Actividade
-     *
-     * @return 
-     */
     List<AreaActividade> getAll();
-
 
     AreaActividade findByCodigo(String codigo);
 

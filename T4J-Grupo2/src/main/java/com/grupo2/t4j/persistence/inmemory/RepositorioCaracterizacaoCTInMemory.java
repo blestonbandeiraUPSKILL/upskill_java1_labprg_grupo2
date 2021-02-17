@@ -5,17 +5,18 @@ import com.grupo2.t4j.model.CaracterizacaoCT;
 import com.grupo2.t4j.model.CompetenciaTecnica;
 import com.grupo2.t4j.model.GrauProficiencia;
 import com.grupo2.t4j.model.Obrigatoriedade;
+import com.grupo2.t4j.persistence.RepositorioCaracterizacaoCT;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RepositorioCaracterizacaoCTInMemory implements Serializable {
+public class RepositorioCaracterizacaoCTInMemory implements Serializable, RepositorioCaracterizacaoCT {
 
     public static RepositorioCaracterizacaoCTInMemory instance;
     List<CaracterizacaoCT> listaCaracterizacaoCTS;
 
-    private RepositorioCaracterizacaoCTInMemory() {
+    RepositorioCaracterizacaoCTInMemory() {
         listaCaracterizacaoCTS = new ArrayList<>();
     }
 
@@ -26,27 +27,18 @@ public class RepositorioCaracterizacaoCTInMemory implements Serializable {
         return instance;
     }
 
-    public boolean addCaracterizacaoCT(CaracterizacaoCT caracterizacaoCT) throws CaracterizacaoCTDuplicadaException {
-        if(caracterizacaoCT != null) {
-            this.listaCaracterizacaoCTS.add(caracterizacaoCT);
-            return true;
-        }
-        else {
-            throw new CaracterizacaoCTDuplicadaException("Esta lista é duplicada!");
-        }
+    @Override
+    public void save(GrauProficiencia gp, Obrigatoriedade obrigatoriedade, CompetenciaTecnica competenciaTecnica) throws CaracterizacaoCTDuplicadaException {
+       //falta código de adicionar isto - n sei qual é a abordagem que temos neste momento
     }
 
-    public CaracterizacaoCT novaCaracterizacaoCT (GrauProficiencia gp,
-                                                  Obrigatoriedade obrigatoriedade,
-                                                  CompetenciaTecnica competenciaTecnica) {
-        return new CaracterizacaoCT(gp, obrigatoriedade, competenciaTecnica);
-    }
-
-    public List<CaracterizacaoCT> getListaCaracterizacaoCTS() {
+    @Override
+    public List<CaracterizacaoCT> getAll() {
         return new ArrayList<CaracterizacaoCT>(listaCaracterizacaoCTS);
     }
 
-    public List<CaracterizacaoCT> getCaracterizacaoCTSbyCompetenciaTecnica(List<CompetenciaTecnica> competenciasTecnicas) {
+    @Override
+    public List<CaracterizacaoCT> findByCompetenciaTecnica(List<CompetenciaTecnica> competenciasTecnicas) {
         ArrayList<CaracterizacaoCT> caracterizacaoCTSbyCompetenciaTecnica = new ArrayList<>();
 
         for (CaracterizacaoCT cct : listaCaracterizacaoCTS) {
@@ -55,17 +47,6 @@ public class RepositorioCaracterizacaoCTInMemory implements Serializable {
             }
         }
         return caracterizacaoCTSbyCompetenciaTecnica;
-
     }
 
-    /*public List<CaracterizacaoCT> getCaracterizacaoCTSByCategoria(Categoria categoria) {
-        ArrayList<CaracterizacaoCT> caracterizacaoCTSbyCategoria = new ArrayList<>();
-        
-        for (CaracterizacaoCT cct : listaCaracterizacaoCTS) {
-            if (cct.equals(competenciasTecnicas)) {
-                caracterizacaoCTSbyCompetenciaTecnica.add(cct);
-            }
-        }
-        return caracterizacaoCTSbyCompetenciaTecnica;
-    }*/
 }

@@ -2,6 +2,7 @@ package com.grupo2.t4j.persistence;
 
 import com.grupo2.t4j.model.*;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public interface RepositorioOrganizacao {
@@ -12,9 +13,9 @@ public interface RepositorioOrganizacao {
               String numeroPorta, String localidade,
               String codigoPostal, String nomeGestor,
               Password password, Rolename rolename,
-              String telefoneGestor, String funcaoGestor);
+              String telefoneGestor, String funcaoGestor) throws SQLException;
 
-    Organizacao findByNif(String nif);
+    Organizacao findByNif(String nif) throws SQLException;
 
     public ArrayList<Organizacao> getAll();
 

@@ -28,81 +28,29 @@ public class RepositorioAreaActividadeDatabase implements Serializable, Reposito
      * Define uma instância estática do Repositório em que estão registadas todas
      * as Áreas de Actividade da plataforma
      */
-    private static RepositorioAreaActividadeDatabase repositorioAreaActividadeInMemory;
+    private static RepositorioAreaActividadeDatabase repositorioAreaActividadeDatabase;
 
-    /**
-     * Define o atributo da classe RepositorioAreaActividade como uma lista de
-     * tipos da classe AreaActividade
-     */
-    private List<AreaActividade> listaAreasActividade;
 
     /**
      * Inicializa o Repositório de Areas de Actividade
      */
     RepositorioAreaActividadeDatabase(){
-        listaAreasActividade = new ArrayList<>();
-    }
-    
-    public int adicionarListaAreasActividade(RepositorioAreaActividadeDatabase outraListaAreasActividade) {
-        int totalAreasAdicionadas = 0;
-        
-        for (AreaActividade areaActividade : outraListaAreasActividade.listaAreasActividade) {
-            boolean areaActividadeAdicionada = addAreaActividade(areaActividade);
-            if (areaActividadeAdicionada) {
-                totalAreasAdicionadas++;
-            }
-        }
-        return totalAreasAdicionadas;
-    }
-
-    public AreaActividade novaAreaActividade(String codigo, String descBreve, String descDetalhada) {
-        return new AreaActividade(codigo, descBreve, descDetalhada);
-    }
-
-
-    @Override
-    public int save(RepositorioAreaActividade outraListaAreasActividade) {
-        return 0;
     }
 
     /**
-     * Adiciona uma Área de Actividade à lista de Áreas de Actividade
-     * @param areaActividade do tipo da classe AreaActividade
-     * @throws AreaActividadeDuplicadaException
-     * @return
+     * Devolve uma instância estática do Repositório de Áreas de Actividade
+     * @return RepositorioAreaActividade
      */
-    public boolean addAreaActividade(AreaActividade areaActividade) throws AreaActividadeDuplicadaException {
-        AreaActividade aa = getAreaActividadeByCodigo(areaActividade.getCodigo().toString());
-        if (aa == null) {
-            listaAreasActividade.add(areaActividade);
-            return true;
-        } else {
-            throw new AreaActividadeDuplicadaException(aa.getCodigo() + ": Área de Actividade já registada!");
+    public static RepositorioAreaActividadeDatabase getInstance(){
+        if(repositorioAreaActividadeDatabase == null) {
+            repositorioAreaActividadeDatabase = new RepositorioAreaActividadeDatabase();
         }
+        return repositorioAreaActividadeDatabase;
     }
 
-    @Override
-    public boolean addAreaActividade(String codigo, String descBreve, String descDetalhada) throws AreaActividadeDuplicadaException {
-        return false;
-    }
-
-    /**
-     * Adiciona uma Área de Actividade à lista de Áreas de Actividade
-     * @param codigo o código único de cada Área de Actividade.
-     * @param descBreve a descrição breve da Área de Actividade.
-     * @param descDetalhada a descrição detalhada da Área de Actividade.
-     * @throws AreaActividadeDuplicadaException
-     */
     public void save(String codigo, String descBreve, String descDetalhada) throws AreaActividadeDuplicadaException {
-        AreaActividade aa = getAreaActividadeByCodigo(codigo);
-        if (aa == null) {
-            AreaActividade areaActividade = new AreaActividade(codigo, descBreve, descDetalhada);
-        } else {
-            throw new AreaActividadeDuplicadaException(aa.getCodigo() + ": Área de Actividade já registada!");
-        }
-    }
-    
 
+    }
 
     @Override
     public List<AreaActividade> getAll() {
@@ -114,71 +62,7 @@ public class RepositorioAreaActividadeDatabase implements Serializable, Reposito
         return null;
     }
 
-    /**
-     * Devolve a lista de Áreas de Actividade
-     *
-     * @return 
-     */
-    public List<AreaActividade> getListaAreasActividade() {
 
-        return listaAreasActividade;
-    }
-    
-    /**
-     * Devolve uma Área de Actividade de acordo com o código registado
-     * @param codigo o código único de cada Área de Actividade.
-     * @return AreaActividade registada
-     */
-    public AreaActividade getAreaActividadeByCodigo(String codigo) {
-        for (int i = 0; i < this.listaAreasActividade.size(); i++) {
-            //AreaActividade areaActividade = RepositorioAreaActividade.getInstance().getAreaActividadeByCodigo(codigo);
-            AreaActividade areaActividade = this.listaAreasActividade.get(i);
-            if (areaActividade.getCodigo().equals(codigo)) {
-                return areaActividade;
-            }
-        }
-        return null;
-    }
-
-
-
-
-    /**
-     * Devolve uma instância estática do Repositório de Áreas de Actividade
-     * @return RepositorioAreaActividade
-     */
-    public static RepositorioAreaActividadeDatabase getInstance(){
-        if(repositorioAreaActividadeInMemory == null) {
-            repositorioAreaActividadeInMemory = new RepositorioAreaActividadeDatabase();
-        }
-        return repositorioAreaActividadeInMemory;
-    }
-
-    //n funciona
-    public List<String> getListaAreasActividadeByDescBreve() {
-        List<AreaActividade> listaAreasActividade = getListaAreasActividade();
-        List<String> listaAreasActividadeByDescBreve = new ArrayList<>();
-        for(AreaActividade areaActividade : listaAreasActividade) {
-            String descBreve = areaActividade.getDescBreve();
-            listaAreasActividadeByDescBreve.add(descBreve);
-        }
-        return listaAreasActividadeByDescBreve;
-    }
-    
-    /**
-     * Informa se a lista de Áreas de Actividade está ou não vazia
-     * @return 
-     */
-    public boolean isVazia() {
-        return listaAreasActividade.isEmpty();
-    }
-
-    @Override
-    public String toString() {
-        return "RepositorioAreaActividade{" +
-                "listaAreasActividade=" + listaAreasActividade +
-                '}';
-    }
 
 
 
