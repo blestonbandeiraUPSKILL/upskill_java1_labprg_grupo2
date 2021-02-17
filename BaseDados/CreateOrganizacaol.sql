@@ -20,8 +20,10 @@ is
     v_nif organizacao.nif%type;
     
 BEGIN
-   
-   createEnderecoPostal(p_arruamento, p_numeroPorta, p_localidade, p_codPostal);
+    
+    createEnderecoPostal(p_arruamento, p_numeroPorta, p_localidade, p_codPostal);
+    createUtilizadorGestor(p_emailGestor, p_nomeGestor, p_password, p_telefoneGestor,
+    p_funcao, v_nif);
 
     INSERT INTO Organizacao 
         (nif, nome, website, 
@@ -34,8 +36,7 @@ BEGIN
     RETURNING nif
     INTO v_nif;
     
-    createUtilizadorGestor(p_emailGestor, p_nomeGestor, p_password, p_telefoneGestor,
-    p_funcao, v_nif);
+   
     
 END;
 /

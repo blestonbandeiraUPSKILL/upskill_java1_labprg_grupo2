@@ -94,11 +94,11 @@ public class RepositorioOrganizacao implements Serializable{
             callableStatementOrg.setString(8, enderecoPostal.getPorta());
             callableStatementOrg.setString(9, enderecoPostal.getLocalidade());
             callableStatementOrg.setString(10, enderecoPostal.getCodigoPostal());
-            callableStatementOrg.setString(12, gestor.getNome());
-            callableStatementOrg.setString(13, gestor.getPassword().getPasswordText());
-            callableStatementOrg.setString(14, gestor.getRolename().toString());
-            callableStatementOrg.setString(15, gestor.getTelefone());
-            callableStatementOrg.setString(16, gestor.getFuncao());
+            callableStatementOrg.setString(11, gestor.getNome());
+            callableStatementOrg.setString(12, gestor.getPassword().getPasswordText());
+            callableStatementOrg.setString(13, gestor.getRolename().toString());
+            callableStatementOrg.setString(14, gestor.getTelefone());
+            callableStatementOrg.setString(15, gestor.getFuncao());
 
             callableStatementOrg.executeQuery();
 

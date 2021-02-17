@@ -83,6 +83,9 @@ public class RegistarOrgEGestorUI implements Initializable {
         try {
             //FXMLLoader loaderConfirmarRegisto = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/ConfirmarRegistoOrgScene.fxml"));
 
+            AlgoritmoGeradorPasswords algoritmoGeradorPasswords = Plataforma.getInstance().getAlgoritmoGeradorPwd();
+            Password password = new Password(algoritmoGeradorPasswords.geraPassword());
+
             Organizacao organizacao = registarOrganizacaoController.novaOrganizacao(
                     txtNif.getText(),
                     txtNomeOrganizacao.getText(),
@@ -95,7 +98,7 @@ public class RegistarOrgEGestorUI implements Initializable {
                     txtEndLocalidade.getText(),
                     txtEndCodPostal.getText(),
                     txtNomeGestor.getText(),
-                    new Password(registarOrganizacaoController.organizacao.getColabGestor().getPassword().getPasswordText()),
+                    password,
                     Rolename.GESTOR.toString(),
                     txtTelefoneGestor.getText(),
                     txtFuncaoGestor.getText()

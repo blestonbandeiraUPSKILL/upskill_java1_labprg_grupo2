@@ -5,17 +5,14 @@ CREATE OR REPLACE PROCEDURE createCandidatura(
     p_txtApresentacao candidatura.txtapresentacao%type,
     p_txtMotivacao candidatura.txtmotivacao%type,
     p_idAnuncio anuncio.idanuncio%type,
-    p_idProcessoSeriacao processoseriacao.idprocessoseriacao%type,
     p_emailFreelancer freelancer.email%type
     )
 
 IS
 
     v_countAnuncio int;
-    v_countProcessoSeriacao int;
     v_countEmailFreelancer int;
     ex_Anuncio exception;
-    ex_ProcessoSeriacao exception;
     ex_EmailFreelancer exception;
 
 BEGIN
@@ -29,15 +26,6 @@ BEGIN
         RAISE ex_Anuncio;
     END IF;
     
-    SELECT count(*) INTO v_countProcessoSeriacao
-    FROM ProcessoSeriacao
-    WHERE idProcessoSeriacao = p_idProcessoSeriacao;
-    
-    IF v_countprocessoseriacao = 0
-    THEN
-        RAISE ex_ProcessoSeriacao;
-    END IF;
-    
     SELECT count(*) INTO v_countEmailFreelancer
     FROM Freelancer
     WHERE email = p_emailFreelancer;
@@ -48,12 +36,12 @@ BEGIN
     END IF;
     
     INSERT INTO Candidatura
-        (dataFimCandidatura, valorPretendido, numeroDias, txtApresentacao, txtMotivacao, idAnuncio, idProcessoSeriacao, emailFreelancer)
+        (dataFimCandidatura, valorPretendido, numeroDias, txtApresentacao, txtMotivacao, idAnuncio, emailFreelancer)
     VALUES
-        (p_dataFimCandidatura, p_valorPretendido, p_numeroDias, p_txtApresentacao, p_txtMotivacao, p_idAnuncio, p_idProcessoSeriacao, p_emailFreelancer);
+        (p_dataFimCandidatura, p_valorPretendido, p_numeroDias, p_txtApresentacao, p_txtMotivacao, p_idAnuncio, p_emailFreelancer);
     
     EXCEPTION WHEN
-        ex_Anuncio OR ex_ProcessoSeriacao OR ex_EmailFreelancer
+        ex_Anuncio OR ex_EmailFreelancer
     THEN
         RAISE_APPLICATION_ERROR(-20001, 'Dados ienxistentes');
 
