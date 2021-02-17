@@ -14,6 +14,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.sql.SQLException;
 
 /**
  *
@@ -48,15 +49,15 @@ public class FicheiroRepositorioOrganizacao {
         }
     }
 
-    public RepositorioOrganizacao desserializar() {
+    public RepositorioOrganizacao desserializar() throws SQLException {
         return desserializar(NOME_FICHEIRO_SERIALIZAR);
     }
 
-    public RepositorioOrganizacao desserializar(String nomeFicheiro) {
+    public RepositorioOrganizacao desserializar(String nomeFicheiro) throws SQLException {
         return desserializar(new File(nomeFicheiro));
     }
 
-    public RepositorioOrganizacao desserializar(File ficheiro) {
+    public RepositorioOrganizacao desserializar(File ficheiro) throws SQLException {
         RepositorioOrganizacao repositorioOrganizacao;
         try {
             ObjectInputStream in = new ObjectInputStream(

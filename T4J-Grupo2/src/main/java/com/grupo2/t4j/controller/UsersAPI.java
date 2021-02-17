@@ -30,8 +30,8 @@ public class UsersAPI implements Serializable {
         return bodyJSON.getString("email");
     }
 
-    public boolean registerUserWithRoles(String username, Email email, Password password, String rolenames) {
-        return usersAPIAdapter.registerUserWithRoles(username, email, password, rolenames);
+    public boolean registerUserWithRoles(Email email, String username, Password password, String rolenames) {
+        return usersAPIAdapter.registerUserWithRoles(email, username, password, rolenames);
     }
 
     public String getContext() {

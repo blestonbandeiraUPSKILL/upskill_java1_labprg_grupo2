@@ -17,6 +17,7 @@ import javafx.stage.WindowEvent;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class StartingPageUI implements Initializable {
@@ -69,7 +70,7 @@ public class StartingPageUI implements Initializable {
         adicionarStage.show();
     }
 
-    public void login(ActionEvent actionEvent) throws IOException {
+    public void login(ActionEvent actionEvent) throws IOException, SQLException {
 
         boolean login = autenticacaoController.login(
                 txtEmailLogin.getText(),

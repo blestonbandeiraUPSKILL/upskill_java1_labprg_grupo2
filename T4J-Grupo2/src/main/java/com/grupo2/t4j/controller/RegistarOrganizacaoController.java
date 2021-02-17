@@ -11,7 +11,7 @@ public class RegistarOrganizacaoController {
     private Plataforma plataforma;
     private RepositorioOrganizacao repositorioOrganizacao;
 
-    public RegistarOrganizacaoController() {
+    public RegistarOrganizacaoController() throws SQLException {
         this.plataforma = Plataforma.getInstance();
     }
 

@@ -30,6 +30,7 @@ import javafx.stage.WindowEvent;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.stage.FileChooser;
 
@@ -144,7 +145,7 @@ public class AdministrativoLogadoUI implements Initializable {
         adicionarStage.show();
     }
 
-    public void logout(ActionEvent actionEvent) {
+    public void logout(ActionEvent actionEvent) throws SQLException {
         boolean logout = autenticacaoController.logout();
         if (logout) {
             navigateStartingPage(actionEvent);
