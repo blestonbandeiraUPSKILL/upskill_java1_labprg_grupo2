@@ -7,7 +7,8 @@ participant ":PublicarTarefaCTRL" as PublicarTarefaCTRL
 participant ":Plataforma" as Plataforma
 participant "rt:RepositorioTarefa" as RepositorioTarefa
 participant "rta:RepositorioAnuncio" as RepositorioAnuncio
-
+participant "a:Anuncio" as Anuncio
+participant "tr:TipoRegimento" as TipoRegimento
 
 activate Colaborador
 Colaborador -> PublicarTarefaUI: 1: Inicia o proceso de publicação de tarefa
@@ -45,11 +46,17 @@ deactivate PublicarTarefaUI
 Colaborador -> PublicarTarefaUI: 3: Introduz o período de publicitação, o período de candidaturas e o período de seriação do anúncio da tarefa
 activate PublicarTarefaUI
 
-PublicarTarefaUI -> PublicarTarefaCTRL: 3.1: la = novoAnuncio(dtInPub, dtFimPub, dtInCand, dtFimCand, dtInSer, dtFimCand)
+PublicarTarefaUI -> PublicarTarefaCTRL: 3.1: la = novoAnuncio(dtInPub, dtFimPub, dtInCand, dtFimCand, dtInSer, dtFimSer, desigRegimento, regrasRegimento)
 activate PublicarTarefaCTRL
 
-PublicarTarefaCTRL -> RepositorioAnuncio : 3.1.1: ra = anuncio(dtInPub, dtFimPub, dtInCand, dtFimCand, dtInSer, dtFimCand)
+PublicarTarefaCTRL -> RepositorioAnuncio : 3.1.1: ra = anuncio(dtInPub, dtFimPub, dtInCand, dtFimCand, dtInSer, dtFimSer, desigRegimento, regrasRegimento)
 activate RepositorioAnuncio
+
+RepositorioAnuncio -> RepositorioAnuncio: 3.1.1.1: idAnuncio = getIdAnuncio()
+
+RepositorioAnuncio -> Anuncio: 3.1.1.2: create(idAnuncio, dtInPub, dtFimPub, dtInCand, dtFimCand, dtInSer, dtFimSer)
+RepositorioAnuncio -> TipoRegimento: 3.1.1.3: create(desigRegimento, regrasRegimento)
+RepositorioAnuncio -> RepositorioAnuncio: 3.1.1.4: addTipoRegimento(tr)
 deactivate RepositorioAnuncio
 deactivate PublicarTarefaCTRL
 
