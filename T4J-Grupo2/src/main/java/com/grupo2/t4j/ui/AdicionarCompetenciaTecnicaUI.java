@@ -27,6 +27,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Modality;
@@ -53,6 +54,7 @@ public class AdicionarCompetenciaTecnicaUI implements Initializable {
     @FXML TextArea txtDescricaoBreve;
     @FXML ComboBox<AreaActividade> cmbAreaActividade;
     @FXML ComboBox<GrauProficiencia> cmbGrauProficiencia;
+    @FXML ListView<GrauProficiencia> listViewGrausAplicaveis;
 
     public void associarParentUI(AdministrativoLogadoUI administrativoLogadoUI) {
         this.administrativoLogadoUI = administrativoLogadoUI;
