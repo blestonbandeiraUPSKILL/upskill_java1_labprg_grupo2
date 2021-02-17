@@ -14,11 +14,15 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import com.grupo2.t4j.repository.RepositorioAreaActividade;
+import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
@@ -40,6 +44,7 @@ public class AdicionarCompetenciaTecnicaUI implements Initializable {
     private RegistarCompetenciaTecnicaController registarCompetenciaTecnicaController;
     private RegistarAreaActividadeController registarAreaActividadeController;
     private Stage adicionarStage;
+    private Scene sceneAddGrauProficiencia;
 
     @FXML Button btnConfirmar;
     @FXML Button btnCancelar;
@@ -125,6 +130,26 @@ public class AdicionarCompetenciaTecnicaUI implements Initializable {
     }
     
     public void addGrauAplicavelAction (ActionEvent actionEvent){
+        
+        try {
+            FXMLLoader loaderAddGrauProficiencia = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/AdicionarGrauProficiencia.fxml"));
+            Parent rootAddGrauProficiencia = loaderAddGrauProficiencia.load();
+            sceneAddGrauProficiencia = new Scene(rootAddGrauProficiencia);
+            sceneAddGrauProficiencia.getStylesheets().add("/com/grupo2/t4j/style/app.css");
+            AdicionarGrauProficienciaUI adicionarGrauProficienciaUI = loaderAddGrauProficiencia.getController();
+            adicionarGrauProficienciaUI.associarParentUI(this);
+
+        }
+        catch (IOException exception) {
+            exception.printStackTrace();
+            AlertsUI.criarAlerta(Alert.AlertType.ERROR,
+                    MainApp.TITULO_APLICACAO,
+                    "Erro",
+                    exception.getMessage());
+        }
+        adicionarStage.setScene(sceneAddGrauProficiencia);
+        adicionarStage.setTitle("Adicionar Grau de Proficiência");
+        adicionarStage.show();
         
     }
 }

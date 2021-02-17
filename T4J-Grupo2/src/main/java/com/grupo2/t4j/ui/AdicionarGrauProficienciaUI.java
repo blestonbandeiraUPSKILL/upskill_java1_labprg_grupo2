@@ -40,6 +40,12 @@ public class AdicionarGrauProficienciaUI implements Initializable {
     private TextField txtValor;
     
     private List<GrauProficiencia> listaGrausAplicaveis;
+    
+    private AdicionarCompetenciaTecnicaUI adicionarCompetenciaTecnicaUI;
+    
+    public void associarParentUI(AdicionarCompetenciaTecnicaUI adicionarCompetenciaTecnicaUI) {
+        this.adicionarCompetenciaTecnicaUI = adicionarCompetenciaTecnicaUI;
+    }
 
 
     /**
