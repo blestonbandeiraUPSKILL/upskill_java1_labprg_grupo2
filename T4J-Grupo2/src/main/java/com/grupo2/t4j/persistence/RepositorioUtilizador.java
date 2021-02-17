@@ -21,6 +21,8 @@ public interface RepositorioUtilizador {
 
      void save(Email email, String nome, Password password, Rolename rolename) throws UtilizadorDuplicadoException;
 
+     void save(Utilizador utilizador);
+
      Utilizador findByEmail(String emailUt);
 
     ArrayList<Utilizador> getAll();

@@ -132,24 +132,16 @@ public class RepositorioOrganizacaoDatabase implements Serializable, Repositorio
             callableStatementOrg.setString(1, nif);
             callableStatementOrg.executeQuery();
 
-            connection.commit();
-            connection.close();
-
             return new Organizacao();
 
         } catch (SQLException exceptionOrg) {
             exceptionOrg.printStackTrace();
             exceptionOrg.getSQLState();
-            try {
-                System.err.print("Transaction is being rolled back");
-                connection.rollback();
-            } catch (SQLException sqlException) {
-                sqlException.getErrorCode();
-            }
 
-            connection.close();
-            dbConnectionHandler.closeAll();
             return null;
+        }
+        finally {
+            dbConnectionHandler.closeAll();
         }
 
     }

@@ -21,6 +21,7 @@ public interface RepositorioCompetenciaTecnica {
     void save(String codigo, String descBreve, String descDetalhada,
               AreaActividade areaActividade);
 
+    void save(CompetenciaTecnica competenciaTecnica);
 
     List<CompetenciaTecnica> getAll();
 

@@ -21,6 +21,8 @@ public interface RepositorioColaborador {
 
     void save(Email email, String nome,  String funcao, String telefone, Rolename rolename) throws ColaboradorDuplicadoException;
 
+    void save(Colaborador colaborador);
+
     Colaborador findByEmail(String emailCol);
 
     ArrayList<Colaborador> getAll();

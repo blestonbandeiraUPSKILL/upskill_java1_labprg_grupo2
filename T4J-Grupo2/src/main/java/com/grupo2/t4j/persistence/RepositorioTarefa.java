@@ -24,6 +24,8 @@ public interface RepositorioTarefa {
                              String descInformal, String descTecnica,
                              int duracao, double custo);
 
+    void save(Tarefa tarefa);
+
     Tarefa findByReferencia(String referencia);
 
 

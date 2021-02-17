@@ -67,6 +67,18 @@ public class RepositorioAdministrativoInMemory implements Serializable, Reposito
     }
 
     @Override
+    public void save(Administrativo administrativo) throws AdministrativoDuplicadoException {
+        Administrativo a = findByEmail(administrativo.getEmail().getEmailText());
+        if (a == null) {
+            Administrativo admin = new Administrativo(administrativo);
+            this.listaAdministrativos.add(admin);
+        } else {
+            throw new AdministrativoDuplicadoException(a.getEmail().getEmailText() +
+                    ": Administrador já registado");
+        }
+    }
+
+    @Override
     public ArrayList<Administrativo> getAll() {
         return new ArrayList<Administrativo>(listaAdministrativos);
     }

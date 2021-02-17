@@ -61,6 +61,16 @@ public class RepositorioAreaActividadeInMemory implements Serializable, Reposito
             listaAreasActividade.add(aa);
         }
         else {
+            throw new AreaActividadeDuplicadaException(codigo + ": Área de Actividade já registada!");
+        }
+    }
+
+    public boolean save(AreaActividade areaActividade) {
+        AreaActividade aa = findByCodigo(areaActividade.getCodigo());
+        if (aa == null) {
+            return listaAreasActividade.add(areaActividade);
+        }
+        else {
             throw new AreaActividadeDuplicadaException(aa.getCodigo() + ": Área de Actividade já registada!");
         }
     }
@@ -82,4 +92,17 @@ public class RepositorioAreaActividadeInMemory implements Serializable, Reposito
     }
 
 
+    public int adicionarListaAreasActividade(RepositorioAreaActividadeInMemory outraListaAreasActividade) {
+
+        int totalAreasAdicionadas = 0;
+
+        for (AreaActividade areaActividade : outraListaAreasActividade.listaAreasActividade) {
+            boolean areaActividadeAdicionada = save(areaActividade);
+            if (areaActividadeAdicionada) {
+                totalAreasAdicionadas++;
+            }
+        }
+        return totalAreasAdicionadas;
+
+    }
 }

@@ -21,6 +21,8 @@ public interface RepositorioAnuncio {
              dtInicioCandidatura, Data dtFimCandidatura, Data dtInicioSeriacao,
                Data dtFimSeriacao) throws AnuncioDuplicadoException;
 
+     void save(Anuncio anuncio);
+
 
     Anuncio findById(String idAnuncio);
 

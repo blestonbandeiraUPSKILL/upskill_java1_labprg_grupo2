@@ -55,6 +55,17 @@ public class RepositorioAnuncioInMemory implements Serializable, RepositorioAnun
     }
 
     @Override
+    public void save(Anuncio anuncio) {
+        Anuncio a = findById(anuncio.getIdAnuncio());
+        if (a == null) {
+            Anuncio anu = new Anuncio(anuncio);
+            this.listaAnuncios.add(anu);
+        } else {
+            throw new AnuncioDuplicadoException(anuncio.getIdAnuncio() + ": Anúncio já registado!");
+        }
+    }
+
+    @Override
     public Anuncio findById(String idAnuncio) {
         Anuncio anuncio = null;
         for (int i = 0; i < this.listaAnuncios.size(); i++) {

@@ -10,7 +10,6 @@ package com.grupo2.t4j.persistence;
  * @author CAD
  */
 
-import com.grupo2.t4j.exception.AreaActividadeDuplicadaException;
 import com.grupo2.t4j.model.AreaActividade;
 
 import java.util.List;
@@ -23,6 +22,8 @@ public interface RepositorioAreaActividade {
 
     
     void save(String codigo, String descBreve, String descDetalhada);
+
+    boolean save(AreaActividade areaActividade);
 
     List<AreaActividade> getAll();
 

@@ -23,31 +23,23 @@ public class RegistarAreaActividadeController /*implements Serializable*/{
 
     private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosInMemory();
     //private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosDatabase();
-    private RepositorioAreaActividade repo = fabricaRepositorios.getRepositorioAreaActividade();
+    private RepositorioAreaActividade repositorioAreaActividade = fabricaRepositorios.getRepositorioAreaActividade();
+
     private FicheiroRepositorioAreaActividade ficheiroAt;
     private RepositorioAreaActividadeInMemory repositorioAreaActividadeInMemory;
 
     public List<AreaActividade> getAreasActividade() {
-        return RepositorioAreaActividadeInMemory.getInstance().getListaAreasActividade();
+        return RepositorioAreaActividadeInMemory.getInstance().getAll();
     }
-
- /*   public AreaActividade novaAreaActividade(String codigo, String descBreve, String descDetalhada) {
-        return RepositorioAreaActividadeInMemory.getInstance().novaAreaActividade(codigo, descBreve, descDetalhada);
-    }*/
-
 
     public void registarAreaActividade(String codigo, String descBreve, String descDetalhada) {
         AreaActividade areaActividade = new AreaActividade(codigo, descBreve, descDetalhada);
-        repo.save(areaActividade);
-        //return RepositorioAreaActividadeInMemory.getInstance().addAreaActividade(areaActividade);
+        repositorioAreaActividade.save(areaActividade);
+
     }
 
-    public List<String> getAreasActividadeByDescBreve() {
-        return RepositorioAreaActividadeInMemory.getInstance().getListaAreasActividadeByDescBreve();
-    }
-
-    public AreaActividade getAreaActividadeByCodigo(String codigo) {
-       List<AreaActividade> listaAreasActividade = RepositorioAreaActividadeInMemory.getInstance().getListaAreasActividade();
+    public AreaActividade findByCodigo(String codigo) {
+       List<AreaActividade> listaAreasActividade = repositorioAreaActividade.getAll();
         for (int i = 0; i < listaAreasActividade.size(); i++) {
             AreaActividade areaActividade = listaAreasActividade.get(i);
             if (areaActividade.getCodigo().equals(codigo)) {

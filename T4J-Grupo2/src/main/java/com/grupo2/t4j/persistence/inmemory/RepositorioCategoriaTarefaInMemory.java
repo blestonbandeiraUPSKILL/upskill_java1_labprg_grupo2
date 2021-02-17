@@ -13,7 +13,7 @@ import java.util.List;
 
 public class RepositorioCategoriaTarefaInMemory implements Serializable, RepositorioCategoriaTarefa {
 
-    private static RepositorioCategoriaTarefaInMemory instance;
+    private static RepositorioCategoriaTarefaInMemory repositorioCategoriaTarefaInMemory;
     private List<Categoria> listaCategorias;
     
     /**
@@ -27,48 +27,30 @@ public class RepositorioCategoriaTarefaInMemory implements Serializable, Reposit
      * @return 
      */
     public static RepositorioCategoriaTarefaInMemory getInstance(){
-        if (instance == null){
-            instance = new RepositorioCategoriaTarefaInMemory();
+        if (repositorioCategoriaTarefaInMemory == null){
+            repositorioCategoriaTarefaInMemory = new RepositorioCategoriaTarefaInMemory();
         }
-        return instance;
+        return repositorioCategoriaTarefaInMemory;
     }
-
-   
-
 
     
-    public int adicionarListaCategorias(RepositorioCategoriaTarefaInMemory outraListaCategorias) {
-        int totalCategoriasAdicionadas = 0;
-        
-        for (Categoria categoria : outraListaCategorias.listaCategorias) {
-            boolean categoriaAdicionada = addCategoria(categoria);
-            if (categoriaAdicionada) {
-                totalCategoriasAdicionadas++;
-            }
-        }
-        return totalCategoriasAdicionadas;
-    }
+
 
     @Override
     public void save(String descBreve, String descDetalhada, AreaActividade areaActividade, List<CaracterizacaoCT> caracterizacaoCTS) {
 
     }
 
-    /**
-     * Adiciona uma categoria a  lista de categorias
-     * @param categoria
-     * @throws CategoriaDuplicadaException
-     * @return
-     */
-    public boolean addCategoria(Categoria categoria) throws CategoriaDuplicadaException {
+    @Override
+    public boolean save(Categoria categoria) {
         Categoria c = findById(categoria.getId());
         if (c == null) {
             this.listaCategorias.add(categoria);
-            return true;
+
         } else {
             throw new CategoriaDuplicadaException(c.getId() + ": Categoria ja existe");
         }
-
+        return false;
     }
 
     @Override
@@ -97,5 +79,17 @@ public class RepositorioCategoriaTarefaInMemory implements Serializable, Reposit
     @Override
     public ArrayList<Categoria> getAll() {
         return new ArrayList<Categoria>(listaCategorias);
+    }
+
+    public int adicionarListaCategorias(RepositorioCategoriaTarefaInMemory outraListaCategorias) {
+        int totalCategoriasAdicionadas = 0;
+
+        for (Categoria categoria : outraListaCategorias.listaCategorias) {
+            boolean categoriaAdicionada = save(categoria);
+            if (categoriaAdicionada) {
+                totalCategoriasAdicionadas++;
+            }
+        }
+        return totalCategoriasAdicionadas;
     }
 }

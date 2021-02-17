@@ -13,6 +13,8 @@ public interface RepositorioCaracterizacaoCT {
     void save(GrauProficiencia gp, Obrigatoriedade obrigatoriedade,
               CompetenciaTecnica competenciaTecnica) throws CaracterizacaoCTDuplicadaException;
 
+    void save(CaracterizacaoCT caracterizacaoCT);
+
     List<CaracterizacaoCT> getAll();
 
     List<CaracterizacaoCT> findByCompetenciaTecnica(List<CompetenciaTecnica> competenciasTecnicas);

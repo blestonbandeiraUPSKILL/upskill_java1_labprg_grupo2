@@ -20,6 +20,8 @@ public interface RepositorioAdministrativo{
 
     void save(Email email, String nome, Password password, Rolename rolename) throws AdministrativoDuplicadoException;
 
+    void save(Administrativo administrativo) throws AdministrativoDuplicadoException;
+
     ArrayList<Administrativo> getAll();
 
     Administrativo findByEmail(String email);

@@ -33,6 +33,11 @@ public class RepositorioCaracterizacaoCTInMemory implements Serializable, Reposi
     }
 
     @Override
+    public void save(CaracterizacaoCT caracterizacaoCT) {
+        //same
+    }
+
+    @Override
     public List<CaracterizacaoCT> getAll() {
         return new ArrayList<CaracterizacaoCT>(listaCaracterizacaoCTS);
     }
