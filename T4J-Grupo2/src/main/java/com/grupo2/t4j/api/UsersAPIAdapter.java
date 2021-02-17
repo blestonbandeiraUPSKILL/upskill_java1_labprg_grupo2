@@ -96,9 +96,9 @@ public class UsersAPIAdapter implements Serializable {
         return false;
     }
 
-    public boolean registerUserWithRoles(String username, Email email, Password password, String rolenames) {
-        String url = "registerUserWithRoles?app_context=" + getContext() + "&username=" + username + "&email=" + email.getEmailText()
-                + "&password=" + password.getPasswordText() + "&rolenames=" + rolenames;
+    public boolean registerUserWithRoles(Email email, String username, Password password, String rolenames) {
+        String url = "registerUserWithRoles?app_context=" + getContext() + "&email=" + email.getEmailText() + "&username=" + username +
+                 "&password=" + password.getPasswordText() + "&rolenames=" + rolenames;
         HttpRequest httpRequest = new HttpRequest(HttpRequestType.POST, url);
         HttpResponse httpResponse = HttpConnection.makeRequest(httpRequest);
 

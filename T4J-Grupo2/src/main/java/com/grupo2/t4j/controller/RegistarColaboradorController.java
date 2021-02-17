@@ -26,8 +26,8 @@ public class RegistarColaboradorController {
         return RepositorioColaborador.getInstance().getColaboradorByEmail(email.getEmailText());
     }
 
-    public Colaborador novoColaborador(String nome, Email email, String funcao, String telefone, Rolename rolename) {
-        return RepositorioColaborador.getInstance().novoColaborador(nome, email, funcao, telefone, Rolename.COLABORADOR);
+    public Colaborador novoColaborador(Email email, String nome, String funcao, String telefone, Rolename rolename) {
+        return RepositorioColaborador.getInstance().novoColaborador(email, nome, funcao, telefone, Rolename.COLABORADOR);
     }
     
     public boolean registarColaborador(Colaborador colaborador) {

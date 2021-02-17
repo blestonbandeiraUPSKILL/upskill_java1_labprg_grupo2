@@ -1,0 +1,201 @@
+@startuml
+
+left to right direction
+title Modelo Relacional
+
+hide circle
+'skinparam linetype ortho
+
+entity "Organizacao" {
+    nif: text {PK}     
+    --
+    nome: text {NN}
+    website: text
+    telefone: text {NN}
+    email: text {NN, UK}
+    emailGestor: text {FK, NN}
+    idEnderecoPostal: text {FK}
+}
+
+entity "Colaborador" {
+    email: text {PK, FK}
+    --
+    funcao: text
+    telefone: text
+    nifOrganizacao: text {FK}
+}
+
+entity "Utilizador" {
+    email: text {PK}
+    --
+    nome: text {NN}
+    password: text {NN}
+}
+
+entity "Administrativo" {
+    email: text {PK, FK}
+    --
+}
+
+entity "Categoria" {
+    idCategoria: text {PK}
+    --
+    descBreve: text {NN, UK}
+    descDetalhada: text
+    codigoAreaActividade: text {FK}
+}
+
+entity "CompetenciaTecnica" {
+    codigoCompTecnica: text {PK}
+    --
+    descBreve: text {NN, UK}
+    descDetalhada: text
+    idCaracterCT: text {FK}
+    codigoAreaActividade: text {FK}
+}
+
+entity "AreaActividade" {
+    codigoAreaActividade: text {PK}
+    --
+    descBreve: text {NN, UK}
+    descDetalhada: text
+}
+
+entity "GrauProficiencia" {
+    idGrauProficiencia: text {PK}
+    --
+    valor: integer {NN, UK}
+    designacao: text {NN}
+    codigoCompTecnica: text {FK}
+}
+
+entity "Freelancer" {
+    email: text {PK, FK}
+    --
+    telefone: text
+    nif: text
+    idEnderecoPostal: text {FK}
+}
+
+entity "EnderecoPostal" {
+    idEnderecoPostal: text {PK}
+    --
+    arruamento: text 
+    numeroPorta: text 
+    localidade: text 
+    codigoPostal: text 
+}
+
+entity "Tarefa" {
+    referencia: text {PK}
+    nifOrganizacao: text {PK, FK}
+    --
+    designacao: text {NN}
+    descInformal: text
+    descTecnica: text
+    duracaoEstimada: integer {NN}
+    custoEstimado: number {NN}
+    idCategoria: texto {FK}
+    emailColaborador: texto {FK}
+}
+
+entity "Anuncio" {
+    idAnuncio {PK}
+    --
+    referenciaTarefa: text {FK}
+    nifOrganizacao: text {FK}
+    dataInicioPublicacao: date {NN}
+    dataFimPublicacao: date {NN}
+    dataInicioCandidatura: date {NN}
+    dataFimCandidatura: date {NN}
+    dataInicioSeriacao {NN} 
+    dataFimSeriacao {NN}
+}
+
+entity "ProcessoSeriacao" {
+    idProcessoSeriacao: text {PK}
+    --
+    dataRealizacao: date {NN}
+    idTipoRegimento: text {FK}
+}
+
+entity "TipoRegimento" {
+    idTipoRegimento: text {PK}
+    --
+    designacao: text {NN, UK}
+    descricaoRegras: text {NN}
+}
+
+entity "Classificacao" {
+    idClassificacao: text {PK}
+    --
+    lugar: integer {NN, UK}
+    idProcessoSeriacao: text {FK}
+}
+
+entity "Candidatura" {
+    idCandidatura: text {PK}
+    --
+    dataFimCandidatura: date {NN}
+    valorPretendido: number {NN}
+    numeroDias: integer {NN}
+    txtApresentacao: text
+    txtMotivacao: text
+    idAnuncio: text {FK}
+    idProcessoSeriacao: text {FK}
+    emailFreelancer: text {FK}
+}
+
+entity "HabilitacaoAcademica" {
+    idHabilitacaoAcademica {PK}
+    --
+    grau: text {NN}
+    designacaoCurso: text {NN}
+    nomeInstituicao: text {NN}
+    mediaCurso: number {NN}
+}
+
+entity "ReconhecimentoGP" {
+    idReconhecimntoGP: text {PK}
+    --
+    dataReconhecimento: date {NN}
+    codigoCompTecnica: text {FK}
+}
+
+entity "FreelancerHabAcademica" {
+    emailFreelancer: text {PK, FK}
+    idHabilitacaoAcademica: text {PK, FK}
+}
+
+entity "CaracterCT" {
+    idCaracterCT: text {PK}
+    --
+    obrigatoria: boolean {NN}
+    grauProfMinimo: text {FK, NN}
+}
+
+AreaActividade ||--|{ Categoria
+Freelancer |o--|| Utilizador
+Administrativo |o--|| Utilizador
+AreaActividade ||--|{ CompetenciaTecnica
+CompetenciaTecnica ||--|{ GrauProficiencia
+Colaborador ||--|{ Tarefa
+Categoria ||--|{ Tarefa
+Tarefa ||--o| Anuncio
+Organizacao ||--|{ Colaborador
+Colaborador |o--|| Utilizador
+Anuncio ||--|{ Candidatura
+Freelancer||--o{ Candidatura
+Organizacao ||--|| EnderecoPostal
+Freelancer ||--|| EnderecoPostal
+Candidatura }|--|| ProcessoSeriacao
+ProcessoSeriacao }|--|| TipoRegimento
+ProcessoSeriacao ||--|{ Classificacao
+Freelancer ||--|{ FreelancerHabAcademica
+HabilitacaoAcademica ||--|{ FreelancerHabAcademica
+ Freelancer ||--|{ ReconhecimentoGP
+ReconhecimentoGP }|--|| GrauProficiencia
+CaracterCT ||--|{ GrauProficiencia
+
+
+@enduml

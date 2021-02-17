@@ -17,6 +17,7 @@ import javafx.stage.*;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -198,7 +199,7 @@ public class ColaboradorLogadoUI implements Initializable {
         }
     }
 
-    public void logout(ActionEvent actionEvent) {
+    public void logout(ActionEvent actionEvent) throws SQLException {
         boolean logout = autenticacaoController.logout();
         if (logout) {
             navigateStartingPage(actionEvent);

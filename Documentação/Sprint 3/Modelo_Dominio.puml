@@ -2,6 +2,7 @@
 title Modelo de Domínio
 
 left to right direction
+
 class Plataforma {
     -String designacao
 }
@@ -70,6 +71,7 @@ class GrauProficiencia   {
 }
 
 class ReconhecimentoCT {
+    -Data dataReconhecimento
 }
 
 class HabilitacaoAcademica {
@@ -108,7 +110,7 @@ class AlgoritmoGeradorPasswords {
 }
 
 class Anuncio {
-    -Date dataInicioPublicitacao
+    -Data dataInicioPublicitacao
     -Date dataFimPublicitacao
     -Date dataInicioCandidatura
     -Date dataFimCandidatura

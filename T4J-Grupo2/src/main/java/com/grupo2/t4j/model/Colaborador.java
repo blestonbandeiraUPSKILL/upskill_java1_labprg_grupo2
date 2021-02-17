@@ -27,13 +27,7 @@ public class Colaborador extends Utilizador implements Serializable{
      * 
      */
     private Rolename rolename;
-    
-    /**
-     * Password inicial de um Colaborador em processo de registo - antes de receber 
-     * a password oficial por email.
-     */
-//    private static final Password PASSWORD_POR_OMISSAO = new Password("00000000");
-    
+
     /**
      * Por definição, todos da classe Colaborador tem rolename Colaborador.
      */
@@ -50,9 +44,9 @@ public class Colaborador extends Utilizador implements Serializable{
      * 
      */
 
-    public Colaborador(String nome, Email email, Password password, String funcao, 
+    public Colaborador(Email email, String nome, Password password, String funcao,
             String telefone, Rolename rolename) {
-        super(nome, email, password, rolename);
+        super(email, nome, password, rolename);
         setFuncao(funcao);
         setTelefone(telefone);
     }
@@ -67,9 +61,9 @@ public class Colaborador extends Utilizador implements Serializable{
      * 
      */
 
-    public Colaborador(String nome, String emailCol, String passCol,
+    public Colaborador(String emailCol, String nome, String passCol,
             String funcao, String telefone, Rolename rolename) {
-        super(nome, emailCol, passCol, rolename);
+        super(emailCol, nome, passCol, rolename);
         setFuncao(funcao);
         setTelefone(telefone);
     }
@@ -83,9 +77,9 @@ public class Colaborador extends Utilizador implements Serializable{
      * @param telefone o telefone do Colaborador da organização
      */
 
-    public Colaborador(String nome, Email emailCol, String funcao,
+    public Colaborador(Email emailCol, String nome, String funcao,
             String telefone, Rolename rolename){
-        super(nome, emailCol, rolename);
+        super(emailCol, nome, rolename);
         setFuncao(funcao);
         setTelefone(telefone);
     }
@@ -94,16 +88,15 @@ public class Colaborador extends Utilizador implements Serializable{
      * Construtor da classe Colaborador com password por omissão (antes de receber 
      * a password oficial por email - password = "00000000", e com Rolename de 
      * COLABORADOR por omissão
-     * @param nome o nome do Colaborador
      * @param emailCol o email do Colaborador em formato String
+     * @param nome o nome do Colaborador
      * @param funcao a função do Colaborador da organização
      * @param telefone o telefone do Colaborador da organização
      */
 
-    public Colaborador(String nome, String emailCol, String funcao,
-            String telefone){
-        super(nome, new Email(emailCol), ROLENAME_POR_OMISSAO);
-        setFuncao(funcao);
+    public Colaborador(Email emailCol, String nome,
+                       String telefone, Rolename rolename){
+        super(new Email(emailCol), nome, Rolename.GESTOR);
         setTelefone(telefone);
     }
        
@@ -112,7 +105,7 @@ public class Colaborador extends Utilizador implements Serializable{
      * @param colaborador é do tipo da classe Colaborador
      */
     public Colaborador (Colaborador colaborador){
-        super(colaborador.getNome(), colaborador.getEmail(), colaborador.getPassword(),
+        super(colaborador.getEmail(), colaborador.getNome(), colaborador.getPassword(),
                 colaborador.getRolename());               
         setFuncao(colaborador.funcao);
         setTelefone(colaborador.telefone);

@@ -2,27 +2,29 @@ package com.grupo2.t4j.controller;
 
 import com.grupo2.t4j.model.*;
 
+import java.sql.SQLException;
+
 public class AutenticacaoController {
 
-    public boolean login (String username, String password) {
+    public boolean login (String username, String password) throws SQLException {
 
         return Plataforma.getInstance().getUsersAPI().login(username, password);
     }
 
-    public boolean logout() {
+    public boolean logout() throws SQLException {
         return Plataforma.getInstance().getUsersAPI().logout();
     }
 
-    public Rolename getRole(){
+    public Rolename getRole() throws SQLException {
         return Rolename.valueOf(Plataforma.getInstance().getUsersAPI().getRole().toUpperCase());
 
     }
 
-    public Email getEmail() {
+    public Email getEmail() throws SQLException {
         return new Email(Plataforma.getInstance().getUsersAPI().getEmail());
     }
 
-    public boolean registarGestorComoUtilizador(Colaborador colaborador) {
+    public boolean registarGestorComoUtilizador(Colaborador colaborador) throws SQLException {
         String nome = colaborador.getNome();
         Email email = colaborador.getEmail();
 
@@ -31,13 +33,13 @@ public class AutenticacaoController {
         colaborador.setPassword(password);
 
         UsersAPI usersAPI = Plataforma.getInstance().getUsersAPI();
-        Utilizador utilizador = new Utilizador(nome, email, password, Rolename.GESTOR);
+        Utilizador utilizador = new Utilizador(email, nome, password, Rolename.GESTOR);
 
-        return usersAPI.registerUserWithRoles(nome, email, password, "gestor")
+        return usersAPI.registerUserWithRoles(email, nome, password, "gestor")
                 && Plataforma.getInstance().getRepositorioUtilizador().addUtilizador(utilizador);
     }
 
-    public boolean registarColaboradorComoUtilizador(Colaborador colaborador) {
+    public boolean registarColaboradorComoUtilizador(Colaborador colaborador) throws SQLException {
         String nome = colaborador.getNome();
         Email email = colaborador.getEmail();
 
@@ -46,9 +48,9 @@ public class AutenticacaoController {
         colaborador.setPassword(password);
 
         UsersAPI usersAPI = Plataforma.getInstance().getUsersAPI();
-        Utilizador utilizador = new Utilizador(nome, email, password, Rolename.COLABORADOR);
+        Utilizador utilizador = new Utilizador(email, nome, password, Rolename.COLABORADOR);
 
-        return usersAPI.registerUserWithRoles(nome, email, password, "colaborador") &&
+        return usersAPI.registerUserWithRoles(email, nome, password, "colaborador") &&
                 Plataforma.getInstance().getRepositorioUtilizador().addUtilizador(utilizador);
     }
 

@@ -13,7 +13,8 @@
 - [Glossário](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Documenta%C3%A7%C3%A3o/Sprint%203/Glossario.md)
 - [Modelo de Domínio](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Documenta%C3%A7%C3%A3o/Sprint%203/Modelo_Dom%C3%ADnio.png)
 - [Diagrama de Casos de Uso](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Documenta%C3%A7%C3%A3o/Sprint%203/Diagrama_Casos_Uso/Diagrama_Casos_Uso.png)
-- [Requisitos Funcionais e Não Funcionais](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Documenta%C3%A7%C3%A3o/Sprint%202/Requisitos_Funcionais_e_Nao_Funcionais.md)
+- [Requisitos Funcionais e Não Funcionais](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Documenta%C3%A7%C3%A3o/Sprint%203/Requisitos_Funcionais_e_Nao_Funcionais.md)
+- [Modelo Relacional](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Documenta%C3%A7%C3%A3o/Sprint%203/Base%20de%20Dados/Modelo_Relacional.png)
 
 #### Use Cases
 
@@ -28,8 +29,8 @@
 ##### Sprint 3
 - [UC07 - Registar Freelancer](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Documenta%C3%A7%C3%A3o/Sprint%203/UC07_Registar_Freelancer/UC07.md)
 - [UC08 - Publicar Tarefa](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Documenta%C3%A7%C3%A3o/Sprint%203/UC08_Publicar_Tarefa/UC08_Publicar_Tarefa.md)
-- [UC09 - Efectuar Candidatura](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Documenta%C3%A7%C3%A3o/Sprint%203/UC09_Efectuar_Candidatura/UC09.md)
-- [UC10 - Seriar (não automaticamente) Candidaturas de Anúncio](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Documenta%C3%A7%C3%A3o/Sprint%203/UC10_Seriar_(n%C3%A3o_automaticamente)_Candidaturas/UC10_Seriar_Nao_Aut_Cand_Anuncio.md)
+- [UC09 - Efectuar Candidatura](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Documenta%C3%A7%C3%A3o/Sprint%203/UC09_Efectuar_Candidatura/UC09_Efectuar_Candidatura.md)
+- [UC10 - Seriar (não automaticamente) Candidaturas de Anúncio](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Documenta%C3%A7%C3%A3o/Sprint%203/UC10_Seriar_(n%C3%A3o_automaticamente)_Candidaturas/UC10_Seria%C3%A7%C3%A3o_(N%C3%A3o_Autom%C3%A1tica)_de_Candidaturas.md)
 
 ## Links úteis
 

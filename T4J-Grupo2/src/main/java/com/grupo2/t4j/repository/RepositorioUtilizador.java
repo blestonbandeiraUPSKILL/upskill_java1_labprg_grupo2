@@ -61,11 +61,11 @@ public class RepositorioUtilizador implements Serializable{
      * @param rolename o papel do Utilizador na T4J
      * @throws UtilizadorDuplicadoException
      */
-    public boolean addUtilizador(String nome, Email email, Password password, Rolename rolename) 
+    public boolean addUtilizador(Email email, String nome, Password password, Rolename rolename)
             throws UtilizadorDuplicadoException {
         Utilizador u = getUtilizadorByEmail(email.getEmailText());
         if (u == null) {
-            Utilizador utilizador = new Utilizador(nome, email, password, rolename);
+            Utilizador utilizador = new Utilizador(email, nome, password, rolename);
             this.listaUtilizadores.add(utilizador);
             return true;
         } else {
