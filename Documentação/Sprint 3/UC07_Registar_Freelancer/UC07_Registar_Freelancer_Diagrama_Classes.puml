@@ -6,6 +6,8 @@ left to right direction
 
 class Plataforma <<Singleton>> {
     -String designacao
+    --
+    getRepositorioOrganizacao()
 }
 
 class RegistarFreelancerUI{
@@ -36,11 +38,8 @@ class EnderecoPostal {
     -String localidade
 }
 
-class Email {
-
-}
-
 class ReconhecimentoCT {
+    -Date dataReconhecimento
 }
 
 class HabilitacaoAcademica {
@@ -52,8 +51,8 @@ class HabilitacaoAcademica {
 
 class CompetenciaTecnica {
     -String codigo
-    -String descricaoBreve
-    -String descricaoDetalhada
+    -String descBreve
+    -String descDetalhada
 }
 
 class GrauProficiencia {
@@ -68,6 +67,7 @@ class Utilizador {
 }
 
 class GestaoUtilizadoresFacade{
+    --
     getGestaoUtilizadoresFacade()
 }
 
@@ -81,17 +81,17 @@ class SessaoUtilizador{
     getEmailUtilizador()
 }
 
-class RepositorioOrganizacao{
-    --
-    organizacaoByEmailUtilizador(email)
+class RepositorioFreelancer{
+
 }
 
 interface AlgoritmoGeradorPasswords{
+    --
     getAlgoritmoGeradorPasswords()
 }
 
 class Password{
-    String password
+    -String password
     --
     getPassword()
 }
@@ -107,20 +107,30 @@ class Email {
 }
 
 RegistarFreelancerUI ..> RegistarFreelancerController
-RegistarFreelancerController ..> Plataforma
-RegistarFreelancerController ..> GestaoUtilizadoresFacade
 RegistarFreelancerController ..> SessaoUtilizador
+RegistarFreelancerController ..> Plataforma
+RegistarFreelancerController ..> AlgoritmoGeradorPasswords
+RegistarFreelancerController ..> GestaoUtilizadoresFacade
+RegistarFreelancerController ..> UtilizadorComPapel
+UtilizadorComPapel --> Utilizador
+Utilizador -- Password
+Utilizador -- Email
+Email -- Organizacao: < possui
+Freelancer --> ReconhecimentoCT: recebe(u) >
+ReconhecimentoCT --> CompetenciaTecnica: relativa a >
+CompetenciaTecnica --> GrauProficiencia: aplica >
+Freelancer --> HabilitacaoAcademica: tem >
+
 
 Freelancer --|> UtilizadorComPapel
 UtilizadorComPapel --|> Utilizador
 Email -- Utilizador: < possui
 Password -- Utilizador: < possui
-Email -- Organizacao: < possui
-Organizacao -- RepositorioOrganizacao
+
+
 Freelancer -- SessaoAtual: tem >
 RegistarFreelancerController ..> UtilizadorComPapel
-RegistarFreelancerController ..> AlgoritmoGeradorPasswords
-Plataforma ..> RepositorioOrganizacao
+Plataforma ..> RepositorioFreelancer
 
 
 @enduml
