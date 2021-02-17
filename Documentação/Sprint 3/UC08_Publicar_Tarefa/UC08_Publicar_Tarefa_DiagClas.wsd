@@ -1,0 +1,88 @@
+@startuml
+title UC08 - Publicar Tarefa
+
+class Plataforma <<Singleton>> {
+    -String designacao
+}
+
+class DefinirCategoriaTarefaUI{
+    --
+    allAreasAtividade()
+    novaAreaAtividade(descricao, codAreaAtividade)
+    allGrausProficiencia(codCompetencia)
+    setProficienciaObrigatoriedade(codGrau, obrigatoria)
+    registaCategoria()
+}
+
+class DefinirCategoriaTarefaCTRL{
+   --
+   allCategorias()
+   novaCategoria(descricao, at)
+   allGrausProficiencia(ct)
+   grauProficiencia(codGrau)
+   novaCaracterizacao(ct, gp, obrigatoria)
+   registaCategoria(c)
+}
+
+class AreaAtividade{
+    String codigo
+    String descBreve
+    String descDetalhada
+}
+
+class CompetenciaTecnica{
+    String codigo
+    String descBreve
+    String descDetalhada
+}
+
+class Categoria{
+    String id 
+    String descricao
+}
+
+class GrauProficiencia{
+    Integer valor
+    String designacao
+}
+
+class CaraterCT{
+    Boolean obrigatoria
+}
+
+class RepositorioAreaAtividade <<Singleton>>{
+    -List<AreaAtividade> areasActividade
+    -AreaAtividade areaAtividade
+    --
+    -allAreasAtividade()
+    -AreaAtividade(codAreaAtividade)
+}
+
+class RepositorioCompetenciaTecnica <<Singleton>>{
+    -List<CompetenciaTecnica> compTecnicas
+    -CompetenciaTecnica competenciaTecnica
+    --
+    -allCompetenciasTecnicas()
+    -CompetenciaTecnica(codCompetencia)
+}
+
+class RepositorioCategoria <<Singleton>>{
+    -List<Categoria> categorias
+    -Categoria categoria
+    --
+    -allCategorias()
+    -Categoria(codCat)    
+}
+
+DefinirCategoriaTarefaUI ..> DefinirCategoriaTarefaCTRL
+DefinirCategoriaTarefaCTRL ..> Plataforma
+DefinirCategoriaTarefaCTRL ..> RepositorioAreaAtividade
+DefinirCategoriaTarefaCTRL ..> RepositorioCategoria
+DefinirCategoriaTarefaCTRL ..> RepositorioCompetenciaTecnica
+RepositorioAreaAtividade "1" --> "1..*" AreaAtividade: possui >
+RepositorioCategoria "1" --> "1..*"  Categoria: possui >
+RepositorioCompetenciaTecnica "1" --> "1..*" CompetenciaTecnica: possui >
+CompetenciaTecnica --> GrauProficiencia
+GrauProficiencia --> CaraterCT: exige
+
+@enduml
