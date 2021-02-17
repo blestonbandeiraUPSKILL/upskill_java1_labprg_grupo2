@@ -20,7 +20,8 @@ O colaborador da organização inicia a publicação de uma tarefa. O sistema so
 
 **_Pré-condições:_**
 
-- O colaborador deve estar registado na plataforma.
+1. O colaborador deve estar registado na plataforma.
+2. Deve existir ao menos uma tarefa criada e não publicada já registada na plataforma.
 
 **_Pós-condições_**
 
