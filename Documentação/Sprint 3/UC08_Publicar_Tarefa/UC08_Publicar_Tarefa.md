@@ -20,7 +20,8 @@ O colaborador da organização inicia a publicação de uma tarefa. O sistema so
 
 **_Pré-condições:_**
 
-- O colaborador deve estar registado na plataforma.
+1. O colaborador deve estar registado na plataforma.
+2. Deve existir ao menos uma tarefa criada e não publicada já registada na plataforma.
 
 **_Pós-condições_**
 
@@ -59,12 +60,12 @@ O colaborador da organização inicia a publicação de uma tarefa. O sistema so
 ![UC08_ExcertoMD_Publicar_Tarefa](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Documenta%C3%A7%C3%A3o/Sprint%203/UC08_Publicar_Tarefa/UC08_ExcertoMD_Publicar_Tarefa.png)
 
 ## Diagrama de sequência <br/>
-![UC03_Definir_Categoria_Tarefa_Diagrama_Sequencia](UC03_Definir_Categoria_Tarefa_Diagrama_Sequencia.png)
+![UC08_Publicar_Tarefa_Diagrama_Sequencia](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Documenta%C3%A7%C3%A3o/Sprint%203/UC08_Publicar_Tarefa/UC08_Publicar_Tarefa_Diagrama_Sequencia.png)
 
 ## Diagrama de Classes <br/>
-![UC03_Definir_Categoria_Tarefa_Diagrama_Classes](UC03_Definir_Categoria_Tarefa_Diagrama_Classes.png)
+![UC08_Publicar_Tarefa_DiagClas](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Documenta%C3%A7%C3%A3o/Sprint%203/UC08_Publicar_Tarefa/UC08_Publicar_Tarefa_DiagClas.png)
 
 ## Plano de Testes <br/>
-[UC03 - Definir Categoria de Tarefa - Plano de Testes](UC03_Definir_Categoria_Tarefa_Plano_Testes.md)
+[UC08_Publicar_Tarefa_Plano_de_Testes](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Documenta%C3%A7%C3%A3o/Sprint%203/UC08_Publicar_Tarefa/UC08_Publicar_Tarefa_Plano_de_Testes.md)
 
 ##### [Voltar ao início](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/tree/main/README.md)

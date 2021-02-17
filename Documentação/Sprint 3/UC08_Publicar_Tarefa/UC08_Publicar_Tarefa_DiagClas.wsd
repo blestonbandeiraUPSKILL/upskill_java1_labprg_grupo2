@@ -1,0 +1,70 @@
+@startuml
+title UC08 - Publicar Tarefa
+
+class Plataforma <<Singleton>> {
+    -String designacao
+}
+
+class PublicarTarefaUI{
+    --
+    allTarefas()
+    novoAnuncio(dtInPub, dtFimPub, dtInCand, dtFimCand, dtInSer, dtFimSer, desigRegimento, regrasRegimento)
+    registaAnuncio()
+}
+
+class PublicarTarefaCTRL{
+   --
+   allTarefas()
+   novoAnuncio(dtInPub, dtFimPub, dtInCand, dtFimCand, dtInSer, dtFimSer, desigRegimento, regrasRegimento)
+   registaAnuncio(a)
+}
+
+class Anuncio{
+    -date dtInicioPublicitacao
+    -date dtFimPublicitacao
+    -date dtInicioCandidatura
+    -date dtFimCandidatura
+    -date dtInicioSeriacao
+    -date dtFimSeriacao
+}
+
+class Tarefa{
+  -String referencia
+  -String designacao
+  -String descInformal
+  -String descTecnica
+  -int duracaoEst
+  -double custoEst 
+}
+
+class TipoRegimento{
+  -String designacao
+  -String descricaoRegras
+}
+
+class RepositorioAnuncio <<Singleton>>{
+    -List<Anuncio> anuncios
+    -Anuncio anuncio
+    --
+    -allAnuncios()
+    -Anuncio(idAnuncio)
+}
+
+class RepositorioTarefa <<Singleton>>{
+    -List<Tarefa> tarefas
+    -Tarefa tarefa
+    --
+    -allTarefas()
+    -Tarefa(referencia)    
+}
+
+PublicarTarefaUI ..> PublicarTarefaCTRL
+PublicarTarefaCTRL ..> Plataforma
+PublicarTarefaCTRL ..> RepositorioTarefa
+PublicarTarefaCTRL ..> RepositorioAnuncio
+
+RepositorioTarefa "1" --> "1..*" Tarefa: possui >
+RepositorioAnuncio "1" --> "1..*"  Anuncio: possui >
+Anuncio --> TipoRegimento: exige
+
+@enduml
