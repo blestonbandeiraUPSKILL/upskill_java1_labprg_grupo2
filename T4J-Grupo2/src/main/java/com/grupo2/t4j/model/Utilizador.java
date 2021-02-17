@@ -62,9 +62,9 @@ public class Utilizador implements Serializable{
     
     /**
      * Construtor completo da classe Utilizador só com Strings
-     * @param nome o nome do Utilizador
      * @param emailUt o email do Utilizador em formato String
-     * @param passUt a password do Utilizador em formato String 
+     * @param nome o nome do Utilizador
+     * @param passUt a password do Utilizador em formato String
      * @param rolename o papel do Utilizador na T4J
      */
     public Utilizador(String emailUt, String nome, String passUt, Rolename rolename){

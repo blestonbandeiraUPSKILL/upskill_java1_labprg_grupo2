@@ -10,6 +10,7 @@ import java.io.IOException;
 import javafx.fxml.Initializable;
 
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.event.ActionEvent;
@@ -114,8 +115,8 @@ public class GestorLogadoUI implements Initializable {
         try {
 
             Colaborador colaborador = registarColaboradorController.novoColaborador(
-                    txtNomeColaborador.getText(),
                     new Email(txtEmailColaborador.getText()),
+                    txtNomeColaborador.getText(),
                     txtFuncaoColaborador.getText(),
                     txtTelefoneColaborador.getText(),
                     Rolename.COLABORADOR);
@@ -135,7 +136,7 @@ public class GestorLogadoUI implements Initializable {
             }
 
         }
-        catch (IllegalArgumentException iae) {
+        catch (IllegalArgumentException | SQLException iae) {
             AlertsUI.criarAlerta(Alert.AlertType.ERROR,
                     MainApp.TITULO_APLICACAO,
                     "Erro nos dados.",
@@ -189,7 +190,7 @@ public class GestorLogadoUI implements Initializable {
         }
     }
 
-    public void logout(ActionEvent actionEvent) {
+    public void logout(ActionEvent actionEvent) throws SQLException {
 
         boolean logout = autenticacaoController.logout();
         if (logout) {

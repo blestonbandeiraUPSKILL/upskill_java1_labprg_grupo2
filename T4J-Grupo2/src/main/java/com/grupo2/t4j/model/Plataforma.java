@@ -8,6 +8,8 @@ package com.grupo2.t4j.model;
 import com.grupo2.t4j.controller.UsersAPI;
 import com.grupo2.t4j.repository.*;
 
+import java.sql.SQLException;
+
 /**
  *
  * @author acris
@@ -34,7 +36,7 @@ public class Plataforma {
     /**
      * Construtor Classe Plataforma
      */
-    public Plataforma() {
+    public Plataforma() throws SQLException {
         algoritmoGeradorPasswords = new AlgoritmoGeradorPasswords();
         usersAPI = new UsersAPI();
         repositorioOrganizacao = RepositorioOrganizacao.getInstance();
@@ -59,7 +61,7 @@ public class Plataforma {
         this.designacao = designacao;
     }
 
-    public static Plataforma getInstance() {
+    public static Plataforma getInstance() throws SQLException {
         if(Plataforma.plataforma == null) {
             Plataforma.plataforma = new Plataforma();
         }
