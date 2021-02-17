@@ -119,15 +119,22 @@ class Organizacao {
 }
 
 RegistarFreelancerUI ..> RegistarFreelancerController
-RegistarFreelancerController ..> Plataforma
-RegistarFreelancerController ..> GestaoUtilizadoresFacade
 RegistarFreelancerController ..> SessaoUtilizador
+RegistarFreelancerController ..> Plataforma
+RegistarFreelancerController ..> AlgoritmoGeradorPasswords
+RegistarFreelancerController ..> GestaoUtilizadoresFacade
+RegistarFreelancerController ..> UtilizadorComPapel
+UtilizadorComPapel --> Utilizador
+Utilizador -- Password
+Utilizador -- Email
+Email -- Organizacao: < possui
+
 
 Freelancer --|> UtilizadorComPapel
 UtilizadorComPapel --|> Utilizador
 Email -- Utilizador: < possui
 Password -- Utilizador: < possui
-Email -- Organizacao: < possui
+
 Organizacao -- RepositorioOrganizacao
 Freelancer -- SessaoAtual: tem >
 RegistarFreelancerController ..> UtilizadorComPapel
