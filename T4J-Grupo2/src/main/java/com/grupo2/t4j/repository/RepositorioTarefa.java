@@ -77,18 +77,6 @@ public class RepositorioTarefa implements Serializable{
         }
 
     }
-
-    public List<Categoria> getCategoriasByAreaActividade(AreaActividade areaActividade) {
-        ArrayList<Categoria> categoriaPorAt = new ArrayList<>();
-
-        for (Categoria cat : listaCategorias) {
-            if (cat.getAt().equals(areaActividade)) {
-                categoriaPorAt.add(cat);
-            }
-        }
-        return categoriaPorAt;
-    }
-
     
     /**
      * Adiciona uma Tarefa à lista de Tarefas

@@ -136,7 +136,7 @@ public class RepositorioOrganizacao implements Serializable{
     public boolean addOrganizacao(Organizacao organizacao) throws OrganizacaoDuplicadaException, SQLException {
         String nif = organizacao.getNif();
 
-        if (getOrganizacaoByNif(nif) == null) {
+        if (getOrganizacaoByNif(nif)) {
             return createOrganizacao(organizacao, organizacao.getColabGestor(), organizacao.getEnderecoPostal());
             } else {
             throw new OrganizacaoDuplicadaException(organizacao.getNif() + ": Organização com esse NIPC já registada!");
@@ -151,7 +151,7 @@ public class RepositorioOrganizacao implements Serializable{
      *
      * @return a organização encontrada, caso exista
      */
-    private Organizacao getOrganizacaoByNif(String nif) throws SQLException {
+    private boolean getOrganizacaoByNif(String nif) throws SQLException {
 
         DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
         Connection connection = dbConnectionHandler.openConnection();
@@ -168,6 +168,9 @@ public class RepositorioOrganizacao implements Serializable{
 
             connection.commit();
             connection.close();
+
+            return true;
+
         } catch (SQLException exceptionOrg) {
             exceptionOrg.printStackTrace();
             exceptionOrg.getSQLState();
@@ -181,7 +184,7 @@ public class RepositorioOrganizacao implements Serializable{
 
         connection.close();
         dbConnectionHandler.closeAll();
-        return null;
+        return false;
     }
 
 

@@ -108,7 +108,7 @@ public class RegistarOrgEGestorUI implements Initializable {
 
             if(registou) {
                 autenticacaoController.registarGestorComoUtilizador(organizacao.getColabGestor());
-                txtPassword.setText(registarOrganizacaoController.organizacao.getColabGestor().getPassword().getPasswordText());
+                txtPassword.setText(password.toString());
 
                 AlertsUI.criarAlerta(Alert.AlertType.INFORMATION,
                     MainApp.TITULO_APLICACAO,
