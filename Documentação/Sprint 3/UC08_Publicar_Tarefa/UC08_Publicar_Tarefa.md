@@ -66,6 +66,6 @@ O colaborador da organização inicia a publicação de uma tarefa. O sistema so
 ![UC03_Definir_Categoria_Tarefa_Diagrama_Classes](UC03_Definir_Categoria_Tarefa_Diagrama_Classes.png)
 
 ## Plano de Testes <br/>
-[UC08_Publicar_Tarefa_Plano_de_Testes](UUC08_Publicar_Tarefa_Plano_de_Testes.md)
+[UC08_Publicar_Tarefa_Plano_de_Testes](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Documenta%C3%A7%C3%A3o/Sprint%203/UC08_Publicar_Tarefa/UC08_Publicar_Tarefa_Plano_de_Testes.md)
 
 ##### [Voltar ao início](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/tree/main/README.md)
