@@ -81,9 +81,9 @@ public class Organizacao implements Serializable{
      * @param emailOrg o email da organização
      * @param colabGestor o gestor da organização
      */
-    public Organizacao(String NIF, String nome, Website websiteOrg,
+    public Organizacao(String nif, String nome, Website websiteOrg,
                        String telefone, Email emailOrg, Colaborador colabGestor, EnderecoPostal enderecoOrg){
-        setNif(NIF);
+        setNif(nif);
         setNome(nome);
         if (websiteOrg instanceof Website) {
             this.websiteOrg = websiteOrg;

@@ -40,6 +40,7 @@ public class RegistarOrgEGestorUI implements Initializable {
     @FXML TextField txtEndLocalidade;
     @FXML TextField txtEndCodPostal;
     @FXML TextField txtNomeGestor;
+    @FXML TextField txtFuncaoGestor;
     @FXML TextField txtTelefoneGestor;
     @FXML TextField txtEmailGestor;
     @FXML TextField txtPassword;
@@ -81,19 +82,23 @@ public class RegistarOrgEGestorUI implements Initializable {
 
         try {
             //FXMLLoader loaderConfirmarRegisto = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/ConfirmarRegistoOrgScene.fxml"));
+
             Organizacao organizacao = registarOrganizacaoController.novaOrganizacao(
-                    txtNomeOrganizacao.getText(),
                     txtNif.getText(),
+                    txtNomeOrganizacao.getText(),
                     new Website(txtWebsite.getText()),
                     txtTelefoneOrganizacao.getText(),
                     new Email(txtEmailOrganizacao.getText()),
+                    new Email(txtEmailGestor.getText()),
                     txtEndArruamento.getText(),
                     txtEndPorta.getText(),
                     txtEndLocalidade.getText(),
                     txtEndCodPostal.getText(),
-                    new Email(txtEmailGestor.getText()),
                     txtNomeGestor.getText(),
-                    txtTelefoneGestor.getText()
+                    new Password(registarOrganizacaoController.organizacao.getColabGestor().getPassword().getPasswordText()),
+                    Rolename.GESTOR.toString(),
+                    txtTelefoneGestor.getText(),
+                    txtFuncaoGestor.getText()
             );
             
             boolean registou = registarOrganizacaoController.registaOrganizacao(organizacao);
@@ -108,34 +113,8 @@ public class RegistarOrgEGestorUI implements Initializable {
                     registou ? ("Organização registada com sucesso.")
                                 : "Não foi possível registar a Organização.").show();
 
-                //closeAddOrganizacao(actionEvent);
             }
 
-           /*Organizacao organizacao = new Organizacao(nomeOrganizacao,
-                    nif, arruamento, numeroPorta,
-                    localidade, codPostal, telefoneOrg,
-                    website, emailOrg, nomeGestor,
-                    emailGestor, telefoneGestor, role);*/
-
-           // RegistarOrganizacaoController.setOrganizacao(organizacao);
-
-            /*Parent rootConfirmarRegisto = loaderConfirmarRegisto.load();
-            loaderConfirmarRegisto.setController(registarOrganizacaoController);
-            sceneConfirmarRegisto = new Scene(rootConfirmarRegisto);
-
-            adicionarStage.setScene(sceneConfirmarRegisto);
-            adicionarStage.setTitle("Confirmar Dados");
-            adicionarStage.show();
-
-            btnAvancarRegisto.getScene().getWindow().hide();*/
-      /*  } catch (IOException exception) {
-            exception.printStackTrace();
-            Alert alerta = AlertsUI.criarAlerta(Alert.AlertType.ERROR,
-                    MainApp.TITULO_APLICACAO,
-                    "Erro",
-                    exception.getMessage());
-        }*/
-      
       
     }catch (IOException exception) {
             exception.printStackTrace();
