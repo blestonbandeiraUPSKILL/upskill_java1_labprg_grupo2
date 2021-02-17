@@ -38,7 +38,7 @@ class EnderecoPostal {
     -String localidade
 }
 
-class ReconhecimentoCT {
+class ReconhecimentoGT {
     -Date dataReconhecimento
 }
 
@@ -60,45 +60,9 @@ class GrauProficiencia {
     -String designacao
 }
 
-class Utilizador {
-    -String nome
-    -Email email
-    -Password password
-}
-
-class GestaoUtilizadoresFacade{
-    --
-    getGestaoUtilizadoresFacade()
-}
-
-class SessaoAtual{
-    --
-    getSessaoAtual()
-}
-
-class SessaoUtilizador{
-    --
-    getEmailUtilizador()
-}
-
 class RepositorioFreelancer{
 
 }
-
-interface AlgoritmoGeradorPasswords{
-    --
-    getAlgoritmoGeradorPasswords()
-}
-
-class Password{
-    -String password
-    --
-    getPassword()
-}
-
-class UtilizadorComPapel{
-}
-
 
 class Email {
     -String email
@@ -112,24 +76,16 @@ RegistarFreelancerController ..> Plataforma
 RegistarFreelancerController ..> AlgoritmoGeradorPasswords
 RegistarFreelancerController ..> GestaoUtilizadoresFacade
 RegistarFreelancerController ..> UtilizadorComPapel
-UtilizadorComPapel --> Utilizador
-Utilizador -- Password
-Utilizador -- Email
-Email -- Organizacao: < possui
-Freelancer --> ReconhecimentoCT: recebe(u) >
-ReconhecimentoCT --> CompetenciaTecnica: relativa a >
+Freelancer --> ReconhecimentoGT: recebe(u) >
+ReconhecimentoGT --> CompetenciaTecnica: relativa a >
 CompetenciaTecnica --> GrauProficiencia: aplica >
 Freelancer --> HabilitacaoAcademica: tem >
+Freelancer --> EnderecoPostal: tem >
 
-
-Freelancer --|> UtilizadorComPapel
 UtilizadorComPapel --|> Utilizador
 Email -- Utilizador: < possui
 Password -- Utilizador: < possui
 
-
-Freelancer -- SessaoAtual: tem >
-RegistarFreelancerController ..> UtilizadorComPapel
 Plataforma ..> RepositorioFreelancer
 
 
