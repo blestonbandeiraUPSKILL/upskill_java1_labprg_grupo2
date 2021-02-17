@@ -30,6 +30,9 @@ public class RepositorioOrganizacao implements Serializable{
     private List<Organizacao> listaOrganizacoes;
     Colaborador colabGestor;
     private DBConnectionHandler dbConnectionHandler;
+    String jdbcUrl = "jdbc:oracle:thin:@vsrvbd1.dei.isep.ipp.pt:1521/pdborcl";
+    String username = "UPSKILL_BD_TURMA1_04";
+    String password = "qwerty";
 
     /**
      * Construtor da classe Singleton RepositorioOrganizacao
@@ -72,6 +75,7 @@ public class RepositorioOrganizacao implements Serializable{
     public boolean createOrganizacao(Organizacao organizacao, Colaborador gestor,
                                    EnderecoPostal enderecoPostal) throws SQLException {
 
+        DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
         Connection connection = dbConnectionHandler.openConnection();
 
         CallableStatement callableStatementOrg = connection.prepareCall(
@@ -116,6 +120,7 @@ public class RepositorioOrganizacao implements Serializable{
         }
 
         connection.close();
+        dbConnectionHandler.closeAll();
         return false;
     }
 
@@ -129,11 +134,12 @@ public class RepositorioOrganizacao implements Serializable{
      * @return
      */
     public boolean addOrganizacao(Organizacao organizacao) throws OrganizacaoDuplicadaException, SQLException {
-        Organizacao o = getOrganizacaoByNif(organizacao.getNif());
-        if (o == null) {
+        String nif = organizacao.getNif();
+
+        if (getOrganizacaoByNif(nif) == null) {
             return createOrganizacao(organizacao, organizacao.getColabGestor(), organizacao.getEnderecoPostal());
             } else {
-            throw new OrganizacaoDuplicadaException(o.getNif() + ": Organização já registada!");
+            throw new OrganizacaoDuplicadaException(organizacao.getNif() + ": Organização com esse NIPC já registada!");
         }
     }
 
@@ -141,26 +147,41 @@ public class RepositorioOrganizacao implements Serializable{
      *
      * Procura no RepositorioOrganizacao por uma organização através do seu NIF
      *
-     * @param NIF nif da organização a ser procurada
+     * @param nif nif da organização a ser procurada
      *
      * @return a organização encontrada, caso exista
      */
-    private Organizacao getOrganizacaoByNif(String NIF) {
-        for (int i = 0; i < this.listaOrganizacoes.size(); i++) {
-            Organizacao organizacao = this.listaOrganizacoes.get(i);
-            if (organizacao.getNif().equals(NIF)) {
-                return organizacao;
+    private Organizacao getOrganizacaoByNif(String nif) throws SQLException {
+
+        DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
+        Connection connection = dbConnectionHandler.openConnection();
+
+        CallableStatement callableStatementOrg = connection.prepareCall(
+                "{CALL getOrgByNif(?)} ");
+
+        try {
+            connection.setAutoCommit(false);
+
+            callableStatementOrg.setString(1, nif);
+
+            callableStatementOrg.executeQuery();
+
+            connection.commit();
+            connection.close();
+        } catch (SQLException exceptionOrg) {
+            exceptionOrg.printStackTrace();
+            exceptionOrg.getSQLState();
+            try {
+                System.err.print("Transaction is being rolled back");
+                connection.rollback();
+            } catch (SQLException sqlException) {
+                sqlException.getErrorCode();
             }
         }
-        return null;
-    }
 
-    /**
-     * Devolve a lista de organizações no RepositorioOrganizacao
-     * @return
-     */
-    public ArrayList<Organizacao> getOrganizacoes() {
-        return new ArrayList<>(listaOrganizacoes);
+        connection.close();
+        dbConnectionHandler.closeAll();
+        return null;
     }
 
 

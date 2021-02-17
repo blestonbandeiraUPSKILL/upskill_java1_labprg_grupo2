@@ -170,7 +170,7 @@ public class RepositorioTarefa implements Serializable{
      *
      * @return 
      */
-    public ArrayList<Tarefa> getListaTarefas() {
+    public ArrayList<Tarefa> getAll() {
 
         return new ArrayList<Tarefa>(listaTarefas);
     }
@@ -184,4 +184,6 @@ public class RepositorioTarefa implements Serializable{
     public boolean isVazia() {
         return listaTarefas.isEmpty();
     }
+
+    //getAllByOrgPublicadas, getAllByOrgNaoPublicadas, getAllByOrg
 }

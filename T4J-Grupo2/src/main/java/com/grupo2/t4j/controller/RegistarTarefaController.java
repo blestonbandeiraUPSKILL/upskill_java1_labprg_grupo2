@@ -13,7 +13,6 @@ import com.grupo2.t4j.repository.RepositorioAreaActividade;
 import com.grupo2.t4j.repository.RepositorioCategoriaTarefa;
 import com.grupo2.t4j.repository.RepositorioTarefa;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -42,7 +41,7 @@ public class RegistarTarefaController {
     }
 
     public List<Tarefa> getListTarefas() {
-        return RepositorioTarefa.getInstance().getListaTarefas();
+        return RepositorioTarefa.getInstance().getAll();
     }
 
     public Tarefa novaTarefa(AreaActividade areaActividade, Categoria categoriaTarefa,

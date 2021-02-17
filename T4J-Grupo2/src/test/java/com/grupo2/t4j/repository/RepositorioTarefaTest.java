@@ -50,7 +50,7 @@ public class RepositorioTarefaTest {
         
         rt1.addTarefa(t1);
         
-        assertTrue(rt1.getListaTarefas().contains(t1));
+        assertTrue(rt1.getAll().contains(t1));
     }   
     
     @Test (expected = TarefaDuplicadaException.class)
@@ -104,7 +104,7 @@ public class RepositorioTarefaTest {
         rt1.addTarefa(t1);
         rt1.addTarefa(t2);
         
-        ArrayList<Tarefa> lista = rt1.getListaTarefas();
+        ArrayList<Tarefa> lista = rt1.getAll();
         
         assertEquals(lista.get(0),t1);        
         assertEquals(lista.get(1),t2);        

@@ -245,3 +245,18 @@ ALTER TABLE Anuncio
     ADD CONSTRAINT fk_Anuncio_Tarefa
         FOREIGN KEY (referenciaTarefa, nifOrganizacao)
         REFERENCES Tarefa(referencia, nifOrganizacao);
+    
+ALTER TABLE Colaborador
+    MODIFY funcao varchar(50);
+
+ALTER TABLE Anuncio
+    ADD idProcessoSeriacao integer;
+
+ALTER TABLE Anuncio
+    ADD CONSTRAINT fk_Anuncio_idProcessoSeriacao
+        FOREIGN KEY (idProcessoSeriacao)
+        REFERENCES ProcessoSeriacao(idProcessoSeriacao);
+        
+ALTER TABLE Candidatura
+    DROP COLUMN idProcessoSeriacao CASCADE CONSTRAINTS;
+    
