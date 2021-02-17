@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
@@ -15,7 +20,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" style="-fx-background-color: c4c4c4;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.AdicionarCompetenciaTecnicaUI">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" style="-fx-background-color: c4c4c4;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.AdicionarCompetenciaTecnicaUI">
    <center>
       <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <top>
@@ -87,7 +92,7 @@
                                     </TextArea>
                                  </children>
                               </VBox>
-                              <TextArea fx:id="txtDescDetalhada" layoutX="362.0" layoutY="50.0" prefHeight="192.0" prefWidth="328.0">
+                              <TextArea fx:id="txtDescDetalhada" layoutX="362.0" layoutY="50.0" prefHeight="83.0" prefWidth="328.0">
                                  <font>
                                     <Font name="Calibri" size="14.0" />
                                  </font>
@@ -97,6 +102,13 @@
                                     <Font name="Calibri" size="14.0" />
                                  </font>
                               </Label>
+                              <Label layoutX="366.0" layoutY="145.0" text="Graus Proficiência Aplicáveis">
+                                 <font>
+                                    <Font name="Calibri" size="14.0" />
+                                 </font>
+                              </Label>
+                              <ListView fx:id="listViewGrausAplicaveis" layoutX="362.0" layoutY="171.0" prefHeight="74.0" prefWidth="225.0" />
+                              <Button fx:id="btnAdicionarGrau" layoutX="609.0" layoutY="196.0" mnemonicParsing="false" onAction="#addGrauAplicavelAction" text="Adicionar" />
                            </children>
                         </AnchorPane>
                      </content>
