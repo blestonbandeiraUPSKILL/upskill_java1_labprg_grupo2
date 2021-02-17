@@ -1,7 +1,7 @@
 package com.grupo2.t4j.controller;
 
 import com.grupo2.t4j.model.*;
-import com.grupo2.t4j.repository.RepositorioOrganizacao;
+import com.grupo2.t4j.persistence.database.RepositorioOrganizacaoDatabase;
 
 import java.sql.SQLException;
 
@@ -9,7 +9,7 @@ public class RegistarOrganizacaoController {
 
     public Organizacao organizacao;
     private Plataforma plataforma;
-    private RepositorioOrganizacao repositorioOrganizacao;
+    private RepositorioOrganizacaoDatabase repositorioOrganizacao;
 
     public RegistarOrganizacaoController() throws SQLException {
         this.plataforma = Plataforma.getInstance();
@@ -23,14 +23,15 @@ public class RegistarOrganizacaoController {
         EnderecoPostal enderecoPostal = new EnderecoPostal(arruamento, numeroPorta, localidade, codigoPostal);
         Colaborador gestor = new Colaborador(emailGestor, nomeGestor, password, funcaoGestor, telefoneGestor, Rolename.GESTOR);
 
-        Organizacao organizacao = RepositorioOrganizacao.getInstance().novaOrganizacao(
+        Organizacao organizacao = RepositorioOrganizacaoDatabase.getInstance().novaOrganizacao(
                 nif, nome, website, telefone, emailOrganizacao, gestor, enderecoPostal);
 
         return organizacao;
     }
 
     public boolean registaOrganizacao(Organizacao organizacao) throws Exception {
-        return RepositorioOrganizacao.getInstance().addOrganizacao(organizacao);
+
+        return RepositorioOrganizacaoDatabase.getInstance().addOrganizacao(organizacao);
     }
 
 

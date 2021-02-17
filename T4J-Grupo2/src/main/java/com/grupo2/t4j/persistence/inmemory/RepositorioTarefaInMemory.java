@@ -3,26 +3,29 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.grupo2.t4j.repository;
+package com.grupo2.t4j.persistence.inmemory;
 
 /**
  *
  * @author CAD
  */
 
-import com.grupo2.t4j.model.*;
-import com.grupo2.t4j.exception.*;
+import com.grupo2.t4j.exception.TarefaDuplicadaException;
+import com.grupo2.t4j.model.AreaActividade;
+import com.grupo2.t4j.model.Categoria;
+import com.grupo2.t4j.model.Tarefa;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RepositorioTarefa implements Serializable{
+public class RepositorioTarefaInMemory implements Serializable{
     
     /**
      * Define uma instância estática do Repositório em que estão registados todos
      * os Administradores da plataforma
      */
-    private static RepositorioTarefa repositorioTarefa;
+    private static RepositorioTarefaInMemory repositorioTarefaInMemory;
     
      /**
      * Define o atributo da classe RepositorioTarefa como uma lista de
@@ -36,17 +39,17 @@ public class RepositorioTarefa implements Serializable{
      * Devolve uma instância estática do Repositório de Tarefas
      * @return RepositorioTarefa
      */
-    public static RepositorioTarefa getInstance(){
-        if (repositorioTarefa == null){
-            repositorioTarefa = new RepositorioTarefa();
+    public static RepositorioTarefaInMemory getInstance(){
+        if (repositorioTarefaInMemory == null){
+            repositorioTarefaInMemory = new RepositorioTarefaInMemory();
         }
-        return repositorioTarefa;
+        return repositorioTarefaInMemory;
     }
 
     /**
      * Inicializa o Repositório de Tarefas
      */
-    private RepositorioTarefa(){
+    private RepositorioTarefaInMemory(){
         listaTarefas = new ArrayList<>();
     }
 

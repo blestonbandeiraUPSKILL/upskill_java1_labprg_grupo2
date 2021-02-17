@@ -1,24 +1,27 @@
-package com.grupo2.t4j.repository;
+package com.grupo2.t4j.persistence.inmemory;
 
 import com.grupo2.t4j.exception.CaracterizacaoCTDuplicadaException;
-import com.grupo2.t4j.model.*;
+import com.grupo2.t4j.model.CaracterizacaoCT;
+import com.grupo2.t4j.model.CompetenciaTecnica;
+import com.grupo2.t4j.model.GrauProficiencia;
+import com.grupo2.t4j.model.Obrigatoriedade;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RepositorioCaracterizacaoCT implements Serializable {
+public class RepositorioCaracterizacaoCTInMemory implements Serializable {
 
-    public static RepositorioCaracterizacaoCT instance;
+    public static RepositorioCaracterizacaoCTInMemory instance;
     List<CaracterizacaoCT> listaCaracterizacaoCTS;
 
-    private RepositorioCaracterizacaoCT() {
+    private RepositorioCaracterizacaoCTInMemory() {
         listaCaracterizacaoCTS = new ArrayList<>();
     }
 
-    public static RepositorioCaracterizacaoCT getInstance() {
+    public static RepositorioCaracterizacaoCTInMemory getInstance() {
         if(instance == null) {
-            instance = new RepositorioCaracterizacaoCT();
+            instance = new RepositorioCaracterizacaoCTInMemory();
         }
         return instance;
     }

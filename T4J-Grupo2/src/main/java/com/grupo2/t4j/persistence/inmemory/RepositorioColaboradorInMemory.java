@@ -4,25 +4,28 @@
  * and open the template in the editor.
  */
 
-package com.grupo2.t4j.repository;
+package com.grupo2.t4j.persistence.inmemory;
 /**
  *
  * @author CAD
  */
 
-import com.grupo2.t4j.model.*;
-import com.grupo2.t4j.exception.*;
+import com.grupo2.t4j.exception.ColaboradorDuplicadoException;
+import com.grupo2.t4j.model.Colaborador;
+import com.grupo2.t4j.model.Email;
+import com.grupo2.t4j.model.Rolename;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RepositorioColaborador implements Serializable{
+public class RepositorioColaboradorInMemory implements Serializable{
     
     /**
      * Define uma instância estática do Repositório em que estão registados todos
      * os Colaboradores da plataforma
      */
-    private static RepositorioColaborador repositorioColaborador;
+    private static RepositorioColaboradorInMemory repositorioColaboradorInMemory;
     
     /**
      * Define o atributo da classe RepositorioColaborador como uma lista de
@@ -33,7 +36,7 @@ public class RepositorioColaborador implements Serializable{
     /**
      * Inicializa o Repositório de Colaboradores
      */
-    private RepositorioColaborador(){
+    private RepositorioColaboradorInMemory(){
         listaColaboradores = new ArrayList<>();
     }
     
@@ -175,11 +178,11 @@ public class RepositorioColaborador implements Serializable{
      * Devolve uma instância estática do Repositório de Colaboradores
      * @return RepositorioColaborador
      */
-    public static RepositorioColaborador getInstance(){
-        if (repositorioColaborador == null){
-            repositorioColaborador = new RepositorioColaborador();
+    public static RepositorioColaboradorInMemory getInstance(){
+        if (repositorioColaboradorInMemory == null){
+            repositorioColaboradorInMemory = new RepositorioColaboradorInMemory();
         }
-        return repositorioColaborador;
+        return repositorioColaboradorInMemory;
     }  
     
     /**
@@ -206,7 +209,7 @@ public class RepositorioColaborador implements Serializable{
         return listaColaboradores.isEmpty();
     }
     
-    public int adicionarListaColaborador(RepositorioColaborador outraListaColaborador) {
+    public int adicionarListaColaborador(RepositorioColaboradorInMemory outraListaColaborador) {
         int totalColaboradoresAdicionados = 0;
         
         for (Colaborador colaborador : outraListaColaborador.listaColaboradores) {

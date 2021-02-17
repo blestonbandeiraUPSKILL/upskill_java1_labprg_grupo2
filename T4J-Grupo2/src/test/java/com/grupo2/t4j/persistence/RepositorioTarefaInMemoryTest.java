@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.grupo2.t4j.repository;
+package com.grupo2.t4j.persistence;
 
 /**
  *
@@ -11,6 +11,8 @@ package com.grupo2.t4j.repository;
  */
 
 import java.util.ArrayList;
+
+import com.grupo2.t4j.persistence.inmemory.RepositorioTarefaInMemory;
 import org.junit.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import com.grupo2.t4j.model.*;
@@ -19,9 +21,9 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.BeforeAll;
-public class RepositorioTarefaTest {
+public class RepositorioTarefaInMemoryTest {
 
-    public RepositorioTarefaTest() {
+    public RepositorioTarefaInMemoryTest() {
     }
      
     @BeforeAll
@@ -43,7 +45,7 @@ public class RepositorioTarefaTest {
     @Test
     public void testAddTarefa() {
         
-        RepositorioTarefa rt1 = RepositorioTarefa.getInstance();
+        RepositorioTarefaInMemory rt1 = RepositorioTarefaInMemory.getInstance();
         
         Tarefa t1= new Tarefa("T_001", "Design", "Design web", "Design Web em Android", 
         14, 5000);
@@ -56,7 +58,7 @@ public class RepositorioTarefaTest {
     @Test (expected = TarefaDuplicadaException.class)
     public void testAddTarefaDuplicada() {
         
-        RepositorioTarefa rt1 = RepositorioTarefa.getInstance();
+        RepositorioTarefaInMemory rt1 = RepositorioTarefaInMemory.getInstance();
         
         Tarefa t1= new Tarefa("T_001", "Design", "Design web", "Design Web em Android", 
         14, 5000);
@@ -70,7 +72,7 @@ public class RepositorioTarefaTest {
     @Test
     public void testGetTarefaByReferencia() {
         
-        RepositorioTarefa rt1 = RepositorioTarefa.getInstance();
+        RepositorioTarefaInMemory rt1 = RepositorioTarefaInMemory.getInstance();
         
         Tarefa t1= new Tarefa("T_001", "Design", "Design web", "Design Web em Android", 
         14, 5000);
@@ -94,7 +96,7 @@ public class RepositorioTarefaTest {
     @Test
     public void testGetListaTarefas() {
         
-         RepositorioTarefa rt1 = RepositorioTarefa.getInstance();
+         RepositorioTarefaInMemory rt1 = RepositorioTarefaInMemory.getInstance();
         
         Tarefa t1= new Tarefa("T_001", "Design", "Design web", "Design Web em Android", 
         14, 5000);

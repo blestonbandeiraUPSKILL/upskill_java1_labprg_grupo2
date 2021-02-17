@@ -4,25 +4,29 @@
  * and open the template in the editor.
  */
 
-package com.grupo2.t4j.repository;
+package com.grupo2.t4j.persistence.inmemory;
 /**
  *
  * @author CAD
  */
 
-import com.grupo2.t4j.model.*;
-import com.grupo2.t4j.exception.*;
+import com.grupo2.t4j.exception.UtilizadorDuplicadoException;
+import com.grupo2.t4j.model.Email;
+import com.grupo2.t4j.model.Password;
+import com.grupo2.t4j.model.Rolename;
+import com.grupo2.t4j.model.Utilizador;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RepositorioUtilizador implements Serializable{
+public class RepositorioUtilizadorInMemory implements Serializable{
 
      /**
      * Define uma instância estática do Repositório em que estão registados todos
      * os Utilizadores da plataforma
      */
-    public static RepositorioUtilizador repositorioUtilizador;
+    public static RepositorioUtilizadorInMemory repositorioUtilizadorInMemory;
     
     /**
      * Define o atributo da classe RepositorioUtilizador como uma lista de
@@ -33,7 +37,7 @@ public class RepositorioUtilizador implements Serializable{
     /**
      * Inicializa o Repositório de Utilizadores
      */
-    private RepositorioUtilizador(){
+    private RepositorioUtilizadorInMemory(){
         listaUtilizadores = new ArrayList<>();
     }
           
@@ -155,11 +159,11 @@ public class RepositorioUtilizador implements Serializable{
      * Devolve uma instância estática do Repositório de Utilizadores
      * @return RepositorioUtilizador
      */
-    public static RepositorioUtilizador getInstance() {
-        if(repositorioUtilizador == null) {
-            repositorioUtilizador = new RepositorioUtilizador();
+    public static RepositorioUtilizadorInMemory getInstance() {
+        if(repositorioUtilizadorInMemory == null) {
+            repositorioUtilizadorInMemory = new RepositorioUtilizadorInMemory();
         }
-        return repositorioUtilizador;
+        return repositorioUtilizadorInMemory;
     }
     
     /**

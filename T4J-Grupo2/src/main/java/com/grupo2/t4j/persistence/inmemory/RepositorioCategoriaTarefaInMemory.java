@@ -1,31 +1,33 @@
-package com.grupo2.t4j.repository;
+package com.grupo2.t4j.persistence.inmemory;
 
 
 import com.grupo2.t4j.exception.CategoriaDuplicadaException;
-import com.grupo2.t4j.model.*;
+import com.grupo2.t4j.model.AreaActividade;
+import com.grupo2.t4j.model.CaracterizacaoCT;
+import com.grupo2.t4j.model.Categoria;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RepositorioCategoriaTarefa implements Serializable{
+public class RepositorioCategoriaTarefaInMemory implements Serializable{
 
-    private static RepositorioCategoriaTarefa instance;
+    private static RepositorioCategoriaTarefaInMemory instance;
     private List<Categoria> listaCategorias;
     
     /**
      * Construtor do repositorio
      */
-    private RepositorioCategoriaTarefa(){
+    private RepositorioCategoriaTarefaInMemory(){
         listaCategorias = new ArrayList<>();
     }
     /**
      * Garante que existe apenas um repositorio para categorias
      * @return 
      */
-    public static RepositorioCategoriaTarefa getInstance(){
+    public static RepositorioCategoriaTarefaInMemory getInstance(){
         if (instance == null){
-            instance = new RepositorioCategoriaTarefa();
+            instance = new RepositorioCategoriaTarefaInMemory();
         }
         return instance;
     }
@@ -104,7 +106,7 @@ public class RepositorioCategoriaTarefa implements Serializable{
 
     }
     
-    public int adicionarListaCategorias(RepositorioCategoriaTarefa outraListaCategorias) {
+    public int adicionarListaCategorias(RepositorioCategoriaTarefaInMemory outraListaCategorias) {
         int totalCategoriasAdicionadas = 0;
         
         for (Categoria categoria : outraListaCategorias.listaCategorias) {

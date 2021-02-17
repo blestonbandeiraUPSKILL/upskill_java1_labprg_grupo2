@@ -3,25 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.grupo2.t4j.repository;
+package com.grupo2.t4j.persistence;
 
-import com.grupo2.t4j.exception.DescricaoInvalidaException;
-import org.junit.Test;
-import com.grupo2.t4j.model.AreaActividade;
-import com.grupo2.t4j.model.CaracterizacaoCT;
-import com.grupo2.t4j.model.Categoria;
-import java.util.ArrayList;
-import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
-import static org.junit.jupiter.api.Assertions.*;
 
 /**
  *
  * @author acris
  */
-public class RepositorioCategoriaTarefaTest {
+public class RepositorioCategoriaTarefaInMemoryTest {
     
-    public RepositorioCategoriaTarefaTest() {
+    public RepositorioCategoriaTarefaInMemoryTest() {
     }
     
     @BeforeEach

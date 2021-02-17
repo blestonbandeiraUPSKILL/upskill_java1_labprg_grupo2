@@ -4,26 +4,28 @@
  * and open the template in the editor.
  */
 
-package com.grupo2.t4j.repository;
+package com.grupo2.t4j.persistence.database;
 
 /**
  *
  * @author CAD
  */
 
+import com.grupo2.t4j.exception.OrganizacaoDuplicadaException;
 import com.grupo2.t4j.model.*;
-import com.grupo2.t4j.exception.*;
+
 import java.io.Serializable;
-import java.sql.*;
-import java.util.ArrayList;
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.List;
 
-public class RepositorioOrganizacao implements Serializable{
+public class RepositorioOrganizacaoDatabase implements Serializable{
 
     /**
      * Atributos da classe Singleton RepositorioOrganizacao
      */
-    private static RepositorioOrganizacao instance;
+    private static RepositorioOrganizacaoDatabase instance;
     private List<Organizacao> listaOrganizacoes;
     Colaborador colabGestor;
     private DBConnectionHandler dbConnectionHandler;
@@ -34,7 +36,7 @@ public class RepositorioOrganizacao implements Serializable{
     /**
      * Construtor da classe Singleton RepositorioOrganizacao
      */
-    private RepositorioOrganizacao() throws SQLException {
+    private RepositorioOrganizacaoDatabase() throws SQLException {
 
     }
 
@@ -43,9 +45,9 @@ public class RepositorioOrganizacao implements Serializable{
      *
      * @return a instance existente ou criada
      */
-    public static RepositorioOrganizacao getInstance() throws SQLException {
+    public static RepositorioOrganizacaoDatabase getInstance() throws SQLException {
         if(instance == null) {
-            instance = new RepositorioOrganizacao();
+            instance = new RepositorioOrganizacaoDatabase();
         }
         return instance;
     }
@@ -132,7 +134,7 @@ public class RepositorioOrganizacao implements Serializable{
      */
     public boolean addOrganizacao(Organizacao organizacao) throws OrganizacaoDuplicadaException, SQLException {
 
-        if (getOrganizacaoByNif(organizacao.getNif())) {
+        if (find(organizacao.getNif())) {
             return createOrganizacao(organizacao, organizacao.getColabGestor(), organizacao.getEnderecoPostal());
             } else {
             throw new OrganizacaoDuplicadaException(organizacao.getNif() + ": Organização com esse NIPC já registada!");
@@ -147,7 +149,7 @@ public class RepositorioOrganizacao implements Serializable{
      *
      * @return a organização encontrada, caso exista
      */
-    private boolean getOrganizacaoByNif(String nif) throws SQLException {
+    private boolean find(String nif) throws SQLException {
 
         DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
         Connection connection = dbConnectionHandler.openConnection();

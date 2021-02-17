@@ -11,7 +11,7 @@ BEGIN
     FROM Organizacao
     WHERE nif = p_nifOrganizacao;
     
-    IF v_count = 0
+    IF v_count != 0
     THEN
         RAISE ex_Organizacao;
     END IF;    

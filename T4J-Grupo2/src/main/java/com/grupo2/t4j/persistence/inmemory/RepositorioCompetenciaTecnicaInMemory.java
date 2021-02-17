@@ -3,10 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.grupo2.t4j.repository;
+package com.grupo2.t4j.persistence.inmemory;
 
 import com.grupo2.t4j.exception.CompetenciaTecnicaDuplicadaException;
-import com.grupo2.t4j.model.*;
+import com.grupo2.t4j.model.AreaActividade;
+import com.grupo2.t4j.model.CompetenciaTecnica;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -16,18 +17,18 @@ import java.util.List;
  *
  * @author acris
  */
-public class RepositorioCompetenciaTecnica implements Serializable{
+public class RepositorioCompetenciaTecnicaInMemory implements Serializable{
 
     /**
      * Atributos da classe Singletone RepositorioCompetenciaTecnica
      */
-    public static RepositorioCompetenciaTecnica instance;
+    public static RepositorioCompetenciaTecnicaInMemory instance;
     List<CompetenciaTecnica> listaCompTecnicas;
 
     /**
      * Construtor da classe Singleton RepositorioCompetenciaTecnica
      */
-    private RepositorioCompetenciaTecnica() {
+    private RepositorioCompetenciaTecnicaInMemory() {
         listaCompTecnicas = new ArrayList<>();
     }
 
@@ -36,9 +37,9 @@ public class RepositorioCompetenciaTecnica implements Serializable{
      *
      * @return a instance existente ou criada
      */
-    public static RepositorioCompetenciaTecnica getInstance() {
+    public static RepositorioCompetenciaTecnicaInMemory getInstance() {
         if (instance == null) {
-            instance = new RepositorioCompetenciaTecnica();
+            instance = new RepositorioCompetenciaTecnicaInMemory();
         }
         return instance;
     }
@@ -134,7 +135,7 @@ public class RepositorioCompetenciaTecnica implements Serializable{
         return compTecPorAt;
     }
     
-    public int adicionarListaCompetenciasTecnicas(RepositorioCompetenciaTecnica outraListaCompetenciasTecnicas) {
+    public int adicionarListaCompetenciasTecnicas(RepositorioCompetenciaTecnicaInMemory outraListaCompetenciasTecnicas) {
         int totalCompetenciasAdicionadas = 0;
         
         for (CompetenciaTecnica ct : outraListaCompetenciasTecnicas.listaCompTecnicas) {

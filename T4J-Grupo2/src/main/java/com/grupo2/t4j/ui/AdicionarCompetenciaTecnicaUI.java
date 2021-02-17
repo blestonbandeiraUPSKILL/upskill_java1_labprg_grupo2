@@ -13,7 +13,6 @@ import com.grupo2.t4j.model.GrauProficiencia;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import com.grupo2.t4j.repository.RepositorioAreaActividade;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;

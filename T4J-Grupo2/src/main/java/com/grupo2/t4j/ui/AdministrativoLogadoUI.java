@@ -10,7 +10,7 @@ import com.grupo2.t4j.model.AreaActividade;
 import com.grupo2.t4j.model.Categoria;
 import com.grupo2.t4j.model.CompetenciaTecnica;
 import com.grupo2.t4j.model.Plataforma;
-import com.grupo2.t4j.repository.RepositorioAreaActividade;
+import com.grupo2.t4j.persistence.inmemory.RepositorioAreaActividadeInMemory;
 import java.io.File;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -48,7 +48,7 @@ public class AdministrativoLogadoUI implements Initializable {
     private AutenticacaoController autenticacaoController;
     
     private FicheiroRepositorioAreaActividade ficheiroAt;
-    private RepositorioAreaActividade repositorioAreaActividade;
+    private RepositorioAreaActividadeInMemory repositorioAreaActividadeInMemory;
 
     private static final String CABECALHO_IMPORTAR = "Importar Lista.";
     private static final String CABECALHO_EXPORTAR = "Exportar Lista.";

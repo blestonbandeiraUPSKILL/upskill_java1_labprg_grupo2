@@ -3,15 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.grupo2.t4j.repository;
+package com.grupo2.t4j.persistence.database;
 
 /**
  *
  * @author CAD
  */
 
-import com.grupo2.t4j.model.*;
-import com.grupo2.t4j.exception.*;
+import com.grupo2.t4j.exception.AreaActividadeDuplicadaException;
+import com.grupo2.t4j.model.AreaActividade;
+import com.grupo2.t4j.persistence.RepositorioAreaActividade;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -21,28 +22,28 @@ import java.util.List;
  *
  * @author Geral
  */
-public class RepositorioAreaActividade implements Serializable{
-    
+public class RepositorioAreaActividadeDatabase implements Serializable, RepositorioAreaActividade {
+
     /**
      * Define uma instância estática do Repositório em que estão registadas todas
      * as Áreas de Actividade da plataforma
      */
-    private static RepositorioAreaActividade repositorioAreaActividade;
-    
+    private static RepositorioAreaActividadeDatabase repositorioAreaActividadeInMemory;
+
     /**
      * Define o atributo da classe RepositorioAreaActividade como uma lista de
      * tipos da classe AreaActividade
      */
     private List<AreaActividade> listaAreasActividade;
-    
+
     /**
      * Inicializa o Repositório de Areas de Actividade
      */
-    private RepositorioAreaActividade(){
+    RepositorioAreaActividadeDatabase(){
         listaAreasActividade = new ArrayList<>();
     }
     
-    public int adicionarListaAreasActividade(RepositorioAreaActividade outraListaAreasActividade) {
+    public int adicionarListaAreasActividade(RepositorioAreaActividadeDatabase outraListaAreasActividade) {
         int totalAreasAdicionadas = 0;
         
         for (AreaActividade areaActividade : outraListaAreasActividade.listaAreasActividade) {
@@ -59,6 +60,10 @@ public class RepositorioAreaActividade implements Serializable{
     }
 
 
+    @Override
+    public int save(RepositorioAreaActividade outraListaAreasActividade) {
+        return 0;
+    }
 
     /**
      * Adiciona uma Área de Actividade à lista de Áreas de Actividade
@@ -75,7 +80,12 @@ public class RepositorioAreaActividade implements Serializable{
             throw new AreaActividadeDuplicadaException(aa.getCodigo() + ": Área de Actividade já registada!");
         }
     }
-    
+
+    @Override
+    public boolean addAreaActividade(String codigo, String descBreve, String descDetalhada) throws AreaActividadeDuplicadaException {
+        return false;
+    }
+
     /**
      * Adiciona uma Área de Actividade à lista de Áreas de Actividade
      * @param codigo o código único de cada Área de Actividade.
@@ -83,23 +93,25 @@ public class RepositorioAreaActividade implements Serializable{
      * @param descDetalhada a descrição detalhada da Área de Actividade.
      * @throws AreaActividadeDuplicadaException
      */
-    public boolean addAreaActividade(String codigo, String descBreve, String descDetalhada) throws AreaActividadeDuplicadaException {
+    public void save(String codigo, String descBreve, String descDetalhada) throws AreaActividadeDuplicadaException {
         AreaActividade aa = getAreaActividadeByCodigo(codigo);
         if (aa == null) {
             AreaActividade areaActividade = new AreaActividade(codigo, descBreve, descDetalhada);
-            return listaAreasActividade.add(areaActividade);
         } else {
             throw new AreaActividadeDuplicadaException(aa.getCodigo() + ": Área de Actividade já registada!");
         }
     }
     
-    /**
-     * Atualiza a lista de Áreas de Actividade
-     *
-     * @param listaAreasActividade
-     */
-    public void setListaAreasActividade(List<AreaActividade> listaAreasActividade) {
-        this.listaAreasActividade = listaAreasActividade;
+
+
+    @Override
+    public List<AreaActividade> getAll() {
+        return null;
+    }
+
+    @Override
+    public AreaActividade findByCodigo(String codigo) {
+        return null;
     }
 
     /**
@@ -126,17 +138,20 @@ public class RepositorioAreaActividade implements Serializable{
             }
         }
         return null;
-    } 
-    
+    }
+
+
+
+
     /**
      * Devolve uma instância estática do Repositório de Áreas de Actividade
      * @return RepositorioAreaActividade
      */
-    public static RepositorioAreaActividade getInstance(){
-        if(repositorioAreaActividade == null) {
-            repositorioAreaActividade = new RepositorioAreaActividade();
+    public static RepositorioAreaActividadeDatabase getInstance(){
+        if(repositorioAreaActividadeInMemory == null) {
+            repositorioAreaActividadeInMemory = new RepositorioAreaActividadeDatabase();
         }
-        return repositorioAreaActividade;
+        return repositorioAreaActividadeInMemory;
     }
 
     //n funciona

@@ -7,14 +7,10 @@ package com.grupo2.t4j.controller;
 
 import com.grupo2.t4j.files.FicheiroRepositorioCompetenciaTecnica;
 import com.grupo2.t4j.model.AreaActividade;
-import com.grupo2.t4j.model.CaracterizacaoCT;
-import com.grupo2.t4j.model.Categoria;
 import com.grupo2.t4j.model.CompetenciaTecnica;
-import com.grupo2.t4j.repository.RepositorioAreaActividade;
-import com.grupo2.t4j.repository.RepositorioCompetenciaTecnica;
+import com.grupo2.t4j.persistence.inmemory.RepositorioCompetenciaTecnicaInMemory;
 import java.io.File;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -24,24 +20,24 @@ import java.util.List;
 public class RegistarCompetenciaTecnicaController {
     
     private FicheiroRepositorioCompetenciaTecnica ficheiroCompTec;
-    private RepositorioCompetenciaTecnica repositorioCompetenciaTecnica;
+    private RepositorioCompetenciaTecnicaInMemory repositorioCompetenciaTecnicaInMemory;
 
     public boolean registarCompetenciaTecnica(CompetenciaTecnica competenciaTecnica) {
-        return RepositorioCompetenciaTecnica.getInstance().addCompetenciaTecnica(competenciaTecnica);
+        return RepositorioCompetenciaTecnicaInMemory.getInstance().addCompetenciaTecnica(competenciaTecnica);
     }
 
     public List<CompetenciaTecnica> getCompetenciasTecnicasByAreaActividade(AreaActividade areaActividade) {
 
-       return RepositorioCompetenciaTecnica.getInstance().getCompetenciasTecnicasByAreaActividade(areaActividade);
+       return RepositorioCompetenciaTecnicaInMemory.getInstance().getCompetenciasTecnicasByAreaActividade(areaActividade);
     }
 
     public List<CompetenciaTecnica> getCompetenciasTecnicas() {
-        return RepositorioCompetenciaTecnica.getInstance().getCompetenciasTecnicas();
+        return RepositorioCompetenciaTecnicaInMemory.getInstance().getCompetenciasTecnicas();
     }
 
     public CompetenciaTecnica novaCompetenciaTecnica(String codigo, String descBreve,
                                                      String descDetalhada, AreaActividade areaActividade) {
-        return RepositorioCompetenciaTecnica.getInstance().novaCompetenciaTecnica(codigo, descBreve,
+        return RepositorioCompetenciaTecnicaInMemory.getInstance().novaCompetenciaTecnica(codigo, descBreve,
                 descDetalhada, areaActividade);
     }
     
@@ -52,21 +48,21 @@ public class RegistarCompetenciaTecnicaController {
         desserializar();
     }
     public boolean serializar() {
-        return ficheiroCompTec.serializar(repositorioCompetenciaTecnica);
+        return ficheiroCompTec.serializar(repositorioCompetenciaTecnicaInMemory);
     }
 
     public boolean serializar(File ficheiroExportar) {
-        return ficheiroCompTec.serializar(ficheiroExportar, repositorioCompetenciaTecnica);
+        return ficheiroCompTec.serializar(ficheiroExportar, repositorioCompetenciaTecnicaInMemory);
     }
 
     public void desserializar() {
-        repositorioCompetenciaTecnica = ficheiroCompTec.desserializar();
+        repositorioCompetenciaTecnicaInMemory = ficheiroCompTec.desserializar();
     }
 
     public int desserializar(File ficheiroImportar) {
-        RepositorioCompetenciaTecnica listaCompetenciaTencicaImportada = ficheiroCompTec.desserializar(ficheiroImportar);
+        RepositorioCompetenciaTecnicaInMemory listaCompetenciaTencicaImportada = ficheiroCompTec.desserializar(ficheiroImportar);
 
-        return RepositorioCompetenciaTecnica.getInstance().adicionarListaCompetenciasTecnicas(listaCompetenciaTencicaImportada);
+        return RepositorioCompetenciaTecnicaInMemory.getInstance().adicionarListaCompetenciasTecnicas(listaCompetenciaTencicaImportada);
     }
 
 

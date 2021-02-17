@@ -3,25 +3,28 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.grupo2.t4j.repository;
+package com.grupo2.t4j.persistence.inmemory;
 
 /**
  *
  * @author CAD
  */
 
-import com.grupo2.t4j.model.*;
-import com.grupo2.t4j.exception.*;
+import com.grupo2.t4j.exception.AnuncioDuplicadoException;
+import com.grupo2.t4j.model.Anuncio;
+import com.grupo2.t4j.model.Data;
+import com.grupo2.t4j.model.Organizacao;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-public class RepositorioAnuncio implements Serializable{
+public class RepositorioAnuncioInMemory implements Serializable{
 
     /**
      * Define uma instância do Repositório em que estão registados todos
      * os anúncios de uma dada organização
      */
-    private RepositorioAnuncio repositorioAnuncio;
+    private RepositorioAnuncioInMemory repositorioAnuncioInMemory;
     
     /**
      * A organização a que se refere o repositório
@@ -38,7 +41,7 @@ public class RepositorioAnuncio implements Serializable{
      * Inicializa o Repositório de Anúncios de uma organização
      * @param organizacao - a organização a que se refere o repositório de anúncios
      */
-    public RepositorioAnuncio(Organizacao organizacao){
+    public RepositorioAnuncioInMemory(Organizacao organizacao){
         listaAnuncios = new ArrayList<>();
     }
     
@@ -128,7 +131,7 @@ public class RepositorioAnuncio implements Serializable{
      * @param outraListaAnuncios
      * @return a quantidade de anúncios da lista de anúncios
      */
-    public int adicionarListaAnuncios(RepositorioAnuncio outraListaAnuncios) {
+    public int adicionarListaAnuncios(RepositorioAnuncioInMemory outraListaAnuncios) {
         int totalAnunciosAdicionados = 0;
         
         for (Anuncio anuncio : outraListaAnuncios.listaAnuncios) {

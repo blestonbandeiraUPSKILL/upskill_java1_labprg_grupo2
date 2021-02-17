@@ -113,6 +113,8 @@ entity "Anuncio" {
     idProcessoSeriacao: number {FK}
 }
 
+'tiporegimento ligado a anúncio
+
 entity "ProcessoSeriacao" {
     idProcessoSeriacao: number {PK}
     --

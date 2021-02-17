@@ -5,7 +5,7 @@
  */
 package com.grupo2.t4j.files;
 
-import com.grupo2.t4j.repository.RepositorioAreaActividade;
+import com.grupo2.t4j.persistence.inmemory.RepositorioAreaActividadeInMemory;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -23,20 +23,20 @@ public class FicheiroRepositorioAreaActividade {
     public FicheiroRepositorioAreaActividade() {
     }
 
-    public boolean serializar(RepositorioAreaActividade repositorioAreaActividade) {
-        return serializar(NOME_FICHEIRO_SERIALIZAR, repositorioAreaActividade);
+    public boolean serializar(RepositorioAreaActividadeInMemory repositorioAreaActividadeInMemory) {
+        return serializar(NOME_FICHEIRO_SERIALIZAR, repositorioAreaActividadeInMemory);
     }
 
-    public boolean serializar(String nomeFicheiro, RepositorioAreaActividade repositorioAreaActividade) {
-        return serializar(new File(nomeFicheiro), repositorioAreaActividade);
+    public boolean serializar(String nomeFicheiro, RepositorioAreaActividadeInMemory repositorioAreaActividadeInMemory) {
+        return serializar(new File(nomeFicheiro), repositorioAreaActividadeInMemory);
     }
 
-    public boolean serializar(File ficheiro, RepositorioAreaActividade repositorioAreaActividade) {
+    public boolean serializar(File ficheiro, RepositorioAreaActividadeInMemory repositorioAreaActividadeInMemory) {
         try {
             ObjectOutputStream out = new ObjectOutputStream(
                     new FileOutputStream(ficheiro));
             try {
-                out.writeObject(repositorioAreaActividade);
+                out.writeObject(repositorioAreaActividadeInMemory);
                 
                 return true;
             } finally {
@@ -47,28 +47,28 @@ public class FicheiroRepositorioAreaActividade {
         }
     }
 
-    public RepositorioAreaActividade desserializar() {
+    public RepositorioAreaActividadeInMemory desserializar() {
         return desserializar(NOME_FICHEIRO_SERIALIZAR);
     }
 
-    public RepositorioAreaActividade desserializar(String nomeFicheiro) {
+    public RepositorioAreaActividadeInMemory desserializar(String nomeFicheiro) {
         return desserializar(new File(nomeFicheiro));
     }
 
-    public RepositorioAreaActividade desserializar(File ficheiro) {
-        RepositorioAreaActividade repositorioAreaActividade;
+    public RepositorioAreaActividadeInMemory desserializar(File ficheiro) {
+        RepositorioAreaActividadeInMemory repositorioAreaActividadeInMemory;
         try {
             ObjectInputStream in = new ObjectInputStream(
                     new FileInputStream(ficheiro));
             try {
-                repositorioAreaActividade = (RepositorioAreaActividade) in.readObject();
+                repositorioAreaActividadeInMemory = (RepositorioAreaActividadeInMemory) in.readObject();
                 
-                return repositorioAreaActividade;
+                return repositorioAreaActividadeInMemory;
             } finally {
                 in.close();
             }
         } catch (IOException | ClassNotFoundException ex) {
-            return RepositorioAreaActividade.getInstance();
+            return RepositorioAreaActividadeInMemory.getInstance();
         }
     }
 
