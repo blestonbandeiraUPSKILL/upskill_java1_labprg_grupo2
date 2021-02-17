@@ -13,6 +13,7 @@ public class DBConnectionHandler {
     private PreparedStatement preparedStatement;
     private Statement statement;
     private ResultSet resultSet;
+    private CallableStatement callableStatement;
 
     public DBConnectionHandler(String jdbcUrl, String username, String password) {
         this.jdbcUrl = jdbcUrl;
@@ -23,15 +24,12 @@ public class DBConnectionHandler {
         preparedStatement = null;
         resultSet = null;
         statement = null;
+        callableStatement = null;
+
     }
 
     public Connection openConnection() throws SQLException {
         try {
-            String jdbcUrl = "jdbc:oracle:thin:@vsrvbd1.dei.isep.ipp.pt:1521/pdborcl";
-
-            String username = "UPSKILL_BD_TURMA1_04";
-            String password = "qwerty";
-
 
             OracleDataSource ds = new OracleDataSource();
             ds.setURL(jdbcUrl);
@@ -66,6 +64,16 @@ public class DBConnectionHandler {
                 message.append("\n");
             }
             preparedStatement = null;
+        }
+
+        if(callableStatement != null) {
+            try {
+                callableStatement.close();
+            }
+            catch (SQLException ex) {
+                message.append(ex.getMessage());
+                message.append("\n");
+            }
         }
 
         if (statement != null) {

@@ -16,12 +16,12 @@ public class RegistarOrganizacaoController {
     }
 
     public Organizacao novaOrganizacao(String nif, String nome, Website website,
-                                       String telefone, Email emailOrganizacao,
+                                       String telefone, Email emailOrganizacao, Email emailGestor,
                                        String arruamento, String numeroPorta, String localidade, String codigoPostal,
-                                       Email emailGestor, String nomeGestor, String telefoneGestor) throws SQLException {
+                                       String nomeGestor, Password password, String rolename, String telefoneGestor, String funcaoGestor) throws SQLException {
 
         EnderecoPostal enderecoPostal = new EnderecoPostal(arruamento, numeroPorta, localidade, codigoPostal);
-        Colaborador gestor = new Colaborador(emailGestor, nomeGestor, telefoneGestor, Rolename.GESTOR);
+        Colaborador gestor = new Colaborador(emailGestor, nomeGestor, password, funcaoGestor, telefoneGestor, Rolename.GESTOR);
 
         Organizacao organizacao = RepositorioOrganizacao.getInstance().novaOrganizacao(
                 nif, nome, website, telefone, emailOrganizacao, gestor, enderecoPostal);

@@ -14,7 +14,7 @@ entity "Organizacao" {
     telefone: text {NN}
     email: text {NN, UK}
     emailGestor: text {FK, NN}
-    idEnderecoPostal: text {FK}
+    idEnderecoPostal: number {FK}
 }
 
 entity "Colaborador" {
@@ -38,7 +38,7 @@ entity "Administrativo" {
 }
 
 entity "Categoria" {
-    idCategoria: text {PK}
+    idCategoria: number {PK}
     --
     descBreve: text {NN, UK}
     descDetalhada: text
@@ -87,8 +87,8 @@ entity "EnderecoPostal" {
 }
 
 entity "Tarefa" {
-    referencia: text {PK}
     nifOrganizacao: text {PK, FK}
+    referencia: text {PK}
     --
     designacao: text {NN}
     descInformal: text
@@ -108,46 +108,46 @@ entity "Anuncio" {
     dataFimPublicacao: date {NN}
     dataInicioCandidatura: date {NN}
     dataFimCandidatura: date {NN}
-    dataInicioSeriacao {NN} 
-    dataFimSeriacao {NN}
+    dataInicioSeriacao: date {NN} 
+    dataFimSeriacao: date {NN}
+    idProcessoSeriacao: number {FK}
 }
 
 entity "ProcessoSeriacao" {
-    idProcessoSeriacao: text {PK}
+    idProcessoSeriacao: number {PK}
     --
     dataRealizacao: date {NN}
-    idTipoRegimento: text {FK}
+    idTipoRegimento: number {FK}
 }
 
 entity "TipoRegimento" {
-    idTipoRegimento: text {PK}
+    idTipoRegimento: number {PK}
     --
     designacao: text {NN, UK}
     descricaoRegras: text {NN}
 }
 
 entity "Classificacao" {
-    idClassificacao: text {PK}
+    idClassificacao: number {PK}
     --
     lugar: integer {NN, UK}
     idProcessoSeriacao: text {FK}
 }
 
 entity "Candidatura" {
-    idCandidatura: text {PK}
+    idCandidatura: number {PK}
     --
     dataFimCandidatura: date {NN}
     valorPretendido: number {NN}
     numeroDias: integer {NN}
     txtApresentacao: text
     txtMotivacao: text
-    idAnuncio: text {FK}
-    idProcessoSeriacao: text {FK}
+    idAnuncio: number {FK}
     emailFreelancer: text {FK}
 }
 
 entity "HabilitacaoAcademica" {
-    idHabilitacaoAcademica {PK}
+    idHabilitacaoAcademica: number{PK}
     --
     grau: text {NN}
     designacaoCurso: text {NN}
@@ -164,11 +164,11 @@ entity "ReconhecimentoGP" {
 
 entity "FreelancerHabAcademica" {
     emailFreelancer: text {PK, FK}
-    idHabilitacaoAcademica: text {PK, FK}
+    idHabilitacaoAcademica: number {PK, FK}
 }
 
 entity "CaracterCT" {
-    idCaracterCT: text {PK}
+    idCaracterCT: number {PK}
     --
     obrigatoria: boolean {NN}
     grauProfMinimo: text {FK, NN}
@@ -188,12 +188,12 @@ Anuncio ||--|{ Candidatura
 Freelancer||--o{ Candidatura
 Organizacao ||--|| EnderecoPostal
 Freelancer ||--|| EnderecoPostal
-Candidatura }|--|| ProcessoSeriacao
+Anuncio }|--|| ProcessoSeriacao
 ProcessoSeriacao }|--|| TipoRegimento
 ProcessoSeriacao ||--|{ Classificacao
 Freelancer ||--|{ FreelancerHabAcademica
 HabilitacaoAcademica ||--|{ FreelancerHabAcademica
- Freelancer ||--|{ ReconhecimentoGP
+Freelancer ||--|{ ReconhecimentoGP
 ReconhecimentoGP }|--|| GrauProficiencia
 CaracterCT ||--|{ GrauProficiencia
 
