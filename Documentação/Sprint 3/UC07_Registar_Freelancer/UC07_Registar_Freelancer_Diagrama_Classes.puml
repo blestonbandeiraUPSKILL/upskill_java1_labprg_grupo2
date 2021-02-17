@@ -2,7 +2,7 @@
 
 title UC07 - Registar Freelancer
 
-left to right direction
+top to bottom direction
 
 class Plataforma <<Singleton>> {
     -String designacao
@@ -71,14 +71,14 @@ class Email {
 }
 
 RegistarFreelancerUI ..> RegistarFreelancerController
-RegistarFreelancerController ..> SessaoUtilizador
 RegistarFreelancerController ..> Plataforma
 Freelancer --> ReconhecimentoGT: recebe(u) >
 ReconhecimentoGT --> CompetenciaTecnica: relativa a >
 CompetenciaTecnica --> GrauProficiencia: aplica >
 Freelancer --> HabilitacaoAcademica: tem >
 Freelancer --> EnderecoPostal: tem >
-Freelance
+Freelancer --> Email: tem >
 Plataforma ..> RepositorioFreelancer
+RepositorioFreelancer -- Freelancer
 
 @enduml
