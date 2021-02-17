@@ -12,16 +12,21 @@ import java.io.Serializable;
  * @author acris
  */
 
-public enum GrauProficiencia implements Serializable { INICIANTE,
+/*public enum GrauProficiencia implements Serializable { INICIANTE,
                               BOM, 
                               EXPERIENTE, 
-                              ESPECIALISTA}; 
-/*public class GrauProficiencia {
+                              ESPECIALISTA}; */
+public class GrauProficiencia {
     private int grau;
     private String designacao;
     
 
     public GrauProficiencia(GrauProficiencia gp) {
+        setGrau(grau);
+        setDesignacao(designacao);
+    }
+    
+    public GrauProficiencia(int grau, String designacao) {
         setGrau(grau);
         setDesignacao(designacao);
     }
@@ -43,4 +48,4 @@ public enum GrauProficiencia implements Serializable { INICIANTE,
     }
     
     
-}*/
+}

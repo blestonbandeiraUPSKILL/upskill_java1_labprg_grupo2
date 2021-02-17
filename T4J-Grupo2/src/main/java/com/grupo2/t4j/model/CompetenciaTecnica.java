@@ -9,6 +9,8 @@ import com.grupo2.t4j.exception.AreaActividadeInexistenteException;
 import com.grupo2.t4j.exception.CodigoInvalidoException;
 import com.grupo2.t4j.exception.DescricaoInvalidaException;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -43,6 +45,8 @@ public class CompetenciaTecnica implements Serializable {
     private CaracterizacaoCT cct;
 
     private Categoria categoria;
+    
+    private static List<GrauProficiencia> grausProficienciaAplicaveis = new ArrayList<>();
 
     /**
      * Construtor CompetenciaTecnica Completo
@@ -221,5 +225,9 @@ public class CompetenciaTecnica implements Serializable {
                 && Objects.equals(areaActividade, that.areaActividade)
                 && Objects.equals(cct, that.cct)
                 && Objects.equals(categoria, that.categoria);
+    }
+    
+    public static List<GrauProficiencia> getGrausAplicaveis() {
+        return new ArrayList<GrauProficiencia>(grausProficienciaAplicaveis);
     }
 }
