@@ -6,8 +6,6 @@ left to right direction
 
 class Plataforma <<Singleton>> {
     -String designacao
-    --
-    getRepositorioOrganizacao()
 }
 
 class RegistarFreelancerUI{
@@ -53,7 +51,9 @@ class HabilitacaoAcademica {
 }
 
 class CompetenciaTecnica {
-
+    -String codigo
+    -String descricaoBreve
+    -String descricaoDetalhada
 }
 
 class GrauProficiencia {
