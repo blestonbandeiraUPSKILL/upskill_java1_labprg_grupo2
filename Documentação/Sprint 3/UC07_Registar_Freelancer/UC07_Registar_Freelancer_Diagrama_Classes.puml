@@ -6,6 +6,8 @@ left to right direction
 
 class Plataforma <<Singleton>> {
     -String designacao
+    --
+    getRepositorioOrganizacao()
 }
 
 class RegistarFreelancerUI{
@@ -37,7 +39,7 @@ class EnderecoPostal {
 }
 
 class Email {
-
+    -String email
 }
 
 class ReconhecimentoCT {
@@ -68,6 +70,7 @@ class Utilizador {
 }
 
 class GestaoUtilizadoresFacade{
+    --
     getGestaoUtilizadoresFacade()
 }
 
@@ -87,11 +90,12 @@ class RepositorioOrganizacao{
 }
 
 interface AlgoritmoGeradorPasswords{
+    --
     getAlgoritmoGeradorPasswords()
 }
 
 class Password{
-    String password
+    -String password
     --
     getPassword()
 }
@@ -104,6 +108,14 @@ class Email {
     -String email
     --
     getEmailUtilizador()
+}
+
+class Organizacao {
+    -String nome
+    -String NIF
+    -String website
+    -String telefone
+    -String email
 }
 
 RegistarFreelancerUI ..> RegistarFreelancerController
