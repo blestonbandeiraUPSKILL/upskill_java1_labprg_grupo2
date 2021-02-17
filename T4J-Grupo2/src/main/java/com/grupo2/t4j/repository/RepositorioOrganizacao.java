@@ -14,10 +14,7 @@ package com.grupo2.t4j.repository;
 import com.grupo2.t4j.model.*;
 import com.grupo2.t4j.exception.*;
 import java.io.Serializable;
-import java.sql.CallableStatement;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -134,9 +131,8 @@ public class RepositorioOrganizacao implements Serializable{
      * @return
      */
     public boolean addOrganizacao(Organizacao organizacao) throws OrganizacaoDuplicadaException, SQLException {
-        String nif = organizacao.getNif();
 
-        if (getOrganizacaoByNif(nif)) {
+        if (!getOrganizacaoByNif(organizacao.getNif())) {
             return createOrganizacao(organizacao, organizacao.getColabGestor(), organizacao.getEnderecoPostal());
             } else {
             throw new OrganizacaoDuplicadaException(organizacao.getNif() + ": Organização com esse NIPC já registada!");
@@ -157,19 +153,23 @@ public class RepositorioOrganizacao implements Serializable{
         Connection connection = dbConnectionHandler.openConnection();
 
         CallableStatement callableStatementOrg = connection.prepareCall(
-                "{CALL getOrgByNif(?)} ");
+                //"{? = CALL getOrganizacaoByNif(?)} ");
+                 ("{? = CALL getOrganizacaoByNif(?)}");
 
         try {
             connection.setAutoCommit(false);
 
-            callableStatementOrg.setString(1, nif);
-
-            callableStatementOrg.executeQuery();
+            callableStatementOrg.registerOutParameter(1, Types.INTEGER);
+            callableStatementOrg.setString(2, nif);
+            callableStatementOrg.executeUpdate();
 
             connection.commit();
             connection.close();
 
-            return true;
+            if (callableStatementOrg.getInt(1) != 0) {
+                return true;
+            }
+
 
         } catch (SQLException exceptionOrg) {
             exceptionOrg.printStackTrace();

@@ -108,7 +108,7 @@ public class RegistarOrgEGestorUI implements Initializable {
 
             if(registou) {
                 autenticacaoController.registarGestorComoUtilizador(organizacao.getColabGestor());
-                txtPassword.setText(password.toString());
+                txtPassword.setText(password.getPasswordText());
 
                 AlertsUI.criarAlerta(Alert.AlertType.INFORMATION,
                     MainApp.TITULO_APLICACAO,
@@ -116,10 +116,11 @@ public class RegistarOrgEGestorUI implements Initializable {
                     registou ? ("Organização registada com sucesso.")
                                 : "Não foi possível registar a Organização.").show();
 
-            }
+                btnAvancarRegisto.disabledProperty();
 
-      
-    }catch (IOException exception) {
+            }
+        }
+        catch (IOException exception) {
             exception.printStackTrace();
             AlertsUI.criarAlerta(Alert.AlertType.ERROR,
                     MainApp.TITULO_APLICACAO,
@@ -127,6 +128,7 @@ public class RegistarOrgEGestorUI implements Initializable {
                     exception.getMessage()).show();
         }
     }
+
     private void closeAddOrganizacao(ActionEvent event) {
       /*  this.txtCodigo.clear();
         this.txtDescricaoBreve.clear();
