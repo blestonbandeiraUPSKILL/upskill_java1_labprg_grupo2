@@ -37,92 +37,43 @@ activate PublicarTarefaCTRL
 PublicarTarefaCTRL -> RepositorioTarefa : 2.1.1: t = tarefa(referencia)
 activate RepositorioTarefa
 deactivate RepositorioTarefa
+deactivate PublicarTarefaCTRL
 
-/'PublicarTarefaCTRL -> Plataforma : 2.1.2: rct = getRepositorioCompetenciaTecnica(codAreaAtividade)
-activate Plataforma
-deactivate Plataforma
+PublicarTarefaUI --> Colaborador: 2.2: Mostra a tarefa selecionada e solicita os dados necessários para publicitação desta tarefa
+deactivate PublicarTarefaUI
 
-DefinirCategoriaTarefaUI --> Administrativo: 2.2: Mostra a lista de competências técnicas associadas à área de atividade especificada e solicita a escolha de uma delas
-deactivate DefinirCategoriaTarefaUI
+Colaborador -> PublicarTarefaUI: 3: Introduz o período de publicitação, o período de candidaturas e o período de seriação do anúncio da tarefa
+activate PublicarTarefaUI
 
-DefinirCategoriaTarefaCTRL -> RepositorioCompetenciaTecnica : 2.1.3: at = getListaCompetenciasTecnicas(at)
-activate RepositorioCompetenciaTecnica
-deactivate RepositorioCompetenciaTecnica
+PublicarTarefaUI -> PublicarTarefaCTRL: 3.1: la = novoAnuncio(dtInPub, dtFimPub, dtInCand, dtFimCand, dtInSer, dtFimCand)
+activate PublicarTarefaCTRL
 
-DefinirCategoriaTarefaCTRL -> Plataforma : 2.1.4: rc = getRepositorioCategoria()
-activate Plataforma
-deactivate Plataforma
+PublicarTarefaCTRL -> RepositorioAnuncio : 3.1.1: ra = anuncio(dtInPub, dtFimPub, dtInCand, dtFimCand, dtInSer, dtFimCand)
+activate RepositorioAnuncio
+deactivate RepositorioAnuncio
+deactivate PublicarTarefaCTRL
 
-DefinirCategoriaTarefaCTRL -> RepositorioCategoria : 2.1.5: c = novaCategoria(descricao, at)
-activate RepositorioCategoria
-deactivate DefinirCategoriaTarefaCTRL
+PublicarTarefaUI --> Colaborador: 3.2: Apresenta os dados e solicita confirmação
+deactivate PublicarTarefaUI
 
-RepositorioCategoria -> RepositorioCategoria : 2.1.5.1: idCategoria = getIdCategoria()
+Colaborador -> PublicarTarefaUI: 4: Confirma
+activate PublicarTarefaUI
 
-RepositorioCategoria --> Categoria : 2.1.5.2: create(idCategoria, descricao, at)
-deactivate RepositorioCategoria
+PublicarTarefaUI -> PublicarTarefaCTRL: 4.1: registaAnuncio()
+activate PublicarTarefaCTRL
 
-group sd loop
+PublicarTarefaCTRL -> RepositorioAnuncio : 4.1.1: registaAnuncio(a)
+activate RepositorioAnuncio
+deactivate PublicarTarefaCTRL
 
-Administrativo -> DefinirCategoriaTarefaUI : 3: Seleciona Competência Técnica
-activate DefinirCategoriaTarefaUI
+RepositorioAnuncio -> RepositorioAnuncio : 4.1.1.1: valida(a)
 
-DefinirCategoriaTarefaUI -> DefinirCategoriaTarefaCTRL : 3.1: lg = listaGrausProficiencia(codCompetencia)
-activate DefinirCategoriaTarefaCTRL
+RepositorioAnuncio -> RepositorioAnuncio : 4.1.1.2: addAnuncio(a)
+deactivate RepositorioAnuncio
 
-DefinirCategoriaTarefaCTRL -> RepositorioCompetenciaTecnica : 3.1.1: rc = competenciaTecnica(codCompetencia)
-activate RepositorioCompetenciaTecnica
-deactivate RepositorioCompetenciaTecnica
+PublicarTarefaUI --> Colaborador: 4.2: Informa operação bem sucedida
+deactivate PublicarTarefaUI
 
-DefinirCategoriaTarefaCTRL -> CompetenciaTecnica : 3.1.2: lg = listaGrausProficiencia(ct)
-activate CompetenciaTecnica
-deactivate CompetenciaTecnica
-deactivate DefinirCategoriaTarefaCTRL
+deactivate Colaborador
 
-DefinirCategoriaTarefaUI --> Administrativo: 3.2: Mostra graus de proficiência relativos à competência técnica selecionada
-deactivate DefinirCategoriaTarefaUI
-
-Administrativo -> DefinirCategoriaTarefaUI: 4: Seleciona grau de proficiência mínimo e obrigatoriedade da competência técnica
-activate DefinirCategoriaTarefaUI
-
-DefinirCategoriaTarefaUI -> DefinirCategoriaTarefaCTRL: 4.1: setProficienciaObrigatoriedade(codGrau, obrigatoria)
-activate DefinirCategoriaTarefaCTRL
-
-DefinirCategoriaTarefaCTRL -> CompetenciaTecnica: 4.1.1: gp = grauProficiencia(codGrau)
-activate CompetenciaTecnica
-deactivate CompetenciaTecnica
-
-DefinirCategoriaTarefaUI --> Administrativo: 4.2: Apresenta dados e solicita confirmação
-deactivate DefinirCategoriaTarefaUI
-
-DefinirCategoriaTarefaCTRL -> Categoria: 4.1.2: novaCaracterizacao(ct, gp, obrigatoria)
-activate Categoria 
-deactivate DefinirCategoriaTarefaCTRL
-
-Categoria --> CaracterizacaoCT: 4.1.2.1: create(ct, gt, obrigatoria)
-
-Categoria -> Categoria: 4.1.2.2: addCaracterizacaoCT(cct)
-
-deactivate Categoria 
-
-end 
-
-Administrativo -> DefinirCategoriaTarefaUI: 5: Confirma
-activate DefinirCategoriaTarefaUI
-
-DefinirCategoriaTarefaUI -> DefinirCategoriaTarefaCTRL: 5.1: registaCategoria()
-activate DefinirCategoriaTarefaCTRL
-
-DefinirCategoriaTarefaCTRL -> RepositorioCategoria: 5.1.1: registaCategoria(c)
-activate RepositorioCategoria
-deactivate DefinirCategoriaTarefaCTRL
-
-DefinirCategoriaTarefaUI -> Administrativo: 5.2: Informa operação bem sucedida
-deactivate DefinirCategoriaTarefaUI
-
-RepositorioCategoria-> RepositorioCategoria: 5.1.1.1: valida(c)
-RepositorioCategoria-> RepositorioCategoria: 5.1.1.2: addCategoria(c)
-deactivate RepositorioCategoria
-
-deactivate Administrativo'/
 @enduml
