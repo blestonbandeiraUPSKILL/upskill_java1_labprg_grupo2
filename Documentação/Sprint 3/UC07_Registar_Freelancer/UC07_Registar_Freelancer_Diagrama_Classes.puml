@@ -38,11 +38,8 @@ class EnderecoPostal {
     -String localidade
 }
 
-class Email {
-    -String email
-}
-
 class ReconhecimentoCT {
+    -Date dataReconhecimento
 }
 
 class HabilitacaoAcademica {
@@ -54,8 +51,8 @@ class HabilitacaoAcademica {
 
 class CompetenciaTecnica {
     -String codigo
-    -String descricaoBreve
-    -String descricaoDetalhada
+    -String descBreve
+    -String descDetalhada
 }
 
 class GrauProficiencia {
@@ -84,9 +81,8 @@ class SessaoUtilizador{
     getEmailUtilizador()
 }
 
-class RepositorioOrganizacao{
-    --
-    organizacaoByEmailUtilizador(email)
+class RepositorioFreelancer{
+
 }
 
 interface AlgoritmoGeradorPasswords{
@@ -110,14 +106,6 @@ class Email {
     getEmailUtilizador()
 }
 
-class Organizacao {
-    -String nome
-    -String NIF
-    -String website
-    -String telefone
-    -String email
-}
-
 RegistarFreelancerUI ..> RegistarFreelancerController
 RegistarFreelancerController ..> SessaoUtilizador
 RegistarFreelancerController ..> Plataforma
@@ -128,6 +116,10 @@ UtilizadorComPapel --> Utilizador
 Utilizador -- Password
 Utilizador -- Email
 Email -- Organizacao: < possui
+Freelancer --> ReconhecimentoCT: recebe(u) >
+ReconhecimentoCT --> CompetenciaTecnica: relativa a >
+CompetenciaTecnica --> GrauProficiencia: aplica >
+Freelancer --> HabilitacaoAcademica: tem >
 
 
 Freelancer --|> UtilizadorComPapel
@@ -135,11 +127,10 @@ UtilizadorComPapel --|> Utilizador
 Email -- Utilizador: < possui
 Password -- Utilizador: < possui
 
-Organizacao -- RepositorioOrganizacao
+
 Freelancer -- SessaoAtual: tem >
 RegistarFreelancerController ..> UtilizadorComPapel
-RegistarFreelancerController ..> AlgoritmoGeradorPasswords
-Plataforma ..> RepositorioOrganizacao
+Plataforma ..> RepositorioFreelancer
 
 
 @enduml
