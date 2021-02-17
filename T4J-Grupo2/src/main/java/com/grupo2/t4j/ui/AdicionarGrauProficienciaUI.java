@@ -1,4 +1,4 @@
-package com.grupo2.t4j.controller;
+package com.grupo2.t4j.ui;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -8,6 +8,7 @@ package com.grupo2.t4j.controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 
 /**
@@ -15,7 +16,7 @@ import javafx.fxml.Initializable;
  *
  * @author acris
  */
-public class AdicionarGrauProficienciaController implements Initializable {
+public class AdicionarGrauProficienciaUI implements Initializable {
 
     /**
      * Initializes the controller class.
@@ -24,5 +25,15 @@ public class AdicionarGrauProficienciaController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
+    
+    
+    public void adicionarGrauAction (ActionEvent actionEvent){
+        
+    }
+    
+    public void concluirAction (ActionEvent actionEvent){
+        
+    }
+    
     
 }

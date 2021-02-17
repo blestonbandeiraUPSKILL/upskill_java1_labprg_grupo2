@@ -123,4 +123,8 @@ public class AdicionarCompetenciaTecnicaUI implements Initializable {
         });
         window.fireEvent(new WindowEvent(window, WindowEvent.WINDOW_CLOSE_REQUEST));
     }
+    
+    public void addGrauAplicavelAction (ActionEvent actionEvent){
+        
+    }
 }
