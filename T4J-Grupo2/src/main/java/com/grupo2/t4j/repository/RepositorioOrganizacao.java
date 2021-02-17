@@ -132,7 +132,7 @@ public class RepositorioOrganizacao implements Serializable{
      */
     public boolean addOrganizacao(Organizacao organizacao) throws OrganizacaoDuplicadaException, SQLException {
 
-        if (!getOrganizacaoByNif(organizacao.getNif())) {
+        if (getOrganizacaoByNif(organizacao.getNif())) {
             return createOrganizacao(organizacao, organizacao.getColabGestor(), organizacao.getEnderecoPostal());
             } else {
             throw new OrganizacaoDuplicadaException(organizacao.getNif() + ": Organização com esse NIPC já registada!");
@@ -153,23 +153,18 @@ public class RepositorioOrganizacao implements Serializable{
         Connection connection = dbConnectionHandler.openConnection();
 
         CallableStatement callableStatementOrg = connection.prepareCall(
-                //"{? = CALL getOrganizacaoByNif(?)} ");
-                 ("{? = CALL getOrganizacaoByNif(?)}");
+                 "{CALL getOrganizacaoByNif(?)}");
 
         try {
             connection.setAutoCommit(false);
 
-            callableStatementOrg.registerOutParameter(1, Types.INTEGER);
-            callableStatementOrg.setString(2, nif);
-            callableStatementOrg.executeUpdate();
+            callableStatementOrg.setString(1, nif);
+            callableStatementOrg.executeQuery();
 
             connection.commit();
             connection.close();
 
-            if (callableStatementOrg.getInt(1) != 0) {
-                return true;
-            }
-
+            return true;
 
         } catch (SQLException exceptionOrg) {
             exceptionOrg.printStackTrace();
@@ -180,11 +175,12 @@ public class RepositorioOrganizacao implements Serializable{
             } catch (SQLException sqlException) {
                 sqlException.getErrorCode();
             }
+
+            connection.close();
+            dbConnectionHandler.closeAll();
+            return false;
         }
 
-        connection.close();
-        dbConnectionHandler.closeAll();
-        return false;
     }
 
 
