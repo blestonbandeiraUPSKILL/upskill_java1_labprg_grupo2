@@ -10,6 +10,7 @@ import com.grupo2.t4j.model.AreaActividade;
 import com.grupo2.t4j.model.CaracterizacaoCT;
 import com.grupo2.t4j.model.Categoria;
 import com.grupo2.t4j.model.CompetenciaTecnica;
+import com.grupo2.t4j.model.GrauProficiencia;
 import com.grupo2.t4j.repository.RepositorioAreaActividade;
 import com.grupo2.t4j.repository.RepositorioCompetenciaTecnica;
 import java.io.File;
@@ -22,6 +23,8 @@ import java.util.List;
  * @author acris
  */
 public class RegistarCompetenciaTecnicaController {
+
+    
     
     private FicheiroRepositorioCompetenciaTecnica ficheiroCompTec;
     private RepositorioCompetenciaTecnica repositorioCompetenciaTecnica;
@@ -33,6 +36,10 @@ public class RegistarCompetenciaTecnicaController {
     public List<CompetenciaTecnica> getCompetenciasTecnicasByAreaActividade(AreaActividade areaActividade) {
 
        return RepositorioCompetenciaTecnica.getInstance().getCompetenciasTecnicasByAreaActividade(areaActividade);
+    }
+    
+    public static List<GrauProficiencia> getGrausAplicaveis() {
+        return CompetenciaTecnica.getGrausAplicaveis();
     }
 
     public List<CompetenciaTecnica> getCompetenciasTecnicas() {

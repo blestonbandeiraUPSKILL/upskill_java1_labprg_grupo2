@@ -69,7 +69,7 @@ public class AdicionarCategoriaTarefaUI implements Initializable {
         adicionarStage.initModality(Modality.APPLICATION_MODAL);;
         adicionarStage.setResizable(false);
 
-        cmbGrauProficiencia.getItems().setAll(CompetenciaTecnica.getGrausAplicaveis());
+        cmbGrauProficiencia.getItems().setAll(RegistarCompetenciaTecnicaController.getGrausAplicaveis());
         cmbObrigatoriedade.getItems().setAll(Obrigatoriedade.values());
 
         cmbAreaActividade.getItems().addAll(registarAreaActividadeController.getAreasActividade());
