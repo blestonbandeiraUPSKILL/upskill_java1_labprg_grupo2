@@ -38,7 +38,12 @@ public class FabricaRepositoriosDatabase implements FabricaRepositorios {
     public RepositorioCompetenciaTecnica getRepositorioCompetenciaTecnica() {
         return null;
     }
-
+    
+    @Override
+    public RepositorioFreelancer getRepositorioFreelancer() {
+        return null;
+    }
+    
     @Override
     public RepositorioOrganizacao getRepositorioOrganizacao() {
         return null;

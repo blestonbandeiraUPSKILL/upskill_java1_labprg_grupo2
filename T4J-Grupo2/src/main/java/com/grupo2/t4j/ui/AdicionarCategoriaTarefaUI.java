@@ -3,6 +3,7 @@ package com.grupo2.t4j.ui;
 import com.grupo2.t4j.controller.RegistarAreaActividadeController;
 import com.grupo2.t4j.controller.RegistarCategoriaController;
 import com.grupo2.t4j.controller.RegistarCompetenciaTecnicaController;
+import com.grupo2.t4j.controller.RegistarGrauProficienciaController;
 import com.grupo2.t4j.model.*;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -30,6 +31,7 @@ public class AdicionarCategoriaTarefaUI implements Initializable {
     private RegistarCategoriaController registarCategoriaController;
     private RegistarAreaActividadeController registarAreaActividadeController;
     private RegistarCompetenciaTecnicaController registarCompetenciaTecnicaController;
+    private RegistarGrauProficienciaController registarGrauProficienciaController;
     private List<CaracterizacaoCT> caracterizacaoCTS;
 
     @FXML TextField txtDescricaoBreve;
@@ -54,12 +56,13 @@ public class AdicionarCategoriaTarefaUI implements Initializable {
         registarAreaActividadeController = new RegistarAreaActividadeController();
         registarCategoriaController = new RegistarCategoriaController();
         registarCompetenciaTecnicaController = new RegistarCompetenciaTecnicaController();
+        registarGrauProficienciaController = new RegistarGrauProficienciaController();
 
         adicionarStage = new Stage();
         adicionarStage.initModality(Modality.APPLICATION_MODAL);;
         adicionarStage.setResizable(false);
 
-        cmbGrauProficiencia.getItems().setAll(RegistarCompetenciaTecnicaController.getGrausAplicaveis());
+        //cmbGrauProficiencia.getItems().setAll(registarGrauProficienciaController.findByCompetenciaTecnica());
         cmbObrigatoriedade.getItems().setAll(Obrigatoriedade.values());
 
         cmbAreaActividade.getItems().addAll(registarAreaActividadeController.getAll());

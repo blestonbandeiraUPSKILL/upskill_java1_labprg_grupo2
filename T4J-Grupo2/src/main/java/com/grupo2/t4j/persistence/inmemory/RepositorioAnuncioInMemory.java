@@ -13,7 +13,6 @@ package com.grupo2.t4j.persistence.inmemory;
 import com.grupo2.t4j.exception.AnuncioDuplicadoException;
 import com.grupo2.t4j.model.*;
 import com.grupo2.t4j.persistence.RepositorioAnuncio;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;

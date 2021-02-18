@@ -41,22 +41,25 @@ public class RegistarCompetenciaTecnicaController {
 
         return repositorioCompetenciaTecnica.save(competenciaTecnica);
     }
-    
-    public static List<GrauProficiencia> getGrausAplicaveis() {
-        return CompetenciaTecnica.getGrausAplicaveis();
-    }
 
+    /*public static List<GrauProficiencia> getGrausAplicaveis() {
+        return CompetenciaTecnica.getGrausAplicaveis();
+    }*/
     public List<CompetenciaTecnica> getAll() {
         return repositorioCompetenciaTecnica.getAll();
     }
 
-    
+    public List<CompetenciaTecnica> findByAreaActividade(AreaActividade areaActividade) {
+        return repositorioCompetenciaTecnica.findByAreaActividade(areaActividade);
+    }
+
     //////FICHEIROS////////
     public RegistarCompetenciaTecnicaController() {
         ficheiroCompTec = new FicheiroRepositorioCompetenciaTecnica();
-        
+
         desserializar();
     }
+
     public boolean serializar() {
         return ficheiroCompTec.serializar(repositorioCompetenciaTecnicaInMemory);
     }
