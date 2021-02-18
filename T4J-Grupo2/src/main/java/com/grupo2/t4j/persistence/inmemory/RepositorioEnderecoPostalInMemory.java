@@ -44,7 +44,7 @@ public class RepositorioEnderecoPostalInMemory implements Serializable, Reposito
 
     @Override
     public void save(String arruamento, String numeroPorta, String localidade, String codigoPostal) {
-        EnderecoPostal aa = findByCodigo(codigo);
+        EnderecoPostal ep = findByCodigo(codigo);
         if (ep == null) {
             listaEnderecoPostal.add(ep);
         } else {
