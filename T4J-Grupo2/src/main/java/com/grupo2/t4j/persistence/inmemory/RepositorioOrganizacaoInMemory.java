@@ -63,7 +63,6 @@ public class RepositorioOrganizacaoInMemory implements Serializable, Repositorio
 
     }
 
-
     @Override
     public boolean save(Organizacao organizacao) {
         Organizacao o = findByNif(organizacao.getNif());

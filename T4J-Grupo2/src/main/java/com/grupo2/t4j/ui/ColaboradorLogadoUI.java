@@ -120,7 +120,7 @@ public class ColaboradorLogadoUI implements Initializable {
 
     public void updateCmbCategoriasTarefaRegisto(ActionEvent actionEvent) {
         List<Categoria> listaCategoriasTarefa =
-                registarCategoriaController.getCategoriasByAreaActividade(
+                registarCategoriaController.findByAreaActividade(
                 cmbAreaActividadeEspecificarTarefa.getSelectionModel().getSelectedItem());
 
 

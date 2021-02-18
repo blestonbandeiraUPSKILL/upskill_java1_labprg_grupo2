@@ -21,14 +21,13 @@ public class RegistarOrganizacaoController {
     private RepositorioColaborador repositorioColaborador = fabricaRepositorios.getRepositorioColaborador();
     private RepositorioEnderecoPostal repositorioEnderecoPostal = fabricaRepositorios.getRepositorioEnderecoPostal();
     private UsersAPI usersAPI;
-    private AlgoritmoGeradorPasswords algoritmoGeradorPasswords;
 
     public boolean registarOrganizacao(String nif, String nome, Website website,
-                                       String telefone, Email emailOrganizacao, Email emailGestor,
+                                       String telefone, Email emailOrganizacao, Email emailGestor, String codigoEnderecoPostal,
                                        String arruamento, String numeroPorta, String localidade, String codigoPostal,
-                                       String nomeGestor, String rolename, String telefoneGestor, String funcaoGestor) throws SQLException {
+                                       String nomeGestor, String telefoneGestor, String funcaoGestor) throws SQLException {
 
-        EnderecoPostal enderecoPostal = new EnderecoPostal(arruamento, numeroPorta, localidade, codigoPostal);
+        EnderecoPostal enderecoPostal = new EnderecoPostal(codigoEnderecoPostal, arruamento, numeroPorta, localidade, codigoPostal);
         repositorioEnderecoPostal.save(enderecoPostal);
 
         AlgoritmoGeradorPasswords algoritmoGeradorPasswords = new AlgoritmoGeradorPasswords();
@@ -39,7 +38,7 @@ public class RegistarOrganizacaoController {
 
         usersAPI.registerUserWithRoles(gestor.getEmail(), gestor.getNome(), gestor.getPassword(), gestor.getRolename().name());
 
-        Organizacao organizacao = new Organizacao(nif, nome, website, telefone, emailOrganizacao, gestor, enderecoPostal);
+        Organizacao organizacao = new Organizacao(nif, nome, website, telefone, emailOrganizacao, emailGestor, codigoEnderecoPostal);
 
         return repositorioOrganizacao.save(organizacao);
     }
@@ -51,6 +50,10 @@ public class RegistarOrganizacaoController {
 
     public List<Organizacao> getAll() {
         return repositorioOrganizacao.getAll();
+    }
+
+    public Organizacao findByNif(String nif) throws SQLException {
+        return repositorioOrganizacao.findByNif(nif);
     }
 
 
