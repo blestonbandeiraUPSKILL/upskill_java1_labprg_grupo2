@@ -83,6 +83,19 @@ public class RepositorioColaboradorInMemory implements Serializable, Repositorio
     }
 
     @Override
+    public void save(Colaborador colaborador) {
+        Colaborador c = findByEmail(colaborador.getEmail().getEmailText());
+        if (c == null) {
+            Colaborador colab = new Colaborador(colaborador);
+            this.listaColaboradores.add(colab);
+
+        } else {
+            throw new ColaboradorDuplicadoException(c.getEmail().getEmailText()
+                    + ": Colaborador já registado!");
+        }
+    }
+
+    @Override
     public Colaborador findByEmail(String emailCol) {
         for (int i = 0; i < this.listaColaboradores.size(); i++) {
             Colaborador colaborador = this.listaColaboradores.get(i);

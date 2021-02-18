@@ -51,7 +51,32 @@ public class RepositorioOrganizacaoInMemory implements Serializable, Repositorio
                      Email emailOrganizacao, Email emailGestor, String arruamento,
                      String numeroPorta, String localidade, String codigoPostal, String nomeGestor, Password password,
                      Rolename rolename, String telefoneGestor, String funcaoGestor) {
+        Organizacao o = findByNif(nif);
+        if (o == null) {
+            EnderecoPostal enderecoPostal = new EnderecoPostal(arruamento,
+                    numeroPorta, localidade, codigoPostal);
 
+            Colaborador gestor = new Colaborador(emailGestor, nomeGestor, password,
+                    telefoneGestor, funcaoGestor, rolename);
+
+            Organizacao org = new Organizacao(nif, nome, website, telefone,
+                    emailOrganizacao, gestor, enderecoPostal );
+
+            this.listaOrganizacoes.add(org);
+        } else {
+            throw new OrganizacaoDuplicadaException(o.getNif() + ": Organização já registada!");
+        }
+
+    }
+
+    @Override
+    public void save(Organizacao organizacao) {
+        Organizacao o = findByNif(organizacao.getNif());
+        if (o == null) {
+            this.listaOrganizacoes.add(organizacao);
+        } else {
+            throw new OrganizacaoDuplicadaException(o.getNif() + ": Organização já registada!");
+        }
     }
 
     @Override

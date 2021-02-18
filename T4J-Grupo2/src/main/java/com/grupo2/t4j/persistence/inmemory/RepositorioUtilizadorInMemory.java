@@ -67,6 +67,19 @@ public class RepositorioUtilizadorInMemory implements Serializable, RepositorioU
     }
 
     @Override
+    public void save(Utilizador utilizador) {
+        Utilizador u = findByEmail(utilizador.getEmail().getEmailText());
+        if (u == null) {
+            Utilizador user = new Utilizador(utilizador);
+            this.listaUtilizadores.add(user);
+
+        } else {
+            throw new UtilizadorDuplicadoException(u.getEmail().getEmailText()
+                    + ": Utilizador já registado!");
+        }
+    }
+
+    @Override
     public Utilizador findByEmail(String emailUt) {
         for (int i = 0; i < this.listaUtilizadores.size(); i++) {
             Utilizador utilizador = this.listaUtilizadores.get(i);

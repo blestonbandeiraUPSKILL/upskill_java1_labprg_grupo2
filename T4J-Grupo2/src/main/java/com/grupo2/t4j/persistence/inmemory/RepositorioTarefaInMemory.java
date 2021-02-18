@@ -87,6 +87,19 @@ public class RepositorioTarefaInMemory implements Serializable, RepositorioTaref
     }
 
     @Override
+    public void save(Tarefa tarefa) {
+        Tarefa t = findByReferencia(tarefa.getReferencia());
+        if (t == null) {
+            Tarefa tar = new Tarefa(tarefa);
+            this.listaTarefas.add(tar);
+        }
+        else {
+            throw new TarefaDuplicadaException(t.getReferencia() +
+                    ": Tarefa já registada");
+        }
+    }
+
+    @Override
     public Tarefa findByReferencia(String referencia) {
         for (int i = 0; i < this.listaTarefas.size(); i++) {
             Tarefa tarefa = this.listaTarefas.get(i);

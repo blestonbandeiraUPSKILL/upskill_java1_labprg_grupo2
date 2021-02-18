@@ -75,6 +75,18 @@ public class RepositorioCompetenciaTecnicaInMemory implements Serializable, Repo
     }
 
     @Override
+    public void save(CompetenciaTecnica competenciaTecnica) {
+        CompetenciaTecnica ct = findByCodigo(competenciaTecnica.getCodigo());
+        if (ct == null) {
+            CompetenciaTecnica compTec = new CompetenciaTecnica(competenciaTecnica);
+            this.listaCompTecnicas.add(compTec);
+        }
+        else {
+            throw new CompetenciaTecnicaDuplicadaException(ct.getCodigo() + ": Competencia Tecnica já existe");
+        }
+    }
+
+    @Override
     public List<CompetenciaTecnica> getAll() {
         return new ArrayList<CompetenciaTecnica>(listaCompTecnicas);
     }

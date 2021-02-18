@@ -33,9 +33,6 @@ public class RepositorioCategoriaTarefaInMemory implements Serializable, Reposit
         return repositorioCategoriaTarefaInMemory;
     }
 
-    
-
-
     @Override
     public void save(String descBreve, String descDetalhada, AreaActividade areaActividade, List<CaracterizacaoCT> caracterizacaoCTS) {
 
