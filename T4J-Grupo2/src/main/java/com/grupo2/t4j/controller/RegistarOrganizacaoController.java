@@ -7,7 +7,7 @@ import java.sql.SQLException;
 
 public class RegistarOrganizacaoController {
 
-    
+
     private Plataforma plataforma;
     private RepositorioOrganizacaoDatabase repositorioOrganizacao;
 
