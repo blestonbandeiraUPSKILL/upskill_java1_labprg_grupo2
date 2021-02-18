@@ -9,6 +9,11 @@ import com.grupo2.t4j.model.AreaActividade;
 import com.grupo2.t4j.model.CaracterizacaoCT;
 import com.grupo2.t4j.model.Categoria;
 import com.grupo2.t4j.model.Tarefa;
+import com.grupo2.t4j.persistence.FabricaRepositorios;
+import com.grupo2.t4j.persistence.RepositorioAreaActividade;
+import com.grupo2.t4j.persistence.RepositorioCategoriaTarefa;
+import com.grupo2.t4j.persistence.RepositorioTarefa;
+import com.grupo2.t4j.persistence.inmemory.FabricaRepositoriosInMemory;
 import com.grupo2.t4j.persistence.inmemory.RepositorioAreaActividadeInMemory;
 import com.grupo2.t4j.persistence.inmemory.RepositorioCategoriaTarefaInMemory;
 import com.grupo2.t4j.persistence.inmemory.RepositorioTarefaInMemory;
@@ -21,41 +26,27 @@ import java.util.List;
  */
 public class RegistarTarefaController {
 
-    public List<CaracterizacaoCT> getCompetenciasTecnicasByCategoria(Categoria categoria) { //Vai buscar a lista de Competencias Tecnicas da Categoria
-        return categoria.getCompTecnicasCaracter();
+    private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosInMemory();
+    //private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosDatabase();
+
+    private RepositorioTarefa repositorioTarefa = fabricaRepositorios.getRepositorioTarefa();
+
+    public List<Tarefa> getAll() {
+        return repositorioTarefa.getAll();
     }
 
-    public List<AreaActividade> getListaAreasActividade() {
-        return RepositorioAreaActividadeInMemory.getInstance().getListaAreasActividade();
-    }
-
-    public List<Categoria> getListaCategoriaByAreaActividade(AreaActividade areaActividade) {
-        return RepositorioCategoriaTarefaInMemory.getInstance().getCategoriasByAreaActividade(areaActividade);
-    }
-
-    public boolean registarTarefa(AreaActividade areaActividade, Categoria categoria, 
-            String referencia, String designacao, String descricaoInformal, 
-            String descricaoTecnica, int duracao, double custo) {
-       return RepositorioTarefaInMemory.getInstance().addTarefa(areaActividade, categoria, referencia,
-               designacao, descricaoInformal, descricaoTecnica, duracao, custo);
-    }
-
-    public List<Tarefa> getListTarefas() {
-        return RepositorioTarefaInMemory.getInstance().getAll();
-    }
-
-    public Tarefa novaTarefa(AreaActividade areaActividade, Categoria categoriaTarefa,
+    public Tarefa registarTarefa(AreaActividade areaActividade, Categoria categoriaTarefa,
                              String referencia,
                              String designacao,
                              String descInformal,
                              String descTecnica,
                              int duracao,
                              double custo) {
-        return RepositorioTarefaInMemory.getInstance().novaTarefa(areaActividade, categoriaTarefa,
+        return repositorioTarefa.save(areaActividade, categoriaTarefa,
                 referencia, designacao, descInformal, descTecnica, duracao, custo);
     }
 
     public boolean registarTarefa(Tarefa tarefa) {
-        return RepositorioTarefaInMemory.getInstance().addTarefa(tarefa);
+        return repositorioTarefa.save(tarefa);
     }
 }
