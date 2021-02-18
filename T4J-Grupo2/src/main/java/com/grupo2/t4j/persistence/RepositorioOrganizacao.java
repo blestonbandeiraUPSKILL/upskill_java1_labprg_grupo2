@@ -9,11 +9,7 @@ public interface RepositorioOrganizacao {
 
     void save(String nif, String nome, Website website,
               String telefone, Email emailOrganizacao,
-              Email emailGestor, String arruamento,
-              String numeroPorta, String localidade,
-              String codigoPostal, String nomeGestor,
-              Password password, Rolename rolename,
-              String telefoneGestor, String funcaoGestor) throws SQLException;
+              EnderecoPostal enderecoPostal, Colaborador gestor) throws SQLException;
 
     boolean save(Organizacao organizacao);
 

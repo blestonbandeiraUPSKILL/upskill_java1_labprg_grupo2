@@ -52,9 +52,7 @@ public class RepositorioOrganizacaoDatabase implements RepositorioOrganizacao {
 
     @Override
     public void save(String nif, String nome, Website website, String telefone,
-                     Email emailOrganizacao, Email emailGestor, String arruamento,
-                     String numeroPorta, String localidade, String codigoPostal,
-                     String nomeGestor, Password passwordGestor, Rolename rolename, String telefoneGestor, String funcaoGestor) throws SQLException {
+                     Email emailOrganizacao, String idEnderecoPostal, Email emailGestor) throws SQLException {
 
         DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
         Connection connection = dbConnectionHandler.openConnection();
