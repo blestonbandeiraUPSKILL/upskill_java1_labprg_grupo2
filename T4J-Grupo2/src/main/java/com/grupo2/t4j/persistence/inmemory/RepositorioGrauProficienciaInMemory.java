@@ -5,6 +5,7 @@
  */
 package com.grupo2.t4j.persistence.inmemory;
 
+import com.grupo2.t4j.exception.GrauProficienciaDuplicadoException;
 import com.grupo2.t4j.model.GrauProficiencia;
 import com.grupo2.t4j.persistence.RepositorioGrauProficiencia;
 import java.io.Serializable;
@@ -42,23 +43,48 @@ public class RepositorioGrauProficienciaInMemory implements Serializable, Reposi
         return instance;
     }
     @Override
-    public void save(int valor, String designacao) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void save(int valor, String designacao, String codigoCompetenciaTecnica) {
+        
     }
 
     @Override
     public boolean save(GrauProficiencia grauProficiencia) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        GrauProficiencia gp = findByValor(grauProficiencia.getGrau(),grauProficiencia.getCompetenciaTecnica().getCodigo());
+        if(gp==null) {
+            this.listaGrausProficiencia.add(grauProficiencia);
+        } else {
+            throw new GrauProficienciaDuplicadoException(gp.getGrau()+": Grau já especificado");
+        }
+        return false;
     }
 
     @Override
     public List<GrauProficiencia> getAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return new ArrayList<GrauProficiencia>(listaGrausProficiencia);
     }
 
     @Override
-    public ArrayList<GrauProficiencia> findByCompetenciaTecnica() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public ArrayList<GrauProficiencia> findByCompetenciaTecnica(String codigoCompetenciaTecnica) {
+        ArrayList<GrauProficiencia> grauProficienciaPorCT = new ArrayList<>();
+        for (GrauProficiencia gp: listaGrausProficiencia) {
+            if(gp.getCompetenciaTecnica().getCodigo().equals(codigoCompetenciaTecnica)) {
+                grauProficienciaPorCT.add(gp);
+            }
+        }
+        return grauProficienciaPorCT;
     }
+
+    @Override
+    public GrauProficiencia findByValor(int valor, String codigoCompetenciaTecnica) {
+        for(int i = 0; i < this.findByCompetenciaTecnica(codigoCompetenciaTecnica).size(); i++){
+            GrauProficiencia gp = this.findByCompetenciaTecnica(codigoCompetenciaTecnica).get(i);
+            if (gp.getGrau()==valor){
+                return gp;
+            }
+        }
+        return null;
+    }
+
+    
     
 }

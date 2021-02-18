@@ -12,6 +12,7 @@ public interface FabricaRepositorios {
     RepositorioColaborador getRepositorioColaborador();
     RepositorioCompetenciaTecnica getRepositorioCompetenciaTecnica();
     RepositorioEnderecoPostal getRepositorioEnderecoPostal();
+    RepositorioFreelancer getRepositorioFreelancer();
     RepositorioOrganizacao getRepositorioOrganizacao();
     RepositorioTarefa getRepositorioTarefa();
     RepositorioUtilizador getRepositorioUtilizador();
