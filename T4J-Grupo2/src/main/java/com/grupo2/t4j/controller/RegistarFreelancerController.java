@@ -45,7 +45,7 @@ public class RegistarFreelancerController {
     }
 
     ///////API
-    public boolean registarFreelancer(Freelancer freelancer) throws SQLException {
+    public boolean registarFreelancerComoUtilizador(Freelancer freelancer) throws SQLException {
         String nome = freelancer.getNome();
         Email email = freelancer.getEmail();
 

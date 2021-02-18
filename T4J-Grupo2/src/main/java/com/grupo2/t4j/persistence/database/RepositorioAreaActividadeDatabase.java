@@ -68,10 +68,10 @@ public class RepositorioAreaActividadeDatabase implements RepositorioAreaActivid
         return null;
     }
 
-    @Override
+    /*@Override
     public boolean save(AreaActividade areaActividade) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    }*/
 
 
 
