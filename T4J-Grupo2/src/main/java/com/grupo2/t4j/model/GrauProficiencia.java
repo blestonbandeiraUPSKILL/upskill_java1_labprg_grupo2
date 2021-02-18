@@ -5,6 +5,7 @@
  */
 package com.grupo2.t4j.model;
 
+import com.grupo2.t4j.exception.CompetenciaTecnicaInexistenteException;
 import java.io.Serializable;
 
 /**
@@ -19,6 +20,7 @@ import java.io.Serializable;
 public class GrauProficiencia {
     private int grau;
     private String designacao;
+    private CompetenciaTecnica competenciaTecnica;
     
 
     public GrauProficiencia(GrauProficiencia gp) {
@@ -29,6 +31,12 @@ public class GrauProficiencia {
     public GrauProficiencia(int grau, String designacao) {
         setGrau(grau);
         setDesignacao(designacao);
+        
+    }
+    public GrauProficiencia(int grau, String designacao, CompetenciaTecnica competenciaTecnica){
+        setGrau(grau);
+        setDesignacao(designacao);
+        setCompetenciaTecnica(competenciaTecnica);
     }
 
     public int getGrau() {
@@ -45,6 +53,19 @@ public class GrauProficiencia {
 
     public void setDesignacao(String designacao) {
         this.designacao = designacao;
+    }
+    
+    public CompetenciaTecnica getCompetenciaTecnica(){
+        return competenciaTecnica;
+    }
+
+    private void setCompetenciaTecnica(CompetenciaTecnica competenciaTecnica) {
+        if(competenciaTecnica != null) {
+            this.competenciaTecnica = competenciaTecnica;
+        }
+        else {
+            throw new CompetenciaTecnicaInexistenteException ("A competência técnica não existe");
+        }
     }
     
     
