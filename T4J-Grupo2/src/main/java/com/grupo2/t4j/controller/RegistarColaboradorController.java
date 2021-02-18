@@ -99,7 +99,7 @@ public class RegistarColaboradorController {
     public int desserializar(File ficheiroImportar) {
         RepositorioColaboradorInMemory listaColaboradorImportada = ficheiroC.desserializar(ficheiroImportar);
 
-        return repositorioColaboradorInMemory.getInstance().adicionarListaColaborador(listaColaboradorImportada);
+        return repositorioColaboradorInMemory.adicionarListaColaborador(listaColaboradorImportada);
     }
 
 
