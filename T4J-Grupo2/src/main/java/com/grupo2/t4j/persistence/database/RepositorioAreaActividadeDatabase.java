@@ -51,6 +51,7 @@ public class RepositorioAreaActividadeDatabase implements Serializable, Reposito
     public void save(String codigo, String descBreve, String descDetalhada) throws AreaActividadeDuplicadaException {
 
     }
+   
 
     @Override
     public List<AreaActividade> getAll() {
@@ -60,6 +61,11 @@ public class RepositorioAreaActividadeDatabase implements Serializable, Reposito
     @Override
     public AreaActividade findByCodigo(String codigo) {
         return null;
+    }
+
+    @Override
+    public boolean save(AreaActividade areaActividade) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 
