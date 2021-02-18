@@ -16,12 +16,12 @@ import java.util.ArrayList;
 
 public interface RepositorioFreelancer {
     
-    void save(Email email, String nome, Password password, Rolename rolename,
-            String NIF, EnderecoPostal enderecoPostalFreelancer) throws FreelancerDuplicadoException;
+    void save(Email email, String nome, Password password,
+            String nif, String codigoEnderecoPostal) throws FreelancerDuplicadoException;
 
     boolean save(Freelancer freelancer);
 
-    Freelancer findByNIF(String NIF);
+    Freelancer findByNif(String nif);
 
     ArrayList<Freelancer> getAll();
 }

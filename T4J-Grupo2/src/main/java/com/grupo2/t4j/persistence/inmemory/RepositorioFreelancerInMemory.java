@@ -51,36 +51,33 @@ public class RepositorioFreelancerInMemory implements Serializable, RepositorioF
     }
     
     @Override
-    public void save(Email email, String nome, Password password, Rolename rolename,
-            String NIF, EnderecoPostal enderecoPostalFreelancer) throws FreelancerDuplicadoException {
-        Freelancer f = findByNIF(NIF);
+    public void save(Email email, String nome, Password password, String nif, String codigoEnderecoPostal) throws FreelancerDuplicadoException {
+        Freelancer f = findByNif(nif);
         if (f == null) {
-            Freelancer freelancer = new Freelancer(email, nome, password, rolename,
-            NIF, enderecoPostalFreelancer);
+            Freelancer freelancer = new Freelancer(email, nome, password, nif, codigoEnderecoPostal);
             this.listaFreelancers.add(freelancer);
         } else {
-            throw new FreelancerDuplicadoException(NIF + ": NIF já registado!");
+            throw new FreelancerDuplicadoException(nif + ": NIF já registado!");
         }
     }
 
     @Override
     public boolean save(Freelancer freelancer) {
-        Freelancer f = findByNIF(freelancer.getNIF());
+        Freelancer f = findByNif(freelancer.getNif());
         if (f == null) {
             Freelancer freel = new Freelancer(freelancer);
             this.listaFreelancers.add(freel);
         } else {
-            throw new FreelancerDuplicadoException(freelancer.getNIF() + ": NIF já registado!");
+            throw new FreelancerDuplicadoException(freelancer.getNif() + ": NIF já registado!");
         }
         return false;
     }
 
     @Override
-    public Freelancer findByNIF(String NIF) {
-        Freelancer freelancer = null;
+    public Freelancer findByNif(String nif) {
         for (int i = 0; i < this.listaFreelancers.size(); i++) {
-            freelancer = this.listaFreelancers.get(i);
-            if (freelancer.getNIF().equals(NIF)) {
+            Freelancer freelancer = this.listaFreelancers.get(i);
+            if (freelancer.getNif().equals(nif)) {
                 return freelancer;
             }
         }
@@ -91,16 +88,5 @@ public class RepositorioFreelancerInMemory implements Serializable, RepositorioF
     public ArrayList<Freelancer> getAll() {
         return new ArrayList<Freelancer>(listaFreelancers);
     }
-    
-    public int adicionarListaFreelancer(RepositorioFreelancerInMemory outraListaFreelancers) {
-        int totalFreelancersAdicionados = 0;
 
-        for (Freelancer freelancer : outraListaFreelancers.listaFreelancers) {
-            boolean freelancerAdicionado = save(freelancer);
-            if (freelancerAdicionado) {
-                totalFreelancersAdicionados++;
-            }
-        }
-        return totalFreelancersAdicionados;
-    }
 }

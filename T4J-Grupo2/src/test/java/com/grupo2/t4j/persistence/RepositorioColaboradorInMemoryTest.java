@@ -40,7 +40,7 @@ public class RepositorioColaboradorInMemoryTest {
         System.out.println(rc1.getListaColaboradores().get(0).toString());
     }*/
     
-    @Test
+  /*  @Test
     public void testAddColaboradorRepo() {
        
         RepositorioColaboradorInMemory rc1 = RepositorioColaboradorInMemory.getInstance();
@@ -48,7 +48,7 @@ public class RepositorioColaboradorInMemoryTest {
         rc1.addColaborador(new Email("fulano@upskill.pt"), "Fulano", "Assistente", "999888777", Rolename.COLABORADOR);
                
         System.out.println(rc1.getListaColaboradores().get(0).toString());
-    }
+    }*/
     /*
     @Test (expected = ColaboradorDuplicadoException.class)
     public void testAddColaboradorDuplicado() {

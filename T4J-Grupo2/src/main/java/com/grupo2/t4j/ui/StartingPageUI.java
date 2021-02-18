@@ -1,5 +1,6 @@
 package com.grupo2.t4j.ui;
 
+import com.grupo2.t4j.api.UsersAPI;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -20,13 +21,14 @@ import java.util.ResourceBundle;
 
 public class StartingPageUI implements Initializable {
 
-    private AutenticacaoController autenticacaoController;
     private Stage adicionarStage;
     private Scene sceneRegistarOrganizacao;
     private Scene sceneLogin;
     private Scene sceneGestor;
     private Scene sceneAdministrativo;
     private Scene sceneColaborador;
+    private Scene sceneFreelancer;
+
     @FXML TextField txtEmailLogin;
     @FXML PasswordField txtPasswordLogin;
     @FXML Button btnSair;
@@ -44,8 +46,6 @@ public class StartingPageUI implements Initializable {
             adicionarStage = new Stage();
             adicionarStage.initModality(Modality.APPLICATION_MODAL);;
             adicionarStage.setResizable(false);
-
-            autenticacaoController = new AutenticacaoController();
 
         }
         catch (IOException exception) {
@@ -70,7 +70,8 @@ public class StartingPageUI implements Initializable {
 
     public void login(ActionEvent actionEvent) throws IOException, SQLException {
 
-        boolean login = autenticacaoController.login(
+        UsersAPI usersAPI = new UsersAPI();
+        boolean login = usersAPI.login(
                 txtEmailLogin.getText(),
                 txtPasswordLogin.getText());
 
@@ -78,16 +79,18 @@ public class StartingPageUI implements Initializable {
             txtEmailLogin.clear();
             txtPasswordLogin.clear();
             
-            switch (autenticacaoController.getRole()) {
-                case GESTOR:
+            switch (usersAPI.getRole()) {
+                case "gestor":
                     navigateGestorLogado(actionEvent);
                     break;
-                case ADMINISTRATIVO:
+                case "administrativo":
                     navigateAdministrativoLogado(actionEvent);
                     break;
-                case COLABORADOR:
+                case "colaborador":
                     navigateColaboradorLogado(actionEvent);
                     break;
+                case "freelancer":
+                    navigateFreelancerLogado(actionEvent);
             }
         }
         else {
@@ -173,6 +176,28 @@ public class StartingPageUI implements Initializable {
             adicionarStage.setTitle("T4J - Colaborador");
             adicionarStage.show();
 
+            btnLogin.getScene().getWindow().hide();
+        }
+        catch (IOException exception) {
+            exception.printStackTrace();
+            AlertsUI.criarAlerta(Alert.AlertType.ERROR,
+                    MainApp.TITULO_APLICACAO,
+                    "Erro",
+                    exception.getMessage());
+        }
+    }
+
+    public void navigateFreelancerLogado(ActionEvent actionEvent) throws IOException {
+        try {
+            FXMLLoader loaderFreelancer = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/FreelancerLogadoScene.fxml"));
+            Parent rootFreelancer = loaderFreelancer.load();
+            sceneFreelancer = new Scene(rootFreelancer);
+            FreelancerLogadoUI freelancerLogadoUI = loaderFreelancer.getController();
+            freelancerLogadoUI.associarParentUI(this);
+
+            adicionarStage.setScene(sceneFreelancer);
+            adicionarStage.setTitle("T4J - Freelancer");
+            adicionarStage.show();
             btnLogin.getScene().getWindow().hide();
         }
         catch (IOException exception) {

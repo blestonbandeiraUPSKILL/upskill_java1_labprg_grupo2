@@ -38,12 +38,27 @@ public class FabricaRepositoriosDatabase implements FabricaRepositorios {
     public RepositorioCompetenciaTecnica getRepositorioCompetenciaTecnica() {
         return null;
     }
-    
+
+    @Override
+    public RepositorioEnderecoPostal getRepositorioEnderecoPostal() {
+        return new RepositorioEnderecoPostalDatabase();
+    }
+
     @Override
     public RepositorioFreelancer getRepositorioFreelancer() {
         return null;
     }
-    
+
+    @Override
+    public RepositorioGrauProficiencia getRepositorioGrauProficiencia() {
+        return new RepositorioGrauProficienciaDatabase();
+    }
+
+    @Override
+    public RepositorioUtilizador getRepositorioUtilizador() {
+        return null;
+    }
+
     @Override
     public RepositorioOrganizacao getRepositorioOrganizacao() {
         return null;
@@ -54,10 +69,9 @@ public class FabricaRepositoriosDatabase implements FabricaRepositorios {
         return null;
     }
 
-    @Override
-    public RepositorioUtilizador getRepositorioUtilizador() {
-        return null;
-    }
+
+
+
 
 
 }

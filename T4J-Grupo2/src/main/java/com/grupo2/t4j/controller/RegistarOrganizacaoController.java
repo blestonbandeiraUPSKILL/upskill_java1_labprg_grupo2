@@ -22,10 +22,11 @@ public class RegistarOrganizacaoController {
     private RepositorioEnderecoPostal repositorioEnderecoPostal = fabricaRepositorios.getRepositorioEnderecoPostal();
     private UsersAPI usersAPI;
 
-    public boolean registarOrganizacao(String nif, String nome, Website website,
-                                       String telefone, Email emailOrganizacao, Email emailGestor, String codigoEnderecoPostal,
-                                       String arruamento, String numeroPorta, String localidade, String codigoPostal,
-                                       String nomeGestor, String telefoneGestor, String funcaoGestor) throws SQLException {
+    public boolean registarOrganizacao(String nif, String nome, String website,
+                                       String telefone, String emailOrganizacao, String emailGes,
+                                       String codigoEnderecoPostal, String arruamento, String numeroPorta,
+                                       String localidade, String codigoPostal, String nomeGestor,
+                                       String telefoneGestor, String funcaoGestor) throws SQLException {
 
         EnderecoPostal enderecoPostal = new EnderecoPostal(codigoEnderecoPostal, arruamento, numeroPorta, localidade, codigoPostal);
         repositorioEnderecoPostal.save(enderecoPostal);
@@ -33,17 +34,13 @@ public class RegistarOrganizacaoController {
         AlgoritmoGeradorPasswords algoritmoGeradorPasswords = new AlgoritmoGeradorPasswords();
         Password pass = new Password(algoritmoGeradorPasswords.geraPassword());
 
-        Colaborador gestor = new Colaborador(emailGestor, nomeGestor, pass, funcaoGestor, telefoneGestor, Rolename.GESTOR);
+        Email emailGestor = new Email(emailGes);
+        Colaborador gestor = new Colaborador(emailGestor, nomeGestor, pass, funcaoGestor, telefoneGestor);
         repositorioColaborador.save(gestor);
 
-        usersAPI.registerUserWithRoles(gestor.getEmail(), gestor.getNome(), gestor.getPassword(), gestor.getRolename().name());
+        usersAPI.registerUserWithRoles(gestor.getEmail(), gestor.getNome(), pass, "gestor");
 
-        Organizacao organizacao = new Organizacao(nif, nome, website, telefone, emailOrganizacao, emailGestor, codigoEnderecoPostal);
-
-        return repositorioOrganizacao.save(organizacao);
-    }
-
-    public boolean registaOrganizacao(Organizacao organizacao) throws Exception {
+        Organizacao organizacao = new Organizacao(nif, nome, new Website(website), telefone, new Email(emailOrganizacao), emailGestor, codigoEnderecoPostal);
 
         return repositorioOrganizacao.save(organizacao);
     }
@@ -54,6 +51,10 @@ public class RegistarOrganizacaoController {
 
     public Organizacao findByNif(String nif) throws SQLException {
         return repositorioOrganizacao.findByNif(nif);
+    }
+
+    public Colaborador findColaboradorByEmail(String email){
+        return repositorioColaborador.findByEmail(email);
     }
 
 

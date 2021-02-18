@@ -17,6 +17,7 @@ import javafx.stage.WindowEvent;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.scene.Node;
 
@@ -24,7 +25,7 @@ public class RegistarOrgEGestorUI implements Initializable {
 
     private RegistarOrganizacaoController registarOrganizacaoController;
     private StartingPageUI startingPageUI;
-    private AutenticacaoController autenticacaoController;
+
     private Stage adicionarStage;
 
     private Scene sceneConfirmarRegisto;
@@ -52,8 +53,7 @@ public class RegistarOrgEGestorUI implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        autenticacaoController = new AutenticacaoController();
-
+        RegistarOrganizacaoController registarOrganizacaoController = new RegistarOrganizacaoController();
     }
 
     public void cancelarRegisto(ActionEvent actionEvent) {
@@ -75,37 +75,32 @@ public class RegistarOrgEGestorUI implements Initializable {
         window.fireEvent(new WindowEvent(window, WindowEvent.WINDOW_CLOSE_REQUEST));
     }
 
-    public void avancarRegistoComDados(ActionEvent actionEvent) throws IOException, Exception {
+    public void avancarRegistoComDados(ActionEvent actionEvent) throws IOException {
         registarOrganizacaoController = new RegistarOrganizacaoController();
 
         try {
 
-            AlgoritmoGeradorPasswords algoritmoGeradorPasswords = Plataforma.getInstance().getAlgoritmoGeradorPwd();
-            Password password = new Password(algoritmoGeradorPasswords.geraPassword());
-
-            Organizacao organizacao = registarOrganizacaoController.novaOrganizacao(
+            boolean registou = registarOrganizacaoController.registarOrganizacao(
                     txtNif.getText(),
                     txtNomeOrganizacao.getText(),
-                    new Website(txtWebsite.getText()),
+                    txtWebsite.getText(),
                     txtTelefoneOrganizacao.getText(),
-                    new Email(txtEmailOrganizacao.getText()),
-                    new Email(txtEmailGestor.getText()),
+                    txtEmailOrganizacao.getText(),
+                    txtEmailGestor.getText(),
                     txtEndArruamento.getText(),
                     txtEndPorta.getText(),
                     txtEndLocalidade.getText(),
                     txtEndCodPostal.getText(),
                     txtNomeGestor.getText(),
-                    password,
                     Rolename.GESTOR.toString(),
                     txtTelefoneGestor.getText(),
                     txtFuncaoGestor.getText()
             );
-            
-            boolean registou = registarOrganizacaoController.registaOrganizacao(organizacao);
 
             if(registou) {
-                autenticacaoController.registarGestorComoUtilizador(organizacao.getColabGestor());
-                txtPassword.setText(password.getPasswordText());
+
+                txtPassword.setText(registarOrganizacaoController.findColaboradorByEmail(
+                        txtEmailGestor.getText()).getPassword().getPasswordText());
 
                 AlertsUI.criarAlerta(Alert.AlertType.INFORMATION,
                     MainApp.TITULO_APLICACAO,
@@ -117,7 +112,7 @@ public class RegistarOrgEGestorUI implements Initializable {
 
             }
         }
-        catch (IOException exception) {
+        catch (SQLException exception) {
             exception.printStackTrace();
             AlertsUI.criarAlerta(Alert.AlertType.ERROR,
                     MainApp.TITULO_APLICACAO,

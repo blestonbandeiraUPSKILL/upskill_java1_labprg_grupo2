@@ -19,7 +19,7 @@ import java.util.List;
 public interface RepositorioUtilizador {
 
 
-     void save(Email email, String nome, Password password, Rolename rolename) throws UtilizadorDuplicadoException;
+     void save(Email email, String nome, Password password) throws UtilizadorDuplicadoException;
 
      boolean save(Utilizador utilizador);
 

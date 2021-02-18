@@ -72,11 +72,10 @@ public class RepositorioTarefaInMemory implements Serializable, RepositorioTaref
     }
 
     @Override
-    public void save(AreaActividade areaActividade, Categoria categoriaTarefa, String referencia,
-                     String designacao, String descInformal, String descTecnica, int duracao, double custo) {
+    public void save(String codigoAreaActividade, String codigoCategoriaTarefa, String referencia, String designacao, String descInformal, String descTecnica, int duracao, double custo) {
         Tarefa t = findByReferencia(referencia);
         if (t == null) {
-            Tarefa tarefa = new Tarefa(referencia, designacao, descInformal,
+            Tarefa tarefa = new Tarefa(codigoAreaActividade, codigoCategoriaTarefa, referencia, designacao, descInformal,
                     descTecnica, duracao, custo);
             this.listaTarefas.add(tarefa);
         }
@@ -116,7 +115,7 @@ public class RepositorioTarefaInMemory implements Serializable, RepositorioTaref
         ArrayList<Tarefa> tarefasPorCategoria = new ArrayList<>();
 
         for(Tarefa t : listaTarefas) {
-            if(t.getCt().equals(codigoCategoria)) {
+            if(t.getCodigoCategoriaTarefa().equals(codigoCategoria)) {
                 tarefasPorCategoria.add(t);
             }
         }

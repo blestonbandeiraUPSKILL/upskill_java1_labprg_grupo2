@@ -33,7 +33,6 @@ public class ColaboradorLogadoUI implements Initializable {
     private StartingPageUI startingPageUI;
     private Scene sceneStartingPage;
     private Stage adicionarStage;
-    private UsersAPI usersAPI;
 
     private static final String CABECALHO_IMPORTAR = "Importar Lista.";
 
@@ -83,7 +82,7 @@ public class ColaboradorLogadoUI implements Initializable {
         });
 
         ListView<Tarefa> listViewTarefas = new ListView<>();
-        listViewTarefas.getItems().addAll(registarTarefaController.getListTarefas());
+        listViewTarefas.getItems().addAll(registarTarefaController.getAll());
 
         //tab Especificar Tarefa
         cmbAreaActividadeEspecificarTarefa.getItems().setAll(registarAreaActividadeController.getAll());
@@ -129,12 +128,9 @@ public class ColaboradorLogadoUI implements Initializable {
 
     public void registarTarefa(ActionEvent actionEvent) {
         try {
-            AreaActividade areaActividade = registarAreaActividadeController.getAreaActividadeByCodigo(
-                    cmbAreaActividadeEspecificarTarefa.getSelectionModel().getSelectedItem().getCodigo());
-            
-            Categoria categoria = cmbCategoriaTarefaEspecificarTarefa.getSelectionModel().getSelectedItem();
-
-            Tarefa tarefa = registarTarefaController.novaTarefa(areaActividade, categoria,
+            boolean adicionou = registarTarefaController.registarTarefa(
+                    cmbAreaActividadeEspecificarTarefa.getSelectionModel().getSelectedItem().getCodigo(),
+                    cmbCategoriaTarefaEspecificarTarefa.getSelectionModel().getSelectedItem().getCodigoCategoria(),
                     txtReferencia.getText(),
                     txtDesignacao.getText(),
                     txtDescInformal.getText(),
@@ -142,10 +138,8 @@ public class ColaboradorLogadoUI implements Initializable {
                     Integer.parseInt(txtEstimativaDuracao.getText()),
                     Double.parseDouble(txtEstimativaCusto.getText()));
 
-            boolean adicionou = registarTarefaController.registarTarefa(tarefa);
-
             if (adicionou){
-                listViewTarefas.getItems().add(tarefa);
+                listViewTarefas.getItems().addAll(registarTarefaController.getAll());
             }
             AlertsUI.criarAlerta(Alert.AlertType.INFORMATION,
                     MainApp.TITULO_APLICACAO,
@@ -201,10 +195,12 @@ public class ColaboradorLogadoUI implements Initializable {
     }
 
     public void logout(ActionEvent actionEvent) throws SQLException {
-        boolean logout = autenticacaoController.logout();
+        UsersAPI usersAPI = new UsersAPI();
+
+        boolean logout = usersAPI.logout();
         if (logout) {
             navigateStartingPage(actionEvent);
-            userAPIAdapter.resetUserAPI();
+            usersAPI.resetUserAPI();
         }
         else {
             Alert alerta = AlertsUI.criarAlerta(Alert.AlertType.ERROR,
@@ -241,7 +237,7 @@ public class ColaboradorLogadoUI implements Initializable {
             numeroAreasImportadas = registarAreaActividadeController.desserializar(ficheiroImportar);
 
             if(numeroAreasImportadas > 0) {
-                cmbAreaActividadeEspecificarTarefa.getItems().setAll(registarAreaActividadeController.getAreasActividade());
+                cmbAreaActividadeEspecificarTarefa.getItems().setAll(registarAreaActividadeController.getAll());
 
                 AlertsUI.criarAlerta(Alert.AlertType.INFORMATION, MainApp.TITULO_APLICACAO, CABECALHO_IMPORTAR,
                         String.format("%d área(s) de actividade importada(s).", numeroAreasImportadas)).show();

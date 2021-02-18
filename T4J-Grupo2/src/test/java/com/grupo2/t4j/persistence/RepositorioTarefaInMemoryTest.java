@@ -42,7 +42,7 @@ public class RepositorioTarefaInMemoryTest {
     public void tearDown() {
     }
 
-    @Test
+   /* @Test
     public void testAddTarefa() {
         
         RepositorioTarefaInMemory rt1 = RepositorioTarefaInMemory.getInstance();
@@ -53,9 +53,9 @@ public class RepositorioTarefaInMemoryTest {
         rt1.addTarefa(t1);
         
         assertTrue(rt1.getAll().contains(t1));
-    }   
+    }  */
     
-    @Test (expected = TarefaDuplicadaException.class)
+   /* @Test (expected = TarefaDuplicadaException.class)
     public void testAddTarefaDuplicada() {
         
         RepositorioTarefaInMemory rt1 = RepositorioTarefaInMemory.getInstance();
@@ -67,9 +67,9 @@ public class RepositorioTarefaInMemoryTest {
         
         rt1.addTarefa(t1);
         rt1.addTarefa(t2);
-    }
+    }*/
     
-    @Test
+  /*  @Test
     public void testGetTarefaByReferencia() {
         
         RepositorioTarefaInMemory rt1 = RepositorioTarefaInMemory.getInstance();
@@ -91,9 +91,9 @@ public class RepositorioTarefaInMemoryTest {
         assertEquals(t1,t4);
         
         System.out.println("Teste 2 ok");
-    }
+    }*/
     
-    @Test
+/*    @Test
     public void testGetListaTarefas() {
         
          RepositorioTarefaInMemory rt1 = RepositorioTarefaInMemory.getInstance();
@@ -110,5 +110,5 @@ public class RepositorioTarefaInMemoryTest {
         
         assertEquals(lista.get(0),t1);        
         assertEquals(lista.get(1),t2);        
-    }
+    }*/
 }
