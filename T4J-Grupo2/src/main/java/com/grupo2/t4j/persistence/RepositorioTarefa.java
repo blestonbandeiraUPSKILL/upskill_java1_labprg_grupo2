@@ -11,10 +11,8 @@ package com.grupo2.t4j.persistence;
  */
 
 import com.grupo2.t4j.model.*;
-import com.grupo2.t4j.exception.*;
-import java.io.Serializable;
+
 import java.util.ArrayList;
-import java.util.List;
 
 public interface RepositorioTarefa {
 
@@ -24,7 +22,7 @@ public interface RepositorioTarefa {
                              String descInformal, String descTecnica,
                              int duracao, double custo);
 
-    void save(Tarefa tarefa);
+    boolean save(Tarefa tarefa);
 
     Tarefa findByReferencia(String referencia);
 

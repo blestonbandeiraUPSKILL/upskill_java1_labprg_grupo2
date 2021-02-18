@@ -87,7 +87,7 @@ public class RepositorioTarefaInMemory implements Serializable, RepositorioTaref
     }
 
     @Override
-    public void save(Tarefa tarefa) {
+    public boolean save(Tarefa tarefa) {
         Tarefa t = findByReferencia(tarefa.getReferencia());
         if (t == null) {
             Tarefa tar = new Tarefa(tarefa);
@@ -97,6 +97,7 @@ public class RepositorioTarefaInMemory implements Serializable, RepositorioTaref
             throw new TarefaDuplicadaException(t.getReferencia() +
                     ": Tarefa já registada");
         }
+        return false;
     }
 
     @Override
