@@ -42,6 +42,16 @@
                                           <Insets bottom="10.0" left="10.0" right="10.0" />
                                        </VBox.margin>
                                     </ComboBox>
+                                    <Label text="Código ">
+                                       <VBox.margin>
+                                          <Insets bottom="10.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                    <TextField fx:id="txtCodigo">
+                                       <VBox.margin>
+                                          <Insets bottom="10.0" left="10.0" right="10.0" />
+                                       </VBox.margin>
+                                    </TextField>
                                     <Label text="Descrição Breve">
                                        <VBox.margin>
                                           <Insets bottom="5.0" />

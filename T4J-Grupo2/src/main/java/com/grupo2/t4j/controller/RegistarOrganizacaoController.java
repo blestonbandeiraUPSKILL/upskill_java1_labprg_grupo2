@@ -7,13 +7,9 @@ import java.sql.SQLException;
 
 public class RegistarOrganizacaoController {
 
-    public Organizacao organizacao;
+
     private Plataforma plataforma;
     private RepositorioOrganizacaoDatabase repositorioOrganizacao;
-
-    public RegistarOrganizacaoController() throws SQLException {
-        this.plataforma = Plataforma.getInstance();
-    }
 
     public Organizacao novaOrganizacao(String nif, String nome, Website website,
                                        String telefone, Email emailOrganizacao, Email emailGestor,
