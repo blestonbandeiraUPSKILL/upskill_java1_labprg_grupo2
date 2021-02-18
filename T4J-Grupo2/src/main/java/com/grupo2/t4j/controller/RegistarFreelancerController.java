@@ -7,8 +7,10 @@ package com.grupo2.t4j.controller;
 
 /**
  *
- * @author carol
+ * @author CAD
  */
+
+
 public class RegistarFreelancerController {
     
 }

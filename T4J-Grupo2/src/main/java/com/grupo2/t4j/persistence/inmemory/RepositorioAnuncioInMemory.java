@@ -63,7 +63,7 @@ public class RepositorioAnuncioInMemory implements Serializable, RepositorioAnun
     }
 
     @Override
-    public void save(Anuncio anuncio) {
+    public boolean save(Anuncio anuncio) {
         Anuncio a = findById(anuncio.getIdAnuncio());
         if (a == null) {
             Anuncio anu = new Anuncio(anuncio);
@@ -71,6 +71,7 @@ public class RepositorioAnuncioInMemory implements Serializable, RepositorioAnun
         } else {
             throw new AnuncioDuplicadoException(anuncio.getIdAnuncio() + ": Anúncio já registado!");
         }
+        return false;
     }
 
     @Override
@@ -88,5 +89,17 @@ public class RepositorioAnuncioInMemory implements Serializable, RepositorioAnun
     @Override
     public ArrayList<Anuncio> getAll() {
         return new ArrayList<Anuncio>(listaAnuncios);
+    }
+    
+    public int adicionarListaAnuncios(RepositorioAnuncioInMemory outraListaAnuncios) {
+        int totalAnunciosAdicionados = 0;
+
+        for (Anuncio anuncio : outraListaAnuncios.listaAnuncios) {
+            boolean anuncioAdicionado = save(anuncio);
+            if (anuncioAdicionado) {
+                totalAnunciosAdicionados++;
+            }
+        }
+        return totalAnunciosAdicionados;
     }
 }
