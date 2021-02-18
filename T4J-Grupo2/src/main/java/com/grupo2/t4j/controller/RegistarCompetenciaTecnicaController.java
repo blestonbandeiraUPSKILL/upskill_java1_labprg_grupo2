@@ -13,6 +13,9 @@ import com.grupo2.t4j.persistence.RepositorioAreaActividade;
 import com.grupo2.t4j.persistence.RepositorioCompetenciaTecnica;
 import com.grupo2.t4j.persistence.inmemory.FabricaRepositoriosInMemory;
 import com.grupo2.t4j.persistence.inmemory.RepositorioCompetenciaTecnicaInMemory;
+
+import com.grupo2.t4j.model.GrauProficiencia;
+
 import java.io.File;
 
 import java.util.List;
@@ -37,6 +40,10 @@ public class RegistarCompetenciaTecnicaController {
         CompetenciaTecnica competenciaTecnica = new CompetenciaTecnica(codigo, descBreve, descDetalhada, areaActividade);
 
         return repositorioCompetenciaTecnica.save(competenciaTecnica);
+    }
+    
+    public static List<GrauProficiencia> getGrausAplicaveis() {
+        return CompetenciaTecnica.getGrausAplicaveis();
     }
 
     public List<CompetenciaTecnica> getAll() {

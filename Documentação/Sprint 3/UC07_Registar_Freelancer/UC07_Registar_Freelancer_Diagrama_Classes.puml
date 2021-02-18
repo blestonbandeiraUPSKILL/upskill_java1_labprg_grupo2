@@ -2,10 +2,12 @@
 
 title UC07 - Registar Freelancer
 
-left to right direction
+top to bottom direction
 
 class Plataforma <<Singleton>> {
     -String designacao
+    --
+    getRepositorioOrganizacao()
 }
 
 class RegistarFreelancerUI{
@@ -36,11 +38,8 @@ class EnderecoPostal {
     -String localidade
 }
 
-class Email {
-
-}
-
-class ReconhecimentoCT {
+class ReconhecimentoGT {
+    -Date dataReconhecimento
 }
 
 class HabilitacaoAcademica {
@@ -52,8 +51,8 @@ class HabilitacaoAcademica {
 
 class CompetenciaTecnica {
     -String codigo
-    -String descricaoBreve
-    -String descricaoDetalhada
+    -String descBreve
+    -String descDetalhada
 }
 
 class GrauProficiencia {
@@ -61,44 +60,9 @@ class GrauProficiencia {
     -String designacao
 }
 
-class Utilizador {
-    -String nome
-    -Email email
-    -Password password
-}
+class RepositorioFreelancer{
 
-class GestaoUtilizadoresFacade{
-    getGestaoUtilizadoresFacade()
 }
-
-class SessaoAtual{
-    --
-    getSessaoAtual()
-}
-
-class SessaoUtilizador{
-    --
-    getEmailUtilizador()
-}
-
-class RepositorioOrganizacao{
-    --
-    organizacaoByEmailUtilizador(email)
-}
-
-interface AlgoritmoGeradorPasswords{
-    getAlgoritmoGeradorPasswords()
-}
-
-class Password{
-    String password
-    --
-    getPassword()
-}
-
-class UtilizadorComPapel{
-}
-
 
 class Email {
     -String email
@@ -108,19 +72,13 @@ class Email {
 
 RegistarFreelancerUI ..> RegistarFreelancerController
 RegistarFreelancerController ..> Plataforma
-RegistarFreelancerController ..> GestaoUtilizadoresFacade
-RegistarFreelancerController ..> SessaoUtilizador
-
-Freelancer --|> UtilizadorComPapel
-UtilizadorComPapel --|> Utilizador
-Email -- Utilizador: < possui
-Password -- Utilizador: < possui
-Email -- Organizacao: < possui
-Organizacao -- RepositorioOrganizacao
-Freelancer -- SessaoAtual: tem >
-RegistarFreelancerController ..> UtilizadorComPapel
-RegistarFreelancerController ..> AlgoritmoGeradorPasswords
-Plataforma ..> RepositorioOrganizacao
-
+Freelancer --> ReconhecimentoGT: recebe(u) >
+ReconhecimentoGT --> CompetenciaTecnica: relativa a >
+CompetenciaTecnica --> GrauProficiencia: aplica >
+Freelancer --> HabilitacaoAcademica: tem >
+Freelancer --> EnderecoPostal: tem >
+Freelancer --> Email: tem >
+Plataforma ..> RepositorioFreelancer
+RepositorioFreelancer -- Freelancer
 
 @enduml
