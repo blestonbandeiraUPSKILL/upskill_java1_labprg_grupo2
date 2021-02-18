@@ -22,7 +22,7 @@ import java.util.List;
  *
  * @author Geral
  */
-public class RepositorioAreaActividadeDatabase implements Serializable, RepositorioAreaActividade {
+public class RepositorioAreaActividadeDatabase implements RepositorioAreaActividade {
 
     /**
      * Define uma instância estática do Repositório em que estão registadas todas
@@ -50,6 +50,11 @@ public class RepositorioAreaActividadeDatabase implements Serializable, Reposito
 
     public void save(String codigo, String descBreve, String descDetalhada) throws AreaActividadeDuplicadaException {
 
+    }
+
+    @Override
+    public boolean save(AreaActividade areaActividade) {
+        return false;
     }
 
     @Override

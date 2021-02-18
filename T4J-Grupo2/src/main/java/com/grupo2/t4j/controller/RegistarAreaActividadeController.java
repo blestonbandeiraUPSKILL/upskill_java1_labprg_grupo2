@@ -33,7 +33,9 @@ public class RegistarAreaActividadeController /*implements Serializable*/{
     }
 
     public boolean registarAreaActividade(String codigo, String descBreve, String descDetalhada) {
+
         AreaActividade areaActividade = new AreaActividade(codigo, descBreve, descDetalhada);
+
         return repositorioAreaActividade.save(areaActividade);
     }
 

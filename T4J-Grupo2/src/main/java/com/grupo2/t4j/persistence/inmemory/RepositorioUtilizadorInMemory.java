@@ -71,7 +71,7 @@ public class RepositorioUtilizadorInMemory implements Serializable, RepositorioU
         Utilizador u = findByEmail(utilizador.getEmail().getEmailText());
         if (u == null) {
             Utilizador user = new Utilizador(utilizador);
-            this.listaUtilizadores.add(user);
+            return this.listaUtilizadores.add(user);
 
         } else {
             throw new UtilizadorDuplicadoException(u.getEmail().getEmailText()

@@ -69,13 +69,7 @@ public class Plataforma {
         return plataforma;
     }
 
-    public RepositorioOrganizacaoDatabase getRepositorioOrganizacao() {
-        return repositorioOrganizacao;
-    }
 
-    public RepositorioCategoriaTarefaInMemory getRepositorioCategoria() {
-        return repositorioCategoriaTarefaInMemory;
-    }
 
     public AlgoritmoGeradorPasswords getAlgoritmoGeradorPwd() {
         return algoritmoGeradorPasswords;
@@ -85,13 +79,6 @@ public class Plataforma {
         return repositorioColaboradorInMemory;
     }
 
-    public RepositorioCompetenciaTecnicaInMemory getRepositorioCompetenciaTecnica() {
-        return repositorioCompetenciaTecnicaInMemory;
-    }
-
-    public RepositorioTarefaInMemory getRepositorioTarefa() {
-        return repositorioTarefaInMemory;
-    }
 
     public RepositorioUtilizadorInMemory getRepositorioUtilizador() {
         return repositorioUtilizadorInMemory;
