@@ -33,6 +33,7 @@ public class AdicionarCategoriaTarefaUI implements Initializable {
     private List<CaracterizacaoCT> caracterizacaoCTS;
 
     @FXML TextField txtDescricaoBreve;
+    @FXML TextField txtCodigo;
     @FXML TextArea txtDescricaoDetalhada;
     @FXML Button btnConfirmar;
     @FXML Button btnCancelar;
@@ -42,8 +43,6 @@ public class AdicionarCategoriaTarefaUI implements Initializable {
     @FXML ComboBox<Obrigatoriedade> cmbObrigatoriedade;
     @FXML ComboBox<CompetenciaTecnica> cmbCompetenciaTecnica;
     @FXML ListView<CaracterizacaoCT> listViewCompTecCat;
-
-
 
     public void associarParentUI(AdministrativoLogadoUI administrativoLogadoUI) {
         this.administrativoLogadoUI = administrativoLogadoUI;
@@ -75,7 +74,7 @@ public class AdicionarCategoriaTarefaUI implements Initializable {
 
     public void updateCmbCompetenciasTecnicas(ActionEvent actionEvent) {
         List<CompetenciaTecnica> listaCompetenciasTecnicas =
-                registarCompetenciaTecnicaController.getCompetenciasTecnicasByAreaActividade(
+                registarCompetenciaTecnicaController.findByAreaActividade(
                 cmbAreaActividade.getSelectionModel().getSelectedItem());
 
         cmbCompetenciaTecnica.getItems().addAll(listaCompetenciasTecnicas);
@@ -103,6 +102,7 @@ public class AdicionarCategoriaTarefaUI implements Initializable {
     void registarCategoriaAction(ActionEvent event) {
         try {
             boolean adicionou = registarCategoriaController.registarCategoria(
+                    txtCodigo.getText().trim(),
                     txtDescricaoBreve.getText().trim(),
                     txtDescricaoDetalhada.getText().trim(),
                     cmbAreaActividade.getSelectionModel().getSelectedItem().getCodigo(),
