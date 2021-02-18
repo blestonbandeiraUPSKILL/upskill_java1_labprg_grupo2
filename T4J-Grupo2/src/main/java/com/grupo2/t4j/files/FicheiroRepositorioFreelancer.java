@@ -7,8 +7,17 @@ package com.grupo2.t4j.files;
 
 /**
  *
- * @author carol
+ * @author CAD
  */
+
+import com.grupo2.t4j.persistence.inmemory.RepositorioFreelancerInMemory;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+
 public class FicheiroRepositorioFreelancer {
     
 }

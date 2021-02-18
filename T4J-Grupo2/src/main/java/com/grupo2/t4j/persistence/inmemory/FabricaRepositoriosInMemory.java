@@ -39,7 +39,12 @@ public class FabricaRepositoriosInMemory implements FabricaRepositorios {
     public RepositorioCompetenciaTecnica getRepositorioCompetenciaTecnica() {
         return new RepositorioCompetenciaTecnicaInMemory();
     }
-
+    
+    @Override
+    public RepositorioFreelancer getRepositorioFreelancer() {
+        return new RepositorioFreelancerInMemory();
+    }
+    
     @Override
     public RepositorioOrganizacao getRepositorioOrganizacao() {
         return new RepositorioOrganizacaoInMemory();
