@@ -33,8 +33,9 @@ public class RepositorioCaracterizacaoCTInMemory implements Serializable, Reposi
     }
 
     @Override
-    public void save(CaracterizacaoCT caracterizacaoCT) {
+    public boolean save(CaracterizacaoCT caracterizacaoCT) {
         //same
+        return false;
     }
 
     @Override

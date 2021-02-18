@@ -40,6 +40,11 @@ public class RepositorioUtilizadorDatabase implements RepositorioUtilizador {
     }
 
     @Override
+    public boolean save(Utilizador utilizador) {
+        return false;
+    }
+
+    @Override
     public Utilizador findByEmail(String emailUt) {
         return null;
     }
