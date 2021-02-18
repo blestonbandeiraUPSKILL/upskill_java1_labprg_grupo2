@@ -3,6 +3,7 @@ package com.grupo2.t4j.ui;
 import com.grupo2.t4j.controller.RegistarAreaActividadeController;
 import com.grupo2.t4j.controller.RegistarCategoriaController;
 import com.grupo2.t4j.controller.RegistarCompetenciaTecnicaController;
+import com.grupo2.t4j.controller.RegistarGrauProficienciaController;
 import com.grupo2.t4j.model.*;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -30,9 +31,11 @@ public class AdicionarCategoriaTarefaUI implements Initializable {
     private RegistarCategoriaController registarCategoriaController;
     private RegistarAreaActividadeController registarAreaActividadeController;
     private RegistarCompetenciaTecnicaController registarCompetenciaTecnicaController;
+    private RegistarGrauProficienciaController registarGrauProficienciaController;
     private List<CaracterizacaoCT> caracterizacaoCTS;
 
     @FXML TextField txtDescricaoBreve;
+    @FXML TextField txtCodigo;
     @FXML TextArea txtDescricaoDetalhada;
     @FXML Button btnConfirmar;
     @FXML Button btnCancelar;
@@ -42,8 +45,6 @@ public class AdicionarCategoriaTarefaUI implements Initializable {
     @FXML ComboBox<Obrigatoriedade> cmbObrigatoriedade;
     @FXML ComboBox<CompetenciaTecnica> cmbCompetenciaTecnica;
     @FXML ListView<CaracterizacaoCT> listViewCompTecCat;
-
-
 
     public void associarParentUI(AdministrativoLogadoUI administrativoLogadoUI) {
         this.administrativoLogadoUI = administrativoLogadoUI;
@@ -55,12 +56,13 @@ public class AdicionarCategoriaTarefaUI implements Initializable {
         registarAreaActividadeController = new RegistarAreaActividadeController();
         registarCategoriaController = new RegistarCategoriaController();
         registarCompetenciaTecnicaController = new RegistarCompetenciaTecnicaController();
+        registarGrauProficienciaController = new RegistarGrauProficienciaController();
 
         adicionarStage = new Stage();
         adicionarStage.initModality(Modality.APPLICATION_MODAL);;
         adicionarStage.setResizable(false);
 
-        cmbGrauProficiencia.getItems().setAll(RegistarCompetenciaTecnicaController.getGrausAplicaveis());
+        //cmbGrauProficiencia.getItems().setAll(registarGrauProficienciaController.findByCompetenciaTecnica());
         cmbObrigatoriedade.getItems().setAll(Obrigatoriedade.values());
 
         cmbAreaActividade.getItems().addAll(registarAreaActividadeController.getAll());
@@ -75,7 +77,7 @@ public class AdicionarCategoriaTarefaUI implements Initializable {
 
     public void updateCmbCompetenciasTecnicas(ActionEvent actionEvent) {
         List<CompetenciaTecnica> listaCompetenciasTecnicas =
-                registarCompetenciaTecnicaController.getCompetenciasTecnicasByAreaActividade(
+                registarCompetenciaTecnicaController.findByAreaActividade(
                 cmbAreaActividade.getSelectionModel().getSelectedItem());
 
         cmbCompetenciaTecnica.getItems().addAll(listaCompetenciasTecnicas);
@@ -103,6 +105,7 @@ public class AdicionarCategoriaTarefaUI implements Initializable {
     void registarCategoriaAction(ActionEvent event) {
         try {
             boolean adicionou = registarCategoriaController.registarCategoria(
+                    txtCodigo.getText().trim(),
                     txtDescricaoBreve.getText().trim(),
                     txtDescricaoDetalhada.getText().trim(),
                     cmbAreaActividade.getSelectionModel().getSelectedItem().getCodigo(),

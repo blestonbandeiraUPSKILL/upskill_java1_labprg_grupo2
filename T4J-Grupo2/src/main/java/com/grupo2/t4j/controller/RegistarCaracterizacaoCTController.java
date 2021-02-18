@@ -25,6 +25,8 @@ public class RegistarCaracterizacaoCTController {
 
     public boolean registarCaracterizacaoCTS(GrauProficiencia gp, Obrigatoriedade obrigatoriedade,
                                                   CompetenciaTecnica competenciaTecnica) {
+
+
         CaracterizacaoCT caracterizacaoCT = new CaracterizacaoCT(gp,obrigatoriedade, competenciaTecnica);
         return repositorioCaracterizacaoCT.save(caracterizacaoCT);
     }

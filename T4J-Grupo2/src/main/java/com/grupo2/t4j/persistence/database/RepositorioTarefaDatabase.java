@@ -6,6 +6,7 @@ import com.grupo2.t4j.model.Tarefa;
 import com.grupo2.t4j.persistence.RepositorioTarefa;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class RepositorioTarefaDatabase implements RepositorioTarefa {
 
@@ -40,7 +41,17 @@ public class RepositorioTarefaDatabase implements RepositorioTarefa {
     }
 
     @Override
+    public void save(Tarefa tarefa) {
+
+    }
+
+    @Override
     public Tarefa findByReferencia(String referencia) {
+        return null;
+    }
+
+    @Override
+    public List<Tarefa> findByCategoria(String codigoCategoria) {
         return null;
     }
 

@@ -1,21 +1,24 @@
 package com.grupo2.t4j.controller;
 
 import com.grupo2.t4j.model.*;
+import com.grupo2.t4j.persistence.FabricaRepositorios;
+import com.grupo2.t4j.persistence.RepositorioColaborador;
+import com.grupo2.t4j.persistence.RepositorioOrganizacao;
+import com.grupo2.t4j.persistence.database.FabricaRepositoriosDatabase;
 import com.grupo2.t4j.persistence.database.RepositorioOrganizacaoDatabase;
+import com.grupo2.t4j.persistence.inmemory.FabricaRepositoriosInMemory;
 
 import java.sql.SQLException;
 
 public class RegistarOrganizacaoController {
 
-    public Organizacao organizacao;
-    private Plataforma plataforma;
-    private RepositorioOrganizacaoDatabase repositorioOrganizacao;
+    private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosInMemory();
+    //private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosDatabase();
+    private RepositorioOrganizacao repositorioOrganizacao = fabricaRepositorios.getRepositorioOrganizacao();
+    private RepositorioColaborador repositorioColaborador = fabricaRepositorios.getRepositorioColaborador();
 
-    public RegistarOrganizacaoController() throws SQLException {
-        this.plataforma = Plataforma.getInstance();
-    }
 
-    public Organizacao novaOrganizacao(String nif, String nome, Website website,
+    public Organizacao registarOrganizacao(String nif, String nome, Website website,
                                        String telefone, Email emailOrganizacao, Email emailGestor,
                                        String arruamento, String numeroPorta, String localidade, String codigoPostal,
                                        String nomeGestor, Password password, String rolename, String telefoneGestor, String funcaoGestor) throws SQLException {

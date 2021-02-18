@@ -1,5 +1,6 @@
 package com.grupo2.t4j.ui;
 
+import com.grupo2.t4j.api.UsersAPI;
 import com.grupo2.t4j.controller.*;
 import com.grupo2.t4j.files.FicheiroRepositorioAreaActividade;
 import com.grupo2.t4j.files.FileChooserT4J;
@@ -29,10 +30,10 @@ public class ColaboradorLogadoUI implements Initializable {
     private RegistarTarefaController registarTarefaController;
     private RegistarCompetenciaTecnicaController registarCompetenciaTecnicaController;
     private RegistarCaracterizacaoCTController registarCaracterizacaoCTController;
-    private AutenticacaoController autenticacaoController;
     private StartingPageUI startingPageUI;
     private Scene sceneStartingPage;
     private Stage adicionarStage;
+    private UsersAPI usersAPI;
 
     private static final String CABECALHO_IMPORTAR = "Importar Lista.";
 
@@ -65,14 +66,14 @@ public class ColaboradorLogadoUI implements Initializable {
         registarTarefaController = new RegistarTarefaController();
         registarCompetenciaTecnicaController = new RegistarCompetenciaTecnicaController();
         registarCaracterizacaoCTController = new RegistarCaracterizacaoCTController();
-        autenticacaoController = new AutenticacaoController();
+
 
         adicionarStage = new Stage();
         adicionarStage.initModality(Modality.APPLICATION_MODAL);
         adicionarStage.setResizable(false);
 
         //tab Lista de Tarefas
-        cmbAreaActividadeListaTarefas.getItems().setAll(registarAreaActividadeController.getAreasActividade());
+        cmbAreaActividadeListaTarefas.getItems().setAll(registarAreaActividadeController.getAll());
         
         cmbAreaActividadeListaTarefas.setOnAction(new EventHandler<ActionEvent>() {
            @Override
@@ -85,7 +86,7 @@ public class ColaboradorLogadoUI implements Initializable {
         listViewTarefas.getItems().addAll(registarTarefaController.getListTarefas());
 
         //tab Especificar Tarefa
-        cmbAreaActividadeEspecificarTarefa.getItems().setAll(registarAreaActividadeController.getAreasActividade());
+        cmbAreaActividadeEspecificarTarefa.getItems().setAll(registarAreaActividadeController.getAll());
 
         cmbAreaActividadeEspecificarTarefa.setOnAction(new EventHandler<ActionEvent>() {
            @Override
@@ -111,7 +112,7 @@ public class ColaboradorLogadoUI implements Initializable {
     
     public void updateCmbCategoriasTarefaLista(ActionEvent actionEvent) {
         List<Categoria> listaCategoriasTarefa =
-                registarCategoriaController.getCategoriasByAreaActividade(
+                registarCategoriaController.findByAreaActividade(
                 cmbAreaActividadeListaTarefas.getSelectionModel().getSelectedItem());
 
         cmbCategoriaTarefaListaTarefas.getItems().addAll(listaCategoriasTarefa);
@@ -203,7 +204,7 @@ public class ColaboradorLogadoUI implements Initializable {
         boolean logout = autenticacaoController.logout();
         if (logout) {
             navigateStartingPage(actionEvent);
-            Plataforma.getInstance().resetUserAPI();
+            userAPIAdapter.resetUserAPI();
         }
         else {
             Alert alerta = AlertsUI.criarAlerta(Alert.AlertType.ERROR,

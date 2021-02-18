@@ -1,6 +1,5 @@
 package com.grupo2.t4j.ui;
 
-import com.grupo2.t4j.controller.AutenticacaoController;
 import com.grupo2.t4j.controller.RegistarOrganizacaoController;
 import com.grupo2.t4j.model.*;
 import javafx.event.ActionEvent;
@@ -78,10 +77,8 @@ public class RegistarOrgEGestorUI implements Initializable {
 
     public void avancarRegistoComDados(ActionEvent actionEvent) throws IOException, Exception {
         registarOrganizacaoController = new RegistarOrganizacaoController();
-        //adicionarStage = new Stage();
 
         try {
-            //FXMLLoader loaderConfirmarRegisto = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/ConfirmarRegistoOrgScene.fxml"));
 
             AlgoritmoGeradorPasswords algoritmoGeradorPasswords = Plataforma.getInstance().getAlgoritmoGeradorPwd();
             Password password = new Password(algoritmoGeradorPasswords.geraPassword());

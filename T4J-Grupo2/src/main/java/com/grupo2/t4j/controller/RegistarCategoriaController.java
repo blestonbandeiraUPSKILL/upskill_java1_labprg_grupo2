@@ -32,11 +32,11 @@ public class RegistarCategoriaController {
     private FicheiroRepositorioCategoria ficheiroCat;
     private RepositorioCategoriaTarefaInMemory repositorioCategoria;
 
-    public boolean registarCategoria(String codigoAreaActividade, String descBreve,
+    public boolean registarCategoria(String codigoAreaActividade, String codigoCategoria, String descBreve,
                                      String descDetalhada, List<CaracterizacaoCT> ccts) {
 
         AreaActividade areaActividade = repositorioAreaActividade.findByCodigo(codigoAreaActividade);
-        Categoria categoria = new Categoria(descBreve, descDetalhada, areaActividade, ccts);
+        Categoria categoria = new Categoria(codigoCategoria, descBreve, descDetalhada, areaActividade, ccts);
 
         return repositorioCategoria.save(categoria);
     }
@@ -44,6 +44,7 @@ public class RegistarCategoriaController {
     public List<Categoria> getAll() {
         return repositorioCategoria.getAll();
     }
+
 
     
     ////FICHEIROS//////

@@ -38,6 +38,11 @@ public class RepositorioCompetenciaTecnicaDatabase implements RepositorioCompete
     }
 
     @Override
+    public boolean save(CompetenciaTecnica competenciaTecnica) {
+        return false;
+    }
+
+    @Override
     public List<CompetenciaTecnica> getAll() {
         return null;
     }

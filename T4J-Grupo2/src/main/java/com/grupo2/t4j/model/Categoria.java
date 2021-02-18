@@ -6,6 +6,7 @@
 package com.grupo2.t4j.model;
 
 import com.grupo2.t4j.exception.AreaActividadeInexistenteException;
+import com.grupo2.t4j.exception.CodigoInvalidoException;
 import com.grupo2.t4j.exception.DescricaoInvalidaException;
 
 import java.io.Serializable;
@@ -21,13 +22,8 @@ public class Categoria implements Serializable{
     /**
      * O identificador da Categoria
      */
-    private String id;
-    
-    /**
-     * Parte do gerador de id
-     */
-    private int id2=0;
-    
+    private String codigoCategoria;
+
     /**
      * Descricao breve da categoria
      */
@@ -55,13 +51,12 @@ public class Categoria implements Serializable{
      * @param at
      * @param caracterizacaoCTS
      */
-    public Categoria (String descBreve, String descDetalhada, AreaActividade at, List<CaracterizacaoCT> caracterizacaoCTS){
+    public Categoria (String codigoCategoria, String descBreve, String descDetalhada, AreaActividade at, List<CaracterizacaoCT> caracterizacaoCTS){
+        setCodigo(codigoCategoria);
         setDescBreve(descBreve);
         setDescDetalhada(descDetalhada);
-        //setAt(at);
         this.at = at;
         setCompTecnicasCaracter(caracterizacaoCTS);
-        setId(descBreve, id2);
     }
 
     /**
@@ -69,7 +64,7 @@ public class Categoria implements Serializable{
      * @param categoria
      */
     public Categoria (Categoria categoria){
-        setId(categoria.descBreve, id2);
+        setCodigo(categoria.codigoCategoria);
         setDescBreve(categoria.descBreve);
         setDescDetalhada(categoria.descDetalhada);
         setAt(categoria.at);
@@ -77,20 +72,24 @@ public class Categoria implements Serializable{
     }
 
     /**
-     *Devolve o Id da categoria
+     *Devolve o código da categoria
+     *
      * @return
      */
-    public String getId() {
-        return id;
+    public String getCodigoCategoria() {
+        return codigoCategoria;
     }
 
     /**
-     *Atualiza o id da categoria
-     * @param descBreve, id2
+     *Atualiza o código da categoria
+     * @param codigoCategoria
      */
-    public void setId(String descBreve, int id2) {
-        
-        this.id = geradorId(descBreve, id2);
+    public void setCodigo(String codigoCategoria) {
+        if (codigoCategoria == null || codigoCategoria.trim().isEmpty()) {
+            throw new CodigoInvalidoException("Deve introduzir um código válido!");
+        } else {
+            this.codigoCategoria = codigoCategoria;
+        } this.codigoCategoria = codigoCategoria;
     }
 
     /**
@@ -149,7 +148,6 @@ public class Categoria implements Serializable{
      */
     public void setAt(AreaActividade areaActividade) {
         if(areaActividade != null) {
-        //if (RepositorioAreaActividade.getInstance().getAreaActividadeByCodigo(areaActividade.getCodigo()) != null) {
             this.at = areaActividade;
         }
         else {
@@ -173,20 +171,7 @@ public class Categoria implements Serializable{
         this.caracterizacaoCTS = caracterizacaoCTS;
     }
     
-    /**
-     *Gera um id baseado na descBreve da categoria
-     * @param descBreve
-     * @param id2
-     * @return
-     */
-    public String geradorId(String descBreve,int id2){
-        id2++;
-        StringBuilder s = new StringBuilder();
-        s.append(descBreve);
-        s.append("_");
-        s.append(id2);
-        return s.toString();
-    }
+
     /**
      * Representação textual da lista de competencias tecnicas de uma categoria
      * @return 
@@ -207,7 +192,7 @@ public class Categoria implements Serializable{
      */
     @Override
     public String toString() {
-        return String.format("ID: %s; Descrição breve: %s; Descrição detalhada: %s;", 
-                id, descBreve, descDetalhada);
+        return String.format("Código: %s; Descrição breve: %s; Descrição detalhada: %s;",
+                codigoCategoria, descBreve, descDetalhada);
     }
 }

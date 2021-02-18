@@ -60,5 +60,10 @@ public class FabricaRepositoriosInMemory implements FabricaRepositorios {
         return new RepositorioUtilizadorInMemory();
     }
 
+    @Override
+    public RepositorioGrauProficiencia getRepositorioGrauProficiencia() {
+        return new RepositorioGrauProficienciaInMemory();
+    }
+
 
 }

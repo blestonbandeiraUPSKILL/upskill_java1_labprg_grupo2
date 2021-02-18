@@ -38,6 +38,11 @@ public class RepositorioAdministrativoDatabase implements RepositorioAdministrat
     }
 
     @Override
+    public void save(Administrativo administrativo) throws AdministrativoDuplicadoException {
+
+    }
+
+    @Override
     public ArrayList<Administrativo> getAll() {
         return null;
     }

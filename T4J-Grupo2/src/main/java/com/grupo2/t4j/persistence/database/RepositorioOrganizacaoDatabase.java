@@ -22,7 +22,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RepositorioOrganizacaoDatabase implements Serializable, RepositorioOrganizacao {
+public class RepositorioOrganizacaoDatabase implements RepositorioOrganizacao {
 
     /**
      * Atributos da classe Singleton RepositorioOrganizacao
@@ -108,6 +108,11 @@ public class RepositorioOrganizacaoDatabase implements Serializable, Repositorio
         }
         connection.close();
         dbConnectionHandler.closeAll();
+    }
+
+    @Override
+    public void save(Organizacao organizacao) {
+
     }
 
     /**
