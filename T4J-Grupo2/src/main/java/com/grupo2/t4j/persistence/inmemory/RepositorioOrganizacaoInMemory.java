@@ -49,12 +49,12 @@ public class RepositorioOrganizacaoInMemory implements Serializable, Repositorio
     }
 
     public void save(String nif, String nome, Website website, String telefone,
-                     Email emailOrganizacao, EnderecoPostal enderecoPostal, Colaborador gestor) {
+                     Email emailOrganizacao, String idEnderecoPostal, Email emailGestor) {
         Organizacao o = findByNif(nif);
         if (o == null) {
 
             Organizacao org = new Organizacao(nif, nome, website, telefone,
-                    emailOrganizacao, gestor, enderecoPostal );
+                    emailOrganizacao, emailGestor, idEnderecoPostal);
 
             this.listaOrganizacoes.add(org);
         } else {

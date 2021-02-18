@@ -1,6 +1,7 @@
 package com.grupo2.t4j.persistence.inmemory;
 
 import com.grupo2.t4j.exception.AreaActividadeDuplicadaException;
+import com.grupo2.t4j.exception.EnderecoPostalDuplicadoException;
 import com.grupo2.t4j.model.AreaActividade;
 import com.grupo2.t4j.model.EnderecoPostal;
 import com.grupo2.t4j.persistence.RepositorioEnderecoPostal;
@@ -43,22 +44,22 @@ public class RepositorioEnderecoPostalInMemory implements Serializable, Reposito
     }
 
     @Override
-    public void save(String arruamento, String numeroPorta, String localidade, String codigoPostal) {
-        EnderecoPostal aa = findByCodigo(codigo);
+    public void save(String codigoEnderecoPostal, String arruamento, String numeroPorta, String localidade, String codigoPostal) {
+        EnderecoPostal ep = findByCodigo(codigoEnderecoPostal);
         if (ep == null) {
             listaEnderecoPostal.add(ep);
         } else {
-            throw new EnderecoPostalDuplicadoException(codigo + ": Endereço Postal já registado!");
+            throw new EnderecoPostalDuplicadoException(codigoEnderecoPostal + ": Endereço Postal já registado!");
         }
     }
 
     @Override
     public boolean save(EnderecoPostal enderecoPostal) {
-        EnderecoPostal ep = findByCodigo(enderecoPostal.getCodigo());
+        EnderecoPostal ep = findByCodigo(enderecoPostal.getCodigoPostal());
         if (ep == null) {
             return listaEnderecoPostal.add(enderecoPostal);
         } else {
-            throw new EnderecoPostalDuplicadoException(ep.getCodigo() + ": Endereço Postal já registado!");
+            throw new EnderecoPostalDuplicadoException(ep.getCodigoPostal() + ": Endereço Postal já registado!");
         }
 
     }
@@ -72,24 +73,11 @@ public class RepositorioEnderecoPostalInMemory implements Serializable, Reposito
     public EnderecoPostal findByCodigo(String codigo) {
         for (int i = 0; i < this.listaEnderecoPostal.size(); i++) {
             EnderecoPostal enderecoPostal = this.listaEnderecoPostal.get(i);
-            if (enderecoPostal.getCodigo().equals(codigo)) {
+            if (enderecoPostal.getCodigoPostal().equals(codigo)) {
                 return enderecoPostal;
             }
         }
         return null;
     }
 
-    public int adicionarListaEnderecoPostal(RepositorioEnderecoPostalInMemory outraListaEnderecoPostal) {
-
-        int totalEnderecosAdicionados = 0;
-
-        for (EnderecoPostal enderecoPostal : outraListaEnderecoPostal.listaEnderecoPostal) {
-            boolean areaActividadeAdicionada = save(areaActividade);
-            if (areaActividadeAdicionada) {
-                totalAreasAdicionadas++;
-            }
-        }
-        return totalAreasAdicionadas;
-
-    }
 }

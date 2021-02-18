@@ -31,9 +31,9 @@ public class Organizacao implements Serializable{
     private String NIF;
     
     /**
-     * O endereço postal da organização
+     * O id do endereço postal da organização
      */
-    private EnderecoPostal enderecoOrg;
+    private String idEnderecoOrg;
     
     /**
      * O website da organização
@@ -53,17 +53,7 @@ public class Organizacao implements Serializable{
     /**
      * O gestor da organização
      */
-    private Colaborador colabGestor;
-    
-    /**
-     * O endereço da organização por omissão
-     */
-    private static final EnderecoPostal ENDERECO_POR_OMISSAO = new EnderecoPostal("Rua ", "s/n", "Portugal", "1111-111");
-    
-    /**
-     * O telefone da organização por omissão
-     */
-    private static final String TELEFONE_ORG_POR_OMISSAO = "999999999";
+    private Email emailGestor;
     
     /**
      * O construtor vazio da classeorganização
@@ -71,18 +61,9 @@ public class Organizacao implements Serializable{
     public Organizacao(){
     }
     
-    /**
-     * O construtor completo da classe Organização
-     * @param nome o nome da organização 
-     * @param NIF o NIF da organização
-     * @param enderecoOrg o endereço postal da organização
-     * @param websiteOrg o website da organização
-     * @param telefone o telefone da organização
-     * @param emailOrg o email da organização
-     * @param colabGestor o gestor da organização
-     */
+
     public Organizacao(String nif, String nome, Website websiteOrg,
-                       String telefone, Email emailOrg, Colaborador colabGestor, EnderecoPostal enderecoOrg){
+                       String telefone, Email emailOrg, Email emailGestor, String idEnderecoPostal){
         setNif(nif);
         setNome(nome);
         if (websiteOrg instanceof Website) {
@@ -93,8 +74,8 @@ public class Organizacao implements Serializable{
         }
         setTelefone(telefone);
         this.emailOrg = new Email(emailOrg);
-        this.enderecoOrg = new EnderecoPostal(enderecoOrg);
-        this.colabGestor = new Colaborador(colabGestor);
+        this.emailGestor = emailGestor;
+        this.idEnderecoOrg = idEnderecoPostal;
     }
 
     /**
@@ -112,7 +93,7 @@ public class Organizacao implements Serializable{
      */
     public Organizacao(String nome, String NIF, String arruamento, String numeroPorta,
                        String localidade, String codigoPostal, Website websiteOrg, String telefone,
-                       Email emailOrg, Colaborador colabGestor){
+                       Email emailOrg, Email emailGestor){
         setNome(nome);
         setNif(NIF);
         this.enderecoOrg = new EnderecoPostal(arruamento, numeroPorta, localidade, codigoPostal);
