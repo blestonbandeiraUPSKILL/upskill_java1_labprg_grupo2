@@ -16,7 +16,6 @@ import com.grupo2.t4j.model.*;
 import com.grupo2.t4j.persistence.FabricaRepositorios;
 import com.grupo2.t4j.persistence.RepositorioColaborador;
 import com.grupo2.t4j.persistence.RepositorioUtilizador;
-import com.grupo2.t4j.persistence.database.FabricaRepositoriosDatabase;
 import com.grupo2.t4j.persistence.inmemory.FabricaRepositoriosInMemory;
 import com.grupo2.t4j.persistence.inmemory.RepositorioColaboradorInMemory;
 
@@ -35,8 +34,13 @@ public class RegistarColaboradorController {
     private RepositorioColaboradorInMemory repositorioColaboradorInMemory;
     private FicheiroRepositorioColaborador ficheiroC;
 
-    public boolean registarColaborador(String email, String nome, String funcao, String telefone, Rolename rolename) {
-        Colaborador colaborador = new Colaborador(email, nome, funcao, telefone, Rolename.COLABORADOR);
+    public boolean registarColaborador(String email, String nome, String funcao, String telefone) throws SQLException {
+
+        AlgoritmoGeradorPasswords algoritmoGeradorPasswords = new AlgoritmoGeradorPasswords();
+        Password password = new Password(algoritmoGeradorPasswords.geraPassword());
+
+        Colaborador colaborador = new Colaborador(new Email(email), nome , password, funcao, telefone);
+        registarColaboradorComoUtilizador(colaborador);
 
         return repositorioColaborador.save(colaborador);
     }
@@ -45,18 +49,19 @@ public class RegistarColaboradorController {
         return repositorioColaborador.getAll();
     }
 
+    public Colaborador findByEmail(String email) {
+        return repositorioColaborador.findByEmail(email);
+    }
+
 
     ///////API
     public boolean registarGestorComoUtilizador(Colaborador colaborador) throws SQLException {
         String nome = colaborador.getNome();
         Email email = colaborador.getEmail();
-
-        AlgoritmoGeradorPasswords algoritmoGeradorPasswords = new AlgoritmoGeradorPasswords();
-        Password password = new Password(algoritmoGeradorPasswords.geraPassword());
-        colaborador.setPassword(password);
+        Password password = colaborador.getPassword();
 
         UsersAPI usersAPI = new UsersAPI();
-        Utilizador utilizador = new Utilizador(email, nome, password, Rolename.GESTOR);
+        Utilizador utilizador = new Utilizador(email, nome, password);
 
         return usersAPI.registerUserWithRoles(email, nome, password, "gestor")
                 && repositorioUtilizador.save(utilizador);
@@ -65,17 +70,15 @@ public class RegistarColaboradorController {
     public boolean registarColaboradorComoUtilizador(Colaborador colaborador) throws SQLException {
         String nome = colaborador.getNome();
         Email email = colaborador.getEmail();
-
-        AlgoritmoGeradorPasswords algoritmoGeradorPasswords = new AlgoritmoGeradorPasswords();
-        Password password = new Password(algoritmoGeradorPasswords.geraPassword());
-        colaborador.setPassword(password);
+        Password password = colaborador.getPassword();
 
         UsersAPI usersAPI = new UsersAPI();
-        Utilizador utilizador = new Utilizador(email, nome, password, Rolename.COLABORADOR);
+        Utilizador utilizador = new Utilizador(email, nome, password);
 
         return usersAPI.registerUserWithRoles(email, nome, password, "colaborador") &&
                 repositorioUtilizador.save(utilizador);
     }
+
 
 
     //////FICHEIROS////////

@@ -25,17 +25,15 @@ public class RegistarFreelancerController {
     private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosInMemory();
     //private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosDatabase();
     private RepositorioFreelancer repositorioFreelancer = fabricaRepositorios.getRepositorioFreelancer();
-    
     private RepositorioUtilizador repositorioUtilizador = fabricaRepositorios.getRepositorioUtilizador();
 
-    private AlgoritmoGeradorPasswords algoritmoGeradorPasswords;
-    private RepositorioFreelancerInMemory repositorioFreelancerInMemory;
-    private FicheiroRepositorioFreelancer ficheiroF;
+    public boolean registarFreelancer(String email, String nome,
+                                      String nif, String codigoEnderecoPostal) {
 
-    public boolean registarFreelancer(Email email, String nome, Password password, Rolename rolename,
-            String NIF, EnderecoPostal enderecoPostalFreelancer) {
-        Freelancer freelancer = new Freelancer(email, nome, password, rolename,
-            NIF, enderecoPostalFreelancer);
+        AlgoritmoGeradorPasswords algoritmoGeradorPasswords = new AlgoritmoGeradorPasswords();
+        Password password = new Password(algoritmoGeradorPasswords.geraPassword());
+
+        Freelancer freelancer = new Freelancer(new Email(email), nome, password, nif, codigoEnderecoPostal);
 
         return repositorioFreelancer.save(freelancer);
     }
@@ -48,40 +46,14 @@ public class RegistarFreelancerController {
     public boolean registarFreelancerComoUtilizador(Freelancer freelancer) throws SQLException {
         String nome = freelancer.getNome();
         Email email = freelancer.getEmail();
-
-        AlgoritmoGeradorPasswords algoritmoGeradorPasswords = new AlgoritmoGeradorPasswords();
-        Password password = new Password(algoritmoGeradorPasswords.geraPassword());
-        freelancer.setPassword(password);
+        Password password = freelancer.getPassword();
 
         UsersAPI usersAPI = new UsersAPI();
-        Utilizador utilizador = new Utilizador(email, nome, password, Rolename.FREELANCER);
+        Utilizador utilizador = new Utilizador(email, nome, password);
 
-        return usersAPI.registerUserWithRoles(email, nome, password, "freelancer") &&
-                repositorioUtilizador.save(utilizador);
+        return usersAPI.registerUserWithRoles(email, nome, password, "freelancer")
+                && repositorioUtilizador.save(utilizador);
     }
 
 
-    //////FICHEIROS////////
-    public RegistarFreelancerController() {
-        ficheiroF = new FicheiroRepositorioFreelancer();
-        
-        desserializar();
-    }
-    public boolean serializar() {
-        return ficheiroF.serializar(repositorioFreelancerInMemory);
-    }
-
-    public boolean serializar(File ficheiroExportar) {
-        return ficheiroF.serializar(ficheiroExportar, repositorioFreelancerInMemory);
-    }
-
-    public void desserializar() {
-        repositorioFreelancerInMemory = ficheiroF.desserializar();
-    }
-
-    public int desserializar(File ficheiroImportar) {
-        RepositorioFreelancerInMemory listaFreelancerImportada = ficheiroF.desserializar(ficheiroImportar);
-
-        return repositorioFreelancerInMemory.adicionarListaFreelancer(listaFreelancerImportada);
-    }  
 }

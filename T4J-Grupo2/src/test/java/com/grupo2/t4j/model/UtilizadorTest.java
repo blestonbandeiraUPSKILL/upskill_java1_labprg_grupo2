@@ -41,25 +41,25 @@ public class UtilizadorTest {
     public void tearDown() {
     }
 
-    @Test
+    /*@Test
     public void testCriarUtilizador() {
         
         Utilizador u1= new Utilizador("Fulano", "fulano@upskill.pt");
         
         assertEquals("Fulano", u1.getNome());
         assertEquals("fulano@upskill.pt", u1.getEmail().getEmailText());   
-    }
-    
+    }*/
+  /*
     @Test (expected = NomeInvalidoException.class)
     public void testCriarUtilizadorNomeIncorreto() {
         
         Utilizador u1 = new Utilizador("", "fulano@upskill.pt");
              
-    }
+    }*/
     
-    @Test (expected = IllegalArgumentException.class)
+ /*   @Test (expected = IllegalArgumentException.class)
     public void testCriarUtilizadorEmailFormaIncorreta() {
         
         Utilizador u1 = new Utilizador("Fulano", "fulano");           
-    }   
+    } */
 }

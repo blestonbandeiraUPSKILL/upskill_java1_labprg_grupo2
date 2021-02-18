@@ -19,6 +19,11 @@ import  com.grupo2.t4j.exception.*;
 public class EnderecoPostal {
 
     /**
+     * O código que identifica um endereço postal
+     */
+    private String codigoEnderecoPostal;
+
+    /**
      * O arruamento do endereço postal
      */
     private String arruamento;
@@ -40,12 +45,14 @@ public class EnderecoPostal {
 
     /**
      * Construtor completo de um endereço postal
-     * @param arruamento
-     * @param numeroPorta
-     * @param localidade
-     * @param codigoPostal
+     * @param codigoEnderecoPostal o código que identifica um Endereço Postal único
+     * @param arruamento corresponde à primeira linha do Endereço Postal, ou arruamento
+     * @param numeroPorta corresponde à segunda linha do Endereço Postal, ou numero da porta
+     * @param localidade corresponde à terceira linha do Endereço Postal, ou localidade
+     * @param codigoPostal corresponde à quarta linha do Endereço Postal, ou código Postal
      */
-    public EnderecoPostal(String arruamento, String numeroPorta, String localidade, String codigoPostal) {
+    public EnderecoPostal(String codigoEnderecoPostal, String arruamento, String numeroPorta, String localidade, String codigoPostal) {
+        setCodigoEnderecoPostal(codigoEnderecoPostal);
         setArruamento(arruamento);
         setPorta(numeroPorta);
         setLocalidade(localidade);
@@ -54,13 +61,18 @@ public class EnderecoPostal {
   
     /**
      * Construtor de um endereço postal que recebe como parâmetro outro endereço postal
-     * @param endereco
+     * @param endereco um endereço postal único
      */
     public EnderecoPostal(EnderecoPostal endereco){
+        setCodigoEnderecoPostal(endereco.codigoPostal);
         setArruamento(endereco.arruamento);
         setPorta(endereco.numeroPorta);
         setLocalidade(endereco.localidade);
         setCodigoPostal(endereco.codigoPostal);
+    }
+
+    public String getCodigoEnderecoPostal() {
+        return codigoEnderecoPostal;
     }
 
     /**
@@ -93,6 +105,13 @@ public class EnderecoPostal {
      */
     public String getCodigoPostal() {
         return codigoPostal;
+    }
+
+    public void setCodigoEnderecoPostal(String codigoEnderecoPostal) {
+        if (codigoEnderecoPostal == null || arruamento.trim().isEmpty()) {
+            throw new NomeInvalidoException("O código do Endereço Postal é invalido");
+        }
+        this.codigoEnderecoPostal = codigoEnderecoPostal;
     }
 
     /**
@@ -158,7 +177,6 @@ public class EnderecoPostal {
      * @return
      */
     public static boolean eCPValido(String codigoPostal){
-        boolean eValido = false;
         char [] cp = codigoPostal.toCharArray();
         boolean eValidoP1 = false;
         boolean eValidoP2 = false;
@@ -177,13 +195,4 @@ public class EnderecoPostal {
         return (eValidoP1 && eValidoP2);
     }
 }
-/* Regex: https://gist.github.com/jamesbar2/1c677c22df8f21e869cca7e439fc3f5b 
-    if (codigoPostal != null && codigoPostal.length() > 0) {
-        String expressao = "^\\d{4}[- ]{0,1}\\d{3}$";
-        Pattern pattern = Pattern.compile(expressao);
-        Matcher matcher = pattern.matcher(codigoPostal);
-        if (matcher.matches()) {
-            eValido = true;
-        }
-    }
-*/
+

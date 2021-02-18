@@ -15,6 +15,6 @@ public interface FabricaRepositorios {
     RepositorioFreelancer getRepositorioFreelancer();
     RepositorioOrganizacao getRepositorioOrganizacao();
     RepositorioTarefa getRepositorioTarefa();
-    RepositorioUtilizador getRepositorioUtilizador();
     RepositorioGrauProficiencia getRepositorioGrauProficiencia();
+    RepositorioUtilizador getRepositorioUtilizador();
 }

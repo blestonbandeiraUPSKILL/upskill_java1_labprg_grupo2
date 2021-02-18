@@ -54,10 +54,10 @@ public class RepositorioUtilizadorInMemory implements Serializable, RepositorioU
     }
 
     @Override
-    public void save(Email email, String nome, Password password, Rolename rolename) throws UtilizadorDuplicadoException {
+    public void save(Email email, String nome, Password password) throws UtilizadorDuplicadoException {
         Utilizador u = findByEmail(email.getEmailText());
         if (u == null) {
-            Utilizador utilizador = new Utilizador(email, nome, password, rolename);
+            Utilizador utilizador = new Utilizador(email, nome, password);
             this.listaUtilizadores.add(utilizador);
 
         } else {

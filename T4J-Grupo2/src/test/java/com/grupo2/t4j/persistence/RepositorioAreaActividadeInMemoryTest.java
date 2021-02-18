@@ -43,7 +43,7 @@ public class RepositorioAreaActividadeInMemoryTest {
     public void tearDown() {
     }
 
-    @Test
+   /* @Test
     public void testAddAreaActividade() {
         
         RepositorioAreaActividadeInMemory raa1 = RepositorioAreaActividadeInMemory.getInstance();
@@ -53,9 +53,9 @@ public class RepositorioAreaActividadeInMemoryTest {
         raa1.addAreaActividade(aa1);
         
         assertTrue(raa1.getListaAreasActividade().contains(aa1));
-    }   
+    }  */
     
-    @Test (expected = AreaActividadeDuplicadaException.class)
+ /*   @Test (expected = AreaActividadeDuplicadaException.class)
     public void testAddAreaActividadeDuplicada() {
         
         RepositorioAreaActividadeInMemory raa1 = RepositorioAreaActividadeInMemory.getInstance();
@@ -65,9 +65,9 @@ public class RepositorioAreaActividadeInMemoryTest {
         
         raa1.addAreaActividade(aa1);
         raa1.addAreaActividade(aa2);
-    }
+    }*/
     
-    @Test
+  /*  @Test
     public void testGetAreaActividadeByCodigo() {
         
         RepositorioAreaActividadeInMemory raa1 = RepositorioAreaActividadeInMemory.getInstance();
@@ -87,9 +87,9 @@ public class RepositorioAreaActividadeInMemoryTest {
         assertEquals(aa1,aa4);
         
         System.out.println("Teste 2 ok");
-    }
+    }*/
     
-    @Test
+  /*  @Test
     public void testGetListaAreasActividade() {
         
         RepositorioAreaActividadeInMemory raa1 = RepositorioAreaActividadeInMemory.getInstance();
@@ -107,5 +107,5 @@ public class RepositorioAreaActividadeInMemoryTest {
         assertEquals(lista.get(1),aa2);
 
         
-    }
+    }*/
 }

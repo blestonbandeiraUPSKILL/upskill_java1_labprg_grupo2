@@ -28,25 +28,20 @@ public class RegistarTarefaController {
 
     private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosInMemory();
     //private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosDatabase();
-
     private RepositorioTarefa repositorioTarefa = fabricaRepositorios.getRepositorioTarefa();
 
     public List<Tarefa> getAll() {
         return repositorioTarefa.getAll();
     }
 
-    public Tarefa registarTarefa(AreaActividade areaActividade, Categoria categoriaTarefa,
-                             String referencia,
-                             String designacao,
-                             String descInformal,
-                             String descTecnica,
-                             int duracao,
-                             double custo) {
-        return repositorioTarefa.save(areaActividade, categoriaTarefa,
-                referencia, designacao, descInformal, descTecnica, duracao, custo);
-    }
+    public boolean registarTarefa(String codigoAreaActividade, String codigoCategoriaTarefa,
+                             String referencia, String designacao,
+                             String descInformal, String descTecnica,
+                             int duracao, double custo) {
 
-    public boolean registarTarefa(Tarefa tarefa) {
+        Tarefa tarefa = new Tarefa(codigoAreaActividade, codigoCategoriaTarefa,
+                referencia, designacao, descInformal, descTecnica, duracao, custo);
+
         return repositorioTarefa.save(tarefa);
     }
 }

@@ -10,12 +10,12 @@ import com.grupo2.t4j.model.*;
 import com.grupo2.t4j.persistence.FabricaRepositorios;
 import com.grupo2.t4j.persistence.RepositorioAreaActividade;
 import com.grupo2.t4j.persistence.RepositorioCategoriaTarefa;
-import com.grupo2.t4j.persistence.database.FabricaRepositoriosDatabase;
 import com.grupo2.t4j.persistence.inmemory.FabricaRepositoriosInMemory;
 import com.grupo2.t4j.persistence.inmemory.RepositorioCategoriaTarefaInMemory;
+
+import java.awt.geom.Area;
 import java.io.File;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -45,8 +45,8 @@ public class RegistarCategoriaController {
         return repositorioCategoria.getAll();
     }
 
-    public List<Categoria> findByAreaActividade(String codigoAreaActividade) {
-        return repositorioCategoria.findByAreaActividade(codigoAreaActividade);
+    public List<Categoria> findByAreaActividade(AreaActividade areaActividade) {
+        return repositorioCategoria.findByAreaActividade(areaActividade.getCodigo());
     }
 
 

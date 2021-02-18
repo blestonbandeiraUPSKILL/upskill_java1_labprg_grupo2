@@ -24,7 +24,7 @@ public class Freelancer extends Utilizador implements Serializable{
     /**
      * O NIF do Freelancer
      */
-    private String NIF;
+    private String nif;
     
     /**
      * O telefone do Freelancer
@@ -34,75 +34,39 @@ public class Freelancer extends Utilizador implements Serializable{
     /**
      * O endereço postal do Freelancer
      */
-    private EnderecoPostal enderecoPostalFreelancer;
-    
-    /**
-     * O papel do Freelancer dentro da plataforma
-     */
-    private Rolename rolename;
-    
-    /**
-     * Por definição, todos da classe Freelancer tem rolename Freelancer.
-     */
-    private static final Rolename ROLENAME_POR_DEFINICAO = Rolename.FREELANCER;
+    private String codigoEnderecoPostal;
+
     
     /**
      * Construtor completo da classe Freelancer
      * @param email - o email do Freelancer no formato da classe Email
      * @param nome - o nome do Freelancer
      * @param password - a password do Freelancer no formato da classe Password
-     * @param rolename - o papel do Freelancer na plataforma (por definição é Freelancer)
-     * @param NIF - o NIF do Freelancer
-     * @param enderecoPostalFreelancer - o endereço postal do Freelancer no formato
+     * @param nif - o NIF do Freelancer
+     *
      * da classe EnderecoPostal
      */
-    public Freelancer(Email email, String nome, Password password, Rolename rolename,
-            String NIF, EnderecoPostal enderecoPostalFreelancer){
-        super(email, nome, password, ROLENAME_POR_DEFINICAO);
-        setNIF(NIF);
+    public Freelancer(Email email, String nome, Password password,
+            String nif, String codigoEnderecoPostal){
+        super(email, nome, password);
+        setNIF(nif);
         setTelefone(telefone);
-        setEndereco(enderecoPostalFreelancer);        
+        setEndereco(codigoEnderecoPostal);
     }
     
     /**
      * Construtor da classe Freelancer sem a password 
-     * @param emailFree - o email do Freelancer no formato de texto
+     * @param email - o email do Freelancer no formato de texto
      * @param nome - o nome do Freelancer
-     * @param rolename - o papel do Freelancer na plataforma (por definição é Freelancer)
-     * @param NIF - o NIF do Freelancer
-     * @param enderecoPostalFreelancer - o endereço postal do Freelancer no formato
+     * @param nif - o NIF do Freelancer
+     * @param codigoEnderecoPostal - o endereço postal do Freelancer no formato
      * da classe EnderecoPostal
      */
-    public Freelancer(String emailFree, String nome, Rolename rolename,
-            String NIF, EnderecoPostal enderecoPostalFreelancer){
-        super(emailFree, nome);
-        super.setRolename(ROLENAME_POR_DEFINICAO);
-        setNIF(NIF);
+    public Freelancer(Email email, String nome, Password password, String nif, String telefone, String codigoEnderecoPostal){
+        super(email, nome, password);
+        setNIF(nif);
         setTelefone(telefone);
-        setEndereco(enderecoPostalFreelancer);        
-    }
-    
-    /**
-     * Construtor da classe Freelancer sem a password 
-     * @param emailFree - o email do Freelancer no formato de texto
-     * @param nome - o nome do Freelancer
-     * @param rolename - o papel do Freelancer na plataforma (por definição é Freelancer)
-     * @param NIF - o NIF do Freelancer
-     * @param arruamento - o arruamento do Endereço Postal do Freelancer
-     * @param numeroPorta - o número da porta do Endereço Postal do Freelancer
-     * @param localidade - a localidade do do Endereço Postal do Freelancer
-     * @param codigoPostal - o código postal do Endereço Postal do Freelancer
-     */
-    public Freelancer(String emailFree, String nome, Rolename rolename,
-            String NIF, String arruamento, String numeroPorta, String localidade, 
-            String codigoPostal){
-        super(emailFree, nome);
-        super.setRolename(ROLENAME_POR_DEFINICAO);
-        setNIF(NIF);
-        setTelefone(telefone);
-        EnderecoPostal enderecoPostalFree = new EnderecoPostal(arruamento, numeroPorta,
-        localidade, codigoPostal);
-        setEndereco(enderecoPostalFree);        
+        setEndereco(codigoEnderecoPostal);
     }
      
     /**
@@ -111,24 +75,23 @@ public class Freelancer extends Utilizador implements Serializable{
      * @param freelancer
      */
     public Freelancer(Freelancer freelancer){
-        super(freelancer.getEmail(), freelancer.getNome(), freelancer.getPassword(), 
-                freelancer.getRolename());
-        setNIF(freelancer.NIF);
+        super(freelancer.getEmail(), freelancer.getNome(), freelancer.getPassword());
+        setNIF(freelancer.nif);
         setTelefone(freelancer.telefone);
-        setEndereco(freelancer.enderecoPostalFreelancer);        
+        setEndereco(freelancer.codigoEnderecoPostal);
     }
     
     /**
      * Define o NIF do Freelancer
-     * @param NIF
+     * @param nif
      * @throws NifInvalidoException
      */
-    public void setNIF(String NIF)throws NifInvalidoException {
-        long numNif = Long.parseLong(NIF);
+    public void setNIF(String nif)throws NifInvalidoException {
+        long numNif = Long.parseLong(nif);
         if (numNif >= 100000000 && numNif <= 999999999) {
-            this.NIF = NIF;
+            this.nif = nif;
         } else {
-            throw new NifInvalidoException(NIF + ": NIF inválido!");
+            throw new NifInvalidoException(nif + ": NIF inválido!");
         }
     }
     
@@ -146,18 +109,21 @@ public class Freelancer extends Utilizador implements Serializable{
     
     /**
      * Define o endereço postal do Freelancer
-     * @param enderecoPostalFreelancer
+     * @param codigoEnderecoPostal
      */
-    public void setEndereco(EnderecoPostal enderecoPostalFreelancer){
-        this.enderecoPostalFreelancer = enderecoPostalFreelancer;
+    public void setEndereco(String codigoEnderecoPostal){
+        if (codigoEnderecoPostal == null || codigoEnderecoPostal.trim().isEmpty()) {
+            throw new CodigoInvalidoException("O código do Endereço Postal é inválido.");
+        }
+        this.codigoEnderecoPostal = codigoEnderecoPostal;
     }
     
     /**
      * Devolve o NIF do Freelancer
      * @return NIF
      */
-    public String getNIF(){
-        return NIF;
+    public String getNif(){
+        return nif;
     }
     
     /**
@@ -172,8 +138,8 @@ public class Freelancer extends Utilizador implements Serializable{
      * Devolve o endereço postal do Freelancer
      * @return enderecoPostalFreelancer
      */
-    public EnderecoPostal getEnderecoFreelancer(){
-        return enderecoPostalFreelancer;
+    public String getEnderecoFreelancer(){
+        return codigoEnderecoPostal;
     }
     
     /**
@@ -183,19 +149,9 @@ public class Freelancer extends Utilizador implements Serializable{
     @Override
     public String toString(){
         return String.format("Nome freelancer: %s  %nEmail: %s"
-                + "%nPassword: %s %nNIF: %s %nTelefone: %s %nEndereço Postal: %s",
+                + "%s %nNIF: %s %nTelefone: %s %nEndereço Postal: %s",
                 super.getNome(), super.getEmail().getEmailText(), 
-                super.getPassword().getPasswordText(), NIF, telefone, enderecoPostalFreelancer.toString());
+                nif, telefone, codigoEnderecoPostal.toString());
     }
-    
-    /**
-     * Representação textual da classe Freelancer sem a password
-     * @return Nome, email, NIF, telefone e endereço postal do Freelancer
-     */
-    public String toStringSemPass(){
-        return String.format("Nome freelancer: %s  %nEmail: %s"
-                + "%nNIF: %s %nTelefone: %s %nEndereço Postal: %s",
-                super.getNome(), super.getEmail().getEmailText(), 
-                NIF, telefone, enderecoPostalFreelancer.toString());
-    }
+
 }

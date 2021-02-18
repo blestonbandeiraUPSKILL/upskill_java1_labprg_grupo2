@@ -18,7 +18,7 @@ import java.util.List;
 public interface RepositorioTarefa {
 
 
-    void save(AreaActividade areaActividade, Categoria categoriaTarefa,
+    void save(String codigoAreaActividade, String codigoCategoriaTarefa,
                              String referencia, String designacao,
                              String descInformal, String descTecnica,
                              int duracao, double custo);

@@ -52,9 +52,7 @@ public class RepositorioOrganizacaoDatabase implements RepositorioOrganizacao {
 
     @Override
     public void save(String nif, String nome, Website website, String telefone,
-                     Email emailOrganizacao, Email emailGestor, String arruamento,
-                     String numeroPorta, String localidade, String codigoPostal,
-                     String nomeGestor, Password passwordGestor, Rolename rolename, String telefoneGestor, String funcaoGestor) throws SQLException {
+                     Email emailOrganizacao, String idEnderecoPostal, Email emailGestor) throws SQLException {
 
         DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
         Connection connection = dbConnectionHandler.openConnection();
@@ -73,15 +71,8 @@ public class RepositorioOrganizacaoDatabase implements RepositorioOrganizacao {
                 callableStatementOrg.setString(4, telefone);
                 callableStatementOrg.setString(5, String.valueOf(emailOrganizacao));
                 callableStatementOrg.setString(6, String.valueOf(emailGestor));
-                callableStatementOrg.setString(7, arruamento);
-                callableStatementOrg.setString(8, numeroPorta);
-                callableStatementOrg.setString(9, localidade);
-                callableStatementOrg.setString(10, codigoPostal);
-                callableStatementOrg.setString(11, nomeGestor);
-                callableStatementOrg.setString(12, String.valueOf(passwordGestor));
-                callableStatementOrg.setString(13, rolename.name());
-                callableStatementOrg.setString(14, telefoneGestor);
-                callableStatementOrg.setString(15, funcaoGestor);
+                callableStatementOrg.setString(7, idEnderecoPostal);
+
 
                 callableStatementOrg.executeQuery();
 

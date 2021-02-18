@@ -39,6 +39,10 @@ public class RegistarAreaActividadeController /*implements Serializable*/{
         return repositorioAreaActividade.save(areaActividade);
     }
 
+    public AreaActividade findByCodigo(String codigo) {
+        return repositorioAreaActividade.findByCodigo(codigo);
+    }
+
     //////FICHEIROS////////
     public RegistarAreaActividadeController() {
         ficheiroAt = new FicheiroRepositorioAreaActividade();
@@ -62,4 +66,6 @@ public class RegistarAreaActividadeController /*implements Serializable*/{
 
         return repositorioAreaActividadeInMemory.adicionarListaAreasActividade(listaAreaActividadeImportada);
     }
+
+
 }

@@ -14,7 +14,14 @@ import java.util.List;
  * @author CAD
  */
 public class Tarefa implements Serializable{
-    
+
+    /**
+     *
+     */
+    private String codigoAreaActividade;
+
+    private String codigoCategoriaTarefa;
+
     /**
      * A referência única de uma tarefa em uma Organização.
      */
@@ -56,74 +63,44 @@ public class Tarefa implements Serializable{
     public Tarefa(){
         
     }
-    
-    /**
-     * Construtor completo da classe Tarefa
-     * @param referencia a referência única de uma tarefa em uma Organização.
-     * @param designacao a designação da tarefa.
-     * @param descInformal a descrição informal da tarefa.
-     * @param descTecnica a descrição técnica da tarefa.
-     * @param duracaoEst a duração estimada da tarefa em dias.
-     * @param custoEst o custo estimado da tarefa em euros.
-     */
-    public Tarefa(String referencia, String designacao, String descInformal, String descTecnica,
-    int duracaoEst, double custoEst){
-        setReferencia(referencia);
-        setDesignacao(designacao);
-        setDescInformal(descInformal);
-        setDescTecnica(descTecnica);
-        setDuracaoEst(duracaoEst);
-        setCustoEst(custoEst);
-    }
-    /**
-     * Construtor completo da classe Tarefa
-     * @param referencia a referência única de uma tarefa em uma Organização.
-     * @param designacao a designação da tarefa.
-     * @param descInformal a descrição informal da tarefa.
-     * @param descTecnica a descrição técnica da tarefa.
-     * @param duracaoEst a duração estimada da tarefa em dias.
-     * @param custoEst o custo estimado da tarefa em euros.
-     */
-    public Tarefa(AreaActividade at, Categoria ct,String referencia, String designacao, String descInformal, String descTecnica,
-    int duracaoEst, double custoEst){
-        setAt(at);
-        setCt(ct);
-        setReferencia(referencia);
-        setDesignacao(designacao);
-        setDescInformal(descInformal);
-        setDescTecnica(descTecnica);
-        setDuracaoEst(duracaoEst);
-        setCustoEst(custoEst);
-    }
-    
-     /**
-     * Construtor da classe Tarefa
-     * @param tarefa é do tipo da classe Tarefa
-     */
-    public Tarefa(Tarefa tarefa){
-        setReferencia(tarefa.referencia);
-        setDesignacao(tarefa.designacao);
-        setDescInformal(tarefa.descInformal);
-        setDescTecnica(tarefa.descTecnica);
-        setDuracaoEst(tarefa.duracaoEst);
-        setCustoEst(tarefa.custoEst);
-    }
 
-    public Tarefa(AreaActividade areaActividade,
-                  List<Categoria> categoriaTarefa,
-                  List<CaracterizacaoCT> caracterizacaoCTS,
+    public Tarefa(String codigoAreaActividade,
+                  String codigoCategoriaTarefa,
                   String referencia, String designacao,
                   String descInformal, String descTecnica, int duracao, double custo) {
-        setAt(areaActividade);
-        this.categoriaTarefa = categoriaTarefa;
-        // setCt(categoriaTarefa);
+        setCodigoAreaActividade(codigoAreaActividade);
+        setCodigoCategoriaTarefa(codigoCategoriaTarefa);
         setReferencia(referencia);
         setDesignacao(designacao);
         setDescInformal(descInformal);
         setDescTecnica(descTecnica);
         setDuracaoEst(duracao);
         setCustoEst(custo);
+    }
 
+    public Tarefa(Tarefa outraTarefa) {
+        this.codigoAreaActividade = outraTarefa.getCodigoAreaActividade();
+        this.codigoCategoriaTarefa = outraTarefa.getCodigoCategoriaTarefa();
+        this.referencia = outraTarefa.getReferencia();
+        this.designacao = outraTarefa.getDesignacao();
+        this.descInformal = outraTarefa.getDescInformal();
+        this.descTecnica = outraTarefa.descTecnica;
+        this.duracaoEst = outraTarefa.getDuracaoEst();
+        this.custoEst = outraTarefa.getCustoEst();
+    }
+
+    public void setCodigoAreaActividade(String codigoAreaActividade) {
+        if (codigoAreaActividade == null || codigoAreaActividade.trim().isEmpty()) {
+            throw new CodigoInvalidoException("O código da Área de Actividade não é válido!");
+        }
+        this.codigoAreaActividade = codigoAreaActividade;
+    }
+
+    public void setCodigoCategoriaTarefa(String codigoCategoriaTarefa) {
+        if(codigoCategoriaTarefa == null || codigoCategoriaTarefa.trim().isEmpty()) {
+            throw new CodigoInvalidoException("O código da Categoria de Tarefa não é válido");
+        }
+        this.codigoCategoriaTarefa = codigoCategoriaTarefa;
     }
 
     /**
@@ -241,40 +218,15 @@ public class Tarefa implements Serializable{
     }
 
     /**
-     * Devolve a area de actividade
+     * Devolve o código da área de actividade
      * @return at
      */
-    public AreaActividade getAt() {
-        return at;
+    public String getCodigoAreaActividade() {
+        return codigoAreaActividade;
     }
 
-    public void setAt(AreaActividade areaActividade) {
-        if (areaActividade != null) {
-            this.at = areaActividade;
-        }else {
-            throw new AreaActividadeInexistenteException ("A área de actividade não existe");
-        }
-    }
-
-    public void setCcts(List<CaracterizacaoCT> caracterizacaoCTS) {
-        if(caracterizacaoCTS != null) {
-            this.ccts = caracterizacaoCTS;
-        }
-        else {
-            throw new CaracterizacaoCTInexistenteException("A lista de competências técnicas caraxterizadas é inexistente!");
-        }
-    }
-
-    public Categoria getCt() {
-        return ct;
-    }
-
-    public void setCt(Categoria ct) {
-        if (ct != null) {
-            this.ct = ct;
-        }else {
-            throw new CategoriaInexistenteException ("A categoria não existe");
-        }
+    public String getCodigoCategoriaTarefa() {
+        return codigoCategoriaTarefa;
     }
     
     

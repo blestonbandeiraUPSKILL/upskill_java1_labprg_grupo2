@@ -31,9 +31,9 @@ public class Organizacao implements Serializable{
     private String NIF;
     
     /**
-     * O endereço postal da organização
+     * O id do endereço postal da organização
      */
-    private EnderecoPostal enderecoOrg;
+    private String idEnderecoOrg;
     
     /**
      * O website da organização
@@ -53,36 +53,16 @@ public class Organizacao implements Serializable{
     /**
      * O gestor da organização
      */
-    private Colaborador colabGestor;
-    
-    /**
-     * O endereço da organização por omissão
-     */
-    private static final EnderecoPostal ENDERECO_POR_OMISSAO = new EnderecoPostal("Rua ", "s/n", "Portugal", "1111-111");
-    
-    /**
-     * O telefone da organização por omissão
-     */
-    private static final String TELEFONE_ORG_POR_OMISSAO = "999999999";
+    private Email emailGestor;
     
     /**
      * O construtor vazio da classeorganização
      */
     public Organizacao(){
     }
-    
-    /**
-     * O construtor completo da classe Organização
-     * @param nome o nome da organização 
-     * @param NIF o NIF da organização
-     * @param enderecoOrg o endereço postal da organização
-     * @param websiteOrg o website da organização
-     * @param telefone o telefone da organização
-     * @param emailOrg o email da organização
-     * @param colabGestor o gestor da organização
-     */
+
     public Organizacao(String nif, String nome, Website websiteOrg,
-                       String telefone, Email emailOrg, Colaborador colabGestor, EnderecoPostal enderecoOrg){
+                       String telefone, Email emailOrg, Email emailGestor, String idEnderecoPostal){
         setNif(nif);
         setNome(nome);
         if (websiteOrg instanceof Website) {
@@ -93,151 +73,10 @@ public class Organizacao implements Serializable{
         }
         setTelefone(telefone);
         this.emailOrg = new Email(emailOrg);
-        this.enderecoOrg = new EnderecoPostal(enderecoOrg);
-        this.colabGestor = new Colaborador(colabGestor);
+        this.emailGestor = emailGestor;
+        this.idEnderecoOrg = idEnderecoPostal;
     }
 
-    /**
-     * O construtor completo da classe Organização com os parâmetros do endereço postal
-     * @param nome o nome da organização 
-     * @param NIF o NIF da organização
-     * @param arruamento o arruamento do endereço postal
-     * @param numeroPorta o número da porta do endereço postal
-     * @param localidade a localidade do endereço postal
-     * @param codigoPostal o código postal
-     * @param websiteOrg o website da organização 
-     * @param telefone o telefone da organização
-     * @param emailOrg o email da organização
-     * @param colabGestor o gestor da organização
-     */
-    public Organizacao(String nome, String NIF, String arruamento, String numeroPorta,
-                       String localidade, String codigoPostal, Website websiteOrg, String telefone,
-                       Email emailOrg, Colaborador colabGestor){
-        setNome(nome);
-        setNif(NIF);
-        this.enderecoOrg = new EnderecoPostal(arruamento, numeroPorta, localidade, codigoPostal);
-        if (websiteOrg instanceof Website) {
-            this.websiteOrg = websiteOrg;
-        }
-        else {
-            this.websiteOrg = new Website(websiteOrg);
-        }
-        setTelefone(telefone);
-        this.emailOrg = new Email(emailOrg);
-        this.colabGestor = new Colaborador(colabGestor);
-    }
-
-    /**
-     * O construtor completo da classe Organização com os parâmetros do endereço postal
-     * e o email e o website da organização em formato String
-     * @param nome o nome da organização 
-     * @param NIF o NIF da organização
-     * @param arruamento o arruamento do endereço postal
-     * @param numeroPorta o número da porta do endereço postal
-     * @param localidade a localidade do endereço postal
-     * @param codigoPostal o código postal
-     * @param website o website da organização em formato String 
-     * @param telefone o telefone da organização
-     * @param email o email da organização em formato String
-     * @param colabGestor o gestor da organização
-     */
-    public Organizacao(String nome, String NIF, String arruamento, String numeroPorta,
-                       String localidade, String codigoPostal, String website, String telefone,
-                       String email, Colaborador colabGestor){
-        setNome(nome);
-        setNif(NIF);
-        this.enderecoOrg = new EnderecoPostal(arruamento, numeroPorta, localidade, codigoPostal);
-        if (websiteOrg instanceof Website) {
-            this.websiteOrg = websiteOrg;
-        }
-        else {
-            this.websiteOrg = new Website(websiteOrg);
-        }
-        setTelefone(telefone);
-        this.emailOrg = new Email(email);
-        this.colabGestor = new Colaborador(colabGestor);
-    }
-
-    /**
-     * O construtor completo da classe Organização com os parâmetros do endereço postal
-     * e o email e o website da organização em formato String. Também seguem cada um dos 
-     * parâmetros de construção do colaborador gestor, com o rolename de GESTOR pré-definido
-     * @param nome o nome da organização 
-     * @param NIF o NIF da organização
-     * @param arruamento o arruamento do endereço postal
-     * @param numeroPorta o número da porta do endereço postal
-     * @param localidade a localidade do endereço postal
-     * @param codigoPostal o código postal
-     * @param website o website da organização em formato String 
-     * @param telefone o telefone da organização
-     * @param email o email da organização em formato String
-     * @param nomeColab o nome do colaborador gestor
-     * @param emailColab o email do colaborador gestor
-     * @param passColab a password do colaborador gestor
-     * @param funcao a função do colaborador gestor
-     * @param telefoneColab o telefone do colaborador gestor
-     */
-    public Organizacao(String nome, String NIF, String arruamento, String numeroPorta,
-                       String localidade, String codigoPostal, String website, String telefone,
-                       String email, String nomeColab, Email emailColab, Password passColab,
-                       String funcao, String telefoneColab){
-        setNome(nome);
-        setNif(NIF);
-        this.enderecoOrg = new EnderecoPostal(arruamento, numeroPorta, localidade, codigoPostal);
-        this.websiteOrg = new Website(website);
-        setTelefone(telefone);
-        this.emailOrg = new Email(email);
-        this.colabGestor = new Colaborador(emailColab, nomeColab, passColab,
-                funcao, telefoneColab, Rolename.GESTOR);
-    }
-    
-    /**
-     * O construtor completo da classe Organização com os parâmetros do endereço postal
-     * e o email e o website da organização em formato String. Também seguem cada um dos 
-     * parâmetros de construção do colaborador gestor, com o rolename de GESTOR pré-definido.
-     * O colaborador gestor vai com password por omissão.
-     * @param nome o nome da organização 
-     * @param NIF o NIF da organização
-     * @param arruamento o arruamento do endereço postal
-     * @param numeroPorta o número da porta do endereço postal
-     * @param localidade a localidade do endereço postal
-     * @param codigoPostal o código postal
-     * @param website o website da organização em formato String 
-     * @param telefone o telefone da organização
-     * @param email o email da organização em formato String
-     * @param nomeColab o nome do colaborador gestor
-     * @param emailColab o email do colaborador gestor
-     * @param funcao a função do colaborador gestor
-     * @param telefoneColab o telefone do colaborador gestor
-     */
-    public Organizacao(String nome, String NIF, String arruamento, String numeroPorta,
-                       String localidade, String codigoPostal, String website, String telefone,
-                       String email, String emailColab, String nomeColab,
-                       String funcao, String telefoneColab){
-        setNome(nome);
-        setNif(NIF);
-        this.enderecoOrg = new EnderecoPostal(arruamento, numeroPorta, localidade, codigoPostal);
-        this.websiteOrg = new Website(website);
-        setTelefone(telefone);
-        this.emailOrg = new Email(email);
-        this.colabGestor = new Colaborador(new Email(emailColab), nomeColab,
-                funcao, telefoneColab, Rolename.GESTOR);
-    }
-       
-    /**
-     * O construtor da classe Organização que recebe como parâmetro outra organização
-     * @param organizacao
-     */
-    public Organizacao(Organizacao organizacao){
-        setNome(organizacao.getNome());
-        setNif(organizacao.getNif());
-        this.enderecoOrg = new EnderecoPostal(organizacao.getEnderecoPostal());
-        this.websiteOrg = new Website(organizacao.getWebsite());
-        setTelefone(organizacao.getTelefone());
-        this.emailOrg = new Email(organizacao.getEmail());
-        this.colabGestor = new Colaborador(organizacao.getColabGestor());
-    }  
-   
     /**
      * Define o nome da organização
      * @param nome
@@ -265,10 +104,10 @@ public class Organizacao implements Serializable{
 
     /**
      * Define o endereço postal da organização
-     * @param enderecoOrg
+     * @param idEnderecoOrg
      */
-    public void setEnderecoPostal(EnderecoPostal enderecoOrg){
-        this.enderecoOrg = enderecoOrg;
+    public void setEnderecoPostal(String idEnderecoOrg){
+        this.idEnderecoOrg = idEnderecoOrg;
     }
 
     /**
@@ -316,11 +155,11 @@ public class Organizacao implements Serializable{
     }
 
     /**
-     * Devolve o endereço postal da organização
-     * @return endereco
+     * Devolve o id do endereço postal da organização
+     * @return idEnderecoOrg
      */
-    public EnderecoPostal getEnderecoPostal(){
-        return enderecoOrg;
+    public String getIdEnderecoPostal(){
+        return idEnderecoOrg;
     }
 
     /**
@@ -347,122 +186,7 @@ public class Organizacao implements Serializable{
         return new Email(emailOrg);
     }
 
-    /**
-     * Devolve o colaborador gestor da organização
-     * @return
-     */
-    public Colaborador getColabGestor() {
-        return colabGestor;
-    }
-      
-    ////////////////////////////////////////////////////
-    //  Verificar se precisa desses construtores abaixo e se precisamos ter setColabGestor
-    //  Se sim, devemos colocar setColaborador em cada construtor ao invés de new, para
-    //  termos coerência.
-    
-    /**
-     *
-     * @param nomeOrganizacao
-     * @param nif
-     * @param telefone
-     * @param website
-     * @param email
-     * @param enderecoPostal
-     */
-    public Organizacao(String nomeOrganizacao, String nif, String telefone,
-                       Website website, Email email, EnderecoPostal enderecoPostal) {
-        setNome(nomeOrganizacao);
-        setNif(nif);
-        setTelefone(telefone);
-        setWebsite(website);
-        setEmail(new Email(email));
-        setEnderecoPostal(enderecoPostal);
-    }
-    
-     /**
-     *
-     * @param arruamento
-     * @param numeroPorta
-     * @param localidade
-     * @param codigoPostal
-     * @return
-     */
-    public static EnderecoPostal novoEndereco(String arruamento, String numeroPorta,
-                                              String localidade, String codigoPostal) {
-        return new EnderecoPostal(arruamento, numeroPorta, localidade, codigoPostal);
-    }
-    
-    /**
-     *
-     * @param nomeGestor
-     * @param emailGestor
-     * @param telefoneGestor
-     * @param rolename
-     * @return
-     */
-    public static Colaborador novoColaborador(Email emailGestor, String nomeGestor, String telefoneGestor, Rolename rolename) {
-        String funcao = "Gestor";
-        return new Colaborador(emailGestor, nomeGestor, funcao, telefoneGestor, rolename);
-    }
-    
-    private void setColabGestor(String emailGestor, String nomeGestor, String telefoneGestor, Rolename role) {
-        String funcao = "Gestor";
-        colabGestor = new Colaborador(new Email(emailGestor), nomeGestor, funcao, telefoneGestor, role.GESTOR);
-    }
-    
-    /**
-     *
-     * @param nomeOrganizacao
-     * @param nif
-     * @param arruamento
-     * @param numeroPorta
-     * @param localidade
-     * @param codPostal
-     * @param telefoneOrg
-     * @param website
-     * @param emailOrg
-     * @param nomeGestor
-     * @param emailGestor
-     * @param telefoneGestor
-     * @param role
-     */
-    public Organizacao(String nomeOrganizacao, 
-                       String nif, String arruamento, 
-                       String numeroPorta, String localidade, 
-                       String codPostal, String telefoneOrg, 
-                       String website, String emailOrg, 
-                       String nomeGestor, String emailGestor, 
-                       String telefoneGestor, Rolename role) {
-        setNome(nomeOrganizacao);
-        setNif(nif);
-        setEnderecoPostal(new EnderecoPostal(arruamento, numeroPorta, localidade, codPostal));
-        setTelefone(telefoneOrg);
-        setWebsite(new Website(website));
-        setEmail(new Email(emailOrg));
-        setColabGestor(nomeGestor, emailGestor, telefoneGestor, role);
-    }
-    
-    /**
-     *
-     * @return
-     */
-    public String getNomeGestor() {
-        return colabGestor.getNome();
-    }
-
-    /**
-     *
-     * @return
-     */
-    public String getTelefoneGestor() {
-        return colabGestor.getTelefone();
-    }
-
-    /**
-     * 
-     * @return
-     */
     public Email getEmailGestor() {
-        return colabGestor.getEmail();
+        return emailGestor;
     }
 }

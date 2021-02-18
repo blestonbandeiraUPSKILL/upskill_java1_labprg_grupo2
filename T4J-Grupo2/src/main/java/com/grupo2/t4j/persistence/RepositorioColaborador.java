@@ -18,7 +18,7 @@ import java.util.ArrayList;
 public interface RepositorioColaborador {
 
 
-    void save(Email email, String nome,  String funcao, String telefone, Rolename rolename) throws ColaboradorDuplicadoException;
+    void save(Email email, String nome, Password passowrd, String funcao, String telefone) throws ColaboradorDuplicadoException;
 
     boolean save(Colaborador colaborador);
 

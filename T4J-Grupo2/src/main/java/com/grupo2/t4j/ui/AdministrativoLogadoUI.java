@@ -1,5 +1,6 @@
 package com.grupo2.t4j.ui;
 
+import com.grupo2.t4j.api.UsersAPI;
 import com.grupo2.t4j.controller.RegistarAreaActividadeController;
 import com.grupo2.t4j.controller.RegistarCategoriaController;
 import com.grupo2.t4j.controller.RegistarCompetenciaTecnicaController;
@@ -44,7 +45,7 @@ public class AdministrativoLogadoUI implements Initializable {
     private RegistarAreaActividadeController registarAreaActividadeController;
     private RegistarCategoriaController registarCategoriaController;
     private RegistarCompetenciaTecnicaController registarCompetenciaTecnicaController;
-    
+
     private FicheiroRepositorioAreaActividade ficheiroAt;
     private RepositorioAreaActividadeInMemory repositorioAreaActividadeInMemory;
 
@@ -144,10 +145,11 @@ public class AdministrativoLogadoUI implements Initializable {
     }
 
     public void logout(ActionEvent actionEvent) throws SQLException {
-        boolean logout = autenticacaoController.logout();
+        UsersAPI usersAPI = new UsersAPI();
+        boolean logout = usersAPI.logout();
         if (logout) {
             navigateStartingPage(actionEvent);
-            Plataforma.getInstance().resetUserAPI();
+            usersAPI.resetUserAPI();
         }
         else {
             Alert alerta = AlertsUI.criarAlerta(Alert.AlertType.ERROR,
@@ -190,20 +192,17 @@ public class AdministrativoLogadoUI implements Initializable {
                     "Erro",
                     exception.getMessage());
         }
-
-
-
     }
 
     public void updateListViewAreasActividade() {
-        listaAreasActividade.getItems().setAll(registarAreaActividadeController.getAreasActividade());
+        listaAreasActividade.getItems().setAll(registarAreaActividadeController.getAll());
     }
     public void updateListViewCategoriasTarefa() {
-        listaCategorias.getItems().setAll(registarCategoriaController.getCategoriasTarefa());
+        listaCategorias.getItems().setAll(registarCategoriaController.getAll());
     }
 
     public void updateListViewCompetenciasTecnicas() {
-        listViewCompetenciasTecnicas.getItems().setAll(registarCompetenciaTecnicaController.getCompetenciasTecnicas());
+        listViewCompetenciasTecnicas.getItems().setAll(registarCompetenciaTecnicaController.getAll());
     }
 
     ///////////////// Ficheiros /////////////////

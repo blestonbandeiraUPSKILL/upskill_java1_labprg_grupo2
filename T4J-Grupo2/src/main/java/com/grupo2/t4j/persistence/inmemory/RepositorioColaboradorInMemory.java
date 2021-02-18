@@ -13,6 +13,7 @@ package com.grupo2.t4j.persistence.inmemory;
 import com.grupo2.t4j.exception.ColaboradorDuplicadoException;
 import com.grupo2.t4j.model.Colaborador;
 import com.grupo2.t4j.model.Email;
+import com.grupo2.t4j.model.Password;
 import com.grupo2.t4j.model.Rolename;
 import com.grupo2.t4j.persistence.RepositorioColaborador;
 
@@ -69,11 +70,10 @@ public class RepositorioColaboradorInMemory implements Serializable, Repositorio
     }
 
     @Override
-    public void save(Email email, String nome, String funcao, String telefone, Rolename rolename) throws ColaboradorDuplicadoException {
+    public void save(Email email, String nome, Password password, String funcao, String telefone) throws ColaboradorDuplicadoException {
         Colaborador c = findByEmail(email.getEmailText());
         if (c == null) {
-            Colaborador colaborador = new Colaborador(email, nome, funcao,
-                    telefone, rolename);
+            Colaborador colaborador = new Colaborador(email, nome, password, funcao, telefone);
             this.listaColaboradores.add(colaborador);
 
         } else {
