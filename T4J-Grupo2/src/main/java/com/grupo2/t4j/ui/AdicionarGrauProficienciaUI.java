@@ -6,6 +6,12 @@ package com.grupo2.t4j.ui;
  * and open the template in the editor.
  */
 
+
+import java.net.URL;
+import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
+import javafx.fxml.Initializable;
+
 import com.grupo2.t4j.controller.RegistarGrauProficienciaController;
 import com.grupo2.t4j.model.GrauProficiencia;
 import java.net.URL;
@@ -19,6 +25,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+
 
 /**
  * FXML Controller class
@@ -57,6 +64,17 @@ public class AdicionarGrauProficienciaUI implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+
+
+    }    
+    
+    
+    public void adicionarGrauAction (ActionEvent actionEvent){
+        
+    }
+    
+    public void concluirAction (ActionEvent actionEvent){
+        
         registarGrauProficienciaController = new RegistarGrauProficienciaController();
     }    
     
@@ -103,6 +121,7 @@ public class AdicionarGrauProficienciaUI implements Initializable {
         this.txtValor.clear();
         this.txtDesignacao.clear();
         ((Node) actionEvent.getSource()).getScene().getWindow().hide();
+
     }
     
     

@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.grupo2.t4j.repository;
+package com.grupo2.t4j.persistence;
 
+import com.grupo2.t4j.persistence.inmemory.RepositorioCompetenciaTecnicaInMemory;
 import org.junit.Test;
 import com.grupo2.t4j.exception.CompetenciaTecnicaDuplicadaException;
 import com.grupo2.t4j.exception.DescricaoInvalidaException;
@@ -19,9 +20,9 @@ import static org.junit.jupiter.api.Assertions.*;
  *
  * @author acris
  */
-public class RepositorioCompetenciaTecnicaTest {
+public class RepositorioCompetenciaTecnicaInMemoryTest {
     
-    public RepositorioCompetenciaTecnicaTest() {
+    public RepositorioCompetenciaTecnicaInMemoryTest() {
     }
     
     @BeforeEach
@@ -33,7 +34,7 @@ public class RepositorioCompetenciaTecnicaTest {
     @Test(expected = CompetenciaTecnicaDuplicadaException.class)
     public void testAddCompetenciaTecnicaDuplicada() {
         //Arrange
-        RepositorioCompetenciaTecnica rc1= RepositorioCompetenciaTecnica.getInstance();
+        RepositorioCompetenciaTecnicaInMemory rc1= RepositorioCompetenciaTecnicaInMemory.getInstance();
         CompetenciaTecnica ct1= new CompetenciaTecnica("1234", "Jogo do Galo", "Jogo para duas pessoas");
         CompetenciaTecnica ct2= new CompetenciaTecnica("1234", "Jogo do Galo", "Jogo para duas pessoas");
         
@@ -47,7 +48,7 @@ public class RepositorioCompetenciaTecnicaTest {
     @Test(expected = DescricaoInvalidaException.class)
     public void testAddCompetenciaDescricaoInvalida() {
         //Arrange
-        RepositorioCompetenciaTecnica rc1= RepositorioCompetenciaTecnica.getInstance();;
+        RepositorioCompetenciaTecnicaInMemory rc1= RepositorioCompetenciaTecnicaInMemory.getInstance();;
         CompetenciaTecnica ct1= new CompetenciaTecnica("1235", "", "Jogo para duas pessoas");
         //Act
         rc1.addCompetenciaTecnica(ct1);    
@@ -55,7 +56,7 @@ public class RepositorioCompetenciaTecnicaTest {
     @Test
     public void testAddCompetenciaTecnica() {
         //Arrange
-        RepositorioCompetenciaTecnica rc1=  RepositorioCompetenciaTecnica.getInstance();
+        RepositorioCompetenciaTecnicaInMemory rc1=  RepositorioCompetenciaTecnicaInMemory.getInstance();
         CompetenciaTecnica ct1= new CompetenciaTecnica("123456", "Jogo do Galo", "Jogo para duas pessoas");
         
         //Act
@@ -71,7 +72,7 @@ public class RepositorioCompetenciaTecnicaTest {
     public void testGetCompetenciaTecnicaByCodigo() {
         
         //Arrange
-        RepositorioCompetenciaTecnica rc1=  RepositorioCompetenciaTecnica.getInstance();
+        RepositorioCompetenciaTecnicaInMemory rc1=  RepositorioCompetenciaTecnicaInMemory.getInstance();
         CompetenciaTecnica ct1= new CompetenciaTecnica("123456", "Jogo do Galo", "Jogo para duas pessoas");
         rc1.addCompetenciaTecnica(ct1);
         
@@ -87,7 +88,7 @@ public class RepositorioCompetenciaTecnicaTest {
     public void testGetCompetenciasTecnicasByAreaActividade() {
         //Arrange
         AreaActividade at= new AreaActividade ("123","Cozinha", "Cozinheiro de 2ª");
-        RepositorioCompetenciaTecnica rc1=  RepositorioCompetenciaTecnica.getInstance();
+        RepositorioCompetenciaTecnicaInMemory rc1=  RepositorioCompetenciaTecnicaInMemory.getInstance();
         CompetenciaTecnica ct1= new CompetenciaTecnica("123456", "Jogo do Galo", "Jogo para duas pessoas",at);
         rc1.addCompetenciaTecnica(ct1);
         

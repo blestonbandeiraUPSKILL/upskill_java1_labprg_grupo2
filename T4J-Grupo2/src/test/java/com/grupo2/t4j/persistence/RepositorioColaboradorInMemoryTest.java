@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package com.grupo2.t4j.repository;
+package com.grupo2.t4j.persistence;
 
 
 /**
@@ -13,16 +13,13 @@ package com.grupo2.t4j.repository;
  */
 
 import com.grupo2.t4j.model.*;
-import com.grupo2.t4j.repository.*;
-import com.grupo2.t4j.exception.*;
-import java.util.ArrayList;
+import com.grupo2.t4j.persistence.inmemory.RepositorioColaboradorInMemory;
 import org.junit.Test;
 import org.junit.jupiter.api.BeforeEach;
-import static org.junit.jupiter.api.Assertions.*;
 
-public class RepositorioColaboradorTest {
+public class RepositorioColaboradorInMemoryTest {
     
-    public RepositorioColaboradorTest() {
+    public RepositorioColaboradorInMemoryTest() {
     }
 
     @BeforeEach
@@ -46,7 +43,7 @@ public class RepositorioColaboradorTest {
     @Test
     public void testAddColaboradorRepo() {
        
-        RepositorioColaborador rc1 = RepositorioColaborador.getInstance();
+        RepositorioColaboradorInMemory rc1 = RepositorioColaboradorInMemory.getInstance();
                 
         rc1.addColaborador(new Email("fulano@upskill.pt"), "Fulano", "Assistente", "999888777", Rolename.COLABORADOR);
                

@@ -7,7 +7,10 @@ package com.grupo2.t4j.controller;
 
 import com.grupo2.t4j.files.FicheiroRepositorioAreaActividade;
 import com.grupo2.t4j.model.AreaActividade;
-import com.grupo2.t4j.repository.RepositorioAreaActividade;
+import com.grupo2.t4j.persistence.FabricaRepositorios;
+import com.grupo2.t4j.persistence.RepositorioAreaActividade;
+import com.grupo2.t4j.persistence.inmemory.FabricaRepositoriosInMemory;
+import com.grupo2.t4j.persistence.inmemory.RepositorioAreaActividadeInMemory;
 import java.io.File;
 
 import java.util.List;
@@ -17,33 +20,26 @@ import java.util.List;
  * @author acris
  */
 public class RegistarAreaActividadeController /*implements Serializable*/{
-    
-    private FicheiroRepositorioAreaActividade ficheiroAt;
-    private RepositorioAreaActividade repositorioAreaActividade;
 
-    public boolean registarAreaActividade(String codigo, String descricaoBreve, String descricaoDetalhada) {
-        return RepositorioAreaActividade.getInstance().addAreaActividade(codigo, descricaoBreve, descricaoDetalhada);
-    }
+    private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosInMemory();
+    //private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosDatabase();
+    private RepositorioAreaActividade repositorioAreaActividade = fabricaRepositorios.getRepositorioAreaActividade();
+
+    private FicheiroRepositorioAreaActividade ficheiroAt;
+    private RepositorioAreaActividadeInMemory repositorioAreaActividadeInMemory;
 
     public List<AreaActividade> getAreasActividade() {
-        return RepositorioAreaActividade.getInstance().getListaAreasActividade();
+        return RepositorioAreaActividadeInMemory.getInstance().getAll();
     }
 
-    public AreaActividade novaAreaActividade(String codigo, String descBreve, String descDetalhada) {
-        return RepositorioAreaActividade.getInstance().novaAreaActividade(codigo, descBreve, descDetalhada);
+    public void registarAreaActividade(String codigo, String descBreve, String descDetalhada) {
+        AreaActividade areaActividade = new AreaActividade(codigo, descBreve, descDetalhada);
+        repositorioAreaActividade.save(areaActividade);
+
     }
 
-
-    public boolean registarAreaActividade(AreaActividade areaActividade) {
-        return RepositorioAreaActividade.getInstance().addAreaActividade(areaActividade);
-    }
-
-    public List<String> getAreasActividadeByDescBreve() {
-        return RepositorioAreaActividade.getInstance().getListaAreasActividadeByDescBreve();
-    }
-
-    public AreaActividade getAreaActividadeByCodigo(String codigo) {
-       List<AreaActividade> listaAreasActividade = RepositorioAreaActividade.getInstance().getListaAreasActividade();
+    public AreaActividade findByCodigo(String codigo) {
+       List<AreaActividade> listaAreasActividade = repositorioAreaActividade.getAll();
         for (int i = 0; i < listaAreasActividade.size(); i++) {
             AreaActividade areaActividade = listaAreasActividade.get(i);
             if (areaActividade.getCodigo().equals(codigo)) {
@@ -60,20 +56,20 @@ public class RegistarAreaActividadeController /*implements Serializable*/{
         desserializar();
     }
     public boolean serializar() {
-        return ficheiroAt.serializar(repositorioAreaActividade);
+        return ficheiroAt.serializar(repositorioAreaActividadeInMemory);
     }
 
     public boolean serializar(File ficheiroExportar) {
-        return ficheiroAt.serializar(ficheiroExportar, repositorioAreaActividade);
+        return ficheiroAt.serializar(ficheiroExportar, repositorioAreaActividadeInMemory);
     }
 
     public void desserializar() {
-        repositorioAreaActividade = ficheiroAt.desserializar();
+        repositorioAreaActividadeInMemory = ficheiroAt.desserializar();
     }
 
     public int desserializar(File ficheiroImportar) {
-        RepositorioAreaActividade listaAreaActividadeImportada = ficheiroAt.desserializar(ficheiroImportar);
+        RepositorioAreaActividadeInMemory listaAreaActividadeImportada = ficheiroAt.desserializar(ficheiroImportar);
 
-        return RepositorioAreaActividade.getInstance().adicionarListaAreasActividade(listaAreaActividadeImportada);
+        return RepositorioAreaActividadeInMemory.getInstance().adicionarListaAreasActividade(listaAreaActividadeImportada);
     }
 }

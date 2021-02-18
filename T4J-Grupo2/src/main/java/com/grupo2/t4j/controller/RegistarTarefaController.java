@@ -9,9 +9,9 @@ import com.grupo2.t4j.model.AreaActividade;
 import com.grupo2.t4j.model.CaracterizacaoCT;
 import com.grupo2.t4j.model.Categoria;
 import com.grupo2.t4j.model.Tarefa;
-import com.grupo2.t4j.repository.RepositorioAreaActividade;
-import com.grupo2.t4j.repository.RepositorioCategoriaTarefa;
-import com.grupo2.t4j.repository.RepositorioTarefa;
+import com.grupo2.t4j.persistence.inmemory.RepositorioAreaActividadeInMemory;
+import com.grupo2.t4j.persistence.inmemory.RepositorioCategoriaTarefaInMemory;
+import com.grupo2.t4j.persistence.inmemory.RepositorioTarefaInMemory;
 
 import java.util.List;
 
@@ -26,22 +26,22 @@ public class RegistarTarefaController {
     }
 
     public List<AreaActividade> getListaAreasActividade() {
-        return RepositorioAreaActividade.getInstance().getListaAreasActividade();
+        return RepositorioAreaActividadeInMemory.getInstance().getListaAreasActividade();
     }
 
     public List<Categoria> getListaCategoriaByAreaActividade(AreaActividade areaActividade) {
-        return RepositorioCategoriaTarefa.getInstance().getCategoriasByAreaActividade(areaActividade);
+        return RepositorioCategoriaTarefaInMemory.getInstance().getCategoriasByAreaActividade(areaActividade);
     }
 
     public boolean registarTarefa(AreaActividade areaActividade, Categoria categoria, 
             String referencia, String designacao, String descricaoInformal, 
             String descricaoTecnica, int duracao, double custo) {
-       return RepositorioTarefa.getInstance().addTarefa(areaActividade, categoria, referencia,
+       return RepositorioTarefaInMemory.getInstance().addTarefa(areaActividade, categoria, referencia,
                designacao, descricaoInformal, descricaoTecnica, duracao, custo);
     }
 
     public List<Tarefa> getListTarefas() {
-        return RepositorioTarefa.getInstance().getAll();
+        return RepositorioTarefaInMemory.getInstance().getAll();
     }
 
     public Tarefa novaTarefa(AreaActividade areaActividade, Categoria categoriaTarefa,
@@ -51,11 +51,11 @@ public class RegistarTarefaController {
                              String descTecnica,
                              int duracao,
                              double custo) {
-        return RepositorioTarefa.getInstance().novaTarefa(areaActividade, categoriaTarefa,
+        return RepositorioTarefaInMemory.getInstance().novaTarefa(areaActividade, categoriaTarefa,
                 referencia, designacao, descInformal, descTecnica, duracao, custo);
     }
 
     public boolean registarTarefa(Tarefa tarefa) {
-        return RepositorioTarefa.getInstance().addTarefa(tarefa);
+        return RepositorioTarefaInMemory.getInstance().addTarefa(tarefa);
     }
 }

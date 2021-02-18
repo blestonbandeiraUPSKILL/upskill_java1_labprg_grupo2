@@ -5,15 +5,13 @@
  */
 package com.grupo2.t4j.files;
 
-import com.grupo2.t4j.repository.RepositorioCompetenciaTecnica;
+import com.grupo2.t4j.persistence.inmemory.RepositorioCompetenciaTecnicaInMemory;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.io.PrintWriter;
-import java.util.Scanner;
 
 /**
  *
@@ -25,15 +23,15 @@ public class FicheiroRepositorioCompetenciaTecnica {
     public FicheiroRepositorioCompetenciaTecnica() {
     }
 
-    public boolean serializar(RepositorioCompetenciaTecnica repositorioCompTec) {
+    public boolean serializar(RepositorioCompetenciaTecnicaInMemory repositorioCompTec) {
         return serializar(NOME_FICHEIRO_SERIALIZAR, repositorioCompTec);
     }
 
-    public boolean serializar(String nomeFicheiro, RepositorioCompetenciaTecnica repositorioCompTec) {
+    public boolean serializar(String nomeFicheiro, RepositorioCompetenciaTecnicaInMemory repositorioCompTec) {
         return serializar(new File(nomeFicheiro), repositorioCompTec);
     }
 
-    public boolean serializar(File ficheiro, RepositorioCompetenciaTecnica repositorioCompTec) {
+    public boolean serializar(File ficheiro, RepositorioCompetenciaTecnicaInMemory repositorioCompTec) {
         try {
             ObjectOutputStream out = new ObjectOutputStream(
                     new FileOutputStream(ficheiro));
@@ -49,28 +47,28 @@ public class FicheiroRepositorioCompetenciaTecnica {
         }
     }
 
-    public RepositorioCompetenciaTecnica desserializar() {
+    public RepositorioCompetenciaTecnicaInMemory desserializar() {
         return desserializar(NOME_FICHEIRO_SERIALIZAR);
     }
 
-    public RepositorioCompetenciaTecnica desserializar(String nomeFicheiro) {
+    public RepositorioCompetenciaTecnicaInMemory desserializar(String nomeFicheiro) {
         return desserializar(new File(nomeFicheiro));
     }
 
-    public RepositorioCompetenciaTecnica desserializar(File ficheiro) {
-        RepositorioCompetenciaTecnica repositorioCompTec;
+    public RepositorioCompetenciaTecnicaInMemory desserializar(File ficheiro) {
+        RepositorioCompetenciaTecnicaInMemory repositorioCompTec;
         try {
             ObjectInputStream in = new ObjectInputStream(
                     new FileInputStream(ficheiro));
             try {
-                repositorioCompTec = (RepositorioCompetenciaTecnica) in.readObject();
+                repositorioCompTec = (RepositorioCompetenciaTecnicaInMemory) in.readObject();
                 
                 return repositorioCompTec;
             } finally {
                 in.close();
             }
         } catch (IOException | ClassNotFoundException ex) {
-            return RepositorioCompetenciaTecnica.getInstance();
+            return RepositorioCompetenciaTecnicaInMemory.getInstance();
         }
     }
 

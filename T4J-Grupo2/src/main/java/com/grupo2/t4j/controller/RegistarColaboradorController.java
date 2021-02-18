@@ -12,30 +12,31 @@ package com.grupo2.t4j.controller;
 
 import com.grupo2.t4j.files.FicheiroRepositorioColaborador;
 import com.grupo2.t4j.model.*;
-import com.grupo2.t4j.repository.RepositorioColaborador;
+import com.grupo2.t4j.persistence.inmemory.RepositorioColaboradorInMemory;
+
 import java.io.File;
 import java.util.List;
 
 public class RegistarColaboradorController {
     
-    private RepositorioColaborador repositorioColaborador;
+    private RepositorioColaboradorInMemory repositorioColaboradorInMemory;
     private FicheiroRepositorioColaborador ficheiroC;
 
 
     public Colaborador getColaboradorByEmail(Email email) {
-        return RepositorioColaborador.getInstance().getColaboradorByEmail(email.getEmailText());
+        return RepositorioColaboradorInMemory.getInstance().getColaboradorByEmail(email.getEmailText());
     }
 
     public Colaborador novoColaborador(Email email, String nome, String funcao, String telefone, Rolename rolename) {
-        return RepositorioColaborador.getInstance().novoColaborador(email, nome, funcao, telefone, Rolename.COLABORADOR);
+        return RepositorioColaboradorInMemory.getInstance().novoColaborador(email, nome, funcao, telefone, Rolename.COLABORADOR);
     }
     
     public boolean registarColaborador(Colaborador colaborador) {
-        return repositorioColaborador.getInstance().addColaborador(colaborador);
+        return repositorioColaboradorInMemory.getInstance().addColaborador(colaborador);
     }
 
     public List<Colaborador> getColaboradores() {
-        return repositorioColaborador.getInstance().getListaColaboradores();
+        return repositorioColaboradorInMemory.getInstance().getListaColaboradores();
     }
     
     //////FICHEIROS////////
@@ -45,21 +46,21 @@ public class RegistarColaboradorController {
         desserializar();
     }
     public boolean serializar() {
-        return ficheiroC.serializar(repositorioColaborador);
+        return ficheiroC.serializar(repositorioColaboradorInMemory);
     }
 
     public boolean serializar(File ficheiroExportar) {
-        return ficheiroC.serializar(ficheiroExportar, repositorioColaborador);
+        return ficheiroC.serializar(ficheiroExportar, repositorioColaboradorInMemory);
     }
 
     public void desserializar() {
-        repositorioColaborador = ficheiroC.desserializar();
+        repositorioColaboradorInMemory = ficheiroC.desserializar();
     }
 
     public int desserializar(File ficheiroImportar) {
-        RepositorioColaborador listaColaboradorImportada = ficheiroC.desserializar(ficheiroImportar);
+        RepositorioColaboradorInMemory listaColaboradorImportada = ficheiroC.desserializar(ficheiroImportar);
 
-        return repositorioColaborador.getInstance().adicionarListaColaborador(listaColaboradorImportada);
+        return repositorioColaboradorInMemory.getInstance().adicionarListaColaborador(listaColaboradorImportada);
     }
 
 

@@ -3,29 +3,28 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.grupo2.t4j.repository;
+package com.grupo2.t4j.persistence;
 
 /**
  *
  * @author CAD
  */
 
-import java.util.ArrayList;
 import java.util.List;
 
+import com.grupo2.t4j.persistence.inmemory.RepositorioAreaActividadeInMemory;
 import org.junit.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import com.grupo2.t4j.model.*;
 import com.grupo2.t4j.exception.*;
-import java.util.List;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.BeforeAll;
 
-public class RepositorioAreaActividadeTest {
+public class RepositorioAreaActividadeInMemoryTest {
     
-    public RepositorioAreaActividadeTest() {
+    public RepositorioAreaActividadeInMemoryTest() {
     }
      
     @BeforeAll
@@ -47,7 +46,7 @@ public class RepositorioAreaActividadeTest {
     @Test
     public void testAddAreaActividade() {
         
-        RepositorioAreaActividade raa1 = RepositorioAreaActividade.getInstance();
+        RepositorioAreaActividadeInMemory raa1 = RepositorioAreaActividadeInMemory.getInstance();
         
         AreaActividade aa1= new AreaActividade("AA_001", "Design", "Design web");
         
@@ -59,7 +58,7 @@ public class RepositorioAreaActividadeTest {
     @Test (expected = AreaActividadeDuplicadaException.class)
     public void testAddAreaActividadeDuplicada() {
         
-        RepositorioAreaActividade raa1 = RepositorioAreaActividade.getInstance();
+        RepositorioAreaActividadeInMemory raa1 = RepositorioAreaActividadeInMemory.getInstance();
         
         AreaActividade aa1= new AreaActividade("AA_001", "Design", "Design web");
         AreaActividade aa2= new AreaActividade("AA_001", "Design", "Design web");
@@ -71,7 +70,7 @@ public class RepositorioAreaActividadeTest {
     @Test
     public void testGetAreaActividadeByCodigo() {
         
-        RepositorioAreaActividade raa1 = RepositorioAreaActividade.getInstance();
+        RepositorioAreaActividadeInMemory raa1 = RepositorioAreaActividadeInMemory.getInstance();
         
         AreaActividade aa1= new AreaActividade("AA_001", "Design", "Design web");
         AreaActividade aa2= new AreaActividade("AA_002", "Modelagem", "Modelagem protótipo");
@@ -93,7 +92,7 @@ public class RepositorioAreaActividadeTest {
     @Test
     public void testGetListaAreasActividade() {
         
-        RepositorioAreaActividade raa1 = RepositorioAreaActividade.getInstance();
+        RepositorioAreaActividadeInMemory raa1 = RepositorioAreaActividadeInMemory.getInstance();
         
         AreaActividade aa1= new AreaActividade("AA_001", "Design", "Design web");
         AreaActividade aa2= new AreaActividade("AA_002", "Modelagem", "Modelagem protótipo");

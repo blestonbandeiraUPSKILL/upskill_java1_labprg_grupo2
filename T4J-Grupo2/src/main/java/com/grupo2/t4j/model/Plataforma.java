@@ -6,7 +6,8 @@
 package com.grupo2.t4j.model;
 
 import com.grupo2.t4j.controller.UsersAPI;
-import com.grupo2.t4j.repository.*;
+import com.grupo2.t4j.persistence.database.RepositorioOrganizacaoDatabase;
+import com.grupo2.t4j.persistence.inmemory.*;
 
 import java.sql.SQLException;
 
@@ -22,12 +23,12 @@ public class Plataforma {
 
     private String designacao;
     private static Plataforma plataforma;
-    private RepositorioOrganizacao repositorioOrganizacao;
-    private RepositorioCategoriaTarefa repositorioCategoriaTarefa;
-    private RepositorioColaborador repositorioColaborador;
-    private RepositorioCompetenciaTecnica repositorioCompetenciaTecnica;
-    private RepositorioTarefa repositorioTarefa;
-    private RepositorioUtilizador repositorioUtilizador;
+    private RepositorioOrganizacaoDatabase repositorioOrganizacao;
+    private RepositorioCategoriaTarefaInMemory repositorioCategoriaTarefaInMemory;
+    private RepositorioColaboradorInMemory repositorioColaboradorInMemory;
+    private RepositorioCompetenciaTecnicaInMemory repositorioCompetenciaTecnicaInMemory;
+    private RepositorioTarefaInMemory repositorioTarefaInMemory;
+    private RepositorioUtilizadorInMemory repositorioUtilizadorInMemory;
 
     private AlgoritmoGeradorPasswords algoritmoGeradorPasswords;
     private UsersAPI usersAPI;
@@ -39,12 +40,12 @@ public class Plataforma {
     public Plataforma() throws SQLException {
         algoritmoGeradorPasswords = new AlgoritmoGeradorPasswords();
         usersAPI = new UsersAPI();
-        repositorioOrganizacao = RepositorioOrganizacao.getInstance();
-        repositorioCategoriaTarefa = RepositorioCategoriaTarefa.getInstance();
-        repositorioColaborador = RepositorioColaborador.getInstance();
-        repositorioUtilizador =RepositorioUtilizador.getInstance();
-        repositorioCompetenciaTecnica = RepositorioCompetenciaTecnica.getInstance();
-        repositorioTarefa = RepositorioTarefa.getInstance();
+        repositorioOrganizacao = RepositorioOrganizacaoDatabase.getInstance();
+        repositorioCategoriaTarefaInMemory = RepositorioCategoriaTarefaInMemory.getInstance();
+        repositorioColaboradorInMemory = RepositorioColaboradorInMemory.getInstance();
+        repositorioUtilizadorInMemory = RepositorioUtilizadorInMemory.getInstance();
+        repositorioCompetenciaTecnicaInMemory = RepositorioCompetenciaTecnicaInMemory.getInstance();
+        repositorioTarefaInMemory = RepositorioTarefaInMemory.getInstance();
     }
 
     /**
@@ -68,32 +69,32 @@ public class Plataforma {
         return plataforma;
     }
 
-    public RepositorioOrganizacao getRepositorioOrganizacao() {
+    public RepositorioOrganizacaoDatabase getRepositorioOrganizacao() {
         return repositorioOrganizacao;
     }
 
-    public RepositorioCategoriaTarefa getRepositorioCategoria() {
-        return repositorioCategoriaTarefa;
+    public RepositorioCategoriaTarefaInMemory getRepositorioCategoria() {
+        return repositorioCategoriaTarefaInMemory;
     }
 
     public AlgoritmoGeradorPasswords getAlgoritmoGeradorPwd() {
         return algoritmoGeradorPasswords;
     }
 
-    public RepositorioColaborador getRepositorioColaborador() {
-        return repositorioColaborador;
+    public RepositorioColaboradorInMemory getRepositorioColaborador() {
+        return repositorioColaboradorInMemory;
     }
 
-    public RepositorioCompetenciaTecnica getRepositorioCompetenciaTecnica() {
-        return repositorioCompetenciaTecnica;
+    public RepositorioCompetenciaTecnicaInMemory getRepositorioCompetenciaTecnica() {
+        return repositorioCompetenciaTecnicaInMemory;
     }
 
-    public RepositorioTarefa getRepositorioTarefa() {
-        return repositorioTarefa;
+    public RepositorioTarefaInMemory getRepositorioTarefa() {
+        return repositorioTarefaInMemory;
     }
 
-    public RepositorioUtilizador getRepositorioUtilizador() {
-        return repositorioUtilizador;
+    public RepositorioUtilizadorInMemory getRepositorioUtilizador() {
+        return repositorioUtilizadorInMemory;
     }
 
     public UsersAPI getUsersAPI() {
