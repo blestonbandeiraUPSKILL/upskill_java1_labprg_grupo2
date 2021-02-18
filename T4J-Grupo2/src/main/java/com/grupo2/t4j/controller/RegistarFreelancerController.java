@@ -10,12 +10,14 @@ package com.grupo2.t4j.controller;
  * @author CAD
  */
 
+import com.grupo2.t4j.api.UsersAPI;
 import com.grupo2.t4j.files.*;
 import com.grupo2.t4j.model.*;
 import com.grupo2.t4j.persistence.*;
 import com.grupo2.t4j.persistence.database.*;
 import com.grupo2.t4j.persistence.inmemory.*;
 import java.io.File;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 public class RegistarFreelancerController {
@@ -23,41 +25,63 @@ public class RegistarFreelancerController {
     private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosInMemory();
     //private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosDatabase();
     private RepositorioFreelancer repositorioFreelancer = fabricaRepositorios.getRepositorioFreelancer();
-
-    private RepositorioColaboradorInMemory repositorioColaboradorInMemory;
-    private FicheiroRepositorioColaborador ficheiroC;
-
-    public boolean registarColaborador(String email, String nome, String funcao, String telefone, Rolename rolename) {
-        Colaborador colaborador = new Colaborador(email, nome, funcao, telefone, Rolename.COLABORADOR);
-
-        return repositorioColaborador.save(colaborador);
-    }
-
-    public List<Colaborador> getAll() {
-        return repositorioColaborador.getAll();
-    }
     
+    private RepositorioUtilizador repositorioUtilizador = fabricaRepositorios.getRepositorioUtilizador();
+
+    private AlgoritmoGeradorPasswords algoritmoGeradorPasswords;
+    private RepositorioFreelancerInMemory repositorioFreelancerInMemory;
+    private FicheiroRepositorioFreelancer ficheiroF;
+
+    public boolean registarFreelancer(Email email, String nome, Password password, Rolename rolename,
+            String NIF, EnderecoPostal enderecoPostalFreelancer) {
+        Freelancer freelancer = new Freelancer(email, nome, password, rolename,
+            NIF, enderecoPostalFreelancer);
+
+        return repositorioFreelancer.save(freelancer);
+    }
+
+    public List<Freelancer> getAll() {
+        return repositorioFreelancer.getAll();
+    }
+
+    ///////API
+    public boolean registarFreelancer(Freelancer freelancer) throws SQLException {
+        String nome = freelancer.getNome();
+        Email email = freelancer.getEmail();
+
+        AlgoritmoGeradorPasswords algoritmoGeradorPasswords = new AlgoritmoGeradorPasswords();
+        Password password = new Password(algoritmoGeradorPasswords.geraPassword());
+        freelancer.setPassword(password);
+
+        UsersAPI usersAPI = new UsersAPI();
+        Utilizador utilizador = new Utilizador(email, nome, password, Rolename.FREELANCER);
+
+        return usersAPI.registerUserWithRoles(email, nome, password, "freelancer") &&
+                repositorioUtilizador.save(utilizador);
+    }
+
+
     //////FICHEIROS////////
-    public RegistarColaboradorController() {
-        ficheiroC = new FicheiroRepositorioColaborador();
+    public RegistarFreelancerController() {
+        ficheiroF = new FicheiroRepositorioFreelancer();
         
         desserializar();
     }
     public boolean serializar() {
-        return ficheiroC.serializar(repositorioColaboradorInMemory);
+        return ficheiroF.serializar(repositorioFreelancerInMemory);
     }
 
     public boolean serializar(File ficheiroExportar) {
-        return ficheiroC.serializar(ficheiroExportar, repositorioColaboradorInMemory);
+        return ficheiroF.serializar(ficheiroExportar, repositorioFreelancerInMemory);
     }
 
     public void desserializar() {
-        repositorioColaboradorInMemory = ficheiroC.desserializar();
+        repositorioFreelancerInMemory = ficheiroF.desserializar();
     }
 
     public int desserializar(File ficheiroImportar) {
-        RepositorioColaboradorInMemory listaColaboradorImportada = ficheiroC.desserializar(ficheiroImportar);
+        RepositorioFreelancerInMemory listaFreelancerImportada = ficheiroF.desserializar(ficheiroImportar);
 
-        return repositorioColaboradorInMemory.getInstance().adicionarListaColaborador(listaColaboradorImportada);
-    }
+        return repositorioFreelancerInMemory.adicionarListaFreelancer(listaFreelancerImportada);
+    }  
 }

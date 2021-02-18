@@ -92,7 +92,7 @@ public class RepositorioFreelancerInMemory implements Serializable, RepositorioF
         return new ArrayList<Freelancer>(listaFreelancers);
     }
     
-    public int adicionarListaFreelancers(RepositorioFreelancerInMemory outraListaFreelancers) {
+    public int adicionarListaFreelancer(RepositorioFreelancerInMemory outraListaFreelancers) {
         int totalFreelancersAdicionados = 0;
 
         for (Freelancer freelancer : outraListaFreelancers.listaFreelancers) {
