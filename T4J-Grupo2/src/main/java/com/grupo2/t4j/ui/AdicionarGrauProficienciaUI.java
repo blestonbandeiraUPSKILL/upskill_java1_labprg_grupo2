@@ -81,9 +81,9 @@ public class AdicionarGrauProficienciaUI implements Initializable {
         try{
             /*GrauProficiencia grauProficiencia = registarGrauProficienciaController.registarGrauProficiencia(Integer.parseInt(txtValor.getText()),
                     txtDesignacao.getText());*/
-
+            
             boolean adicionou = registarGrauProficienciaController.registarGrauProficiencia(Integer.parseInt(txtValor.getText()),
-                    txtDesignacao.getText());;
+                    txtDesignacao.getText(), adicionarCompetenciaTecnicaUI.txtCodigo.getText());
 
             if(adicionou) {
                 listViewGrausAdicionados.getItems().addAll(registarGrauProficienciaController.getAll());
