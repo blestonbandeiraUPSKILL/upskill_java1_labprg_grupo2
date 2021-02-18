@@ -45,6 +45,7 @@ public class RegistarCategoriaController {
         return repositorioCategoria.getAll();
     }
 
+
     
     ////FICHEIROS//////
 

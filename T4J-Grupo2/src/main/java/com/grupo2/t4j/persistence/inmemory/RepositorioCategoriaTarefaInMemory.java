@@ -40,21 +40,21 @@ public class RepositorioCategoriaTarefaInMemory implements Serializable, Reposit
 
     @Override
     public boolean save(Categoria categoria) {
-        Categoria c = findById(categoria.getId());
+        Categoria c = findByCodigo(categoria.getCodigoCategoria());
         if (c == null) {
             this.listaCategorias.add(categoria);
 
         } else {
-            throw new CategoriaDuplicadaException(c.getId() + ": Categoria ja existe");
+            throw new CategoriaDuplicadaException(c.getCodigoCategoria() + ": Categoria ja existe");
         }
         return false;
     }
 
     @Override
-    public Categoria findById(String id) {
+    public Categoria findByCodigo(String codigoCategoria) {
         for (int i = 0; i < this.listaCategorias.size(); i++) {
             Categoria categoria = this.listaCategorias.get(i);
-            if (categoria.getId().equals(id)) {
+            if (categoria.getCodigoCategoria().equals(codigoCategoria)) {
                 return categoria;
             }
         }
@@ -62,11 +62,11 @@ public class RepositorioCategoriaTarefaInMemory implements Serializable, Reposit
     }
 
     @Override
-    public ArrayList<Categoria> findByAreaActividade(AreaActividade at) {
+    public ArrayList<Categoria> findByAreaActividade(String codigoAreaActividade) {
         ArrayList<Categoria> categoriaPorAt = new ArrayList<>();
 
         for (Categoria cat : listaCategorias) {
-            if (cat.getAt().equals(at)) {
+            if (cat.getAt().equals(codigoAreaActividade)) {
                 categoriaPorAt.add(cat);
             }
         }
