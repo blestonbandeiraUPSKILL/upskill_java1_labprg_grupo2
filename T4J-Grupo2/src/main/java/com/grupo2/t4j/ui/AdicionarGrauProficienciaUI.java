@@ -64,32 +64,30 @@ public class AdicionarGrauProficienciaUI implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
-
-    }    
-    
-    
-    public void adicionarGrauAction (ActionEvent actionEvent){
-        
-    }
-    
-    public void concluirAction (ActionEvent actionEvent){
-        
         registarGrauProficienciaController = new RegistarGrauProficienciaController();
     }    
+    
+    
+   
+    
+    /*public void concluirAction (ActionEvent actionEvent){
+        
+        registarGrauProficienciaController = new RegistarGrauProficienciaController();
+    } */   
     
     @FXML
     public void adicionarGrauAction (ActionEvent actionEvent){
         
         try{
-            GrauProficiencia grauProficiencia = registarGrauProficienciaController.novoGrauProficiencia(txtValor.getText(),
-                    txtDesignacao.getText());
+            /*GrauProficiencia grauProficiencia = registarGrauProficienciaController.registarGrauProficiencia(Integer.parseInt(txtValor.getText()),
+                    txtDesignacao.getText());*/
 
-            boolean adicionou = registarGrauProficienciaController.registarGrauProficiencia(grauProficiencia);
+            boolean adicionou = registarGrauProficienciaController.registarGrauProficiencia(Integer.parseInt(txtValor.getText()),
+                    txtDesignacao.getText());;
 
             if(adicionou) {
-                listViewGrausAdicionados.getItems().add(grauProficiencia);
-                adicionarCompetenciaTecnicaUI.listViewGrausAplicaveis.getItems().add(grauProficiencia);
+                listViewGrausAdicionados.getItems().addAll(registarGrauProficienciaController.getAll());
+                //adicionarCompetenciaTecnicaUI.listViewGrausAplicaveis.getItems().add(grauProficiencia);
             }
 
             AlertsUI.criarAlerta(Alert.AlertType.INFORMATION,
