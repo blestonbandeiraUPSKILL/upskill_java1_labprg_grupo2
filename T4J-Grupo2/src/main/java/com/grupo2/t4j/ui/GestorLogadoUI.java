@@ -3,7 +3,7 @@ package com.grupo2.t4j.ui;
 import com.grupo2.t4j.controller.*;
 import com.grupo2.t4j.files.FicheiroRepositorioColaborador;
 import com.grupo2.t4j.model.*;
-import com.grupo2.t4j.repository.RepositorioColaborador;
+import com.grupo2.t4j.persistence.inmemory.RepositorioColaboradorInMemory;
 import javafx.fxml.FXMLLoader;
 
 import java.io.IOException;
@@ -15,13 +15,11 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -43,7 +41,7 @@ public class GestorLogadoUI implements Initializable {
     private AutenticacaoController autenticacaoController;
     
     private FicheiroRepositorioColaborador ficheiroC;
-    private RepositorioColaborador repositorioColaborador;
+    private RepositorioColaboradorInMemory repositorioColaboradorInMemory;
     
     @FXML TextField txtReferencia1;
     @FXML TextField txtEmailColaborador;
@@ -113,20 +111,23 @@ public class GestorLogadoUI implements Initializable {
     public void registarColaboradorAction(ActionEvent event){
         
         try {
-
-            Colaborador colaborador = registarColaboradorController.novoColaborador(
-                    new Email(txtEmailColaborador.getText()),
+            boolean adicionou = registarColaboradorController.registarColaborador(
+                    txtEmailColaborador.getText(),
                     txtNomeColaborador.getText(),
                     txtFuncaoColaborador.getText(),
                     txtTelefoneColaborador.getText(),
                     Rolename.COLABORADOR);
 
-            boolean adicionouCol = registarColaboradorController.registarColaborador(colaborador);
+            if (adicionou) {
 
-            if (adicionouCol) {
-
-                autenticacaoController.registarColaboradorComoUtilizador(colaborador);
-                txtPasswordColaborador.setText(registarColaboradorController.getColaboradorByEmail(colaborador.getEmail()).getPassword().getPasswordText());
+                autenticacaoController.registarColaboradorComoUtilizador(
+                        txtEmailColaborador.getText(),
+                        txtNomeColaborador.getText(),
+                        txtFuncaoColaborador.getText(),
+                        txtTelefoneColaborador.getText(),
+                        Rolename.COLABORADOR)
+                );
+                txtPasswordColaborador.setText(registarColaboradorController.findByEmail(colaborador.getEmail()).getPassword().getPasswordText());
 
                 AlertsUI.criarAlerta(Alert.AlertType.INFORMATION,
                         MainApp.TITULO_APLICACAO,

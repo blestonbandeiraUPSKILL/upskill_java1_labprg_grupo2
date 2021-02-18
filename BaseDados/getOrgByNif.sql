@@ -14,7 +14,12 @@ BEGIN
     IF v_count = 0
     THEN
         RAISE ex_Organizacao;
-    END IF;
+    END IF;    
+    
+    EXCEPTION WHEN
+        ex_Organizacao
+    THEN
+        RAISE_APPLICATION_ERROR(-20001, 'Organização já registada!');
         
 END;
 /

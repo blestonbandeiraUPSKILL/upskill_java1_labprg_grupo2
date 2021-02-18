@@ -67,15 +67,16 @@ public class Administrativo implements Serializable{
     
     /**
      * Construtor completo da classe Administrativo
-     * @param nome o nome do Administrador
-     * @param emailAdm o email do Administrador em formato String
-     * @param passAdm a password do Administrador em formato String
+     * @param nome o nome do Administrativo
+     * @param email o email do Administrativo em formato String
+     * @param password a password do Administrativo em formato String
+     * @param rolename o rolename do Administrativo
      */
-    public Administrativo(String nome, String emailAdm, String passAdm){
+    public Administrativo(Email email, String nome, Password password, Rolename rolename){
+        this.email = new Email(email);
         setNome(nome);
-        this.email = new Email(emailAdm); 
-        this.password = new Password(passAdm);
-        setRolename(ROLENAME_POR_DEFINICAO);
+        this.password = new Password(password);
+        setRolename(Rolename.ADMINISTRATIVO);
     }
     
     /**

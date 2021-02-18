@@ -7,7 +7,6 @@ package com.grupo2.t4j.model;
 
 import com.grupo2.t4j.exception.AreaActividadeInexistenteException;
 import com.grupo2.t4j.exception.DescricaoInvalidaException;
-import com.grupo2.t4j.repository.RepositorioAreaActividade;
 
 import java.io.Serializable;
 import java.util.ArrayList;

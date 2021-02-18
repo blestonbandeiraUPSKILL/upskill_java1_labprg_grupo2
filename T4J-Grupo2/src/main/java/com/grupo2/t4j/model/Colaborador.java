@@ -77,9 +77,9 @@ public class Colaborador extends Utilizador implements Serializable{
      * @param telefone o telefone do Colaborador da organização
      */
 
-    public Colaborador(Email emailCol, String nome, String funcao,
+    public Colaborador(String emailCol, String nome, String funcao,
             String telefone, Rolename rolename){
-        super(emailCol, nome, rolename);
+        super(new Email(emailCol), nome, rolename);
         setFuncao(funcao);
         setTelefone(telefone);
     }

@@ -5,9 +5,8 @@
  */
 package com.grupo2.t4j.files;
 
-import static com.grupo2.t4j.files.FicheiroRepositorioCategoria.NOME_FICHEIRO_SERIALIZAR;
-import com.grupo2.t4j.repository.RepositorioOrganizacao;
-import com.grupo2.t4j.repository.RepositorioTarefa;
+import com.grupo2.t4j.persistence.database.RepositorioOrganizacaoDatabase;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -25,15 +24,15 @@ public class FicheiroRepositorioOrganizacao {
     public FicheiroRepositorioOrganizacao() {
     }
 
-    public boolean serializar(RepositorioOrganizacao repositorioOrganizacao) {
+    public boolean serializar(RepositorioOrganizacaoDatabase repositorioOrganizacao) {
         return serializar(NOME_FICHEIRO_SERIALIZAR, repositorioOrganizacao);
     }
 
-    public boolean serializar(String nomeFicheiro, RepositorioOrganizacao repositorioOrganizacao) {
+    public boolean serializar(String nomeFicheiro, RepositorioOrganizacaoDatabase repositorioOrganizacao) {
         return serializar(new File(nomeFicheiro), repositorioOrganizacao);
     }
 
-    public boolean serializar(File ficheiro, RepositorioOrganizacao repositorioOrganizacao) {
+    public boolean serializar(File ficheiro, RepositorioOrganizacaoDatabase repositorioOrganizacao) {
         try {
             ObjectOutputStream out = new ObjectOutputStream(
                     new FileOutputStream(ficheiro));
@@ -49,28 +48,28 @@ public class FicheiroRepositorioOrganizacao {
         }
     }
 
-    public RepositorioOrganizacao desserializar() throws SQLException {
+    public RepositorioOrganizacaoDatabase desserializar() throws SQLException {
         return desserializar(NOME_FICHEIRO_SERIALIZAR);
     }
 
-    public RepositorioOrganizacao desserializar(String nomeFicheiro) throws SQLException {
+    public RepositorioOrganizacaoDatabase desserializar(String nomeFicheiro) throws SQLException {
         return desserializar(new File(nomeFicheiro));
     }
 
-    public RepositorioOrganizacao desserializar(File ficheiro) throws SQLException {
-        RepositorioOrganizacao repositorioOrganizacao;
+    public RepositorioOrganizacaoDatabase desserializar(File ficheiro) throws SQLException {
+        RepositorioOrganizacaoDatabase repositorioOrganizacao;
         try {
             ObjectInputStream in = new ObjectInputStream(
                     new FileInputStream(ficheiro));
             try {
-                repositorioOrganizacao = (RepositorioOrganizacao) in.readObject();
+                repositorioOrganizacao = (RepositorioOrganizacaoDatabase) in.readObject();
                 
                 return repositorioOrganizacao;
             } finally {
                 in.close();
             }
         } catch (IOException | ClassNotFoundException ex) {
-            return RepositorioOrganizacao.getInstance();
+            return RepositorioOrganizacaoDatabase.getInstance();
         }
     }
 }

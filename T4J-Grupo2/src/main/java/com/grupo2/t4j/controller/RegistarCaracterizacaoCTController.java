@@ -1,32 +1,32 @@
 package com.grupo2.t4j.controller;
 
 import com.grupo2.t4j.model.*;
-import com.grupo2.t4j.repository.RepositorioCaracterizacaoCT;
+import com.grupo2.t4j.persistence.FabricaRepositorios;
+import com.grupo2.t4j.persistence.RepositorioCaracterizacaoCT;
+import com.grupo2.t4j.persistence.database.FabricaRepositoriosDatabase;
+import com.grupo2.t4j.persistence.inmemory.FabricaRepositoriosInMemory;
+import com.grupo2.t4j.persistence.inmemory.RepositorioCaracterizacaoCTInMemory;
 
 import java.util.List;
 
 public class RegistarCaracterizacaoCTController {
 
-    private RepositorioCaracterizacaoCT repositorioCaracterizacaoCT;
+    private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosInMemory();
+    //private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosDatabase();
+    private RepositorioCaracterizacaoCT repositorioCaracterizacaoCT = fabricaRepositorios.getRepositorioCaracterizacaoCT();
 
     public boolean registarCaracterizacaoCT(CaracterizacaoCT caracterizacaoCT) {
-        return RepositorioCaracterizacaoCT.getInstance().addCaracterizacaoCT(caracterizacaoCT);
+        return repositorioCaracterizacaoCT.save(caracterizacaoCT);
     }
 
-    public List<CaracterizacaoCT> getCaracterizacaoCTS() {
-        return RepositorioCaracterizacaoCT.getInstance().getListaCaracterizacaoCTS();
+    public List<CaracterizacaoCT> getAll() {
+        return repositorioCaracterizacaoCT.getAll();
     }
 
-    public CaracterizacaoCT novaCaracterizacaoCTS(GrauProficiencia gp, Obrigatoriedade obrigatoriedade,
+    public boolean registarCaracterizacaoCTS(GrauProficiencia gp, Obrigatoriedade obrigatoriedade,
                                                   CompetenciaTecnica competenciaTecnica) {
-        return RepositorioCaracterizacaoCT.getInstance().novaCaracterizacaoCT(gp, obrigatoriedade, competenciaTecnica);
+        CaracterizacaoCT caracterizacaoCT = new CaracterizacaoCT(gp,obrigatoriedade, competenciaTecnica);
+        return repositorioCaracterizacaoCT.save(caracterizacaoCT);
     }
 
-    public List<CaracterizacaoCT> getCaracterizacaoCTSByCompetenciaTecnica(List<CompetenciaTecnica> competenciasTecnicasByAreaActividade) {
-        return RepositorioCaracterizacaoCT.getInstance().getCaracterizacaoCTSbyCompetenciaTecnica(competenciasTecnicasByAreaActividade);
-    }
-
-    /*public List<CaracterizacaoCT> getCaracterizacaoCTSByCategoria(Categoria categoria) {
-        return RepositorioCaracterizacaoCT.getInstance().getCaracterizacaoCTSByCategoria(categoria);
-    }*/
 }

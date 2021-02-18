@@ -12,17 +12,21 @@ import com.grupo2.t4j.model.CompetenciaTecnica;
 import com.grupo2.t4j.model.GrauProficiencia;
 import java.net.URL;
 import java.util.ResourceBundle;
-
 import com.grupo2.t4j.repository.RepositorioAreaActividade;
+import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Modality;
@@ -40,6 +44,7 @@ public class AdicionarCompetenciaTecnicaUI implements Initializable {
     private RegistarCompetenciaTecnicaController registarCompetenciaTecnicaController;
     private RegistarAreaActividadeController registarAreaActividadeController;
     private Stage adicionarStage;
+    private Scene sceneAddGrauProficiencia;
 
     @FXML Button btnConfirmar;
     @FXML Button btnCancelar;
@@ -48,6 +53,7 @@ public class AdicionarCompetenciaTecnicaUI implements Initializable {
     @FXML TextArea txtDescricaoBreve;
     @FXML ComboBox<AreaActividade> cmbAreaActividade;
     @FXML ComboBox<GrauProficiencia> cmbGrauProficiencia;
+    @FXML ListView<GrauProficiencia> listViewGrausAplicaveis;
 
     public void associarParentUI(AdministrativoLogadoUI administrativoLogadoUI) {
         this.administrativoLogadoUI = administrativoLogadoUI;
@@ -61,26 +67,22 @@ public class AdicionarCompetenciaTecnicaUI implements Initializable {
         adicionarStage = new Stage();
         adicionarStage.initModality(Modality.APPLICATION_MODAL);;
         adicionarStage.setResizable(false);
-        cmbAreaActividade.getItems().setAll(registarAreaActividadeController.getAreasActividade());
+        cmbAreaActividade.getItems().setAll(registarAreaActividadeController.getAll());
 
     }
 
     @FXML
     public void registarCompetenciaTecnicaAction(ActionEvent event) {
         try {
-            AreaActividade areaActividade = registarAreaActividadeController.getAreaActividadeByCodigo(
-                    cmbAreaActividade.getSelectionModel().getSelectedItem().getCodigo());
-
-            CompetenciaTecnica competenciaTecnica = registarCompetenciaTecnicaController.novaCompetenciaTecnica(
+            boolean adicionou = registarCompetenciaTecnicaController.registarCompetenciaTecnica(
                     txtCodigo.getText().trim(),
                     txtDescricaoBreve.getText().trim(),
                     txtDescDetalhada.getText().trim(),
-                    areaActividade);
-
-            boolean adicionou = registarCompetenciaTecnicaController.registarCompetenciaTecnica(competenciaTecnica);
+                    cmbAreaActividade.getSelectionModel().getSelectedItem().getCodigo()
+            );
 
             if (adicionou) {
-                administrativoLogadoUI.listViewCompetenciasTecnicas.getItems().add(competenciaTecnica);
+                administrativoLogadoUI.listViewCompetenciasTecnicas.getItems().addAll();
             }
 
             AlertsUI.criarAlerta(Alert.AlertType.INFORMATION,
@@ -126,5 +128,26 @@ public class AdicionarCompetenciaTecnicaUI implements Initializable {
     
     public void addGrauAplicavelAction (ActionEvent actionEvent){
         
+        try {
+            FXMLLoader loaderAddGrauProficiencia = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/AdicionarGrauProficiencia.fxml"));
+            Parent rootAddGrauProficiencia = loaderAddGrauProficiencia.load();
+            sceneAddGrauProficiencia = new Scene(rootAddGrauProficiencia);
+            sceneAddGrauProficiencia.getStylesheets().add("/com/grupo2/t4j/style/app.css");
+            AdicionarGrauProficienciaUI adicionarGrauProficienciaUI = loaderAddGrauProficiencia.getController();
+            adicionarGrauProficienciaUI.associarParentUI(this);
+
+        }
+        catch (IOException exception) {
+            exception.printStackTrace();
+            AlertsUI.criarAlerta(Alert.AlertType.ERROR,
+                    MainApp.TITULO_APLICACAO,
+                    "Erro",
+                    exception.getMessage());
+        }
+        adicionarStage.setScene(sceneAddGrauProficiencia);
+        adicionarStage.setTitle("Adicionar Grau de Proficiência");
+        adicionarStage.show();
+        
+
     }
 }

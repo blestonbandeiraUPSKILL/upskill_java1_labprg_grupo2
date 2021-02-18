@@ -7,7 +7,12 @@ package com.grupo2.t4j.controller;
 
 import com.grupo2.t4j.files.FicheiroRepositorioCategoria;
 import com.grupo2.t4j.model.*;
-import com.grupo2.t4j.repository.RepositorioCategoriaTarefa;
+import com.grupo2.t4j.persistence.FabricaRepositorios;
+import com.grupo2.t4j.persistence.RepositorioAreaActividade;
+import com.grupo2.t4j.persistence.RepositorioCategoriaTarefa;
+import com.grupo2.t4j.persistence.database.FabricaRepositoriosDatabase;
+import com.grupo2.t4j.persistence.inmemory.FabricaRepositoriosInMemory;
+import com.grupo2.t4j.persistence.inmemory.RepositorioCategoriaTarefaInMemory;
 import java.io.File;
 
 import java.util.ArrayList;
@@ -18,48 +23,31 @@ import java.util.List;
  * @author acris
  */
 public class RegistarCategoriaController {
-    
+
+    private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosInMemory();
+    //private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosDatabase();
+    private RepositorioCategoriaTarefa repositorioCategoriaTarefa = fabricaRepositorios.getRepositorioCategoriaTarefa();
+    private RepositorioAreaActividade repositorioAreaActividade = fabricaRepositorios.getRepositorioAreaActividade();
+
     private FicheiroRepositorioCategoria ficheiroCat;
-    private RepositorioCategoriaTarefa repositorioCategoria;
+    private RepositorioCategoriaTarefaInMemory repositorioCategoria;
 
-    public boolean registarCategoria (AreaActividade areaActividade,
-                                                String descBreve,
-                                                String descDetalhada,
-                                                List<CaracterizacaoCT> ccts) {
+    public boolean registarCategoria(String codigoAreaActividade, String descBreve,
+                                     String descDetalhada, List<CaracterizacaoCT> ccts) {
 
-        return RepositorioCategoriaTarefa.getInstance().addCategoria(
-                 descBreve, descDetalhada, areaActividade, ccts);
+        AreaActividade areaActividade = repositorioAreaActividade.findByCodigo(codigoAreaActividade);
+        Categoria categoria = new Categoria(descBreve, descDetalhada, areaActividade, ccts);
 
+        return repositorioCategoria.save(categoria);
     }
 
-    public Categoria novaCategoriaTarefa(String descBreve, String descDetalhada,
-                                         AreaActividade areaActividade, List<CaracterizacaoCT> caracterizacaoCTS) {
-        return RepositorioCategoriaTarefa.getInstance().novaCategoriaTarefa(descBreve, descDetalhada, areaActividade, caracterizacaoCTS);
+    public List<Categoria> getAll() {
+        return repositorioCategoria.getAll();
     }
 
-    public boolean registarCategoria(Categoria categoria) {
-        return RepositorioCategoriaTarefa.getInstance().addCategoria(categoria);
-    }
-
-    public List<Categoria> getCategoriasTarefa() {
-        return RepositorioCategoriaTarefa.getInstance().getCategorias();    
-    }
-
-    public ArrayList<Categoria> getCategoriasByAreaActividade(AreaActividade at) {
-        ArrayList<Categoria> categoriaPorAt = new ArrayList<>();
-
-        for (Categoria cat : RepositorioCategoriaTarefa.getInstance().getCategoriasByAreaActividade(at)) {
-            if (cat.getAt().equals(at)) {
-                categoriaPorAt.add(cat);
-            }
-        }
-        return categoriaPorAt;
-    }
     
     ////FICHEIROS//////
-    
-    
-    
+
     public RegistarCategoriaController() {
         ficheiroCat = new FicheiroRepositorioCategoria();
         
@@ -78,9 +66,9 @@ public class RegistarCategoriaController {
     }
 
     public int desserializar(File ficheiroImportar) {
-        RepositorioCategoriaTarefa listaCategoriasImportada = ficheiroCat.desserializar(ficheiroImportar);
+        RepositorioCategoriaTarefaInMemory listaCategoriasImportada = ficheiroCat.desserializar(ficheiroImportar);
 
-        return RepositorioCategoriaTarefa.getInstance().adicionarListaCategorias(listaCategoriasImportada);
+        return RepositorioCategoriaTarefaInMemory.getInstance().adicionarListaCategorias(listaCategoriasImportada);
     }
 }
 

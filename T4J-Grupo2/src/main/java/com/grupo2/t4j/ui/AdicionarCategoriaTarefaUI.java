@@ -4,31 +4,22 @@ import com.grupo2.t4j.controller.RegistarAreaActividadeController;
 import com.grupo2.t4j.controller.RegistarCategoriaController;
 import com.grupo2.t4j.controller.RegistarCompetenciaTecnicaController;
 import com.grupo2.t4j.model.*;
-
-import com.sun.javafx.collections.MappingChange;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import javafx.stage.Window;
 import javafx.stage.WindowEvent;
 
 import java.net.URL;
-import java.util.*;
-
-import javafx.scene.Scene;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.ResourceBundle;
 
 public class AdicionarCategoriaTarefaUI implements Initializable {
 
@@ -69,10 +60,10 @@ public class AdicionarCategoriaTarefaUI implements Initializable {
         adicionarStage.initModality(Modality.APPLICATION_MODAL);;
         adicionarStage.setResizable(false);
 
-        cmbGrauProficiencia.getItems().setAll(CompetenciaTecnica.getGrausAplicaveis());
+        cmbGrauProficiencia.getItems().setAll(RegistarCompetenciaTecnicaController.getGrausAplicaveis());
         cmbObrigatoriedade.getItems().setAll(Obrigatoriedade.values());
 
-        cmbAreaActividade.getItems().addAll(registarAreaActividadeController.getAreasActividade());
+        cmbAreaActividade.getItems().addAll(registarAreaActividadeController.getAll());
 
         cmbAreaActividade.setOnAction(new EventHandler<ActionEvent>() {
            @Override
@@ -111,21 +102,15 @@ public class AdicionarCategoriaTarefaUI implements Initializable {
     @FXML
     void registarCategoriaAction(ActionEvent event) {
         try {
-
-            AreaActividade areaActividade = registarAreaActividadeController.getAreaActividadeByCodigo(
-                    cmbAreaActividade.getSelectionModel().getSelectedItem().getCodigo());
-
-            Categoria categoria = registarCategoriaController.novaCategoriaTarefa(
+            boolean adicionou = registarCategoriaController.registarCategoria(
                     txtDescricaoBreve.getText().trim(),
                     txtDescricaoDetalhada.getText().trim(),
-                    areaActividade,
-                    caracterizacaoCTS);
-
-            boolean adicionou = registarCategoriaController.registarCategoria(categoria);
+                    cmbAreaActividade.getSelectionModel().getSelectedItem().getCodigo(),
+                    caracterizacaoCTS
+            );
 
             if(adicionou) {
-                administrativoLogadoUI.listaCategorias.getItems().add(categoria);
-                
+                administrativoLogadoUI.listaCategorias.getItems().addAll(registarCategoriaController.getAll());
             }
 
             AlertsUI.criarAlerta(Alert.AlertType.INFORMATION,
