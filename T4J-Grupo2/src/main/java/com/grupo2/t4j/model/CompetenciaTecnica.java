@@ -46,7 +46,7 @@ public class CompetenciaTecnica implements Serializable {
 
     private Categoria categoria;
     
-    private static List<GrauProficiencia> grausProficienciaAplicaveis = new ArrayList<>();
+    //private static List<GrauProficiencia> grausProficienciaAplicaveis = new ArrayList<>();
 
     /**
      * Construtor CompetenciaTecnica Completo
@@ -227,7 +227,7 @@ public class CompetenciaTecnica implements Serializable {
                 && Objects.equals(categoria, that.categoria);
     }
     
-    public static List<GrauProficiencia> getGrausAplicaveis() {
+    /*public static List<GrauProficiencia> getGrausAplicaveis() {
         return new ArrayList<GrauProficiencia>(grausProficienciaAplicaveis);
-    }
+    }*/
 }

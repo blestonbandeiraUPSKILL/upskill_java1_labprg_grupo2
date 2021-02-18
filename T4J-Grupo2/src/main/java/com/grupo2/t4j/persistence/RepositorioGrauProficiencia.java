@@ -15,11 +15,13 @@ import java.util.List;
  */
 public interface RepositorioGrauProficiencia {
     
-    void save (int valor, String designacao);
+    void save (int valor, String designacao, String codigoCompetenciaTecnica);
     
     boolean save (GrauProficiencia grauProficiencia);
     
     List<GrauProficiencia> getAll();
     
     ArrayList<GrauProficiencia> findByCompetenciaTecnica();
+    
+    GrauProficiencia findByValor(int valor, String codigoCompetenciaTecnica);
 }
