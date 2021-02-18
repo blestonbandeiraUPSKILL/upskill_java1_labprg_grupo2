@@ -44,7 +44,7 @@ public class RepositorioEnderecoPostalInMemory implements Serializable, Reposito
 
     @Override
     public void save(String arruamento, String numeroPorta, String localidade, String codigoPostal) {
-        EnderecoPostal aa = findByCodigo(codigo);
+        EnderecoPostal ep = findByCodigo(codigo);
         if (ep == null) {
             listaEnderecoPostal.add(ep);
         } else {
@@ -84,12 +84,12 @@ public class RepositorioEnderecoPostalInMemory implements Serializable, Reposito
         int totalEnderecosAdicionados = 0;
 
         for (EnderecoPostal enderecoPostal : outraListaEnderecoPostal.listaEnderecoPostal) {
-            boolean areaActividadeAdicionada = save(areaActividade);
-            if (areaActividadeAdicionada) {
-                totalAreasAdicionadas++;
+            boolean enderecoPostalAdicionado = save(enderecoPostal);
+            if (enderecoPostalAdicionado) {
+                totalEnderecosAdicionados++;
             }
         }
-        return totalAreasAdicionadas;
+        return totalEnderecosAdicionados;
 
     }
 }
