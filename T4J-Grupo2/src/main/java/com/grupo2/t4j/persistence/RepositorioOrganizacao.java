@@ -15,7 +15,7 @@ public interface RepositorioOrganizacao {
               Password password, Rolename rolename,
               String telefoneGestor, String funcaoGestor) throws SQLException;
 
-    void save(Organizacao organizacao);
+    boolean save(Organizacao organizacao);
 
     Organizacao findByNif(String nif) throws SQLException;
 

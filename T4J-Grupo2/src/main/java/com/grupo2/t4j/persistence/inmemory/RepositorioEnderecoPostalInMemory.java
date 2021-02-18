@@ -9,7 +9,7 @@ import java.util.List;
 public class RepositorioEnderecoPostalInMemory implements RepositorioEnderecoPostal {
 
     @Override
-    public void save() {
+    public void save(String arruamento, String numeroPorta, String localidade, String codigoPostal) {
 
     }
 

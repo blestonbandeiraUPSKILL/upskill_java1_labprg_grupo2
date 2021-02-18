@@ -15,12 +15,10 @@ import com.grupo2.t4j.exception.OrganizacaoDuplicadaException;
 import com.grupo2.t4j.model.*;
 import com.grupo2.t4j.persistence.RepositorioOrganizacao;
 
-import java.io.Serializable;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 
 public class RepositorioOrganizacaoDatabase implements RepositorioOrganizacao {
 
@@ -111,8 +109,9 @@ public class RepositorioOrganizacaoDatabase implements RepositorioOrganizacao {
     }
 
     @Override
-    public void save(Organizacao organizacao) {
+    public boolean save(Organizacao organizacao) {
 
+        return false;
     }
 
     /**

@@ -11,6 +11,7 @@ public interface FabricaRepositorios {
     RepositorioCategoriaTarefa getRepositorioCategoriaTarefa();
     RepositorioColaborador getRepositorioColaborador();
     RepositorioCompetenciaTecnica getRepositorioCompetenciaTecnica();
+    RepositorioEnderecoPostal getRepositorioEnderecoPostal();
     RepositorioOrganizacao getRepositorioOrganizacao();
     RepositorioTarefa getRepositorioTarefa();
     RepositorioUtilizador getRepositorioUtilizador();

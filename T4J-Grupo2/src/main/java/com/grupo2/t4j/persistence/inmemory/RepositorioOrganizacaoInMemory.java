@@ -70,13 +70,14 @@ public class RepositorioOrganizacaoInMemory implements Serializable, Repositorio
     }
 
     @Override
-    public void save(Organizacao organizacao) {
+    public boolean save(Organizacao organizacao) {
         Organizacao o = findByNif(organizacao.getNif());
         if (o == null) {
             this.listaOrganizacoes.add(organizacao);
         } else {
             throw new OrganizacaoDuplicadaException(o.getNif() + ": Organização já registada!");
         }
+        return false;
     }
 
     @Override
