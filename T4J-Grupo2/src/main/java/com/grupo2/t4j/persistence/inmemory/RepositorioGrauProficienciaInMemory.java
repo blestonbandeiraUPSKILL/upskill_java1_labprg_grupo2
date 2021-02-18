@@ -60,17 +60,29 @@ public class RepositorioGrauProficienciaInMemory implements Serializable, Reposi
 
     @Override
     public List<GrauProficiencia> getAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return new ArrayList<GrauProficiencia>(listaGrausProficiencia);
     }
 
     @Override
     public ArrayList<GrauProficiencia> findByCompetenciaTecnica(String codigoCompetenciaTecnica) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ArrayList<GrauProficiencia> grauProficienciaPorCT = new ArrayList<>();
+        for (GrauProficiencia gp: listaGrausProficiencia) {
+            if(gp.getCompetenciaTecnica().getCodigo().equals(codigoCompetenciaTecnica)) {
+                grauProficienciaPorCT.add(gp);
+            }
+        }
+        return grauProficienciaPorCT;
     }
 
     @Override
     public GrauProficiencia findByValor(int valor, String codigoCompetenciaTecnica) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        for(int i = 0; i < this.findByCompetenciaTecnica(codigoCompetenciaTecnica).size(); i++){
+            GrauProficiencia gp = this.findByCompetenciaTecnica(codigoCompetenciaTecnica).get(i);
+            if (gp.getGrau()==valor){
+                return gp;
+            }
+        }
+        return null;
     }
 
     
