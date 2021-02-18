@@ -11,9 +11,7 @@ package com.grupo2.t4j.persistence.inmemory;
  */
 
 import com.grupo2.t4j.exception.AnuncioDuplicadoException;
-import com.grupo2.t4j.model.Anuncio;
-import com.grupo2.t4j.model.Data;
-import com.grupo2.t4j.model.Organizacao;
+import com.grupo2.t4j.model.*;
 import com.grupo2.t4j.persistence.RepositorioAnuncio;
 
 import java.io.Serializable;
@@ -25,7 +23,7 @@ public class RepositorioAnuncioInMemory implements Serializable, RepositorioAnun
      * Define uma instância do Repositório em que estão registados todos
      * os anúncios de uma dada organização
      */
-    private RepositorioAnuncioInMemory repositorioAnuncioInMemory;
+    private static RepositorioAnuncioInMemory repositorioAnuncioInMemory;
     
     /**
      * Define o atributo da classe RepositorioAnuncio como uma lista de
@@ -41,7 +39,17 @@ public class RepositorioAnuncioInMemory implements Serializable, RepositorioAnun
         listaAnuncios = new ArrayList<>();
     }
     
-
+    /**
+     * Garante que existe apenas um repositorio para os anúncios
+     * @return repositório de anúncios na memória
+     */
+    public static RepositorioAnuncioInMemory getInstance(){
+        if (repositorioAnuncioInMemory == null){
+            repositorioAnuncioInMemory = new RepositorioAnuncioInMemory();
+        }
+        return repositorioAnuncioInMemory;
+    }
+    
     @Override
     public void save(String idAnuncio, Data dtInicioPublicitacao, Data dtFimPublicitacao, Data dtInicioCandidatura, Data dtFimCandidatura, Data dtInicioSeriacao, Data dtFimSeriacao) throws AnuncioDuplicadoException {
         Anuncio a = findById(idAnuncio);
@@ -55,7 +63,7 @@ public class RepositorioAnuncioInMemory implements Serializable, RepositorioAnun
     }
 
     @Override
-    public void save(Anuncio anuncio) {
+    public boolean save(Anuncio anuncio) {
         Anuncio a = findById(anuncio.getIdAnuncio());
         if (a == null) {
             Anuncio anu = new Anuncio(anuncio);
@@ -63,6 +71,7 @@ public class RepositorioAnuncioInMemory implements Serializable, RepositorioAnun
         } else {
             throw new AnuncioDuplicadoException(anuncio.getIdAnuncio() + ": Anúncio já registado!");
         }
+        return false;
     }
 
     @Override
@@ -80,5 +89,17 @@ public class RepositorioAnuncioInMemory implements Serializable, RepositorioAnun
     @Override
     public ArrayList<Anuncio> getAll() {
         return new ArrayList<Anuncio>(listaAnuncios);
+    }
+    
+    public int adicionarListaAnuncios(RepositorioAnuncioInMemory outraListaAnuncios) {
+        int totalAnunciosAdicionados = 0;
+
+        for (Anuncio anuncio : outraListaAnuncios.listaAnuncios) {
+            boolean anuncioAdicionado = save(anuncio);
+            if (anuncioAdicionado) {
+                totalAnunciosAdicionados++;
+            }
+        }
+        return totalAnunciosAdicionados;
     }
 }
