@@ -16,7 +16,6 @@ import com.grupo2.t4j.persistence.*;
 import com.grupo2.t4j.persistence.database.*;
 import com.grupo2.t4j.persistence.inmemory.*;
 import java.io.File;
-
 import java.util.ArrayList;
 import java.util.List;
 public class RegistarAnuncioController {
