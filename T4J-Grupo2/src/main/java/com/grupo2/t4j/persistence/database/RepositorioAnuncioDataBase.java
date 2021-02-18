@@ -41,19 +41,26 @@ public class RepositorioAnuncioDataBase implements RepositorioAnuncio {
         }
         return repositorioAnuncioDataBase;
     }
-
-     public void save(String idAnuncio, Data dtInicioPublicitacao, Data dtFimPublicitacao, Data
+    
+    @Override
+    public void save(String idAnuncio, Data dtInicioPublicitacao, Data dtFimPublicitacao, Data
              dtInicioCandidatura, Data dtFimCandidatura, Data dtInicioSeriacao,
                       Data dtFimSeriacao) throws AnuncioDuplicadoException {
 
-     }
-
+    }
+    
+    @Override
+    public boolean save(Anuncio anuncio) throws AnuncioDuplicadoException{
+        return false;
+    }
+    
+    @Override
     public Anuncio findById(String idAnuncio) {
         return null;
     }
-
+    
+    @Override
     public ArrayList<Anuncio> getAll() {
         return null;
     }
-
 }
