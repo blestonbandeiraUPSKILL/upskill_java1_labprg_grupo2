@@ -40,6 +40,11 @@ public class RepositorioTarefaDatabase implements RepositorioTarefa {
     }
 
     @Override
+    public void save(Tarefa tarefa) {
+
+    }
+
+    @Override
     public Tarefa findByReferencia(String referencia) {
         return null;
     }

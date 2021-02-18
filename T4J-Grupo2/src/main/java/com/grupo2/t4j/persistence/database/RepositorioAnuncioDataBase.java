@@ -48,6 +48,11 @@ public class RepositorioAnuncioDataBase implements RepositorioAnuncio {
 
      }
 
+    @Override
+    public void save(Anuncio anuncio) {
+
+    }
+
     public Anuncio findById(String idAnuncio) {
         return null;
     }

@@ -40,6 +40,11 @@ public class RepositorioCaracterizacaoCTDatabase implements RepositorioCaracteri
     }
 
     @Override
+    public boolean save(CaracterizacaoCT caracterizacaoCT) {
+        return false;
+    }
+
+    @Override
     public List<CaracterizacaoCT> getAll() {
         return null;
     }

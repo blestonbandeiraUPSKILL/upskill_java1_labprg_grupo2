@@ -39,6 +39,11 @@ public class RepositorioCategoriaTarefaDatabase implements RepositorioCategoriaT
     }
 
     @Override
+    public boolean save(Categoria categoria) {
+        return false;
+    }
+
+    @Override
     public Categoria findById(String id) {
         return null;
     }

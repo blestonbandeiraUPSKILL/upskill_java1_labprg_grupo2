@@ -39,6 +39,11 @@ public class RepositorioColaboradorDatabase implements RepositorioColaborador {
     }
 
     @Override
+    public boolean save(Colaborador colaborador) {
+        return false;
+    }
+
+    @Override
     public Colaborador findByEmail(String emailCol) {
         return null;
     }
