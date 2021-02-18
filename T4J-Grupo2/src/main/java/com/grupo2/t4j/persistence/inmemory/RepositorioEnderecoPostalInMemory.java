@@ -1,28 +1,30 @@
 package com.grupo2.t4j.persistence.inmemory;
 
 import com.grupo2.t4j.model.AreaActividade;
+import com.grupo2.t4j.model.EnderecoPostal;
 import com.grupo2.t4j.persistence.RepositorioEnderecoPostal;
 
 import java.util.List;
 
 public class RepositorioEnderecoPostalInMemory implements RepositorioEnderecoPostal {
+
     @Override
     public void save() {
 
     }
 
     @Override
-    public boolean save(AreaActividade areaActividade) {
+    public boolean save(EnderecoPostal enderecoPostal) {
         return false;
     }
 
     @Override
-    public List<AreaActividade> getAll() {
+    public List<EnderecoPostal> getAll() {
         return null;
     }
 
     @Override
-    public AreaActividade findByCodigo(String codigo) {
+    public EnderecoPostal findByCodigo(String codigo) {
         return null;
     }
 }

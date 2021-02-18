@@ -1,6 +1,7 @@
 package com.grupo2.t4j.persistence;
 
-import com.grupo2.t4j.model.AreaActividade;
+
+import com.grupo2.t4j.model.EnderecoPostal;
 
 import java.util.List;
 
@@ -8,11 +9,11 @@ public interface RepositorioEnderecoPostal {
 
     void save();
 
-    boolean save(AreaActividade areaActividade);
+    boolean save(EnderecoPostal enderecoPostal);
 
-    List<AreaActividade> getAll();
+    List<EnderecoPostal> getAll();
 
-    AreaActividade findByCodigo(String codigo);
+    EnderecoPostal findByCodigo(String codigo);
 
 
     //update, delete
