@@ -45,6 +45,10 @@ public class RegistarCategoriaController {
         return repositorioCategoria.getAll();
     }
 
+    public List<Categoria> findByAreaActividade(String codigoAreaActividade) {
+        return repositorioCategoria.findByAreaActividade(codigoAreaActividade);
+    }
+
 
     
     ////FICHEIROS//////

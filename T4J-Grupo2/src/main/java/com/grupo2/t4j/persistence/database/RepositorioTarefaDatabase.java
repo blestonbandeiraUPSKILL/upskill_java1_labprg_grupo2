@@ -41,8 +41,9 @@ public class RepositorioTarefaDatabase implements RepositorioTarefa {
     }
 
     @Override
-    public void save(Tarefa tarefa) {
+    public boolean save(Tarefa tarefa) {
 
+        return false;
     }
 
     @Override

@@ -13,6 +13,7 @@ package com.grupo2.t4j.persistence;
 import com.grupo2.t4j.model.*;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public interface RepositorioTarefa {
 
