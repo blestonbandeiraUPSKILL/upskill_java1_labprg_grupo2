@@ -44,12 +44,12 @@ public class RepositorioCategoriaTarefaDatabase implements RepositorioCategoriaT
     }
 
     @Override
-    public Categoria findById(String id) {
+    public Categoria findByCodigo(String codigoCategoria) {
         return null;
     }
 
     @Override
-    public ArrayList<Categoria> findByAreaActividade(AreaActividade at) {
+    public ArrayList<Categoria> findByAreaActividade(String codigoAreaActividade) {
         return null;
     }
 

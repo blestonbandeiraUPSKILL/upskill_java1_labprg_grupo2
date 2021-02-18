@@ -10,19 +10,23 @@ import java.io.Serializable;
 /**
  * Classe responsável pela ligação e pelos pedidos entre a actual aplicação e a API de gestão de utilizadores
  */
-public class UsersAPIAdapter implements Serializable {
+public class UsersAPI implements Serializable {
 
     private String app_context;
-    private final String app_key;
+    private final String app_key = "IBD0DEHBDID62EB1EAZBEoA95E3cB5BD5135d01F0FqE6eDDoD4yDEX05RFEF19q9BY04KBE03A919hAFM06";
 
     /**
      *
      * Inicializa uma UsersAPIAdapter
      *
-     * @param app_key a app_key
+     *
      */
-    public UsersAPIAdapter(String app_key) {
-        this.app_key = app_key;
+    public UsersAPI() {
+
+    }
+
+    public void resetUserAPI() {
+        new UsersAPI();
     }
 
     /**
@@ -127,5 +131,15 @@ public class UsersAPIAdapter implements Serializable {
                 break;
         }
         return httpResponse.getBody().replaceAll("\\[|\\]", "");
+    }
+
+    public String getEmail() {
+        JSONObject bodyJSON = new JSONObject(getSession());
+        return bodyJSON.getString("email");
+    }
+
+    public String getRole() {
+        JSONObject bodyJSON = new JSONObject(getSession());
+        return bodyJSON.getString("rolenames");
     }
 }

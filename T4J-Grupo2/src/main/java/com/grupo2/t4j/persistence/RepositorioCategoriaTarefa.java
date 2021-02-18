@@ -14,10 +14,10 @@ public interface RepositorioCategoriaTarefa {
 
     boolean save(Categoria categoria);
 
-     Categoria findById(String id);
+     Categoria findByCodigo(String codigoCategoria);
 
 
-    ArrayList<Categoria> findByAreaActividade(AreaActividade at);
+    ArrayList<Categoria> findByAreaActividade(String codigoAreaActividade);
 
     ArrayList<Categoria> getAll();
 

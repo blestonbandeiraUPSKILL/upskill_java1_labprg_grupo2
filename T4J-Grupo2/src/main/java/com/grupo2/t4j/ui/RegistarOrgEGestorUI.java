@@ -1,6 +1,5 @@
 package com.grupo2.t4j.ui;
 
-import com.grupo2.t4j.controller.AutenticacaoController;
 import com.grupo2.t4j.controller.RegistarOrganizacaoController;
 import com.grupo2.t4j.model.*;
 import javafx.event.ActionEvent;

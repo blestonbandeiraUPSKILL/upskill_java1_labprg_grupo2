@@ -28,6 +28,8 @@ public interface RepositorioTarefa {
 
     Tarefa findByReferencia(String referencia);
 
+    List<Tarefa> findByCategoria (String codigoCategoria);
+
 
     /**
      * Devolve a lista de Tarefas

@@ -110,6 +110,18 @@ public class RepositorioTarefaInMemory implements Serializable, RepositorioTaref
         return null;
     }
 
+    @Override
+    public List<Tarefa> findByCategoria(String codigoCategoria) {
+        ArrayList<Tarefa> tarefasPorCategoria = new ArrayList<>();
+
+        for(Tarefa t : listaTarefas) {
+            if(t.getCt().equals(codigoCategoria)) {
+                tarefasPorCategoria.add(t);
+            }
+        }
+        return tarefasPorCategoria;
+    }
+
     /**
      * Devolve a lista de Tarefas
      *
