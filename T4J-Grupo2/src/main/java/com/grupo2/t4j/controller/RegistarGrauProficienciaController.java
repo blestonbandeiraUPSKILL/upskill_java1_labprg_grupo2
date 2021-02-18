@@ -38,7 +38,7 @@ public class RegistarGrauProficienciaController {
         return repositorioGrauProficiencia.save(grauProficiencia);
     }
 
-    public List<GrauProficiencia> findByCompetenciaTecnica() {
+    public List<GrauProficiencia> findByCompetenciaTecnica(String codigoCompetenciaTecnica) {
         return repositorioGrauProficiencia.findByCompetenciaTecnica();
     }
     
