@@ -51,6 +51,7 @@ public class RepositorioAreaActividadeDatabase implements RepositorioAreaActivid
     public void save(String codigo, String descBreve, String descDetalhada) throws AreaActividadeDuplicadaException {
 
     }
+   
 
     @Override
     public boolean save(AreaActividade areaActividade) {
@@ -65,6 +66,11 @@ public class RepositorioAreaActividadeDatabase implements RepositorioAreaActivid
     @Override
     public AreaActividade findByCodigo(String codigo) {
         return null;
+    }
+
+    @Override
+    public boolean save(AreaActividade areaActividade) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 
