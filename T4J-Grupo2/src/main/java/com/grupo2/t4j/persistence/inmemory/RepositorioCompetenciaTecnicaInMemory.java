@@ -75,7 +75,7 @@ public class RepositorioCompetenciaTecnicaInMemory implements Serializable, Repo
     }
 
     @Override
-    public void save(CompetenciaTecnica competenciaTecnica) {
+    public boolean save(CompetenciaTecnica competenciaTecnica) {
         CompetenciaTecnica ct = findByCodigo(competenciaTecnica.getCodigo());
         if (ct == null) {
             CompetenciaTecnica compTec = new CompetenciaTecnica(competenciaTecnica);
@@ -84,6 +84,7 @@ public class RepositorioCompetenciaTecnicaInMemory implements Serializable, Repo
         else {
             throw new CompetenciaTecnicaDuplicadaException(ct.getCodigo() + ": Competencia Tecnica já existe");
         }
+        return false;
     }
 
     @Override

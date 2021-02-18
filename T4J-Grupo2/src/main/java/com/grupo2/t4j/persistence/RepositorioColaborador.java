@@ -12,16 +12,15 @@ package com.grupo2.t4j.persistence;
 
 import com.grupo2.t4j.model.*;
 import com.grupo2.t4j.exception.*;
-import java.io.Serializable;
+
 import java.util.ArrayList;
-import java.util.List;
 
 public interface RepositorioColaborador {
 
 
     void save(Email email, String nome,  String funcao, String telefone, Rolename rolename) throws ColaboradorDuplicadoException;
 
-    void save(Colaborador colaborador);
+    boolean save(Colaborador colaborador);
 
     Colaborador findByEmail(String emailCol);
 

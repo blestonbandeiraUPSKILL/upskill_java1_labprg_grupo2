@@ -28,25 +28,13 @@ public class RegistarAreaActividadeController /*implements Serializable*/{
     private FicheiroRepositorioAreaActividade ficheiroAt;
     private RepositorioAreaActividadeInMemory repositorioAreaActividadeInMemory;
 
-    public List<AreaActividade> getAreasActividade() {
-        return RepositorioAreaActividadeInMemory.getInstance().getAll();
+    public List<AreaActividade> getAll() {
+        return repositorioAreaActividade.getAll();
     }
 
-    public void registarAreaActividade(String codigo, String descBreve, String descDetalhada) {
+    public boolean registarAreaActividade(String codigo, String descBreve, String descDetalhada) {
         AreaActividade areaActividade = new AreaActividade(codigo, descBreve, descDetalhada);
-        repositorioAreaActividade.save(areaActividade);
-
-    }
-
-    public AreaActividade findByCodigo(String codigo) {
-       List<AreaActividade> listaAreasActividade = repositorioAreaActividade.getAll();
-        for (int i = 0; i < listaAreasActividade.size(); i++) {
-            AreaActividade areaActividade = listaAreasActividade.get(i);
-            if (areaActividade.getCodigo().equals(codigo)) {
-                return areaActividade;
-            }
-        }
-        return null;
+        return repositorioAreaActividade.save(areaActividade);
     }
 
     //////FICHEIROS////////
@@ -70,6 +58,6 @@ public class RegistarAreaActividadeController /*implements Serializable*/{
     public int desserializar(File ficheiroImportar) {
         RepositorioAreaActividadeInMemory listaAreaActividadeImportada = ficheiroAt.desserializar(ficheiroImportar);
 
-        return RepositorioAreaActividadeInMemory.getInstance().adicionarListaAreasActividade(listaAreaActividadeImportada);
+        return repositorioAreaActividadeInMemory.adicionarListaAreasActividade(listaAreaActividadeImportada);
     }
 }

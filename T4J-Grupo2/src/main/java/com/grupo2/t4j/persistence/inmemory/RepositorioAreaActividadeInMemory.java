@@ -91,7 +91,6 @@ public class RepositorioAreaActividadeInMemory implements Serializable, Reposito
         return null;
     }
 
-
     public int adicionarListaAreasActividade(RepositorioAreaActividadeInMemory outraListaAreasActividade) {
 
         int totalAreasAdicionadas = 0;

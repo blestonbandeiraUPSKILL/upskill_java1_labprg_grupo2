@@ -12,31 +12,32 @@ package com.grupo2.t4j.controller;
 
 import com.grupo2.t4j.files.FicheiroRepositorioColaborador;
 import com.grupo2.t4j.model.*;
+import com.grupo2.t4j.persistence.FabricaRepositorios;
+import com.grupo2.t4j.persistence.RepositorioColaborador;
+import com.grupo2.t4j.persistence.database.FabricaRepositoriosDatabase;
+import com.grupo2.t4j.persistence.inmemory.FabricaRepositoriosInMemory;
 import com.grupo2.t4j.persistence.inmemory.RepositorioColaboradorInMemory;
 
 import java.io.File;
 import java.util.List;
 
 public class RegistarColaboradorController {
-    
+
+    private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosInMemory();
+    //private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosDatabase();
+    private RepositorioColaborador repositorioColaborador = fabricaRepositorios.getRepositorioColaborador();
+
     private RepositorioColaboradorInMemory repositorioColaboradorInMemory;
     private FicheiroRepositorioColaborador ficheiroC;
 
+    public boolean registarColaborador(String email, String nome, String funcao, String telefone, Rolename rolename) {
+        Colaborador colaborador = new Colaborador(email, nome, funcao, telefone, Rolename.COLABORADOR);
 
-    public Colaborador getColaboradorByEmail(Email email) {
-        return RepositorioColaboradorInMemory.getInstance().getColaboradorByEmail(email.getEmailText());
+        return repositorioColaborador.save(colaborador);
     }
 
-    public Colaborador novoColaborador(Email email, String nome, String funcao, String telefone, Rolename rolename) {
-        return RepositorioColaboradorInMemory.getInstance().novoColaborador(email, nome, funcao, telefone, Rolename.COLABORADOR);
-    }
-    
-    public boolean registarColaborador(Colaborador colaborador) {
-        return repositorioColaboradorInMemory.getInstance().addColaborador(colaborador);
-    }
-
-    public List<Colaborador> getColaboradores() {
-        return repositorioColaboradorInMemory.getInstance().getListaColaboradores();
+    public List<Colaborador> getAll() {
+        return repositorioColaborador.getAll();
     }
     
     //////FICHEIROS////////

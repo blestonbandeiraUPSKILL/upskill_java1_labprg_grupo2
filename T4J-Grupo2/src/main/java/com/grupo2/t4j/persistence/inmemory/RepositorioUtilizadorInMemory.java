@@ -67,7 +67,7 @@ public class RepositorioUtilizadorInMemory implements Serializable, RepositorioU
     }
 
     @Override
-    public void save(Utilizador utilizador) {
+    public boolean save(Utilizador utilizador) {
         Utilizador u = findByEmail(utilizador.getEmail().getEmailText());
         if (u == null) {
             Utilizador user = new Utilizador(utilizador);

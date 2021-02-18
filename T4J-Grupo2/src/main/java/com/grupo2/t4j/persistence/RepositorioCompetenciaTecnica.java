@@ -5,10 +5,8 @@
  */
 package com.grupo2.t4j.persistence;
 
-import com.grupo2.t4j.exception.CompetenciaTecnicaDuplicadaException;
 import com.grupo2.t4j.model.*;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,7 +19,7 @@ public interface RepositorioCompetenciaTecnica {
     void save(String codigo, String descBreve, String descDetalhada,
               AreaActividade areaActividade);
 
-    void save(CompetenciaTecnica competenciaTecnica);
+    boolean save(CompetenciaTecnica competenciaTecnica);
 
     List<CompetenciaTecnica> getAll();
 

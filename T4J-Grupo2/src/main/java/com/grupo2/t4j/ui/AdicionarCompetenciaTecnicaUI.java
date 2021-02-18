@@ -60,26 +60,22 @@ public class AdicionarCompetenciaTecnicaUI implements Initializable {
         adicionarStage = new Stage();
         adicionarStage.initModality(Modality.APPLICATION_MODAL);;
         adicionarStage.setResizable(false);
-        cmbAreaActividade.getItems().setAll(registarAreaActividadeController.getAreasActividade());
+        cmbAreaActividade.getItems().setAll(registarAreaActividadeController.getAll());
 
     }
 
     @FXML
     public void registarCompetenciaTecnicaAction(ActionEvent event) {
         try {
-            AreaActividade areaActividade = registarAreaActividadeController.getAreaActividadeByCodigo(
-                    cmbAreaActividade.getSelectionModel().getSelectedItem().getCodigo());
-
-            CompetenciaTecnica competenciaTecnica = registarCompetenciaTecnicaController.novaCompetenciaTecnica(
+            boolean adicionou = registarCompetenciaTecnicaController.registarCompetenciaTecnica(
                     txtCodigo.getText().trim(),
                     txtDescricaoBreve.getText().trim(),
                     txtDescDetalhada.getText().trim(),
-                    areaActividade);
-
-            boolean adicionou = registarCompetenciaTecnicaController.registarCompetenciaTecnica(competenciaTecnica);
+                    cmbAreaActividade.getSelectionModel().getSelectedItem().getCodigo()
+            );
 
             if (adicionou) {
-                administrativoLogadoUI.listViewCompetenciasTecnicas.getItems().add(competenciaTecnica);
+                administrativoLogadoUI.listViewCompetenciasTecnicas.getItems().addAll();
             }
 
             AlertsUI.criarAlerta(Alert.AlertType.INFORMATION,

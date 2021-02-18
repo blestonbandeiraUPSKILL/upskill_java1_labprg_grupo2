@@ -111,20 +111,23 @@ public class GestorLogadoUI implements Initializable {
     public void registarColaboradorAction(ActionEvent event){
         
         try {
-
-            Colaborador colaborador = registarColaboradorController.novoColaborador(
-                    new Email(txtEmailColaborador.getText()),
+            boolean adicionou = registarColaboradorController.registarColaborador(
+                    txtEmailColaborador.getText(),
                     txtNomeColaborador.getText(),
                     txtFuncaoColaborador.getText(),
                     txtTelefoneColaborador.getText(),
                     Rolename.COLABORADOR);
 
-            boolean adicionouCol = registarColaboradorController.registarColaborador(colaborador);
+            if (adicionou) {
 
-            if (adicionouCol) {
-
-                autenticacaoController.registarColaboradorComoUtilizador(colaborador);
-                txtPasswordColaborador.setText(registarColaboradorController.getColaboradorByEmail(colaborador.getEmail()).getPassword().getPasswordText());
+                autenticacaoController.registarColaboradorComoUtilizador(
+                        txtEmailColaborador.getText(),
+                        txtNomeColaborador.getText(),
+                        txtFuncaoColaborador.getText(),
+                        txtTelefoneColaborador.getText(),
+                        Rolename.COLABORADOR)
+                );
+                txtPasswordColaborador.setText(registarColaboradorController.findByEmail(colaborador.getEmail()).getPassword().getPasswordText());
 
                 AlertsUI.criarAlerta(Alert.AlertType.INFORMATION,
                         MainApp.TITULO_APLICACAO,

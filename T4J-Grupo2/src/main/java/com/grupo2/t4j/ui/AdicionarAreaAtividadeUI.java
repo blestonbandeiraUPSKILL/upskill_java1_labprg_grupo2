@@ -85,14 +85,13 @@ public class AdicionarAreaAtividadeUI implements Initializable {
     public void registarAreaAction(ActionEvent event) {
 
         try{
-            AreaActividade areaActividade = registarAreaActividadeController.novaAreaActividade(txtCodigo.getText(),
+            boolean adicionou = registarAreaActividadeController.registarAreaActividade(
+                    txtCodigo.getText(),
                     txtDescricaoBreve.getText(),
                     areaDescricaoDetalhada.getText());
 
-            boolean adicionou = registarAreaActividadeController.registarAreaActividade(areaActividade);
-
             if(adicionou) {
-                administrativoLogadoUI.listaAreasActividade.getItems().add(areaActividade);
+                administrativoLogadoUI.listaAreasActividade.getItems().addAll(registarAreaActividadeController.getAreasActividade());
             }
 
             AlertsUI.criarAlerta(Alert.AlertType.INFORMATION,

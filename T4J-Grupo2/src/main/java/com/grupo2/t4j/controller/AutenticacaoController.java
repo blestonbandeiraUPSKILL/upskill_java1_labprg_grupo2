@@ -36,7 +36,7 @@ public class AutenticacaoController {
         Utilizador utilizador = new Utilizador(email, nome, password, Rolename.GESTOR);
 
         return usersAPI.registerUserWithRoles(email, nome, password, "gestor")
-                && Plataforma.getInstance().getRepositorioUtilizador().addUtilizador(utilizador);
+                && Plataforma.getInstance().getRepositorioUtilizador().save(utilizador);
     }
 
     public boolean registarColaboradorComoUtilizador(Colaborador colaborador) throws SQLException {
@@ -51,7 +51,7 @@ public class AutenticacaoController {
         Utilizador utilizador = new Utilizador(email, nome, password, Rolename.COLABORADOR);
 
         return usersAPI.registerUserWithRoles(email, nome, password, "colaborador") &&
-                Plataforma.getInstance().getRepositorioUtilizador().addUtilizador(utilizador);
+                Plataforma.getInstance().getRepositorioUtilizador().save(utilizador);
     }
 
     public void getContext() {
