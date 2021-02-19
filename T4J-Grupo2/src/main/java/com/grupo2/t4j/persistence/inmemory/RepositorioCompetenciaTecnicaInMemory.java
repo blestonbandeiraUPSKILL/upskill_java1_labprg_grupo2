@@ -63,10 +63,10 @@ public class RepositorioCompetenciaTecnicaInMemory implements Serializable, Repo
     }
 
     @Override
-    public void save(String codigo, String descBreve, String descDetalhada, AreaActividade areaActividade) {
+    public void save(String codigo, String descBreve, String descDetalhada, String codigoAreaActividade) {
         CompetenciaTecnica ct = findByCodigo(codigo);
         if (ct == null) {
-            CompetenciaTecnica compTec = new CompetenciaTecnica(codigo, descBreve, descDetalhada, areaActividade);
+            CompetenciaTecnica compTec = new CompetenciaTecnica(codigo, descBreve, descDetalhada, codigoAreaActividade);
             this.listaCompTecnicas.add(compTec);
         }
         else {
@@ -78,13 +78,14 @@ public class RepositorioCompetenciaTecnicaInMemory implements Serializable, Repo
     public boolean save(CompetenciaTecnica competenciaTecnica) {
         CompetenciaTecnica ct = findByCodigo(competenciaTecnica.getCodigo());
         if (ct == null) {
-            CompetenciaTecnica compTec = new CompetenciaTecnica(competenciaTecnica);
-            this.listaCompTecnicas.add(compTec);
+            this.listaCompTecnicas.add(competenciaTecnica);
+            return true;
         }
         else {
             throw new CompetenciaTecnicaDuplicadaException(ct.getCodigo() + ": Competencia Tecnica já existe");
         }
-        return false;
+
+
     }
 
     @Override

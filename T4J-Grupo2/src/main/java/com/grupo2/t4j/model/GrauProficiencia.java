@@ -67,6 +67,13 @@ public class GrauProficiencia {
             throw new CompetenciaTecnicaInexistenteException ("A competência técnica não existe");
         }
     }
-    
-    
+
+    @Override
+    public String toString() {
+        return "GrauProficiencia{" +
+                "grau=" + grau +
+                ", designacao='" + designacao + '\'' +
+                ", competenciaTecnica=" + competenciaTecnica +
+                '}';
+    }
 }

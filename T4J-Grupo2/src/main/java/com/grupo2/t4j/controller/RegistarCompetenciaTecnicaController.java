@@ -36,8 +36,7 @@ public class RegistarCompetenciaTecnicaController {
 
     public boolean registarCompetenciaTecnica(String codigo, String descBreve, String descDetalhada, String codigoAreaActividade) {
 
-        AreaActividade areaActividade = repositorioAreaActividade.findByCodigo(codigoAreaActividade);
-        CompetenciaTecnica competenciaTecnica = new CompetenciaTecnica(codigo, descBreve, descDetalhada, areaActividade);
+        CompetenciaTecnica competenciaTecnica = new CompetenciaTecnica(codigo, descBreve, descDetalhada, codigoAreaActividade);
 
         return repositorioCompetenciaTecnica.save(competenciaTecnica);
     }
@@ -47,6 +46,10 @@ public class RegistarCompetenciaTecnicaController {
     }*/
     public List<CompetenciaTecnica> getAll() {
         return repositorioCompetenciaTecnica.getAll();
+    }
+
+    public List<AreaActividade> getAllAreasActividade(){
+        return repositorioAreaActividade.getAll();
     }
 
     public List<CompetenciaTecnica> findByAreaActividade(AreaActividade areaActividade) {

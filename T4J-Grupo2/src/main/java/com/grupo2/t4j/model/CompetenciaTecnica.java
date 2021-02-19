@@ -35,9 +35,9 @@ public class CompetenciaTecnica implements Serializable {
     private String descricaoDetalhada;
 
     /**
-     * A area de actividade a que a competencia tecnica se refere
+     * O código da área de actividade a que a competencia tecnica se refere
      */
-    private AreaActividade areaActividade;
+    private String codigoAreaActividade;
 
     /**
      * A competencia tecnica caracterizada
@@ -56,11 +56,11 @@ public class CompetenciaTecnica implements Serializable {
      * @param descricaoDetalhada
      *
      */
-    public CompetenciaTecnica(String codigo, String descricaoBreve, String descricaoDetalhada, AreaActividade areaActividade, CaracterizacaoCT cct) {
+    public CompetenciaTecnica(String codigo, String descricaoBreve, String descricaoDetalhada, String codigoAreaActividade, CaracterizacaoCT cct) {
         setCodigo(codigo);
         setDescricaoBreve(descricaoBreve);
         setDescricaoDetalhada(descricaoDetalhada);
-        setAreaActividade(areaActividade);
+        setCodigoAreaActividade(codigoAreaActividade);
         setCct(cct);
     }
 
@@ -87,6 +87,7 @@ public class CompetenciaTecnica implements Serializable {
         setCodigo(compTec.codigo);
         setDescricaoBreve(compTec.descricaoBreve);
         setDescricaoDetalhada(compTec.descricaoDetalhada);
+        setCodigoAreaActividade(compTec.codigoAreaActividade);
     }
 
     /**
@@ -95,13 +96,13 @@ public class CompetenciaTecnica implements Serializable {
      * @param codigo
      * @param descricaoBreve
      * @param descricaoDetalhada
-     * @param at
+     * @param codigoAreaActividade
      */
-    public CompetenciaTecnica(String codigo, String descricaoBreve, String descricaoDetalhada, AreaActividade at) {
+    public CompetenciaTecnica(String codigo, String descricaoBreve, String descricaoDetalhada, String codigoAreaActividade) {
         setCodigo(codigo);
         setDescricaoBreve(descricaoBreve);
         setDescricaoDetalhada(descricaoDetalhada);   
-        this.areaActividade = at;
+        setCodigoAreaActividade(codigoAreaActividade);
     }
 
     /**
@@ -185,18 +186,18 @@ public class CompetenciaTecnica implements Serializable {
      * 
      * @return the areaActividade
      */
-    public AreaActividade getAreaActividade() {
-        return areaActividade;
+    public String getAreaActividade() {
+        return codigoAreaActividade;
     }
 
     /**
      * Atualiza a area de atividade a que se refere a competencia tecnica
      * 
-     * @param areaActividade the areaActividade to set
+     * @param codigoAreaActividade the areaActividade to set
      */
-    public void setAreaActividade(AreaActividade areaActividade) {
-        if (areaActividade != null) {
-            this.areaActividade = areaActividade;
+    public void setCodigoAreaActividade(String codigoAreaActividade) {
+        if (codigoAreaActividade != null) {
+            this.codigoAreaActividade = codigoAreaActividade;
         } else {
             throw new AreaActividadeInexistenteException("A área de actividade não existe");
         }
@@ -222,7 +223,7 @@ public class CompetenciaTecnica implements Serializable {
         return Objects.equals(codigo, that.codigo)
                 && Objects.equals(descricaoBreve, that.descricaoBreve)
                 && Objects.equals(descricaoDetalhada, that.descricaoDetalhada)
-                && Objects.equals(areaActividade, that.areaActividade)
+                && Objects.equals(codigoAreaActividade, that.codigoAreaActividade)
                 && Objects.equals(cct, that.cct)
                 && Objects.equals(categoria, that.categoria);
     }
