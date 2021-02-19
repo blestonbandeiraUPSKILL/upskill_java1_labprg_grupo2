@@ -32,4 +32,6 @@ public class GestaoUtilizadoresController {
         return usersAPI.getRole();
     }
 
+    registarFreelancerController.getFreelancerByEmail(email)
+
 }

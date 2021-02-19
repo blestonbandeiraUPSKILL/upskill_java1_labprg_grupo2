@@ -34,11 +34,11 @@ public class RegistarAnuncioController {
         Anuncio anuncio = new Anuncio(idAnuncio, dtInicioPublicitacao, dtFimPublicitacao, 
                 dtInicioCandidatura, dtFimCandidatura, dtInicioSeriacao, dtFimSeriacao);
 
-        return repositorioAnuncioIM.save(anuncio);
+        return repositorioAnuncio.save(anuncio);
     }
 
     public List<Anuncio> getAll() {
-        return repositorioAnuncioIM.getAll();
+        return repositorioAnuncio.getAll();
     }
 
     
