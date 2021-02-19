@@ -259,7 +259,10 @@
 
 
                                     <Label text="Password do Colaborador" />
-                                    <TextField fx:id="txtPasswordColaborador" editable="false" promptText="(password inicial de 10 caracteres" />
+                                    <TextField fx:id="txtPasswordColaborador" editable="false" promptText="(password inicial de 10 caracteres)">
+                                       <VBox.margin>
+                                          <Insets bottom="10.0" right="10.0" />
+                                       </VBox.margin></TextField>
                                     <FlowPane prefHeight="75.0" prefWidth="605.0">
                                        <children>
                                           <Button fx:id="btnRegistarColaborador" alignment="CENTER_RIGHT" contentDisplay="CENTER" defaultButton="true" mnemonicParsing="false" onAction="#registarColaboradorAction" prefHeight="27.0" prefWidth="70.0" text="Registar" textAlignment="CENTER">
