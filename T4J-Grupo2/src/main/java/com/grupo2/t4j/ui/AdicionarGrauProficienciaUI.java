@@ -65,6 +65,7 @@ public class AdicionarGrauProficienciaUI implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         registarGrauProficienciaController = new RegistarGrauProficienciaController();
+
     }    
     
     
@@ -79,24 +80,22 @@ public class AdicionarGrauProficienciaUI implements Initializable {
     public void adicionarGrauAction (ActionEvent actionEvent){
         
         try{
-            /*GrauProficiencia grauProficiencia = registarGrauProficienciaController.registarGrauProficiencia(Integer.parseInt(txtValor.getText()),
-                    txtDesignacao.getText());*/
-            
             boolean adicionou = registarGrauProficienciaController.registarGrauProficiencia(Integer.parseInt(txtValor.getText()),
                     txtDesignacao.getText(), adicionarCompetenciaTecnicaUI.txtCodigo.getText());
 
             if(adicionou) {
-                listViewGrausAdicionados.getItems().addAll(registarGrauProficienciaController.getAll());
-                //adicionarCompetenciaTecnicaUI.listViewGrausAplicaveis.getItems().add(grauProficiencia);
+                listViewGrausAdicionados.getItems().add(registarGrauProficienciaController.findByValor(Integer.parseInt(txtValor.getText()),adicionarCompetenciaTecnicaUI.txtCodigo.getText() ));
+                txtValor.clear();
+                txtDesignacao.clear();
             }
 
             AlertsUI.criarAlerta(Alert.AlertType.INFORMATION,
                     MainApp.TITULO_APLICACAO,
-                    "Registar Área de Actividade.",
-                    adicionou ? "Área de Actividade registada com sucesso."
-                                : "Não foi possível registar a Área de Actividade.").show();
+                    "Registar Grau de Proficiência.",
+                    adicionou ? "Grau de Proficiência registado com sucesso."
+                                : "Não foi possível registar o Grau de Proficiência.").show();
 
-            concluirAction(actionEvent);
+            //concluirAction(actionEvent);
 
         }
         catch (IllegalArgumentException iae) {

@@ -90,7 +90,7 @@ public class AdicionarCompetenciaTecnicaUI implements Initializable {
             );
 
             if (adicionou) {
-                administrativoLogadoUI.listViewCompetenciasTecnicas.getItems().addAll();
+                administrativoLogadoUI.listViewCompetenciasTecnicas.getItems().addAll(registarCompetenciaTecnicaController.getAll());
                 try {
                     FXMLLoader loaderAddGrauProficiencia = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/AdicionarGrauProficiencia.fxml"));
                     Parent rootAddGrauProficiencia = loaderAddGrauProficiencia.load();
@@ -127,9 +127,9 @@ public class AdicionarCompetenciaTecnicaUI implements Initializable {
     }
 
     private void closeAddCompetenciaTecnica(ActionEvent event) {
-        this.txtCodigo.clear();
+      /*  this.txtCodigo.clear();
         this.txtDescricaoBreve.clear();
-        this.txtDescDetalhada.clear();
+        this.txtDescDetalhada.clear();*/
         ((Node) event.getSource()).getScene().getWindow().hide();
     }
 

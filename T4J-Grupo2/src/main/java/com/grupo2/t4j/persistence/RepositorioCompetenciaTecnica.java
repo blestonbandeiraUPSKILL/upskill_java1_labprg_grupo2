@@ -17,7 +17,7 @@ import java.util.List;
 public interface RepositorioCompetenciaTecnica {
 
     void save(String codigo, String descBreve, String descDetalhada,
-              AreaActividade areaActividade);
+              String codigoAreaActividade);
 
     boolean save(CompetenciaTecnica competenciaTecnica);
 

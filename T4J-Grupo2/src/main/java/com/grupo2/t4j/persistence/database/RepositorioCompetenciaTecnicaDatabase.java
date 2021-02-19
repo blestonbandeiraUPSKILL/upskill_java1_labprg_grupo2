@@ -33,7 +33,7 @@ public class RepositorioCompetenciaTecnicaDatabase implements RepositorioCompete
     }
 
     @Override
-    public void save(String codigo, String descBreve, String descDetalhada, AreaActividade areaActividade) {
+    public void save(String codigo, String descBreve, String descDetalhada, String CodigoAreaActividade) {
 
     }
 
