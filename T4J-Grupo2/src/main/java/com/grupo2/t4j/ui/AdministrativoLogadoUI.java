@@ -4,6 +4,7 @@ import com.grupo2.t4j.api.UsersAPI;
 import com.grupo2.t4j.controller.RegistarAreaActividadeController;
 import com.grupo2.t4j.controller.RegistarCategoriaController;
 import com.grupo2.t4j.controller.RegistarCompetenciaTecnicaController;
+import com.grupo2.t4j.controller.RegistarFreelancerController;
 import com.grupo2.t4j.files.FicheiroRepositorioAreaActividade;
 import com.grupo2.t4j.files.FileChooserT4J;
 import com.grupo2.t4j.model.AreaActividade;
@@ -43,10 +44,12 @@ public class AdministrativoLogadoUI implements Initializable {
     private Scene sceneAddAreaActividade;
     private Scene sceneAddCategoriaTarefa;
     private Scene sceneAddCompetenciaTecnica;
+    private Scene sceneAddFreelancer;
     private Scene sceneStartingPage;
     private RegistarAreaActividadeController registarAreaActividadeController;
     private RegistarCategoriaController registarCategoriaController;
     private RegistarCompetenciaTecnicaController registarCompetenciaTecnicaController;
+    private RegistarFreelancerController registarFreelancerController;
 
     private FicheiroRepositorioAreaActividade ficheiroAt;
     private RepositorioAreaActividadeInMemory repositorioAreaActividadeInMemory;
@@ -147,6 +150,33 @@ public class AdministrativoLogadoUI implements Initializable {
         adicionarStage.setTitle("Adicionar Competência Técnica");
         adicionarStage.show();
     }
+    
+    public void addFreelancerScene(ActionEvent actionEvent) {
+        try {
+            FXMLLoader loaderAddFreelancer = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/AdicionarFreelancerScene.fxml"));
+            Parent rootAddFreelancer = loaderAddFreelancer.load();
+            sceneAddFreelancer = new Scene(rootAddFreelancer);
+            sceneAddFreelancer.getStylesheets().add("/com/grupo2/t4j/style/app.css");
+            AdicionarFreelancerUI adicionarFreelancerUI = loaderAddFreelancer.getController();
+            adicionarFreelancerUI.associarParentUI(this);
+
+        } catch (IOException exception) {
+            exception.printStackTrace();
+            AlertsUI.criarAlerta(Alert.AlertType.ERROR,
+                    MainApp.TITULO_APLICACAO,
+                    "Erro",
+                    exception.getMessage());
+        }
+
+        adicionarStage.setScene(sceneAddFreelancer);
+        adicionarStage.setTitle("Adicionar Freelancer");
+        adicionarStage.show();        
+    }
+    
+    public void addHabilitacaoFreelancer(ActionEvent actionEvent) {
+    }
+    
+    
 
     public void logout(ActionEvent actionEvent) {
         UsersAPI usersAPI = new UsersAPI();
@@ -367,12 +397,9 @@ public class AdministrativoLogadoUI implements Initializable {
     }
     
 
-    public void addHabilitacaoFreelancer(ActionEvent actionEvent) {
-    }
 
     public void addCompetenciaFreelancer(ActionEvent actionEvent) {
     }
 
-    public void addFreelancerScene(ActionEvent actionEvent) {
-    }
+    
 }
