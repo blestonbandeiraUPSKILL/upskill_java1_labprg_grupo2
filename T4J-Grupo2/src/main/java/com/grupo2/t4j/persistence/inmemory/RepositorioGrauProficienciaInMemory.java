@@ -49,7 +49,7 @@ public class RepositorioGrauProficienciaInMemory implements Serializable, Reposi
 
     @Override
     public boolean save(GrauProficiencia grauProficiencia) {
-        GrauProficiencia gp = findByValor(grauProficiencia.getGrau(),grauProficiencia.getCompetenciaTecnica().getCodigo());
+        GrauProficiencia gp = findByValor(grauProficiencia.getCodigoGP(),grauProficiencia.getCodigoCompetenciaTecnica());
         if(gp == null) {
             this.listaGrausProficiencia.add(grauProficiencia);
             return true;
@@ -67,7 +67,7 @@ public class RepositorioGrauProficienciaInMemory implements Serializable, Reposi
     public ArrayList<GrauProficiencia> findByCompetenciaTecnica(String codigoCompetenciaTecnica) {
         ArrayList<GrauProficiencia> grauProficienciaPorCT = new ArrayList<>();
         for (GrauProficiencia gp: listaGrausProficiencia) {
-            if(gp.getCompetenciaTecnica().getCodigo().equals(codigoCompetenciaTecnica)) {
+            if(gp.getCodigoCompetenciaTecnica().equals(codigoCompetenciaTecnica)) {
                 grauProficienciaPorCT.add(gp);
             }
         }
@@ -75,10 +75,10 @@ public class RepositorioGrauProficienciaInMemory implements Serializable, Reposi
     }
 
     @Override
-    public GrauProficiencia findByValor(int valor, String codigoCompetenciaTecnica) {
+    public GrauProficiencia findByValor(String valor, String codigoCompetenciaTecnica) {
         for(int i = 0; i < this.findByCompetenciaTecnica(codigoCompetenciaTecnica).size(); i++){
             GrauProficiencia gp = this.findByCompetenciaTecnica(codigoCompetenciaTecnica).get(i);
-            if (gp.getGrau()==valor){
+            if (gp.getGrau().equals(valor)){
                 return gp;
             }
         }

@@ -35,7 +35,7 @@ public class RepositorioCaracterizacaoCTDatabase implements RepositorioCaracteri
     }
 
     @Override
-    public void save(GrauProficiencia gp, Obrigatoriedade obrigatoriedade, CompetenciaTecnica competenciaTecnica) throws CaracterizacaoCTDuplicadaException {
+    public void save(String codigoCCT, String codigoGP, Obrigatoriedade obrigatoriedade, String codigoCompetenciaTecnica) throws CaracterizacaoCTDuplicadaException {
 
     }
 
@@ -50,7 +50,12 @@ public class RepositorioCaracterizacaoCTDatabase implements RepositorioCaracteri
     }
 
     @Override
-    public List<CaracterizacaoCT> findByCompetenciaTecnica(List<CompetenciaTecnica> competenciasTecnicas) {
+    public List<CaracterizacaoCT> findByCompetenciaTecnica(List<String> codigoCompetenciasTecnicas) {
+        return null;
+    }
+
+    @Override
+    public CaracterizacaoCT findByCodigo(String codigoCCT) {
         return null;
     }
 }

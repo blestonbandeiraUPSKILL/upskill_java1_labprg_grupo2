@@ -75,5 +75,7 @@ public class RegistarCategoriaController {
 
         return RepositorioCategoriaTarefaInMemory.getInstance().adicionarListaCategorias(listaCategoriasImportada);
     }
+
+
 }
 

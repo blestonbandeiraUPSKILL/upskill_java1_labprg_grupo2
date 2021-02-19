@@ -113,7 +113,6 @@ entity "Anuncio" {
     idProcessoSeriacao: number {FK}
 }
 
-'tiporegimento ligado a anúncio
 
 entity "ProcessoSeriacao" {
     idProcessoSeriacao: number {PK}
@@ -191,7 +190,7 @@ Freelancer||--o{ Candidatura
 Organizacao ||--|| EnderecoPostal
 Freelancer ||--|| EnderecoPostal
 Anuncio }|--|| ProcessoSeriacao
-ProcessoSeriacao }|--|| TipoRegimento
+Anuncio }|--|| TipoRegimento
 ProcessoSeriacao ||--|{ Classificacao
 Freelancer ||--|{ FreelancerHabAcademica
 HabilitacaoAcademica ||--|{ FreelancerHabAcademica

@@ -34,20 +34,12 @@ import javafx.scene.control.TextField;
  */
 public class AdicionarGrauProficienciaUI implements Initializable {
     
-    @FXML
-    private Button btnAdicionarGrau;
-
-    @FXML
-    private ListView<GrauProficiencia> listViewGrausAdicionados;
-
-    @FXML
-    private TextField txtDesignacao;
-
-    @FXML
-    private Button btnConcluir;
-
-    @FXML
-    private TextField txtValor;
+    @FXML Button btnAdicionarGrau;
+    @FXML Button btnConcluir;
+    @FXML ListView<GrauProficiencia> listViewGrausAdicionados;
+    @FXML TextField txtDesignacao;
+    @FXML TextField txtValor;
+    @FXML TextField txtCodigoGP;
     
     private List<GrauProficiencia> listaGrausAplicaveis;
     
@@ -67,10 +59,7 @@ public class AdicionarGrauProficienciaUI implements Initializable {
         registarGrauProficienciaController = new RegistarGrauProficienciaController();
 
     }    
-    
-    
-   
-    
+
     /*public void concluirAction (ActionEvent actionEvent){
         
         registarGrauProficienciaController = new RegistarGrauProficienciaController();
@@ -80,11 +69,18 @@ public class AdicionarGrauProficienciaUI implements Initializable {
     public void adicionarGrauAction (ActionEvent actionEvent){
         
         try{
-            boolean adicionou = registarGrauProficienciaController.registarGrauProficiencia(Integer.parseInt(txtValor.getText()),
-                    txtDesignacao.getText(), adicionarCompetenciaTecnicaUI.txtCodigo.getText());
+            boolean adicionou = registarGrauProficienciaController.registarGrauProficiencia(
+                    txtCodigoGP.getText(),
+                    txtValor.getText(),
+                    txtDesignacao.getText(),
+                    adicionarCompetenciaTecnicaUI.txtCodigo.getText());
 
             if(adicionou) {
-                listViewGrausAdicionados.getItems().add(registarGrauProficienciaController.findByValor(Integer.parseInt(txtValor.getText()),adicionarCompetenciaTecnicaUI.txtCodigo.getText() ));
+                listViewGrausAdicionados.getItems().add(
+                        registarGrauProficienciaController.findByValor(
+                        txtValor.getText(),
+                        adicionarCompetenciaTecnicaUI.txtCodigo.getText() ));
+                txtCodigoGP.clear();
                 txtValor.clear();
                 txtDesignacao.clear();
             }
@@ -106,11 +102,11 @@ public class AdicionarGrauProficienciaUI implements Initializable {
         
         }
         
-        
-        GrauProficiencia grauProficiencia = new GrauProficiencia(
-        Integer.parseInt(txtValor.getText()), txtDesignacao.getText());
+
+ /*       GrauProficiencia grauProficiencia = new GrauProficiencia(
+        txtValor.getText(), txtDesignacao.getText());
         listaGrausAplicaveis.add(grauProficiencia);
-        
+        */
     }
     
     @FXML

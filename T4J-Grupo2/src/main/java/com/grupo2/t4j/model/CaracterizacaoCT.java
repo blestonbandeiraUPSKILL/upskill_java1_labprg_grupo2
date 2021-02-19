@@ -13,10 +13,11 @@ import java.io.Serializable;
  */
 public class CaracterizacaoCT implements Serializable{
 
+    private String codigoCCT;
     /**
      * O grau de proficiencia da competencia tecnica
      */
-    private GrauProficiencia gp;
+    private String codigoGP;
     /**
      * A obrigatoriedade da competencia tecnica
      */
@@ -25,19 +26,20 @@ public class CaracterizacaoCT implements Serializable{
     /**
      * A competencia tecnica
      */
-    private CompetenciaTecnica competenciaTecnica;
+    private String codigoCompetenciaTecnica;
 
     /**
      * Construtor completo para caracterizacao de uma competencia tecnica
-     * @param gp
+     * @param codigoGP
      * @param obrigatoriedade
-     * @param competenciaTecnica 
+     * @param codigoCompetenciaTecnica
      */
-    public CaracterizacaoCT(GrauProficiencia gp, Obrigatoriedade obrigatoriedade,
-                            CompetenciaTecnica competenciaTecnica) {
-        this.gp = gp;
+    public CaracterizacaoCT(String codigoCCT, String codigoGP, Obrigatoriedade obrigatoriedade,
+                            String codigoCompetenciaTecnica) {
+        this.codigoCCT = codigoCCT;
+        this.codigoGP = codigoGP;
         this.obrigatoriedade = obrigatoriedade;
-        this.competenciaTecnica = competenciaTecnica;
+        this.codigoCompetenciaTecnica = codigoCompetenciaTecnica;
     }
 
     /**
@@ -55,11 +57,15 @@ public class CaracterizacaoCT implements Serializable{
     @Override
     public String toString() {
         return String.format("Competência Tecnica: %s; Grau de Proficiencia: %s; "
-                + "Carácter: %s", competenciaTecnica.getDescricaoBreve(), gp.toString(), obrigatoriedade.toString());
-        
+                + "Carácter: %s", codigoCompetenciaTecnica, codigoGP, obrigatoriedade.toString());
+
     }
 
-    public CompetenciaTecnica getCompetenciaTecnica() {
-        return this.competenciaTecnica;
+    public String getCodigoCompetenciaTecnica() {
+        return this.codigoCompetenciaTecnica;
+    }
+
+    public String getCodigoCCT() {
+        return codigoCCT;
     }
 }

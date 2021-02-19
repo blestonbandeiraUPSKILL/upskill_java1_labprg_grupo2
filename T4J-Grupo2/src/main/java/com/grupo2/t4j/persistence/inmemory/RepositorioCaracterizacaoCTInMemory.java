@@ -28,14 +28,25 @@ public class RepositorioCaracterizacaoCTInMemory implements Serializable, Reposi
     }
 
     @Override
-    public void save(GrauProficiencia gp, Obrigatoriedade obrigatoriedade, CompetenciaTecnica competenciaTecnica) throws CaracterizacaoCTDuplicadaException {
-       //falta código de adicionar isto - n sei qual é a abordagem que temos neste momento
+    public void save(String codigoCCT, String codigoGP, Obrigatoriedade obrigatoriedade, String codigoCompetenciaTecnica) throws CaracterizacaoCTDuplicadaException {
+        CaracterizacaoCT cct = findByCodigo(codigoGP);
+        if (cct == null) {
+            CaracterizacaoCT caracterizacaoCT = new CaracterizacaoCT(codigoCCT, codigoGP, obrigatoriedade, codigoCompetenciaTecnica);
+            this.listaCaracterizacaoCTS.add(caracterizacaoCT);
+        }
+
     }
 
     @Override
     public boolean save(CaracterizacaoCT caracterizacaoCT) {
-        //same
-        return false;
+        CaracterizacaoCT cct = findByCodigo(caracterizacaoCT.getCodigoCCT());
+        if (cct == null) {
+            this.listaCaracterizacaoCTS.add(caracterizacaoCT);
+            return true;
+        }
+        else {
+            throw new CaracterizacaoCTDuplicadaException(cct.getCodigoCCT() + "Lista de caracterizações já existente.");
+        }
     }
 
     @Override
@@ -44,15 +55,25 @@ public class RepositorioCaracterizacaoCTInMemory implements Serializable, Reposi
     }
 
     @Override
-    public List<CaracterizacaoCT> findByCompetenciaTecnica(List<CompetenciaTecnica> competenciasTecnicas) {
+    public List<CaracterizacaoCT> findByCompetenciaTecnica(List<String> codigoCompetenciasTecnicas) {
         ArrayList<CaracterizacaoCT> caracterizacaoCTSbyCompetenciaTecnica = new ArrayList<>();
 
         for (CaracterizacaoCT cct : listaCaracterizacaoCTS) {
-            if (cct.getCompetenciaTecnica().equals(competenciasTecnicas)) {
+            if (cct.getCodigoCompetenciaTecnica().equals(codigoCompetenciasTecnicas)) {
                 caracterizacaoCTSbyCompetenciaTecnica.add(cct);
             }
         }
         return caracterizacaoCTSbyCompetenciaTecnica;
+    }
+
+    public CaracterizacaoCT findByCodigo(String codigo) {
+        for (int i = 0; i < this.listaCaracterizacaoCTS.size() ; i++) {
+            CaracterizacaoCT cct = this.listaCaracterizacaoCTS.get(i);
+            if (cct.getCodigoCCT().equals(codigo)) {
+                return cct;
+            }
+        }
+        return null;
     }
 
 }

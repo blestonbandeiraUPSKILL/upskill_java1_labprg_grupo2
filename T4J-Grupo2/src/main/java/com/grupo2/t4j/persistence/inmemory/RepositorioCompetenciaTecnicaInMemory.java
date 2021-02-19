@@ -106,11 +106,11 @@ public class RepositorioCompetenciaTecnicaInMemory implements Serializable, Repo
     }
 
     @Override
-    public ArrayList<CompetenciaTecnica> findByAreaActividade(AreaActividade at) {
+    public ArrayList<CompetenciaTecnica> findByAreaActividade(String codigoAreaActividade) {
         ArrayList<CompetenciaTecnica> compTecPorAt = new ArrayList<>();
 
         for (CompetenciaTecnica ct : listaCompTecnicas) {
-            if (ct.getAreaActividade().equals(at)) {
+            if (ct.getAreaActividade().equals(codigoAreaActividade)) {
                 compTecPorAt.add(ct);
             }
         }

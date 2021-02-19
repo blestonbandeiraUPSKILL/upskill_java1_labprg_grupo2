@@ -1,24 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.text.*?>
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: c4c4c4;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="com.grupo2.t4j.ui.AdicionarGrauProficienciaUI">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: c4c4c4;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.AdicionarGrauProficienciaUI">
    <children>
       <ListView fx:id="listViewGrausAdicionados" layoutX="16.0" layoutY="100.0" prefHeight="200.0" prefWidth="236.0" />
       <Label layoutX="44.0" layoutY="75.0" text="Graus de Proficiência Adicionados" />
-      <Label layoutX="300.0" layoutY="100.0" text="Valor" />
-      <TextField fx:id="txtValor" layoutX="300.0" layoutY="136.0" />
-      <Label layoutX="297.0" layoutY="183.0" text="Designação" />
-      <TextField fx:id="txtDesignacao" layoutX="300.0" layoutY="224.0" />
-      <Button fx:id="btnAdicionarGrau" layoutX="341.0" layoutY="275.0" mnemonicParsing="false" onAction="#adicionarGrauAction" text="Adicionar" />
-      <Button fx:id="btnConcluir" layoutX="510.0" layoutY="334.0" mnemonicParsing="false" onAction="#concluirAction" text="Concluir" />
+      <Label layoutX="297.0" layoutY="162.0" text="Valor">
+         <font>
+            <Font name="Calibri" size="14.0" />
+         </font></Label>
+      <TextField fx:id="txtValor" layoutX="288.0" layoutY="187.0" />
+      <Label layoutX="295.0" layoutY="227.0" text="Designação">
+         <font>
+            <Font name="Calibri" size="14.0" />
+         </font></Label>
+      <TextField fx:id="txtDesignacao" layoutX="288.0" layoutY="255.0" />
+      <Button fx:id="btnAdicionarGrau" layoutX="488.0" layoutY="187.0" mnemonicParsing="false" onAction="#adicionarGrauAction" text="Adicionar">
+         <font>
+            <Font name="Calibri" size="14.0" />
+         </font></Button>
+      <Button fx:id="btnConcluir" layoutX="510.0" layoutY="358.0" mnemonicParsing="false" onAction="#concluirAction" text="Concluir">
+         <font>
+            <Font name="Calibri" size="14.0" />
+         </font></Button>
       <Label layoutX="420.0" layoutY="-2.0" style="-fx-background-color: #000000;" text="Área do Administrativo" textFill="WHITE">
          <font>
             <Font name="Calibri" size="18.0" />
@@ -26,6 +37,12 @@
          <padding>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </padding>
+      </Label>
+      <TextField fx:id="txtCodigoGP" layoutX="288.0" layoutY="125.0" />
+      <Label layoutX="292.0" layoutY="100.0" text="Código">
+         <font>
+            <Font name="Calibri" size="14.0" />
+         </font>
       </Label>
    </children>
 </AnchorPane>

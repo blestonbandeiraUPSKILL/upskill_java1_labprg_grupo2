@@ -1,9 +1,6 @@
 package com.grupo2.t4j.ui;
 
-import com.grupo2.t4j.controller.RegistarAreaActividadeController;
-import com.grupo2.t4j.controller.RegistarCategoriaController;
-import com.grupo2.t4j.controller.RegistarCompetenciaTecnicaController;
-import com.grupo2.t4j.controller.RegistarGrauProficienciaController;
+import com.grupo2.t4j.controller.*;
 import com.grupo2.t4j.model.*;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -32,10 +29,12 @@ public class AdicionarCategoriaTarefaUI implements Initializable {
     private RegistarAreaActividadeController registarAreaActividadeController;
     private RegistarCompetenciaTecnicaController registarCompetenciaTecnicaController;
     private RegistarGrauProficienciaController registarGrauProficienciaController;
+    private RegistarCaracterizacaoCTController registarCaracterizacaoCTController;
     private List<CaracterizacaoCT> caracterizacaoCTS;
 
     @FXML TextField txtDescricaoBreve;
     @FXML TextField txtCodigo;
+    @FXML TextField txtCodigoCCT;
     @FXML TextArea txtDescricaoDetalhada;
     @FXML Button btnConfirmar;
     @FXML Button btnCancelar;
@@ -57,6 +56,7 @@ public class AdicionarCategoriaTarefaUI implements Initializable {
         registarCategoriaController = new RegistarCategoriaController();
         registarCompetenciaTecnicaController = new RegistarCompetenciaTecnicaController();
         registarGrauProficienciaController = new RegistarGrauProficienciaController();
+        registarCaracterizacaoCTController = new RegistarCaracterizacaoCTController();
 
         adicionarStage = new Stage();
         adicionarStage.initModality(Modality.APPLICATION_MODAL);;
@@ -71,6 +71,7 @@ public class AdicionarCategoriaTarefaUI implements Initializable {
            @Override
            public void handle(ActionEvent event) {
                updateCmbCompetenciasTecnicas(event);
+
            }
         });
         
@@ -83,19 +84,15 @@ public class AdicionarCategoriaTarefaUI implements Initializable {
     }
 
     public void updateCmbCompetenciasTecnicas(ActionEvent actionEvent) {
-        List<CompetenciaTecnica> listaCompetenciasTecnicas =
+        cmbCompetenciaTecnica.getItems().addAll(
                 registarCompetenciaTecnicaController.findByAreaActividade(
-                cmbAreaActividade.getSelectionModel().getSelectedItem());
-
-        cmbCompetenciaTecnica.getItems().addAll(listaCompetenciasTecnicas);
+                cmbAreaActividade.getSelectionModel().getSelectedItem().getCodigo()));
     }
     
     public void updateCmbGrauProficiencia(ActionEvent actionEvent) {
-        List<GrauProficiencia> listaGrausProficiencia =
-                registarGrauProficienciaController.findByCompetenciaTecnica(
-                cmbCompetenciaTecnica.getSelectionModel().getSelectedItem().getCodigo());
 
-        cmbGrauProficiencia.getItems().addAll(listaGrausProficiencia);
+        cmbGrauProficiencia.getItems().addAll(registarGrauProficienciaController.findByCompetenciaTecnica(
+                cmbCompetenciaTecnica.getSelectionModel().getSelectedItem().getCodigo()));
     }
     
     
@@ -161,18 +158,21 @@ public class AdicionarCategoriaTarefaUI implements Initializable {
     @FXML
     public List<CaracterizacaoCT> addCompetenciaTecnica2CCTS() {
 
-        CaracterizacaoCT caracterizacaoCT = new CaracterizacaoCT(
-                cmbGrauProficiencia.getValue(),
-                cmbObrigatoriedade.getValue(),
-                cmbCompetenciaTecnica.getValue());
+       boolean adicionou = registarCaracterizacaoCTController.registarCaracterizacaoCTS(
+               txtCodigoCCT.getText(),
+               cmbGrauProficiencia.getValue().getCodigoGP(),
+               cmbObrigatoriedade.getValue(),
+               cmbCompetenciaTecnica.getValue().getCodigo());
 
-        caracterizacaoCTS = new ArrayList<>();
-        caracterizacaoCTS.add(caracterizacaoCT);
-
-        listViewCompTecCat.getItems().add(caracterizacaoCT);
-        cmbGrauProficiencia.getSelectionModel().clearSelection();
-        cmbObrigatoriedade.getSelectionModel().clearSelection();
-        cmbCompetenciaTecnica.getSelectionModel().clearSelection();
+       if(adicionou) {
+           listViewCompTecCat.getItems().add(registarCaracterizacaoCTController.findByCodigo(txtCodigoCCT.getText()));
+           txtCodigoCCT.clear();
+           cmbGrauProficiencia.getSelectionModel().clearSelection();
+           cmbGrauProficiencia.getItems().clear();
+           cmbObrigatoriedade.getSelectionModel().clearSelection();
+           cmbCompetenciaTecnica.getSelectionModel().clearSelection();
+           cmbAreaActividade.setDisable(true);
+       }
 
         return caracterizacaoCTS;
     }
