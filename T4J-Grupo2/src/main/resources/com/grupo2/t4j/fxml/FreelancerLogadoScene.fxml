@@ -1,14 +1,78 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.grupo2.t4j.ui.FreelancerLogadoUI"
-            prefHeight="400.0" prefWidth="600.0">
 
-</AnchorPane>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="638.0" style="-fx-background-color: c4c4c4;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.FreelancerLogadoUI">
+   <top>
+      <Label style="-fx-background-color: #000000;" text="Área do Freelancer" textFill="WHITE" BorderPane.alignment="CENTER_RIGHT">
+         <font>
+            <Font name="Calibri" size="18.0" />
+         </font>
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+      </Label>
+   </top>
+   <center>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <TabPane layoutX="1.0" prefHeight="368.0" prefWidth="638.0" tabClosingPolicy="UNAVAILABLE">
+              <tabs>
+                <Tab text="Anúncios Disponíveis">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <TableView fx:id="tableCandidaturas" layoutX="14.0" layoutY="14.0" prefHeight="306.0" prefWidth="616.0">
+                                <columns>
+                                  <TableColumn prefWidth="79.0" text="Tarefa" />
+                                  <TableColumn minWidth="0.0" prefWidth="138.0" text="Período de Publicitação">
+                                       <columns>
+                                          <TableColumn prefWidth="67.0" text="Início" />
+                                          <TableColumn prefWidth="83.0" text="Fim" />
+                                       </columns>
+                                    </TableColumn>
+                                    <TableColumn prefWidth="162.0" text="Período de Candidatura">
+                                       <columns>
+                                          <TableColumn prefWidth="63.0" text="Início" />
+                                          <TableColumn prefWidth="87.0" text="Fim" />
+                                       </columns>
+                                    </TableColumn>
+                                    <TableColumn prefWidth="134.0" text="Período de Seriação">
+                                       <columns>
+                                          <TableColumn prefWidth="60.0" text="Início" />
+                                          <TableColumn prefWidth="64.0" text="Fim" />
+                                       </columns>
+                                    </TableColumn>
+                                    <TableColumn prefWidth="112.0" text="Tipo de Regimento" />
+                                </columns>
+                              </TableView>
+                           </children>
+                        </AnchorPane>
+                  </content>
+                </Tab>
+                <Tab text="Candidaturas Efectuadas">
+                     <content>
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                           <children>
+                              <Label layoutX="149.0" layoutY="126.0" prefHeight="44.0" prefWidth="340.0" text="Funcionalidade ainda não implementada">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                     </content>
+                </Tab>
+              </tabs>
+            </TabPane>
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>

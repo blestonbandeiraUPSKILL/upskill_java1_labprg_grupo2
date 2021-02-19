@@ -9,6 +9,7 @@ import com.grupo2.t4j.files.FileChooserT4J;
 import com.grupo2.t4j.model.AreaActividade;
 import com.grupo2.t4j.model.Categoria;
 import com.grupo2.t4j.model.CompetenciaTecnica;
+import com.grupo2.t4j.model.Freelancer;
 import com.grupo2.t4j.model.Plataforma;
 import com.grupo2.t4j.persistence.inmemory.RepositorioAreaActividadeInMemory;
 import java.io.File;
@@ -24,6 +25,10 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 import javafx.stage.WindowEvent;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 import java.io.IOException;
 import java.net.URL;
@@ -55,6 +60,10 @@ public class AdministrativoLogadoUI implements Initializable {
     @FXML ListView<AreaActividade> listaAreasActividade;
     @FXML ListView<Categoria> listaCategorias;
     @FXML ListView<CompetenciaTecnica> listViewCompetenciasTecnicas;
+    @FXML TableView<Freelancer> tabelaFreelancers;
+    @FXML TableColumn<Freelancer, String> colunaNomeFreelancer;
+    @FXML TableColumn<Freelancer, String> colunaEmailFreelancer;
+    @FXML TableColumn<Freelancer, String> colunaNifFreelancer;
 
 
     public void associarParentUI(StartingPageUI startingPageUI) {

@@ -121,7 +121,7 @@
                            <children>
                               <VBox alignment="CENTER" layoutX="585.0" layoutY="260.0" prefHeight="156.0" prefWidth="234.0" AnchorPane.bottomAnchor="50.0" AnchorPane.rightAnchor="3.0">
                                  <children>
-                                    <Button fx:id="btnAdicionarFreelancer" alignment="CENTER" mnemonicParsing="false" onAction="#addFreelancer" style="-fx-background-color: #000000;" text="Adicionar Freelancer" textFill="WHITE">
+                                    <Button fx:id="btnAdicionarFreelancer" alignment="CENTER" mnemonicParsing="false" onAction="#addFreelancerScene" style="-fx-background-color: #000000;" text="Adicionar Freelancer" textFill="WHITE">
                                        <font>
                                           <Font name="Calibri" size="14.0" />
                                        </font>
@@ -161,7 +161,7 @@
                                     <Font name="Calibri" size="16.0" />
                                  </font>
                               </Label>
-                              <TableView layoutX="18.0" layoutY="56.0" prefHeight="274.0" prefWidth="432.0">
+                              <TableView fx:id="tabelaFreelancers" layoutX="18.0" layoutY="56.0" prefHeight="274.0" prefWidth="432.0">
                                 <columns>
                                   <TableColumn fx:id="colunaNomeFreelancer" prefWidth="142.0" text="Nome" />
                                   <TableColumn fx:id="colunaEmailFreelancer" prefWidth="166.0" text="Email" />

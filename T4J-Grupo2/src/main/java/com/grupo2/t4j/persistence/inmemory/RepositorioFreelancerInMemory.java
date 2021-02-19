@@ -51,10 +51,12 @@ public class RepositorioFreelancerInMemory implements Serializable, RepositorioF
     }
     
     @Override
-    public void save(Email email, String nome, Password password, String nif, String codigoEnderecoPostal) throws FreelancerDuplicadoException {
+    public void save(Email email, String nome, Password password, String nif, 
+            String telefone, String codigoEnderecoPostal) throws FreelancerDuplicadoException {
         Freelancer f = findByNif(nif);
         if (f == null) {
-            Freelancer freelancer = new Freelancer(email, nome, password, nif, codigoEnderecoPostal);
+            Freelancer freelancer = new Freelancer(email, nome, password, nif, telefone,
+                    codigoEnderecoPostal);
             this.listaFreelancers.add(freelancer);
         } else {
             throw new FreelancerDuplicadoException(nif + ": NIF já registado!");
