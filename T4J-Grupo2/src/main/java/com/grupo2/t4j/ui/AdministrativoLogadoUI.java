@@ -1,6 +1,6 @@
 package com.grupo2.t4j.ui;
 
-import com.grupo2.t4j.api.UsersAPI;
+import com.grupo2.t4j.controller.GestaoUtilizadoresController;
 import com.grupo2.t4j.controller.RegistarAreaActividadeController;
 import com.grupo2.t4j.controller.RegistarCategoriaController;
 import com.grupo2.t4j.controller.RegistarCompetenciaTecnicaController;
@@ -10,7 +10,6 @@ import com.grupo2.t4j.model.AreaActividade;
 import com.grupo2.t4j.model.Categoria;
 import com.grupo2.t4j.model.CompetenciaTecnica;
 import com.grupo2.t4j.model.Freelancer;
-import com.grupo2.t4j.model.Plataforma;
 import com.grupo2.t4j.persistence.inmemory.RepositorioAreaActividadeInMemory;
 import java.io.File;
 import javafx.event.ActionEvent;
@@ -27,12 +26,9 @@ import javafx.stage.Window;
 import javafx.stage.WindowEvent;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.stage.FileChooser;
 
@@ -47,6 +43,7 @@ public class AdministrativoLogadoUI implements Initializable {
     private RegistarAreaActividadeController registarAreaActividadeController;
     private RegistarCategoriaController registarCategoriaController;
     private RegistarCompetenciaTecnicaController registarCompetenciaTecnicaController;
+    private GestaoUtilizadoresController gestaoUtilizadoresController;
 
     private FicheiroRepositorioAreaActividade ficheiroAt;
     private RepositorioAreaActividadeInMemory repositorioAreaActividadeInMemory;
@@ -80,6 +77,7 @@ public class AdministrativoLogadoUI implements Initializable {
         registarAreaActividadeController = new RegistarAreaActividadeController();
         registarCategoriaController = new RegistarCategoriaController();
         registarCompetenciaTecnicaController = new RegistarCompetenciaTecnicaController();
+        gestaoUtilizadoresController = new GestaoUtilizadoresController();
     }
 
     public void addAreaActividade(ActionEvent actionEvent) throws IOException {
@@ -149,11 +147,12 @@ public class AdministrativoLogadoUI implements Initializable {
     }
 
     public void logout(ActionEvent actionEvent) {
-        UsersAPI usersAPI = new UsersAPI();
-        boolean logout = usersAPI.logout();
+        //UsersAPI usersAPI = new UsersAPI();
+        //boolean logout = usersAPI.logout();
+        boolean logout = gestaoUtilizadoresController.logout();
         if (logout) {
             navigateStartingPage(actionEvent);
-            usersAPI.resetUserAPI();
+            gestaoUtilizadoresController.resetUsersAPI();
         }
         else {
             Alert alerta = AlertsUI.criarAlerta(Alert.AlertType.ERROR,
@@ -365,7 +364,7 @@ public class AdministrativoLogadoUI implements Initializable {
                     "Não foi seleccionado nenhum ficheiro!").show();
         }
     }
-    
+
 
     public void addHabilitacaoFreelancer(ActionEvent actionEvent) {
     }

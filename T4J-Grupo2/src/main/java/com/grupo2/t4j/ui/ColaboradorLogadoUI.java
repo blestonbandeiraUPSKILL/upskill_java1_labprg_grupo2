@@ -2,7 +2,6 @@ package com.grupo2.t4j.ui;
 
 import com.grupo2.t4j.api.UsersAPI;
 import com.grupo2.t4j.controller.*;
-import com.grupo2.t4j.files.FicheiroRepositorioAreaActividade;
 import com.grupo2.t4j.files.FileChooserT4J;
 import com.grupo2.t4j.model.*;
 import javafx.event.ActionEvent;
@@ -30,6 +29,7 @@ public class ColaboradorLogadoUI implements Initializable {
     private RegistarTarefaController registarTarefaController;
     private RegistarCompetenciaTecnicaController registarCompetenciaTecnicaController;
     private RegistarCaracterizacaoCTController registarCaracterizacaoCTController;
+    private GestaoUtilizadoresController gestaoUtilizadoresController;
     private StartingPageUI startingPageUI;
     private Scene sceneStartingPage;
     private Stage adicionarStage;
@@ -65,7 +65,7 @@ public class ColaboradorLogadoUI implements Initializable {
         registarTarefaController = new RegistarTarefaController();
         registarCompetenciaTecnicaController = new RegistarCompetenciaTecnicaController();
         registarCaracterizacaoCTController = new RegistarCaracterizacaoCTController();
-
+        gestaoUtilizadoresController = new GestaoUtilizadoresController();
 
         adicionarStage = new Stage();
         adicionarStage.initModality(Modality.APPLICATION_MODAL);
@@ -200,7 +200,7 @@ public class ColaboradorLogadoUI implements Initializable {
         boolean logout = usersAPI.logout();
         if (logout) {
             navigateStartingPage(actionEvent);
-            usersAPI.resetUserAPI();
+            gestaoUtilizadoresController.resetUsersAPI();
         }
         else {
             Alert alerta = AlertsUI.criarAlerta(Alert.AlertType.ERROR,

@@ -94,5 +94,6 @@ public class RepositorioUtilizadorInMemory implements Serializable, RepositorioU
     public ArrayList<Utilizador> getAll() {
         return new ArrayList<Utilizador>(listaUtilizadores);
     }
+
 }
 

@@ -39,6 +39,7 @@ public class GestorLogadoUI implements Initializable {
     private RegistarAreaActividadeController registarAreaActividadeController;
     private RegistarTarefaController registarTarefaController;
     private RegistarCompetenciaTecnicaController registarCompetenciaTecnicaController;
+    private GestaoUtilizadoresController gestaoUtilizadoresController;
     
     private FicheiroRepositorioColaborador ficheiroC;
     private RepositorioColaboradorInMemory repositorioColaboradorInMemory;
@@ -79,6 +80,7 @@ public class GestorLogadoUI implements Initializable {
         adicionarStage.setResizable(false);
 
         registarColaboradorController = new RegistarColaboradorController();
+        gestaoUtilizadoresController = new GestaoUtilizadoresController();
 
         /*registarAreaActividadeController = new RegistarAreaActividadeController();
         registarCategoriaController = new RegistarCategoriaController();
@@ -188,7 +190,7 @@ public class GestorLogadoUI implements Initializable {
         if (logout) {
             navigateStartingPage(actionEvent);
 
-            usersAPI.resetUserAPI();
+            gestaoUtilizadoresController.resetUsersAPI();
         }
         else {
             Alert alerta = AlertsUI.criarAlerta(Alert.AlertType.ERROR,
