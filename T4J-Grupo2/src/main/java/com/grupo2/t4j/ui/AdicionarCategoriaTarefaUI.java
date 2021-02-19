@@ -123,7 +123,7 @@ public class AdicionarCategoriaTarefaUI implements Initializable {
                     txtDescricaoBreve.getText().trim(),
                     txtDescricaoDetalhada.getText().trim(),
                     cmbAreaActividade.getSelectionModel().getSelectedItem().getCodigo(),
-                    caracterizacaoCTS
+                    addCompetenciaTecnica2CCTS()
             );
 
             if(adicionou) {
@@ -158,13 +158,15 @@ public class AdicionarCategoriaTarefaUI implements Initializable {
     @FXML
     public List<CaracterizacaoCT> addCompetenciaTecnica2CCTS() {
 
-       boolean adicionou = registarCaracterizacaoCTController.registarCaracterizacaoCTS(
+        List<CaracterizacaoCT> caracterizacaoCTS = new ArrayList<>();
+        boolean adicionou = registarCaracterizacaoCTController.registarCaracterizacaoCTS(
                txtCodigoCCT.getText(),
                cmbGrauProficiencia.getValue().getCodigoGP(),
                cmbObrigatoriedade.getValue(),
                cmbCompetenciaTecnica.getValue().getCodigo());
 
-       if(adicionou) {
+        if(adicionou) {
+           caracterizacaoCTS.add(registarCaracterizacaoCTController.findByCodigo(txtCodigoCCT.getText()));
            listViewCompTecCat.getItems().add(registarCaracterizacaoCTController.findByCodigo(txtCodigoCCT.getText()));
            txtCodigoCCT.clear();
            cmbGrauProficiencia.getSelectionModel().clearSelection();
@@ -172,7 +174,7 @@ public class AdicionarCategoriaTarefaUI implements Initializable {
            cmbObrigatoriedade.getSelectionModel().clearSelection();
            cmbCompetenciaTecnica.getSelectionModel().clearSelection();
            cmbAreaActividade.setDisable(true);
-       }
+        }
 
         return caracterizacaoCTS;
     }
