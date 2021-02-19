@@ -161,7 +161,7 @@
                                     <Font name="Calibri" size="16.0" />
                                  </font>
                               </Label>
-                              <TableView layoutX="18.0" layoutY="56.0" prefHeight="274.0" prefWidth="432.0">
+                              <TableView fx:id="tabelaFreelancers" layoutX="18.0" layoutY="56.0" prefHeight="274.0" prefWidth="432.0">
                                 <columns>
                                   <TableColumn fx:id="colunaNomeFreelancer" prefWidth="142.0" text="Nome" />
                                   <TableColumn fx:id="colunaEmailFreelancer" prefWidth="166.0" text="Email" />

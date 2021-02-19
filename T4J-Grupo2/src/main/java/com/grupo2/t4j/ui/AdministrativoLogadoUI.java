@@ -24,6 +24,8 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 import javafx.stage.WindowEvent;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 
 import java.io.IOException;
 import java.net.URL;
@@ -55,6 +57,10 @@ public class AdministrativoLogadoUI implements Initializable {
     @FXML ListView<AreaActividade> listaAreasActividade;
     @FXML ListView<Categoria> listaCategorias;
     @FXML ListView<CompetenciaTecnica> listViewCompetenciasTecnicas;
+    @FXML private TableView<?> tabelaFreelancers;
+    @FXML private TableColumn<?, ?> colunaNomeFreelancer;
+    @FXML private TableColumn<?, ?> colunaEmailFreelancer;
+    @FXML private TableColumn<?, ?> colunaNifFreelancer;
 
 
     public void associarParentUI(StartingPageUI startingPageUI) {

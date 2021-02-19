@@ -42,33 +42,19 @@ public class Freelancer extends Utilizador implements Serializable{
      * @param email - o email do Freelancer no formato da classe Email
      * @param nome - o nome do Freelancer
      * @param password - a password do Freelancer no formato da classe Password
+     * @param telefone - o telefone do Freelancer
      * @param nif - o NIF do Freelancer
      *
      * da classe EnderecoPostal
      */
     public Freelancer(Email email, String nome, Password password,
-            String nif, String codigoEnderecoPostal){
+            String nif, String telefone, String codigoEnderecoPostal){
         super(email, nome, password);
         setNIF(nif);
         setTelefone(telefone);
         setEndereco(codigoEnderecoPostal);
-    }
-    
-    /**
-     * Construtor da classe Freelancer sem a password 
-     * @param email - o email do Freelancer no formato de texto
-     * @param nome - o nome do Freelancer
-     * @param nif - o NIF do Freelancer
-     * @param codigoEnderecoPostal - o endereço postal do Freelancer no formato
-     * da classe EnderecoPostal
-     */
-    public Freelancer(Email email, String nome, Password password, String nif, String telefone, String codigoEnderecoPostal){
-        super(email, nome, password);
-        setNIF(nif);
-        setTelefone(telefone);
-        setEndereco(codigoEnderecoPostal);
-    }
-     
+    }    
+       
     /**
      * Construtor da classe Freelancer que recebe como parâmetro outra instância 
      * da classe Freelancer
@@ -144,7 +130,7 @@ public class Freelancer extends Utilizador implements Serializable{
     
     /**
      * Representação textual da classe Freelancer
-     * @return Nome, email, password, NIF, telefone e endereço postal do Freelancer
+     * @return Nome, email, NIF, telefone e endereço postal do Freelancer
      */   
     @Override
     public String toString(){
