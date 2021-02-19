@@ -31,26 +31,26 @@
                            <children>
                               <TableView fx:id="tableCandidaturas" layoutX="14.0" layoutY="14.0" prefHeight="306.0" prefWidth="616.0">
                                 <columns>
-                                  <TableColumn prefWidth="79.0" text="Tarefa" />
+                                  <TableColumn fx:id="tarefa" prefWidth="79.0" text="Tarefa" />
                                   <TableColumn minWidth="0.0" prefWidth="138.0" text="Período de Publicitação">
                                        <columns>
-                                          <TableColumn prefWidth="67.0" text="Início" />
-                                          <TableColumn prefWidth="83.0" text="Fim" />
+                                          <TableColumn fx:id="inicioPublicitacao" prefWidth="67.0" text="Início" />
+                                          <TableColumn fx:id="fimPublicitacao" prefWidth="83.0" text="Fim" />
                                        </columns>
                                     </TableColumn>
                                     <TableColumn prefWidth="162.0" text="Período de Candidatura">
                                        <columns>
-                                          <TableColumn prefWidth="63.0" text="Início" />
-                                          <TableColumn prefWidth="87.0" text="Fim" />
+                                          <TableColumn fx:id="inicioCandidatura" prefWidth="63.0" text="Início" />
+                                          <TableColumn fx:id="fimCandidatura" prefWidth="87.0" text="Fim" />
                                        </columns>
                                     </TableColumn>
                                     <TableColumn prefWidth="134.0" text="Período de Seriação">
                                        <columns>
-                                          <TableColumn prefWidth="60.0" text="Início" />
-                                          <TableColumn prefWidth="64.0" text="Fim" />
+                                          <TableColumn fx:id="inicioSeriacao" prefWidth="60.0" text="Início" />
+                                          <TableColumn fx:id="fimSeriacao" prefWidth="64.0" text="Fim" />
                                        </columns>
                                     </TableColumn>
-                                    <TableColumn prefWidth="112.0" text="Tipo de Regimento" />
+                                    <TableColumn fx:id="tipoRegimento" prefWidth="112.0" text="Tipo de Regimento" />
                                 </columns>
                               </TableView>
                            </children>
