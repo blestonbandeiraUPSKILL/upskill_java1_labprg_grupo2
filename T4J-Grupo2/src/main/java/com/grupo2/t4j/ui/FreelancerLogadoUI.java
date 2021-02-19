@@ -1,5 +1,6 @@
 package com.grupo2.t4j.ui;
 
+import com.grupo2.t4j.controller.RegistarAnuncioController;
 import com.grupo2.t4j.model.Anuncio;
 import com.grupo2.t4j.model.Data;
 import com.grupo2.t4j.model.Tarefa;
@@ -12,6 +13,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 public class FreelancerLogadoUI implements Initializable {
     
@@ -28,7 +31,7 @@ public class FreelancerLogadoUI implements Initializable {
     private TableColumn<Anuncio, Data> fimSeriacao;
 
     @FXML
-    private TableView<Anuncio> tableCandidaturas;
+    private TableView<Anuncio> tableAnuncios;
 
     @FXML
     private TableColumn<Anuncio, Data> inicioPublicitacao;
@@ -43,16 +46,31 @@ public class FreelancerLogadoUI implements Initializable {
     private TableColumn<Anuncio, Data> inicioSeriacao;
 
     private StartingPageUI startingPageUI;
+    private Stage adicionarStage;
+    
+    private RegistarAnuncioController registarAnuncioController;
+    
     public void associarParentUI(StartingPageUI startingPageUI) {
         this.startingPageUI = startingPageUI;
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        
+        adicionarStage = new Stage();
+        adicionarStage.initModality(Modality.APPLICATION_MODAL);;
+        adicionarStage.setResizable(false);
+        
+        updateTableViewAnuncio();
 
     }
     @FXML
     void verAnuncioAction(ActionEvent event) {
 
+    }
+    
+    public void updateTableViewAnuncio(){
+        
+        //tableAnuncios.setItems(registarAnuncioController.findAnunciosElegiveis());
     }
 }

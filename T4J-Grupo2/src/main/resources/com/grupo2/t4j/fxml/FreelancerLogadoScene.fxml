@@ -29,7 +29,7 @@
                   <content>
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
-                              <TableView fx:id="tableCandidaturas" layoutX="14.0" layoutY="14.0" prefHeight="306.0" prefWidth="616.0">
+                              <TableView fx:id="tableAnuncios" layoutX="14.0" layoutY="14.0" onMouseClicked="#verAnuncioAction" prefHeight="306.0" prefWidth="616.0">
                                 <columns>
                                   <TableColumn fx:id="tarefa" prefWidth="79.0" text="Tarefa" />
                                   <TableColumn minWidth="0.0" prefWidth="138.0" text="Período de Publicitação">
