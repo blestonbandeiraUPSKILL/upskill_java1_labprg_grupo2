@@ -123,7 +123,7 @@ public class AdicionarCategoriaTarefaUI implements Initializable {
                     txtDescricaoBreve.getText().trim(),
                     txtDescricaoDetalhada.getText().trim(),
                     cmbAreaActividade.getSelectionModel().getSelectedItem().getCodigo(),
-                    addCompetenciaTecnica2CCTS()
+                    listViewCompTecCat.getItems()
             );
 
             if(adicionou) {

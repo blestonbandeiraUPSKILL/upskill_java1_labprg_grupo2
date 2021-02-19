@@ -43,11 +43,11 @@ public class RepositorioCategoriaTarefaInMemory implements Serializable, Reposit
         Categoria c = findByCodigo(categoria.getCodigoCategoria());
         if (c == null) {
             this.listaCategorias.add(categoria);
-
+            return true;
         } else {
             throw new CategoriaDuplicadaException(c.getCodigoCategoria() + ": Categoria ja existe");
         }
-        return false;
+
     }
 
     @Override
