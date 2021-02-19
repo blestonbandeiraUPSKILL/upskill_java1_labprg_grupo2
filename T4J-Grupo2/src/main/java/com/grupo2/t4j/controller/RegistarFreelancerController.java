@@ -35,6 +35,7 @@ public class RegistarFreelancerController {
 
         Freelancer freelancer = new Freelancer(new Email(email), nome, password, nif, 
                 telefone, codigoEnderecoPostal);
+
         registarFreelancerComoUtilizador(freelancer);
 
         return repositorioFreelancer.save(freelancer);

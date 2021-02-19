@@ -25,9 +25,7 @@ public class UsersAPI implements Serializable {
 
     }
 
-    public void resetUserAPI() {
-        new UsersAPI();
-    }
+
 
     /**
      *

@@ -1,6 +1,7 @@
 package com.grupo2.t4j.ui;
 
 import com.grupo2.t4j.api.UsersAPI;
+import com.grupo2.t4j.controller.GestaoUtilizadoresController;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -21,9 +22,9 @@ import java.util.ResourceBundle;
 
 public class StartingPageUI implements Initializable {
 
+    private GestaoUtilizadoresController gestaoUtilizadoresController;
     private Stage adicionarStage;
     private Scene sceneRegistarOrganizacao;
-    private Scene sceneLogin;
     private Scene sceneGestor;
     private Scene sceneAdministrativo;
     private Scene sceneColaborador;
@@ -37,6 +38,8 @@ public class StartingPageUI implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
+
+            gestaoUtilizadoresController = new GestaoUtilizadoresController();
             FXMLLoader loaderRegistarOrg = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/RegistarOrgEGestorScene.fxml"));
             Parent rootRegistarOrg = loaderRegistarOrg.load();
             sceneRegistarOrganizacao = new Scene(rootRegistarOrg);
@@ -70,8 +73,8 @@ public class StartingPageUI implements Initializable {
 
     public void login(ActionEvent actionEvent) throws IOException, SQLException {
 
-        UsersAPI usersAPI = new UsersAPI();
-        boolean login = usersAPI.login(
+
+        boolean login = gestaoUtilizadoresController.login(
                 txtEmailLogin.getText(),
                 txtPasswordLogin.getText());
 
@@ -79,7 +82,7 @@ public class StartingPageUI implements Initializable {
             txtEmailLogin.clear();
             txtPasswordLogin.clear();
             
-            switch (usersAPI.getRole()) {
+            switch (gestaoUtilizadoresController.getRole()) {
                 case "gestor":
                     navigateGestorLogado(actionEvent);
                     break;
