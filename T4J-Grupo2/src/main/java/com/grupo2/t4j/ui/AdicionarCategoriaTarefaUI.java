@@ -158,9 +158,10 @@ public class AdicionarCategoriaTarefaUI implements Initializable {
 
 
        boolean adicionou = registarCaracterizacaoCTController.registarCaracterizacaoCTS(
-                cmbGrauProficiencia.getValue().getGrau(),
-                cmbObrigatoriedade.getValue(),
-                cmbCompetenciaTecnica.getValue().getCodigo());
+
+               cmbGrauProficiencia.getValue().getGrau(),
+               cmbObrigatoriedade.getValue(),
+               cmbCompetenciaTecnica.getValue().getCodigo());
 
        if(adicionou) {
            listViewCompTecCat.getItems().addAll(registarCaracterizacaoCTController.getAll());
