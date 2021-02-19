@@ -27,6 +27,8 @@ import javafx.stage.Window;
 import javafx.stage.WindowEvent;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 import java.io.IOException;
 import java.net.URL;
