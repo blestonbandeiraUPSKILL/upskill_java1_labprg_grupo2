@@ -42,7 +42,8 @@ public class RepositorioFreelancerDatabase implements RepositorioFreelancer{
 
 
     @Override
-    public void save(Email email, String nome, Password password, String nif, String codigoEnderecoPostal) throws FreelancerDuplicadoException {
+    public void save(Email email, String nome, Password password, String nif, 
+            String telefone, String codigoEnderecoPostal) throws FreelancerDuplicadoException {
 
     }
 

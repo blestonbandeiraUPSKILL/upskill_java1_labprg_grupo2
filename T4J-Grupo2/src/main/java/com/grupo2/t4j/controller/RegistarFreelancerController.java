@@ -27,13 +27,14 @@ public class RegistarFreelancerController {
     private RepositorioFreelancer repositorioFreelancer = fabricaRepositorios.getRepositorioFreelancer();
     private RepositorioUtilizador repositorioUtilizador = fabricaRepositorios.getRepositorioUtilizador();
 
-    public boolean registarFreelancer(String email, String nome,
-                                      String nif, String codigoEnderecoPostal) {
+    public boolean registarFreelancer(String email, String nome, String nif, String
+            telefone, String codigoEnderecoPostal) {
 
         AlgoritmoGeradorPasswords algoritmoGeradorPasswords = new AlgoritmoGeradorPasswords();
         Password password = new Password(algoritmoGeradorPasswords.geraPassword());
 
-        Freelancer freelancer = new Freelancer(new Email(email), nome, password, nif, codigoEnderecoPostal);
+        Freelancer freelancer = new Freelancer(new Email(email), nome, password, nif, 
+                telefone, codigoEnderecoPostal);
 
         return repositorioFreelancer.save(freelancer);
     }
