@@ -10,7 +10,7 @@ deactivate UC07_UI
 activate UC07_Controller
 UC07_Controller-->Plataforma:findFreelancer(NIF)
 activate Plataforma
-Plataforma-->UC07_Controller: existe
+Plataforma-->UC07_Controller: já existe
 alt exist true
 UC07_Controller--> UC07_UI: freelancer já existe
 UC07_UI -->User: freelancer já existe
