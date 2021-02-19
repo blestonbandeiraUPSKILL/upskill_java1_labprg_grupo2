@@ -149,7 +149,7 @@ public class AdministrativoLogadoUI implements Initializable {
         adicionarStage.setTitle("Adicionar Competência Técnica");
         adicionarStage.show();
     }
-    
+
     public void addFreelancerScene(ActionEvent actionEvent) {
         try {
             FXMLLoader loaderAddFreelancer = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/AdicionarFreelancerScene.fxml"));
@@ -169,63 +169,57 @@ public class AdministrativoLogadoUI implements Initializable {
 
         adicionarStage.setScene(sceneAddFreelancer);
         adicionarStage.setTitle("Adicionar Freelancer");
-        adicionarStage.show();        
+        adicionarStage.show();
     }
-    
+
     public void addHabilitacaoFreelancer(ActionEvent actionEvent) {
     }
-    
-    
 
-    public void logout(ActionEvent actionEvent) {
-        //UsersAPI usersAPI = new UsersAPI();
-        //boolean logout = usersAPI.logout();
-        boolean logout = gestaoUtilizadoresController.logout();
-        if (logout) {
-            navigateStartingPage(actionEvent);
-            gestaoUtilizadoresController.resetUsersAPI();
-        }
-        else {
-            Alert alerta = AlertsUI.criarAlerta(Alert.AlertType.ERROR,
-                    MainApp.TITULO_APLICACAO,
-                    "Erro",
-                    "Não foi possível terminar a sessão.");
-        }
+    public void addCompetenciaFreelancer(ActionEvent actionEvent) {
     }
 
 
-    public void navigateStartingPage(ActionEvent actionEvent) {
-        try {
-            Window window = btnSair.getScene().getWindow();
-            window.setOnCloseRequest(new EventHandler<WindowEvent>() {
-                @Override
-                public void handle(WindowEvent windowEvent) {
-                    Alert alerta = AlertsUI.criarAlerta(Alert.AlertType.CONFIRMATION,
-                            MainApp.TITULO_APLICACAO,
-                            "Confirmação da acção",
-                            "Tem a certeza que pretende terminar a sessão?");
+    public void logout(ActionEvent actionEvent) {
+        Window window = btnSair.getScene().getWindow();
+        window.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent windowEvent) {
+                Alert alerta = AlertsUI.criarAlerta(Alert.AlertType.CONFIRMATION,
+                        MainApp.TITULO_APLICACAO,
+                        "Confirmação da acção",
+                        "Tem a certeza que pretende terminar a sessão?");
 
-                    if (alerta.showAndWait().get() == ButtonType.CANCEL) {
-                        windowEvent.consume();
+                if (alerta.showAndWait().get() == ButtonType.CANCEL) {
+                    windowEvent.consume();
+                }
+                else {
+                    boolean logout = gestaoUtilizadoresController.logout();
+                    if (logout) {
+                        gestaoUtilizadoresController.resetUsersAPI();
+
+                        FXMLLoader loaderStartingPage = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/StartingPageScene.fxml"));
+                        Parent rootStartingPage = null;
+                        try {
+                            rootStartingPage = loaderStartingPage.load();
+                        } catch (IOException exception) {
+                            exception.printStackTrace();
+                        }
+                        sceneStartingPage = new Scene(rootStartingPage);
+                        adicionarStage.setScene(sceneStartingPage);
+                        adicionarStage.setTitle(MainApp.TITULO_APLICACAO);
+                        adicionarStage.show();
+                    } else {
+                        AlertsUI.criarAlerta(Alert.AlertType.ERROR,
+                                MainApp.TITULO_APLICACAO,
+                                "Erro",
+                                "Não foi possível terminar a sessão.");
                     }
                 }
-            });
-            window.fireEvent(new WindowEvent(window, WindowEvent.WINDOW_CLOSE_REQUEST));
+            }
+        });
+        window.fireEvent(new WindowEvent(window, WindowEvent.WINDOW_CLOSE_REQUEST));
 
-            FXMLLoader loaderStartingPage = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/StartingPageScene.fxml"));
-            Parent rootStartingPage = loaderStartingPage.load();
-            sceneStartingPage = new Scene(rootStartingPage);
-            adicionarStage.setScene(sceneStartingPage);
-            adicionarStage.setTitle(MainApp.TITULO_APLICACAO);
-            adicionarStage.show();
-        }
-        catch (IOException exception) {
-            exception.printStackTrace();
-            AlertsUI.criarAlerta(Alert.AlertType.ERROR,
-                    MainApp.TITULO_APLICACAO,
-                    "Erro",
-                    exception.getMessage());
-        }
+
     }
 
     public void updateListViewAreasActividade() {
@@ -397,9 +391,6 @@ public class AdministrativoLogadoUI implements Initializable {
     }
 
 
-
-    public void addCompetenciaFreelancer(ActionEvent actionEvent) {
-    }
 
     
 }

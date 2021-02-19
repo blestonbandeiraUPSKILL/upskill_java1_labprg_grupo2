@@ -14,24 +14,22 @@ public class GestaoUtilizadoresController {
     //private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosDatabase();
     private RepositorioUtilizador repositorioUtilizador = fabricaRepositorios.getRepositorioUtilizador();*/
 
-    private UsersAPI usersAPI = new UsersAPI();
 
     public boolean login(String email, String password) {
-        return usersAPI.login(email, password);
+        return UsersAPI.getInstance().login(email, password);
     }
 
     public boolean logout() {
-       return usersAPI.logout();
+       return UsersAPI.getInstance().logout();
     }
 
     public void resetUsersAPI() {
-        new UsersAPI();
+        UsersAPI.getInstance().resetContext();
     }
 
     public String getRole() {
-        return usersAPI.getRole();
+        return UsersAPI.getInstance().getRole();
     }
 
-    registarFreelancerController.getFreelancerByEmail(email)
 
 }

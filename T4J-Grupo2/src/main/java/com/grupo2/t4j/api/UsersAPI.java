@@ -14,6 +14,7 @@ public class UsersAPI implements Serializable {
 
     private String app_context;
     private final String app_key = "IBD0DEHBDID62EB1EAZBEoA95E3cB5BD5135d01F0FqE6eDDoD4yDEX05RFEF19q9BY04KBE03A919hAFM06";
+    private static UsersAPI usersAPI;
 
     /**
      *
@@ -21,11 +22,19 @@ public class UsersAPI implements Serializable {
      *
      *
      */
-    public UsersAPI() {
-
+    private UsersAPI() {
     }
 
+    public static UsersAPI getInstance() {
+        if (usersAPI == null) {
+            usersAPI = new UsersAPI();
+        }
+        return usersAPI;
+    }
 
+    public void resetContext() {
+        this.app_context = null;
+    }
 
     /**
      *

@@ -55,10 +55,10 @@ public class RegistarFreelancerController {
         Email email = freelancer.getEmail();
         Password password = freelancer.getPassword();
 
-        UsersAPI usersAPI = new UsersAPI();
+
         Utilizador utilizador = new Utilizador(email, nome, password);
 
-        return usersAPI.registerUserWithRoles(email, nome, password, "freelancer")
+        return UsersAPI.getInstance().registerUserWithRoles(email, nome, password, "freelancer")
                 && repositorioUtilizador.save(utilizador);
     }
 }

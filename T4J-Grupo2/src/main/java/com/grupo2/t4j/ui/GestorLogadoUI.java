@@ -147,57 +147,47 @@ public class GestorLogadoUI implements Initializable {
         this.txtPasswordColaborador.clear();
     }
 
-    @FXML
-    void navigateStartingPage(ActionEvent event) {
-        try {
-            FXMLLoader loaderStartingPage = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/StartingPageScene.fxml"));
-            Parent rootStartingPage = loaderStartingPage.load();
-            sceneStartingPage = new Scene(rootStartingPage);
+    public void logout(ActionEvent actionEvent) {
+        Window window = btnLogout.getScene().getWindow();
+        window.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent windowEvent) {
+                Alert alerta = AlertsUI.criarAlerta(Alert.AlertType.CONFIRMATION,
+                        MainApp.TITULO_APLICACAO,
+                        "Confirmação da acção",
+                        "Tem a certeza que pretende terminar a sessão?");
 
-            Window window = btnLogout.getScene().getWindow();
-            window.setOnCloseRequest(new EventHandler<WindowEvent>() {
-                @Override
-                public void handle(WindowEvent windowEvent) {
-                    Alert alerta = AlertsUI.criarAlerta(Alert.AlertType.CONFIRMATION,
-                            MainApp.TITULO_APLICACAO,
-                            "Confirmação da acção",
-                            "Tem a certeza que pretende terminar a sessão??");
+                if (alerta.showAndWait().get() == ButtonType.CANCEL) {
+                    windowEvent.consume();
+                }
+                else {
+                    boolean logout = gestaoUtilizadoresController.logout();
+                    if (logout) {
+                        gestaoUtilizadoresController.resetUsersAPI();
 
-                    if (alerta.showAndWait().get() == ButtonType.CANCEL) {
-                        windowEvent.consume();
+                        FXMLLoader loaderStartingPage = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/StartingPageScene.fxml"));
+                        Parent rootStartingPage = null;
+                        try {
+                            rootStartingPage = loaderStartingPage.load();
+                        } catch (IOException exception) {
+                            exception.printStackTrace();
+                        }
+                        sceneStartingPage = new Scene(rootStartingPage);
+                        adicionarStage.setScene(sceneStartingPage);
+                        adicionarStage.setTitle(MainApp.TITULO_APLICACAO);
+                        adicionarStage.show();
+                    } else {
+                        AlertsUI.criarAlerta(Alert.AlertType.ERROR,
+                                MainApp.TITULO_APLICACAO,
+                                "Erro",
+                                "Não foi possível terminar a sessão.");
                     }
                 }
-            });
-            window.fireEvent(new WindowEvent(window, WindowEvent.WINDOW_CLOSE_REQUEST));
+            }
+        });
+        window.fireEvent(new WindowEvent(window, WindowEvent.WINDOW_CLOSE_REQUEST));
 
-            adicionarStage.setScene(sceneStartingPage);
-            adicionarStage.setTitle(MainApp.TITULO_APLICACAO);
-            adicionarStage.show();
 
-        }
-        catch (IOException exception) {
-            exception.printStackTrace();
-            AlertsUI.criarAlerta(Alert.AlertType.ERROR,
-                    MainApp.TITULO_APLICACAO,
-                    "Erro",
-                    exception.getMessage());
-        }
-    }
-
-    public void logout(ActionEvent actionEvent) throws SQLException {
-        UsersAPI usersAPI = new UsersAPI();
-        boolean logout = usersAPI.logout();
-        if (logout) {
-            navigateStartingPage(actionEvent);
-
-            gestaoUtilizadoresController.resetUsersAPI();
-        }
-        else {
-            Alert alerta = AlertsUI.criarAlerta(Alert.AlertType.ERROR,
-                    MainApp.TITULO_APLICACAO,
-                    "Erro",
-                    "Não foi possível terminar a sessão.");
-        }
     }
 
 }
