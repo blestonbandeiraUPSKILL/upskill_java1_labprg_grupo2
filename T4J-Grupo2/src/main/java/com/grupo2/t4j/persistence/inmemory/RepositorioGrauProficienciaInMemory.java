@@ -50,12 +50,12 @@ public class RepositorioGrauProficienciaInMemory implements Serializable, Reposi
     @Override
     public boolean save(GrauProficiencia grauProficiencia) {
         GrauProficiencia gp = findByValor(grauProficiencia.getGrau(),grauProficiencia.getCompetenciaTecnica().getCodigo());
-        if(gp==null) {
+        if(gp == null) {
             this.listaGrausProficiencia.add(grauProficiencia);
+            return true;
         } else {
             throw new GrauProficienciaDuplicadoException(gp.getGrau()+": Grau já especificado");
         }
-        return false;
     }
 
     @Override
