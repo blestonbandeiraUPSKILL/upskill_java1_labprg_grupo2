@@ -19,10 +19,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.ListView;
+import javafx.scene.control.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.Window;
@@ -54,7 +51,6 @@ public class AdministrativoLogadoUI implements Initializable {
 
     @FXML Button btnAddAreaAtividade;
     @FXML Button btnAddCategoriaTarefa;
-    @FXML Button btnAddCompetenciaTecnica;
     @FXML Button btnSair;
     @FXML ListView<AreaActividade> listaAreasActividade;
     @FXML ListView<Categoria> listaCategorias;
@@ -67,6 +63,7 @@ public class AdministrativoLogadoUI implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
         adicionarStage = new Stage();
         adicionarStage.initModality(Modality.APPLICATION_MODAL);;
         adicionarStage.setResizable(false);
@@ -74,8 +71,6 @@ public class AdministrativoLogadoUI implements Initializable {
         registarAreaActividadeController = new RegistarAreaActividadeController();
         registarCategoriaController = new RegistarCategoriaController();
         registarCompetenciaTecnicaController = new RegistarCompetenciaTecnicaController();
-
-     
     }
 
     public void addAreaActividade(ActionEvent actionEvent) throws IOException {
@@ -144,7 +139,7 @@ public class AdministrativoLogadoUI implements Initializable {
         adicionarStage.show();
     }
 
-    public void logout(ActionEvent actionEvent) throws SQLException {
+    public void logout(ActionEvent actionEvent) {
         UsersAPI usersAPI = new UsersAPI();
         boolean logout = usersAPI.logout();
         if (logout) {

@@ -7,62 +7,62 @@ public class FabricaRepositoriosInMemory implements FabricaRepositorios {
 
     @Override
     public RepositorioAdministrativoInMemory getRepositorioAdministrativo() {
-        return new RepositorioAdministrativoInMemory();
+        return RepositorioAdministrativoInMemory.getInstance();
     }
 
     @Override
     public RepositorioAnuncio getRepositorioAnuncio() {
-        return new RepositorioAnuncioInMemory();
+        return RepositorioAnuncioInMemory.getInstance();
     }
 
     @Override
     public RepositorioAreaActividade getRepositorioAreaActividade() {
-        return new RepositorioAreaActividadeInMemory();
+        return RepositorioAreaActividadeInMemory.getInstance();
     }
 
     @Override
     public RepositorioCaracterizacaoCT getRepositorioCaracterizacaoCT() {
-        return new RepositorioCaracterizacaoCTInMemory();
+        return RepositorioCaracterizacaoCTInMemory.getInstance();
     }
 
     @Override
     public RepositorioCategoriaTarefa getRepositorioCategoriaTarefa() {
-        return new RepositorioCategoriaTarefaInMemory();
+        return RepositorioCategoriaTarefaInMemory.getInstance();
     }
 
     @Override
     public RepositorioColaborador getRepositorioColaborador() {
-        return new RepositorioColaboradorInMemory();
+        return RepositorioColaboradorInMemory.getInstance();
     }
 
     @Override
     public RepositorioCompetenciaTecnica getRepositorioCompetenciaTecnica() {
-        return new RepositorioCompetenciaTecnicaInMemory();
+        return RepositorioCompetenciaTecnicaInMemory.getInstance();
     }
 
     @Override
     public RepositorioEnderecoPostal getRepositorioEnderecoPostal() {
-        return new RepositorioEnderecoPostalInMemory();
+        return RepositorioEnderecoPostalInMemory.getInstance();
     }
 
     @Override
     public RepositorioFreelancer getRepositorioFreelancer() {
-        return new RepositorioFreelancerInMemory();
+        return RepositorioFreelancerInMemory.getInstance();
     }
 
     @Override
     public RepositorioGrauProficiencia getRepositorioGrauProficiencia() {
-        return new RepositorioGrauProficienciaInMemory();
+        return RepositorioGrauProficienciaInMemory.getInstance();
     }
 
     @Override
     public RepositorioOrganizacao getRepositorioOrganizacao() {
-        return new RepositorioOrganizacaoInMemory();
+        return RepositorioOrganizacaoInMemory.getInstance();
     }
 
     @Override
     public RepositorioTarefa getRepositorioTarefa() {
-        return new RepositorioTarefaInMemory();
+        return RepositorioTarefaInMemory.getInstance();
     }
 
     @Override
