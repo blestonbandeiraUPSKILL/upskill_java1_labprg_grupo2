@@ -69,13 +69,69 @@ public class AdicionarFreelancerUI implements Initializable {
         adicionarStage.initModality(Modality.APPLICATION_MODAL);;
         adicionarStage.setResizable(false);
     }   
-
+   
     @FXML
-    void cancelarAction(ActionEvent event) {
+    public void addFreelancer(ActionEvent event) {
 
-        this.txtCodigo.clear();
-        this.txtDescricaoBreve.clear();
-        this.areaDescricaoDetalhada.clear();
+        try{
+            EnderecoPostal endereco = new EnderecoPostal("CP-"+ txtNIFFreelancer.getText(),
+                    txtArruamentoFreelancer.getText(), txtPortaFreelancer.getText(),
+                    txtLocalidadeFreelancer.getText(),txtCodPostalFreelancer.getText());
+            
+            boolean adicionou = registarFreelancerController.registarFreelancer(
+                    txtEmailFreelancer.getText(),
+                    txtNomeFreelancer.getText(),
+                    txtNIFFreelancer.getText(),
+                    txtTelefoneFreelancer.getText(),
+                    endereco.getCodigoEnderecoPostal());
+
+            if(adicionou) {
+                administrativoLogadoUI.tabelaFreelancers.getItems().addAll(registarFreelancerController.getAll());
+            }
+
+            AlertsUI.criarAlerta(Alert.AlertType.INFORMATION,
+                    MainApp.TITULO_APLICACAO,
+                    "Registar Freelancer.",
+                    adicionou ? "Freelancer registado com sucesso."
+                                : "Não foi possível registar o Freelancer.").show();
+
+            closeAddFreelancer(event);
+
+        }
+        catch (IllegalArgumentException iae) {
+            AlertsUI.criarAlerta(Alert.AlertType.ERROR,
+                    MainApp.TITULO_APLICACAO,
+                    "Erro nos dados.",
+                    iae.getMessage()).show();
+        
+        }
+    }
+
+    public void closeAddFreelancer(ActionEvent event) {
+        this.txtNomeFreelancer.clear();
+        this.txtEmailFreelancer.clear();
+        this.txtNIFFreelancer.clear();
+        this.txtTelefoneFreelancer.clear();
+        this.txtArruamentoFreelancer.clear();
+        this.txtPortaFreelancer.clear();
+        this.txtLocalidadeFreelancer.clear();
+        this.txtCodPostalFreelancer.clear();
+        this.txtPassFreelancer.clear();       
+        ((Node) event.getSource()).getScene().getWindow().hide();
+    }
+    
+    @FXML
+    public void cancelarAction(ActionEvent event) {
+
+        this.txtNomeFreelancer.clear();
+        this.txtEmailFreelancer.clear();
+        this.txtNIFFreelancer.clear();
+        this.txtTelefoneFreelancer.clear();
+        this.txtArruamentoFreelancer.clear();
+        this.txtPortaFreelancer.clear();
+        this.txtLocalidadeFreelancer.clear();
+        this.txtCodPostalFreelancer.clear();
+        this.txtPassFreelancer.clear();   
 
         Window window = btnCancelar.getScene().getWindow();
         window.setOnCloseRequest(new EventHandler<WindowEvent>() {
@@ -91,53 +147,6 @@ public class AdicionarFreelancerUI implements Initializable {
                 }
             }
         });
-
         window.fireEvent(new WindowEvent(window, WindowEvent.WINDOW_CLOSE_REQUEST));
-
-    }
-
-    @FXML
-    public void addFreelancer(ActionEvent event) {
-
-        try{
-            boolean adicionou = registarFreelancerController.registarAreaActividade(
-                    txtNomeFreelancer.getText(),
-                    txtEmailFreelancer.getText(),
-                    areaDescricaoDetalhada.getText());
-
-            if(adicionou) {
-                administrativoLogadoUI.listaAreasActividade.getItems().addAll(registarAreaActividadeController.getAll());
-            }
-
-            AlertsUI.criarAlerta(Alert.AlertType.INFORMATION,
-                    MainApp.TITULO_APLICACAO,
-                    "Registar Área de Actividade.",
-                    adicionou ? "Área de Actividade registada com sucesso."
-                                : "Não foi possível registar a Área de Actividade.").show();
-
-            closeAddFreelancer(event);
-
-        }
-        catch (IllegalArgumentException iae) {
-            AlertsUI.criarAlerta(Alert.AlertType.ERROR,
-                    MainApp.TITULO_APLICACAO,
-                    "Erro nos dados.",
-                    iae.getMessage()).show();
-        
-        }
-
-    }
-
-    private void closeAddFreelancer(ActionEvent event) {
-        this.txtNomeFreelancer.clear();
-        this.txtEmailFreelancer.clear();
-        this.txtNIFFreelancer.clear();
-        this.txtTelefoneFreelancer.clear();
-        this.txtArruamentoFreelancer.clear();
-        this.txtPortaFreelancer.clear();
-        this.txtLocalidadeFreelancer.clear();
-        this.txtCodPostalFreelancer.clear();
-        this.txtPassFreelancer.clear();       
-        ((Node) event.getSource()).getScene().getWindow().hide();
     }
 }
