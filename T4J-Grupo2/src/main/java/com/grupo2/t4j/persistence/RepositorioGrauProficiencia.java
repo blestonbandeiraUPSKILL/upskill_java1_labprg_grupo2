@@ -23,5 +23,5 @@ public interface RepositorioGrauProficiencia {
     
     ArrayList<GrauProficiencia> findByCompetenciaTecnica(String codigoCompetenciaTecnica);
     
-    GrauProficiencia findByValor(int valor, String codigoCompetenciaTecnica);
+    GrauProficiencia findByValor(String valor, String codigoCompetenciaTecnica);
 }

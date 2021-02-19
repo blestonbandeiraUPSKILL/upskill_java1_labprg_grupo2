@@ -5,7 +5,11 @@
  */
 package com.grupo2.t4j.model;
 
+import com.grupo2.t4j.exception.CodigoInvalidoException;
 import com.grupo2.t4j.exception.CompetenciaTecnicaInexistenteException;
+import com.grupo2.t4j.exception.DescricaoInvalidaException;
+import com.grupo2.t4j.exception.GrauInvalidoException;
+
 import java.io.Serializable;
 
 /**
@@ -13,37 +17,51 @@ import java.io.Serializable;
  * @author acris
  */
 
-/*public enum GrauProficiencia implements Serializable { INICIANTE,
-                              BOM, 
-                              EXPERIENTE, 
-                              ESPECIALISTA}; */
 public class GrauProficiencia {
-    private int grau;
+    private String codigoGP;
+    private String grau;
     private String designacao;
-    private CompetenciaTecnica competenciaTecnica;
+    private String codigoCompetenciaTecnica;
     
 
     public GrauProficiencia(GrauProficiencia gp) {
-        setGrau(grau);
-        setDesignacao(designacao);
+        setCodigoGP(gp.codigoGP);
+        setGrau(gp.grau);
+        setDesignacao(gp.designacao);
     }
     
-    public GrauProficiencia(int grau, String designacao) {
+    public GrauProficiencia(String codigoGP, String grau, String designacao) {
+        setCodigoGP(codigoGP);
         setGrau(grau);
         setDesignacao(designacao);
         
     }
-    public GrauProficiencia(int grau, String designacao, CompetenciaTecnica competenciaTecnica){
+    public GrauProficiencia(String codigoGP, String grau, String designacao, String codigoCompetenciaTecnica){
+        setCodigoGP(codigoGP);
         setGrau(grau);
         setDesignacao(designacao);
-        setCompetenciaTecnica(competenciaTecnica);
+        setCodigoCompetenciaTecnica(codigoCompetenciaTecnica);
     }
 
-    public int getGrau() {
+    public String getCodigoGP() {
+        return codigoGP;
+    }
+
+    public void setCodigoGP(String codigoGP) {
+        if (codigoGP == null || codigoGP.trim().isEmpty()) {
+            throw new CodigoInvalidoException("O código é inválido.");
+        }
+        this.codigoGP = codigoGP;
+    }
+
+    public String getGrau() {
         return grau;
     }
 
-    public void setGrau(int grau) {
+    public void setGrau(String grau) {
+        if (grau == null || grau.trim().isEmpty()) {
+            throw new GrauInvalidoException("O valor do grau é inválido.");
+        }
         this.grau = grau;
     }
 
@@ -52,16 +70,19 @@ public class GrauProficiencia {
     }
 
     public void setDesignacao(String designacao) {
+        if (designacao == null || designacao.trim().isEmpty()) {
+            throw new DescricaoInvalidaException("A descrição é inválida.");
+        }
         this.designacao = designacao;
     }
     
-    public CompetenciaTecnica getCompetenciaTecnica(){
-        return competenciaTecnica;
+    public String getCodigoCompetenciaTecnica(){
+        return codigoCompetenciaTecnica;
     }
 
-    private void setCompetenciaTecnica(CompetenciaTecnica competenciaTecnica) {
-        if(competenciaTecnica != null) {
-            this.competenciaTecnica = competenciaTecnica;
+    private void setCodigoCompetenciaTecnica(String codigoCompetenciaTecnica) {
+        if(codigoCompetenciaTecnica != null) {
+            this.codigoCompetenciaTecnica = codigoCompetenciaTecnica;
         }
         else {
             throw new CompetenciaTecnicaInexistenteException ("A competência técnica não existe");
@@ -71,9 +92,11 @@ public class GrauProficiencia {
     @Override
     public String toString() {
         return "GrauProficiencia{" +
-                "grau=" + grau +
+                "grau='" + grau + '\'' +
                 ", designacao='" + designacao + '\'' +
-                ", competenciaTecnica=" + competenciaTecnica +
+                ", codigoCompetenciaTecnica='" + codigoCompetenciaTecnica + '\'' +
                 '}';
     }
+
+
 }

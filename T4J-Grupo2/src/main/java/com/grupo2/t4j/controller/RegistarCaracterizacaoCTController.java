@@ -23,12 +23,15 @@ public class RegistarCaracterizacaoCTController {
         return repositorioCaracterizacaoCT.getAll();
     }
 
-    public boolean registarCaracterizacaoCTS(GrauProficiencia gp, Obrigatoriedade obrigatoriedade,
-                                                  CompetenciaTecnica competenciaTecnica) {
+    public boolean registarCaracterizacaoCTS(String codigoCCT, String codigoGP, Obrigatoriedade obrigatoriedade,
+                                                  String codigoCompetenciaTecnica) {
 
+        CaracterizacaoCT caracterizacaoCT = new CaracterizacaoCT(codigoCCT, codigoGP, obrigatoriedade, codigoCompetenciaTecnica);
 
-        CaracterizacaoCT caracterizacaoCT = new CaracterizacaoCT(gp,obrigatoriedade, competenciaTecnica);
         return repositorioCaracterizacaoCT.save(caracterizacaoCT);
     }
 
+    public CaracterizacaoCT findByCodigo(String codigoCCT) {
+        return repositorioCaracterizacaoCT.findByCodigo(codigoCCT);
+    }
 }

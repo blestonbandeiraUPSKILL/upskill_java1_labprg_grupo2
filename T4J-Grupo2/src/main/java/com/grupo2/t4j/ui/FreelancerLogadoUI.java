@@ -4,6 +4,8 @@ import javafx.fxml.Initializable;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 
 public class FreelancerLogadoUI implements Initializable {
 
@@ -14,6 +16,10 @@ public class FreelancerLogadoUI implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+    }
+    @FXML
+    void verAnuncioAction(ActionEvent event) {
 
     }
 }

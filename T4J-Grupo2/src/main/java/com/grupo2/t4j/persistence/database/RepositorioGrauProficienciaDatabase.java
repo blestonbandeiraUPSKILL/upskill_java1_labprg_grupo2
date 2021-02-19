@@ -28,7 +28,7 @@ public class RepositorioGrauProficienciaDatabase implements RepositorioGrauProfi
     }
 
     @Override
-    public GrauProficiencia findByValor(int valor, String codigoCompetenciaTecnica) {
+    public GrauProficiencia findByValor(String valor, String codigoCompetenciaTecnica) {
         return null;
     }
 }

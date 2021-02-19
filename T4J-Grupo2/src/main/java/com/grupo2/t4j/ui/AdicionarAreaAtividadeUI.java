@@ -91,7 +91,8 @@ public class AdicionarAreaAtividadeUI implements Initializable {
                     areaDescricaoDetalhada.getText());
 
             if(adicionou) {
-                administrativoLogadoUI.listaAreasActividade.getItems().addAll(registarAreaActividadeController.getAll());
+                administrativoLogadoUI.listaAreasActividade.getItems().add(
+                        registarAreaActividadeController.findByCodigo(txtCodigo.getText()));
             }
 
             AlertsUI.criarAlerta(Alert.AlertType.INFORMATION,

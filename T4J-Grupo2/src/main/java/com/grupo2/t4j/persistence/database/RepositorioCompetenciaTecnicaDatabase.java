@@ -53,7 +53,7 @@ public class RepositorioCompetenciaTecnicaDatabase implements RepositorioCompete
     }
 
     @Override
-    public ArrayList<CompetenciaTecnica> findByAreaActividade(AreaActividade at) {
+    public ArrayList<CompetenciaTecnica> findByAreaActividade(String codigoAreaActividade) {
         return null;
     }
 }
