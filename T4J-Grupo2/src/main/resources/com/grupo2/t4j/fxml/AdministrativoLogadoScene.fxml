@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.paint.*?>
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -11,7 +17,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" style="-fx-background-color: #c4c4c4;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.AdministrativoLogadoUI">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" style="-fx-background-color: #c4c4c4;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.AdministrativoLogadoUI">
    <center>
       <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <top>
@@ -105,6 +111,63 @@
                               <ListView fx:id="listaCategorias" layoutX="14.0" layoutY="48.0" prefHeight="260.0" prefWidth="475.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="210.0" AnchorPane.topAnchor="50.0" />
                               <Button fx:id="btnExportarCategoriasTarefa" layoutX="579.0" layoutY="205.0" mnemonicParsing="false" onAction="#exportCategoriasTarefa" text="Exportar Dados" />
                               <Button fx:id="btnImportarCategorias" layoutX="579.0" layoutY="167.0" mnemonicParsing="false" onAction="#importCategorias" text="Importar Dados" />
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </Tab>
+                  <Tab text="Freelancer">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" style="-fx-background-color: #c4c4c4;">
+                           <children>
+                              <VBox alignment="CENTER" layoutX="585.0" layoutY="260.0" prefHeight="156.0" prefWidth="234.0" AnchorPane.bottomAnchor="50.0" AnchorPane.rightAnchor="3.0">
+                                 <children>
+                                    <Button fx:id="btnAdicionarFreelancer" alignment="CENTER" mnemonicParsing="false" onAction="#addFreelancer" style="-fx-background-color: #000000;" text="Adicionar Freelancer" textFill="WHITE">
+                                       <font>
+                                          <Font name="Calibri" size="14.0" />
+                                       </font>
+                                       <padding>
+                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                       </padding>
+                                       <VBox.margin>
+                                          <Insets bottom="20.0" />
+                                       </VBox.margin>
+                                    </Button>
+                                    <Button fx:id="btnAdicionarHabilitacao" alignment="CENTER" mnemonicParsing="false" onAction="#addHabilitacaoFreelancer" style="-fx-background-color: #000000;" text="Adicionar Habilitação Acadêmica" textFill="WHITE">
+                                       <font>
+                                          <Font name="Calibri" size="14.0" />
+                                       </font>
+                                       <padding>
+                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                       </padding>
+                                       <VBox.margin>
+                                          <Insets bottom="20.0" />
+                                       </VBox.margin>
+                                    </Button>
+                                    <Button fx:id="btnAdicionarCompFree" alignment="CENTER" mnemonicParsing="false" onAction="#addCompetenciaFreelancer" style="-fx-background-color: #000000;" text="Adicionar Competência Técnica" textFill="WHITE">
+                                       <font>
+                                          <Font name="Calibri" size="14.0" />
+                                       </font>
+                                       <padding>
+                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                       </padding>
+                                       <VBox.margin>
+                                          <Insets bottom="20.0" />
+                                       </VBox.margin>
+                                    </Button>
+                                 </children>
+                              </VBox>
+                              <Label layoutX="20.0" layoutY="20.0" prefHeight="22.0" prefWidth="215.0" text="Freelancers registados" AnchorPane.bottomAnchor="285.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="465.0" AnchorPane.topAnchor="20.0">
+                                 <font>
+                                    <Font name="Calibri" size="16.0" />
+                                 </font>
+                              </Label>
+                              <TableView layoutX="18.0" layoutY="56.0" prefHeight="274.0" prefWidth="432.0">
+                                <columns>
+                                  <TableColumn fx:id="colunaNomeFreelancer" prefWidth="142.0" text="Nome" />
+                                  <TableColumn fx:id="colunaEmailFreelancer" prefWidth="166.0" text="Email" />
+                                    <TableColumn fx:id="colunaNifFreelancer" prefWidth="123.0" text="NIF" />
+                                </columns>
+                              </TableView>
                            </children>
                         </AnchorPane>
                      </content>
