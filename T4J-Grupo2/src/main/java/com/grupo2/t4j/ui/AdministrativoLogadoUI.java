@@ -1,5 +1,6 @@
 package com.grupo2.t4j.ui;
 
+import com.grupo2.t4j.api.UsersAPI;
 import com.grupo2.t4j.controller.RegistarAreaActividadeController;
 import com.grupo2.t4j.controller.RegistarCategoriaController;
 import com.grupo2.t4j.controller.RegistarCompetenciaTecnicaController;
@@ -18,10 +19,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.ListView;
+import javafx.scene.control.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.Window;
@@ -44,7 +42,7 @@ public class AdministrativoLogadoUI implements Initializable {
     private RegistarAreaActividadeController registarAreaActividadeController;
     private RegistarCategoriaController registarCategoriaController;
     private RegistarCompetenciaTecnicaController registarCompetenciaTecnicaController;
-    
+
     private FicheiroRepositorioAreaActividade ficheiroAt;
     private RepositorioAreaActividadeInMemory repositorioAreaActividadeInMemory;
 
@@ -53,7 +51,6 @@ public class AdministrativoLogadoUI implements Initializable {
 
     @FXML Button btnAddAreaAtividade;
     @FXML Button btnAddCategoriaTarefa;
-    @FXML Button btnAddCompetenciaTecnica;
     @FXML Button btnSair;
     @FXML ListView<AreaActividade> listaAreasActividade;
     @FXML ListView<Categoria> listaCategorias;
@@ -66,6 +63,7 @@ public class AdministrativoLogadoUI implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
         adicionarStage = new Stage();
         adicionarStage.initModality(Modality.APPLICATION_MODAL);;
         adicionarStage.setResizable(false);
@@ -73,8 +71,6 @@ public class AdministrativoLogadoUI implements Initializable {
         registarAreaActividadeController = new RegistarAreaActividadeController();
         registarCategoriaController = new RegistarCategoriaController();
         registarCompetenciaTecnicaController = new RegistarCompetenciaTecnicaController();
-
-     
     }
 
     public void addAreaActividade(ActionEvent actionEvent) throws IOException {
@@ -143,11 +139,12 @@ public class AdministrativoLogadoUI implements Initializable {
         adicionarStage.show();
     }
 
-    public void logout(ActionEvent actionEvent) throws SQLException {
-        boolean logout = autenticacaoController.logout();
+    public void logout(ActionEvent actionEvent) {
+        UsersAPI usersAPI = new UsersAPI();
+        boolean logout = usersAPI.logout();
         if (logout) {
             navigateStartingPage(actionEvent);
-            Plataforma.getInstance().resetUserAPI();
+            usersAPI.resetUserAPI();
         }
         else {
             Alert alerta = AlertsUI.criarAlerta(Alert.AlertType.ERROR,
@@ -190,20 +187,17 @@ public class AdministrativoLogadoUI implements Initializable {
                     "Erro",
                     exception.getMessage());
         }
-
-
-
     }
 
     public void updateListViewAreasActividade() {
-        listaAreasActividade.getItems().setAll(registarAreaActividadeController.getAreasActividade());
+        listaAreasActividade.getItems().setAll(registarAreaActividadeController.getAll());
     }
     public void updateListViewCategoriasTarefa() {
-        listaCategorias.getItems().setAll(registarCategoriaController.getCategoriasTarefa());
+        listaCategorias.getItems().setAll(registarCategoriaController.getAll());
     }
 
     public void updateListViewCompetenciasTecnicas() {
-        listViewCompetenciasTecnicas.getItems().setAll(registarCompetenciaTecnicaController.getCompetenciasTecnicas());
+        listViewCompetenciasTecnicas.getItems().setAll(registarCompetenciaTecnicaController.getAll());
     }
 
     ///////////////// Ficheiros /////////////////

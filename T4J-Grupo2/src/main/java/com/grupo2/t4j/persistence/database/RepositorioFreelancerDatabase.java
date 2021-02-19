@@ -40,9 +40,9 @@ public class RepositorioFreelancerDatabase implements RepositorioFreelancer{
         return repositorioFreelancerDatabase;
     }
 
+
     @Override
-    public void save(Email email, String nome, Password password, Rolename rolename,
-            String NIF, EnderecoPostal enderecoPostalFreelancer) throws FreelancerDuplicadoException {
+    public void save(Email email, String nome, Password password, String nif, String codigoEnderecoPostal) throws FreelancerDuplicadoException {
 
     }
 
@@ -52,7 +52,7 @@ public class RepositorioFreelancerDatabase implements RepositorioFreelancer{
     }
 
     @Override
-    public Freelancer findByNIF(String NIF) {
+    public Freelancer findByNif(String nif) {
         return null;
     }
 

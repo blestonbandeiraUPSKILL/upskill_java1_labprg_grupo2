@@ -34,15 +34,14 @@ public class RepositorioTarefaDatabase implements RepositorioTarefa {
     }
 
     @Override
-    public void save(AreaActividade areaActividade, Categoria categoriaTarefa,
-                     String referencia, String designacao, String descInformal,
-                     String descTecnica, int duracao, double custo) {
+    public void save(String codigoAreaActividade, String codigoCategoriaTarefa, String referencia, String designacao, String descInformal, String descTecnica, int duracao, double custo) {
 
     }
 
     @Override
-    public void save(Tarefa tarefa) {
+    public boolean save(Tarefa tarefa) {
 
+        return false;
     }
 
     @Override

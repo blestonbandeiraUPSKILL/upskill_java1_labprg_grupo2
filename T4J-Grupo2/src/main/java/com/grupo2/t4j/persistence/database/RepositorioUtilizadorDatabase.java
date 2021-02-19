@@ -33,10 +33,11 @@ public class RepositorioUtilizadorDatabase implements RepositorioUtilizador {
         }
         return repositorioUtilizadorDatabase;
     }
+    
 
     @Override
-    public void save(Email email, String nome, Password password, Rolename rolename) throws UtilizadorDuplicadoException {
-
+    public void save(Email email, String nome, Password password) throws UtilizadorDuplicadoException {
+        
     }
 
     @Override

@@ -53,7 +53,8 @@ public class RepositorioCompetenciaTecnicaInMemoryTest {
         //Act
         rc1.addCompetenciaTecnica(ct1);    
     }
-    @Test
+
+/*    @Test
     public void testAddCompetenciaTecnica() {
         //Arrange
         RepositorioCompetenciaTecnicaInMemory rc1=  RepositorioCompetenciaTecnicaInMemory.getInstance();
@@ -65,10 +66,10 @@ public class RepositorioCompetenciaTecnicaInMemoryTest {
         
         //Assert
         assertTrue(rc1.getCompetenciasTecnicas().contains(ct1));
-    }
+    }*/
     
     
-    @Test
+/*    @Test
     public void testGetCompetenciaTecnicaByCodigo() {
         
         //Arrange
@@ -82,9 +83,9 @@ public class RepositorioCompetenciaTecnicaInMemoryTest {
         //
         assertEquals(ct1, ct2);
         
-    }
+    }*/
 
-    @Test
+ /*   @Test
     public void testGetCompetenciasTecnicasByAreaActividade() {
         //Arrange
         AreaActividade at= new AreaActividade ("123","Cozinha", "Cozinheiro de 2ª");
@@ -98,6 +99,6 @@ public class RepositorioCompetenciaTecnicaInMemoryTest {
         //
         assertTrue(ct2.contains(ct1));
         
-    }
+    }*/
     
 }

@@ -16,6 +16,7 @@ import com.grupo2.t4j.model.*;
 import com.grupo2.t4j.persistence.RepositorioOrganizacao;
 
 import java.io.Serializable;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,19 +49,12 @@ public class RepositorioOrganizacaoInMemory implements Serializable, Repositorio
     }
 
     public void save(String nif, String nome, Website website, String telefone,
-                     Email emailOrganizacao, Email emailGestor, String arruamento,
-                     String numeroPorta, String localidade, String codigoPostal, String nomeGestor, Password password,
-                     Rolename rolename, String telefoneGestor, String funcaoGestor) {
+                     Email emailOrganizacao, String idEnderecoPostal, Email emailGestor) {
         Organizacao o = findByNif(nif);
         if (o == null) {
-            EnderecoPostal enderecoPostal = new EnderecoPostal(arruamento,
-                    numeroPorta, localidade, codigoPostal);
-
-            Colaborador gestor = new Colaborador(emailGestor, nomeGestor, password,
-                    telefoneGestor, funcaoGestor, rolename);
 
             Organizacao org = new Organizacao(nif, nome, website, telefone,
-                    emailOrganizacao, gestor, enderecoPostal );
+                    emailOrganizacao, emailGestor, idEnderecoPostal);
 
             this.listaOrganizacoes.add(org);
         } else {
@@ -70,13 +64,14 @@ public class RepositorioOrganizacaoInMemory implements Serializable, Repositorio
     }
 
     @Override
-    public void save(Organizacao organizacao) {
+    public boolean save(Organizacao organizacao) {
         Organizacao o = findByNif(organizacao.getNif());
         if (o == null) {
             this.listaOrganizacoes.add(organizacao);
         } else {
             throw new OrganizacaoDuplicadaException(o.getNif() + ": Organização já registada!");
         }
+        return false;
     }
 
     @Override

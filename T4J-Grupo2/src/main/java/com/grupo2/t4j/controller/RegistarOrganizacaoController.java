@@ -1,14 +1,17 @@
 package com.grupo2.t4j.controller;
 
+import com.grupo2.t4j.api.UsersAPI;
 import com.grupo2.t4j.model.*;
 import com.grupo2.t4j.persistence.FabricaRepositorios;
 import com.grupo2.t4j.persistence.RepositorioColaborador;
+import com.grupo2.t4j.persistence.RepositorioEnderecoPostal;
 import com.grupo2.t4j.persistence.RepositorioOrganizacao;
 import com.grupo2.t4j.persistence.database.FabricaRepositoriosDatabase;
 import com.grupo2.t4j.persistence.database.RepositorioOrganizacaoDatabase;
 import com.grupo2.t4j.persistence.inmemory.FabricaRepositoriosInMemory;
 
 import java.sql.SQLException;
+import java.util.List;
 
 public class RegistarOrganizacaoController {
 
@@ -16,25 +19,42 @@ public class RegistarOrganizacaoController {
     //private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosDatabase();
     private RepositorioOrganizacao repositorioOrganizacao = fabricaRepositorios.getRepositorioOrganizacao();
     private RepositorioColaborador repositorioColaborador = fabricaRepositorios.getRepositorioColaborador();
+    private RepositorioEnderecoPostal repositorioEnderecoPostal = fabricaRepositorios.getRepositorioEnderecoPostal();
+    private UsersAPI usersAPI;
 
+    public boolean registarOrganizacao(String nif, String nome, String website,
+                                       String telefone, String emailOrganizacao, String emailGes,
+                                       String codigoEnderecoPostal, String arruamento, String numeroPorta,
+                                       String localidade, String codigoPostal, String nomeGestor,
+                                       String telefoneGestor, String funcaoGestor) throws SQLException {
 
-    public Organizacao registarOrganizacao(String nif, String nome, Website website,
-                                       String telefone, Email emailOrganizacao, Email emailGestor,
-                                       String arruamento, String numeroPorta, String localidade, String codigoPostal,
-                                       String nomeGestor, Password password, String rolename, String telefoneGestor, String funcaoGestor) throws SQLException {
+        EnderecoPostal enderecoPostal = new EnderecoPostal(codigoEnderecoPostal, arruamento, numeroPorta, localidade, codigoPostal);
+        repositorioEnderecoPostal.save(enderecoPostal);
 
-        EnderecoPostal enderecoPostal = new EnderecoPostal(arruamento, numeroPorta, localidade, codigoPostal);
-        Colaborador gestor = new Colaborador(emailGestor, nomeGestor, password, funcaoGestor, telefoneGestor, Rolename.GESTOR);
+        AlgoritmoGeradorPasswords algoritmoGeradorPasswords = new AlgoritmoGeradorPasswords();
+        Password pass = new Password(algoritmoGeradorPasswords.geraPassword());
 
-        Organizacao organizacao = RepositorioOrganizacaoDatabase.getInstance().novaOrganizacao(
-                nif, nome, website, telefone, emailOrganizacao, gestor, enderecoPostal);
+        Email emailGestor = new Email(emailGes);
+        Colaborador gestor = new Colaborador(emailGestor, nomeGestor, pass, funcaoGestor, telefoneGestor);
+        repositorioColaborador.save(gestor);
 
-        return organizacao;
+        usersAPI.registerUserWithRoles(gestor.getEmail(), gestor.getNome(), pass, "gestor");
+
+        Organizacao organizacao = new Organizacao(nif, nome, new Website(website), telefone, new Email(emailOrganizacao), emailGestor, codigoEnderecoPostal);
+
+        return repositorioOrganizacao.save(organizacao);
     }
 
-    public boolean registaOrganizacao(Organizacao organizacao) throws Exception {
+    public List<Organizacao> getAll() {
+        return repositorioOrganizacao.getAll();
+    }
 
-        return RepositorioOrganizacaoDatabase.getInstance().addOrganizacao(organizacao);
+    public Organizacao findByNif(String nif) throws SQLException {
+        return repositorioOrganizacao.findByNif(nif);
+    }
+
+    public Colaborador findColaboradorByEmail(String email){
+        return repositorioColaborador.findByEmail(email);
     }
 
 

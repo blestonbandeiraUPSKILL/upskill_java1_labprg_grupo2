@@ -39,12 +39,22 @@ public class FabricaRepositoriosInMemory implements FabricaRepositorios {
     public RepositorioCompetenciaTecnica getRepositorioCompetenciaTecnica() {
         return new RepositorioCompetenciaTecnicaInMemory();
     }
-    
+
+    @Override
+    public RepositorioEnderecoPostal getRepositorioEnderecoPostal() {
+        return new RepositorioEnderecoPostalInMemory();
+    }
+
     @Override
     public RepositorioFreelancer getRepositorioFreelancer() {
         return new RepositorioFreelancerInMemory();
     }
-    
+
+    @Override
+    public RepositorioGrauProficiencia getRepositorioGrauProficiencia() {
+        return new RepositorioGrauProficienciaInMemory();
+    }
+
     @Override
     public RepositorioOrganizacao getRepositorioOrganizacao() {
         return new RepositorioOrganizacaoInMemory();
@@ -57,12 +67,7 @@ public class FabricaRepositoriosInMemory implements FabricaRepositorios {
 
     @Override
     public RepositorioUtilizador getRepositorioUtilizador() {
-        return new RepositorioUtilizadorInMemory();
-    }
-
-    @Override
-    public RepositorioGrauProficiencia getRepositorioGrauProficiencia() {
-        return new RepositorioGrauProficienciaInMemory();
+        return null;
     }
 
 

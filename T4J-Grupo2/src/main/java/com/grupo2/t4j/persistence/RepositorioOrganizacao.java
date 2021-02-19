@@ -7,15 +7,10 @@ import java.util.ArrayList;
 
 public interface RepositorioOrganizacao {
 
-    void save(String nif, String nome, Website website,
-              String telefone, Email emailOrganizacao,
-              Email emailGestor, String arruamento,
-              String numeroPorta, String localidade,
-              String codigoPostal, String nomeGestor,
-              Password password, Rolename rolename,
-              String telefoneGestor, String funcaoGestor) throws SQLException;
+    void save(String nif, String nome, Website website, String telefone,
+              Email emailOrganizacao, String idEnderecoPostal, Email emailGestor) throws SQLException;
 
-    void save(Organizacao organizacao);
+    boolean save(Organizacao organizacao);
 
     Organizacao findByNif(String nif) throws SQLException;
 

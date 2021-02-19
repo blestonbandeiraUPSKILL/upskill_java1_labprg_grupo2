@@ -1,5 +1,6 @@
 package com.grupo2.t4j.ui;
 
+import com.grupo2.t4j.api.UsersAPI;
 import com.grupo2.t4j.controller.*;
 import com.grupo2.t4j.files.FicheiroRepositorioColaborador;
 import com.grupo2.t4j.model.*;
@@ -38,7 +39,6 @@ public class GestorLogadoUI implements Initializable {
     private RegistarAreaActividadeController registarAreaActividadeController;
     private RegistarTarefaController registarTarefaController;
     private RegistarCompetenciaTecnicaController registarCompetenciaTecnicaController;
-    private AutenticacaoController autenticacaoController;
     
     private FicheiroRepositorioColaborador ficheiroC;
     private RepositorioColaboradorInMemory repositorioColaboradorInMemory;
@@ -78,9 +78,8 @@ public class GestorLogadoUI implements Initializable {
         adicionarStage.initModality(Modality.APPLICATION_MODAL);;
         adicionarStage.setResizable(false);
 
-        autenticacaoController = new AutenticacaoController();
         registarColaboradorController = new RegistarColaboradorController();
-        autenticacaoController = new AutenticacaoController();
+
         /*registarAreaActividadeController = new RegistarAreaActividadeController();
         registarCategoriaController = new RegistarCategoriaController();
         registarTarefaController = new RegistarTarefaController();
@@ -115,18 +114,11 @@ public class GestorLogadoUI implements Initializable {
                     txtEmailColaborador.getText(),
                     txtNomeColaborador.getText(),
                     txtFuncaoColaborador.getText(),
-                    txtTelefoneColaborador.getText(),
-                    Rolename.COLABORADOR);
+                    txtTelefoneColaborador.getText());
 
             if (adicionou) {
 
-                registarColaboradorController.registarColaboradorComoUtilizador(
-                        txtEmailColaborador.getText(),
-                        txtNomeColaborador.getText(),
-                        txtPasswordColaborador.getText(),
-                        Rolename.COLABORADOR
-                );
-                txtPasswordColaborador.setText(registarColaboradorController.findByEmail(email).getPassword().getPasswordText());
+                txtPasswordColaborador.setText(registarColaboradorController.findByEmail(txtEmailColaborador.getText()).getPassword().getPasswordText());
 
                 AlertsUI.criarAlerta(Alert.AlertType.INFORMATION,
                         MainApp.TITULO_APLICACAO,
@@ -191,12 +183,12 @@ public class GestorLogadoUI implements Initializable {
     }
 
     public void logout(ActionEvent actionEvent) throws SQLException {
-
-        boolean logout = autenticacaoController.logout();
+        UsersAPI usersAPI = new UsersAPI();
+        boolean logout = usersAPI.logout();
         if (logout) {
             navigateStartingPage(actionEvent);
 
-            Plataforma.getInstance().resetUserAPI();
+            usersAPI.resetUserAPI();
         }
         else {
             Alert alerta = AlertsUI.criarAlerta(Alert.AlertType.ERROR,

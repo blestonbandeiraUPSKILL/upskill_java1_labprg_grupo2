@@ -3,6 +3,7 @@ package com.grupo2.t4j.persistence.database;
 import com.grupo2.t4j.exception.ColaboradorDuplicadoException;
 import com.grupo2.t4j.model.Colaborador;
 import com.grupo2.t4j.model.Email;
+import com.grupo2.t4j.model.Password;
 import com.grupo2.t4j.model.Rolename;
 import com.grupo2.t4j.persistence.RepositorioColaborador;
 
@@ -34,7 +35,7 @@ public class RepositorioColaboradorDatabase implements RepositorioColaborador {
     }
 
     @Override
-    public void save(Email email, String nome, String funcao, String telefone, Rolename rolename) throws ColaboradorDuplicadoException {
+    public void save(Email email, String nome, Password passowrd, String funcao, String telefone) throws ColaboradorDuplicadoException {
 
     }
 

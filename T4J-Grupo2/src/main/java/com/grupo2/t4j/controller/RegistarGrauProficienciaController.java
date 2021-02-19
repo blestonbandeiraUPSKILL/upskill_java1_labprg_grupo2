@@ -28,10 +28,6 @@ public class RegistarGrauProficienciaController {
         return repositorioGrauProficiencia.getAll();
     }
 
-    /*public GrauProficiencia novoGrauProficiencia(String text, String text0) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }*/
-
     public boolean registarGrauProficiencia(int valor, String designacao, String codigoCompetenciaTecnica) {
         CompetenciaTecnica competenciaTecnica = repostitorioCompetenciaTecnica.findByCodigo(codigoCompetenciaTecnica);
         GrauProficiencia grauProficiencia = new GrauProficiencia (valor, designacao, competenciaTecnica); 
@@ -39,7 +35,11 @@ public class RegistarGrauProficienciaController {
     }
 
     public List<GrauProficiencia> findByCompetenciaTecnica(String codigoCompetenciaTecnica) {
-        return repositorioGrauProficiencia.findByCompetenciaTecnica();
+        return repositorioGrauProficiencia.findByCompetenciaTecnica(codigoCompetenciaTecnica);
+    }
+    
+    public GrauProficiencia findByValor(int valor, String codigoCompetenciaTecnica) {
+        return repositorioGrauProficiencia.findByValor(valor, codigoCompetenciaTecnica);
     }
     
 }

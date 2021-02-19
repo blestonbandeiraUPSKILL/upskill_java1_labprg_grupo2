@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface RepositorioEnderecoPostal {
 
-    void save(String arruamento, String numeroPorta, String localidade, String codigoPostal);
+    void save(String codigoEnderecoPostal, String arruamento, String numeroPorta, String localidade, String codigoPostal);
 
     boolean save(EnderecoPostal enderecoPostal);
 

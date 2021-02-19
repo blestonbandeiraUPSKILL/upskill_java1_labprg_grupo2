@@ -73,6 +73,13 @@ public class AdicionarCategoriaTarefaUI implements Initializable {
                updateCmbCompetenciasTecnicas(event);
            }
         });
+        
+        cmbCompetenciaTecnica.setOnAction(new EventHandler<ActionEvent>(){
+            @Override
+            public void handle(ActionEvent event) {
+                updateCmbGrauProficiencia(event);
+        }
+        });
     }
 
     public void updateCmbCompetenciasTecnicas(ActionEvent actionEvent) {
@@ -82,6 +89,16 @@ public class AdicionarCategoriaTarefaUI implements Initializable {
 
         cmbCompetenciaTecnica.getItems().addAll(listaCompetenciasTecnicas);
     }
+    
+    public void updateCmbGrauProficiencia(ActionEvent actionEvent) {
+        List<GrauProficiencia> listaGrausProficiencia =
+                registarGrauProficienciaController.findByCompetenciaTecnica(
+                cmbCompetenciaTecnica.getSelectionModel().getSelectedItem().getCodigo());
+
+        cmbGrauProficiencia.getItems().addAll(listaGrausProficiencia);
+    }
+    
+    
 
     public void cancelarAction(ActionEvent event) {
         Window window = btnCancelar.getScene().getWindow();
