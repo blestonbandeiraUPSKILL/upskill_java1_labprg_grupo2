@@ -14,6 +14,7 @@ import com.grupo2.t4j.controller.RegistarFreelancerController;
 import java.net.URL;
 import java.util.ResourceBundle;
 import com.grupo2.t4j.model.*;
+import java.sql.SQLException;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -79,30 +80,25 @@ public class AdicionarFreelancerUI implements Initializable {
                     txtLocalidadeFreelancer.getText(),txtCodPostalFreelancer.getText());
             
             boolean adicionou = registarFreelancerController.registarFreelancer(
-                    txtEmailFreelancer.getText(),
-                    txtNomeFreelancer.getText(),
-                    txtNIFFreelancer.getText(),
-                    txtTelefoneFreelancer.getText(),
+                    txtEmailFreelancer.getText(), txtNomeFreelancer.getText(),
+                    txtNIFFreelancer.getText(), txtTelefoneFreelancer.getText(),
                     endereco.getCodigoEnderecoPostal());
 
             if(adicionou) {
-                administrativoLogadoUI.tabelaFreelancers.getItems().addAll(registarFreelancerController.getAll());
-            }
-
-            AlertsUI.criarAlerta(Alert.AlertType.INFORMATION,
-                    MainApp.TITULO_APLICACAO,
-                    "Registar Freelancer.",
+                txtPassFreelancer.setText(registarFreelancerController.findByNif(txtNIFFreelancer.getText()).getPassword().getPasswordText());
+               // administrativoLogadoUI.tabelaFreelancers.getItems().addAll(registarFreelancerController.getAll());
+            
+                AlertsUI.criarAlerta(Alert.AlertType.INFORMATION,
+                    MainApp.TITULO_APLICACAO, "Registar Freelancer.",
                     adicionou ? "Freelancer registado com sucesso."
                                 : "Não foi possível registar o Freelancer.").show();
-
-            closeAddFreelancer(event);
-
+            }
         }
-        catch (IllegalArgumentException iae) {
+        catch (IllegalArgumentException | SQLException ex) {
             AlertsUI.criarAlerta(Alert.AlertType.ERROR,
                     MainApp.TITULO_APLICACAO,
                     "Erro nos dados.",
-                    iae.getMessage()).show();
+                    ex.getMessage()).show();
         
         }
     }

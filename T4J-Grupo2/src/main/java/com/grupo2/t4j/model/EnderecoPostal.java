@@ -108,7 +108,7 @@ public class EnderecoPostal {
     }
 
     public void setCodigoEnderecoPostal(String codigoEnderecoPostal) {
-        if (codigoEnderecoPostal == null || arruamento.trim().isEmpty()) {
+        if (codigoEnderecoPostal == null || codigoEnderecoPostal.trim().isEmpty()) {
             throw new NomeInvalidoException("O código do Endereço Postal é invalido");
         }
         this.codigoEnderecoPostal = codigoEnderecoPostal;

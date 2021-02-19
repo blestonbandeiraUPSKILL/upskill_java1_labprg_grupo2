@@ -28,19 +28,24 @@ public class RegistarFreelancerController {
     private RepositorioUtilizador repositorioUtilizador = fabricaRepositorios.getRepositorioUtilizador();
 
     public boolean registarFreelancer(String email, String nome, String nif, String
-            telefone, String codigoEnderecoPostal) {
+            telefone, String codigoEnderecoPostal) throws SQLException {
 
         AlgoritmoGeradorPasswords algoritmoGeradorPasswords = new AlgoritmoGeradorPasswords();
         Password password = new Password(algoritmoGeradorPasswords.geraPassword());
 
         Freelancer freelancer = new Freelancer(new Email(email), nome, password, nif, 
                 telefone, codigoEnderecoPostal);
+        registarFreelancerComoUtilizador(freelancer);
 
         return repositorioFreelancer.save(freelancer);
     }
 
     public List<Freelancer> getAll() {
         return repositorioFreelancer.getAll();
+    }
+    
+    public Freelancer findByNif(String NIF) {
+        return repositorioFreelancer.findByNif(NIF);
     }
 
     ///////API
@@ -55,6 +60,4 @@ public class RegistarFreelancerController {
         return usersAPI.registerUserWithRoles(email, nome, password, "freelancer")
                 && repositorioUtilizador.save(utilizador);
     }
-
-
 }
