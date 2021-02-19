@@ -5,6 +5,7 @@
  */
 package com.grupo2.t4j.model;
 
+import com.grupo2.t4j.exception.CodigoInvalidoException;
 import com.grupo2.t4j.exception.CompetenciaTecnicaInexistenteException;
 import com.grupo2.t4j.exception.DescricaoInvalidaException;
 import com.grupo2.t4j.exception.GrauInvalidoException;
@@ -17,25 +18,40 @@ import java.io.Serializable;
  */
 
 public class GrauProficiencia {
+    private String codigoGP;
     private String grau;
     private String designacao;
     private String codigoCompetenciaTecnica;
     
 
     public GrauProficiencia(GrauProficiencia gp) {
+        setCodigoGP(gp.codigoGP);
         setGrau(gp.grau);
         setDesignacao(gp.designacao);
     }
     
-    public GrauProficiencia(String grau, String designacao) {
+    public GrauProficiencia(String codigoGP, String grau, String designacao) {
+        setCodigoGP(codigoGP);
         setGrau(grau);
         setDesignacao(designacao);
         
     }
-    public GrauProficiencia(String grau, String designacao, String codigoCompetenciaTecnica){
+    public GrauProficiencia(String codigoGP, String grau, String designacao, String codigoCompetenciaTecnica){
+        setCodigoGP(codigoGP);
         setGrau(grau);
         setDesignacao(designacao);
         setCodigoCompetenciaTecnica(codigoCompetenciaTecnica);
+    }
+
+    public String getCodigoGP() {
+        return codigoGP;
+    }
+
+    public void setCodigoGP(String codigoGP) {
+        if (codigoGP == null || codigoGP.trim().isEmpty()) {
+            throw new CodigoInvalidoException("O código é inválido.");
+        }
+        this.codigoGP = codigoGP;
     }
 
     public String getGrau() {
@@ -81,4 +97,6 @@ public class GrauProficiencia {
                 ", codigoCompetenciaTecnica='" + codigoCompetenciaTecnica + '\'' +
                 '}';
     }
+
+
 }

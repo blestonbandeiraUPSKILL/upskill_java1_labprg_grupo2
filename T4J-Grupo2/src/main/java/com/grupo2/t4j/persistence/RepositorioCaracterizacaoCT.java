@@ -16,4 +16,5 @@ public interface RepositorioCaracterizacaoCT {
 
     List<CaracterizacaoCT> findByCompetenciaTecnica(List<String> codigoCompetenciasTecnicas);
 
+    CaracterizacaoCT findByCodigo(String codigoCCT);
 }

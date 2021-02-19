@@ -22,15 +22,16 @@ public class RegistarGrauProficienciaController {
     private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosInMemory();
     //private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosDatabase();
     private RepositorioGrauProficiencia repositorioGrauProficiencia = fabricaRepositorios.getRepositorioGrauProficiencia();
-    private RepositorioCompetenciaTecnica repostitorioCompetenciaTecnica = fabricaRepositorios.getRepositorioCompetenciaTecnica();
+    private RepositorioCompetenciaTecnica repositorioCompetenciaTecnica = fabricaRepositorios.getRepositorioCompetenciaTecnica();
     
     public List<GrauProficiencia> getAll() {
         return repositorioGrauProficiencia.getAll();
     }
 
     public boolean registarGrauProficiencia(String valor, String designacao, String codigoCompetenciaTecnica) {
-        CompetenciaTecnica competenciaTecnica = repostitorioCompetenciaTecnica.findByCodigo(codigoCompetenciaTecnica);
+
         GrauProficiencia grauProficiencia = new GrauProficiencia (valor, designacao, codigoCompetenciaTecnica);
+
         return repositorioGrauProficiencia.save(grauProficiencia);
     }
 

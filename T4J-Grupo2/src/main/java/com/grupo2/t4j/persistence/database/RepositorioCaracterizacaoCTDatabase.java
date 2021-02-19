@@ -53,4 +53,9 @@ public class RepositorioCaracterizacaoCTDatabase implements RepositorioCaracteri
     public List<CaracterizacaoCT> findByCompetenciaTecnica(List<String> codigoCompetenciasTecnicas) {
         return null;
     }
+
+    @Override
+    public CaracterizacaoCT findByCodigo(String codigoCCT) {
+        return null;
+    }
 }

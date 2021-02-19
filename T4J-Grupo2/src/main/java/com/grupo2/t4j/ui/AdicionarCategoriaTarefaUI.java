@@ -34,6 +34,7 @@ public class AdicionarCategoriaTarefaUI implements Initializable {
 
     @FXML TextField txtDescricaoBreve;
     @FXML TextField txtCodigo;
+    @FXML TextField txtCodigoCCT;
     @FXML TextArea txtDescricaoDetalhada;
     @FXML Button btnConfirmar;
     @FXML Button btnCancelar;
@@ -156,22 +157,20 @@ public class AdicionarCategoriaTarefaUI implements Initializable {
     @FXML
     public List<CaracterizacaoCT> addCompetenciaTecnica2CCTS() {
 
-
        boolean adicionou = registarCaracterizacaoCTController.registarCaracterizacaoCTS(
-
-               cmbGrauProficiencia.getValue().getGrau(),
+               txtCodigoCCT.getText(),
+               cmbGrauProficiencia.getValue().getCodigoGP(),
                cmbObrigatoriedade.getValue(),
                cmbCompetenciaTecnica.getValue().getCodigo());
 
        if(adicionou) {
-           listViewCompTecCat.getItems().addAll(registarCaracterizacaoCTController.getAll());
+           listViewCompTecCat.getItems().add(registarCaracterizacaoCTController.findByCodigo(txtCodigoCCT.getText()));
+           txtCodigoCCT.clear();
+           cmbGrauProficiencia.getSelectionModel().clearSelection();
+           cmbGrauProficiencia.getItems().clear();
+           cmbObrigatoriedade.getSelectionModel().clearSelection();
+           cmbCompetenciaTecnica.getSelectionModel().clearSelection();
        }
-
-        cmbGrauProficiencia.getSelectionModel().clearSelection();
-        cmbGrauProficiencia.getItems().clear();
-        cmbObrigatoriedade.getSelectionModel().clearSelection();
-        cmbCompetenciaTecnica.getSelectionModel().clearSelection();
-
 
         return caracterizacaoCTS;
     }

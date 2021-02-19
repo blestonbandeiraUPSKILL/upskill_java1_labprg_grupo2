@@ -31,4 +31,7 @@ public class RegistarCaracterizacaoCTController {
         return repositorioCaracterizacaoCT.save(caracterizacaoCT);
     }
 
+    public CaracterizacaoCT findByCodigo(String codigoCCT) {
+        return repositorioCaracterizacaoCT.findByCodigo(codigoCCT);
+    }
 }
