@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -13,7 +18,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="600.0" style="-fx-background-color: #c4c4c4;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.StartingPageUI">
+<BorderPane focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="600.0" style="-fx-background-color: #c4c4c4;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.StartingPageUI">
    <center>
       <GridPane alignment="CENTER" prefHeight="133.0" prefWidth="600.0" stylesheets="@../style/app.css" BorderPane.alignment="CENTER">
         <columnConstraints>
@@ -33,16 +38,20 @@
                   <Font name="Calibri" size="24.0" />
                </font>
             </Label>
-            <TextField fx:id="txtEmailLogin" alignment="CENTER" focusTraversable="false" maxHeight="30.0" maxWidth="200.0" promptText="email" GridPane.rowIndex="1">
+            <TextField fx:id="txtEmailLogin" alignment="CENTER" maxHeight="30.0" maxWidth="200.0" promptText="email" GridPane.rowIndex="1">
                <font>
                   <Font name="Calibri" size="14.0" />
-               </font>
-            </TextField>
-            <PasswordField fx:id="txtPasswordLogin" alignment="CENTER" focusTraversable="false" maxHeight="30.0" maxWidth="200.0" promptText="password" GridPane.rowIndex="2">
+               </font></TextField>
+            <PasswordField fx:id="txtPasswordLogin" alignment="CENTER" maxHeight="30.0" maxWidth="200.0" promptText="password" GridPane.rowIndex="2">
                <font>
                   <Font name="Calibri" size="14.0" />
                </font>
             </PasswordField>
+            <Label fx:id="lblLogin" alignment="CENTER" contentDisplay="CENTER" layoutX="253.0" layoutY="10.0" prefHeight="115.0" prefWidth="115.0" text="Login">
+               <font>
+                  <Font name="Calibri" size="24.0" />
+               </font>
+            </Label>
          </children>
          <BorderPane.margin>
             <Insets />
