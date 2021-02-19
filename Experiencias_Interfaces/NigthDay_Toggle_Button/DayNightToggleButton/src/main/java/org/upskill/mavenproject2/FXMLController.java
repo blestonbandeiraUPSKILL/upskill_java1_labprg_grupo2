@@ -50,9 +50,9 @@ public class FXMLController extends Region {
     }
 
     private void initializeSelf() {
-        String fonts = getClass().getResource("/fonts/fonts.css").toExternalForm();
+/*      String fonts = getClass().getResource("/fonts/fonts.css").toExternalForm();
         getStylesheets().add(fonts);
-
+*/
         String stylesheet = getClass().getResource("style.css").toExternalForm();
         getStylesheets().add(stylesheet);
 
