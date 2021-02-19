@@ -71,6 +71,7 @@ public class AdicionarCategoriaTarefaUI implements Initializable {
            @Override
            public void handle(ActionEvent event) {
                updateCmbCompetenciasTecnicas(event);
+
            }
         });
         
@@ -170,6 +171,7 @@ public class AdicionarCategoriaTarefaUI implements Initializable {
            cmbGrauProficiencia.getItems().clear();
            cmbObrigatoriedade.getSelectionModel().clearSelection();
            cmbCompetenciaTecnica.getSelectionModel().clearSelection();
+           cmbAreaActividade.setDisable(true);
        }
 
         return caracterizacaoCTS;

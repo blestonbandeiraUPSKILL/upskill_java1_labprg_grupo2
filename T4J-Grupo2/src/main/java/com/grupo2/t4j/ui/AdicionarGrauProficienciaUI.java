@@ -34,20 +34,12 @@ import javafx.scene.control.TextField;
  */
 public class AdicionarGrauProficienciaUI implements Initializable {
     
-    @FXML
-    private Button btnAdicionarGrau;
-
-    @FXML
-    private ListView<GrauProficiencia> listViewGrausAdicionados;
-
-    @FXML
-    private TextField txtDesignacao;
-
-    @FXML
-    private Button btnConcluir;
-
-    @FXML
-    private TextField txtValor;
+    @FXML Button btnAdicionarGrau;
+    @FXML Button btnConcluir;
+    @FXML ListView<GrauProficiencia> listViewGrausAdicionados;
+    @FXML TextField txtDesignacao;
+    @FXML TextField txtValor;
+    @FXML TextField txtCodigoGP;
     
     private List<GrauProficiencia> listaGrausAplicaveis;
     
@@ -67,10 +59,7 @@ public class AdicionarGrauProficienciaUI implements Initializable {
         registarGrauProficienciaController = new RegistarGrauProficienciaController();
 
     }    
-    
-    
-   
-    
+
     /*public void concluirAction (ActionEvent actionEvent){
         
         registarGrauProficienciaController = new RegistarGrauProficienciaController();
@@ -81,6 +70,7 @@ public class AdicionarGrauProficienciaUI implements Initializable {
         
         try{
             boolean adicionou = registarGrauProficienciaController.registarGrauProficiencia(
+                    txtCodigoGP.getText(),
                     txtValor.getText(),
                     txtDesignacao.getText(),
                     adicionarCompetenciaTecnicaUI.txtCodigo.getText());
@@ -90,6 +80,7 @@ public class AdicionarGrauProficienciaUI implements Initializable {
                         registarGrauProficienciaController.findByValor(
                         txtValor.getText(),
                         adicionarCompetenciaTecnicaUI.txtCodigo.getText() ));
+                txtCodigoGP.clear();
                 txtValor.clear();
                 txtDesignacao.clear();
             }

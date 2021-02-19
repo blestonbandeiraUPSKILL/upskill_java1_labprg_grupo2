@@ -37,7 +37,7 @@ public class CaracterizacaoCT implements Serializable{
     public CaracterizacaoCT(String codigoCCT, String codigoGP, Obrigatoriedade obrigatoriedade,
                             String codigoCompetenciaTecnica) {
         this.codigoCCT = codigoCCT;
-        this.codigoCompetenciaTecnica = codigoGP;
+        this.codigoGP = codigoGP;
         this.obrigatoriedade = obrigatoriedade;
         this.codigoCompetenciaTecnica = codigoCompetenciaTecnica;
     }

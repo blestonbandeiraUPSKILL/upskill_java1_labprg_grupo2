@@ -28,9 +28,9 @@ public class RegistarGrauProficienciaController {
         return repositorioGrauProficiencia.getAll();
     }
 
-    public boolean registarGrauProficiencia(String valor, String designacao, String codigoCompetenciaTecnica) {
+    public boolean registarGrauProficiencia(String codigoGP, String valor, String designacao, String codigoCompetenciaTecnica) {
 
-        GrauProficiencia grauProficiencia = new GrauProficiencia (valor, designacao, codigoCompetenciaTecnica);
+        GrauProficiencia grauProficiencia = new GrauProficiencia (codigoGP, valor, designacao, codigoCompetenciaTecnica);
 
         return repositorioGrauProficiencia.save(grauProficiencia);
     }
