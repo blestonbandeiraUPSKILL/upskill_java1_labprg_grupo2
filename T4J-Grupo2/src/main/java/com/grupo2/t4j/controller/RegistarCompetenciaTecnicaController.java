@@ -49,6 +49,10 @@ public class RegistarCompetenciaTecnicaController {
         return repositorioCompetenciaTecnica.getAll();
     }
 
+    public List<AreaActividade> getAllAreasActividade(){
+        return repositorioAreaActividade.getAll();
+    }
+
     public List<CompetenciaTecnica> findByAreaActividade(AreaActividade areaActividade) {
         return repositorioCompetenciaTecnica.findByAreaActividade(areaActividade);
     }

@@ -6,8 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="8ca9f66f-f143-4134-afe5-eb7245bd0a9c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/AdministrativoLogadoUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/AdministrativoLogadoUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/grupo2/t4j/fxml/StartingPageScene.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/grupo2/t4j/fxml/StartingPageScene.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/controller/RegistarAreaActividadeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/controller/RegistarAreaActividadeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/controller/RegistarCompetenciaTecnicaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/controller/RegistarCompetenciaTecnicaController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/persistence/inmemory/FabricaRepositoriosInMemory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/persistence/inmemory/FabricaRepositoriosInMemory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/AdicionarCompetenciaTecnicaUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/AdicionarCompetenciaTecnicaUI.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -264,14 +266,19 @@
           <option name="timeStamp" value="122" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/AdministrativoLogadoUI.java</url>
-          <line>143</line>
-          <option name="timeStamp" value="123" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/grupo2/t4j/api/UsersAPI.java</url>
           <line>73</line>
           <option name="timeStamp" value="124" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/grupo2/t4j/controller/RegistarAreaActividadeController.java</url>
+          <line>33</line>
+          <option name="timeStamp" value="125" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/AdicionarCompetenciaTecnicaUI.java</url>
+          <line>77</line>
+          <option name="timeStamp" value="126" />
         </line-breakpoint>
         <breakpoint type="java-exception">
           <properties class="java.lang.IllegalArgumentException" package="java.lang" />

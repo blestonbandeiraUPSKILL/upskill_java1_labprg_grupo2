@@ -11,6 +11,8 @@ import com.grupo2.t4j.persistence.FabricaRepositorios;
 import com.grupo2.t4j.persistence.RepositorioAreaActividade;
 import com.grupo2.t4j.persistence.inmemory.FabricaRepositoriosInMemory;
 import com.grupo2.t4j.persistence.inmemory.RepositorioAreaActividadeInMemory;
+
+import java.awt.geom.Area;
 import java.io.File;
 
 import java.util.List;

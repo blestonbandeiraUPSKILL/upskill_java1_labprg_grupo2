@@ -75,7 +75,7 @@ public class AdicionarCompetenciaTecnicaUI implements Initializable {
         adicionarStage = new Stage();
         adicionarStage.initModality(Modality.APPLICATION_MODAL);;
         adicionarStage.setResizable(false);
-        cmbAreaActividade.getItems().setAll(registarAreaActividadeController.getAll());
+        cmbAreaActividade.getItems().setAll(registarCompetenciaTecnicaController.getAllAreasActividade());
 
     }
 
