@@ -27,6 +27,8 @@ import javafx.stage.Window;
 import javafx.stage.WindowEvent;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 import java.io.IOException;
 import java.net.URL;
@@ -363,14 +365,14 @@ public class AdministrativoLogadoUI implements Initializable {
                     "Não foi seleccionado nenhum ficheiro!").show();
         }
     }
-
-
-    public void addFreelancer(ActionEvent actionEvent) {
-    }
+    
 
     public void addHabilitacaoFreelancer(ActionEvent actionEvent) {
     }
 
     public void addCompetenciaFreelancer(ActionEvent actionEvent) {
+    }
+
+    public void addFreelancerScene(ActionEvent actionEvent) {
     }
 }

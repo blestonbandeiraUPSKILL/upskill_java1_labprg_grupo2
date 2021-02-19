@@ -18,7 +18,7 @@
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="700.0" style="-fx-background-color: #c4c4c4;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.AdicionarAreaAtividadeUI">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="700.0" style="-fx-background-color: #c4c4c4;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.AdicionarHabilitacaoAcademicaUI">
    <center>
       <BorderPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #c4c4c4;" BorderPane.alignment="CENTER">
          <top>
@@ -68,12 +68,12 @@
                                                    </VBox.margin>
                                                 </TextField>
                                                 <Label text="Habilitações Acadêmicas Registadas" />
-                                                <TableView prefHeight="200.0" prefWidth="200.0">
+                                                <TableView fx:id="tabelaHabilitacao" prefHeight="200.0" prefWidth="200.0">
                                                   <columns>
-                                                    <TableColumn prefWidth="74.0" text="Grau" />
-                                                    <TableColumn prefWidth="281.0" text="Designação" />
-                                                      <TableColumn prefWidth="231.0" text="Instituição" />
-                                                      <TableColumn prefWidth="73.0" text="Média" />
+                                                    <TableColumn fx:id="colunaGrau" prefWidth="74.0" text="Grau" />
+                                                    <TableColumn fx:id="colunaDesignacao" prefWidth="281.0" text="Designação" />
+                                                      <TableColumn fx:id="colunaInstituicao" prefWidth="231.0" text="Instituição" />
+                                                      <TableColumn fx:id="colunaMedia" prefWidth="73.0" text="Média" />
                                                   </columns>
                                                    <VBox.margin>
                                                       <Insets bottom="5.0" top="5.0" />
