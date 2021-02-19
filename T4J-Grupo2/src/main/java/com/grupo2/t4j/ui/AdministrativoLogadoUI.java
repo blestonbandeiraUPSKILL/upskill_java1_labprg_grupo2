@@ -358,4 +358,12 @@ public class AdministrativoLogadoUI implements Initializable {
     }
 
 
+    public void addFreelancer(ActionEvent actionEvent) {
+    }
+
+    public void addHabilitacaoFreelancer(ActionEvent actionEvent) {
+    }
+
+    public void addCompetenciaFreelancer(ActionEvent actionEvent) {
+    }
 }

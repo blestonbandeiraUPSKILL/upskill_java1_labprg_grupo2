@@ -80,11 +80,16 @@ public class AdicionarGrauProficienciaUI implements Initializable {
     public void adicionarGrauAction (ActionEvent actionEvent){
         
         try{
-            boolean adicionou = registarGrauProficienciaController.registarGrauProficiencia(Integer.parseInt(txtValor.getText()),
-                    txtDesignacao.getText(), adicionarCompetenciaTecnicaUI.txtCodigo.getText());
+            boolean adicionou = registarGrauProficienciaController.registarGrauProficiencia(
+                    txtValor.getText(),
+                    txtDesignacao.getText(),
+                    adicionarCompetenciaTecnicaUI.txtCodigo.getText());
 
             if(adicionou) {
-                listViewGrausAdicionados.getItems().add(registarGrauProficienciaController.findByValor(Integer.parseInt(txtValor.getText()),adicionarCompetenciaTecnicaUI.txtCodigo.getText() ));
+                listViewGrausAdicionados.getItems().add(
+                        registarGrauProficienciaController.findByValor(
+                        txtValor.getText(),
+                        adicionarCompetenciaTecnicaUI.txtCodigo.getText() ));
                 txtValor.clear();
                 txtDesignacao.clear();
             }
@@ -106,11 +111,11 @@ public class AdicionarGrauProficienciaUI implements Initializable {
         
         }
         
-        
-        GrauProficiencia grauProficiencia = new GrauProficiencia(
-        Integer.parseInt(txtValor.getText()), txtDesignacao.getText());
+
+ /*       GrauProficiencia grauProficiencia = new GrauProficiencia(
+        txtValor.getText(), txtDesignacao.getText());
         listaGrausAplicaveis.add(grauProficiencia);
-        
+        */
     }
     
     @FXML

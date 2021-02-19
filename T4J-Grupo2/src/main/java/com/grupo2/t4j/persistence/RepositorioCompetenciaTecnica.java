@@ -25,7 +25,7 @@ public interface RepositorioCompetenciaTecnica {
 
     CompetenciaTecnica findByCodigo(String codigo);
 
-    ArrayList<CompetenciaTecnica> findByAreaActividade(AreaActividade at);
+    ArrayList<CompetenciaTecnica> findByAreaActividade(String codigoAreaActividade);
 
 
 

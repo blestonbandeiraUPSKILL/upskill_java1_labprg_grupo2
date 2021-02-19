@@ -23,11 +23,11 @@ public class RegistarCaracterizacaoCTController {
         return repositorioCaracterizacaoCT.getAll();
     }
 
-    public boolean registarCaracterizacaoCTS(GrauProficiencia gp, Obrigatoriedade obrigatoriedade,
-                                                  CompetenciaTecnica competenciaTecnica) {
+    public boolean registarCaracterizacaoCTS(String codigoGP, Obrigatoriedade obrigatoriedade,
+                                                  String codigoCompetenciaTecnica) {
 
+        CaracterizacaoCT caracterizacaoCT = new CaracterizacaoCT(codigoGP, obrigatoriedade, codigoCompetenciaTecnica);
 
-        CaracterizacaoCT caracterizacaoCT = new CaracterizacaoCT(gp,obrigatoriedade, competenciaTecnica);
         return repositorioCaracterizacaoCT.save(caracterizacaoCT);
     }
 

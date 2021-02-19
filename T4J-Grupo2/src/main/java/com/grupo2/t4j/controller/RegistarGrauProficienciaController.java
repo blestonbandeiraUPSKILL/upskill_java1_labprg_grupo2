@@ -28,9 +28,9 @@ public class RegistarGrauProficienciaController {
         return repositorioGrauProficiencia.getAll();
     }
 
-    public boolean registarGrauProficiencia(int valor, String designacao, String codigoCompetenciaTecnica) {
+    public boolean registarGrauProficiencia(String valor, String designacao, String codigoCompetenciaTecnica) {
         CompetenciaTecnica competenciaTecnica = repostitorioCompetenciaTecnica.findByCodigo(codigoCompetenciaTecnica);
-        GrauProficiencia grauProficiencia = new GrauProficiencia (valor, designacao, competenciaTecnica); 
+        GrauProficiencia grauProficiencia = new GrauProficiencia (valor, designacao, codigoCompetenciaTecnica);
         return repositorioGrauProficiencia.save(grauProficiencia);
     }
 
@@ -38,7 +38,7 @@ public class RegistarGrauProficienciaController {
         return repositorioGrauProficiencia.findByCompetenciaTecnica(codigoCompetenciaTecnica);
     }
     
-    public GrauProficiencia findByValor(int valor, String codigoCompetenciaTecnica) {
+    public GrauProficiencia findByValor(String valor, String codigoCompetenciaTecnica) {
         return repositorioGrauProficiencia.findByValor(valor, codigoCompetenciaTecnica);
     }
     
