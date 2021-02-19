@@ -34,7 +34,8 @@ public class RepositorioCategoriaTarefaDatabase implements RepositorioCategoriaT
     }
 
     @Override
-    public void save(String descBreve, String descDetalhada, AreaActividade areaActividade, List<CaracterizacaoCT> caracterizacaoCTS) {
+    public void save(String codigoCategoria, String descBreve, String descDetalhada,
+                     String codigoAreaActividade, List<CaracterizacaoCT> caracterizacaoCTS) {
 
     }
 

@@ -34,7 +34,9 @@ public class RepositorioCategoriaTarefaInMemory implements Serializable, Reposit
     }
 
     @Override
-    public void save(String descBreve, String descDetalhada, AreaActividade areaActividade, List<CaracterizacaoCT> caracterizacaoCTS) {
+    public void save(String codigoCategoria, String descBreve, String descDetalhada,
+                     String codigoAreaActividade, List<CaracterizacaoCT> caracterizacaoCTS) {
+
 
     }
 
@@ -45,7 +47,7 @@ public class RepositorioCategoriaTarefaInMemory implements Serializable, Reposit
             this.listaCategorias.add(categoria);
             return true;
         } else {
-            throw new CategoriaDuplicadaException(c.getCodigoCategoria() + ": Categoria ja existe");
+            throw new CategoriaDuplicadaException(c.getCodigoCategoria() + ": Categoria já existe");
         }
 
     }

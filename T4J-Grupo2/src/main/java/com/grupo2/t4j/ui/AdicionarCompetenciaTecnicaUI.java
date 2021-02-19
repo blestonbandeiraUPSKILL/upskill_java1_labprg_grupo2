@@ -46,22 +46,14 @@ public class AdicionarCompetenciaTecnicaUI implements Initializable {
     private Stage adicionarStage;
     private Scene sceneAddGrauProficiencia;
 
-    @FXML
-    Button btnConfirmar;
-    @FXML
-    Button btnCancelar;
-    @FXML
-    TextArea txtDescDetalhada;
-    @FXML
-    TextField txtCodigo;
-    @FXML
-    TextArea txtDescricaoBreve;
-    @FXML
-    ComboBox<AreaActividade> cmbAreaActividade;
-    @FXML
-    ComboBox<GrauProficiencia> cmbGrauProficiencia;
-    @FXML
-    ListView<GrauProficiencia> listViewGrausAplicaveis;
+    @FXML Button btnConfirmar;
+    @FXML Button btnCancelar;
+    @FXML TextArea txtDescDetalhada;
+    @FXML TextField txtCodigo;
+    @FXML TextArea txtDescricaoBreve;
+    @FXML ComboBox<AreaActividade> cmbAreaActividade;
+    @FXML ComboBox<GrauProficiencia> cmbGrauProficiencia;
+    @FXML ListView<GrauProficiencia> listViewGrausAplicaveis;
 
     public void associarParentUI(AdministrativoLogadoUI administrativoLogadoUI) {
         this.administrativoLogadoUI = administrativoLogadoUI;
@@ -77,8 +69,6 @@ public class AdicionarCompetenciaTecnicaUI implements Initializable {
         adicionarStage.setResizable(false);
 
         cmbAreaActividade.getItems().setAll(registarCompetenciaTecnicaController.getAllAreasActividade());
-
-
     }
 
     @FXML

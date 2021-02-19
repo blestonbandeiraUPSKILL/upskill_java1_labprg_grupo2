@@ -90,8 +90,8 @@ public class AdicionarCategoriaTarefaUI implements Initializable {
     }
     
     public void updateCmbGrauProficiencia(ActionEvent actionEvent) {
-
-        cmbGrauProficiencia.getItems().addAll(registarGrauProficienciaController.findByCompetenciaTecnica(
+        cmbGrauProficiencia.getItems().addAll(
+                registarGrauProficienciaController.findByCompetenciaTecnica(
                 cmbCompetenciaTecnica.getSelectionModel().getSelectedItem().getCodigo()));
     }
     
@@ -127,7 +127,8 @@ public class AdicionarCategoriaTarefaUI implements Initializable {
             );
 
             if(adicionou) {
-                administrativoLogadoUI.listaCategorias.getItems().addAll(registarCategoriaController.getAll());
+                administrativoLogadoUI.listaCategorias.getItems().add(
+                        registarCategoriaController.findByCodigo(txtCodigo.getText()));
             }
 
             AlertsUI.criarAlerta(Alert.AlertType.INFORMATION,
@@ -166,14 +167,15 @@ public class AdicionarCategoriaTarefaUI implements Initializable {
                cmbCompetenciaTecnica.getValue().getCodigo());
 
         if(adicionou) {
-           caracterizacaoCTS.add(registarCaracterizacaoCTController.findByCodigo(txtCodigoCCT.getText()));
-           listViewCompTecCat.getItems().add(registarCaracterizacaoCTController.findByCodigo(txtCodigoCCT.getText()));
-           txtCodigoCCT.clear();
-           cmbGrauProficiencia.getSelectionModel().clearSelection();
-           cmbGrauProficiencia.getItems().clear();
-           cmbObrigatoriedade.getSelectionModel().clearSelection();
-           cmbCompetenciaTecnica.getSelectionModel().clearSelection();
-           cmbAreaActividade.setDisable(true);
+            caracterizacaoCTS.add(registarCaracterizacaoCTController.findByCodigo(txtCodigoCCT.getText()));
+            listViewCompTecCat.getItems().add(registarCaracterizacaoCTController.findByCodigo(txtCodigoCCT.getText()));
+            txtCodigoCCT.clear();
+            cmbCompetenciaTecnica.getSelectionModel().clearSelection();
+            cmbGrauProficiencia.getSelectionModel().clearSelection();
+            cmbGrauProficiencia.getItems().clear();
+            cmbObrigatoriedade.getSelectionModel().clearSelection();
+
+            cmbAreaActividade.setDisable(true);
         }
 
         return caracterizacaoCTS;
