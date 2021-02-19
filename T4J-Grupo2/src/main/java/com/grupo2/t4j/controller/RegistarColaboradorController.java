@@ -60,10 +60,9 @@ public class RegistarColaboradorController {
         Email email = colaborador.getEmail();
         Password password = colaborador.getPassword();
 
-        UsersAPI usersAPI = new UsersAPI();
         Utilizador utilizador = new Utilizador(email, nome, password);
 
-        return usersAPI.registerUserWithRoles(email, nome, password, "gestor")
+        return UsersAPI.getInstance().registerUserWithRoles(email, nome, password, "gestor")
                 && repositorioUtilizador.save(utilizador);
     }
 
@@ -72,10 +71,10 @@ public class RegistarColaboradorController {
         Email email = colaborador.getEmail();
         Password password = colaborador.getPassword();
 
-        UsersAPI usersAPI = new UsersAPI();
+
         Utilizador utilizador = new Utilizador(email, nome, password);
 
-        return usersAPI.registerUserWithRoles(email, nome, password, "colaborador") &&
+        return UsersAPI.getInstance().registerUserWithRoles(email, nome, password, "colaborador") &&
                 repositorioUtilizador.save(utilizador);
     }
 
