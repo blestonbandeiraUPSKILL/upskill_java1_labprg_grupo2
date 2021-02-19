@@ -56,55 +56,49 @@
                                           <VBox layoutX="1.0" layoutY="5.0" prefHeight="490.0" prefWidth="700.0">
                                              <children>
                                                 <Label text="Nome do Freelancer" />
-                                                <TextField fx:id="txtNomeFreelancer" prefHeight="25.0" prefWidth="481.0" promptText="nome do Freelancer">
-                                                   <VBox.margin>
-                                                      <Insets bottom="5.0" top="5.0" />
-                                                   </VBox.margin>
-                                                </TextField>
-                                                <Label text="Email do Freelancer" />
-                                                <TextField fx:id="txtEmailFreelancer" promptText="email@dominio.pt">
+                                                <TextField fx:id="txtNomeFreelancer" prefHeight="25.0" prefWidth="481.0">
                                                    <VBox.margin>
                                                       <Insets bottom="5.0" top="5.0" />
                                                    </VBox.margin>
                                                 </TextField>
                                                 <Label text="NIF do Freelancer" />
-                                                <TextField fx:id="txtNIFFreelancer" promptText="NIF do Freelancer (999999999)">
+                                                <TextField fx:id="txtNIFFreelancer">
                                                    <VBox.margin>
                                                       <Insets bottom="5.0" top="5.0" />
                                                    </VBox.margin>
                                                 </TextField>
-                                                <Label text="Telefone" />
-                                                <TextField fx:id="txtTelefoneFreelancer" promptText="telefone do Freelancer (999999999)">
+                                                <Label text="Habilitações Acadêmicas Registadas" />
+                                                <TableView prefHeight="200.0" prefWidth="200.0">
+                                                  <columns>
+                                                    <TableColumn prefWidth="74.0" text="Grau" />
+                                                    <TableColumn prefWidth="281.0" text="Designação" />
+                                                      <TableColumn prefWidth="231.0" text="Instituição" />
+                                                      <TableColumn prefWidth="73.0" text="Média" />
+                                                  </columns>
+                                                   <VBox.margin>
+                                                      <Insets bottom="5.0" top="5.0" />
+                                                   </VBox.margin>
+                                                </TableView>
+                                                <Label text="Grau de Habilitação Acadêmica" />
+                                                <TextField fx:id="txtGrau" promptText="(p.e. Licenciatura, Mestrado, Doutoramento, Pós-graduação,Técnico, etc)">
                                                    <VBox.margin>
                                                       <Insets bottom="5.0" top="5.0" />
                                                    </VBox.margin>
                                                 </TextField>
-                                                <Label text="Endereço - Arruamento" />
-                                                <TextField fx:id="txtArruamentoFreelancer" promptText="arruamento">
+                                                <Label text="Designação do Curso " />
+                                                <TextField fx:id="txtDesignacao" promptText="designação do curso referente ao grau de habilitação acadêmica">
                                                    <VBox.margin>
                                                       <Insets bottom="5.0" top="5.0" />
                                                    </VBox.margin>
                                                 </TextField>
-                                                <Label text="Endereço - Número de Porta" />
-                                                <TextField fx:id="txtPortaFreelancer" promptText="número de porta ">
+                                                <Label text="Instituição para Concessão do Grau de Habilitação Acadêmica" />
+                                                <TextField fx:id="txtInstituicao" promptText="instituição de realização do curso">
                                                    <VBox.margin>
                                                       <Insets bottom="5.0" top="5.0" />
                                                    </VBox.margin>
                                                 </TextField>
-                                                <Label text="Endereço - Localidade" />
-                                                <TextField fx:id="txtLocalidadeFreelancer" promptText="localidade">
-                                                   <VBox.margin>
-                                                      <Insets bottom="5.0" top="5.0" />
-                                                   </VBox.margin>
-                                                </TextField>
-                                                <Label text="Endereço - Código Postal" />
-                                                <TextField fx:id="txtCodPostalFreelancer" promptText="XXXX-XXX">
-                                                   <VBox.margin>
-                                                      <Insets bottom="5.0" top="5.0" />
-                                                   </VBox.margin>
-                                                </TextField>
-                                                <Label text="Password do Freelancer" />
-                                                <TextField fx:id="txtPassFreelancer" promptText="(password inicial de 10 caracteres)">
+                                                <Label text="Média do Curso" />
+                                                <TextField fx:id="txtMedia" promptText="(valor numérico não negativo)">
                                                    <VBox.margin>
                                                       <Insets bottom="5.0" top="5.0" />
                                                    </VBox.margin>
@@ -128,7 +122,7 @@
          <bottom>
             <FlowPane alignment="CENTER_RIGHT" prefHeight="39.0" prefWidth="700.0" style="-fx-background-color: #c4c4c4;" BorderPane.alignment="CENTER">
                <children>
-                  <Button fx:id="btnAddFreelancer" defaultButton="true" mnemonicParsing="false" onAction="#addFreelancer" text="Confirmar">
+                  <Button fx:id="btnAddHabilitacao" defaultButton="true" mnemonicParsing="false" onAction="#addHabilitacao" text="Adicionar Habilitação">
                      <font>
                         <Font name="Calibri" size="14.0" />
                      </font>
@@ -141,7 +135,15 @@
                         <Font name="Calibri" size="14.0" />
                      </font>
                      <FlowPane.margin>
-                        <Insets bottom="10.0" left="10.0" right="20.0" />
+                        <Insets bottom="10.0" left="10.0" right="10.0" />
+                     </FlowPane.margin>
+                  </Button>
+                  <Button fx:id="btnSairHabilitacao" mnemonicParsing="false" onAction="#sairAction" text="Sair">
+                     <font>
+                        <Font name="Calibri" size="14.0" />
+                     </font>
+                     <FlowPane.margin>
+                        <Insets bottom="10.0" right="20.0" />
                      </FlowPane.margin>
                   </Button>
                </children>
