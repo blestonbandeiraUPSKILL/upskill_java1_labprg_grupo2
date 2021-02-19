@@ -365,14 +365,14 @@ public class AdministrativoLogadoUI implements Initializable {
                     "Não foi seleccionado nenhum ficheiro!").show();
         }
     }
-
-
-    public void addFreelancer(ActionEvent actionEvent) {
-    }
+    
 
     public void addHabilitacaoFreelancer(ActionEvent actionEvent) {
     }
 
     public void addCompetenciaFreelancer(ActionEvent actionEvent) {
+    }
+
+    public void addFreelancerScene(ActionEvent actionEvent) {
     }
 }
