@@ -7,6 +7,7 @@ package com.grupo2.t4j.persistence;
 
 import com.grupo2.t4j.model.*;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,11 +20,11 @@ public interface RepositorioCompetenciaTecnica {
     void save(String codigo, String descBreve, String descDetalhada,
               String codigoAreaActividade);
 
-    boolean save(CompetenciaTecnica competenciaTecnica);
+    boolean save(CompetenciaTecnica competenciaTecnica) throws SQLException;
 
-    List<CompetenciaTecnica> getAll();
+    List<CompetenciaTecnica> getAll() throws SQLException;
 
-    CompetenciaTecnica findByCodigo(String codigo);
+    CompetenciaTecnica findByCodigo(String codigo) throws SQLException;
 
     ArrayList<CompetenciaTecnica> findByAreaActividade(String codigoAreaActividade);
 

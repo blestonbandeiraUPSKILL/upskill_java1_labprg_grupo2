@@ -9,8 +9,8 @@ import java.util.List;
 public interface RepositorioCategoriaTarefa {
 
 
-     void save(String descBreve, String descDetalhada,
-               AreaActividade areaActividade, List<CaracterizacaoCT> caracterizacaoCTS);
+     void save(String codigoCategoria, String descBreve, String descDetalhada,
+               String codigoAreaActividade, List<CaracterizacaoCT> caracterizacaoCTS);
 
     boolean save(Categoria categoria);
 

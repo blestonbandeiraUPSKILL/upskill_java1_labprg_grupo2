@@ -22,6 +22,9 @@ public class RegistarOrganizacaoController {
     private RepositorioEnderecoPostal repositorioEnderecoPostal = fabricaRepositorios.getRepositorioEnderecoPostal();
     private UsersAPI usersAPI;
 
+    public RegistarOrganizacaoController() throws SQLException {
+    }
+
     public boolean registarOrganizacao(String nif, String nome, String website,
                                        String telefone, String emailOrganizacao, String emailGes,
                                        String codigoEnderecoPostal, String arruamento, String numeroPorta,

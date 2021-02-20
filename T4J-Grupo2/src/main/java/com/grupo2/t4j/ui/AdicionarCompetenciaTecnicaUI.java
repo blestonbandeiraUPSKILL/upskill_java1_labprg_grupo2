@@ -11,6 +11,7 @@ import com.grupo2.t4j.model.AreaActividade;
 import com.grupo2.t4j.model.CompetenciaTecnica;
 import com.grupo2.t4j.model.GrauProficiencia;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 //import com.grupo2.t4j.repository.RepositorioAreaActividade;
 import java.io.IOException;
@@ -46,22 +47,14 @@ public class AdicionarCompetenciaTecnicaUI implements Initializable {
     private Stage adicionarStage;
     private Scene sceneAddGrauProficiencia;
 
-    @FXML
-    Button btnConfirmar;
-    @FXML
-    Button btnCancelar;
-    @FXML
-    TextArea txtDescDetalhada;
-    @FXML
-    TextField txtCodigo;
-    @FXML
-    TextArea txtDescricaoBreve;
-    @FXML
-    ComboBox<AreaActividade> cmbAreaActividade;
-    @FXML
-    ComboBox<GrauProficiencia> cmbGrauProficiencia;
-    @FXML
-    ListView<GrauProficiencia> listViewGrausAplicaveis;
+    @FXML Button btnConfirmar;
+    @FXML Button btnCancelar;
+    @FXML TextArea txtDescDetalhada;
+    @FXML TextField txtCodigo;
+    @FXML TextArea txtDescricaoBreve;
+    @FXML ComboBox<AreaActividade> cmbAreaActividade;
+    @FXML ComboBox<GrauProficiencia> cmbGrauProficiencia;
+    @FXML ListView<GrauProficiencia> listViewGrausAplicaveis;
 
     public void associarParentUI(AdministrativoLogadoUI administrativoLogadoUI) {
         this.administrativoLogadoUI = administrativoLogadoUI;
@@ -72,13 +65,16 @@ public class AdicionarCompetenciaTecnicaUI implements Initializable {
         registarAreaActividadeController = new RegistarAreaActividadeController();
         registarCompetenciaTecnicaController = new RegistarCompetenciaTecnicaController();
 
+
         adicionarStage = new Stage();
         adicionarStage.initModality(Modality.APPLICATION_MODAL);;
         adicionarStage.setResizable(false);
 
-        cmbAreaActividade.getItems().setAll(registarCompetenciaTecnicaController.getAllAreasActividade());
-
-
+        try {
+            cmbAreaActividade.getItems().setAll(registarCompetenciaTecnicaController.getAllAreasActividade());
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }
     }
 
     @FXML
@@ -119,7 +115,7 @@ public class AdicionarCompetenciaTecnicaUI implements Initializable {
                     "Registar Competência Técnica.",
                     adicionou ? "Competencia Tecnica registada com sucesso."
                             : "Não foi possível registar a Competência Técncia.").show();
-        } catch (IllegalArgumentException iae) {
+        } catch (IllegalArgumentException | SQLException iae) {
             AlertsUI.criarAlerta(Alert.AlertType.ERROR,
                     MainApp.TITULO_APLICACAO,
                     "Erro nos dados.",

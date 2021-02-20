@@ -31,7 +31,7 @@ public class RepositorioAnuncioDataBase implements RepositorioAnuncio {
     /**
      * Inicializa o Repositório de Anúncios
      */
-    RepositorioAnuncioDataBase(){    }
+    private RepositorioAnuncioDataBase(){    }
 
     /**
      * Devolve uma instância estática do Repositório de Anúncios

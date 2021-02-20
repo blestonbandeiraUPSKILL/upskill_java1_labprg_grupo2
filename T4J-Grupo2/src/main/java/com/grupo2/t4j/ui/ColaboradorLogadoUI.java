@@ -72,8 +72,12 @@ public class ColaboradorLogadoUI implements Initializable {
         adicionarStage.setResizable(false);
 
         //tab Lista de Tarefas
-        cmbAreaActividadeListaTarefas.getItems().setAll(registarAreaActividadeController.getAll());
-        
+        try {
+            cmbAreaActividadeListaTarefas.getItems().setAll(registarAreaActividadeController.getAll());
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }
+
         cmbAreaActividadeListaTarefas.setOnAction(new EventHandler<ActionEvent>() {
            @Override
            public void handle(ActionEvent event) {
@@ -85,7 +89,11 @@ public class ColaboradorLogadoUI implements Initializable {
         listViewTarefas.getItems().addAll(registarTarefaController.getAll());
 
         //tab Especificar Tarefa
-        cmbAreaActividadeEspecificarTarefa.getItems().setAll(registarAreaActividadeController.getAll());
+        try {
+            cmbAreaActividadeEspecificarTarefa.getItems().setAll(registarAreaActividadeController.getAll());
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }
 
         cmbAreaActividadeEspecificarTarefa.setOnAction(new EventHandler<ActionEvent>() {
            @Override
@@ -112,7 +120,7 @@ public class ColaboradorLogadoUI implements Initializable {
     public void updateCmbCategoriasTarefaLista(ActionEvent actionEvent) {
         List<Categoria> listaCategoriasTarefa =
                 registarCategoriaController.findByAreaActividade(
-                cmbAreaActividadeListaTarefas.getSelectionModel().getSelectedItem());
+                cmbAreaActividadeListaTarefas.getSelectionModel().getSelectedItem().getCodigo());
 
         cmbCategoriaTarefaListaTarefas.getItems().addAll(listaCategoriasTarefa);
     }
@@ -120,8 +128,7 @@ public class ColaboradorLogadoUI implements Initializable {
     public void updateCmbCategoriasTarefaRegisto(ActionEvent actionEvent) {
         List<Categoria> listaCategoriasTarefa =
                 registarCategoriaController.findByAreaActividade(
-                cmbAreaActividadeEspecificarTarefa.getSelectionModel().getSelectedItem());
-
+                cmbAreaActividadeEspecificarTarefa.getSelectionModel().getSelectedItem().getCodigo());
 
         cmbCategoriaTarefaEspecificarTarefa.getItems().addAll(listaCategoriasTarefa);
     }
@@ -215,7 +222,7 @@ public class ColaboradorLogadoUI implements Initializable {
 
     ////////////////// Ficheiros //////////////////
 
-    public void importAreaActividade(ActionEvent actionEvent) {
+    public void importAreaActividade(ActionEvent actionEvent) throws SQLException {
         String descricao, extensao;
 
         descricao = "Ficheiro Area de Actividade";

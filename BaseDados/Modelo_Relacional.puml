@@ -157,11 +157,12 @@ entity "HabilitacaoAcademica" {
 }
 
 entity "ReconhecimentoGP" {
-    idReconhecimntoGP: text {PK}
+    idGrauProficiencia: {PK, FK}
+    emailFreelancer: text {PK, FK}
     --
     dataReconhecimento: date {NN}
-    codigoCompTecnica: text {FK}
 }
+   
 
 entity "FreelancerHabAcademica" {
     emailFreelancer: text {PK, FK}
@@ -196,7 +197,7 @@ Freelancer ||--|{ FreelancerHabAcademica
 HabilitacaoAcademica ||--|{ FreelancerHabAcademica
 Freelancer ||--|{ ReconhecimentoGP
 ReconhecimentoGP }|--|| GrauProficiencia
-CaracterCT ||--|{ GrauProficiencia
+CaracterCT }|--|| GrauProficiencia
 
 
 @enduml

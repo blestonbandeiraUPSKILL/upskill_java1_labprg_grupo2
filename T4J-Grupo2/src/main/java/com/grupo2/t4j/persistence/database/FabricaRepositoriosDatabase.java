@@ -2,71 +2,73 @@ package com.grupo2.t4j.persistence.database;
 
 import com.grupo2.t4j.persistence.*;
 
+import java.sql.SQLException;
+
 public class FabricaRepositoriosDatabase implements FabricaRepositorios {
 
     @Override
     public RepositorioAdministrativo getRepositorioAdministrativo() {
-        return new RepositorioAdministrativoDatabase();
+        return RepositorioAdministrativoDatabase.getInstance();
     }
 
     @Override
     public RepositorioAnuncio getRepositorioAnuncio() {
-        return null;
+        return RepositorioAnuncioDataBase.getInstance();
     }
 
     @Override
     public RepositorioAreaActividade getRepositorioAreaActividade() {
-        return new RepositorioAreaActividadeDatabase();
+        return RepositorioAreaActividadeDatabase.getInstance();
     }
 
     @Override
     public RepositorioCaracterizacaoCT getRepositorioCaracterizacaoCT() {
-        return null;
+        return RepositorioCaracterizacaoCTDatabase.getInstance();
     }
 
     @Override
     public RepositorioCategoriaTarefa getRepositorioCategoriaTarefa() {
-        return null;
+        return RepositorioCategoriaTarefaDatabase.getInstance();
     }
 
     @Override
     public RepositorioColaborador getRepositorioColaborador() {
-        return null;
+        return RepositorioColaboradorDatabase.getInstance();
     }
 
     @Override
     public RepositorioCompetenciaTecnica getRepositorioCompetenciaTecnica() {
-        return null;
+        return RepositorioCompetenciaTecnicaDatabase.getInstance();
     }
 
     @Override
-    public RepositorioEnderecoPostal getRepositorioEnderecoPostal() {
-        return new RepositorioEnderecoPostalDatabase();
+    public RepositorioEnderecoPostal getRepositorioEnderecoPostal() throws SQLException {
+        return RepositorioEnderecoPostalDatabase.getInstance();
     }
 
     @Override
     public RepositorioFreelancer getRepositorioFreelancer() {
-        return null;
+        return RepositorioFreelancerDatabase.getInstance();
     }
 
     @Override
-    public RepositorioGrauProficiencia getRepositorioGrauProficiencia() {
-        return new RepositorioGrauProficienciaDatabase();
+    public RepositorioGrauProficiencia getRepositorioGrauProficiencia() throws SQLException {
+        return RepositorioGrauProficienciaDatabase.getInstance();
     }
 
     @Override
     public RepositorioUtilizador getRepositorioUtilizador() {
-        return null;
+        return RepositorioUtilizadorDatabase.getInstance();
     }
 
     @Override
-    public RepositorioOrganizacao getRepositorioOrganizacao() {
-        return null;
+    public RepositorioOrganizacao getRepositorioOrganizacao() throws SQLException {
+        return RepositorioOrganizacaoDatabase.getInstance();
     }
 
     @Override
     public RepositorioTarefa getRepositorioTarefa() {
-        return null;
+        return RepositorioTarefaDatabase.getInstance();
     }
 
     @Override

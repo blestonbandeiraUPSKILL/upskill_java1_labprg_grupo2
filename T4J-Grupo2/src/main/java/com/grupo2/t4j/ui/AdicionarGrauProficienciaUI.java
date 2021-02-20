@@ -8,6 +8,7 @@ package com.grupo2.t4j.ui;
 
 
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
@@ -56,7 +57,11 @@ public class AdicionarGrauProficienciaUI implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        registarGrauProficienciaController = new RegistarGrauProficienciaController();
+        try {
+            registarGrauProficienciaController = new RegistarGrauProficienciaController();
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }
 
     }    
 

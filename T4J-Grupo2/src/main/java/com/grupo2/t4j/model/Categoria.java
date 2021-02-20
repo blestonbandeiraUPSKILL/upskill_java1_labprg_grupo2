@@ -12,6 +12,7 @@ import com.grupo2.t4j.exception.DescricaoInvalidaException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  *
@@ -37,7 +38,7 @@ public class Categoria implements Serializable{
     /**
      * Area de actividade a que se refere a categoria
      */
-    private AreaActividade at;
+    private String codigoAreaActividade;
     
     /**
      * Lista de coompetencias tecnicas tipicamente necessarias para a categoria
@@ -46,16 +47,17 @@ public class Categoria implements Serializable{
     
     /**
      *Construtor Categoria
+     * @param codigoCategoria
      * @param descBreve
      * @param descDetalhada
-     * @param at
+     * @param codigoAreaActividade
      * @param caracterizacaoCTS
      */
-    public Categoria (String codigoCategoria, String descBreve, String descDetalhada, AreaActividade at, List<CaracterizacaoCT> caracterizacaoCTS){
+    public Categoria (String codigoCategoria, String descBreve, String descDetalhada, String codigoAreaActividade, List<CaracterizacaoCT> caracterizacaoCTS){
         setCodigo(codigoCategoria);
         setDescBreve(descBreve);
         setDescDetalhada(descDetalhada);
-        this.at = at;
+        this.codigoAreaActividade = codigoAreaActividade;
         setCompTecnicasCaracter(caracterizacaoCTS);
     }
 
@@ -67,7 +69,7 @@ public class Categoria implements Serializable{
         setCodigo(categoria.codigoCategoria);
         setDescBreve(categoria.descBreve);
         setDescDetalhada(categoria.descDetalhada);
-        setAt(categoria.at);
+        setCodigoAreaActividade(categoria.codigoAreaActividade);
         setCompTecnicasCaracter(categoria.caracterizacaoCTS);
     }
 
@@ -138,17 +140,17 @@ public class Categoria implements Serializable{
      *Retorna a Area de Actividade a que se refere a categoria
      * @return
      */
-    public AreaActividade getAt() {
-        return at;
+    public String getAt() {
+        return codigoAreaActividade;
     }
 
     /**
      *Atualiza a Area de Actividade
-     * @param areaActividade
+     * @param codigoAreaActividade
      */
-    public void setAt(AreaActividade areaActividade) {
-        if(areaActividade != null) {
-            this.at = areaActividade;
+    public void setCodigoAreaActividade(String codigoAreaActividade) {
+        if(codigoAreaActividade != null) {
+            this.codigoAreaActividade = codigoAreaActividade;
         }
         else {
             throw new AreaActividadeInexistenteException ("A área de actividade não existe");
@@ -185,14 +187,42 @@ public class Categoria implements Serializable{
         }
         return s.toString();
     }
-    
+
+    @Override
+    public String toString() {
+        return "Categoria{" +
+                "codigoCategoria='" + codigoCategoria + '\'' +
+                ", descBreve='" + descBreve + '\'' +
+                ", descDetalhada='" + descDetalhada + '\'' +
+                ", codigoAreaActividade='" + codigoAreaActividade + '\'' +
+                ", caracterizacaoCTS=" + caracterizacaoCTS +
+                '}';
+    }
+
     /**
      * Representação textual da categoria de tarefa
      * @return 
      */
-    @Override
+    /*@Override
     public String toString() {
         return String.format("Código: %s; Descrição breve: %s; Descrição detalhada: %s;",
                 codigoCategoria, descBreve, descDetalhada);
+    }*/
+
+
+
+    @Override
+    public boolean equals(Object categoria) {
+        if (this == categoria)
+            return true;
+        if (categoria == null || getClass() != categoria.getClass())
+            return false;
+        Categoria that = (Categoria) categoria;
+        return Objects.equals(codigoCategoria, that.codigoCategoria)
+                && Objects.equals(descBreve, that.descBreve)
+                && Objects.equals(descDetalhada, that.descDetalhada)
+                && Objects.equals(codigoAreaActividade, that.codigoAreaActividade)
+                && Objects.equals(caracterizacaoCTS, that.caracterizacaoCTS);
     }
+
 }

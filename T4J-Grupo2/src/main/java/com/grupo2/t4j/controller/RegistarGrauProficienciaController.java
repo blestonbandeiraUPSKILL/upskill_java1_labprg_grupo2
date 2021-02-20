@@ -11,6 +11,8 @@ import com.grupo2.t4j.persistence.FabricaRepositorios;
 import com.grupo2.t4j.persistence.RepositorioCompetenciaTecnica;
 import com.grupo2.t4j.persistence.RepositorioGrauProficiencia;
 import com.grupo2.t4j.persistence.inmemory.FabricaRepositoriosInMemory;
+
+import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -23,7 +25,10 @@ public class RegistarGrauProficienciaController {
     //private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosDatabase();
     private RepositorioGrauProficiencia repositorioGrauProficiencia = fabricaRepositorios.getRepositorioGrauProficiencia();
     private RepositorioCompetenciaTecnica repositorioCompetenciaTecnica = fabricaRepositorios.getRepositorioCompetenciaTecnica();
-    
+
+    public RegistarGrauProficienciaController() throws SQLException {
+    }
+
     public List<GrauProficiencia> getAll() {
         return repositorioGrauProficiencia.getAll();
     }

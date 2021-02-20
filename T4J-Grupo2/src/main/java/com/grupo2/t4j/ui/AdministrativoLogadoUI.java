@@ -30,6 +30,7 @@ import javafx.scene.control.TableView;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.stage.FileChooser;
 
@@ -82,6 +83,18 @@ public class AdministrativoLogadoUI implements Initializable {
         registarCategoriaController = new RegistarCategoriaController();
         registarCompetenciaTecnicaController = new RegistarCompetenciaTecnicaController();
         gestaoUtilizadoresController = new GestaoUtilizadoresController();
+
+        try {
+            updateListViewAreasActividade();
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }
+
+        try {
+            updateListViewCompetenciasTecnicas();
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }
     }
 
     public void addAreaActividade(ActionEvent actionEvent) throws IOException {
@@ -222,14 +235,14 @@ public class AdministrativoLogadoUI implements Initializable {
 
     }
 
-    public void updateListViewAreasActividade() {
+    public void updateListViewAreasActividade() throws SQLException {
         listaAreasActividade.getItems().setAll(registarAreaActividadeController.getAll());
     }
     public void updateListViewCategoriasTarefa() {
         listaCategorias.getItems().setAll(registarCategoriaController.getAll());
     }
 
-    public void updateListViewCompetenciasTecnicas() {
+    public void updateListViewCompetenciasTecnicas() throws SQLException {
         listViewCompetenciasTecnicas.getItems().setAll(registarCompetenciaTecnicaController.getAll());
     }
 
@@ -258,7 +271,7 @@ public class AdministrativoLogadoUI implements Initializable {
         }
     }
 
-    public void importAreasActividade(ActionEvent actionEvent) {
+    public void importAreasActividade(ActionEvent actionEvent) throws SQLException {
         String descricao, extensao;
 
         descricao = /*DESCRICAO_SERIALIZACAO*/"Ficheiro Area de Atividade";
@@ -310,7 +323,7 @@ public class AdministrativoLogadoUI implements Initializable {
         }
     }
 
-    public void importCompetenciasTecnicas(ActionEvent actionEvent) {
+    public void importCompetenciasTecnicas(ActionEvent actionEvent) throws SQLException {
         String descricao, extensao;
 
         descricao = /*DESCRICAO_SERIALIZACAO*/"Ficheiro Competencias Tecnicas";

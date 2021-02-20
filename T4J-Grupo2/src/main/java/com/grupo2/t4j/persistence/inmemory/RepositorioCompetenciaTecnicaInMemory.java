@@ -6,7 +6,6 @@
 package com.grupo2.t4j.persistence.inmemory;
 
 import com.grupo2.t4j.exception.CompetenciaTecnicaDuplicadaException;
-import com.grupo2.t4j.model.AreaActividade;
 import com.grupo2.t4j.model.CompetenciaTecnica;
 import com.grupo2.t4j.persistence.RepositorioCompetenciaTecnica;
 
@@ -110,7 +109,7 @@ public class RepositorioCompetenciaTecnicaInMemory implements Serializable, Repo
         ArrayList<CompetenciaTecnica> compTecPorAt = new ArrayList<>();
 
         for (CompetenciaTecnica ct : listaCompTecnicas) {
-            if (ct.getAreaActividade().equals(codigoAreaActividade)) {
+            if (ct.getCodigoAreaActividade().equals(codigoAreaActividade)) {
                 compTecPorAt.add(ct);
             }
         }
