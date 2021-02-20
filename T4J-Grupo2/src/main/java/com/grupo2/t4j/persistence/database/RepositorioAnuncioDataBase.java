@@ -13,9 +13,12 @@ package com.grupo2.t4j.persistence.database;
 import com.grupo2.t4j.exception.AnuncioDuplicadoException;
 import com.grupo2.t4j.model.Anuncio;
 import com.grupo2.t4j.model.Data;
+import com.grupo2.t4j.model.HabilitacaoAcademica;
+import com.grupo2.t4j.model.ReconhecimentoGP;
 import com.grupo2.t4j.persistence.RepositorioAnuncio;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class RepositorioAnuncioDataBase implements RepositorioAnuncio {
 
@@ -63,5 +66,11 @@ public class RepositorioAnuncioDataBase implements RepositorioAnuncio {
     @Override
     public ArrayList<Anuncio> getAll() {
         return null;
+    }
+
+    
+    @Override
+    public List<Anuncio> findByReconhecimento(ReconhecimentoGP reconhecimentoGP) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

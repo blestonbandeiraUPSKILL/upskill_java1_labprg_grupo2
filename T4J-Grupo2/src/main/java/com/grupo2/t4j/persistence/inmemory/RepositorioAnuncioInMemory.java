@@ -90,6 +90,11 @@ public class RepositorioAnuncioInMemory implements Serializable, RepositorioAnun
         return new ArrayList<Anuncio>(listaAnuncios);
     }
     
+    @Override
+    public List<Anuncio> findByReconhecimento(ReconhecimentoGP reconhecimentoGP) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
     public int adicionarListaAnuncios(RepositorioAnuncioInMemory outraListaAnuncios) {
         int totalAnunciosAdicionados = 0;
 
@@ -101,4 +106,6 @@ public class RepositorioAnuncioInMemory implements Serializable, RepositorioAnun
         }
         return totalAnunciosAdicionados;
     }
+
+    
 }

@@ -28,4 +28,6 @@ public interface RepositorioAnuncio {
 
     ArrayList<Anuncio> getAll();
 
+    public List<Anuncio> findByReconhecimento(ReconhecimentoGP reconhecimentoGP);
+
 }

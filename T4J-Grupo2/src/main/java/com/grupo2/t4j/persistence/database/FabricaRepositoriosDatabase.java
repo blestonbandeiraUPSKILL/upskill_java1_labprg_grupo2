@@ -69,6 +69,16 @@ public class FabricaRepositoriosDatabase implements FabricaRepositorios {
         return null;
     }
 
+    @Override
+    public RepositorioCandidatura getRepositorioCandidatura() {
+        return null;
+    }
+
+    @Override
+    public RepositorioReconhecimentoGP getRepositorioReconhecimentoGP() {
+        return null;
+    }
+
 
 
 

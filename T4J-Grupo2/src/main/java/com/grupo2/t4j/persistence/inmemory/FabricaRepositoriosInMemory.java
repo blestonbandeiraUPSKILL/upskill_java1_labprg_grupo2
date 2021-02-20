@@ -70,5 +70,15 @@ public class FabricaRepositoriosInMemory implements FabricaRepositorios {
         return null;
     }
 
+    @Override
+    public RepositorioCandidatura getRepositorioCandidatura() {
+        return RepositorioCandidaturaInMemory.getInstance();
+    }
+
+    @Override
+    public RepositorioReconhecimentoGP getRepositorioReconhecimentoGP() {
+        return RepositorioReconhecimentoGPInMemory.getInstance();
+    }
+
 
 }
