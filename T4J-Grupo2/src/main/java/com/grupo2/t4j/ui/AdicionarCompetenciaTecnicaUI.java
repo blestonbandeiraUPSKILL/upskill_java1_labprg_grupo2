@@ -11,6 +11,7 @@ import com.grupo2.t4j.model.AreaActividade;
 import com.grupo2.t4j.model.CompetenciaTecnica;
 import com.grupo2.t4j.model.GrauProficiencia;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 //import com.grupo2.t4j.repository.RepositorioAreaActividade;
 import java.io.IOException;
@@ -68,7 +69,11 @@ public class AdicionarCompetenciaTecnicaUI implements Initializable {
         adicionarStage.initModality(Modality.APPLICATION_MODAL);;
         adicionarStage.setResizable(false);
 
-        cmbAreaActividade.getItems().setAll(registarCompetenciaTecnicaController.getAllAreasActividade());
+        try {
+            cmbAreaActividade.getItems().setAll(registarCompetenciaTecnicaController.getAllAreasActividade());
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }
     }
 
     @FXML

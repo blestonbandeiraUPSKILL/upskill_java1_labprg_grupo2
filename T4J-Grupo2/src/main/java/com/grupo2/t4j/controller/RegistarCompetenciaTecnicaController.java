@@ -18,6 +18,7 @@ import com.grupo2.t4j.model.GrauProficiencia;
 
 import java.io.File;
 
+import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -48,7 +49,7 @@ public class RegistarCompetenciaTecnicaController {
         return repositorioCompetenciaTecnica.getAll();
     }
 
-    public List<AreaActividade> getAllAreasActividade(){
+    public List<AreaActividade> getAllAreasActividade() throws SQLException {
         return repositorioAreaActividade.getAll();
     }
 

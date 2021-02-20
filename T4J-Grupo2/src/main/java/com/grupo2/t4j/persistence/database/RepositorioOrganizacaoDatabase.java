@@ -26,6 +26,7 @@ public class RepositorioOrganizacaoDatabase implements RepositorioOrganizacao {
      * Atributos da classe Singleton RepositorioOrganizacao
      */
     private static RepositorioOrganizacaoDatabase repositorioOrganizacaoDatabase;
+
     String jdbcUrl = "jdbc:oracle:thin:@vsrvbd1.dei.isep.ipp.pt:1521/pdborcl";
     String username = "UPSKILL_BD_TURMA1_04";
     String password = "qwerty";

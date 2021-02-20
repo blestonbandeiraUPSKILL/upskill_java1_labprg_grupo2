@@ -15,6 +15,7 @@ import javafx.stage.Window;
 import javafx.stage.WindowEvent;
 
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -55,7 +56,11 @@ public class AdicionarCategoriaTarefaUI implements Initializable {
         registarAreaActividadeController = new RegistarAreaActividadeController();
         registarCategoriaController = new RegistarCategoriaController();
         registarCompetenciaTecnicaController = new RegistarCompetenciaTecnicaController();
-        registarGrauProficienciaController = new RegistarGrauProficienciaController();
+        try {
+            registarGrauProficienciaController = new RegistarGrauProficienciaController();
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }
         registarCaracterizacaoCTController = new RegistarCaracterizacaoCTController();
 
         adicionarStage = new Stage();
@@ -65,7 +70,11 @@ public class AdicionarCategoriaTarefaUI implements Initializable {
         //cmbGrauProficiencia.getItems().setAll(registarGrauProficienciaController.findByCompetenciaTecnica());
         cmbObrigatoriedade.getItems().setAll(Obrigatoriedade.values());
 
-        cmbAreaActividade.getItems().addAll(registarAreaActividadeController.getAll());
+        try {
+            cmbAreaActividade.getItems().addAll(registarAreaActividadeController.getAll());
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }
 
         cmbAreaActividade.setOnAction(new EventHandler<ActionEvent>() {
            @Override

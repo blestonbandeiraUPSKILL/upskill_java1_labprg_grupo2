@@ -1,6 +1,7 @@
 package com.grupo2.t4j.persistence;
 
 
+import java.sql.SQLException;
 
 public interface FabricaRepositorios {
 
@@ -11,10 +12,10 @@ public interface FabricaRepositorios {
     RepositorioCategoriaTarefa getRepositorioCategoriaTarefa();
     RepositorioColaborador getRepositorioColaborador();
     RepositorioCompetenciaTecnica getRepositorioCompetenciaTecnica();
-    RepositorioEnderecoPostal getRepositorioEnderecoPostal();
+    RepositorioEnderecoPostal getRepositorioEnderecoPostal() throws SQLException;
     RepositorioFreelancer getRepositorioFreelancer();
-    RepositorioOrganizacao getRepositorioOrganizacao();
+    RepositorioOrganizacao getRepositorioOrganizacao() throws SQLException;
     RepositorioTarefa getRepositorioTarefa();
-    RepositorioGrauProficiencia getRepositorioGrauProficiencia();
+    RepositorioGrauProficiencia getRepositorioGrauProficiencia() throws SQLException;
     RepositorioUtilizador getRepositorioUtilizador();
 }

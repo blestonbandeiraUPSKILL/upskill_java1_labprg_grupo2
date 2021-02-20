@@ -44,8 +44,8 @@ public class RegistarCategoriaController {
         return repositorioCategoria.getAll();
     }
 
-    public List<Categoria> findByAreaActividade(AreaActividade areaActividade) {
-        return repositorioCategoria.findByAreaActividade(areaActividade.getCodigo());
+    public List<Categoria> findByAreaActividade(String codigoAreaActividade) {
+        return repositorioCategoria.findByAreaActividade(codigoAreaActividade);
     }
 
     public Categoria findByCodigo(String codigoCategoria) {

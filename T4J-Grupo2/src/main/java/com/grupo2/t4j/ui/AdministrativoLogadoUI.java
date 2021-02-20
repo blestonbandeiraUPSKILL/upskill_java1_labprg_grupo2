@@ -30,6 +30,7 @@ import javafx.scene.control.TableView;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.stage.FileChooser;
 
@@ -222,7 +223,7 @@ public class AdministrativoLogadoUI implements Initializable {
 
     }
 
-    public void updateListViewAreasActividade() {
+    public void updateListViewAreasActividade() throws SQLException {
         listaAreasActividade.getItems().setAll(registarAreaActividadeController.getAll());
     }
     public void updateListViewCategoriasTarefa() {
@@ -258,7 +259,7 @@ public class AdministrativoLogadoUI implements Initializable {
         }
     }
 
-    public void importAreasActividade(ActionEvent actionEvent) {
+    public void importAreasActividade(ActionEvent actionEvent) throws SQLException {
         String descricao, extensao;
 
         descricao = /*DESCRICAO_SERIALIZACAO*/"Ficheiro Area de Atividade";

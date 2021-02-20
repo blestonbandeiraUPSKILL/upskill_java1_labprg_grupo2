@@ -11,10 +11,13 @@ package com.grupo2.t4j.persistence.database;
  */
 
 import com.grupo2.t4j.exception.AreaActividadeDuplicadaException;
+import com.grupo2.t4j.exception.AreaActividadeInexistenteException;
 import com.grupo2.t4j.model.AreaActividade;
+import com.grupo2.t4j.model.DBConnectionHandler;
 import com.grupo2.t4j.persistence.RepositorioAreaActividade;
 
 import java.io.Serializable;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,11 +33,14 @@ public class RepositorioAreaActividadeDatabase implements RepositorioAreaActivid
      */
     private static RepositorioAreaActividadeDatabase repositorioAreaActividadeDatabase;
 
+    String jdbcUrl = "jdbc:oracle:thin:@vsrvbd1.dei.isep.ipp.pt:1521/pdborcl";
+    String username = "UPSKILL_BD_TURMA1_04";
+    String password = "qwerty";
 
     /**
      * Inicializa o Repositório de Areas de Actividade
      */
-    RepositorioAreaActividadeDatabase(){
+    private RepositorioAreaActividadeDatabase(){
     }
 
     /**
@@ -48,33 +54,169 @@ public class RepositorioAreaActividadeDatabase implements RepositorioAreaActivid
         return repositorioAreaActividadeDatabase;
     }
 
-    public void save(String codigo, String descBreve, String descDetalhada) throws AreaActividadeDuplicadaException {
+    public void save(String codigo, String descBreve, String descDetalhada) throws AreaActividadeDuplicadaException, SQLException {
+
+        DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
+        Connection connection = dbConnectionHandler.openConnection();
+
+        CallableStatement callableStatement = connection.prepareCall(
+                "{CALL createAreaActividade(?,?,?)}");
+
+        if (findByCodigo(codigo) == null) {
+            try {
+                connection.setAutoCommit(false);
+
+                callableStatement.setString(1, codigo);
+                callableStatement.setString(2, descBreve);
+                callableStatement.setString(3, descDetalhada);
+
+                callableStatement.executeQuery();
+
+                connection.commit();
+            }
+            catch (SQLException exception) {
+                exception.printStackTrace();
+                exception.getSQLState();
+                try {
+                    System.err.print("Transaction is being rolled back");
+                    connection.rollback();
+                }
+                catch (SQLException sqlException) {
+                    sqlException.getErrorCode();
+                }
+            }
+            finally {
+                dbConnectionHandler.closeAll();
+            }
+        }
+        else {
+            throw new AreaActividadeDuplicadaException(codigo + ": Área de actividade já registada");
+        }
 
     }
-   
+
+
+    public AreaActividade findByCodigo(String codigo, Connection connection) throws SQLException {
+        if(connection == null) {
+            DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
+            connection = dbConnectionHandler.openConnection();
+        }
+
+        CallableStatement callableStatement = connection.prepareCall(
+                "{CALL findByCodigoAreaActividade(?)}"
+        );
+
+        try {
+            connection.setAutoCommit(false);
+
+            callableStatement.setString(1, codigo);
+            callableStatement.executeQuery();
+
+            return new AreaActividade();
+
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+            exception.getSQLState();
+
+            return null;
+        }
+    }
 
     @Override
-    public boolean save(AreaActividade areaActividade) {
+    public boolean save(AreaActividade areaActividade) throws SQLException {
+
+        DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
+        Connection connection = dbConnectionHandler.openConnection();
+
+        CallableStatement callableStatement = connection.prepareCall(
+                "{CALL createAreaActividade(?,?,?)}");
+
+        if (findByCodigo(areaActividade.getCodigo()) == null) {
+            try {
+                connection.setAutoCommit(false);
+
+                callableStatement.setString(1, areaActividade.getCodigo());
+                callableStatement.setString(2, areaActividade.getDescBreve());
+                callableStatement.setString(3, areaActividade.getDescDetalhada());
+
+                callableStatement.executeQuery();
+
+                connection.commit();
+                return true;
+            }
+            catch (SQLException exception) {
+                exception.printStackTrace();
+                exception.getSQLState();
+                try {
+                    System.err.print("Transaction is being rolled back");
+                    connection.rollback();
+                }
+                catch (SQLException sqlException) {
+                    sqlException.getErrorCode();
+                }
+
+            }
+
+            finally {
+                dbConnectionHandler.closeAll();
+            }
+        }
+        else {
+            throw new AreaActividadeDuplicadaException(areaActividade.getCodigo() + ": Área de actividade já registada");
+        }
         return false;
     }
 
     @Override
-    public List<AreaActividade> getAll() {
-        return null;
+    public List<AreaActividade> getAll() throws SQLException {
+
+        ArrayList<AreaActividade> areasActividade = new ArrayList<>();
+
+        DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
+        Connection connection = dbConnectionHandler.openConnection();
+
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(
+                    "SELECT * FROM AreaActividade"
+            );
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                String codigo = resultSet.getString(1);
+                String descBreve = resultSet.getString(2);
+                String descDetalhada = resultSet.getString(3);
+                areasActividade.add(new AreaActividade(codigo, descBreve, descDetalhada));
+            }
+
+        }
+        catch (SQLException exception) {
+            exception.printStackTrace();
+            exception.getSQLState();
+            try {
+                System.err.print("Transaction is being rolled back");
+                connection.rollback();
+            }
+            catch (SQLException sqlException) {
+                sqlException.getErrorCode();
+            }
+
+        }
+        finally {
+            dbConnectionHandler.closeAll();
+        }
+        if (areasActividade != null) {
+            return areasActividade;
+        }
+        else {
+            throw new AreaActividadeInexistenteException("Não há áreas de actividade para mostrar");
+        }
     }
 
     @Override
-    public AreaActividade findByCodigo(String codigo) {
+    public AreaActividade findByCodigo(String codigo) throws SQLException {
         return null;
     }
-
-    /*@Override
-    public boolean save(AreaActividade areaActividade) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }*/
-
-
-
 
 
 }
