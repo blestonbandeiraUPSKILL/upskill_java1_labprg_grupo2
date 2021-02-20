@@ -5,32 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8ca9f66f-f143-4134-afe5-eb7245bd0a9c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../BaseDados/findByDescBreve(area actividade).sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../BaseDados/Alter.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../BaseDados/Alter.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../BaseDados/CREATE.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../BaseDados/CREATE.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../BaseDados/Modelo_Relacional.png" beforeDir="false" afterPath="$PROJECT_DIR$/../BaseDados/Modelo_Relacional.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../BaseDados/Modelo_Relacional.puml" beforeDir="false" afterPath="$PROJECT_DIR$/../BaseDados/Modelo_Relacional.puml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/controller/RegistarAreaActividadeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/controller/RegistarAreaActividadeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/controller/RegistarCategoriaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/controller/RegistarCategoriaController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/controller/RegistarCompetenciaTecnicaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/controller/RegistarCompetenciaTecnicaController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/controller/RegistarGrauProficienciaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/controller/RegistarGrauProficienciaController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/controller/RegistarOrganizacaoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/controller/RegistarOrganizacaoController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/persistence/FabricaRepositorios.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/persistence/FabricaRepositorios.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/persistence/RepositorioAreaActividade.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/persistence/RepositorioAreaActividade.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/persistence/database/FabricaRepositoriosDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/persistence/database/FabricaRepositoriosDatabase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/persistence/database/RepositorioAnuncioDataBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/persistence/database/RepositorioAnuncioDataBase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/model/CompetenciaTecnica.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/model/CompetenciaTecnica.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/model/DBConnectionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/utils/DBConnectionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/persistence/RepositorioCompetenciaTecnica.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/persistence/RepositorioCompetenciaTecnica.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/persistence/database/RepositorioAreaActividadeDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/persistence/database/RepositorioAreaActividadeDatabase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/persistence/database/RepositorioEnderecoPostalDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/persistence/database/RepositorioEnderecoPostalDatabase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/persistence/database/RepositorioGrauProficienciaDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/persistence/database/RepositorioGrauProficienciaDatabase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/persistence/database/RepositorioCompetenciaTecnicaDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/persistence/database/RepositorioCompetenciaTecnicaDatabase.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/persistence/database/RepositorioOrganizacaoDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/persistence/database/RepositorioOrganizacaoDatabase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/persistence/inmemory/RepositorioCompetenciaTecnicaInMemory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/persistence/inmemory/RepositorioCompetenciaTecnicaInMemory.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/AdicionarAreaAtividadeUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/AdicionarAreaAtividadeUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/AdicionarCategoriaTarefaUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/AdicionarCategoriaTarefaUI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/AdicionarCompetenciaTecnicaUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/AdicionarCompetenciaTecnicaUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/AdicionarGrauProficienciaUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/AdicionarGrauProficienciaUI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/AdministrativoLogadoUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/AdministrativoLogadoUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/ColaboradorLogadoUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/ColaboradorLogadoUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/RegistarOrgEGestorUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/RegistarOrgEGestorUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/StartingPageUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/StartingPageUI.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -287,24 +274,14 @@
           <option name="timeStamp" value="167" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/grupo2/t4j/persistence/database/RepositorioAreaActividadeDatabase.java</url>
-          <line>58</line>
-          <option name="timeStamp" value="168" />
+          <url>file://$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/AdicionarAreaAtividadeUI.java</url>
+          <line>94</line>
+          <option name="timeStamp" value="174" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/grupo2/t4j/persistence/database/RepositorioAreaActividadeDatabase.java</url>
-          <line>104</line>
-          <option name="timeStamp" value="171" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/grupo2/t4j/persistence/database/RepositorioAreaActividadeDatabase.java</url>
-          <line>133</line>
-          <option name="timeStamp" value="172" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/grupo2/t4j/persistence/database/RepositorioAreaActividadeDatabase.java</url>
-          <line>178</line>
-          <option name="timeStamp" value="173" />
+          <url>file://$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/AdicionarCompetenciaTecnicaUI.java</url>
+          <line>73</line>
+          <option name="timeStamp" value="178" />
         </line-breakpoint>
         <breakpoint type="java-exception">
           <properties class="java.lang.IllegalArgumentException" package="java.lang" />

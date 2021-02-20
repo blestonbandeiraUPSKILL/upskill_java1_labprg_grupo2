@@ -83,6 +83,18 @@ public class AdministrativoLogadoUI implements Initializable {
         registarCategoriaController = new RegistarCategoriaController();
         registarCompetenciaTecnicaController = new RegistarCompetenciaTecnicaController();
         gestaoUtilizadoresController = new GestaoUtilizadoresController();
+
+        try {
+            updateListViewAreasActividade();
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }
+
+        try {
+            updateListViewCompetenciasTecnicas();
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }
     }
 
     public void addAreaActividade(ActionEvent actionEvent) throws IOException {
@@ -230,7 +242,7 @@ public class AdministrativoLogadoUI implements Initializable {
         listaCategorias.getItems().setAll(registarCategoriaController.getAll());
     }
 
-    public void updateListViewCompetenciasTecnicas() {
+    public void updateListViewCompetenciasTecnicas() throws SQLException {
         listViewCompetenciasTecnicas.getItems().setAll(registarCompetenciaTecnicaController.getAll());
     }
 
@@ -311,7 +323,7 @@ public class AdministrativoLogadoUI implements Initializable {
         }
     }
 
-    public void importCompetenciasTecnicas(ActionEvent actionEvent) {
+    public void importCompetenciasTecnicas(ActionEvent actionEvent) throws SQLException {
         String descricao, extensao;
 
         descricao = /*DESCRICAO_SERIALIZACAO*/"Ficheiro Competencias Tecnicas";

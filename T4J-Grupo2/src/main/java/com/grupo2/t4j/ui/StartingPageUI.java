@@ -78,29 +78,33 @@ public class StartingPageUI implements Initializable {
                 txtEmailLogin.getText(),
                 txtPasswordLogin.getText());
 
-        if (login) {
-            txtEmailLogin.clear();
-            txtPasswordLogin.clear();
-            
-            switch (gestaoUtilizadoresController.getRole()) {
-                case "gestor":
-                    navigateGestorLogado(actionEvent);
-                    break;
-                case "administrativo":
-                    navigateAdministrativoLogado(actionEvent);
-                    break;
-                case "colaborador":
-                    navigateColaboradorLogado(actionEvent);
-                    break;
-                case "freelancer":
-                    navigateFreelancerLogado(actionEvent);
+        try {
+            if (login) {
+                txtEmailLogin.clear();
+                txtPasswordLogin.clear();
+
+                switch (gestaoUtilizadoresController.getRole()) {
+                    case "gestor":
+                        navigateGestorLogado(actionEvent);
+                        break;
+                    case "administrativo":
+                        navigateAdministrativoLogado(actionEvent);
+                        break;
+                    case "colaborador":
+                        navigateColaboradorLogado(actionEvent);
+                        break;
+                    case "freelancer":
+                        navigateFreelancerLogado(actionEvent);
+                }
             }
         }
-        else {
-            AlertsUI.criarAlerta(Alert.AlertType.ERROR,
-                    MainApp.TITULO_APLICACAO,
-                    "Erro ao validar os dados",
-                    "Dados de login inválidos");
+
+        catch (IOException exception) {
+                AlertsUI.criarAlerta(Alert.AlertType.ERROR,
+                MainApp.TITULO_APLICACAO,
+                "Erro ao validar os dados",
+                exception.getMessage());
+
         }
     }
 

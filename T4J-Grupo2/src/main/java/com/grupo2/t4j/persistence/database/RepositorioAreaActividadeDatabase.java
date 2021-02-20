@@ -13,10 +13,9 @@ package com.grupo2.t4j.persistence.database;
 import com.grupo2.t4j.exception.AreaActividadeDuplicadaException;
 import com.grupo2.t4j.exception.AreaActividadeInexistenteException;
 import com.grupo2.t4j.model.AreaActividade;
-import com.grupo2.t4j.model.DBConnectionHandler;
+import com.grupo2.t4j.utils.DBConnectionHandler;
 import com.grupo2.t4j.persistence.RepositorioAreaActividade;
 
-import java.io.Serializable;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +33,7 @@ public class RepositorioAreaActividadeDatabase implements RepositorioAreaActivid
     private static RepositorioAreaActividadeDatabase repositorioAreaActividadeDatabase;
 
     String jdbcUrl = "jdbc:oracle:thin:@vsrvbd1.dei.isep.ipp.pt:1521/pdborcl";
-    String username = "UPSKILL_BD_TURMA1_04";
+    String username = "UPSKILL_BD_TURMA1_01";
     String password = "qwerty";
 
     /**
@@ -93,33 +92,6 @@ public class RepositorioAreaActividadeDatabase implements RepositorioAreaActivid
             throw new AreaActividadeDuplicadaException(codigo + ": Área de actividade já registada");
         }
 
-    }
-
-
-    public AreaActividade findByCodigo(String codigo, Connection connection) throws SQLException {
-        if(connection == null) {
-            DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
-            connection = dbConnectionHandler.openConnection();
-        }
-
-        CallableStatement callableStatement = connection.prepareCall(
-                "{CALL findByCodigoAreaActividade(?)}"
-        );
-
-        try {
-            connection.setAutoCommit(false);
-
-            callableStatement.setString(1, codigo);
-            callableStatement.executeQuery();
-
-            return new AreaActividade();
-
-        } catch (SQLException exception) {
-            exception.printStackTrace();
-            exception.getSQLState();
-
-            return null;
-        }
     }
 
     @Override
@@ -215,7 +187,27 @@ public class RepositorioAreaActividadeDatabase implements RepositorioAreaActivid
 
     @Override
     public AreaActividade findByCodigo(String codigo) throws SQLException {
-        return null;
+        DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
+        Connection connection = dbConnectionHandler.openConnection();
+
+        CallableStatement callableStatement = connection.prepareCall(
+                "{CALL findByCodigoAreaActividade(?)}"
+        );
+
+        try {
+            connection.setAutoCommit(false);
+
+            callableStatement.setString(1, codigo);
+            callableStatement.executeUpdate();
+
+            return new AreaActividade();
+
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+            exception.getSQLState();
+
+            return null;
+        }
     }
 
 

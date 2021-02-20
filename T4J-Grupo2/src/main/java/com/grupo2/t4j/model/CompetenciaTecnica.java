@@ -42,11 +42,14 @@ public class CompetenciaTecnica implements Serializable {
     /**
      * A competencia tecnica caracterizada
      */
-    private CaracterizacaoCT cct;
+    private String cct;
 
-    private Categoria categoria;
     
     //private static List<GrauProficiencia> grausProficienciaAplicaveis = new ArrayList<>();
+
+    public CompetenciaTecnica() {
+
+    }
 
     /**
      * Construtor CompetenciaTecnica Completo
@@ -56,7 +59,7 @@ public class CompetenciaTecnica implements Serializable {
      * @param descricaoDetalhada
      *
      */
-    public CompetenciaTecnica(String codigo, String descricaoBreve, String descricaoDetalhada, String codigoAreaActividade, CaracterizacaoCT cct) {
+    public CompetenciaTecnica(String codigo, String descricaoBreve, String descricaoDetalhada, String codigoAreaActividade, String cct) {
         setCodigo(codigo);
         setDescricaoBreve(descricaoBreve);
         setDescricaoDetalhada(descricaoDetalhada);
@@ -104,6 +107,7 @@ public class CompetenciaTecnica implements Serializable {
         setDescricaoDetalhada(descricaoDetalhada);   
         setCodigoAreaActividade(codigoAreaActividade);
     }
+
 
     /**
      * devolve o codigo da competencia tecnica
@@ -169,7 +173,7 @@ public class CompetenciaTecnica implements Serializable {
      * Devolve a caracterizacao da competencia tecnica
      * @return the cct
      */
-    public CaracterizacaoCT getCct() {
+    public String getCct() {
         return cct;
     }
 
@@ -177,7 +181,7 @@ public class CompetenciaTecnica implements Serializable {
      * Atualiza a caracterizacao da competencia tecnica
      * @param cct the cct to set
      */
-    public void setCct(CaracterizacaoCT cct) {
+    public void setCct(String cct) {
         this.cct = cct;
     }
 
@@ -186,7 +190,7 @@ public class CompetenciaTecnica implements Serializable {
      * 
      * @return the areaActividade
      */
-    public String getAreaActividade() {
+    public String getCodigoAreaActividade() {
         return codigoAreaActividade;
     }
 
@@ -224,8 +228,8 @@ public class CompetenciaTecnica implements Serializable {
                 && Objects.equals(descricaoBreve, that.descricaoBreve)
                 && Objects.equals(descricaoDetalhada, that.descricaoDetalhada)
                 && Objects.equals(codigoAreaActividade, that.codigoAreaActividade)
-                && Objects.equals(cct, that.cct)
-                && Objects.equals(categoria, that.categoria);
+                && Objects.equals(cct, that.cct);
+
     }
     
     /*public static List<GrauProficiencia> getGrausAplicaveis() {

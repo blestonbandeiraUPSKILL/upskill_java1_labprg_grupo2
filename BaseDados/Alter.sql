@@ -136,4 +136,6 @@ ALTER TABLE CaracterCT
         FOREIGN KEY (GRAUPROFMINIMO)
         REFERENCES GrauProficiencia(idGrauProficiencia);
 
+
+
     

@@ -35,7 +35,7 @@ public class RegistarCompetenciaTecnicaController {
     private FicheiroRepositorioCompetenciaTecnica ficheiroCompTec;
     private RepositorioCompetenciaTecnicaInMemory repositorioCompetenciaTecnicaInMemory;
 
-    public boolean registarCompetenciaTecnica(String codigo, String descBreve, String descDetalhada, String codigoAreaActividade) {
+    public boolean registarCompetenciaTecnica(String codigo, String descBreve, String descDetalhada, String codigoAreaActividade) throws SQLException {
 
         CompetenciaTecnica competenciaTecnica = new CompetenciaTecnica(codigo, descBreve, descDetalhada, codigoAreaActividade);
 
@@ -45,7 +45,7 @@ public class RegistarCompetenciaTecnicaController {
     /*public static List<GrauProficiencia> getGrausAplicaveis() {
         return CompetenciaTecnica.getGrausAplicaveis();
     }*/
-    public List<CompetenciaTecnica> getAll() {
+    public List<CompetenciaTecnica> getAll() throws SQLException {
         return repositorioCompetenciaTecnica.getAll();
     }
 
@@ -57,7 +57,7 @@ public class RegistarCompetenciaTecnicaController {
         return repositorioCompetenciaTecnica.findByAreaActividade(codigoAreaActividade);
     }
 
-    public CompetenciaTecnica findByCodigo(String codigo){
+    public CompetenciaTecnica findByCodigo(String codigo) throws SQLException {
         return repositorioCompetenciaTecnica.findByCodigo(codigo);
     }
 

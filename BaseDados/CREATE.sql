@@ -121,7 +121,7 @@ CREATE TABLE GrauProficiencia(
         CONSTRAINT uk_GrauProficiencia_valor UNIQUE,
     designacao varchar(100)
         CONSTRAINT nn_GrauProficiencia_designacao NOT NULL,
-    codigoCompetenciaTecnica integer
+    codigoCompetenciaTecnica varchar(15)
 );
 
 CREATE TABLE FreelancerHabAcademica(
@@ -162,18 +162,18 @@ CREATE TABLE AreaActividade(
 );
 
 CREATE TABLE CompetenciaTecnica(
-    codigoCompetenciaTecnica integer GENERATED AS IDENTITY
+    codigoCompetenciaTecnica varchar(15)
         CONSTRAINT pk_CompetenciaTecnica_codigo PRIMARY KEY,
     descBreve varchar(50)
         CONSTRAINT nn_CompetenciaTecnica_descBreve NOT NULL
         CONSTRAINT uk_CompetenciaTecnica_descBreve UNIQUE,
     descDetalhada varchar(100),
-    idCaracterCT integer,
+    idCaracterCT varchar(15),
     codigoAreaActividade varchar(15)
 );
 
 CREATE TABLE CaracterCT(
-    idCaracterCT integer GENERATED AS IDENTITY
+    idCaracterCT varchar(15)
         CONSTRAINT pk_CaracterCT_idCaracterCT PRIMARY KEY,
     obrigatoria varchar(20)
         CONSTRAINT nn_CaracterCT_obrigatoria NOT NULL,

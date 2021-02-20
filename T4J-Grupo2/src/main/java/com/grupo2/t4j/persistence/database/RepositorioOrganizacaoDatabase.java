@@ -14,6 +14,7 @@ package com.grupo2.t4j.persistence.database;
 import com.grupo2.t4j.exception.OrganizacaoDuplicadaException;
 import com.grupo2.t4j.model.*;
 import com.grupo2.t4j.persistence.RepositorioOrganizacao;
+import com.grupo2.t4j.utils.DBConnectionHandler;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;
@@ -28,7 +29,7 @@ public class RepositorioOrganizacaoDatabase implements RepositorioOrganizacao {
     private static RepositorioOrganizacaoDatabase repositorioOrganizacaoDatabase;
 
     String jdbcUrl = "jdbc:oracle:thin:@vsrvbd1.dei.isep.ipp.pt:1521/pdborcl";
-    String username = "UPSKILL_BD_TURMA1_04";
+    String username = "UPSKILL_BD_TURMA1_01";
     String password = "qwerty";
 
     /**

@@ -65,6 +65,7 @@ public class AdicionarCompetenciaTecnicaUI implements Initializable {
         registarAreaActividadeController = new RegistarAreaActividadeController();
         registarCompetenciaTecnicaController = new RegistarCompetenciaTecnicaController();
 
+
         adicionarStage = new Stage();
         adicionarStage.initModality(Modality.APPLICATION_MODAL);;
         adicionarStage.setResizable(false);
@@ -114,7 +115,7 @@ public class AdicionarCompetenciaTecnicaUI implements Initializable {
                     "Registar Competência Técnica.",
                     adicionou ? "Competencia Tecnica registada com sucesso."
                             : "Não foi possível registar a Competência Técncia.").show();
-        } catch (IllegalArgumentException iae) {
+        } catch (IllegalArgumentException | SQLException iae) {
             AlertsUI.criarAlerta(Alert.AlertType.ERROR,
                     MainApp.TITULO_APLICACAO,
                     "Erro nos dados.",
