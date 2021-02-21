@@ -42,6 +42,15 @@ public class CaracterizacaoCT implements Serializable{
         this.codigoCompetenciaTecnica = codigoCompetenciaTecnica;
     }
 
+    public String getCodigoGP() {
+        return codigoGP;
+    }
+
+    public Obrigatoriedade getObrigatoriedade() {
+        return obrigatoriedade;
+    }
+
+    
     /**
      * Actualiza a obrigatoriedade da competencia tecnica
      * @param obrigatoriedade the obrigatoriedade to set
