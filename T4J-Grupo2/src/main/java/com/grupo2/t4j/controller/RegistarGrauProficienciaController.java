@@ -5,7 +5,6 @@
  */
 package com.grupo2.t4j.controller;
 
-import com.grupo2.t4j.model.CompetenciaTecnica;
 import com.grupo2.t4j.model.GrauProficiencia;
 import com.grupo2.t4j.persistence.FabricaRepositorios;
 import com.grupo2.t4j.persistence.RepositorioCompetenciaTecnica;
@@ -45,7 +44,7 @@ public class RegistarGrauProficienciaController {
     }
     
     public GrauProficiencia findByValor(String valor, String codigoCompetenciaTecnica) {
-        return repositorioGrauProficiencia.findByValor(valor, codigoCompetenciaTecnica);
+        return repositorioGrauProficiencia.findByGrau(valor, codigoCompetenciaTecnica);
     }
     
 }

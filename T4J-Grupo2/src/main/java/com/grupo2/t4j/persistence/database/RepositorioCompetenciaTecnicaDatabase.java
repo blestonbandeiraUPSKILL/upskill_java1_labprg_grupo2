@@ -50,16 +50,17 @@ public class RepositorioCompetenciaTecnicaDatabase implements RepositorioCompete
         Connection connection = dbConnectionHandler.openConnection();
 
         CallableStatement callableStatement = connection.prepareCall(
-                "{CALL createCompetenciaTecnica(?, ?, ?}"
+                "{CALL createCompetenciaTecnica(?, ?, ?, ?)}"
         );
 
         if(findByCodigo(competenciaTecnica.getCodigo()) == null) {
             try {
                 connection.setAutoCommit(false);
 
-                callableStatement.setString(1, competenciaTecnica.getDescricaoBreve());
-                callableStatement.setString(2, competenciaTecnica.getDescricaoDetalhada());
-                callableStatement.setString(3, competenciaTecnica.getCodigoAreaActividade());
+                callableStatement.setString(1, competenciaTecnica.getCodigo());
+                callableStatement.setString(2, competenciaTecnica.getDescricaoBreve());
+                callableStatement.setString(3, competenciaTecnica.getDescricaoDetalhada());
+                callableStatement.setString(4, competenciaTecnica.getCodigoAreaActividade());
 
                 callableStatement.executeQuery();
 
@@ -96,7 +97,7 @@ public class RepositorioCompetenciaTecnicaDatabase implements RepositorioCompete
 
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(
-                    "SELECT * FROM CompetenciaTenica"
+                    "SELECT * FROM CompetenciaTecnica"
             );
 
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -105,9 +106,8 @@ public class RepositorioCompetenciaTecnicaDatabase implements RepositorioCompete
                 String codigo = resultSet.getString(1);
                 String descBreve = resultSet.getString(2);
                 String descDetalhada = resultSet.getString(3);
-                String idCaracterCT = resultSet.getString(4);
-                String codigoAreaActividade = resultSet.getString(5);
-                competenciasTecnicas.add(new CompetenciaTecnica(codigo, descBreve, descDetalhada, codigoAreaActividade, idCaracterCT));
+                String codigoAreaActividade = resultSet.getString(4);
+                competenciasTecnicas.add(new CompetenciaTecnica(codigo, descBreve, descDetalhada, codigoAreaActividade));
             }
         }
         catch (SQLException exception) {
@@ -126,18 +126,13 @@ public class RepositorioCompetenciaTecnicaDatabase implements RepositorioCompete
             dbConnectionHandler.closeAll();
         }
 
-        if (competenciasTecnicas != null) {
-            return competenciasTecnicas;
-        }
-        else {
-            throw new CompetenciaTecnicaInexistenteException("Não há competências técnicas para mostrar");
-        }
+        return competenciasTecnicas;
     }
 
     @Override
     public CompetenciaTecnica findByCodigo(String codigo) throws SQLException {
-        DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
 
+        DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
         Connection connection = dbConnectionHandler.openConnection();
 
         CallableStatement callableStatement = connection.prepareCall(
@@ -148,7 +143,7 @@ public class RepositorioCompetenciaTecnicaDatabase implements RepositorioCompete
             connection.setAutoCommit(false);
 
             callableStatement.setString(1, codigo);
-            callableStatement.executeQuery();
+            callableStatement.executeUpdate();
 
             return new CompetenciaTecnica();
         }

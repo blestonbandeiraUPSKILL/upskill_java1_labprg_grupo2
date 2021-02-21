@@ -2,7 +2,6 @@ package com.grupo2.t4j.persistence.inmemory;
 
 
 import com.grupo2.t4j.exception.CategoriaDuplicadaException;
-import com.grupo2.t4j.model.AreaActividade;
 import com.grupo2.t4j.model.CaracterizacaoCT;
 import com.grupo2.t4j.model.Categoria;
 import com.grupo2.t4j.persistence.RepositorioCategoriaTarefa;
@@ -68,7 +67,7 @@ public class RepositorioCategoriaTarefaInMemory implements Serializable, Reposit
         ArrayList<Categoria> categoriaPorAt = new ArrayList<>();
 
         for (Categoria cat : listaCategorias) {
-            if (cat.getAt().equals(codigoAreaActividade)) {
+            if (cat.getCodigoAreaActividade().equals(codigoAreaActividade)) {
                 categoriaPorAt.add(cat);
             }
         }

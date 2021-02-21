@@ -43,9 +43,9 @@ ALTER TABLE Tarefa
         REFERENCES Organizacao(nif);
 
 ALTER TABLE Tarefa
-    ADD CONSTRAINT fk_Tarefa_idCategoria
-        FOREIGN KEY (idCategoria)
-        REFERENCES Categoria(idCategoria);
+    ADD CONSTRAINT fk_Tarefa_codigoCategoria
+        FOREIGN KEY (codigoCategoria)
+        REFERENCES Categoria(codigoCategoria);
         
 ALTER TABLE Tarefa
     ADD CONSTRAINT fk_Tarefa_emailColaborador
@@ -136,6 +136,5 @@ ALTER TABLE CaracterCT
         FOREIGN KEY (GRAUPROFMINIMO)
         REFERENCES GrauProficiencia(idGrauProficiencia);
 
-
-
-    
+--ALTER TABLE CompetenciaTecnica
+--    DROP COLUMN idCaracterCT;

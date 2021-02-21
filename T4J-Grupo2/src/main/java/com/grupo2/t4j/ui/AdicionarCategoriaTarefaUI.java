@@ -131,8 +131,8 @@ public class AdicionarCategoriaTarefaUI implements Initializable {
                     txtCodigo.getText().trim(),
                     txtDescricaoBreve.getText().trim(),
                     txtDescricaoDetalhada.getText().trim(),
-                    cmbAreaActividade.getSelectionModel().getSelectedItem().getCodigo(),
-                    listViewCompTecCat.getItems()
+                    cmbAreaActividade.getSelectionModel().getSelectedItem().getCodigo()
+                    //, listViewCompTecCat.getItems()
             );
 
             if(adicionou) {
@@ -166,7 +166,7 @@ public class AdicionarCategoriaTarefaUI implements Initializable {
     }
 
     @FXML
-    public List<CaracterizacaoCT> addCompetenciaTecnica2CCTS() {
+    public List<CaracterizacaoCT> addCompetenciaTecnica2CCTS() throws SQLException {
 
         List<CaracterizacaoCT> caracterizacaoCTS = new ArrayList<>();
         boolean adicionou = registarCaracterizacaoCTController.registarCaracterizacaoCTS(

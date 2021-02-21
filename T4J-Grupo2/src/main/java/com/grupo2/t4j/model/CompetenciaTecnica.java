@@ -39,10 +39,6 @@ public class CompetenciaTecnica implements Serializable {
      */
     private String codigoAreaActividade;
 
-    /**
-     * A competencia tecnica caracterizada
-     */
-    private String cct;
 
     
     //private static List<GrauProficiencia> grausProficienciaAplicaveis = new ArrayList<>();
@@ -51,21 +47,6 @@ public class CompetenciaTecnica implements Serializable {
 
     }
 
-    /**
-     * Construtor CompetenciaTecnica Completo
-     *
-     * @param codigo
-     * @param descricaoBreve
-     * @param descricaoDetalhada
-     *
-     */
-    public CompetenciaTecnica(String codigo, String descricaoBreve, String descricaoDetalhada, String codigoAreaActividade, String cct) {
-        setCodigo(codigo);
-        setDescricaoBreve(descricaoBreve);
-        setDescricaoDetalhada(descricaoDetalhada);
-        setCodigoAreaActividade(codigoAreaActividade);
-        setCct(cct);
-    }
 
     /**
      * Construtor CompetenciaTecnica
@@ -170,22 +151,6 @@ public class CompetenciaTecnica implements Serializable {
     }
 
     /**
-     * Devolve a caracterizacao da competencia tecnica
-     * @return the cct
-     */
-    public String getCct() {
-        return cct;
-    }
-
-    /**
-     * Atualiza a caracterizacao da competencia tecnica
-     * @param cct the cct to set
-     */
-    public void setCct(String cct) {
-        this.cct = cct;
-    }
-
-    /**
      * Devolve a area de actividade a que se refere a competencia tecnica
      * 
      * @return the areaActividade
@@ -227,12 +192,8 @@ public class CompetenciaTecnica implements Serializable {
         return Objects.equals(codigo, that.codigo)
                 && Objects.equals(descricaoBreve, that.descricaoBreve)
                 && Objects.equals(descricaoDetalhada, that.descricaoDetalhada)
-                && Objects.equals(codigoAreaActividade, that.codigoAreaActividade)
-                && Objects.equals(cct, that.cct);
+                && Objects.equals(codigoAreaActividade, that.codigoAreaActividade);
 
     }
-    
-    /*public static List<GrauProficiencia> getGrausAplicaveis() {
-        return new ArrayList<GrauProficiencia>(grausProficienciaAplicaveis);
-    }*/
+
 }

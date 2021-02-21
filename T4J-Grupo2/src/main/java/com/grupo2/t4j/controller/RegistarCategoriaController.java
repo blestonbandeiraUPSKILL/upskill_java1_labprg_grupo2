@@ -10,6 +10,7 @@ import com.grupo2.t4j.model.*;
 import com.grupo2.t4j.persistence.FabricaRepositorios;
 import com.grupo2.t4j.persistence.RepositorioAreaActividade;
 import com.grupo2.t4j.persistence.RepositorioCategoriaTarefa;
+import com.grupo2.t4j.persistence.database.FabricaRepositoriosDatabase;
 import com.grupo2.t4j.persistence.inmemory.FabricaRepositoriosInMemory;
 import com.grupo2.t4j.persistence.inmemory.RepositorioCategoriaTarefaInMemory;
 
@@ -24,8 +25,8 @@ import java.util.List;
  */
 public class RegistarCategoriaController {
 
-    private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosInMemory();
-    //private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosDatabase();
+    //private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosInMemory();
+    private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosDatabase();
     private RepositorioCategoriaTarefa repositorioCategoriaTarefa = fabricaRepositorios.getRepositorioCategoriaTarefa();
     private RepositorioAreaActividade repositorioAreaActividade = fabricaRepositorios.getRepositorioAreaActividade();
 
@@ -33,9 +34,13 @@ public class RegistarCategoriaController {
     private RepositorioCategoriaTarefaInMemory repositorioCategoria;
 
     public boolean registarCategoria(String codigoCategoria, String descBreve,
-                                     String descDetalhada, String codigoAreaActividade, List<CaracterizacaoCT> ccts) {
+                                     String descDetalhada, String codigoAreaActividade
+                                    //, List<CaracterizacaoCT> ccts
+                                     ) {
 
-        Categoria categoria = new Categoria(codigoCategoria, descBreve, descDetalhada, codigoAreaActividade, ccts);
+        Categoria categoria = new Categoria(codigoCategoria, descBreve, descDetalhada, codigoAreaActividade
+        //        , ccts
+        );
 
         return repositorioCategoria.save(categoria);
     }
@@ -59,6 +64,7 @@ public class RegistarCategoriaController {
         
         desserializar();
     }
+
     public boolean serializar() {
         return ficheiroCat.serializar(repositorioCategoria);
     }

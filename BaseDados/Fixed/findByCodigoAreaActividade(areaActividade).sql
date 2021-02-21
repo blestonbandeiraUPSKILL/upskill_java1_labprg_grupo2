@@ -19,7 +19,7 @@ BEGIN
     EXCEPTION WHEN
         ex_AreaActividade
     THEN
-        RAISE_APPLICATION_ERROR(-20001, 'Área de Actividade com este código já registada.');
+        RAISE_APPLICATION_ERROR(-20001, 'Área de Actividade inexistente.');
 
 END;
 /
