@@ -71,7 +71,9 @@ public class AdicionarCompetenciaTecnicaUI implements Initializable {
         adicionarStage.setResizable(false);
 
         try {
-            cmbAreaActividade.getItems().setAll(registarCompetenciaTecnicaController.getAllAreasActividade());
+            cmbAreaActividade.getItems().setAll(
+                    registarAreaActividadeController.getAll());
+                    //registarCompetenciaTecnicaController.getAllAreasActividade());
         } catch (SQLException exception) {
             exception.printStackTrace();
         }

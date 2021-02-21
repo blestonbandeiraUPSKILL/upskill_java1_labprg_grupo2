@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
@@ -14,7 +19,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" style="-fx-background-color: #c4c4c4;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.ColaboradorLogadoUI">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" style="-fx-background-color: #c4c4c4;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.ColaboradorLogadoUI">
    <top>
       <Label alignment="CENTER_RIGHT" style="-fx-background-color: #000000;" stylesheets="@../style/app.css" text="Área do Colaborador" textFill="WHITE" BorderPane.alignment="CENTER_RIGHT">
          <font>
@@ -30,7 +35,7 @@
          <center>
             <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
                <tabs>
-                  <Tab text="Lista de Tarefas">
+                  <Tab text="Tarefas">
                      <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
@@ -48,12 +53,12 @@
                               </Label>
                               <VBox layoutX="274.0" layoutY="24.0">
                                  <children>
-                                    <ComboBox fx:id="cmbAreaActividadeListaTarefas" prefHeight="25.0" prefWidth="200.0" promptText="Escolha a Área de Actividade" VBox.vgrow="NEVER">
+                                    <ComboBox fx:id="cmbAreaActividade" prefHeight="25.0" prefWidth="200.0" promptText="Escolha a Área de Actividade" VBox.vgrow="NEVER">
                                        <VBox.margin>
                                           <Insets bottom="10.0" />
                                        </VBox.margin>
                                     </ComboBox>
-                                    <ComboBox fx:id="cmbCategoriaTarefaListaTarefas" prefWidth="200.0" promptText="Escolha a Categoria de Tarefa" VBox.vgrow="NEVER">
+                                    <ComboBox fx:id="cmbCategoriaTarefa" prefWidth="200.0" promptText="Escolha a Categoria de Tarefa" VBox.vgrow="NEVER">
                                        <VBox.margin>
                                           <Insets top="10.0" />
                                        </VBox.margin>
@@ -65,142 +70,11 @@
                                     <Font name="Calibri" size="14.0" />
                                  </font>
                               </Label>
-                           </children>
-                        </AnchorPane>
-                     </content>
-                  </Tab>
-                  <Tab text="Especificar Tarefa">
-                     <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                           <children>
-                              <VBox alignment="TOP_CENTER" layoutX="20.0" layoutY="24.0" prefHeight="339.0" prefWidth="227.0">
-                                 <children>
-                                    <Label text="Seleccionar Área de Actividade">
-                                       <VBox.margin>
-                                          <Insets top="20.0" />
-                                       </VBox.margin>
-                                    </Label>
-                                    <ComboBox fx:id="cmbAreaActividadeEspecificarTarefa" prefHeight="25.0" prefWidth="225.0" promptText="Escolha a Área de Actividade">
-                                       <opaqueInsets>
-                                          <Insets />
-                                       </opaqueInsets>
-                                       <VBox.margin>
-                                          <Insets bottom="10.0" top="10.0" />
-                                       </VBox.margin>
-                                    </ComboBox>
-                                    <Label text="Seleccionar Categoria de Tarefa">
-                                       <VBox.margin>
-                                          <Insets bottom="10.0" top="10.0" />
-                                       </VBox.margin>
-                                    </Label>
-                                    <ComboBox fx:id="cmbCategoriaTarefaEspecificarTarefa" prefHeight="25.0" prefWidth="225.0" promptText="Escolha a Categoria de Tarefa" />
-                                    <Label text="Competências Técnicas Requeridas">
-                                       <VBox.margin>
-                                          <Insets bottom="10.0" top="10.0" />
-                                       </VBox.margin>
-                                    </Label>
-                                    <ListView fx:id="listViewCaracterizacaoCT" prefHeight="140.0" prefWidth="225.0" />
-                                 </children>
-                              </VBox>
-                              <VBox alignment="TOP_CENTER" layoutX="288.0" layoutY="19.0" prefHeight="340.0" prefWidth="297.0">
-                                 <children>
-                                    <Label text="Referência">
-                                       <VBox.margin>
-                                          <Insets bottom="5.0" top="5.0" />
-                                       </VBox.margin>
-                                    </Label>
-                                    <TextField fx:id="txtReferencia">
-                                       <VBox.margin>
-                                          <Insets bottom="5.0" />
-                                       </VBox.margin>
-                                    </TextField>
-                                    <Label text="Designação">
-                                       <VBox.margin>
-                                          <Insets bottom="5.0" />
-                                       </VBox.margin>
-                                    </Label>
-                                    <TextField fx:id="txtDesignacao">
-                                       <VBox.margin>
-                                          <Insets bottom="5.0" />
-                                       </VBox.margin>
-                                    </TextField>
-                                    <Label text="Descrição Informal">
-                                       <VBox.margin>
-                                          <Insets bottom="5.0" />
-                                       </VBox.margin>
-                                    </Label>
-                                    <TextArea fx:id="txtDescInformal" prefHeight="43.0" prefWidth="297.0">
-                                       <VBox.margin>
-                                          <Insets bottom="5.0" />
-                                       </VBox.margin>
-                                    </TextArea>
-                                    <Label text="Descrição de Carácter Técnico">
-                                       <VBox.margin>
-                                          <Insets bottom="5.0" />
-                                       </VBox.margin>
-                                    </Label>
-                                    <TextArea fx:id="txtDescTecnica" prefHeight="61.0" prefWidth="297.0">
-                                       <VBox.margin>
-                                          <Insets bottom="5.0" />
-                                       </VBox.margin>
-                                    </TextArea>
-                                    <Label text="Estimativa de Duração (dias)">
-                                       <VBox.margin>
-                                          <Insets bottom="5.0" />
-                                       </VBox.margin>
-                                    </Label>
-                                    <TextField fx:id="txtEstimativaDuracao">
-                                       <VBox.margin>
-                                          <Insets bottom="5.0" />
-                                       </VBox.margin>
-                                    </TextField>
-                                    <Label text="Estimativa de Custo (€)">
-                                       <VBox.margin>
-                                          <Insets bottom="5.0" />
-                                       </VBox.margin>
-                                    </Label>
-                                    <TextField fx:id="txtEstimativaCusto">
-                                       <VBox.margin>
-                                          <Insets bottom="5.0" />
-                                       </VBox.margin>
-                                    </TextField>
-                                 </children>
-                              </VBox>
-                              <VBox alignment="BOTTOM_CENTER" layoutX="594.0" layoutY="163.0" prefHeight="200.0" prefWidth="100.0">
-                                 <children>
-                                    <Button fx:id="btnRegistarTarefa" defaultButton="true" mnemonicParsing="false" onAction="#registarTarefa" text="Confirmar">
-                                       <VBox.margin>
-                                          <Insets bottom="10.0" top="10.0" />
-                                       </VBox.margin>
-                                       <font>
-                                          <Font name="Calibri" size="14.0" />
-                                       </font>
-                                    </Button>
-                                    <Button fx:id="btnCancelar" mnemonicParsing="false" onAction="#cancelarAction" text="Cancelar">
-                                       <VBox.margin>
-                                          <Insets bottom="10.0" top="10.0" />
-                                       </VBox.margin>
-                                       <font>
-                                          <Font name="Calibri" size="14.0" />
-                                       </font>
-                                    </Button>
-                                 </children>
-                              </VBox>
-                              <Button fx:id="btnImportAreaActividade" layoutY="2.0" mnemonicParsing="false" onAction="#importAreaActividade" prefHeight="25.0" prefWidth="170.0" text="Importar Áreas Actividade" />
-                              <Button layoutX="168.0" layoutY="2.0" mnemonicParsing="false" text="Importar Categorias Tarefa" />
-                           </children>
-                        </AnchorPane>
-                     </content>
-                  </Tab>
-                  <Tab text="Publicar Tarefas">
-                     <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                           <children>
-                              <Label layoutX="168.0" layoutY="158.0" text="Esta funcionalidade ainda não está implementada">
+                              <Button fx:id="btnNovaTarefa" layoutX="588.0" layoutY="305.0" mnemonicParsing="false" onAction="#navigateEspecificarTarefa" style="-fx-background-color: #000000;" text="Nova Tarefa" textFill="WHITE">
                                  <font>
-                                    <Font name="Calibri" size="18.0" />
+                                    <Font name="Calibri" size="14.0" />
                                  </font>
-                              </Label>
+                              </Button>
                            </children>
                         </AnchorPane>
                      </content>
