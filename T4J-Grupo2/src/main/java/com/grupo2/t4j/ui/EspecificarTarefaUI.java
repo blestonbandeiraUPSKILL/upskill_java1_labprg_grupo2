@@ -10,10 +10,9 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.stage.Window;
+import javafx.stage.WindowEvent;
 
 
 import java.net.URL;
@@ -31,13 +30,14 @@ public class EspecificarTarefaUI implements Initializable {
 
     @FXML TextField txtReferencia;
     @FXML TextField txtDesignacao;
-    @FXML TextField txtDescInformal;
-    @FXML TextField txtDescTecnica;
     @FXML TextField txtEstimativaDuracao;
     @FXML TextField txtEstimativaCusto;
+    @FXML TextArea txtDescInformal;
+    @FXML TextArea txtDescTecnica;
     @FXML ListView<CaracterizacaoCT> listViewCaracterizacaoCT;
     @FXML ComboBox<Categoria> cmbCategoriaTarefa;
     @FXML ComboBox<AreaActividade> cmbAreaActividade;
+    @FXML Button btnCancelar;
 
     public void associarParentUI(ColaboradorLogadoUI colaboradorLogadoUI) {
         this.colaboradorLogadoUI = colaboradorLogadoUI;
@@ -100,7 +100,7 @@ public class EspecificarTarefaUI implements Initializable {
                     Double.parseDouble(txtEstimativaCusto.getText()));
 
             if (adicionou){
-                colaboradorLogadoUI.listViewTarefas.updateListViewTarefas();
+                colaboradorLogadoUI.updateListViewTarefas(actionEvent);
             }
             AlertsUI.criarAlerta(Alert.AlertType.INFORMATION,
                     MainApp.TITULO_APLICACAO,
@@ -119,19 +119,23 @@ public class EspecificarTarefaUI implements Initializable {
     }
 
     public void cancelarAction(ActionEvent actionEvent) {
-        this.txtReferencia.clear();
-        this.txtDesignacao.clear();
-        this.txtDescInformal.clear();
-        this.txtDescTecnica.clear();
-        this.txtEstimativaDuracao.clear();
-        this.txtEstimativaCusto.clear();
-        this.listViewCaracterizacaoCT.setItems(null);
-        this.cmbCategoriaTarefa.setItems(null);
-        this.cmbAreaActividade.setItems(null);
+        Window window = btnCancelar.getScene().getWindow();
+        window.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent windowEvent) {
+                Alert alerta = AlertsUI.criarAlerta(Alert.AlertType.CONFIRMATION,
+                        MainApp.TITULO_APLICACAO,
+                        "Confirmação da acção",
+                        "Tem a certeza que quer voltar à página anterior, cancelando o actual registo?");
+
+                if (alerta.showAndWait().get() == ButtonType.CANCEL) {
+                    windowEvent.consume();
+                }
+            }
+        });
+        window.fireEvent(new WindowEvent(window, WindowEvent.WINDOW_CLOSE_REQUEST));
     }
 
-    public void logout(ActionEvent actionEvent) {
-    }
 
 
 }

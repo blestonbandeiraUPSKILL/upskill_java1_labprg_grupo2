@@ -78,7 +78,8 @@ public class ColaboradorLogadoUI implements Initializable {
     }
 
     public void updateListViewTarefas(ActionEvent actionEvent) {
-        
+        listViewTarefas.getItems().setAll(registarTarefaController.getAll());
+
     }
     
     public void updateCmbCategoriasTarefaLista(ActionEvent actionEvent) {

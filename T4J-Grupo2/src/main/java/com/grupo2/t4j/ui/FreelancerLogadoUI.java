@@ -9,6 +9,7 @@ import com.grupo2.t4j.model.TipoRegimento;
 import javafx.fxml.Initializable;
 
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -74,8 +75,12 @@ public class FreelancerLogadoUI implements Initializable {
         fimCandidatura.setCellValueFactory(new PropertyValueFactory<>("dtFimCandidatura"));
         inicioSeriacao.setCellValueFactory(new PropertyValueFactory<>("dtInicioSeriacao"));
         fimSeriacao.setCellValueFactory(new PropertyValueFactory<>("dtFimSeriacao"));
-        
-        updateTableViewAnuncio();
+
+        try {
+            updateTableViewAnuncio();
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }
 
     }
     @FXML
@@ -83,7 +88,7 @@ public class FreelancerLogadoUI implements Initializable {
 
     }
     
-    public void updateTableViewAnuncio(){
+    public void updateTableViewAnuncio() throws SQLException {
         ObservableList<Anuncio> anunciosElegiveis = FXCollections.observableArrayList(efectuarCandidaturaController.findAnunciosElegiveis(startingPageUI.txtEmailLogin.getText()));
         tableAnuncios.setItems(anunciosElegiveis);
     }
