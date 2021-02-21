@@ -22,11 +22,11 @@ public interface RepositorioGrauProficiencia {
     
     boolean save (GrauProficiencia grauProficiencia) throws SQLException;
     
-    List<GrauProficiencia> getAll();
+    List<GrauProficiencia> getAll() throws SQLException;
     
-    ArrayList<GrauProficiencia> findByCompetenciaTecnica(String codigoCompetenciaTecnica);
+    ArrayList<GrauProficiencia> findByCompetenciaTecnica(String codigoCompetenciaTecnica) throws SQLException;
     
-    GrauProficiencia findByGrau(String valor, String codigoCompetenciaTecnica);
+    GrauProficiencia findByGrau(String grau) throws SQLException;
 
-    boolean findByValorECompetenciaTecnica(String grau, String codigoCompetenciaTecnica) throws SQLException;
+    //boolean findByValorECompetenciaTecnica(String grau, String codigoCompetenciaTecnica) throws SQLException;
 }

@@ -10,6 +10,7 @@ import com.grupo2.t4j.model.CompetenciaTecnica;
 import com.grupo2.t4j.persistence.RepositorioCompetenciaTecnica;
 
 import java.io.Serializable;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -101,6 +102,11 @@ public class RepositorioCompetenciaTecnicaInMemory implements Serializable, Repo
 
             }
         }
+        return null;
+    }
+
+    @Override
+    public CompetenciaTecnica findCompetenciaByAreaActividade(String codigoAreaActividade) throws SQLException {
         return null;
     }
 

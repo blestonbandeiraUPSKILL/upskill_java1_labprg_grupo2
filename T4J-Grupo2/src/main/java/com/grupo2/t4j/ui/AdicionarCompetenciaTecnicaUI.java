@@ -7,21 +7,18 @@ package com.grupo2.t4j.ui;
 
 import com.grupo2.t4j.controller.RegistarAreaActividadeController;
 import com.grupo2.t4j.controller.RegistarCompetenciaTecnicaController;
+import com.grupo2.t4j.controller.RegistarGrauProficienciaController;
 import com.grupo2.t4j.model.AreaActividade;
-import com.grupo2.t4j.model.CompetenciaTecnica;
 import com.grupo2.t4j.model.GrauProficiencia;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 //import com.grupo2.t4j.repository.RepositorioAreaActividade;
-import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -44,17 +41,21 @@ public class AdicionarCompetenciaTecnicaUI implements Initializable {
     private AdministrativoLogadoUI administrativoLogadoUI;
     private RegistarCompetenciaTecnicaController registarCompetenciaTecnicaController;
     private RegistarAreaActividadeController registarAreaActividadeController;
+    private RegistarGrauProficienciaController registarGrauProficienciaController;
     private Stage adicionarStage;
     private Scene sceneAddGrauProficiencia;
 
     @FXML Button btnConfirmar;
     @FXML Button btnCancelar;
     @FXML TextArea txtDescDetalhada;
+    @FXML TextField txtDescBreve;
     @FXML TextField txtCodigo;
-    @FXML TextArea txtDescricaoBreve;
+    @FXML TextField txtDesignacao;
+    @FXML TextField txtValor;
+    @FXML TextField txtCodigoGP;
+
     @FXML ComboBox<AreaActividade> cmbAreaActividade;
-    @FXML ComboBox<GrauProficiencia> cmbGrauProficiencia;
-    @FXML ListView<GrauProficiencia> listViewGrausAplicaveis;
+    @FXML ListView<GrauProficiencia> listViewGrausAdicionados;
 
     public void associarParentUI(AdministrativoLogadoUI administrativoLogadoUI) {
         this.administrativoLogadoUI = administrativoLogadoUI;
@@ -64,6 +65,11 @@ public class AdicionarCompetenciaTecnicaUI implements Initializable {
 
         registarAreaActividadeController = new RegistarAreaActividadeController();
         registarCompetenciaTecnicaController = new RegistarCompetenciaTecnicaController();
+        try {
+            registarGrauProficienciaController = new RegistarGrauProficienciaController();
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }
 
 
         adicionarStage = new Stage();
@@ -84,38 +90,21 @@ public class AdicionarCompetenciaTecnicaUI implements Initializable {
         try {
             boolean adicionou = registarCompetenciaTecnicaController.registarCompetenciaTecnica(
                     txtCodigo.getText().trim(),
-                    txtDescricaoBreve.getText().trim(),
+                    txtDescBreve.getText().trim(),
                     txtDescDetalhada.getText().trim(),
                     cmbAreaActividade.getSelectionModel().getSelectedItem().getCodigo()
             );
 
             if (adicionou) {
                 administrativoLogadoUI.updateListViewCompetenciasTecnicas();
-                try {
-                    FXMLLoader loaderAddGrauProficiencia = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/AdicionarGrauProficiencia.fxml"));
-                    Parent rootAddGrauProficiencia = loaderAddGrauProficiencia.load();
-                    sceneAddGrauProficiencia = new Scene(rootAddGrauProficiencia);
-                    sceneAddGrauProficiencia.getStylesheets().add("/com/grupo2/t4j/style/app.css");
-                    AdicionarGrauProficienciaUI adicionarGrauProficienciaUI = loaderAddGrauProficiencia.getController();
-                    adicionarGrauProficienciaUI.associarParentUI(this);
+                AlertsUI.criarAlerta(Alert.AlertType.INFORMATION,
+                        MainApp.TITULO_APLICACAO,
+                        "Registar Competência Técnica.",
+                        adicionou ? "Competencia Tecnica registada com sucesso."
+                                : "Não foi possível registar a Competência Técncia.").show();
 
-                } catch (IOException exception) {
-                    exception.printStackTrace();
-                    AlertsUI.criarAlerta(Alert.AlertType.ERROR,
-                            MainApp.TITULO_APLICACAO,
-                            "Erro",
-                            exception.getMessage());
-                }
-                adicionarStage.setScene(sceneAddGrauProficiencia);
-                adicionarStage.setTitle("Adicionar Grau de Proficiência");
-                adicionarStage.show();
             }
 
-            AlertsUI.criarAlerta(Alert.AlertType.INFORMATION,
-                    MainApp.TITULO_APLICACAO,
-                    "Registar Competência Técnica.",
-                    adicionou ? "Competencia Tecnica registada com sucesso."
-                            : "Não foi possível registar a Competência Técncia.").show();
         } catch (IllegalArgumentException | SQLException iae) {
             AlertsUI.criarAlerta(Alert.AlertType.ERROR,
                     MainApp.TITULO_APLICACAO,
@@ -123,7 +112,7 @@ public class AdicionarCompetenciaTecnicaUI implements Initializable {
                     iae.getMessage()).show();
         }
 
-        closeAddCompetenciaTecnica(event);
+        //closeAddCompetenciaTecnica(event);
     }
 
     private void closeAddCompetenciaTecnica(ActionEvent event) {
@@ -151,26 +140,80 @@ public class AdicionarCompetenciaTecnicaUI implements Initializable {
         window.fireEvent(new WindowEvent(window, WindowEvent.WINDOW_CLOSE_REQUEST));
     }
 
-    /*public void addGrauAplicavelAction(ActionEvent actionEvent) {
+    public void adicionarGrauAction(ActionEvent actionEvent) {
+        try{
+            boolean adicionou = registarGrauProficienciaController.registarGrauProficiencia(
+                    txtValor.getText(),
+                    txtDesignacao.getText(),
+                    txtCodigo.getText());
 
-        try {
-            FXMLLoader loaderAddGrauProficiencia = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/AdicionarGrauProficiencia.fxml"));
-            Parent rootAddGrauProficiencia = loaderAddGrauProficiencia.load();
-            sceneAddGrauProficiencia = new Scene(rootAddGrauProficiencia);
-            sceneAddGrauProficiencia.getStylesheets().add("/com/grupo2/t4j/style/app.css");
-            AdicionarGrauProficienciaUI adicionarGrauProficienciaUI = loaderAddGrauProficiencia.getController();
-            adicionarGrauProficienciaUI.associarParentUI(this);
+            if(adicionou) {
+                updateListViewGrausProficiencia(actionEvent);
+                txtValor.clear();
+                txtDesignacao.clear();
+            }
 
-        } catch (IOException exception) {
-            exception.printStackTrace();
+
+           /* AlertsUI.criarAlerta(Alert.AlertType.INFORMATION,
+                    MainApp.TITULO_APLICACAO,
+                    "Registar Grau de Proficiência.",
+                    adicionou ? "Grau de Proficiência registado com sucesso."
+                            : "Não foi possível registar o Grau de Proficiência.").show();
+
+            concluirAction(actionEvent);*/
+
+        }
+        catch (IllegalArgumentException | SQLException iae) {
             AlertsUI.criarAlerta(Alert.AlertType.ERROR,
                     MainApp.TITULO_APLICACAO,
-                    "Erro",
-                    exception.getMessage());
-        }
-        adicionarStage.setScene(sceneAddGrauProficiencia);
-        adicionarStage.setTitle("Adicionar Grau de Proficiência");
-        adicionarStage.show();
+                    "Erro nos dados.",
+                    iae.getMessage()).show();
 
-    }*/
+        }
+
+    }
+
+    public void concluirAction(ActionEvent actionEvent) {
+
+        try{
+            boolean adicionou = registarGrauProficienciaController.registarGrauProficiencia(
+                    txtValor.getText(),
+                    txtDesignacao.getText(),
+                    txtCodigo.getText());
+
+            if(adicionou) {
+                listViewGrausAdicionados.getItems().add(
+                        registarGrauProficienciaController.findByValor(
+                                txtValor.getText()));
+                txtCodigoGP.clear();
+                txtValor.clear();
+                txtDesignacao.clear();
+            }
+
+
+            AlertsUI.criarAlerta(Alert.AlertType.INFORMATION,
+                    MainApp.TITULO_APLICACAO,
+                    "Registar Grau de Proficiência.",
+                    adicionou ? "Grau de Proficiência registado com sucesso."
+                            : "Não foi possível registar o Grau de Proficiência.").show();
+
+            concluirAction(actionEvent);
+
+        }
+        catch (IllegalArgumentException | SQLException iae) {
+            AlertsUI.criarAlerta(Alert.AlertType.ERROR,
+                    MainApp.TITULO_APLICACAO,
+                    "Erro nos dados.",
+                    iae.getMessage()).show();
+
+        }
+    }
+
+    public void updateListViewGrausProficiencia(ActionEvent actionEvent) throws SQLException {
+        listViewGrausAdicionados.getItems().add(
+                registarGrauProficienciaController.findByValor(
+                        txtValor.getText()));
+    }
+
+
 }

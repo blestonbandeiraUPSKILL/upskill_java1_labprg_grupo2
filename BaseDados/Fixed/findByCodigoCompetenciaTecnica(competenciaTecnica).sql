@@ -20,6 +20,6 @@ BEGIN
     EXCEPTION WHEN
         ex_CompetenciaTecnica
     THEN
-        RAISE_APPLICATION_ERROR(-20001, 'Competência técnica com este código já registada.');
+        RAISE_APPLICATION_ERROR(-20001, 'Competência técnica inexistente.');
 
 END;

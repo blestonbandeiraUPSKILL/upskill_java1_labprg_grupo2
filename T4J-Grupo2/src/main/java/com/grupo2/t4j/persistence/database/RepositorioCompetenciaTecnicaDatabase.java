@@ -2,6 +2,7 @@ package com.grupo2.t4j.persistence.database;
 
 import com.grupo2.t4j.exception.CompetenciaTecnicaDuplicadaException;
 import com.grupo2.t4j.exception.CompetenciaTecnicaInexistenteException;
+import com.grupo2.t4j.model.AreaActividade;
 import com.grupo2.t4j.model.CompetenciaTecnica;
 import com.grupo2.t4j.persistence.RepositorioCompetenciaTecnica;
 import com.grupo2.t4j.utils.DBConnectionHandler;
@@ -50,7 +51,7 @@ public class RepositorioCompetenciaTecnicaDatabase implements RepositorioCompete
         Connection connection = dbConnectionHandler.openConnection();
 
         CallableStatement callableStatement = connection.prepareCall(
-                "{CALL createCompetenciaTecnica(?, ?, ?, ?)}"
+                "{CALL createCompetenciaTecnica(?, ?, ?, ?) }"
         );
 
         if(findByCodigo(competenciaTecnica.getCodigo()) == null) {
@@ -132,7 +133,7 @@ public class RepositorioCompetenciaTecnicaDatabase implements RepositorioCompete
     @Override
     public CompetenciaTecnica findByCodigo(String codigo) throws SQLException {
 
-        /*DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
+        DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
         Connection connection = dbConnectionHandler.openConnection();
 
         CallableStatement callableStatement = connection.prepareCall(
@@ -149,17 +150,15 @@ public class RepositorioCompetenciaTecnicaDatabase implements RepositorioCompete
         }
         catch (SQLException exception) {
             exception.printStackTrace();
-            exception.getSQLState();*/
+            exception.getSQLState();
 
             return null;
-        /*}*/
+        }
     }
 
-
     @Override
-    public List<CompetenciaTecnica> findByAreaActividade(String codigoAreaActividade) throws SQLException {
+    public CompetenciaTecnica findCompetenciaByAreaActividade(String codigoAreaActividade) throws SQLException {
 
-  /*      ArrayList<CompetenciaTecnica> competenciasTecnicas = new ArrayList<>();
 
         DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
         Connection connection = dbConnectionHandler.openConnection();
@@ -175,13 +174,59 @@ public class RepositorioCompetenciaTecnicaDatabase implements RepositorioCompete
             callableStatement.executeUpdate();
 
             return new CompetenciaTecnica();
-        }
-        catch (SQLException exception) {
+
+        } catch (SQLException exception) {
             exception.printStackTrace();
-            exception.getSQLState();*/
+            exception.getSQLState();
 
             return null;
-    /*    }*/
+        }
+    }
+
+
+    @Override
+    public List<CompetenciaTecnica> findByAreaActividade(String codigoAreaActividade) throws SQLException {
+        ArrayList<CompetenciaTecnica> competenciasTecnicas = new ArrayList<>();
+
+        DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
+        Connection connection = dbConnectionHandler.openConnection();
+
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(
+                    "SELECT * FROM CompetenciaTecnica WHERE codigoAreaActividade LIKE ?"
+            );
+
+            preparedStatement.setString(1, codigoAreaActividade);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                String codigoCompetencia = resultSet.getString(1);
+                String descBreve = resultSet.getString(2);
+                String descDetalhada = resultSet.getString(3);
+                competenciasTecnicas.add(new CompetenciaTecnica(codigoCompetencia, descBreve, descDetalhada, codigoAreaActividade));
+            }
+        }
+
+        catch (SQLException exception) {
+            exception.printStackTrace();
+            exception.getSQLState();
+            try {
+                System.err.print("Transaction is being rolled back");
+                connection.rollback();
+            }
+            catch (SQLException sqlException) {
+                sqlException.getErrorCode();
+            }
+
+        }
+        finally {
+            dbConnectionHandler.closeAll();
+        }
+
+        return competenciasTecnicas;
+
+
     }
 
 }

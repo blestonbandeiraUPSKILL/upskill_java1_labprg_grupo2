@@ -111,10 +111,10 @@ ALTER TABLE Categoria
         FOREIGN KEY (codigoAreaActividade)
         REFERENCES AreaActividade(codigoAreaActividade);
 
-ALTER TABLE CompetenciaTecnica
-    ADD CONSTRAINT fk_CompetenciaTecnica_idCaracterCT
-        FOREIGN KEY (idCaracterCT)
-        REFERENCES CaracterCT(idCaracterCT);
+--ALTER TABLE CompetenciaTecnica
+--    ADD CONSTRAINT fk_CompetenciaTecnica_idCaracterCT
+--        FOREIGN KEY (idCaracterCT)
+--        REFERENCES CaracterCT(idCaracterCT);
 
 ALTER TABLE CompetenciaTecnica
     ADD CONSTRAINT fk_CompetenciaTecnica_codigoAreaActividade
@@ -138,3 +138,10 @@ ALTER TABLE CaracterCT
 
 --ALTER TABLE CompetenciaTecnica
 --    DROP COLUMN idCaracterCT;
+
+--ALTER TABLE GrauProficiencia
+--    drop column valor;
+
+--ALTER TABLE GrauProficiencia
+--    ADD grau varchar(10);
+    

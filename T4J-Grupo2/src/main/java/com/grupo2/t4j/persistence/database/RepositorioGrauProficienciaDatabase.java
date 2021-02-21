@@ -1,13 +1,12 @@
 package com.grupo2.t4j.persistence.database;
 
 import com.grupo2.t4j.exception.GrauProficienciaDuplicadoException;
+import com.grupo2.t4j.model.CompetenciaTecnica;
 import com.grupo2.t4j.model.GrauProficiencia;
 import com.grupo2.t4j.persistence.RepositorioGrauProficiencia;
 import com.grupo2.t4j.utils.DBConnectionHandler;
 
-import java.sql.CallableStatement;
-import java.sql.Connection;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,7 +15,7 @@ public class RepositorioGrauProficienciaDatabase implements RepositorioGrauProfi
     private static RepositorioGrauProficienciaDatabase repositorioGrauProficienciaDatabase;
 
     String jdbcUrl = "jdbc:oracle:thin:@vsrvbd1.dei.isep.ipp.pt:1521/pdborcl";
-    String username = "UPSKILL_BD_TURMA1_04";
+    String username = "UPSKILL_BD_TURMA1_01";
     String password = "qwerty";
 
     private RepositorioGrauProficienciaDatabase() throws SQLException {
@@ -37,20 +36,21 @@ public class RepositorioGrauProficienciaDatabase implements RepositorioGrauProfi
 
     @Override
     public boolean save(GrauProficiencia grauProficiencia) throws SQLException {
+
         DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
         Connection connection = dbConnectionHandler.openConnection();
 
         CallableStatement callableStatement = connection.prepareCall(
-                "{CALL createGrauProficiencia(?, ?, ?)}"
+                "{CALL createGrauProficiencia(?, ?, ?) }"
         );
 
-        if (!findByValorECompetenciaTecnica(grauProficiencia.getGrau(), grauProficiencia.getCodigoCompetenciaTecnica())) {
+        if (findByGrau(grauProficiencia.getGrau()) == null) {
             try {
                 connection.setAutoCommit(false);
 
-                callableStatement.setString(1, grauProficiencia.getDesignacao());
-                callableStatement.setString(2, grauProficiencia.getCodigoCompetenciaTecnica());
-                callableStatement.setString(3, grauProficiencia.getGrau());
+                callableStatement.setString(1, grauProficiencia.getGrau());
+                callableStatement.setString(2, grauProficiencia.getDesignacao());
+                callableStatement.setString(3, grauProficiencia.getCodigoCompetenciaTecnica());
 
                 callableStatement.executeQuery();
 
@@ -79,44 +79,125 @@ public class RepositorioGrauProficienciaDatabase implements RepositorioGrauProfi
     }
 
     @Override
-    public boolean findByValorECompetenciaTecnica(String grau, String codigoCompetenciaTecnica) throws SQLException {
+    public List<GrauProficiencia> getAll() throws SQLException {
+        return null;
+    }
 
+    @Override
+    public GrauProficiencia findByGrau(String grau) throws SQLException {
         DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
         Connection connection = dbConnectionHandler.openConnection();
 
         CallableStatement callableStatement = connection.prepareCall(
-                "{CALL findByValorECompetenciaTecnica(?,?) }"
+                "{ CALL findByGrau(?) }"
         );
 
         try {
             connection.setAutoCommit(false);
 
             callableStatement.setString(1, grau);
-            callableStatement.setString(2, codigoCompetenciaTecnica);
+
             callableStatement.executeUpdate();
 
-            return true;
+            return new GrauProficiencia();
         }
         catch (SQLException exception) {
             exception.printStackTrace();
             exception.getSQLState();
 
-            return false;
+            return null;
         }
+
+    }
+
+
+
+    public List<GrauProficiencia> getAll(String codigoCompetenciaTecnica) throws SQLException {
+        ArrayList<GrauProficiencia> grausProficiencia = new ArrayList<>();
+
+        DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
+        Connection connection = dbConnectionHandler.openConnection();
+
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(
+                    "SELECT * FROM GrauProficiencia WHERE codigoCompetenciaTecnica LIKE ?"
+            );
+
+            preparedStatement.setString(1, codigoCompetenciaTecnica);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                int idGrauProficiencia = resultSet.getInt(1);
+                String grau = resultSet.getString(2);
+                String designacao = resultSet.getString(3);
+                grausProficiencia.add(new GrauProficiencia(idGrauProficiencia, grau, designacao, codigoCompetenciaTecnica));
+            }
+        }
+        catch (SQLException exception) {
+            exception.printStackTrace();
+            exception.getSQLState();
+            try {
+                System.err.print("Transaction is being rolled back");
+                connection.rollback();
+            }
+            catch (SQLException sqlException) {
+                sqlException.getErrorCode();
+            }
+
+        }
+        finally {
+            dbConnectionHandler.closeAll();
+        }
+
+        return grausProficiencia;
+
     }
 
     @Override
-    public List<GrauProficiencia> getAll() {
-        return null;
+    public ArrayList<GrauProficiencia> findByCompetenciaTecnica(String codigoCompetenciaTecnica) throws SQLException {
+        ArrayList<GrauProficiencia> grausProficiencia = new ArrayList<>();
+
+        DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
+        Connection connection = dbConnectionHandler.openConnection();
+
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(
+                    "SELECT * FROM GrauProficiencia WHERE codigoCompetenciaTecnica LIKE '?'"
+            );
+
+            preparedStatement.setString(1, codigoCompetenciaTecnica);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                int idGrauProficiencia = resultSet.getInt(1);
+                String designacao = resultSet.getString(2);
+                String grau = resultSet.getString(3);
+                grausProficiencia.add(new GrauProficiencia(idGrauProficiencia, grau, designacao, codigoCompetenciaTecnica));
+
+            }
+        }
+
+        catch (SQLException exception) {
+            exception.printStackTrace();
+            exception.getSQLState();
+            try {
+                System.err.print("Transaction is being rolled back");
+                connection.rollback();
+            }
+            catch (SQLException sqlException) {
+                sqlException.getErrorCode();
+            }
+
+        }
+        finally {
+            dbConnectionHandler.closeAll();
+        }
+
+        return grausProficiencia;
     }
 
-    @Override
-    public ArrayList<GrauProficiencia> findByCompetenciaTecnica(String codigoCompetenciaTecnica) {
-        return null;
-    }
 
-    @Override
-    public GrauProficiencia findByGrau(String valor, String codigoCompetenciaTecnica) {
-        return null;
-    }
+
 }
