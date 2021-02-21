@@ -3,19 +3,8 @@ CREATE OR REPLACE PROCEDURE createCaracterCT(
     p_grauProfMinimo grauproficiencia.idgrauproficiencia%type
     )
 IS
-    v_count int;
-    ex_GrauProficiencia exception;
     
 BEGIN
-
-    SELECT count(*) INTO v_count
-    FROM GrauProficiencia
-    WHERE idGrauProficiencia = p_grauProfMinimo;
-    
-    IF v_count = 0
-    THEN
-        RAISE ex_GrauProficiencia;
-    END IF;
     
     INSERT INTO CaracterCT
         (obrigatoria, grauprofminimo)

@@ -75,8 +75,8 @@ public class RepositorioTarefaInMemory implements Serializable, RepositorioTaref
     public void save(String codigoAreaActividade, String codigoCategoriaTarefa, String referencia, String designacao, String descInformal, String descTecnica, int duracao, double custo) {
         Tarefa t = findByReferencia(referencia);
         if (t == null) {
-            Tarefa tarefa = new Tarefa(codigoAreaActividade, codigoCategoriaTarefa, referencia, designacao, descInformal,
-                    descTecnica, duracao, custo);
+            Tarefa tarefa = new Tarefa(referencia, designacao, descInformal,
+                    descTecnica, duracao, custo, codigoAreaActividade, codigoCategoriaTarefa);
             this.listaTarefas.add(tarefa);
         }
         else {

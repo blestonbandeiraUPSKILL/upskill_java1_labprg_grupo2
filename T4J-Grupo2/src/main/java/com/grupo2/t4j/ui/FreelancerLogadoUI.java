@@ -1,13 +1,17 @@
 package com.grupo2.t4j.ui;
 
 import com.grupo2.t4j.controller.EfectuarCandidaturaController;
+import com.grupo2.t4j.controller.GestaoUtilizadoresController;
 import com.grupo2.t4j.controller.RegistarAnuncioController;
 import com.grupo2.t4j.model.Anuncio;
 import com.grupo2.t4j.model.Data;
 import com.grupo2.t4j.model.Tarefa;
 import com.grupo2.t4j.model.TipoRegimento;
+import javafx.event.EventHandler;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
@@ -15,54 +19,51 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.Window;
+import javafx.stage.WindowEvent;
 
 public class FreelancerLogadoUI implements Initializable {
-    
-     @FXML
-    private TableColumn<Anuncio, Data> inicioCandidatura;
-
-    @FXML
-    private TableColumn<Anuncio, Data> fimCandidatura;
-
-    @FXML
-    private TableColumn<Tarefa, String> tarefa;
-
-    @FXML
-    private TableColumn<Anuncio, Data> fimSeriacao;
-
-    @FXML
-    private TableView<Anuncio> tableAnuncios;
-
-    @FXML
-    private TableColumn<Anuncio, Data> inicioPublicitacao;
-
-    @FXML
-    private TableColumn<Anuncio, Data> fimPublicitacao;
-
-    @FXML
-    private TableColumn<TipoRegimento, String> tipoRegimento;
-
-    @FXML
-    private TableColumn<Anuncio, Data> inicioSeriacao;
 
     private StartingPageUI startingPageUI;
     private Stage adicionarStage;
-    
+    private Scene sceneStartingPage;
+
+    private GestaoUtilizadoresController gestaoUtilizadoresController;
     private RegistarAnuncioController registarAnuncioController;
     private EfectuarCandidaturaController efectuarCandidaturaController;
-    
+
+    @FXML TableColumn<Anuncio, Data> inicioCandidatura;
+    @FXML TableColumn<Anuncio, Data> fimCandidatura;
+    @FXML TableColumn<Tarefa, String> tarefa;
+    @FXML TableColumn<Anuncio, Data> fimSeriacao;
+    @FXML TableView<Anuncio> tableAnuncios;
+    @FXML TableColumn<Anuncio, Data> inicioPublicitacao;
+    @FXML TableColumn<Anuncio, Data> fimPublicitacao;
+    @FXML TableColumn<TipoRegimento, String> tipoRegimento;
+    @FXML TableColumn<Anuncio, Data> inicioSeriacao;
+    @FXML Button btnSair;
+
+
     public void associarParentUI(StartingPageUI startingPageUI) {
         this.startingPageUI = startingPageUI;
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        
+
+        try {
+            efectuarCandidaturaController = new EfectuarCandidaturaController();
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }
+        gestaoUtilizadoresController = new GestaoUtilizadoresController();
+
         adicionarStage = new Stage();
         adicionarStage.initModality(Modality.APPLICATION_MODAL);;
         adicionarStage.setResizable(false);
@@ -89,7 +90,55 @@ public class FreelancerLogadoUI implements Initializable {
     }
     
     public void updateTableViewAnuncio() throws SQLException {
-        ObservableList<Anuncio> anunciosElegiveis = FXCollections.observableArrayList(efectuarCandidaturaController.findAnunciosElegiveis(startingPageUI.txtEmailLogin.getText()));
-        tableAnuncios.setItems(anunciosElegiveis);
+
+
+     /*   ObservableList<Anuncio> anunciosElegiveis = FXCollections.observableArrayList(
+                efectuarCandidaturaController.findAnunciosElegiveis(
+                        gestaoUtilizadoresController.getEmail()));
+
+        tableAnuncios.setItems(anunciosElegiveis);*/
+    }
+
+    public void logout(ActionEvent actionEvent) {
+        Window window = btnSair.getScene().getWindow();
+        window.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent windowEvent) {
+                Alert alerta = AlertsUI.criarAlerta(Alert.AlertType.CONFIRMATION,
+                        MainApp.TITULO_APLICACAO,
+                        "Confirmação da acção",
+                        "Tem a certeza que pretende terminar a sessão?");
+
+                if (alerta.showAndWait().get() == ButtonType.CANCEL) {
+                    windowEvent.consume();
+                }
+                else {
+                    boolean logout = gestaoUtilizadoresController.logout();
+                    if (logout) {
+                        gestaoUtilizadoresController.resetUsersAPI();
+
+                        FXMLLoader loaderStartingPage = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/StartingPageScene.fxml"));
+                        Parent rootStartingPage = null;
+                        try {
+                            rootStartingPage = loaderStartingPage.load();
+                        } catch (IOException exception) {
+                            exception.printStackTrace();
+                        }
+                        sceneStartingPage = new Scene(rootStartingPage);
+                        adicionarStage.setScene(sceneStartingPage);
+                        adicionarStage.setTitle(MainApp.TITULO_APLICACAO);
+                        adicionarStage.show();
+                    } else {
+                        AlertsUI.criarAlerta(Alert.AlertType.ERROR,
+                                MainApp.TITULO_APLICACAO,
+                                "Erro",
+                                "Não foi possível terminar a sessão.");
+                    }
+                }
+            }
+        });
+        window.fireEvent(new WindowEvent(window, WindowEvent.WINDOW_CLOSE_REQUEST));
+
+
     }
 }

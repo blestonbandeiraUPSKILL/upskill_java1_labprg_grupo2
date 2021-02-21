@@ -67,7 +67,7 @@ CREATE TABLE Tarefa(
         CONSTRAINT nn_Tarefa_duracaoEstimada NOT NULL,
     custoEstimado float(2)
         CONSTRAINT nn_Tarefa_custoEstimado NOT NULL,
-    idCategoria integer,
+    codigoCategoria varchar(15),
     emailColaborador varchar(20)    
 );
 
@@ -116,9 +116,9 @@ CREATE TABLE ReconhecimentoGP(
 CREATE TABLE GrauProficiencia(
     idGrauProficiencia integer GENERATED AS IDENTITY
         CONSTRAINT pk_GrauProficiencia_idGrauProficiencia PRIMARY KEY,
-    valor integer
-        CONSTRAINT nn_GrauProficiencia_valor NOT NULL
-        CONSTRAINT uk_GrauProficiencia_valor UNIQUE,
+    grau varchar(10)
+        CONSTRAINT nn_GrauProficiencia_grau NOT NULL
+        CONSTRAINT uk_GrauProficiencia_grau UNIQUE,
     designacao varchar(100)
         CONSTRAINT nn_GrauProficiencia_designacao NOT NULL,
     codigoCompetenciaTecnica varchar(15)
@@ -143,8 +143,8 @@ CREATE TABLE HabilitacaoAcademica(
 );
 
 CREATE TABLE Categoria(
-    idCategoria integer GENERATED AS IDENTITY
-        CONSTRAINT pk_Categoria_idCategoria PRIMARY KEY,
+    codigoCategoria varchar(15)
+        CONSTRAINT pk_Categoria_codigoCategoria PRIMARY KEY,
     descBreve varchar(50)
         CONSTRAINT nn_Categoria_descBreve NOT NULL
         CONSTRAINT uk_Categoria_descBreve UNIQUE,
@@ -168,7 +168,6 @@ CREATE TABLE CompetenciaTecnica(
         CONSTRAINT nn_CompetenciaTecnica_descBreve NOT NULL
         CONSTRAINT uk_CompetenciaTecnica_descBreve UNIQUE,
     descDetalhada varchar(100),
-    idCaracterCT varchar(15),
     codigoAreaActividade varchar(15)
 );
 

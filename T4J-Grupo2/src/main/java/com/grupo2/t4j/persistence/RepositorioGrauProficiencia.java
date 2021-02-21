@@ -6,6 +6,8 @@
 package com.grupo2.t4j.persistence;
 
 import com.grupo2.t4j.model.GrauProficiencia;
+
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,14 +16,17 @@ import java.util.List;
  * @author acris
  */
 public interface RepositorioGrauProficiencia {
+
     
     void save (int valor, String designacao, String codigoCompetenciaTecnica);
     
-    boolean save (GrauProficiencia grauProficiencia);
+    boolean save (GrauProficiencia grauProficiencia) throws SQLException;
     
     List<GrauProficiencia> getAll();
     
     ArrayList<GrauProficiencia> findByCompetenciaTecnica(String codigoCompetenciaTecnica);
     
-    GrauProficiencia findByValor(String valor, String codigoCompetenciaTecnica);
+    GrauProficiencia findByGrau(String valor, String codigoCompetenciaTecnica);
+
+    boolean findByValorECompetenciaTecnica(String grau, String codigoCompetenciaTecnica) throws SQLException;
 }

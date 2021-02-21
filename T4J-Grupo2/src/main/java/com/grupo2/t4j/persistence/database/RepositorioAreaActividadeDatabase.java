@@ -177,12 +177,7 @@ public class RepositorioAreaActividadeDatabase implements RepositorioAreaActivid
         finally {
             dbConnectionHandler.closeAll();
         }
-        if (areasActividade != null) {
-            return areasActividade;
-        }
-        else {
-            throw new AreaActividadeInexistenteException("Não há áreas de actividade para mostrar");
-        }
+        return areasActividade;
     }
 
     @Override

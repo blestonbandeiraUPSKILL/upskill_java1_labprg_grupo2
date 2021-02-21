@@ -79,7 +79,11 @@ public class AdicionarCategoriaTarefaUI implements Initializable {
         cmbAreaActividade.setOnAction(new EventHandler<ActionEvent>() {
            @Override
            public void handle(ActionEvent event) {
-               updateCmbCompetenciasTecnicas(event);
+               try {
+                   updateCmbCompetenciasTecnicas(event);
+               } catch (SQLException exception) {
+                   exception.printStackTrace();
+               }
 
            }
         });
@@ -92,10 +96,10 @@ public class AdicionarCategoriaTarefaUI implements Initializable {
         });
     }
 
-    public void updateCmbCompetenciasTecnicas(ActionEvent actionEvent) {
+    public void updateCmbCompetenciasTecnicas(ActionEvent actionEvent) throws SQLException {
+        String codigoAreaActividade = cmbAreaActividade.getSelectionModel().getSelectedItem().getCodigo();
         cmbCompetenciaTecnica.getItems().addAll(
-                registarCompetenciaTecnicaController.findByAreaActividade(
-                cmbAreaActividade.getSelectionModel().getSelectedItem().getCodigo()));
+                registarCompetenciaTecnicaController.findByAreaActividade(codigoAreaActividade));
     }
     
     public void updateCmbGrauProficiencia(ActionEvent actionEvent) {
@@ -131,8 +135,8 @@ public class AdicionarCategoriaTarefaUI implements Initializable {
                     txtCodigo.getText().trim(),
                     txtDescricaoBreve.getText().trim(),
                     txtDescricaoDetalhada.getText().trim(),
-                    cmbAreaActividade.getSelectionModel().getSelectedItem().getCodigo(),
-                    listViewCompTecCat.getItems()
+                    cmbAreaActividade.getSelectionModel().getSelectedItem().getCodigo()
+                    //, listViewCompTecCat.getItems()
             );
 
             if(adicionou) {
@@ -166,12 +170,12 @@ public class AdicionarCategoriaTarefaUI implements Initializable {
     }
 
     @FXML
-    public List<CaracterizacaoCT> addCompetenciaTecnica2CCTS() {
+    public List<CaracterizacaoCT> addCompetenciaTecnica2CCTS() throws SQLException {
 
         List<CaracterizacaoCT> caracterizacaoCTS = new ArrayList<>();
         boolean adicionou = registarCaracterizacaoCTController.registarCaracterizacaoCTS(
                txtCodigoCCT.getText(),
-               cmbGrauProficiencia.getValue().getCodigoGP(),
+               cmbGrauProficiencia.getValue().getGrau(),
                cmbObrigatoriedade.getValue(),
                cmbCompetenciaTecnica.getValue().getCodigo());
 

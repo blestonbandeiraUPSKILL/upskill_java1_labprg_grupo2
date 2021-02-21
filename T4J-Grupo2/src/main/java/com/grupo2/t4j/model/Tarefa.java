@@ -51,11 +51,7 @@ public class Tarefa implements Serializable{
      * O custo estimado da tarefa em euros.
      */
     private double custoEst;
-    
-    private AreaActividade at;
-    private Categoria ct;
-    private List<CaracterizacaoCT> ccts;
-    private List<Categoria> categoriaTarefa;
+
     
     /**
      * Construtor vazio da classe Tarefa.
@@ -64,10 +60,10 @@ public class Tarefa implements Serializable{
         
     }
 
-    public Tarefa(String codigoAreaActividade,
-                  String codigoCategoriaTarefa,
-                  String referencia, String designacao,
-                  String descInformal, String descTecnica, int duracao, double custo) {
+    public Tarefa(String referencia, String designacao,
+                  String descInformal, String descTecnica, int duracao, double custo,
+                  String codigoAreaActividade,
+                  String codigoCategoriaTarefa) {
         setCodigoAreaActividade(codigoAreaActividade);
         setCodigoCategoriaTarefa(codigoCategoriaTarefa);
         setReferencia(referencia);

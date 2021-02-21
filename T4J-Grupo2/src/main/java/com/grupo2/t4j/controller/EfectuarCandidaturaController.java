@@ -5,6 +5,7 @@
  */
 package com.grupo2.t4j.controller;
 
+import com.grupo2.t4j.exception.TarefaInexistenteException;
 import com.grupo2.t4j.model.Anuncio;
 import com.grupo2.t4j.model.CaracterizacaoCT;
 import com.grupo2.t4j.model.CompetenciaTecnica;
@@ -42,9 +43,12 @@ public class EfectuarCandidaturaController {
     private RepositorioReconhecimentoGP repositorioReconhecimentoGP = fabricaRepositorios.getRepositorioReconhecimentoGP();
     private RepositorioTarefa repositorioTarefa = fabricaRepositorios.getRepositorioTarefa();
     private RepositorioCompetenciaTecnica repositorioCompetenciaTecnica = fabricaRepositorios.getRepositorioCompetenciaTecnica();
-    //private RepositorioGrauProficiencia repositorioGrauProficiencia = fabricaRepositorios.getRepositorioGrauProficiencia();
+    private RepositorioGrauProficiencia repositorioGrauProficiencia = fabricaRepositorios.getRepositorioGrauProficiencia();
     private RepositorioCaracterizacaoCT repositorioCaracterizacaoCT = fabricaRepositorios.getRepositorioCaracterizacaoCT();
     private RepositorioCategoriaTarefa repositorioCategoriaTarefa = fabricaRepositorios.getRepositorioCategoriaTarefa();
+
+    public EfectuarCandidaturaController() throws SQLException {
+    }
 
     public List<ReconhecimentoGP> findReconhecimentoFreelancer(String email) {
         return repositorioReconhecimentoGP.findByEmail(email);
@@ -53,7 +57,7 @@ public class EfectuarCandidaturaController {
     public List<Tarefa> findTarefasElegiveis(String email) throws SQLException {
         List<Tarefa> tarefasElegiveis = new ArrayList<>();
         List<Tarefa> listaTarefas = repositorioTarefa.getAll();
-        List<ReconhecimentoGP> listaReconhecimentos = findReconhecimentoFreelancer(email);
+
         for (Tarefa tarefa : listaTarefas) {
             List<CaracterizacaoCT> competenciasDaTarefa = repositorioCategoriaTarefa.findByCodigo(
                     tarefa.getCodigoCategoriaTarefa()).getCompTecnicasCaracter();
@@ -66,21 +70,30 @@ public class EfectuarCandidaturaController {
                 }
             }
         }
-
         return null;
     }
 
     public List<Anuncio> findAnunciosElegiveis(String email) throws SQLException {
-        Anuncio anuncio = null;
+
         List<Anuncio> anunciosElegiveis = new ArrayList<>();
         Data dataAtual = Data.dataActual();
-        for (Tarefa tarefa : findTarefasElegiveis(email)) {
-            anuncio = repositorioAnuncio.findAnuncioByIdTarefa(tarefa.getReferencia());
-            if (dataAtual.isMaior(anuncio.getDtInicioCand()) && dataAtual.isMaior(anuncio.getDtInicioPub())) {
-                if (anuncio != null) {
-                    anunciosElegiveis.add(anuncio);
+        if (findTarefasElegiveis(email) == null) {
+            throw new TarefaInexistenteException("Não há tarefas para mostrar");
+        }
+        else {
+
+            for (Tarefa tarefa : findTarefasElegiveis(email)) {
+                Anuncio anuncio = repositorioAnuncio.findAnuncioByIdTarefa(tarefa.getReferencia());
+                if (dataAtual.isMaior(anuncio.getDtInicioCand()) && dataAtual.isMaior(anuncio.getDtInicioPub())) {
+                    if (anuncio != null) {
+                        anunciosElegiveis.add(anuncio);
+                    }
                 }
             }
+        }
+
+        if (anunciosElegiveis == null) {
+            return new ArrayList<>();
         }
         return anunciosElegiveis;
     }

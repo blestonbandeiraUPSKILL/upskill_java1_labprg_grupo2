@@ -75,7 +75,6 @@ public class AdicionarGrauProficienciaUI implements Initializable {
         
         try{
             boolean adicionou = registarGrauProficienciaController.registarGrauProficiencia(
-                    txtCodigoGP.getText(),
                     txtValor.getText(),
                     txtDesignacao.getText(),
                     adicionarCompetenciaTecnicaUI.txtCodigo.getText());
@@ -99,7 +98,7 @@ public class AdicionarGrauProficienciaUI implements Initializable {
             //concluirAction(actionEvent);
 
         }
-        catch (IllegalArgumentException iae) {
+        catch (IllegalArgumentException | SQLException iae) {
             AlertsUI.criarAlerta(Alert.AlertType.ERROR,
                     MainApp.TITULO_APLICACAO,
                     "Erro nos dados.",

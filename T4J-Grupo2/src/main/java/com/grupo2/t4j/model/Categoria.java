@@ -44,6 +44,9 @@ public class Categoria implements Serializable{
      * Lista de coompetencias tecnicas tipicamente necessarias para a categoria
      */
     private List<CaracterizacaoCT> caracterizacaoCTS = new ArrayList<>();
+
+    public Categoria() {
+    }
     
     /**
      *Construtor Categoria
@@ -51,14 +54,16 @@ public class Categoria implements Serializable{
      * @param descBreve
      * @param descDetalhada
      * @param codigoAreaActividade
-     * @param caracterizacaoCTS
+     * //@param caracterizacaoCTS
      */
-    public Categoria (String codigoCategoria, String descBreve, String descDetalhada, String codigoAreaActividade, List<CaracterizacaoCT> caracterizacaoCTS){
+    public Categoria (String codigoCategoria, String descBreve, String descDetalhada, String codigoAreaActividade
+                      //,List<CaracterizacaoCT> caracterizacaoCTS
+                      ){
         setCodigo(codigoCategoria);
         setDescBreve(descBreve);
         setDescDetalhada(descDetalhada);
         this.codigoAreaActividade = codigoAreaActividade;
-        setCompTecnicasCaracter(caracterizacaoCTS);
+        //setCompTecnicasCaracter(caracterizacaoCTS);
     }
 
     /**
@@ -140,7 +145,7 @@ public class Categoria implements Serializable{
      *Retorna a Area de Actividade a que se refere a categoria
      * @return
      */
-    public String getAt() {
+    public String getCodigoAreaActividade() {
         return codigoAreaActividade;
     }
 

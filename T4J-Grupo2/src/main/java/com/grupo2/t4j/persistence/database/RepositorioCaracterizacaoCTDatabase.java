@@ -6,7 +6,11 @@ import com.grupo2.t4j.model.CompetenciaTecnica;
 import com.grupo2.t4j.model.GrauProficiencia;
 import com.grupo2.t4j.model.Obrigatoriedade;
 import com.grupo2.t4j.persistence.RepositorioCaracterizacaoCT;
+import com.grupo2.t4j.utils.DBConnectionHandler;
 
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.List;
 
 public class RepositorioCaracterizacaoCTDatabase implements RepositorioCaracterizacaoCT {
@@ -17,10 +21,14 @@ public class RepositorioCaracterizacaoCTDatabase implements RepositorioCaracteri
      */
     private static RepositorioCaracterizacaoCTDatabase repositorioCaracterizacaoCTDatabase;
 
+    String jdbcUrl = "jdbc:oracle:thin:@vsrvbd1.dei.isep.ipp.pt:1521/pdborcl";
+    String username = "UPSKILL_BD_TURMA1_01";
+    String password = "qwerty";
+
     /**
      * Inicializa o Repositório de Caracterizações de Competências Técnicas
      */
-    RepositorioCaracterizacaoCTDatabase(){    }
+    private RepositorioCaracterizacaoCTDatabase(){    }
 
     /**
      * Devolve uma instância estática do Repositório de Caracterizações de Competências Técnicas
@@ -40,8 +48,14 @@ public class RepositorioCaracterizacaoCTDatabase implements RepositorioCaracteri
     }
 
     @Override
-    public boolean save(CaracterizacaoCT caracterizacaoCT) {
+    public boolean save(CaracterizacaoCT caracterizacaoCT) throws SQLException {
         return false;
+     /*   DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
+        Connection connection = dbConnectionHandler.openConnection();
+
+        CallableStatement callableStatement = connection.prepareCall(
+                "{CALL createCaracterizacaoCT()}"
+        );*/
     }
 
     @Override

@@ -27,6 +27,7 @@ public interface RepositorioTarefa {
 
     Tarefa findByReferencia(String referencia);
 
+
     List<Tarefa> findByCategoria (String codigoCategoria);
 
 
@@ -35,7 +36,7 @@ public interface RepositorioTarefa {
      *
      * @return
      */
-    public ArrayList<Tarefa> getAll();
+    ArrayList<Tarefa> getAll();
 
 
     //getAllByOrgPublicadas, getAllByOrgNaoPublicadas, getAllByOrg

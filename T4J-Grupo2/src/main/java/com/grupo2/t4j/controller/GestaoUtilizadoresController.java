@@ -31,5 +31,9 @@ public class GestaoUtilizadoresController {
         return UsersAPI.getInstance().getRole();
     }
 
+    public String getEmail() {
+        return UsersAPI.getInstance().getEmail();
+    }
+
 
 }

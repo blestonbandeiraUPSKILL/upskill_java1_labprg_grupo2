@@ -11,6 +11,7 @@ import com.grupo2.t4j.model.CompetenciaTecnica;
 import com.grupo2.t4j.persistence.FabricaRepositorios;
 import com.grupo2.t4j.persistence.RepositorioAreaActividade;
 import com.grupo2.t4j.persistence.RepositorioCompetenciaTecnica;
+import com.grupo2.t4j.persistence.database.FabricaRepositoriosDatabase;
 import com.grupo2.t4j.persistence.inmemory.FabricaRepositoriosInMemory;
 import com.grupo2.t4j.persistence.inmemory.RepositorioCompetenciaTecnicaInMemory;
 
@@ -27,8 +28,8 @@ import java.util.List;
  */
 public class RegistarCompetenciaTecnicaController {
 
-    private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosInMemory();
-    //private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosDatabase();
+    //private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosInMemory();
+    private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosDatabase();
     private RepositorioCompetenciaTecnica repositorioCompetenciaTecnica = fabricaRepositorios.getRepositorioCompetenciaTecnica();
     private RepositorioAreaActividade repositorioAreaActividade = fabricaRepositorios.getRepositorioAreaActividade();
 
@@ -45,15 +46,12 @@ public class RegistarCompetenciaTecnicaController {
     /*public static List<GrauProficiencia> getGrausAplicaveis() {
         return CompetenciaTecnica.getGrausAplicaveis();
     }*/
+
     public List<CompetenciaTecnica> getAll() throws SQLException {
         return repositorioCompetenciaTecnica.getAll();
     }
 
-    public List<AreaActividade> getAllAreasActividade() throws SQLException {
-        return repositorioAreaActividade.getAll();
-    }
-
-    public List<CompetenciaTecnica> findByAreaActividade(String codigoAreaActividade) {
+    public List<CompetenciaTecnica> findByAreaActividade(String codigoAreaActividade) throws SQLException {
         return repositorioCompetenciaTecnica.findByAreaActividade(codigoAreaActividade);
     }
 
