@@ -25,9 +25,6 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 import javafx.stage.WindowEvent;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -42,6 +39,8 @@ public class AdministrativoLogadoUI implements Initializable {
     private Scene sceneAddCategoriaTarefa;
     private Scene sceneAddCompetenciaTecnica;
     private Scene sceneAddFreelancer;
+    private Scene sceneAddHabilitacaoFreelancer;
+    private Scene sceneAddCompetenciaFreelancer;
     private Scene sceneStartingPage;
     private RegistarAreaActividadeController registarAreaActividadeController;
     private RegistarCategoriaController registarCategoriaController;
@@ -62,10 +61,7 @@ public class AdministrativoLogadoUI implements Initializable {
     @FXML ListView<AreaActividade> listaAreasActividade;
     @FXML ListView<Categoria> listaCategorias;
     @FXML ListView<CompetenciaTecnica> listViewCompetenciasTecnicas;
-    @FXML TableView<Freelancer> tabelaFreelancers;
-    @FXML TableColumn<Freelancer, String> colunaNomeFreelancer;
-    @FXML TableColumn<Freelancer, String> colunaEmailFreelancer;
-    @FXML TableColumn<Freelancer, String> colunaNifFreelancer;
+    @FXML ListView<String> listaFreelancer;
 
 
     public void associarParentUI(StartingPageUI startingPageUI) {
@@ -82,8 +78,9 @@ public class AdministrativoLogadoUI implements Initializable {
         registarAreaActividadeController = new RegistarAreaActividadeController();
         registarCategoriaController = new RegistarCategoriaController();
         registarCompetenciaTecnicaController = new RegistarCompetenciaTecnicaController();
+        registarFreelancerController = new RegistarFreelancerController();
         gestaoUtilizadoresController = new GestaoUtilizadoresController();
-
+                     
         try {
             updateListViewAreasActividade();
         } catch (SQLException exception) {
@@ -92,6 +89,12 @@ public class AdministrativoLogadoUI implements Initializable {
 
         try {
             updateListViewCompetenciasTecnicas();
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }
+        
+        try {
+            updateListViewFreelancer();
         } catch (SQLException exception) {
             exception.printStackTrace();
         }
@@ -186,6 +189,26 @@ public class AdministrativoLogadoUI implements Initializable {
     }
 
     public void addHabilitacaoFreelancer(ActionEvent actionEvent) {
+        try {
+            FXMLLoader loaderAddFreelancer = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/AdicionarHabilitacaoAcademicaScene.fxml"));
+            Parent rootAddFreelancer = loaderAddFreelancer.load();
+            sceneAddFreelancer = new Scene(rootAddFreelancer);
+            sceneAddFreelancer.getStylesheets().add("/com/grupo2/t4j/style/app.css");
+            AdicionarFreelancerUI adicionarFreelancerUI = loaderAddFreelancer.getController();
+            adicionarFreelancerUI.associarParentUI(this);
+
+        } catch (IOException exception) {
+            exception.printStackTrace();
+            AlertsUI.criarAlerta(Alert.AlertType.ERROR,
+                    MainApp.TITULO_APLICACAO,
+                    "Erro",
+                    exception.getMessage());
+        }
+
+        adicionarStage.setScene(sceneAddFreelancer);
+        adicionarStage.setTitle("Adicionar Freelancer");
+        adicionarStage.show();
+        
     }
 
     public void addCompetenciaFreelancer(ActionEvent actionEvent) {
@@ -234,7 +257,11 @@ public class AdministrativoLogadoUI implements Initializable {
 
 
     }
-
+    
+    public void updateListViewFreelancer() throws SQLException {
+         listaFreelancer.getItems().setAll(registarFreelancerController.getAllView());
+    }
+    
     public void updateListViewAreasActividade() throws SQLException {
         listaAreasActividade.getItems().setAll(registarAreaActividadeController.getAll());
     }

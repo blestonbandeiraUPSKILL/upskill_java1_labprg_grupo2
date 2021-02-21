@@ -64,7 +64,7 @@ public class RepositorioFreelancerInMemory implements Serializable, RepositorioF
     }
 
     @Override
-    public boolean save(Freelancer freelancer) {
+    public boolean save(Freelancer freelancer) throws FreelancerDuplicadoException {
         Freelancer f = findByNif(freelancer.getNif());
         if (f == null) {
             Freelancer freel = new Freelancer(freelancer);
@@ -89,6 +89,18 @@ public class RepositorioFreelancerInMemory implements Serializable, RepositorioF
     @Override
     public ArrayList<Freelancer> getAll() {
         return new ArrayList<Freelancer>(listaFreelancers);
+    }
+        
+    public int adicionarListaFreelancer(RepositorioFreelancerInMemory outraListaFreelancer) {
+        int totalFreelancersAdicionados = 0;
+
+        for (Freelancer freelancer : outraListaFreelancer.listaFreelancers) {
+            boolean freelancerAdicionado = save(freelancer);
+            if (freelancerAdicionado) {
+                totalFreelancersAdicionados++;
+            }
+        }
+        return totalFreelancersAdicionados;
     }
 
 }

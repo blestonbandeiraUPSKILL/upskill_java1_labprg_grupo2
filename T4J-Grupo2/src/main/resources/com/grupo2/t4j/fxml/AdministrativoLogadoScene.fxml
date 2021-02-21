@@ -161,13 +161,7 @@
                                     <Font name="Calibri" size="16.0" />
                                  </font>
                               </Label>
-                              <TableView fx:id="tabelaFreelancers" layoutX="18.0" layoutY="56.0" prefHeight="274.0" prefWidth="432.0">
-                                <columns>
-                                  <TableColumn fx:id="colunaNomeFreelancer" prefWidth="142.0" text="Nome" />
-                                  <TableColumn fx:id="colunaEmailFreelancer" prefWidth="166.0" text="Email" />
-                                    <TableColumn fx:id="colunaNifFreelancer" prefWidth="123.0" text="NIF" />
-                                </columns>
-                              </TableView>
+                              <ListView fx:id="listaFreelancer" layoutX="21.0" layoutY="79.0" prefHeight="243.0" prefWidth="447.0" />
                            </children>
                         </AnchorPane>
                      </content>
