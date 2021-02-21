@@ -132,7 +132,7 @@ public class RepositorioCompetenciaTecnicaDatabase implements RepositorioCompete
     @Override
     public CompetenciaTecnica findByCodigo(String codigo) throws SQLException {
 
-        DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
+        /*DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
         Connection connection = dbConnectionHandler.openConnection();
 
         CallableStatement callableStatement = connection.prepareCall(
@@ -149,15 +149,39 @@ public class RepositorioCompetenciaTecnicaDatabase implements RepositorioCompete
         }
         catch (SQLException exception) {
             exception.printStackTrace();
-            exception.getSQLState();
+            exception.getSQLState();*/
 
             return null;
-        }
+        /*}*/
     }
 
 
     @Override
-    public ArrayList<CompetenciaTecnica> findByAreaActividade(String codigoAreaActividade) {
-        return null;
+    public List<CompetenciaTecnica> findByAreaActividade(String codigoAreaActividade) throws SQLException {
+
+  /*      ArrayList<CompetenciaTecnica> competenciasTecnicas = new ArrayList<>();
+
+        DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
+        Connection connection = dbConnectionHandler.openConnection();
+
+        CallableStatement callableStatement = connection.prepareCall(
+                "{CALL findCompTecnicaByAreaActividade(?) }"
+        );
+
+        try {
+            connection.setAutoCommit(false);
+
+            callableStatement.setString(1, codigoAreaActividade);
+            callableStatement.executeUpdate();
+
+            return new CompetenciaTecnica();
+        }
+        catch (SQLException exception) {
+            exception.printStackTrace();
+            exception.getSQLState();*/
+
+            return null;
+    /*    }*/
     }
+
 }

@@ -26,8 +26,9 @@ public interface RepositorioCompetenciaTecnica {
 
     CompetenciaTecnica findByCodigo(String codigo) throws SQLException;
 
-    ArrayList<CompetenciaTecnica> findByAreaActividade(String codigoAreaActividade);
+    //CompetenciaTecnica findByAreaActividade(String codigoAreaActividade) throws SQLException;
 
+    List<CompetenciaTecnica> findByAreaActividade(String codigoAreaActividade) throws SQLException;
 
 
 }

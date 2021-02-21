@@ -39,8 +39,7 @@ public class RegistarTarefaController {
                              String descInformal, String descTecnica,
                              int duracao, double custo) {
 
-        Tarefa tarefa = new Tarefa(codigoAreaActividade, codigoCategoriaTarefa,
-                referencia, designacao, descInformal, descTecnica, duracao, custo);
+        Tarefa tarefa = new Tarefa(referencia, designacao, descInformal, descTecnica, duracao, custo, codigoAreaActividade, codigoCategoriaTarefa);
 
         return repositorioTarefa.save(tarefa);
     }

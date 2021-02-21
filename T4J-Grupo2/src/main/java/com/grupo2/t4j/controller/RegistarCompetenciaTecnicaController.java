@@ -51,7 +51,7 @@ public class RegistarCompetenciaTecnicaController {
         return repositorioCompetenciaTecnica.getAll();
     }
 
-    public List<CompetenciaTecnica> findByAreaActividade(String codigoAreaActividade) {
+    public List<CompetenciaTecnica> findByAreaActividade(String codigoAreaActividade) throws SQLException {
         return repositorioCompetenciaTecnica.findByAreaActividade(codigoAreaActividade);
     }
 

@@ -9,6 +9,7 @@ import com.grupo2.t4j.model.GrauProficiencia;
 import com.grupo2.t4j.persistence.FabricaRepositorios;
 import com.grupo2.t4j.persistence.RepositorioCompetenciaTecnica;
 import com.grupo2.t4j.persistence.RepositorioGrauProficiencia;
+import com.grupo2.t4j.persistence.database.FabricaRepositoriosDatabase;
 import com.grupo2.t4j.persistence.inmemory.FabricaRepositoriosInMemory;
 
 import java.sql.SQLException;
@@ -20,8 +21,8 @@ import java.util.List;
  */
 public class RegistarGrauProficienciaController {
     
-    private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosInMemory();
-    //private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosDatabase();
+    //private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosInMemory();
+    private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosDatabase();
     private RepositorioGrauProficiencia repositorioGrauProficiencia = fabricaRepositorios.getRepositorioGrauProficiencia();
     private RepositorioCompetenciaTecnica repositorioCompetenciaTecnica = fabricaRepositorios.getRepositorioCompetenciaTecnica();
 
@@ -32,9 +33,9 @@ public class RegistarGrauProficienciaController {
         return repositorioGrauProficiencia.getAll();
     }
 
-    public boolean registarGrauProficiencia(String codigoGP, String valor, String designacao, String codigoCompetenciaTecnica) {
+    public boolean registarGrauProficiencia(String valor, String designacao, String codigoCompetenciaTecnica) throws SQLException {
 
-        GrauProficiencia grauProficiencia = new GrauProficiencia (codigoGP, valor, designacao, codigoCompetenciaTecnica);
+        GrauProficiencia grauProficiencia = new GrauProficiencia (valor, designacao, codigoCompetenciaTecnica);
 
         return repositorioGrauProficiencia.save(grauProficiencia);
     }

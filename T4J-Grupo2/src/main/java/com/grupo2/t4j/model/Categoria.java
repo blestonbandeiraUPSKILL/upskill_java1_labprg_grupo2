@@ -54,7 +54,7 @@ public class Categoria implements Serializable{
      * @param descBreve
      * @param descDetalhada
      * @param codigoAreaActividade
-     * @param caracterizacaoCTS
+     * //@param caracterizacaoCTS
      */
     public Categoria (String codigoCategoria, String descBreve, String descDetalhada, String codigoAreaActividade
                       //,List<CaracterizacaoCT> caracterizacaoCTS
