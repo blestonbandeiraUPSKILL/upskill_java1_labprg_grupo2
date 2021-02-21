@@ -18,7 +18,7 @@
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="700.0" style="-fx-background-color: #c4c4c4;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.AdicionarAreaAtividadeUI">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="700.0" style="-fx-background-color: #c4c4c4;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.AdicionarCompetenciaFreelancerUI">
    <center>
       <BorderPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #c4c4c4;" BorderPane.alignment="CENTER">
          <top>
@@ -68,16 +68,7 @@
                                                    </VBox.margin>
                                                 </TextField>
                                                 <Label text="Competências Técnicas Registadas" />
-                                                <TableView prefHeight="200.0" prefWidth="200.0">
-                                                  <columns>
-                                                    <TableColumn prefWidth="401.0" text="Competência " />
-                                                    <TableColumn prefWidth="145.0" text="Proficiência" />
-                                                      <TableColumn prefWidth="113.0" text="Data Validação" />
-                                                  </columns>
-                                                   <VBox.margin>
-                                                      <Insets bottom="5.0" top="5.0" />
-                                                   </VBox.margin>
-                                                </TableView>
+                                                <ListView fx:id="listaCompetenciaFreelancer" prefHeight="200.0" prefWidth="200.0" />
                                                 <Label text="Selecionar Competência Técnica" />
                                                 <ComboBox fx:id="cmbCompetencia" prefHeight="25.0" prefWidth="380.0" promptText="Competência Técnica">
                                                    <VBox.margin>
@@ -91,7 +82,7 @@
                                                    </VBox.margin>
                                                 </ComboBox>
                                                 <Label text="Data de Validação da Competência Técnica" />
-                                                <TextField fx:id="txtInstituicao" promptText="dd/mm/aaaa">
+                                                <TextField fx:id="txtIDataVallidacao" promptText="dd/mm/aaaa">
                                                    <VBox.margin>
                                                       <Insets bottom="5.0" right="400.0" top="5.0" />
                                                    </VBox.margin>
