@@ -50,10 +50,10 @@ public class RepositorioAnuncioInMemory implements Serializable, RepositorioAnun
     }
     
     @Override
-    public void save(String idAnuncio, Data dtInicioPublicitacao, Data dtFimPublicitacao, Data dtInicioCandidatura, Data dtFimCandidatura, Data dtInicioSeriacao, Data dtFimSeriacao) throws AnuncioDuplicadoException {
+    public void save(String idAnuncio, String idTarefa, Data dtInicioPublicitacao, Data dtFimPublicitacao, Data dtInicioCandidatura, Data dtFimCandidatura, Data dtInicioSeriacao, Data dtFimSeriacao) throws AnuncioDuplicadoException {
         Anuncio a = findById(idAnuncio);
         if (a == null) {
-            Anuncio anuncio = new Anuncio(idAnuncio, dtInicioPublicitacao, dtFimPublicitacao,
+            Anuncio anuncio = new Anuncio(idAnuncio, idTarefa, dtInicioPublicitacao, dtFimPublicitacao,
                     dtInicioCandidatura, dtFimCandidatura, dtInicioSeriacao, dtFimSeriacao);
             this.listaAnuncios.add(anuncio);
         } else {
@@ -90,10 +90,7 @@ public class RepositorioAnuncioInMemory implements Serializable, RepositorioAnun
         return new ArrayList<Anuncio>(listaAnuncios);
     }
     
-    @Override
-    public List<Anuncio> findByReconhecimento(ReconhecimentoGP reconhecimentoGP) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    
     
     public int adicionarListaAnuncios(RepositorioAnuncioInMemory outraListaAnuncios) {
         int totalAnunciosAdicionados = 0;
@@ -105,6 +102,19 @@ public class RepositorioAnuncioInMemory implements Serializable, RepositorioAnun
             }
         }
         return totalAnunciosAdicionados;
+    }
+
+    @Override
+    public Anuncio findAnuncioByIdTarefa(String idTarefa){
+        Anuncio anuncio = null ;
+        for (int i = 0; i < this.listaAnuncios.size(); i++) {
+            anuncio = this.listaAnuncios.get(i);
+            if (anuncio.getIdTarefa().equals(idTarefa)) {
+                return anuncio;
+            }
+        }
+        return null;
+        
     }
 
     

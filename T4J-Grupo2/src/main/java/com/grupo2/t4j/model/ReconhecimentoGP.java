@@ -14,6 +14,8 @@ public class ReconhecimentoGP {
      * O id do Grau de Proficiência a que se refere o reconhecimento
      */
     private String idGrauProficiencia;
+    
+    private String idCompetenciaTecnica;
     /**
      * A data em que foi atribuido o reconhecimento
      */
@@ -29,6 +31,14 @@ public class ReconhecimentoGP {
      */
     
     public ReconhecimentoGP(){  
+    }
+    
+    public ReconhecimentoGP(String idGrauProficiencia, Data dataReconhecimento, 
+             Email emailFreelancer, String idCompetenciaTecnica){
+        setIdGrauProficiencia(idGrauProficiencia);
+        setDataReconhecimento(dataReconhecimento);
+        setEmailFreelancer(emailFreelancer);
+        setIdCompetenciaTecnica(idCompetenciaTecnica);
     }
     
     /**
@@ -101,6 +111,14 @@ public class ReconhecimentoGP {
      */
     public void setEmailFreelancer(Email emailFreelancer) {
         this.emailFreelancer = emailFreelancer;
+    }
+
+    private void setIdCompetenciaTecnica(String idCompetenciaTecnica) {
+        this.idCompetenciaTecnica=idCompetenciaTecnica;
+    }
+    
+    public String getIdCompetenciaTecnica(){
+        return idCompetenciaTecnica;
     }
     
     

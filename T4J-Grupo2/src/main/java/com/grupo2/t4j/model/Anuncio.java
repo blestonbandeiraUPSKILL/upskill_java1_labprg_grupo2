@@ -24,6 +24,11 @@ public class Anuncio implements Serializable {
     private String idAnuncio;
     
     /**
+     * O id da tarefa a que se refere o anúncio
+     */
+    private String idTarefa;
+    
+    /**
      * Data de início da publicitação do anúncio
      */
     private Data dtInicioPublicitacao;
@@ -74,6 +79,19 @@ public class Anuncio implements Serializable {
             dtInicioCandidatura, Data dtFimCandidatura, Data dtInicioSeriacao,
             Data dtFimSeriacao) {
         setIdAnuncio(idAnuncio);
+        setDtInicioPub(dtInicioPublicitacao);
+        setDtFimPub(dtFimPublicitacao);
+        setDtInicioCand(dtInicioCandidatura);
+        setDtFimCand(dtFimCandidatura);
+        setDtInicioSeriacao(dtInicioSeriacao);
+        setDtFimSeriacao(dtFimSeriacao);        
+    }
+    
+    public Anuncio(String idAnuncio,String idTarefa,Data dtInicioPublicitacao, Data dtFimPublicitacao, Data 
+            dtInicioCandidatura, Data dtFimCandidatura, Data dtInicioSeriacao,
+            Data dtFimSeriacao) {
+        setIdAnuncio(idAnuncio);
+        setIdTarefa(idTarefa);
         setDtInicioPub(dtInicioPublicitacao);
         setDtFimPub(dtFimPublicitacao);
         setDtInicioCand(dtInicioCandidatura);
@@ -277,6 +295,16 @@ public class Anuncio implements Serializable {
     public Data getDtFimSeriacao() {
        return dtFimSeriacao; 
     }
+
+    public String getIdTarefa() {
+        return idTarefa;
+    }
+
+    public void setIdTarefa(String idTarefa) {
+        this.idTarefa = idTarefa;
+    }
+    
+    
     
     /**
      * Verifica se uma data inserida como texto tem formato válido

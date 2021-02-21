@@ -46,7 +46,7 @@ public class RepositorioAnuncioDataBase implements RepositorioAnuncio {
     }
     
     @Override
-    public void save(String idAnuncio, Data dtInicioPublicitacao, Data dtFimPublicitacao, Data
+    public void save(String idAnuncio, String idTarefa, Data dtInicioPublicitacao, Data dtFimPublicitacao, Data
              dtInicioCandidatura, Data dtFimCandidatura, Data dtInicioSeriacao,
                       Data dtFimSeriacao) throws AnuncioDuplicadoException {
 
@@ -68,9 +68,12 @@ public class RepositorioAnuncioDataBase implements RepositorioAnuncio {
         return null;
     }
 
-    
+
     @Override
-    public List<Anuncio> findByReconhecimento(ReconhecimentoGP reconhecimentoGP) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Anuncio findAnuncioByIdTarefa(String idTarefa) {
+        return null;
     }
+
+    
+    
 }

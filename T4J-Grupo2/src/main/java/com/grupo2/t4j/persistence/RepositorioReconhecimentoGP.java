@@ -22,4 +22,6 @@ public interface RepositorioReconhecimentoGP {
     
     List<ReconhecimentoGP> findByEmail(String email);
     
+    ReconhecimentoGP findByEmailCompetencia(String email, String idCompetenciaTecnica);
+    
 }

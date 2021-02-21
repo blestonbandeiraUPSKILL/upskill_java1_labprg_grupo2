@@ -84,5 +84,15 @@ public class RepositorioReconhecimentoGPInMemory implements Serializable, Reposi
         }
         return reconhecimentosGP;
     }
+
+    @Override
+    public ReconhecimentoGP findByEmailCompetencia(String email, String idCompetenciaTecnica) {
+        List<ReconhecimentoGP> reconhecimentosGP = findByEmail(email);
+        for (ReconhecimentoGP rcp : reconhecimentosGP){
+            if (rcp.getIdCompetenciaTecnica().equals(idCompetenciaTecnica))
+                 return rcp;
+        }
+        return null;
+    }
     
 }
