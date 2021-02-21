@@ -50,6 +50,11 @@ public class FabricaRepositoriosDatabase implements FabricaRepositorios {
     public RepositorioFreelancer getRepositorioFreelancer() {
         return RepositorioFreelancerDatabase.getInstance();
     }
+    
+    @Override
+    public RepositorioHabilitacaoAcademica getRepositorioHabilitacaoAcademica() {
+        return RepositorioHabilitacaoAcademicaDatabase.getInstance();
+    }
 
     @Override
     public RepositorioGrauProficiencia getRepositorioGrauProficiencia() throws SQLException {
