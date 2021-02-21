@@ -50,3 +50,7 @@
 #### Colaborador:
 * email: colabgrp2@upskill.pt
 * pass: teste123
+
+#### Freelancer:
+* email: freelancergrp2@upskill.pt
+* pass: teste123
