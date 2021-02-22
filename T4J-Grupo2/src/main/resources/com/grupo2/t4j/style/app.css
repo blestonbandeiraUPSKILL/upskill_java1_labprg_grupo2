@@ -13,6 +13,11 @@
     -fx-text-fill: #ffffff;
 }
 
+.btnToggle {
+    -fx-background-color: #CCCCCC;
+    -fx-text-fill: #000000;
+}
+
 .lblLogin {
     -fx-text-fill: #ff0000;
 }
