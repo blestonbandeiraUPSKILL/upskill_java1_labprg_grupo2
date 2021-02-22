@@ -40,10 +40,9 @@ public class RegistarHabilitacaoAcademicaController {
 
     public List<HabilitacaoAcademica> getAll() throws SQLException{
         return repositorioHabilitacaoAcademica.getAll();
-    }
-    
+    }    
         
-    public HabilitacaoAcademica findByiD(String NIF) throws SQLException{
+    public HabilitacaoAcademica findById(String NIF) throws SQLException{
         return repositorioHabilitacaoAcademica.findById(NIF);
     }
 

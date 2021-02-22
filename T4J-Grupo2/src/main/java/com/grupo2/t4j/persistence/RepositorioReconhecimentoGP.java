@@ -6,6 +6,7 @@
 package com.grupo2.t4j.persistence;
 
 import com.grupo2.t4j.exception.ReconhecimentoDuplicadoException;
+import java.sql.SQLException;
 import com.grupo2.t4j.model.Data;
 import com.grupo2.t4j.model.Email;
 import com.grupo2.t4j.model.ReconhecimentoGP;
@@ -17,8 +18,14 @@ import java.util.List;
  */
 public interface RepositorioReconhecimentoGP {
     
-    void save(String idGrauProficiencia, Data dataReconhecimento,
-            Email emailFreelancer) throws ReconhecimentoDuplicadoException;
+    void save(String idGrauProficiencia, Data dataReconhecimento, 
+             Email emailFreelancer, String idCompetenciaTecnica) throws ReconhecimentoDuplicadoException,
+            SQLException;
+    
+    boolean save(ReconhecimentoGP reconhecimentoGP)throws ReconhecimentoDuplicadoException,
+            SQLException;
+    
+    List<ReconhecimentoGP> getAll() throws SQLException;
     
     List<ReconhecimentoGP> findByEmail(String email);
     

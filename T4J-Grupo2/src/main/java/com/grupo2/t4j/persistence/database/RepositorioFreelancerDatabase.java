@@ -35,9 +35,9 @@ public class RepositorioFreelancerDatabase implements RepositorioFreelancer{
     RepositorioFreelancerDatabase(){    }
 
     /**
-     * Devolve uma instância estática do Repositório de Utilizadores
+     * Devolve uma instância estática do Repositório dos Freelancers
      *
-     * @return RepositorioUtilizadorDatabase
+     * @return RepositorioFreelancerrDatabase
      */
     public static RepositorioFreelancerDatabase getInstance(){
         if(repositorioFreelancerDatabase == null) {
@@ -62,6 +62,11 @@ public class RepositorioFreelancerDatabase implements RepositorioFreelancer{
 
     @Override
     public Freelancer findByNif(String nif) throws SQLException{
+        return null;
+    }
+    
+     @Override
+    public Freelancer findByEmail(String emailFree) {
         return null;
     }
 

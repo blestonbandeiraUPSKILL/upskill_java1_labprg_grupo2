@@ -19,7 +19,7 @@ public class CompetenciaTecnicaTest {
     public CompetenciaTecnicaTest() {
     }
     
-   @Test
+   /*@Test
     public void testCriarCompetenciaTecnica() {
         
         
@@ -58,5 +58,5 @@ public class CompetenciaTecnicaTest {
         
         CompetenciaTecnica ct1= new CompetenciaTecnica("1234", "Comp", "CompetenciaTecnicaDescDetalhada");
              
-    }    
+    }*/    
 }

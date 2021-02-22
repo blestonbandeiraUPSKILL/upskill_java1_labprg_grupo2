@@ -39,7 +39,7 @@ public class AnuncioTest {
     public void tearDown() {
     }
 
-    @Test
+    /*@Test
     public void testCriarAnuncio() {
         
         Anuncio a1 = new Anuncio("Anuncio_001", "2021/03/01", "2021/05/31",
@@ -120,5 +120,5 @@ public class AnuncioTest {
                 + "fim do período de publicitação: ");
         Anuncio a1 = new Anuncio("Anuncio_001", "2021/03/01", "2021/05/31",
         "2021/03/05", "2021/05/20", "2021/05/21", "2021/06/01");
-    }
+    }*/
 }

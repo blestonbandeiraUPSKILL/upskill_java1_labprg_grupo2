@@ -1,6 +1,7 @@
 package com.grupo2.t4j.model;
 
 
+import com.grupo2.t4j.exception.DataInvalidaException;
 import com.grupo2.t4j.exception.DiaInvalidoException;
 import com.grupo2.t4j.exception.MesInvalidoException;
 import com.grupo2.t4j.model.DiaDaSemana;
@@ -84,6 +85,23 @@ public class Data implements Comparable<Data>{
         dia = outraData.dia;*/
 
         setData(outraData.ano, outraData.getMes(), outraData.dia);
+    }
+    
+    /**
+     * Transforma uma data inserida como texto no formato Data
+     * @param dataTexto - data em formato aaaa/mm/dd
+     * @return a dataTexto em formato da classe Data
+     */
+    public Data (String dataTexto){
+         try{
+            int dia = Integer.parseInt(dataTexto.substring(8,10));
+            int mes = Integer.parseInt(dataTexto.substring(5,7));
+            int ano = Integer.parseInt(dataTexto.substring(0,4));
+            setData(ano, mes, dia);
+        }
+        catch(IllegalArgumentException iae){
+            throw new DataInvalidaException("A data informada é inválida!");
+        }
     }
 
     /**
@@ -280,6 +298,4 @@ public class Data implements Comparable<Data>{
         }
         return idade;
     }
-
-
 }
