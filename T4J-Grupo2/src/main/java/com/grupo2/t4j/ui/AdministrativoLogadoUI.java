@@ -289,15 +289,21 @@ public class AdministrativoLogadoUI implements Initializable {
         
         try {
 
-
             FXMLLoader loaderConsultarCompetenciaTecnica = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/ConsultarCompetenciaTecnicaScene.fxml"));
             Parent rootConsultarCompetenciaTecnica = loaderConsultarCompetenciaTecnica.load();
-            sceneConsultarCompetenciaTecnica = new Scene(rootConsultarCompetenciaTecnica);
-            sceneConsultarCompetenciaTecnica.getStylesheets().add("/com/grupo2/t4j/style/app.css");
             ConsultarCompetenciaTecnicaUI consultarCompetenciaTecnicaUI = loaderConsultarCompetenciaTecnica.getController();
             consultarCompetenciaTecnicaUI.associarParentUI(this);
+            consultarCompetenciaTecnicaUI.transferData();
+            sceneConsultarCompetenciaTecnica = new Scene(rootConsultarCompetenciaTecnica);
 
-        } catch (IOException exception) {
+
+            adicionarStage.setScene(sceneConsultarCompetenciaTecnica);
+            adicionarStage.setTitle("Consultar Competência Técnica");
+            adicionarStage.show();
+            //btnLogin.getScene().getWindow().hide();
+
+
+        } catch (IOException | SQLException exception) {
             exception.printStackTrace();
             AlertsUI.criarAlerta(Alert.AlertType.ERROR,
                     MainApp.TITULO_APLICACAO,
@@ -305,9 +311,7 @@ public class AdministrativoLogadoUI implements Initializable {
                     exception.getMessage());
         }
 
-        adicionarStage.setScene(sceneConsultarCompetenciaTecnica);
-        adicionarStage.setTitle("Consultar Competência Técnica");
-        adicionarStage.show();
+
 
     }
 

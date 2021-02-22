@@ -44,10 +44,12 @@ public class ConsultarCompetenciaTecnicaUI implements Initializable {
     @FXML TextField txtDescricaoBreve;
     @FXML TextField txtCodigoCompetenciaTecnica;
     @FXML Button btnVoltar;
-    
+
+
     public void associarParentUI(AdministrativoLogadoUI administrativoLogadoUI) {
         this.administrativoLogadoUI = administrativoLogadoUI;
     }
+
 
 
     /**
@@ -57,7 +59,7 @@ public class ConsultarCompetenciaTecnicaUI implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         
         try {
-            
+
             adicionarStage = new Stage();
             adicionarStage.initModality(Modality.APPLICATION_MODAL);;
             adicionarStage.setResizable(false);
@@ -65,20 +67,18 @@ public class ConsultarCompetenciaTecnicaUI implements Initializable {
             registarAreaActividadeController = new RegistarAreaActividadeController();
             registarGrauProficienciaController = new RegistarGrauProficienciaController();
 
-            try {
-            updateDados();
-            } catch (SQLException exception) {
-                exception.printStackTrace();
-            }
             
         } catch (SQLException exception) {
             exception.printStackTrace();
         }
         
-    }    
+    }
+
     
-    public void updateDados() throws SQLException {
-        txtCodigoCompetenciaTecnica.setText(administrativoLogadoUI.getCodigoCompetenciaTecnica());
+    public void transferData() throws SQLException {
+
+        String codigoCompetenciaTecnica = administrativoLogadoUI.getCodigoCompetenciaTecnica();
+        txtCodigoCompetenciaTecnica.setText(codigoCompetenciaTecnica);
         txtDescricaoBreve.setText(administrativoLogadoUI.listViewCompetenciasTecnicas.getSelectionModel().getSelectedItem().getDescricaoBreve());
         txtDescricaoDetalhada.setText(administrativoLogadoUI.listViewCompetenciasTecnicas.getSelectionModel().getSelectedItem().getDescricaoDetalhada());
         listViewGrausAplicaveis.getItems().setAll(registarGrauProficienciaController.findByCompetenciaTecnica(txtCodigoCompetenciaTecnica.getText()));
@@ -89,5 +89,5 @@ public class ConsultarCompetenciaTecnicaUI implements Initializable {
     public void voltarAtras(ActionEvent actionEvent) {
         btnVoltar.getScene().getWindow().hide();
     }
-    
+
 }

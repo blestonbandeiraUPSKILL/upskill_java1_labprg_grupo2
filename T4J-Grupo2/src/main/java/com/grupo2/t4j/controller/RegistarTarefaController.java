@@ -32,7 +32,7 @@ public class RegistarTarefaController {
     private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosDatabase();
     private RepositorioTarefa repositorioTarefa = fabricaRepositorios.getRepositorioTarefa();
 
-    public List<Tarefa> getAll() {
+    public List<Tarefa> getAll() throws SQLException {
         return repositorioTarefa.getAll();
     }
 
