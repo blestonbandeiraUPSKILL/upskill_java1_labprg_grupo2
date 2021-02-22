@@ -133,12 +133,23 @@ public class Utilizador implements Serializable{
         return rolename;
     }
     
+    
+    /**
+     * Representação textual da classe Utilizador em formato de exibição
+     * @return Nome e email do Utilizador
+     */
+    @Override
+    public String toString(){
+        return String.format("Nome: %-20s |Email:%-20s", 
+                nome, email.getEmailText());
+    }
+    
     /**
      * Representação textual da classe Utilizador
      * @return Nome, email e password do Utilizador
      */
     public String toStringComPass(){
-        return String.format("Nome utilizador: %s %nEmail:%s %nPassword: %s "
+        return String.format("Nome: %s %nEmail:%s %nPassword: %s "
                 + "%nRolename: %s", nome, email.getEmailText(), 
                 password.getPasswordText(), rolename.toString());
     }
@@ -147,9 +158,8 @@ public class Utilizador implements Serializable{
      * Representação textual da classe Utilizador sem a password
      * @return Nome e email do Utilizador
      */
-    @Override
-    public String toString(){
-        return String.format("Nome utilizador: %s %nEmail:%s %nRolename: %s", 
+    public String toStringSemPass(){
+        return String.format("Nome: %s %nEmail:%s %nRolename: %s", 
                 nome, email.getEmailText(), rolename.toString());
     }
     

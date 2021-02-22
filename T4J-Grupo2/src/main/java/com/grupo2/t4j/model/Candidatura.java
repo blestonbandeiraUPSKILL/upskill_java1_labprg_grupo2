@@ -243,14 +243,28 @@ public class Candidatura implements Serializable {
     }
     
     /**
-     * Representação textual da classe Candidatura
+     * Representação textual da classe Candidatura em formato de exibição
      * @return o id da candidatura, a data da candidatura em formato texto, o valor pretendido
      * pelo Freelancer para a realização da Tarefa, o número de dias para a realização da Tarefa,
      * o texto de apresentação da Candidatura e o texto de Motivação para a Candidatura
      */   
     @Override
     public String toString(){
-        return String.format("Candidatura Id: %s  %nData Candidatura: %s"
+        return String.format("ID: %-12s  |Data Candidatura: %-12s"
+                + " |Valor pretendido: %-12f.2  euros |Número de dias: %-8d"
+                + " |Apresentação: %-50s |Motivação: %-50s", idCandidatura, 
+                dataCandidatura.toAnoMesDiaString(), valorPretendido,
+                numeroDias, txtApresentacao, txtMotivacao);
+    }
+    
+    /**
+     * Representação textual da classe Candidatura Completa
+     * @return o id da candidatura, a data da candidatura em formato texto, o valor pretendido
+     * pelo Freelancer para a realização da Tarefa, o número de dias para a realização da Tarefa,
+     * o texto de apresentação da Candidatura e o texto de Motivação para a Candidatura
+     */   
+    public String toStringCompleto(){
+        return String.format("ID: %s  %nData Candidatura: %s"
                 + "%nValor pretendido: %f.2  euros %nNúmero de dias: %"
                 + "%nApresentação: %s %nMotivação: %s", idCandidatura, 
                 dataCandidatura.toAnoMesDiaString(), valorPretendido,

@@ -192,29 +192,31 @@ public class Categoria implements Serializable{
         }
         return s.toString();
     }
-
+    
+    /**
+     * Representação textual da categoria de tarefa em formato de exibição
+     * @return 
+     */
     @Override
     public String toString() {
+        return String.format("Código: %-12s |Descrição breve: %-25s |Código Área de Atividade: %-12s "
+                + "|Caracterização CTS: %-20s", codigoCategoria, descBreve, 
+                codigoAreaActividade, caracterizacaoCTS);
+    }
+
+    /**
+     * Representação textual da categoria de tarefa Completa
+     * @return 
+     */
+    public String toStringCompleta() {
         return "Categoria{" +
                 "codigoCategoria='" + codigoCategoria + '\'' +
                 ", descBreve='" + descBreve + '\'' +
                 ", descDetalhada='" + descDetalhada + '\'' +
                 ", codigoAreaActividade='" + codigoAreaActividade + '\'' +
                 ", caracterizacaoCTS=" + caracterizacaoCTS +
-                '}';
+                '}';            
     }
-
-    /**
-     * Representação textual da categoria de tarefa
-     * @return 
-     */
-    /*@Override
-    public String toString() {
-        return String.format("Código: %s; Descrição breve: %s; Descrição detalhada: %s;",
-                codigoCategoria, descBreve, descDetalhada);
-    }*/
-
-
 
     @Override
     public boolean equals(Object categoria) {
