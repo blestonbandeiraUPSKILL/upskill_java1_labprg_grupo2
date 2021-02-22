@@ -34,6 +34,7 @@ public class GestorLogadoUI implements Initializable {
     private StartingPageUI startingPageUI;
     private Stage adicionarStage;
     private Scene sceneStartingPage;
+    private Scene sceneAddColaborador;
     private RegistarColaboradorController registarColaboradorController;
     private RegistarCategoriaController registarCategoriaController;
     private RegistarAreaActividadeController registarAreaActividadeController;
@@ -43,30 +44,9 @@ public class GestorLogadoUI implements Initializable {
     
     private FicheiroRepositorioColaborador ficheiroC;
     private RepositorioColaboradorInMemory repositorioColaboradorInMemory;
-    
-    @FXML TextField txtReferencia1;
-    @FXML TextField txtEmailColaborador;
-    @FXML TextField txtCustoEstTarefa;
-    @FXML TextField txtNomeColaborador;
-    @FXML TextField txtDuracao1;
-    @FXML TextField txtCusto1;
-    @FXML TextField txtTelefoneColaborador;
-    @FXML TextField txtRefTarefa;
-    @FXML TextField txtDuracaoTarefa;
-    @FXML TextField txtDesignTarefa;
 
-    @FXML TextArea txtDescricaoInformal1;
-    @FXML TextArea txtDescInformalTarefa;
-    @FXML TextArea txtDescTecnicaTarefa;
-
+    @FXML ListView<Colaborador> listViewColaboradores;
     @FXML ListView<Tarefa> listViewTarefas;
-    @FXML ListView<?> listViewCompTecReq;
-
-
-    @FXML private TextField txtFuncaoColaborador;
-    @FXML private TextField txtPasswordColaborador;
-    @FXML Button btnRegistarColaborador;
-    @FXML Button btnCancelarRegCol;
     @FXML Button btnLogout;
        
     public void associarParentUI(StartingPageUI startingPageUI) {
@@ -82,6 +62,13 @@ public class GestorLogadoUI implements Initializable {
         registarColaboradorController = new RegistarColaboradorController();
         gestaoUtilizadoresController = new GestaoUtilizadoresController();
 
+        try {
+            updateListViewColaboradores();
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }
+
+
         /*registarAreaActividadeController = new RegistarAreaActividadeController();
         registarCategoriaController = new RegistarCategoriaController();
         registarTarefaController = new RegistarTarefaController();
@@ -91,7 +78,8 @@ public class GestorLogadoUI implements Initializable {
         adicionarStage.initModality(Modality.APPLICATION_MODAL);;
         adicionarStage.setResizable(false);
 
-        /*mbAreaActividadeListaTarefas.getItems().setAll(registarAreaActividadeController.getAreasActividade());
+        /*
+        cmbAreaActividadeListaTarefas.getItems().setAll(registarAreaActividadeController.getAreasActividade());
         cmbCategoriaTarefaListaTarefas.getItems().setAll(
                 registarCategoriaController.getCategoriasByAreaActividade(
                         cmbAreaActividadeListaTarefas.getSelectionModel().getSelectedItem()));
@@ -107,44 +95,10 @@ public class GestorLogadoUI implements Initializable {
         listViewCompetenciasTecnicas.getItems().addAll(registarCompetenciaTecnicaController.getCompetenciasTecnicasByAreaActividade(
                 cmbAreaActividadeEspecificarTarefa.getSelectionModel().getSelectedItem()));*/
     }
-    
-    @FXML
-    public void registarColaboradorAction(ActionEvent event){
-        
-        try {
-            boolean adicionou = registarColaboradorController.registarColaborador(
-                    txtEmailColaborador.getText(),
-                    txtNomeColaborador.getText(),
-                    txtFuncaoColaborador.getText(),
-                    txtTelefoneColaborador.getText());
 
-            if (adicionou) {
+    public void updateListViewColaboradores() throws SQLException {
+        listViewColaboradores.getItems().setAll(registarColaboradorController.getAll());
 
-                txtPasswordColaborador.setText(registarColaboradorController.findByEmail(txtEmailColaborador.getText()).getPassword().getPasswordText());
-
-                AlertsUI.criarAlerta(Alert.AlertType.INFORMATION,
-                        MainApp.TITULO_APLICACAO,
-                        "Registar Colaborador.",
-                        adicionou ? ("Colaborador registado com sucesso.")
-                                : "Não foi possível registar o Colaborador.").show();
-            }
-
-        }
-        catch (IllegalArgumentException | SQLException iae) {
-            AlertsUI.criarAlerta(Alert.AlertType.ERROR,
-                    MainApp.TITULO_APLICACAO,
-                    "Erro nos dados.",
-                    iae.getMessage()).show();
-        }        
-    }
-    
-    @FXML
-    public void cancelarRegColAction(ActionEvent event) {
-        this.txtNomeColaborador.clear();
-        this.txtEmailColaborador.clear();
-        this.txtFuncaoColaborador.clear();
-        this.txtTelefoneColaborador.clear();
-        this.txtPasswordColaborador.clear();
     }
 
     public void logout(ActionEvent actionEvent) {
@@ -190,4 +144,25 @@ public class GestorLogadoUI implements Initializable {
 
     }
 
+    public void navigateAddColaborador(ActionEvent actionEvent) {
+        try {
+            FXMLLoader loaderAddColaborador = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/RegistarColaboradoScene.fxml"));
+            Parent rootAddColaborador = loaderAddColaborador.load();
+            sceneAddColaborador = new Scene(rootAddColaborador);
+            sceneAddColaborador.getStylesheets().add("/com/grupo2/t4j/style/app.css");
+            RegistarColaboradorUI registarColaboradorUI = loaderAddColaborador.getController();
+            registarColaboradorUI.associarParentUI(this);
+
+        }
+        catch (IOException exception) {
+            exception.printStackTrace();
+            AlertsUI.criarAlerta(Alert.AlertType.ERROR,
+                    MainApp.TITULO_APLICACAO,
+                    "Erro",
+                    exception.getMessage());
+        }
+        adicionarStage.setScene(sceneAddColaborador);
+        adicionarStage.setTitle("Registar Colaborador");
+        adicionarStage.show();
+    }
 }

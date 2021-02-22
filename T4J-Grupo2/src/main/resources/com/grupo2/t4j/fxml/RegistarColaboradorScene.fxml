@@ -11,7 +11,7 @@
 <?import javafx.scene.text.Font?>
 
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.RegistarColaboradorUI">
    <center>
       <BorderPane BorderPane.alignment="CENTER">
          <center>
@@ -113,7 +113,7 @@
                         <Insets />
                      </FlowPane.margin>
                   </Button>
-                  <Button fx:id="btnCancelarRegCol" alignment="CENTER_RIGHT" contentDisplay="CENTER" mnemonicParsing="false" onAction="#cancelarRegColAction" prefHeight="27.0" prefWidth="70.0" text="Cancelar" textAlignment="CENTER">
+                  <Button fx:id="btnCancelarRegisto" alignment="CENTER_RIGHT" contentDisplay="CENTER" mnemonicParsing="false" onAction="#cancelarRegisto" prefHeight="27.0" prefWidth="70.0" text="Cancelar" textAlignment="CENTER">
                      <font>
                         <Font name="Calibri" size="14.0" />
                      </font>

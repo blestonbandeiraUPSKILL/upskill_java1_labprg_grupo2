@@ -23,6 +23,8 @@ public class Colaborador extends Utilizador implements Serializable{
      */
     private String telefone;
 
+    private String nifOrganizacao;
+
     /**
      * Construtor completo da classe Colaborador
      * @param email o email do Utilizador em formato da classe Email
@@ -41,6 +43,13 @@ public class Colaborador extends Utilizador implements Serializable{
        super(colaborador.getEmail(), colaborador.getNome(), colaborador.getPassword());
        this.funcao = colaborador.getFuncao();
        this.telefone = colaborador.getTelefone();
+    }
+
+    public Colaborador(Email email, String funcao, String telefone, String nifOrganizacao) {
+        setEmail(email);
+        setFuncao(funcao);
+        setTelefone(telefone);
+        this.nifOrganizacao = nifOrganizacao;
     }
 
     /**
