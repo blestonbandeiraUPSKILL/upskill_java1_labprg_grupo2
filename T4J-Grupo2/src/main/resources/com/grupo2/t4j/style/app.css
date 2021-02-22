@@ -23,6 +23,16 @@
     -fx-text-fill: #ffffff;
 }
 
+.btnSair:hover {
+    -fx-background-color: #383838;
+    -fx-scale-y: 1.1;
+}
+
+.btnSair:pressed {
+    -fx-scale-y: 0.9;
+    -fx-scale-x: 0.9;
+}
+
 .lblLogin {
     -fx-text-fill: #ff0000;
 }
@@ -44,8 +54,7 @@
     -fx-background-color: #FFFFF0;
 }
 
-.BorderPane {
-    fx-background-color: #FF0000;
+.Tab {
+    -fx-background-color: #FFFFF0;
 }
 
-.TabPane {}
