@@ -17,6 +17,7 @@ import com.grupo2.t4j.model.Tarefa;
 import com.grupo2.t4j.persistence.RepositorioTarefa;
 
 import java.io.Serializable;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -73,7 +74,10 @@ public class RepositorioTarefaInMemory implements Serializable, RepositorioTaref
     }
 
     @Override
-    public void save(String codigoAreaActividade, String codigoCategoriaTarefa, String referencia, String designacao, String descInformal, String descTecnica, int duracao, double custo) {
+    public void save(String codigoAreaActividade, String codigoCategoriaTarefa, 
+            String referencia, String designacao, String descInformal, 
+            String descTecnica, int duracao, double custo, 
+            String nifOrganizacao, String emailColaborador) {
         /*Tarefa t = findByReferenciaENIF(referencia);
         if (t == null) {
             Tarefa tarefa = new Tarefa(referencia, designacao, descInformal,
@@ -102,7 +106,7 @@ public class RepositorioTarefaInMemory implements Serializable, RepositorioTaref
     }
 
     @Override
-    public Tarefa findByReferenciaENIF(String referencia, String NIF) {
+    public Tarefa findByReferenciaENIF(String referencia, String NIF) throws SQLException{
         for (int i = 0; i < this.listaTarefas.size(); i++) {
             Tarefa tarefa = this.listaTarefas.get(i);
             if (tarefa.getReferencia().equals(referencia)) {
