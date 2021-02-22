@@ -73,19 +73,33 @@
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </padding>
                            <font>
-                              <Font name="Calibri" size="14.0" />
+                              <Font name="Calibri" size="12.0" />
                            </font>
+                           <tooltip>
+                              <Tooltip text="Quero registar a minha Organização">
+                                 <font>
+                                    <Font size="12.0" />
+                                 </font>
+                              </Tooltip>
+                           </tooltip>
                         </Button>
                         <Button fx:id="btnSair" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#sairApp" styleClass="btnSair" text="Sair da Aplicação" textFill="WHITE" VBox.vgrow="NEVER">
                            <padding>
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </padding>
                            <font>
-                              <Font name="Calibri" size="14.0" />
+                              <Font name="Calibri" size="12.0" />
                            </font>
                            <VBox.margin>
                               <Insets top="10.0" />
                            </VBox.margin>
+                           <tooltip>
+                              <Tooltip text="Logout">
+                                 <font>
+                                    <Font size="12.0" />
+                                 </font>
+                              </Tooltip>
+                           </tooltip>
                         </Button>
                      </children>
                      <FlowPane.margin>
@@ -106,11 +120,18 @@
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </padding>
                      <font>
-                        <Font name="Calibri" size="16.0" />
+                        <Font name="Calibri" size="12.0" />
                      </font>
                      <FlowPane.margin>
                         <Insets left="5.0" right="5.0" />
                      </FlowPane.margin>
+                     <tooltip>
+                        <Tooltip text="Entrar">
+                           <font>
+                              <Font size="12.0" />
+                           </font>
+                        </Tooltip>
+                     </tooltip>
                   </Button>
                </children>
             </FlowPane>
@@ -118,7 +139,6 @@
       </BorderPane>
    </bottom>
    <top>
-      <ToggleButton mnemonicParsing="false" styleClass="btnToggle" text="Light/Dark Mode"
-                    BorderPane.alignment="CENTER"/>
+      <ToggleButton mnemonicParsing="false" styleClass="btnToggle" text="Light/Dark Mode" BorderPane.alignment="CENTER" />
    </top>
 </BorderPane>
