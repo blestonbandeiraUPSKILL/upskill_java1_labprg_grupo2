@@ -102,14 +102,13 @@ public class RepositorioCategoriaTarefaDatabase implements RepositorioCategoriaT
             callableStatement.setString(1, codigoCategoria);
             callableStatement.executeQuery();
 
-            return new Categoria();
+            return null;
         }
         catch (SQLException exception) {
             exception.printStackTrace();
             exception.getSQLState();
-
-            return null;
         }
+        return new Categoria();
     }
 
     @Override

@@ -49,7 +49,7 @@ public class RegistarFreelancerController {
         return repositorioFreelancer.getAll();
     }
     
-    public List<String> getAllView() throws SQLException{
+/*    public List<String> getAllView() throws SQLException{
         
         int tam = repositorioFreelancer.getAll().size();
         List<String> listaFreelancerView;
@@ -58,7 +58,7 @@ public class RegistarFreelancerController {
             listaFreelancerView.add((i+1) + ". " + repositorioFreelancer.getAll().get(i).toStringView());
         }        
         return listaFreelancerView;
-    }
+    }*/
     
     public Freelancer findByNif(String NIF) throws SQLException{
         return repositorioFreelancer.findByNif(NIF);

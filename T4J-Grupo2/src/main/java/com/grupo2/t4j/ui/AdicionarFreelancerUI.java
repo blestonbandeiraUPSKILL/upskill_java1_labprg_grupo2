@@ -86,7 +86,7 @@ public class AdicionarFreelancerUI implements Initializable {
 
             if(adicionou) {
                 txtPassFreelancer.setText(registarFreelancerController.findByNif(txtNIFFreelancer.getText()).getPassword().getPasswordText());
-                administrativoLogadoUI.updateListViewFreelancer();
+                //administrativoLogadoUI.updateListViewFreelancer();
             
                 AlertsUI.criarAlerta(Alert.AlertType.INFORMATION,
                     MainApp.TITULO_APLICACAO, "Registar Freelancer.",
