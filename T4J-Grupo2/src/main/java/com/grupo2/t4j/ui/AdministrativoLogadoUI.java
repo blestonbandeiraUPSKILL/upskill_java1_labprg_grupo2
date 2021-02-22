@@ -92,7 +92,13 @@ public class AdministrativoLogadoUI implements Initializable {
         } catch (SQLException exception) {
             exception.printStackTrace();
         }
-        
+
+        try {
+            updateListViewCategoriasTarefa();
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }
+
         try {
             updateListViewFreelancer();
         } catch (SQLException exception) {
@@ -265,7 +271,7 @@ public class AdministrativoLogadoUI implements Initializable {
     public void updateListViewAreasActividade() throws SQLException {
         listaAreasActividade.getItems().setAll(registarAreaActividadeController.getAll());
     }
-    public void updateListViewCategoriasTarefa() {
+    public void updateListViewCategoriasTarefa() throws SQLException {
         listaCategorias.getItems().setAll(registarCategoriaController.getAll());
     }
 
@@ -402,7 +408,7 @@ public class AdministrativoLogadoUI implements Initializable {
         }
     }
     
-    public void importCategorias(ActionEvent actionEvent) {
+    public void importCategorias(ActionEvent actionEvent) throws SQLException {
         String descricao, extensao;
 
         descricao = /*DESCRICAO_SERIALIZACAO*/"Ficheiro Categoria";

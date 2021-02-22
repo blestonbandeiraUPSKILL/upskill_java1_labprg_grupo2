@@ -140,12 +140,10 @@ public class AdicionarCategoriaTarefaUI implements Initializable {
                     txtDescricaoBreve.getText().trim(),
                     txtDescricaoDetalhada.getText().trim(),
                     cmbAreaActividade.getSelectionModel().getSelectedItem().getCodigo()
-                    //, listViewCompTecCat.getItems()
             );
 
             if(adicionou) {
-                administrativoLogadoUI.listaCategorias.getItems().add(
-                        registarCategoriaController.findByCodigo(txtCodigo.getText()));
+                administrativoLogadoUI.updateListViewCategoriasTarefa();
             }
 
             AlertsUI.criarAlerta(Alert.AlertType.INFORMATION,
@@ -156,7 +154,7 @@ public class AdicionarCategoriaTarefaUI implements Initializable {
 
             closeAddCatgoriaTarefa(event);
         }
-        catch (IllegalArgumentException iae) {
+        catch (IllegalArgumentException | SQLException iae) {
             AlertsUI.criarAlerta(Alert.AlertType.ERROR,
                     MainApp.TITULO_APLICACAO,
                     "Erro nos dados.",

@@ -162,7 +162,7 @@ public class RepositorioGrauProficienciaDatabase implements RepositorioGrauProfi
 
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(
-                    "SELECT * FROM GrauProficiencia WHERE codigoCompetenciaTecnica LIKE '?'"
+                    "SELECT * FROM GrauProficiencia WHERE codigoCompetenciaTecnica LIKE ?"
             );
 
             preparedStatement.setString(1, codigoCompetenciaTecnica);

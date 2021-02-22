@@ -17,6 +17,7 @@ import com.grupo2.t4j.persistence.inmemory.RepositorioCategoriaTarefaInMemory;
 import java.awt.geom.Area;
 import java.io.File;
 
+import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -31,30 +32,27 @@ public class RegistarCategoriaController {
     private RepositorioAreaActividade repositorioAreaActividade = fabricaRepositorios.getRepositorioAreaActividade();
 
     private FicheiroRepositorioCategoria ficheiroCat;
-    private RepositorioCategoriaTarefaInMemory repositorioCategoria;
+    private RepositorioCategoriaTarefaInMemory repositorioCategoriaTarefaInMemory;
 
     public boolean registarCategoria(String codigoCategoria, String descBreve,
                                      String descDetalhada, String codigoAreaActividade
-                                    //, List<CaracterizacaoCT> ccts
-                                     ) {
+                                     ) throws SQLException {
 
-        Categoria categoria = new Categoria(codigoCategoria, descBreve, descDetalhada, codigoAreaActividade
-        //        , ccts
-        );
+        Categoria categoria = new Categoria(codigoCategoria, descBreve, descDetalhada, codigoAreaActividade);
 
-        return repositorioCategoria.save(categoria);
+        return repositorioCategoriaTarefa.save(categoria);
     }
 
-    public List<Categoria> getAll() {
-        return repositorioCategoria.getAll();
+    public List<Categoria> getAll() throws SQLException {
+        return repositorioCategoriaTarefa.getAll();
     }
 
     public List<Categoria> findByAreaActividade(String codigoAreaActividade) {
-        return repositorioCategoria.findByAreaActividade(codigoAreaActividade);
+        return repositorioCategoriaTarefa.findByAreaActividade(codigoAreaActividade);
     }
 
-    public Categoria findByCodigo(String codigoCategoria) {
-        return repositorioCategoria.findByCodigo(codigoCategoria);
+    public Categoria findByCodigo(String codigoCategoria) throws SQLException {
+        return repositorioCategoriaTarefa.findByCodigo(codigoCategoria);
     }
     
     ////FICHEIROS//////
@@ -66,15 +64,15 @@ public class RegistarCategoriaController {
     }
 
     public boolean serializar() {
-        return ficheiroCat.serializar(repositorioCategoria);
+        return ficheiroCat.serializar(repositorioCategoriaTarefaInMemory);
     }
 
     public boolean serializar(File ficheiroExportar) {
-        return ficheiroCat.serializar(ficheiroExportar, repositorioCategoria);
+        return ficheiroCat.serializar(ficheiroExportar, repositorioCategoriaTarefaInMemory);
     }
 
     public void desserializar() {
-        repositorioCategoria = ficheiroCat.desserializar();
+        repositorioCategoriaTarefaInMemory = ficheiroCat.desserializar();
     }
 
     public int desserializar(File ficheiroImportar) {

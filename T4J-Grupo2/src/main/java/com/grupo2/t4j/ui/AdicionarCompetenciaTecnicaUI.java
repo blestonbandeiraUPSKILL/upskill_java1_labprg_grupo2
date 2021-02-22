@@ -63,6 +63,10 @@ public class AdicionarCompetenciaTecnicaUI implements Initializable {
 
     public void initialize(URL location, ResourceBundle resources) {
 
+        adicionarStage = new Stage();
+        adicionarStage.initModality(Modality.APPLICATION_MODAL);;
+        adicionarStage.setResizable(false);
+
         registarAreaActividadeController = new RegistarAreaActividadeController();
         registarCompetenciaTecnicaController = new RegistarCompetenciaTecnicaController();
         try {
@@ -70,11 +74,6 @@ public class AdicionarCompetenciaTecnicaUI implements Initializable {
         } catch (SQLException exception) {
             exception.printStackTrace();
         }
-
-
-        adicionarStage = new Stage();
-        adicionarStage.initModality(Modality.APPLICATION_MODAL);;
-        adicionarStage.setResizable(false);
 
         try {
             cmbAreaActividade.getItems().setAll(
