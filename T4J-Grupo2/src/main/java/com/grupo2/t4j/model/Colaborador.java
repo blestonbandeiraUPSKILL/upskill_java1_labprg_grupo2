@@ -90,6 +90,16 @@ public class Colaborador extends Utilizador implements Serializable{
     public String getTelefone(){
         return telefone;
     }
+
+    public String getNifOrganizacao() {
+        return nifOrganizacao;
+    }
+
+    public void setNifOrganizacao(String nifOrganizacao) {
+        this.nifOrganizacao = nifOrganizacao;
+    }
+    
+    
     
     /**
      * Representação textual da classe Colaborador em formato de exibição

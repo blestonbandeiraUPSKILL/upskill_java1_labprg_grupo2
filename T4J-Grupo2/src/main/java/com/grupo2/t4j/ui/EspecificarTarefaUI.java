@@ -1,7 +1,9 @@
 package com.grupo2.t4j.ui;
 
+import com.grupo2.t4j.controller.GestaoUtilizadoresController;
 import com.grupo2.t4j.controller.RegistarAreaActividadeController;
 import com.grupo2.t4j.controller.RegistarCategoriaController;
+import com.grupo2.t4j.controller.RegistarColaboradorController;
 import com.grupo2.t4j.controller.RegistarTarefaController;
 import com.grupo2.t4j.model.AreaActividade;
 import com.grupo2.t4j.model.CaracterizacaoCT;
@@ -29,6 +31,8 @@ public class EspecificarTarefaUI implements Initializable {
     private RegistarTarefaController registarTarefaController;
     private RegistarAreaActividadeController registarAreaActividadeController;
     private RegistarCategoriaController registarCategoriaController;
+    private RegistarColaboradorController registarColaboradorController;
+    private GestaoUtilizadoresController gestaoUtilizadoresController;
 
     @FXML TextField txtReferencia;
     @FXML TextField txtDesignacao;
@@ -50,6 +54,7 @@ public class EspecificarTarefaUI implements Initializable {
         registarTarefaController = new RegistarTarefaController();
         registarAreaActividadeController = new RegistarAreaActividadeController();
         registarCategoriaController = new RegistarCategoriaController();
+        gestaoUtilizadoresController = new GestaoUtilizadoresController();
 
         try {
             cmbAreaActividade.getItems().setAll(registarAreaActividadeController.getAll());
@@ -93,7 +98,7 @@ public class EspecificarTarefaUI implements Initializable {
                 cmbCategoriaTarefa.getSelectionModel().getSelectedItem().getCompTecnicasCaracter());
     }
 
-    public void registarTarefa(ActionEvent actionEvent) {
+    public void registarTarefa(ActionEvent actionEvent) throws SQLException{
         try {
             boolean adicionou = registarTarefaController.registarTarefa(
                     cmbAreaActividade.getSelectionModel().getSelectedItem().getCodigo(),
@@ -103,7 +108,9 @@ public class EspecificarTarefaUI implements Initializable {
                     txtDescInformal.getText(),
                     txtDescTecnica.getText(),
                     Integer.parseInt(txtEstimativaDuracao.getText()),
-                    Double.parseDouble(txtEstimativaCusto.getText()));
+                    Double.parseDouble(txtEstimativaCusto.getText()),
+                    gestaoUtilizadoresController.getEmail(),
+                    registarColaboradorController.findByEmail(gestaoUtilizadoresController.getEmail()).getNifOrganizacao());
 
             if (adicionou){
                 colaboradorLogadoUI.updateListViewTarefas(actionEvent);
