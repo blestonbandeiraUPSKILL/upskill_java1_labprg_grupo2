@@ -92,7 +92,7 @@ public class RepositorioTarefaInMemory implements Serializable, RepositorioTaref
     }
 
     @Override
-    public boolean save(Tarefa tarefa) {
+    public boolean save(Tarefa tarefa) throws SQLException {
         /*Tarefa t = findByReferenciaENIF(tarefa.getReferencia());
         if (t == null) {
             Tarefa tar = new Tarefa(tarefa);
@@ -133,7 +133,7 @@ public class RepositorioTarefaInMemory implements Serializable, RepositorioTaref
      *
      * @return 
      */
-    public ArrayList<Tarefa> getAll() {
+    public ArrayList<Tarefa> getAll() throws SQLException{
 
         return new ArrayList<Tarefa>(listaTarefas);
     }

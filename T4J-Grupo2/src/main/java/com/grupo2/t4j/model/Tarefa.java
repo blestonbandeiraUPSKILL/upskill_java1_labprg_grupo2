@@ -250,6 +250,23 @@ public class Tarefa implements Serializable{
     public String getCodigoCategoriaTarefa() {
         return codigoCategoriaTarefa;
     }
+
+    public String getNifOrganizacao() {
+        return nifOrganizacao;
+    }
+
+    public void setNifOrganizacao(String nifOrganizacao) {
+        this.nifOrganizacao = nifOrganizacao;
+    }
+
+    public String getEmailColaborador() {
+        return emailColaborador;
+    }
+
+    public void setEmailColaborador(String emailColaborador) {
+        this.emailColaborador = emailColaborador;
+    }
+    
     
     
     /**

@@ -25,7 +25,7 @@ public interface RepositorioTarefa {
                              int duracao, double custo, String nifOrganizacao, 
                              String emailColaborador);
 
-    boolean save(Tarefa tarefa);
+    boolean save(Tarefa tarefa) throws SQLException;
 
     Tarefa findByReferenciaENIF(String referencia, String NIF)throws SQLException;
 
@@ -38,7 +38,7 @@ public interface RepositorioTarefa {
      *
      * @return
      */
-    ArrayList<Tarefa> getAll();
+    ArrayList<Tarefa> getAll() throws SQLException;
 
 
     //getAllByOrgPublicadas, getAllByOrgNaoPublicadas, getAllByOrg
