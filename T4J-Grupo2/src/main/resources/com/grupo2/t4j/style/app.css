@@ -1,3 +1,22 @@
+.btnLogin {
+    -fx-background-color: #191970;
+    -fx-text-fill: #ffffff;
+}
+
+.btnRegistarOrganizacao {
+    -fx-background-color: #20B2AA;
+    -fx-text-fill: #ffffff;
+}
+
+.btnSair {
+    -fx-background-color: #8B0000;
+    -fx-text-fill: #ffffff;
+}
+
+.lblLogin {
+    -fx-text-fill: #ff0000;
+}
+
 #BorderPane {
     font-family: Calibri;
 }
