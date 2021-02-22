@@ -4,6 +4,10 @@ import com.grupo2.t4j.model.AreaActividade;
 import com.grupo2.t4j.model.Categoria;
 import com.grupo2.t4j.model.Tarefa;
 import com.grupo2.t4j.persistence.RepositorioTarefa;
+import com.grupo2.t4j.utils.DBConnectionHandler;
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.SQLException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +19,10 @@ public class RepositorioTarefaDatabase implements RepositorioTarefa {
      * registadas todas as Tarefas
      */
     private static RepositorioTarefaDatabase repositorioTarefaDatabase;
+    
+    String jdbcUrl = "jdbc:oracle:thin:@vsrvbd1.dei.isep.ipp.pt:1521/pdborcl";
+    String username = "UPSKILL_BD_TURMA1_01";
+    String password = "qwerty";
 
     /**
      * Inicializa o Repositório de Tarefas
@@ -34,7 +42,10 @@ public class RepositorioTarefaDatabase implements RepositorioTarefa {
     }
 
     @Override
-    public void save(String codigoAreaActividade, String codigoCategoriaTarefa, String referencia, String designacao, String descInformal, String descTecnica, int duracao, double custo) {
+    public void save(String codigoAreaActividade, String codigoCategoriaTarefa, 
+            String referencia, String designacao, String descInformal, 
+            String descTecnica, int duracao, double custo, String nifOrganizacao,
+            String emailColaborador) {
 
     }
 
@@ -45,8 +56,32 @@ public class RepositorioTarefaDatabase implements RepositorioTarefa {
     }
 
     @Override
-    public Tarefa findByReferenciaENIF(String referencia, String NIF) {
-        return null;
+    public Tarefa findByReferenciaENIF(String referencia, String nif) throws SQLException {
+        
+        DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
+        Connection connection = dbConnectionHandler.openConnection();
+
+        CallableStatement callableStatement = connection.prepareCall(
+                "{ CALL findByRefenciaENif(?, ?) }"
+        );
+
+        try {
+            connection.setAutoCommit(false);
+
+            callableStatement.setString(1, referencia);
+            callableStatement.setString(2, nif );
+
+            callableStatement.executeUpdate();
+            return null;
+
+        }
+        catch (SQLException exception) {
+            exception.printStackTrace();
+            exception.getSQLState();
+
+
+        }
+        return new Tarefa();
     }
 
     @Override

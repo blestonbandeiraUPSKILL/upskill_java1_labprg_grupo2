@@ -11,6 +11,7 @@ package com.grupo2.t4j.persistence;
  */
 
 import com.grupo2.t4j.model.*;
+import java.sql.SQLException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,11 +22,12 @@ public interface RepositorioTarefa {
     void save(String codigoAreaActividade, String codigoCategoriaTarefa,
                              String referencia, String designacao,
                              String descInformal, String descTecnica,
-                             int duracao, double custo);
+                             int duracao, double custo, String nifOrganizacao, 
+                             String emailColaborador);
 
     boolean save(Tarefa tarefa);
 
-    Tarefa findByReferenciaENIF(String referencia, String NIF);
+    Tarefa findByReferenciaENIF(String referencia, String NIF)throws SQLException;
 
 
     List<Tarefa> findByCategoria (String codigoCategoria);
