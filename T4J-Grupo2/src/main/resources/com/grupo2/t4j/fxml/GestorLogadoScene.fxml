@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
@@ -13,7 +18,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane stylesheets="@../style/app.css" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="700.0" style="-fx-background-color: #c4c4c4;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.GestorLogadoUI">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="700.0" style="-fx-background-color: #c4c4c4;" stylesheets="@../style/app.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.GestorLogadoUI">
    <top>
       <Label style="-fx-background-color: #000000;" text="Área do Gestor" textFill="WHITE" BorderPane.alignment="CENTER_RIGHT">
          <padding>
@@ -31,7 +36,7 @@
               <tabs>
                  <Tab text="Lista de Tarefas">
                     <content>
-                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="AnchorPane">
                           <children>
 
 
@@ -100,9 +105,9 @@
       </BorderPane>
    </center>
    <bottom>
-      <FlowPane alignment="CENTER_RIGHT" prefHeight="47.0" prefWidth="700.0" BorderPane.alignment="CENTER_RIGHT">
+      <FlowPane alignment="CENTER_RIGHT" prefHeight="47.0" prefWidth="700.0" styleClass="FlowPane" BorderPane.alignment="CENTER_RIGHT">
          <children>
-           <Button fx:id="btnLogout" mnemonicParsing="false" onAction="#logout" prefHeight="27.0" prefWidth="70.0" text="Sair">
+           <Button fx:id="btnLogout" mnemonicParsing="false" onAction="#logout" prefHeight="27.0" prefWidth="70.0" styleClass="btnSair" text="Sair">
               <font>
                  <Font name="Calibri" size="16.0" />
               </font>
