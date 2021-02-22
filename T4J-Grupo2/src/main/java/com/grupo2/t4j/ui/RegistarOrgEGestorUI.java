@@ -96,7 +96,6 @@ public class RegistarOrgEGestorUI implements Initializable {
                     txtEndLocalidade.getText(),
                     txtEndCodPostal.getText(),
                     txtNomeGestor.getText(),
-                    Rolename.GESTOR.toString(),
                     txtTelefoneGestor.getText(),
                     txtFuncaoGestor.getText()
             );

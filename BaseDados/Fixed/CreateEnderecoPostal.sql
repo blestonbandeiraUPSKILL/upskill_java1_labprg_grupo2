@@ -5,16 +5,14 @@ CREATE OR REPLACE PROCEDURE createEnderecoPostal(
     p_codPostal enderecopostal.codpostal%type
     )
 IS
-    v_idEnderecoPostal enderecopostal.idenderecopostal%type;
 
 BEGIN
 
     INSERT INTO EnderecoPostal
         (arruamento, numeroPorta, localidade, codPostal)
     VALUES
-        (p_arruamento, p_numeroPorta, p_localidade, p_codPostal)
-    RETURNING idEnderecoPostal 
-    INTO v_idEnderecoPostal;    
+        (p_arruamento, p_numeroPorta, p_localidade, p_codPostal);
+    
 
 END;
 /
