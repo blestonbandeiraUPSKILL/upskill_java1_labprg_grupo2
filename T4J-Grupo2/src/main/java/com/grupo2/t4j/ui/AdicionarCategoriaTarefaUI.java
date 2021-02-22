@@ -91,8 +91,12 @@ public class AdicionarCategoriaTarefaUI implements Initializable {
         cmbCompetenciaTecnica.setOnAction(new EventHandler<ActionEvent>(){
             @Override
             public void handle(ActionEvent event) {
-                updateCmbGrauProficiencia(event);
-        }
+                try {
+                    updateCmbGrauProficiencia(event);
+                } catch (SQLException exception) {
+                    exception.printStackTrace();
+                }
+            }
         });
     }
 
@@ -102,10 +106,10 @@ public class AdicionarCategoriaTarefaUI implements Initializable {
                 registarCompetenciaTecnicaController.findByAreaActividade(codigoAreaActividade));
     }
     
-    public void updateCmbGrauProficiencia(ActionEvent actionEvent) {
+    public void updateCmbGrauProficiencia(ActionEvent actionEvent) throws SQLException {
+        String codigoCompetenciaTecnica = cmbCompetenciaTecnica.getSelectionModel().getSelectedItem().getCodigo();
         cmbGrauProficiencia.getItems().addAll(
-                registarGrauProficienciaController.findByCompetenciaTecnica(
-                cmbCompetenciaTecnica.getSelectionModel().getSelectedItem().getCodigo()));
+                registarGrauProficienciaController.findByCompetenciaTecnica(codigoCompetenciaTecnica));
     }
     
     

@@ -18,6 +18,8 @@ import java.io.Serializable;
  */
 
 public class GrauProficiencia {
+
+    private int idGrauProficiencia;
     private String grau;
     private String designacao;
     private String codigoCompetenciaTecnica;
@@ -36,13 +38,22 @@ public class GrauProficiencia {
         setDesignacao(designacao);
         
     }
-    public GrauProficiencia(String grau, String designacao, String codigoCompetenciaTecnica){
-
+    public GrauProficiencia(int idGrauProficiencia, String grau, String designacao, String codigoCompetenciaTecnica){
+        this.idGrauProficiencia = idGrauProficiencia;
         setGrau(grau);
         setDesignacao(designacao);
         setCodigoCompetenciaTecnica(codigoCompetenciaTecnica);
     }
 
+    public GrauProficiencia(String grau, String designacao, String codigoCompetenciaTecnica) {
+        setGrau(grau);
+        setDesignacao(designacao);
+        setCodigoCompetenciaTecnica(codigoCompetenciaTecnica);
+    }
+
+    public int getIdGrauProficiencia() {
+        return idGrauProficiencia;
+    }
 
     public String getGrau() {
         return grau;

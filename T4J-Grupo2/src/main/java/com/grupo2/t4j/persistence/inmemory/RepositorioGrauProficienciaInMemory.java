@@ -49,6 +49,11 @@ public class RepositorioGrauProficienciaInMemory implements Serializable, Reposi
     }
 
     @Override
+    public boolean save(GrauProficiencia grauProficiencia) throws SQLException {
+        return false;
+    }
+
+ /*   @Override
     public boolean save(GrauProficiencia grauProficiencia) {
         GrauProficiencia gp = findByGrau(grauProficiencia.getGrau(),grauProficiencia.getCodigoCompetenciaTecnica());
         if(gp == null) {
@@ -57,7 +62,7 @@ public class RepositorioGrauProficienciaInMemory implements Serializable, Reposi
         } else {
             throw new GrauProficienciaDuplicadoException(gp.getGrau()+": Grau já especificado");
         }
-    }
+    }*/
 
     @Override
     public List<GrauProficiencia> getAll() {
@@ -76,6 +81,18 @@ public class RepositorioGrauProficienciaInMemory implements Serializable, Reposi
     }
 
     @Override
+    public GrauProficiencia findByGrau(String grau) {
+        return null;
+    }
+
+    @Override
+    public GrauProficiencia findByGrauECompetencia(String grau, String codigoCompetenciaTecnica) throws SQLException {
+        return null;
+    }
+
+
+/*
+    @Override
     public GrauProficiencia findByGrau(String grau, String codigoCompetenciaTecnica) {
 
         for(int i = 0; i < this.findByCompetenciaTecnica(codigoCompetenciaTecnica).size(); i++){
@@ -85,8 +102,8 @@ public class RepositorioGrauProficienciaInMemory implements Serializable, Reposi
             }
         }
         return null;
-    }
-
+    }*/
+/*
     @Override
     public boolean findByValorECompetenciaTecnica(String grau, String codigoCompetenciaTecnica) throws SQLException {
 
@@ -97,5 +114,5 @@ public class RepositorioGrauProficienciaInMemory implements Serializable, Reposi
             }
         }
         return false;
-    }
+    }*/
 }

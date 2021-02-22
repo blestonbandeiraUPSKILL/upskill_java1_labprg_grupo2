@@ -4,18 +4,21 @@ CREATE OR REPLACE PROCEDURE findByValorECompetenciaTecnica(
     )
 
 IS
-    v_count int;
+
+    v_count_grau int;
+    v_count_codigo int;
     ex_GrauProficiencia exception;
 
 BEGIN
-    SELECT count(*) INTO v_count
+    SELECT count(grau), count(codigoCompetenciaTecnica) INTO v_count_grau, v_count_codigo
     FROM GrauProficiencia
     WHERE 
-        grau LIKE p_grau 
-        AND 
-        codigoCompetenciaTecnica LIKE p_codigoCompetenciaTecnica;
+        grau LIKE p_grau
+        AND
+        codigocompetenciatecnica LIKE p_codigoCompetenciaTecnica;       
+  
     
-    IF v_count = 0
+    IF v_count_grau = 0 AND v_count_codigo = 0
     THEN
         RAISE ex_GrauProficiencia;
     END IF;

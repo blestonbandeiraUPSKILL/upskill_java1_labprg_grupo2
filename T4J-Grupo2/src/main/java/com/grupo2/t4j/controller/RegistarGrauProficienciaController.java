@@ -29,23 +29,27 @@ public class RegistarGrauProficienciaController {
     public RegistarGrauProficienciaController() throws SQLException {
     }
 
-    public List<GrauProficiencia> getAll() {
+    public List<GrauProficiencia> getAll() throws SQLException {
         return repositorioGrauProficiencia.getAll();
     }
 
-    public boolean registarGrauProficiencia(String valor, String designacao, String codigoCompetenciaTecnica) throws SQLException {
+    public boolean registarGrauProficiencia(String designacao, String codigoCompetenciaTecnica, String grau) throws SQLException {
 
-        GrauProficiencia grauProficiencia = new GrauProficiencia (valor, designacao, codigoCompetenciaTecnica);
+        GrauProficiencia grauProficiencia = new GrauProficiencia (designacao, codigoCompetenciaTecnica, grau);
 
         return repositorioGrauProficiencia.save(grauProficiencia);
     }
 
-    public List<GrauProficiencia> findByCompetenciaTecnica(String codigoCompetenciaTecnica) {
+    public List<GrauProficiencia> findByCompetenciaTecnica(String codigoCompetenciaTecnica) throws SQLException {
         return repositorioGrauProficiencia.findByCompetenciaTecnica(codigoCompetenciaTecnica);
     }
     
-    public GrauProficiencia findByValor(String valor, String codigoCompetenciaTecnica) {
-        return repositorioGrauProficiencia.findByGrau(valor, codigoCompetenciaTecnica);
+    public GrauProficiencia findByValor(String grau) throws SQLException {
+        return repositorioGrauProficiencia.findByGrau(grau);
+    }
+
+    public GrauProficiencia findByGrauECompetenciaTecnica(String grau, String codigoCompetenciaTecnica) throws SQLException {
+        return repositorioGrauProficiencia.findByGrauECompetencia(grau, codigoCompetenciaTecnica);
     }
     
 }
