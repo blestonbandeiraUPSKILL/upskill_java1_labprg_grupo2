@@ -113,8 +113,46 @@ public class RepositorioCategoriaTarefaDatabase implements RepositorioCategoriaT
     }
 
     @Override
-    public ArrayList<Categoria> findByAreaActividade(String codigoAreaActividade) {
-        return null;
+    public ArrayList<Categoria> findByAreaActividade(String codigoAreaActividade) throws SQLException {
+        ArrayList<Categoria> categoriasTarefa = new ArrayList<>();
+
+        DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
+        Connection connection = dbConnectionHandler.openConnection();
+
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(
+                    "SELECT * FROM Categoria WHERE codigoAreaActividade LIKE ?"
+            );
+
+            preparedStatement.setString(1, codigoAreaActividade);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                String codigoCompetencia = resultSet.getString(1);
+                String descBreve = resultSet.getString(2);
+                String descDetalhada = resultSet.getString(3);
+                categoriasTarefa.add(new Categoria(codigoCompetencia, descBreve, descDetalhada, codigoAreaActividade));
+            }
+        }
+
+        catch (SQLException exception) {
+            exception.printStackTrace();
+            exception.getSQLState();
+            try {
+                System.err.print("Transaction is being rolled back");
+                connection.rollback();
+            }
+            catch (SQLException sqlException) {
+                sqlException.getErrorCode();
+            }
+
+        }
+        finally {
+            dbConnectionHandler.closeAll();
+        }
+
+        return categoriasTarefa;
     }
 
     @Override

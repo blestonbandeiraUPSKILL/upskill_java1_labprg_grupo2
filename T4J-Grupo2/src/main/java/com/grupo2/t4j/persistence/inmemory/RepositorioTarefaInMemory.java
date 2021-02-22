@@ -61,19 +61,20 @@ public class RepositorioTarefaInMemory implements Serializable, RepositorioTaref
      * @return
      */
     public boolean addTarefa(Tarefa tarefa) throws TarefaDuplicadaException {
-        Tarefa t = findByReferencia(tarefa.getReferencia());
+        /*Tarefa t = findByReferenciaENIF(tarefa.getReferencia());
         if (t == null) {
             return this.listaTarefas.add(tarefa);
         } else {
             throw new TarefaDuplicadaException(t.getReferencia() + 
                     ": Tarefa já registada");
-        }
+        }*/
+        return false;
 
     }
 
     @Override
     public void save(String codigoAreaActividade, String codigoCategoriaTarefa, String referencia, String designacao, String descInformal, String descTecnica, int duracao, double custo) {
-        Tarefa t = findByReferencia(referencia);
+        /*Tarefa t = findByReferenciaENIF(referencia);
         if (t == null) {
             Tarefa tarefa = new Tarefa(referencia, designacao, descInformal,
                     descTecnica, duracao, custo, codigoAreaActividade, codigoCategoriaTarefa);
@@ -82,12 +83,13 @@ public class RepositorioTarefaInMemory implements Serializable, RepositorioTaref
         else {
             throw new TarefaDuplicadaException(t.getReferencia() +
                     ": Tarefa já registada");
-        }
+        }*/
+        
     }
 
     @Override
     public boolean save(Tarefa tarefa) {
-        Tarefa t = findByReferencia(tarefa.getReferencia());
+        /*Tarefa t = findByReferenciaENIF(tarefa.getReferencia());
         if (t == null) {
             Tarefa tar = new Tarefa(tarefa);
             this.listaTarefas.add(tar);
@@ -95,12 +97,12 @@ public class RepositorioTarefaInMemory implements Serializable, RepositorioTaref
         else {
             throw new TarefaDuplicadaException(t.getReferencia() +
                     ": Tarefa já registada");
-        }
+        }*/
         return false;
     }
 
     @Override
-    public Tarefa findByReferencia(String referencia) {
+    public Tarefa findByReferenciaENIF(String referencia, String NIF) {
         for (int i = 0; i < this.listaTarefas.size(); i++) {
             Tarefa tarefa = this.listaTarefas.get(i);
             if (tarefa.getReferencia().equals(referencia)) {
