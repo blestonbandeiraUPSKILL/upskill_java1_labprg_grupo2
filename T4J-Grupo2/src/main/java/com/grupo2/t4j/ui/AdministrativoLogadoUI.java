@@ -34,7 +34,7 @@ public class AdministrativoLogadoUI implements Initializable {
     private Scene sceneAddFreelancer;
     private Scene sceneConsultarCompetenciaTecnica;
     private Scene sceneAddHabilitacaoFreelancer;
-    private Scene sceneAddCompetenciaFreelancer;
+    private Scene sceneAddReconhecimentoGP;
     private Scene sceneStartingPage;
     private RegistarAreaActividadeController registarAreaActividadeController;
     private RegistarCategoriaController registarCategoriaController;
@@ -42,7 +42,8 @@ public class AdministrativoLogadoUI implements Initializable {
     private GestaoUtilizadoresController gestaoUtilizadoresController;
     private RegistarFreelancerController registarFreelancerController;
     private RegistarHabilitacaoAcademicaController registarHabilitacaoAcademicaController;
-
+    private RegistarReconhecimentoGPController registarReconhecimentoGPController;
+    
     private FicheiroRepositorioAreaActividade ficheiroAt;
     private RepositorioAreaActividadeInMemory repositorioAreaActividadeInMemory;
 
@@ -50,7 +51,12 @@ public class AdministrativoLogadoUI implements Initializable {
     private static final String CABECALHO_EXPORTAR = "Exportar Lista.";
 
     @FXML Button btnAddAreaAtividade;
+    @FXML Button btnConsultar;
+    @FXML Button btnAddcompetenciaTecnica;
     @FXML Button btnAddCategoriaTarefa;
+    @FXML Button btnAdicionarFreelancer;
+    @FXML Button btnAdicionarHabilitacao;
+    @FXML Button btnAdicionarReconGP;
     @FXML Button btnSair;
     @FXML ListView<AreaActividade> listaAreasActividade;
     @FXML ListView<Categoria> listaCategorias;
@@ -74,6 +80,7 @@ public class AdministrativoLogadoUI implements Initializable {
         registarCompetenciaTecnicaController = new RegistarCompetenciaTecnicaController();
         registarFreelancerController = new RegistarFreelancerController();
         registarHabilitacaoAcademicaController = new  RegistarHabilitacaoAcademicaController();
+        registarReconhecimentoGPController = new  RegistarReconhecimentoGPController();
         gestaoUtilizadoresController = new GestaoUtilizadoresController();
                      
         try {
@@ -167,7 +174,7 @@ public class AdministrativoLogadoUI implements Initializable {
         adicionarStage.show();
     }
 
-    public void addFreelancerScene(ActionEvent actionEvent) {
+    public void addFreelancer(ActionEvent actionEvent) {
         try {
             FXMLLoader loaderAddFreelancer = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/AdicionarFreelancerScene.fxml"));
             Parent rootAddFreelancer = loaderAddFreelancer.load();
@@ -212,14 +219,14 @@ public class AdministrativoLogadoUI implements Initializable {
         
     }
 
-    public void addCompetenciaFreelancer(ActionEvent actionEvent) {
+    public void addReconhecimentoGP(ActionEvent actionEvent) {
          try {
-            FXMLLoader loaderAddFreelancer = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/AdicionarFreelancerScene.fxml"));
-            Parent rootAddFreelancer = loaderAddFreelancer.load();
-            sceneAddFreelancer = new Scene(rootAddFreelancer);
-            sceneAddFreelancer.getStylesheets().add("/com/grupo2/t4j/style/app.css");
-            AdicionarFreelancerUI adicionarFreelancerUI = loaderAddFreelancer.getController();
-            adicionarFreelancerUI.associarParentUI(this);
+            FXMLLoader loaderAddReconhecimentoGP = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/AdicionarReconhecimentoGPScene.fxml"));
+            Parent rootAddReconhecimentoGP = loaderAddReconhecimentoGP.load();
+            sceneAddReconhecimentoGP = new Scene(rootAddReconhecimentoGP);
+            sceneAddReconhecimentoGP.getStylesheets().add("/com/grupo2/t4j/style/app.css");
+            AdicionarReconhecimentoGPUI adicionarReconhecimentoGPUI = loaderAddReconhecimentoGP.getController();
+            adicionarReconhecimentoGPUI.associarParentUI(this);
 
         } catch (IOException exception) {
             exception.printStackTrace();
@@ -229,8 +236,8 @@ public class AdministrativoLogadoUI implements Initializable {
                     exception.getMessage());
         }
 
-        adicionarStage.setScene(sceneAddFreelancer);
-        adicionarStage.setTitle("Adicionar Freelancer");
+        adicionarStage.setScene(sceneAddReconhecimentoGP);
+        adicionarStage.setTitle("Adicionar Competência Técnica de Freelancer");
         adicionarStage.show();
         
     }

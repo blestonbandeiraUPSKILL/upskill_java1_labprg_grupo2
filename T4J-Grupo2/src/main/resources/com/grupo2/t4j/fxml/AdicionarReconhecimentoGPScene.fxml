@@ -18,7 +18,7 @@
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="700.0" style="-fx-background-color: #c4c4c4;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.AdicionarCompetenciaFreelancerUI">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="700.0" style="-fx-background-color: #c4c4c4;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.AdicionarReconhecimentoGPUI">
    <center>
       <BorderPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #c4c4c4;" BorderPane.alignment="CENTER">
          <top>
@@ -64,11 +64,11 @@
                                                       <Insets bottom="5.0" top="5.0" />
                                                    </VBox.margin>
                                                 </ComboBox>
-                                                <Label text="NIF do Freelancer">
+                                                <Label text="Email do Freelancer">
                                                    <VBox.margin>
                                                       <Insets bottom="5.0" top="5.0" />
                                                    </VBox.margin></Label>
-                                                <ComboBox fx:id="cmbNifFreelancer" prefHeight="25.0" prefWidth="380.0">
+                                                <ComboBox fx:id="cmbEmailFreelancer" prefHeight="25.0" prefWidth="380.0">
                                                    <VBox.margin>
                                                       <Insets bottom="5.0" top="5.0" />
                                                    </VBox.margin>

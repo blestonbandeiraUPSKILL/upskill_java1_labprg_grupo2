@@ -28,60 +28,48 @@ public class RegistarReconhecimentoGPController {
     private RepositorioReconhecimentoGPInMemory repositorioReconhecimentoGPInMemory;
     private FicheiroRepositorioReconhecimentoGP ficheiroRGP;
     
-     public boolean registarReconhecimentoGP(String email, String nome, String nif, String
-            telefone, String codigoEnderecoPostal) throws SQLException {
+     public boolean registarReconhecimentoGP(String idGrauProficiencia, Data dataReconhecimento, 
+             Email emailFreelancer, String idCompetenciaTecnica) throws SQLException {
         
-        Freelancer freelancer = new Freelancer(new Email(email), nome, password, nif, 
-                telefone, codigoEnderecoPostal);
-
-        registarFreelancerComoUtilizador(freelancer);
-
-        return repositorioFreelancer.save(freelancer);
+        ReconhecimentoGP reconhecimentoGP = new ReconhecimentoGP(idGrauProficiencia, 
+                dataReconhecimento, emailFreelancer, idCompetenciaTecnica);
+       
+        return repositorioReconhecimentoGP.save(reconhecimentoGP);
     }
 
-    public List<Freelancer> getAll() throws SQLException{
-        return repositorioFreelancer.getAll();
+    public List<ReconhecimentoGP> getAll() throws SQLException{
+        return repositorioReconhecimentoGP.getAll();
     }
    
-    public Freelancer findByNif(String NIF) throws SQLException{
-        return repositorioFreelancer.findByNif(NIF);
+    public ReconhecimentoGP findByEmailCompetencia(String email, String idCompetenciaTecnica) throws SQLException{
+        return repositorioReconhecimentoGP.findByEmailCompetencia(email, idCompetenciaTecnica);
     }
 
     ///////API
-    public boolean registarFreelancerComoUtilizador(Freelancer freelancer) throws SQLException {
-        String nome = freelancer.getNome();
-        Email email = freelancer.getEmail();
-        Password password = freelancer.getPassword();
-
-
-        Utilizador utilizador = new Utilizador(email, nome, password);
-
-        return UsersAPI.getInstance().registerUserWithRoles(email, nome, password, "freelancer")
-                && repositorioUtilizador.save(utilizador);
-    }
+   
     
      //////FICHEIROS////////
-    public RegistarFreelancerController() {
-        ficheiroF = new FicheiroRepositorioFreelancer();
+    public RegistarReconhecimentoGPController() {
+        ficheiroRGP = new FicheiroRepositorioReconhecimentoGP();
         
         desserializar();
     }
     public boolean serializar() {
-        return ficheiroF.serializar(repositorioFreelancerInMemory);
+        return ficheiroRGP.serializar(repositorioReconhecimentoGPInMemory);
     }
 
     public boolean serializar(File ficheiroExportar) {
-        return ficheiroF.serializar(ficheiroExportar, repositorioFreelancerInMemory);
+        return ficheiroRGP.serializar(ficheiroExportar, repositorioReconhecimentoGPInMemory);
     }
 
     public void desserializar() {
-        repositorioFreelancerInMemory = ficheiroF.desserializar();
+        repositorioReconhecimentoGPInMemory = ficheiroRGP.desserializar();
     }
 
     public int desserializar(File ficheiroImportar) {
-        RepositorioFreelancerInMemory listaFreelancerImportada = ficheiroF.desserializar(ficheiroImportar);
+        RepositorioReconhecimentoGPInMemory listaReconhecimentoGPImportada = ficheiroRGP.desserializar(ficheiroImportar);
 
-        return repositorioFreelancerInMemory.adicionarListaFreelancer(listaFreelancerImportada);
+        return repositorioReconhecimentoGPInMemory.adicionarListaReconhecimentoGP(listaReconhecimentoGPImportada);
     }
 
 }

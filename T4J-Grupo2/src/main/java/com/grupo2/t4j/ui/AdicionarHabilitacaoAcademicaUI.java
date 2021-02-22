@@ -38,7 +38,7 @@ public class AdicionarHabilitacaoAcademicaUI implements Initializable {
     
     @FXML private ComboBox<String> cmbNomeFreelancer;
     
-    @FXML private ComboBox<String> cmbNifFreelancer;
+    @FXML private ComboBox<String> cmbEmailFreelancer;
 
     @FXML private TextField txtGrau;
 
@@ -83,7 +83,7 @@ public class AdicionarHabilitacaoAcademicaUI implements Initializable {
     void addHabilitacao(ActionEvent event) {
         try{                      
             boolean adicionou = registarHabilitacaoAcademicaController.registarHabilitacaoAcademica(
-                    cmbNifFreelancer.getPromptText(), txtGrau.getText(), txtDesignacao.getText(),
+                    ("HB- " + cmbEmailFreelancer.getPromptText()), txtGrau.getText(), txtDesignacao.getText(),
                     txtInstituicao.getText(), Double.parseDouble(txtMedia.getText()));
 
             if(adicionou) {
@@ -114,7 +114,7 @@ public class AdicionarHabilitacaoAcademicaUI implements Initializable {
 
     }
     
-     public void updateListViewHabilitacaoFreelancer() throws SQLException {
+    public void updateListViewHabilitacaoFreelancer() throws SQLException {
          listaHabilitacaoFreelancer.getItems().setAll(registarHabilitacaoAcademicaController.getAll());
     }
      
