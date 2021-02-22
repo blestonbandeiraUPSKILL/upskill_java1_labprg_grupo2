@@ -98,16 +98,16 @@ public class RepositorioGrauProficienciaDatabase implements RepositorioGrauProfi
             callableStatement.setString(2, codigoCompetenciaTecnica);
 
             callableStatement.executeUpdate();
+            return null;
 
-            return new GrauProficiencia();
         }
         catch (SQLException exception) {
             exception.printStackTrace();
             exception.getSQLState();
 
-            return null;
-        }
 
+        }
+        return new GrauProficiencia();
     }
 
 
