@@ -138,11 +138,17 @@ public class ColaboradorLogadoUI implements Initializable {
     public void navigateEspecificarTarefa(ActionEvent actionEvent) {
         try {
             FXMLLoader loaderAddTarefa = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/EspecificarTarefaScene.fxml"));
+            EspecificarTarefaUI especificarTarefaUIUI = loaderAddTarefa.getController();
+            especificarTarefaUIUI.associarParentUI(this);
+            loaderAddTarefa.setController(this);
             Parent rootAddTarefa = loaderAddTarefa.load();
             sceneEspecificarTarefa = new Scene(rootAddTarefa);
             sceneEspecificarTarefa.getStylesheets().add("/com/grupo2/t4j/style/app.css");
-            EspecificarTarefaUI especificarTarefaUIUI = loaderAddTarefa.getController();
-            especificarTarefaUIUI.associarParentUI(this);
+
+
+            adicionarStage.setScene(sceneEspecificarTarefa);
+            adicionarStage.setTitle("Especificar Tarefa");
+            adicionarStage.show();
 
         } catch (IOException exception) {
             exception.printStackTrace();
@@ -152,9 +158,7 @@ public class ColaboradorLogadoUI implements Initializable {
                     exception.getMessage());
         }
 
-        adicionarStage.setScene(sceneEspecificarTarefa);
-        adicionarStage.setTitle("Especificar Tarefa");
-        adicionarStage.show();
+
 
     }
 

@@ -279,11 +279,17 @@ public class AdministrativoLogadoUI implements Initializable {
     public void updateListViewCompetenciasTecnicas() throws SQLException {
         listViewCompetenciasTecnicas.getItems().setAll(registarCompetenciaTecnicaController.getAll());
     }
+
+    public String getCodigoCompetenciaTecnica() {
+        return listViewCompetenciasTecnicas.getSelectionModel().getSelectedItem().getCodigo();
+    }
     
     @FXML
     void consultarCompetenciaTecnicaAction(ActionEvent event) {
         
         try {
+
+
             FXMLLoader loaderConsultarCompetenciaTecnica = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/ConsultarCompetenciaTecnicaScene.fxml"));
             Parent rootConsultarCompetenciaTecnica = loaderConsultarCompetenciaTecnica.load();
             sceneConsultarCompetenciaTecnica = new Scene(rootConsultarCompetenciaTecnica);

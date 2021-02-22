@@ -64,14 +64,9 @@ public class ConsultarCompetenciaTecnicaUI implements Initializable {
             
             registarAreaActividadeController = new RegistarAreaActividadeController();
             registarGrauProficienciaController = new RegistarGrauProficienciaController();
-            
-            try {
 
-                txtCodigoCompetenciaTecnica.setText(administrativoLogadoUI.listViewCompetenciasTecnicas.getSelectionModel().getSelectedItem().getCodigo());
-                txtDescricaoBreve.setText(administrativoLogadoUI.listViewCompetenciasTecnicas.getSelectionModel().getSelectedItem().getDescricaoBreve());
-                txtDescricaoDetalhada.setText(administrativoLogadoUI.listViewCompetenciasTecnicas.getSelectionModel().getSelectedItem().getDescricaoDetalhada());
-                listViewGrausAplicaveis.getItems().setAll(registarGrauProficienciaController.findByCompetenciaTecnica(txtCodigoCompetenciaTecnica.getText()));
-                txtAreaActividade.setText(registarAreaActividadeController.findByCodigo(administrativoLogadoUI.listViewCompetenciasTecnicas.getSelectionModel().getSelectedItem().getCodigoAreaActividade()).getDescBreve());
+            try {
+            updateDados();
             } catch (SQLException exception) {
                 exception.printStackTrace();
             }
@@ -83,7 +78,7 @@ public class ConsultarCompetenciaTecnicaUI implements Initializable {
     }    
     
     public void updateDados() throws SQLException {
-        txtCodigoCompetenciaTecnica.setText(administrativoLogadoUI.listViewCompetenciasTecnicas.getSelectionModel().getSelectedItem().getCodigo());
+        txtCodigoCompetenciaTecnica.setText(administrativoLogadoUI.getCodigoCompetenciaTecnica());
         txtDescricaoBreve.setText(administrativoLogadoUI.listViewCompetenciasTecnicas.getSelectionModel().getSelectedItem().getDescricaoBreve());
         txtDescricaoDetalhada.setText(administrativoLogadoUI.listViewCompetenciasTecnicas.getSelectionModel().getSelectedItem().getDescricaoDetalhada());
         listViewGrausAplicaveis.getItems().setAll(registarGrauProficienciaController.findByCompetenciaTecnica(txtCodigoCompetenciaTecnica.getText()));
