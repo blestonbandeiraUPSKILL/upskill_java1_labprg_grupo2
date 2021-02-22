@@ -53,6 +53,8 @@ public class AdicionarFreelancerUI implements Initializable {
     @FXML private Button btnAddFreelancer;
    
     @FXML private Button btnCancelar;
+    
+    @FXML private Button btnSair;
 
     public void associarParentUI(AdministrativoLogadoUI administrativoLogadoUI) {
         this.administrativoLogadoUI = administrativoLogadoUI;
@@ -144,5 +146,10 @@ public class AdicionarFreelancerUI implements Initializable {
             }
         });
         window.fireEvent(new WindowEvent(window, WindowEvent.WINDOW_CLOSE_REQUEST));
+    }
+    
+    @FXML
+    public void sairAction(ActionEvent event) {
+        
     }
 }

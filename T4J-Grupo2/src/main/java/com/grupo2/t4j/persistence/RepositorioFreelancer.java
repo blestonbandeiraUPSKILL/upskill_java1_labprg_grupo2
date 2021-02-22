@@ -24,6 +24,8 @@ public interface RepositorioFreelancer {
     boolean save(Freelancer freelancer) throws FreelancerDuplicadoException, 
             SQLException;
 
+    Freelancer findByEmail(String emailFree) throws SQLException;
+    
     Freelancer findByNif(String nif) throws SQLException;
 
     ArrayList<Freelancer> getAll() throws SQLException;

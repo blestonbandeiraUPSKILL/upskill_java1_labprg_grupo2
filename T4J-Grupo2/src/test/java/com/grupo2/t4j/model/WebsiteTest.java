@@ -38,7 +38,7 @@ public class WebsiteTest {
     public void tearDown() {
     }
 
-    @Test
+    /*@Test
     public void testWebsiteCorreto() {
         
         String website;
@@ -56,5 +56,5 @@ public class WebsiteTest {
         System.out.println("Digitando um website válido:");
         websiteInv = "123";
         Website testeWebsite = new Website(websiteInv);                
-    }
+    }*/
 }

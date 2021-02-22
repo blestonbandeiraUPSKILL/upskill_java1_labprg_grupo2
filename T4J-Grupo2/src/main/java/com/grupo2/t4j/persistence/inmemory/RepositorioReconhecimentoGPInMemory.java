@@ -11,6 +11,7 @@ import com.grupo2.t4j.model.Email;
 import com.grupo2.t4j.model.ReconhecimentoGP;
 import com.grupo2.t4j.persistence.RepositorioReconhecimentoGP;
 import java.io.Serializable;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -51,27 +52,38 @@ public class RepositorioReconhecimentoGPInMemory implements Serializable, Reposi
     }
 
     @Override
-    public void save(String idGrauProficiencia, Data dataReconhecimento,Email emailFreelancer) throws ReconhecimentoDuplicadoException {
+    public void save(String idGrauProficiencia, Data dataReconhecimento, 
+             Email emailFreelancer, String idCompetenciaTecnica) throws ReconhecimentoDuplicadoException {
         ReconhecimentoGP rgp = findByGrauEmail(idGrauProficiencia ,emailFreelancer.getEmailText());
         if (rgp == null) {
-            ReconhecimentoGP reconhecimentoGP = new ReconhecimentoGP(idGrauProficiencia, dataReconhecimento, emailFreelancer);
+            ReconhecimentoGP reconhecimentoGP = new ReconhecimentoGP(idGrauProficiencia, 
+                    dataReconhecimento, emailFreelancer, idCompetenciaTecnica);
             this.listaReconhecimentoGP.add(reconhecimentoGP);
         } else {
             throw new ReconhecimentoDuplicadoException("Reconhecimento já registado");
         }
     }
-
-    private ReconhecimentoGP findByGrauEmail(String idGrauProficiencia, String emailFreelancer) {
-        ReconhecimentoGP reconhecimentoGP = null;
-        for (int i = 0; i < this.listaReconhecimentoGP.size(); i++) {
-            reconhecimentoGP = this.listaReconhecimentoGP.get(i);
-            if (reconhecimentoGP.getEmailFreelancer().getEmailText().equals(emailFreelancer)) {
-                return reconhecimentoGP;
-            }
+    
+    @Override
+    public boolean save (ReconhecimentoGP reconhecimentoGP)throws ReconhecimentoDuplicadoException {
+        ReconhecimentoGP rgp = findByEmailCompetencia(reconhecimentoGP.getEmailFreelancer().getEmailText(),
+                reconhecimentoGP.getIdGrauProficiencia());
+        if (rgp == null) {
+            ReconhecimentoGP reconhecimento = new ReconhecimentoGP(reconhecimentoGP);
+            this.listaReconhecimentoGP.add(reconhecimento);
+        } else {
+            throw new ReconhecimentoDuplicadoException(reconhecimentoGP.getIdGrauProficiencia() 
+                    + ": Grau de proficiência já registado para a seguinte competência "
+                            + "técnica" +reconhecimentoGP.getIdCompetenciaTecnica());
         }
-        return null;
+        return false;
     }
     
+    @Override
+    public ArrayList<ReconhecimentoGP> getAll() {
+        return new ArrayList<ReconhecimentoGP>(listaReconhecimentoGP);
+    }
+ 
     @Override
     public List<ReconhecimentoGP> findByEmail(String email) {
         ReconhecimentoGP reconhecimentoGP = null;
@@ -95,4 +107,26 @@ public class RepositorioReconhecimentoGPInMemory implements Serializable, Reposi
         return null;
     }
     
+     private ReconhecimentoGP findByGrauEmail(String idGrauProficiencia, String emailFreelancer) {
+        ReconhecimentoGP reconhecimentoGP = null;
+        for (int i = 0; i < this.listaReconhecimentoGP.size(); i++) {
+            reconhecimentoGP = this.listaReconhecimentoGP.get(i);
+            if (reconhecimentoGP.getEmailFreelancer().getEmailText().equals(emailFreelancer)) {
+                return reconhecimentoGP;
+            }
+        }
+        return null;
+    }  
+     
+     public int adicionarListaReconhecimentoGP(RepositorioReconhecimentoGPInMemory outraListaReconhecimentoGP){
+        int totalReconhecimentoGPAdicionados = 0;
+
+        for (ReconhecimentoGP reconhecimentoGP : outraListaReconhecimentoGP.listaReconhecimentoGP) {
+            boolean reconhecimentoGPAdicionado = save(reconhecimentoGP);
+            if (reconhecimentoGPAdicionado) {
+                totalReconhecimentoGPAdicionados++;
+            }
+        }
+        return totalReconhecimentoGPAdicionados;
+    }
 }
