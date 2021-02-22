@@ -17,6 +17,7 @@
     -fx-text-fill: #ff0000;
 }
 
-#BorderPane {
+.BorderPane {
     font-family: Calibri;
+    -fx-background-color: #F0F8FF;
 }
