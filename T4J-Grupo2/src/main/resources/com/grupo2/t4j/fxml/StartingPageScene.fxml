@@ -18,7 +18,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="600.0" stylesheets="@../style/app.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.StartingPageUI">
+<BorderPane fx:id="BorderPane" focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="600.0" styleClass="BorderPane" stylesheets="@../style/app.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.StartingPageUI">
    <center>
       <GridPane alignment="CENTER" prefHeight="133.0" prefWidth="600.0" BorderPane.alignment="CENTER">
         <columnConstraints>
@@ -68,7 +68,7 @@
                <children>
                   <VBox alignment="CENTER" prefHeight="46.0" prefWidth="287.0">
                      <children>
-                        <Button fx:id="btnRegistarOrganizacao" alignment="CENTER" contentDisplay="CENTER" maxHeight="0.0" mnemonicParsing="false" onAction="#registarOrganizacao" style="-fx-background-color: #000000;" text="Quero registar a minha Organização" textFill="WHITE">
+                        <Button fx:id="btnRegistarOrganizacao" alignment="CENTER" contentDisplay="CENTER" maxHeight="0.0" mnemonicParsing="false" onAction="#registarOrganizacao" styleClass="btnRegistarOrganizacao" stylesheets="@../style/app.css" text="Quero registar a minha Organização" textFill="WHITE">
                            <padding>
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </padding>
@@ -76,7 +76,7 @@
                               <Font name="Calibri" size="14.0" />
                            </font>
                         </Button>
-                        <Button fx:id="btnSair" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#sairApp" style="-fx-background-color: #000000;" text="Sair da Aplicação" textFill="WHITE" VBox.vgrow="NEVER">
+                        <Button fx:id="btnSair" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#sairApp" styleClass="btnSair" text="Sair da Aplicação" textFill="WHITE" VBox.vgrow="NEVER">
                            <padding>
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </padding>
@@ -101,7 +101,7 @@
          <top>
             <FlowPane alignment="CENTER" stylesheets="@../style/app.css" BorderPane.alignment="CENTER">
                <children>
-                  <Button fx:id="btnLogin" alignment="CENTER" mnemonicParsing="false" onAction="#login" stylesheets="@../style/app.css" text="Entrar">
+                  <Button fx:id="btnLogin" alignment="CENTER" mnemonicParsing="false" onAction="#login" styleClass="btnLogin" stylesheets="@../style/app.css" text="Entrar">
                      <padding>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </padding>
@@ -117,4 +117,7 @@
          </top>
       </BorderPane>
    </bottom>
+   <top>
+      <ToggleButton fx:id="btnToggle" mnemonicParsing="false" styleClass="btnToggle" text="Light/Dark Mode" BorderPane.alignment="CENTER" />
+   </top>
 </BorderPane>
