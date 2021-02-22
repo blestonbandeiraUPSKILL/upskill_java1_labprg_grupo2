@@ -80,7 +80,7 @@
                                     <Font name="Calibri" size="15.0" />
                                  </font>
                               </Label>
-                              <ListView fx:id="listViewTarefas1" layoutX="14.0" layoutY="72.0" prefHeight="309.0" prefWidth="514.0" AnchorPane.bottomAnchor="108.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="172.0" AnchorPane.topAnchor="72.0" />
+                              <ListView fx:id="listViewColaboradores" layoutX="14.0" layoutY="72.0" prefHeight="309.0" prefWidth="514.0" AnchorPane.bottomAnchor="108.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="172.0" AnchorPane.topAnchor="72.0" />
                               <VBox alignment="CENTER" layoutX="592.0" layoutY="308.0" AnchorPane.bottomAnchor="155.33333333333337" AnchorPane.rightAnchor="41.33333333333337">
                                  <children>
                                     <Button fx:id="btnAddColaborador" mnemonicParsing="false" onAction="#navigateAddColaborador" style="-fx-background-color: #000000;" text="Adicionar" textFill="WHITE">
