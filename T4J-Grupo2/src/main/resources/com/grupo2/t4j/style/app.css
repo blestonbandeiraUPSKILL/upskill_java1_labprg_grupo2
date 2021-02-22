@@ -1,6 +1,6 @@
 .BorderPane {
-    font-family: Calibri;
-    -fx-background-color: #B0C4DE;
+    -font-family: Calibri;
+    -fx-background-color: #FFFACD;
 }
 
 .btnToggle {
@@ -27,3 +27,18 @@
     -fx-text-fill: #ff0000;
 }
 
+.cmbAreaActividadeListaTarefas {
+    
+}
+
+.AnchorPane {
+    -fx-background-color: #FFFACD;
+}
+
+.FlowPane {
+    -fx-background-color: #FFFACD;
+}
+
+.BorderPane {}
+
+.TabPane {}
