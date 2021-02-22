@@ -144,10 +144,11 @@ public class ColaboradorLogadoUI implements Initializable {
     public void navigateEspecificarTarefa(ActionEvent actionEvent) {
         try {
             FXMLLoader loaderAddTarefa = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/EspecificarTarefaScene.fxml"));
-            EspecificarTarefaUI especificarTarefaUIUI = loaderAddTarefa.getController();
-            especificarTarefaUIUI.associarParentUI(this);
-            loaderAddTarefa.setController(this);
             Parent rootAddTarefa = loaderAddTarefa.load();
+            EspecificarTarefaUI especificarTarefaUI = loaderAddTarefa.getController();
+            especificarTarefaUI.associarParentUI(this);
+            loaderAddTarefa.setController(this);
+            
             sceneEspecificarTarefa = new Scene(rootAddTarefa);
             sceneEspecificarTarefa.getStylesheets().add("/com/grupo2/t4j/style/app.css");
 
