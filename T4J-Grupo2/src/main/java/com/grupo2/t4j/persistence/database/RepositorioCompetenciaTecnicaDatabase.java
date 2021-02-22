@@ -146,14 +146,14 @@ public class RepositorioCompetenciaTecnicaDatabase implements RepositorioCompete
             callableStatement.setString(1, codigo);
             callableStatement.executeUpdate();
 
-            return new CompetenciaTecnica();
+            return null;
+
         }
         catch (SQLException exception) {
             exception.printStackTrace();
             exception.getSQLState();
-
-            return null;
         }
+        return new CompetenciaTecnica();
     }
 
     @Override
@@ -173,14 +173,15 @@ public class RepositorioCompetenciaTecnicaDatabase implements RepositorioCompete
             callableStatement.setString(1, codigoAreaActividade);
             callableStatement.executeUpdate();
 
-            return new CompetenciaTecnica();
+            return null;
 
         } catch (SQLException exception) {
             exception.printStackTrace();
             exception.getSQLState();
 
-            return null;
+
         }
+        return new CompetenciaTecnica();
     }
 
 

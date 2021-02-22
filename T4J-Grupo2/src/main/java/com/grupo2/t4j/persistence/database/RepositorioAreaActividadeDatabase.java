@@ -200,7 +200,7 @@ public class RepositorioAreaActividadeDatabase implements RepositorioAreaActivid
         } catch (SQLException exception) {
             exception.printStackTrace();
             exception.getSQLState();
-            
+
         }
         return new AreaActividade();
     }
