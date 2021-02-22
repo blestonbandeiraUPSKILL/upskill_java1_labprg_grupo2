@@ -51,6 +51,16 @@ public class Tarefa implements Serializable{
      * O custo estimado da tarefa em euros.
      */
     private double custoEst;
+    
+    /**
+     * O nif da organização que requer a tarefa
+     */
+    private String nifOrganizacao;
+    
+    /**
+     * O email do colaborador que cria a tarefa
+     */
+    private String emailColaborador;
 
     
     /**
@@ -72,6 +82,22 @@ public class Tarefa implements Serializable{
         setDescTecnica(descTecnica);
         setDuracaoEst(duracao);
         setCustoEst(custo);
+    }
+    
+    public Tarefa(String referencia, String designacao,
+                  String descInformal, String descTecnica, int duracao, double custo,
+                  String codigoAreaActividade,
+                  String codigoCategoriaTarefa, String nifOrganizacao, String emailColaborador) {
+        setCodigoAreaActividade(codigoAreaActividade);
+        setCodigoCategoriaTarefa(codigoCategoriaTarefa);
+        setReferencia(referencia);
+        setDesignacao(designacao);
+        setDescInformal(descInformal);
+        setDescTecnica(descTecnica);
+        setDuracaoEst(duracao);
+        setCustoEst(custo);
+        this.nifOrganizacao = nifOrganizacao;
+        this.emailColaborador = emailColaborador;
     }
 
     public Tarefa(Tarefa outraTarefa) {
