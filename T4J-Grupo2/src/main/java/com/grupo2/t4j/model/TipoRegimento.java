@@ -103,12 +103,22 @@ public class TipoRegimento {
     }
     
     /**
+     * Representação textual da classe Tipo de Regimento em formato de exibição
+     * @return o Id do tipo de regimento, a designação do tipo de seriação adotado
+     * deste tipo de regimento
+     */
+    @Override
+    public String toString(){
+        return String.format("ID: %-12s |Designação: %-20s", idTipoRegimento,
+                designacao.toString());
+    }
+    
+    /**
      * Representação textual da classe Tipo de Regimento
      * @return o Id do tipo de regimento, a designação do tipo de seriação adotado
      * e a descrição das regras deste tipo de regimento
      */
-    @Override
-    public String toString(){
+    public String toStringCompleto(){
         return String.format("Id do Tipo de Regimento: %s %nDesignação do tipo de"
                 + "Seriação adotado:%s %nDescrição das regras: %s", idTipoRegimento,
                 designacao.toString(), descricaoRegras);

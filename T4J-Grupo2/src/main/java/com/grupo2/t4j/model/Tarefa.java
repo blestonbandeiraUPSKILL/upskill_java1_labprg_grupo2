@@ -227,11 +227,21 @@ public class Tarefa implements Serializable{
     
     
     /**
-     * Representação textual da classe Tarefa
-     * @return referencia, designacao, descInformal, descTecnica, duracaoEst, custoEst
+     * Representação textual da classe Tarefa em formato de exibição
+     * @return referencia, designacao, duracaoEst, custoEst
      */  
     @Override
     public String toString(){
+        return String.format("Referência: %-15s |Designação: %-15s"
+                + " |Duração estimada: %-5d dias |Custo estimado: %-5.2f euros", referencia,
+                designacao, duracaoEst, custoEst);
+    }
+    
+    /**
+     * Representação textual da classe Tarefa
+     * @return referencia, designacao, descInformal, descTecnica, duracaoEst, custoEst
+     */  
+    public String toStringCompleto(){
         return String.format("A tarefa indicada tem os seguintes dados: %nReferência: "
                 + "%s /%nDesignação: %s %nDescrição informal: %s %nDescrição Técnica: %s"
                 + "%nDuração estimada: %d dias %nCusto estimado: %.2f euros", referencia,

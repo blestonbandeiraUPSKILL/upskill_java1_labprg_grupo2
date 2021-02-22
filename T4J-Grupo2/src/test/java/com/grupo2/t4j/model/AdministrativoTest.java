@@ -38,11 +38,19 @@ public class AdministrativoTest {
     public void tearDown() {
     }
 
-/*    @Test
+    /*@Test
     public void testCriarAdministrativo() {
         
-        Administrativo a1= new Administrativo("Fulano", "fulano@upskill.pt", "12345678");
+        Email email = new Email("fulano@upskill.pt");
+        Password pass = new Password( "12345678");
+        Email email2 = new Email("beltrano@upskill.pt");
+        Password pass2 = new Password( "12345678");
+        Administrativo a1= new Administrativo("Fulano", email, pass);
+        Administrativo a2= new Administrativo("Beltrano", email2, pass2);
         
+        System.out.println("Vai");
+        System.out.println(a1.toStringSemPass());
+        System.out.println(a2.toStringSemPass());
         assertEquals("Fulano", a1.getNome());
         assertEquals("fulano@upskill.pt", a1.getEmail().getEmailText());
         assertEquals("12345678", a1.getPassword().getPasswordText());

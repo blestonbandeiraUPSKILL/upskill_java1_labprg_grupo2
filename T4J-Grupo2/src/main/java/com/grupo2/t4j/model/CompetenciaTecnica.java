@@ -173,12 +173,21 @@ public class CompetenciaTecnica implements Serializable {
     }
 
     /**
-     * Representacao textual da classe competencia tecnica
+     * Representacao textual da classe competencia tecnica em formato de exibição
      *
-     * @return
+     * @return ID e descrição breve da competência técnica
      */
     @Override
     public String toString() {
+        return String.format("ID: %-12s |Descrição breve: %-30s", codigo, descricaoBreve);
+    }
+    
+     /**
+     * Representacao textual da classe competencia tecnica Completa
+     *
+     * @return
+     */
+    public String toStringCompleta() {
         return String.format("ID: %s; Descrição breve: %s; Descrição detalhada: %s.", codigo, descricaoBreve, descricaoDetalhada);
     }
 

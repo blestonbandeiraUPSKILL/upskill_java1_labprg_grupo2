@@ -161,11 +161,21 @@ public class EnderecoPostal {
     }
 
     /**
-     * Representação textual da classe EnderecoPostal
+     * Representação textual da classe EnderecoPostal em formato de exibição
      * @return arruamento, número de porta, localidade e código postal
      */
     @Override
     public String toString(){
+        return String.format("Arruamento: %-30s"
+                + " |Número: %-10s |Localidade: %-20s |Código Postal: %-12s", arruamento, 
+                numeroPorta,localidade, codigoPostal);
+    }
+    
+    /**
+     * Representação textual da classe EnderecoPostal Completa
+     * @return arruamento, número de porta, localidade e código postal
+     */
+    public String toStringCompleta(){
         return String.format("Arruamento: %s"
                 + " %nNúmero de Porta: %s %nLocalidade: %s %nCódigo Postal: %s", arruamento, 
                 numeroPorta,localidade, codigoPostal);

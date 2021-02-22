@@ -324,13 +324,28 @@ public class Anuncio implements Serializable {
     }
     
     /**
-     * Representação textual da classe Anuncio
+     * Representação textual da classe Anuncio em formato de exibição
      * @return o id do anúncio e as datas de: início e fim da publicitação, início
      * e fim do período de candidatura e do início e do fim do período de seriação
      */   
     @Override
     public String toString(){
-        return String.format("Anúncio Id: %s  %nInício publicitação: %s"
+        return String.format("ID: %-12s |Início publicitação: %-12s"
+                + " |Fim publicitação: %-12s |Início candidatura: %-12s"
+                + " |Fim candidatura: %-12s |Início seriação: %-12s"
+                + " |Fim seriação: %-12s", idAnuncio, dtInicioPublicitacao.toAnoMesDiaString(),
+                dtFimPublicitacao.toAnoMesDiaString(), dtInicioCandidatura.toAnoMesDiaString(),
+                dtFimCandidatura.toAnoMesDiaString(), dtInicioSeriacao.toAnoMesDiaString(),
+                dtFimSeriacao.toAnoMesDiaString());
+    }
+    
+    /**
+     * Representação textual da classe Anuncio
+     * @return o id do anúncio e as datas de: início e fim da publicitação, início
+     * e fim do período de candidatura e do início e do fim do período de seriação
+     */   
+    public String toStringCompleto(){
+        return String.format("ID: %s  %nInício publicitação: %s"
                 + "%nFim publicitação: %s %nInício candidatura: %s"
                 + "%nFim candidatura: %s %nInício seriação: %s"
                 + "%nFim seriação: %s", idAnuncio, dtInicioPublicitacao.toAnoMesDiaString(),

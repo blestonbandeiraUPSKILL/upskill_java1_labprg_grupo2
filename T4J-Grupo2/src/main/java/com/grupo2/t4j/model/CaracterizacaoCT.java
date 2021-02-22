@@ -58,18 +58,7 @@ public class CaracterizacaoCT implements Serializable{
     public void setObrigatoriedade(Obrigatoriedade obrigatoriedade) {
         this.obrigatoriedade = obrigatoriedade;
     }
-
-    /**
-     * Representacao textual da competencia tecnica caracterizada
-     * @return 
-     */
-    @Override
-    public String toString() {
-        return String.format("Competência Tecnica: %s; Grau de Proficiencia: %s; "
-                + "Carácter: %s", codigoCompetenciaTecnica, codigoGP, obrigatoriedade.toString());
-
-    }
-
+    
     public String getCodigoCompetenciaTecnica() {
         return this.codigoCompetenciaTecnica;
     }
@@ -77,4 +66,25 @@ public class CaracterizacaoCT implements Serializable{
     public String getCodigoCCT() {
         return codigoCCT;
     }
+    
+    /**
+     * Representacao textual da competencia tecnica caracterizada em formato de exibição
+     * @return 
+     */
+    @Override
+    public String toString() {
+        return String.format("Competência Técnica: %-30s |Grau de Proficiencia: %-20s "
+                + "|Carácter: %-15s", codigoCompetenciaTecnica, codigoGP, obrigatoriedade.toString());
+
+    }
+    
+    /**
+     * Representacao textual da competencia tecnica caracterizada
+     * @return 
+     */
+     public String toStringCompleto() {
+        return String.format("Competência Tecnica: %s; Grau de Proficiencia: %s; "
+                + "Carácter: %s", codigoCompetenciaTecnica, codigoGP, obrigatoriedade.toString());
+
+    }   
 }
