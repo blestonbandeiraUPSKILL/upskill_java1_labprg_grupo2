@@ -118,6 +118,7 @@
       </BorderPane>
    </bottom>
    <top>
-      <ToggleButton fx:id="btnToggle" mnemonicParsing="false" styleClass="btnToggle" text="Light/Dark Mode" BorderPane.alignment="CENTER" />
+      <ToggleButton mnemonicParsing="false" styleClass="btnToggle" text="Light/Dark Mode"
+                    BorderPane.alignment="CENTER"/>
    </top>
 </BorderPane>

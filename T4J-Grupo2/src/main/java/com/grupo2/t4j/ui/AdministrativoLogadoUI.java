@@ -100,11 +100,11 @@ public class AdministrativoLogadoUI implements Initializable {
             exception.printStackTrace();
         }
 
-        try {
+     /*   try {
             updateListViewFreelancer();
         } catch (SQLException exception) {
             exception.printStackTrace();
-        }
+        }*/
     }
 
     public void addAreaActividade(ActionEvent actionEvent) throws IOException {
@@ -265,9 +265,9 @@ public class AdministrativoLogadoUI implements Initializable {
 
     }
     
-    public void updateListViewFreelancer() throws SQLException {
+ /*   public void updateListViewFreelancer() throws SQLException {
          listaFreelancer.getItems().setAll(registarFreelancerController.getAllView());
-    }
+    }*/
     
     public void updateListViewAreasActividade() throws SQLException {
         listaAreasActividade.getItems().setAll(registarAreaActividadeController.getAll());
