@@ -89,9 +89,18 @@ public class GrauProficiencia {
             throw new CompetenciaTecnicaInexistenteException ("A competência técnica não existe");
         }
     }
-
+    /**
+     * Representação textual do Grau de Proficiência no formato de exibição
+     * @return 
+     */
     @Override
-    public String toString() {
+    public String toString(){
+        return String.format("Grau: %-12s |Designação: %-25s |Código Competência Técnica: %-15s", grau, 
+                designacao, codigoCompetenciaTecnica);
+    }
+    
+    
+    public String toStringCompleta() {
         return "GrauProficiencia{" +
                 "grau='" + grau + '\'' +
                 ", designacao='" + designacao + '\'' +

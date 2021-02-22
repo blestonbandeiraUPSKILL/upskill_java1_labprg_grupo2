@@ -82,7 +82,7 @@
                                                    </VBox.margin>
                                                 </ComboBox>
                                                 <Label text="Data de Validação da Competência Técnica" />
-                                                <TextField fx:id="txtIDataVallidacao" promptText="dd/mm/aaaa">
+                                                <TextField fx:id="txtIDataValidacao" promptText="dd/mm/aaaa">
                                                    <VBox.margin>
                                                       <Insets bottom="5.0" right="400.0" top="5.0" />
                                                    </VBox.margin>

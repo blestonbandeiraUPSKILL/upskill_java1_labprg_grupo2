@@ -39,6 +39,7 @@ public class AdministrativoLogadoUI implements Initializable {
     private Scene sceneAddCategoriaTarefa;
     private Scene sceneAddCompetenciaTecnica;
     private Scene sceneAddFreelancer;
+    private Scene sceneConsultarCompetenciaTecnica;
     private Scene sceneAddHabilitacaoFreelancer;
     private Scene sceneAddCompetenciaFreelancer;
     private Scene sceneStartingPage;
@@ -277,6 +278,31 @@ public class AdministrativoLogadoUI implements Initializable {
 
     public void updateListViewCompetenciasTecnicas() throws SQLException {
         listViewCompetenciasTecnicas.getItems().setAll(registarCompetenciaTecnicaController.getAll());
+    }
+    
+    @FXML
+    void consultarCompetenciaTecnicaAction(ActionEvent event) {
+        
+        try {
+            FXMLLoader loaderConsultarCompetenciaTecnica = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/ConsultarCompetenciaTecnicaScene.fxml"));
+            Parent rootConsultarCompetenciaTecnica = loaderConsultarCompetenciaTecnica.load();
+            sceneConsultarCompetenciaTecnica = new Scene(rootConsultarCompetenciaTecnica);
+            sceneConsultarCompetenciaTecnica.getStylesheets().add("/com/grupo2/t4j/style/app.css");
+            AdicionarCompetenciaTecnicaUI adicionarCompetenciaTecnicaUI = loaderConsultarCompetenciaTecnica.getController();
+            adicionarCompetenciaTecnicaUI.associarParentUI(this);
+
+        } catch (IOException exception) {
+            exception.printStackTrace();
+            AlertsUI.criarAlerta(Alert.AlertType.ERROR,
+                    MainApp.TITULO_APLICACAO,
+                    "Erro",
+                    exception.getMessage());
+        }
+
+        adicionarStage.setScene(sceneConsultarCompetenciaTecnica);
+        adicionarStage.setTitle("Consultar Competência Técnica");
+        adicionarStage.show();
+
     }
 
     ///////////////// Ficheiros /////////////////

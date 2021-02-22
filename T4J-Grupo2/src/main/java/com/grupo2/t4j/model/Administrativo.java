@@ -163,23 +163,31 @@ public class Administrativo implements Serializable{
     }
         
     /**
-     * Representação textual da classe Administrativo
-     * @return Nome, email e password do Administrador
+     * Representação textual da classe Administrativo em formato de exibição
+     * @return Nome e email do Administrativo
      */   
     @Override
     public String toString(){
-        return String.format("Nome administrativo: %s %nEmail: %s %nPassword: %s"
-                + "%nRolename: %s", 
+        return String.format("Nome:%-20s |Email: %-15s", nome, email.getEmailText());
+    }
+    
+    /**
+     * Representação textual da classe Administrativo Completa
+     * @return Nome, email, password e rolename do Administrativo
+     */   
+    public String toStringCompleto(){
+        return String.format("Nome:%-20s |Email: %-15s |Password: %-10s "
+                + "|Rolename: %-12s", 
                 nome, email.getEmailText(), password.getPasswordText(),
                 rolename.toString());
     }
     
     /**
      * Representação textual da classe Administrativo sem a password
-     * @return Nome e email do Administrador
+     * @return Nome, email e rolename do Administrativo
      */
     public String toStringSemPass(){
-        return String.format("Nome administrativo: %s %nEmail: %s %nRolename: %s", 
+        return String.format("Nome: %-12s Email: %-20s Rolename: %-10s", 
                 nome, email.getEmailText(),rolename.toString());
     }
 }
