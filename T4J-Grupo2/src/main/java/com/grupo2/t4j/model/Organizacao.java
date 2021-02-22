@@ -189,4 +189,12 @@ public class Organizacao implements Serializable{
     public Email getEmailGestor() {
         return emailGestor;
     }
+    
+    /**
+     * Representação textual da Organização em formato de exibiçãp
+     * @return o nome, NIF e email da organização
+     */
+    public String toString(){
+        return String.format("Nome da Organização: %-15s |NIF: %-15s |Email: %-20s",nomeOrg, NIF, emailOrg.getEmailText());
+    }
 }

@@ -127,23 +127,24 @@ public class Freelancer extends Utilizador implements Serializable{
     }
     
     /**
-     * Representação textual da classe Freelancer
-     * @return Nome, email, NIF, telefone e endereço postal do Freelancer
+     * Representação textual da classe Freelancer em formato de exibição
+     * @return Nome, email e NIF do Freelancer
      */   
     @Override
     public String toString(){
+        return String.format("Nome: %-20s |Email: %-20s |NIF: %-10s", super.getNome(), 
+                super.getEmail().getEmailText(), nif);
+    }
+    
+    /**
+     * Representação textual da classe Freelancer
+     * @return Nome, email, NIF, telefone e endereço postal do Freelancer
+     */   
+    
+    public String toStringCompleta(){
         return String.format("Nome freelancer: %s  %nEmail: %s"
                 + "%s %nNIF: %s %nTelefone: %s %nEndereço Postal: %s",
                 super.getNome(), super.getEmail().getEmailText(), 
                 nif, telefone, codigoEnderecoPostal.toString());
-    }
-    
-     /**
-     * Representação textual da classe Freelancer para a ListView
-     * @return Nome, email e NIF do Freelancer
-     */   
-    public String toStringView(){
-        return String.format("Nome: %s | Email: %s | NIF: %s", super.getNome(), 
-                super.getEmail().getEmailText(), nif);
-    }
-}
+    }   
+ }

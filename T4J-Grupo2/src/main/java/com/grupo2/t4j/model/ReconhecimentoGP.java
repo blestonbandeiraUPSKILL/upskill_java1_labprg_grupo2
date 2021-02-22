@@ -121,6 +121,15 @@ public class ReconhecimentoGP {
         return idCompetenciaTecnica;
     }
     
-    
-    
+    /**
+     * Representação textual da classe de reconhecimento de grau de proficiência em 
+     * formato de exibição
+     * @return 
+     */
+    @Override
+    public String toString(){
+        return String.format("ID GP: %-12s |ID CP: %-12s |Data Reconhecimento: %-12s "
+                + "|Email Freelancer: %-20s",idGrauProficiencia, idCompetenciaTecnica,
+                dataReconhecimento,emailFreelancer);
+    }    
 }

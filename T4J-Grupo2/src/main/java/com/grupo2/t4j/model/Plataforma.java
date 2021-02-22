@@ -21,9 +21,11 @@ public class Plataforma {
     private String designacao;
     private static Plataforma plataforma;
     private RepositorioOrganizacaoDatabase repositorioOrganizacao;
+    private RepositorioAnuncioInMemory repositorioAnuncioInMemory;
     private RepositorioCategoriaTarefaInMemory repositorioCategoriaTarefaInMemory;
     private RepositorioColaboradorInMemory repositorioColaboradorInMemory;
     private RepositorioCompetenciaTecnicaInMemory repositorioCompetenciaTecnicaInMemory;
+    private RepositorioFreelancerInMemory repositorioFreelancerInMemory;
     private RepositorioTarefaInMemory repositorioTarefaInMemory;
     private RepositorioUtilizadorInMemory repositorioUtilizadorInMemory;
 

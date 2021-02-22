@@ -162,14 +162,24 @@ public class HabilitacaoAcademica {
     }
     
     /**
-     * Representação textual da classe Habilitação Acadêmica
-     * @return grau da habilitação, designação do curso, nome da instituição e média
-     * do curso
+     * Representação textual da classe Habilitação Acadêmica em formato de exibição
+     * @return grau da habilitação, designação do curso e média do curso
      */
     @Override
     public String toString(){
+        return String.format("ID: %-12s |Grau: %-15s |Designação do Curso:%-30s "
+                + "|Média do curso: %-5d",  idHabilitacao, 
+                grau, designacaoCurso, mediaCurso);
+    } 
+    
+    /**
+     * Representação textual da classe Habilitação Acadêmica
+     * @return grau da habilitação, designação do curso, nome da instituição e média
+     * do curso
+     */    
+    public String toStringCompleta(){
         return String.format("id Habilitação: %s %nGrau: %s %nDesignação do Curso:%s "
                 + "%nNome da Instituição: %s %nMédia do curso: %d",  idHabilitacao, 
                 grau, designacaoCurso, nomeInstituicao, mediaCurso);
-    }             
+    }
 }

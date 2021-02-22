@@ -83,11 +83,21 @@ public class Colaborador extends Utilizador implements Serializable{
     }
     
     /**
-     * Representação textual da classe Colaborador
-     * @return Nome, função, email, telefone e password do Colaborador
+     * Representação textual da classe Colaborador em formato de exibição
+     * @return Nome, função, email e telefone do Colaborador
      */   
     @Override
     public String toString(){
+        return String.format("Nome: %-20s  |Email: %-20s"
+                + " |Funcao: %-15s |Telefone: %-15s",
+                super.getNome(), super.getEmail().getEmailText(), funcao, telefone);
+    }
+    
+     /**
+     * Representação textual da classe Colaborador
+     * @return Nome, função, email, telefone e password do Colaborador
+     */   
+    public String toStringCompleto(){
         return String.format("Nome colaborador: %s  %nEmail: %s"
                 + "%nFuncao: %s %nTelefone: %s %nRolename: %s",
                 super.getNome(), super.getEmail().getEmailText(), funcao, telefone,
