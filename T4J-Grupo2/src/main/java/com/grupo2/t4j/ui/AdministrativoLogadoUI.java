@@ -25,11 +25,9 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 import javafx.stage.WindowEvent;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.stage.FileChooser;
 
@@ -41,6 +39,8 @@ public class AdministrativoLogadoUI implements Initializable {
     private Scene sceneAddCategoriaTarefa;
     private Scene sceneAddCompetenciaTecnica;
     private Scene sceneAddFreelancer;
+    private Scene sceneAddHabilitacaoFreelancer;
+    private Scene sceneAddCompetenciaFreelancer;
     private Scene sceneStartingPage;
     private RegistarAreaActividadeController registarAreaActividadeController;
     private RegistarCategoriaController registarCategoriaController;
@@ -61,10 +61,7 @@ public class AdministrativoLogadoUI implements Initializable {
     @FXML ListView<AreaActividade> listaAreasActividade;
     @FXML ListView<Categoria> listaCategorias;
     @FXML ListView<CompetenciaTecnica> listViewCompetenciasTecnicas;
-    @FXML TableView<Freelancer> tabelaFreelancers;
-    @FXML TableColumn<Freelancer, String> colunaNomeFreelancer;
-    @FXML TableColumn<Freelancer, String> colunaEmailFreelancer;
-    @FXML TableColumn<Freelancer, String> colunaNifFreelancer;
+    @FXML ListView<String> listaFreelancer;
 
 
     public void associarParentUI(StartingPageUI startingPageUI) {
@@ -81,7 +78,32 @@ public class AdministrativoLogadoUI implements Initializable {
         registarAreaActividadeController = new RegistarAreaActividadeController();
         registarCategoriaController = new RegistarCategoriaController();
         registarCompetenciaTecnicaController = new RegistarCompetenciaTecnicaController();
+        registarFreelancerController = new RegistarFreelancerController();
         gestaoUtilizadoresController = new GestaoUtilizadoresController();
+                     
+        try {
+            updateListViewAreasActividade();
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }
+
+        try {
+            updateListViewCompetenciasTecnicas();
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }
+
+        try {
+            updateListViewCategoriasTarefa();
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }
+
+        try {
+            updateListViewFreelancer();
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }
     }
 
     public void addAreaActividade(ActionEvent actionEvent) throws IOException {
@@ -173,6 +195,26 @@ public class AdministrativoLogadoUI implements Initializable {
     }
 
     public void addHabilitacaoFreelancer(ActionEvent actionEvent) {
+        try {
+            FXMLLoader loaderAddFreelancer = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/AdicionarHabilitacaoAcademicaScene.fxml"));
+            Parent rootAddFreelancer = loaderAddFreelancer.load();
+            sceneAddFreelancer = new Scene(rootAddFreelancer);
+            sceneAddFreelancer.getStylesheets().add("/com/grupo2/t4j/style/app.css");
+            AdicionarFreelancerUI adicionarFreelancerUI = loaderAddFreelancer.getController();
+            adicionarFreelancerUI.associarParentUI(this);
+
+        } catch (IOException exception) {
+            exception.printStackTrace();
+            AlertsUI.criarAlerta(Alert.AlertType.ERROR,
+                    MainApp.TITULO_APLICACAO,
+                    "Erro",
+                    exception.getMessage());
+        }
+
+        adicionarStage.setScene(sceneAddFreelancer);
+        adicionarStage.setTitle("Adicionar Freelancer");
+        adicionarStage.show();
+        
     }
 
     public void addCompetenciaFreelancer(ActionEvent actionEvent) {
@@ -221,15 +263,19 @@ public class AdministrativoLogadoUI implements Initializable {
 
 
     }
-
-    public void updateListViewAreasActividade() {
+    
+    public void updateListViewFreelancer() throws SQLException {
+         listaFreelancer.getItems().setAll(registarFreelancerController.getAllView());
+    }
+    
+    public void updateListViewAreasActividade() throws SQLException {
         listaAreasActividade.getItems().setAll(registarAreaActividadeController.getAll());
     }
-    public void updateListViewCategoriasTarefa() {
+    public void updateListViewCategoriasTarefa() throws SQLException {
         listaCategorias.getItems().setAll(registarCategoriaController.getAll());
     }
 
-    public void updateListViewCompetenciasTecnicas() {
+    public void updateListViewCompetenciasTecnicas() throws SQLException {
         listViewCompetenciasTecnicas.getItems().setAll(registarCompetenciaTecnicaController.getAll());
     }
 
@@ -258,7 +304,7 @@ public class AdministrativoLogadoUI implements Initializable {
         }
     }
 
-    public void importAreasActividade(ActionEvent actionEvent) {
+    public void importAreasActividade(ActionEvent actionEvent) throws SQLException {
         String descricao, extensao;
 
         descricao = /*DESCRICAO_SERIALIZACAO*/"Ficheiro Area de Atividade";
@@ -310,7 +356,7 @@ public class AdministrativoLogadoUI implements Initializable {
         }
     }
 
-    public void importCompetenciasTecnicas(ActionEvent actionEvent) {
+    public void importCompetenciasTecnicas(ActionEvent actionEvent) throws SQLException {
         String descricao, extensao;
 
         descricao = /*DESCRICAO_SERIALIZACAO*/"Ficheiro Competencias Tecnicas";
@@ -362,7 +408,7 @@ public class AdministrativoLogadoUI implements Initializable {
         }
     }
     
-    public void importCategorias(ActionEvent actionEvent) {
+    public void importCategorias(ActionEvent actionEvent) throws SQLException {
         String descricao, extensao;
 
         descricao = /*DESCRICAO_SERIALIZACAO*/"Ficheiro Categoria";

@@ -9,12 +9,14 @@ import com.grupo2.t4j.files.FicheiroRepositorioAreaActividade;
 import com.grupo2.t4j.model.AreaActividade;
 import com.grupo2.t4j.persistence.FabricaRepositorios;
 import com.grupo2.t4j.persistence.RepositorioAreaActividade;
+import com.grupo2.t4j.persistence.database.FabricaRepositoriosDatabase;
 import com.grupo2.t4j.persistence.inmemory.FabricaRepositoriosInMemory;
 import com.grupo2.t4j.persistence.inmemory.RepositorioAreaActividadeInMemory;
 
 import java.awt.geom.Area;
 import java.io.File;
 
+import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -23,25 +25,25 @@ import java.util.List;
  */
 public class RegistarAreaActividadeController /*implements Serializable*/{
 
-    private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosInMemory();
-    //private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosDatabase();
+    //private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosInMemory();
+    private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosDatabase();
     private RepositorioAreaActividade repositorioAreaActividade = fabricaRepositorios.getRepositorioAreaActividade();
 
     private FicheiroRepositorioAreaActividade ficheiroAt;
     private RepositorioAreaActividadeInMemory repositorioAreaActividadeInMemory;
 
-    public List<AreaActividade> getAll() {
+    public List<AreaActividade> getAll() throws SQLException {
         return repositorioAreaActividade.getAll();
     }
 
-    public boolean registarAreaActividade(String codigo, String descBreve, String descDetalhada) {
+    public boolean registarAreaActividade(String codigo, String descBreve, String descDetalhada) throws SQLException {
 
         AreaActividade areaActividade = new AreaActividade(codigo, descBreve, descDetalhada);
 
         return repositorioAreaActividade.save(areaActividade);
     }
 
-    public AreaActividade findByCodigo(String codigo) {
+    public AreaActividade findByCodigo(String codigo) throws SQLException {
         return repositorioAreaActividade.findByCodigo(codigo);
     }
 

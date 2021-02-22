@@ -12,6 +12,7 @@ package com.grupo2.t4j.persistence;
 
 import com.grupo2.t4j.model.AreaActividade;
 
+import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -21,13 +22,13 @@ import java.util.List;
 public interface RepositorioAreaActividade {
 
     
-    void save(String codigo, String descBreve, String descDetalhada);
+    void save(String codigo, String descBreve, String descDetalhada) throws SQLException;
 
-    boolean save(AreaActividade areaActividade);
+    boolean save(AreaActividade areaActividade) throws SQLException;
 
-    List<AreaActividade> getAll();
+    List<AreaActividade> getAll() throws SQLException;
 
-    AreaActividade findByCodigo(String codigo);
+    AreaActividade findByCodigo(String codigo) throws SQLException;
 
 
     //update, delete

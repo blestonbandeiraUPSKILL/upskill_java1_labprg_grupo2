@@ -1,6 +1,5 @@
 package com.grupo2.t4j.ui;
 
-import com.grupo2.t4j.api.UsersAPI;
 import com.grupo2.t4j.controller.*;
 import com.grupo2.t4j.files.FileChooserT4J;
 import com.grupo2.t4j.model.*;
@@ -27,31 +26,21 @@ public class ColaboradorLogadoUI implements Initializable {
     private RegistarCategoriaController registarCategoriaController;
     private RegistarAreaActividadeController registarAreaActividadeController;
     private RegistarTarefaController registarTarefaController;
-    private RegistarCompetenciaTecnicaController registarCompetenciaTecnicaController;
-    private RegistarCaracterizacaoCTController registarCaracterizacaoCTController;
     private GestaoUtilizadoresController gestaoUtilizadoresController;
     private StartingPageUI startingPageUI;
     private Scene sceneStartingPage;
     private Stage adicionarStage;
+    private Scene sceneEspecificarTarefa;
 
     private static final String CABECALHO_IMPORTAR = "Importar Lista.";
 
     @FXML Button btnLogout;
-    @FXML Button btnCancelar;
     @FXML Button btnImportAreaActividade;
-    @FXML ComboBox<AreaActividade> cmbAreaActividadeListaTarefas;
+    @FXML ComboBox<AreaActividade> cmbAreaActividade;
     @FXML ComboBox<AreaActividade> cmbAreaActividadeEspecificarTarefa;
-    @FXML ComboBox<Categoria> cmbCategoriaTarefaListaTarefas;
-    @FXML ComboBox<Categoria> cmbCategoriaTarefaEspecificarTarefa;
+    @FXML ComboBox<Categoria> cmbCategoriaTarefa;
     @FXML ListView<Tarefa> listViewTarefas;
-    @FXML ListView<CaracterizacaoCT> listViewCaracterizacaoCT;
-    @FXML TextField txtReferencia;
-    @FXML TextField txtDesignacao;
-    @FXML TextArea txtDescInformal;
-    @FXML TextArea txtDescTecnica;
-    @FXML TextField txtEstimativaDuracao;
-    @FXML TextField txtEstimativaCusto;
-    @FXML Button btnRegistarTarefa;
+
 
     public void associarParentUI(StartingPageUI startingPageUI) {
         this.startingPageUI = startingPageUI;
@@ -63,18 +52,19 @@ public class ColaboradorLogadoUI implements Initializable {
         registarAreaActividadeController = new RegistarAreaActividadeController();
         registarCategoriaController = new RegistarCategoriaController();
         registarTarefaController = new RegistarTarefaController();
-        registarCompetenciaTecnicaController = new RegistarCompetenciaTecnicaController();
-        registarCaracterizacaoCTController = new RegistarCaracterizacaoCTController();
         gestaoUtilizadoresController = new GestaoUtilizadoresController();
 
         adicionarStage = new Stage();
         adicionarStage.initModality(Modality.APPLICATION_MODAL);
         adicionarStage.setResizable(false);
 
-        //tab Lista de Tarefas
-        cmbAreaActividadeListaTarefas.getItems().setAll(registarAreaActividadeController.getAll());
-        
-        cmbAreaActividadeListaTarefas.setOnAction(new EventHandler<ActionEvent>() {
+        try {
+            cmbAreaActividade.getItems().setAll(registarAreaActividadeController.getAll());
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }
+
+        cmbAreaActividade.setOnAction(new EventHandler<ActionEvent>() {
            @Override
            public void handle(ActionEvent event) {
                updateCmbCategoriasTarefaLista(event);
@@ -84,77 +74,20 @@ public class ColaboradorLogadoUI implements Initializable {
         ListView<Tarefa> listViewTarefas = new ListView<>();
         listViewTarefas.getItems().addAll(registarTarefaController.getAll());
 
-        //tab Especificar Tarefa
-        cmbAreaActividadeEspecificarTarefa.getItems().setAll(registarAreaActividadeController.getAll());
 
-        cmbAreaActividadeEspecificarTarefa.setOnAction(new EventHandler<ActionEvent>() {
-           @Override
-           public void handle(ActionEvent event) {
-               updateCmbCategoriasTarefaRegisto(event);
-           }
-        });
-
-        ListView<CaracterizacaoCT> listViewCaracterizacaoCT = new ListView<>();
-        cmbCategoriaTarefaEspecificarTarefa.setOnAction(new EventHandler<ActionEvent>() {
-           @Override
-           public void handle(ActionEvent event) {
-               updateListViewCaracterizacaoCTS(event);
-           }
-        });
     }
-    
-    public void updateListViewCaracterizacaoCTS(ActionEvent actionEvent){
-        
-        listViewCaracterizacaoCT.getItems().setAll(
-                cmbCategoriaTarefaEspecificarTarefa.getSelectionModel().getSelectedItem().getCompTecnicasCaracter());
+
+    public void updateListViewTarefas(ActionEvent actionEvent) {
+        listViewTarefas.getItems().setAll(registarTarefaController.getAll());
+
     }
     
     public void updateCmbCategoriasTarefaLista(ActionEvent actionEvent) {
         List<Categoria> listaCategoriasTarefa =
                 registarCategoriaController.findByAreaActividade(
-                cmbAreaActividadeListaTarefas.getSelectionModel().getSelectedItem());
+                cmbAreaActividade.getSelectionModel().getSelectedItem().getCodigo());
 
-        cmbCategoriaTarefaListaTarefas.getItems().addAll(listaCategoriasTarefa);
-    }
-
-    public void updateCmbCategoriasTarefaRegisto(ActionEvent actionEvent) {
-        List<Categoria> listaCategoriasTarefa =
-                registarCategoriaController.findByAreaActividade(
-                cmbAreaActividadeEspecificarTarefa.getSelectionModel().getSelectedItem());
-
-
-        cmbCategoriaTarefaEspecificarTarefa.getItems().addAll(listaCategoriasTarefa);
-    }
-
-    public void registarTarefa(ActionEvent actionEvent) {
-        try {
-            boolean adicionou = registarTarefaController.registarTarefa(
-                    cmbAreaActividadeEspecificarTarefa.getSelectionModel().getSelectedItem().getCodigo(),
-                    cmbCategoriaTarefaEspecificarTarefa.getSelectionModel().getSelectedItem().getCodigoCategoria(),
-                    txtReferencia.getText(),
-                    txtDesignacao.getText(),
-                    txtDescInformal.getText(),
-                    txtDescTecnica.getText(),
-                    Integer.parseInt(txtEstimativaDuracao.getText()),
-                    Double.parseDouble(txtEstimativaCusto.getText()));
-
-            if (adicionou){
-                listViewTarefas.getItems().addAll(registarTarefaController.getAll());
-            }
-            AlertsUI.criarAlerta(Alert.AlertType.INFORMATION,
-                    MainApp.TITULO_APLICACAO,
-                    "Registar Competência Técnica.",
-                        adicionou ? "Competencia Tecnica registada com sucesso."
-                                : "Não foi possível registar a Competência Técncia.").show();
-
-        }
-        catch (IllegalArgumentException iae) {
-            AlertsUI.criarAlerta(Alert.AlertType.ERROR,
-                    MainApp.TITULO_APLICACAO,
-                    "Erro nos dados.",
-                    iae.getMessage()).show();
-
-        }
+        cmbCategoriaTarefa.getItems().addAll(listaCategoriasTarefa);
     }
 
 
@@ -201,21 +134,34 @@ public class ColaboradorLogadoUI implements Initializable {
 
     }
 
-    public void cancelarAction(ActionEvent actionEvent) {
-        this.txtReferencia.clear();
-        this.txtDesignacao.clear();
-        this.txtDescInformal.clear();
-        this.txtDescTecnica.clear();
-        this.txtEstimativaDuracao.clear();
-        this.txtEstimativaCusto.clear();
-        this.listViewCaracterizacaoCT.setItems(null);
-        this.cmbCategoriaTarefaEspecificarTarefa.setItems(null);
-        this.cmbAreaActividadeEspecificarTarefa.setItems(null);
+
+    public void navigateEspecificarTarefa(ActionEvent actionEvent) {
+        try {
+            FXMLLoader loaderAddTarefa = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/EspecificarTarefaScene.fxml"));
+            Parent rootAddTarefa = loaderAddTarefa.load();
+            sceneEspecificarTarefa = new Scene(rootAddTarefa);
+            sceneEspecificarTarefa.getStylesheets().add("/com/grupo2/t4j/style/app.css");
+            EspecificarTarefaUI especificarTarefaUIUI = loaderAddTarefa.getController();
+            especificarTarefaUIUI.associarParentUI(this);
+
+        } catch (IOException exception) {
+            exception.printStackTrace();
+            AlertsUI.criarAlerta(Alert.AlertType.ERROR,
+                    MainApp.TITULO_APLICACAO,
+                    "Erro",
+                    exception.getMessage());
+        }
+
+        adicionarStage.setScene(sceneEspecificarTarefa);
+        adicionarStage.setTitle("Especificar Tarefa");
+        adicionarStage.show();
+
     }
+
 
     ////////////////// Ficheiros //////////////////
 
-    public void importAreaActividade(ActionEvent actionEvent) {
+    public void importAreaActividade(ActionEvent actionEvent) throws SQLException {
         String descricao, extensao;
 
         descricao = "Ficheiro Area de Actividade";
@@ -244,7 +190,7 @@ public class ColaboradorLogadoUI implements Initializable {
                     "Não foi seleccionado nenhum ficheiro!").show();
         }
     }
-    
-    
+
+
 
 }

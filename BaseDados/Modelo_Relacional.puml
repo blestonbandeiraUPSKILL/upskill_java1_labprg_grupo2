@@ -38,7 +38,7 @@ entity "Administrativo" {
 }
 
 entity "Categoria" {
-    idCategoria: number {PK}
+    codigoCategoria: text {PK}
     --
     descBreve: text {NN, UK}
     descDetalhada: text
@@ -62,7 +62,7 @@ entity "AreaActividade" {
 }
 
 entity "GrauProficiencia" {
-    idGrauProficiencia: text {PK}
+    idGrauProficiencia: number {PK}
     --
     valor: integer {NN, UK}
     designacao: text {NN}
@@ -157,11 +157,12 @@ entity "HabilitacaoAcademica" {
 }
 
 entity "ReconhecimentoGP" {
-    idReconhecimntoGP: text {PK}
+    idGrauProficiencia: {PK, FK}
+    emailFreelancer: text {PK, FK}
     --
     dataReconhecimento: date {NN}
-    codigoCompTecnica: text {FK}
 }
+   
 
 entity "FreelancerHabAcademica" {
     emailFreelancer: text {PK, FK}
@@ -173,6 +174,7 @@ entity "CaracterCT" {
     --
     obrigatoria: boolean {NN}
     grauProfMinimo: text {FK, NN}
+    cogicoCategoria: text {FK}
 }
 
 AreaActividade ||--|{ Categoria
@@ -196,7 +198,8 @@ Freelancer ||--|{ FreelancerHabAcademica
 HabilitacaoAcademica ||--|{ FreelancerHabAcademica
 Freelancer ||--|{ ReconhecimentoGP
 ReconhecimentoGP }|--|| GrauProficiencia
-CaracterCT ||--|{ GrauProficiencia
+CaracterCT }|--|| Categoria
+CaracterCT }|--|| GrauProficiencia
 
 
 @enduml

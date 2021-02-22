@@ -9,6 +9,7 @@ import com.grupo2.t4j.exception.GrauProficienciaDuplicadoException;
 import com.grupo2.t4j.model.GrauProficiencia;
 import com.grupo2.t4j.persistence.RepositorioGrauProficiencia;
 import java.io.Serializable;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,15 +49,20 @@ public class RepositorioGrauProficienciaInMemory implements Serializable, Reposi
     }
 
     @Override
+    public boolean save(GrauProficiencia grauProficiencia) throws SQLException {
+        return false;
+    }
+
+ /*   @Override
     public boolean save(GrauProficiencia grauProficiencia) {
-        GrauProficiencia gp = findByValor(grauProficiencia.getCodigoGP(),grauProficiencia.getCodigoCompetenciaTecnica());
+        GrauProficiencia gp = findByGrau(grauProficiencia.getGrau(),grauProficiencia.getCodigoCompetenciaTecnica());
         if(gp == null) {
             this.listaGrausProficiencia.add(grauProficiencia);
             return true;
         } else {
             throw new GrauProficienciaDuplicadoException(gp.getGrau()+": Grau já especificado");
         }
-    }
+    }*/
 
     @Override
     public List<GrauProficiencia> getAll() {
@@ -75,16 +81,38 @@ public class RepositorioGrauProficienciaInMemory implements Serializable, Reposi
     }
 
     @Override
-    public GrauProficiencia findByValor(String valor, String codigoCompetenciaTecnica) {
+    public GrauProficiencia findByGrau(String grau) {
+        return null;
+    }
+
+    @Override
+    public GrauProficiencia findByGrauECompetencia(String grau, String codigoCompetenciaTecnica) throws SQLException {
+        return null;
+    }
+
+
+/*
+    @Override
+    public GrauProficiencia findByGrau(String grau, String codigoCompetenciaTecnica) {
+
         for(int i = 0; i < this.findByCompetenciaTecnica(codigoCompetenciaTecnica).size(); i++){
             GrauProficiencia gp = this.findByCompetenciaTecnica(codigoCompetenciaTecnica).get(i);
-            if (gp.getGrau().equals(valor)){
+            if (gp.getGrau().equals(grau)){
                 return gp;
             }
         }
         return null;
-    }
+    }*/
+/*
+    @Override
+    public boolean findByValorECompetenciaTecnica(String grau, String codigoCompetenciaTecnica) throws SQLException {
 
-    
-    
+        for (int i = 0; i < this.findByCompetenciaTecnica(codigoCompetenciaTecnica).size(); i++) {
+            GrauProficiencia gp = this.findByCompetenciaTecnica(codigoCompetenciaTecnica).get(i);
+            if (gp.getGrau().equals(grau)) {
+                return true;
+            }
+        }
+        return false;
+    }*/
 }

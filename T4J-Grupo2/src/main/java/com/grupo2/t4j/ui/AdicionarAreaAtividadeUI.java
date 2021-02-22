@@ -7,6 +7,7 @@ package com.grupo2.t4j.ui;
 
 import com.grupo2.t4j.controller.RegistarAreaActividadeController;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 import com.grupo2.t4j.model.AreaActividade;
@@ -91,24 +92,23 @@ public class AdicionarAreaAtividadeUI implements Initializable {
                     areaDescricaoDetalhada.getText());
 
             if(adicionou) {
-                administrativoLogadoUI.listaAreasActividade.getItems().add(
-                        registarAreaActividadeController.findByCodigo(txtCodigo.getText()));
-            }
+                administrativoLogadoUI.updateListViewAreasActividade();
 
-            AlertsUI.criarAlerta(Alert.AlertType.INFORMATION,
-                    MainApp.TITULO_APLICACAO,
-                    "Registar Área de Actividade.",
-                    adicionou ? "Área de Actividade registada com sucesso."
-                                : "Não foi possível registar a Área de Actividade.").show();
+                AlertsUI.criarAlerta(Alert.AlertType.INFORMATION,
+                        MainApp.TITULO_APLICACAO,
+                        "Registar Área de Actividade.",
+                        "Área de Actividade registada com sucesso.").show();
+
+            }
 
             closeAddAreaActividade(event);
 
         }
-        catch (IllegalArgumentException iae) {
+        catch (IllegalArgumentException | SQLException exception) {
             AlertsUI.criarAlerta(Alert.AlertType.ERROR,
                     MainApp.TITULO_APLICACAO,
                     "Erro nos dados.",
-                    iae.getMessage()).show();
+                    exception.getMessage()).show();
         
         }
 

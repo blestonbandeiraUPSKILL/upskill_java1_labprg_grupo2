@@ -8,6 +8,7 @@ package com.grupo2.t4j.ui;
 
 
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
@@ -56,7 +57,11 @@ public class AdicionarGrauProficienciaUI implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        registarGrauProficienciaController = new RegistarGrauProficienciaController();
+        try {
+            registarGrauProficienciaController = new RegistarGrauProficienciaController();
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }
 
     }    
 
@@ -68,51 +73,14 @@ public class AdicionarGrauProficienciaUI implements Initializable {
     @FXML
     public void adicionarGrauAction (ActionEvent actionEvent){
         
-        try{
-            boolean adicionou = registarGrauProficienciaController.registarGrauProficiencia(
-                    txtCodigoGP.getText(),
-                    txtValor.getText(),
-                    txtDesignacao.getText(),
-                    adicionarCompetenciaTecnicaUI.txtCodigo.getText());
 
-            if(adicionou) {
-                listViewGrausAdicionados.getItems().add(
-                        registarGrauProficienciaController.findByValor(
-                        txtValor.getText(),
-                        adicionarCompetenciaTecnicaUI.txtCodigo.getText() ));
-                txtCodigoGP.clear();
-                txtValor.clear();
-                txtDesignacao.clear();
-            }
 
-            AlertsUI.criarAlerta(Alert.AlertType.INFORMATION,
-                    MainApp.TITULO_APLICACAO,
-                    "Registar Grau de Proficiência.",
-                    adicionou ? "Grau de Proficiência registado com sucesso."
-                                : "Não foi possível registar o Grau de Proficiência.").show();
-
-            //concluirAction(actionEvent);
-
-        }
-        catch (IllegalArgumentException iae) {
-            AlertsUI.criarAlerta(Alert.AlertType.ERROR,
-                    MainApp.TITULO_APLICACAO,
-                    "Erro nos dados.",
-                    iae.getMessage()).show();
-        
-        }
-        
-
- /*       GrauProficiencia grauProficiencia = new GrauProficiencia(
-        txtValor.getText(), txtDesignacao.getText());
-        listaGrausAplicaveis.add(grauProficiencia);
-        */
     }
     
     @FXML
     public void concluirAction (ActionEvent actionEvent){
-        this.txtValor.clear();
-        this.txtDesignacao.clear();
+        /*this.txtValor.clear();
+        this.txtDesignacao.clear();*/
         ((Node) actionEvent.getSource()).getScene().getWindow().hide();
 
     }

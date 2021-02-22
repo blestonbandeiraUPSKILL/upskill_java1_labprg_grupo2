@@ -6,11 +6,11 @@
 package com.grupo2.t4j.persistence.inmemory;
 
 import com.grupo2.t4j.exception.CompetenciaTecnicaDuplicadaException;
-import com.grupo2.t4j.model.AreaActividade;
 import com.grupo2.t4j.model.CompetenciaTecnica;
 import com.grupo2.t4j.persistence.RepositorioCompetenciaTecnica;
 
 import java.io.Serializable;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -106,11 +106,16 @@ public class RepositorioCompetenciaTecnicaInMemory implements Serializable, Repo
     }
 
     @Override
+    public CompetenciaTecnica findCompetenciaByAreaActividade(String codigoAreaActividade) throws SQLException {
+        return null;
+    }
+
+    @Override
     public ArrayList<CompetenciaTecnica> findByAreaActividade(String codigoAreaActividade) {
         ArrayList<CompetenciaTecnica> compTecPorAt = new ArrayList<>();
 
         for (CompetenciaTecnica ct : listaCompTecnicas) {
-            if (ct.getAreaActividade().equals(codigoAreaActividade)) {
+            if (ct.getCodigoAreaActividade().equals(codigoAreaActividade)) {
                 compTecPorAt.add(ct);
             }
         }

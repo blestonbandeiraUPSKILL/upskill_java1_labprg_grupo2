@@ -15,6 +15,7 @@ import javafx.stage.Window;
 import javafx.stage.WindowEvent;
 
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -55,7 +56,11 @@ public class AdicionarCategoriaTarefaUI implements Initializable {
         registarAreaActividadeController = new RegistarAreaActividadeController();
         registarCategoriaController = new RegistarCategoriaController();
         registarCompetenciaTecnicaController = new RegistarCompetenciaTecnicaController();
-        registarGrauProficienciaController = new RegistarGrauProficienciaController();
+        try {
+            registarGrauProficienciaController = new RegistarGrauProficienciaController();
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }
         registarCaracterizacaoCTController = new RegistarCaracterizacaoCTController();
 
         adicionarStage = new Stage();
@@ -65,12 +70,20 @@ public class AdicionarCategoriaTarefaUI implements Initializable {
         //cmbGrauProficiencia.getItems().setAll(registarGrauProficienciaController.findByCompetenciaTecnica());
         cmbObrigatoriedade.getItems().setAll(Obrigatoriedade.values());
 
-        cmbAreaActividade.getItems().addAll(registarAreaActividadeController.getAll());
+        try {
+            cmbAreaActividade.getItems().addAll(registarAreaActividadeController.getAll());
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }
 
         cmbAreaActividade.setOnAction(new EventHandler<ActionEvent>() {
            @Override
            public void handle(ActionEvent event) {
-               updateCmbCompetenciasTecnicas(event);
+               try {
+                   updateCmbCompetenciasTecnicas(event);
+               } catch (SQLException exception) {
+                   exception.printStackTrace();
+               }
 
            }
         });
@@ -78,21 +91,25 @@ public class AdicionarCategoriaTarefaUI implements Initializable {
         cmbCompetenciaTecnica.setOnAction(new EventHandler<ActionEvent>(){
             @Override
             public void handle(ActionEvent event) {
-                updateCmbGrauProficiencia(event);
-        }
+                try {
+                    updateCmbGrauProficiencia(event);
+                } catch (SQLException exception) {
+                    exception.printStackTrace();
+                }
+            }
         });
     }
 
-    public void updateCmbCompetenciasTecnicas(ActionEvent actionEvent) {
+    public void updateCmbCompetenciasTecnicas(ActionEvent actionEvent) throws SQLException {
+        String codigoAreaActividade = cmbAreaActividade.getSelectionModel().getSelectedItem().getCodigo();
         cmbCompetenciaTecnica.getItems().addAll(
-                registarCompetenciaTecnicaController.findByAreaActividade(
-                cmbAreaActividade.getSelectionModel().getSelectedItem().getCodigo()));
+                registarCompetenciaTecnicaController.findByAreaActividade(codigoAreaActividade));
     }
     
-    public void updateCmbGrauProficiencia(ActionEvent actionEvent) {
-
-        cmbGrauProficiencia.getItems().addAll(registarGrauProficienciaController.findByCompetenciaTecnica(
-                cmbCompetenciaTecnica.getSelectionModel().getSelectedItem().getCodigo()));
+    public void updateCmbGrauProficiencia(ActionEvent actionEvent) throws SQLException {
+        String codigoCompetenciaTecnica = cmbCompetenciaTecnica.getSelectionModel().getSelectedItem().getCodigo();
+        cmbGrauProficiencia.getItems().addAll(
+                registarGrauProficienciaController.findByCompetenciaTecnica(codigoCompetenciaTecnica));
     }
     
     
@@ -122,12 +139,11 @@ public class AdicionarCategoriaTarefaUI implements Initializable {
                     txtCodigo.getText().trim(),
                     txtDescricaoBreve.getText().trim(),
                     txtDescricaoDetalhada.getText().trim(),
-                    cmbAreaActividade.getSelectionModel().getSelectedItem().getCodigo(),
-                    listViewCompTecCat.getItems()
+                    cmbAreaActividade.getSelectionModel().getSelectedItem().getCodigo()
             );
 
             if(adicionou) {
-                administrativoLogadoUI.listaCategorias.getItems().addAll(registarCategoriaController.getAll());
+                administrativoLogadoUI.updateListViewCategoriasTarefa();
             }
 
             AlertsUI.criarAlerta(Alert.AlertType.INFORMATION,
@@ -138,7 +154,7 @@ public class AdicionarCategoriaTarefaUI implements Initializable {
 
             closeAddCatgoriaTarefa(event);
         }
-        catch (IllegalArgumentException iae) {
+        catch (IllegalArgumentException | SQLException iae) {
             AlertsUI.criarAlerta(Alert.AlertType.ERROR,
                     MainApp.TITULO_APLICACAO,
                     "Erro nos dados.",
@@ -156,24 +172,25 @@ public class AdicionarCategoriaTarefaUI implements Initializable {
     }
 
     @FXML
-    public List<CaracterizacaoCT> addCompetenciaTecnica2CCTS() {
+    public List<CaracterizacaoCT> addCompetenciaTecnica2CCTS() throws SQLException {
 
         List<CaracterizacaoCT> caracterizacaoCTS = new ArrayList<>();
         boolean adicionou = registarCaracterizacaoCTController.registarCaracterizacaoCTS(
                txtCodigoCCT.getText(),
-               cmbGrauProficiencia.getValue().getCodigoGP(),
+               cmbGrauProficiencia.getValue().getGrau(),
                cmbObrigatoriedade.getValue(),
                cmbCompetenciaTecnica.getValue().getCodigo());
 
         if(adicionou) {
-           caracterizacaoCTS.add(registarCaracterizacaoCTController.findByCodigo(txtCodigoCCT.getText()));
-           listViewCompTecCat.getItems().add(registarCaracterizacaoCTController.findByCodigo(txtCodigoCCT.getText()));
-           txtCodigoCCT.clear();
-           cmbGrauProficiencia.getSelectionModel().clearSelection();
-           cmbGrauProficiencia.getItems().clear();
-           cmbObrigatoriedade.getSelectionModel().clearSelection();
-           cmbCompetenciaTecnica.getSelectionModel().clearSelection();
-           cmbAreaActividade.setDisable(true);
+            caracterizacaoCTS.add(registarCaracterizacaoCTController.findByCodigo(txtCodigoCCT.getText()));
+            listViewCompTecCat.getItems().add(registarCaracterizacaoCTController.findByCodigo(txtCodigoCCT.getText()));
+            txtCodigoCCT.clear();
+            cmbCompetenciaTecnica.getSelectionModel().clearSelection();
+            cmbGrauProficiencia.getSelectionModel().clearSelection();
+            cmbGrauProficiencia.getItems().clear();
+            cmbObrigatoriedade.getSelectionModel().clearSelection();
+
+            cmbAreaActividade.setDisable(true);
         }
 
         return caracterizacaoCTS;

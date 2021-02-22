@@ -53,7 +53,11 @@ public class RegistarOrgEGestorUI implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        RegistarOrganizacaoController registarOrganizacaoController = new RegistarOrganizacaoController();
+        try {
+            RegistarOrganizacaoController registarOrganizacaoController = new RegistarOrganizacaoController();
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }
     }
 
     public void cancelarRegisto(ActionEvent actionEvent) {
@@ -75,7 +79,7 @@ public class RegistarOrgEGestorUI implements Initializable {
         window.fireEvent(new WindowEvent(window, WindowEvent.WINDOW_CLOSE_REQUEST));
     }
 
-    public void avancarRegistoComDados(ActionEvent actionEvent) throws IOException {
+    public void avancarRegistoComDados(ActionEvent actionEvent) throws IOException, SQLException {
         registarOrganizacaoController = new RegistarOrganizacaoController();
 
         try {

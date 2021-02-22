@@ -39,30 +39,14 @@ public class CompetenciaTecnica implements Serializable {
      */
     private String codigoAreaActividade;
 
-    /**
-     * A competencia tecnica caracterizada
-     */
-    private CaracterizacaoCT cct;
 
-    private Categoria categoria;
     
     //private static List<GrauProficiencia> grausProficienciaAplicaveis = new ArrayList<>();
 
-    /**
-     * Construtor CompetenciaTecnica Completo
-     *
-     * @param codigo
-     * @param descricaoBreve
-     * @param descricaoDetalhada
-     *
-     */
-    public CompetenciaTecnica(String codigo, String descricaoBreve, String descricaoDetalhada, String codigoAreaActividade, CaracterizacaoCT cct) {
-        setCodigo(codigo);
-        setDescricaoBreve(descricaoBreve);
-        setDescricaoDetalhada(descricaoDetalhada);
-        setCodigoAreaActividade(codigoAreaActividade);
-        setCct(cct);
+    public CompetenciaTecnica() {
+
     }
+
 
     /**
      * Construtor CompetenciaTecnica
@@ -104,6 +88,7 @@ public class CompetenciaTecnica implements Serializable {
         setDescricaoDetalhada(descricaoDetalhada);   
         setCodigoAreaActividade(codigoAreaActividade);
     }
+
 
     /**
      * devolve o codigo da competencia tecnica
@@ -166,27 +151,11 @@ public class CompetenciaTecnica implements Serializable {
     }
 
     /**
-     * Devolve a caracterizacao da competencia tecnica
-     * @return the cct
-     */
-    public CaracterizacaoCT getCct() {
-        return cct;
-    }
-
-    /**
-     * Atualiza a caracterizacao da competencia tecnica
-     * @param cct the cct to set
-     */
-    public void setCct(CaracterizacaoCT cct) {
-        this.cct = cct;
-    }
-
-    /**
      * Devolve a area de actividade a que se refere a competencia tecnica
      * 
      * @return the areaActividade
      */
-    public String getAreaActividade() {
+    public String getCodigoAreaActividade() {
         return codigoAreaActividade;
     }
 
@@ -223,12 +192,8 @@ public class CompetenciaTecnica implements Serializable {
         return Objects.equals(codigo, that.codigo)
                 && Objects.equals(descricaoBreve, that.descricaoBreve)
                 && Objects.equals(descricaoDetalhada, that.descricaoDetalhada)
-                && Objects.equals(codigoAreaActividade, that.codigoAreaActividade)
-                && Objects.equals(cct, that.cct)
-                && Objects.equals(categoria, that.categoria);
+                && Objects.equals(codigoAreaActividade, that.codigoAreaActividade);
+
     }
-    
-    /*public static List<GrauProficiencia> getGrausAplicaveis() {
-        return new ArrayList<GrauProficiencia>(grausProficienciaAplicaveis);
-    }*/
+
 }

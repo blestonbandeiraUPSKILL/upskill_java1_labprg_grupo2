@@ -18,40 +18,41 @@ import java.io.Serializable;
  */
 
 public class GrauProficiencia {
-    private String codigoGP;
+
+    private int idGrauProficiencia;
     private String grau;
     private String designacao;
     private String codigoCompetenciaTecnica;
-    
+
+    public GrauProficiencia() {
+    }
 
     public GrauProficiencia(GrauProficiencia gp) {
-        setCodigoGP(gp.codigoGP);
         setGrau(gp.grau);
         setDesignacao(gp.designacao);
     }
     
-    public GrauProficiencia(String codigoGP, String grau, String designacao) {
-        setCodigoGP(codigoGP);
+    public GrauProficiencia(String grau, String designacao) {
+
         setGrau(grau);
         setDesignacao(designacao);
         
     }
-    public GrauProficiencia(String codigoGP, String grau, String designacao, String codigoCompetenciaTecnica){
-        setCodigoGP(codigoGP);
+    public GrauProficiencia(int idGrauProficiencia, String grau, String designacao, String codigoCompetenciaTecnica){
+        this.idGrauProficiencia = idGrauProficiencia;
         setGrau(grau);
         setDesignacao(designacao);
         setCodigoCompetenciaTecnica(codigoCompetenciaTecnica);
     }
 
-    public String getCodigoGP() {
-        return codigoGP;
+    public GrauProficiencia(String grau, String designacao, String codigoCompetenciaTecnica) {
+        setGrau(grau);
+        setDesignacao(designacao);
+        setCodigoCompetenciaTecnica(codigoCompetenciaTecnica);
     }
 
-    public void setCodigoGP(String codigoGP) {
-        if (codigoGP == null || codigoGP.trim().isEmpty()) {
-            throw new CodigoInvalidoException("O código é inválido.");
-        }
-        this.codigoGP = codigoGP;
+    public int getIdGrauProficiencia() {
+        return idGrauProficiencia;
     }
 
     public String getGrau() {

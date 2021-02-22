@@ -26,7 +26,11 @@ public class RegistarFreelancerController {
     //private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosDatabase();
     private RepositorioFreelancer repositorioFreelancer = fabricaRepositorios.getRepositorioFreelancer();
     private RepositorioUtilizador repositorioUtilizador = fabricaRepositorios.getRepositorioUtilizador();
-
+    
+    private AlgoritmoGeradorPasswords algoritmoGeradorPasswords;
+    private RepositorioFreelancerInMemory repositorioFreelancerInMemory;
+    private FicheiroRepositorioFreelancer ficheiroF;
+    
     public boolean registarFreelancer(String email, String nome, String nif, String
             telefone, String codigoEnderecoPostal) throws SQLException {
 
@@ -41,11 +45,22 @@ public class RegistarFreelancerController {
         return repositorioFreelancer.save(freelancer);
     }
 
-    public List<Freelancer> getAll() {
+    public List<Freelancer> getAll() throws SQLException{
         return repositorioFreelancer.getAll();
     }
     
-    public Freelancer findByNif(String NIF) {
+    public List<String> getAllView() throws SQLException{
+        
+        int tam = repositorioFreelancer.getAll().size();
+        List<String> listaFreelancerView;
+        listaFreelancerView = new ArrayList<>();
+        for(int i = 0; i < tam; i++ ){
+            listaFreelancerView.add((i+1) + ". " + repositorioFreelancer.getAll().get(i).toStringView());
+        }        
+        return listaFreelancerView;
+    }
+    
+    public Freelancer findByNif(String NIF) throws SQLException{
         return repositorioFreelancer.findByNif(NIF);
     }
 
@@ -61,4 +76,29 @@ public class RegistarFreelancerController {
         return UsersAPI.getInstance().registerUserWithRoles(email, nome, password, "freelancer")
                 && repositorioUtilizador.save(utilizador);
     }
+    
+     //////FICHEIROS////////
+    public RegistarFreelancerController() {
+        ficheiroF = new FicheiroRepositorioFreelancer();
+        
+        desserializar();
+    }
+    public boolean serializar() {
+        return ficheiroF.serializar(repositorioFreelancerInMemory);
+    }
+
+    public boolean serializar(File ficheiroExportar) {
+        return ficheiroF.serializar(ficheiroExportar, repositorioFreelancerInMemory);
+    }
+
+    public void desserializar() {
+        repositorioFreelancerInMemory = ficheiroF.desserializar();
+    }
+
+    public int desserializar(File ficheiroImportar) {
+        RepositorioFreelancerInMemory listaFreelancerImportada = ficheiroF.desserializar(ficheiroImportar);
+
+        return repositorioFreelancerInMemory.adicionarListaFreelancer(listaFreelancerImportada);
+    }
+
 }

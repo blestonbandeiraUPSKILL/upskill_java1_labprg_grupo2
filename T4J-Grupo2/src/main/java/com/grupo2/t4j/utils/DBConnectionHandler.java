@@ -1,4 +1,4 @@
-package com.grupo2.t4j.model;
+package com.grupo2.t4j.utils;
 
 import java.sql.*;
 import oracle.jdbc.pool.OracleDataSource;
