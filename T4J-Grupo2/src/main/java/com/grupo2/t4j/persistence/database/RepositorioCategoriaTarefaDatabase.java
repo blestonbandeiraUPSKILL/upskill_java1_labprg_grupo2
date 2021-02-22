@@ -25,7 +25,7 @@ public class RepositorioCategoriaTarefaDatabase implements RepositorioCategoriaT
     /**
      * Inicializa o Repositório de Categorias de Tarefa
      */
-    RepositorioCategoriaTarefaDatabase(){    }
+    private RepositorioCategoriaTarefaDatabase(){    }
 
     /**
      * Devolve uma instância estática do Repositório de Categorias de Tarefa
