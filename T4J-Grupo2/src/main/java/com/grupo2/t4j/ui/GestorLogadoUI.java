@@ -146,7 +146,7 @@ public class GestorLogadoUI implements Initializable {
 
     public void navigateAddColaborador(ActionEvent actionEvent) {
         try {
-            FXMLLoader loaderAddColaborador = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/RegistarColaboradoScene.fxml"));
+            FXMLLoader loaderAddColaborador = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/RegistarColaboradorScene.fxml"));
             Parent rootAddColaborador = loaderAddColaborador.load();
             sceneAddColaborador = new Scene(rootAddColaborador);
             sceneAddColaborador.getStylesheets().add("/com/grupo2/t4j/style/app.css");
