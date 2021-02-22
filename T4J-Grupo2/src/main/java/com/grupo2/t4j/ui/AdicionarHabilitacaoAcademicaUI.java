@@ -13,11 +13,14 @@ import com.grupo2.t4j.controller.RegistarHabilitacaoAcademicaController;
 import java.net.URL;
 import java.util.ResourceBundle;
 import com.grupo2.t4j.model.*;
+import java.sql.SQLException;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.ListView;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.*;
@@ -33,9 +36,9 @@ public class AdicionarHabilitacaoAcademicaUI implements Initializable {
     private RegistarHabilitacaoAcademicaController registarHabilitacaoAcademicaController;
     private Stage adicionarStage;
     
-    @FXML private TextField txtNomeFreelancer;
+    @FXML private ComboBox<String> cmbNomeFreelancer;
     
-    @FXML private TextField txtNIFFreelancer;
+    @FXML private ComboBox<String> cmbNifFreelancer;
 
     @FXML private TextField txtGrau;
 
@@ -51,7 +54,7 @@ public class AdicionarHabilitacaoAcademicaUI implements Initializable {
     
     @FXML private Button btnCancelar;
     
-    @FXML private Button btnSairHabilitacao;
+    @FXML private Button btnSair;
 
     public void associarParentUI(AdministrativoLogadoUI administrativoLogadoUI) {
         this.administrativoLogadoUI = administrativoLogadoUI;
@@ -64,16 +67,41 @@ public class AdicionarHabilitacaoAcademicaUI implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
 
         registarHabilitacaoAcademicaController = new RegistarHabilitacaoAcademicaController();
-        
-   
+           
         adicionarStage = new Stage();
         adicionarStage.initModality(Modality.APPLICATION_MODAL);;
         adicionarStage.setResizable(false);
+        
+         try {
+            updateListViewHabilitacaoFreelancer();
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }
     }  
    
     @FXML
     void addHabilitacao(ActionEvent event) {
+        try{                      
+            boolean adicionou = registarHabilitacaoAcademicaController.registarHabilitacaoAcademica(
+                    cmbNifFreelancer.getPromptText(), txtGrau.getText(), txtDesignacao.getText(),
+                    txtInstituicao.getText(), Double.parseDouble(txtMedia.getText()));
 
+            if(adicionou) {
+                updateListViewHabilitacaoFreelancer();
+            
+                AlertsUI.criarAlerta(Alert.AlertType.INFORMATION,
+                    MainApp.TITULO_APLICACAO, "Registar Habilitação Acadêmica.",
+                    adicionou ? "Habilitação Acadêmica de Freelancer registada com sucesso."
+                                : "Não foi possível registar a Habilitação Acadêmica.").show();
+            }
+        }
+        catch (IllegalArgumentException | SQLException ex) {
+            AlertsUI.criarAlerta(Alert.AlertType.ERROR,
+                    MainApp.TITULO_APLICACAO,
+                    "Erro nos dados.",
+                    ex.getMessage()).show();
+        
+        } 
     }
 
     @FXML
@@ -84,5 +112,18 @@ public class AdicionarHabilitacaoAcademicaUI implements Initializable {
     @FXML
     void sairAction(ActionEvent event) {
 
+    }
+    
+     public void updateListViewHabilitacaoFreelancer() throws SQLException {
+         listaHabilitacaoFreelancer.getItems().setAll(registarHabilitacaoAcademicaController.getAll());
+    }
+     
+     public void closeAddHabilitacaoFreelancer(ActionEvent event) {
+        this.txtGrau.clear();
+        this.txtDesignacao.clear();
+        this.txtInstituicao.clear();
+        this.txtMedia.clear();       
+        
+        ((Node) event.getSource()).getScene().getWindow().hide();
     }
 }

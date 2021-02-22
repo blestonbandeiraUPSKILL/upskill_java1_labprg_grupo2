@@ -15,6 +15,9 @@ public class ReconhecimentoGP {
      */
     private String idGrauProficiencia;
     
+    /**
+     * O id da Competência Técnica a que se refere este reconhecimento de grau de proficiência
+     */
     private String idCompetenciaTecnica;
     /**
      * A data em que foi atribuido o reconhecimento
@@ -33,6 +36,13 @@ public class ReconhecimentoGP {
     public ReconhecimentoGP(){  
     }
     
+    /**
+     * Construtor completo da classe ReconhecimentoGP
+     * @param idGrauProficiencia
+     * @param dataReconhecimento
+     * @param emailFreelancer
+     * @param idCompetenciaTecnica 
+     */
     public ReconhecimentoGP(String idGrauProficiencia, Data dataReconhecimento, 
              Email emailFreelancer, String idCompetenciaTecnica){
         setIdGrauProficiencia(idGrauProficiencia);
@@ -40,21 +50,7 @@ public class ReconhecimentoGP {
         setEmailFreelancer(emailFreelancer);
         setIdCompetenciaTecnica(idCompetenciaTecnica);
     }
-    
-    /**
-     * Construtor completo da classe ReconhecimentoGO
-     * @param idRGrauProficiencia
-     * @param dataReconhecimento
-     * @param codigoCompetenciaTecnica
-     * @param emailFreelancer 
-     */
-    public ReconhecimentoGP (String idGrauProficiencia, Data dataReconhecimento, 
-             Email emailFreelancer){
-        setIdGrauProficiencia(idGrauProficiencia);
-        setDataReconhecimento(dataReconhecimento);
-        setEmailFreelancer(emailFreelancer);
-    }
-    
+     
     /**
      * Construtor da classe ReconhecimentoGP
      * @param reconhecimentoGP 
@@ -63,6 +59,7 @@ public class ReconhecimentoGP {
         setIdGrauProficiencia(reconhecimentoGP.idGrauProficiencia);
         setDataReconhecimento(reconhecimentoGP.dataReconhecimento);
         setEmailFreelancer(reconhecimentoGP.emailFreelancer);
+        setIdCompetenciaTecnica(reconhecimentoGP.idCompetenciaTecnica);
     }
 
     /**
