@@ -6,21 +6,25 @@
 .btnToggle {
     -fx-background-color: #CCCCCC;
     -fx-text-fill: #000000;
+        -fx-cursor: hand;
 }
 
 .btnLogin {
     -fx-background-color: #191970;
     -fx-text-fill: #ffffff;
+    -fx-cursor: hand;
 }
 
 .btnRegistarOrganizacao {
     -fx-background-color: #20B2AA;
     -fx-text-fill: #ffffff;
+        -fx-cursor: hand;
 }
 
 .btnSair {
     -fx-background-color: #8B0000;
     -fx-text-fill: #ffffff;
+        -fx-cursor: hand;
 }
 
 .btnSair:hover {
