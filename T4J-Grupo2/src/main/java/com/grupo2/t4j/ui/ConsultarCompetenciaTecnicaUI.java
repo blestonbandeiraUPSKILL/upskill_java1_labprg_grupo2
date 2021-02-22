@@ -66,7 +66,11 @@ public class ConsultarCompetenciaTecnicaUI implements Initializable {
             registarGrauProficienciaController = new RegistarGrauProficienciaController();
             
             try {
-                updateDados();
+                txtCodigoCompetenciaTecnica.setText(administrativoLogadoUI.listViewCompetenciasTecnicas.getSelectionModel().getSelectedItem().getCodigo());
+                txtDescricaoBreve.setText(administrativoLogadoUI.listViewCompetenciasTecnicas.getSelectionModel().getSelectedItem().getDescricaoBreve());
+                txtDescricaoDetalhada.setText(administrativoLogadoUI.listViewCompetenciasTecnicas.getSelectionModel().getSelectedItem().getDescricaoDetalhada());
+                listViewGrausAplicaveis.getItems().setAll(registarGrauProficienciaController.findByCompetenciaTecnica(txtCodigoCompetenciaTecnica.getText()));
+                txtAreaActividade.setText(registarAreaActividadeController.findByCodigo(administrativoLogadoUI.listViewCompetenciasTecnicas.getSelectionModel().getSelectedItem().getCodigoAreaActividade()).getDescBreve());
             } catch (SQLException exception) {
                 exception.printStackTrace();
             }
