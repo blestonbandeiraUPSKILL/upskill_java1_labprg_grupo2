@@ -33,12 +33,9 @@ public class Utilizador implements Serializable{
     /**
      * O papel do Utilizador
      */
-    private Rolename rolename;
+    private String rolename;
 
-    /**
-     * O papel do Utilizador por omissão.
-     */
-    private static final Rolename ROLENAME_POR_OMISSAO = Rolename.COLABORADOR;
+
     
     /**
      * Construtor vazio da classe Utilizador
@@ -63,6 +60,14 @@ public class Utilizador implements Serializable{
         this.email = utilizador.getEmail();
         this.nome = utilizador.getNome();
         this.password = utilizador.getPassword();
+    }
+
+    public Utilizador(String emailUtilizador, String nome, String password, String rolename) {
+        setEmail(new Email(emailUtilizador));
+        setNome(nome);
+        setPassword(new Password(password));
+        this.rolename = rolename;
+
     }
 
 
@@ -97,7 +102,7 @@ public class Utilizador implements Serializable{
      * Regista o papel do Utilizador
      * @param rolename o papel do Utilizador
      */
-    public void setRolename(Rolename rolename){
+    public void setRolename(String rolename){
         this.rolename = rolename;
     }
     
@@ -129,7 +134,7 @@ public class Utilizador implements Serializable{
      * Retorna o rolename do Utilizador
      * @return rolename
      */
-    public Rolename getRolename(){
+    public String getRolename(){
         return rolename;
     }
     
@@ -162,17 +167,6 @@ public class Utilizador implements Serializable{
         return String.format("Nome: %s %nEmail:%s %nRolename: %s", 
                 nome, email.getEmailText(), rolename.toString());
     }
-    
-    //////////////////////////////// Ver se precisa mesmo
-    
-     /**
-     * Construtor da classe Utilizador para uso específico de Gestor de Organização
-     * @param nomeGestor o nome do Gestor da Organização
-     * @param emailGestor o email do Gestor da Organização
-     */
-   /* public Utilizador(String nomeGestor, Email emailGestor) {
-        setNome(nomeGestor);
-        setEmail(emailGestor);
-    }*/
+
 
 }

@@ -15,8 +15,8 @@ import java.util.List;
 
 public class RegistarOrganizacaoController {
 
-    private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosInMemory();
-    //private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosDatabase();
+    //private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosInMemory();
+    private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosDatabase();
     private RepositorioOrganizacao repositorioOrganizacao = fabricaRepositorios.getRepositorioOrganizacao();
     private RepositorioColaborador repositorioColaborador = fabricaRepositorios.getRepositorioColaborador();
     private RepositorioEnderecoPostal repositorioEnderecoPostal = fabricaRepositorios.getRepositorioEnderecoPostal();
@@ -27,11 +27,11 @@ public class RegistarOrganizacaoController {
 
     public boolean registarOrganizacao(String nif, String nome, String website,
                                        String telefone, String emailOrganizacao, String emailGes,
-                                       String codigoEnderecoPostal, String arruamento, String numeroPorta,
+                                       String arruamento, String numeroPorta,
                                        String localidade, String codigoPostal, String nomeGestor,
                                        String telefoneGestor, String funcaoGestor) throws SQLException {
 
-        EnderecoPostal enderecoPostal = new EnderecoPostal(codigoEnderecoPostal, arruamento, numeroPorta, localidade, codigoPostal);
+        EnderecoPostal enderecoPostal = new EnderecoPostal(arruamento, numeroPorta, localidade, codigoPostal);
         repositorioEnderecoPostal.save(enderecoPostal);
 
         AlgoritmoGeradorPasswords algoritmoGeradorPasswords = new AlgoritmoGeradorPasswords();
@@ -43,7 +43,7 @@ public class RegistarOrganizacaoController {
 
         usersAPI.registerUserWithRoles(gestor.getEmail(), gestor.getNome(), pass, "gestor");
 
-        Organizacao organizacao = new Organizacao(nif, nome, new Website(website), telefone, new Email(emailOrganizacao), emailGestor, codigoEnderecoPostal);
+        Organizacao organizacao = new Organizacao(nif, nome, new Website(website), telefone, new Email(emailOrganizacao), emailGestor, enderecoPostal.getCodigoEnderecoPostal());
 
         return repositorioOrganizacao.save(organizacao);
     }
@@ -56,9 +56,11 @@ public class RegistarOrganizacaoController {
         return repositorioOrganizacao.findByNif(nif);
     }
 
-    public Colaborador findColaboradorByEmail(String email){
+    public Colaborador findColaboradorByEmail(String email) throws SQLException {
         return repositorioColaborador.findByEmail(email);
     }
+
+
 
 
 }

@@ -21,10 +21,12 @@ public interface RepositorioColaborador {
 
     void save(Email email, String nome, Password passowrd, String funcao, String telefone) throws ColaboradorDuplicadoException;
 
-    boolean save(Colaborador colaborador);
+    boolean save(Colaborador colaborador) throws SQLException;
 
-    Colaborador findByEmail(String emailCol);
+    Colaborador findByEmail(String emailCol) throws SQLException;
 
     ArrayList<Colaborador> getAll() throws SQLException;
+
+    Password findPassword(String email) throws SQLException;
 
 }

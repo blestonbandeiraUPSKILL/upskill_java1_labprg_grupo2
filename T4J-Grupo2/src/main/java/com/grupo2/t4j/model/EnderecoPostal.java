@@ -71,6 +71,13 @@ public class EnderecoPostal {
         setCodigoPostal(endereco.codigoPostal);
     }
 
+    public EnderecoPostal(String arruamento, String numeroPorta, String localidade, String codigoPostal) {
+        setArruamento(arruamento);
+        setPorta(numeroPorta);
+        setLocalidade(localidade);
+        setCodigoPostal(codigoPostal);
+    }
+
     public String getCodigoEnderecoPostal() {
         return codigoEnderecoPostal;
     }
