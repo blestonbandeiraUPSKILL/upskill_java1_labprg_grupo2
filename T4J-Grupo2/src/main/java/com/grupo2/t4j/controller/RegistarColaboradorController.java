@@ -16,6 +16,7 @@ import com.grupo2.t4j.model.*;
 import com.grupo2.t4j.persistence.FabricaRepositorios;
 import com.grupo2.t4j.persistence.RepositorioColaborador;
 import com.grupo2.t4j.persistence.RepositorioUtilizador;
+import com.grupo2.t4j.persistence.database.FabricaRepositoriosDatabase;
 import com.grupo2.t4j.persistence.inmemory.FabricaRepositoriosInMemory;
 import com.grupo2.t4j.persistence.inmemory.RepositorioColaboradorInMemory;
 
@@ -25,8 +26,8 @@ import java.util.List;
 
 public class RegistarColaboradorController {
 
-    private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosInMemory();
-    //private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosDatabase();
+    //private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosInMemory();
+    private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosDatabase();
     private RepositorioColaborador repositorioColaborador = fabricaRepositorios.getRepositorioColaborador();
     private RepositorioUtilizador repositorioUtilizador = fabricaRepositorios.getRepositorioUtilizador();
 
@@ -45,7 +46,7 @@ public class RegistarColaboradorController {
         return repositorioColaborador.save(colaborador);
     }
 
-    public List<Colaborador> getAll() {
+    public List<Colaborador> getAll() throws SQLException {
         return repositorioColaborador.getAll();
     }
 

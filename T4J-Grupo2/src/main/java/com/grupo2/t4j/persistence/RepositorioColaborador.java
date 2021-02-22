@@ -13,6 +13,7 @@ package com.grupo2.t4j.persistence;
 import com.grupo2.t4j.model.*;
 import com.grupo2.t4j.exception.*;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public interface RepositorioColaborador {
@@ -24,6 +25,6 @@ public interface RepositorioColaborador {
 
     Colaborador findByEmail(String emailCol);
 
-    ArrayList<Colaborador> getAll();
+    ArrayList<Colaborador> getAll() throws SQLException;
 
 }

@@ -12,7 +12,7 @@ BEGIN
     From CompetenciaTecnica
     WHERE codigoCompetenciaTecnica LIKE p_codigo;
     
-    IF v_count = 0
+    IF v_count != 0
     THEN
         RAISE ex_CompetenciaTecnica;
     END IF;
@@ -20,6 +20,6 @@ BEGIN
     EXCEPTION WHEN
         ex_CompetenciaTecnica
     THEN
-        RAISE_APPLICATION_ERROR(-20001, 'Competência técnica inexistente.');
+        RAISE_APPLICATION_ERROR(-20001, 'Competência técnica já existe.');
 
 END;

@@ -288,8 +288,8 @@ public class AdministrativoLogadoUI implements Initializable {
             Parent rootConsultarCompetenciaTecnica = loaderConsultarCompetenciaTecnica.load();
             sceneConsultarCompetenciaTecnica = new Scene(rootConsultarCompetenciaTecnica);
             sceneConsultarCompetenciaTecnica.getStylesheets().add("/com/grupo2/t4j/style/app.css");
-            AdicionarCompetenciaTecnicaUI adicionarCompetenciaTecnicaUI = loaderConsultarCompetenciaTecnica.getController();
-            adicionarCompetenciaTecnicaUI.associarParentUI(this);
+            ConsultarCompetenciaTecnicaUI consultarCompetenciaTecnicaUI = loaderConsultarCompetenciaTecnica.getController();
+            consultarCompetenciaTecnicaUI.associarParentUI(this);
 
         } catch (IOException exception) {
             exception.printStackTrace();
