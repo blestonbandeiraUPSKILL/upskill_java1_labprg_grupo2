@@ -47,7 +47,7 @@ public class RegistarCategoriaController {
         return repositorioCategoriaTarefa.getAll();
     }
 
-    public List<Categoria> findByAreaActividade(String codigoAreaActividade) {
+    public List<Categoria> findByAreaActividade(String codigoAreaActividade) throws SQLException{
         return repositorioCategoriaTarefa.findByAreaActividade(codigoAreaActividade);
     }
 

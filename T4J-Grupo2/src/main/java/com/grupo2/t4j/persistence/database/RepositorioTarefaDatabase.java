@@ -45,7 +45,7 @@ public class RepositorioTarefaDatabase implements RepositorioTarefa {
     }
 
     @Override
-    public Tarefa findByReferencia(String referencia) {
+    public Tarefa findByReferenciaENIF(String referencia, String NIF) {
         return null;
     }
 

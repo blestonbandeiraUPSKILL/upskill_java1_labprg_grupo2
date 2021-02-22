@@ -19,6 +19,8 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class ColaboradorLogadoUI implements Initializable {
 
@@ -67,7 +69,11 @@ public class ColaboradorLogadoUI implements Initializable {
         cmbAreaActividade.setOnAction(new EventHandler<ActionEvent>() {
            @Override
            public void handle(ActionEvent event) {
-               updateCmbCategoriasTarefaLista(event);
+               try {
+                   updateCmbCategoriasTarefaLista(event);
+               } catch (SQLException exception) {
+                   exception.printStackTrace();
+               }
            }
         });
 
@@ -82,7 +88,7 @@ public class ColaboradorLogadoUI implements Initializable {
 
     }
     
-    public void updateCmbCategoriasTarefaLista(ActionEvent actionEvent) {
+    public void updateCmbCategoriasTarefaLista(ActionEvent actionEvent) throws SQLException{
         List<Categoria> listaCategoriasTarefa =
                 registarCategoriaController.findByAreaActividade(
                 cmbAreaActividade.getSelectionModel().getSelectedItem().getCodigo());

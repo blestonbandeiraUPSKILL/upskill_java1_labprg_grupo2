@@ -25,7 +25,7 @@ public interface RepositorioTarefa {
 
     boolean save(Tarefa tarefa);
 
-    Tarefa findByReferencia(String referencia);
+    Tarefa findByReferenciaENIF(String referencia, String NIF);
 
 
     List<Tarefa> findByCategoria (String codigoCategoria);
