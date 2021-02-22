@@ -18,10 +18,6 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TableColumn;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.*;
@@ -49,15 +45,7 @@ public class AdicionarHabilitacaoAcademicaUI implements Initializable {
 
     @FXML private TextField txtMedia;
     
-    @FXML private TableView<HabilitacaoAcademica> tabelaHabilitacao;
-    
-    @FXML private TableColumn<HabilitacaoAcademica, String> colunaGrau;
-    
-    @FXML private TableColumn<HabilitacaoAcademica, String> colunaDesignacao;
-    
-    @FXML private TableColumn<HabilitacaoAcademica, String> colunaInstituicao;
-
-    @FXML private TableColumn<HabilitacaoAcademica, Double> colunaMedia;
+   @FXML private ListView<HabilitacaoAcademica> listaHabilitacaoFreelancer;
      
     @FXML private Button btnAddHabilitacao;
     
@@ -82,11 +70,7 @@ public class AdicionarHabilitacaoAcademicaUI implements Initializable {
         adicionarStage.initModality(Modality.APPLICATION_MODAL);;
         adicionarStage.setResizable(false);
     }  
-    
-    private ObservableList<HabilitacaoAcademica> listaHabilitacoes() {
-        return FXCollections.observableArrayList();
-    }
-    
+   
     @FXML
     void addHabilitacao(ActionEvent event) {
 

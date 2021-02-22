@@ -12,8 +12,6 @@ package com.grupo2.t4j.model;
 
 import com.grupo2.t4j.exception.*;
 import java.io.Serializable;
-import java.util.Calendar;
-import java.util.List;
 
 /**
  *
@@ -139,5 +137,13 @@ public class Freelancer extends Utilizador implements Serializable{
                 super.getNome(), super.getEmail().getEmailText(), 
                 nif, telefone, codigoEnderecoPostal.toString());
     }
-
+    
+     /**
+     * Representação textual da classe Freelancer para a ListView
+     * @return Nome, email e NIF do Freelancer
+     */   
+    public String toStringView(){
+        return String.format("Nome: %s | Email: %s | NIF: %s", super.getNome(), 
+                super.getEmail().getEmailText(), nif);
+    }
 }

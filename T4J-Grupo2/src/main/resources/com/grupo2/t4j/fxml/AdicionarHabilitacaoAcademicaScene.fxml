@@ -68,17 +68,7 @@
                                                    </VBox.margin>
                                                 </TextField>
                                                 <Label text="Habilitações Acadêmicas Registadas" />
-                                                <TableView fx:id="tabelaHabilitacao" prefHeight="200.0" prefWidth="200.0">
-                                                  <columns>
-                                                    <TableColumn fx:id="colunaGrau" prefWidth="74.0" text="Grau" />
-                                                    <TableColumn fx:id="colunaDesignacao" prefWidth="281.0" text="Designação" />
-                                                      <TableColumn fx:id="colunaInstituicao" prefWidth="231.0" text="Instituição" />
-                                                      <TableColumn fx:id="colunaMedia" prefWidth="73.0" text="Média" />
-                                                  </columns>
-                                                   <VBox.margin>
-                                                      <Insets bottom="5.0" top="5.0" />
-                                                   </VBox.margin>
-                                                </TableView>
+                                                <ListView fx:id="listaHabilitacaoFreelancer" prefHeight="200.0" prefWidth="200.0" />
                                                 <Label text="Grau de Habilitação Acadêmica" />
                                                 <TextField fx:id="txtGrau" promptText="(p.e. Licenciatura, Mestrado, Doutoramento, Pós-graduação,Técnico, etc)">
                                                    <VBox.margin>
