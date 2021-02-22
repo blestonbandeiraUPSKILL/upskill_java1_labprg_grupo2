@@ -75,6 +75,13 @@
                            <font>
                               <Font name="Calibri" size="12.0" />
                            </font>
+                           <tooltip>
+                              <Tooltip text="Quero registar a minha Organização">
+                                 <font>
+                                    <Font size="12.0" />
+                                 </font>
+                              </Tooltip>
+                           </tooltip>
                         </Button>
                         <Button fx:id="btnSair" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#sairApp" styleClass="btnSair" text="Sair da Aplicação" textFill="WHITE" VBox.vgrow="NEVER">
                            <padding>
@@ -86,6 +93,13 @@
                            <VBox.margin>
                               <Insets top="10.0" />
                            </VBox.margin>
+                           <tooltip>
+                              <Tooltip text="Logout">
+                                 <font>
+                                    <Font size="12.0" />
+                                 </font>
+                              </Tooltip>
+                           </tooltip>
                         </Button>
                      </children>
                      <FlowPane.margin>
@@ -102,7 +116,6 @@
             <FlowPane alignment="CENTER" stylesheets="@../style/app.css" BorderPane.alignment="CENTER">
                <children>
                   <Button fx:id="btnLogin" alignment="CENTER" mnemonicParsing="false" onAction="#login" styleClass="btnLogin" stylesheets="@../style/app.css" text="Entrar">
-                       <tooltip><Tooltip text="Login" /></tooltip>
                      <padding>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </padding>
@@ -112,6 +125,13 @@
                      <FlowPane.margin>
                         <Insets left="5.0" right="5.0" />
                      </FlowPane.margin>
+                     <tooltip>
+                        <Tooltip text="Entrar">
+                           <font>
+                              <Font size="12.0" />
+                           </font>
+                        </Tooltip>
+                     </tooltip>
                   </Button>
                </children>
             </FlowPane>
