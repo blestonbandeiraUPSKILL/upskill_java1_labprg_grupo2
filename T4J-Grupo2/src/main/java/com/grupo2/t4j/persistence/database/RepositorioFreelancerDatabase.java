@@ -64,6 +64,11 @@ public class RepositorioFreelancerDatabase implements RepositorioFreelancer{
     public Freelancer findByNif(String nif) throws SQLException{
         return null;
     }
+    
+     @Override
+    public Freelancer findByEmail(String emailFree) {
+        return null;
+    }
 
     @Override
     public ArrayList<Freelancer> getAll() throws SQLException {

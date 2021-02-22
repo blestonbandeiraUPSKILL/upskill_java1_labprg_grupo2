@@ -1,17 +1,10 @@
 package com.grupo2.t4j.ui;
 
-import com.grupo2.t4j.controller.GestaoUtilizadoresController;
-import com.grupo2.t4j.controller.RegistarAreaActividadeController;
-import com.grupo2.t4j.controller.RegistarCategoriaController;
-import com.grupo2.t4j.controller.RegistarCompetenciaTecnicaController;
-import com.grupo2.t4j.controller.RegistarFreelancerController;
+import com.grupo2.t4j.controller.*;
 import com.grupo2.t4j.files.FicheiroRepositorioAreaActividade;
 import com.grupo2.t4j.files.FileChooserT4J;
-import com.grupo2.t4j.model.AreaActividade;
-import com.grupo2.t4j.model.Categoria;
-import com.grupo2.t4j.model.CompetenciaTecnica;
-import com.grupo2.t4j.model.Freelancer;
-import com.grupo2.t4j.persistence.inmemory.RepositorioAreaActividadeInMemory;
+import com.grupo2.t4j.model.*;
+import com.grupo2.t4j.persistence.inmemory.*;
 import java.io.File;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -48,7 +41,7 @@ public class AdministrativoLogadoUI implements Initializable {
     private RegistarCompetenciaTecnicaController registarCompetenciaTecnicaController;
     private GestaoUtilizadoresController gestaoUtilizadoresController;
     private RegistarFreelancerController registarFreelancerController;
-
+    private RegistarHabilitacaoAcademicaController registarHabilitacaoAcademicaController;
 
     private FicheiroRepositorioAreaActividade ficheiroAt;
     private RepositorioAreaActividadeInMemory repositorioAreaActividadeInMemory;
@@ -62,7 +55,7 @@ public class AdministrativoLogadoUI implements Initializable {
     @FXML ListView<AreaActividade> listaAreasActividade;
     @FXML ListView<Categoria> listaCategorias;
     @FXML ListView<CompetenciaTecnica> listViewCompetenciasTecnicas;
-    @FXML ListView<String> listaFreelancer;
+    @FXML ListView<Freelancer> listaFreelancer;
 
 
     public void associarParentUI(StartingPageUI startingPageUI) {
@@ -80,6 +73,7 @@ public class AdministrativoLogadoUI implements Initializable {
         registarCategoriaController = new RegistarCategoriaController();
         registarCompetenciaTecnicaController = new RegistarCompetenciaTecnicaController();
         registarFreelancerController = new RegistarFreelancerController();
+        registarHabilitacaoAcademicaController = new  RegistarHabilitacaoAcademicaController();
         gestaoUtilizadoresController = new GestaoUtilizadoresController();
                      
         try {
@@ -100,11 +94,11 @@ public class AdministrativoLogadoUI implements Initializable {
             exception.printStackTrace();
         }
 
-     /*   try {
+        try {
             updateListViewFreelancer();
         } catch (SQLException exception) {
             exception.printStackTrace();
-        }*/
+        }
     }
 
     public void addAreaActividade(ActionEvent actionEvent) throws IOException {
@@ -197,7 +191,30 @@ public class AdministrativoLogadoUI implements Initializable {
 
     public void addHabilitacaoFreelancer(ActionEvent actionEvent) {
         try {
-            FXMLLoader loaderAddFreelancer = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/AdicionarHabilitacaoAcademicaScene.fxml"));
+            FXMLLoader loaderAddHabilitacaoFreelancer = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/AdicionarHabilitacaoAcademicaScene.fxml"));
+            Parent rootAddHabilitacaoFreelancer = loaderAddHabilitacaoFreelancer.load();
+            sceneAddHabilitacaoFreelancer = new Scene(rootAddHabilitacaoFreelancer);
+            sceneAddHabilitacaoFreelancer.getStylesheets().add("/com/grupo2/t4j/style/app.css");
+            AdicionarHabilitacaoAcademicaUI adicionarHabilitacaoFreelancerUI = loaderAddHabilitacaoFreelancer.getController();
+            adicionarHabilitacaoFreelancerUI.associarParentUI(this);
+
+        } catch (IOException exception) {
+            exception.printStackTrace();
+            AlertsUI.criarAlerta(Alert.AlertType.ERROR,
+                    MainApp.TITULO_APLICACAO,
+                    "Erro",
+                    exception.getMessage());
+        }
+
+        adicionarStage.setScene(sceneAddHabilitacaoFreelancer);
+        adicionarStage.setTitle("Adicionar Habilitação Acadêmica de Freelancer");
+        adicionarStage.show();
+        
+    }
+
+    public void addCompetenciaFreelancer(ActionEvent actionEvent) {
+         try {
+            FXMLLoader loaderAddFreelancer = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/AdicionarFreelancerScene.fxml"));
             Parent rootAddFreelancer = loaderAddFreelancer.load();
             sceneAddFreelancer = new Scene(rootAddFreelancer);
             sceneAddFreelancer.getStylesheets().add("/com/grupo2/t4j/style/app.css");
@@ -216,9 +233,6 @@ public class AdministrativoLogadoUI implements Initializable {
         adicionarStage.setTitle("Adicionar Freelancer");
         adicionarStage.show();
         
-    }
-
-    public void addCompetenciaFreelancer(ActionEvent actionEvent) {
     }
 
 
@@ -265,9 +279,9 @@ public class AdministrativoLogadoUI implements Initializable {
 
     }
     
- /*   public void updateListViewFreelancer() throws SQLException {
-         listaFreelancer.getItems().setAll(registarFreelancerController.getAllView());
-    }*/
+    public void updateListViewFreelancer() throws SQLException {
+         listaFreelancer.getItems().setAll(registarFreelancerController.getAll());
+    }
     
     public void updateListViewAreasActividade() throws SQLException {
         listaAreasActividade.getItems().setAll(registarAreaActividadeController.getAll());

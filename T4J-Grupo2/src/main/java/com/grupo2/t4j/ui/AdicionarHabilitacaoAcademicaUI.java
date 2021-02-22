@@ -9,7 +9,7 @@ package com.grupo2.t4j.ui;
  *
  * @author CAD
  */
-import com.grupo2.t4j.controller.RegistarFreelancerController;
+import com.grupo2.t4j.controller.RegistarHabilitacaoAcademicaController;
 import java.net.URL;
 import java.util.ResourceBundle;
 import com.grupo2.t4j.model.*;
@@ -30,7 +30,7 @@ import javafx.stage.WindowEvent;
 public class AdicionarHabilitacaoAcademicaUI implements Initializable {
 
     private AdministrativoLogadoUI administrativoLogadoUI;
-    private RegistarFreelancerController registarFreelancerController;
+    private RegistarHabilitacaoAcademicaController registarHabilitacaoAcademicaController;
     private Stage adicionarStage;
     
     @FXML private TextField txtNomeFreelancer;
@@ -63,9 +63,9 @@ public class AdicionarHabilitacaoAcademicaUI implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
-        registarFreelancerController = new RegistarFreelancerController();
+        registarHabilitacaoAcademicaController = new RegistarHabilitacaoAcademicaController();
         
-        //colunaGrau.setCellValueFactory(clbck);
+   
         adicionarStage = new Stage();
         adicionarStage.initModality(Modality.APPLICATION_MODAL);;
         adicionarStage.setResizable(false);
