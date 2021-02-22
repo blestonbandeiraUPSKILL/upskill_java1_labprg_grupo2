@@ -78,12 +78,16 @@ public class ColaboradorLogadoUI implements Initializable {
         });
 
         ListView<Tarefa> listViewTarefas = new ListView<>();
-        listViewTarefas.getItems().addAll(registarTarefaController.getAll());
+        try {
+            listViewTarefas.getItems().addAll(registarTarefaController.getAll());
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }
 
 
     }
 
-    public void updateListViewTarefas(ActionEvent actionEvent) {
+    public void updateListViewTarefas(ActionEvent actionEvent) throws SQLException {
         listViewTarefas.getItems().setAll(registarTarefaController.getAll());
 
     }

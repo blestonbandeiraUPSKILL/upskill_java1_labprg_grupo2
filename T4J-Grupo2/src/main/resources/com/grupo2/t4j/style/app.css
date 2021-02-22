@@ -1,28 +1,64 @@
+.BorderPane {
+    -font-family: Calibri;
+    -fx-background-color: #FFFFF0;
+}
+
 .btnToggle {
     -fx-background-color: #CCCCCC;
     -fx-text-fill: #000000;
+        -fx-cursor: hand;
 }
 
 .btnLogin {
     -fx-background-color: #191970;
     -fx-text-fill: #ffffff;
+    -fx-cursor: hand;
 }
 
 .btnRegistarOrganizacao {
     -fx-background-color: #20B2AA;
     -fx-text-fill: #ffffff;
+        -fx-cursor: hand;
 }
 
 .btnSair {
     -fx-background-color: #8B0000;
     -fx-text-fill: #ffffff;
+        -fx-cursor: hand;
+}
+
+.btnSair:hover {
+    -fx-background-color: #383838;
+    -fx-scale-y: 1.1;
+}
+
+.btnSair:pressed {
+    -fx-scale-y: 0.9;
+    -fx-scale-x: 0.9;
 }
 
 .lblLogin {
     -fx-text-fill: #ff0000;
 }
 
-.BorderPane {
-    font-family: Calibri;
-    -fx-background-color: #B0C4DE;
+.cmbAreaActividadeListaTarefas {
+    
 }
+
+.lblUser {
+    -fx-background-color: #191970;
+    -fx-text-fill: #FFFFFF;
+}
+
+.AnchorPane {
+    -fx-background-color: #FFFFF0;
+}
+
+.FlowPane {
+    -fx-background-color: #FFFFF0;
+}
+
+.Tab {
+    -fx-background-color: #FFFFF0;
+}
+
