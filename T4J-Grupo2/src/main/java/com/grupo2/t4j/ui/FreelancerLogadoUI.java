@@ -84,7 +84,9 @@ public class FreelancerLogadoUI implements Initializable {
     }
     
     public void updateTableViewAnuncio(){
-        ObservableList<Anuncio> anunciosElegiveis = FXCollections.observableArrayList(efectuarCandidaturaController.findAnunciosElegiveis(startingPageUI.txtEmailLogin.getText()));
+        ObservableList<Anuncio> anunciosElegiveis = FXCollections.observableArrayList(
+                efectuarCandidaturaController.findAnunciosElegiveis(
+                startingPageUI.txtEmailLogin.getText()));
         tableAnuncios.setItems(anunciosElegiveis);
     }
 }
