@@ -1,5 +1,5 @@
-CREATE OR REPLACE PROCEDURE findByCodigoCategoria(
-    p_codigoCategoria categoria.codigoCategoria%type
+CREATE OR REPLACE PROCEDURE findCategoriaByAreaActividade(
+    p_codigoAreaActividade categoria.codigoAreaActividade%type   
     )
 
 IS
@@ -9,7 +9,7 @@ IS
 BEGIN
     SELECT count(*) INTO v_count
     FROM Categoria
-    WHERE codigoCategoria LIKE p_codigoCategoria;
+    WHERE codigoAreaActividade LIKE p_codigoAreaActividade;
     
     IF v_count != 0
     THEN

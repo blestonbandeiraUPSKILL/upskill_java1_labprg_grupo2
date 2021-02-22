@@ -11,7 +11,7 @@ BEGIN
     From GrauProficiencia
     WHERE codigocompetenciatecnica LIKE p_codigoCompetenciaTecnica;
     
-    IF v_count = 0
+    IF v_count != 0
     THEN
         RAISE ex_GrauProficiencia;
     END IF;
@@ -19,7 +19,7 @@ BEGIN
     EXCEPTION WHEN
         ex_GrauProficiencia
     THEN
-        RAISE_APPLICATION_ERROR(-20001, 'Grau de Proficiência inexistente.');
+        RAISE_APPLICATION_ERROR(-20001, 'Grau de Proficiência já existe.');
 
 END;
 /

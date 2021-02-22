@@ -195,14 +195,14 @@ public class RepositorioAreaActividadeDatabase implements RepositorioAreaActivid
             callableStatement.setString(1, codigo);
             callableStatement.executeUpdate();
 
-            return new AreaActividade();
+            return null;
 
         } catch (SQLException exception) {
             exception.printStackTrace();
             exception.getSQLState();
-
-            return null;
+            
         }
+        return new AreaActividade();
     }
 
 

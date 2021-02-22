@@ -11,7 +11,7 @@ BEGIN
     FROM AreaActividade
     WHERE codigoAreaActividade LIKE p_codigo;
     
-    IF v_count = 0
+    IF v_count != 0
     THEN
         RAISE ex_AreaActividade;
     END IF;
@@ -19,7 +19,7 @@ BEGIN
     EXCEPTION WHEN
         ex_AreaActividade
     THEN
-        RAISE_APPLICATION_ERROR(-20001, 'Área de Actividade inexistente.');
+        RAISE_APPLICATION_ERROR(-20001, 'Área de Actividade já existe.');
 
 END;
 /
