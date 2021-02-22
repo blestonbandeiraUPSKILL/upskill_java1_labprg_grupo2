@@ -81,11 +81,12 @@ public class ConsultarCompetenciaTecnicaUI implements Initializable {
     public void transferData() throws SQLException {
 
         String codigoCompetenciaTecnica = administrativoLogadoUI.getCodigoCompetenciaTecnica();
+        String codigoAreaActividade = administrativoLogadoUI.listViewCompetenciasTecnicas.getSelectionModel().getSelectedItem().getCodigoAreaActividade();
         txtCodigoCompetenciaTecnica.setText(codigoCompetenciaTecnica);
         txtDescricaoBreve.setText(administrativoLogadoUI.listViewCompetenciasTecnicas.getSelectionModel().getSelectedItem().getDescricaoBreve());
         txtDescricaoDetalhada.setText(administrativoLogadoUI.listViewCompetenciasTecnicas.getSelectionModel().getSelectedItem().getDescricaoDetalhada());
         listViewGrausAplicaveis.getItems().setAll(registarGrauProficienciaController.findByCompetenciaTecnica(txtCodigoCompetenciaTecnica.getText()));
-        txtAreaActividade.setText(registarAreaActividadeController.findByCodigo(administrativoLogadoUI.listViewCompetenciasTecnicas.getSelectionModel().getSelectedItem().getCodigoAreaActividade()).getDescBreve());
+        txtAreaActividade.setText(registarAreaActividadeController.findByCodigo(codigoAreaActividade).getDescBreve());
     }
 
 
