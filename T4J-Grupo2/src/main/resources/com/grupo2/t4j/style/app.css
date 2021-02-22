@@ -1,6 +1,6 @@
 .BorderPane {
     -font-family: Calibri;
-    -fx-background-color: #FFFACD;
+    -fx-background-color: #FFFFF0;
 }
 
 .btnToggle {
@@ -31,14 +31,21 @@
     
 }
 
+.lblUser {
+    -fx-background-color: #191970;
+    -fx-text-fill: #FFFFFF;
+}
+
 .AnchorPane {
-    -fx-background-color: #FFFACD;
+    -fx-background-color: #FFFFF0;
 }
 
 .FlowPane {
-    -fx-background-color: #FFFACD;
+    -fx-background-color: #FFFFF0;
 }
 
-.BorderPane {}
+.BorderPane {
+    fx-background-color: #FF0000;
+}
 
 .TabPane {}
