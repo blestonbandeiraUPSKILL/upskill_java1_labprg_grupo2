@@ -84,6 +84,13 @@ public class RepositorioGrauProficienciaInMemory implements Serializable, Reposi
     public GrauProficiencia findByGrau(String grau) {
         return null;
     }
+
+    @Override
+    public GrauProficiencia findByGrauECompetencia(String grau, String codigoCompetenciaTecnica) throws SQLException {
+        return null;
+    }
+
+
 /*
     @Override
     public GrauProficiencia findByGrau(String grau, String codigoCompetenciaTecnica) {

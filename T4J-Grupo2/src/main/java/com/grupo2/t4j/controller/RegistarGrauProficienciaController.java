@@ -47,5 +47,9 @@ public class RegistarGrauProficienciaController {
     public GrauProficiencia findByValor(String grau) throws SQLException {
         return repositorioGrauProficiencia.findByGrau(grau);
     }
+
+    public GrauProficiencia findByGrauECompetenciaTecnica(String grau, String codigoCompetenciaTecnica) throws SQLException {
+        return repositorioGrauProficiencia.findByGrauECompetencia(grau, codigoCompetenciaTecnica);
+    }
     
 }

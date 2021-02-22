@@ -28,5 +28,5 @@ public interface RepositorioGrauProficiencia {
     
     GrauProficiencia findByGrau(String grau) throws SQLException;
 
-    //boolean findByValorECompetenciaTecnica(String grau, String codigoCompetenciaTecnica) throws SQLException;
+    GrauProficiencia findByGrauECompetencia(String grau, String codigoCompetenciaTecnica) throws SQLException;
 }

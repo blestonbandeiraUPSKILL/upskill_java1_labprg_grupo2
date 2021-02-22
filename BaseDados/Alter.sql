@@ -144,4 +144,10 @@ ALTER TABLE CaracterCT
 
 --ALTER TABLE GrauProficiencia
 --    ADD grau varchar(10);
+
+ALTER TABLE GrauProficiencia
+    drop constraint uk_GrauProficiencia_grau;
     
+ALTER TABLE GrauProficiencia
+    ADD CONSTRAINT uk_GrauProficiencia_grau_codigoCompetenciaTecnica 
+        UNIQUE (grau, codigoCompetenciaTecnica);

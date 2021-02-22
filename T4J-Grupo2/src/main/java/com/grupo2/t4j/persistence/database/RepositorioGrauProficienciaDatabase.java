@@ -1,7 +1,6 @@
 package com.grupo2.t4j.persistence.database;
 
 import com.grupo2.t4j.exception.GrauProficienciaDuplicadoException;
-import com.grupo2.t4j.model.CompetenciaTecnica;
 import com.grupo2.t4j.model.GrauProficiencia;
 import com.grupo2.t4j.persistence.RepositorioGrauProficiencia;
 import com.grupo2.t4j.utils.DBConnectionHandler;
@@ -44,7 +43,7 @@ public class RepositorioGrauProficienciaDatabase implements RepositorioGrauProfi
                 "{CALL createGrauProficiencia(?, ?, ?) }"
         );
 
-        if (findByGrau(grauProficiencia.getGrau()) == null) {
+        if (findByGrauECompetencia(grauProficiencia.getGrau(), grauProficiencia.getCodigoCompetenciaTecnica()) == null) {
             try {
                 connection.setAutoCommit(false);
 
@@ -83,19 +82,20 @@ public class RepositorioGrauProficienciaDatabase implements RepositorioGrauProfi
         return null;
     }
 
-    @Override
-    public GrauProficiencia findByGrau(String grau) throws SQLException {
+
+    public GrauProficiencia findByGrauECompetencia(String grau, String codigoCompetenciaTecnica) throws SQLException {
         DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
         Connection connection = dbConnectionHandler.openConnection();
 
         CallableStatement callableStatement = connection.prepareCall(
-                "{ CALL findByGrau(?) }"
+                "{ CALL findByGrau(?, ?) }"
         );
 
         try {
             connection.setAutoCommit(false);
 
             callableStatement.setString(1, grau);
+            callableStatement.setString(2, codigoCompetenciaTecnica);
 
             callableStatement.executeUpdate();
 
@@ -109,7 +109,6 @@ public class RepositorioGrauProficienciaDatabase implements RepositorioGrauProfi
         }
 
     }
-
 
 
     public List<GrauProficiencia> getAll(String codigoCompetenciaTecnica) throws SQLException {
@@ -196,6 +195,11 @@ public class RepositorioGrauProficienciaDatabase implements RepositorioGrauProfi
         }
 
         return grausProficiencia;
+    }
+
+    @Override
+    public GrauProficiencia findByGrau(String grau) throws SQLException {
+        return null;
     }
 
 
