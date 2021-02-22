@@ -102,6 +102,7 @@
             <FlowPane alignment="CENTER" stylesheets="@../style/app.css" BorderPane.alignment="CENTER">
                <children>
                   <Button fx:id="btnLogin" alignment="CENTER" mnemonicParsing="false" onAction="#login" styleClass="btnLogin" stylesheets="@../style/app.css" text="Entrar">
+                       <tooltip><Tooltip text="Login" /></tooltip>
                      <padding>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </padding>
