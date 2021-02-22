@@ -1,3 +1,8 @@
+.BorderPane {
+    font-family: Calibri;
+    -fx-background-color: #B0C4DE;
+}
+
 .btnToggle {
     -fx-background-color: #CCCCCC;
     -fx-text-fill: #000000;
@@ -22,7 +27,3 @@
     -fx-text-fill: #ff0000;
 }
 
-.BorderPane {
-    font-family: Calibri;
-    -fx-background-color: #B0C4DE;
-}
