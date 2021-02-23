@@ -34,6 +34,7 @@ public class AdministrativoLogadoUI implements Initializable {
     private Scene sceneAddFreelancer;
     private Scene sceneConsultarCompetenciaTecnica;
     private Scene sceneConsultarAreaActividade;
+    private Scene sceneConsultarCategoria;
     private Scene sceneAddHabilitacaoFreelancer;
     private Scene sceneAddReconhecimentoGP;
     private Scene sceneStartingPage;
@@ -365,6 +366,35 @@ public class AdministrativoLogadoUI implements Initializable {
         }
 
 
+
+    }
+    
+    @FXML
+    void consultarCategoriaAction(ActionEvent event) throws SQLException {
+        
+        try {
+                
+        FXMLLoader loaderConsultarCategoria = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/ConsultarCategoriaScene.fxml"));
+            Parent rootConsultarCategoria = loaderConsultarCategoria.load();
+            ConsultarCategoriaUI consultarCategoriaUI = loaderConsultarCategoria.getController();
+            consultarCategoriaUI.associarParentUI(this);
+            consultarCategoriaUI.transferData();
+            sceneConsultarCategoria = new Scene(rootConsultarCategoria);
+
+
+            adicionarStage.setScene(sceneConsultarCategoria);
+            adicionarStage.setTitle("Consultar Categoria");
+            adicionarStage.show();
+            //btnLogin.getScene().getWindow().hide();
+
+
+        } catch (IOException | SQLException exception) {
+            exception.printStackTrace();
+            AlertsUI.criarAlerta(Alert.AlertType.ERROR,
+                    MainApp.TITULO_APLICACAO,
+                    "Erro",
+                    exception.getMessage());
+        }
 
     }
 
