@@ -209,8 +209,8 @@ public class HabilitacaoAcademica {
      */
     @Override
     public String toString(){
-        return String.format("Grau: %-15s |Designação do Curso:%-30s "
-                + "|Média do curso: %-5d", grau, designacaoCurso, mediaCurso);
+        return String.format("Grau: %-15s |Designação do Curso: %-30s "
+                + "|Média do curso: %-5.2f", grau, designacaoCurso, mediaCurso);
     } 
     
     /**

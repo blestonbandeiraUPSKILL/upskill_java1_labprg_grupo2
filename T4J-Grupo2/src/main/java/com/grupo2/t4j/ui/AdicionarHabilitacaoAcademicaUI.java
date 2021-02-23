@@ -92,6 +92,7 @@ public class AdicionarHabilitacaoAcademicaUI implements Initializable {
             public void handle(ActionEvent event) {
                 try {
                     updateTxtNomeFreelancer(event);
+                    //listaHabilitacaoFreelancer.
                 } catch (SQLException exception) {
                     exception.printStackTrace();
                 }

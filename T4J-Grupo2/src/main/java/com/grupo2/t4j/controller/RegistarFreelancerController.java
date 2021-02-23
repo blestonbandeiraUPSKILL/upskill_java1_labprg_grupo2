@@ -39,6 +39,7 @@ public class RegistarFreelancerController {
         Password password = new Password(algoritmoGeradorPasswords.geraPassword());
         
         EnderecoPostal endereco = new EnderecoPostal(arruamento, numeroPorta, localidade, codPostal);
+        
         Freelancer freelancer = new Freelancer(new Email(emailFree), nome, password, nif, telefone, endereco.getCodigoEnderecoPostal());
 
         registarFreelancerComoUtilizador(freelancer);

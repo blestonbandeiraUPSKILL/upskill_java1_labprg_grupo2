@@ -31,6 +31,8 @@ public class RepositorioHabilitacaoAcademicaInMemory  implements Serializable, R
      */
     private List<HabilitacaoAcademica> listaHabilitacoesAcademicas;
     
+    private int cont = 0;
+    
     /**
      * Inicializa o Repositório de Habilitações Acadêmicas de uma plataforma
      *
@@ -51,35 +53,35 @@ public class RepositorioHabilitacaoAcademicaInMemory  implements Serializable, R
     }
     
     @Override
-    public boolean save(int idHabilitacao, String grau, String designacaoCurso,
+    public boolean save(String grau, String designacaoCurso,
            String nomeInstituicao, double mediaCurso, String emailFreelancer) throws HabilitacaoAcademicaDuplicadaException {
-        HabilitacaoAcademica ha1 = findById(idHabilitacao);
+        /*HabilitacaoAcademica ha1 = findById(idHabilitacao);*/
         HabilitacaoAcademica ha2 = findByGrauDesigInst(grau, designacaoCurso, 
                 nomeInstituicao, emailFreelancer);
-        if (ha1 == null && ha2 == null) {
-            HabilitacaoAcademica habilitacao = new HabilitacaoAcademica(idHabilitacao,
+        if (ha2 == null) {
+            HabilitacaoAcademica habilitacao = new HabilitacaoAcademica(cont,
                     grau, designacaoCurso, nomeInstituicao, mediaCurso, emailFreelancer);
             this.listaHabilitacoesAcademicas.add(habilitacao);
+            contador();
             return true;
         } else {
-            throw new HabilitacaoAcademicaDuplicadaException(idHabilitacao + ": "
-                    + "Habilitação Acadêmica já registada!");
+            throw new HabilitacaoAcademicaDuplicadaException("Habilitação Acadêmica já registada!");
         }
     }
 
     @Override
     public boolean save(HabilitacaoAcademica habilitacaoAcademica) throws HabilitacaoAcademicaDuplicadaException {
-        HabilitacaoAcademica ha1 = findById(habilitacaoAcademica.getIdHabilitacao());
+        //HabilitacaoAcademica ha1 = findById(habilitacaoAcademica.getIdHabilitacao());
         HabilitacaoAcademica ha2 = findByGrauDesigInst(habilitacaoAcademica.getGrau(), 
                 habilitacaoAcademica.getDesignacaoCurso(), habilitacaoAcademica.getNomeInstituicao(),
                 habilitacaoAcademica.getEmailFreelancer());
-        if (ha1 == null && ha2 == null) {
+        if (ha2 == null) {
             HabilitacaoAcademica habilitacao = new HabilitacaoAcademica(habilitacaoAcademica);
             this.listaHabilitacoesAcademicas.add(habilitacao);
+            contador();
             return true;
         } else {
-            throw new HabilitacaoAcademicaDuplicadaException(habilitacaoAcademica.getIdHabilitacao() + ": "
-                    + "Habilitação Acadêmica já registada!");
+            throw new HabilitacaoAcademicaDuplicadaException("Habilitação Acadêmica já registada!");
         }        
     }
 
@@ -111,16 +113,22 @@ public class RepositorioHabilitacaoAcademicaInMemory  implements Serializable, R
         return totalHabilitacoesAdicionadas;
     }
     
+    @Override
     public HabilitacaoAcademica findByGrauDesigInst(String grau, String designacaoCurso,
            String nomeInstituicao, String emailFreelancer){
         for (int i = 0; i < this.listaHabilitacoesAcademicas.size(); i++) {
             HabilitacaoAcademica habilitacao = this.listaHabilitacoesAcademicas.get(i);
-            if (habilitacao.getEmailFreelancer() == emailFreelancer && habilitacao.getGrau() == grau
-                && habilitacao.getDesignacaoCurso() == designacaoCurso && 
-                    habilitacao.getNomeInstituicao() == nomeInstituicao) {
-                return habilitacao;
+            if (habilitacao.getEmailFreelancer().equals(emailFreelancer) && habilitacao.getGrau().equals(grau)){
+                if(habilitacao.getDesignacaoCurso().equals(designacaoCurso) && 
+                   habilitacao.getNomeInstituicao().equals(nomeInstituicao)) {
+                    return habilitacao;
+                }
             }
         }
         return null;
+    }
+    
+    public int contador(){
+        return cont++;        
     }
 }

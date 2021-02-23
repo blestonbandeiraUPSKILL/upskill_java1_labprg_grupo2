@@ -18,7 +18,7 @@ import java.util.ArrayList;
 
 public interface RepositorioHabilitacaoAcademica {
     
-    boolean save(int idHabilitacao, String grau, String designacaoCurso,
+    boolean save(String grau, String designacaoCurso,
            String nomeInstituicao, double mediaCurso, String emailFreelancer) throws HabilitacaoAcademicaDuplicadaException, SQLException;
 
     boolean save(HabilitacaoAcademica habilitacaoAcademica) throws HabilitacaoAcademicaDuplicadaException, SQLException;

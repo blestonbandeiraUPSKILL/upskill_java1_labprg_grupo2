@@ -34,7 +34,7 @@ public class RegistarHabilitacaoAcademicaController {
 
         HabilitacaoAcademica habilitacao = new HabilitacaoAcademica(grau, designacaoCurso, nomeInstituicao, mediaCurso);
 
-        return repositorioHabilitacaoAcademica.save(habilitacao.getIdHabilitacao(),grau, designacaoCurso, nomeInstituicao, mediaCurso,
+        return repositorioHabilitacaoAcademica.save(grau, designacaoCurso, nomeInstituicao, mediaCurso,
                 habilitacao.getEmailFreelancer());
     }
 

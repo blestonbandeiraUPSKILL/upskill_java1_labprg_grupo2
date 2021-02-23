@@ -52,7 +52,7 @@ public class RepositorioHabilitacaoAcademicaDatabase implements RepositorioHabil
 
 
     @Override
-    public boolean save(int idHabilitacao, String grau, String designacaoCurso,
+    public boolean save(String grau, String designacaoCurso,
            String nomeInstituicao, double mediaCurso, String emailFreelancer) throws HabilitacaoAcademicaDuplicadaException,
             SQLException{
         
@@ -62,17 +62,16 @@ public class RepositorioHabilitacaoAcademicaDatabase implements RepositorioHabil
         CallableStatement callableStatement = connection.prepareCall(
                 "{CALL createHabilitacao(?, ?, ?, ?, ?, ?) } ");
 
-        if (findById(idHabilitacao) == null){
+        if (findByGrauDesigInst(grau, designacaoCurso, nomeInstituicao, emailFreelancer) == null){
 
             try {
                 connection.setAutoCommit(false);
 
-                callableStatement.setInt(1, idHabilitacao);
-                callableStatement.setString(2, grau);
-                callableStatement.setString(3, designacaoCurso);
-                callableStatement.setString(4, nomeInstituicao);
-                callableStatement.setDouble(5, mediaCurso);
-                callableStatement.setString(6, emailFreelancer);
+                callableStatement.setString(1, grau);
+                callableStatement.setString(2, designacaoCurso);
+                callableStatement.setString(3, nomeInstituicao);
+                callableStatement.setDouble(4, mediaCurso);
+                callableStatement.setString(5, emailFreelancer);
                                 
                 callableStatement.executeQuery();
 
@@ -105,7 +104,8 @@ public class RepositorioHabilitacaoAcademicaDatabase implements RepositorioHabil
     }
 
     @Override
-    public HabilitacaoAcademica findById(int idHabilitacao) throws SQLException{
+    public HabilitacaoAcademica findByGrauDesigInst(String grau, String designacaoCurso,
+           String nomeInstituicao, String emailFreelancer) throws SQLException{
          
         /*DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
         Connection connection = dbConnectionHandler.openConnection();
@@ -116,10 +116,10 @@ public class RepositorioHabilitacaoAcademicaDatabase implements RepositorioHabil
         try {
             connection.setAutoCommit(false);
 
-            callableStatement.setString(2, grau);
-            callableStatement.setString(3, designacaoCurso);
-            callableStatement.setString(4, nomeInstituicao);
-            callableStatement.setString(6, emailFreelancer);
+            callableStatement.setString(1, grau);
+            callableStatement.setString(2, designacaoCurso);
+            callableStatement.setString(3, nomeInstituicao);
+            callableStatement.setString(5, emailFreelancer);
             callableStatementOrg.executeQuery();
 
             return null;
@@ -137,8 +137,7 @@ public class RepositorioHabilitacaoAcademicaDatabase implements RepositorioHabil
     }
     
     @Override
-    public HabilitacaoAcademica findByGrauDesigInst(String grau, String designacaoCurso,
-           String nomeInstituicao, String emailFreelancer) throws SQLException{
+    public HabilitacaoAcademica findById(int idHabilitacao) throws SQLException{
          
         /*DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
         Connection connection = dbConnectionHandler.openConnection();
@@ -149,7 +148,7 @@ public class RepositorioHabilitacaoAcademicaDatabase implements RepositorioHabil
         try {
             connection.setAutoCommit(false);
 
-            callableStatementOrg.setInt(1, idHabilitacao);
+            callableStatementOrg.setInt(6, idHabilitacao);
             callableStatementOrg.executeQuery();
 
             return null;
