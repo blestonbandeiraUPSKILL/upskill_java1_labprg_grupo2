@@ -32,19 +32,23 @@ public class RegistarTarefaController {
     private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosDatabase();
     private RepositorioTarefa repositorioTarefa = fabricaRepositorios.getRepositorioTarefa();
 
-    public List<Tarefa> getAll() throws SQLException {
-        return repositorioTarefa.getAll();
+    public List<Tarefa> getAll(String nifOrganizacao) throws SQLException {
+        return repositorioTarefa.getAll(nifOrganizacao);
     }
 
-    public boolean registarTarefa(String codigoAreaActividade, String codigoCategoriaTarefa,
+    public boolean registarTarefa( String codigoCategoriaTarefa,
                              String referencia, String designacao,
                              String descInformal, String descTecnica,
                              int duracao, double custo, String nifOrganizacao, String emailColaborador) throws SQLException{
 
         Tarefa tarefa = new Tarefa(referencia, designacao, descInformal, 
-                descTecnica, duracao, custo, codigoAreaActividade, 
+                descTecnica, duracao, custo,
                 codigoCategoriaTarefa, nifOrganizacao, emailColaborador);
 
         return repositorioTarefa.save(tarefa);
+    }
+
+    public List<Tarefa> findByCategoria(String codigoCategoria) throws SQLException {
+        return repositorioTarefa.findByCategoria(codigoCategoria);
     }
 }

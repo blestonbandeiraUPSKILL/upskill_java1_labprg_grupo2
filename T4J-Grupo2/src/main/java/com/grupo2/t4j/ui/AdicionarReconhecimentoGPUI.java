@@ -84,7 +84,7 @@ public class AdicionarReconhecimentoGPUI  implements Initializable {
         try{                      
             
             boolean adicionou = registarReconhecimentoGPController.registarReconhecimentoGP(
-                    cmbProficiencia.getPromptText(), new Data(txtIDataValidacao.getText()),
+                    cmbProficiencia.getSelectionModel().getSelectedIndex(), new Data(txtIDataValidacao.getText()),
                     new Email(cmbEmailFreelancer.getPromptText()),cmbCompetencia.getPromptText());
 
             if(adicionou) {

@@ -10,12 +10,13 @@ import java.util.List;
 public interface RepositorioCategoriaTarefa {
 
 
-     void save(String codigoCategoria, String descBreve, String descDetalhada,
-               String codigoAreaActividade, List<CaracterizacaoCT> caracterizacaoCTS);
+    boolean save(String codigoCategoria, String descBreve,
+           String descDetalhada, String codigoAreaActividade, int idGrauProficiencia,
+           Obrigatoriedade obrigatoriedade) throws SQLException;
 
     boolean save(Categoria categoria) throws SQLException;
 
-     Categoria findByCodigo(String codigoCategoria) throws SQLException;
+    Categoria findByCodigo(String codigoCategoria) throws SQLException;
 
 
     ArrayList<Categoria> findByAreaActividade(String codigoAreaActividade)throws SQLException;

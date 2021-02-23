@@ -34,7 +34,7 @@ public class AdicionarCategoriaTarefaUI implements Initializable {
     private List<CaracterizacaoCT> caracterizacaoCTS;
 
     @FXML TextField txtDescricaoBreve;
-    @FXML TextField txtCodigo;
+    @FXML TextField txtCodigoCategoria;
     @FXML TextField txtCodigoCCT;
     @FXML TextArea txtDescricaoDetalhada;
     @FXML Button btnConfirmar;
@@ -97,17 +97,19 @@ public class AdicionarCategoriaTarefaUI implements Initializable {
                 }
             }
         });
+
+
     }
 
     public void updateCmbCompetenciasTecnicas(ActionEvent actionEvent) throws SQLException {
         String codigoAreaActividade = cmbAreaActividade.getSelectionModel().getSelectedItem().getCodigo();
-        cmbCompetenciaTecnica.getItems().addAll(
+        cmbCompetenciaTecnica.getItems().setAll(
                 registarCompetenciaTecnicaController.findByAreaActividade(codigoAreaActividade));
     }
     
     public void updateCmbGrauProficiencia(ActionEvent actionEvent) throws SQLException {
         String codigoCompetenciaTecnica = cmbCompetenciaTecnica.getSelectionModel().getSelectedItem().getCodigo();
-        cmbGrauProficiencia.getItems().addAll(
+        cmbGrauProficiencia.getItems().setAll(
                 registarGrauProficienciaController.findByCompetenciaTecnica(codigoCompetenciaTecnica));
     }
     
@@ -131,37 +133,6 @@ public class AdicionarCategoriaTarefaUI implements Initializable {
         window.fireEvent(new WindowEvent(window, WindowEvent.WINDOW_CLOSE_REQUEST));
     }
 
-    @FXML
-    void registarCategoriaAction(ActionEvent event) {
-        try {
-            boolean adicionou = registarCategoriaController.registarCategoria(
-                    txtCodigo.getText().trim(),
-                    txtDescricaoBreve.getText().trim(),
-                    txtDescricaoDetalhada.getText().trim(),
-                    cmbAreaActividade.getSelectionModel().getSelectedItem().getCodigo()
-            );
-
-            if(adicionou) {
-                administrativoLogadoUI.updateListViewCategoriasTarefa();
-            }
-
-            AlertsUI.criarAlerta(Alert.AlertType.INFORMATION,
-                    MainApp.TITULO_APLICACAO,
-                    "Registar Categoria de Tarefa.",
-                    adicionou ? "Categoria de Tarefa registada com sucesso."
-                            : "Não foi possível registar a Categoria de Tarefa.").show();
-
-            closeAddCatgoriaTarefa(event);
-        }
-        catch (IllegalArgumentException | SQLException iae) {
-            AlertsUI.criarAlerta(Alert.AlertType.ERROR,
-                    MainApp.TITULO_APLICACAO,
-                    "Erro nos dados.",
-                    iae.getMessage()).show();
-
-        }
-    }
-
     private void closeAddCatgoriaTarefa(ActionEvent actionEvent) {
         this.txtDescricaoBreve.clear();
         this.txtDescricaoDetalhada.clear();
@@ -175,9 +146,10 @@ public class AdicionarCategoriaTarefaUI implements Initializable {
 
         try {
             boolean adicionou = registarCaracterizacaoCTController.registarCaracterizacaoCTS(
-                    txtCodigo.getText(),cmbGrauProficiencia.getValue().getGrau(), 
+                    txtCodigoCategoria.getText(),
+                    cmbGrauProficiencia.getValue().getIdGrauProficiencia(),
                     cmbObrigatoriedade.getValue());
-            
+
             if(adicionou){
                 updateListViewCompTecCat(actionEvent);
                 cmbCompetenciaTecnica.getSelectionModel().clearSelection();
@@ -185,7 +157,7 @@ public class AdicionarCategoriaTarefaUI implements Initializable {
                 cmbGrauProficiencia.getItems().clear();
                 cmbObrigatoriedade.getSelectionModel().clearSelection();
             }
-            
+
             AlertsUI.criarAlerta(Alert.AlertType.INFORMATION,
                     MainApp.TITULO_APLICACAO,
                     "Registar Caracterização de Competencia.",
@@ -199,14 +171,46 @@ public class AdicionarCategoriaTarefaUI implements Initializable {
                     "Erro nos dados.",
                     iae.getMessage()).show();
         }
-        
-        
+
+
+
     }
     
     public void updateListViewCompTecCat(ActionEvent actionEvent) throws SQLException {
-        listViewCompTecCat.getItems().add(registarCaracterizacaoCTController.findByCategoriaEGrau(
-                txtCodigo.getText(), cmbGrauProficiencia.getValue().getGrau()));
-        cmbAreaActividade.setDisable(true);
+        listViewCompTecCat.getItems().add(
+                registarCaracterizacaoCTController.findByCategoriaEGrau(
+                    txtCodigoCategoria.getText(),
+                    cmbGrauProficiencia.getValue().getIdGrauProficiencia()));
+
+
     }
 
+    public void addCategoria(ActionEvent actionEvent) {
+        try {
+            boolean adicionou = registarCategoriaController.registarCategoria(
+                    txtCodigoCategoria.getText().trim(),
+                    txtDescricaoBreve.getText().trim(),
+                    txtDescricaoDetalhada.getText().trim(),
+                    cmbAreaActividade.getSelectionModel().getSelectedItem().getCodigo());
+
+            if(adicionou) {
+                administrativoLogadoUI.updateListViewCategoriasTarefa();
+                cmbAreaActividade.setDisable(true);
+            }
+
+            AlertsUI.criarAlerta(Alert.AlertType.INFORMATION,
+                    MainApp.TITULO_APLICACAO,
+                    "Registar Categoria de Tarefa.",
+                    adicionou ? "Categoria de Tarefa registada com sucesso. Pode adicionar os Graus de Proficiência aplicáveis."
+                            : "Não foi possível registar a Categoria de Tarefa.").show();
+
+        }
+        catch (IllegalArgumentException | SQLException iae) {
+            AlertsUI.criarAlerta(Alert.AlertType.ERROR,
+                    MainApp.TITULO_APLICACAO,
+                    "Erro nos dados.",
+                    iae.getMessage()).show();
+
+        }
+    }
 }
