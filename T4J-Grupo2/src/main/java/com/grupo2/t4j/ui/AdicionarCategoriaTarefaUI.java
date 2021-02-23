@@ -173,7 +173,7 @@ public class AdicionarCategoriaTarefaUI implements Initializable {
     @FXML
     public List<CaracterizacaoCT> addCompetenciaTecnica2CCTS() throws SQLException {
 
-        List<CaracterizacaoCT> caracterizacaoCTS = new ArrayList<>();
+        /*List<CaracterizacaoCT> caracterizacaoCTS = new ArrayList<>();
         boolean adicionou = registarCaracterizacaoCTController.registarCaracterizacaoCTS(
                txtCodigoCCT.getText(),
                cmbGrauProficiencia.getValue().getGrau(),
@@ -192,7 +192,8 @@ public class AdicionarCategoriaTarefaUI implements Initializable {
             cmbAreaActividade.setDisable(true);
         }
 
-        return caracterizacaoCTS;
+        return caracterizacaoCTS;*/
+        return null;
     }
 
 

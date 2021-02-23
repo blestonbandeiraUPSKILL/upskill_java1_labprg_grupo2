@@ -26,19 +26,20 @@ public class RegistarFreelancerController {
     //private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosDatabase();
     private RepositorioFreelancer repositorioFreelancer = fabricaRepositorios.getRepositorioFreelancer();
     private RepositorioUtilizador repositorioUtilizador = fabricaRepositorios.getRepositorioUtilizador();
+    /*private RepositorioEnderecoPostal repositorioEnderecoPostal = fabricaRepositorios.getRepositorioEnderecoPostal();*/
     
     private AlgoritmoGeradorPasswords algoritmoGeradorPasswords;
     private RepositorioFreelancerInMemory repositorioFreelancerInMemory;
     private FicheiroRepositorioFreelancer ficheiroF;
     
-    public boolean registarFreelancer(String email, String nome, String nif, String
-            telefone, String codigoEnderecoPostal) throws SQLException {
+    public boolean registarFreelancer(String emailFree, String nome, String nif, 
+            String telefone, String arruamento, String numeroPorta, String localidade, String codPostal) throws SQLException {
 
         AlgoritmoGeradorPasswords algoritmoGeradorPasswords = new AlgoritmoGeradorPasswords();
         Password password = new Password(algoritmoGeradorPasswords.geraPassword());
-
-        Freelancer freelancer = new Freelancer(new Email(email), nome, password, nif, 
-                telefone, codigoEnderecoPostal);
+        
+        EnderecoPostal endereco = new EnderecoPostal(arruamento, numeroPorta, localidade, codPostal);
+        Freelancer freelancer = new Freelancer(new Email(emailFree), nome, password, nif, telefone, endereco.getCodigoEnderecoPostal());
 
         registarFreelancerComoUtilizador(freelancer);
 
@@ -52,13 +53,16 @@ public class RegistarFreelancerController {
     public Freelancer findByNif(String NIF) throws SQLException{
         return repositorioFreelancer.findByNif(NIF);
     }
+    
+    public Freelancer findByEmail(String emailFree) throws SQLException{
+        return repositorioFreelancer.findByEmail(emailFree);
+    }
 
     ///////API
     public boolean registarFreelancerComoUtilizador(Freelancer freelancer) throws SQLException {
         String nome = freelancer.getNome();
         Email email = freelancer.getEmail();
         Password password = freelancer.getPassword();
-
 
         Utilizador utilizador = new Utilizador(email, nome, password);
 

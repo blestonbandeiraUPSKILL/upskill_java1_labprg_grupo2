@@ -20,7 +20,7 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="700.0" styleClass="BorderPane" stylesheets="@../style/app.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.GestorLogadoUI">
    <top>
-      <Label styleClass="lblUser" text="Bem-vindo à Área do Gestor" textFill="WHITE" BorderPane.alignment="CENTER_RIGHT">
+      <Label fx:id="lblUser" styleClass="lblUser" text="Bem-vindo à Área do Gestor" textFill="WHITE" BorderPane.alignment="CENTER_RIGHT">
          <padding>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </padding>
@@ -100,6 +100,7 @@
                               <ListView fx:id="listViewColaboradores" layoutX="23.0" layoutY="141.0" prefHeight="313.0" prefWidth="508.0" AnchorPane.bottomAnchor="39.0" AnchorPane.leftAnchor="23.0" AnchorPane.rightAnchor="169.0" AnchorPane.topAnchor="141.0" />
                               <VBox alignment="CENTER" layoutX="592.0" layoutY="308.0" AnchorPane.bottomAnchor="155.33333333333337" AnchorPane.rightAnchor="41.33333333333337" />
                               <Button fx:id="btnAddColaborador" layoutX="576.0" layoutY="409.0" mnemonicParsing="false" onAction="#navigateAddColaborador" style="-fx-background-color: #000000;" text="Adicionar" textFill="WHITE">
+
                                  <font>
                                     <Font name="Calibri" size="14.0" />
                                  </font>

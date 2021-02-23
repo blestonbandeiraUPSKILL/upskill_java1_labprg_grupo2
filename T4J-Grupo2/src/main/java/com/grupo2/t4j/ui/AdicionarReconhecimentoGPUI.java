@@ -20,11 +20,14 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.Window;
+import javafx.stage.WindowEvent;
 
 public class AdicionarReconhecimentoGPUI  implements Initializable {
     
@@ -50,7 +53,7 @@ public class AdicionarReconhecimentoGPUI  implements Initializable {
     
     @FXML private Button btnCancelar;
 
-    @FXML private Button btnSairCompetencia;
+    @FXML private Button btnSair;
     
     
     public void associarParentUI(AdministrativoLogadoUI administrativoLogadoUI) {
@@ -104,13 +107,27 @@ public class AdicionarReconhecimentoGPUI  implements Initializable {
     }
 
     @FXML
-    void cancelarAction(ActionEvent event) {
-
+    public void cancelarAction(ActionEvent event) {
+        txtIDataValidacao.clear();
     }
 
     @FXML
-    void sairAction(ActionEvent event) {
+    public void sairAction(ActionEvent event) {
+         Window window = btnSair.getScene().getWindow();
+        window.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent windowEvent) {
+                Alert alerta = AlertsUI.criarAlerta(Alert.AlertType.CONFIRMATION,
+                        MainApp.TITULO_APLICACAO,
+                        "Confirmação da acção",
+                        "Tem a certeza que quer voltar à página anterior?");
 
+                if (alerta.showAndWait().get() == ButtonType.CANCEL) {
+                    windowEvent.consume();
+                }
+            }
+        });
+        window.fireEvent(new WindowEvent(window, WindowEvent.WINDOW_CLOSE_REQUEST));
     }
     /*
     public void updateListViewReconhecimentoGPFreelancer() throws SQLException {

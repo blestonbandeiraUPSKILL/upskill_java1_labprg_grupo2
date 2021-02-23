@@ -18,7 +18,7 @@
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" style="-fx-background-color: #c4c4c4;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.AdicionarAreaAtividadeUI">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" styleClass="BorderPane" stylesheets="@../style/app.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.AdicionarAreaAtividadeUI">
    <center>
       <BorderPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #c4c4c4;" BorderPane.alignment="CENTER">
          <top>
@@ -26,7 +26,7 @@
               <tabs>
                 <Tab text="Áreas de Atividade">
                   <content>
-                    <AnchorPane minHeight="0.0" minWidth="0.0" prefWidth="350.0" style="-fx-background-color: #c4c4c4;">
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="279.0" prefWidth="700.0" styleClass="AnchorPane">
                            <children>
                               <BorderPane prefHeight="300.0" prefWidth="200.0" />
                               <TextField fx:id="txtCodigo" layoutX="15.0" layoutY="50.0" prefHeight="39.0" prefWidth="139.0" />
@@ -63,9 +63,9 @@
             </TabPane>
          </top>
          <bottom>
-            <FlowPane alignment="CENTER_RIGHT" prefHeight="53.0" prefWidth="700.0" style="-fx-background-color: #c4c4c4;" BorderPane.alignment="CENTER">
+            <FlowPane alignment="CENTER_RIGHT" prefHeight="53.0" prefWidth="700.0" styleClass="FlowPane" BorderPane.alignment="CENTER">
                <children>
-                  <Button fx:id="btnAddAreaAtividade" defaultButton="true" mnemonicParsing="false" onAction="#registarAreaAction" text="Confirmar">
+                  <Button fx:id="btnAddAreaAtividade" defaultButton="true" mnemonicParsing="false" onAction="#registarAreaAction" styleClass="btnAddAreaAtividade" stylesheets="@../style/app.css" text="Confirmar">
                      <font>
                         <Font name="Calibri" size="14.0" />
                      </font>
@@ -83,12 +83,12 @@
          </bottom></BorderPane>
    </center>
    <top>
-      <Label style="-fx-background-color: #000000;" text="Área do Administativo" textFill="WHITE" BorderPane.alignment="CENTER_RIGHT">
+      <Label styleClass="lblUser" stylesheets="@../style/app.css" text="Bem-vindo á Área do Administativo" textFill="WHITE" BorderPane.alignment="CENTER_RIGHT">
          <padding>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </padding>
          <font>
-            <Font name="Calibri" size="18.0" />
+            <Font name="Calibri Italic" size="16.0" />
          </font>
       </Label>
    </top>
