@@ -61,10 +61,13 @@ public class ConsultarCategoriaUI implements Initializable {
         
     }    
     public void transferData() throws SQLException {
+        
+        String codigoAreaActividade = administrativoLogadoUI.listaCategorias.getSelectionModel().getSelectedItem().getCodigoAreaActividade();
+        txtCodigo.setText(administrativoLogadoUI.listaCategorias.getSelectionModel().getSelectedItem().getCodigoCategoria());
+        txtAreaActividade.setText(registarAreaActividadeController.findByCodigo(codigoAreaActividade).getDescBreve());
+        txtDescBreve.setText(administrativoLogadoUI.listaCategorias.getSelectionModel().getSelectedItem().getDescBreve());
+        txtDescDetalhada.setText(administrativoLogadoUI.listaCategorias.getSelectionModel().getSelectedItem().getDescDetalhada());
 
-        /*txtCodigo.setText(administrativoLogadoUI.listaAreasActividade.getSelectionModel().getSelectedItem().getCodigo());
-        txtDescBreve.setText(administrativoLogadoUI.listaAreasActividade.getSelectionModel().getSelectedItem().getDescBreve());
-        txtDescDetalhada.setText(administrativoLogadoUI.listaAreasActividade.getSelectionModel().getSelectedItem().getDescDetalhada());*/
         
     }
     
