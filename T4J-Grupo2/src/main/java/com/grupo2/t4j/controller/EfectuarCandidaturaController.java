@@ -63,8 +63,8 @@ public class EfectuarCandidaturaController {
                     tarefa.getCodigoCategoriaTarefa()).getCompTecnicasCaracter();
             for (CaracterizacaoCT cct : competenciasDaTarefa) {
                 if (cct.getObrigatoriedade() == Obrigatoriedade.OBRIGATORIO
-                        && comparaCompetencias(email, cct.getCodigoCompetenciaTecnica())
-                        && comparaGrau(email, cct.getCodigoCompetenciaTecnica(), cct.getCodigoGP())) {
+                        && comparaCompetencias(email, cct.getCodigoCategoria())
+                        && comparaGrau(email, cct.getCodigoCategoria(), cct.getCodigoGP())) {
 
                     tarefasElegiveis.add(tarefa);
                 }
@@ -115,10 +115,10 @@ public class EfectuarCandidaturaController {
         return false;
     }
 
-    public boolean comparaGrau(String email, String idCompetenciaTecnica, String grau) {
+    public boolean comparaGrau(String email, String idCompetenciaTecnica, int grau) {
         ReconhecimentoGP rgp = repositorioReconhecimentoGP.findByEmailCompetencia(email, idCompetenciaTecnica);
-        String gp = rgp.getIdGrauProficiencia();
-        if (Integer.parseInt(gp) >= Integer.parseInt(grau)) {
+        int gp = rgp.getIdGrauProficiencia();
+        if (gp >= grau) {
             return true;
         }
         return false;

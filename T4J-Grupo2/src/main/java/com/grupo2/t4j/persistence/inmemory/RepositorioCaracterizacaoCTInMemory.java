@@ -2,8 +2,6 @@ package com.grupo2.t4j.persistence.inmemory;
 
 import com.grupo2.t4j.exception.CaracterizacaoCTDuplicadaException;
 import com.grupo2.t4j.model.CaracterizacaoCT;
-import com.grupo2.t4j.model.CompetenciaTecnica;
-import com.grupo2.t4j.model.GrauProficiencia;
 import com.grupo2.t4j.model.Obrigatoriedade;
 import com.grupo2.t4j.persistence.RepositorioCaracterizacaoCT;
 
@@ -29,7 +27,7 @@ public class RepositorioCaracterizacaoCTInMemory implements Serializable, Reposi
     }
 
     @Override
-    public void save(String codigoCategoria, String codigoGP, Obrigatoriedade obrigatoriedade) throws CaracterizacaoCTDuplicadaException {
+    public void save(String codigoCategoria, int codigoGP, Obrigatoriedade obrigatoriedade) throws CaracterizacaoCTDuplicadaException {
         CaracterizacaoCT cct = findByCodigo(codigoGP);
         if (cct == null) {
             CaracterizacaoCT caracterizacaoCT = new CaracterizacaoCT(codigoCategoria, codigoGP, obrigatoriedade);
@@ -58,18 +56,19 @@ public class RepositorioCaracterizacaoCTInMemory implements Serializable, Reposi
 
     @Override
     public List<CaracterizacaoCT> findByCategoria(String codigoCategoria) {
-        //Não funciona!!
+
         ArrayList<CaracterizacaoCT> caracterizacaoCTSbyCompetenciaTecnica = new ArrayList<>();
 
         for (CaracterizacaoCT cct : listaCaracterizacaoCTS) {
-            if (cct.getCodigoCompetenciaTecnica().equals(codigoCategoria)) {
+            if (cct.getCodigoCategoria().equals(codigoCategoria)) {
                 caracterizacaoCTSbyCompetenciaTecnica.add(cct);
             }
         }
         return caracterizacaoCTSbyCompetenciaTecnica;
     }
 
-    public CaracterizacaoCT findByCodigo(String codigo) {
+
+    public CaracterizacaoCT findByCodigo(int codigo) {
         /*for (int i = 0; i < this.listaCaracterizacaoCTS.size() ; i++) {
             CaracterizacaoCT cct = this.listaCaracterizacaoCTS.get(i);
             if (cct.getCodigoCCT().equals(codigo)) {
@@ -80,7 +79,7 @@ public class RepositorioCaracterizacaoCTInMemory implements Serializable, Reposi
     }
 
     @Override
-    public CaracterizacaoCT findByCategoriaEGrau(String codigoCategoria, String codigoGP) throws SQLException {
+    public CaracterizacaoCT findByCategoriaEGrau(String codigoCategoria, int codigoGP) throws SQLException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

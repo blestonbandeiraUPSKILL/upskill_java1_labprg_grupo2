@@ -28,7 +28,7 @@ public class RegistarReconhecimentoGPController {
     private RepositorioReconhecimentoGPInMemory repositorioReconhecimentoGPInMemory;
     private FicheiroRepositorioReconhecimentoGP ficheiroRGP;
     
-     public boolean registarReconhecimentoGP(String idGrauProficiencia, Data dataReconhecimento, 
+     public boolean registarReconhecimentoGP(int idGrauProficiencia, Data dataReconhecimento,
              Email emailFreelancer, String idCompetenciaTecnica) throws SQLException {
         
         ReconhecimentoGP reconhecimentoGP = new ReconhecimentoGP(idGrauProficiencia, 

@@ -2,8 +2,6 @@ package com.grupo2.t4j.persistence.database;
 
 import com.grupo2.t4j.exception.CaracterizacaoCTDuplicadaException;
 import com.grupo2.t4j.model.CaracterizacaoCT;
-import com.grupo2.t4j.model.CompetenciaTecnica;
-import com.grupo2.t4j.model.GrauProficiencia;
 import com.grupo2.t4j.model.Obrigatoriedade;
 import com.grupo2.t4j.persistence.RepositorioCaracterizacaoCT;
 import com.grupo2.t4j.utils.DBConnectionHandler;
@@ -46,7 +44,7 @@ public class RepositorioCaracterizacaoCTDatabase implements RepositorioCaracteri
     }
 
     @Override
-    public void save(String codigoCategoria, String codigoGP, Obrigatoriedade obrigatoriedade) throws CaracterizacaoCTDuplicadaException {
+    public void save(String codigoCategoria, int codigoGP, Obrigatoriedade obrigatoriedade) throws CaracterizacaoCTDuplicadaException {
 
     }
 
@@ -57,14 +55,14 @@ public class RepositorioCaracterizacaoCTDatabase implements RepositorioCaracteri
         Connection connection = dbConnectionHandler.openConnection();
 
         CallableStatement callableStatement = connection.prepareCall(
-                "{CALL createCaracterizacaoCT(?, ?, ?)}"
+                "{CALL createCaracterCT(?, ?, ?)}"
         );
-        if (findByCategoriaEGrau(caracterizacaoCT.getCodigoCategoria(),caracterizacaoCT.getCodigoGP())==null){
+        if (findByCategoriaEGrau(caracterizacaoCT.getCodigoCategoria(), caracterizacaoCT.getCodigoGP()) == null){
             try {
                 connection.setAutoCommit(false);
 
                 callableStatement.setString(1, caracterizacaoCT.getCodigoCategoria());
-                callableStatement.setString(2, caracterizacaoCT.getCodigoGP());
+                callableStatement.setInt(2, caracterizacaoCT.getCodigoGP());
                 callableStatement.setString(3, caracterizacaoCT.getObrigatoriedade().toString());
 
                 callableStatement.executeQuery();
@@ -87,9 +85,7 @@ public class RepositorioCaracterizacaoCTDatabase implements RepositorioCaracteri
                 dbConnectionHandler.closeAll();
             }
         }
-        else {
-            throw new CaracterizacaoCTDuplicadaException(" Caracterização já registada.");
-        }
+
         return false;
         
     }
@@ -118,10 +114,11 @@ public class RepositorioCaracterizacaoCTDatabase implements RepositorioCaracteri
             while (resultSet.next()) {
                 int idCaracterizacaoCT = resultSet.getInt(1);
                 String codigoCategoriaTarefa = resultSet.getString(2);
-                String codigoGP = resultSet.getString(3);
+                int codigoGP = resultSet.getInt(3);
                 String obrigatoriedade = resultSet.getString(4);
                 listaCaracterizacaoCT.add(new CaracterizacaoCT(idCaracterizacaoCT,
-                        codigoCategoriaTarefa, codigoGP,
+                        codigoCategoriaTarefa,
+                        codigoGP,
                         Obrigatoriedade.valueOf(obrigatoriedade)));
 
             }
@@ -147,13 +144,13 @@ public class RepositorioCaracterizacaoCTDatabase implements RepositorioCaracteri
     }
 
     @Override
-    public CaracterizacaoCT findByCodigo(String codigoCCT) {
+    public CaracterizacaoCT findByCodigo(int codigoCCT) {
         return null;
     }
 
     @Override
-    public CaracterizacaoCT findByCategoriaEGrau(String codigoCategoria, 
-            String codigoGP) throws SQLException {
+    public CaracterizacaoCT findByCategoriaEGrau(String codigoCategoria,
+                                                 int codigoGP) throws SQLException {
 
         DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
         Connection connection = dbConnectionHandler.openConnection();
@@ -166,7 +163,7 @@ public class RepositorioCaracterizacaoCTDatabase implements RepositorioCaracteri
             connection.setAutoCommit(false);
 
             callableStatement.setString(1, codigoCategoria);
-            callableStatement.setString(2, codigoGP);
+            callableStatement.setInt(2, codigoGP);
 
             callableStatement.executeUpdate();
             return null;

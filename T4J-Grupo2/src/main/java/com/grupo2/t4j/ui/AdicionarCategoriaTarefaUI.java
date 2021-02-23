@@ -34,7 +34,7 @@ public class AdicionarCategoriaTarefaUI implements Initializable {
     private List<CaracterizacaoCT> caracterizacaoCTS;
 
     @FXML TextField txtDescricaoBreve;
-    @FXML TextField txtCodigo;
+    @FXML TextField txtCodigoCategoria;
     @FXML TextField txtCodigoCCT;
     @FXML TextArea txtDescricaoDetalhada;
     @FXML Button btnConfirmar;
@@ -97,17 +97,19 @@ public class AdicionarCategoriaTarefaUI implements Initializable {
                 }
             }
         });
+
+
     }
 
     public void updateCmbCompetenciasTecnicas(ActionEvent actionEvent) throws SQLException {
         String codigoAreaActividade = cmbAreaActividade.getSelectionModel().getSelectedItem().getCodigo();
-        cmbCompetenciaTecnica.getItems().addAll(
+        cmbCompetenciaTecnica.getItems().setAll(
                 registarCompetenciaTecnicaController.findByAreaActividade(codigoAreaActividade));
     }
     
     public void updateCmbGrauProficiencia(ActionEvent actionEvent) throws SQLException {
         String codigoCompetenciaTecnica = cmbCompetenciaTecnica.getSelectionModel().getSelectedItem().getCodigo();
-        cmbGrauProficiencia.getItems().addAll(
+        cmbGrauProficiencia.getItems().setAll(
                 registarGrauProficienciaController.findByCompetenciaTecnica(codigoCompetenciaTecnica));
     }
     
@@ -135,7 +137,7 @@ public class AdicionarCategoriaTarefaUI implements Initializable {
     void registarCategoriaAction(ActionEvent event) {
         try {
             boolean adicionou = registarCategoriaController.registarCategoria(
-                    txtCodigo.getText().trim(),
+                    txtCodigoCategoria.getText().trim(),
                     txtDescricaoBreve.getText().trim(),
                     txtDescricaoDetalhada.getText().trim(),
                     cmbAreaActividade.getSelectionModel().getSelectedItem().getCodigo()
@@ -175,7 +177,8 @@ public class AdicionarCategoriaTarefaUI implements Initializable {
 
         try {
             boolean adicionou = registarCaracterizacaoCTController.registarCaracterizacaoCTS(
-                    txtCodigo.getText(),cmbGrauProficiencia.getValue().getGrau(), 
+                    txtCodigoCategoria.getText(),
+                    cmbGrauProficiencia.getValue().getIdGrauProficiencia(),
                     cmbObrigatoriedade.getValue());
             
             if(adicionou){
@@ -205,7 +208,7 @@ public class AdicionarCategoriaTarefaUI implements Initializable {
     
     public void updateListViewCompTecCat(ActionEvent actionEvent) throws SQLException {
         listViewCompTecCat.getItems().add(registarCaracterizacaoCTController.findByCategoriaEGrau(
-                txtCodigo.getText(), cmbGrauProficiencia.getValue().getGrau()));
+                txtCodigoCategoria.getText(), cmbGrauProficiencia.getValue().getIdGrauProficiencia()));
         cmbAreaActividade.setDisable(true);
     }
 

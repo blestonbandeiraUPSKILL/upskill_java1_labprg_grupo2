@@ -9,7 +9,7 @@ import java.util.List;
 public interface RepositorioCaracterizacaoCT {
 
 
-    void save(String codigoCategoria, String codigoGP, Obrigatoriedade obrigatoriedade) throws CaracterizacaoCTDuplicadaException;
+    void save(String codigoCategoria, int codigoGP, Obrigatoriedade obrigatoriedade) throws CaracterizacaoCTDuplicadaException;
 
     boolean save(CaracterizacaoCT caracterizacaoCT) throws SQLException;
 
@@ -17,8 +17,8 @@ public interface RepositorioCaracterizacaoCT {
 
     List<CaracterizacaoCT> findByCategoria(String codigoCategoria) throws SQLException;
 
-    CaracterizacaoCT findByCodigo(String codigoCCT);
+    CaracterizacaoCT findByCodigo(int codigoCCT);
     
-    CaracterizacaoCT findByCategoriaEGrau (String codigoCategoria, 
-            String codigoGP) throws SQLException; 
+    CaracterizacaoCT findByCategoriaEGrau (String codigoCategoria,
+                                           int codigoGP) throws SQLException;
 }
