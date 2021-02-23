@@ -39,6 +39,7 @@ public class RegistarFreelancerController {
         Password password = new Password(algoritmoGeradorPasswords.geraPassword());
         
         EnderecoPostal endereco = new EnderecoPostal(arruamento, numeroPorta, localidade, codPostal);
+        
         Freelancer freelancer = new Freelancer(new Email(emailFree), nome, password, nif, telefone, endereco.getCodigoEnderecoPostal());
 
         registarFreelancerComoUtilizador(freelancer);
@@ -48,6 +49,10 @@ public class RegistarFreelancerController {
 
     public List<Freelancer> getAll() throws SQLException{
         return repositorioFreelancer.getAll();
+    }
+    
+    public List<String> getAllEmails() throws SQLException{
+        return repositorioFreelancer.getAllEmails();
     }
    
     public Freelancer findByNif(String NIF) throws SQLException{

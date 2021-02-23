@@ -9,7 +9,7 @@ package com.grupo2.t4j.ui;
  *
  * @author CAD
  */
-import com.grupo2.t4j.controller.RegistarHabilitacaoAcademicaController;
+import com.grupo2.t4j.controller.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 import com.grupo2.t4j.model.*;
@@ -34,6 +34,7 @@ public class AdicionarHabilitacaoAcademicaUI implements Initializable {
 
     private AdministrativoLogadoUI administrativoLogadoUI;
     private RegistarHabilitacaoAcademicaController registarHabilitacaoAcademicaController;
+    private RegistarFreelancerController registarFreelancerController;
     private Stage adicionarStage;
     
     @FXML private TextField txtNomeFreelancer;
@@ -65,26 +66,46 @@ public class AdicionarHabilitacaoAcademicaUI implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
-        registarHabilitacaoAcademicaController = new RegistarHabilitacaoAcademicaController();
-           
+                 
         adicionarStage = new Stage();
         adicionarStage.initModality(Modality.APPLICATION_MODAL);;
         adicionarStage.setResizable(false);
+        registarHabilitacaoAcademicaController = new RegistarHabilitacaoAcademicaController();
+        registarFreelancerController = new RegistarFreelancerController();
         
-         try {
+        try {
             updateListViewHabilitacaoFreelancer();
         } catch (SQLException exception) {
             exception.printStackTrace();
         }
+        
+        try {
+            cmbEmailFreelancer.getItems().setAll(
+                    registarFreelancerController.getAllEmails());
+
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }
+        
+        cmbEmailFreelancer.setOnAction(new EventHandler<ActionEvent>(){
+            @Override
+            public void handle(ActionEvent event) {
+                try {
+                    updateTxtNomeFreelancer(event);
+                    //listaHabilitacaoFreelancer.
+                } catch (SQLException exception) {
+                    exception.printStackTrace();
+                }
+            }
+        });
     }  
    
     @FXML
     void addHabilitacao(ActionEvent event) {
         try{                      
             boolean adicionou = registarHabilitacaoAcademicaController.registarHabilitacaoAcademica(
-                    ("HB- " + cmbEmailFreelancer.getPromptText()), txtGrau.getText(), txtDesignacao.getText(),
-                    txtInstituicao.getText(), Double.parseDouble(txtMedia.getText()));
+                    txtGrau.getText(), txtDesignacao.getText(), txtInstituicao.getText(), 
+                    Double.parseDouble(txtMedia.getText()), cmbEmailFreelancer.getSelectionModel().getSelectedItem());
 
             if(adicionou) {
                 updateListViewHabilitacaoFreelancer();
@@ -134,6 +155,11 @@ public class AdicionarHabilitacaoAcademicaUI implements Initializable {
     
     public void updateListViewHabilitacaoFreelancer() throws SQLException {
          listaHabilitacaoFreelancer.getItems().setAll(registarHabilitacaoAcademicaController.getAll());
+    }
+    
+    public void updateTxtNomeFreelancer(ActionEvent actionEvent) throws SQLException {
+        String emailFreelancer = cmbEmailFreelancer.getSelectionModel().getSelectedItem();
+        txtNomeFreelancer.setText(registarFreelancerController.findByEmail(emailFreelancer).getNome());
     }
      
 }

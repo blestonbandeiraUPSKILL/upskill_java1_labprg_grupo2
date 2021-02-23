@@ -211,4 +211,49 @@ public class RepositorioFreelancerDatabase implements RepositorioFreelancer{
         
         return null;
     }
+    
+    @Override
+    public ArrayList<String> getAllEmails() throws SQLException {
+        
+        /*ArrayList<String> listaEmailfreelancers = new ArrayList<>();
+
+        DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
+        Connection connection = dbConnectionHandler.openConnection();
+
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(
+                    "SELECT * FROM Freelancer"
+            );
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while(resultSet.next()) {
+                String email = resultSet.getString(1);
+                String nome = resultSet.getString(2);
+                String password = resultSet.getString(3);
+                String nif = resultSet.getString(4);
+                String telefone = resultSet.getString(5);
+                String codigoEnderecoPostal = resultSet.getString(6);
+                listaEmailfreelancers.add(email);
+            }
+        }
+        catch (SQLException exception) {
+            exception.printStackTrace();
+            exception.getSQLState();
+            try {
+                System.err.print("Transaction is being rolled back");
+                connection.rollback();
+            }
+            catch (SQLException sqlException) {
+                sqlException.getErrorCode();
+            }
+
+        }
+        finally {
+            dbConnectionHandler.closeAll();
+        }
+        return listaEmailfreelancers;*/
+           
+        return null;
+    }
 }

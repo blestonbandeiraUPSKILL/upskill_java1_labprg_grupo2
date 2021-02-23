@@ -20,9 +20,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" style="-fx-background-color: c4c4c4;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.AdicionarCompetenciaTecnicaUI">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" styleClass="BorderPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.AdicionarCompetenciaTecnicaUI">
    <top>
-      <Label style="-fx-background-color: #000000;" text="Área do Administrativo" textFill="WHITE" BorderPane.alignment="CENTER_RIGHT">
+      <Label styleClass="lblUser" text="Bem-vindo à Área do Administrativo" BorderPane.alignment="CENTER_RIGHT">
          <padding>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </padding>
@@ -32,9 +32,9 @@
       </Label>
    </top>
    <bottom>
-      <FlowPane alignment="CENTER_RIGHT" prefHeight="43.0" prefWidth="700.0" BorderPane.alignment="CENTER">
+      <FlowPane alignment="CENTER_RIGHT" prefHeight="43.0" prefWidth="700.0" styleClass="FlowPane" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="btnVoltar" alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#voltarAtras" text="Concluir">
+            <Button fx:id="btnVoltar" alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#voltarAtras" styleClass="btnConfirmar" text="Concluir">
                <font>
                   <Font name="Calibri" size="14.0" />
                </font>
@@ -50,14 +50,14 @@
         <tabs>
           <Tab disable="true" text="Áreas de Atividade">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefWidth="350.0" />
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefWidth="350.0" styleClass="AnchorPane" />
             </content>
           </Tab>
             <Tab text="Competências Técnicas">
                <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="290.0" prefWidth="700.0">
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="290.0" prefWidth="700.0" styleClass="AnchorPane">
                      <children>
-                        <Label layoutX="510.0" layoutY="1.0" style="-fx-background-color: #000000;" text="Graus de Proficiência Aplicáveis" textFill="WHITE">
+                        <Label layoutX="510.0" layoutY="1.0" text="Graus de Proficiência Aplicáveis" >
                            <font>
                               <Font name="Calibri" size="14.0" />
                            </font>
@@ -65,7 +65,7 @@
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </padding>
                         </Label>
-                        <Label layoutY="1.0" style="-fx-background-color: #000000;" text="Competência Técnica" textFill="WHITE">
+                        <Label layoutY="1.0" text="Competência Técnica" >
                            <font>
                               <Font name="Calibri" size="14.0" />
                            </font>
@@ -120,7 +120,7 @@
                               </TextArea>
                            </children>
                         </VBox>
-                        <AnchorPane layoutX="391.0" layoutY="45.0" prefHeight="315.0" prefWidth="285.0">
+                        <AnchorPane layoutX="391.0" layoutY="45.0" prefHeight="315.0" prefWidth="285.0" styleClass="AnchorPane">
                            <children>
                               <ListView fx:id="listViewGrausAdicionados" layoutX="24.0" layoutY="31.0" prefHeight="90.0" prefWidth="245.0" />
                               <Label layoutX="25.0" layoutY="148.0" text="Valor">
@@ -135,7 +135,7 @@
                                  </font>
                               </Label>
                               <TextField fx:id="txtDesignacao" layoutX="25.0" layoutY="237.0" maxWidth="100.0" prefHeight="24.0" prefWidth="100.0" />
-                              <Button fx:id="btnAdicionarGrau" layoutX="168.0" layoutY="211.0" mnemonicParsing="false" onAction="#adicionarGrauAction" text="Adicionar">
+                              <Button fx:id="btnAdicionarGrau" layoutX="168.0" layoutY="211.0" mnemonicParsing="false" onAction="#adicionarGrauAction" styleClass="btnConfirmar" text="Adicionar">
                                  <font>
                                     <Font name="Calibri" size="14.0" />
                                  </font>
@@ -147,7 +147,7 @@
                               </Label>
                            </children>
                         </AnchorPane>
-                        <Button fx:id="btnAdicionarCompetencia" layoutX="164.0" layoutY="344.0" mnemonicParsing="false" onAction="#registarCompetenciaTecnicaAction" text="Adicionar">
+                        <Button fx:id="btnAdicionarCompetencia" layoutX="164.0" layoutY="344.0" mnemonicParsing="false" onAction="#registarCompetenciaTecnicaAction" styleClass="btnConfirmar" text="Adicionar">
                            <font>
                               <Font name="Calibri" size="14.0" />
                            </font>
