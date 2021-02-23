@@ -78,12 +78,16 @@ public class ColaboradorLogadoUI implements Initializable {
         });
 
         ListView<Tarefa> listViewTarefas = new ListView<>();
-        listViewTarefas.getItems().addAll(registarTarefaController.getAll());
+        try {
+            listViewTarefas.getItems().addAll(registarTarefaController.getAll());
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }
 
 
     }
 
-    public void updateListViewTarefas(ActionEvent actionEvent) {
+    public void updateListViewTarefas(ActionEvent actionEvent) throws SQLException {
         listViewTarefas.getItems().setAll(registarTarefaController.getAll());
 
     }
@@ -145,10 +149,17 @@ public class ColaboradorLogadoUI implements Initializable {
         try {
             FXMLLoader loaderAddTarefa = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/EspecificarTarefaScene.fxml"));
             Parent rootAddTarefa = loaderAddTarefa.load();
+            EspecificarTarefaUI especificarTarefaUI = loaderAddTarefa.getController();
+            especificarTarefaUI.associarParentUI(this);
+            loaderAddTarefa.setController(this);
+            
             sceneEspecificarTarefa = new Scene(rootAddTarefa);
             sceneEspecificarTarefa.getStylesheets().add("/com/grupo2/t4j/style/app.css");
-            EspecificarTarefaUI especificarTarefaUIUI = loaderAddTarefa.getController();
-            especificarTarefaUIUI.associarParentUI(this);
+
+
+            adicionarStage.setScene(sceneEspecificarTarefa);
+            adicionarStage.setTitle("Especificar Tarefa");
+            adicionarStage.show();
 
         } catch (IOException exception) {
             exception.printStackTrace();
@@ -158,9 +169,7 @@ public class ColaboradorLogadoUI implements Initializable {
                     exception.getMessage());
         }
 
-        adicionarStage.setScene(sceneEspecificarTarefa);
-        adicionarStage.setTitle("Especificar Tarefa");
-        adicionarStage.show();
+
 
     }
 

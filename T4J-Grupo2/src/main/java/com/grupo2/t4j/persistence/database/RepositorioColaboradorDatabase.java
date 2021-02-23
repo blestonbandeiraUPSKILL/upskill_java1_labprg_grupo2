@@ -1,17 +1,11 @@
 package com.grupo2.t4j.persistence.database;
 
 import com.grupo2.t4j.exception.ColaboradorDuplicadoException;
-import com.grupo2.t4j.model.Colaborador;
-import com.grupo2.t4j.model.Email;
-import com.grupo2.t4j.model.Password;
-import com.grupo2.t4j.model.Rolename;
+import com.grupo2.t4j.model.*;
 import com.grupo2.t4j.persistence.RepositorioColaborador;
 import com.grupo2.t4j.utils.DBConnectionHandler;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 
 public class RepositorioColaboradorDatabase implements RepositorioColaborador {
@@ -49,13 +43,73 @@ public class RepositorioColaboradorDatabase implements RepositorioColaborador {
     }
 
     @Override
-    public boolean save(Colaborador colaborador) {
+    public boolean save(Colaborador colaborador) throws SQLException {
+        DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
+        Connection connection = dbConnectionHandler.openConnection();
+
+        CallableStatement callableStatement = connection.prepareCall(
+                "{CALL createUtilizadorColaborador(?, ?, ?, ?, ?, ?)}"
+        );
+
+        if(findByEmail(colaborador.getEmail().getEmailText()) == null) {
+            try {
+                connection.setAutoCommit(false);
+
+                callableStatement.setString(1, colaborador.getEmail().getEmailText());
+                callableStatement.setString(2, colaborador.getNome());
+                callableStatement.setString(3, colaborador.getPassword().getPasswordText());
+                callableStatement.setString(4, colaborador.getTelefone());
+                callableStatement.setString(5, colaborador.getFuncao());
+                callableStatement.setString(6, colaborador.getNifOrganizacao());
+                callableStatement.executeQuery();
+
+                connection.commit();
+                return true;
+
+            }
+            catch (SQLException exception) {
+                exception.printStackTrace();
+                exception.getSQLState();
+                try {
+                    System.err.print("Transaction is being rolled back");
+                    connection.rollback();
+                } catch (SQLException sqlException) {
+                    sqlException.getErrorCode();
+                }
+
+            } finally {
+                dbConnectionHandler.closeAll();
+            }
+        }
         return false;
     }
 
     @Override
-    public Colaborador findByEmail(String emailCol) {
-        return null;
+    public Colaborador findByEmail(String email) throws SQLException {
+
+        DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
+        Connection connection = dbConnectionHandler.openConnection();
+
+        CallableStatement callableStatement = connection.prepareCall(
+                "{CALL findByEmail(?) }"
+        );
+
+        try {
+            connection.setAutoCommit(false);
+
+            callableStatement.setString(1, email);
+            callableStatement.executeUpdate();
+
+            return null;
+
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+            exception.getSQLState();
+
+        }
+
+        return new Colaborador();
+
     }
 
     @Override
@@ -97,5 +151,34 @@ public class RepositorioColaboradorDatabase implements RepositorioColaborador {
             dbConnectionHandler.closeAll();
         }
         return colaboradores;
+    }
+
+    @Override
+    public Password findPassword(String email) throws SQLException {
+
+        DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
+        Connection connection = dbConnectionHandler.openConnection();
+
+        PreparedStatement preparedStatement = connection.prepareStatement(
+                "SELECT utilizador.password FROM Utilizador INNER JOIN Colaborador ON colaborador.email LIKE utilizador.email WHERE colaborador.email LIKE ?"
+        );
+
+        try {
+            connection.setAutoCommit(false);
+
+            preparedStatement.setString(1, email);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                String password = resultSet.getString(1);
+                return new Password(password);
+            }
+
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+            exception.getSQLState();
+        }
+
+        return null;
     }
 }

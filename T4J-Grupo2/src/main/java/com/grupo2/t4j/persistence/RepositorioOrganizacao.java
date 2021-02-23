@@ -7,8 +7,9 @@ import java.util.ArrayList;
 
 public interface RepositorioOrganizacao {
 
-    void save(String nif, String nome, Website website, String telefone,
-              Email emailOrganizacao, String idEnderecoPostal, Email emailGestor) throws SQLException;
+    boolean save (String nif, String nome, String website, String telefone,
+                  String emailOrganizacao, String emailGestor, String arruamento, String numeroPorta, String localidade, String codPostal,
+              String nomeGestor, String pass, String telefoneGestor, String funcao) throws SQLException;
 
     boolean save(Organizacao organizacao);
 

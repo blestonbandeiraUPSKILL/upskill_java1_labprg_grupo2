@@ -50,8 +50,12 @@ public class RegistarColaboradorController {
         return repositorioColaborador.getAll();
     }
 
-    public Colaborador findByEmail(String email) {
+    public Colaborador findByEmail(String email) throws SQLException {
         return repositorioColaborador.findByEmail(email);
+    }
+
+    public Password findPassword(String email) throws SQLException {
+        return repositorioColaborador.findPassword(email);
     }
 
 
@@ -72,12 +76,10 @@ public class RegistarColaboradorController {
         Email email = colaborador.getEmail();
         Password password = colaborador.getPassword();
 
-
-        Utilizador utilizador = new Utilizador(email, nome, password);
-
-        return UsersAPI.getInstance().registerUserWithRoles(email, nome, password, "colaborador") &&
-                repositorioUtilizador.save(utilizador);
+        return UsersAPI.getInstance().registerUserWithRoles(email, nome, password, "colaborador");
     }
+
+
 
 
 

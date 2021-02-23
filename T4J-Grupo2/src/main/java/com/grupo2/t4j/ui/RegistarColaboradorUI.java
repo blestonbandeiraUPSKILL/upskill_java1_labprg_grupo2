@@ -26,6 +26,8 @@ public class RegistarColaboradorUI implements Initializable {
     @FXML TextField txtEmailColaborador;
     @FXML TextField txtPasswordColaborador;
     @FXML Button btnCancelarRegisto;
+    @FXML Button btnRegistarColaborador;
+    @FXML Button btnSair;
 
     public void associarParentUI(GestorLogadoUI gestorLogadoUI) {
         this.gestorLogadoUI = gestorLogadoUI;
@@ -42,6 +44,7 @@ public class RegistarColaboradorUI implements Initializable {
 
 
 
+
     }
 
 
@@ -55,7 +58,11 @@ public class RegistarColaboradorUI implements Initializable {
 
             if (adicionou) {
 
-                txtPasswordColaborador.setText(registarColaboradorController.findByEmail(txtEmailColaborador.getText()).getPassword().getPasswordText());
+                txtPasswordColaborador.setText(
+                        registarColaboradorController.findPassword(txtEmailColaborador.getText()).getPasswordText());
+                btnRegistarColaborador.setDisable(true);
+                btnCancelarRegisto.setText("Sair");
+
 
                 AlertsUI.criarAlerta(Alert.AlertType.INFORMATION,
                         MainApp.TITULO_APLICACAO,

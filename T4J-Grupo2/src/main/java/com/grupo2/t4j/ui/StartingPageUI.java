@@ -34,22 +34,46 @@ public class StartingPageUI implements Initializable {
     @FXML PasswordField txtPasswordLogin;
     @FXML Button btnSair;
     @FXML Button btnLogin;
-    @FXML Button btnToggle;
+    @FXML Button btnGoDark;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+
+        gestaoUtilizadoresController = new GestaoUtilizadoresController();
+
+
+        adicionarStage = new Stage();
+        adicionarStage.initModality(Modality.APPLICATION_MODAL);;
+        adicionarStage.setResizable(false);
+
+
+    }
+   
+    @FXML
+    void cssGoDark(ActionEvent event) {
+
+        Scene scene = btnGoDark.getScene();
+        scene.getStylesheets().remove("/com/grupo2/t4j/style/app.css");
+
+        if (!scene.getStylesheets().contains("/com/grupo2/t4j/style/app.css")) {
+            scene.getStylesheets().add("/com/grupo2/t4j/style/dark.css");
+        }
+    }
+
+
+    public void registarOrganizacao(ActionEvent actionEvent) {
+
         try {
+        FXMLLoader loaderRegistarOrg = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/RegistarOrgEGestorScene.fxml"));
+        Parent rootRegistarOrg = loaderRegistarOrg.load();
+        sceneRegistarOrganizacao = new Scene(rootRegistarOrg);
+        RegistarOrgEGestorUI registarOrgEGestorUI = loaderRegistarOrg.getController();
+        registarOrgEGestorUI.associarParentUI(this);
 
-            gestaoUtilizadoresController = new GestaoUtilizadoresController();
-            FXMLLoader loaderRegistarOrg = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/RegistarOrgEGestorScene.fxml"));
-            Parent rootRegistarOrg = loaderRegistarOrg.load();
-            sceneRegistarOrganizacao = new Scene(rootRegistarOrg);
-            RegistarOrgEGestorUI registarOrgEGestorUI = loaderRegistarOrg.getController();
-            registarOrgEGestorUI.associarParentUI(this);
-
-            adicionarStage = new Stage();
-            adicionarStage.initModality(Modality.APPLICATION_MODAL);;
-            adicionarStage.setResizable(false);
+        adicionarStage.setScene(sceneRegistarOrganizacao);
+        adicionarStage.setTitle("Registar Organização");
+        adicionarStage.show();
 
         }
         catch (IOException exception) {
@@ -59,17 +83,8 @@ public class StartingPageUI implements Initializable {
                     "Erro",
                     exception.getMessage());
         }
-    }
 
-    public void registarOrganizacao(ActionEvent actionEvent) {
 
-        adicionarStage = new Stage();
-        adicionarStage.initModality(Modality.APPLICATION_MODAL);;
-        adicionarStage.setResizable(false);
-
-        adicionarStage.setScene(sceneRegistarOrganizacao);
-        adicionarStage.setTitle("Registar Organização");
-        adicionarStage.show();
     }
 
     public void login(ActionEvent actionEvent) throws IOException, SQLException {

@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import jfxtras.styles.jmetro.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.shape.*?>
 <?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
@@ -22,15 +25,17 @@
    <center>
       <GridPane alignment="CENTER" prefHeight="133.0" prefWidth="600.0" BorderPane.alignment="CENTER">
         <columnConstraints>
-          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="451" minWidth="10.0" prefWidth="425" />
+          <ColumnConstraints />
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="451.0" minWidth="10.0" prefWidth="425.0" />
         </columnConstraints>
         <rowConstraints>
             <RowConstraints maxHeight="276.0" minHeight="10.0" prefHeight="79.33331298828125" vgrow="SOMETIMES" />
           <RowConstraints maxHeight="171.0" minHeight="10.0" prefHeight="70.0" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="171.0" minHeight="10.0" prefHeight="70.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="171.0" minHeight="10.0" prefHeight="70.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="115.0" prefWidth="115.0" text="Login">
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="115.0" prefWidth="115.0" text="Login" GridPane.columnIndex="1">
                <GridPane.margin>
                   <Insets />
                </GridPane.margin>
@@ -38,16 +43,16 @@
                   <Font name="Calibri" size="24.0" />
                </font>
             </Label>
-            <TextField fx:id="txtEmailLogin" alignment="CENTER" maxHeight="30.0" maxWidth="200.0" promptText="email" GridPane.rowIndex="1">
+            <TextField fx:id="txtEmailLogin" maxHeight="30.0" maxWidth="200.0" promptText="email" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <font>
                   <Font name="Calibri" size="14.0" />
                </font></TextField>
-            <PasswordField fx:id="txtPasswordLogin" alignment="CENTER" maxHeight="30.0" maxWidth="200.0" promptText="password" GridPane.rowIndex="2">
+            <PasswordField fx:id="txtPasswordLogin" maxHeight="49.0" maxWidth="200.0" prefHeight="49.0" prefWidth="200.0" promptText="password" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <font>
                   <Font name="Calibri" size="14.0" />
                </font>
             </PasswordField>
-            <Label fx:id="lblLogin" alignment="CENTER" contentDisplay="CENTER" layoutX="253.0" layoutY="10.0" prefHeight="115.0" prefWidth="115.0" text="Login">
+            <Label fx:id="lblLogin" alignment="CENTER" contentDisplay="CENTER" layoutX="253.0" layoutY="10.0" prefHeight="115.0" prefWidth="115.0" text="Login" GridPane.columnIndex="1">
                <font>
                   <Font name="Calibri" size="24.0" />
                </font>
@@ -73,19 +78,33 @@
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </padding>
                            <font>
-                              <Font name="Calibri" size="14.0" />
+                              <Font name="Calibri" size="12.0" />
                            </font>
+                           <tooltip>
+                              <Tooltip text="Quero registar a minha Organização">
+                                 <font>
+                                    <Font size="12.0" />
+                                 </font>
+                              </Tooltip>
+                           </tooltip>
                         </Button>
                         <Button fx:id="btnSair" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#sairApp" styleClass="btnSair" text="Sair da Aplicação" textFill="WHITE" VBox.vgrow="NEVER">
                            <padding>
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </padding>
                            <font>
-                              <Font name="Calibri" size="14.0" />
+                              <Font name="Calibri" size="12.0" />
                            </font>
                            <VBox.margin>
                               <Insets top="10.0" />
                            </VBox.margin>
+                           <tooltip>
+                              <Tooltip text="Logout">
+                                 <font>
+                                    <Font size="12.0" />
+                                 </font>
+                              </Tooltip>
+                           </tooltip>
                         </Button>
                      </children>
                      <FlowPane.margin>
@@ -106,11 +125,18 @@
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </padding>
                      <font>
-                        <Font name="Calibri" size="16.0" />
+                        <Font name="Calibri" size="12.0" />
                      </font>
                      <FlowPane.margin>
                         <Insets left="5.0" right="5.0" />
                      </FlowPane.margin>
+                     <tooltip>
+                        <Tooltip text="Entrar">
+                           <font>
+                              <Font size="12.0" />
+                           </font>
+                        </Tooltip>
+                     </tooltip>
                   </Button>
                </children>
             </FlowPane>
@@ -118,7 +144,14 @@
       </BorderPane>
    </bottom>
    <top>
-      <ToggleButton mnemonicParsing="false" styleClass="btnToggle" text="Light/Dark Mode"
-                    BorderPane.alignment="CENTER"/>
+      <FlowPane prefHeight="37.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="btnGoDark" alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#cssGoDark" styleClass="btnGoDark" text="Light/Dark mode">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </Button>
+         </children>
+      </FlowPane>
    </top>
 </BorderPane>

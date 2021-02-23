@@ -18,6 +18,7 @@ import com.grupo2.t4j.model.Rolename;
 import com.grupo2.t4j.persistence.RepositorioColaborador;
 
 import java.io.Serializable;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -110,6 +111,11 @@ public class RepositorioColaboradorInMemory implements Serializable, Repositorio
     @Override
     public ArrayList<Colaborador> getAll() {
         return new ArrayList<Colaborador>(listaColaboradores);
+    }
+
+    @Override
+    public Password findPassword(String email) throws SQLException {
+        return null;
     }
 
     public int adicionarListaColaborador(RepositorioColaboradorInMemory outraListaColaborador) {

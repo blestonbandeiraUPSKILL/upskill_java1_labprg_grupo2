@@ -1,8 +1,6 @@
 package com.grupo2.t4j.persistence.inmemory;
 
-import com.grupo2.t4j.exception.AreaActividadeDuplicadaException;
 import com.grupo2.t4j.exception.EnderecoPostalDuplicadoException;
-import com.grupo2.t4j.model.AreaActividade;
 import com.grupo2.t4j.model.EnderecoPostal;
 import com.grupo2.t4j.persistence.RepositorioEnderecoPostal;
 
@@ -44,8 +42,8 @@ public class RepositorioEnderecoPostalInMemory implements Serializable, Reposito
     }
 
     @Override
-    public void save(String codigoEnderecoPostal, String arruamento, String numeroPorta, String localidade, String codigoPostal) {
-        EnderecoPostal ep = findByCodigo(codigoEnderecoPostal);
+    public void save(int codigoEnderecoPostal, String arruamento, String numeroPorta, String localidade, String codigoPostal) {
+        EnderecoPostal ep = findById(codigoEnderecoPostal);
         if (ep == null) {
             listaEnderecoPostal.add(ep);
         } else {
@@ -55,7 +53,7 @@ public class RepositorioEnderecoPostalInMemory implements Serializable, Reposito
 
     @Override
     public boolean save(EnderecoPostal enderecoPostal) {
-        EnderecoPostal ep = findByCodigo(enderecoPostal.getCodigoPostal());
+        EnderecoPostal ep = findById(enderecoPostal.getCodigoEnderecoPostal());
         if (ep == null) {
             return listaEnderecoPostal.add(enderecoPostal);
         } else {
@@ -70,10 +68,10 @@ public class RepositorioEnderecoPostalInMemory implements Serializable, Reposito
     }
 
     @Override
-    public EnderecoPostal findByCodigo(String codigo) {
+    public EnderecoPostal findById(int codigo) {
         for (int i = 0; i < this.listaEnderecoPostal.size(); i++) {
             EnderecoPostal enderecoPostal = this.listaEnderecoPostal.get(i);
-            if (enderecoPostal.getCodigoPostal().equals(codigo)) {
+            if (enderecoPostal.getCodigoEnderecoPostal() == codigo) {
                 return enderecoPostal;
             }
         }

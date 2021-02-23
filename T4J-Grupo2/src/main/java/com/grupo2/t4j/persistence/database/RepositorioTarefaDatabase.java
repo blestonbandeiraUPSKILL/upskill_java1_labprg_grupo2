@@ -1,9 +1,16 @@
 package com.grupo2.t4j.persistence.database;
 
+import com.grupo2.t4j.exception.TarefaDuplicadaException;
 import com.grupo2.t4j.model.AreaActividade;
 import com.grupo2.t4j.model.Categoria;
 import com.grupo2.t4j.model.Tarefa;
 import com.grupo2.t4j.persistence.RepositorioTarefa;
+import com.grupo2.t4j.utils.DBConnectionHandler;
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +22,10 @@ public class RepositorioTarefaDatabase implements RepositorioTarefa {
      * registadas todas as Tarefas
      */
     private static RepositorioTarefaDatabase repositorioTarefaDatabase;
+    
+    String jdbcUrl = "jdbc:oracle:thin:@vsrvbd1.dei.isep.ipp.pt:1521/pdborcl";
+    String username = "UPSKILL_BD_TURMA1_01";
+    String password = "qwerty";
 
     /**
      * Inicializa o Repositório de Tarefas
@@ -34,19 +45,93 @@ public class RepositorioTarefaDatabase implements RepositorioTarefa {
     }
 
     @Override
-    public void save(String codigoAreaActividade, String codigoCategoriaTarefa, String referencia, String designacao, String descInformal, String descTecnica, int duracao, double custo) {
+    public void save(String codigoAreaActividade, String codigoCategoriaTarefa, 
+            String referencia, String designacao, String descInformal, 
+            String descTecnica, int duracao, double custo, String nifOrganizacao,
+            String emailColaborador) {
 
     }
 
     @Override
-    public boolean save(Tarefa tarefa) {
+    public boolean save(Tarefa tarefa) throws SQLException {
 
+        DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
+        Connection connection = dbConnectionHandler.openConnection();
+
+        CallableStatement callableStatement = connection.prepareCall(
+                "{CALL createTarefa(?, ?, ?, ?, ?, ?, ?, ?, ?) }"
+        );
+
+        if (findByReferenciaENIF(tarefa.getReferencia(), tarefa.getNifOrganizacao()) == null) {
+            try {
+                connection.setAutoCommit(false);
+
+                callableStatement.setString(1, tarefa.getCodigoAreaActividade());
+                callableStatement.setString(2, tarefa.getCodigoCategoriaTarefa());
+                callableStatement.setString(3, tarefa.getReferencia());
+                callableStatement.setString(4, tarefa.getDesignacao());
+                callableStatement.setString(5, tarefa.getDescInformal());
+                callableStatement.setString(6, tarefa.getDescTecnica());
+                callableStatement.setInt(7, tarefa.getDuracaoEst());
+                callableStatement.setDouble(8, tarefa.getCustoEst());
+                callableStatement.setString(9, tarefa.getNifOrganizacao());
+                callableStatement.setString(10, tarefa.getEmailColaborador());
+                
+                
+
+                callableStatement.executeQuery();
+
+                connection.commit();
+                return true;
+            }
+            catch (SQLException exception) {
+                exception.printStackTrace();
+                exception.getSQLState();
+                try {
+                    System.err.print("Transaction is being rolled back");
+                    connection.rollback();
+                }
+                catch (SQLException sqlException) {
+                    sqlException.getErrorCode();
+                }
+            }
+            finally {
+                dbConnectionHandler.closeAll();
+            }
+        }
+        else {
+            throw new TarefaDuplicadaException(tarefa.getReferencia() + ": Tarefa já registada.");
+        }
         return false;
     }
 
     @Override
-    public Tarefa findByReferenciaENIF(String referencia, String NIF) {
-        return null;
+    public Tarefa findByReferenciaENIF(String referencia, String nif) throws SQLException {
+        
+        DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
+        Connection connection = dbConnectionHandler.openConnection();
+
+        CallableStatement callableStatement = connection.prepareCall(
+                "{ CALL findByRefenciaENif(?, ?) }"
+        );
+
+        try {
+            connection.setAutoCommit(false);
+
+            callableStatement.setString(1, referencia);
+            callableStatement.setString(2, nif );
+
+            callableStatement.executeUpdate();
+            return null;
+
+        }
+        catch (SQLException exception) {
+            exception.printStackTrace();
+            exception.getSQLState();
+
+
+        }
+        return new Tarefa();
     }
 
     @Override
@@ -55,7 +140,52 @@ public class RepositorioTarefaDatabase implements RepositorioTarefa {
     }
 
     @Override
-    public ArrayList<Tarefa> getAll() {
-        return null;
+    public ArrayList<Tarefa> getAll() throws SQLException {
+        ArrayList<Tarefa> tarefas = new ArrayList<>();
+
+        DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
+        Connection connection = dbConnectionHandler.openConnection();
+
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(
+                    "SELECT * FROM Tarefa "
+            );
+
+            
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                String codigoAreaActividade = resultSet.getString(1);
+                String codigoCategoriaTarefa = resultSet.getString(2);
+                String referencia = resultSet.getString(3);
+                String designacao = resultSet.getString(4);
+                String descInformal = resultSet.getString(5);
+                String descTecnica = resultSet.getString(6);
+                int duracaoEst  = resultSet.getInt(7);
+                double custoEst = resultSet.getDouble(8);
+                String nifOrganizacao = resultSet.getString(9);
+                String emailColaborador = resultSet.getString(10);
+                tarefas.add(new Tarefa(referencia, designacao, descInformal, 
+                        descTecnica, duracaoEst, custoEst,codigoAreaActividade, 
+                        codigoCategoriaTarefa, nifOrganizacao, emailColaborador));
+            }
+        }
+        catch (SQLException exception) {
+            exception.printStackTrace();
+            exception.getSQLState();
+            try {
+                System.err.print("Transaction is being rolled back");
+                connection.rollback();
+            }
+            catch (SQLException sqlException) {
+                sqlException.getErrorCode();
+            }
+
+        }
+        finally {
+            dbConnectionHandler.closeAll();
+        }
+
+        return tarefas;
     }
 }
