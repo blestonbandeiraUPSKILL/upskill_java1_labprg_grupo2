@@ -2,17 +2,14 @@ package com.grupo2.t4j.ui;
 
 import com.grupo2.t4j.controller.RegistarColaboradorController;
 import com.grupo2.t4j.controller.RegistarOrganizacaoController;
-import com.grupo2.t4j.model.*;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
 import javafx.stage.Window;
 import javafx.stage.WindowEvent;
 
@@ -20,17 +17,12 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
-import javafx.scene.Node;
 
 public class RegistarOrgEGestorUI implements Initializable {
 
     private RegistarOrganizacaoController registarOrganizacaoController;
     private RegistarColaboradorController registarColaboradorController;
     private StartingPageUI startingPageUI;
-
-    private Stage adicionarStage;
-
-    private Scene sceneConfirmarRegisto;
 
     @FXML TextField txtNomeOrganizacao;
     @FXML TextField txtNif;
@@ -106,8 +98,9 @@ public class RegistarOrgEGestorUI implements Initializable {
 
             if(registou) {
 
-
                 txtPassword.setText(registarColaboradorController.findPassword(txtEmailGestor.getText()).getPasswordText());
+                btnAvancarRegisto.setDisable(true);
+                btnCancelarRegisto.setText("Voltar");
 
                 AlertsUI.criarAlerta(Alert.AlertType.INFORMATION,
                     MainApp.TITULO_APLICACAO,
@@ -127,13 +120,5 @@ public class RegistarOrgEGestorUI implements Initializable {
                     exception.getMessage()).show();
         }
     }
-
-    private void closeAddOrganizacao(ActionEvent event) {
-      /*  this.txtCodigo.clear();
-        this.txtDescricaoBreve.clear();
-        this.areaDescricaoDetalhada.clear();*/
-        ((Node) event.getSource()).getScene().getWindow().hide();
-    }        
-
 
 }
