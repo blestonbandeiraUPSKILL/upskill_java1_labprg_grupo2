@@ -49,20 +49,18 @@ public class StartingPageUI implements Initializable {
 
 
     }
-    
-         @FXML
+   
+    @FXML
     void cssGoDark(ActionEvent event) {
-        
+
         Scene scene = btnGoDark.getScene();
         scene.getStylesheets().remove("/com/grupo2/t4j/style/app.css");
 
-        if(!scene.getStylesheets().contains("/com/grupo2/t4j/style/app.css")) scene.getStylesheets().add("/com/grupo2/t4j/style/dark.css");
-            }
-  
-        
-       
-    
-    
+        if (!scene.getStylesheets().contains("/com/grupo2/t4j/style/app.css")) {
+            scene.getStylesheets().add("/com/grupo2/t4j/style/dark.css");
+        }
+    }
+
 
     public void registarOrganizacao(ActionEvent actionEvent) {
 
