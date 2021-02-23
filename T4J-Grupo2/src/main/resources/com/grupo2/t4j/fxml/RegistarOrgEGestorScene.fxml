@@ -210,9 +210,9 @@
          </right></BorderPane>
    </center>
    <top>
-      <Label alignment="CENTER_RIGHT" style="-fx-background-color: #000000;" text="Dados da Organização e Gestor da Organização" textFill="WHITE" BorderPane.alignment="CENTER_RIGHT">
+      <Label alignment="CENTER_RIGHT" styleClass="lblUser" text="Dados da Organização e Gestor da Organização" textFill="WHITE" BorderPane.alignment="CENTER_RIGHT">
          <font>
-            <Font name="Calibri" size="18.0" />
+            <Font name="Calibri" size="16.0" />
          </font>
          <padding>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
