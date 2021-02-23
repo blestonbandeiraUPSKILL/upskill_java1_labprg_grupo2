@@ -11,18 +11,19 @@ package com.grupo2.t4j.persistence;
  */
 
 import com.grupo2.t4j.model.HabilitacaoAcademica;
+import com.grupo2.t4j.exception.HabilitacaoAcademicaDuplicadaException;
 
 import java.sql.SQLException;
-import java.util.List;
+import java.util.ArrayList;
 
 public interface RepositorioHabilitacaoAcademica {
     
-    void save(String idHabilitacao, String grau, String designacaoCurso,
-           String nomeInstituicao, double mediaCurso) throws SQLException;
+    boolean save(String idHabilitacao, String grau, String designacaoCurso,
+           String nomeInstituicao, double mediaCurso) throws HabilitacaoAcademicaDuplicadaException, SQLException;
 
-    boolean save(HabilitacaoAcademica habilitacaoAcademica) throws SQLException;
-
-    List<HabilitacaoAcademica> getAll() throws SQLException;
+    boolean save(HabilitacaoAcademica habilitacaoAcademica) throws HabilitacaoAcademicaDuplicadaException, SQLException;
 
     HabilitacaoAcademica findById(String idHabilitacao) throws SQLException;
+    
+    ArrayList<HabilitacaoAcademica> getAll() throws SQLException;
 }

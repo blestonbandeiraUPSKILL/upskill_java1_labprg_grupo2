@@ -38,6 +38,12 @@ public class HabilitacaoAcademica {
     private double mediaCurso;
     
     /**
+     * Construtor vazio da classe Habilitação Acadêmica
+     */
+    public HabilitacaoAcademica(){
+        
+    }
+    /**
      * Construtor completo da classe Habilitação Acadêmica
      * @param idHabilitacao - o id da Habilitação Acadêmica do Freelancer
      * @param grau - grau referente à habilitação acadêmica.

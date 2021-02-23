@@ -59,11 +59,7 @@
                                                    <VBox.margin>
                                                       <Insets top="5.0" />
                                                    </VBox.margin></Label>
-                                                <ComboBox fx:id="cmbNomeFreelancer" prefHeight="25.0" prefWidth="380.0">
-                                                   <VBox.margin>
-                                                      <Insets bottom="5.0" top="5.0" />
-                                                   </VBox.margin>
-                                                </ComboBox>
+                                                <TextField fx:id="txtNomeFreelancer" disable="true" />
                                                 <Label text="Email do Freelancer">
                                                    <VBox.margin>
                                                       <Insets />
