@@ -70,6 +70,11 @@ public class Utilizador implements Serializable{
 
     }
 
+    public Utilizador(String nome, String email) {
+        setNome(nome);
+        setEmail(new Email(email));
+    }
+
 
     /**
      * Verifica a validade do parâmetro recebido e regista o nome do Utilizador
