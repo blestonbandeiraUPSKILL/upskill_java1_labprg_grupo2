@@ -143,7 +143,7 @@
          <bottom>
             <FlowPane alignment="CENTER_RIGHT" prefHeight="22.0" prefWidth="700.0" styleClass="FlowPane" BorderPane.alignment="CENTER">
                <children>
-                  <Button fx:id="btnConfirmar" defaultButton="true" mnemonicParsing="false" onAction="#registarCategoriaAction" styleClass="btnConfirmar" text="Confirmar">
+                  <Button fx:id="btnConfirmar" defaultButton="true" mnemonicParsing="false" styleClass="btnConfirmar" text="Confirmar">
                      <font>
                         <Font size="14.0" />
                      </font>

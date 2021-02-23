@@ -66,18 +66,15 @@ public class RepositorioTarefaDatabase implements RepositorioTarefa {
             try {
                 connection.setAutoCommit(false);
 
-                callableStatement.setString(1, tarefa.getCodigoAreaActividade());
-                callableStatement.setString(2, tarefa.getCodigoCategoriaTarefa());
-                callableStatement.setString(3, tarefa.getReferencia());
-                callableStatement.setString(4, tarefa.getDesignacao());
-                callableStatement.setString(5, tarefa.getDescInformal());
-                callableStatement.setString(6, tarefa.getDescTecnica());
-                callableStatement.setInt(7, tarefa.getDuracaoEst());
-                callableStatement.setDouble(8, tarefa.getCustoEst());
-                callableStatement.setString(9, tarefa.getNifOrganizacao());
-                callableStatement.setString(10, tarefa.getEmailColaborador());
-                
-                
+                callableStatement.setString(1, tarefa.getNifOrganizacao());
+                callableStatement.setString(2, tarefa.getReferencia());
+                callableStatement.setString(3, tarefa.getDesignacao());
+                callableStatement.setString(4, tarefa.getDescInformal());
+                callableStatement.setString(5, tarefa.getDescTecnica());
+                callableStatement.setInt(6, tarefa.getDuracaoEst());
+                callableStatement.setDouble(7, tarefa.getCustoEst());
+                callableStatement.setString(8, tarefa.getCodigoCategoriaTarefa());
+                callableStatement.setString(9, tarefa.getEmailColaborador());
 
                 callableStatement.executeQuery();
 
@@ -112,7 +109,7 @@ public class RepositorioTarefaDatabase implements RepositorioTarefa {
         Connection connection = dbConnectionHandler.openConnection();
 
         CallableStatement callableStatement = connection.prepareCall(
-                "{ CALL findByRefenciaENif(?, ?) }"
+                "{ CALL findByRefENif(?, ?) }"
         );
 
         try {
@@ -135,12 +132,7 @@ public class RepositorioTarefaDatabase implements RepositorioTarefa {
     }
 
     @Override
-    public List<Tarefa> findByCategoria(String codigoCategoria) {
-        return null;
-    }
-
-    @Override
-    public ArrayList<Tarefa> getAll() throws SQLException {
+    public List<Tarefa> findByCategoria(String codigoCategoria) throws SQLException {
         ArrayList<Tarefa> tarefas = new ArrayList<>();
 
         DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
@@ -148,25 +140,77 @@ public class RepositorioTarefaDatabase implements RepositorioTarefa {
 
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(
-                    "SELECT * FROM Tarefa "
+                    "SELECT * FROM Tarefa WHERE codigoCategoria LIKE ?"
             );
 
+            preparedStatement.setString(1, codigoCategoria);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                String nifOrganizacao = resultSet.getString(1);
+                String referencia = resultSet.getString(2);
+                String designacao = resultSet.getString(3);
+                String descInformal = resultSet.getString(4);
+                String descTecnica = resultSet.getString(5);
+                int duracaoEstimada = resultSet.getInt(6);
+                double custoEstimado = resultSet.getDouble(7);
+                String emailColaborador = resultSet.getString(9);
+
+
+                tarefas.add(new Tarefa(referencia, nifOrganizacao, descInformal, descTecnica,
+                        duracaoEstimada, custoEstimado, codigoCategoria, emailColaborador));
+            }
+        }
+
+        catch (SQLException exception) {
+            exception.printStackTrace();
+            exception.getSQLState();
+            try {
+                System.err.print("Transaction is being rolled back");
+                connection.rollback();
+            }
+            catch (SQLException sqlException) {
+                sqlException.getErrorCode();
+            }
+
+        }
+        finally {
+            dbConnectionHandler.closeAll();
+        }
+
+        return tarefas;
+    }
+
+    @Override
+    public ArrayList<Tarefa> getAll(String nifOrganizacao) throws SQLException {
+        ArrayList<Tarefa> tarefas = new ArrayList<>();
+
+        DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
+        Connection connection = dbConnectionHandler.openConnection();
+
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(
+                    "SELECT * FROM Tarefa WHERE nifOrganizacao LIKE ?"
+            );
+
+            preparedStatement.setString(1, nifOrganizacao);
             
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
-                String codigoAreaActividade = resultSet.getString(1);
-                String codigoCategoriaTarefa = resultSet.getString(2);
-                String referencia = resultSet.getString(3);
-                String designacao = resultSet.getString(4);
-                String descInformal = resultSet.getString(5);
-                String descTecnica = resultSet.getString(6);
-                int duracaoEst  = resultSet.getInt(7);
-                double custoEst = resultSet.getDouble(8);
-                String nifOrganizacao = resultSet.getString(9);
-                String emailColaborador = resultSet.getString(10);
+
+                String referencia = resultSet.getString(2);
+                String designacao = resultSet.getString(3);
+                String descInformal = resultSet.getString(4);
+                String descTecnica = resultSet.getString(5);
+                int duracaoEst  = resultSet.getInt(6);
+                double custoEst = resultSet.getDouble(7);
+                String codigoCategoriaTarefa = resultSet.getString(8);
+                String emailColaborador = resultSet.getString(9);
+
                 tarefas.add(new Tarefa(referencia, designacao, descInformal, 
-                        descTecnica, duracaoEst, custoEst,codigoAreaActividade, 
+                        descTecnica, duracaoEst, custoEst,
                         codigoCategoriaTarefa, nifOrganizacao, emailColaborador));
             }
         }

@@ -133,7 +133,7 @@ public class RepositorioTarefaInMemory implements Serializable, RepositorioTaref
      *
      * @return 
      */
-    public ArrayList<Tarefa> getAll() throws SQLException{
+    public ArrayList<Tarefa> getAll(String nifOrganizacao) throws SQLException{
 
         return new ArrayList<Tarefa>(listaTarefas);
     }

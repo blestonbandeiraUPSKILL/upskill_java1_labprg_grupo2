@@ -156,7 +156,7 @@ public class RepositorioCaracterizacaoCTDatabase implements RepositorioCaracteri
         Connection connection = dbConnectionHandler.openConnection();
 
         CallableStatement callableStatement = connection.prepareCall(
-                "{ CALL findByCodigoCateriaECodigoGrau(?, ?) }"
+                "{ CALL findByCodigoCategoriaECodigoGrau(?, ?) }"
         );
 
         try {

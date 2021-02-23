@@ -54,9 +54,9 @@ public class EfectuarCandidaturaController {
         return repositorioReconhecimentoGP.findByEmail(email);
     }
 
-    public List<Tarefa> findTarefasElegiveis(String email) throws SQLException {
+    public List<Tarefa> findTarefasElegiveis(String email, String nifOrganizacao) throws SQLException {
         List<Tarefa> tarefasElegiveis = new ArrayList<>();
-        List<Tarefa> listaTarefas = repositorioTarefa.getAll();
+        List<Tarefa> listaTarefas = repositorioTarefa.getAll(nifOrganizacao);
 
         for (Tarefa tarefa : listaTarefas) {
             List<CaracterizacaoCT> competenciasDaTarefa = repositorioCategoriaTarefa.findByCodigo(
@@ -73,7 +73,7 @@ public class EfectuarCandidaturaController {
         return null;
     }
 
-    public List<Anuncio> findAnunciosElegiveis(String email) throws SQLException {
+  /*  public List<Anuncio> findAnunciosElegiveis(String email) throws SQLException {
 
         List<Anuncio> anunciosElegiveis = new ArrayList<>();
         Data dataAtual = Data.dataActual();
@@ -96,7 +96,7 @@ public class EfectuarCandidaturaController {
             return new ArrayList<>();
         }
         return anunciosElegiveis;
-    }
+    }*/
 
     public List<CompetenciaTecnica> competenciasTecnicasDoFreelancer(String email) throws SQLException {
 

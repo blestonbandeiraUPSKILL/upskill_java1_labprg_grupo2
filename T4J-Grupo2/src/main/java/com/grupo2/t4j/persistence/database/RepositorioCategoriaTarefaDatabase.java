@@ -125,6 +125,7 @@ public class RepositorioCategoriaTarefaDatabase implements RepositorioCategoriaT
 
     @Override
     public Categoria findByCodigo(String codigoCategoria) throws SQLException {
+        Categoria categoria = new Categoria();
 
         DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
         Connection connection = dbConnectionHandler.openConnection();
@@ -145,7 +146,24 @@ public class RepositorioCategoriaTarefaDatabase implements RepositorioCategoriaT
             exception.printStackTrace();
             exception.getSQLState();
         }
-        return new Categoria();
+
+        PreparedStatement preparedStatement = connection.prepareStatement(
+                "SELECT * FROM Categoria WHERE codigoCategoria LIKE ?"
+        );
+
+        preparedStatement.setString(1, codigoCategoria);
+
+        ResultSet resultSet = preparedStatement.executeQuery();
+
+        while (resultSet.next()) {
+            categoria.setCodigo(codigoCategoria);
+            categoria.setDescBreve(resultSet.getString(2));
+            categoria.setDescDetalhada(resultSet.getString(3));
+            categoria.setCodigoAreaActividade(resultSet.getString(4));
+
+        }
+
+        return categoria;
     }
 
     @Override

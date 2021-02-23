@@ -8,13 +8,14 @@ IS
     ex_Tarefa exception;
     
 BEGIN
+
     SELECT count(*) INTO v_count
     FROM Tarefa
-    WHERE 
-        referencia LIKE p_referencia 
+    WHERE  
+        nifOrganizacao LIKE p_nifOrganizacao
         AND
-        nifOrganizacao LIKE p_nifOrganizacao;
-        
+        referencia LIKE p_referencia;
+       
     IF v_count != 0
     THEN   
         RAISE ex_Tarefa;
