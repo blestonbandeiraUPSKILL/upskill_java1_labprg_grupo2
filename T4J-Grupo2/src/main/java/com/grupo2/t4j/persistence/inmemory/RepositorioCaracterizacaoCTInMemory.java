@@ -28,10 +28,10 @@ public class RepositorioCaracterizacaoCTInMemory implements Serializable, Reposi
     }
 
     @Override
-    public void save(String codigoCCT, String codigoGP, Obrigatoriedade obrigatoriedade, String codigoCompetenciaTecnica) throws CaracterizacaoCTDuplicadaException {
+    public void save(String codigoCategoria, String codigoGP, Obrigatoriedade obrigatoriedade) throws CaracterizacaoCTDuplicadaException {
         CaracterizacaoCT cct = findByCodigo(codigoGP);
         if (cct == null) {
-            CaracterizacaoCT caracterizacaoCT = new CaracterizacaoCT(codigoCCT, codigoGP, obrigatoriedade, codigoCompetenciaTecnica);
+            CaracterizacaoCT caracterizacaoCT = new CaracterizacaoCT(codigoCategoria, codigoGP, obrigatoriedade);
             this.listaCaracterizacaoCTS.add(caracterizacaoCT);
         }
 
@@ -39,14 +39,15 @@ public class RepositorioCaracterizacaoCTInMemory implements Serializable, Reposi
 
     @Override
     public boolean save(CaracterizacaoCT caracterizacaoCT) {
-        CaracterizacaoCT cct = findByCodigo(caracterizacaoCT.getCodigoCCT());
+        /*CaracterizacaoCT cct = findByCodigo(caracterizacaoCT.getCodigoCCT());
         if (cct == null) {
             this.listaCaracterizacaoCTS.add(caracterizacaoCT);
             return true;
         }
         else {
             throw new CaracterizacaoCTDuplicadaException(cct.getCodigoCCT() + "Lista de caracterizações já existente.");
-        }
+        }*/
+        return false;
     }
 
     @Override
@@ -67,12 +68,12 @@ public class RepositorioCaracterizacaoCTInMemory implements Serializable, Reposi
     }
 
     public CaracterizacaoCT findByCodigo(String codigo) {
-        for (int i = 0; i < this.listaCaracterizacaoCTS.size() ; i++) {
+        /*for (int i = 0; i < this.listaCaracterizacaoCTS.size() ; i++) {
             CaracterizacaoCT cct = this.listaCaracterizacaoCTS.get(i);
             if (cct.getCodigoCCT().equals(codigo)) {
                 return cct;
             }
-        }
+        }*/
         return null;
     }
 

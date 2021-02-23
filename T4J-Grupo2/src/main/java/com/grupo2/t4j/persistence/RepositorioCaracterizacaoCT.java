@@ -9,7 +9,7 @@ import java.util.List;
 public interface RepositorioCaracterizacaoCT {
 
 
-    void save(String codigoCCT, String codigoGP, Obrigatoriedade obrigatoriedade, String codigoCompetenciaTecnica) throws CaracterizacaoCTDuplicadaException;
+    void save(String codigoCategoria, String codigoGP, Obrigatoriedade obrigatoriedade) throws CaracterizacaoCTDuplicadaException;
 
     boolean save(CaracterizacaoCT caracterizacaoCT) throws SQLException;
 
