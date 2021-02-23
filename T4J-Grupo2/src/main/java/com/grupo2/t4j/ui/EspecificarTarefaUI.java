@@ -21,18 +21,16 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 
 public class EspecificarTarefaUI implements Initializable {
 
-    private ColaboradorLogadoUI colaboradorLogadoUI;
     private RegistarTarefaController registarTarefaController;
     private RegistarAreaActividadeController registarAreaActividadeController;
     private RegistarCategoriaController registarCategoriaController;
     private RegistarColaboradorController registarColaboradorController;
     private GestaoUtilizadoresController gestaoUtilizadoresController;
+    private Initializable parentUI;
 
     @FXML TextField txtReferencia;
     @FXML TextField txtDesignacao;
@@ -45,8 +43,8 @@ public class EspecificarTarefaUI implements Initializable {
     @FXML ComboBox<AreaActividade> cmbAreaActividade;
     @FXML Button btnCancelar;
 
-    public void associarParentUI(ColaboradorLogadoUI colaboradorLogadoUI) {
-        this.colaboradorLogadoUI = colaboradorLogadoUI;
+    public void associarParentUI(Initializable parentUI) {
+        this.parentUI = parentUI;
     }
 
     @Override
@@ -73,7 +71,7 @@ public class EspecificarTarefaUI implements Initializable {
             }
         });
 
-        javafx.scene.control.ListView<CaracterizacaoCT> listViewCaracterizacaoCT = new javafx.scene.control.ListView<>();
+        ListView<CaracterizacaoCT> listViewCaracterizacaoCT = new javafx.scene.control.ListView<>();
         cmbCategoriaTarefa.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -113,7 +111,7 @@ public class EspecificarTarefaUI implements Initializable {
                     registarColaboradorController.findByEmail(gestaoUtilizadoresController.getEmail()).getNifOrganizacao());
 
             if (adicionou){
-                colaboradorLogadoUI.updateListViewTarefas(actionEvent);
+               // parentUI.updateListViewTarefas(actionEvent);
             }
             AlertsUI.criarAlerta(Alert.AlertType.INFORMATION,
                     MainApp.TITULO_APLICACAO,
@@ -148,7 +146,6 @@ public class EspecificarTarefaUI implements Initializable {
         });
         window.fireEvent(new WindowEvent(window, WindowEvent.WINDOW_CLOSE_REQUEST));
     }
-
 
 
 }

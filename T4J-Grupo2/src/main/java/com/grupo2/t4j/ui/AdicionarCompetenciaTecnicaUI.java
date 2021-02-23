@@ -44,7 +44,6 @@ public class AdicionarCompetenciaTecnicaUI implements Initializable {
     private RegistarGrauProficienciaController registarGrauProficienciaController;
     private Stage adicionarStage;
 
-
     @FXML Button btnVoltar;
     @FXML Button btnCancelar;
     @FXML TextArea txtDescDetalhada;
@@ -52,7 +51,6 @@ public class AdicionarCompetenciaTecnicaUI implements Initializable {
     @FXML TextField txtCodigo;
     @FXML TextField txtDesignacao;
     @FXML TextField txtValor;
-
 
     @FXML ComboBox<AreaActividade> cmbAreaActividade;
     @FXML ListView<GrauProficiencia> listViewGrausAdicionados;
