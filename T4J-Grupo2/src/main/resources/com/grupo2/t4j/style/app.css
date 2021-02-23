@@ -58,7 +58,20 @@
     -fx-background-color: #FFFFF0;
 }
 
-.Tab {
-    -fx-background-color: #FFFFF0;
+/**
+.tabListaTarefas {
+    -fx-background-color: #FF0000;
+}
+*/
+
+.btnAddColaborador {
+    -fx-background-color: #20B2AA;
+    -fx-text-fill: #ffffff;
+    -fx-cursor: hand;
 }
 
+.btnRegistarColaborador {
+    -fx-background-color: #20B2AA;
+    -fx-text-fill: #ffffff;
+    -fx-cursor: hand;    
+}
