@@ -19,13 +19,15 @@ import java.util.ArrayList;
 public interface RepositorioColaborador {
 
 
-    void save(Email email, String nome, Password passowrd, String funcao, String telefone) throws ColaboradorDuplicadoException;
+    void save(String email, String nome, String passowrd, String funcao, String telefone) throws ColaboradorDuplicadoException;
 
     boolean save(Colaborador colaborador) throws SQLException;
 
     Colaborador findByEmail(String emailCol) throws SQLException;
 
     ArrayList<Colaborador> getAll() throws SQLException;
+
+    String getNifOrganizacao(String email) throws SQLException;
 
     Password findPassword(String email) throws SQLException;
 

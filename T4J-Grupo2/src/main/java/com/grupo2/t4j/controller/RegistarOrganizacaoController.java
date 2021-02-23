@@ -31,16 +31,16 @@ public class RegistarOrganizacaoController {
                                        String telefoneGestor, String funcaoGestor) throws SQLException {
 
         AlgoritmoGeradorPasswords algoritmoGeradorPasswords = new AlgoritmoGeradorPasswords();
-        Password pass = new Password(algoritmoGeradorPasswords.geraPassword());
+        String pass = algoritmoGeradorPasswords.geraPassword();
 
-        Colaborador gestor = new Colaborador(new Email(emailGestor), nomeGestor, pass, funcaoGestor, telefoneGestor);
+        Colaborador gestor = new Colaborador(emailGestor, nomeGestor, pass, funcaoGestor, telefoneGestor);
 
         UsersAPI usersAPI = UsersAPI.getInstance();
-        usersAPI.registerUserWithRoles(gestor.getEmail(), gestor.getNome(), pass, "gestor");
+        usersAPI.registerUserWithRoles(gestor.getEmail(), gestor.getNome(), new Password(pass), "gestor");
 
         return repositorioOrganizacao.save(nif, nome, website, telefone,
                 emailOrganizacao, emailGestor, arruamento, numeroPorta, localidade,
-                codigoPostal, nomeGestor, pass.getPasswordText(), telefoneGestor, funcaoGestor);
+                codigoPostal, nomeGestor, pass, telefoneGestor, funcaoGestor);
     }
 
     public List<Organizacao> getAll() {

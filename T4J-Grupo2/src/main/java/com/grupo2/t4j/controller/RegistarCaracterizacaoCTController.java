@@ -24,10 +24,11 @@ public class RegistarCaracterizacaoCTController {
         return repositorioCaracterizacaoCT.getAll();
     }
 
-    public boolean registarCaracterizacaoCTS(String codigoCCT, String codigoGP, Obrigatoriedade obrigatoriedade,
-                                                  String codigoCompetenciaTecnica) throws SQLException {
+    public boolean registarCaracterizacaoCTS(String codigoCategoria, 
+            String codigoGP, Obrigatoriedade obrigatoriedade) throws SQLException {
 
-        CaracterizacaoCT caracterizacaoCT = new CaracterizacaoCT(codigoCCT, codigoGP, obrigatoriedade, codigoCompetenciaTecnica);
+        CaracterizacaoCT caracterizacaoCT = new CaracterizacaoCT(codigoCategoria,
+                codigoGP, obrigatoriedade);
 
         return repositorioCaracterizacaoCT.save(caracterizacaoCT);
     }

@@ -43,19 +43,52 @@ public class RepositorioCaracterizacaoCTDatabase implements RepositorioCaracteri
     }
 
     @Override
-    public void save(String codigoCCT, String codigoGP, Obrigatoriedade obrigatoriedade, String codigoCompetenciaTecnica) throws CaracterizacaoCTDuplicadaException {
+    public void save(String codigoCategoria, String codigoGP, Obrigatoriedade obrigatoriedade) throws CaracterizacaoCTDuplicadaException {
 
     }
 
     @Override
     public boolean save(CaracterizacaoCT caracterizacaoCT) throws SQLException {
-        return false;
-     /*   DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
+       
+        DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
         Connection connection = dbConnectionHandler.openConnection();
 
         CallableStatement callableStatement = connection.prepareCall(
-                "{CALL createCaracterizacaoCT()}"
-        );*/
+                "{CALL createCaracterizacaoCT(?, ?, ?)}"
+        );
+        if (findByCategoriaEGrau(caracterizacaoCT.getCodigoCategoria(),caracterizacaoCT.getCodigoGP())==null){
+            try {
+                connection.setAutoCommit(false);
+
+                callableStatement.setString(1, caracterizacaoCT.getCodigoCategoria());
+                callableStatement.setString(2, caracterizacaoCT.getCodigoGP());
+                callableStatement.setString(3, caracterizacaoCT.getObrigatoriedade().toString());
+
+                callableStatement.executeQuery();
+
+                connection.commit();
+                return true;
+            }
+            catch (SQLException exception) {
+                exception.printStackTrace();
+                exception.getSQLState();
+                try {
+                    System.err.print("Transaction is being rolled back");
+                    connection.rollback();
+                }
+                catch (SQLException sqlException) {
+                    sqlException.getErrorCode();
+                }
+            }
+            finally {
+                dbConnectionHandler.closeAll();
+            }
+        }
+        else {
+            throw new CaracterizacaoCTDuplicadaException(" Caracterização já registada.");
+        }
+        return false;
+        
     }
 
     @Override
@@ -71,5 +104,34 @@ public class RepositorioCaracterizacaoCTDatabase implements RepositorioCaracteri
     @Override
     public CaracterizacaoCT findByCodigo(String codigoCCT) {
         return null;
+    }
+
+    private CaracterizacaoCT findByCategoriaEGrau(String codigoCategoria, 
+            String codigoGP) throws SQLException {
+
+        DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
+        Connection connection = dbConnectionHandler.openConnection();
+
+        CallableStatement callableStatement = connection.prepareCall(
+                "{ CALL findByCategoriaEGrau(?, ?) }"
+        );
+
+        try {
+            connection.setAutoCommit(false);
+
+            callableStatement.setString(1, codigoCategoria);
+            callableStatement.setString(2, codigoGP);
+
+            callableStatement.executeUpdate();
+            return null;
+
+        }
+        catch (SQLException exception) {
+            exception.printStackTrace();
+            exception.getSQLState();
+
+
+        }
+        return new CaracterizacaoCT();
     }
 }

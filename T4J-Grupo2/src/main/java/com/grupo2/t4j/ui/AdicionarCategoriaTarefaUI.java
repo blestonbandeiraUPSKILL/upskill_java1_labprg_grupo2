@@ -67,7 +67,6 @@ public class AdicionarCategoriaTarefaUI implements Initializable {
         adicionarStage.initModality(Modality.APPLICATION_MODAL);;
         adicionarStage.setResizable(false);
 
-        //cmbGrauProficiencia.getItems().setAll(registarGrauProficienciaController.findByCompetenciaTecnica());
         cmbObrigatoriedade.getItems().setAll(Obrigatoriedade.values());
 
         try {
@@ -174,7 +173,7 @@ public class AdicionarCategoriaTarefaUI implements Initializable {
     @FXML
     public List<CaracterizacaoCT> addCompetenciaTecnica2CCTS() throws SQLException {
 
-        List<CaracterizacaoCT> caracterizacaoCTS = new ArrayList<>();
+        /*List<CaracterizacaoCT> caracterizacaoCTS = new ArrayList<>();
         boolean adicionou = registarCaracterizacaoCTController.registarCaracterizacaoCTS(
                txtCodigoCCT.getText(),
                cmbGrauProficiencia.getValue().getGrau(),
@@ -193,7 +192,8 @@ public class AdicionarCategoriaTarefaUI implements Initializable {
             cmbAreaActividade.setDisable(true);
         }
 
-        return caracterizacaoCTS;
+        return caracterizacaoCTS;*/
+        return null;
     }
 
 
