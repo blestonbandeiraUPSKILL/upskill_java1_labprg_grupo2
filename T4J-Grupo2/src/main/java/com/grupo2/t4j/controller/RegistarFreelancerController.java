@@ -52,13 +52,16 @@ public class RegistarFreelancerController {
     public Freelancer findByNif(String NIF) throws SQLException{
         return repositorioFreelancer.findByNif(NIF);
     }
+    
+    public Freelancer findByEmail(String emailFree) throws SQLException{
+        return repositorioFreelancer.findByEmail(emailFree);
+    }
 
     ///////API
     public boolean registarFreelancerComoUtilizador(Freelancer freelancer) throws SQLException {
         String nome = freelancer.getNome();
         Email email = freelancer.getEmail();
         Password password = freelancer.getPassword();
-
 
         Utilizador utilizador = new Utilizador(email, nome, password);
 
