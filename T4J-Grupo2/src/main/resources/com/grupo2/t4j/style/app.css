@@ -48,6 +48,7 @@
 .lblUser {
     -fx-background-color: #191970;
     -fx-text-fill: #FFFFFF;
+    -fx-font-size:16;  
 }
 
 .AnchorPane {
