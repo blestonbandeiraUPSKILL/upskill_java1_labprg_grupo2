@@ -8,6 +8,7 @@ import com.grupo2.t4j.model.Obrigatoriedade;
 import com.grupo2.t4j.persistence.RepositorioCaracterizacaoCT;
 
 import java.io.Serializable;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -56,11 +57,12 @@ public class RepositorioCaracterizacaoCTInMemory implements Serializable, Reposi
     }
 
     @Override
-    public List<CaracterizacaoCT> findByCompetenciaTecnica(List<String> codigoCompetenciasTecnicas) {
+    public List<CaracterizacaoCT> findByCategoria(String codigoCategoria) {
+        //Não funciona!!
         ArrayList<CaracterizacaoCT> caracterizacaoCTSbyCompetenciaTecnica = new ArrayList<>();
 
         for (CaracterizacaoCT cct : listaCaracterizacaoCTS) {
-            if (cct.getCodigoCompetenciaTecnica().equals(codigoCompetenciasTecnicas)) {
+            if (cct.getCodigoCompetenciaTecnica().equals(codigoCategoria)) {
                 caracterizacaoCTSbyCompetenciaTecnica.add(cct);
             }
         }
@@ -75,6 +77,11 @@ public class RepositorioCaracterizacaoCTInMemory implements Serializable, Reposi
             }
         }*/
         return null;
+    }
+
+    @Override
+    public CaracterizacaoCT findByCategoriaEGrau(String codigoCategoria, String codigoGP) throws SQLException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

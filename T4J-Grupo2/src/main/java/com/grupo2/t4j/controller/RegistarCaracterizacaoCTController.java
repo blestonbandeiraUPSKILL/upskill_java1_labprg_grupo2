@@ -12,8 +12,8 @@ import java.util.List;
 
 public class RegistarCaracterizacaoCTController {
 
-    private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosInMemory();
-    //private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosDatabase();
+    //private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosInMemory();
+    private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosDatabase();
     private RepositorioCaracterizacaoCT repositorioCaracterizacaoCT = fabricaRepositorios.getRepositorioCaracterizacaoCT();
 
     public boolean registarCaracterizacaoCT(CaracterizacaoCT caracterizacaoCT) throws SQLException {
@@ -35,5 +35,14 @@ public class RegistarCaracterizacaoCTController {
 
     public CaracterizacaoCT findByCodigo(String codigoCCT) {
         return repositorioCaracterizacaoCT.findByCodigo(codigoCCT);
+    }
+    
+    public List<CaracterizacaoCT> findByCategoria(String codigoCategoria) throws SQLException{
+        return repositorioCaracterizacaoCT.findByCategoria(codigoCategoria);
+    }
+    
+    public CaracterizacaoCT findByCategoriaEGrau (String codigoCategoria, 
+            String codigoGP) throws SQLException {
+        return repositorioCaracterizacaoCT.findByCategoriaEGrau(codigoCategoria,codigoGP);
     }
 }

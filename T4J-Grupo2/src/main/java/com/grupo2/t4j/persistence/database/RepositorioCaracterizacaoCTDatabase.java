@@ -10,7 +10,10 @@ import com.grupo2.t4j.utils.DBConnectionHandler;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class RepositorioCaracterizacaoCTDatabase implements RepositorioCaracterizacaoCT {
@@ -97,8 +100,50 @@ public class RepositorioCaracterizacaoCTDatabase implements RepositorioCaracteri
     }
 
     @Override
-    public List<CaracterizacaoCT> findByCompetenciaTecnica(List<String> codigoCompetenciasTecnicas) {
-        return null;
+    public List<CaracterizacaoCT> findByCategoria(String codigoCategoria) throws SQLException{
+        ArrayList<CaracterizacaoCT> listaCaracterizacaoCT = new ArrayList<>();
+
+        DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
+        Connection connection = dbConnectionHandler.openConnection();
+
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(
+                    "SELECT * FROM CaracterizacaoCT WHERE codigoCategoria LIKE ?"
+            );
+
+            preparedStatement.setString(1, codigoCategoria);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                int idCaracterizacaoCT = resultSet.getInt(1);
+                String codigoCategoriaTarefa = resultSet.getString(2);
+                String codigoGP = resultSet.getString(3);
+                String obrigatoriedade = resultSet.getString(4);
+                listaCaracterizacaoCT.add(new CaracterizacaoCT(idCaracterizacaoCT,
+                        codigoCategoriaTarefa, codigoGP,
+                        Obrigatoriedade.valueOf(obrigatoriedade)));
+
+            }
+        }
+
+        catch (SQLException exception) {
+            exception.printStackTrace();
+            exception.getSQLState();
+            try {
+                System.err.print("Transaction is being rolled back");
+                connection.rollback();
+            }
+            catch (SQLException sqlException) {
+                sqlException.getErrorCode();
+            }
+
+        }
+        finally {
+            dbConnectionHandler.closeAll();
+        }
+
+        return listaCaracterizacaoCT;
     }
 
     @Override
@@ -106,14 +151,15 @@ public class RepositorioCaracterizacaoCTDatabase implements RepositorioCaracteri
         return null;
     }
 
-    private CaracterizacaoCT findByCategoriaEGrau(String codigoCategoria, 
+    @Override
+    public CaracterizacaoCT findByCategoriaEGrau(String codigoCategoria, 
             String codigoGP) throws SQLException {
 
         DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
         Connection connection = dbConnectionHandler.openConnection();
 
         CallableStatement callableStatement = connection.prepareCall(
-                "{ CALL findByCategoriaEGrau(?, ?) }"
+                "{ CALL findByCodigoCateriaECodigoGrau(?, ?) }"
         );
 
         try {
