@@ -179,7 +179,7 @@ public class CompetenciaTecnica implements Serializable {
      */
     @Override
     public String toString() {
-        return String.format("ID: %-12s |Descrição breve: %-30s", codigo, descricaoBreve);
+        return String.format("%s", descricaoBreve);
     }
     
      /**
