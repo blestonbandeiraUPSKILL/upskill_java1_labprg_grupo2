@@ -152,12 +152,12 @@
                                     </Button>
                                  </children>
                               </VBox>
-                              <Label layoutX="20.0" layoutY="20.0" prefHeight="22.0" prefWidth="215.0" text="Freelancers registados" AnchorPane.bottomAnchor="285.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="465.0" AnchorPane.topAnchor="20.0">
+                              <Label layoutX="20.0" layoutY="20.0" prefHeight="22.0" prefWidth="215.0" text="Freelancers registados" AnchorPane.bottomAnchor="285.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="465.0" AnchorPane.topAnchor="0.0">
                                  <font>
                                     <Font name="Calibri" size="16.0" />
                                  </font>
                                  <padding>
-                                    <Insets bottom="5.0" top="5.0" />
+                                    <Insets bottom="5.0" top="20.0" />
                                  </padding>
                               </Label>
                               <ListView fx:id="listaFreelancer" layoutX="21.0" layoutY="51.0" prefHeight="272.0" prefWidth="447.0" />
