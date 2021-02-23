@@ -51,11 +51,14 @@ public class StartingPageUI implements Initializable {
     void cssGoDark(ActionEvent event) {
 
         Scene scene = btnGoDark.getScene();
-        scene.getStylesheets().remove("/com/grupo2/t4j/style/app.css");
 
-        if (!scene.getStylesheets().contains("/com/grupo2/t4j/style/app.css")) {
-            scene.getStylesheets().add("/com/grupo2/t4j/style/dark.css");
-        }
+        scene.getStylesheets().clear();
+        scene.getStylesheets().add(getClass().getResource("/com/grupo2/t4j/style/dark.css").toExternalForm());
+
+        /*if (scene.getStylesheets().equals(getClass().getResource("/com/grupo2/t4j/style/app.css").toExternalForm())) {
+            scene.getStylesheets().remove(getClass().getResource("/com/grupo2/t4j/style/app.css").toExternalForm());
+            scene.getStylesheets().add(getClass().getResource("/com/grupo2/t4j/style/dark.css").toExternalForm());
+        }*/
     }
 
 
@@ -84,7 +87,6 @@ public class StartingPageUI implements Initializable {
     }
 
     public void login(ActionEvent actionEvent) throws IOException, SQLException {
-
 
         boolean login = gestaoUtilizadoresController.login(
                 txtEmailLogin.getText(),
