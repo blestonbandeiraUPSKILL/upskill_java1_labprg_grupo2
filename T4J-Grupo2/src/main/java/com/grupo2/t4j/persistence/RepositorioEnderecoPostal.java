@@ -8,13 +8,13 @@ import java.util.List;
 
 public interface RepositorioEnderecoPostal {
 
-    void save(String codigoEnderecoPostal, String arruamento, String numeroPorta, String localidade, String codigoPostal);
+    void save(int codigoEnderecoPostal, String arruamento, String numeroPorta, String localidade, String codigoPostal);
 
     boolean save(EnderecoPostal enderecoPostal) throws SQLException;
 
-    List<EnderecoPostal> getAll();
+    List<EnderecoPostal> getAll() throws SQLException;
 
-    EnderecoPostal findByCodigo(String codigo);
+    EnderecoPostal findById(int codigo) throws SQLException;
 
 
     //update, delete

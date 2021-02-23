@@ -1,5 +1,6 @@
 package com.grupo2.t4j.ui;
 
+import com.grupo2.t4j.controller.RegistarColaboradorController;
 import com.grupo2.t4j.controller.RegistarOrganizacaoController;
 import com.grupo2.t4j.model.*;
 import javafx.event.ActionEvent;
@@ -24,6 +25,7 @@ import javafx.scene.Node;
 public class RegistarOrgEGestorUI implements Initializable {
 
     private RegistarOrganizacaoController registarOrganizacaoController;
+    private RegistarColaboradorController registarColaboradorController;
     private StartingPageUI startingPageUI;
 
     private Stage adicionarStage;
@@ -54,10 +56,12 @@ public class RegistarOrgEGestorUI implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
-            RegistarOrganizacaoController registarOrganizacaoController = new RegistarOrganizacaoController();
+            registarOrganizacaoController = new RegistarOrganizacaoController();
         } catch (SQLException exception) {
             exception.printStackTrace();
         }
+
+        registarColaboradorController = new RegistarColaboradorController();
     }
 
     public void cancelarRegisto(ActionEvent actionEvent) {
@@ -102,8 +106,8 @@ public class RegistarOrgEGestorUI implements Initializable {
 
             if(registou) {
 
-                txtPassword.setText(registarOrganizacaoController.findColaboradorByEmail(
-                        txtEmailGestor.getText()).getPassword().getPasswordText());
+
+                txtPassword.setText(registarColaboradorController.findPassword(txtEmailGestor.getText()).getPasswordText());
 
                 AlertsUI.criarAlerta(Alert.AlertType.INFORMATION,
                     MainApp.TITULO_APLICACAO,

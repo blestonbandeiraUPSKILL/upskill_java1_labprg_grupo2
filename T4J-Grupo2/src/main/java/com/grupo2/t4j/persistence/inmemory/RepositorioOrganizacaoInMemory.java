@@ -49,7 +49,7 @@ public class RepositorioOrganizacaoInMemory implements Serializable, Repositorio
     }
 
     public void save(String nif, String nome, Website website, String telefone,
-                     Email emailOrganizacao, String idEnderecoPostal, Email emailGestor) {
+                     Email emailOrganizacao, int idEnderecoPostal, Email emailGestor) {
         Organizacao o = findByNif(nif);
         if (o == null) {
 
@@ -61,6 +61,13 @@ public class RepositorioOrganizacaoInMemory implements Serializable, Repositorio
             throw new OrganizacaoDuplicadaException(o.getNif() + ": Organização já registada!");
         }
 
+    }
+
+    @Override
+    public boolean save(String nif, String nome, String website, String telefone,
+                        String emailOrganizacao, String emailGestor, String arruamento, String numeroPorta, String localidade, String codPostal,
+                        String nomeGestor, String pass, String telefoneGestor, String funcao) throws SQLException {
+        return false;
     }
 
     @Override

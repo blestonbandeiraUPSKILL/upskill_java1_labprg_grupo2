@@ -11,7 +11,6 @@ CREATE OR REPLACE PROCEDURE createOrganizacao(
     p_codPostal enderecopostal.codpostal%type,
     p_nomeGestor utilizador.nome%type,
     p_password utilizador.password%type,
-    p_rolename utilizador.rolename%type,
     p_telefoneGestor colaborador.telefone%type,
     p_funcao colaborador.funcao%type
     )
@@ -21,10 +20,13 @@ is
     
 BEGIN
     
-    createEnderecoPostal(p_arruamento, p_numeroPorta, p_localidade, p_codPostal);
-    createUtilizadorGestor(p_emailGestor, p_nomeGestor, p_password, p_telefoneGestor,
-    p_funcao, v_nif);
-
+    INSERT INTO EnderecoPostal
+        (arruamento, numeroPorta, localidade, codPostal)
+    VALUES
+        (p_arruamento, p_numeroPorta, p_localidade, p_codPostal)
+    RETURNING idEnderecoPostal
+    INTO v_idEnderecoPostal;
+        
     INSERT INTO Organizacao 
         (nif, nome, website, 
         telefone, email, 
@@ -32,9 +34,11 @@ BEGIN
     VALUES 
         (p_nif, p_nome, p_website, 
         p_telefone, p_email, 
-        p_emailGestor, v_idenderecopostal)
-    RETURNING nif
-    INTO v_nif;
+        p_emailGestor, v_idEnderecoPostal);
+   
+    createUtilizadorGestor(p_emailGestor, 
+    p_nomeGestor, p_password, p_telefoneGestor,
+    p_funcao, p_nif);
     
     
 END;

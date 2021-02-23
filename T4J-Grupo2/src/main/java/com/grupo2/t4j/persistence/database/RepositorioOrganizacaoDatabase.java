@@ -53,38 +53,45 @@ public class RepositorioOrganizacaoDatabase implements RepositorioOrganizacao {
 
 
     @Override
-    public void save(String nif, String nome, Website website, String telefone,
-                     Email emailOrganizacao, String idEnderecoPostal, Email emailGestor) throws SQLException {
+    public boolean save(String nif, String nome, String website, String telefone,
+                        String emailOrganizacao, String emailGestor, String arruamento, String numeroPorta,
+                        String localidade, String codPostal,
+                     String nomeGestor, String pass, String telefoneGestor, String funcao) throws SQLException {
 
         DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
         Connection connection = dbConnectionHandler.openConnection();
 
-        CallableStatement callableStatementOrg = connection.prepareCall(
-                "{CALL createOrganizacao(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)} ");
+        CallableStatement callableStatement = connection.prepareCall(
+                "{CALL createOrganizacao(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) } ");
 
         if (findByNif(nif) == null) {
 
             try {
                 connection.setAutoCommit(false);
 
-                callableStatementOrg.setString(1, nif);
-                callableStatementOrg.setString(2, nome);
-                callableStatementOrg.setString(3, String.valueOf(website));
-                callableStatementOrg.setString(4, telefone);
-                callableStatementOrg.setString(5, String.valueOf(emailOrganizacao));
-                callableStatementOrg.setString(6, String.valueOf(emailGestor));
-                callableStatementOrg.setString(7, idEnderecoPostal);
+                callableStatement.setString(1, nif);
+                callableStatement.setString(2, nome);
+                callableStatement.setString(3, website);
+                callableStatement.setString(4, telefone);
+                callableStatement.setString(5, emailOrganizacao);
+                callableStatement.setString(6, emailGestor);
+                callableStatement.setString(7, arruamento);
+                callableStatement.setString(8, numeroPorta);
+                callableStatement.setString(9, localidade);
+                callableStatement.setString(10, codPostal);
+                callableStatement.setString(11, nomeGestor);
+                callableStatement.setString(12, pass);
+                callableStatement.setString(13, telefone);
+                callableStatement.setString(14, funcao);
 
-
-                callableStatementOrg.executeQuery();
+                callableStatement.executeQuery();
 
                 connection.commit();
-                connection.close();
-
+                return true;
             }
-            catch (SQLException exceptionOrg) {
-                exceptionOrg.printStackTrace();
-                exceptionOrg.getSQLState();
+            catch (SQLException exception) {
+                exception.printStackTrace();
+                exception.getSQLState();
                 try {
                     System.err.print("Transaction is being rolled back");
                     connection.rollback();
@@ -94,12 +101,14 @@ public class RepositorioOrganizacaoDatabase implements RepositorioOrganizacao {
                 }
             }
 
-        } else {
-            throw new OrganizacaoDuplicadaException(nif + ": Organização com esse NIPC já registada!");
+            finally {
+                dbConnectionHandler.closeAll();
+            }
         }
-        connection.close();
-        dbConnectionHandler.closeAll();
+
+        return false;
     }
+
 
     @Override
     public boolean save(Organizacao organizacao) {
@@ -121,7 +130,7 @@ public class RepositorioOrganizacaoDatabase implements RepositorioOrganizacao {
         Connection connection = dbConnectionHandler.openConnection();
 
         CallableStatement callableStatementOrg = connection.prepareCall(
-                 "{CALL getOrganizacaoByNif(?)}");
+                 "{CALL findByNif(?)}");
 
         try {
             connection.setAutoCommit(false);
@@ -129,18 +138,16 @@ public class RepositorioOrganizacaoDatabase implements RepositorioOrganizacao {
             callableStatementOrg.setString(1, nif);
             callableStatementOrg.executeQuery();
 
-            return new Organizacao();
+            return null;
 
         } catch (SQLException exceptionOrg) {
             exceptionOrg.printStackTrace();
             exceptionOrg.getSQLState();
 
-            return null;
-        }
-        finally {
-            dbConnectionHandler.closeAll();
+
         }
 
+        return new Organizacao();
     }
 
     @Override

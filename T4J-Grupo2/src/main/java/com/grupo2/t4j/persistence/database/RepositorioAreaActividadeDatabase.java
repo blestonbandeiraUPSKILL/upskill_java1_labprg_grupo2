@@ -126,7 +126,6 @@ public class RepositorioAreaActividadeDatabase implements RepositorioAreaActivid
                 catch (SQLException sqlException) {
                     sqlException.getErrorCode();
                 }
-
             }
 
             finally {
