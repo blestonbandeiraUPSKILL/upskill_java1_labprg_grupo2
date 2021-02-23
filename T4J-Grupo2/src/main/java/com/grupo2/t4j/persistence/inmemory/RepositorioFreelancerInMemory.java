@@ -51,16 +51,9 @@ public class RepositorioFreelancerInMemory implements Serializable, RepositorioF
     }
     
     @Override
-    public void save(Email email, String nome, Password password, String nif, 
-            String telefone, String codigoEnderecoPostal) throws FreelancerDuplicadoException {
-        Freelancer f = findByNif(nif);
-        if (f == null) {
-            Freelancer freelancer = new Freelancer(email, nome, password, nif, telefone,
-                    codigoEnderecoPostal);
-            this.listaFreelancers.add(freelancer);
-        } else {
-            throw new FreelancerDuplicadoException(nif + ": NIF já registado!");
-        }
+    public boolean save(String emailFree, String nome, String passwordFree, String nif, 
+            String telefone, String arruamento, String numeroPorta, String localidade, String codPostal) throws FreelancerDuplicadoException {
+        return false;
     }
 
     @Override
@@ -69,10 +62,10 @@ public class RepositorioFreelancerInMemory implements Serializable, RepositorioF
         if (f == null) {
             Freelancer freel = new Freelancer(freelancer);
             this.listaFreelancers.add(freel);
+            return true;
         } else {
             throw new FreelancerDuplicadoException(freelancer.getNif() + ": NIF já registado!");
-        }
-        return false;
+        }        
     }
 
     @Override

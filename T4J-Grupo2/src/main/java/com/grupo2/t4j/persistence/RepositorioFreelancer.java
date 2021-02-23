@@ -17,8 +17,8 @@ import java.util.ArrayList;
 
 public interface RepositorioFreelancer {
     
-    void save(Email email, String nome, Password password, String nif, 
-            String telefone, String codigoEnderecoPostal) throws FreelancerDuplicadoException, 
+    boolean save(String emailFree, String nome, String passwordFree, String nif, 
+            String telefone, String arruamento, String numeroPorta, String localidade, String codPostal) throws FreelancerDuplicadoException, 
             SQLException;
 
     boolean save(Freelancer freelancer) throws FreelancerDuplicadoException, 

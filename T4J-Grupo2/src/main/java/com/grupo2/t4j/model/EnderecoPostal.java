@@ -80,8 +80,11 @@ public class EnderecoPostal {
         setLocalidade(localidade);
         setCodigoPostal(codigoPostal);
     }
-
-
+    
+    /**
+     * Devolve o id do Endereço Postal
+     * @return codigoEnderecoPostal
+     */
 
     public int getCodigoEnderecoPostal() {
         return codigoEnderecoPostal;
