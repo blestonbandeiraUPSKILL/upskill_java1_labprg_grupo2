@@ -22,11 +22,6 @@ BEGIN
     VALUES
         (v_emailGestor, p_funcao, p_telefoneGestor, p_nifOrganizacao);
         
-    INSERT INTO Organizacao
-        (emailGestor)
-        SELECT v_emailGestor
-        FROM Colaborador
-        WHERE nifOrganizacao = p_nifOrganizacao;
-    
+
 END;
 /

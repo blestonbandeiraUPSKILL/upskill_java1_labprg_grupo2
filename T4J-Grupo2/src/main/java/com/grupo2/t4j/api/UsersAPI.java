@@ -3,6 +3,7 @@ package com.grupo2.t4j.api;
 import com.grupo2.t4j.model.Email;
 import com.grupo2.t4j.model.Password;
 import com.grupo2.t4j.network.*;
+import com.grupo2.t4j.utils.Response;
 import org.json.JSONObject;
 
 import java.io.Serializable;
@@ -108,6 +109,7 @@ public class UsersAPI implements Serializable {
     }
 
     public boolean registerUserWithRoles(Email email, String username, Password password, String rolenames) {
+
         String url = "registerUserWithRoles?app_context=" + getContext() + "&email=" + email.getEmailText() + "&username=" + username +
                  "&password=" + password.getPasswordText() + "&rolenames=" + rolenames;
         HttpRequest httpRequest = new HttpRequest(HttpRequestType.POST, url);
@@ -121,6 +123,7 @@ public class UsersAPI implements Serializable {
             case HttpStatusCode.Conflict:
                 return false;
         }
+
         return false;
     }
 

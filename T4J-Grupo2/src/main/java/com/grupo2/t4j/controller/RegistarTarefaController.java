@@ -13,10 +13,12 @@ import com.grupo2.t4j.persistence.FabricaRepositorios;
 import com.grupo2.t4j.persistence.RepositorioAreaActividade;
 import com.grupo2.t4j.persistence.RepositorioCategoriaTarefa;
 import com.grupo2.t4j.persistence.RepositorioTarefa;
+import com.grupo2.t4j.persistence.database.FabricaRepositoriosDatabase;
 import com.grupo2.t4j.persistence.inmemory.FabricaRepositoriosInMemory;
 import com.grupo2.t4j.persistence.inmemory.RepositorioAreaActividadeInMemory;
 import com.grupo2.t4j.persistence.inmemory.RepositorioCategoriaTarefaInMemory;
 import com.grupo2.t4j.persistence.inmemory.RepositorioTarefaInMemory;
+import java.sql.SQLException;
 
 import java.util.List;
 
@@ -26,20 +28,22 @@ import java.util.List;
  */
 public class RegistarTarefaController {
 
-    private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosInMemory();
-    //private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosDatabase();
+    //private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosInMemory();
+    private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosDatabase();
     private RepositorioTarefa repositorioTarefa = fabricaRepositorios.getRepositorioTarefa();
 
-    public List<Tarefa> getAll() {
+    public List<Tarefa> getAll() throws SQLException {
         return repositorioTarefa.getAll();
     }
 
     public boolean registarTarefa(String codigoAreaActividade, String codigoCategoriaTarefa,
                              String referencia, String designacao,
                              String descInformal, String descTecnica,
-                             int duracao, double custo) {
+                             int duracao, double custo, String nifOrganizacao, String emailColaborador) throws SQLException{
 
-        Tarefa tarefa = new Tarefa(referencia, designacao, descInformal, descTecnica, duracao, custo, codigoAreaActividade, codigoCategoriaTarefa);
+        Tarefa tarefa = new Tarefa(referencia, designacao, descInformal, 
+                descTecnica, duracao, custo, codigoAreaActividade, 
+                codigoCategoriaTarefa, nifOrganizacao, emailColaborador);
 
         return repositorioTarefa.save(tarefa);
     }

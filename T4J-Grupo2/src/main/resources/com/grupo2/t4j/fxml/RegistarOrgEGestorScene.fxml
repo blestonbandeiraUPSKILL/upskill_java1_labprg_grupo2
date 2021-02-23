@@ -227,7 +227,7 @@
                   <Font name="Calibri" size="14.0" />
                </font>
             </Button>
-            <Button fx:id="btnCancelarRegisto" mnemonicParsing="false" onAction="#cancelarRegisto" text="Sair">
+            <Button fx:id="btnCancelarRegisto" mnemonicParsing="false" onAction="#cancelarRegisto" text="Cancelar">
                <font>
                   <Font name="Calibri" size="14.0" />
                </font>

@@ -25,6 +25,9 @@ public class Colaborador extends Utilizador implements Serializable{
 
     private String nifOrganizacao;
 
+    public Colaborador() {
+    }
+
     /**
      * Construtor completo da classe Colaborador
      * @param email o email do Utilizador em formato da classe Email
@@ -51,6 +54,13 @@ public class Colaborador extends Utilizador implements Serializable{
         setTelefone(telefone);
         this.nifOrganizacao = nifOrganizacao;
     }
+
+    public Colaborador(Utilizador utilizador, String funcao, String telefone) {
+        super(utilizador);
+        setFuncao(funcao);
+        setTelefone(telefone);
+    }
+
 
     /**
      * Verifica a validade do parâmetro recebido e regista a função do Colaborador
@@ -90,6 +100,16 @@ public class Colaborador extends Utilizador implements Serializable{
     public String getTelefone(){
         return telefone;
     }
+
+    public String getNifOrganizacao() {
+        return nifOrganizacao;
+    }
+
+    public void setNifOrganizacao(String nifOrganizacao) {
+        this.nifOrganizacao = nifOrganizacao;
+    }
+    
+    
     
     /**
      * Representação textual da classe Colaborador em formato de exibição
