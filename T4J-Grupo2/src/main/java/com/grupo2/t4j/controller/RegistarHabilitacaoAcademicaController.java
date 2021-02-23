@@ -29,21 +29,27 @@ public class RegistarHabilitacaoAcademicaController {
     private RepositorioHabilitacaoAcademicaInMemory repositorioHabilitacaoAcademicaInMemory;
     private FicheiroRepositorioHabilitacaoAcademica ficheiroHA;
     
-    public boolean registarHabilitacaoAcademica(String idHabilitacao, String grau, String designacaoCurso,
-           String nomeInstituicao, double mediaCurso) throws SQLException {
+    public boolean registarHabilitacaoAcademica(String grau, String designacaoCurso,
+           String nomeInstituicao, double mediaCurso, String emailFreelancer) throws SQLException {
 
-        HabilitacaoAcademica habilitacao = new HabilitacaoAcademica(idHabilitacao,
-                grau, designacaoCurso, nomeInstituicao, mediaCurso);
+        HabilitacaoAcademica habilitacao = new HabilitacaoAcademica(grau, designacaoCurso, nomeInstituicao, mediaCurso);
 
-        return repositorioHabilitacaoAcademica.save(habilitacao);
+        return repositorioHabilitacaoAcademica.save(grau, designacaoCurso, nomeInstituicao, mediaCurso,
+                habilitacao.getEmailFreelancer());
     }
 
     public List<HabilitacaoAcademica> getAll() throws SQLException{
         return repositorioHabilitacaoAcademica.getAll();
     }    
         
-    public HabilitacaoAcademica findById(String NIF) throws SQLException{
-        return repositorioHabilitacaoAcademica.findById(NIF);
+    public HabilitacaoAcademica findById(int idHabilitacao) throws SQLException{
+        return repositorioHabilitacaoAcademica.findById(idHabilitacao);
+    }
+    
+    public HabilitacaoAcademica findByGrauDesigInst(String grau, String designacaoCurso,
+           String nomeInstituicao, String emailFreelancer) throws SQLException{
+        return repositorioHabilitacaoAcademica.findByGrauDesigInst(grau, designacaoCurso,
+           nomeInstituicao, emailFreelancer);
     }
 
     ///////API

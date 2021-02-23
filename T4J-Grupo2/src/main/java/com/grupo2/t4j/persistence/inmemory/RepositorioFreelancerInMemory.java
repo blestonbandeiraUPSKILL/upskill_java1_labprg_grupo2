@@ -104,6 +104,17 @@ public class RepositorioFreelancerInMemory implements Serializable, RepositorioF
     public ArrayList<Freelancer> getAll() {
         return new ArrayList<Freelancer>(listaFreelancers);
     }
+    
+    @Override
+    public ArrayList<String> getAllEmails() {
+        
+        ArrayList<String> listaEmailFreelancers = new ArrayList<>();
+        for(int i = 0; i < listaFreelancers.size();i++){
+            Freelancer freelancer = this.listaFreelancers.get(i);
+            listaEmailFreelancers.add(freelancer.getEmail().getEmailText());
+        }
+        return listaEmailFreelancers;
+    }
         
     public int adicionarListaFreelancer(RepositorioFreelancerInMemory outraListaFreelancer) {
         int totalFreelancersAdicionados = 0;
