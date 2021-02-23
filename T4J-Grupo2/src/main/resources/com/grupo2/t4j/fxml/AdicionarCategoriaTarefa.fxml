@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
@@ -15,9 +20,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="425.0" prefWidth="700.0" style="-fx-background-color: #c4c4c4;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.AdicionarCategoriaTarefaUI">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="425.0" prefWidth="700.0" styleClass="FlowPane" stylesheets="@../style/app.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.AdicionarCategoriaTarefaUI">
    <center>
-      <BorderPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #c4c4c4;" BorderPane.alignment="CENTER">
+      <BorderPane prefHeight="200.0" prefWidth="200.0" styleClass="FlowPane" BorderPane.alignment="CENTER">
          <top>
             <TabPane prefHeight="328.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
               <tabs>
@@ -116,7 +121,7 @@
                                                 <Insets bottom="10.0" />
                                              </VBox.margin>
                                           </ComboBox>
-                                          <Button fx:id="btnAddCompTecCat" mnemonicParsing="false" onAction="#addCompetenciaTecnica2CCTS" text="Adicionar" VBox.vgrow="NEVER">
+                                          <Button fx:id="btnAddCompTecCat" mnemonicParsing="false" onAction="#addCompetenciaTecnica2CCTS" styleClass="btnAddCompTecCat" text="Adicionar" VBox.vgrow="NEVER">
                                              <VBox.margin>
                                                 <Insets bottom="10.0" />
                                              </VBox.margin>
@@ -141,9 +146,9 @@
             </TabPane>
          </top>
          <bottom>
-            <FlowPane alignment="CENTER_RIGHT" prefHeight="22.0" prefWidth="700.0" BorderPane.alignment="CENTER">
+            <FlowPane alignment="CENTER_RIGHT" prefHeight="22.0" prefWidth="700.0" styleClass="FlowPane" BorderPane.alignment="CENTER">
                <children>
-                  <Button fx:id="btnConfirmar" defaultButton="true" mnemonicParsing="false" onAction="#registarCategoriaAction" text="Confirmar">
+                  <Button fx:id="btnConfirmar" defaultButton="true" mnemonicParsing="false" onAction="#registarCategoriaAction" styleClass="btnConfirmar" text="Confirmar">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -165,9 +170,9 @@
       </BorderPane>
    </center>
    <top>
-      <Label style="-fx-background-color: #000000;" text="Área do Administrativo" textFill="WHITE" BorderPane.alignment="CENTER_RIGHT">
+      <Label styleClass="lblUser" stylesheets="@../style/app.css" text="Bem-vindo á Área do Administrativo" textFill="WHITE" BorderPane.alignment="CENTER_RIGHT">
          <font>
-            <Font name="Calibri" size="18.0" />
+            <Font name="Calibri Italic" size="16.0" />
          </font>
          <padding>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
