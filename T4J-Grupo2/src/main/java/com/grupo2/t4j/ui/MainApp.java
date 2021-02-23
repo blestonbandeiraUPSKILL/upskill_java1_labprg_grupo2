@@ -11,9 +11,8 @@ import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
 import java.io.IOException;
-import javafx.event.ActionEvent;
-import javafx.scene.Group;
-import javafx.scene.shape.SVGPath;
+
+
 
 /**
  * JavaFX App
