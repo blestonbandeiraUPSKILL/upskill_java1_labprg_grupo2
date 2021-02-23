@@ -47,7 +47,7 @@
                <font>
                   <Font name="Calibri" size="14.0" />
                </font></TextField>
-            <PasswordField fx:id="txtPasswordLogin" maxHeight="30.0" maxWidth="200.0" promptText="password" GridPane.columnIndex="1" GridPane.rowIndex="3">
+            <PasswordField fx:id="txtPasswordLogin" maxHeight="49.0" maxWidth="200.0" prefHeight="49.0" prefWidth="200.0" promptText="password" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <font>
                   <Font name="Calibri" size="14.0" />
                </font>
@@ -144,6 +144,14 @@
       </BorderPane>
    </bottom>
    <top>
-      <Button fx:id="btnGoDark" mnemonicParsing="false" text="Dark mode" BorderPane.alignment="CENTER" />
+      <FlowPane prefHeight="37.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="btnGoDark" alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#cssGoDark" text="Light/Dark mode">
+               <font>
+                  <Font size="12.0" />
+               </font>
+            </Button>
+         </children>
+      </FlowPane>
    </top>
 </BorderPane>
