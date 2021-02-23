@@ -12,8 +12,10 @@ import java.io.Serializable;
  * @author acris
  */
 public class CaracterizacaoCT implements Serializable{
+    
+    private int idCaracterizacao;
 
-    private String codigoCCT;
+    private String codigoCategoria;
     /**
      * O grau de proficiencia da competencia tecnica
      */
@@ -27,19 +29,36 @@ public class CaracterizacaoCT implements Serializable{
      * A competencia tecnica
      */
     private String codigoCompetenciaTecnica;
+    
+    
+    
+    public CaracterizacaoCT (){
+    }
+    
+    public CaracterizacaoCT(CaracterizacaoCT cct){
+        setCodigoGP(cct.codigoGP);
+        setObrigatoriedade(cct.obrigatoriedade);
+    }
 
     /**
      * Construtor completo para caracterizacao de uma competencia tecnica
      * @param codigoGP
      * @param obrigatoriedade
-     * @param codigoCompetenciaTecnica
+     * @param codigoCategoria
      */
-    public CaracterizacaoCT(String codigoCCT, String codigoGP, Obrigatoriedade obrigatoriedade,
-                            String codigoCompetenciaTecnica) {
-        this.codigoCCT = codigoCCT;
+    public CaracterizacaoCT(String codigoCategoria, String codigoGP, 
+            Obrigatoriedade obrigatoriedade) {
+        this.codigoCategoria = codigoCategoria;
         this.codigoGP = codigoGP;
         this.obrigatoriedade = obrigatoriedade;
-        this.codigoCompetenciaTecnica = codigoCompetenciaTecnica;
+    }
+    
+    public CaracterizacaoCT(int idCaracterizacao, String codigoCategoria, 
+            String codigoGP, Obrigatoriedade obrigatoriedade){
+        this.idCaracterizacao = idCaracterizacao;
+        setCodigoCategoria(codigoCategoria);
+        setCodigoGP(codigoGP);
+        setObrigatoriedade(obrigatoriedade);
     }
 
     public String getCodigoGP() {
@@ -49,6 +68,28 @@ public class CaracterizacaoCT implements Serializable{
     public Obrigatoriedade getObrigatoriedade() {
         return obrigatoriedade;
     }
+
+    public String getCodigoCategoria() {
+        return codigoCategoria;
+    }
+
+    public void setCodigoCategoria(String codigoCategoria) {
+        this.codigoCategoria = codigoCategoria;
+    }
+
+    public void setIdCaracterizacao(int idCaracterizacao) {
+        this.idCaracterizacao = idCaracterizacao;
+    }
+
+    public void setCodigoGP(String codigoGP) {
+        this.codigoGP = codigoGP;
+    }
+
+    public void setCodigoCompetenciaTecnica(String codigoCompetenciaTecnica) {
+        this.codigoCompetenciaTecnica = codigoCompetenciaTecnica;
+    }
+    
+    
 
     
     /**
@@ -63,9 +104,7 @@ public class CaracterizacaoCT implements Serializable{
         return this.codigoCompetenciaTecnica;
     }
 
-    public String getCodigoCCT() {
-        return codigoCCT;
-    }
+    
     
     /**
      * Representacao textual da competencia tecnica caracterizada em formato de exibição
