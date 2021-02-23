@@ -34,7 +34,7 @@ public class StartingPageUI implements Initializable {
     @FXML PasswordField txtPasswordLogin;
     @FXML Button btnSair;
     @FXML Button btnLogin;
-    @FXML Button btnToggle;
+    @FXML Button btnGoDark;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
