@@ -55,6 +55,7 @@ public class GestorLogadoUI implements Initializable {
     
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
         adicionarStage = new Stage();
         adicionarStage.initModality(Modality.APPLICATION_MODAL);;
         adicionarStage.setResizable(false);
@@ -74,9 +75,6 @@ public class GestorLogadoUI implements Initializable {
         registarTarefaController = new RegistarTarefaController();
         registarCompetenciaTecnicaController = new RegistarCompetenciaTecnicaController();*/
 
-        adicionarStage = new Stage();
-        adicionarStage.initModality(Modality.APPLICATION_MODAL);;
-        adicionarStage.setResizable(false);
 
         /*
         cmbAreaActividadeListaTarefas.getItems().setAll(registarAreaActividadeController.getAreasActividade());
@@ -153,7 +151,11 @@ public class GestorLogadoUI implements Initializable {
             RegistarColaboradorUI registarColaboradorUI = loaderAddColaborador.getController();
             registarColaboradorUI.associarParentUI(this);
 
+            adicionarStage.setScene(sceneAddColaborador);
+            adicionarStage.setTitle("Registar Colaborador");
+            adicionarStage.show();
         }
+
         catch (IOException exception) {
             exception.printStackTrace();
             AlertsUI.criarAlerta(Alert.AlertType.ERROR,
@@ -161,8 +163,5 @@ public class GestorLogadoUI implements Initializable {
                     "Erro",
                     exception.getMessage());
         }
-        adicionarStage.setScene(sceneAddColaborador);
-        adicionarStage.setTitle("Registar Colaborador");
-        adicionarStage.show();
     }
 }

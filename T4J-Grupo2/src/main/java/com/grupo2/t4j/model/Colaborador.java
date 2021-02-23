@@ -61,6 +61,13 @@ public class Colaborador extends Utilizador implements Serializable{
         setTelefone(telefone);
     }
 
+    public Colaborador(String email, String funcao, String telefone, String nifOrganizacao) {
+        setEmail(new Email(email));
+        setFuncao(funcao);
+        setTelefone(telefone);
+        setNifOrganizacao(nifOrganizacao);
+    }
+
 
     /**
      * Verifica a validade do parâmetro recebido e regista a função do Colaborador
