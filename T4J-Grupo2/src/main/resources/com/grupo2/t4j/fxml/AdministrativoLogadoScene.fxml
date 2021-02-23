@@ -18,7 +18,7 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" styleClass="BorderPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.AdministrativoLogadoUI">
    <center>
-      <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <BorderPane prefHeight="200.0" prefWidth="200.0" styleClass="BorderPane" BorderPane.alignment="CENTER">
          <top>
             <TabPane prefHeight="358.0" prefWidth="700.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
               <tabs>
@@ -26,58 +26,46 @@
                   <content>
                     <AnchorPane minHeight="0.0" minWidth="0.0" styleClass="AnchorPane">
                            <children>
-                              <VBox alignment="CENTER" layoutX="585.0" layoutY="260.0" AnchorPane.bottomAnchor="50.00000000000002" AnchorPane.rightAnchor="40.0">
-                                 <children>
-                                    <Button fx:id="btnAddAreaAtividade" alignment="CENTER" mnemonicParsing="false" onAction="#addAreaActividade" styleClass="btnAddAreaAtividade" text="Adicionar">
-                                       <font>
-                                          <Font name="Calibri" size="14.0" />
-                                       </font>
-                                       <VBox.margin>
-                                          <Insets bottom="10.0" top="10.0" />
-                                       </VBox.margin>
-                                       <padding>
-                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                       </padding>
-                                    </Button>
-                                 </children>
-                              </VBox>
+                              <VBox alignment="CENTER" layoutX="585.0" layoutY="260.0" AnchorPane.bottomAnchor="50.00000000000002" AnchorPane.rightAnchor="40.0" />
                               <ListView fx:id="listaAreasActividade" layoutX="14.0" layoutY="48.0" prefHeight="260.0" prefWidth="475.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="210.0" AnchorPane.topAnchor="50.0" />
                               <Label layoutX="20.0" layoutY="20.0" prefHeight="22.0" prefWidth="215.0" text="Áreas de Atividade registadas:" AnchorPane.bottomAnchor="285.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="465.0" AnchorPane.topAnchor="20.0">
                                  <font>
                                     <Font name="Calibri" size="16.0" />
                                  </font>
                               </Label>
-                              <Button fx:id="btnConsultar1" layoutX="580.0" layoutY="152.0" mnemonicParsing="false" onAction="#consultarAreaActividadeAction" prefHeight="25.0" prefWidth="80.0" styleClass="btnConsultar1" text="Consultar" />
+                              <Button fx:id="btnConsultar1" layoutX="502.0" layoutY="50.0" mnemonicParsing="false" onAction="#consultarAreaActividadeAction" prefHeight="25.0" prefWidth="80.0" styleClass="btnConsultar1" text="Consultar" />
+                              <Button fx:id="btnAddAreaAtividade" alignment="CENTER" layoutX="502.0" layoutY="109.0" mnemonicParsing="false" onAction="#addAreaActividade" styleClass="btnAddAreaAtividade" text="Adicionar">
+                                 <font>
+                                    <Font name="Calibri" size="14.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </padding>
+                              </Button>
                            </children>
                         </AnchorPane>
                   </content>
                 </Tab>
                   <Tab fx:id="listaCompetenciasTecnicas" text="Competências Técnicas">
                      <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="467.0" prefWidth="700.0">
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="467.0" prefWidth="700.0" styleClass="AnchorPane">
                            <children>
                               <Label layoutX="20.0" layoutY="20.0" prefHeight="24.0" prefWidth="255.0" text="Competências Técnicas registadas:" AnchorPane.bottomAnchor="285.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="425.0" AnchorPane.topAnchor="20.0">
                                  <font>
                                     <Font name="Calibri" size="16.0" />
                                  </font></Label>
                               <ListView fx:id="listViewCompetenciasTecnicas" layoutX="14.0" layoutY="48.0" prefHeight="260.0" prefWidth="475.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="210.0" AnchorPane.topAnchor="50.0" />
-                              <VBox alignment="CENTER" layoutX="586.0" layoutY="260.0" AnchorPane.bottomAnchor="50.0" AnchorPane.rightAnchor="40.0">
-                                 <children>
-                                    <Button fx:id="btnAddcompetenciaTecnica" alignment="BOTTOM_RIGHT" mnemonicParsing="false" onAction="#addCompetenciaTecnica" text="Adicionar">
-                                       <font>
-                                          <Font name="Calibri" size="14.0" />
-                                       </font>
-                                       <VBox.margin>
-                                          <Insets bottom="10.0" top="10.0" />
-                                       </VBox.margin>
-                                       <padding>
-                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                       </padding>
-                                    </Button>
-                                 </children>
-                              </VBox>
+                              <VBox alignment="CENTER" layoutX="586.0" layoutY="260.0" AnchorPane.bottomAnchor="50.0" AnchorPane.rightAnchor="40.0" />
 
-                             <Button fx:id="btnConsultar" layoutX="588.0" layoutY="207.0" mnemonicParsing="false" onAction="#consultarCompetenciaTecnicaAction" prefHeight="25.0" prefWidth="80.0" text="Consultar" />
+                             <Button fx:id="btnConsultar" layoutX="502.0" layoutY="50.0" mnemonicParsing="false" onAction="#consultarCompetenciaTecnicaAction" prefHeight="25.0" prefWidth="80.0" styleClass="btnConsultar1" text="Consultar" />
+                              <Button fx:id="btnAddcompetenciaTecnica" alignment="BOTTOM_RIGHT" layoutX="502.0" layoutY="109.0" mnemonicParsing="false" onAction="#addCompetenciaTecnica" styleClass="btnConfirmar" text="Adicionar">
+                                 <font>
+                                    <Font name="Calibri" size="14.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </padding>
+                              </Button>
 
                            </children>
                         </AnchorPane>
@@ -85,7 +73,7 @@
                   </Tab>
                   <Tab fx:id="listaCategoriasTarefa" text="Categorias de Tarefa">
                      <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0">
+                        <AnchorPane minHeight="0.0" minWidth="0.0" styleClass="AnchorPane">
                            <children>
                               <Label layoutX="20.0" layoutY="23.0" text="Categorias de Tarefa registadas:" AnchorPane.topAnchor="23.0">
                                  <font>
@@ -93,55 +81,27 @@
                                  </font>
                               </Label>
                               <ListView fx:id="listaCategorias" layoutX="14.0" layoutY="48.0" prefHeight="260.0" prefWidth="475.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="210.0" AnchorPane.topAnchor="50.0" />
-                              <VBox alignment="CENTER" layoutX="585.0" layoutY="260.0" AnchorPane.bottomAnchor="50.0" AnchorPane.rightAnchor="40.0">
-                                 <children>
-                                    <Button fx:id="btnAddCategoriaTarefa" alignment="BOTTOM_RIGHT" mnemonicParsing="false" onAction="#addCategoriaTarefa" text="Adicionar" >
-                                       <font>
-                                          <Font name="Calibri" size="14.0" />
-                                       </font>
-                                       <VBox.margin>
-                                          <Insets bottom="10.0" top="10.0" />
-                                       </VBox.margin>
-                                       <padding>
-                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                       </padding>
-                                    </Button>
-                                 </children>
-                              </VBox>
-                              <Button fx:id="btnConsultar" layoutX="588.0" layoutY="207.0" mnemonicParsing="false" onAction="#consultarCategoriaAction" prefHeight="25.0" prefWidth="80.0" text="Consultar" />
+                              <VBox alignment="CENTER" layoutX="585.0" layoutY="260.0" AnchorPane.bottomAnchor="50.0" AnchorPane.rightAnchor="40.0" />
+                              <Button fx:id="btnConsultar" layoutX="502.0" layoutY="50.0" mnemonicParsing="false" onAction="#consultarCategoriaAction" prefHeight="25.0" prefWidth="80.0" styleClass="btnConfirmar" text="Consultar" />
+                              <Button fx:id="btnAddCategoriaTarefa" alignment="BOTTOM_RIGHT" layoutX="502.0" layoutY="109.0" mnemonicParsing="false" onAction="#addCategoriaTarefa" styleClass="btnConfirmar" text="Adicionar">
+                                 <font>
+                                    <Font name="Calibri" size="14.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </padding>
+                              </Button>
                            </children>
                         </AnchorPane>
                      </content>
                   </Tab>
                   <Tab text="Freelancer">
                      <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" style="-fx-background-color: #c4c4c4;">
+                        <AnchorPane minHeight="0.0" minWidth="0.0" styleClass="AnchorPane">
                            <children>
                               <VBox alignment="CENTER" layoutX="585.0" layoutY="260.0" prefHeight="156.0" prefWidth="234.0" AnchorPane.bottomAnchor="50.0" AnchorPane.rightAnchor="3.0">
                                  <children>
-                                    <Button fx:id="btnAdicionarFreelancer" alignment="CENTER" mnemonicParsing="false" onAction="#addFreelancer"  text="Adicionar Freelancer" >
-                                       <font>
-                                          <Font name="Calibri" size="14.0" />
-                                       </font>
-                                       <padding>
-                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                       </padding>
-                                       <VBox.margin>
-                                          <Insets bottom="20.0" />
-                                       </VBox.margin>
-                                    </Button>
-                                    <Button fx:id="btnAdicionarHabilitacao" alignment="CENTER" mnemonicParsing="false" onAction="#addHabilitacaoFreelancer" style="-fx-background-color: #000000;" text="Adicionar Habilitação Acadêmica" textFill="WHITE">
-                                       <font>
-                                          <Font name="Calibri" size="14.0" />
-                                       </font>
-                                       <padding>
-                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                       </padding>
-                                       <VBox.margin>
-                                          <Insets bottom="20.0" />
-                                       </VBox.margin>
-                                    </Button>
-                                    <Button fx:id="btnAdicionarReconGP" alignment="CENTER" mnemonicParsing="false" onAction="#addReconhecimentoGP" text="Adicionar Competência Técnica" >
+                                    <Button fx:id="btnAdicionarReconGP" alignment="CENTER" mnemonicParsing="false" onAction="#addReconhecimentoGP" styleClass="btnConfirmar" text="Adicionar Competência Técnica">
                                        <font>
                                           <Font name="Calibri" size="14.0" />
                                        </font>
@@ -154,7 +114,7 @@
                                     </Button>
                                  </children>
                               </VBox>
-                              <Label layoutX="20.0" layoutY="20.0" prefHeight="22.0" prefWidth="215.0" text="Freelancers registados" AnchorPane.bottomAnchor="285.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="465.0" AnchorPane.topAnchor="0.0">
+                              <Label layoutX="20.0" layoutY="20.0" prefHeight="22.0" prefWidth="215.0" text="Freelancers registados:" AnchorPane.bottomAnchor="285.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="465.0" AnchorPane.topAnchor="0.0">
                                  <font>
                                     <Font name="Calibri" size="16.0" />
                                  </font>
@@ -163,6 +123,22 @@
                                  </padding>
                               </Label>
                               <ListView fx:id="listaFreelancer" layoutX="21.0" layoutY="51.0" prefHeight="272.0" prefWidth="447.0" />
+                              <Button fx:id="btnAdicionarFreelancer" alignment="CENTER" layoutX="479.0" layoutY="51.0" mnemonicParsing="false" onAction="#addFreelancer" styleClass="btnConfirmar" text="Adicionar Freelancer">
+                                 <font>
+                                    <Font name="Calibri" size="14.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </padding>
+                              </Button>
+                              <Button fx:id="btnAdicionarHabilitacao" alignment="CENTER" layoutX="479.0" layoutY="94.0" mnemonicParsing="false" onAction="#addHabilitacaoFreelancer" styleClass="btnConfirmar" text="Adicionar Habilitação Acadêmica">
+                                 <font>
+                                    <Font name="Calibri" size="14.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </padding>
+                              </Button>
                            </children>
                         </AnchorPane>
                      </content>
