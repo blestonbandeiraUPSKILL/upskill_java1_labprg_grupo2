@@ -14,6 +14,7 @@ import com.grupo2.t4j.exception.FreelancerDuplicadoException;
 import com.grupo2.t4j.model.*;
 import com.grupo2.t4j.persistence.RepositorioFreelancer;
 import com.grupo2.t4j.utils.DBConnectionHandler;
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -51,9 +52,53 @@ public class RepositorioFreelancerDatabase implements RepositorioFreelancer{
 
 
     @Override
-    public void save(Email email, String nome, Password password, String nif, 
-            String telefone, String codigoEnderecoPostal) throws FreelancerDuplicadoException,
+    public boolean save(String emailFree, String nome, String passwordFree, String nif, 
+            String telefone, String arruamento, String numeroPorta, String localidade, String codPostal) throws FreelancerDuplicadoException,
             SQLException{
+        DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
+        Connection connection = dbConnectionHandler.openConnection();
+
+        CallableStatement callableStatement = connection.prepareCall(
+                "{CALL createFreelancer(?, ?, ?, ?, ?, ?, ?, ?, ?) } ");
+
+        if (findByNif(nif) == null) {
+
+            try {
+                connection.setAutoCommit(false);
+
+                callableStatement.setString(1, emailFree);
+                callableStatement.setString(2, nome);
+                callableStatement.setString(3, passwordFree);
+                callableStatement.setString(4, nif);
+                callableStatement.setString(5, telefone);
+                callableStatement.setString(6, arruamento);
+                callableStatement.setString(7, numeroPorta);
+                callableStatement.setString(8, localidade);
+                callableStatement.setString(9, codPostal);
+                
+                callableStatement.executeQuery();
+
+                connection.commit();
+                return true;
+            }
+            catch (SQLException exception) {
+                exception.printStackTrace();
+                exception.getSQLState();
+                try {
+                    System.err.print("Transaction is being rolled back");
+                    connection.rollback();
+                }
+                catch (SQLException sqlException) {
+                    sqlException.getErrorCode();
+                }
+            }
+
+            finally {
+                dbConnectionHandler.closeAll();
+            }
+        }
+
+        return false;
 
     }
 
@@ -65,11 +110,59 @@ public class RepositorioFreelancerDatabase implements RepositorioFreelancer{
 
     @Override
     public Freelancer findByNif(String nif) throws SQLException{
+        
+        /*DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
+        Connection connection = dbConnectionHandler.openConnection();
+
+        CallableStatement callableStatementOrg = connection.prepareCall(
+                 "{CALL findByNif(?)}");
+
+        try {
+            connection.setAutoCommit(false);
+
+            callableStatementOrg.setString(1, nif);
+            callableStatementOrg.executeQuery();
+
+            return null;
+
+        } catch (SQLException exceptionOrg) {
+            exceptionOrg.printStackTrace();
+            exceptionOrg.getSQLState();
+
+
+        }
+
+        return new Freelancer();*/
+        
         return null;
     }
     
-     @Override
-    public Freelancer findByEmail(String emailFree) {
+    @Override
+    public Freelancer findByEmail(String emailFree) throws SQLException {
+        
+        /*DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
+        Connection connection = dbConnectionHandler.openConnection();
+
+        CallableStatement callableStatementOrg = connection.prepareCall(
+                 "{CALL findByEmail(?)}");
+
+        try {
+            connection.setAutoCommit(false);
+
+            callableStatementOrg.setString(1, emailFree);
+            callableStatementOrg.executeQuery();
+
+            return null;
+
+        } catch (SQLException exceptionOrg) {
+            exceptionOrg.printStackTrace();
+            exceptionOrg.getSQLState();
+
+
+        }
+
+        return new Freelancer();*/
+        
         return null;
     }
 

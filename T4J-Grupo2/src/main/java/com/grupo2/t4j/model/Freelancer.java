@@ -32,8 +32,14 @@ public class Freelancer extends Utilizador implements Serializable{
     /**
      * O endereço postal do Freelancer
      */
-    private String codigoEnderecoPostal;
+    private int codigoEnderecoPostal;
 
+    /**
+     * O construtor vazio da classe Freelancer
+     */
+    public Freelancer(){
+        
+    }
     
     /**
      * Construtor completo da classe Freelancer
@@ -42,15 +48,14 @@ public class Freelancer extends Utilizador implements Serializable{
      * @param password - a password do Freelancer no formato da classe Password
      * @param telefone - o telefone do Freelancer
      * @param nif - o NIF do Freelancer
-     *
-     * da classe EnderecoPostal
+     * @param codigoEnderecoPostal - o iD da classe EnderecoPostal
      */
     public Freelancer(Email email, String nome, Password password,
-            String nif, String telefone, String codigoEnderecoPostal){
+            String nif, String telefone, int codigoEnderecoPostal){
         super(email, nome, password);
         setNIF(nif);
         setTelefone(telefone);
-        setEndereco(codigoEnderecoPostal);
+        this.codigoEnderecoPostal = codigoEnderecoPostal;
     }    
        
     /**
@@ -62,7 +67,7 @@ public class Freelancer extends Utilizador implements Serializable{
         super(freelancer.getEmail(), freelancer.getNome(), freelancer.getPassword());
         setNIF(freelancer.nif);
         setTelefone(freelancer.telefone);
-        setEndereco(freelancer.codigoEnderecoPostal);
+        this.codigoEnderecoPostal = freelancer.codigoEnderecoPostal;
     }
     
     /**
@@ -90,18 +95,7 @@ public class Freelancer extends Utilizador implements Serializable{
         }
         this.telefone = telefone;
     }
-    
-    /**
-     * Define o endereço postal do Freelancer
-     * @param codigoEnderecoPostal
-     */
-    public void setEndereco(String codigoEnderecoPostal){
-        if (codigoEnderecoPostal == null || codigoEnderecoPostal.trim().isEmpty()) {
-            throw new CodigoInvalidoException("O código do Endereço Postal é inválido.");
-        }
-        this.codigoEnderecoPostal = codigoEnderecoPostal;
-    }
-    
+         
     /**
      * Devolve o NIF do Freelancer
      * @return NIF
@@ -119,10 +113,10 @@ public class Freelancer extends Utilizador implements Serializable{
     }
     
     /**
-     * Devolve o endereço postal do Freelancer
-     * @return enderecoPostalFreelancer
+     * Devolve o iD doendereço postal do Freelancer
+     * @return codigoEnderecoPostal
      */
-    public String getEnderecoFreelancer(){
+    public int getEnderecoFreelancer(){
         return codigoEnderecoPostal;
     }
     
@@ -143,8 +137,8 @@ public class Freelancer extends Utilizador implements Serializable{
     
     public String toStringCompleta(){
         return String.format("Nome freelancer: %s  %nEmail: %s"
-                + "%s %nNIF: %s %nTelefone: %s %nEndereço Postal: %s",
+                + "%s %nNIF: %s %nTelefone: %s %nEndereço Postal: %d",
                 super.getNome(), super.getEmail().getEmailText(), 
-                nif, telefone, codigoEnderecoPostal.toString());
+                nif, telefone, codigoEnderecoPostal);
     }   
  }
