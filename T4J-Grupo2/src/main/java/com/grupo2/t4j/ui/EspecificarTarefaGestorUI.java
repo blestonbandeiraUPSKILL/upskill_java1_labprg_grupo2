@@ -12,6 +12,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.stage.Window;
 import javafx.stage.WindowEvent;
@@ -23,14 +24,14 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 
-public class EspecificarTarefaUI implements Initializable {
+public class EspecificarTarefaGestorUI implements Initializable {
 
     private RegistarTarefaController registarTarefaController;
     private RegistarAreaActividadeController registarAreaActividadeController;
     private RegistarCategoriaController registarCategoriaController;
     private RegistarColaboradorController registarColaboradorController;
     private GestaoUtilizadoresController gestaoUtilizadoresController;
-    private Initializable parentUI;
+    private GestorLogadoUI gestorLogadoUI;
 
     @FXML TextField txtReferencia;
     @FXML TextField txtDesignacao;
@@ -43,8 +44,8 @@ public class EspecificarTarefaUI implements Initializable {
     @FXML ComboBox<AreaActividade> cmbAreaActividade;
     @FXML Button btnCancelar;
 
-    public void associarParentUI(Initializable parentUI) {
-        this.parentUI = parentUI;
+    public void associarParentUI(GestorLogadoUI gestorLogadoUI) {
+        this.gestorLogadoUI = gestorLogadoUI;
     }
 
     @Override
@@ -87,7 +88,7 @@ public class EspecificarTarefaUI implements Initializable {
                 registarCategoriaController.findByAreaActividade(
                         cmbAreaActividade.getSelectionModel().getSelectedItem().getCodigo());
 
-        cmbCategoriaTarefa.getItems().addAll(listaCategoriasTarefa);
+        cmbCategoriaTarefa.getItems().setAll(listaCategoriasTarefa);
     }
 
 
@@ -97,10 +98,11 @@ public class EspecificarTarefaUI implements Initializable {
                 cmbCategoriaTarefa.getSelectionModel().getSelectedItem().getCompTecnicasCaracter());
     }
 
+
+
     public void registarTarefa(ActionEvent actionEvent) throws SQLException{
         try {
             boolean adicionou = registarTarefaController.registarTarefa(
-                    cmbAreaActividade.getSelectionModel().getSelectedItem().getCodigo(),
                     cmbCategoriaTarefa.getSelectionModel().getSelectedItem().getCodigoCategoria(),
                     txtReferencia.getText(),
                     txtDesignacao.getText(),
@@ -108,17 +110,17 @@ public class EspecificarTarefaUI implements Initializable {
                     txtDescTecnica.getText(),
                     Integer.parseInt(txtEstimativaDuracao.getText()),
                     Double.parseDouble(txtEstimativaCusto.getText()),
-                    gestaoUtilizadoresController.getEmail(),
-                    registarColaboradorController.findByEmail(gestaoUtilizadoresController.getEmail()).getNifOrganizacao());
+                    gestorLogadoUI.getNifOrganizacao(),
+                    gestaoUtilizadoresController.getEmail());
 
             if (adicionou){
-               // parentUI.updateListViewTarefas(actionEvent);
+               gestorLogadoUI.updateListViewTarefas();
             }
             AlertsUI.criarAlerta(Alert.AlertType.INFORMATION,
                     MainApp.TITULO_APLICACAO,
-                    "Registar Competência Técnica.",
-                    adicionou ? "Competencia Tecnica registada com sucesso."
-                            : "Não foi possível registar a Competência Técncia.").show();
+                    "Registar Tarefa.",
+                    adicionou ? "Tarefa registada com sucesso."
+                            : "Não foi possível registar a Tarefa.").show();
 
         }
         catch (IllegalArgumentException iae) {
@@ -128,6 +130,22 @@ public class EspecificarTarefaUI implements Initializable {
                     iae.getMessage()).show();
 
         }
+
+        closeAddTarefa(actionEvent);
+    }
+
+    private void closeAddTarefa(ActionEvent actionEvent) {
+        this.cmbAreaActividade.setItems(null);
+        this.cmbCategoriaTarefa.setItems(null);
+        this.txtReferencia.clear();
+        this.txtDesignacao.clear();
+        this.txtDescInformal.clear();
+        this.txtDescTecnica.clear();
+        this.txtEstimativaDuracao.clear();
+        this.txtEstimativaCusto.clear();
+
+
+        ((Node) actionEvent.getSource()).getScene().getWindow().hide();
     }
 
     public void cancelarAction(ActionEvent actionEvent) {

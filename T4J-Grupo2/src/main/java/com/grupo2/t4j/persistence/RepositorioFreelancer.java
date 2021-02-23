@@ -29,4 +29,6 @@ public interface RepositorioFreelancer {
     Freelancer findByNif(String nif) throws SQLException;
 
     ArrayList<Freelancer> getAll() throws SQLException;
+    
+    ArrayList<String> getAllEmails() throws SQLException;
 }

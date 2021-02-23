@@ -4,6 +4,7 @@ package com.grupo2.t4j.persistence.inmemory;
 import com.grupo2.t4j.exception.CategoriaDuplicadaException;
 import com.grupo2.t4j.model.CaracterizacaoCT;
 import com.grupo2.t4j.model.Categoria;
+import com.grupo2.t4j.model.Obrigatoriedade;
 import com.grupo2.t4j.persistence.RepositorioCategoriaTarefa;
 
 import java.io.Serializable;
@@ -33,10 +34,11 @@ public class RepositorioCategoriaTarefaInMemory implements Serializable, Reposit
     }
 
     @Override
-    public void save(String codigoCategoria, String descBreve, String descDetalhada,
-                     String codigoAreaActividade, List<CaracterizacaoCT> caracterizacaoCTS) {
+    public boolean save(String codigoCategoria, String descBreve,
+                     String descDetalhada, String codigoAreaActividade, int idGrauProficiencia,
+                     Obrigatoriedade obrigatoriedade) {
 
-
+        return false;
     }
 
     @Override

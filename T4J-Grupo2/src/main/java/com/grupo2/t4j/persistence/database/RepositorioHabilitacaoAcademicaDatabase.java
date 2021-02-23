@@ -52,26 +52,26 @@ public class RepositorioHabilitacaoAcademicaDatabase implements RepositorioHabil
 
 
     @Override
-    public boolean save(String idHabilitacao, String grau, String designacaoCurso,
-           String nomeInstituicao, double mediaCurso) throws HabilitacaoAcademicaDuplicadaException,
+    public boolean save(String grau, String designacaoCurso,
+           String nomeInstituicao, double mediaCurso, String emailFreelancer) throws HabilitacaoAcademicaDuplicadaException,
             SQLException{
         
         /*DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
         Connection connection = dbConnectionHandler.openConnection();
 
         CallableStatement callableStatement = connection.prepareCall(
-                "{CALL createHabilitacao(?, ?, ?, ?, ?) } ");
+                "{CALL createHabilitacao(?, ?, ?, ?, ?, ?) } ");
 
-        if (findById(idHabilitacao) == null){
+        if (findByGrauDesigInst(grau, designacaoCurso, nomeInstituicao, emailFreelancer) == null){
 
             try {
                 connection.setAutoCommit(false);
 
-                callableStatement.setString(1, idHabilitacao);
-                callableStatement.setString(2, grau);
-                callableStatement.setString(3, designacaoCurso);
-                callableStatement.setString(4, nomeInstituicao);
-                callableStatement.setDouble(5, mediaCurso);
+                callableStatement.setString(1, grau);
+                callableStatement.setString(2, designacaoCurso);
+                callableStatement.setString(3, nomeInstituicao);
+                callableStatement.setDouble(4, mediaCurso);
+                callableStatement.setString(5, emailFreelancer);
                                 
                 callableStatement.executeQuery();
 
@@ -104,7 +104,8 @@ public class RepositorioHabilitacaoAcademicaDatabase implements RepositorioHabil
     }
 
     @Override
-    public HabilitacaoAcademica findById(String idHabilitacao) throws SQLException{
+    public HabilitacaoAcademica findByGrauDesigInst(String grau, String designacaoCurso,
+           String nomeInstituicao, String emailFreelancer) throws SQLException{
          
         /*DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
         Connection connection = dbConnectionHandler.openConnection();
@@ -115,7 +116,39 @@ public class RepositorioHabilitacaoAcademicaDatabase implements RepositorioHabil
         try {
             connection.setAutoCommit(false);
 
-            callableStatementOrg.setString(1, idHabilitacao);
+            callableStatement.setString(1, grau);
+            callableStatement.setString(2, designacaoCurso);
+            callableStatement.setString(3, nomeInstituicao);
+            callableStatement.setString(5, emailFreelancer);
+            callableStatementOrg.executeQuery();
+
+            return null;
+
+        } catch (SQLException exceptionOrg) {
+            exceptionOrg.printStackTrace();
+            exceptionOrg.getSQLState();
+
+
+        }
+
+        return new HabilitacaoAcademica();*/
+        
+        return null;
+    }
+    
+    @Override
+    public HabilitacaoAcademica findById(int idHabilitacao) throws SQLException{
+         
+        /*DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
+        Connection connection = dbConnectionHandler.openConnection();
+
+        CallableStatement callableStatementOrg = connection.prepareCall(
+                 "{CALL findByGrauDesigInst(?)}");
+
+        try {
+            connection.setAutoCommit(false);
+
+            callableStatementOrg.setInt(6, idHabilitacao);
             callableStatementOrg.executeQuery();
 
             return null;
@@ -148,12 +181,13 @@ public class RepositorioHabilitacaoAcademicaDatabase implements RepositorioHabil
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while(resultSet.next()) {
-                String idHabilitacao = resultSet.getString(1);
+                String idHabilitacao = resultSet.getInt(1);
                 String grau = resultSet.getString(2);
                 String designacaoCurso = resultSet.getString(3);
                 String nomeInstituicao = resultSet.getString(4);
                 Double mediaCurso = resultSet.getDouble(5);                
-                listaHabilitacao.add(new HabilitacaoAcademica(idHabilitacao, grau, designacaoCurso, nomeInstituicao, mediaCurso));
+                String emailFreelancer = resultSet.getString(6);
+                listaHabilitacao.add(new HabilitacaoAcademica(idHabilitacao, grau, designacaoCurso, nomeInstituicao, mediaCurso, emailFreelancer));
             }
         }
         catch (SQLException exception) {

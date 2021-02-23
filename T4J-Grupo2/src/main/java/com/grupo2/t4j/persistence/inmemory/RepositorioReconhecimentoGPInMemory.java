@@ -51,22 +51,27 @@ public class RepositorioReconhecimentoGPInMemory implements Serializable, Reposi
         return repositorioReconhecimentoGPInMemory;
     }
 
-    @Override
-    public void save(String idGrauProficiencia, Data dataReconhecimento, 
+
+    public void save(int idGrauProficiencia, Data dataReconhecimento,
              Email emailFreelancer, String idCompetenciaTecnica) throws ReconhecimentoDuplicadoException {
-        ReconhecimentoGP rgp = findByGrauEmail(idGrauProficiencia ,emailFreelancer.getEmailText());
-        if (rgp == null) {
+       // ReconhecimentoGP rgp = findByGrauEmail(idGrauProficiencia ,emailFreelancer.getEmailText());
+       /* if (rgp == null) {
             ReconhecimentoGP reconhecimentoGP = new ReconhecimentoGP(idGrauProficiencia, 
                     dataReconhecimento, emailFreelancer, idCompetenciaTecnica);
             this.listaReconhecimentoGP.add(reconhecimentoGP);
         } else {
             throw new ReconhecimentoDuplicadoException("Reconhecimento já registado");
-        }
+        }*/
     }
-    
+
+    @Override
+    public void save(String idGrauProficiencia, Data dataReconhecimento, Email emailFreelancer, String idCompetenciaTecnica) throws ReconhecimentoDuplicadoException, SQLException {
+
+    }
+
     @Override
     public boolean save (ReconhecimentoGP reconhecimentoGP)throws ReconhecimentoDuplicadoException {
-        ReconhecimentoGP rgp = findByEmailCompetencia(reconhecimentoGP.getEmailFreelancer().getEmailText(),
+        /*ReconhecimentoGP rgp = findByEmailCompetencia(reconhecimentoGP.getEmailFreelancer().getEmailText(),
                 reconhecimentoGP.getIdGrauProficiencia());
         if (rgp == null) {
             ReconhecimentoGP reconhecimento = new ReconhecimentoGP(reconhecimentoGP);
@@ -75,7 +80,7 @@ public class RepositorioReconhecimentoGPInMemory implements Serializable, Reposi
             throw new ReconhecimentoDuplicadoException(reconhecimentoGP.getIdGrauProficiencia() 
                     + ": Grau de proficiência já registado para a seguinte competência "
                             + "técnica" +reconhecimentoGP.getIdCompetenciaTecnica());
-        }
+        }*/
         return false;
     }
     

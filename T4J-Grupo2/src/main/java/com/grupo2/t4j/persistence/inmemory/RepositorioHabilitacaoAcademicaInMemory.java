@@ -31,6 +31,8 @@ public class RepositorioHabilitacaoAcademicaInMemory  implements Serializable, R
      */
     private List<HabilitacaoAcademica> listaHabilitacoesAcademicas;
     
+    private int cont = 0;
+    
     /**
      * Inicializa o Repositório de Habilitações Acadêmicas de uma plataforma
      *
@@ -51,38 +53,43 @@ public class RepositorioHabilitacaoAcademicaInMemory  implements Serializable, R
     }
     
     @Override
-    public boolean save(String idHabilitacao, String grau, String designacaoCurso,
-           String nomeInstituicao, double mediaCurso) throws HabilitacaoAcademicaDuplicadaException {
-        HabilitacaoAcademica ha = findById(idHabilitacao);
-        if (ha == null) {
-            HabilitacaoAcademica habilitacao = new HabilitacaoAcademica(idHabilitacao,
-                    grau, designacaoCurso, nomeInstituicao, mediaCurso);
+    public boolean save(String grau, String designacaoCurso,
+           String nomeInstituicao, double mediaCurso, String emailFreelancer) throws HabilitacaoAcademicaDuplicadaException {
+        /*HabilitacaoAcademica ha1 = findById(idHabilitacao);*/
+        HabilitacaoAcademica ha2 = findByGrauDesigInst(grau, designacaoCurso, 
+                nomeInstituicao, emailFreelancer);
+        if (ha2 == null) {
+            HabilitacaoAcademica habilitacao = new HabilitacaoAcademica(cont,
+                    grau, designacaoCurso, nomeInstituicao, mediaCurso, emailFreelancer);
             this.listaHabilitacoesAcademicas.add(habilitacao);
+            contador();
             return true;
         } else {
-            throw new HabilitacaoAcademicaDuplicadaException(idHabilitacao + ": "
-                    + "Habilitação Acadêmica já registada!");
+            throw new HabilitacaoAcademicaDuplicadaException("Habilitação Acadêmica já registada!");
         }
     }
 
     @Override
     public boolean save(HabilitacaoAcademica habilitacaoAcademica) throws HabilitacaoAcademicaDuplicadaException {
-        HabilitacaoAcademica ha = findById(habilitacaoAcademica.getIdHabilitacao());
-        if (ha == null) {
+        //HabilitacaoAcademica ha1 = findById(habilitacaoAcademica.getIdHabilitacao());
+        HabilitacaoAcademica ha2 = findByGrauDesigInst(habilitacaoAcademica.getGrau(), 
+                habilitacaoAcademica.getDesignacaoCurso(), habilitacaoAcademica.getNomeInstituicao(),
+                habilitacaoAcademica.getEmailFreelancer());
+        if (ha2 == null) {
             HabilitacaoAcademica habilitacao = new HabilitacaoAcademica(habilitacaoAcademica);
             this.listaHabilitacoesAcademicas.add(habilitacao);
+            contador();
             return true;
         } else {
-            throw new HabilitacaoAcademicaDuplicadaException(habilitacaoAcademica.getIdHabilitacao() + ": "
-                    + "Habilitação Acadêmica já registada!");
+            throw new HabilitacaoAcademicaDuplicadaException("Habilitação Acadêmica já registada!");
         }        
     }
 
     @Override
-    public HabilitacaoAcademica findById(String idHabilitacao) {
+    public HabilitacaoAcademica findById(int idHabilitacao) {
         for (int i = 0; i < this.listaHabilitacoesAcademicas.size(); i++) {
             HabilitacaoAcademica habilitacao = this.listaHabilitacoesAcademicas.get(i);
-            if (habilitacao.getIdHabilitacao().equals(idHabilitacao)) {
+            if (habilitacao.getIdHabilitacao() == idHabilitacao) {
                 return habilitacao;
             }
         }
@@ -104,5 +111,24 @@ public class RepositorioHabilitacaoAcademicaInMemory  implements Serializable, R
             }
         }
         return totalHabilitacoesAdicionadas;
+    }
+    
+    @Override
+    public HabilitacaoAcademica findByGrauDesigInst(String grau, String designacaoCurso,
+           String nomeInstituicao, String emailFreelancer){
+        for (int i = 0; i < this.listaHabilitacoesAcademicas.size(); i++) {
+            HabilitacaoAcademica habilitacao = this.listaHabilitacoesAcademicas.get(i);
+            if (habilitacao.getEmailFreelancer().equals(emailFreelancer) && habilitacao.getGrau().equals(grau)){
+                if(habilitacao.getDesignacaoCurso().equals(designacaoCurso) && 
+                   habilitacao.getNomeInstituicao().equals(nomeInstituicao)) {
+                    return habilitacao;
+                }
+            }
+        }
+        return null;
+    }
+    
+    public int contador(){
+        return cont++;        
     }
 }

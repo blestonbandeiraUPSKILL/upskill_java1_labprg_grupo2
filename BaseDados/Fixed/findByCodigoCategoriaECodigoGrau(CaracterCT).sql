@@ -1,4 +1,4 @@
-CREATE OR REPLACE PROCEDURE findByCodigoCateriaECodigoGrau(
+CREATE OR REPLACE PROCEDURE findByCodigoCategoriaECodigoGrau(
     p_codigoCategoria caracterCT.codigoCategoria%type,
     p_codigoGrau caracterct.grauprofminimo%type
     )

@@ -16,7 +16,7 @@ public class RegistarCaracterizacaoCTController {
     private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosDatabase();
     private RepositorioCaracterizacaoCT repositorioCaracterizacaoCT = fabricaRepositorios.getRepositorioCaracterizacaoCT();
 
-    public boolean registarCaracterizacaoCT(CaracterizacaoCT caracterizacaoCT) throws SQLException {
+    public boolean save(CaracterizacaoCT caracterizacaoCT) throws SQLException {
         return repositorioCaracterizacaoCT.save(caracterizacaoCT);
     }
 
@@ -24,16 +24,14 @@ public class RegistarCaracterizacaoCTController {
         return repositorioCaracterizacaoCT.getAll();
     }
 
-    public boolean registarCaracterizacaoCTS(String codigoCategoria, 
-            String codigoGP, Obrigatoriedade obrigatoriedade) throws SQLException {
+    public boolean registarCaracterizacaoCTS(String codigoCategoria, int codigoGP, Obrigatoriedade obrigatoriedade) throws SQLException {
 
-        CaracterizacaoCT caracterizacaoCT = new CaracterizacaoCT(codigoCategoria,
-                codigoGP, obrigatoriedade);
+        CaracterizacaoCT caracterizacaoCT = new CaracterizacaoCT(codigoCategoria, codigoGP, obrigatoriedade);
 
         return repositorioCaracterizacaoCT.save(caracterizacaoCT);
     }
 
-    public CaracterizacaoCT findByCodigo(String codigoCCT) {
+    public CaracterizacaoCT findByCodigo(int codigoCCT) {
         return repositorioCaracterizacaoCT.findByCodigo(codigoCCT);
     }
     
@@ -42,7 +40,7 @@ public class RegistarCaracterizacaoCTController {
     }
     
     public CaracterizacaoCT findByCategoriaEGrau (String codigoCategoria, 
-            String codigoGP) throws SQLException {
+            int codigoGP) throws SQLException {
         return repositorioCaracterizacaoCT.findByCategoriaEGrau(codigoCategoria,codigoGP);
     }
 }

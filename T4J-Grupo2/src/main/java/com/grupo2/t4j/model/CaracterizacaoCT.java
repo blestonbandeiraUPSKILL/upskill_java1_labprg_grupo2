@@ -19,17 +19,12 @@ public class CaracterizacaoCT implements Serializable{
     /**
      * O grau de proficiencia da competencia tecnica
      */
-    private String codigoGP;
+    private int codigoGP;
     /**
      * A obrigatoriedade da competencia tecnica
      */
     private Obrigatoriedade obrigatoriedade;
-    
-    /**
-     * A competencia tecnica
-     */
-    private String codigoCompetenciaTecnica;
-    
+
     
     
     public CaracterizacaoCT (){
@@ -46,7 +41,7 @@ public class CaracterizacaoCT implements Serializable{
      * @param obrigatoriedade
      * @param codigoCategoria
      */
-    public CaracterizacaoCT(String codigoCategoria, String codigoGP, 
+    public CaracterizacaoCT(String codigoCategoria, int codigoGP,
             Obrigatoriedade obrigatoriedade) {
         this.codigoCategoria = codigoCategoria;
         this.codigoGP = codigoGP;
@@ -54,14 +49,14 @@ public class CaracterizacaoCT implements Serializable{
     }
     
     public CaracterizacaoCT(int idCaracterizacao, String codigoCategoria, 
-            String codigoGP, Obrigatoriedade obrigatoriedade){
+            int codigoGP, Obrigatoriedade obrigatoriedade){
         this.idCaracterizacao = idCaracterizacao;
         setCodigoCategoria(codigoCategoria);
         setCodigoGP(codigoGP);
         setObrigatoriedade(obrigatoriedade);
     }
 
-    public String getCodigoGP() {
+    public int getCodigoGP() {
         return codigoGP;
     }
 
@@ -81,17 +76,13 @@ public class CaracterizacaoCT implements Serializable{
         this.idCaracterizacao = idCaracterizacao;
     }
 
-    public void setCodigoGP(String codigoGP) {
+    public void setCodigoGP(int codigoGP) {
         this.codigoGP = codigoGP;
     }
 
-    public void setCodigoCompetenciaTecnica(String codigoCompetenciaTecnica) {
-        this.codigoCompetenciaTecnica = codigoCompetenciaTecnica;
-    }
-    
-    
 
     
+
     /**
      * Actualiza a obrigatoriedade da competencia tecnica
      * @param obrigatoriedade the obrigatoriedade to set
@@ -99,10 +90,7 @@ public class CaracterizacaoCT implements Serializable{
     public void setObrigatoriedade(Obrigatoriedade obrigatoriedade) {
         this.obrigatoriedade = obrigatoriedade;
     }
-    
-    public String getCodigoCompetenciaTecnica() {
-        return this.codigoCompetenciaTecnica;
-    }
+
 
     
     
@@ -112,8 +100,8 @@ public class CaracterizacaoCT implements Serializable{
      */
     @Override
     public String toString() {
-        return String.format("Competência Técnica: %-30s |Grau de Proficiencia: %-20s "
-                + "|Carácter: %-15s", codigoCompetenciaTecnica, codigoGP, obrigatoriedade.toString());
+        return String.format("Categoria: %-30s |Grau de Proficiencia: %-20s "
+                + "|Carácter: %-15s", codigoCategoria, codigoGP, obrigatoriedade.toString());
 
     }
     
@@ -122,8 +110,8 @@ public class CaracterizacaoCT implements Serializable{
      * @return 
      */
      public String toStringCompleto() {
-        return String.format("Competência Tecnica: %s; Grau de Proficiencia: %s; "
-                + "Carácter: %s", codigoCompetenciaTecnica, codigoGP, obrigatoriedade.toString());
+        return String.format("Categoria: %s; Grau de Proficiencia: %s; "
+                + "Carácter: %s", codigoCategoria, codigoGP, obrigatoriedade.toString());
 
     }   
 }

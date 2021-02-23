@@ -86,9 +86,7 @@ public class Tarefa implements Serializable{
     
     public Tarefa(String referencia, String designacao,
                   String descInformal, String descTecnica, int duracao, double custo,
-                  String codigoAreaActividade,
                   String codigoCategoriaTarefa, String nifOrganizacao, String emailColaborador) {
-        setCodigoAreaActividade(codigoAreaActividade);
         setCodigoCategoriaTarefa(codigoCategoriaTarefa);
         setReferencia(referencia);
         setDesignacao(designacao);
