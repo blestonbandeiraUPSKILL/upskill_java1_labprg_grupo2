@@ -104,10 +104,9 @@ public class AdicionarFreelancerUI implements Initializable {
         
         }
     }
-    
+  
     @FXML
     public void cancelarAction(ActionEvent event) {
-
         this.txtNomeFreelancer.clear();
         this.txtEmailFreelancer.clear();
         this.txtNIFFreelancer.clear();
@@ -117,7 +116,6 @@ public class AdicionarFreelancerUI implements Initializable {
         this.txtLocalidadeFreelancer.clear();
         this.txtCodPostalFreelancer.clear();
         this.txtPassFreelancer.clear();
-        btnCancelar.getScene().getWindow().hide();        
     }
     
     @FXML
