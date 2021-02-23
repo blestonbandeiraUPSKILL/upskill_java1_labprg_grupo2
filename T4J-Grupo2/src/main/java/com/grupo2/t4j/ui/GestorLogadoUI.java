@@ -25,7 +25,7 @@ import javafx.stage.Window;
 import javafx.stage.WindowEvent;
 
 public class GestorLogadoUI implements Initializable {
-    
+
     private StartingPageUI startingPageUI;
     private Stage adicionarStage;
     private Scene sceneStartingPage;

@@ -65,7 +65,7 @@
          <bottom>
             <FlowPane alignment="CENTER_RIGHT" prefHeight="53.0" prefWidth="700.0" styleClass="FlowPane" BorderPane.alignment="CENTER">
                <children>
-                  <Button fx:id="btnAddAreaAtividade" defaultButton="true" mnemonicParsing="false" onAction="#registarAreaAction" styleClass="btnAddAreaAtividade" stylesheets="@../style/app.css" text="Confirmar">
+                  <Button fx:id="btnAddAreaAtividade" defaultButton="true" mnemonicParsing="false" onAction="#registarAreaAction" styleClass="btnAddAreaAtividade" text="Confirmar">
                      <font>
                         <Font name="Calibri" size="14.0" />
                      </font>
@@ -83,7 +83,7 @@
          </bottom></BorderPane>
    </center>
    <top>
-      <Label styleClass="lblUser" stylesheets="@../style/app.css" text="Bem-vindo á Área do Administativo" textFill="WHITE" BorderPane.alignment="CENTER_RIGHT">
+      <Label styleClass="lblUser" text="Bem-vindo á Área do Administativo" textFill="WHITE" BorderPane.alignment="CENTER_RIGHT">
          <padding>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </padding>
