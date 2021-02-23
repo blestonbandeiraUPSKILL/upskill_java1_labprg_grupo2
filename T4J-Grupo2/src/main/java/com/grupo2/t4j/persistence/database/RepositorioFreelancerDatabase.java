@@ -55,13 +55,13 @@ public class RepositorioFreelancerDatabase implements RepositorioFreelancer{
     public boolean save(String emailFree, String nome, String passwordFree, String nif, 
             String telefone, String arruamento, String numeroPorta, String localidade, String codPostal) throws FreelancerDuplicadoException,
             SQLException{
-        DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
+        /*DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
         Connection connection = dbConnectionHandler.openConnection();
 
         CallableStatement callableStatement = connection.prepareCall(
                 "{CALL createFreelancer(?, ?, ?, ?, ?, ?, ?, ?, ?) } ");
 
-        if (findByNif(nif) == null) {
+        if (findByNif(nif) == null && findByEmail(emailFree) == null){
 
             try {
                 connection.setAutoCommit(false);
@@ -96,7 +96,7 @@ public class RepositorioFreelancerDatabase implements RepositorioFreelancer{
             finally {
                 dbConnectionHandler.closeAll();
             }
-        }
+        }*/
 
         return false;
 
