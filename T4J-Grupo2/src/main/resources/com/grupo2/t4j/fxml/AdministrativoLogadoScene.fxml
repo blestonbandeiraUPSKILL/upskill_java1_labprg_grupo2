@@ -47,6 +47,7 @@
                                     <Font name="Calibri" size="16.0" />
                                  </font>
                               </Label>
+                              <Button fx:id="btnConsultar1" layoutX="588.0" layoutY="207.0" mnemonicParsing="false" onAction="#consultarAreaActividadeAction" prefHeight="25.0" prefWidth="80.0" text="Consultar" />
                            </children>
                         </AnchorPane>
                   </content>
@@ -76,7 +77,7 @@
                                  </children>
                               </VBox>
 
-                             <Button fx:id="btnConsultar" layoutX="588.0" layoutY="127.0" mnemonicParsing="false" onAction="#consultarCompetenciaTecnicaAction" prefHeight="25.0" prefWidth="80.0" text="Consultar" />
+                             <Button fx:id="btnConsultar" layoutX="588.0" layoutY="207.0" mnemonicParsing="false" onAction="#consultarCompetenciaTecnicaAction" prefHeight="25.0" prefWidth="80.0" text="Consultar" />
 
                            </children>
                         </AnchorPane>
