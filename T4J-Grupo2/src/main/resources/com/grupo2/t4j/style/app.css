@@ -94,3 +94,9 @@
     -fx-text-fill: #ffffff;
     -fx-cursor: hand; 
 }
+
+.btnAvancarRegisto {
+    -fx-background-color: #20B2AA;
+    -fx-text-fill: #ffffff;
+    -fx-cursor: hand;     
+}
