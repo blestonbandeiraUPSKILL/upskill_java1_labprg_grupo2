@@ -177,7 +177,8 @@ CREATE TABLE CaracterCT(
     obrigatoria varchar(20)
         CONSTRAINT nn_CaracterCT_obrigatoria NOT NULL,
     grauProfMinimo integer
-        CONSTRAINT nn_CaracterCT_grauProfMinimo NOT NULL
+        CONSTRAINT nn_CaracterCT_grauProfMinimo NOT NULL,
+    codigoCategoria varchar(15)
 );
 
 CREATE TABLE ProcessoSeriacao(

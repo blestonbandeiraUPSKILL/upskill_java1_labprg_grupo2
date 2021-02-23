@@ -33,7 +33,7 @@ public class Organizacao implements Serializable{
     /**
      * O id do endereço postal da organização
      */
-    private String idEnderecoOrg;
+    private int idEnderecoOrg;
     
     /**
      * O website da organização
@@ -62,7 +62,7 @@ public class Organizacao implements Serializable{
     }
 
     public Organizacao(String nif, String nome, Website websiteOrg,
-                       String telefone, Email emailOrg, Email emailGestor, String idEnderecoPostal){
+                       String telefone, Email emailOrg, Email emailGestor, int idEnderecoPostal){
         setNif(nif);
         setNome(nome);
         if (websiteOrg instanceof Website) {
@@ -106,7 +106,7 @@ public class Organizacao implements Serializable{
      * Define o endereço postal da organização
      * @param idEnderecoOrg
      */
-    public void setEnderecoPostal(String idEnderecoOrg){
+    public void setEnderecoPostal(int idEnderecoOrg){
         this.idEnderecoOrg = idEnderecoOrg;
     }
 
@@ -158,7 +158,7 @@ public class Organizacao implements Serializable{
      * Devolve o id do endereço postal da organização
      * @return idEnderecoOrg
      */
-    public String getIdEnderecoPostal(){
+    public int getIdEnderecoPostal(){
         return idEnderecoOrg;
     }
 

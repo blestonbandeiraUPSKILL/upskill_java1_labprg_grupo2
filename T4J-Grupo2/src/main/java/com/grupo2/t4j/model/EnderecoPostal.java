@@ -21,7 +21,7 @@ public class EnderecoPostal {
     /**
      * O código que identifica um endereço postal
      */
-    private String codigoEnderecoPostal;
+    private int codigoEnderecoPostal;
 
     /**
      * O arruamento do endereço postal
@@ -43,6 +43,9 @@ public class EnderecoPostal {
      */
     private String codigoPostal;
 
+    public EnderecoPostal() {
+    }
+
     /**
      * Construtor completo de um endereço postal
      * @param codigoEnderecoPostal o código que identifica um Endereço Postal único
@@ -51,7 +54,7 @@ public class EnderecoPostal {
      * @param localidade corresponde à terceira linha do Endereço Postal, ou localidade
      * @param codigoPostal corresponde à quarta linha do Endereço Postal, ou código Postal
      */
-    public EnderecoPostal(String codigoEnderecoPostal, String arruamento, String numeroPorta, String localidade, String codigoPostal) {
+    public EnderecoPostal(int codigoEnderecoPostal, String arruamento, String numeroPorta, String localidade, String codigoPostal) {
         setCodigoEnderecoPostal(codigoEnderecoPostal);
         setArruamento(arruamento);
         setPorta(numeroPorta);
@@ -64,7 +67,7 @@ public class EnderecoPostal {
      * @param endereco um endereço postal único
      */
     public EnderecoPostal(EnderecoPostal endereco){
-        setCodigoEnderecoPostal(endereco.codigoPostal);
+        setCodigoEnderecoPostal(endereco.codigoEnderecoPostal);
         setArruamento(endereco.arruamento);
         setPorta(endereco.numeroPorta);
         setLocalidade(endereco.localidade);
@@ -78,7 +81,9 @@ public class EnderecoPostal {
         setCodigoPostal(codigoPostal);
     }
 
-    public String getCodigoEnderecoPostal() {
+
+
+    public int getCodigoEnderecoPostal() {
         return codigoEnderecoPostal;
     }
 
@@ -114,8 +119,8 @@ public class EnderecoPostal {
         return codigoPostal;
     }
 
-    public void setCodigoEnderecoPostal(String codigoEnderecoPostal) {
-        if (codigoEnderecoPostal == null || codigoEnderecoPostal.trim().isEmpty()) {
+    public void setCodigoEnderecoPostal(int codigoEnderecoPostal) {
+        if (codigoEnderecoPostal < 0 ) {
             throw new NomeInvalidoException("O código do Endereço Postal é invalido");
         }
         this.codigoEnderecoPostal = codigoEnderecoPostal;
