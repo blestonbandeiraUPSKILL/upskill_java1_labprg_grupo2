@@ -8,9 +8,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="750.0" style="-fx-background-color: c4c4c4;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.FreelancerLogadoUI">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="750.0" styleClass="BorderPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.FreelancerLogadoUI">
    <top>
-      <Label style="-fx-background-color: #000000;" text="Área do Freelancer" textFill="WHITE" BorderPane.alignment="CENTER_RIGHT">
+      <Label styleClass="lblUser" text="Bem-vindo à Área do Freelancer" textFill="WHITE" BorderPane.alignment="CENTER_RIGHT">
          <font>
             <Font name="Calibri" size="18.0" />
          </font>
@@ -20,13 +20,13 @@
       </Label>
    </top>
    <center>
-      <AnchorPane maxHeight="400.0" maxWidth="750.0" BorderPane.alignment="CENTER">
+      <AnchorPane maxHeight="400.0" maxWidth="750.0" styleClass="AnchorPane" BorderPane.alignment="CENTER">
          <children>
             <TabPane layoutX="1.0" maxHeight="400.0" maxWidth="750.0" tabClosingPolicy="UNAVAILABLE">
               <tabs>
                 <Tab text="Anúncios Disponíveis">
                   <content>
-                    <AnchorPane maxHeight="400.0" maxWidth="750.0" minHeight="0.0" minWidth="0.0">
+                    <AnchorPane maxHeight="400.0" maxWidth="750.0" minHeight="0.0" minWidth="0.0" styleClass="AnchorPane">
                            <children>
                               <TableView fx:id="tableAnuncios" layoutX="7.0" layoutY="3.0" maxHeight="400.0" maxWidth="750.0" onMouseClicked="#verAnuncioAction" prefHeight="365.0" prefWidth="713.0" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="20.0">
                                 <columns>
@@ -58,7 +58,7 @@
                 </Tab>
                 <Tab text="Candidaturas Efectuadas">
                      <content>
-                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="AnchorPane">
                            <children>
                               <Label layoutX="149.0" layoutY="126.0" prefHeight="44.0" prefWidth="340.0" text="Funcionalidade ainda não implementada">
                                  <font>
@@ -75,7 +75,7 @@
       </AnchorPane>
    </center>
    <bottom>
-      <Button fx:id="btnSair" mnemonicParsing="false" onAction="#logout" text="Sair" BorderPane.alignment="CENTER_RIGHT">
+      <Button fx:id="btnSair" mnemonicParsing="false" onAction="#logout" styleClass="btnSair" text="Sair" BorderPane.alignment="CENTER_RIGHT">
          <font>
             <Font name="Calibri" size="14.0" />
          </font>
