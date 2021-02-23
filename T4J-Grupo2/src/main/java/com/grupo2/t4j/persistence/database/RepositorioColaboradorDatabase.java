@@ -170,6 +170,7 @@ public class RepositorioColaboradorDatabase implements RepositorioColaborador {
             PreparedStatement preparedStatement = connection.prepareStatement(
                     "SELECT nifOrganizacao From Colaborador WHERE email LIKE ?"
             );
+            preparedStatement.setString(1, email);
 
             ResultSet resultSet = preparedStatement.executeQuery();
 

@@ -44,6 +44,7 @@ public class StartingPageUI implements Initializable {
         adicionarStage = new Stage();
         adicionarStage.initModality(Modality.APPLICATION_MODAL);;
         adicionarStage.setResizable(false);
+        //btnSair.getScene().getStylesheets().addAll(this.getClass().getResource("/com/grupo2/t4j/style/dark.css").toExternalForm());
 
     }
    
