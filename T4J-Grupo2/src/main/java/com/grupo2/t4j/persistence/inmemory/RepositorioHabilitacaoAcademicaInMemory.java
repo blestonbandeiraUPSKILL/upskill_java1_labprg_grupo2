@@ -51,7 +51,7 @@ public class RepositorioHabilitacaoAcademicaInMemory  implements Serializable, R
     }
     
     @Override
-    public boolean save(String idHabilitacao, String grau, String designacaoCurso,
+    public boolean save(int idHabilitacao, String grau, String designacaoCurso,
            String nomeInstituicao, double mediaCurso) throws HabilitacaoAcademicaDuplicadaException {
         HabilitacaoAcademica ha = findById(idHabilitacao);
         if (ha == null) {
@@ -79,10 +79,10 @@ public class RepositorioHabilitacaoAcademicaInMemory  implements Serializable, R
     }
 
     @Override
-    public HabilitacaoAcademica findById(String idHabilitacao) {
+    public HabilitacaoAcademica findById(int idHabilitacao) {
         for (int i = 0; i < this.listaHabilitacoesAcademicas.size(); i++) {
             HabilitacaoAcademica habilitacao = this.listaHabilitacoesAcademicas.get(i);
-            if (habilitacao.getIdHabilitacao().equals(idHabilitacao)) {
+            if (habilitacao.getIdHabilitacao() == idHabilitacao) {
                 return habilitacao;
             }
         }

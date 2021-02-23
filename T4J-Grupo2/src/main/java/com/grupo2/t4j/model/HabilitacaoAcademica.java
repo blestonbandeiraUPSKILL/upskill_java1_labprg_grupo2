@@ -16,7 +16,7 @@ public class HabilitacaoAcademica {
     /**
      * O id da Habilitação Acadêmica do Freelancer
      */
-    private String idHabilitacao;
+    private int idHabilitacao;
     
     /**
      * O grau referente à habilitação acadêmica.
@@ -51,9 +51,24 @@ public class HabilitacaoAcademica {
      * @param nomeInstituicao - nome da instituição onde ocorreu o curso que conferiu a habilitação acadêmica.
      * @param mediaCurso - média do curso em que se adquiriu a habilitação acadêmica.
      */
-    public HabilitacaoAcademica(String idHabilitacao, String grau, String designacaoCurso,
+    public HabilitacaoAcademica(int idHabilitacao, String grau, String designacaoCurso,
            String nomeInstituicao, double mediaCurso){
         setIdHabilitacao(idHabilitacao);
+        setGrau(grau);
+        setDesignacaoCurso(designacaoCurso);
+        setNomeInstituicao(nomeInstituicao);
+        setMediaCurso(mediaCurso);
+    }
+    
+    /**
+     * Construtor completo da classe Habilitação Acadêmica
+     * @param grau - grau referente à habilitação acadêmica.
+     * @param designacaoCurso - a designação do curso que conferiu a habilitação acadêmica.
+     * @param nomeInstituicao - nome da instituição onde ocorreu o curso que conferiu a habilitação acadêmica.
+     * @param mediaCurso - média do curso em que se adquiriu a habilitação acadêmica.
+     */
+    public HabilitacaoAcademica(String grau, String designacaoCurso,
+           String nomeInstituicao, double mediaCurso){
         setGrau(grau);
         setDesignacaoCurso(designacaoCurso);
         setNomeInstituicao(nomeInstituicao);
@@ -76,10 +91,7 @@ public class HabilitacaoAcademica {
      * Define o id referente à habilitação acadêmica.
      * @param idHabilitacao
      */
-    public void setIdHabilitacao(String idHabilitacao){
-        if (idHabilitacao == null || idHabilitacao.trim().isEmpty()) {
-            throw new NomeInvalidoException("O id informado é inválido!");
-        }
+    public void setIdHabilitacao(int idHabilitacao){
         this.idHabilitacao = idHabilitacao;
     }
     
@@ -131,7 +143,7 @@ public class HabilitacaoAcademica {
      * Devolve o id referente à habilitação acadêmica.
      * @return idHabilitacao
      */
-    public String getIdHabilitacao(){
+    public int getIdHabilitacao(){
         return idHabilitacao;
     }
     

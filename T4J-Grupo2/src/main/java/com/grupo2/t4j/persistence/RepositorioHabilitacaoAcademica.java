@@ -18,12 +18,12 @@ import java.util.ArrayList;
 
 public interface RepositorioHabilitacaoAcademica {
     
-    boolean save(String idHabilitacao, String grau, String designacaoCurso,
+    boolean save(int idHabilitacao, String grau, String designacaoCurso,
            String nomeInstituicao, double mediaCurso) throws HabilitacaoAcademicaDuplicadaException, SQLException;
 
     boolean save(HabilitacaoAcademica habilitacaoAcademica) throws HabilitacaoAcademicaDuplicadaException, SQLException;
 
-    HabilitacaoAcademica findById(String idHabilitacao) throws SQLException;
+    HabilitacaoAcademica findById(int idHabilitacao) throws SQLException;
     
     ArrayList<HabilitacaoAcademica> getAll() throws SQLException;
 }

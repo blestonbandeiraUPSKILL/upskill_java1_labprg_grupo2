@@ -49,6 +49,10 @@ public class RegistarFreelancerController {
     public List<Freelancer> getAll() throws SQLException{
         return repositorioFreelancer.getAll();
     }
+    
+    public List<String> getAllEmails() throws SQLException{
+        return repositorioFreelancer.getAllEmails();
+    }
    
     public Freelancer findByNif(String NIF) throws SQLException{
         return repositorioFreelancer.findByNif(NIF);
