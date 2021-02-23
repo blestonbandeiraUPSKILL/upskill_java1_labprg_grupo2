@@ -139,7 +139,11 @@ public class GestorLogadoUI implements Initializable {
         });
         window.fireEvent(new WindowEvent(window, WindowEvent.WINDOW_CLOSE_REQUEST));
 
+    }
 
+    public String getNifOrganizacao() throws SQLException {
+        return registarColaboradorController.getNifOrganizacao(
+                gestaoUtilizadoresController.getEmail());
     }
 
     public void navigateAddColaborador(ActionEvent actionEvent) {
@@ -150,13 +154,14 @@ public class GestorLogadoUI implements Initializable {
             sceneAddColaborador.getStylesheets().add("/com/grupo2/t4j/style/app.css");
             RegistarColaboradorUI registarColaboradorUI = loaderAddColaborador.getController();
             registarColaboradorUI.associarParentUI(this);
+            registarColaboradorUI.transferNif();
 
             adicionarStage.setScene(sceneAddColaborador);
             adicionarStage.setTitle("Registar Colaborador");
             adicionarStage.show();
         }
 
-        catch (IOException exception) {
+        catch (IOException | SQLException exception) {
             exception.printStackTrace();
             AlertsUI.criarAlerta(Alert.AlertType.ERROR,
                     MainApp.TITULO_APLICACAO,

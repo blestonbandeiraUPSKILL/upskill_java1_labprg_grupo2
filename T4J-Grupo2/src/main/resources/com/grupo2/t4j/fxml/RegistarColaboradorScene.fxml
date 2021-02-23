@@ -35,6 +35,22 @@
                            <VBox.margin>
                               <Insets bottom="10.0" right="50.0" />
                            </VBox.margin>
+                           <font>
+                              <Font name="Calibri" size="12.0" />
+                           </font>
+                        </TextField>
+                        <Label text="NIPC">
+                           <VBox.margin>
+                              <Insets bottom="10.0" />
+                           </VBox.margin>
+                        </Label>
+                        <TextField fx:id="txtNifOrganizacao" editable="false" promptText="número de identificação de pessoa colectiva">
+                           <VBox.margin>
+                              <Insets bottom="10.0" right="10.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font name="Calibri" size="12.0" />
+                           </font>
                         </TextField>
                         <Label text="Função">
                            <VBox.margin>
@@ -48,6 +64,9 @@
                            <VBox.margin>
                               <Insets bottom="10.0" right="50.0" />
                            </VBox.margin>
+                           <font>
+                              <Font name="Calibri" size="12.0" />
+                           </font>
                         </TextField>
                         <Label text="Contacto Telefónico">
                            <VBox.margin>
@@ -74,6 +93,9 @@
                            <VBox.margin>
                               <Insets bottom="10.0" right="10.0" />
                            </VBox.margin>
+                           <font>
+                              <Font name="Calibri" size="12.0" />
+                           </font>
                         </TextField>
                         <Label text="Password do Colaborador">
                            <font>
@@ -87,6 +109,9 @@
                            <VBox.margin>
                               <Insets bottom="10.0" right="100.0" />
                            </VBox.margin>
+                           <font>
+                              <Font name="Calibri" size="12.0" />
+                           </font>
                         </TextField>
                      </children>
                      <padding>

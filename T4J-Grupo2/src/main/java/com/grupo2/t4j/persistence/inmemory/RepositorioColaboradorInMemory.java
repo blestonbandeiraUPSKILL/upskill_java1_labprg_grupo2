@@ -71,8 +71,8 @@ public class RepositorioColaboradorInMemory implements Serializable, Repositorio
     }
 
     @Override
-    public void save(Email email, String nome, Password password, String funcao, String telefone) throws ColaboradorDuplicadoException {
-        Colaborador c = findByEmail(email.getEmailText());
+    public void save(String email, String nome, String password, String funcao, String telefone) throws ColaboradorDuplicadoException {
+        Colaborador c = findByEmail(email);
         if (c == null) {
             Colaborador colaborador = new Colaborador(email, nome, password, funcao, telefone);
             this.listaColaboradores.add(colaborador);
@@ -111,6 +111,11 @@ public class RepositorioColaboradorInMemory implements Serializable, Repositorio
     @Override
     public ArrayList<Colaborador> getAll() {
         return new ArrayList<Colaborador>(listaColaboradores);
+    }
+
+    @Override
+    public String getNifOrganizacao(String email) throws SQLException {
+        return null;
     }
 
     @Override
