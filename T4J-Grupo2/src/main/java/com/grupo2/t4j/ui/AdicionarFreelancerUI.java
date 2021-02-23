@@ -77,15 +77,15 @@ public class AdicionarFreelancerUI implements Initializable {
     public void addFreelancer(ActionEvent event) {
 
         try{
-            EnderecoPostal endereco = new EnderecoPostal("CP-"+ txtNIFFreelancer.getText(),
+  /*          EnderecoPostal endereco = new EnderecoPostal("CP-"+ txtNIFFreelancer.getText(),
                     txtArruamentoFreelancer.getText(), txtPortaFreelancer.getText(),
                     txtLocalidadeFreelancer.getText(),txtCodPostalFreelancer.getText());
             
             boolean adicionou = registarFreelancerController.registarFreelancer(
                     txtEmailFreelancer.getText(), txtNomeFreelancer.getText(),
                     txtNIFFreelancer.getText(), txtTelefoneFreelancer.getText(),
-                    endereco.getCodigoEnderecoPostal());
-
+                    endereco.getCodigoEnderecoPostal());*/
+/*
             if(adicionou) {
                 txtPassFreelancer.setText(registarFreelancerController.findByNif(txtNIFFreelancer.getText()).getPassword().getPasswordText());
                 //administrativoLogadoUI.updateListViewFreelancer();
@@ -94,9 +94,9 @@ public class AdicionarFreelancerUI implements Initializable {
                     MainApp.TITULO_APLICACAO, "Registar Freelancer.",
                     adicionou ? "Freelancer registado com sucesso."
                                 : "Não foi possível registar o Freelancer.").show();
-            }
+            }*/
         }
-        catch (IllegalArgumentException | SQLException ex) {
+        catch (IllegalArgumentException ex) {
             AlertsUI.criarAlerta(Alert.AlertType.ERROR,
                     MainApp.TITULO_APLICACAO,
                     "Erro nos dados.",

@@ -20,32 +20,27 @@ public class RegistarOrganizacaoController {
     private RepositorioOrganizacao repositorioOrganizacao = fabricaRepositorios.getRepositorioOrganizacao();
     private RepositorioColaborador repositorioColaborador = fabricaRepositorios.getRepositorioColaborador();
     private RepositorioEnderecoPostal repositorioEnderecoPostal = fabricaRepositorios.getRepositorioEnderecoPostal();
-    private UsersAPI usersAPI;
 
     public RegistarOrganizacaoController() throws SQLException {
     }
 
     public boolean registarOrganizacao(String nif, String nome, String website,
-                                       String telefone, String emailOrganizacao, String emailGes,
+                                       String telefone, String emailOrganizacao, String emailGestor,
                                        String arruamento, String numeroPorta,
                                        String localidade, String codigoPostal, String nomeGestor,
                                        String telefoneGestor, String funcaoGestor) throws SQLException {
 
-        EnderecoPostal enderecoPostal = new EnderecoPostal(arruamento, numeroPorta, localidade, codigoPostal);
-        repositorioEnderecoPostal.save(enderecoPostal);
-
         AlgoritmoGeradorPasswords algoritmoGeradorPasswords = new AlgoritmoGeradorPasswords();
         Password pass = new Password(algoritmoGeradorPasswords.geraPassword());
 
-        Email emailGestor = new Email(emailGes);
-        Colaborador gestor = new Colaborador(emailGestor, nomeGestor, pass, funcaoGestor, telefoneGestor);
-        repositorioColaborador.save(gestor);
+        Colaborador gestor = new Colaborador(new Email(emailGestor), nomeGestor, pass, funcaoGestor, telefoneGestor);
 
+        UsersAPI usersAPI = UsersAPI.getInstance();
         usersAPI.registerUserWithRoles(gestor.getEmail(), gestor.getNome(), pass, "gestor");
 
-        Organizacao organizacao = new Organizacao(nif, nome, new Website(website), telefone, new Email(emailOrganizacao), emailGestor, enderecoPostal.getCodigoEnderecoPostal());
-
-        return repositorioOrganizacao.save(organizacao);
+        return repositorioOrganizacao.save(nif, nome, website, telefone,
+                emailOrganizacao, emailGestor, arruamento, numeroPorta, localidade,
+                codigoPostal, nomeGestor, pass.getPasswordText(), telefoneGestor, funcaoGestor);
     }
 
     public List<Organizacao> getAll() {

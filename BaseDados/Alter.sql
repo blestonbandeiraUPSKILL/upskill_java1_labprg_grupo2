@@ -1,7 +1,10 @@
-ALTER TABLE Organizacao
-    ADD CONSTRAINT fk_Organizacao_emailGestor
-        FOREIGN KEY (emailGestor)
-        REFERENCES Utilizador (email);
+--ALTER TABLE Organizacao
+--    ADD CONSTRAINT fk_Organizacao_emailGestor
+--        FOREIGN KEY (emailGestor)
+--        REFERENCES Utilizador (email);
+
+--ALTER TABLE Organizacao
+--    DROP CONSTRAINT fk_Organizacao_emailGestor;
 
 ALTER TABLE Organizacao
     ADD CONSTRAINT fk_Organizacao_idEnderecoPostal
@@ -151,3 +154,12 @@ ALTER TABLE GrauProficiencia
 ALTER TABLE GrauProficiencia
     ADD CONSTRAINT uk_GrauProficiencia_grau_codigoCompetenciaTecnica 
         UNIQUE (grau, codigoCompetenciaTecnica);
+
+--ALTER TABLE CaracterCT
+--    ADD codigoCategoria varchar(15);
+
+ALTER TABLE CaracterCT
+    ADD CONSTRAINT fk_CaracterCT_codigoCategoria
+        FOREIGN KEY (codigoCategoria)
+        REFERENCES Categoria(codigoCategoria);
+    
