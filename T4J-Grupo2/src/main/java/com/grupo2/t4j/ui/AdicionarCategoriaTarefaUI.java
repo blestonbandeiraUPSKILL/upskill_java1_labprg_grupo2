@@ -140,8 +140,10 @@ public class AdicionarCategoriaTarefaUI implements Initializable {
                     txtCodigoCategoria.getText().trim(),
                     txtDescricaoBreve.getText().trim(),
                     txtDescricaoDetalhada.getText().trim(),
-                    cmbAreaActividade.getSelectionModel().getSelectedItem().getCodigo()
-            );
+                    cmbAreaActividade.getSelectionModel().getSelectedItem().getCodigo(),
+                    cmbGrauProficiencia.getValue().getIdGrauProficiencia(),
+                    cmbObrigatoriedade.getValue());
+
 
             if(adicionou) {
                 administrativoLogadoUI.updateListViewCategoriasTarefa();
@@ -176,26 +178,14 @@ public class AdicionarCategoriaTarefaUI implements Initializable {
     public void addCompetenciaTecnica2CCTS(ActionEvent actionEvent) throws SQLException {
 
         try {
-            boolean adicionou = registarCaracterizacaoCTController.registarCaracterizacaoCTS(
-                    txtCodigoCategoria.getText(),
-                    cmbGrauProficiencia.getValue().getIdGrauProficiencia(),
-                    cmbObrigatoriedade.getValue());
-            
-            if(adicionou){
+
                 updateListViewCompTecCat(actionEvent);
                 cmbCompetenciaTecnica.getSelectionModel().clearSelection();
                 cmbGrauProficiencia.getSelectionModel().clearSelection();
                 cmbGrauProficiencia.getItems().clear();
                 cmbObrigatoriedade.getSelectionModel().clearSelection();
-            }
-            
-            AlertsUI.criarAlerta(Alert.AlertType.INFORMATION,
-                    MainApp.TITULO_APLICACAO,
-                    "Registar Caracterização de Competencia.",
-                    adicionou ? "Caracterização efectuada com sucesso. Pode regressar à página anterior."
-                            : "Não foi possível efectuar a caracterização.").show();
-
         }
+
         catch (IllegalArgumentException | SQLException iae) {
             AlertsUI.criarAlerta(Alert.AlertType.ERROR,
                     MainApp.TITULO_APLICACAO,
@@ -207,8 +197,11 @@ public class AdicionarCategoriaTarefaUI implements Initializable {
     }
     
     public void updateListViewCompTecCat(ActionEvent actionEvent) throws SQLException {
-        listViewCompTecCat.getItems().add(registarCaracterizacaoCTController.findByCategoriaEGrau(
-                txtCodigoCategoria.getText(), cmbGrauProficiencia.getValue().getIdGrauProficiencia()));
+        listViewCompTecCat.getItems().add(
+                registarCaracterizacaoCTController.findByCategoriaEGrau(
+                    txtCodigoCategoria.getText(),
+                    cmbGrauProficiencia.getValue().getIdGrauProficiencia()));
+
         cmbAreaActividade.setDisable(true);
     }
 

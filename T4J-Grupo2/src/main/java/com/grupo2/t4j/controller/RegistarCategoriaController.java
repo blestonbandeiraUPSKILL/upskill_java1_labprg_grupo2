@@ -35,12 +35,13 @@ public class RegistarCategoriaController {
     private RepositorioCategoriaTarefaInMemory repositorioCategoriaTarefaInMemory;
 
     public boolean registarCategoria(String codigoCategoria, String descBreve,
-                                     String descDetalhada, String codigoAreaActividade
-                                     ) throws SQLException {
+                                     String descDetalhada, String codigoAreaActividade, int idGrauProficiencia,
+                                     Obrigatoriedade obrigatoriedade) throws SQLException {
 
         Categoria categoria = new Categoria(codigoCategoria, descBreve, descDetalhada, codigoAreaActividade);
 
-        return repositorioCategoriaTarefa.save(categoria);
+        return repositorioCategoriaTarefa.save(codigoCategoria, descBreve,
+                descDetalhada, codigoAreaActividade, idGrauProficiencia, obrigatoriedade);
     }
 
     public List<Categoria> getAll() throws SQLException {

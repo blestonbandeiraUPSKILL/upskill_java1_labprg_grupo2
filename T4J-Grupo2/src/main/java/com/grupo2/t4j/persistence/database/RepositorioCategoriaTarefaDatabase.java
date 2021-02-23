@@ -3,6 +3,7 @@ package com.grupo2.t4j.persistence.database;
 import com.grupo2.t4j.exception.CategoriaInexistenteException;
 import com.grupo2.t4j.model.CaracterizacaoCT;
 import com.grupo2.t4j.model.Categoria;
+import com.grupo2.t4j.model.Obrigatoriedade;
 import com.grupo2.t4j.persistence.RepositorioCategoriaTarefa;
 import com.grupo2.t4j.utils.DBConnectionHandler;
 
@@ -40,9 +41,47 @@ public class RepositorioCategoriaTarefaDatabase implements RepositorioCategoriaT
     }
 
     @Override
-    public void save(String codigoCategoria, String descBreve, String descDetalhada,
-                     String codigoAreaActividade, List<CaracterizacaoCT> caracterizacaoCTS) {
+    public boolean save(String codigoCategoria, String descBreve,
+                     String descDetalhada, String codigoAreaActividade, int idGrauProficiencia,
+                     Obrigatoriedade obrigatoriedade) throws SQLException {
 
+        DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
+        Connection connection = dbConnectionHandler.openConnection();
+
+        CallableStatement callableStatement = connection.prepareCall(
+                "{CALL createCategoria (?, ?, ?, ?, ?, ?) }"
+        );
+
+        if (findByCodigo(codigoCategoria) == null) {
+            try {
+                connection.setAutoCommit(false);
+
+                callableStatement.setString(1, codigoCategoria);
+                callableStatement.setString(2, descBreve);
+                callableStatement.setString(3, descDetalhada);
+                callableStatement.setString(4, codigoAreaActividade);
+                callableStatement.setString(5, String.valueOf(obrigatoriedade));
+                callableStatement.setInt(6, idGrauProficiencia);
+
+                callableStatement.executeQuery();
+
+                connection.commit();
+                return true;
+
+            } catch (SQLException exception) {
+                exception.printStackTrace();
+                exception.getSQLState();
+                try {
+                    System.err.print("Transaction is being rolled back");
+                    connection.rollback();
+                } catch (SQLException sqlException) {
+                    sqlException.getErrorCode();
+                }
+            } finally {
+                dbConnectionHandler.closeAll();
+            }
+        }
+        return false;
     }
 
     @Override
@@ -80,9 +119,7 @@ public class RepositorioCategoriaTarefaDatabase implements RepositorioCategoriaT
                 dbConnectionHandler.closeAll();
             }
         }
-        else {
-            throw new CategoriaInexistenteException(categoria.getCodigoCategoria() + ": Categoria de Tarefa já registada.");
-        }
+
         return false;
     }
 
