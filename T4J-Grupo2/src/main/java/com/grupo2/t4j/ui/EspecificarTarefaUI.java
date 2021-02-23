@@ -53,6 +53,7 @@ public class EspecificarTarefaUI implements Initializable {
         registarAreaActividadeController = new RegistarAreaActividadeController();
         registarCategoriaController = new RegistarCategoriaController();
         gestaoUtilizadoresController = new GestaoUtilizadoresController();
+        registarColaboradorController = new RegistarColaboradorController();
 
         try {
             cmbAreaActividade.getItems().setAll(registarAreaActividadeController.getAll());
