@@ -1,0 +1,19 @@
+
+NIF       NOME                 WEBSITE                                            TELEFONE  EMAIL                                              EMAILGESTOR                                        IDENDERECOPOSTAL
+--------- -------------------- -------------------------------------------------- --------- -------------------------------------------------- -------------------------------------------------- ----------------
+888777666 t4j                  com.grupo2.t4j.model.Website@6c6cce16              999666777 com.grupo2.t4j.model.Email@989bbdd                 com.grupo2.t4j.model.Email@4800822f                               4
+
+
+NIF       NOME                 WEBSITE                                            TELEFONE  EMAIL                                              EMAILGESTOR                                        IDENDERECOPOSTAL
+--------- -------------------- -------------------------------------------------- --------- -------------------------------------------------- -------------------------------------------------- ----------------
+888777666 t4j                  com.grupo2.t4j.model.Website@6c6cce16              999666777 com.grupo2.t4j.model.Email@989bbdd                 com.grupo2.t4j.model.Email@4800822f                               4
+888777555 t4j                  http://www.t4j.com                                 999666777 12t4j@t4j.com                                      34antonio@t4j.com                                                 9
+888777665 t4j                  http://www.t4j.com                                 999666777 t4j@t4j.com                                        antonio@t4j.com                                                   5
+
+
+NIF       NOME                 WEBSITE                                            TELEFONE  EMAIL                                              EMAILGESTOR                                        IDENDERECOPOSTAL EMAIL                                              NOME                                                                                                 PASSWORD   ROLENAME       
+--------- -------------------- -------------------------------------------------- --------- -------------------------------------------------- -------------------------------------------------- ---------------- -------------------------------------------------- ---------------------------------------------------------------------------------------------------- ---------- ---------------
+888777666 t4j                  com.grupo2.t4j.model.Website@6c6cce16              999666777 com.grupo2.t4j.model.Email@989bbdd                 com.grupo2.t4j.model.Email@4800822f                               4 com.grupo2.t4j.model.Email@4800822f                12António                                                                                            Cc6c2Ftd76 gestor         
+888777555 t4j                  http://www.t4j.com                                 999666777 12t4j@t4j.com                                      34antonio@t4j.com                                                 9 34antonio@t4j.com                                  34António                                                                                            i2xdlSA07T gestor         
+888777665 t4j                  http://www.t4j.com                                 999666777 t4j@t4j.com                                        antonio@t4j.com                                                   5 antonio@t4j.com                                    António                                                                                              VqhOHfi4p6 gestor         
+
