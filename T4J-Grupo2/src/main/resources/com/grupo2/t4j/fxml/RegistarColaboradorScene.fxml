@@ -15,11 +15,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.RegistarColaboradorUI">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" styleClass="BorderPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.RegistarColaboradorUI">
    <center>
-      <BorderPane styleClass="BorderPane" stylesheets="@../style/app.css" BorderPane.alignment="CENTER">
+      <BorderPane styleClass="BorderPane" BorderPane.alignment="CENTER">
          <center>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0">
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="AnchorPane">
                <children>
                   <VBox layoutX="164.0" layoutY="31.0" prefHeight="341.0" prefWidth="386.0">
                      <children>
@@ -132,9 +132,9 @@
             </Label>
          </top>
          <bottom>
-            <FlowPane alignment="CENTER_RIGHT" prefHeight="75.0" prefWidth="605.0" BorderPane.alignment="CENTER">
+            <FlowPane alignment="CENTER_RIGHT" prefHeight="75.0" prefWidth="605.0" styleClass="FlowPane" BorderPane.alignment="CENTER">
                <children>
-                  <Button fx:id="btnRegistarColaborador" alignment="CENTER_RIGHT" contentDisplay="CENTER" defaultButton="true" mnemonicParsing="false" onAction="#registarColaboradorAction" prefHeight="27.0" prefWidth="70.0" styleClass="btnRegistarColaborador" stylesheets="@../style/app.css" text="Registar" textAlignment="CENTER">
+                  <Button fx:id="btnRegistarColaborador" alignment="CENTER_RIGHT" contentDisplay="CENTER" defaultButton="true" mnemonicParsing="false" onAction="#registarColaboradorAction" prefHeight="27.0" prefWidth="70.0" styleClass="btnRegistarColaborador" text="Registar" textAlignment="CENTER">
                      <font>
                         <Font name="Calibri" size="14.0" />
                      </font>
@@ -156,7 +156,7 @@
       </BorderPane>
    </center>
    <top>
-      <Label fx:id="lblUser" alignment="CENTER_RIGHT" styleClass="lblUser" stylesheets="@../style/app.css" text="Bem-vindo á Área do Gestor" textFill="WHITE" BorderPane.alignment="CENTER_RIGHT">
+      <Label fx:id="lblUser" alignment="CENTER_RIGHT" styleClass="lblUser" text="Bem-vindo á Área do Gestor" textFill="WHITE" BorderPane.alignment="CENTER_RIGHT">
          <font>
             <Font name="Calibri Italic" size="16.0" />
          </font>
