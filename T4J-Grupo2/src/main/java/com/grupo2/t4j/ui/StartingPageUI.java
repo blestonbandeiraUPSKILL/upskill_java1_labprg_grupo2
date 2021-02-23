@@ -49,6 +49,19 @@ public class StartingPageUI implements Initializable {
 
 
     }
+    
+        /**
+        btnGoDark.setOnAction(new EventHandler<ActionEvent>() {
+        @Override
+        public void handle(ActionEvent event) {
+        scene.getStylesheets().remove("/com/grupo2/t4j/style/app.css");
+
+        if(!scene.getStylesheets().contains("/com/grupo2/t4j/style/app.css")) scene.getStylesheets().add("/com/grupo2/t4j/style/dark.css");
+            }
+        });
+        */
+    
+    
 
     public void registarOrganizacao(ActionEvent actionEvent) {
 
