@@ -118,7 +118,11 @@ public class AdministrativoLogadoUI implements Initializable {
             AdicionarAreaAtividadeUI adicionarAreaAtividadeUI = loaderAddAreaActividade.getController();
             adicionarAreaAtividadeUI.associarParentUI(this);
 
+            adicionarStage.setScene(sceneAddAreaActividade);
+            adicionarStage.setTitle("Adicionar Área de Actividade");
+            adicionarStage.show();
         }
+
         catch (IOException exception) {
             exception.printStackTrace();
             AlertsUI.criarAlerta(Alert.AlertType.ERROR,
@@ -126,9 +130,6 @@ public class AdministrativoLogadoUI implements Initializable {
                     "Erro",
                     exception.getMessage());
         }
-        adicionarStage.setScene(sceneAddAreaActividade);
-        adicionarStage.setTitle("Adicionar Área de Actividade");
-        adicionarStage.show();
     }
 
     public void addCategoriaTarefa(ActionEvent actionEvent) {

@@ -49,6 +49,7 @@ public class RegistarColaboradorUI implements Initializable {
 
 
     public void registarColaboradorAction(ActionEvent actionEvent) {
+
         try {
             boolean adicionou = registarColaboradorController.registarColaborador(
                     txtEmailColaborador.getText(),
@@ -63,6 +64,7 @@ public class RegistarColaboradorUI implements Initializable {
                 btnRegistarColaborador.setDisable(true);
                 btnCancelarRegisto.setText("Sair");
 
+                gestorLogadoUI.updateListViewColaboradores();
 
                 AlertsUI.criarAlerta(Alert.AlertType.INFORMATION,
                         MainApp.TITULO_APLICACAO,
@@ -70,6 +72,7 @@ public class RegistarColaboradorUI implements Initializable {
                         adicionou ? ("Colaborador registado com sucesso.")
                                 : "Não foi possível registar o Colaborador.").show();
             }
+
 
         }
         catch (IllegalArgumentException | SQLException iae) {

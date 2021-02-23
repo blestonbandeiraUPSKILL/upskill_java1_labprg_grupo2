@@ -132,7 +132,7 @@ public class RepositorioColaboradorDatabase implements RepositorioColaborador {
                 String funcao = resultSet.getString(2);
                 String telefone = resultSet.getString(3);
                 String nifOrganizacao = resultSet.getString(4);
-                colaboradores.add(new Colaborador(new Email(email), funcao, telefone, nifOrganizacao));
+                colaboradores.add(new Colaborador(email, funcao, telefone, nifOrganizacao));
             }
         }
         catch (SQLException exception) {

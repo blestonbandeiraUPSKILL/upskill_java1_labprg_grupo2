@@ -39,14 +39,11 @@ public class StartingPageUI implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-
         gestaoUtilizadoresController = new GestaoUtilizadoresController();
-
 
         adicionarStage = new Stage();
         adicionarStage.initModality(Modality.APPLICATION_MODAL);;
         adicionarStage.setResizable(false);
-
 
     }
     
@@ -60,8 +57,6 @@ public class StartingPageUI implements Initializable {
             }
         });
         */
-    
-    
 
     public void registarOrganizacao(ActionEvent actionEvent) {
 
@@ -84,7 +79,6 @@ public class StartingPageUI implements Initializable {
                     "Erro",
                     exception.getMessage());
         }
-
 
     }
 
