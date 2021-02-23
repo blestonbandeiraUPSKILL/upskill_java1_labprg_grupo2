@@ -66,11 +66,10 @@ public class AdicionarFreelancerUI implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
-        registarFreelancerController = new RegistarFreelancerController();
-
         adicionarStage = new Stage();
         adicionarStage.initModality(Modality.APPLICATION_MODAL);;
         adicionarStage.setResizable(false);
+        registarFreelancerController = new RegistarFreelancerController();
     }   
    
     @FXML
@@ -84,11 +83,11 @@ public class AdicionarFreelancerUI implements Initializable {
             boolean adicionou = registarFreelancerController.registarFreelancer(
                     txtEmailFreelancer.getText(), txtNomeFreelancer.getText(),
                     txtNIFFreelancer.getText(), txtTelefoneFreelancer.getText(),
-                    endereco.getCodigoEnderecoPostal());
+                    "CP-"+ txtNIFFreelancer.getText());
 
             if(adicionou) {
-                txtPassFreelancer.setText(registarFreelancerController.findByNif(txtNIFFreelancer.getText()).getPassword().getPasswordText());
-                //administrativoLogadoUI.updateListViewFreelancer();
+                txtPassFreelancer.setText(registarFreelancerController.findByEmail(txtEmailFreelancer.getText()).getPassword().getPasswordText());
+                administrativoLogadoUI.updateListViewFreelancer();
             
                 AlertsUI.criarAlerta(Alert.AlertType.INFORMATION,
                     MainApp.TITULO_APLICACAO, "Registar Freelancer.",
@@ -104,19 +103,6 @@ public class AdicionarFreelancerUI implements Initializable {
         
         }
     }
-
-    public void closeAddFreelancer(ActionEvent event) {
-        this.txtNomeFreelancer.clear();
-        this.txtEmailFreelancer.clear();
-        this.txtNIFFreelancer.clear();
-        this.txtTelefoneFreelancer.clear();
-        this.txtArruamentoFreelancer.clear();
-        this.txtPortaFreelancer.clear();
-        this.txtLocalidadeFreelancer.clear();
-        this.txtCodPostalFreelancer.clear();
-        this.txtPassFreelancer.clear();       
-        ((Node) event.getSource()).getScene().getWindow().hide();
-    }
     
     @FXML
     public void cancelarAction(ActionEvent event) {
@@ -129,16 +115,20 @@ public class AdicionarFreelancerUI implements Initializable {
         this.txtPortaFreelancer.clear();
         this.txtLocalidadeFreelancer.clear();
         this.txtCodPostalFreelancer.clear();
-        this.txtPassFreelancer.clear();   
-
-        Window window = btnCancelar.getScene().getWindow();
+        this.txtPassFreelancer.clear();
+        btnCancelar.getScene().getWindow().hide();        
+    }
+    
+    @FXML
+    public void sairAction(ActionEvent event) {
+        Window window = btnSair.getScene().getWindow();
         window.setOnCloseRequest(new EventHandler<WindowEvent>() {
             @Override
             public void handle(WindowEvent windowEvent) {
                 Alert alerta = AlertsUI.criarAlerta(Alert.AlertType.CONFIRMATION,
                         MainApp.TITULO_APLICACAO,
                         "Confirmação da acção",
-                        "Tem a certeza que quer voltar à página anterior, cancelando o actual registo?");
+                        "Tem a certeza que quer voltar à página anterior?");
 
                 if (alerta.showAndWait().get() == ButtonType.CANCEL) {
                     windowEvent.consume();
@@ -146,10 +136,5 @@ public class AdicionarFreelancerUI implements Initializable {
             }
         });
         window.fireEvent(new WindowEvent(window, WindowEvent.WINDOW_CLOSE_REQUEST));
-    }
-    
-    @FXML
-    public void sairAction(ActionEvent event) {
-        
     }
 }
