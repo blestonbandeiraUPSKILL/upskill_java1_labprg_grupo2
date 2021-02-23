@@ -21,7 +21,7 @@ public class RepositorioHabilitacaoAcademicaDatabase implements RepositorioHabil
     
     /**
      * Define uma instância estática do Repositório em que estão
-     * registados todos os Freelancers
+     * registados todas as Habilitações Acadêmicas dos Freelancers
      */
     private static RepositorioHabilitacaoAcademicaDatabase repositorioHabilitacaoAcademicaDatabase;
     
@@ -30,14 +30,14 @@ public class RepositorioHabilitacaoAcademicaDatabase implements RepositorioHabil
     String password = "qwerty";
     
     /**
-     * Inicializa o Repositório de Freelancers
+     * Inicializa o Repositório das Habilitações Acadêmicas dos Freelancers
      */
     RepositorioHabilitacaoAcademicaDatabase(){    }
 
     /**
-     * Devolve uma instância estática do Repositório de Utilizadores
+     * Devolve uma instância estática do Repositório de Habilitações Acadêmicas dos Freelancers
      *
-     * @return RepositorioUtilizadorDatabase
+     * @return RepositorioHabilitacaoAcademicaDatabase
      */
     public static RepositorioHabilitacaoAcademicaDatabase getInstance(){
         if(repositorioHabilitacaoAcademicaDatabase == null) {

@@ -133,9 +133,7 @@ public class RepositorioAreaActividadeDatabase implements RepositorioAreaActivid
                 dbConnectionHandler.closeAll();
             }
         }
-        else {
-            throw new AreaActividadeDuplicadaException(areaActividade.getCodigo() + ": Área de actividade já registada");
-        }
+
         return false;
     }
 

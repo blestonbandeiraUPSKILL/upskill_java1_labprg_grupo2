@@ -85,6 +85,17 @@ public class RepositorioFreelancerInMemory implements Serializable, RepositorioF
         }
         return null;
     }
+    
+    @Override
+    public Freelancer findByEmail(String emailFree) {
+        for (int i = 0; i < this.listaFreelancers.size(); i++) {
+            Freelancer freelancer = this.listaFreelancers.get(i);
+            if (freelancer.getEmail().getEmailText().equals(emailFree)) {
+                return freelancer;
+            }
+        }
+        return null;
+    }
 
     @Override
     public ArrayList<Freelancer> getAll() {

@@ -42,17 +42,17 @@ public RepositorioAnuncioTest() {
         //System.out.println(rc1.getListaColaboradores().get(0).toString());
     }
     
-    @Test (expected = AnuncioDuplicadoException.class)
+    /*@Test (expected = AnuncioDuplicadoException.class)
     public void testAddAnuncioDuplicado() {
        
-        /*RepositorioColaborador rc1 = RepositorioColaborador.getInstance();
+        RepositorioColaborador rc1 = RepositorioColaborador.getInstance();
         
         Colaborador c1= new Colaborador("Fulano", "fulano@upskill.pt", "Assistente", "999888777");
         Colaborador c2= new Colaborador("Fulano", "fulano@upskill.pt", "Assistente", "999888777");
       
         rc1.addColaborador(c1);
-        rc1.addColaborador(c2);*/
-    }
+        rc1.addColaborador(c2);
+    }*/
     
     @Test
     public void testGetAnuncioById() {
@@ -91,5 +91,5 @@ public RepositorioAnuncioTest() {
         Email emailA0 = new Email("fulano@upskill.pt");
         assertEquals(lista.get(0).getEmail().getEmailText(),emailA0.getEmailText());*/
         
-    }    
+    } 
 }
