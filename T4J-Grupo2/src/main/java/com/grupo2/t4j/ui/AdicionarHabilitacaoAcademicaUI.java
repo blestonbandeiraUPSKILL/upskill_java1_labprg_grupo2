@@ -48,7 +48,7 @@ public class AdicionarHabilitacaoAcademicaUI implements Initializable {
 
     @FXML private TextField txtMedia;
     
-   @FXML private ListView<HabilitacaoAcademica> listaHabilitacaoFreelancer;
+    @FXML private ListView<HabilitacaoAcademica> listaHabilitacaoFreelancer;
      
     @FXML private Button btnAddHabilitacao;
     
@@ -105,25 +105,35 @@ public class AdicionarHabilitacaoAcademicaUI implements Initializable {
     }
 
     @FXML
-    void cancelarAction(ActionEvent event) {
-
+    public void cancelarAction(ActionEvent event) {
+        this.txtGrau.clear();
+        this.txtDesignacao.clear();
+        this.txtInstituicao.clear();
+        this.txtMedia.clear();  
     }
 
     @FXML
-    void sairAction(ActionEvent event) {
+    public void sairAction(ActionEvent event) {
+         Window window = btnSair.getScene().getWindow();
+        window.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent windowEvent) {
+                Alert alerta = AlertsUI.criarAlerta(Alert.AlertType.CONFIRMATION,
+                        MainApp.TITULO_APLICACAO,
+                        "Confirmação da acção",
+                        "Tem a certeza que quer voltar à página anterior?");
 
+                if (alerta.showAndWait().get() == ButtonType.CANCEL) {
+                    windowEvent.consume();
+                }
+            }
+        });
+        window.fireEvent(new WindowEvent(window, WindowEvent.WINDOW_CLOSE_REQUEST));
     }
+    
     
     public void updateListViewHabilitacaoFreelancer() throws SQLException {
          listaHabilitacaoFreelancer.getItems().setAll(registarHabilitacaoAcademicaController.getAll());
     }
      
-     public void closeAddHabilitacaoFreelancer(ActionEvent event) {
-        this.txtGrau.clear();
-        this.txtDesignacao.clear();
-        this.txtInstituicao.clear();
-        this.txtMedia.clear();       
-        
-        ((Node) event.getSource()).getScene().getWindow().hide();
-    }
 }
