@@ -15,7 +15,10 @@ public interface RepositorioCaracterizacaoCT {
 
     List<CaracterizacaoCT> getAll();
 
-    List<CaracterizacaoCT> findByCompetenciaTecnica(List<String> codigoCompetenciasTecnicas);
+    List<CaracterizacaoCT> findByCategoria(String codigoCategoria) throws SQLException;
 
     CaracterizacaoCT findByCodigo(String codigoCCT);
+    
+    CaracterizacaoCT findByCategoriaEGrau (String codigoCategoria, 
+            String codigoGP) throws SQLException; 
 }

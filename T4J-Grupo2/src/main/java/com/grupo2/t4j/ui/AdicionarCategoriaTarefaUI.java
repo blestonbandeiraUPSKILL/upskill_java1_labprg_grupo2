@@ -172,30 +172,42 @@ public class AdicionarCategoriaTarefaUI implements Initializable {
     }
 
     @FXML
-    public List<CaracterizacaoCT> addCompetenciaTecnica2CCTS() throws SQLException {
+    public void addCompetenciaTecnica2CCTS(ActionEvent actionEvent) throws SQLException {
 
-        /*List<CaracterizacaoCT> caracterizacaoCTS = new ArrayList<>();
-        boolean adicionou = registarCaracterizacaoCTController.registarCaracterizacaoCTS(
-               txtCodigoCCT.getText(),
-               cmbGrauProficiencia.getValue().getGrau(),
-               cmbObrigatoriedade.getValue(),
-               cmbCompetenciaTecnica.getValue().getCodigo());
+        try {
+            boolean adicionou = registarCaracterizacaoCTController.registarCaracterizacaoCTS(
+                    txtCodigo.getText(),cmbGrauProficiencia.getValue().getGrau(), 
+                    cmbObrigatoriedade.getValue());
+            
+            if(adicionou){
+                updateListViewCompTecCat(actionEvent);
+                cmbCompetenciaTecnica.getSelectionModel().clearSelection();
+                cmbGrauProficiencia.getSelectionModel().clearSelection();
+                cmbGrauProficiencia.getItems().clear();
+                cmbObrigatoriedade.getSelectionModel().clearSelection();
+            }
+            
+            AlertsUI.criarAlerta(Alert.AlertType.INFORMATION,
+                    MainApp.TITULO_APLICACAO,
+                    "Registar Caracterização de Competencia.",
+                    adicionou ? "Caracterização efectuada com sucesso. Pode regressar à página anterior."
+                            : "Não foi possível efectuar a caracterização.").show();
 
-        if(adicionou) {
-            caracterizacaoCTS.add(registarCaracterizacaoCTController.findByCodigo(txtCodigoCCT.getText()));
-            listViewCompTecCat.getItems().add(registarCaracterizacaoCTController.findByCodigo(txtCodigoCCT.getText()));
-            txtCodigoCCT.clear();
-            cmbCompetenciaTecnica.getSelectionModel().clearSelection();
-            cmbGrauProficiencia.getSelectionModel().clearSelection();
-            cmbGrauProficiencia.getItems().clear();
-            cmbObrigatoriedade.getSelectionModel().clearSelection();
-
-            cmbAreaActividade.setDisable(true);
         }
-
-        return caracterizacaoCTS;*/
-        return null;
+        catch (IllegalArgumentException | SQLException iae) {
+            AlertsUI.criarAlerta(Alert.AlertType.ERROR,
+                    MainApp.TITULO_APLICACAO,
+                    "Erro nos dados.",
+                    iae.getMessage()).show();
+        }
+        
+        
     }
-
+    
+    public void updateListViewCompTecCat(ActionEvent actionEvent) throws SQLException {
+        listViewCompTecCat.getItems().add(registarCaracterizacaoCTController.findByCategoriaEGrau(
+                txtCodigo.getText(), cmbGrauProficiencia.getValue().getGrau()));
+        cmbAreaActividade.setDisable(true);
+    }
 
 }
