@@ -53,14 +53,14 @@ public class RepositorioHabilitacaoAcademicaDatabase implements RepositorioHabil
 
     @Override
     public boolean save(int idHabilitacao, String grau, String designacaoCurso,
-           String nomeInstituicao, double mediaCurso) throws HabilitacaoAcademicaDuplicadaException,
+           String nomeInstituicao, double mediaCurso, String emailFreelancer) throws HabilitacaoAcademicaDuplicadaException,
             SQLException{
         
         /*DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
         Connection connection = dbConnectionHandler.openConnection();
 
         CallableStatement callableStatement = connection.prepareCall(
-                "{CALL createHabilitacao(?, ?, ?, ?, ?) } ");
+                "{CALL createHabilitacao(?, ?, ?, ?, ?, ?) } ");
 
         if (findById(idHabilitacao) == null){
 
@@ -72,6 +72,7 @@ public class RepositorioHabilitacaoAcademicaDatabase implements RepositorioHabil
                 callableStatement.setString(3, designacaoCurso);
                 callableStatement.setString(4, nomeInstituicao);
                 callableStatement.setDouble(5, mediaCurso);
+                callableStatement.setString(6, emailFreelancer);
                                 
                 callableStatement.executeQuery();
 
@@ -115,6 +116,39 @@ public class RepositorioHabilitacaoAcademicaDatabase implements RepositorioHabil
         try {
             connection.setAutoCommit(false);
 
+            callableStatement.setString(2, grau);
+            callableStatement.setString(3, designacaoCurso);
+            callableStatement.setString(4, nomeInstituicao);
+            callableStatement.setString(6, emailFreelancer);
+            callableStatementOrg.executeQuery();
+
+            return null;
+
+        } catch (SQLException exceptionOrg) {
+            exceptionOrg.printStackTrace();
+            exceptionOrg.getSQLState();
+
+
+        }
+
+        return new HabilitacaoAcademica();*/
+        
+        return null;
+    }
+    
+    @Override
+    public HabilitacaoAcademica findByGrauDesigInst(String grau, String designacaoCurso,
+           String nomeInstituicao, String emailFreelancer) throws SQLException{
+         
+        /*DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
+        Connection connection = dbConnectionHandler.openConnection();
+
+        CallableStatement callableStatementOrg = connection.prepareCall(
+                 "{CALL findByGrauDesigInst(?)}");
+
+        try {
+            connection.setAutoCommit(false);
+
             callableStatementOrg.setInt(1, idHabilitacao);
             callableStatementOrg.executeQuery();
 
@@ -153,7 +187,8 @@ public class RepositorioHabilitacaoAcademicaDatabase implements RepositorioHabil
                 String designacaoCurso = resultSet.getString(3);
                 String nomeInstituicao = resultSet.getString(4);
                 Double mediaCurso = resultSet.getDouble(5);                
-                listaHabilitacao.add(new HabilitacaoAcademica(idHabilitacao, grau, designacaoCurso, nomeInstituicao, mediaCurso));
+                String emailFreelancer = resultSet.getString(6);
+                listaHabilitacao.add(new HabilitacaoAcademica(idHabilitacao, grau, designacaoCurso, nomeInstituicao, mediaCurso, emailFreelancer));
             }
         }
         catch (SQLException exception) {

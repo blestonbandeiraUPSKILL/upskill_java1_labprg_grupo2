@@ -104,7 +104,7 @@ public class AdicionarHabilitacaoAcademicaUI implements Initializable {
         try{                      
             boolean adicionou = registarHabilitacaoAcademicaController.registarHabilitacaoAcademica(
                     txtGrau.getText(), txtDesignacao.getText(), txtInstituicao.getText(), 
-                    Double.parseDouble(txtMedia.getText()));
+                    Double.parseDouble(txtMedia.getText()), cmbEmailFreelancer.getSelectionModel().getSelectedItem());
 
             if(adicionou) {
                 updateListViewHabilitacaoFreelancer();
