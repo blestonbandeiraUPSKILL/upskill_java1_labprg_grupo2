@@ -95,8 +95,7 @@ public class GrauProficiencia {
      */
     @Override
     public String toString(){
-        return String.format("Grau: %-12s |Designação: %-25s |Código Competência Técnica: %-15s", grau, 
-                designacao, codigoCompetenciaTecnica);
+        return String.format("%s - %s", designacao, grau);
     }
     
     
