@@ -53,18 +53,28 @@ public class RepositorioFreelancerInMemory implements Serializable, RepositorioF
     @Override
     public boolean save(String emailFree, String nome, String passwordFree, String nif, 
             String telefone, String arruamento, String numeroPorta, String localidade, String codPostal) throws FreelancerDuplicadoException {
-        return false;
+        Freelancer f1 = findByNif(nif);
+        Freelancer f2 = findByEmail(emailFree);
+        if (f1 == null && f2 == null) {
+            EnderecoPostal endereco = new EnderecoPostal(arruamento, numeroPorta, localidade, codPostal);
+            Freelancer freel = new Freelancer(new Email(emailFree), nome, new Password(passwordFree), nif, telefone, endereco.getCodigoEnderecoPostal());
+            this.listaFreelancers.add(freel);
+            return true;
+        } else {
+            throw new FreelancerDuplicadoException("Freelancer já registado!");
+        }
     }
 
     @Override
     public boolean save(Freelancer freelancer) throws FreelancerDuplicadoException {
-        Freelancer f = findByNif(freelancer.getNif());
-        if (f == null) {
+        Freelancer f1 = findByNif(freelancer.getNif());
+        Freelancer f2 = findByEmail(freelancer.getEmail().getEmailText());
+        if (f1 == null && f2 == null) {
             Freelancer freel = new Freelancer(freelancer);
             this.listaFreelancers.add(freel);
             return true;
         } else {
-            throw new FreelancerDuplicadoException(freelancer.getNif() + ": NIF já registado!");
+            throw new FreelancerDuplicadoException("Freelancer já registado!");
         }        
     }
 

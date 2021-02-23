@@ -36,7 +36,7 @@ public class AdicionarHabilitacaoAcademicaUI implements Initializable {
     private RegistarHabilitacaoAcademicaController registarHabilitacaoAcademicaController;
     private Stage adicionarStage;
     
-    @FXML private ComboBox<String> cmbNomeFreelancer;
+    @FXML private TextField txtNomeFreelancer;
     
     @FXML private ComboBox<String> cmbEmailFreelancer;
 

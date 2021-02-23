@@ -51,13 +51,14 @@ public class RepositorioHabilitacaoAcademicaInMemory  implements Serializable, R
     }
     
     @Override
-    public void save(String idHabilitacao, String grau, String designacaoCurso,
+    public boolean save(String idHabilitacao, String grau, String designacaoCurso,
            String nomeInstituicao, double mediaCurso) throws HabilitacaoAcademicaDuplicadaException {
         HabilitacaoAcademica ha = findById(idHabilitacao);
         if (ha == null) {
             HabilitacaoAcademica habilitacao = new HabilitacaoAcademica(idHabilitacao,
                     grau, designacaoCurso, nomeInstituicao, mediaCurso);
             this.listaHabilitacoesAcademicas.add(habilitacao);
+            return true;
         } else {
             throw new HabilitacaoAcademicaDuplicadaException(idHabilitacao + ": "
                     + "Habilitação Acadêmica já registada!");
@@ -70,11 +71,11 @@ public class RepositorioHabilitacaoAcademicaInMemory  implements Serializable, R
         if (ha == null) {
             HabilitacaoAcademica habilitacao = new HabilitacaoAcademica(habilitacaoAcademica);
             this.listaHabilitacoesAcademicas.add(habilitacao);
+            return true;
         } else {
             throw new HabilitacaoAcademicaDuplicadaException(habilitacaoAcademica.getIdHabilitacao() + ": "
                     + "Habilitação Acadêmica já registada!");
-        }
-        return false;
+        }        
     }
 
     @Override
