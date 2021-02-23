@@ -75,3 +75,21 @@
     -fx-text-fill: #ffffff;
     -fx-cursor: hand;    
 }
+
+.btnAddAreaAtividade {
+    -fx-background-color: #20B2AA;
+    -fx-text-fill: #ffffff;
+    -fx-cursor: hand;    
+}
+
+.btnConfirmar {
+    -fx-background-color: #20B2AA;
+    -fx-text-fill: #ffffff;
+    -fx-cursor: hand;    
+}
+
+.btnAddCompTecCat {
+    -fx-background-color: #20B2AA;
+    -fx-text-fill: #ffffff;
+    -fx-cursor: hand; 
+}
