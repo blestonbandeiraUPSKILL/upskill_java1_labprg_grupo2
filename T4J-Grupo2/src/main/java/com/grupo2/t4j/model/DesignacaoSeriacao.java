@@ -10,7 +10,19 @@ package com.grupo2.t4j.model;
  * @author CAD
  */
 public enum DesignacaoSeriacao {
-    SERIACAO_SUBJETIVA_ATRIBUICAO_OPCIONAL,
-    SERIACAO_SUBJETIVA_ATRIBUICAO_OBRIGATORIA,
-    SERIACAO_E_ATRIBUICAO_AUTOMATICA_MENOR_PRECO    
+    SERIACAO_SUBJETIVA_ATRIBUICAO_OPCIONAL{
+        public String toString() {
+            return "Seriação Subjetiva com Atribuição Opcional";
+        }
+    },
+    SERIACAO_SUBJETIVA_ATRIBUICAO_OBRIGATORIA{
+        public String toString() {
+            return "Seriação Subjetiva com Atribuição Obrigatória";
+        }
+    },
+    SERIACAO_E_ATRIBUICAO_AUTOMATICA_MENOR_PRECO{
+        public String toString() {
+            return "Seriaação e Atribuição Automática - 2º melhor preço";
+        }
+    }    
 }
