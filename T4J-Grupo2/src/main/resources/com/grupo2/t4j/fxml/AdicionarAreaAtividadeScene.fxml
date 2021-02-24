@@ -69,6 +69,9 @@
                      <font>
                         <Font name="Calibri" size="14.0" />
                      </font>
+                     <tooltip>
+                        <Tooltip text="Confirmar" />
+                     </tooltip>
                   </Button>
                   <Button fx:id="btnCancelar" mnemonicParsing="false" onAction="#cancelarAction" text="Cancelar">
                      <font>
@@ -77,13 +80,16 @@
                      <FlowPane.margin>
                         <Insets left="10.0" right="10.0" />
                      </FlowPane.margin>
+                     <tooltip>
+                        <Tooltip text="Cancelar" />
+                     </tooltip>
                   </Button>
                </children>
             </FlowPane>
          </bottom></BorderPane>
    </center>
    <top>
-      <Label styleClass="lblUser" text="Bem-vindo á Área do Administativo" textFill="WHITE" BorderPane.alignment="CENTER_RIGHT">
+      <Label styleClass="lblUser" text="Bem-vindo á Área do Administrativo" textFill="WHITE" BorderPane.alignment="CENTER_RIGHT">
          <padding>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </padding>

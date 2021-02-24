@@ -74,6 +74,9 @@
                                  <font>
                                     <Font name="Calibri" size="14.0" />
                                  </font>
+                                 <tooltip>
+                                    <Tooltip text="Adicionar Nova Tarefa" />
+                                 </tooltip>
                               </Button>
                            </children>
                         </AnchorPane>
@@ -95,6 +98,9 @@
          <BorderPane.margin>
             <Insets bottom="20.0" right="20.0" />
          </BorderPane.margin>
+         <tooltip>
+            <Tooltip text="Sair" />
+         </tooltip>
       </Button>
    </bottom>
 </BorderPane>
