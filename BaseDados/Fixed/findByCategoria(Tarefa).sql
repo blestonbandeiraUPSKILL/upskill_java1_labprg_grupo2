@@ -1,5 +1,5 @@
 CREATE OR REPLACE PROCEDURE findByCategoria(
-    p_codigoCategoria tarefa.codigocategoria%type    
+    p_codigoCategoria tarefa.codigocategoria    
     )
 
 IS

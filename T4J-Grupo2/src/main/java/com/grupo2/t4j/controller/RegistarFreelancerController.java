@@ -22,13 +22,11 @@ import java.util.ArrayList;
 import java.util.List;
 public class RegistarFreelancerController {
     
-    private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosInMemory();
-    //private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosDatabase();
+    //private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosInMemory();
+    private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosDatabase();
     private RepositorioFreelancer repositorioFreelancer = fabricaRepositorios.getRepositorioFreelancer();
     private RepositorioUtilizador repositorioUtilizador = fabricaRepositorios.getRepositorioUtilizador();
-    /*private RepositorioEnderecoPostal repositorioEnderecoPostal = fabricaRepositorios.getRepositorioEnderecoPostal();*/
-    
-    private AlgoritmoGeradorPasswords algoritmoGeradorPasswords;
+
     private RepositorioFreelancerInMemory repositorioFreelancerInMemory;
     private FicheiroRepositorioFreelancer ficheiroF;
     
@@ -36,15 +34,13 @@ public class RegistarFreelancerController {
             String telefone, String arruamento, String numeroPorta, String localidade, String codPostal) throws SQLException {
 
         AlgoritmoGeradorPasswords algoritmoGeradorPasswords = new AlgoritmoGeradorPasswords();
-        Password password = new Password(algoritmoGeradorPasswords.geraPassword());
-        
-        EnderecoPostal endereco = new EnderecoPostal(arruamento, numeroPorta, localidade, codPostal);
-        
-        Freelancer freelancer = new Freelancer(new Email(emailFree), nome, password, nif, telefone, endereco.getCodigoEnderecoPostal());
+        String password = algoritmoGeradorPasswords.geraPassword();
+
+        Freelancer freelancer = new Freelancer(emailFree, nome, nif, telefone, password, arruamento, numeroPorta, localidade, codPostal);
 
         registarFreelancerComoUtilizador(freelancer);
 
-        return repositorioFreelancer.save(freelancer);
+        return repositorioFreelancer.save(emailFree, nome, nif, telefone, password, arruamento, numeroPorta, localidade, codPostal);
     }
 
     public List<Freelancer> getAll() throws SQLException{
@@ -69,10 +65,7 @@ public class RegistarFreelancerController {
         Email email = freelancer.getEmail();
         Password password = freelancer.getPassword();
 
-        Utilizador utilizador = new Utilizador(email, nome, password);
-
-        return UsersAPI.getInstance().registerUserWithRoles(email, nome, password, "freelancer")
-                && repositorioUtilizador.save(utilizador);
+        return UsersAPI.getInstance().registerUserWithRoles(email, nome, password, "freelancer");
     }
     
      //////FICHEIROS////////
@@ -99,4 +92,7 @@ public class RegistarFreelancerController {
         return repositorioFreelancerInMemory.adicionarListaFreelancer(listaFreelancerImportada);
     }
 
+    public Password findPassword(String email) throws SQLException {
+        return  repositorioFreelancer.findPassword(email);
+    }
 }

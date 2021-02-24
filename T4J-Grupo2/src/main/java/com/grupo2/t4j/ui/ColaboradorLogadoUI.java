@@ -109,7 +109,8 @@ public class ColaboradorLogadoUI implements Initializable {
     }
 
     public void updateListViewTarefas() throws SQLException {
-        listViewTarefas.getItems().setAll(registarTarefaController.getAll(getNifOrganizacao() ));
+        listViewTarefas.getItems().setAll(registarTarefaController.getAll(
+                getNifOrganizacao() ));
 
     }
     
@@ -176,7 +177,7 @@ public class ColaboradorLogadoUI implements Initializable {
             FXMLLoader loaderAddTarefa = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/EspecificarTarefaColaboradorScene.fxml"));
             Parent rootAddTarefa = loaderAddTarefa.load();
             sceneAddTarefa = new Scene(rootAddTarefa);
-            sceneAddTarefa.getStylesheets().add("/com/grupo2/t4j/style/app.css");
+            //sceneAddTarefa.getStylesheets().add("/com/grupo2/t4j/style/app.css");
             EspecificarTarefaColaboradorUI especificarTarefaColaboradorUI = loaderAddTarefa.getController();
             especificarTarefaColaboradorUI.associarParentUI(this);
 

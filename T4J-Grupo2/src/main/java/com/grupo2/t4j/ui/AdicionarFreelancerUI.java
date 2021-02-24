@@ -32,29 +32,18 @@ public class AdicionarFreelancerUI implements Initializable {
     private RegistarFreelancerController registarFreelancerController;
     private Stage adicionarStage;
     
-    @FXML private TextField txtNomeFreelancer;
-    
-    @FXML private TextField txtEmailFreelancer;
-    
-    @FXML private TextField txtNIFFreelancer;
-    
-    @FXML private TextField txtTelefoneFreelancer;
-    
-    @FXML private TextField txtArruamentoFreelancer;
-    
-    @FXML private TextField txtPortaFreelancer;
-
-    @FXML private TextField txtLocalidadeFreelancer;
-
-    @FXML private TextField txtCodPostalFreelancer;
-    
-    @FXML private TextField txtPassFreelancer;
-    
-    @FXML private Button btnAddFreelancer;
-   
-    @FXML private Button btnCancelar;
-    
-    @FXML private Button btnSair;
+    @FXML TextField txtNomeFreelancer;
+    @FXML TextField txtEmailFreelancer;
+    @FXML TextField txtNIFFreelancer;
+    @FXML TextField txtTelefoneFreelancer;
+    @FXML TextField txtArruamentoFreelancer;
+    @FXML TextField txtPortaFreelancer;
+    @FXML TextField txtLocalidadeFreelancer;
+    @FXML TextField txtCodPostalFreelancer;
+    @FXML TextField txtPassFreelancer;
+    @FXML Button btnAddFreelancer;
+    @FXML Button btnCancelar;
+    @FXML  Button btnSair;
 
     public void associarParentUI(AdministrativoLogadoUI administrativoLogadoUI) {
         this.administrativoLogadoUI = administrativoLogadoUI;
@@ -69,22 +58,29 @@ public class AdicionarFreelancerUI implements Initializable {
         adicionarStage = new Stage();
         adicionarStage.initModality(Modality.APPLICATION_MODAL);;
         adicionarStage.setResizable(false);
+
         registarFreelancerController = new RegistarFreelancerController();
+
     }   
    
     @FXML
     public void addFreelancer(ActionEvent event) throws SQLException {
 
         try{
-                boolean adicionou = registarFreelancerController.registarFreelancer(
-                    txtEmailFreelancer.getText(), txtNomeFreelancer.getText(),
-                    txtNIFFreelancer.getText(), txtTelefoneFreelancer.getText(),
-                    txtArruamentoFreelancer.getText(), txtPortaFreelancer.getText(),
-                    txtLocalidadeFreelancer.getText(), txtCodPostalFreelancer.getText());
-
+            boolean adicionou = registarFreelancerController.registarFreelancer(
+                    txtEmailFreelancer.getText().trim(),
+                    txtNomeFreelancer.getText().trim(),
+                    txtNIFFreelancer.getText().trim(),
+                    txtTelefoneFreelancer.getText().trim(),
+                    txtArruamentoFreelancer.getText().trim(),
+                    txtPortaFreelancer.getText().trim(),
+                    txtLocalidadeFreelancer.getText().trim(),
+                    txtCodPostalFreelancer.getText().trim());
 
             if(adicionou) {
-                txtPassFreelancer.setText(registarFreelancerController.findByEmail(txtEmailFreelancer.getText()).getPassword().getPasswordText());
+                txtPassFreelancer.setText(
+                        registarFreelancerController.findPassword(
+                                txtEmailFreelancer.getText()).getPasswordText());
                 administrativoLogadoUI.updateListViewFreelancer();
             
                 AlertsUI.criarAlerta(Alert.AlertType.INFORMATION,

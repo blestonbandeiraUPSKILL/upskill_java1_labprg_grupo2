@@ -158,7 +158,7 @@ public class RepositorioTarefaDatabase implements RepositorioTarefa {
                 String emailColaborador = resultSet.getString(9);
 
 
-                tarefas.add(new Tarefa(referencia, nifOrganizacao, descInformal, descTecnica,
+                tarefas.add(new Tarefa(referencia, nifOrganizacao, designacao, descInformal, descTecnica,
                         duracaoEstimada, custoEstimado, codigoCategoria, emailColaborador));
             }
         }
@@ -209,9 +209,9 @@ public class RepositorioTarefaDatabase implements RepositorioTarefa {
                 String codigoCategoriaTarefa = resultSet.getString(8);
                 String emailColaborador = resultSet.getString(9);
 
-                tarefas.add(new Tarefa(referencia, designacao, descInformal, 
+                tarefas.add(new Tarefa(referencia, nifOrganizacao, designacao, descInformal,
                         descTecnica, duracaoEst, custoEst,
-                        codigoCategoriaTarefa, nifOrganizacao, emailColaborador));
+                        codigoCategoriaTarefa,  emailColaborador));
             }
         }
         catch (SQLException exception) {

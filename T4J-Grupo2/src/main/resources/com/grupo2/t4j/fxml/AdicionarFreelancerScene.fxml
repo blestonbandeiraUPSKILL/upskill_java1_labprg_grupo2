@@ -18,11 +18,11 @@
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="700.0" styleClass="BorderPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.AdicionarFreelancerUI">
+<BorderPane maxHeight="500.0" maxWidth="700.0" minHeight="-Infinity" minWidth="-Infinity" styleClass="BorderPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.AdicionarFreelancerUI">
    <center>
-      <BorderPane prefHeight="200.0" prefWidth="200.0" styleClass="BorderPane" BorderPane.alignment="CENTER">
+      <BorderPane maxHeight="500.0" styleClass="BorderPane" BorderPane.alignment="CENTER">
          <top>
-            <TabPane prefHeight="520.0" prefWidth="700.0" style="-fx-background-color: #c4c4c4;" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+            <TabPane maxHeight="500.0" style="-fx-background-color: #c4c4c4;" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
               <tabs>
                 <Tab disable="true" text="Áreas de Atividade" />
                 <Tab disable="true" text="Categorias de Tarefa">
@@ -47,76 +47,135 @@
                   </Tab>
                   <Tab text="Freelancer">
                      <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefWidth="350.0" styleClass="AnchorPane">
+                        <AnchorPane maxHeight="500.0" maxWidth="700.0" minHeight="0.0" minWidth="0.0" styleClass="AnchorPane">
                            <children>
-                              <VBox prefHeight="282.0" prefWidth="700.0">
+                              <VBox layoutX="14.0" layoutY="63.0" prefHeight="282.0" prefWidth="274.0">
                                  <children>
-                                    <AnchorPane prefHeight="520.0" prefWidth="700.0" styleClass="AnchorPane">
-                                       <children>
-                                          <VBox layoutX="1.0" layoutY="5.0" prefHeight="490.0" prefWidth="700.0">
-                                             <children>
-                                                <Label text="Nome do Freelancer" />
-                                                <TextField fx:id="txtNomeFreelancer" prefHeight="25.0" prefWidth="481.0" promptText="nome do Freelancer">
-                                                   <VBox.margin>
-                                                      <Insets bottom="5.0" top="5.0" />
-                                                   </VBox.margin>
-                                                </TextField>
-                                                <Label text="Email do Freelancer" />
-                                                <TextField fx:id="txtEmailFreelancer" promptText="email@dominio.pt">
-                                                   <VBox.margin>
-                                                      <Insets bottom="5.0" top="5.0" />
-                                                   </VBox.margin>
-                                                </TextField>
-                                                <Label text="NIF do Freelancer" />
-                                                <TextField fx:id="txtNIFFreelancer" promptText="NIF do Freelancer (999999999)">
-                                                   <VBox.margin>
-                                                      <Insets bottom="5.0" top="5.0" />
-                                                   </VBox.margin>
-                                                </TextField>
-                                                <Label text="Telefone" />
-                                                <TextField fx:id="txtTelefoneFreelancer" promptText="telefone do Freelancer (999999999)">
-                                                   <VBox.margin>
-                                                      <Insets bottom="5.0" top="5.0" />
-                                                   </VBox.margin>
-                                                </TextField>
-                                                <Label text="Endereço - Arruamento" />
-                                                <TextField fx:id="txtArruamentoFreelancer" promptText="arruamento">
-                                                   <VBox.margin>
-                                                      <Insets bottom="5.0" top="5.0" />
-                                                   </VBox.margin>
-                                                </TextField>
-                                                <Label text="Endereço - Número de Porta" />
-                                                <TextField fx:id="txtPortaFreelancer" promptText="número de porta ">
-                                                   <VBox.margin>
-                                                      <Insets bottom="5.0" top="5.0" />
-                                                   </VBox.margin>
-                                                </TextField>
-                                                <Label text="Endereço - Localidade" />
-                                                <TextField fx:id="txtLocalidadeFreelancer" promptText="localidade">
-                                                   <VBox.margin>
-                                                      <Insets bottom="5.0" top="5.0" />
-                                                   </VBox.margin>
-                                                </TextField>
-                                                <Label text="Endereço - Código Postal" />
-                                                <TextField fx:id="txtCodPostalFreelancer" promptText="XXXX-XXX">
-                                                   <VBox.margin>
-                                                      <Insets bottom="5.0" top="5.0" />
-                                                   </VBox.margin>
-                                                </TextField>
-                                                <Label text="Password do Freelancer" />
-                                                <TextField fx:id="txtPassFreelancer" promptText="(password inicial de 10 caracteres)">
-                                                   <VBox.margin>
-                                                      <Insets bottom="5.0" top="5.0" />
-                                                   </VBox.margin>
-                                                </TextField>
-                                             </children>
-                                             <padding>
-                                                <Insets left="20.0" right="20.0" />
-                                             </padding>
-                                          </VBox>
-                                       </children>
-                                    </AnchorPane>
+                                    <Label text="Nome">
+                                       <font>
+                                          <Font name="Calibri" size="14.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets bottom="10.0" />
+                                       </VBox.margin></Label>
+                                    <TextField fx:id="txtNomeFreelancer" prefHeight="25.0" prefWidth="481.0" promptText="nome do Freelancer">
+                                       <VBox.margin>
+                                          <Insets bottom="10.0" />
+                                       </VBox.margin>
+                                       <font>
+                                          <Font name="Calibri" size="14.0" />
+                                       </font>
+                                    </TextField>
+                                    <Label text="Email">
+                                       <font>
+                                          <Font name="Calibri" size="14.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets bottom="10.0" />
+                                       </VBox.margin></Label>
+                                    <TextField fx:id="txtEmailFreelancer" promptText="email@dominio.pt">
+                                       <VBox.margin>
+                                          <Insets bottom="10.0" />
+                                       </VBox.margin>
+                                       <font>
+                                          <Font name="Calibri" size="14.0" />
+                                       </font>
+                                    </TextField>
+                                    <Label text="Número de Identificação Fiscal">
+                                       <font>
+                                          <Font name="Calibri" size="14.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets bottom="10.0" />
+                                       </VBox.margin></Label>
+                                    <TextField fx:id="txtNIFFreelancer" promptText="NIF do Freelancer (999999999)">
+                                       <VBox.margin>
+                                          <Insets bottom="10.0" />
+                                       </VBox.margin>
+                                       <font>
+                                          <Font name="Calibri" size="14.0" />
+                                       </font>
+                                    </TextField>
+                                    <Label text="Telefone">
+                                       <font>
+                                          <Font name="Calibri" size="14.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets bottom="10.0" />
+                                       </VBox.margin></Label>
+                                    <TextField fx:id="txtTelefoneFreelancer" promptText="telefone do Freelancer (999999999)">
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
+                                       <font>
+                                          <Font name="Calibri" size="14.0" />
+                                       </font>
+                                    </TextField>
                                  </children>
+                                 <padding>
+                                    <Insets left="20.0" />
+                                 </padding>
+                              </VBox>
+                              <VBox layoutX="321.0" layoutY="63.0" prefHeight="303.0" prefWidth="365.0">
+                                 <children>
+                                    <Label text="Endereço">
+                                       <font>
+                                          <Font name="Calibri" size="14.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets bottom="10.0" />
+                                       </VBox.margin></Label>
+                                    <TextField fx:id="txtArruamentoFreelancer" promptText="arruamento">
+                                       <VBox.margin>
+                                          <Insets bottom="5.0" left="10.0" top="5.0" />
+                                       </VBox.margin>
+                                       <font>
+                                          <Font name="Calibri" size="14.0" />
+                                       </font>
+                                    </TextField>
+                                    <TextField fx:id="txtPortaFreelancer" promptText="número de porta ">
+                                       <VBox.margin>
+                                          <Insets bottom="5.0" left="10.0" top="5.0" />
+                                       </VBox.margin>
+                                       <font>
+                                          <Font name="Calibri" size="14.0" />
+                                       </font>
+                                    </TextField>
+                                    <TextField fx:id="txtLocalidadeFreelancer" promptText="localidade">
+                                       <VBox.margin>
+                                          <Insets bottom="5.0" left="10.0" top="5.0" />
+                                       </VBox.margin>
+                                       <font>
+                                          <Font name="Calibri" size="14.0" />
+                                       </font>
+                                    </TextField>
+                                    <TextField fx:id="txtCodPostalFreelancer" promptText="código postal (XXXX-XXX)">
+                                       <VBox.margin>
+                                          <Insets bottom="15.0" left="10.0" top="5.0" />
+                                       </VBox.margin>
+                                       <font>
+                                          <Font name="Calibri" size="14.0" />
+                                       </font>
+                                    </TextField>
+                                    <Label text="Password Sugerida">
+                                       <font>
+                                          <Font name="Calibri" size="14.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets bottom="10.0" />
+                                       </VBox.margin></Label>
+                                    <TextField fx:id="txtPassFreelancer" editable="false" promptText="(password inicial de 10 caracteres)">
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
+                                       <font>
+                                          <Font name="Calibri" size="14.0" />
+                                       </font>
+                                    </TextField>
+                                 </children>
+                                 <padding>
+                                    <Insets left="20.0" right="20.0" />
+                                 </padding>
                               </VBox>
                            </children>
                         </AnchorPane>

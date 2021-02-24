@@ -53,8 +53,8 @@ public class StartingPageUI implements Initializable {
 
         Scene scene = btnGoDark.getScene();
 
-        scene.getStylesheets().clear();
-        scene.getStylesheets().add(getClass().getResource("/com/grupo2/t4j/style/dark.css").toExternalForm());
+        //scene.getStylesheets().clear();
+        //scene.getStylesheets().add(getClass().getResource("/com/grupo2/t4j/style/dark.css").toExternalForm());
 
     }
 

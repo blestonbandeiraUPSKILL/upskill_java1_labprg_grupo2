@@ -115,7 +115,7 @@ public class AdministrativoLogadoUI implements Initializable {
             FXMLLoader loaderAddAreaActividade = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/AdicionarAreaAtividadeScene.fxml"));
             Parent rootAddAreaActividade = loaderAddAreaActividade.load();
             sceneAddAreaActividade = new Scene(rootAddAreaActividade);
-            sceneAddAreaActividade.getStylesheets().add("/com/grupo2/t4j/style/app.css");
+            //sceneAddAreaActividade.getStylesheets().add("/com/grupo2/t4j/style/app.css");
             AdicionarAreaAtividadeUI adicionarAreaAtividadeUI = loaderAddAreaActividade.getController();
             adicionarAreaAtividadeUI.associarParentUI(this);
 
@@ -138,7 +138,7 @@ public class AdministrativoLogadoUI implements Initializable {
             FXMLLoader loaderAddCategoriaTarefa = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/AdicionarCategoriaTarefa.fxml"));
             Parent rootAddCategoriaTarefa = loaderAddCategoriaTarefa.load();
             sceneAddCategoriaTarefa = new Scene(rootAddCategoriaTarefa);
-            sceneAddCategoriaTarefa.getStylesheets().add("/com/grupo2/t4j/style/app.css");
+            //sceneAddCategoriaTarefa.getStylesheets().add("/com/grupo2/t4j/style/app.css");
             AdicionarCategoriaTarefaUI adicionarCategoriaTarefaUI = loaderAddCategoriaTarefa.getController();
             adicionarCategoriaTarefaUI.associarParentUI(this);
         }
@@ -160,7 +160,7 @@ public class AdministrativoLogadoUI implements Initializable {
             FXMLLoader loaderAddCompetenciaTecnica = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/AdicionarCompetenciaTecnicaScene.fxml"));
             Parent rootAddCompetenciaTecnica = loaderAddCompetenciaTecnica.load();
             sceneAddCompetenciaTecnica = new Scene(rootAddCompetenciaTecnica);
-            sceneAddCompetenciaTecnica.getStylesheets().add("/com/grupo2/t4j/style/app.css");
+            //sceneAddCompetenciaTecnica.getStylesheets().add("/com/grupo2/t4j/style/app.css");
             AdicionarCompetenciaTecnicaUI adicionarCompetenciaTecnicaUI = loaderAddCompetenciaTecnica.getController();
             adicionarCompetenciaTecnicaUI.associarParentUI(this);
 
@@ -182,7 +182,7 @@ public class AdministrativoLogadoUI implements Initializable {
             FXMLLoader loaderAddFreelancer = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/AdicionarFreelancerScene.fxml"));
             Parent rootAddFreelancer = loaderAddFreelancer.load();
             sceneAddFreelancer = new Scene(rootAddFreelancer);
-            sceneAddFreelancer.getStylesheets().add("/com/grupo2/t4j/style/app.css");
+            //sceneAddFreelancer.getStylesheets().add("/com/grupo2/t4j/style/app.css");
             AdicionarFreelancerUI adicionarFreelancerUI = loaderAddFreelancer.getController();
             adicionarFreelancerUI.associarParentUI(this);
 
@@ -204,7 +204,7 @@ public class AdministrativoLogadoUI implements Initializable {
             FXMLLoader loaderAddHabilitacaoFreelancer = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/AdicionarHabilitacaoAcademicaScene.fxml"));
             Parent rootAddHabilitacaoFreelancer = loaderAddHabilitacaoFreelancer.load();
             sceneAddHabilitacaoFreelancer = new Scene(rootAddHabilitacaoFreelancer);
-            sceneAddHabilitacaoFreelancer.getStylesheets().add("/com/grupo2/t4j/style/app.css");
+            //sceneAddHabilitacaoFreelancer.getStylesheets().add("/com/grupo2/t4j/style/app.css");
             AdicionarHabilitacaoAcademicaUI adicionarHabilitacaoFreelancerUI = loaderAddHabilitacaoFreelancer.getController();
             adicionarHabilitacaoFreelancerUI.associarParentUI(this);
 
@@ -227,7 +227,7 @@ public class AdministrativoLogadoUI implements Initializable {
             FXMLLoader loaderAddReconhecimentoGP = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/AdicionarReconhecimentoGPScene.fxml"));
             Parent rootAddReconhecimentoGP = loaderAddReconhecimentoGP.load();
             sceneAddReconhecimentoGP = new Scene(rootAddReconhecimentoGP);
-            sceneAddReconhecimentoGP.getStylesheets().add("/com/grupo2/t4j/style/app.css");
+            //sceneAddReconhecimentoGP.getStylesheets().add("/com/grupo2/t4j/style/app.css");
             AdicionarReconhecimentoGPUI adicionarReconhecimentoGPUI = loaderAddReconhecimentoGP.getController();
             adicionarReconhecimentoGPUI.associarParentUI(this);
 

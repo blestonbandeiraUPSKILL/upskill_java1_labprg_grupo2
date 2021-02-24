@@ -34,6 +34,8 @@ public class Freelancer extends Utilizador implements Serializable{
      */
     private int codigoEnderecoPostal;
 
+    private EnderecoPostal EnderecoPostal;
+
     /**
      * O construtor vazio da classe Freelancer
      */
@@ -53,7 +55,7 @@ public class Freelancer extends Utilizador implements Serializable{
     public Freelancer(Email email, String nome, Password password,
             String nif, String telefone, int codigoEnderecoPostal){
         super(email, nome, password);
-        setNIF(nif);
+        setNif(nif);
         setTelefone(telefone);
         this.codigoEnderecoPostal = codigoEnderecoPostal;
     }    
@@ -65,17 +67,40 @@ public class Freelancer extends Utilizador implements Serializable{
      */
     public Freelancer(Freelancer freelancer){
         super(freelancer.getEmail(), freelancer.getNome(), freelancer.getPassword());
-        setNIF(freelancer.nif);
+        setNif(freelancer.nif);
         setTelefone(freelancer.telefone);
         this.codigoEnderecoPostal = freelancer.codigoEnderecoPostal;
     }
-    
+
+    public Freelancer(String email, String nome, String nif, String telefone, String password, String arruamento, String numeroPorta, String localidade, String codigoPostal) {
+        setEmail(new Email(email));
+        setTelefone(telefone);
+        setNif(nif);
+        setNome(nome);
+        setEnderecoPostal(new EnderecoPostal(arruamento, numeroPorta, localidade, codigoPostal));
+        setPassword(new Password(password));
+    }
+
+    public Freelancer(String email, String nome, String telefone, String nif, String arruamento, String numeroPorta, String localidade, String codigoPostal) {
+        setEmail(new Email(email));
+        setNome(nome);
+        setTelefone(telefone);
+        setNif(nif);
+        setEnderecoPostal(new EnderecoPostal(arruamento, numeroPorta, localidade, codigoPostal));
+    }
+
+    private void setEnderecoPostal(EnderecoPostal enderecoPostal) {
+        if(enderecoPostal != null) {
+            this.EnderecoPostal = enderecoPostal;
+        }
+    }
+
     /**
      * Define o NIF do Freelancer
      * @param nif
      * @throws NifInvalidoException
      */
-    public void setNIF(String nif)throws NifInvalidoException {
+    public void setNif(String nif)throws NifInvalidoException {
         long numNif = Long.parseLong(nif);
         if (numNif >= 100000000 && numNif <= 999999999) {
             this.nif = nif;
