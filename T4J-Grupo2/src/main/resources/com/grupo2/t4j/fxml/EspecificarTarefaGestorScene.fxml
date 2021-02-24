@@ -19,9 +19,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" style="-fx-background-color: #c4c4c4;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.EspecificarTarefaGestorUI">
+<BorderPane stylesheets="@../style/app.css" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" styleClass="BorderPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.EspecificarTarefaGestorUI">
     <top>
-        <Label alignment="CENTER_RIGHT" style="-fx-background-color: #000000;" stylesheets="@../style/app.css" text="Área do Colaborador" textFill="WHITE" BorderPane.alignment="CENTER_RIGHT">
+        <Label alignment="CENTER_RIGHT" styleClass="lblUser"  text="Área do Colaborador" textFill="WHITE" BorderPane.alignment="CENTER_RIGHT">
             <font>
                 <Font name="Calibri" size="18.0" />
             </font>
@@ -31,7 +31,7 @@
         </Label>
     </top>
     <center>
-        <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+        <BorderPane prefHeight="200.0" prefWidth="200.0" styleClass="BorderPane" BorderPane.alignment="CENTER">
          <top>
             <Label style="-fx-background-color: #000000;" text="Nova Tarefa" textFill="WHITE" BorderPane.alignment="CENTER_LEFT">
                <font>
@@ -146,14 +146,14 @@
                       </VBox>
          </right>
          <bottom>
-            <FlowPane alignment="CENTER_RIGHT" prefHeight="52.0" prefWidth="700.0" BorderPane.alignment="CENTER_RIGHT">
+            <FlowPane alignment="CENTER_RIGHT" prefHeight="52.0" prefWidth="700.0" styleClass="FlowPane" BorderPane.alignment="CENTER_RIGHT">
                <children>
-                              <Button fx:id="btnRegistarTarefa" alignment="CENTER_RIGHT" defaultButton="true" mnemonicParsing="false" onAction="#registarTarefa" text="Confirmar">
+                              <Button fx:id="btnRegistarTarefa" alignment="CENTER_RIGHT" defaultButton="true" mnemonicParsing="false" onAction="#registarTarefa" styleClass="btnConfirmar" text="Confirmar">
                                   <font>
                                       <Font name="Calibri" size="14.0" />
                                   </font>
                               </Button>
-                              <Button fx:id="btnCancelar" mnemonicParsing="false" onAction="#cancelarAction" text="Cancelar">
+                              <Button fx:id="btnCancelar" mnemonicParsing="false" onAction="#cancelarAction" styleClass="btnCancelar" text="Cancelar">
                                   <font>
                                       <Font name="Calibri" size="14.0" />
                                   </font>
