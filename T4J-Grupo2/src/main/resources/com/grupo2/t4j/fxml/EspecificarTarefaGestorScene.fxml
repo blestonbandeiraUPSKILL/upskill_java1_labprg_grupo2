@@ -19,9 +19,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane stylesheets="@../style/app.css" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" styleClass="BorderPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.EspecificarTarefaGestorUI">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" styleClass="BorderPane" stylesheets="@../style/app.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.EspecificarTarefaGestorUI">
     <top>
-        <Label alignment="CENTER_RIGHT" styleClass="lblUser"  text="Área do Colaborador" textFill="WHITE" BorderPane.alignment="CENTER_RIGHT">
+        <Label alignment="CENTER_RIGHT" styleClass="lblUser" text="Área do Colaborador" textFill="WHITE" BorderPane.alignment="CENTER_RIGHT">
             <font>
                 <Font name="Calibri" size="18.0" />
             </font>
@@ -152,6 +152,13 @@
                                   <font>
                                       <Font name="Calibri" size="14.0" />
                                   </font>
+                            <tooltip>
+                                <Tooltip text="Confirmar">
+                                    <font>
+                                        <Font name="Calibri Italic" size="12.0" />
+                                    </font>
+                                </Tooltip>
+                            </tooltip>
                               </Button>
                               <Button fx:id="btnCancelar" mnemonicParsing="false" onAction="#cancelarAction" styleClass="btnCancelar" text="Cancelar">
                                   <font>
@@ -160,6 +167,13 @@
                      <FlowPane.margin>
                         <Insets left="10.0" right="10.0" />
                      </FlowPane.margin>
+                            <tooltip>
+                                <Tooltip text="Cancelar">
+                                    <font>
+                                        <Font name="Calibri Italic" size="12.0" />
+                                    </font>
+                                </Tooltip>
+                            </tooltip>
                               </Button>
                </children>
                <opaqueInsets>
