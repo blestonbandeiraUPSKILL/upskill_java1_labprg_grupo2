@@ -111,6 +111,7 @@ entity "Anuncio" {
     dataInicioSeriacao: date {NN} 
     dataFimSeriacao: date {NN}
     idProcessoSeriacao: number {FK}
+    idTipoRegimento: number {FK}
 }
 
 
@@ -118,7 +119,7 @@ entity "ProcessoSeriacao" {
     idProcessoSeriacao: number {PK}
     --
     dataRealizacao: date {NN}
-    idTipoRegimento: number {FK}
+   
 }
 
 entity "TipoRegimento" {

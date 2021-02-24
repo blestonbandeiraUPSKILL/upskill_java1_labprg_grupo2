@@ -96,9 +96,7 @@ public class RepositorioTarefaDatabase implements RepositorioTarefa {
                 dbConnectionHandler.closeAll();
             }
         }
-        else {
-            throw new TarefaDuplicadaException(tarefa.getReferencia() + ": Tarefa já registada.");
-        }
+
         return false;
     }
 

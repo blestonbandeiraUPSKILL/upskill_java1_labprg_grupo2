@@ -14,6 +14,7 @@ import com.grupo2.t4j.exception.HabilitacaoAcademicaDuplicadaException;
 import com.grupo2.t4j.model.*;
 import com.grupo2.t4j.persistence.RepositorioHabilitacaoAcademica;
 import java.io.Serializable;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -70,6 +71,11 @@ public class RepositorioHabilitacaoAcademicaInMemory  implements Serializable, R
     }
 
     @Override
+    public boolean save(HabilitacaoAcademica habilitacaoAcademica, String emailFreelancer) throws HabilitacaoAcademicaDuplicadaException, SQLException {
+        return false;
+    }
+
+
     public boolean save(HabilitacaoAcademica habilitacaoAcademica) throws HabilitacaoAcademicaDuplicadaException {
         //HabilitacaoAcademica ha1 = findById(habilitacaoAcademica.getIdHabilitacao());
         HabilitacaoAcademica ha2 = findByGrauDesigInst(habilitacaoAcademica.getGrau(), 
@@ -95,8 +101,17 @@ public class RepositorioHabilitacaoAcademicaInMemory  implements Serializable, R
         }
         return null;
     }
-    
+
+    public HabilitacaoAcademica findByGrauDesigInst(String grau, String designacaoCurso, String nomeInstituicao) throws SQLException {
+        return null;
+    }
+
     @Override
+    public ArrayList<HabilitacaoAcademica> getAll(String emailFreelancer) throws SQLException {
+        return null;
+    }
+
+
     public ArrayList<HabilitacaoAcademica> getAll() {
         return new ArrayList<HabilitacaoAcademica>(listaHabilitacoesAcademicas);
     }
@@ -125,7 +140,7 @@ public class RepositorioHabilitacaoAcademicaInMemory  implements Serializable, R
         return totalHabilitacoesAdicionadas;
     }
     
-    @Override
+
     public HabilitacaoAcademica findByGrauDesigInst(String grau, String designacaoCurso,
            String nomeInstituicao, String emailFreelancer){
         for (int i = 0; i < this.listaHabilitacoesAcademicas.size(); i++) {

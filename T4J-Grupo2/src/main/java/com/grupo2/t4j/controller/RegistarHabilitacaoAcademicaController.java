@@ -22,8 +22,8 @@ import java.util.ArrayList;
 import java.util.List;
 public class RegistarHabilitacaoAcademicaController {
     
-    private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosInMemory();
-    //private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosDatabase();
+    //private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosInMemory();
+    private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosDatabase();
     private RepositorioHabilitacaoAcademica repositorioHabilitacaoAcademica = fabricaRepositorios.getRepositorioHabilitacaoAcademica();
    
     private RepositorioHabilitacaoAcademicaInMemory repositorioHabilitacaoAcademicaInMemory;
@@ -34,12 +34,14 @@ public class RegistarHabilitacaoAcademicaController {
 
         HabilitacaoAcademica habilitacao = new HabilitacaoAcademica(grau, designacaoCurso, nomeInstituicao, mediaCurso);
 
-        return repositorioHabilitacaoAcademica.save(grau, designacaoCurso, nomeInstituicao, mediaCurso,
-                habilitacao.getEmailFreelancer());
+
+        return repositorioHabilitacaoAcademica.save(habilitacao, emailFreelancer);
     }
 
-    public List<HabilitacaoAcademica> getAll() throws SQLException{
-        return repositorioHabilitacaoAcademica.getAll();
+
+
+    public List<HabilitacaoAcademica> getAll(String emailFreelancer) throws SQLException{
+        return repositorioHabilitacaoAcademica.getAll(emailFreelancer);
     }
 
     public List<HabilitacaoAcademica> getAllByEmail(String emailFreelancer) throws SQLException{
@@ -56,8 +58,7 @@ public class RegistarHabilitacaoAcademicaController {
            nomeInstituicao, emailFreelancer);
     }
 
-    ///////API
-    
+
     
      //////FICHEIROS////////
     public RegistarHabilitacaoAcademicaController() {
