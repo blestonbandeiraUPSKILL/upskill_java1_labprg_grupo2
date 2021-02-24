@@ -8,10 +8,13 @@ package com.grupo2.t4j.ui;
 
 import com.grupo2.t4j.controller.PublicarTarefaController;
 import com.grupo2.t4j.model.DesignacaoSeriacao;
+import com.grupo2.t4j.model.TipoRegimento;
 import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -47,7 +50,7 @@ public class PublicarTarefaUI implements Initializable {
 
     @FXML DatePicker dtFimSeriacao;
 
-    @FXML ComboBox<DesignacaoSeriacao> cmbTipoSeriacao;
+    @FXML ComboBox<TipoRegimento> cmbTipoSeriacao;
     
     private ColaboradorLogadoUI colaboradorLogadoUI;
     private PublicarTarefaController publicarTarefaController;
@@ -64,7 +67,13 @@ public class PublicarTarefaUI implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
-        cmbTipoSeriacao.getItems().setAll(DesignacaoSeriacao.values());
+        publicarTarefaController = new PublicarTarefaController();
+        
+        try {
+            cmbTipoSeriacao.getItems().setAll(publicarTarefaController.getAllRegimento());
+        } catch (SQLException exception) {
+           exception.printStackTrace();
+        }
     }    
     @FXML
     void publicarTarefaAction(ActionEvent actionEvent) throws SQLException{
