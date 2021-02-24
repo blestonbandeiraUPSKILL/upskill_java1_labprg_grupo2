@@ -189,6 +189,9 @@
                  <font>
                      <Font name="Calibri" size="14.0" />
                  </font>
+               <tooltip>
+                  <Tooltip text="Confirmar Registo" />
+               </tooltip>
               </Button>
               <Button mnemonicParsing="false" styleClass="btnConfirmar" text="Editar Dados">
                  <FlowPane.margin>
@@ -197,6 +200,9 @@
                  <font>
                      <Font name="Calibri" size="14.0" />
                  </font>
+               <tooltip>
+                  <Tooltip text="Editar Dados" />
+               </tooltip>
               </Button>
             <Button fx:id="btnCancelarRegisto" mnemonicParsing="false" onAction="#cancelarRegisto" text="Cancelar Registo">
                <font>
@@ -205,6 +211,9 @@
                <FlowPane.margin>
                   <Insets right="10.0" />
                </FlowPane.margin>
+               <tooltip>
+                  <Tooltip text="Cancelar Registo" />
+               </tooltip>
             </Button>
           </children>
        </FlowPane>

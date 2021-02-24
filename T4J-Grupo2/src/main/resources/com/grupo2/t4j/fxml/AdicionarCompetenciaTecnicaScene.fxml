@@ -41,6 +41,9 @@
                <FlowPane.margin>
                   <Insets left="10.0" right="10.0" />
                </FlowPane.margin>
+               <tooltip>
+                  <Tooltip text="Concluir" />
+               </tooltip>
             </Button>
          </children>
       </FlowPane>
@@ -57,7 +60,7 @@
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="290.0" prefWidth="700.0" styleClass="AnchorPane">
                      <children>
-                        <Label layoutX="510.0" layoutY="1.0" text="Graus de Proficiência Aplicáveis" >
+                        <Label layoutX="510.0" layoutY="1.0" text="Graus de Proficiência Aplicáveis">
                            <font>
                               <Font name="Calibri" size="14.0" />
                            </font>
@@ -65,7 +68,7 @@
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </padding>
                         </Label>
-                        <Label layoutY="1.0" text="Competência Técnica" >
+                        <Label layoutY="1.0" text="Competência Técnica">
                            <font>
                               <Font name="Calibri" size="14.0" />
                            </font>
