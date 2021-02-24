@@ -57,7 +57,7 @@
                 </Tooltip>
             </tooltip>
         </Button>
-        <Label layoutX="420.0" layoutY="-2.0" styleClass="lblUser" text="Bem-vindo à Área do Administrativo" textFill="WHITE">
+        <Label layoutX="420.0" layoutY="-2.0" styleClass="lblUser" text="Área do Administrativo :::&gt; Adicionar Grau de Proficiência" textFill="WHITE">
             <font>
                 <Font name="Calibri" size="18.0" />
             </font>
