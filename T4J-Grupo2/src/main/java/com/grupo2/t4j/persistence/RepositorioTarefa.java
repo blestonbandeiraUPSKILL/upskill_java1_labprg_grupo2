@@ -44,4 +44,6 @@ public interface RepositorioTarefa {
     //getAllByOrgPublicadas, getAllByOrgNaoPublicadas, getAllByOrg
 
     //update, delete
+
+    public List<Tarefa> findByColaboradorENif(String email, String nifOrganizacao) throws SQLException;
 }

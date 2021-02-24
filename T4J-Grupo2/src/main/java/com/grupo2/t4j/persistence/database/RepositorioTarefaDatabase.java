@@ -232,4 +232,56 @@ public class RepositorioTarefaDatabase implements RepositorioTarefa {
 
         return tarefas;
     }
+
+    @Override
+    public List<Tarefa> findByColaboradorENif(String email, String nifOrganizacao) throws SQLException {
+        ArrayList<Tarefa> tarefas = new ArrayList<>();
+
+        DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
+        Connection connection = dbConnectionHandler.openConnection();
+
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(
+                    "SELECT * FROM Tarefa WHERE nifOrganizacao LIKE ? AND emailColaborador LIKE ?"
+            );
+
+            preparedStatement.setString(1, nifOrganizacao);
+            preparedStatement.setString(2, email);
+            
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+
+                String referencia = resultSet.getString(2);
+                String designacao = resultSet.getString(3);
+                String descInformal = resultSet.getString(4);
+                String descTecnica = resultSet.getString(5);
+                int duracaoEst  = resultSet.getInt(6);
+                double custoEst = resultSet.getDouble(7);
+                String codigoCategoriaTarefa = resultSet.getString(8);
+                String emailColaborador = resultSet.getString(9);
+
+                tarefas.add(new Tarefa(referencia, nifOrganizacao, designacao, descInformal,
+                        descTecnica, duracaoEst, custoEst,
+                        codigoCategoriaTarefa,  emailColaborador));
+            }
+        }
+        catch (SQLException exception) {
+            exception.printStackTrace();
+            exception.getSQLState();
+            try {
+                System.err.print("Transaction is being rolled back");
+                connection.rollback();
+            }
+            catch (SQLException sqlException) {
+                sqlException.getErrorCode();
+            }
+
+        }
+        finally {
+            dbConnectionHandler.closeAll();
+        }
+
+        return tarefas;
+    }
 }
