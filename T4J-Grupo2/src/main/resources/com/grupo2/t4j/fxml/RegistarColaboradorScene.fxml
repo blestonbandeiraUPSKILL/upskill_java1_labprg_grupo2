@@ -141,6 +141,13 @@
                      <FlowPane.margin>
                         <Insets />
                      </FlowPane.margin>
+                            <tooltip>
+                                <Tooltip text="Registar Colaborador">
+                                    <font>
+                                        <Font name="Calibri Italic" size="12.0" />
+                                    </font>
+                                </Tooltip>
+                            </tooltip>
                   </Button>
                   <Button fx:id="btnCancelarRegisto" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#cancelarRegisto" prefHeight="27.0" prefWidth="70.0" styleClass="btnCancelar" text="Cancelar" textAlignment="CENTER">
                      <font>
@@ -149,6 +156,13 @@
                      <FlowPane.margin>
                         <Insets left="10.0" right="10.0" />
                      </FlowPane.margin>
+                            <tooltip>
+                                <Tooltip text="Cancelar">
+                                    <font>
+                                        <Font name="Calibri Italic" size="12.0" />
+                                    </font>
+                                </Tooltip>
+                            </tooltip>
                   </Button>
                </children>
             </FlowPane>
