@@ -42,7 +42,9 @@ public class ColaboradorLogadoUI implements Initializable {
     @FXML ComboBox<AreaActividade> cmbAreaActividadeEspecificarTarefa;
     @FXML ComboBox<Categoria> cmbCategoriaTarefa;
     @FXML ListView<Tarefa> listViewTarefas;
-    @FXML ComboBox<?> cmbFiltroTarefas;
+    @FXML ComboBox<FiltroTarefas> cmbFiltroTarefas;
+    @FXML Button btnPublicarTarefa;
+
 
 
     public void associarParentUI(StartingPageUI startingPageUI) {
@@ -61,6 +63,18 @@ public class ColaboradorLogadoUI implements Initializable {
         adicionarStage = new Stage();
         adicionarStage.initModality(Modality.APPLICATION_MODAL);
         adicionarStage.setResizable(false);
+        
+        cmbFiltroTarefas.getItems().setAll(FiltroTarefas.values());
+        cmbFiltroTarefas.setOnAction(new EventHandler<ActionEvent>() {
+           @Override
+           public void handle(ActionEvent event) {
+               try {
+                   aplicarFiltroTarefas(event);
+               } catch (SQLException exception) {
+                   exception.printStackTrace();
+               }
+           }
+           });
 
         try {
             cmbAreaActividade.getItems().setAll(registarAreaActividadeController.getAll());
@@ -196,6 +210,23 @@ public class ColaboradorLogadoUI implements Initializable {
 
 
 
+    }
+    
+    public void aplicarFiltroTarefas(ActionEvent actionEvent)throws SQLException {
+        
+        switch (cmbFiltroTarefas.getSelectionModel().getSelectedItem()) {
+                    case TAREFAS_DA_ORGANIZACAO:
+                        updateListViewTarefas();
+                        break;
+                    case AS_MINHAS_TAREFAS:
+                        
+                        break;
+                    case TAREFAS_PUBLICADAS:
+                        
+                        break;
+                    case TAREFAS_PARA_PUBLICAR:
+                       btnPublicarTarefa.setDisable(false);
+                }
     }
 
     
