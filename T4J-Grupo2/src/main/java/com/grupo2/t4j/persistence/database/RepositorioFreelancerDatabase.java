@@ -14,11 +14,8 @@ import com.grupo2.t4j.exception.FreelancerDuplicadoException;
 import com.grupo2.t4j.model.*;
 import com.grupo2.t4j.persistence.RepositorioFreelancer;
 import com.grupo2.t4j.utils.DBConnectionHandler;
-import java.sql.CallableStatement;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+
+import java.sql.*;
 import java.util.ArrayList;
 
 public class RepositorioFreelancerDatabase implements RepositorioFreelancer{
@@ -36,7 +33,7 @@ public class RepositorioFreelancerDatabase implements RepositorioFreelancer{
     /**
      * Inicializa o Repositório de Freelancers
      */
-    RepositorioFreelancerDatabase(){    }
+    private RepositorioFreelancerDatabase(){    }
 
     /**
      * Devolve uma instância estática do Repositório dos Freelancers
@@ -52,10 +49,11 @@ public class RepositorioFreelancerDatabase implements RepositorioFreelancer{
 
 
     @Override
-    public boolean save(String emailFree, String nome, String passwordFree, String nif, 
-            String telefone, String arruamento, String numeroPorta, String localidade, String codPostal) throws FreelancerDuplicadoException,
+    public boolean save(String emailFree, String nome, String nif, String telefone, String password, String arruamento,
+                        String numeroPorta, String localidade, String codPostal) throws FreelancerDuplicadoException,
             SQLException{
-        /*DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
+
+        DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, this.password);
         Connection connection = dbConnectionHandler.openConnection();
 
         CallableStatement callableStatement = connection.prepareCall(
@@ -68,9 +66,9 @@ public class RepositorioFreelancerDatabase implements RepositorioFreelancer{
 
                 callableStatement.setString(1, emailFree);
                 callableStatement.setString(2, nome);
-                callableStatement.setString(3, passwordFree);
-                callableStatement.setString(4, nif);
-                callableStatement.setString(5, telefone);
+                callableStatement.setString(3, password);
+                callableStatement.setString(4, telefone);
+                callableStatement.setString(5, nif);
                 callableStatement.setString(6, arruamento);
                 callableStatement.setString(7, numeroPorta);
                 callableStatement.setString(8, localidade);
@@ -96,7 +94,7 @@ public class RepositorioFreelancerDatabase implements RepositorioFreelancer{
             finally {
                 dbConnectionHandler.closeAll();
             }
-        }*/
+        }
 
         return false;
 
@@ -111,11 +109,11 @@ public class RepositorioFreelancerDatabase implements RepositorioFreelancer{
     @Override
     public Freelancer findByNif(String nif) throws SQLException{
         
-        /*DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
+        DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
         Connection connection = dbConnectionHandler.openConnection();
 
         CallableStatement callableStatementOrg = connection.prepareCall(
-                 "{CALL findByNif(?)}");
+                 "{CALL findFreelancerByNif(?)}");
 
         try {
             connection.setAutoCommit(false);
@@ -132,19 +130,52 @@ public class RepositorioFreelancerDatabase implements RepositorioFreelancer{
 
         }
 
-        return new Freelancer();*/
+        return new Freelancer();
         
+
+    }
+
+    @Override
+    public Password findPassword(String email) throws SQLException {
+
+        DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
+        Connection connection = dbConnectionHandler.openConnection();
+
+        PreparedStatement preparedStatement = connection.prepareStatement(
+                "SELECT utilizador.password FROM Utilizador " +
+                        "INNER JOIN Freelancer ON utilizador.email  LIKE freelancer.email "
+        );
+
+        try {
+            connection.setAutoCommit(false);
+
+            preparedStatement.setString(1, email);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                String password = resultSet.getString(1);
+                return new Password(password);
+            }
+
+        }
+
+        catch (SQLException exception) {
+            exception.printStackTrace();
+            exception.getSQLState();
+        }
+
         return null;
     }
-    
+
     @Override
     public Freelancer findByEmail(String emailFree) throws SQLException {
         
-        /*DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
+        DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
         Connection connection = dbConnectionHandler.openConnection();
 
         CallableStatement callableStatementOrg = connection.prepareCall(
-                 "{CALL findByEmail(?)}");
+                 "{CALL findFreelancerByEmail(?)}");
 
         try {
             connection.setAutoCommit(false);
@@ -161,34 +192,38 @@ public class RepositorioFreelancerDatabase implements RepositorioFreelancer{
 
         }
 
-        return new Freelancer();*/
-        
-        return null;
+        return new Freelancer();
+
     }
 
     @Override
     public ArrayList<Freelancer> getAll() throws SQLException {
         
-        /*ArrayList<Freelancer> freelancers = new ArrayList<>();
+        ArrayList<Freelancer> freelancers = new ArrayList<>();
 
         DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
         Connection connection = dbConnectionHandler.openConnection();
 
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(
-                    "SELECT * FROM Freelancer"
+                    "SELECT Freelancer.email, Freelancer.telefone, Freelancer.nif, Utilizador.nome " +
+                            "FROM Freelancer INNER JOIN Utilizador " +
+                            "ON freelancer.email LIKE utilizador.email " +
+                            "INNER JOIN EnderecoPostal ON enderecoPostal.idEnderecoPostal = freelancer.idenderecoPostal"
             );
 
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while(resultSet.next()) {
                 String email = resultSet.getString(1);
-                String nome = resultSet.getString(2);
-                String password = resultSet.getString(3);
-                String nif = resultSet.getString(4);
-                String telefone = resultSet.getString(5);
-                String codigoEnderecoPostal = resultSet.getString(6);
-                freelancers.add(new Freelancer(new Email(email), nome, new Password(password), nif, telefone, codigoEnderecoPostal));
+                String telefone = resultSet.getString(2);
+                String nif = resultSet.getString(3);
+                String nome = resultSet.getString(4);
+                String arruamento = resultSet.getString(5);
+                String numeroPorta = resultSet.getString(6);
+                String localidade = resultSet.getString(7);
+                String codigoPostal = resultSet.getString(8);
+                freelancers.add(new Freelancer(email, nome, telefone, nif,  arruamento, numeroPorta, localidade, codigoPostal));
             }
         }
         catch (SQLException exception) {
@@ -207,9 +242,7 @@ public class RepositorioFreelancerDatabase implements RepositorioFreelancer{
             dbConnectionHandler.closeAll();
         }
         return freelancers;
-    }*/
-        
-        return null;
+
     }
     
     @Override

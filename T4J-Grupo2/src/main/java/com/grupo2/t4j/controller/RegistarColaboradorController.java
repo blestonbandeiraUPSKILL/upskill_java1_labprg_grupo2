@@ -69,10 +69,7 @@ public class RegistarColaboradorController {
         Email email = colaborador.getEmail();
         Password password = colaborador.getPassword();
 
-        Utilizador utilizador = new Utilizador(email, nome, password);
-
-        return UsersAPI.getInstance().registerUserWithRoles(email, nome, password, "gestor")
-                && repositorioUtilizador.save(utilizador);
+        return UsersAPI.getInstance().registerUserWithRoles(email, nome, password, "gestor");
     }
 
     public boolean registarColaboradorComoUtilizador(Colaborador colaborador) throws SQLException {
@@ -82,9 +79,6 @@ public class RegistarColaboradorController {
 
         return UsersAPI.getInstance().registerUserWithRoles(email, nome, password, "colaborador");
     }
-
-
-
 
 
     //////FICHEIROS////////

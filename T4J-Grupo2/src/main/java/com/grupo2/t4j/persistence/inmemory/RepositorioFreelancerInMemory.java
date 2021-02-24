@@ -14,6 +14,7 @@ import com.grupo2.t4j.exception.FreelancerDuplicadoException;
 import com.grupo2.t4j.model.*;
 import com.grupo2.t4j.persistence.RepositorioFreelancer;
 import java.io.Serializable;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -50,7 +51,7 @@ public class RepositorioFreelancerInMemory implements Serializable, RepositorioF
         return repositorioFreelancerInMemory;
     }
     
-    @Override
+
     public boolean save(String emailFree, String nome, String passwordFree, String nif, 
             String telefone, String arruamento, String numeroPorta, String localidade, String codPostal) throws FreelancerDuplicadoException {
         Freelancer f1 = findByNif(nif);
@@ -64,6 +65,7 @@ public class RepositorioFreelancerInMemory implements Serializable, RepositorioF
             throw new FreelancerDuplicadoException("Freelancer já registado!");
         }
     }
+
 
     @Override
     public boolean save(Freelancer freelancer) throws FreelancerDuplicadoException {
@@ -88,7 +90,12 @@ public class RepositorioFreelancerInMemory implements Serializable, RepositorioF
         }
         return null;
     }
-    
+
+    @Override
+    public Password findPassword(String email) throws SQLException {
+        return null;
+    }
+
     @Override
     public Freelancer findByEmail(String emailFree) {
         for (int i = 0; i < this.listaFreelancers.size(); i++) {

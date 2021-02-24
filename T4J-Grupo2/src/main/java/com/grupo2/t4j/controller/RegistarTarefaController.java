@@ -41,9 +41,9 @@ public class RegistarTarefaController {
                              String descInformal, String descTecnica,
                              int duracao, double custo, String nifOrganizacao, String emailColaborador) throws SQLException{
 
-        Tarefa tarefa = new Tarefa(referencia, designacao, descInformal, 
+        Tarefa tarefa = new Tarefa(referencia, nifOrganizacao, designacao, descInformal,
                 descTecnica, duracao, custo,
-                codigoCategoriaTarefa, nifOrganizacao, emailColaborador);
+                codigoCategoriaTarefa,  emailColaborador);
 
         return repositorioTarefa.save(tarefa);
     }
