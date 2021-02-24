@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" styleClass="BorderPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.AdministrativoLogadoUI">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" styleClass="BorderPane" stylesheets="@../style/app.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.AdministrativoLogadoUI">
    <center>
       <BorderPane prefHeight="200.0" prefWidth="200.0" styleClass="BorderPane" BorderPane.alignment="CENTER">
          <top>
@@ -130,7 +130,7 @@
                                           <Insets bottom="20.0" />
                                        </VBox.margin>
                                     </Button>
-                                    <Button fx:id="btnConsultarFreelancer" mnemonicParsing="false" onAction="#consultarFreelancer" text="Consultar Freelancer">
+                                    <Button fx:id="btnConsultarFreelancer" mnemonicParsing="false" onAction="#consultarFreelancer" styleClass="btnConfirmar" text="Consultar Freelancer">
                                        <VBox.margin>
                                           <Insets bottom="20.0" />
                                        </VBox.margin>

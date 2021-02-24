@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="AnchorPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.AdicionarGrauProficienciaUI">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="AnchorPane" stylesheets="@../style/app.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.AdicionarGrauProficienciaUI">
    <children>
       <ListView fx:id="listViewGrausAdicionados" layoutX="16.0" layoutY="100.0" prefHeight="200.0" prefWidth="236.0" />
       <Label layoutX="16.0" layoutY="73.0" text="Graus de Proficiência Adicionados">
@@ -37,7 +37,7 @@
          <tooltip>
             <Tooltip text="Adicionar" />
          </tooltip></Button>
-      <Button fx:id="btnConcluir" layoutX="606.0" layoutY="351.0" mnemonicParsing="false" onAction="#concluirAction" text="Concluir">
+      <Button fx:id="btnConcluir" layoutX="606.0" layoutY="351.0" mnemonicParsing="false" onAction="#concluirAction" styleClass="btnConfirmar" text="Concluir">
          <font>
             <Font name="Calibri" size="14.0" />
          </font>
