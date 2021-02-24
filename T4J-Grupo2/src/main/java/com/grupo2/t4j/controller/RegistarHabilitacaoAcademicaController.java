@@ -40,7 +40,11 @@ public class RegistarHabilitacaoAcademicaController {
 
     public List<HabilitacaoAcademica> getAll() throws SQLException{
         return repositorioHabilitacaoAcademica.getAll();
-    }    
+    }
+
+    public List<HabilitacaoAcademica> getAllByEmail(String emailFreelancer) throws SQLException{
+        return repositorioHabilitacaoAcademica.getAllByEmail(emailFreelancer);
+    }
         
     public HabilitacaoAcademica findById(int idHabilitacao) throws SQLException{
         return repositorioHabilitacaoAcademica.findById(idHabilitacao);

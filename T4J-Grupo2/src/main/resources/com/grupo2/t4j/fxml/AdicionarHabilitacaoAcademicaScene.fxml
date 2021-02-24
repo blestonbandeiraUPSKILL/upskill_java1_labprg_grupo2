@@ -64,7 +64,7 @@
                                                    <VBox.margin>
                                                       <Insets />
                                                    </VBox.margin></Label>
-                                                <ComboBox fx:id="cmbEmailFreelancer" prefHeight="25.0" prefWidth="380.0">
+                                                <ComboBox fx:id="cmbEmailFreelancer" prefHeight="25.0" prefWidth="380.0" promptText="Selecione o Freelancer ">
                                                    <VBox.margin>
                                                       <Insets bottom="5.0" top="5.0" />
                                                    </VBox.margin>

@@ -557,6 +557,6 @@ public class AdministrativoLogadoUI implements Initializable {
     }
 
 
-
-    
+    public void consultarFreelancer(ActionEvent actionEvent) {
+    }
 }

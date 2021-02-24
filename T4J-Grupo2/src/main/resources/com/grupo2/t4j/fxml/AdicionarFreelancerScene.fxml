@@ -177,6 +177,14 @@
                                     <Insets left="20.0" right="20.0" />
                                  </padding>
                               </VBox>
+                              <Button fx:id="btnCancelar" layoutX="575.0" layoutY="364.0" mnemonicParsing="false" onAction="#cancelarAction" text="Limpar Campos">
+                                 <font>
+                                    <Font name="Calibri" size="14.0" />
+                                 </font>
+                                 <tooltip>
+                                    <Tooltip text="Cancelar" />
+                                 </tooltip>
+                              </Button>
                            </children>
                         </AnchorPane>
                      </content>
@@ -185,36 +193,25 @@
             </TabPane>
          </top>
          <bottom>
-            <FlowPane alignment="CENTER_RIGHT" prefHeight="39.0" prefWidth="700.0" styleClass="FlowPane" BorderPane.alignment="CENTER">
+            <FlowPane alignment="CENTER_RIGHT" prefHeight="55.0" prefWidth="700.0" styleClass="FlowPane" BorderPane.alignment="CENTER">
                <children>
-                  <Button fx:id="btnAddFreelancer" defaultButton="true" mnemonicParsing="false" onAction="#addFreelancer" styleClass="btnConfirmar" text="Adicionar">
+                  <Button fx:id="btnAddFreelancer" defaultButton="true" mnemonicParsing="false" onAction="#addFreelancer" styleClass="btnConfirmar" text="Registar">
                      <font>
                         <Font name="Calibri" size="14.0" />
                      </font>
                      <FlowPane.margin>
-                        <Insets bottom="15.0" />
+                        <Insets />
                      </FlowPane.margin>
                      <tooltip>
                         <Tooltip text="Adicionar" />
                      </tooltip>
                   </Button>
-                  <Button fx:id="btnCancelar" mnemonicParsing="false" onAction="#cancelarAction" text="Cancelar">
+                  <Button fx:id="btnSair" mnemonicParsing="false" onAction="#sairAction" styleClass="btnSair" text="Cancelar">
                      <font>
                         <Font name="Calibri" size="14.0" />
                      </font>
                      <FlowPane.margin>
-                        <Insets bottom="15.0" left="10.0" />
-                     </FlowPane.margin>
-                     <tooltip>
-                        <Tooltip text="Cancelar" />
-                     </tooltip>
-                  </Button>
-                  <Button fx:id="btnSair" mnemonicParsing="false" onAction="#sairAction" styleClass="btnSair" text="Sair">
-                     <font>
-                        <Font name="Calibri" size="14.0" />
-                     </font>
-                     <FlowPane.margin>
-                        <Insets bottom="15.0" left="10.0" right="20.0" />
+                        <Insets left="10.0" right="10.0" />
                      </FlowPane.margin>
                      <tooltip>
                         <Tooltip text="Sair" />

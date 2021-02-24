@@ -205,7 +205,8 @@ public class RepositorioColaboradorDatabase implements RepositorioColaborador {
         Connection connection = dbConnectionHandler.openConnection();
 
         PreparedStatement preparedStatement = connection.prepareStatement(
-                "SELECT utilizador.password FROM Utilizador INNER JOIN Colaborador ON colaborador.email LIKE utilizador.email WHERE colaborador.email LIKE ?"
+                "SELECT utilizador.password FROM Utilizador " +
+                        "INNER JOIN Colaborador ON colaborador.email LIKE utilizador.email WHERE colaborador.email LIKE ?"
         );
 
         try {

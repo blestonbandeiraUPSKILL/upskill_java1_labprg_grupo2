@@ -51,9 +51,10 @@ public class RepositorioReconhecimentoGPDatabase implements RepositorioReconheci
 
 
     @Override
-    public void save(String idGrauProficiencia, Data dataReconhecimento, 
+    public boolean save(int idGrauProficiencia, Data dataReconhecimento, 
              Email emailFreelancer, String idCompetenciaTecnica) throws  ReconhecimentoDuplicadoException,
             SQLException{
+        return false;
 
     }
 
