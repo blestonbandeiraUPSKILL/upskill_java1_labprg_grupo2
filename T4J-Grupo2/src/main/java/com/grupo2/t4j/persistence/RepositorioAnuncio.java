@@ -13,6 +13,7 @@ package com.grupo2.t4j.persistence;
 import com.grupo2.t4j.model.*;
 import com.grupo2.t4j.exception.*;
 import java.io.Serializable;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 public interface RepositorioAnuncio {
@@ -30,4 +31,5 @@ public interface RepositorioAnuncio {
 
     Anuncio findAnuncioByIdTarefa(String idTarefa);
 
+    public ArrayList<TipoRegimento> getAllRegimento()throws SQLException;
 }
