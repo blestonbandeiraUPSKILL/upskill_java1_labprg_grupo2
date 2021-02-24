@@ -85,6 +85,7 @@ public class RepositorioAnuncioDataBase implements RepositorioAnuncio {
     }
 
     public ArrayList<TipoRegimento> getAllRegimento()throws SQLException {
+
         ArrayList<TipoRegimento> tiposRegimento = new ArrayList<>();
 
         DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
