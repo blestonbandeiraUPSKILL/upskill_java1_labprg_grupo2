@@ -1,5 +1,6 @@
 package com.grupo2.t4j.ui;
 
+import com.grupo2.t4j.controller.GestaoUtilizadoresController;
 import com.grupo2.t4j.controller.RegistarColaboradorController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -17,6 +18,7 @@ import java.util.ResourceBundle;
 public class RegistarColaboradorUI implements Initializable {
 
     private RegistarColaboradorController registarColaboradorController;
+    private GestaoUtilizadoresController gestaoUtilizadoresController;
     private GestorLogadoUI gestorLogadoUI;
     private Stage adicionarStage;
 
@@ -25,6 +27,7 @@ public class RegistarColaboradorUI implements Initializable {
     @FXML TextField txtTelefoneColaborador;
     @FXML TextField txtEmailColaborador;
     @FXML TextField txtPasswordColaborador;
+    @FXML TextField txtNifOrganizacao;
     @FXML Button btnCancelarRegisto;
     @FXML Button btnRegistarColaborador;
     @FXML Button btnSair;
@@ -42,19 +45,23 @@ public class RegistarColaboradorUI implements Initializable {
 
         registarColaboradorController = new RegistarColaboradorController();
 
-
-
-
     }
 
 
+    void transferNif() throws SQLException {
+        txtNifOrganizacao.setText(
+                gestorLogadoUI.getNifOrganizacao());
+    }
+
     public void registarColaboradorAction(ActionEvent actionEvent) {
+
         try {
             boolean adicionou = registarColaboradorController.registarColaborador(
                     txtEmailColaborador.getText(),
                     txtNomeColaborador.getText(),
                     txtFuncaoColaborador.getText(),
-                    txtTelefoneColaborador.getText());
+                    txtTelefoneColaborador.getText(),
+                    txtNifOrganizacao.getText());
 
             if (adicionou) {
 
@@ -63,6 +70,7 @@ public class RegistarColaboradorUI implements Initializable {
                 btnRegistarColaborador.setDisable(true);
                 btnCancelarRegisto.setText("Sair");
 
+                gestorLogadoUI.updateListViewColaboradores();
 
                 AlertsUI.criarAlerta(Alert.AlertType.INFORMATION,
                         MainApp.TITULO_APLICACAO,
@@ -70,6 +78,7 @@ public class RegistarColaboradorUI implements Initializable {
                         adicionou ? ("Colaborador registado com sucesso.")
                                 : "Não foi possível registar o Colaborador.").show();
             }
+
 
         }
         catch (IllegalArgumentException | SQLException iae) {

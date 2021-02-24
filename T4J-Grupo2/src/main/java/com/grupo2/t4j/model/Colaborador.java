@@ -36,10 +36,11 @@ public class Colaborador extends Utilizador implements Serializable{
      * @param telefone o telefone do Colaborador da organização
      * 
      */
-    public Colaborador(Email email, String nome, Password password, String funcao, String telefone) {
+    public Colaborador(Email email, String nome, Password password, String funcao, String telefone, String nifOrganizacao) {
         super(email, nome, password);
         setFuncao(funcao);
         setTelefone(telefone);
+        setNifOrganizacao(nifOrganizacao);
     }
 
     public Colaborador(Colaborador colaborador) {
@@ -59,6 +60,13 @@ public class Colaborador extends Utilizador implements Serializable{
         super(utilizador);
         setFuncao(funcao);
         setTelefone(telefone);
+    }
+
+    public Colaborador(String nome, String email, String funcao, String telefone, String nifOrganizacao) {
+        super(nome, email);
+        setFuncao(funcao);
+        setTelefone(telefone);
+        setNifOrganizacao(nifOrganizacao);
     }
 
 

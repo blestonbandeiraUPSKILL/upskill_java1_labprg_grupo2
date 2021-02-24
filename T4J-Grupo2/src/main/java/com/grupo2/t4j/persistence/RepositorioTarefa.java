@@ -30,7 +30,7 @@ public interface RepositorioTarefa {
     Tarefa findByReferenciaENIF(String referencia, String NIF)throws SQLException;
 
 
-    List<Tarefa> findByCategoria (String codigoCategoria);
+    List<Tarefa> findByCategoria (String codigoCategoria) throws SQLException;
 
 
     /**
@@ -38,7 +38,7 @@ public interface RepositorioTarefa {
      *
      * @return
      */
-    ArrayList<Tarefa> getAll() throws SQLException;
+    ArrayList<Tarefa> getAll(String nifOrganizacao) throws SQLException;
 
 
     //getAllByOrgPublicadas, getAllByOrgNaoPublicadas, getAllByOrg

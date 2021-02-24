@@ -9,13 +9,16 @@ import java.util.List;
 public interface RepositorioCaracterizacaoCT {
 
 
-    void save(String codigoCCT, String codigoGP, Obrigatoriedade obrigatoriedade, String codigoCompetenciaTecnica) throws CaracterizacaoCTDuplicadaException;
+    void save(String codigoCategoria, int codigoGP, Obrigatoriedade obrigatoriedade) throws CaracterizacaoCTDuplicadaException;
 
     boolean save(CaracterizacaoCT caracterizacaoCT) throws SQLException;
 
     List<CaracterizacaoCT> getAll();
 
-    List<CaracterizacaoCT> findByCompetenciaTecnica(List<String> codigoCompetenciasTecnicas);
+    List<CaracterizacaoCT> findByCategoria(String codigoCategoria) throws SQLException;
 
-    CaracterizacaoCT findByCodigo(String codigoCCT);
+    CaracterizacaoCT findByCodigo(int codigoCCT);
+    
+    CaracterizacaoCT findByCategoriaEGrau (String codigoCategoria,
+                                           int codigoGP) throws SQLException;
 }

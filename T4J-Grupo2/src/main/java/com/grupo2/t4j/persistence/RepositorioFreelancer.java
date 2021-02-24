@@ -17,8 +17,8 @@ import java.util.ArrayList;
 
 public interface RepositorioFreelancer {
     
-    boolean save(String emailFree, String nome, String passwordFree, String nif, 
-            String telefone, String arruamento, String numeroPorta, String localidade, String codPostal) throws FreelancerDuplicadoException, 
+    boolean save(String emailFree, String nome, String nif, String telefone, String password, String arruamento,
+                 String numeroPorta, String localidade, String codPostal) throws FreelancerDuplicadoException,
             SQLException;
 
     boolean save(Freelancer freelancer) throws FreelancerDuplicadoException, 
@@ -27,6 +27,8 @@ public interface RepositorioFreelancer {
     Freelancer findByEmail(String emailFree) throws SQLException;
     
     Freelancer findByNif(String nif) throws SQLException;
+
+    Password findPassword(String email) throws SQLException;
 
     ArrayList<Freelancer> getAll() throws SQLException;
     

@@ -35,12 +35,12 @@ public class RegistarColaboradorController {
     private RepositorioColaboradorInMemory repositorioColaboradorInMemory;
     private FicheiroRepositorioColaborador ficheiroC;
 
-    public boolean registarColaborador(String email, String nome, String funcao, String telefone) throws SQLException {
+    public boolean registarColaborador(String email, String nome, String funcao, String telefone, String nifOrganizacao) throws SQLException {
 
         AlgoritmoGeradorPasswords algoritmoGeradorPasswords = new AlgoritmoGeradorPasswords();
         Password password = new Password(algoritmoGeradorPasswords.geraPassword());
 
-        Colaborador colaborador = new Colaborador(new Email(email), nome , password, funcao, telefone);
+        Colaborador colaborador = new Colaborador(new Email(email), nome , password, funcao, telefone, nifOrganizacao);
         registarColaboradorComoUtilizador(colaborador);
 
         return repositorioColaborador.save(colaborador);
@@ -48,6 +48,10 @@ public class RegistarColaboradorController {
 
     public List<Colaborador> getAll() throws SQLException {
         return repositorioColaborador.getAll();
+    }
+
+    public String getNifOrganizacao(String email) throws SQLException {
+        return repositorioColaborador.getNifOrganizacao(email);
     }
 
     public Colaborador findByEmail(String email) throws SQLException {
@@ -65,10 +69,7 @@ public class RegistarColaboradorController {
         Email email = colaborador.getEmail();
         Password password = colaborador.getPassword();
 
-        Utilizador utilizador = new Utilizador(email, nome, password);
-
-        return UsersAPI.getInstance().registerUserWithRoles(email, nome, password, "gestor")
-                && repositorioUtilizador.save(utilizador);
+        return UsersAPI.getInstance().registerUserWithRoles(email, nome, password, "gestor");
     }
 
     public boolean registarColaboradorComoUtilizador(Colaborador colaborador) throws SQLException {
@@ -78,9 +79,6 @@ public class RegistarColaboradorController {
 
         return UsersAPI.getInstance().registerUserWithRoles(email, nome, password, "colaborador");
     }
-
-
-
 
 
     //////FICHEIROS////////

@@ -12,37 +12,51 @@ import java.io.Serializable;
  * @author acris
  */
 public class CaracterizacaoCT implements Serializable{
+    
+    private int idCaracterizacao;
 
-    private String codigoCCT;
+    private String codigoCategoria;
     /**
      * O grau de proficiencia da competencia tecnica
      */
-    private String codigoGP;
+    private int codigoGP;
     /**
      * A obrigatoriedade da competencia tecnica
      */
     private Obrigatoriedade obrigatoriedade;
+
     
-    /**
-     * A competencia tecnica
-     */
-    private String codigoCompetenciaTecnica;
+    
+    public CaracterizacaoCT (){
+    }
+    
+    public CaracterizacaoCT(CaracterizacaoCT cct){
+        setCodigoGP(cct.codigoGP);
+        setObrigatoriedade(cct.obrigatoriedade);
+    }
 
     /**
      * Construtor completo para caracterizacao de uma competencia tecnica
      * @param codigoGP
      * @param obrigatoriedade
-     * @param codigoCompetenciaTecnica
+     * @param codigoCategoria
      */
-    public CaracterizacaoCT(String codigoCCT, String codigoGP, Obrigatoriedade obrigatoriedade,
-                            String codigoCompetenciaTecnica) {
-        this.codigoCCT = codigoCCT;
+    public CaracterizacaoCT(String codigoCategoria, int codigoGP,
+            Obrigatoriedade obrigatoriedade) {
+        this.codigoCategoria = codigoCategoria;
         this.codigoGP = codigoGP;
         this.obrigatoriedade = obrigatoriedade;
-        this.codigoCompetenciaTecnica = codigoCompetenciaTecnica;
+    }
+    
+    public CaracterizacaoCT(int idCaracterizacao, String codigoCategoria, 
+            int codigoGP, Obrigatoriedade obrigatoriedade){
+        this.idCaracterizacao = idCaracterizacao;
+        setCodigoCategoria(codigoCategoria);
+        setCodigoGP(codigoGP);
+        setObrigatoriedade(obrigatoriedade);
     }
 
-    public String getCodigoGP() {
+    public int getCodigoGP() {
         return codigoGP;
     }
 
@@ -50,7 +64,25 @@ public class CaracterizacaoCT implements Serializable{
         return obrigatoriedade;
     }
 
+    public String getCodigoCategoria() {
+        return codigoCategoria;
+    }
+
+    public void setCodigoCategoria(String codigoCategoria) {
+        this.codigoCategoria = codigoCategoria;
+    }
+
+    public void setIdCaracterizacao(int idCaracterizacao) {
+        this.idCaracterizacao = idCaracterizacao;
+    }
+
+    public void setCodigoGP(int codigoGP) {
+        this.codigoGP = codigoGP;
+    }
+
+
     
+
     /**
      * Actualiza a obrigatoriedade da competencia tecnica
      * @param obrigatoriedade the obrigatoriedade to set
@@ -58,14 +90,9 @@ public class CaracterizacaoCT implements Serializable{
     public void setObrigatoriedade(Obrigatoriedade obrigatoriedade) {
         this.obrigatoriedade = obrigatoriedade;
     }
-    
-    public String getCodigoCompetenciaTecnica() {
-        return this.codigoCompetenciaTecnica;
-    }
 
-    public String getCodigoCCT() {
-        return codigoCCT;
-    }
+
+    
     
     /**
      * Representacao textual da competencia tecnica caracterizada em formato de exibição
@@ -73,8 +100,8 @@ public class CaracterizacaoCT implements Serializable{
      */
     @Override
     public String toString() {
-        return String.format("Competência Técnica: %-30s |Grau de Proficiencia: %-20s "
-                + "|Carácter: %-15s", codigoCompetenciaTecnica, codigoGP, obrigatoriedade.toString());
+        return String.format("Categoria: %-30s |Grau de Proficiencia: %-20s "
+                + "|Carácter: %-15s", codigoCategoria, codigoGP, obrigatoriedade.toString());
 
     }
     
@@ -83,8 +110,8 @@ public class CaracterizacaoCT implements Serializable{
      * @return 
      */
      public String toStringCompleto() {
-        return String.format("Competência Tecnica: %s; Grau de Proficiencia: %s; "
-                + "Carácter: %s", codigoCompetenciaTecnica, codigoGP, obrigatoriedade.toString());
+        return String.format("Categoria: %s; Grau de Proficiencia: %s; "
+                + "Carácter: %s", codigoCategoria, codigoGP, obrigatoriedade.toString());
 
     }   
 }

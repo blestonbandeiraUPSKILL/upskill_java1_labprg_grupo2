@@ -38,7 +38,7 @@ public class RepositorioColaboradorDatabase implements RepositorioColaborador {
     }
 
     @Override
-    public void save(Email email, String nome, Password passowrd, String funcao, String telefone) throws ColaboradorDuplicadoException {
+    public void save(String email, String nome, String passowrd, String funcao, String telefone) throws ColaboradorDuplicadoException {
 
     }
 
@@ -122,7 +122,11 @@ public class RepositorioColaboradorDatabase implements RepositorioColaborador {
 
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(
-                    "SELECT * FROM Colaborador"
+                    "SELECT Colaborador.email, Colaborador.funcao, Colaborador.telefone, Colaborador.nifOrganizacao, Utilizador.nome FROM COLABORADOR " +
+                            "INNER JOIN Utilizador " +
+                            "ON colaborador.email LIKE utilizador.email " +
+                            "INNER JOIN Organizacao " +
+                            "ON colaborador.nifOrganizacao LIKE organizacao.nif"
             );
 
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -132,7 +136,8 @@ public class RepositorioColaboradorDatabase implements RepositorioColaborador {
                 String funcao = resultSet.getString(2);
                 String telefone = resultSet.getString(3);
                 String nifOrganizacao = resultSet.getString(4);
-                colaboradores.add(new Colaborador(new Email(email), funcao, telefone, nifOrganizacao));
+                String nome = resultSet.getString(5);
+                colaboradores.add(new Colaborador(nome, email, funcao, telefone, nifOrganizacao));
             }
         }
         catch (SQLException exception) {
@@ -151,6 +156,46 @@ public class RepositorioColaboradorDatabase implements RepositorioColaborador {
             dbConnectionHandler.closeAll();
         }
         return colaboradores;
+    }
+
+    @Override
+    public String getNifOrganizacao(String email) throws SQLException {
+
+        String nifOrganizacao = null;
+
+        DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
+        Connection connection = dbConnectionHandler.openConnection();
+
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(
+                    "SELECT nifOrganizacao From Colaborador WHERE email LIKE ?"
+            );
+            preparedStatement.setString(1, email);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                nifOrganizacao = resultSet.getString(1);
+            }
+            return  nifOrganizacao;
+        }
+        catch (SQLException exception) {
+            exception.printStackTrace();
+            exception.getSQLState();
+            try {
+                System.err.print("Transaction is being rolled back");
+                connection.rollback();
+            }
+            catch (SQLException sqlException) {
+                sqlException.getErrorCode();
+            }
+
+        }
+        finally {
+            dbConnectionHandler.closeAll();
+        }
+
+        return null;
     }
 
     @Override

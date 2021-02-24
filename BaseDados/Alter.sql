@@ -150,6 +150,9 @@ ALTER TABLE CaracterCT
 
 ALTER TABLE GrauProficiencia
     drop constraint uk_GrauProficiencia_grau;
+
+ALTER TABLE Categoria
+    drop constraint fk_Categoria_idCaracterCT;
     
 ALTER TABLE GrauProficiencia
     ADD CONSTRAINT uk_GrauProficiencia_grau_codigoCompetenciaTecnica 
@@ -162,4 +165,8 @@ ALTER TABLE CaracterCT
     ADD CONSTRAINT fk_CaracterCT_codigoCategoria
         FOREIGN KEY (codigoCategoria)
         REFERENCES Categoria(codigoCategoria);
-    
+
+
+ALTER TABLE Tarefa
+    MODIFY emailColaborador varchar(50);
+

@@ -2,15 +2,16 @@ package com.grupo2.t4j.persistence.database;
 
 import com.grupo2.t4j.exception.CaracterizacaoCTDuplicadaException;
 import com.grupo2.t4j.model.CaracterizacaoCT;
-import com.grupo2.t4j.model.CompetenciaTecnica;
-import com.grupo2.t4j.model.GrauProficiencia;
 import com.grupo2.t4j.model.Obrigatoriedade;
 import com.grupo2.t4j.persistence.RepositorioCaracterizacaoCT;
 import com.grupo2.t4j.utils.DBConnectionHandler;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class RepositorioCaracterizacaoCTDatabase implements RepositorioCaracterizacaoCT {
@@ -43,19 +44,50 @@ public class RepositorioCaracterizacaoCTDatabase implements RepositorioCaracteri
     }
 
     @Override
-    public void save(String codigoCCT, String codigoGP, Obrigatoriedade obrigatoriedade, String codigoCompetenciaTecnica) throws CaracterizacaoCTDuplicadaException {
+    public void save(String codigoCategoria, int codigoGP, Obrigatoriedade obrigatoriedade) throws CaracterizacaoCTDuplicadaException {
 
     }
 
     @Override
     public boolean save(CaracterizacaoCT caracterizacaoCT) throws SQLException {
-        return false;
-     /*   DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
+       
+        DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
         Connection connection = dbConnectionHandler.openConnection();
 
         CallableStatement callableStatement = connection.prepareCall(
-                "{CALL createCaracterizacaoCT()}"
-        );*/
+                "{CALL createCaracterCT(?, ?, ?)}"
+        );
+        if (findByCategoriaEGrau(caracterizacaoCT.getCodigoCategoria(), caracterizacaoCT.getCodigoGP()) == null){
+            try {
+                connection.setAutoCommit(false);
+
+                callableStatement.setString(1, caracterizacaoCT.getCodigoCategoria());
+                callableStatement.setInt(2, caracterizacaoCT.getCodigoGP());
+                callableStatement.setString(3, caracterizacaoCT.getObrigatoriedade().toString());
+
+                callableStatement.executeQuery();
+
+                connection.commit();
+                return true;
+            }
+            catch (SQLException exception) {
+                exception.printStackTrace();
+                exception.getSQLState();
+                try {
+                    System.err.print("Transaction is being rolled back");
+                    connection.rollback();
+                }
+                catch (SQLException sqlException) {
+                    sqlException.getErrorCode();
+                }
+            }
+            finally {
+                dbConnectionHandler.closeAll();
+            }
+        }
+
+        return false;
+        
     }
 
     @Override
@@ -64,12 +96,85 @@ public class RepositorioCaracterizacaoCTDatabase implements RepositorioCaracteri
     }
 
     @Override
-    public List<CaracterizacaoCT> findByCompetenciaTecnica(List<String> codigoCompetenciasTecnicas) {
+    public List<CaracterizacaoCT> findByCategoria(String codigoCategoria) throws SQLException{
+        ArrayList<CaracterizacaoCT> listaCaracterizacaoCT = new ArrayList<>();
+
+        DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
+        Connection connection = dbConnectionHandler.openConnection();
+
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(
+                    "SELECT * FROM CaracterizacaoCT WHERE codigoCategoria LIKE ?"
+            );
+
+            preparedStatement.setString(1, codigoCategoria);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                int idCaracterizacaoCT = resultSet.getInt(1);
+                String codigoCategoriaTarefa = resultSet.getString(2);
+                int codigoGP = resultSet.getInt(3);
+                String obrigatoriedade = resultSet.getString(4);
+                listaCaracterizacaoCT.add(new CaracterizacaoCT(idCaracterizacaoCT,
+                        codigoCategoriaTarefa,
+                        codigoGP,
+                        Obrigatoriedade.valueOf(obrigatoriedade)));
+
+            }
+        }
+
+        catch (SQLException exception) {
+            exception.printStackTrace();
+            exception.getSQLState();
+            try {
+                System.err.print("Transaction is being rolled back");
+                connection.rollback();
+            }
+            catch (SQLException sqlException) {
+                sqlException.getErrorCode();
+            }
+
+        }
+        finally {
+            dbConnectionHandler.closeAll();
+        }
+
+        return listaCaracterizacaoCT;
+    }
+
+    @Override
+    public CaracterizacaoCT findByCodigo(int codigoCCT) {
         return null;
     }
 
     @Override
-    public CaracterizacaoCT findByCodigo(String codigoCCT) {
-        return null;
+    public CaracterizacaoCT findByCategoriaEGrau(String codigoCategoria,
+                                                 int codigoGP) throws SQLException {
+
+        DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
+        Connection connection = dbConnectionHandler.openConnection();
+
+        CallableStatement callableStatement = connection.prepareCall(
+                "{ CALL findByCodigoCategoriaECodigoGrau(?, ?) }"
+        );
+
+        try {
+            connection.setAutoCommit(false);
+
+            callableStatement.setString(1, codigoCategoria);
+            callableStatement.setInt(2, codigoGP);
+
+            callableStatement.executeUpdate();
+            return null;
+
+        }
+        catch (SQLException exception) {
+            exception.printStackTrace();
+            exception.getSQLState();
+
+
+        }
+        return new CaracterizacaoCT();
     }
 }

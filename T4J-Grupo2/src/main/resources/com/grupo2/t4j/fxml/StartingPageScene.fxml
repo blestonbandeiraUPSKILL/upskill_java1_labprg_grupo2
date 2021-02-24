@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import jfxtras.styles.jmetro.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.shape.*?>
 <?import java.lang.*?>
@@ -21,7 +20,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="BorderPane" focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="600.0" styleClass="BorderPane" stylesheets="@../style/app.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.StartingPageUI">
+<BorderPane fx:id="BorderPane" focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="600.0" styleClass="BorderPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.StartingPageUI">
    <center>
       <GridPane alignment="CENTER" prefHeight="133.0" prefWidth="600.0" BorderPane.alignment="CENTER">
         <columnConstraints>
@@ -73,7 +72,7 @@
                <children>
                   <VBox alignment="CENTER" prefHeight="46.0" prefWidth="287.0">
                      <children>
-                        <Button fx:id="btnRegistarOrganizacao" alignment="CENTER" contentDisplay="CENTER" maxHeight="0.0" mnemonicParsing="false" onAction="#registarOrganizacao" styleClass="btnRegistarOrganizacao" stylesheets="@../style/app.css" text="Quero registar a minha Organização" textFill="WHITE">
+                        <Button fx:id="btnRegistarOrganizacao" alignment="CENTER" contentDisplay="CENTER" maxHeight="0.0" mnemonicParsing="false" onAction="#registarOrganizacao" styleClass="btnRegistarOrganizacao" text="Quero registar a minha Organização" >
                            <padding>
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </padding>
@@ -118,9 +117,9 @@
             </FlowPane>
          </bottom>
          <top>
-            <FlowPane alignment="CENTER" stylesheets="@../style/app.css" BorderPane.alignment="CENTER">
+            <FlowPane alignment="CENTER" BorderPane.alignment="CENTER">
                <children>
-                  <Button fx:id="btnLogin" alignment="CENTER" mnemonicParsing="false" onAction="#login" styleClass="btnLogin" stylesheets="@../style/app.css" text="Entrar">
+                  <Button fx:id="btnLogin" alignment="CENTER" mnemonicParsing="false" onAction="#login" styleClass="btnLogin" text="Entrar">
                      <padding>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </padding>
@@ -146,7 +145,7 @@
    <top>
       <FlowPane prefHeight="37.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="btnGoDark" alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#cssGoDark" styleClass="btnGoDark" text="Light/Dark mode">
+            <Button fx:id="btnGoDark" alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#cssGoDark" styleClass="btnGoDark" text="Dark mode">
                <font>
                   <Font size="10.0" />
                </font>

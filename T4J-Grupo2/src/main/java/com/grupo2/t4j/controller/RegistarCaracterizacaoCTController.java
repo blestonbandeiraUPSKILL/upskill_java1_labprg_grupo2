@@ -12,11 +12,11 @@ import java.util.List;
 
 public class RegistarCaracterizacaoCTController {
 
-    private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosInMemory();
-    //private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosDatabase();
+    //private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosInMemory();
+    private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosDatabase();
     private RepositorioCaracterizacaoCT repositorioCaracterizacaoCT = fabricaRepositorios.getRepositorioCaracterizacaoCT();
 
-    public boolean registarCaracterizacaoCT(CaracterizacaoCT caracterizacaoCT) throws SQLException {
+    public boolean save(CaracterizacaoCT caracterizacaoCT) throws SQLException {
         return repositorioCaracterizacaoCT.save(caracterizacaoCT);
     }
 
@@ -24,15 +24,23 @@ public class RegistarCaracterizacaoCTController {
         return repositorioCaracterizacaoCT.getAll();
     }
 
-    public boolean registarCaracterizacaoCTS(String codigoCCT, String codigoGP, Obrigatoriedade obrigatoriedade,
-                                                  String codigoCompetenciaTecnica) throws SQLException {
+    public boolean registarCaracterizacaoCTS(String codigoCategoria, int codigoGP, Obrigatoriedade obrigatoriedade) throws SQLException {
 
-        CaracterizacaoCT caracterizacaoCT = new CaracterizacaoCT(codigoCCT, codigoGP, obrigatoriedade, codigoCompetenciaTecnica);
+        CaracterizacaoCT caracterizacaoCT = new CaracterizacaoCT(codigoCategoria, codigoGP, obrigatoriedade);
 
         return repositorioCaracterizacaoCT.save(caracterizacaoCT);
     }
 
-    public CaracterizacaoCT findByCodigo(String codigoCCT) {
+    public CaracterizacaoCT findByCodigo(int codigoCCT) {
         return repositorioCaracterizacaoCT.findByCodigo(codigoCCT);
+    }
+    
+    public List<CaracterizacaoCT> findByCategoria(String codigoCategoria) throws SQLException{
+        return repositorioCaracterizacaoCT.findByCategoria(codigoCategoria);
+    }
+    
+    public CaracterizacaoCT findByCategoriaEGrau (String codigoCategoria, 
+            int codigoGP) throws SQLException {
+        return repositorioCaracterizacaoCT.findByCategoriaEGrau(codigoCategoria,codigoGP);
     }
 }

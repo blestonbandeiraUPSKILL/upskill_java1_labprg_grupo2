@@ -39,9 +39,7 @@ public class StartingPageUI implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-
         gestaoUtilizadoresController = new GestaoUtilizadoresController();
-
 
         adicionarStage = new Stage();
         adicionarStage.initModality(Modality.APPLICATION_MODAL);;
@@ -54,11 +52,10 @@ public class StartingPageUI implements Initializable {
     void cssGoDark(ActionEvent event) {
 
         Scene scene = btnGoDark.getScene();
-        scene.getStylesheets().remove("/com/grupo2/t4j/style/app.css");
 
-        if (!scene.getStylesheets().contains("/com/grupo2/t4j/style/app.css")) {
-            scene.getStylesheets().add("/com/grupo2/t4j/style/dark.css");
-        }
+        //scene.getStylesheets().clear();
+        //scene.getStylesheets().add(getClass().getResource("/com/grupo2/t4j/style/dark.css").toExternalForm());
+
     }
 
 
@@ -84,11 +81,9 @@ public class StartingPageUI implements Initializable {
                     exception.getMessage());
         }
 
-
     }
 
     public void login(ActionEvent actionEvent) throws IOException, SQLException {
-
 
         boolean login = gestaoUtilizadoresController.login(
                 txtEmailLogin.getText(),

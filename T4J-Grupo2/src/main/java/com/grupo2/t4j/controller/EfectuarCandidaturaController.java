@@ -54,17 +54,17 @@ public class EfectuarCandidaturaController {
         return repositorioReconhecimentoGP.findByEmail(email);
     }
 
-    public List<Tarefa> findTarefasElegiveis(String email) throws SQLException {
+    public List<Tarefa> findTarefasElegiveis(String email, String nifOrganizacao) throws SQLException {
         List<Tarefa> tarefasElegiveis = new ArrayList<>();
-        List<Tarefa> listaTarefas = repositorioTarefa.getAll();
+        List<Tarefa> listaTarefas = repositorioTarefa.getAll(nifOrganizacao);
 
         for (Tarefa tarefa : listaTarefas) {
             List<CaracterizacaoCT> competenciasDaTarefa = repositorioCategoriaTarefa.findByCodigo(
                     tarefa.getCodigoCategoriaTarefa()).getCompTecnicasCaracter();
             for (CaracterizacaoCT cct : competenciasDaTarefa) {
                 if (cct.getObrigatoriedade() == Obrigatoriedade.OBRIGATORIO
-                        && comparaCompetencias(email, cct.getCodigoCompetenciaTecnica())
-                        && comparaGrau(email, cct.getCodigoCompetenciaTecnica(), cct.getCodigoGP())) {
+                        && comparaCompetencias(email, cct.getCodigoCategoria())
+                        && comparaGrau(email, cct.getCodigoCategoria(), cct.getCodigoGP())) {
 
                     tarefasElegiveis.add(tarefa);
                 }
@@ -73,7 +73,7 @@ public class EfectuarCandidaturaController {
         return null;
     }
 
-    public List<Anuncio> findAnunciosElegiveis(String email) throws SQLException {
+  /*  public List<Anuncio> findAnunciosElegiveis(String email) throws SQLException {
 
         List<Anuncio> anunciosElegiveis = new ArrayList<>();
         Data dataAtual = Data.dataActual();
@@ -96,7 +96,7 @@ public class EfectuarCandidaturaController {
             return new ArrayList<>();
         }
         return anunciosElegiveis;
-    }
+    }*/
 
     public List<CompetenciaTecnica> competenciasTecnicasDoFreelancer(String email) throws SQLException {
 
@@ -115,10 +115,10 @@ public class EfectuarCandidaturaController {
         return false;
     }
 
-    public boolean comparaGrau(String email, String idCompetenciaTecnica, String grau) {
+    public boolean comparaGrau(String email, String idCompetenciaTecnica, int grau) {
         ReconhecimentoGP rgp = repositorioReconhecimentoGP.findByEmailCompetencia(email, idCompetenciaTecnica);
-        String gp = rgp.getIdGrauProficiencia();
-        if (Integer.parseInt(gp) >= Integer.parseInt(grau)) {
+        int gp = rgp.getIdGrauProficiencia();
+        if (gp >= grau) {
             return true;
         }
         return false;

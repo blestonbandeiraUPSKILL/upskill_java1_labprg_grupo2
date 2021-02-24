@@ -2,12 +2,11 @@ package com.grupo2.t4j.persistence.inmemory;
 
 import com.grupo2.t4j.exception.CaracterizacaoCTDuplicadaException;
 import com.grupo2.t4j.model.CaracterizacaoCT;
-import com.grupo2.t4j.model.CompetenciaTecnica;
-import com.grupo2.t4j.model.GrauProficiencia;
 import com.grupo2.t4j.model.Obrigatoriedade;
 import com.grupo2.t4j.persistence.RepositorioCaracterizacaoCT;
 
 import java.io.Serializable;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,10 +27,10 @@ public class RepositorioCaracterizacaoCTInMemory implements Serializable, Reposi
     }
 
     @Override
-    public void save(String codigoCCT, String codigoGP, Obrigatoriedade obrigatoriedade, String codigoCompetenciaTecnica) throws CaracterizacaoCTDuplicadaException {
+    public void save(String codigoCategoria, int codigoGP, Obrigatoriedade obrigatoriedade) throws CaracterizacaoCTDuplicadaException {
         CaracterizacaoCT cct = findByCodigo(codigoGP);
         if (cct == null) {
-            CaracterizacaoCT caracterizacaoCT = new CaracterizacaoCT(codigoCCT, codigoGP, obrigatoriedade, codigoCompetenciaTecnica);
+            CaracterizacaoCT caracterizacaoCT = new CaracterizacaoCT(codigoCategoria, codigoGP, obrigatoriedade);
             this.listaCaracterizacaoCTS.add(caracterizacaoCT);
         }
 
@@ -39,14 +38,15 @@ public class RepositorioCaracterizacaoCTInMemory implements Serializable, Reposi
 
     @Override
     public boolean save(CaracterizacaoCT caracterizacaoCT) {
-        CaracterizacaoCT cct = findByCodigo(caracterizacaoCT.getCodigoCCT());
+        /*CaracterizacaoCT cct = findByCodigo(caracterizacaoCT.getCodigoCCT());
         if (cct == null) {
             this.listaCaracterizacaoCTS.add(caracterizacaoCT);
             return true;
         }
         else {
             throw new CaracterizacaoCTDuplicadaException(cct.getCodigoCCT() + "Lista de caracterizações já existente.");
-        }
+        }*/
+        return false;
     }
 
     @Override
@@ -55,25 +55,32 @@ public class RepositorioCaracterizacaoCTInMemory implements Serializable, Reposi
     }
 
     @Override
-    public List<CaracterizacaoCT> findByCompetenciaTecnica(List<String> codigoCompetenciasTecnicas) {
+    public List<CaracterizacaoCT> findByCategoria(String codigoCategoria) {
+
         ArrayList<CaracterizacaoCT> caracterizacaoCTSbyCompetenciaTecnica = new ArrayList<>();
 
         for (CaracterizacaoCT cct : listaCaracterizacaoCTS) {
-            if (cct.getCodigoCompetenciaTecnica().equals(codigoCompetenciasTecnicas)) {
+            if (cct.getCodigoCategoria().equals(codigoCategoria)) {
                 caracterizacaoCTSbyCompetenciaTecnica.add(cct);
             }
         }
         return caracterizacaoCTSbyCompetenciaTecnica;
     }
 
-    public CaracterizacaoCT findByCodigo(String codigo) {
-        for (int i = 0; i < this.listaCaracterizacaoCTS.size() ; i++) {
+
+    public CaracterizacaoCT findByCodigo(int codigo) {
+        /*for (int i = 0; i < this.listaCaracterizacaoCTS.size() ; i++) {
             CaracterizacaoCT cct = this.listaCaracterizacaoCTS.get(i);
             if (cct.getCodigoCCT().equals(codigo)) {
                 return cct;
             }
-        }
+        }*/
         return null;
+    }
+
+    @Override
+    public CaracterizacaoCT findByCategoriaEGrau(String codigoCategoria, int codigoGP) throws SQLException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

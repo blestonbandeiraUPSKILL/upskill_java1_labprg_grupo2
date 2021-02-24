@@ -4,7 +4,9 @@ CREATE OR REPLACE PROCEDURE createCategoria(
     p_descDetalhada categoria.descdetalhada%type,
     p_codigoAreaActividade areaactividade.codigoareaactividade%type
     )
+    
 IS
+    
     
 BEGIN
 
@@ -12,6 +14,9 @@ BEGIN
         (codigoCategoria, descbreve, descdetalhada, codigoareaactividade)
     VALUES
         (p_codigoCategoria, p_descbreve, p_descdetalhada, p_codigoareaactividade);
+   
+        
+    
         
 END;
 /

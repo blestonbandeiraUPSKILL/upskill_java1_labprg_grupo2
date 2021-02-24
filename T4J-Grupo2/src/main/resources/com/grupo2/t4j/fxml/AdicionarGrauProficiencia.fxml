@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -8,10 +13,13 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: c4c4c4;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.AdicionarGrauProficienciaUI">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="AnchorPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.AdicionarGrauProficienciaUI">
    <children>
       <ListView fx:id="listViewGrausAdicionados" layoutX="16.0" layoutY="100.0" prefHeight="200.0" prefWidth="236.0" />
-      <Label layoutX="44.0" layoutY="75.0" text="Graus de Proficiência Adicionados" />
+      <Label layoutX="16.0" layoutY="73.0" text="Graus de Proficiência Adicionados">
+         <font>
+            <Font size="16.0" />
+         </font></Label>
       <Label layoutX="297.0" layoutY="162.0" text="Valor">
          <font>
             <Font name="Calibri" size="14.0" />
@@ -22,15 +30,21 @@
             <Font name="Calibri" size="14.0" />
          </font></Label>
       <TextField fx:id="txtDesignacao" layoutX="288.0" layoutY="255.0" />
-      <Button fx:id="btnAdicionarGrau" layoutX="488.0" layoutY="187.0" mnemonicParsing="false" onAction="#adicionarGrauAction" text="Adicionar">
+      <Button fx:id="btnAdicionarGrau" layoutX="435.0" layoutY="300.0" mnemonicParsing="false" onAction="#adicionarGrauAction" styleClass="btnConfirmar" text="Adicionar">
          <font>
             <Font name="Calibri" size="14.0" />
-         </font></Button>
-      <Button fx:id="btnConcluir" layoutX="510.0" layoutY="358.0" mnemonicParsing="false" onAction="#concluirAction" text="Concluir">
+         </font>
+         <tooltip>
+            <Tooltip text="Adicionar" />
+         </tooltip></Button>
+      <Button fx:id="btnConcluir" layoutX="606.0" layoutY="351.0" mnemonicParsing="false" onAction="#concluirAction" text="Concluir">
          <font>
             <Font name="Calibri" size="14.0" />
-         </font></Button>
-      <Label layoutX="420.0" layoutY="-2.0" style="-fx-background-color: #000000;" text="Área do Administrativo" textFill="WHITE">
+         </font>
+         <tooltip>
+            <Tooltip text="Concluir" />
+         </tooltip></Button>
+      <Label layoutX="420.0" layoutY="-2.0" styleClass="lblUser" text="Bem-vindo à Área do Administrativo" textFill="WHITE">
          <font>
             <Font name="Calibri" size="18.0" />
          </font>
