@@ -9,52 +9,56 @@
 <?import javafx.scene.layout.*?>
 
 <BorderPane stylesheets="@../style/app.css" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="BorderPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.ConsultarCategoriaUI">
-   <center>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="AnchorPane" BorderPane.alignment="CENTER">
-         <children>
-            <Label style="-fx-background-color: #000000;" text="Categoria de Tarefa" textFill="WHITE">
-               <font>
-                  <Font name="Calibri" size="18.0" />
-               </font>
-               <padding>
-                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-               </padding>
-            </Label>
-            <ListView fx:id="listViewCaracterizacao" layoutX="341.0" layoutY="52.0" prefHeight="240.0" prefWidth="247.0" />
-            <Label layoutX="341.0" layoutY="24.0" text="Competências Técnicas Necessárias" />
-            <Label layoutX="14.0" layoutY="44.0" text="Área de Actividade:" />
-            <TextField fx:id="txtAreaActividade" layoutX="133.0" layoutY="40.0" prefHeight="25.0" prefWidth="167.0" />
-            <Label layoutX="14.0" layoutY="90.0" text="Código da Categoria:" />
-            <Label layoutX="14.0" layoutY="135.0" text="Descrição Breve:" />
-            <Label layoutX="14.0" layoutY="181.0" text="Descrição Detalhada:" />
-            <TextField fx:id="txtCodigo" layoutX="133.0" layoutY="86.0" prefHeight="25.0" prefWidth="166.0" />
-            <TextArea fx:id="txtDescDetalhada" layoutX="43.0" layoutY="204.0" prefHeight="90.0" prefWidth="261.0" />
-            <TextField fx:id="txtDescBreve" layoutX="117.0" layoutY="131.0" prefHeight="25.0" prefWidth="182.0" />
-         </children>
-      </AnchorPane>
-   </center>
-   <bottom>
-      <FlowPane alignment="CENTER_RIGHT" prefHeight="64.0" prefWidth="600.0" styleClass="FlowPane" BorderPane.alignment="CENTER">
-         <children>
-            <Button fx:id="btnVoltar" mnemonicParsing="false" onAction="#voltarAtras" styleClass="btnConfirmar" text="Voltar">
-               <FlowPane.margin>
-                  <Insets right="10.0" />
-               </FlowPane.margin>
-               <tooltip>
-                  <Tooltip text="Voltar" />
-               </tooltip>
-            </Button>
-         </children>
-      </FlowPane>
-   </bottom>
-   <top>
-      <Label styleClass="lblUser" text="Área do Administrativo" textFill="WHITE" BorderPane.alignment="CENTER_RIGHT">
-         <font>
-            <Font name="Calibri" size="18.0" />
-         </font>
-         <padding>
-            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-         </padding>
-      </Label>
-   </top>
+    <center>
+        <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="AnchorPane" BorderPane.alignment="CENTER">
+            <children>
+                <Label style="-fx-background-color: #000000;" text="Categoria de Tarefa" textFill="WHITE">
+                    <font>
+                        <Font name="Calibri" size="18.0" />
+                    </font>
+                    <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                    </padding>
+                </Label>
+                <ListView fx:id="listViewCaracterizacao" layoutX="341.0" layoutY="52.0" prefHeight="240.0" prefWidth="247.0" />
+                <Label layoutX="341.0" layoutY="24.0" text="Competências Técnicas Necessárias" />
+                <Label layoutX="14.0" layoutY="44.0" text="Área de Actividade:" />
+                <TextField fx:id="txtAreaActividade" layoutX="133.0" layoutY="40.0" prefHeight="25.0" prefWidth="167.0" />
+                <Label layoutX="14.0" layoutY="90.0" text="Código da Categoria:" />
+                <Label layoutX="14.0" layoutY="135.0" text="Descrição Breve:" />
+                <Label layoutX="14.0" layoutY="181.0" text="Descrição Detalhada:" />
+                <TextField fx:id="txtCodigo" layoutX="133.0" layoutY="86.0" prefHeight="25.0" prefWidth="166.0" />
+                <TextArea fx:id="txtDescDetalhada" layoutX="43.0" layoutY="204.0" prefHeight="90.0" prefWidth="261.0" />
+                <TextField fx:id="txtDescBreve" layoutX="117.0" layoutY="131.0" prefHeight="25.0" prefWidth="182.0" />
+            </children>
+        </AnchorPane>
+    </center>
+    <bottom>
+        <FlowPane alignment="CENTER_RIGHT" prefHeight="64.0" prefWidth="600.0" styleClass="FlowPane" BorderPane.alignment="CENTER">
+            <children>
+                <Button fx:id="btnVoltar" mnemonicParsing="false" onAction="#voltarAtras" styleClass="btnConfirmar" text="Voltar">
+                    <FlowPane.margin>
+                        <Insets right="10.0" />
+                    </FlowPane.margin>
+                    <tooltip>
+                        <Tooltip text="Voltar">
+                            <font>
+                                <Font name="Calibri Italic" size="12.0" />
+                            </font>
+                        </Tooltip>
+                    </tooltip>
+                </Button>
+            </children>
+        </FlowPane>
+    </bottom>
+    <top>
+        <Label styleClass="lblUser" text="Área do Administrativo" textFill="WHITE" BorderPane.alignment="CENTER_RIGHT">
+            <font>
+                <Font name="Calibri" size="18.0" />
+            </font>
+            <padding>
+                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+            </padding>
+        </Label>
+    </top>
 </BorderPane>
