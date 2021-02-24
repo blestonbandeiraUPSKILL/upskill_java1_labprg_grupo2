@@ -51,4 +51,8 @@ public class RegistarTarefaController {
     public List<Tarefa> findByCategoria(String codigoCategoria) throws SQLException {
         return repositorioTarefa.findByCategoria(codigoCategoria);
     }
+
+    public List<Tarefa> findByColaboradorENif(String email, String nifOrganizacao) throws SQLException{
+        return repositorioTarefa.findByColaboradorENif(email, nifOrganizacao);
+    }
 }
