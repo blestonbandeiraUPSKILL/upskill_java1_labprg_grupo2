@@ -32,6 +32,7 @@ public class ColaboradorLogadoUI implements Initializable {
     private Scene sceneStartingPage;
     private Stage adicionarStage;
     private Scene sceneAddTarefa;
+    private Scene scenePublicarTarefa;
 
     private static final String CABECALHO_IMPORTAR = "Importar Lista.";
 
@@ -41,6 +42,7 @@ public class ColaboradorLogadoUI implements Initializable {
     @FXML ComboBox<AreaActividade> cmbAreaActividadeEspecificarTarefa;
     @FXML ComboBox<Categoria> cmbCategoriaTarefa;
     @FXML ListView<Tarefa> listViewTarefas;
+    @FXML ComboBox<?> cmbFiltroTarefas;
 
 
     public void associarParentUI(StartingPageUI startingPageUI) {
@@ -196,6 +198,29 @@ public class ColaboradorLogadoUI implements Initializable {
 
     }
 
+    
+    public void navigatePublicarTarefa(ActionEvent event) {
+        try {
+            FXMLLoader loaderPublicarTarefa = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/PublicarTarefaScene.fxml"));
+            Parent rootPublicarTarefa = loaderPublicarTarefa.load();
+            scenePublicarTarefa = new Scene(rootPublicarTarefa);
+            scenePublicarTarefa.getStylesheets().add("/com/grupo2/t4j/style/app.css");
+            PublicarTarefaUI PublicarTarefaUI = loaderPublicarTarefa.getController();
+            PublicarTarefaUI.associarParentUI(this);
+
+            adicionarStage.setScene(scenePublicarTarefa);
+            adicionarStage.setTitle("Publicar Tarefa");
+            adicionarStage.show();
+
+        } catch (IOException exception) {
+            exception.printStackTrace();
+            AlertsUI.criarAlerta(Alert.AlertType.ERROR,
+                    MainApp.TITULO_APLICACAO,
+                    "Erro",
+                    exception.getMessage());
+        }
+
+    }
 
     ////////////////// Ficheiros //////////////////
 
