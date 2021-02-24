@@ -18,128 +18,128 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="700.0" styleClass="BorderPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.GestorLogadoUI">
-   <top>
-      <Label fx:id="lblUser" styleClass="lblUser" text="Bem-vindo à Área do Gestor" textFill="WHITE" BorderPane.alignment="CENTER_RIGHT">
-         <padding>
-            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-         </padding>
-         <font>
-            <Font name="Calibri Italic" size="16.0" />
-         </font>
-      </Label>
-   </top>
-   <center>
-      <BorderPane prefHeight="400.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-         <center>
-            <TabPane prefHeight="385.0" prefWidth="596.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
-              <tabs>
-                 <Tab text="Lista de Tarefas">
-                    <content>
-                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="AnchorPane">
-                          <children>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="700.0" styleClass="BorderPane" stylesheets="@../style/app.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.GestorLogadoUI">
+    <top>
+        <Label fx:id="lblUser" styleClass="lblUser" text="Bem-vindo à Área do Gestor" textFill="WHITE" BorderPane.alignment="CENTER_RIGHT">
+            <padding>
+                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+            </padding>
+            <font>
+                <Font name="Calibri Italic" size="16.0" />
+            </font>
+        </Label>
+    </top>
+    <center>
+        <BorderPane prefHeight="400.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <center>
+                <TabPane prefHeight="385.0" prefWidth="596.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+                    <tabs>
+                        <Tab text="Lista de Tarefas">
+                            <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="AnchorPane">
+                                    <children>
 
 
-                             <VBox alignment="CENTER" layoutX="560.0" layoutY="201.0" AnchorPane.bottomAnchor="101.66666666666669" AnchorPane.rightAnchor="32.0" />
+                                        <VBox alignment="CENTER" layoutX="560.0" layoutY="201.0" AnchorPane.bottomAnchor="101.66666666666669" AnchorPane.rightAnchor="32.0" />
 
-                             <ListView fx:id="listViewTarefas" layoutX="22.0" layoutY="140.0" prefHeight="313.0" prefWidth="511.0" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="22.0" AnchorPane.rightAnchor="167.0" AnchorPane.topAnchor="140.0" />
-                             <Label layoutX="32.0" layoutY="103.0" prefHeight="33.0" prefWidth="215.0" text="Tarefas Registadas" AnchorPane.bottomAnchor="353.0" AnchorPane.leftAnchor="32.0" AnchorPane.rightAnchor="453.0" AnchorPane.topAnchor="103.0">
-                                <font>
-                                   <Font name="Calibri" size="15.0" />
-                                </font>
-                             </Label>
-                             <Label alignment="CENTER" layoutX="24.0" layoutY="27.0" text="Seleccionar Área de Actividade">
-                                <font>
-                                   <Font name="Calibri" size="14.0" />
-                                </font>
-                             </Label>
-                             <VBox layoutX="274.0" layoutY="24.0">
-                                <children>
-                                   <ComboBox fx:id="cmbAreaActividade" prefHeight="25.0" prefWidth="200.0" promptText="Escolha a Área de Actividade" VBox.vgrow="NEVER">
-                                      <VBox.margin>
-                                         <Insets bottom="10.0" />
-                                      </VBox.margin>
-                                   </ComboBox>
-                                   <ComboBox fx:id="cmbCategoriaTarefa" prefWidth="200.0" promptText="Escolha a Categoria de Tarefa" VBox.vgrow="NEVER">
-                                      <VBox.margin>
-                                         <Insets top="10.0" />
-                                      </VBox.margin>
-                                   </ComboBox>
-                                </children>
-                             </VBox>
-                             <Label alignment="CENTER" layoutX="22.0" layoutY="76.0" text="Seleccionar Categoria de Tarefa">
-                                <font>
-                                   <Font name="Calibri" size="14.0" />
-                                </font>
-                             </Label>
-                              <Button fx:id="btnAddTarefa" layoutX="578.0" layoutY="410.0" mnemonicParsing="false" onAction="#navigateAddTarefa" style="-fx-background-color: #000000;" text="Adicionar" textFill="WHITE">
-                                 <font>
-                                    <Font name="Calibri" size="14.0" />
-                                 </font>
-                                 <tooltip>
-                                    <Tooltip text="Adicionar Colaborador">
-                                       <font>
-                                          <Font size="12.0" />
-                                       </font>
-                                    </Tooltip>
-                                 </tooltip>
-                              </Button>
-                          </children>
-                       </AnchorPane>
-                    </content>
-                 </Tab>
-                  <Tab text="Registar Colaborador">
-                     <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="AnchorPane">
-                           <children>
-                              <Label layoutX="23.0" layoutY="104.0" prefHeight="33.0" prefWidth="215.0" text="Colaboradores Registados" AnchorPane.bottomAnchor="352.0" AnchorPane.leftAnchor="23.0" AnchorPane.rightAnchor="462.0" AnchorPane.topAnchor="104.0">
-                                 <font>
-                                    <Font name="Calibri" size="15.0" />
-                                 </font>
-                              </Label>
-                              <ListView fx:id="listViewColaboradores" layoutX="23.0" layoutY="141.0" prefHeight="313.0" prefWidth="508.0" AnchorPane.bottomAnchor="39.0" AnchorPane.leftAnchor="23.0" AnchorPane.rightAnchor="169.0" AnchorPane.topAnchor="141.0" />
-                              <VBox alignment="CENTER" layoutX="592.0" layoutY="308.0" AnchorPane.bottomAnchor="155.33333333333337" AnchorPane.rightAnchor="41.33333333333337" />
-                              <Button fx:id="btnAddColaborador" layoutX="576.0" layoutY="409.0" mnemonicParsing="false" onAction="#navigateAddColaborador" style="-fx-background-color: #000000;" text="Adicionar" textFill="WHITE">
+                                        <ListView fx:id="listViewTarefas" layoutX="22.0" layoutY="140.0" prefHeight="313.0" prefWidth="511.0" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="22.0" AnchorPane.rightAnchor="167.0" AnchorPane.topAnchor="140.0" />
+                                        <Label layoutX="32.0" layoutY="103.0" prefHeight="33.0" prefWidth="215.0" text="Tarefas Registadas" AnchorPane.bottomAnchor="353.0" AnchorPane.leftAnchor="32.0" AnchorPane.rightAnchor="453.0" AnchorPane.topAnchor="103.0">
+                                            <font>
+                                                <Font name="Calibri" size="15.0" />
+                                            </font>
+                                        </Label>
+                                        <Label alignment="CENTER" layoutX="24.0" layoutY="27.0" text="Seleccionar Área de Actividade">
+                                            <font>
+                                                <Font name="Calibri" size="14.0" />
+                                            </font>
+                                        </Label>
+                                        <VBox layoutX="274.0" layoutY="24.0">
+                                            <children>
+                                                <ComboBox fx:id="cmbAreaActividade" prefHeight="25.0" prefWidth="200.0" promptText="Escolha a Área de Actividade" VBox.vgrow="NEVER">
+                                                    <VBox.margin>
+                                                        <Insets bottom="10.0" />
+                                                    </VBox.margin>
+                                                </ComboBox>
+                                                <ComboBox fx:id="cmbCategoriaTarefa" prefWidth="200.0" promptText="Escolha a Categoria de Tarefa" VBox.vgrow="NEVER">
+                                                    <VBox.margin>
+                                                        <Insets top="10.0" />
+                                                    </VBox.margin>
+                                                </ComboBox>
+                                            </children>
+                                        </VBox>
+                                        <Label alignment="CENTER" layoutX="22.0" layoutY="76.0" text="Seleccionar Categoria de Tarefa">
+                                            <font>
+                                                <Font name="Calibri" size="14.0" />
+                                            </font>
+                                        </Label>
+                                        <Button fx:id="btnAddTarefa" layoutX="578.0" layoutY="410.0" mnemonicParsing="false" onAction="#navigateAddTarefa" styleClass="btnNovaTarefa" text="Adicionar" textFill="WHITE">
+                                            <font>
+                                                <Font name="Calibri" size="14.0" />
+                                            </font>
+                                            <tooltip>
+                                                <Tooltip text="Adicionar Tarefa">
+                                                    <font>
+                                                        <Font name="Calibri Italic" size="12.0" />
+                                                    </font>
+                                                </Tooltip>
+                                            </tooltip>
+                                        </Button>
+                                    </children>
+                                </AnchorPane>
+                            </content>
+                        </Tab>
+                        <Tab text="Registar Colaborador">
+                            <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="AnchorPane">
+                                    <children>
+                                        <Label layoutX="23.0" layoutY="104.0" prefHeight="33.0" prefWidth="215.0" text="Colaboradores Registados" AnchorPane.bottomAnchor="352.0" AnchorPane.leftAnchor="23.0" AnchorPane.rightAnchor="462.0" AnchorPane.topAnchor="104.0">
+                                            <font>
+                                                <Font name="Calibri" size="15.0" />
+                                            </font>
+                                        </Label>
+                                        <ListView fx:id="listViewColaboradores" layoutX="23.0" layoutY="141.0" prefHeight="313.0" prefWidth="508.0" AnchorPane.bottomAnchor="39.0" AnchorPane.leftAnchor="23.0" AnchorPane.rightAnchor="169.0" AnchorPane.topAnchor="141.0" />
+                                        <VBox alignment="CENTER" layoutX="592.0" layoutY="308.0" AnchorPane.bottomAnchor="155.33333333333337" AnchorPane.rightAnchor="41.33333333333337" />
+                                        <Button fx:id="btnAddColaborador" layoutX="576.0" layoutY="409.0" mnemonicParsing="false" onAction="#navigateAddColaborador" styleClass="btnRegistarColaborador" text="Adicionar" textFill="WHITE">
 
-                                 <font>
-                                    <Font name="Calibri" size="14.0" />
-                                 </font>
-                                 <tooltip>
-                                    <Tooltip text="Adicionar Colaborador">
-                                       <font>
-                                          <Font size="12.0" />
-                                       </font>
-                                    </Tooltip>
-                                 </tooltip>
-                              </Button>
-                           </children>
-                        </AnchorPane>
-                     </content>
-                  </Tab>
-              </tabs>
-            </TabPane>
-         </center>
-      </BorderPane>
-   </center>
-   <bottom>
-      <FlowPane alignment="CENTER_RIGHT" prefHeight="47.0" prefWidth="700.0" styleClass="FlowPane" BorderPane.alignment="CENTER_RIGHT">
-         <children>
-           <Button fx:id="btnLogout" mnemonicParsing="false" onAction="#logout" prefHeight="27.0" prefWidth="70.0" styleClass="btnSair" text="Sair">
-              <font>
-                 <Font name="Calibri" size="16.0" />
-              </font>
-               <FlowPane.margin>
-                  <Insets bottom="20.0" right="20.0" />
-               </FlowPane.margin>
-               <tooltip>
-                  <Tooltip text="Logout">
-                     <font>
-                        <Font size="12.0" />
-                     </font>
-                  </Tooltip>
-               </tooltip>
-           </Button>
-         </children>
-      </FlowPane>
-   </bottom>
+                                            <font>
+                                                <Font name="Calibri" size="14.0" />
+                                            </font>
+                                            <tooltip>
+                                                <Tooltip text="Adicionar Colaborador">
+                                                    <font>
+                                                        <Font name="Calibri Italic" size="12.0" />
+                                                    </font>
+                                                </Tooltip>
+                                            </tooltip>
+                                        </Button>
+                                    </children>
+                                </AnchorPane>
+                            </content>
+                        </Tab>
+                    </tabs>
+                </TabPane>
+            </center>
+        </BorderPane>
+    </center>
+    <bottom>
+        <FlowPane alignment="CENTER_RIGHT" prefHeight="47.0" prefWidth="700.0" styleClass="FlowPane" BorderPane.alignment="CENTER_RIGHT">
+            <children>
+                <Button fx:id="btnLogout" mnemonicParsing="false" onAction="#logout" prefHeight="27.0" prefWidth="70.0" styleClass="btnSair" text="Sair">
+                    <font>
+                        <Font name="Calibri" size="16.0" />
+                    </font>
+                    <FlowPane.margin>
+                        <Insets bottom="20.0" right="20.0" />
+                    </FlowPane.margin>
+                    <tooltip>
+                        <Tooltip text="Sair">
+                            <font>
+                                <Font name="Calibri Italic" size="12.0" />
+                            </font>
+                        </Tooltip>
+                    </tooltip>
+                </Button>
+            </children>
+        </FlowPane>
+    </bottom>
 </BorderPane>

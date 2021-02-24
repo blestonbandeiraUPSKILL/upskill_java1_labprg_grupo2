@@ -21,7 +21,7 @@ public class TipoRegimento {
     /**
      * A designação do tipo de seriação adotado para este tipo de regimento.
      */
-    private DesignacaoSeriacao designacao;
+    private String designacao;
     
     /**
      * As regras aplicáveis a este tipo de regimento.
@@ -34,7 +34,7 @@ public class TipoRegimento {
      * @param designacao - a designação do tipo de seriação adotado para este tipo de regimento.
      * @param descricaoRegras - as regras aplicáveis a este tipo de regimento.
      */
-    public TipoRegimento(String idTipoRegimento, DesignacaoSeriacao designacao,
+    public TipoRegimento(String idTipoRegimento, String designacao,
             String descricaoRegras){
         setIdTipoRegimento(idTipoRegimento);
         setDesignacaoSeriacao(designacao);
@@ -63,7 +63,7 @@ public class TipoRegimento {
      * Define a designação do tipo de seriação adotado para este tipo de regimento.
      * @param designacao
      */
-    public void setDesignacaoSeriacao(DesignacaoSeriacao designacao){
+    public void setDesignacaoSeriacao(String designacao){
         this.designacao = designacao;
     }
     
@@ -90,7 +90,7 @@ public class TipoRegimento {
      * Devolve a designação do tipo de seriação adotado para este tipo de regimento.
      * @return designacao
      */
-    public DesignacaoSeriacao getDesignacaoSeriacao(){
+    public String getDesignacaoSeriacao(){
         return designacao;
     }
     
@@ -110,7 +110,7 @@ public class TipoRegimento {
     @Override
     public String toString(){
         return String.format("ID: %-12s |Designação: %-20s", idTipoRegimento,
-                designacao.toString());
+                  designacao);
     }
     
     /**

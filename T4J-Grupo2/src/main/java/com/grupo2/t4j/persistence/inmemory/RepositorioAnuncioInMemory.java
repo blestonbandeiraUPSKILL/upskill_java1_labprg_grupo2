@@ -14,6 +14,7 @@ import com.grupo2.t4j.exception.AnuncioDuplicadoException;
 import com.grupo2.t4j.model.*;
 import com.grupo2.t4j.persistence.RepositorioAnuncio;
 import java.io.Serializable;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 public class RepositorioAnuncioInMemory implements Serializable, RepositorioAnuncio {
@@ -106,15 +107,20 @@ public class RepositorioAnuncioInMemory implements Serializable, RepositorioAnun
 
     @Override
     public Anuncio findAnuncioByIdTarefa(String idTarefa){
-        Anuncio anuncio = null ;
+        /*Anuncio anuncio = null ;
         for (int i = 0; i < this.listaAnuncios.size(); i++) {
             anuncio = this.listaAnuncios.get(i);
             if (anuncio.getIdTarefa().equals(idTarefa)) {
                 return anuncio;
             }
-        }
+        }*/
         return null;
         
+    }
+
+    @Override
+    public ArrayList<TipoRegimento> getAllRegimento() throws SQLException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     

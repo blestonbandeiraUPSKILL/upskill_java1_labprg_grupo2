@@ -18,7 +18,7 @@
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="500.0" maxWidth="700.0" minHeight="-Infinity" minWidth="-Infinity" styleClass="BorderPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.AdicionarFreelancerUI">
+<BorderPane maxHeight="500.0" maxWidth="700.0" minHeight="-Infinity" minWidth="-Infinity" styleClass="BorderPane" stylesheets="@../style/app.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.AdicionarFreelancerUI">
    <center>
       <BorderPane maxHeight="500.0" styleClass="BorderPane" BorderPane.alignment="CENTER">
          <top>
@@ -181,9 +181,13 @@
                                  <font>
                                     <Font name="Calibri" size="14.0" />
                                  </font>
-                                 <tooltip>
-                                    <Tooltip text="Cancelar" />
-                                 </tooltip>
+                            <tooltip>
+                                <Tooltip text="Cancelar">
+                                    <font>
+                                        <Font name="Calibri Italic" size="12.0" />
+                                    </font>
+                                </Tooltip>
+                            </tooltip>
                               </Button>
                            </children>
                         </AnchorPane>
@@ -202,20 +206,28 @@
                      <FlowPane.margin>
                         <Insets />
                      </FlowPane.margin>
-                     <tooltip>
-                        <Tooltip text="Adicionar" />
-                     </tooltip>
+                            <tooltip>
+                                <Tooltip text="Registar">
+                                    <font>
+                                        <Font name="Calibri Italic" size="12.0" />
+                                    </font>
+                                </Tooltip>
+                            </tooltip>
                   </Button>
-                  <Button fx:id="btnSair" mnemonicParsing="false" onAction="#sairAction" styleClass="btnSair" text="Cancelar">
+                  <Button fx:id="btnSair" mnemonicParsing="false" onAction="#sairAction" styleClass="btnCancelar" text="Cancelar">
                      <font>
                         <Font name="Calibri" size="14.0" />
                      </font>
                      <FlowPane.margin>
                         <Insets left="10.0" right="10.0" />
                      </FlowPane.margin>
-                     <tooltip>
-                        <Tooltip text="Sair" />
-                     </tooltip>
+                            <tooltip>
+                                <Tooltip text="Sair">
+                                    <font>
+                                        <Font name="Calibri Italic" size="12.0" />
+                                    </font>
+                                </Tooltip>
+                            </tooltip>
                   </Button>
                </children>
             </FlowPane>
