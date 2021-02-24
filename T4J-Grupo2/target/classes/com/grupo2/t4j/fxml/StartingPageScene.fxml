@@ -34,7 +34,7 @@
             <RowConstraints maxHeight="171.0" minHeight="10.0" prefHeight="70.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="115.0" prefWidth="115.0" text="Login" GridPane.columnIndex="1">
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="115.0" prefWidth="115.0" GridPane.columnIndex="1">
                <GridPane.margin>
                   <Insets />
                </GridPane.margin>
@@ -46,14 +46,14 @@
                <font>
                   <Font name="Calibri" size="14.0" />
                </font></TextField>
-            <PasswordField fx:id="txtPasswordLogin" maxHeight="49.0" maxWidth="200.0" prefHeight="49.0" prefWidth="200.0" promptText="password" GridPane.columnIndex="1" GridPane.rowIndex="3">
+            <PasswordField fx:id="txtPasswordLogin" maxHeight="49.0" maxWidth="200.0" prefHeight="49.0" prefWidth="200.0" promptText="password" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <font>
                   <Font name="Calibri" size="14.0" />
                </font>
             </PasswordField>
-            <Label fx:id="lblLogin" alignment="CENTER" contentDisplay="CENTER" layoutX="253.0" layoutY="10.0" prefHeight="115.0" prefWidth="115.0" text="Login" GridPane.columnIndex="1">
+            <Label fx:id="lblLogin" alignment="CENTER" contentDisplay="CENTER" layoutX="253.0" layoutY="10.0" prefHeight="115.0" prefWidth="115.0" text="Área de Login" GridPane.columnIndex="1">
                <font>
-                  <Font name="Calibri" size="24.0" />
+                  <Font name="Calibri" size="18.0" />
                </font>
             </Label>
          </children>
