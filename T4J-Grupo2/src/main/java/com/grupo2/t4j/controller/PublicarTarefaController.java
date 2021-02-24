@@ -5,9 +5,17 @@
  */
 package com.grupo2.t4j.controller;
 
+import com.grupo2.t4j.model.Anuncio;
 import com.grupo2.t4j.model.Data;
 import com.grupo2.t4j.model.DesignacaoSeriacao;
+import com.grupo2.t4j.model.TipoRegimento;
+import com.grupo2.t4j.persistence.FabricaRepositorios;
+import com.grupo2.t4j.persistence.RepositorioAnuncio;
+import com.grupo2.t4j.persistence.database.FabricaRepositoriosDatabase;
+import com.grupo2.t4j.persistence.inmemory.FabricaRepositoriosInMemory;
+import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.List;
 
 /**
  *
@@ -15,13 +23,16 @@ import java.time.LocalDate;
  */
 public class PublicarTarefaController {
 
+    //private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosInMemory();
+    private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosDatabase();
+    private RepositorioAnuncio repositorioAnuncio = fabricaRepositorios.getRepositorioAnuncio();
     
 
     public boolean publicarTarefa(String referencia, String nifOrganizacao, 
             LocalDate dtInicioPublicitacao, LocalDate dtFimPublicitacao, 
             LocalDate dtInicioCandidaturas, LocalDate dtFimCandidaturas, 
             LocalDate dtInicioSeriacao, LocalDate dtFimSeriacao, 
-            String regrasGerais, DesignacaoSeriacao designacaoSeriacao) {
+            String regrasGerais, TipoRegimento idTipoRegimento) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
@@ -33,6 +44,14 @@ public class PublicarTarefaController {
     public Data data(LocalDate localDate){
         Data data = new Data(localDate);
         return data;
+    }
+    
+    public List<Anuncio> getAll() {
+        return repositorioAnuncio.getAll();
+    }
+    
+    public List<TipoRegimento> getAllRegimento()throws SQLException {
+        return repositorioAnuncio.getAllRegimento();
     }
     
 }

@@ -15,7 +15,13 @@ import com.grupo2.t4j.model.Anuncio;
 import com.grupo2.t4j.model.Data;
 import com.grupo2.t4j.model.HabilitacaoAcademica;
 import com.grupo2.t4j.model.ReconhecimentoGP;
+import com.grupo2.t4j.model.TipoRegimento;
 import com.grupo2.t4j.persistence.RepositorioAnuncio;
+import com.grupo2.t4j.utils.DBConnectionHandler;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,6 +33,10 @@ public class RepositorioAnuncioDataBase implements RepositorioAnuncio {
      * registados todos os Anúncios
      */
     private static RepositorioAnuncioDataBase repositorioAnuncioDataBase;
+    
+    String jdbcUrl = "jdbc:oracle:thin:@vsrvbd1.dei.isep.ipp.pt:1521/pdborcl";
+    String username = "UPSKILL_BD_TURMA1_01";
+    String password = "qwerty";
 
     /**
      * Inicializa o Repositório de Anúncios
@@ -74,6 +84,44 @@ public class RepositorioAnuncioDataBase implements RepositorioAnuncio {
         return null;
     }
 
-    
+    public ArrayList<TipoRegimento> getAllRegimento()throws SQLException {
+        ArrayList<TipoRegimento> tiposRegimento = new ArrayList<>();
+
+        DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
+        Connection connection = dbConnectionHandler.openConnection();
+
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(
+                    "SELECT * FROM TipoRegimento"
+            );
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                String idTipoRegimento = resultSet.getString(1);
+                String designacao = resultSet.getString(2);
+                String descricaoRegras = resultSet.getString(3);
+                tiposRegimento.add(new TipoRegimento(idTipoRegimento, designacao,
+                        descricaoRegras));
+            }
+
+        }
+        catch (SQLException exception) {
+            exception.printStackTrace();
+            exception.getSQLState();
+            try {
+                System.err.print("Transaction is being rolled back");
+                connection.rollback();
+            }
+            catch (SQLException sqlException) {
+                sqlException.getErrorCode();
+            }
+
+        }
+        finally {
+            dbConnectionHandler.closeAll();
+        }
+        return tiposRegimento;
+    }
     
 }
