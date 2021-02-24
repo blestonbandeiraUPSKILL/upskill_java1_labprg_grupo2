@@ -74,7 +74,7 @@ public class AdicionarHabilitacaoAcademicaUI implements Initializable {
         registarFreelancerController = new RegistarFreelancerController();
         
         try {
-            updateListViewHabilitacaoFreelancer();
+            updateListViewHabilitacaoFreelancer(cmbEmailFreelancer.getSelectionModel().getSelectedItem());
         } catch (SQLException exception) {
             exception.printStackTrace();
         }
@@ -108,7 +108,7 @@ public class AdicionarHabilitacaoAcademicaUI implements Initializable {
                     Double.parseDouble(txtMedia.getText()), cmbEmailFreelancer.getSelectionModel().getSelectedItem());
 
             if(adicionou) {
-                updateListViewHabilitacaoFreelancer();
+                updateListViewHabilitacaoFreelancer(cmbEmailFreelancer.getSelectionModel().getSelectedItem());
             
                 AlertsUI.criarAlerta(Alert.AlertType.INFORMATION,
                     MainApp.TITULO_APLICACAO, "Registar Habilitação Acadêmica.",
@@ -153,8 +153,8 @@ public class AdicionarHabilitacaoAcademicaUI implements Initializable {
     }
     
     
-    public void updateListViewHabilitacaoFreelancer() throws SQLException {
-         listaHabilitacaoFreelancer.getItems().setAll(registarHabilitacaoAcademicaController.getAll());
+    public void updateListViewHabilitacaoFreelancer(String emailFreelancer) throws SQLException {
+         listaHabilitacaoFreelancer.getItems().setAll(registarHabilitacaoAcademicaController.getAllByEmail(emailFreelancer));
     }
     
     public void updateTxtNomeFreelancer(ActionEvent actionEvent) throws SQLException {
