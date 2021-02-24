@@ -89,7 +89,7 @@ public class AdicionarHabilitacaoAcademicaUI implements Initializable {
             public void handle(ActionEvent event) {
                 try {
                     updateTxtNomeFreelancer(event);
-                    //listaHabilitacaoFreelancer.
+                    //updateListViewHabilitacaoFreelancer();
                 } catch (SQLException exception) {
                     exception.printStackTrace();
                 }
@@ -110,7 +110,12 @@ public class AdicionarHabilitacaoAcademicaUI implements Initializable {
             if(adicionou) {
                 updateListViewHabilitacaoFreelancer(
                         cmbEmailFreelancer.getSelectionModel().getSelectedItem().getEmail().getEmailText());
-            
+                this.txtGrau.clear();
+                this.txtDesignacao.clear();
+                this.txtInstituicao.clear();
+                this.txtMedia.clear();
+                btnAddHabilitacao.setDisable(true);
+
                 AlertsUI.criarAlerta(Alert.AlertType.INFORMATION,
                     MainApp.TITULO_APLICACAO, "Registar Habilitação Académica.",
                     adicionou ? "Habilitação Académica registada com sucesso."

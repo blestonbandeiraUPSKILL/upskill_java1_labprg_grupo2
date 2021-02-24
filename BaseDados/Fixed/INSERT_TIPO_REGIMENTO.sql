@@ -9,3 +9,5 @@ VALUES
 INSERT INTO TipoRegimento (designacao, descricaoRegras)
 VALUES 
     ('Manual Obrigatória', 'O processo de seriação dos candidatos assenta em critérios subjetivos definidos pela organização e que esta, no final, a organização tem obrigatoriamente de atribuir a tarefa a um dos candidatos (desde que exista pelo menos um).');
+    
+SELECT * FROM TipoRegimento;

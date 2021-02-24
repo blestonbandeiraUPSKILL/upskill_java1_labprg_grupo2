@@ -248,7 +248,8 @@ public class RepositorioHabilitacaoAcademicaDatabase implements RepositorioHabil
                             "INNER JOIN FreelancerHabAcademica " +
                             "ON habilitacaoacademica.idhabilitacaoacademica = FreelancerHabAcademica.idhabilitacaoAcademica " +
                             "INNER JOIN Freelancer " +
-                            "ON FreelancerHabAcademica.emailFreelancer LIKE ?"
+                            "ON FreelancerHabAcademica.emailFreelancer LIKE Freelancer.email " +
+                            "WHERE freelancer.email LIKE ?"
             );
 
             preparedStatement.setString(1, email);
@@ -256,11 +257,13 @@ public class RepositorioHabilitacaoAcademicaDatabase implements RepositorioHabil
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while(resultSet.next()) {
+
                 int idHabilitacao = resultSet.getInt(1);
                 String grau = resultSet.getString(2);
                 String designacaoCurso = resultSet.getString(3);
                 String nomeInstituicao = resultSet.getString(4);
                 Double mediaCurso = resultSet.getDouble(5);
+
                 habilitacoesAcademicas.add(new HabilitacaoAcademica(idHabilitacao, grau, designacaoCurso, nomeInstituicao, mediaCurso));
             }
         }
