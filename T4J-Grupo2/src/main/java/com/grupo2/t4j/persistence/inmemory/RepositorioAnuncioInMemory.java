@@ -106,13 +106,13 @@ public class RepositorioAnuncioInMemory implements Serializable, RepositorioAnun
 
     @Override
     public Anuncio findAnuncioByIdTarefa(String idTarefa){
-        Anuncio anuncio = null ;
+        /*Anuncio anuncio = null ;
         for (int i = 0; i < this.listaAnuncios.size(); i++) {
             anuncio = this.listaAnuncios.get(i);
             if (anuncio.getIdTarefa().equals(idTarefa)) {
                 return anuncio;
             }
-        }
+        }*/
         return null;
         
     }

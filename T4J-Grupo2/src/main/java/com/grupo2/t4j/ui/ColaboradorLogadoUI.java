@@ -32,6 +32,7 @@ public class ColaboradorLogadoUI implements Initializable {
     private Scene sceneStartingPage;
     private Stage adicionarStage;
     private Scene sceneAddTarefa;
+    private Scene scenePublicarTarefa;
 
     private static final String CABECALHO_IMPORTAR = "Importar Lista.";
 
@@ -41,6 +42,9 @@ public class ColaboradorLogadoUI implements Initializable {
     @FXML ComboBox<AreaActividade> cmbAreaActividadeEspecificarTarefa;
     @FXML ComboBox<Categoria> cmbCategoriaTarefa;
     @FXML ListView<Tarefa> listViewTarefas;
+    @FXML ComboBox<FiltroTarefas> cmbFiltroTarefas;
+    @FXML Button btnPublicarTarefa;
+
 
 
     public void associarParentUI(StartingPageUI startingPageUI) {
@@ -59,6 +63,18 @@ public class ColaboradorLogadoUI implements Initializable {
         adicionarStage = new Stage();
         adicionarStage.initModality(Modality.APPLICATION_MODAL);
         adicionarStage.setResizable(false);
+        
+        cmbFiltroTarefas.getItems().setAll(FiltroTarefas.values());
+        cmbFiltroTarefas.setOnAction(new EventHandler<ActionEvent>() {
+           @Override
+           public void handle(ActionEvent event) {
+               try {
+                   aplicarFiltroTarefas(event);
+               } catch (SQLException exception) {
+                   exception.printStackTrace();
+               }
+           }
+           });
 
         try {
             cmbAreaActividade.getItems().setAll(registarAreaActividadeController.getAll());
@@ -196,7 +212,47 @@ public class ColaboradorLogadoUI implements Initializable {
 
 
     }
+    
+    public void aplicarFiltroTarefas(ActionEvent actionEvent)throws SQLException {
+        
+        switch (cmbFiltroTarefas.getSelectionModel().getSelectedItem()) {
+                    case TAREFAS_DA_ORGANIZACAO:
+                        updateListViewTarefas();
+                        break;
+                    case AS_MINHAS_TAREFAS:
+                        
+                        break;
+                    case TAREFAS_PUBLICADAS:
+                        
+                        break;
+                    case TAREFAS_PARA_PUBLICAR:
+                       btnPublicarTarefa.setDisable(false);
+                }
+    }
 
+    
+    public void navigatePublicarTarefa(ActionEvent event) {
+        try {
+            FXMLLoader loaderPublicarTarefa = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/PublicarTarefaScene.fxml"));
+            Parent rootPublicarTarefa = loaderPublicarTarefa.load();
+            scenePublicarTarefa = new Scene(rootPublicarTarefa);
+            scenePublicarTarefa.getStylesheets().add("/com/grupo2/t4j/style/app.css");
+            PublicarTarefaUI PublicarTarefaUI = loaderPublicarTarefa.getController();
+            PublicarTarefaUI.associarParentUI(this);
+
+            adicionarStage.setScene(scenePublicarTarefa);
+            adicionarStage.setTitle("Publicar Tarefa");
+            adicionarStage.show();
+
+        } catch (IOException exception) {
+            exception.printStackTrace();
+            AlertsUI.criarAlerta(Alert.AlertType.ERROR,
+                    MainApp.TITULO_APLICACAO,
+                    "Erro",
+                    exception.getMessage());
+        }
+
+    }
 
     ////////////////// Ficheiros //////////////////
 

@@ -27,11 +27,11 @@ public class RegistarAnuncioController {
     private FicheiroRepositorioAnuncio ficheiroAnuncio;
     private RepositorioAnuncioInMemory repositorioAnuncioIM;
 
-    public boolean registarAnuncio(String idAnuncio, Data dtInicioPublicitacao, 
+    public boolean registarAnuncio(String referenciaTarefa, String nifOrganizacao, Data dtInicioPublicitacao, 
             Data dtFimPublicitacao, Data dtInicioCandidatura, Data dtFimCandidatura, 
             Data dtInicioSeriacao, Data dtFimSeriacao) {
 
-        Anuncio anuncio = new Anuncio(idAnuncio, dtInicioPublicitacao, dtFimPublicitacao, 
+        Anuncio anuncio = new Anuncio(referenciaTarefa, nifOrganizacao, dtInicioPublicitacao, dtFimPublicitacao, 
                 dtInicioCandidatura, dtFimCandidatura, dtInicioSeriacao, dtFimSeriacao);
 
         return repositorioAnuncio.save(anuncio);
