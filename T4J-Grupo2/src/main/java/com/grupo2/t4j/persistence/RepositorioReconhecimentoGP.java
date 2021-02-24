@@ -18,7 +18,7 @@ import java.util.List;
  */
 public interface RepositorioReconhecimentoGP {
     
-    void save(String idGrauProficiencia, Data dataReconhecimento, 
+    boolean save(int idGrauProficiencia, Data dataReconhecimento, 
              Email emailFreelancer, String idCompetenciaTecnica) throws ReconhecimentoDuplicadoException,
             SQLException;
     

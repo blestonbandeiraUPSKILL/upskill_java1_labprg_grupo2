@@ -95,10 +95,22 @@ public class RepositorioHabilitacaoAcademicaInMemory  implements Serializable, R
         }
         return null;
     }
-
+    
     @Override
     public ArrayList<HabilitacaoAcademica> getAll() {
         return new ArrayList<HabilitacaoAcademica>(listaHabilitacoesAcademicas);
+    }
+    
+    @Override
+    public ArrayList<HabilitacaoAcademica> getAllByEmail(String emailFreelancer) {
+        ArrayList<HabilitacaoAcademica> listaHabilitacoesUmFreelancer = new ArrayList<>();
+        for(int i = 0; i < listaHabilitacoesAcademicas.size();i++){
+            HabilitacaoAcademica habilitacao = this.listaHabilitacoesAcademicas.get(i);
+            if (habilitacao.getEmailFreelancer().equals(emailFreelancer)){
+                listaHabilitacoesUmFreelancer.add(habilitacao);
+            }
+        }
+        return listaHabilitacoesUmFreelancer;     
     }
         
     public int adicionarListaHabilitacao(RepositorioHabilitacaoAcademicaInMemory outraListaHabilitacao) {

@@ -125,7 +125,7 @@ public class ReconhecimentoGP {
      */
     @Override
     public String toString(){
-        return String.format("ID GP: %-12s |ID CP: %-12s |Data Reconhecimento: %-12s "
+        return String.format("ID GP: %-10d |ID CP: %-12s |Data Reconhecimento: %-12s "
                 + "|Email Freelancer: %-20s",idGrauProficiencia, idCompetenciaTecnica,
                 dataReconhecimento,emailFreelancer);
     }    
