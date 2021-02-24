@@ -79,7 +79,6 @@ public class RegistarOrgEGestorUI implements Initializable {
         registarOrganizacaoController = new RegistarOrganizacaoController();
 
         try {
-
             boolean registou = registarOrganizacaoController.registarOrganizacao(
                     txtNif.getText(),
                     txtNomeOrganizacao.getText(),
@@ -97,8 +96,9 @@ public class RegistarOrgEGestorUI implements Initializable {
             );
 
             if(registou) {
-
-                txtPassword.setText(registarColaboradorController.findPassword(txtEmailGestor.getText()).getPasswordText());
+                txtPassword.setText(
+                        registarColaboradorController.findPassword(
+                                txtEmailGestor.getText()).getPasswordText());
                 btnAvancarRegisto.setDisable(true);
                 btnCancelarRegisto.setText("Voltar");
 

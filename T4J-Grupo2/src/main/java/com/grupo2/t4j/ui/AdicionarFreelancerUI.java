@@ -81,6 +81,11 @@ public class AdicionarFreelancerUI implements Initializable {
                 txtPassFreelancer.setText(
                         registarFreelancerController.findPassword(
                                 txtEmailFreelancer.getText()).getPasswordText());
+
+                btnAddFreelancer.setDisable(true);
+                btnAddFreelancer.disabledProperty();
+                btnSair.setText("Voltar");
+
                 administrativoLogadoUI.updateListViewFreelancer();
             
                 AlertsUI.criarAlerta(Alert.AlertType.INFORMATION,
