@@ -32,7 +32,7 @@ public class Freelancer extends Utilizador implements Serializable{
     /**
      * O endereço postal do Freelancer
      */
-    private int codigoEnderecoPostal;
+    private int idEnderecoPostal;
 
     private EnderecoPostal EnderecoPostal;
 
@@ -50,14 +50,14 @@ public class Freelancer extends Utilizador implements Serializable{
      * @param password - a password do Freelancer no formato da classe Password
      * @param telefone - o telefone do Freelancer
      * @param nif - o NIF do Freelancer
-     * @param codigoEnderecoPostal - o iD da classe EnderecoPostal
+     * @param idEnderecoPostal - o iD da classe EnderecoPostal
      */
     public Freelancer(Email email, String nome, Password password,
-            String nif, String telefone, int codigoEnderecoPostal){
+            String nif, String telefone, int idEnderecoPostal){
         super(email, nome, password);
         setNif(nif);
         setTelefone(telefone);
-        this.codigoEnderecoPostal = codigoEnderecoPostal;
+        this.idEnderecoPostal = idEnderecoPostal;
     }    
        
     /**
@@ -69,7 +69,7 @@ public class Freelancer extends Utilizador implements Serializable{
         super(freelancer.getEmail(), freelancer.getNome(), freelancer.getPassword());
         setNif(freelancer.nif);
         setTelefone(freelancer.telefone);
-        this.codigoEnderecoPostal = freelancer.codigoEnderecoPostal;
+        this.idEnderecoPostal = freelancer.idEnderecoPostal;
     }
 
     public Freelancer(String email, String nome, String nif, String telefone, String password, String arruamento, String numeroPorta, String localidade, String codigoPostal) {
@@ -87,6 +87,18 @@ public class Freelancer extends Utilizador implements Serializable{
         setTelefone(telefone);
         setNif(nif);
         setEnderecoPostal(new EnderecoPostal(arruamento, numeroPorta, localidade, codigoPostal));
+    }
+
+    public Freelancer(String email, String nome, String telefone, String nif, int idEnderecoPostal) {
+        setEmail(new Email(email));
+        setNome(nome);
+        setTelefone(telefone);
+        setNif(nif);
+        setidEnderecoPostal(idEnderecoPostal);
+    }
+
+    private void setidEnderecoPostal(int idEnderecoPostal) {
+        this.idEnderecoPostal = idEnderecoPostal;
     }
 
     private void setEnderecoPostal(EnderecoPostal enderecoPostal) {
@@ -142,7 +154,7 @@ public class Freelancer extends Utilizador implements Serializable{
      * @return codigoEnderecoPostal
      */
     public int getEnderecoFreelancer(){
-        return codigoEnderecoPostal;
+        return idEnderecoPostal;
     }
     
     /**
@@ -164,6 +176,6 @@ public class Freelancer extends Utilizador implements Serializable{
         return String.format("Nome freelancer: %s  %nEmail: %s"
                 + "%s %nNIF: %s %nTelefone: %s %nEndereço Postal: %d",
                 super.getNome(), super.getEmail().getEmailText(), 
-                nif, telefone, codigoEnderecoPostal);
+                nif, telefone, idEnderecoPostal);
     }   
  }

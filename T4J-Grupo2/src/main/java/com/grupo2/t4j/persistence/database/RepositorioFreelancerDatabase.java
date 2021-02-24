@@ -143,14 +143,13 @@ public class RepositorioFreelancerDatabase implements RepositorioFreelancer{
 
         PreparedStatement preparedStatement = connection.prepareStatement(
                 "SELECT utilizador.password FROM Utilizador " +
-                        "INNER JOIN Freelancer ON utilizador.email  LIKE freelancer.email "
+                        "INNER JOIN Freelancer ON freelancer.email LIKE ? "
         );
 
         try {
             connection.setAutoCommit(false);
 
             preparedStatement.setString(1, email);
-
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
@@ -206,10 +205,9 @@ public class RepositorioFreelancerDatabase implements RepositorioFreelancer{
 
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(
-                    "SELECT Freelancer.email, Freelancer.telefone, Freelancer.nif, Utilizador.nome " +
+                    "SELECT Freelancer.email, Freelancer.telefone, Freelancer.nif, Utilizador.nome, Freelancer.idEnderecoPostal " +
                             "FROM Freelancer INNER JOIN Utilizador " +
-                            "ON freelancer.email LIKE utilizador.email " +
-                            "INNER JOIN EnderecoPostal ON enderecoPostal.idEnderecoPostal = freelancer.idenderecoPostal"
+                            "ON freelancer.email LIKE utilizador.email"
             );
 
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -219,11 +217,8 @@ public class RepositorioFreelancerDatabase implements RepositorioFreelancer{
                 String telefone = resultSet.getString(2);
                 String nif = resultSet.getString(3);
                 String nome = resultSet.getString(4);
-                String arruamento = resultSet.getString(5);
-                String numeroPorta = resultSet.getString(6);
-                String localidade = resultSet.getString(7);
-                String codigoPostal = resultSet.getString(8);
-                freelancers.add(new Freelancer(email, nome, telefone, nif,  arruamento, numeroPorta, localidade, codigoPostal));
+                int idEnderecoPostal = resultSet.getInt(5);
+                freelancers.add(new Freelancer(email, nome, telefone, nif, idEnderecoPostal));
             }
         }
         catch (SQLException exception) {
@@ -236,13 +231,12 @@ public class RepositorioFreelancerDatabase implements RepositorioFreelancer{
             catch (SQLException sqlException) {
                 sqlException.getErrorCode();
             }
-
         }
         finally {
             dbConnectionHandler.closeAll();
         }
-        return freelancers;
 
+        return freelancers;
     }
     
     @Override

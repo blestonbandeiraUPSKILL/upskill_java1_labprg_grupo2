@@ -22,8 +22,8 @@
          <left>
             <GridPane prefHeight="330.0" prefWidth="385.0" BorderPane.alignment="CENTER">
               <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="150.0" minWidth="10.0" prefWidth="150.0" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="285.0" minWidth="10.0" prefWidth="250.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="162.0" minWidth="10.0" prefWidth="158.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="285.0" minWidth="10.0" prefWidth="192.0" />
                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.0" minWidth="0.0" prefWidth="59.0" />
               </columnConstraints>
               <rowConstraints>
@@ -115,7 +115,7 @@
                   </TextField>
                </children>
                <BorderPane.margin>
-                  <Insets left="15.0" top="10.0" />
+                  <Insets left="40.0" top="20.0" />
                </BorderPane.margin>
             </GridPane>
          </left>
@@ -222,7 +222,7 @@
    <bottom>
       <FlowPane alignment="CENTER_RIGHT" columnHalignment="CENTER" prefHeight="50.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="btnAvancarRegisto" defaultButton="true" mnemonicParsing="false" onAction="#avancarRegistoComDados" text="Avançar">
+            <Button fx:id="btnAvancarRegisto" defaultButton="true" mnemonicParsing="false" onAction="#avancarRegistoComDados" text="Registar">
                <font>
                   <Font name="Calibri" size="14.0" />
                </font>

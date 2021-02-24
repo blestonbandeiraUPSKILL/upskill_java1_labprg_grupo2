@@ -15,7 +15,12 @@ IS
     
 BEGIN
 
-    createEnderecoPostal(p_arruamento, p_numeroPorta, p_localidade, p_codPostal);
+    INSERT INTO EnderecoPostal
+        (arruamento, numeroPorta, localidade, codPostal)
+    VALUES
+        (p_arruamento, p_numeroPorta, p_localidade, p_codPostal)
+    RETURNING idEnderecoPostal
+    INTO v_idEnderecoPostal;
 
     INSERT INTO Utilizador
         (email, nome, password, rolename)
@@ -27,6 +32,6 @@ BEGIN
     INSERT INTO Freelancer
         (email, telefone, nif, idenderecopostal)
     VALUES
-        (p_email, p_telefone, p_nif, v_idEnderecoPostal);
+        (v_email, p_telefone, p_nif, v_idEnderecoPostal);
 END;
 /
