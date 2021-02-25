@@ -253,7 +253,7 @@ public class ColaboradorLogadoUI implements Initializable {
                 btnPublicarTarefa.setDisable(false);
         }
     }
-    
+
     public void navigatePublicarTarefa(ActionEvent event) {
         try {
             FXMLLoader loaderPublicarTarefa = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/PublicarTarefaScene.fxml"));

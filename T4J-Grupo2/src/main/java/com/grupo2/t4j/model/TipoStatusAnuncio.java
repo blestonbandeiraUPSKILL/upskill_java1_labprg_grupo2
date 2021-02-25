@@ -10,9 +10,8 @@ package com.grupo2.t4j.model;
  * @author CAD * 
  */
 public enum TipoStatusAnuncio {
-    PUBLICITACAO,
-    CANDIDATURA,
-    SERIACAO,
-    SERIADOS,
+    PERIODO_DE_PUBLICITACAO,
+    PERIODO_DE_CANDIDATURA,
+    PERIODO_DE_SERIACAO,
     EXPIRADOS        
 }
