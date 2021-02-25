@@ -48,8 +48,6 @@ public class ColaboradorLogadoUI implements Initializable {
     @FXML ComboBox<Anuncio> cmbAnuncio;
     @FXML Button btnPublicarTarefa;
 
-
-
     public void associarParentUI(StartingPageUI startingPageUI) {
         this.startingPageUI = startingPageUI;
     }
@@ -68,6 +66,7 @@ public class ColaboradorLogadoUI implements Initializable {
         adicionarStage.setResizable(false);
         
         cmbFiltroTarefas.getItems().setAll(FiltroTarefas.values());
+
         cmbFiltroTarefas.setOnAction(new EventHandler<ActionEvent>() {
            @Override
            public void handle(ActionEvent event) {
@@ -79,13 +78,13 @@ public class ColaboradorLogadoUI implements Initializable {
            }
            });
 
-        try {
+    /*    try {
             cmbAreaActividade.getItems().setAll(registarAreaActividadeController.getAll());
         } catch (SQLException exception) {
             exception.printStackTrace();
-        }
+        }*/
 
-        cmbAreaActividade.setOnAction(new EventHandler<ActionEvent>() {
+   /*     cmbAreaActividade.setOnAction(new EventHandler<ActionEvent>() {
            @Override
            public void handle(ActionEvent event) {
                try {
@@ -94,7 +93,7 @@ public class ColaboradorLogadoUI implements Initializable {
                    exception.printStackTrace();
                }
            }
-        });
+        });*/
 
 
         try {
@@ -104,7 +103,7 @@ public class ColaboradorLogadoUI implements Initializable {
         }
 
 
-        cmbCategoriaTarefa.setOnAction(new EventHandler<ActionEvent>() {
+  /*      cmbCategoriaTarefa.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 try {
@@ -114,18 +113,18 @@ public class ColaboradorLogadoUI implements Initializable {
                 }
 
             }
-        });
+        });*/
 
 
     }
 
-    public void updateListViewTarefasComFiltro() throws SQLException {
+ /*   public void updateListViewTarefasComFiltro() throws SQLException {
         String codigoCategoria = cmbCategoriaTarefa.getSelectionModel().getSelectedItem().getCodigoCategoria();
         listViewTarefas.getItems().setAll(
                 registarTarefaController.findByCategoria(codigoCategoria)
         );
 
-    }
+    }*/
 
     public void updateListViewTarefas() throws SQLException {
         listViewTarefas.getItems().setAll(registarTarefaController.getAllOrganizacao(
@@ -154,13 +153,13 @@ public class ColaboradorLogadoUI implements Initializable {
         
     }
     
-    public void updateCmbCategoriasTarefaLista(ActionEvent actionEvent) throws SQLException{
+ /*   public void updateCmbCategoriasTarefaLista(ActionEvent actionEvent) throws SQLException{
         List<Categoria> listaCategoriasTarefa =
                 registarCategoriaController.findByAreaActividade(
                 cmbAreaActividade.getSelectionModel().getSelectedItem().getCodigo());
 
         cmbCategoriaTarefa.getItems().setAll(listaCategoriasTarefa);
-    }
+    }*/
 
 
     public void logout(ActionEvent actionEvent) {
@@ -240,21 +239,20 @@ public class ColaboradorLogadoUI implements Initializable {
     public void aplicarFiltroTarefas(ActionEvent actionEvent)throws SQLException {
         
         switch (cmbFiltroTarefas.getSelectionModel().getSelectedItem()) {
-                    case TAREFAS_DA_ORGANIZACAO:
-                        updateListViewTarefas();
-                        break;
-                    case AS_MINHAS_TAREFAS:
-                        updateListViewTarefasColaborador();
-                        break;
-                    case TAREFAS_PUBLICADAS:
-                        updateListViewTarefasPublicadas();
-                        break;
-                    case TAREFAS_PARA_PUBLICAR:
-                        updateListViewTarefasNaoPublicadas();
-                        btnPublicarTarefa.setDisable(false);
-                }
+            case TAREFAS_DA_ORGANIZACAO:
+                updateListViewTarefas();
+                break;
+            case AS_MINHAS_TAREFAS:
+                updateListViewTarefasColaborador();
+                break;
+            case TAREFAS_PUBLICADAS:
+                updateListViewTarefasPublicadas();
+                break;
+            case TAREFAS_PARA_PUBLICAR:
+                updateListViewTarefasNaoPublicadas();
+                btnPublicarTarefa.setDisable(false);
+        }
     }
-
     
     public void navigatePublicarTarefa(ActionEvent event) {
         try {
@@ -277,38 +275,6 @@ public class ColaboradorLogadoUI implements Initializable {
                     exception.getMessage());
         }
 
-    }
-
-    ////////////////// Ficheiros //////////////////
-
-    public void importAreaActividade(ActionEvent actionEvent) throws SQLException {
-        String descricao, extensao;
-
-        descricao = "Ficheiro Area de Actividade";
-        extensao = "*.txt";
-        FileChooser fileChooser = FileChooserT4J.criarFileChooserT4J(descricao, extensao);
-        File ficheiroImportar = fileChooser.showOpenDialog(btnImportAreaActividade.getScene().getWindow());
-
-        if(ficheiroImportar != null) {
-            int numeroAreasImportadas = 0;
-            numeroAreasImportadas = registarAreaActividadeController.desserializar(ficheiroImportar);
-
-            if(numeroAreasImportadas > 0) {
-                cmbAreaActividadeEspecificarTarefa.getItems().setAll(registarAreaActividadeController.getAll());
-
-                AlertsUI.criarAlerta(Alert.AlertType.INFORMATION, MainApp.TITULO_APLICACAO, CABECALHO_IMPORTAR,
-                        String.format("%d área(s) de actividade importada(s).", numeroAreasImportadas)).show();
-            }
-            else {
-                AlertsUI.criarAlerta(Alert.AlertType.INFORMATION, MainApp.TITULO_APLICACAO, CABECALHO_IMPORTAR,
-                        "Ficheiro sem áreas de actividade para importar!").show();
-
-            }
-        }
-        else {
-            AlertsUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO, CABECALHO_IMPORTAR,
-                    "Não foi seleccionado nenhum ficheiro!").show();
-        }
     }
 
 
