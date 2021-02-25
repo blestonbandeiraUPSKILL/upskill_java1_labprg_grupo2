@@ -96,8 +96,7 @@ public class PublicarTarefaUI implements Initializable {
                     dtFimCandidaturas.getValue(),
                     dtInicioSeriacao.getValue(),
                     dtFimSeriacao.getValue(),
-                    txtRegrasGerais.getText(),
-                    cmbTipoSeriacao.getSelectionModel().getSelectedItem());
+                    cmbTipoSeriacao.getSelectionModel().getSelectedItem().getIdTipoRegimento());
 
             /*if (adicionou){
                 colaboradorLogadoUI.updateListViewTarefas();
