@@ -37,8 +37,8 @@ import java.util.List;
  */
 public class EfectuarCandidaturaController {
 
-    private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosInMemory();
-    //private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosDatabase();
+    //private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosInMemory();
+    private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosDatabase();
     private RepositorioAnuncio repositorioAnuncio = fabricaRepositorios.getRepositorioAnuncio();
     private RepositorioReconhecimentoGP repositorioReconhecimentoGP = fabricaRepositorios.getRepositorioReconhecimentoGP();
     private RepositorioTarefa repositorioTarefa = fabricaRepositorios.getRepositorioTarefa();
@@ -50,13 +50,14 @@ public class EfectuarCandidaturaController {
     public EfectuarCandidaturaController() throws SQLException {
     }
 
-    public List<ReconhecimentoGP> findReconhecimentoFreelancer(String email) {
+    public List<ReconhecimentoGP> findReconhecimentoFreelancer(String email)throws SQLException {
         return repositorioReconhecimentoGP.findByEmail(email);
     }
 
     public List<Tarefa> findTarefasElegiveis(String email) throws SQLException {
-   /*     List<Tarefa> tarefasElegiveis = new ArrayList<>();
-        List<Tarefa> listaTarefas = repositorioTarefa.getAll();
+        List<Tarefa> tarefasElegiveis = new ArrayList<>();
+        List<Tarefa> listaTarefas = new ArrayList<>();
+        listaTarefas = repositorioTarefa.getAll();
 
         for (Tarefa tarefa : listaTarefas) {
             List<CaracterizacaoCT> competenciasDaTarefa = repositorioCategoriaTarefa.findByCodigo(
@@ -116,7 +117,7 @@ public class EfectuarCandidaturaController {
         return false;
     }
 
-    public boolean comparaGrau(String email, String idCompetenciaTecnica, int grau) {
+    public boolean comparaGrau(String email, String idCompetenciaTecnica, int grau) throws SQLException {
         ReconhecimentoGP rgp = repositorioReconhecimentoGP.findByEmailCompetencia(email, idCompetenciaTecnica);
         int gp = rgp.getIdGrauProficiencia();
         if (gp >= grau) {

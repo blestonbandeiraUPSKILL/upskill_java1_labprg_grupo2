@@ -179,3 +179,19 @@ ALTER TABLE HabilitacaoAcademica
 ALTER TABLE Tarefa
     MODIFY custoEstimado numeric;
 
+ALTER TABLE Anuncio
+    ADD CONSTRAINT ck_Anuncio_dataInicioCandidatura
+    CHECK (dataInicioCandidatura BETWEEN dataInicioPublicitacao AND dataFimPublicitacao);
+
+ALTER TABLE Anuncio
+    ADD CONSTRAINT ck_Anuncio_dataFimCandidatura
+    CHECK (dataFimCandidatura BETWEEN dataInicioPublicitacao AND dataFimPublicitacao);
+    
+ALTER TABLE Anuncio
+    ADD CONSTRAINT DATAINICIOSERIACAO
+    CHECK (dataFimPublicitacao < DATAINICIOSERIACAO);
+    
+ALTER TABLE Anuncio
+    ADD CONSTRAINT DATAfimSERIACAO
+    CHECK (DATAINICIOSERIACAO < DATAfimSERIACAO);
+    
