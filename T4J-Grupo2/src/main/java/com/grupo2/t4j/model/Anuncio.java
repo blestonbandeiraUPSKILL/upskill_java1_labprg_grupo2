@@ -360,9 +360,23 @@ public class Anuncio implements Serializable {
         this.idTipoRegimento = idTipoRegimento;
     }
     
-    
-    
-    
+
+ /*   
+    public TipoStatusAnuncio getStatusAnuncio(Data dataAtual) throws AnuncioInvalidoException{
+        if(dataAtual.isMaior(this.dtFimPublicitacao)){
+
+            return TipoStatusAnuncio.EXPIRADOS;
+        }
+        else{
+            if(dataAtual.compareTo(this.dtInicioSeriacao) >= 0 && dataAtual.compareTo(this.dtFimSeriacao) <= 0){
+                return TipoStatusAnuncio.PERIODO_DE_SERIACAO;
+            }
+            if(dataAtual.compareTo(this.dtInicioCandidatura) >= 0 && dataAtual.compareTo(this.dtFimCandidatura) <= 0){
+                return TipoStatusAnuncio.PERIODO_DE_CANDIDATURA;
+            }
+        }        
+        throw new AnuncioInvalidoException ("O anúncio é inválido!");
+    }*/
     
     /**
      * Verifica se uma data inserida como texto tem formato válido

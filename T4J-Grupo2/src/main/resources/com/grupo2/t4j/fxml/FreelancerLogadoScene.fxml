@@ -60,7 +60,7 @@
                             <content>
                                 <AnchorPane prefHeight="370.0" prefWidth="700.0" styleClass="AnchorPane">
                            <children>
-                              <VBox prefHeight="370.0" prefWidth="700.0">
+                              <VBox layoutX="-5.0" prefHeight="370.0" prefWidth="700.0" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-5.0" AnchorPane.topAnchor="0.0">
                                  <children>
                                     <Label text="Candidaturas Efetuadas">
                                        <VBox.margin>

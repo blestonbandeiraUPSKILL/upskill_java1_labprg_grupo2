@@ -109,7 +109,7 @@ public class FreelancerLogadoUI implements Initializable {
 
     }
         
-/*    public void updateTableViewAnuncio() throws SQLException {
+    public void updateTableViewAnuncio() throws SQLException {
 
 
         ObservableList<Anuncio> anunciosElegiveis = FXCollections.observableArrayList(
@@ -117,7 +117,7 @@ public class FreelancerLogadoUI implements Initializable {
                         gestaoUtilizadoresController.getEmail()));
 
         tableAnuncios.setItems(anunciosElegiveis);
-    }*/
+    }
     
     @FXML
     void addCandidatura(ActionEvent event) {

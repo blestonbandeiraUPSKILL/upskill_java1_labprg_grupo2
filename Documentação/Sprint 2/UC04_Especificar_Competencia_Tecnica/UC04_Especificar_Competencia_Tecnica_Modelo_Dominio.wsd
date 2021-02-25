@@ -2,6 +2,8 @@
 
 title UC04 - Especificar Competência Técnica
 
+left to right direction
+
 class Plataforma <<Singleton>>{
     String designacao
 }

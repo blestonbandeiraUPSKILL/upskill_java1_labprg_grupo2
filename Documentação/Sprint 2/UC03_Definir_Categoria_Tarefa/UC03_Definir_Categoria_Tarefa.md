@@ -4,8 +4,7 @@
 
 ## Formato Breve
 
-O administrativo inicia a definição de uma nova categoria de tarefa. O sistema solicita os dados necessários (i.e. descrição, área de atividade e lista de competências técnicas requeridas e respetiva caracterização). O administrativo introduz os dados solicitados. O
-sistema valida e apresenta os dados ao administrativo, pedindo que os confirme. O administrativo confirma. O sistema regista os dados e informa o administrativo do sucesso da operação.
+O administrativo inicia a definição de uma nova categoria de tarefa. O sistema solicita os dados necessários (i.e. uma descrição breve, uma descrição detalhada, a área de atividade e a lista de competências técnicas requeridas e respetiva caracterização). O administrativo introduz os dados solicitados. O sistema regista os dados e informa o administrativo do sucesso da operação.
 
 
 ## Formato Completo
@@ -24,7 +23,7 @@ sistema valida e apresenta os dados ao administrativo, pedindo que os confirme. 
 
 - A plataforma tem que ter pelo menos um Administrativo registado.
 - É necessário que já exista pelo menos uma área de actividade à qual se possam associar categorias de tarefas.
-- É necessário que existam competências técnicas definidas que possam ser associadas às diferentes categorias de tarefas.
+- É necessário que existam competências técnicas com graus de proficiência definidos que possam ser associadas às diferentes categorias de tarefas.
 
 **_Pós-condições_**
 
@@ -35,20 +34,18 @@ sistema valida e apresenta os dados ao administrativo, pedindo que os confirme. 
 1.	O administrativo inicia o processo de definição de categoria de tarefa.
 2.	A plataforma devolve a lista de áreas de actividade e competências técnicas existentes na plataforma.
 3.	O administrativo seleciona uma área de actividade, juntamente com as competências técnicas, definindo o grau mínimo exigido para as mesmas, assim como se são obrigatórias ou opcionais.
-4.	O administrativo insere o nome da categoria de tarefa assim como a sua descrição.
-5.	A plataforma valida os dados.
-6.	Depois de validados os dados, a plataforma  retorna os dados ao administrativo para que este confirme o registo desta categoria de tarefa.
-7.	O Administrativo confirma o registo, e a categoria de tarefa é então registada na plataforma.
+4.	O administrativo insere o nome da categoria de tarefa assim como a sua descrição breve e a descrição detalhada.
+5.	A plataforma regista a categoria de tarefa na plataforma.
 8.	O caso de uso termina.
 
 ### Fluxos alternativos
 
 1. A plataforma não tem nenhuma área de actividade definida. <br/>
     a. O caso de uso termina.
-2. A plataforma não tem nenhuma categoria de tarefa definida. <br/>
+2. A plataforma não tem nenhuma competência técnica com graus de proficiência associados definida. <br/>
     a. O caso de uso termina.
 3. O administrador não pretende associar nenhuma competência técnica à categoria de tarefa, associando a categoria de tarefa apenas a uma área de actividade. <br/>
-    a. O caso de uso decorre de acordo com o fluxo principal, mas não são escolhidas, inseridas, nem validadas competência técnicas associadas a esta categoria de tarefa.
+    a. Não são escolhidas, inseridas, nem validadas competência técnicas associadas a esta categoria de tarefa.
 4. O sistema detecta algum erro durante a validação dos dados. <br/>
     a. O sistema solicita ao administrador a correção dos erros. <br/>
     b. O caso de uso decorre de acordo com o fluxo principal.
@@ -60,7 +57,7 @@ sistema valida e apresenta os dados ao administrativo, pedindo que os confirme. 
 ## Excerto do Modelo de Domínio
 ![UC03_Definir_Categoria_Tarefa_Modelo_Dominio](UC03_Definir_Categoria_Tarefa_Modelo_Dominio.png)
 
-## Diagrama de sequência <br/>
+## Diagrama de Sequência <br/>
 ![UC03_Definir_Categoria_Tarefa_Diagrama_Sequencia](UC03_Definir_Categoria_Tarefa_Diagrama_Sequencia.png)
 
 ## Diagrama de Classes <br/>

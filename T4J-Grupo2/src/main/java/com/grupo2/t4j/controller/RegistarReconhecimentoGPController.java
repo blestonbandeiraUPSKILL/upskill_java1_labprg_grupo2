@@ -21,14 +21,14 @@ import java.util.ArrayList;
 import java.util.List;
 public class RegistarReconhecimentoGPController {
     
-    private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosInMemory();
-    //private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosDatabase();
+    //private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosInMemory();
+    private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosDatabase();
     private RepositorioReconhecimentoGP repositorioReconhecimentoGP = fabricaRepositorios.getRepositorioReconhecimentoGP();
     
     private RepositorioReconhecimentoGPInMemory repositorioReconhecimentoGPInMemory;
     private FicheiroRepositorioReconhecimentoGP ficheiroRGP;
     
-     public boolean registarReconhecimentoGP(int idGrauProficiencia, Data dataReconhecimento,
+     public boolean registarReconhecimentoGP(int idGrauProficiencia, String dataReconhecimento,
              Email emailFreelancer, String idCompetenciaTecnica) throws SQLException {
         
         ReconhecimentoGP reconhecimentoGP = new ReconhecimentoGP(idGrauProficiencia, 
@@ -66,10 +66,10 @@ public class RegistarReconhecimentoGPController {
         repositorioReconhecimentoGPInMemory = ficheiroRGP.desserializar();
     }
 
-    public int desserializar(File ficheiroImportar) {
+    /*public int desserializar(File ficheiroImportar) {
         RepositorioReconhecimentoGPInMemory listaReconhecimentoGPImportada = ficheiroRGP.desserializar(ficheiroImportar);
 
         return repositorioReconhecimentoGPInMemory.adicionarListaReconhecimentoGP(listaReconhecimentoGPImportada);
-    }
+    }*/
 
 }

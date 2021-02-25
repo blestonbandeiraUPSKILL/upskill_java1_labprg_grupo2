@@ -16,6 +16,7 @@ import com.grupo2.t4j.model.Data;
 import com.grupo2.t4j.model.HabilitacaoAcademica;
 import com.grupo2.t4j.model.ReconhecimentoGP;
 import com.grupo2.t4j.model.TipoRegimento;
+import com.grupo2.t4j.model.TipoStatusAnuncio;
 import com.grupo2.t4j.persistence.RepositorioAnuncio;
 import com.grupo2.t4j.utils.DBConnectionHandler;
 import java.sql.CallableStatement;
@@ -25,6 +26,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 public class RepositorioAnuncioDataBase implements RepositorioAnuncio {
@@ -34,6 +36,13 @@ public class RepositorioAnuncioDataBase implements RepositorioAnuncio {
      * registados todos os Anúncios
      */
     private static RepositorioAnuncioDataBase repositorioAnuncioDataBase;
+    
+    /**
+     * A data atual no formato da classe Data
+     */
+    private Calendar cal = Calendar.getInstance();
+    private Data hoje = new Data(cal.get(Calendar.YEAR),cal.get(Calendar.MONTH),
+            cal.get(Calendar.DAY_OF_MONTH));
     
     String jdbcUrl = "jdbc:oracle:thin:@vsrvbd1.dei.isep.ipp.pt:1521/pdborcl";
     String username = "UPSKILL_BD_TURMA1_01";
@@ -111,14 +120,77 @@ public class RepositorioAnuncioDataBase implements RepositorioAnuncio {
     }
     
     @Override
-
     public Anuncio findById(String idAnuncio) {
         return null;
     }
     
+    /*@Override
+    public ArrayList<Anuncio> getAllByStatus(TipoStatusAnuncio status) throws SQLException{
+        
+        
+        return null;
+    }*/
+    
     @Override
     public ArrayList<Anuncio> getAll() {
         return null;
+    }
+    
+    @Override
+    public ArrayList<Anuncio> getAllByStatus(TipoStatusAnuncio status) throws SQLException {
+        ArrayList<Anuncio> anuncios = new ArrayList<>();
+
+        DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
+        Connection connection = dbConnectionHandler.openConnection();
+
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(
+                    "SELECT * FROM Anuncio"
+            );
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while(resultSet.next()) {
+                String dtInicioPublicitacao = resultSet.getString(1);
+                String dtFimPublicitacao = resultSet.getString(2);
+                String dtInicioCandidatura = resultSet.getString(3);
+                String dtFimCandidatura = resultSet.getString(4);
+                String dtInicioSeriacao = resultSet.getString(5);
+                String dtFimSeriacao = resultSet.getString(6);
+                String referenciaTarefa = resultSet.getString(7);
+                String nifOrganizacao = resultSet.getString(8);
+                String idTipoRegimento = resultSet.getString(9);
+                
+                anuncios.add(new Anuncio(referenciaTarefa, nifOrganizacao, new Data(dtInicioPublicitacao), 
+                    new Data(dtFimPublicitacao),new Data(dtInicioCandidatura), new Data(dtFimCandidatura), 
+                        new Data(dtInicioSeriacao), new Data(dtFimSeriacao), idTipoRegimento));
+            }
+        }
+        catch (SQLException exception) {
+            exception.printStackTrace();
+            exception.getSQLState();
+            try {
+                System.err.print("Transaction is being rolled back");
+                connection.rollback();
+            }
+            catch (SQLException sqlException) {
+                sqlException.getErrorCode();
+            }
+        }
+        finally {
+            dbConnectionHandler.closeAll();
+        }
+        
+        ArrayList<Anuncio> anunciosStatus= new ArrayList<>();
+        for(int i = 0; i < anuncios.size();i++){
+            Anuncio anuncio = anuncios.get(i);
+            if(anuncio.getStatusAnuncio(hoje).equals(status)){
+                anunciosStatus.add(anuncio);
+            }
+        }
+        return anunciosStatus;
+        
+        //return null;
     }
 
 
@@ -149,7 +221,8 @@ public class RepositorioAnuncioDataBase implements RepositorioAnuncio {
         }
         return new Anuncio();
     }
-
+    
+    @Override
     public ArrayList<TipoRegimento> getAllRegimento()throws SQLException {
 
         ArrayList<TipoRegimento> tiposRegimento = new ArrayList<>();
