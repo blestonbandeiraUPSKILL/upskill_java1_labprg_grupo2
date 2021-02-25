@@ -97,6 +97,9 @@ public class Anuncio implements Serializable {
         setDtFimSeriacao(dtFimSeriacao);        
     }*/
     
+    public Anuncio(){
+    }
+    
     /**
      * Construtor completo da classe Anuncio
      * @param idTarefa - o id da Tarefa a que se refere o Anúncio

@@ -106,7 +106,7 @@ public class RepositorioAnuncioInMemory implements Serializable, RepositorioAnun
     }
 
     @Override
-    public Anuncio findAnuncioByIdTarefa(String referenciaTarefa, String nifOrganizacao){
+    public Anuncio findAnuncioByIdTarefa(String referenciaTarefa, String nifOrganizacao)throws SQLException{
         /*Anuncio anuncio = null ;
         for (int i = 0; i < this.listaAnuncios.size(); i++) {
             anuncio = this.listaAnuncios.get(i);
