@@ -6,6 +6,7 @@ import com.grupo2.t4j.model.*;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.control.TextField;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
@@ -22,6 +23,9 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.Set;
 
+/**
+ * FXML Controller class
+ */
 public class ColaboradorLogadoUI implements Initializable {
 
 
@@ -44,14 +48,24 @@ public class ColaboradorLogadoUI implements Initializable {
     @FXML ComboBox<AreaActividade> cmbAreaActividadeEspecificarTarefa;
     @FXML ComboBox<Categoria> cmbCategoriaTarefa;
     @FXML ListView<Tarefa> listViewTarefas;
+    @FXML ListView<Freelancer> listViewFreelancersCandidaturas;
+    @FXML ListView<Freelancer> listViewSeriacao;
     @FXML ComboBox<FiltroTarefas> cmbFiltroTarefas;
-    @FXML ComboBox<Anuncio> cmbAnuncio;
+    @FXML ComboBox<String> cmbAnuncio;
     @FXML Button btnPublicarTarefa;
+    @FXML Button btnConsultarAnuncio;
+    @FXML Button btnConsultarFreelancer;
+    @FXML Button btnConsultarCandidatura;
+    @FXML Button btnSeriacao;
+    @FXML TextField txtDataSeriacao;
 
     public void associarParentUI(StartingPageUI startingPageUI) {
         this.startingPageUI = startingPageUI;
     }
-
+    
+    /**
+    * Initializes the controller (UI) class.
+    */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
@@ -261,5 +275,25 @@ public class ColaboradorLogadoUI implements Initializable {
     }
 
 
+    public void consultarAnuncioAction(ActionEvent event){
+        
+    }
+    
+    public void navigateConsultarFreelancer(ActionEvent event){
+        
+    }
+    
+    public void navigateConsultarCandidatura(ActionEvent event){
+        
+    }
+    
+    public void navigateSeriacao(ActionEvent event){
+        
+    }
+    
+    
+    
+    
+  
 
 }

@@ -5,11 +5,6 @@
  */
 package com.grupo2.t4j.ui;
 
-/**
- *
- * @author CAD
- */
-
 import com.grupo2.t4j.controller.RegistarFreelancerController;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -26,6 +21,9 @@ import javafx.stage.Stage;
 import javafx.stage.Window;
 import javafx.stage.WindowEvent;
 
+/**
+ * FXML Controller class
+ */
 public class AdicionarFreelancerUI implements Initializable {
     
     private AdministrativoLogadoUI administrativoLogadoUI;

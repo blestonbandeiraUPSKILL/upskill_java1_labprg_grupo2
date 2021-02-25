@@ -20,6 +20,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
+/**
+ * FXML Controller class
+ */
 public class AdicionarCategoriaTarefaUI implements Initializable {
 
     private AdministrativoLogadoUI administrativoLogadoUI;
@@ -50,6 +53,9 @@ public class AdicionarCategoriaTarefaUI implements Initializable {
         this.administrativoLogadoUI = administrativoLogadoUI;
     }
 
+    /**
+     * Initializes the controller (UI) class.
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 

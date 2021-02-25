@@ -33,5 +33,5 @@ public interface RepositorioAnuncio {
 
     public ArrayList<TipoRegimento> getAllRegimento()throws SQLException;
     
-   // public ArrayList<Anuncio> getAllByStatus(TipoStatusAnuncio status) throws SQLException;
+    public ArrayList<Anuncio> getAllByStatus(TipoStatusAnuncio status) throws SQLException;
 }

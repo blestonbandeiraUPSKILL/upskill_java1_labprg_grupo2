@@ -33,13 +33,13 @@
 }
 
 .btnRegistarOrganizacao {
-    -fx-background-color: #4db6ac;
+    -fx-background-color: #01579b;
     -fx-text-fill: #ffffff;
     -fx-cursor: hand;
 }
 
 .btnRegistarOrganizacao:hover {
-    -fx-background-color: #82e9de;
+    -fx-background-color: #4f83cc;
     -fx-text-fill: #000000;
     -fx-scale-y: 0.9;
 }

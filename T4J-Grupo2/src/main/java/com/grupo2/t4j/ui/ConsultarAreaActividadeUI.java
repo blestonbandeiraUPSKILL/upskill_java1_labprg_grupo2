@@ -1,11 +1,5 @@
 package com.grupo2.t4j.ui;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 import com.grupo2.t4j.controller.RegistarAreaActividadeController;
 import java.net.URL;
 import java.sql.SQLException;
@@ -21,8 +15,6 @@ import javafx.stage.Stage;
 
 /**
  * FXML Controller class
- *
- * @author acris
  */
 public class ConsultarAreaActividadeUI implements Initializable {
     
@@ -40,7 +32,6 @@ public class ConsultarAreaActividadeUI implements Initializable {
         this.administrativoLogadoUI = administrativoLogadoUI;
     }
 
-    
     /**
      * Initializes the controller class.
      */

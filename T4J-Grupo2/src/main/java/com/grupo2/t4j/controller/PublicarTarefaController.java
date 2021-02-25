@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.grupo2.t4j.controller;
 
 import com.grupo2.t4j.model.Anuncio;
@@ -17,10 +12,6 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
 
-/**
- *
- * @author acris
- */
 public class PublicarTarefaController {
 
     //private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosInMemory();
@@ -28,12 +19,26 @@ public class PublicarTarefaController {
     private RepositorioAnuncio repositorioAnuncio = fabricaRepositorios.getRepositorioAnuncio();
     
 
-    public boolean publicarTarefa(String referencia, String nifOrganizacao,
-                                  String dtInicioPublicitacao, String dtFimPublicitacao,
-                                  String dtInicioCandidaturas, String dtFimCandidaturas,
-                                  String dtInicioSeriacao, String dtFimSeriacao,
-                                  int idTipoRegimento) throws SQLException {
-
+   /**
+     * Publicar tarefa boolean.
+     *
+     * @param referencia as referência da tarefa
+     * @param nifOrganizacao as nif da organização
+     * @param dtInicioPublicitacao as data de início de publicitação
+     * @param dtFimPublicitacao as data de fim de publicitação
+     * @param dtInicioCandidaturas as data de início de candidaturas
+     * @param dtFimCandidaturas as data de término de candidaturas
+     * @param dtInicioSeriacao as data de início de seriação
+     * @param dtFimSeriacao as data de término de seriação
+     * @param idTipoRegimento as tipo de regimento
+     * @return boolean
+     */
+    public boolean publicarTarefa(String referencia, String nifOrganizacao, 
+            LocalDate dtInicioPublicitacao, LocalDate dtFimPublicitacao, 
+            LocalDate dtInicioCandidaturas, LocalDate dtFimCandidaturas, 
+            LocalDate dtInicioSeriacao, LocalDate dtFimSeriacao, 
+            String idTipoRegimento) throws SQLException {
+        
         
         return repositorioAnuncio.save(referencia, nifOrganizacao, dtInicioPublicitacao, dtFimPublicitacao, dtInicioCandidaturas,
                 dtFimCandidaturas, dtInicioSeriacao, dtFimSeriacao, idTipoRegimento);

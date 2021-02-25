@@ -22,8 +22,6 @@ import javafx.stage.Stage;
 
 /**
  * FXML Controller class
- *
- * @author acris
  */
 public class ConsultarCategoriaUI implements Initializable {
     
