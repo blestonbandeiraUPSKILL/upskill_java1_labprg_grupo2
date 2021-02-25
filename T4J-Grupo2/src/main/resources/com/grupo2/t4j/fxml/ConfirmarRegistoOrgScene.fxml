@@ -173,7 +173,7 @@
         </BorderPane>
     </center>
     <top>
-        <Label styleClass="lblUser" text="Confirmar Registo de Organização" textFill="WHITE" BorderPane.alignment="CENTER_RIGHT">
+        <Label styleClass="lblUser" text="Área do Gestor :::&gt; Confirmar Registo de Organização" textFill="WHITE" BorderPane.alignment="CENTER_RIGHT">
             <font>
                 <Font name="Calibri" size="18.0" />
             </font>

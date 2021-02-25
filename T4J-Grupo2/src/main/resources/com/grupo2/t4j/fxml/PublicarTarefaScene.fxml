@@ -10,7 +10,7 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="BorderPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.PublicarTarefaUI">
     <top>
-        <Label styleClass="lblUser" text="Área do Colaborador" BorderPane.alignment="CENTER_RIGHT">
+        <Label styleClass="lblUser" text="Área do Colaborador :::&gt; Publicar Tarefa" BorderPane.alignment="CENTER_RIGHT">
             <font>
                 <Font name="Calibri" size="18.0" />
             </font>
@@ -103,14 +103,6 @@
                     </font>
                 </Label>
                 <ComboBox fx:id="cmbTipoSeriacao" layoutX="363.0" layoutY="222.0" prefHeight="25.0" prefWidth="211.0" promptText="Escolha o Tipo de Seriação" />
-                <Label layoutX="2.0" text="Publicar Tarefa">
-                    <font>
-                        <Font name="Calibri" size="16.0" />
-                    </font>
-                    <padding>
-                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                    </padding>
-                </Label>
             </children>
         </AnchorPane>
     </center>
