@@ -6,6 +6,7 @@ import com.grupo2.t4j.model.*;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.control.TextField;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
@@ -44,10 +45,16 @@ public class ColaboradorLogadoUI implements Initializable {
     @FXML ComboBox<AreaActividade> cmbAreaActividadeEspecificarTarefa;
     @FXML ComboBox<Categoria> cmbCategoriaTarefa;
     @FXML ListView<Tarefa> listViewTarefas;
-    @FXML ListView<Anuncio> listViewAnunciosStatus;
+    @FXML ListView<Freelancer> listViewFreelancersCandidaturas;
+    @FXML ListView<Freelancer> listViewSeriacao;
     @FXML ComboBox<FiltroTarefas> cmbFiltroTarefas;
-    @FXML ComboBox<Anuncio> cmbStatusAnuncio;
+    @FXML ComboBox<String> cmbAnuncio;
     @FXML Button btnPublicarTarefa;
+    @FXML Button btnConsultarAnuncio;
+    @FXML Button btnConsultarFreelancer;
+    @FXML Button btnConsultarCandidatura;
+    @FXML Button btnSeriacao;
+    @FXML TextField txtDataSeriacao;
 
 
 
@@ -280,6 +287,25 @@ public class ColaboradorLogadoUI implements Initializable {
 
     }
 
+    public void consultarAnuncioAction(ActionEvent event){
+        
+    }
+    
+    public void navigateConsultarFreelancer(ActionEvent event){
+        
+    }
+    
+    public void navigateConsultarCandidatura(ActionEvent event){
+        
+    }
+    
+    public void navigateSeriacao(ActionEvent event){
+        
+    }
+    
+    
+    
+    
     ////////////////// Ficheiros //////////////////
 
     public void importAreaActividade(ActionEvent actionEvent) throws SQLException {
