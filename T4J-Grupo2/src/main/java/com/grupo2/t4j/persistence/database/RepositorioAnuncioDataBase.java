@@ -13,18 +13,14 @@ package com.grupo2.t4j.persistence.database;
 import com.grupo2.t4j.exception.AnuncioDuplicadoException;
 import com.grupo2.t4j.model.Anuncio;
 import com.grupo2.t4j.model.Data;
-import com.grupo2.t4j.model.HabilitacaoAcademica;
-import com.grupo2.t4j.model.ReconhecimentoGP;
 import com.grupo2.t4j.model.TipoRegimento;
 import com.grupo2.t4j.model.TipoStatusAnuncio;
 import com.grupo2.t4j.persistence.RepositorioAnuncio;
 import com.grupo2.t4j.utils.DBConnectionHandler;
 
 import java.sql.*;
-
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.List;
 
 public class RepositorioAnuncioDataBase implements RepositorioAnuncio {
 

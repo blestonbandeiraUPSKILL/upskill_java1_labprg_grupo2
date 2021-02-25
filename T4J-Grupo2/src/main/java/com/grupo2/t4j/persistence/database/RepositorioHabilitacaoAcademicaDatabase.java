@@ -11,14 +11,11 @@ package com.grupo2.t4j.persistence.database;
  */
 
 import com.grupo2.t4j.exception.HabilitacaoAcademicaDuplicadaException;
-import com.grupo2.t4j.model.*;
+import com.grupo2.t4j.model.HabilitacaoAcademica;
 import com.grupo2.t4j.persistence.RepositorioHabilitacaoAcademica;
 import com.grupo2.t4j.utils.DBConnectionHandler;
-import java.sql.CallableStatement;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+
+import java.sql.*;
 import java.util.ArrayList;
 
 public class RepositorioHabilitacaoAcademicaDatabase implements RepositorioHabilitacaoAcademica{

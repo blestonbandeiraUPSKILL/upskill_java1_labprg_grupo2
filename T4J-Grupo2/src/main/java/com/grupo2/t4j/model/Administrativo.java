@@ -1,7 +1,8 @@
 package com.grupo2.t4j.model;
 
-import java.io.Serializable;
 import com.grupo2.t4j.exception.NomeInvalidoException;
+
+import java.io.Serializable;
 
 public class Administrativo implements Serializable{
    

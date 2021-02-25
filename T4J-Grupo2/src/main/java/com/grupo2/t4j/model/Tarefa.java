@@ -5,9 +5,11 @@
  */
 package com.grupo2.t4j.model;
 
-import com.grupo2.t4j.exception.*;
+import com.grupo2.t4j.exception.CodigoInvalidoException;
+import com.grupo2.t4j.exception.NomeInvalidoException;
+import com.grupo2.t4j.exception.QuantidadeInvalidaException;
+
 import java.io.Serializable;
-import java.util.List;
 
 /**
  *

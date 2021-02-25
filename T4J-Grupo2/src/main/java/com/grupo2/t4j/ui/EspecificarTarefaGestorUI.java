@@ -1,10 +1,6 @@
 package com.grupo2.t4j.ui;
 
-import com.grupo2.t4j.controller.GestaoUtilizadoresController;
-import com.grupo2.t4j.controller.RegistarAreaActividadeController;
-import com.grupo2.t4j.controller.RegistarCategoriaController;
-import com.grupo2.t4j.controller.RegistarColaboradorController;
-import com.grupo2.t4j.controller.RegistarTarefaController;
+import com.grupo2.t4j.controller.*;
 import com.grupo2.t4j.model.AreaActividade;
 import com.grupo2.t4j.model.CaracterizacaoCT;
 import com.grupo2.t4j.model.Categoria;
@@ -16,7 +12,6 @@ import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.stage.Window;
 import javafx.stage.WindowEvent;
-
 
 import java.net.URL;
 import java.sql.SQLException;

@@ -1,6 +1,6 @@
 package com.grupo2.t4j.model;
 
-import com.grupo2.t4j.exception.*;
+import com.grupo2.t4j.exception.AreaActividadeDuplicadaException;
 
 import java.io.Serializable;
 import java.util.Objects;

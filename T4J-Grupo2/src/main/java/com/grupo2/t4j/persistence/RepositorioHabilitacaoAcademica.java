@@ -10,8 +10,8 @@ package com.grupo2.t4j.persistence;
  * @author CAD
  */
 
-import com.grupo2.t4j.model.HabilitacaoAcademica;
 import com.grupo2.t4j.exception.HabilitacaoAcademicaDuplicadaException;
+import com.grupo2.t4j.model.HabilitacaoAcademica;
 
 import java.sql.SQLException;
 import java.util.ArrayList;

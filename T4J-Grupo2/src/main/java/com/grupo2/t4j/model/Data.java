@@ -4,8 +4,6 @@ package com.grupo2.t4j.model;
 import com.grupo2.t4j.exception.DataInvalidaException;
 import com.grupo2.t4j.exception.DiaInvalidoException;
 import com.grupo2.t4j.exception.MesInvalidoException;
-import com.grupo2.t4j.model.DiaDaSemana;
-import com.grupo2.t4j.model.Mes;
 
 import java.time.LocalDate;
 import java.util.Calendar;

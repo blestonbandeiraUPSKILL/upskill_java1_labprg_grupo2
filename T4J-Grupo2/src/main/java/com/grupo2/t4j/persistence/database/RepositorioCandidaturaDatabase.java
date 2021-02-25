@@ -6,12 +6,11 @@
 package com.grupo2.t4j.persistence.database;
 
 import com.grupo2.t4j.exception.CandidaturaDuplicadaException;
-import com.grupo2.t4j.model.*;
+import com.grupo2.t4j.model.Candidatura;
 import com.grupo2.t4j.persistence.RepositorioCandidatura;
 import com.grupo2.t4j.utils.DBConnectionHandler;
 
 import java.sql.*;
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**

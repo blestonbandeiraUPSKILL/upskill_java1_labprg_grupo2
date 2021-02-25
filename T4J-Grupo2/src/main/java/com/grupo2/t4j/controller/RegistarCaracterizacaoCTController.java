@@ -1,11 +1,10 @@
 package com.grupo2.t4j.controller;
 
-import com.grupo2.t4j.model.*;
+import com.grupo2.t4j.model.CaracterizacaoCT;
+import com.grupo2.t4j.model.Obrigatoriedade;
 import com.grupo2.t4j.persistence.FabricaRepositorios;
 import com.grupo2.t4j.persistence.RepositorioCaracterizacaoCT;
 import com.grupo2.t4j.persistence.database.FabricaRepositoriosDatabase;
-import com.grupo2.t4j.persistence.inmemory.FabricaRepositoriosInMemory;
-import com.grupo2.t4j.persistence.inmemory.RepositorioCaracterizacaoCTInMemory;
 
 import java.sql.SQLException;
 import java.util.List;

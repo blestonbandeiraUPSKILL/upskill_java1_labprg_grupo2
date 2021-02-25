@@ -1,9 +1,7 @@
 package com.grupo2.t4j.model;
 
-import com.grupo2.t4j.exception.*;
 import java.io.Serializable;
 import java.util.Calendar;
-import java.util.List;
 
 public class Candidatura implements Serializable {
     

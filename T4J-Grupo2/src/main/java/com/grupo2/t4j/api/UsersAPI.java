@@ -3,7 +3,6 @@ package com.grupo2.t4j.api;
 import com.grupo2.t4j.model.Email;
 import com.grupo2.t4j.model.Password;
 import com.grupo2.t4j.network.*;
-import com.grupo2.t4j.utils.Response;
 import org.json.JSONObject;
 
 import java.io.Serializable;

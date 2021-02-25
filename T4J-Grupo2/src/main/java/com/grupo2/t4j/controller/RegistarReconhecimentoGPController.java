@@ -1,14 +1,15 @@
 package com.grupo2.t4j.controller;
 
-import com.grupo2.t4j.api.UsersAPI;
-import com.grupo2.t4j.files.*;
-import com.grupo2.t4j.model.*;
-import com.grupo2.t4j.persistence.*;
-import com.grupo2.t4j.persistence.database.*;
-import com.grupo2.t4j.persistence.inmemory.*;
+import com.grupo2.t4j.files.FicheiroRepositorioReconhecimentoGP;
+import com.grupo2.t4j.model.Email;
+import com.grupo2.t4j.model.ReconhecimentoGP;
+import com.grupo2.t4j.persistence.FabricaRepositorios;
+import com.grupo2.t4j.persistence.RepositorioReconhecimentoGP;
+import com.grupo2.t4j.persistence.database.FabricaRepositoriosDatabase;
+import com.grupo2.t4j.persistence.inmemory.RepositorioReconhecimentoGPInMemory;
+
 import java.io.File;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 public class RegistarReconhecimentoGPController {
     

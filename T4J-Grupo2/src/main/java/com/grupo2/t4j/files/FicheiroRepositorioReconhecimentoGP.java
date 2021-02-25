@@ -11,12 +11,8 @@ package com.grupo2.t4j.files;
  */
 
 import com.grupo2.t4j.persistence.inmemory.RepositorioReconhecimentoGPInMemory;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+
+import java.io.*;
 
 public class FicheiroRepositorioReconhecimentoGP {
     
