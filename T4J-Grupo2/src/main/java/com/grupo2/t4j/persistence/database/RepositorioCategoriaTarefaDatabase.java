@@ -125,6 +125,7 @@ public class RepositorioCategoriaTarefaDatabase implements RepositorioCategoriaT
 
     @Override
     public Categoria findByCodigo(String codigoCategoria) throws SQLException {
+
         Categoria categoria = new Categoria();
 
         DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);

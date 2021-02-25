@@ -92,7 +92,15 @@ public class HabilitacaoAcademica {
         setNomeInstituicao(habilitacaoAcademica.nomeInstituicao);
         setMediaCurso(habilitacaoAcademica.mediaCurso);
     }
-    
+
+    public HabilitacaoAcademica(int idHabilitacao, String grau, String designacaoCurso, String nomeInstituicao, Double mediaCurso) {
+        setIdHabilitacao(idHabilitacao);
+        setGrau(grau);
+        setDesignacaoCurso(designacaoCurso);
+        setNomeInstituicao(nomeInstituicao);
+        setMediaCurso(mediaCurso);
+    }
+
     /**
      * Define o id referente à habilitação acadêmica.
      * @param idHabilitacao
