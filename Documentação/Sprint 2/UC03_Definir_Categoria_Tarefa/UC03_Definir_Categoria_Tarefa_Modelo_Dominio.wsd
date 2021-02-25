@@ -2,6 +2,8 @@
 
 title UC03 - Definir Categoria de Tarefa
 
+left to right direction
+
 class Plataforma{
     String designacao
 }

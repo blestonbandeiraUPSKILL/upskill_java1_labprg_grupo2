@@ -38,12 +38,6 @@ activate Sistema
 
 end
 
-Sistema --> Administrador: 10: apresenta dados e solicita confirmação
-deactivate Sistema
-
-Administrador -> Sistema: 11: confirma
-activate Sistema
-
-Sistema --> Administrador: 12: informa operação bem sucedida
+Sistema --> Administrador: 10: informa operação bem sucedida
 deactivate Sistema
 @enduml
