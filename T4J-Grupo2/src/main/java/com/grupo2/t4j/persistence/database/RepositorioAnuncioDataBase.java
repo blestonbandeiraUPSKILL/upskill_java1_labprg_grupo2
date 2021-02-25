@@ -116,29 +116,27 @@ public class RepositorioAnuncioDataBase implements RepositorioAnuncio {
         return null;
     }
     
-    @Override
+    /*@Override
     public ArrayList<Anuncio> getAllByStatus(TipoStatusAnuncio status) throws SQLException{
         
         
         return null;
-    }
+    }*/
     
     @Override
     public ArrayList<Anuncio> getAll() {
         return null;
     }
     
-    public ArrayList<Anuncio> getAllByIdTarefa() throws SQLException {
-        /*ArrayList<Anuncio> anuncios = new ArrayList<>();
+    public ArrayList<Anuncio> getAllByOrganizacaoColaborador(String nifOrg, String emailCol) throws SQLException {
+        ArrayList<Anuncio> anuncios = new ArrayList<>();
 
         DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
         Connection connection = dbConnectionHandler.openConnection();
 
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(
-                    "SELECT Freelancer.email, Freelancer.telefone, Freelancer.nif, Utilizador.nome, Freelancer.idEnderecoPostal " +
-                            "FROM Freelancer INNER JOIN Utilizador " +
-                            "ON freelancer.email LIKE utilizador.email"
+                    "SELECT * FROM Anuncio"
             );
 
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -173,10 +171,17 @@ public class RepositorioAnuncioDataBase implements RepositorioAnuncio {
         finally {
             dbConnectionHandler.closeAll();
         }
-
-        return anuncios;*/
         
-        return null;
+        ArrayList<Anuncio> anunciosOrg = new ArrayList<>();
+        for(int i = 0; i < anuncios.size();i++){
+            Anuncio anuncio = anuncios.get(i);
+            if(anuncio.getNifOrganizacao().equals(nifOrg)){
+                anunciosOrg.add(anuncio);
+            }
+        }
+        return anunciosOrg;
+        
+        //return null;
     }
 
 
