@@ -70,7 +70,7 @@ public class EfectuarCandidaturaController {
                     tarefasElegiveis.add(tarefa);
                 }
             }
-        }*/
+        }
         return null;
     }
 

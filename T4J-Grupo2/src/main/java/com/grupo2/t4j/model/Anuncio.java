@@ -360,7 +360,7 @@ public class Anuncio implements Serializable {
         this.idTipoRegimento = idTipoRegimento;
     }
     
-    public TipoStatusAnuncio getStatusAnuncio(Data dataAtual, Anuncio anuncio) throws AnuncioInvalidoException{
+ /*   public TipoStatusAnuncio getStatusAnuncio(Data dataAtual, Anuncio anuncio) throws AnuncioInvalidoException{
         if(dataAtual.isMaior(anuncio.getDtFimPub())){
             return TipoStatusAnuncio.EXPIRADOS;
         }
@@ -373,7 +373,7 @@ public class Anuncio implements Serializable {
             }
         }        
         throw new AnuncioInvalidoException ("O anúncio é inválido!");
-    }       
+    }*/
     
     /**
      * Verifica se uma data inserida como texto tem formato válido
