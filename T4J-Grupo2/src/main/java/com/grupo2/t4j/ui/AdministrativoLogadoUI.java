@@ -38,6 +38,7 @@ public class AdministrativoLogadoUI implements Initializable {
     private Scene sceneAddHabilitacaoFreelancer;
     private Scene sceneAddReconhecimentoGP;
     private Scene sceneStartingPage;
+    private Scene sceneConsultarFreelancer;
     private RegistarAreaActividadeController registarAreaActividadeController;
     private RegistarCategoriaController registarCategoriaController;
     private RegistarCompetenciaTecnicaController registarCompetenciaTecnicaController;
@@ -385,6 +386,25 @@ public class AdministrativoLogadoUI implements Initializable {
     }
 
     public void consultarFreelancer(ActionEvent actionEvent) {
+        try {
+        FXMLLoader loaderConsultarFreelancer = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/ConsultarFreelancerScene.fxml"));
+            Parent rootConsultarFreelancer = loaderConsultarFreelancer.load();
+            ConsultarFreelancerUI consultarFreelancerUI = loaderConsultarFreelancer.getController();
+            consultarFreelancerUI.associarParentUI(this);
+            consultarFreelancerUI.transferData();
+            sceneConsultarFreelancer = new Scene(rootConsultarFreelancer);
+
+            adicionarStage.setScene(sceneConsultarFreelancer);
+            adicionarStage.setTitle("Consultar Freelancer");
+            adicionarStage.show();
+
+        } catch (IOException | SQLException exception) {
+            exception.printStackTrace();
+            AlertsUI.criarAlerta(Alert.AlertType.ERROR,
+                    MainApp.TITULO_APLICACAO,
+                    "Erro",
+                    exception.getMessage());
+        }
     }
 
     ///////////////// Ficheiros /////////////////

@@ -4,6 +4,7 @@ import com.grupo2.t4j.controller.EfectuarCandidaturaController;
 import com.grupo2.t4j.controller.GestaoUtilizadoresController;
 import com.grupo2.t4j.controller.RegistarAnuncioController;
 import com.grupo2.t4j.model.Anuncio;
+import com.grupo2.t4j.model.Candidatura;
 import com.grupo2.t4j.model.Data;
 import com.grupo2.t4j.model.Tarefa;
 import com.grupo2.t4j.model.TipoRegimento;
@@ -53,8 +54,8 @@ public class FreelancerLogadoUI implements Initializable {
     @FXML TableColumn<Anuncio, Data> fimPublicitacao;
     @FXML TableColumn<TipoRegimento, String> tipoRegimento;
     @FXML TableColumn<Anuncio, Data> inicioSeriacao;
-    @FXML private ListView<?> listViewCandidaturas;
-    @FXML private ComboBox<?> cmbAnuncio;
+    @FXML private ListView<Candidatura> listViewCandidaturas;
+    @FXML private ComboBox<Anuncio> cmbAnuncio;
     @FXML private TextField txtValor;
     @FXML private TextField txtDias;
     @FXML private TextField txtApresentacao;
