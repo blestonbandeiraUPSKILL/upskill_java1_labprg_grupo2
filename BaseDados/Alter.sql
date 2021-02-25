@@ -172,3 +172,9 @@ ALTER TABLE Tarefa
 
 ALTER TABLE HabilitacaoAcademica
     MODIFY grau varchar(50);
+
+ALTER TABLE HabilitacaoAcademica
+    MODIFY mediaCurso numeric;
+
+ALTER TABLE Tarefa
+    MODIFY custoEstimado numeric;
