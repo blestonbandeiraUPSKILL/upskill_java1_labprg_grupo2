@@ -8,6 +8,7 @@ public interface FabricaRepositorios {
     RepositorioAdministrativo getRepositorioAdministrativo();
     RepositorioAnuncio getRepositorioAnuncio();
     RepositorioAreaActividade getRepositorioAreaActividade();
+    RepositorioCandidatura getRepositorioCandidatura();
     RepositorioCaracterizacaoCT getRepositorioCaracterizacaoCT();
     RepositorioCategoriaTarefa getRepositorioCategoriaTarefa();
     RepositorioColaborador getRepositorioColaborador();
@@ -19,6 +20,5 @@ public interface FabricaRepositorios {
     RepositorioTarefa getRepositorioTarefa();
     RepositorioGrauProficiencia getRepositorioGrauProficiencia() throws SQLException;
     RepositorioUtilizador getRepositorioUtilizador();
-    RepositorioCandidatura getRepositorioCandidatura();
     RepositorioReconhecimentoGP getRepositorioReconhecimentoGP();
 }

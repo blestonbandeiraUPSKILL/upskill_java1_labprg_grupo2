@@ -18,9 +18,10 @@ import java.util.ArrayList;
 import java.util.List;
 public interface RepositorioAnuncio {
 
-     boolean save(String referenciaTarefa, String nifOrganizacao, String dtInicioPublicitacao, String dtFimPublicitacao, String
+    boolean save(String referenciaTarefa, String nifOrganizacao, String dtInicioPublicitacao, String dtFimPublicitacao, String
              dtInicioCandidatura, String dtFimCandidatura, String dtInicioSeriacao,
                String dtFimSeriacao, int idTipoRegimento) throws AnuncioDuplicadoException, SQLException;
+
 
      boolean save(Anuncio anuncio) throws SQLException;
 
@@ -33,5 +34,5 @@ public interface RepositorioAnuncio {
 
     public ArrayList<TipoRegimento> getAllRegimento()throws SQLException;
     
-   // public ArrayList<Anuncio> getAllByStatus(TipoStatusAnuncio status) throws SQLException;
+    public ArrayList<Anuncio> getAllByStatus(TipoStatusAnuncio status) throws SQLException;
 }

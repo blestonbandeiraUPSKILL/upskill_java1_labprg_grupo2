@@ -23,7 +23,9 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.ResourceBundle;
 
-
+/**
+ * FXML Controller class
+ */
 public class EspecificarTarefaGestorUI implements Initializable {
 
     private RegistarTarefaController registarTarefaController;
@@ -48,6 +50,9 @@ public class EspecificarTarefaGestorUI implements Initializable {
         this.gestorLogadoUI = gestorLogadoUI;
     }
 
+    /**
+    * Initializes the controller (UI) class.
+    */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         registarTarefaController = new RegistarTarefaController();

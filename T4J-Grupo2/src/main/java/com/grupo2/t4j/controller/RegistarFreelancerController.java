@@ -1,14 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.grupo2.t4j.controller;
-
-/**
- *
- * @author CAD
- */
 
 import com.grupo2.t4j.api.UsersAPI;
 import com.grupo2.t4j.files.*;
@@ -29,7 +19,20 @@ public class RegistarFreelancerController {
 
     private RepositorioFreelancerInMemory repositorioFreelancerInMemory;
     private FicheiroRepositorioFreelancer ficheiroF;
-    
+
+   /**
+     * Publicar tarefa boolean
+     *
+     * @param emailFree as email do freelancer
+     * @param nome as nome do freelancer
+     * @param nif as nif do freelancer
+     * @param telefone as telefone do freelancer
+     * @param arruamento as nome da rua onde mora o freelancer
+     * @param numeroPorta as número da porta onde mora o freelancer
+     * @param localidade as localidade onde mora o freelancer
+     * @param codPostal as código postal onde mora o freelancer
+     * @return boolean
+     */    
     public boolean registarFreelancer(String emailFree, String nome, String nif, 
             String telefone, String arruamento, String numeroPorta, String localidade, String codPostal) throws SQLException {
 

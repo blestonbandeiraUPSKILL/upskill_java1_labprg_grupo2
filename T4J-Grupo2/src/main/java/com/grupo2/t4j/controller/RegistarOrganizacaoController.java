@@ -24,6 +24,24 @@ public class RegistarOrganizacaoController {
     public RegistarOrganizacaoController() throws SQLException {
     }
 
+    /**
+    * Registar organização boolean
+    *
+    * @param nif as nif da organização
+    * @param nome as nome da organização
+    * @param website as página web da organização
+    * @param telefone as contacto telefónico da organização
+    * @param emailOrganizacao as email da organização
+    * @param emailGestor as email do gestor
+    * @param arruamento as nome de rua da organização
+    * @param numeroPorta as número da porta da da organização
+    * @param localidade as localidade da organização
+    * @param codigoPostal as código postal da organização
+    * @param nomeGestor as nome do gestor da organização
+    * @param telefoneGestor as telefone do gestor da organização
+    * @param funcaoGestor as função do gestor da organização
+    * @return boolean
+    */
     public boolean registarOrganizacao(String nif, String nome, String website,
                                        String telefone, String emailOrganizacao, String emailGestor,
                                        String arruamento, String numeroPorta,

@@ -24,6 +24,9 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.stage.FileChooser;
 
+/**
+ * FXML Controller class
+ */
 public class AdministrativoLogadoUI implements Initializable {
 
     private StartingPageUI startingPageUI;
@@ -70,6 +73,9 @@ public class AdministrativoLogadoUI implements Initializable {
         this.startingPageUI = startingPageUI;
     }
 
+    /**
+    * Initializes the controller (UI) class.
+    */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 

@@ -1,14 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.grupo2.t4j.controller;
-
-/**
- *
- * @author CAD
- */
 
 import com.grupo2.t4j.api.UsersAPI;
 import com.grupo2.t4j.files.FicheiroRepositorioColaborador;
@@ -35,6 +25,16 @@ public class RegistarColaboradorController {
     private RepositorioColaboradorInMemory repositorioColaboradorInMemory;
     private FicheiroRepositorioColaborador ficheiroC;
 
+    /**
+     * Registo do Colaborador boolean
+     *
+     * @param nome as nome do colaborador
+     * @param funcao as função do colaborador
+     * @param telefone as telefone do colaborador
+     * @param email as email do colaborador
+     * @param nifOrganizacao as NIF da organização
+     * @return boolean
+     */
     public boolean registarColaborador(String email, String nome, String funcao, String telefone, String nifOrganizacao) throws SQLException {
 
         AlgoritmoGeradorPasswords algoritmoGeradorPasswords = new AlgoritmoGeradorPasswords();

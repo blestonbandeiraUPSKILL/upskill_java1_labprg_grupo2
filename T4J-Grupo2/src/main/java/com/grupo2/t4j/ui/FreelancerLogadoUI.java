@@ -35,6 +35,9 @@ import javafx.stage.Stage;
 import javafx.stage.Window;
 import javafx.stage.WindowEvent;
 
+/**
+ * FXML Controller class
+ */
 public class FreelancerLogadoUI implements Initializable {
 
     private StartingPageUI startingPageUI;
@@ -68,6 +71,9 @@ public class FreelancerLogadoUI implements Initializable {
         this.startingPageUI = startingPageUI;
     }
 
+    /**
+    * Initializes the controller (UI) class.
+    */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 

@@ -5,10 +5,6 @@
  */
 package com.grupo2.t4j.ui;
 
-/**
- *
- * @author CAD
- */
 import com.grupo2.t4j.controller.RegistarReconhecimentoGPController;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -29,6 +25,9 @@ import javafx.stage.Stage;
 import javafx.stage.Window;
 import javafx.stage.WindowEvent;
 
+/**
+ * FXML Controller class
+ */
 public class AdicionarReconhecimentoGPUI  implements Initializable {
     
     private AdministrativoLogadoUI administrativoLogadoUI;
@@ -61,8 +60,8 @@ public class AdicionarReconhecimentoGPUI  implements Initializable {
     }
     
     /**
-     * Initializes the controller (UI) class.
-     */
+    * Initializes the controller (UI) class.
+    */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 

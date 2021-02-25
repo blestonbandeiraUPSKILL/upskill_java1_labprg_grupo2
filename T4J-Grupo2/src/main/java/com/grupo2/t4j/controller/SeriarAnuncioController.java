@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.grupo2.t4j.model;
+package com.grupo2.t4j.controller;
 
 /**
  *
- * @author carol
+ * @author CAD
  */
-public class Seriacao {
+public class SeriarAnuncioController {
     
 }
