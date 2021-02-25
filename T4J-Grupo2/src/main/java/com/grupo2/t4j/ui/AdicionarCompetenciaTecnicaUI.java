@@ -33,8 +33,7 @@ import javafx.stage.Window;
 import javafx.stage.WindowEvent;
 
 /**
- *
- * @author acris
+ * FXML Controller class
  */
 public class AdicionarCompetenciaTecnicaUI implements Initializable {
 
@@ -59,6 +58,9 @@ public class AdicionarCompetenciaTecnicaUI implements Initializable {
         this.administrativoLogadoUI = administrativoLogadoUI;
     }
 
+    /**
+     * Initializes the controller (UI) class.
+     */
     public void initialize(URL location, ResourceBundle resources) {
 
         adicionarStage = new Stage();
