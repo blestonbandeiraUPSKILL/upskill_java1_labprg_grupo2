@@ -33,39 +33,39 @@
    <center>
       <BorderPane prefHeight="200.0" prefWidth="200.0" styleClass="BorderPane" BorderPane.alignment="CENTER">
          <center>
-            <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+            <TabPane prefHeight="400.0" prefWidth="700.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
                <tabs>
                   <Tab text="Tarefas">
                      <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="AnchorPane">
                            <children>
                               <VBox alignment="CENTER" layoutX="560.0" layoutY="201.0" AnchorPane.bottomAnchor="101.66666666666669" AnchorPane.rightAnchor="32.0" />
-                              <ListView fx:id="listViewTarefas" layoutX="14.0" layoutY="140.0" prefHeight="209.0" prefWidth="508.0" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="172.0" AnchorPane.topAnchor="140.0" />
-                              <Label layoutX="25.0" layoutY="107.0" prefHeight="40.0" prefWidth="215.0" text="Tarefas Registadas" AnchorPane.bottomAnchor="242.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="460.0" AnchorPane.topAnchor="107.0">
+                              <ListView fx:id="listViewTarefas" layoutX="14.0" layoutY="140.0" prefHeight="188.0" prefWidth="668.0" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="160.0" />
+                              <Label layoutX="25.0" layoutY="107.0" prefHeight="40.0" prefWidth="215.0" text="Tarefas Registadas" AnchorPane.bottomAnchor="235.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="460.0" AnchorPane.topAnchor="125.0">
                                  <font>
                                     <Font name="Calibri" size="15.0" />
                                  </font>
                               </Label>
-                              <Label alignment="CENTER" layoutX="24.0" layoutY="27.0" text="Seleccionar Área de Actividade">
+                              <Label alignment="CENTER" layoutX="24.0" layoutY="27.0" text="Área de Actividade" AnchorPane.bottomAnchor="335.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="25.0">
                                  <font>
                                     <Font name="Calibri" size="14.0" />
                                  </font>
                               </Label>
-                              <VBox layoutX="274.0" layoutY="24.0">
+                              <VBox layoutX="274.0" layoutY="24.0" AnchorPane.bottomAnchor="285.0" AnchorPane.leftAnchor="145.0" AnchorPane.topAnchor="25.0">
                                  <children>
                                     <ComboBox fx:id="cmbAreaActividade" prefHeight="25.0" prefWidth="200.0" promptText="Escolha a Área de Actividade" VBox.vgrow="NEVER">
                                        <VBox.margin>
                                           <Insets bottom="10.0" />
                                        </VBox.margin>
                                     </ComboBox>
-                                    <ComboBox fx:id="cmbCategoriaTarefa" prefWidth="200.0" promptText="Escolha a Categoria de Tarefa" VBox.vgrow="NEVER">
+                                    <ComboBox fx:id="cmbCategoriaTarefa" prefHeight="25.0" prefWidth="200.0" promptText="Escolha a Categoria de Tarefa" VBox.vgrow="NEVER">
                                        <VBox.margin>
                                           <Insets top="10.0" />
                                        </VBox.margin>
                                     </ComboBox>
                                  </children>
                               </VBox>
-                              <Label alignment="CENTER" layoutX="22.0" layoutY="76.0" text="Seleccionar Categoria de Tarefa">
+                              <Label alignment="CENTER" layoutX="22.0" layoutY="76.0" text="Categoria de Tarefa" AnchorPane.bottomAnchor="285.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="75.0">
                                  <font>
                                     <Font name="Calibri" size="14.0" />
                                  </font>
@@ -82,7 +82,7 @@
                                 </Tooltip>
                             </tooltip>
                               </Button>
-                              <ComboBox fx:id="cmbFiltroTarefas" layoutX="165.0" layoutY="111.0" prefWidth="150.0" />
+                              <ComboBox fx:id="cmbFiltroTarefas" prefHeight="25.0" prefWidth="200.0" promptText="Escolha a Tarefa" AnchorPane.bottomAnchor="235.0" AnchorPane.leftAnchor="145.0" AnchorPane.topAnchor="118.0" />
                               <Button fx:id="btnPublicarTarefa" disable="true" layoutX="321.0" layoutY="335.0" mnemonicParsing="false" onAction="#navigatePublicarTarefa" styleClass="btnNovaTarefa" text="Publicar Tarefa" textFill="WHITE" AnchorPane.bottomAnchor="6.0">
                                  <font>
                                     <Font name="Calibri" size="14.0" />
@@ -95,6 +95,53 @@
                                 </Tooltip>
                             </tooltip>
                               </Button>
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </Tab>
+                  <Tab text="Anúncios Publicados">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="AnchorPane">
+                           <children>
+                              <TableView layoutX="7.0" layoutY="3.0" prefHeight="340.0" prefWidth="700.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="20.0">
+                                <columns>
+                                  <TableColumn text="Anúncio" />
+                                  <TableColumn prefWidth="180.0" text="Período de Publicitação">
+                                       <columns>
+                                          <TableColumn text="Início" />
+                                          <TableColumn text="Fim" />
+                                       </columns>
+                                    </TableColumn>
+                                    <TableColumn minWidth="20.0" prefWidth="180.0" text="Período de Candidatura">
+                                       <columns>
+                                          <TableColumn text="Início" />
+                                          <TableColumn text="Fim" />
+                                       </columns>
+                                    </TableColumn>
+                                    <TableColumn minWidth="20.0" prefWidth="180.0" text="Período de Seriação">
+                                       <columns>
+                                          <TableColumn text="Início" />
+                                          <TableColumn text="Fim" />
+                                       </columns>
+                                    </TableColumn>
+                                    <TableColumn prefWidth="119.0" text="Tipo de Regimento" />
+                                </columns>
+                              </TableView>
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </Tab>
+                  <Tab text="Seriar Anúncios">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="AnchorPane">
+                           <children>
+                              <VBox alignment="CENTER" layoutX="560.0" layoutY="201.0" AnchorPane.bottomAnchor="101.66666666666669" AnchorPane.rightAnchor="32.0" />
+                              <Label alignment="CENTER" layoutX="24.0" layoutY="27.0" text="Anúncio a Seriar" AnchorPane.bottomAnchor="335.0" AnchorPane.leftAnchor="10.0">
+                                 <font>
+                                    <Font name="Calibri" size="14.0" />
+                                 </font>
+                              </Label>
+                              <ComboBox fx:id="cmbAnuncio" layoutX="165.0" layoutY="111.0" prefHeight="25.0" prefWidth="200.0" promptText="Escolha o Anúncio" AnchorPane.bottomAnchor="305.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="400.0" />
                            </children>
                         </AnchorPane>
                      </content>
