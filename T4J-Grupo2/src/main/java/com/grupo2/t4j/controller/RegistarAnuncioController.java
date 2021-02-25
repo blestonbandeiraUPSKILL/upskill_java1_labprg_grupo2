@@ -16,6 +16,7 @@ import com.grupo2.t4j.persistence.*;
 import com.grupo2.t4j.persistence.database.*;
 import com.grupo2.t4j.persistence.inmemory.*;
 import java.io.File;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 public class RegistarAnuncioController {
@@ -29,10 +30,10 @@ public class RegistarAnuncioController {
 
     public boolean registarAnuncio(String referenciaTarefa, String nifOrganizacao, Data dtInicioPublicitacao, 
             Data dtFimPublicitacao, Data dtInicioCandidatura, Data dtFimCandidatura, 
-            Data dtInicioSeriacao, Data dtFimSeriacao) {
+            Data dtInicioSeriacao, Data dtFimSeriacao, String idTipoRegimento) throws SQLException {
 
         Anuncio anuncio = new Anuncio(referenciaTarefa, nifOrganizacao, dtInicioPublicitacao, dtFimPublicitacao, 
-                dtInicioCandidatura, dtFimCandidatura, dtInicioSeriacao, dtFimSeriacao);
+                dtInicioCandidatura, dtFimCandidatura, dtInicioSeriacao, dtFimSeriacao, idTipoRegimento);
 
         return repositorioAnuncio.save(anuncio);
     }
