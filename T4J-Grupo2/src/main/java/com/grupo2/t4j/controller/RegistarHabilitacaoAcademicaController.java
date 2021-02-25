@@ -1,14 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.grupo2.t4j.controller;
-
-/**
- *
- * @author CAD
- */
 
 import com.grupo2.t4j.api.UsersAPI;
 import com.grupo2.t4j.files.*;
@@ -28,7 +18,17 @@ public class RegistarHabilitacaoAcademicaController {
    
     private RepositorioHabilitacaoAcademicaInMemory repositorioHabilitacaoAcademicaInMemory;
     private FicheiroRepositorioHabilitacaoAcademica ficheiroHA;
-    
+
+   /**
+     * Registar habilitação académica boolean
+     *
+     * @param grau as grau atribuído pela habilitação académica
+     * @param designacaoCurso as designação do curso
+     * @param nomeInstituicao as nome da instituição académica
+     * @param mediaCurso as média de final de curso em valores
+     * @param emailFreelancer as email do freelancer
+     * @return boolean
+     */     
     public boolean registarHabilitacaoAcademica(String grau, String designacaoCurso,
            String nomeInstituicao, double mediaCurso, String emailFreelancer) throws SQLException {
 
