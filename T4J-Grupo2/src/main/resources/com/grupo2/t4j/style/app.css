@@ -83,13 +83,14 @@
 }
 
 .btnAddColaborador {
-    -fx-background-color: #20B2AA;
+    -fx-background-color: #4db6ac;
     -fx-text-fill: #ffffff;
     -fx-cursor: hand;
 }
 
 .btnAddColaborador:hover {
-    -fx-background-color: #383838;
+   -fx-background-color: #82e9de;
+   -fx-text-fill: #000000;
     -fx-scale-y: 0.9;
 }
 
@@ -99,13 +100,14 @@
 }
 
 .btnRegistarColaborador {
-    -fx-background-color: #20B2AA;
+    -fx-background-color: #4db6ac;
     -fx-text-fill: #ffffff;
     -fx-cursor: hand;    
 }
 
 .btnRegistarColaborador:hover {
-    -fx-background-color: #383838;
+   -fx-background-color: #82e9de;
+   -fx-text-fill: #000000;
     -fx-scale-y: 0.9;
 }
 
@@ -115,13 +117,14 @@
 }
 
 .btnAddAreaAtividade {
-    -fx-background-color: #20B2AA;
+    -fx-background-color: #4db6ac;
     -fx-text-fill: #ffffff;
     -fx-cursor: hand;    
 }
 
 .btnAddAreaAtividade:hover {
-    -fx-background-color: #383838;
+    -fx-background-color: #82e9de;
+    -fx-text-fill: #000000;
     -fx-scale-y: 0.9;
 }
 
@@ -131,13 +134,14 @@
 }
 
 .btnConfirmar {
-    -fx-background-color: #20B2AA;
+    -fx-background-color: #4db6ac;
     -fx-text-fill: #ffffff;
     -fx-cursor: hand;    
 }
 
 .btnConfirmar:hover {
-    -fx-background-color: #383838;
+   -fx-background-color: #82e9de;
+   -fx-text-fill: #000000;
     -fx-scale-y: 0.9;
 }
 
@@ -147,13 +151,13 @@
 }
 
 .btnAddCompTecCat {
-    -fx-background-color: #20B2AA;
+    -fx-background-color: #4db6ac;
     -fx-text-fill: #ffffff;
     -fx-cursor: hand; 
 }
 
 .btnAddCompTecCat:hover {
-    -fx-background-color: #383838;
+   -fx-background-color: #82e9de;    -fx-text-fill: #000000;
     -fx-scale-y: 0.9;
 }
 
@@ -163,13 +167,14 @@
 }
 
 .btnAvancarRegisto {
-    -fx-background-color: #20B2AA;
+    -fx-background-color: #4db6ac;
     -fx-text-fill: #ffffff;
     -fx-cursor: hand;     
 }
 
 .btnAvancarRegisto:hover {
-    -fx-background-color: #383838;
+   -fx-background-color: #82e9de;
+   -fx-text-fill: #000000;
     -fx-scale-y: 0.9;
 }
 
@@ -179,13 +184,14 @@
 }
 
 .btnNovaTarefa {
-    -fx-background-color: #20B2AA;
+    -fx-background-color: #4db6ac;
     -fx-text-fill: #ffffff;
     -fx-cursor: hand; 
 }
 
 .btnNovaTarefa:hover {
-    -fx-background-color: #383838;
+   -fx-background-color: #82e9de;
+   -fx-text-fill: #000000;
     -fx-scale-y: 0.9;
 }
 
@@ -195,13 +201,14 @@
 }
 
 .btnConsultar1 {
-    -fx-background-color: #20B2AA;
+    -fx-background-color: #4db6ac;
     -fx-text-fill: #ffffff;
     -fx-cursor: hand;     
 }
 
 .btnConsultar1:hover {
-    -fx-background-color: #383838;
+   -fx-background-color: #82e9de;
+   -fx-text-fill: #000000;
     -fx-scale-y: 0.9;
 }
 
@@ -215,7 +222,8 @@
 }
 
 .btnCancelar:hover {
-    -fx-background-color: #383838;
+   -fx-background-color: #82e9de;
+   -fx-text-fill: #000000;
     -fx-text-fill: #ffffff;
     -fx-scale-y: 0.9;
 }
