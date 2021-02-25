@@ -123,7 +123,7 @@ public class RepositorioAnuncioDataBase implements RepositorioAnuncio {
 
 
     @Override
-    public Anuncio findAnuncioByIdTarefa(String idTarefa) {
+    public Anuncio findAnuncioByIdTarefa(String referenciaTarefa, String nifOrganizacao) {
         return null;
     }
 

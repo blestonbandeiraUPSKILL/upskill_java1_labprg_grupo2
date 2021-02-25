@@ -73,7 +73,7 @@ public class EfectuarCandidaturaController {
         return null;
     }
 
-  /*  public List<Anuncio> findAnunciosElegiveis(String email) throws SQLException {
+    public List<Anuncio> findAnunciosElegiveis(String email) throws SQLException {
 
         List<Anuncio> anunciosElegiveis = new ArrayList<>();
         Data dataAtual = Data.dataActual();
@@ -83,7 +83,7 @@ public class EfectuarCandidaturaController {
         else {
 
             for (Tarefa tarefa : findTarefasElegiveis(email)) {
-                Anuncio anuncio = repositorioAnuncio.findAnuncioByIdTarefa(tarefa.getReferencia());
+                Anuncio anuncio = repositorioAnuncio.findAnuncioByIdTarefa(tarefa.getReferencia(),tarefa.getNifOrganizacao());
                 if (dataAtual.isMaior(anuncio.getDtInicioCand()) && dataAtual.isMaior(anuncio.getDtInicioPub())) {
                     if (anuncio != null) {
                         anunciosElegiveis.add(anuncio);
@@ -96,7 +96,7 @@ public class EfectuarCandidaturaController {
             return new ArrayList<>();
         }
         return anunciosElegiveis;
-    }*/
+    }
 
     public List<CompetenciaTecnica> competenciasTecnicasDoFreelancer(String email) throws SQLException {
 
