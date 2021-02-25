@@ -163,6 +163,8 @@ public class Anuncio implements Serializable {
      */
     public Anuncio (Anuncio anuncio){
         setIdAnuncio(anuncio.idAnuncio);
+        setReferenciaTarefa(anuncio.referenciaTarefa);
+        setNifOrganizacao(anuncio.nifOrganizacao);
         setDtInicioPub(anuncio.dtInicioPublicitacao);
         setDtFimPub(anuncio.dtFimPublicitacao);
         setDtInicioCand(anuncio.dtInicioCandidatura);
@@ -335,7 +337,7 @@ public class Anuncio implements Serializable {
         return referenciaTarefa;
     }
 
-    public void setReferenciaTarefa(String idTarefa) {
+    public void setReferenciaTarefa(String referenciaTarefa) {
         this.referenciaTarefa = referenciaTarefa;
     }
 
