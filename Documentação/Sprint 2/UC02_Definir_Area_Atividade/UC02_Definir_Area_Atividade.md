@@ -4,7 +4,7 @@
 
 ## Formato Breve
 
-O administrador inicia a definição de uma nova área de actividade. O sistema solicita os dados necessários (código único, descrição breve e descrição detalhada). O administrador introduz os dados solicitados. O sistema valida e apresenta os dados ao administrado, pedindo que os confirme. O administrativo confirma. O sistema regista os dados e informa o administrado do sucesso da operação.
+O administrador inicia a definição de uma nova área de actividade. O sistema solicita os dados necessários (código único, descrição breve e descrição detalhada). O administrador introduz os dados solicitados. O sistema regista os dados e informa o administrado do sucesso da operação.
 
 ## Formato Completo
 
@@ -31,9 +31,7 @@ O administrador inicia a definição de uma nova área de actividade. O sistema 
 1.	O administrativo inicia a definição de uma nova área de atividade.
 2.	O sistema solicita os dados necessários (código único e descrição breve e detalhada).
 3.	O administrativo introduz os dados solicitados.
-4.	O sistema valida e apresenta os dados ao administrativo, pedindo que os confirme.
-5.	O administrativo confirma.
-6.	O sistema regista os dados e informa o administrativo do sucesso da operação.
+4.	O sistema regista os dados e informa o administrativo do sucesso da operação.
 
 **_Fluxos Alternativos:_**
 
