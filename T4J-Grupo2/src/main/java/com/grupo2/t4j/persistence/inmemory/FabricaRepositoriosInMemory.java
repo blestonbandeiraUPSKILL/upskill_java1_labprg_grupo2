@@ -12,7 +12,7 @@ public class FabricaRepositoriosInMemory implements FabricaRepositorios {
 
     @Override
     public RepositorioAnuncio getRepositorioAnuncio() {
-        return RepositorioAnuncioInMemory.getInstance();
+        return null;
     }
 
     @Override
@@ -67,7 +67,7 @@ public class FabricaRepositoriosInMemory implements FabricaRepositorios {
 
     @Override
     public RepositorioTarefa getRepositorioTarefa() {
-        return RepositorioTarefaInMemory.getInstance();
+        return null;
     }
 
     @Override

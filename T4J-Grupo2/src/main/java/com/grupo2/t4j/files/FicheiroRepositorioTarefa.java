@@ -5,7 +5,6 @@
  */
 package com.grupo2.t4j.files;
 
-import com.grupo2.t4j.persistence.inmemory.RepositorioTarefaInMemory;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -18,7 +17,7 @@ import java.io.ObjectOutputStream;
  * @author acris
  */
 public class FicheiroRepositorioTarefa {
-    public static final String NOME_FICHEIRO_SERIALIZAR = "RepositorioTarefa.ltf";
+    /*public static final String NOME_FICHEIRO_SERIALIZAR = "RepositorioTarefa.ltf";
     public FicheiroRepositorioTarefa() {
     }
 
@@ -36,7 +35,7 @@ public class FicheiroRepositorioTarefa {
                     new FileOutputStream(ficheiro));
             try {
                 out.writeObject(repositorioTarefaInMemory);
-                
+
                 return true;
             } finally {
                 out.close();
@@ -61,7 +60,7 @@ public class FicheiroRepositorioTarefa {
                     new FileInputStream(ficheiro));
             try {
                 repositorioTarefaInMemory = (RepositorioTarefaInMemory) in.readObject();
-                
+
                 return repositorioTarefaInMemory;
             } finally {
                 in.close();
@@ -69,5 +68,5 @@ public class FicheiroRepositorioTarefa {
         } catch (IOException | ClassNotFoundException ex) {
             return RepositorioTarefaInMemory.getInstance();
         }
-    }
+    }*/
 }

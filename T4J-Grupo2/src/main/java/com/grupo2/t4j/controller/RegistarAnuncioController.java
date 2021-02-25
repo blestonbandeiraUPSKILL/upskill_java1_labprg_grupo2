@@ -26,7 +26,7 @@ public class RegistarAnuncioController {
     private RepositorioAnuncio repositorioAnuncio = fabricaRepositorios.getRepositorioAnuncio();
     
     private FicheiroRepositorioAnuncio ficheiroAnuncio;
-    private RepositorioAnuncioInMemory repositorioAnuncioIM;
+
 
    /* public boolean registarAnuncio(String referenciaTarefa, String nifOrganizacao, Data dtInicioPublicitacao,
             Data dtFimPublicitacao, Data dtInicioCandidatura, Data dtFimCandidatura, 
@@ -43,28 +43,5 @@ public class RegistarAnuncioController {
     }
 
     
-    ////FICHEIROS//////
 
-    public RegistarAnuncioController() {
-        ficheiroAnuncio = new FicheiroRepositorioAnuncio();
-        
-        desserializar();
-    }
-    public boolean serializar() {
-        return ficheiroAnuncio.serializar(repositorioAnuncioIM);
-    }
-
-    public boolean serializar(File ficheiroExportar) {
-        return ficheiroAnuncio.serializar(ficheiroExportar, repositorioAnuncioIM);
-    }
-
-    public void desserializar() {
-        repositorioAnuncioIM = ficheiroAnuncio.desserializar();
-    }
-
-    public int desserializar(File ficheiroImportar) {
-        RepositorioAnuncioInMemory listaAnunciosImportada = ficheiroAnuncio.desserializar(ficheiroImportar);
-
-        return RepositorioAnuncioInMemory.getInstance().adicionarListaAnuncios(listaAnunciosImportada);
-    }
 }

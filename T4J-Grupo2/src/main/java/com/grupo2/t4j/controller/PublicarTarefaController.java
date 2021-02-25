@@ -28,18 +28,15 @@ public class PublicarTarefaController {
     private RepositorioAnuncio repositorioAnuncio = fabricaRepositorios.getRepositorioAnuncio();
     
 
-    public boolean publicarTarefa(String referencia, String nifOrganizacao, 
-            LocalDate dtInicioPublicitacao, LocalDate dtFimPublicitacao, 
-            LocalDate dtInicioCandidaturas, LocalDate dtFimCandidaturas, 
-            LocalDate dtInicioSeriacao, LocalDate dtFimSeriacao, 
-            String idTipoRegimento) throws SQLException {
+    public boolean publicarTarefa(String referencia, String nifOrganizacao,
+                                  String dtInicioPublicitacao, String dtFimPublicitacao,
+                                  String dtInicioCandidaturas, String dtFimCandidaturas,
+                                  String dtInicioSeriacao, String dtFimSeriacao,
+                                  int idTipoRegimento) throws SQLException {
+
         
-        Anuncio anuncio = new Anuncio(referencia, nifOrganizacao, 
-            data(dtInicioPublicitacao), data(dtFimPublicitacao), 
-            data(dtInicioCandidaturas), data(dtFimCandidaturas), 
-            data(dtInicioSeriacao), data(dtFimSeriacao), idTipoRegimento);
-        
-        return repositorioAnuncio.save(anuncio);
+        return repositorioAnuncio.save(referencia, nifOrganizacao, dtInicioPublicitacao, dtFimPublicitacao, dtInicioCandidaturas,
+                dtFimCandidaturas, dtInicioSeriacao, dtFimSeriacao, idTipoRegimento);
     }
     
     /**

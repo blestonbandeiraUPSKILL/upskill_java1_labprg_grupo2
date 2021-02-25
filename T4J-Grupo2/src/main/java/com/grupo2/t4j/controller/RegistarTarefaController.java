@@ -48,15 +48,17 @@ public class RegistarTarefaController {
         return repositorioTarefa.findByColaboradorENif(email, nifOrganizacao);
     }
     
-    public List<Anuncio> findTarefasPublicadas(List<String> referenciasTarefa, String nifOrganizacao) throws SQLException{
-        return repositorioTarefa.findTarefasComAnuncio(referenciasTarefa, nifOrganizacao);
+    public List<Tarefa> findTarefasPublicadas(List<String> referenciasTarefa, String nifOrganizacao) throws SQLException{
+        return repositorioTarefa.findTarefasPublicadas(referenciasTarefa, nifOrganizacao);
     }
     
-    public List<Tarefa> findTarefasNaoPublicadas(String email, String nifOrganizacao) throws SQLException{
-        return repositorioTarefa.findTarefasSemAnuncio(email, nifOrganizacao);
+    public List<Tarefa> findTarefasNaoPublicadas(List<String> referenciasTarefa, String email, String nifOrganizacao) throws SQLException{
+        return repositorioTarefa.findTarefasNaoPublicadas(referenciasTarefa, email, nifOrganizacao);
     }
 
-    public List<String> findRefenciaTarefa(String nifOrganizacao, String email) throws SQLException {
-        return repositorioTarefa.findReferenciaTarefa(nifOrganizacao, email);
+    public List<String> findRefenciaTarefa(String nifOrganizacao) throws SQLException {
+        return repositorioTarefa.findReferenciaTarefa(nifOrganizacao);
     }
+
+
 }

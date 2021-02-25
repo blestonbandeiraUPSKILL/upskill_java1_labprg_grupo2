@@ -123,15 +123,16 @@ public class ColaboradorLogadoUI implements Initializable {
     public void updateListViewTarefasPublicadas() throws SQLException {
         String email = gestaoUtilizadoresController.getEmail();
         String nifOrganizacao = registarColaboradorController.getNifOrganizacao(email);
-        List<String> referenciasTarefa = registarTarefaController.findRefenciaTarefa(nifOrganizacao, email);
-        listViewTarefas.getItems().setAll((Tarefa) registarTarefaController.findTarefasPublicadas(referenciasTarefa, nifOrganizacao));
+        List<String> referenciasTarefa = registarTarefaController.findRefenciaTarefa(nifOrganizacao);
+        listViewTarefas.getItems().setAll(registarTarefaController.findTarefasPublicadas(referenciasTarefa, nifOrganizacao));
         
     }
     
     public void updateListViewTarefasNaoPublicadas() throws SQLException {
         String email = gestaoUtilizadoresController.getEmail();
         String nifOrganizacao = registarColaboradorController.getNifOrganizacao(email);
-        listViewTarefas.getItems().setAll(registarTarefaController.findTarefasNaoPublicadas(email, nifOrganizacao));
+        List<String> referenciasTarefa = registarTarefaController.findRefenciaTarefa(nifOrganizacao);
+        listViewTarefas.getItems().setAll(registarTarefaController.findTarefasNaoPublicadas(referenciasTarefa, email, nifOrganizacao));
         
     }
     

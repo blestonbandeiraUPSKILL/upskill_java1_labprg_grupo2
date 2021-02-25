@@ -36,37 +36,37 @@ public class Anuncio implements Serializable {
     /**
      * Data de início da publicitação do anúncio
      */
-    private Data dtInicioPublicitacao;
+    private String dtInicioPublicitacao;
     
     /**
      * Data do fim da publicitação do anúncio
     */
-    private  Data dtFimPublicitacao;
+    private  String dtFimPublicitacao;
     
     /**
      * Data de início da candidatura do anúncio
      */
-    private Data dtInicioCandidatura;
+    private String dtInicioCandidatura;
     
     /**
      * Data do fim da candidatura do anúncio
      */
-    private  Data dtFimCandidatura;
+    private  String dtFimCandidatura;
     
     /**
      * Data de início do processo de seriação do anúncio
      */
-    private Data dtInicioSeriacao;
+    private String dtInicioSeriacao;
     
     /**
      * Data do fim do processo de seriação do anúncio
      */
-    private  Data dtFimSeriacao;
+    private  String dtFimSeriacao;
     
     /**
      * O id do tipo de regimento aplicavel ao anuncio
      */
-    private String idTipoRegimento;
+    private int idTipoRegimento;
     
     /**
      * A data atual no formato da classe Data
@@ -75,34 +75,13 @@ public class Anuncio implements Serializable {
     private Data hoje = new Data(cal.get(Calendar.YEAR),cal.get(Calendar.MONTH),
             cal.get(Calendar.DAY_OF_MONTH));
 
-    /**
-     * Construtor completo da classe Anuncio
-     * @param idAnuncio - o id do Anúncio
-     * @param dtInicioPublicitacao - data de início da publicitação do anúncio
-     * @param dtFimPublicitacao - data do fim da publicitação do anúncio
-     * @param dtInicioCandidatura - data de início da candidatura do anúncio
-     * @param dtFimCandidatura - data do fim da candidatura do anúncio
-     * @param dtInicioSeriacao - data de início do processo de seriação do anúncio
-     * @param dtFimSeriacao - data do fim do processo de seriação do anúncio
-     */
-    /*public Anuncio(String idAnuncio,Data dtInicioPublicitacao, Data dtFimPublicitacao, Data 
-            dtInicioCandidatura, Data dtFimCandidatura, Data dtInicioSeriacao,
-            Data dtFimSeriacao) {
-        setIdAnuncio(idAnuncio);
-        setDtInicioPub(dtInicioPublicitacao);
-        setDtFimPub(dtFimPublicitacao);
-        setDtInicioCand(dtInicioCandidatura);
-        setDtFimCand(dtFimCandidatura);
-        setDtInicioSeriacao(dtInicioSeriacao);
-        setDtFimSeriacao(dtFimSeriacao);        
-    }*/
+
     
     public Anuncio(){
     }
     
     /**
      * Construtor completo da classe Anuncio
-     * @param idTarefa - o id da Tarefa a que se refere o Anúncio
      * @param dtInicioPublicitacao - data de início da publicitação do anúncio
      * @param dtFimPublicitacao - data do fim da publicitação do anúncio
      * @param dtInicioCandidatura - data de início da candidatura do anúncio
@@ -110,9 +89,9 @@ public class Anuncio implements Serializable {
      * @param dtInicioSeriacao - data de início do processo de seriação do anúncio
      * @param dtFimSeriacao - data do fim do processo de seriação do anúncio
      */
-    public Anuncio(int idAnuncio, String referenciaTarefa, String nifOrganizacao, Data dtInicioPublicitacao, Data dtFimPublicitacao, Data
-            dtInicioCandidatura, Data dtFimCandidatura, Data dtInicioSeriacao,
-            Data dtFimSeriacao, String idTipoRegimento) {
+    public Anuncio(int idAnuncio, String referenciaTarefa, String nifOrganizacao, String dtInicioPublicitacao, String dtFimPublicitacao, String
+            dtInicioCandidatura, String dtFimCandidatura, String dtInicioSeriacao,
+                   String dtFimSeriacao, int idTipoRegimento) {
         this.idAnuncio = idAnuncio;
         setReferenciaTarefa(referenciaTarefa);
         setNifOrganizacao(nifOrganizacao);
@@ -125,41 +104,8 @@ public class Anuncio implements Serializable {
         setIdTipoRegimento(idTipoRegimento);
     }
     
-    /*public Anuncio(String idAnuncio,String referenciaTarefa, String nifOrganizacao,Data dtInicioPublicitacao, Data dtFimPublicitacao, Data 
-            dtInicioCandidatura, Data dtFimCandidatura, Data dtInicioSeriacao,
-            Data dtFimSeriacao) {
-        setIdAnuncio(idAnuncio);
-        setReferenciaTarefa(referenciaTarefa);
-        setNifOrganizacao(nifOrganizacao);
-        setDtInicioPub(dtInicioPublicitacao);
-        setDtFimPub(dtFimPublicitacao);
-        setDtInicioCand(dtInicioCandidatura);
-        setDtFimCand(dtFimCandidatura);
-        setDtInicioSeriacao(dtInicioSeriacao);
-        setDtFimSeriacao(dtFimSeriacao);        
-    }*/
-    
-    /**
-     * Construtor completo da classe Anuncio com as datas em formato texto
-     * @param idAnuncio - o id do Anúncio
-     * @param txtDtInicioPublicitacao - data de início da publicitação do anúncio em formato texto
-     * @param txtDtFimPublicitacao - data do fim da publicitação do anúncio em formato texto
-     * @param txtDtInicioCandidatura - data de início da candidatura do anúncio em formato texto
-     * @param txtDtFimCandidatura - data do fim da candidatura do anúncio em formato texto
-     * @param txtDtInicioSeriacao - data de início do processo de seriação do anúncio em formato texto
-     * @param txtDtFimSeriacao - data do fim do processo de seriação do anúncio em formato texto
-     */
-    /*public Anuncio(String idAnuncio,String txtDtInicioPublicitacao, String txtDtFimPublicitacao, 
-            String txtDtInicioCandidatura, String txtDtFimCandidatura, String txtDtInicioSeriacao,
-            String txtDtFimSeriacao) {
-        setIdAnuncio(idAnuncio);
-        setDtInicioPub(eFormaData(txtDtInicioPublicitacao));
-        setDtFimPub(eFormaData(txtDtFimPublicitacao));
-        setDtInicioCand(eFormaData(txtDtInicioCandidatura));
-        setDtFimCand(eFormaData(txtDtFimCandidatura));
-        setDtInicioSeriacao(eFormaData(txtDtInicioSeriacao));
-        setDtFimSeriacao(eFormaData(txtDtFimSeriacao));        
-    }*/
+
+
            
     /**
      * Construtor da classe Anuncio
@@ -177,8 +123,8 @@ public class Anuncio implements Serializable {
         setDtFimSeriacao(anuncio.dtFimSeriacao);  
     }
 
-    public Anuncio(int idAnuncio, String referenciaTarefa, String nifOrganizacao, Data dataInicioPublicitacao,
-                   Data dataFimPublicitacao, Data dataInicioCandidatura, Data dataFimCandidatura, Data dataInicioSeriacao, Data dataFimSeriacao) {
+    public Anuncio(int idAnuncio, String referenciaTarefa, String nifOrganizacao, String dataInicioPublicitacao,
+                   String dataFimPublicitacao, String dataInicioCandidatura, String dataFimCandidatura, String dataInicioSeriacao, String dataFimSeriacao) {
         setIdAnuncio(idAnuncio);
         setReferenciaTarefa(referenciaTarefa);
         setNifOrganizacao(nifOrganizacao);
@@ -190,7 +136,8 @@ public class Anuncio implements Serializable {
         setDtFimSeriacao(dataFimSeriacao);
     }
 
-    public Anuncio(String referencia, String nifOrganizacao, Data dataInicioPublicitacao, Data dataFimPublicitacao, Data dataInicioCandidatura, Data dataFimCandidatura, Data dataInicioSeriacao, Data dataFimSeriacao, String idTipoRegimento) {
+    public Anuncio(String referencia, String nifOrganizacao, String dataInicioPublicitacao, String dataFimPublicitacao, String dataInicioCandidatura,
+                   String dataFimCandidatura, String dataInicioSeriacao, String dataFimSeriacao, int idTipoRegimento) {
         setReferenciaTarefa(referencia);
         setNifOrganizacao(nifOrganizacao);
         setDtInicioPub(dataInicioPublicitacao);
@@ -215,94 +162,94 @@ public class Anuncio implements Serializable {
 
     /**
      * Define a data de início da publicitação do anúncio
-     * @param dtInicioPublicitacao  
+     * @param dtInicioPublicitacao
      */
-    public void setDtInicioPub(Data dtInicioPublicitacao) {
-        if(dtInicioPublicitacao.compareTo(hoje) >= 0){
+    public void setDtInicioPub(String dtInicioPublicitacao) {
+       /* if(dtInicioPublicitacao.compareTo(hoje) >= 0){*/
            this.dtInicioPublicitacao = dtInicioPublicitacao;
-        }
+       /* }
         else{
            throw new DataInvalidaException("A data de início de publicitação deve "
                    + "ser maior ou igual à data atual.");
-        }        
+        }      */
     }
     
     /**
      * Define a data do fim da publicitação do anúncio
      * @param dtFimPublicitacao
      */
-    public void setDtFimPub(Data dtFimPublicitacao) {
-        if(dtFimPublicitacao.isMaior(dtInicioPublicitacao)){
+    public void setDtFimPub(String dtFimPublicitacao) {
+       /* if(dtFimPublicitacao.isMaior(dtInicioPublicitacao)){*/
            this.dtFimPublicitacao = dtFimPublicitacao;
-        }
+       /* }
         else{
            throw new DataInvalidaException("A data do fim da publicitação deve ser "
                    + "maior que a data de início da publicitação.");
-        }       
+        }      */
     }
     
     /**
      * Define a data de início da candidatura do anúncio
      * @param dtInicioCandidatura
      */
-    public void setDtInicioCand(Data dtInicioCandidatura) {
-        if((dtInicioCandidatura.compareTo(dtInicioPublicitacao) >=0) &&
-                (dtInicioCandidatura.compareTo(dtFimPublicitacao) <=0)){
+    public void setDtInicioCand(String dtInicioCandidatura) {
+      /*  if((dtInicioCandidatura.compareTo(dtInicioPublicitacao) >=0) &&
+                (dtInicioCandidatura.compareTo(dtFimPublicitacao) <=0)){*/
            this.dtInicioCandidatura = dtInicioCandidatura;
-        }
+       /* }
         else{
            throw new DataInvalidaException("A data do início da candidatura deve"
                    + "estar contida dentro do período de publicitação.");
-        }
+        }*/
     }
     
     /**
      * Define a data do fim da candidatura do anúncio
      * @param dtFimCandidatura
      */
-    public void setDtFimCand(Data dtFimCandidatura) {
-        if((dtFimCandidatura.compareTo(dtInicioCandidatura) >=0) &&
-                (dtFimCandidatura.compareTo(dtFimPublicitacao) <=0)){
+    public void setDtFimCand(String dtFimCandidatura) {
+       /* if((dtFimCandidatura.compareTo(dtInicioCandidatura) >=0) &&
+                (dtFimCandidatura.compareTo(dtFimPublicitacao) <=0)){*/
            this.dtFimCandidatura = dtFimCandidatura;
-        }
+        /*}
         else{
            throw new DataInvalidaException("A data do fim da candidatura deve"
                    + " ser maior do que a data de início do processo de candidatura, e"
                    + " deve estar contida dentro do período de publicitação.");
-        }      
+        }      */
     }
     
     /**
      * Define a data de início do processo de seriação do anúncio
      * @param dtInicioSeriacao
      */
-    public void setDtInicioSeriacao(Data dtInicioSeriacao) {
-        if((dtInicioSeriacao.compareTo(dtInicioPublicitacao) >=0) &&
+    public void setDtInicioSeriacao(String dtInicioSeriacao) {
+       /* if((dtInicioSeriacao.compareTo(dtInicioPublicitacao) >=0) &&
                 (dtInicioSeriacao.compareTo(dtFimPublicitacao) <=0) &&
-               (dtInicioSeriacao.isMaior(dtFimCandidatura))){
+               (dtInicioSeriacao.isMaior(dtFimCandidatura))){*/
             this.dtInicioSeriacao = dtInicioSeriacao;
-        }
+        /*}
         else{
            throw new DataInvalidaException("A data do início da seriação deve"
                    + "estar contida dentro do período de publicitação e começar"
                    + "após o término do processo de candidaturas.");
-        }      
+        } */
     }
     
     /**
      * Define a data do fim do processo de seriação do anúncio
      * @param dtFimSeriacao
      */
-    public void setDtFimSeriacao(Data dtFimSeriacao) {
-        if((dtFimSeriacao.compareTo(dtInicioSeriacao) >=0) &&
-                (dtFimSeriacao.compareTo(dtFimPublicitacao) <=0)){
+    public void setDtFimSeriacao(String dtFimSeriacao) {
+        /*if((dtFimSeriacao.compareTo(dtInicioSeriacao) >=0) &&
+                (dtFimSeriacao.compareTo(dtFimPublicitacao) <=0)){*/
             this.dtFimSeriacao = dtFimSeriacao;
-        }
+        /*}
         else{
            throw new DataInvalidaException("A data do fim da seriação deve"
                    + "estar contida dentro do período de publicitação ser maior"
                    + " ou igual à data de início da seriação.");
-        }
+        }*/
         
     }
     
@@ -318,7 +265,7 @@ public class Anuncio implements Serializable {
      * Devolve a data de início da publicitação do anúncio
      * @return
      */
-    public Data getDtInicioPub() {
+    public String getDtInicioPub() {
        return dtInicioPublicitacao;
     }
     
@@ -326,7 +273,7 @@ public class Anuncio implements Serializable {
      * Devolve a data do fim da publicitação do anúncio
      * @return dtFimPublicitacao
      */
-    public Data getDtFimPub() {
+    public String getDtFimPub() {
        return dtFimPublicitacao;
     }
     
@@ -334,7 +281,7 @@ public class Anuncio implements Serializable {
      * Devolve a data de início da candidatura do anúncio
      * @return dtInicioCandidatura
      */
-    public Data getDtInicioCand() {
+    public String getDtInicioCand() {
        return dtInicioCandidatura;
     }
     
@@ -342,7 +289,7 @@ public class Anuncio implements Serializable {
      * Devolve a data do fim da candidatura do anúncio
      * @return
      */
-    public Data getDtFimCand() {
+    public String getDtFimCand() {
        return dtFimCandidatura;
     }
     
@@ -350,7 +297,7 @@ public class Anuncio implements Serializable {
      * Devolve a data de início do processo de seriação do anúncio
      * @return dtInicioSeriacao
      */
-    public Data getDtInicioSeriacao() {
+    public String getDtInicioSeriacao() {
        return dtInicioSeriacao;
     }
     
@@ -358,7 +305,7 @@ public class Anuncio implements Serializable {
      * Devolve a data do fim do processo de seriação do anúncio
      * @return dtFimSeriacao
      */
-    public Data getDtFimSeriacao() {
+    public String getDtFimSeriacao() {
        return dtFimSeriacao; 
     }
 
@@ -378,11 +325,11 @@ public class Anuncio implements Serializable {
         this.nifOrganizacao = nifOrganizacao;
     }
 
-    public String getIdTipoRegimento() {
+    public int getIdTipoRegimento() {
         return idTipoRegimento;
     }
 
-    public void setIdTipoRegimento(String idTipoRegimento) {
+    public void setIdTipoRegimento(int idTipoRegimento) {
         this.idTipoRegimento = idTipoRegimento;
     }
     
@@ -431,10 +378,10 @@ public class Anuncio implements Serializable {
         return String.format("ID: %-12s |Início publicitação: %-12s"
                 + " |Fim publicitação: %-12s |Início candidatura: %-12s"
                 + " |Fim candidatura: %-12s |Início seriação: %-12s"
-                + " |Fim seriação: %-12s", idAnuncio, dtInicioPublicitacao.toAnoMesDiaString(),
-                dtFimPublicitacao.toAnoMesDiaString(), dtInicioCandidatura.toAnoMesDiaString(),
-                dtFimCandidatura.toAnoMesDiaString(), dtInicioSeriacao.toAnoMesDiaString(),
-                dtFimSeriacao.toAnoMesDiaString());
+                + " |Fim seriação: %-12s", idAnuncio, dtInicioPublicitacao,
+                dtFimPublicitacao, dtInicioCandidatura,
+                dtFimCandidatura, dtInicioSeriacao,
+                dtFimSeriacao);
     }
     
     /**
@@ -446,9 +393,9 @@ public class Anuncio implements Serializable {
         return String.format("ID: %s  %nInício publicitação: %s"
                 + "%nFim publicitação: %s %nInício candidatura: %s"
                 + "%nFim candidatura: %s %nInício seriação: %s"
-                + "%nFim seriação: %s", idAnuncio, dtInicioPublicitacao.toAnoMesDiaString(),
-                dtFimPublicitacao.toAnoMesDiaString(), dtInicioCandidatura.toAnoMesDiaString(),
-                dtFimCandidatura.toAnoMesDiaString(), dtInicioSeriacao.toAnoMesDiaString(),
-                dtFimSeriacao.toAnoMesDiaString());
+                + "%nFim seriação: %s", idAnuncio, dtInicioPublicitacao,
+                dtFimPublicitacao, dtInicioCandidatura,
+                dtFimCandidatura, dtInicioSeriacao,
+                dtFimSeriacao);
     }
 }
