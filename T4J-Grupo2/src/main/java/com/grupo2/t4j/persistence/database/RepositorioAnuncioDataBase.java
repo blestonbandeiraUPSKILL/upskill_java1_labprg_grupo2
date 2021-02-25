@@ -84,14 +84,14 @@ public class RepositorioAnuncioDataBase implements RepositorioAnuncio {
             try {
                 connection.setAutoCommit(false);
 
-                callableStatement.setString(1, anuncio.getDtInicioPub().toString());
-                callableStatement.setString(2, anuncio.getDtFimPub().toString());
-                callableStatement.setString(3, anuncio.getDtInicioCand().toString());
-                callableStatement.setString(4, anuncio.getDtFimCand().toString());
-                callableStatement.setString(5, anuncio.getDtInicioSeriacao().toString());
-                callableStatement.setString(6, anuncio.getDtFimSeriacao().toString());
-                callableStatement.setString(7, anuncio.getReferenciaTarefa());
-                callableStatement.setString(8, anuncio.getNifOrganizacao());
+                callableStatement.setString(1, anuncio.getReferenciaTarefa());
+                callableStatement.setString(2, anuncio.getNifOrganizacao());
+                callableStatement.setString(3, anuncio.getDtInicioPub().toString());
+                callableStatement.setString(4, anuncio.getDtFimPub().toString());
+                callableStatement.setString(5, anuncio.getDtInicioCand().toString());
+                callableStatement.setString(6, anuncio.getDtFimCand().toString());
+                callableStatement.setString(7, anuncio.getDtInicioSeriacao().toString());
+                callableStatement.setString(8, anuncio.getDtFimSeriacao().toString());
                 callableStatement.setString(9, anuncio.getIdTipoRegimento());
 
                 callableStatement.executeQuery();
@@ -114,7 +114,6 @@ public class RepositorioAnuncioDataBase implements RepositorioAnuncio {
             finally {
                 dbConnectionHandler.closeAll();
             }
-        
 
         return false;
     }
@@ -136,9 +135,9 @@ public class RepositorioAnuncioDataBase implements RepositorioAnuncio {
         return null;
     }
     
-    @Override
+
     public ArrayList<Anuncio> getAllByStatus(TipoStatusAnuncio status) throws SQLException {
-        ArrayList<Anuncio> anuncios = new ArrayList<>();
+        /*ArrayList<Anuncio> anuncios = new ArrayList<>();
 
         DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
         Connection connection = dbConnectionHandler.openConnection();
@@ -188,9 +187,9 @@ public class RepositorioAnuncioDataBase implements RepositorioAnuncio {
                 anunciosStatus.add(anuncio);
             }
         }
-        return anunciosStatus;
+        return anunciosStatus;*/
         
-        //return null;
+        return null;
     }
 
 

@@ -5,19 +5,11 @@
  */
 package com.grupo2.t4j.controller;
 
-import com.grupo2.t4j.model.AreaActividade;
-import com.grupo2.t4j.model.CaracterizacaoCT;
-import com.grupo2.t4j.model.Categoria;
-import com.grupo2.t4j.model.Tarefa;
+import com.grupo2.t4j.model.*;
 import com.grupo2.t4j.persistence.FabricaRepositorios;
-import com.grupo2.t4j.persistence.RepositorioAreaActividade;
-import com.grupo2.t4j.persistence.RepositorioCategoriaTarefa;
 import com.grupo2.t4j.persistence.RepositorioTarefa;
 import com.grupo2.t4j.persistence.database.FabricaRepositoriosDatabase;
-import com.grupo2.t4j.persistence.inmemory.FabricaRepositoriosInMemory;
-import com.grupo2.t4j.persistence.inmemory.RepositorioAreaActividadeInMemory;
-import com.grupo2.t4j.persistence.inmemory.RepositorioCategoriaTarefaInMemory;
-import com.grupo2.t4j.persistence.inmemory.RepositorioTarefaInMemory;
+
 import java.sql.SQLException;
 
 import java.util.List;
@@ -56,12 +48,15 @@ public class RegistarTarefaController {
         return repositorioTarefa.findByColaboradorENif(email, nifOrganizacao);
     }
     
-    public List<Tarefa> findTarefasPublicadas(String email, String nifOrganizacao) throws SQLException{
-        return repositorioTarefa.findTarefasComAnuncio(email, nifOrganizacao);
+    public List<Anuncio> findTarefasPublicadas(List<String> referenciasTarefa, String nifOrganizacao) throws SQLException{
+        return repositorioTarefa.findTarefasComAnuncio(referenciasTarefa, nifOrganizacao);
     }
     
     public List<Tarefa> findTarefasNaoPublicadas(String email, String nifOrganizacao) throws SQLException{
         return repositorioTarefa.findTarefasSemAnuncio(email, nifOrganizacao);
     }
-    
+
+    public List<String> findRefenciaTarefa(String nifOrganizacao, String email) throws SQLException {
+        return repositorioTarefa.findReferenciaTarefa(nifOrganizacao, email);
+    }
 }

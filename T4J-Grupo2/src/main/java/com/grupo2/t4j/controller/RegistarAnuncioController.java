@@ -28,7 +28,7 @@ public class RegistarAnuncioController {
     private FicheiroRepositorioAnuncio ficheiroAnuncio;
     private RepositorioAnuncioInMemory repositorioAnuncioIM;
 
-    public boolean registarAnuncio(String referenciaTarefa, String nifOrganizacao, Data dtInicioPublicitacao, 
+   /* public boolean registarAnuncio(String referenciaTarefa, String nifOrganizacao, Data dtInicioPublicitacao,
             Data dtFimPublicitacao, Data dtInicioCandidatura, Data dtFimCandidatura, 
             Data dtInicioSeriacao, Data dtFimSeriacao, String idTipoRegimento) throws SQLException {
 
@@ -36,7 +36,7 @@ public class RegistarAnuncioController {
                 dtInicioCandidatura, dtFimCandidatura, dtInicioSeriacao, dtFimSeriacao, idTipoRegimento);
 
         return repositorioAnuncio.save(anuncio);
-    }
+    }*/
 
     public List<Anuncio> getAll() {
         return repositorioAnuncio.getAll();

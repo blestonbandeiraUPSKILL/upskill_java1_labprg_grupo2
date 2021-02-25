@@ -1,9 +1,6 @@
 package com.grupo2.t4j.persistence.database;
 
-import com.grupo2.t4j.exception.TarefaDuplicadaException;
-import com.grupo2.t4j.model.AreaActividade;
-import com.grupo2.t4j.model.Categoria;
-import com.grupo2.t4j.model.Tarefa;
+import com.grupo2.t4j.model.*;
 import com.grupo2.t4j.persistence.RepositorioTarefa;
 import com.grupo2.t4j.utils.DBConnectionHandler;
 import java.sql.CallableStatement;
@@ -336,6 +333,55 @@ public class RepositorioTarefaDatabase implements RepositorioTarefa {
     }
 
     @Override
+    public List<Anuncio> findTarefasComAnuncio(List<String> referenciasTarefa, String nifOrganizacao) throws SQLException {
+        List<Anuncio> tarefasComAnuncio = new ArrayList<>();
+
+        DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
+        Connection connection = dbConnectionHandler.openConnection();
+
+        CallableStatement callableStatement = connection.prepareCall(
+                " SELECT * FROM Anuncio WHERE referenciaTarefa LIKE ? AND nifOrganizacao LIKE ? "
+        );
+
+        try {
+            connection.setAutoCommit(false);
+
+            for (String referencia: referenciasTarefa ) {
+
+                callableStatement.setString(1, referencia);
+                callableStatement.setString(2, nifOrganizacao );
+
+                callableStatement.executeUpdate();
+
+                ResultSet resultSet = callableStatement.getResultSet();
+
+                while(resultSet.next()) {
+                    int idAnuncio = resultSet.getInt(1);
+                    Data dataInicioPublicitacao = new Data(resultSet.getDate(4).toString());
+                    Data dataFimPublicitacao = new Data(resultSet.getDate(5).toString());
+                    Data dataInicioCandidatura = new Data(resultSet.getDate(6).toString());
+                    Data dataFimCandidatura = new Data(resultSet.getDate(7).toString());
+                    Data dataInicioSeriacao = new Data(resultSet.getDate(8).toString());
+                    Data dataFimSeriacao = new Data(resultSet.getDate(9).toString());
+
+                    tarefasComAnuncio.add(new Anuncio(idAnuncio, referencia, nifOrganizacao,
+                            dataInicioPublicitacao, dataFimPublicitacao, dataInicioCandidatura, dataFimCandidatura,
+                            dataInicioSeriacao, dataFimSeriacao));
+                }
+            }
+            return tarefasComAnuncio;
+
+        }
+        catch (SQLException exception) {
+            exception.printStackTrace();
+            exception.getSQLState();
+
+        }
+        return null;
+    }
+
+
+  /*  @Override
     public List<Tarefa> findTarefasComAnuncio(String email, String nifOrganizacao) throws SQLException {
         List<Tarefa> tarefasPublicadas = new ArrayList<>();
         List<Tarefa> tarefas = new ArrayList<>();
@@ -349,7 +395,7 @@ public class RepositorioTarefaDatabase implements RepositorioTarefa {
         }
         return tarefasPublicadas;
 
-    }
+    }*/
     
     @Override
     public List<Tarefa> findTarefasSemAnuncio(String email, String nifOrganizacao) throws SQLException {
@@ -366,15 +412,43 @@ public class RepositorioTarefaDatabase implements RepositorioTarefa {
         return tarefasNaoPublicadas;
 
     }
-    
+
     @Override
-    public Tarefa findAnuncioByTarefa(String referencia, String nif) throws SQLException {
-        
+    public List<String> findReferenciaTarefa(String nifOrganizacao, String email) throws SQLException {
+        List<String> referenciasTarefa = new ArrayList<>();
+
         DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
         Connection connection = dbConnectionHandler.openConnection();
 
         CallableStatement callableStatement = connection.prepareCall(
-                "{ CALL findAnuncioByTarefa(?, ?) }"
+                "SELECT referencia FROM Tarefa WHERE nifOrganizacao LIKE ? AND emailColaborador LIKE ?"
+        );
+
+        callableStatement.setString(1, nifOrganizacao);
+        callableStatement.setString(2, email);
+
+        callableStatement.executeUpdate();
+
+        ResultSet resultSet = callableStatement.getResultSet();
+
+        while(resultSet.next()) {
+            String referenciaTarefa = resultSet.getString(1);
+            referenciasTarefa.add(referenciaTarefa);
+        }
+
+        return referenciasTarefa;
+    }
+
+
+    public List<Anuncio> findAnuncioByTarefa(String referencia, String nif) throws SQLException {
+
+        List<Anuncio> tarefasComAnuncio = new ArrayList<>();
+
+        DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
+        Connection connection = dbConnectionHandler.openConnection();
+
+        CallableStatement callableStatement = connection.prepareCall(
+                "{ SELECT * FROM Anuncio WHERE referenciaTarefa LIKE ? AND nifOrganizacao LIKE ? }"
         );
 
         try {
@@ -384,7 +458,24 @@ public class RepositorioTarefaDatabase implements RepositorioTarefa {
             callableStatement.setString(2, nif );
 
             callableStatement.executeUpdate();
-            return null;
+
+            ResultSet resultSet = callableStatement.getResultSet();
+
+            while(resultSet.next()) {
+                int idAnuncio = resultSet.getInt(1);
+                String referenciaTarefa = resultSet.getString(2);
+                String nifOrganizacao = resultSet.getString(3);
+                Data dataInicioPublicitacao = new Data(resultSet.getDate(4).toString());
+                Data dataFimPublicitacao = new Data(resultSet.getDate(5).toString());
+                Data dataInicioCandidatura = new Data(resultSet.getDate(6).toString());
+                Data dataFimCandidatura = new Data(resultSet.getDate(7).toString());
+                Data dataInicioSeriacao = new Data(resultSet.getDate(8).toString());
+                Data dataFimSeriacao = new Data(resultSet.getDate(9).toString());
+
+                tarefasComAnuncio.add(new Anuncio(idAnuncio, referenciaTarefa, nifOrganizacao, dataInicioPublicitacao, dataFimPublicitacao, dataInicioCandidatura, dataFimCandidatura,
+                        dataInicioSeriacao, dataFimSeriacao));
+            }
+           return tarefasComAnuncio;
 
         }
         catch (SQLException exception) {
@@ -393,7 +484,7 @@ public class RepositorioTarefaDatabase implements RepositorioTarefa {
 
 
         }
-        return new Tarefa();
+        return null;
     }
 
 }

@@ -103,28 +103,9 @@ public class ColaboradorLogadoUI implements Initializable {
         }
 
 
-  /*      cmbCategoriaTarefa.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                try {
-                    updateListViewTarefasComFiltro();
-                } catch (SQLException exception) {
-                    exception.printStackTrace();
-                }
-
-            }
-        });*/
 
 
     }
-
- /*   public void updateListViewTarefasComFiltro() throws SQLException {
-        String codigoCategoria = cmbCategoriaTarefa.getSelectionModel().getSelectedItem().getCodigoCategoria();
-        listViewTarefas.getItems().setAll(
-                registarTarefaController.findByCategoria(codigoCategoria)
-        );
-
-    }*/
 
     public void updateListViewTarefas() throws SQLException {
         listViewTarefas.getItems().setAll(registarTarefaController.getAllOrganizacao(
@@ -142,7 +123,8 @@ public class ColaboradorLogadoUI implements Initializable {
     public void updateListViewTarefasPublicadas() throws SQLException {
         String email = gestaoUtilizadoresController.getEmail();
         String nifOrganizacao = registarColaboradorController.getNifOrganizacao(email);
-        listViewTarefas.getItems().setAll(registarTarefaController.findTarefasPublicadas(email, nifOrganizacao));
+        List<String> referenciasTarefa = registarTarefaController.findRefenciaTarefa(nifOrganizacao, email);
+        listViewTarefas.getItems().setAll((Tarefa) registarTarefaController.findTarefasPublicadas(referenciasTarefa, nifOrganizacao));
         
     }
     

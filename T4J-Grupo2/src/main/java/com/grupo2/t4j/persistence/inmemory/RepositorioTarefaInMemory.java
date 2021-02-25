@@ -11,7 +11,7 @@ package com.grupo2.t4j.persistence.inmemory;
  */
 
 import com.grupo2.t4j.exception.TarefaDuplicadaException;
-import com.grupo2.t4j.model.AreaActividade;
+import com.grupo2.t4j.model.Anuncio;
 import com.grupo2.t4j.model.Categoria;
 import com.grupo2.t4j.model.Tarefa;
 import com.grupo2.t4j.persistence.RepositorioTarefa;
@@ -149,17 +149,27 @@ public class RepositorioTarefaInMemory implements Serializable, RepositorioTaref
     }
 
     @Override
-    public List<Tarefa> findTarefasComAnuncio(String email, String nifOrganizacao) throws SQLException {
+    public List<Anuncio> findTarefasComAnuncio(List<String> email, String nifOrganizacao) throws SQLException {
+        return null;
+    }
+
+
+    public List<Anuncio> findTarefasComAnuncio(String email, String nifOrganizacao) throws SQLException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public Tarefa findAnuncioByTarefa(String referencia, String nif) throws SQLException {
+    public List<Anuncio> findAnuncioByTarefa(String referencia, String nif) throws SQLException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public List<Tarefa> findTarefasSemAnuncio(String email, String nifOrganizacao) throws SQLException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<String> findReferenciaTarefa(String nifOrganizacao, String email) throws SQLException {
+        return null;
     }
 }

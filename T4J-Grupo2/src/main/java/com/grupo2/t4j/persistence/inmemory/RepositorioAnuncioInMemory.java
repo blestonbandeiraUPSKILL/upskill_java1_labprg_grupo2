@@ -63,6 +63,16 @@ public class RepositorioAnuncioInMemory implements Serializable, RepositorioAnun
     }
 
     @Override
+    public boolean save(Anuncio anuncio) throws SQLException {
+        return false;
+    }
+
+    @Override
+    public Anuncio findById(String idAnuncio) {
+        return null;
+    }
+
+/*    @Override
     public boolean save(Anuncio anuncio) throws SQLException{
         Anuncio a = findById(anuncio.getIdAnuncio());
         if (a == null) {
@@ -72,9 +82,9 @@ public class RepositorioAnuncioInMemory implements Serializable, RepositorioAnun
             throw new AnuncioDuplicadoException(anuncio.getIdAnuncio() + ": Anúncio já registado!");
         }
         return false;
-    }
+    }*/
 
-    @Override
+   /* @Override
     public Anuncio findById(String idAnuncio) {
         Anuncio anuncio = null;
         for (int i = 0; i < this.listaAnuncios.size(); i++) {
@@ -84,14 +94,14 @@ public class RepositorioAnuncioInMemory implements Serializable, RepositorioAnun
             }
         }
         return null;
-    }
+    }*/
 
     @Override
     public ArrayList<Anuncio> getAll() {
         return new ArrayList<Anuncio>(listaAnuncios);
     }
     
-    @Override
+
     public ArrayList<Anuncio> getAllByStatus(TipoStatusAnuncio status) {
         return null;
     }

@@ -21,7 +21,7 @@ public class Anuncio implements Serializable {
     /**
      * O id do Anúncio
      */
-    private String idAnuncio;
+    private int idAnuncio;
     
     /**
      * A referencia da tarefa a que se refere o anúncio
@@ -110,9 +110,10 @@ public class Anuncio implements Serializable {
      * @param dtInicioSeriacao - data de início do processo de seriação do anúncio
      * @param dtFimSeriacao - data do fim do processo de seriação do anúncio
      */
-    public Anuncio(String referenciaTarefa, String nifOrganizacao, Data dtInicioPublicitacao, Data dtFimPublicitacao, Data 
+    public Anuncio(int idAnuncio, String referenciaTarefa, String nifOrganizacao, Data dtInicioPublicitacao, Data dtFimPublicitacao, Data
             dtInicioCandidatura, Data dtFimCandidatura, Data dtInicioSeriacao,
             Data dtFimSeriacao, String idTipoRegimento) {
+        this.idAnuncio = idAnuncio;
         setReferenciaTarefa(referenciaTarefa);
         setNifOrganizacao(nifOrganizacao);
         setDtInicioPub(dtInicioPublicitacao);
@@ -175,13 +176,38 @@ public class Anuncio implements Serializable {
         setDtInicioSeriacao(anuncio.dtInicioSeriacao);
         setDtFimSeriacao(anuncio.dtFimSeriacao);  
     }
-  
+
+    public Anuncio(int idAnuncio, String referenciaTarefa, String nifOrganizacao, Data dataInicioPublicitacao,
+                   Data dataFimPublicitacao, Data dataInicioCandidatura, Data dataFimCandidatura, Data dataInicioSeriacao, Data dataFimSeriacao) {
+        setIdAnuncio(idAnuncio);
+        setReferenciaTarefa(referenciaTarefa);
+        setNifOrganizacao(nifOrganizacao);
+        setDtInicioPub(dataInicioPublicitacao);
+        setDtFimPub(dataFimPublicitacao);
+        setDtInicioCand(dataInicioCandidatura);
+        setDtFimCand(dataFimCandidatura);
+        setDtInicioSeriacao(dataInicioSeriacao);
+        setDtFimSeriacao(dataFimSeriacao);
+    }
+
+    public Anuncio(String referencia, String nifOrganizacao, Data dataInicioPublicitacao, Data dataFimPublicitacao, Data dataInicioCandidatura, Data dataFimCandidatura, Data dataInicioSeriacao, Data dataFimSeriacao, String idTipoRegimento) {
+        setReferenciaTarefa(referencia);
+        setNifOrganizacao(nifOrganizacao);
+        setDtInicioPub(dataInicioPublicitacao);
+        setDtFimPub(dataFimPublicitacao);
+        setDtInicioCand(dataInicioCandidatura);
+        setDtFimCand(dataFimCandidatura);
+        setDtInicioSeriacao(dataInicioSeriacao);
+        setDtFimSeriacao(dataFimSeriacao);
+        setIdTipoRegimento(idTipoRegimento);
+    }
+
     /**
      * Define o id do Anuncio 
      * @param idAnuncio - o id do Anúncio
      */
-    public void setIdAnuncio(String idAnuncio){
-        if (idAnuncio == null || idAnuncio.trim().isEmpty()) {
+    public void setIdAnuncio(int idAnuncio){
+        if (idAnuncio < 0 ) {
             throw new IllegalArgumentException("Id do anúncio é inválido!");
         }
         this.idAnuncio = idAnuncio;
@@ -284,7 +310,7 @@ public class Anuncio implements Serializable {
      * Devolve o id do Anuncio 
      * @return idAnuncio
      */
-    public String getIdAnuncio(){
+    public int getIdAnuncio(){
         return idAnuncio;
     }
 
