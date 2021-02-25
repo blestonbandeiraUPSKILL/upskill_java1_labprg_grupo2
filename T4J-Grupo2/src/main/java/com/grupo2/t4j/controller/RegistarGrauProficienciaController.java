@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.grupo2.t4j.controller;
 
 import com.grupo2.t4j.model.GrauProficiencia;
@@ -15,10 +10,6 @@ import com.grupo2.t4j.persistence.inmemory.FabricaRepositoriosInMemory;
 import java.sql.SQLException;
 import java.util.List;
 
-/**
- *
- * @author acris
- */
 public class RegistarGrauProficienciaController {
     
     //private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosInMemory();
@@ -33,6 +24,14 @@ public class RegistarGrauProficienciaController {
         return repositorioGrauProficiencia.getAll();
     }
 
+   /**
+     * Registar grau de proficiência boolean
+     *
+     * @param designacao as designação do grau de proficiência
+     * @param codigoCompetenciaTecnica as código da competência técnica em questão
+     * @param grau as atribuição do grau de proficiência respsctivo
+     * @return boolean
+     */ 
     public boolean registarGrauProficiencia(String designacao, String codigoCompetenciaTecnica, String grau) throws SQLException {
 
         GrauProficiencia grauProficiencia = new GrauProficiencia (designacao, codigoCompetenciaTecnica, grau);

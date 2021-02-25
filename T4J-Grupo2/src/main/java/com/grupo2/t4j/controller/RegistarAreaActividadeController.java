@@ -36,6 +36,14 @@ public class RegistarAreaActividadeController /*implements Serializable*/{
         return repositorioAreaActividade.getAll();
     }
 
+    /**
+    * Sets new area of activity boolean.
+    *
+    * @param codigo as unique code
+    * @param descBreve as description
+    * @param descDetalhada as detailed description
+    * @return boolean
+    */
     public boolean registarAreaActividade(String codigo, String descBreve, String descDetalhada) throws SQLException {
 
         AreaActividade areaActividade = new AreaActividade(codigo, descBreve, descDetalhada);
