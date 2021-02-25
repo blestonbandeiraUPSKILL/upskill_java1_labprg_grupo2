@@ -36,7 +36,7 @@ public class RepositorioHabilitacaoAcademicaDatabase implements RepositorioHabil
     /**
      * Inicializa o Repositório das Habilitações Acadêmicas dos Freelancers
      */
-    RepositorioHabilitacaoAcademicaDatabase(){    }
+    private RepositorioHabilitacaoAcademicaDatabase(){    }
 
     /**
      * Devolve uma instância estática do Repositório de Habilitações Acadêmicas dos Freelancers
@@ -56,11 +56,11 @@ public class RepositorioHabilitacaoAcademicaDatabase implements RepositorioHabil
            String nomeInstituicao, double mediaCurso, String emailFreelancer) throws HabilitacaoAcademicaDuplicadaException,
             SQLException{
         
-        /*DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
+        DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
         Connection connection = dbConnectionHandler.openConnection();
 
         CallableStatement callableStatement = connection.prepareCall(
-                "{CALL createHabilitacao(?, ?, ?, ?, ?, ?) } ");
+                "{CALL createHabilitacao(?, ?, ?, ?, ?) } ");
 
         if (findByGrauDesigInst(grau, designacaoCurso, nomeInstituicao, emailFreelancer) == null){
 
@@ -93,24 +93,66 @@ public class RepositorioHabilitacaoAcademicaDatabase implements RepositorioHabil
             finally {
                 dbConnectionHandler.closeAll();
             }
-        }*/
+        }
         return false;
     }
 
     @Override
-    public boolean save(HabilitacaoAcademica habilitacaoAcademica) throws HabilitacaoAcademicaDuplicadaException,
+    public boolean save(HabilitacaoAcademica habilitacaoAcademica, String emailFreelancer) throws HabilitacaoAcademicaDuplicadaException,
             SQLException {
+        DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
+        Connection connection = dbConnectionHandler.openConnection();
+
+        CallableStatement callableStatement = connection.prepareCall(
+                "{CALL createHabilitacaoAcademica(?, ?, ?, ?, ?) } ");
+
+        if (findByGrauDesigInst(habilitacaoAcademica.getGrau(),
+                habilitacaoAcademica.getDesignacaoCurso(),
+                habilitacaoAcademica.getNomeInstituicao(), emailFreelancer) == null){
+
+            try {
+                connection.setAutoCommit(false);
+
+                callableStatement.setString(1, habilitacaoAcademica.getGrau());
+                callableStatement.setString(2, habilitacaoAcademica.getDesignacaoCurso());
+                callableStatement.setString(3, habilitacaoAcademica.getNomeInstituicao());
+                callableStatement.setDouble(4, habilitacaoAcademica.getMediaCurso());
+                callableStatement.setString(5, emailFreelancer);
+
+                callableStatement.executeQuery();
+
+                connection.commit();
+                return true;
+            }
+            catch (SQLException exception) {
+                exception.printStackTrace();
+                exception.getSQLState();
+                try {
+                    System.err.print("Transaction is being rolled back");
+                    connection.rollback();
+                }
+                catch (SQLException sqlException) {
+                    sqlException.getErrorCode();
+                }
+            }
+
+            finally {
+                dbConnectionHandler.closeAll();
+            }
+        }
         return false;
     }
 
     @Override
     public HabilitacaoAcademica findByGrauDesigInst(String grau, String designacaoCurso,
            String nomeInstituicao, String emailFreelancer) throws SQLException{
-         
-        /*DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
+
+        HabilitacaoAcademica habilitacaoAcademica = new HabilitacaoAcademica();
+
+        DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
         Connection connection = dbConnectionHandler.openConnection();
 
-        CallableStatement callableStatementOrg = connection.prepareCall(
+        CallableStatement callableStatement = connection.prepareCall(
                  "{CALL findByGrauDesigInst(?, ?, ?, ?)}");
 
         try {
@@ -119,8 +161,9 @@ public class RepositorioHabilitacaoAcademicaDatabase implements RepositorioHabil
             callableStatement.setString(1, grau);
             callableStatement.setString(2, designacaoCurso);
             callableStatement.setString(3, nomeInstituicao);
-            callableStatement.setString(5, emailFreelancer);
-            callableStatementOrg.executeQuery();
+            callableStatement.setString(4, emailFreelancer);
+
+            callableStatement.executeQuery();
 
             return null;
 
@@ -128,12 +171,10 @@ public class RepositorioHabilitacaoAcademicaDatabase implements RepositorioHabil
             exceptionOrg.printStackTrace();
             exceptionOrg.getSQLState();
 
-
         }
 
-        return new HabilitacaoAcademica();*/
-        
-        return null;
+        return habilitacaoAcademica;
+
     }
     
     @Override
@@ -194,28 +235,36 @@ public class RepositorioHabilitacaoAcademicaDatabase implements RepositorioHabil
     }
     
     @Override
-    public ArrayList<HabilitacaoAcademica> getAll() throws SQLException {
+    public ArrayList<HabilitacaoAcademica> getAll(String email) throws SQLException {
         
-        /*ArrayList<HabilitacaoAcademica> listaHabilitacao = new ArrayList<>();
+        ArrayList<HabilitacaoAcademica> habilitacoesAcademicas = new ArrayList<>();
 
         DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
         Connection connection = dbConnectionHandler.openConnection();
 
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(
-                    "SELECT * FROM HabilitacaoAcademica"
+                    "SELECT * FROM HabilitacaoAcademica " +
+                            "INNER JOIN FreelancerHabAcademica " +
+                            "ON habilitacaoacademica.idhabilitacaoacademica = FreelancerHabAcademica.idhabilitacaoAcademica " +
+                            "INNER JOIN Freelancer " +
+                            "ON FreelancerHabAcademica.emailFreelancer LIKE Freelancer.email " +
+                            "WHERE freelancer.email LIKE ?"
             );
+
+            preparedStatement.setString(1, email);
 
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while(resultSet.next()) {
-                String idHabilitacao = resultSet.getInt(1);
+
+                int idHabilitacao = resultSet.getInt(1);
                 String grau = resultSet.getString(2);
                 String designacaoCurso = resultSet.getString(3);
                 String nomeInstituicao = resultSet.getString(4);
-                Double mediaCurso = resultSet.getDouble(5);                
-                String emailFreelancer = resultSet.getString(6);
-                listaHabilitacao.add(new HabilitacaoAcademica(idHabilitacao, grau, designacaoCurso, nomeInstituicao, mediaCurso, emailFreelancer));
+                Double mediaCurso = resultSet.getDouble(5);
+
+                habilitacoesAcademicas.add(new HabilitacaoAcademica(idHabilitacao, grau, designacaoCurso, nomeInstituicao, mediaCurso));
             }
         }
         catch (SQLException exception) {
@@ -228,14 +277,11 @@ public class RepositorioHabilitacaoAcademicaDatabase implements RepositorioHabil
             catch (SQLException sqlException) {
                 sqlException.getErrorCode();
             }
-
         }
         finally {
             dbConnectionHandler.closeAll();
         }
-        return listaHabilitacao;*/
-          
-        return null;
+        return habilitacoesAcademicas;
     }
     
     @Override

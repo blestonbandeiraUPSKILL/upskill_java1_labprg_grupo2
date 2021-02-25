@@ -18,178 +18,153 @@
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="700.0" styleClass="BorderPane" stylesheets="@../style/app.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.AdicionarHabilitacaoAcademicaUI">
-    <center>
-        <BorderPane prefHeight="200.0" prefWidth="200.0" styleClass="BorderPane" BorderPane.alignment="CENTER">
-            <top>
-                <TabPane prefHeight="520.0" prefWidth="700.0" style="-fx-background-color: #c4c4c4;" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
-                    <tabs>
-                        <Tab disable="true" text="Áreas de Atividade" />
-                        <Tab disable="true" text="Categorias de Tarefa">
-                            <content>
-                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="253.0" prefWidth="700.0" styleClass="AnchorPane">
-                                    <children>
-                                        <BorderPane prefHeight="200.0" prefWidth="200.0" styleClass="BorderPane" />
-                                        <FlowPane alignment="TOP_RIGHT" layoutX="486.0" layoutY="160.0" prefHeight="154.0" prefWidth="200.0" styleClass="FlowPane" />
-                                    </children>
-                                </AnchorPane>
-                            </content>
-                        </Tab>
-                        <Tab disable="true" text="Competências Técnicas">
-                            <content>
-                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="401.0" prefWidth="700.0" styleClass="AnchorPane">
-                                    <children>
-                                        <BorderPane prefHeight="200.0" prefWidth="200.0" styleClass="BorderPane" />
-                                        <FlowPane prefHeight="200.0" prefWidth="200.0" styleClass="FlowPane" />
-                                    </children>
-                                </AnchorPane>
-                            </content>
-                        </Tab>
-                        <Tab text="Freelancer">
-                            <content>
-                                <AnchorPane minHeight="0.0" minWidth="0.0" prefWidth="350.0" styleClass="AnchorPane">
-                                    <children>
-                                        <VBox prefHeight="282.0" prefWidth="700.0">
-                                            <children>
-                                                <AnchorPane prefHeight="520.0" prefWidth="700.0" styleClass="AnchorPane">
-                                                    <children>
-                                                        <VBox layoutX="1.0" layoutY="5.0" prefHeight="505.0" prefWidth="700.0">
-                                                            <children>
-                                                                <Label text="Nome do Freelancer">
-                                                                    <VBox.margin>
-                                                                        <Insets top="5.0" />
-                                                                    </VBox.margin>
-                                                                </Label>
-                                                                <TextField fx:id="txtNomeFreelancer" disable="true" />
-                                                                <Label text="Email do Freelancer">
-                                                                    <VBox.margin>
-                                                                        <Insets />
-                                                                    </VBox.margin>
-                                                                </Label>
-                                                                <ComboBox fx:id="cmbEmailFreelancer" prefHeight="25.0" prefWidth="380.0" promptText="Selecione o Freelancer ">
-                                                                    <VBox.margin>
-                                                                        <Insets bottom="5.0" top="5.0" />
-                                                                    </VBox.margin>
-                                                                </ComboBox>
-                                                                <Label text="Habilitações Académicas Registadas">
-                                                                    <VBox.margin>
-                                                                        <Insets />
-                                                                    </VBox.margin>
-                                                                </Label>
-                                                                <ListView fx:id="listaHabilitacaoFreelancer" prefHeight="144.0" prefWidth="660.0">
-                                                                    <VBox.margin>
-                                                                        <Insets bottom="5.0" top="5.0" />
-                                                                    </VBox.margin>
-                                                                </ListView>
-                                                                <Label text="Grau de Habilitação Académica">
-                                                                    <VBox.margin>
-                                                                        <Insets />
-                                                                    </VBox.margin>
-                                                                </Label>
-                                                                <TextField fx:id="txtGrau" promptText="(p.e. Licenciatura, Mestrado, Doutoramento, Pós-Graduação,Técnico, etc)">
-                                                                    <VBox.margin>
-                                                                        <Insets bottom="5.0" top="5.0" />
-                                                                    </VBox.margin>
-                                                                </TextField>
-                                                                <Label text="Designação do Curso ">
-                                                                    <VBox.margin>
-                                                                        <Insets />
-                                                                    </VBox.margin>
-                                                                </Label>
-                                                                <TextField fx:id="txtDesignacao" promptText="designação do curso referente ao grau de habilitação académica">
-                                                                    <VBox.margin>
-                                                                        <Insets bottom="5.0" top="5.0" />
-                                                                    </VBox.margin>
-                                                                </TextField>
-                                                                <Label text="Instituição para Concessão do Grau de Habilitação Académica" />
-                                                                <TextField fx:id="txtInstituicao" promptText="instituição de realização do curso">
-                                                                    <VBox.margin>
-                                                                        <Insets bottom="5.0" top="5.0" />
-                                                                    </VBox.margin>
-                                                                </TextField>
-                                                                <Label text="Média do Curso" />
-                                                                <TextField fx:id="txtMedia" promptText="(valor numérico não negativo)">
-                                                                    <VBox.margin>
-                                                                        <Insets bottom="5.0" top="5.0" />
-                                                                    </VBox.margin>
-                                                                </TextField>
-                                                            </children>
-                                                            <padding>
-                                                                <Insets left="20.0" right="20.0" />
-                                                            </padding>
-                                                        </VBox>
-                                                    </children>
-                                                </AnchorPane>
-                                            </children>
-                                        </VBox>
-                                    </children>
-                                </AnchorPane>
-                            </content>
-                        </Tab>
-                    </tabs>
-                </TabPane>
-            </top>
-            <bottom>
-                <FlowPane alignment="CENTER_RIGHT" prefHeight="39.0" prefWidth="700.0" styleClass="FlowPane" BorderPane.alignment="CENTER">
-                    <children>
-                        <Button fx:id="btnAddHabilitacao" defaultButton="true" mnemonicParsing="false" onAction="#addHabilitacao" styleClass="btnConfirmar" text="Adicionar">
-                            <font>
-                                <Font name="Calibri" size="14.0" />
-                            </font>
-                            <FlowPane.margin>
-                                <Insets bottom="15.0" />
-                            </FlowPane.margin>
-                            <tooltip>
-                                <Tooltip text="Adicionar">
-                                    <font>
-                                        <Font name="Calibri Italic" size="12.0" />
-                                    </font>
-                                </Tooltip>
-                            </tooltip>
-                        </Button>
-                        <Button fx:id="btnCancelar" mnemonicParsing="false" onAction="#cancelarAction" styleClass="btnCancelar" text="Cancelar">
-                            <font>
-                                <Font name="Calibri" size="14.0" />
-                            </font>
-                            <FlowPane.margin>
-                                <Insets bottom="15.0" left="10.0" right="10.0" />
-                            </FlowPane.margin>
-                            <tooltip>
-                                <Tooltip text="Cancelar">
-                                    <font>
-                                        <Font name="Calibri Italic" size="12.0" />
-                                    </font>
-                                </Tooltip>
-                            </tooltip>
-                        </Button>
-                        <Button fx:id="btnSair" mnemonicParsing="false" onAction="#sairAction" styleClass="btnSair" text="Sair">
-                            <font>
-                                <Font name="Calibri" size="14.0" />
-                            </font>
-                            <FlowPane.margin>
-                                <Insets bottom="15.0" right="20.0" />
-                            </FlowPane.margin>
-                            <tooltip>
-                                <Tooltip text="Sair">
-                                    <font>
-                                        <Font name="Calibri Italic" size="12.0" />
-                                    </font>
-                                </Tooltip>
-                            </tooltip>
-                        </Button>
-                    </children>
-                </FlowPane>
-            </bottom>
-        </BorderPane>
-    </center>
-    <top>
-        <Label styleClass="lblUser" text="Bem-vindo à Área do Administrativo" textFill="WHITE" BorderPane.alignment="CENTER_RIGHT">
-            <padding>
-                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-            </padding>
-            <font>
-                <Font name="Calibri" size="18.0" />
-            </font>
-        </Label>
-    </top>
+<BorderPane maxHeight="500.0" maxWidth="700.0" styleClass="BorderPane" stylesheets="@../style/app.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.AdicionarHabilitacaoAcademicaUI">
+   <center>
+      <BorderPane maxHeight="500.0" maxWidth="700.0" styleClass="BorderPane" BorderPane.alignment="CENTER">
+         <top>
+            <Label text="Adicionar Habilitação Académica" BorderPane.alignment="CENTER_LEFT">
+               <font>
+                  <Font name="Calibri" size="16.0" />
+               </font>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+               <BorderPane.margin>
+                  <Insets left="10.0" />
+               </BorderPane.margin>
+            </Label>
+         </top>
+         <left>
+            <AnchorPane maxHeight="500.0" maxWidth="700.0">
+               <children>
+                  <VBox layoutX="25.0" layoutY="18.0" prefHeight="324.0" prefWidth="324.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <Label layoutX="21.0" layoutY="10.0" text="Nome do Freelancer">
+                           <VBox.margin>
+                              <Insets bottom="10.0" />
+                           </VBox.margin>
+                        </Label>
+                        <TextField fx:id="txtNomeFreelancer" disable="true" layoutX="21.0" layoutY="27.0" prefHeight="25.0" prefWidth="238.0">
+                           <VBox.margin>
+                              <Insets bottom="10.0" right="80.0" />
+                           </VBox.margin>
+                        </TextField>
+                        <Label layoutX="21.0" layoutY="52.0" text="Email do Freelancer">
+                           <VBox.margin>
+                              <Insets bottom="10.0" />
+                           </VBox.margin>
+                        </Label>
+                        <ComboBox fx:id="cmbEmailFreelancer" layoutX="21.0" layoutY="74.0" prefHeight="25.0" prefWidth="380.0" promptText="Selecione o Freelancer ">
+                           <VBox.margin>
+                              <Insets bottom="10.0" right="80.0" />
+                           </VBox.margin>
+                        </ComboBox>
+                        <Label layoutX="21.0" layoutY="104.0" text="Habilitações Académicas Registadas">
+                           <VBox.margin>
+                              <Insets bottom="10.0" />
+                           </VBox.margin>
+                        </Label>
+                        <ListView fx:id="listaHabilitacaoFreelancer" layoutX="21.0" layoutY="126.0" prefHeight="142.0" prefWidth="327.0">
+                           <VBox.margin>
+                              <Insets bottom="5.0" top="5.0" />
+                           </VBox.margin>
+                        </ListView>
+                     </children>
+                  </VBox>
+               </children>
+            </AnchorPane>
+         </left>
+         <right>
+            <AnchorPane prefHeight="342.0" prefWidth="354.0" BorderPane.alignment="CENTER">
+               <children>
+                  <VBox layoutY="14.0" AnchorPane.rightAnchor="25.0">
+                     <children>
+                        <Label text="Grau de Habilitação Académica">
+                           <VBox.margin>
+                              <Insets bottom="10.0" />
+                           </VBox.margin>
+                        </Label>
+                        <TextField fx:id="txtGrau" promptText="(p.e. Licenciatura, Mestrado, Doutoramento, Pós-Graduação)">
+                           <VBox.margin>
+                              <Insets bottom="10.0" top="5.0" />
+                           </VBox.margin>
+                        </TextField>
+                        <Label text="Instituição para Concessão do Grau de Habilitação Académica">
+                           <VBox.margin>
+                              <Insets bottom="10.0" />
+                           </VBox.margin>
+                        </Label>
+                        <TextField fx:id="txtInstituicao" promptText="instituição de realização do curso">
+                           <VBox.margin>
+                              <Insets bottom="10.0" top="5.0" />
+                           </VBox.margin>
+                        </TextField>
+                        <Label text="Designação do Curso ">
+                           <VBox.margin>
+                              <Insets bottom="10.0" />
+                           </VBox.margin>
+                        </Label>
+                        <TextField fx:id="txtDesignacao" promptText="designação do curso referente ao grau de hab.académica">
+                           <VBox.margin>
+                              <Insets bottom="10.0" />
+                           </VBox.margin>
+                        </TextField>
+                        <Label text="Média do Curso">
+                           <VBox.margin>
+                              <Insets bottom="10.0" />
+                           </VBox.margin>
+                        </Label>
+                        <TextField fx:id="txtMedia" promptText="(valor numérico não negativo)">
+                           <VBox.margin>
+                              <Insets bottom="5.0" top="5.0" />
+                           </VBox.margin>
+                        </TextField>
+                     </children>
+                  </VBox>
+                  <Button fx:id="btnCancelar" layoutX="239.0" layoutY="316.0" mnemonicParsing="false" onAction="#cancelarAction" text="Limpar Campos" />
+               </children>
+               <BorderPane.margin>
+                  <Insets left="20.0" />
+               </BorderPane.margin>
+            </AnchorPane>
+         </right></BorderPane>
+   </center>
+   <top>
+      <Label styleClass="lblUser" text="Bem-vindo à Área do Administrativo" textFill="WHITE" BorderPane.alignment="CENTER_RIGHT">
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+         <font>
+            <Font name="Calibri" size="18.0" />
+         </font>
+      </Label>
+   </top>
+   <bottom>
+      <FlowPane alignment="CENTER_RIGHT" maxHeight="500.0" maxWidth="700.0" prefHeight="61.0" prefWidth="700.0" styleClass="FlowPane" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="btnAddHabilitacao" defaultButton="true" mnemonicParsing="false" onAction="#addHabilitacao" styleClass="btnConfirmar" text="Adicionar">
+               <font>
+                  <Font name="Calibri" size="14.0" />
+               </font>
+               <FlowPane.margin>
+                  <Insets />
+               </FlowPane.margin>
+               <tooltip>
+                  <Tooltip text="Adicionar" />
+               </tooltip>
+            </Button>
+            <Button fx:id="btnSair" mnemonicParsing="false" onAction="#sairAction" styleClass="btnSair" text="Cancelar">
+               <font>
+                  <Font name="Calibri" size="14.0" />
+               </font>
+               <FlowPane.margin>
+                  <Insets left="10.0" right="10.0" />
+               </FlowPane.margin>
+               <tooltip>
+                  <Tooltip text="Sair" />
+               </tooltip>
+            </Button>
+         </children>
+      </FlowPane>
+   </bottom>
 </BorderPane>

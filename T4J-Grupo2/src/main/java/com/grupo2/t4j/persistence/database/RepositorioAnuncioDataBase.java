@@ -83,7 +83,7 @@ public class RepositorioAnuncioDataBase implements RepositorioAnuncio {
                 callableStatement.setString(6, anuncio.getDtFimSeriacao().toString());
                 callableStatement.setString(7, anuncio.getReferenciaTarefa());
                 callableStatement.setString(8, anuncio.getNifOrganizacao());
-                callableStatement.setString(3, anuncio.getIdTipoRegimento());
+                callableStatement.setString(9, anuncio.getIdTipoRegimento());
 
                 callableStatement.executeQuery();
 
@@ -123,11 +123,35 @@ public class RepositorioAnuncioDataBase implements RepositorioAnuncio {
 
 
     @Override
-    public Anuncio findAnuncioByIdTarefa(String idTarefa) {
-        return null;
+    public Anuncio findAnuncioByIdTarefa(String referenciaTarefa, String nifOrganizacao) throws SQLException{
+        DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
+        Connection connection = dbConnectionHandler.openConnection();
+
+        CallableStatement callableStatement = connection.prepareCall(
+                "{ CALL findAnuncioByTarefa(?, ?) }"
+        );
+
+        try {
+            connection.setAutoCommit(false);
+
+            callableStatement.setString(1, referenciaTarefa);
+            callableStatement.setString(2, nifOrganizacao );
+
+            callableStatement.executeUpdate();
+            return null;
+
+        }
+        catch (SQLException exception) {
+            exception.printStackTrace();
+            exception.getSQLState();
+
+
+        }
+        return new Anuncio();
     }
 
     public ArrayList<TipoRegimento> getAllRegimento()throws SQLException {
+
         ArrayList<TipoRegimento> tiposRegimento = new ArrayList<>();
 
         DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);

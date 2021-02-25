@@ -169,29 +169,53 @@ public class RepositorioFreelancerDatabase implements RepositorioFreelancer{
 
     @Override
     public Freelancer findByEmail(String emailFree) throws SQLException {
-        
+
+        Freelancer freelancer = new Freelancer();
+
         DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
         Connection connection = dbConnectionHandler.openConnection();
 
-        CallableStatement callableStatementOrg = connection.prepareCall(
-                 "{CALL findFreelancerByEmail(?)}");
+        CallableStatement callableStatement = connection.prepareCall(
+                 "{CALL findFreelancerByEmail(?)}"
+        );
 
         try {
             connection.setAutoCommit(false);
 
-            callableStatementOrg.setString(1, emailFree);
-            callableStatementOrg.executeQuery();
+            callableStatement.setString(1, emailFree);
+            callableStatement.executeQuery();
 
             return null;
 
-        } catch (SQLException exceptionOrg) {
-            exceptionOrg.printStackTrace();
-            exceptionOrg.getSQLState();
-
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+            exception.getSQLState();
 
         }
 
-        return new Freelancer();
+        PreparedStatement preparedStatement = connection.prepareStatement(
+                "SELECT Freelancer.telefone, " +
+                        "Freelancer.nif, " +
+                        "Utilizador.nome, " +
+                        "Freelancer.idEnderecoPostal " +
+                        "FROM Freelancer INNER JOIN Utilizador " +
+                        "ON freelancer.email LIKE utilizador.email " +
+                        "WHERE freelancer.email LIKE ?"
+        );
+
+        preparedStatement.setString(1, emailFree);
+
+        ResultSet resultSet = preparedStatement.executeQuery();
+
+        while(resultSet.next()) {
+            freelancer.setEmail(new Email(emailFree));
+            freelancer.setTelefone(resultSet.getString(1));
+            freelancer.setNif(resultSet.getString(2));
+            freelancer.setNome(resultSet.getString(3));
+            freelancer.setIdEnderecoPostal(resultSet.getInt(4));
+        }
+
+        return freelancer;
 
     }
 
@@ -242,7 +266,7 @@ public class RepositorioFreelancerDatabase implements RepositorioFreelancer{
     @Override
     public ArrayList<String> getAllEmails() throws SQLException {
         
-        /*ArrayList<String> listaEmailfreelancers = new ArrayList<>();
+        ArrayList<String> listaEmailfreelancers = new ArrayList<>();
 
         DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
         Connection connection = dbConnectionHandler.openConnection();
@@ -279,8 +303,7 @@ public class RepositorioFreelancerDatabase implements RepositorioFreelancer{
         finally {
             dbConnectionHandler.closeAll();
         }
-        return listaEmailfreelancers;*/
-           
-        return null;
+        return listaEmailfreelancers;
+
     }
 }

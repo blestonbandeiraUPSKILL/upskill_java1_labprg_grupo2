@@ -170,3 +170,11 @@ ALTER TABLE CaracterCT
 ALTER TABLE Tarefa
     MODIFY emailColaborador varchar(50);
 
+ALTER TABLE HabilitacaoAcademica
+    MODIFY grau varchar(50);
+
+ALTER TABLE HabilitacaoAcademica
+    MODIFY mediaCurso numeric;
+
+ALTER TABLE Tarefa
+    MODIFY custoEstimado numeric;

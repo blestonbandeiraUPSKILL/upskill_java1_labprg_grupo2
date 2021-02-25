@@ -94,10 +94,11 @@ public class Freelancer extends Utilizador implements Serializable{
         setNome(nome);
         setTelefone(telefone);
         setNif(nif);
-        setidEnderecoPostal(idEnderecoPostal);
+        setIdEnderecoPostal(idEnderecoPostal);
     }
 
-    private void setidEnderecoPostal(int idEnderecoPostal) {
+
+    public void setIdEnderecoPostal(int idEnderecoPostal) {
         this.idEnderecoPostal = idEnderecoPostal;
     }
 
@@ -177,5 +178,7 @@ public class Freelancer extends Utilizador implements Serializable{
                 + "%s %nNIF: %s %nTelefone: %s %nEndereço Postal: %d",
                 super.getNome(), super.getEmail().getEmailText(), 
                 nif, telefone, idEnderecoPostal);
-    }   
- }
+    }
+
+
+}

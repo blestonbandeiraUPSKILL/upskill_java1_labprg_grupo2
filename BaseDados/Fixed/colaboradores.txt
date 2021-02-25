@@ -1,0 +1,12 @@
+
+EMAIL                                              NOME                                                                                                 PASSWORD   ROLENAME       
+-------------------------------------------------- ---------------------------------------------------------------------------------------------------- ---------- ---------------
+jose@marceloadvogados.pt                          José Fontes                                                                                          yzkrEbsU5y gestor         
+francisca@marceloadvogados.pt                      Francisca Cardoso                                                                                    jaVHPVQ6Q8 colaborador    
+tomas@marceloadvogados.pt                          Tomás Fonseca                                                                                        2r9CUb4Dqj colaborador    
+sofia@inesengenharia.com                           Sofia Barcelos                                                                                       l2pie2XkY2 gestor         
+eduardo@inesengenharia.com                         Eduardo Lima                                                                                         2r9CUb4Dqj colaborador    
+matilde@inesengenharia.com                         Matilde Oliveira                                                                                     Rzs6F52fYb colaborador    
+
+6 rows selected. 
+
