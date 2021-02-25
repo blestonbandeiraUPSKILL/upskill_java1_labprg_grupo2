@@ -20,7 +20,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="BorderPane" focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="600.0" styleClass="BorderPane" stylesheets="@../style/app.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.StartingPageUI">
+<BorderPane fx:id="BorderPane" focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="600.0" styleClass="BorderPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.StartingPageUI">
    <center>
       <GridPane alignment="CENTER" prefHeight="133.0" prefWidth="600.0" BorderPane.alignment="CENTER">
         <columnConstraints>
@@ -149,6 +149,25 @@
                <font>
                   <Font size="10.0" />
                </font>
+                           <tooltip>
+                              <Tooltip text="Dark mode">
+                                 <font>
+                                    <Font name="Calibri Italic" size="10.0" />
+                                 </font>
+                              </Tooltip>
+                           </tooltip>
+            </Button>
+            <Button fx:id="btnGoLight" alignment="CENTER_RIGHT" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#cssGoLight" styleClass="btnGoLight" text="Light mode">
+               <font>
+                  <Font size="10.0" />
+               </font>
+               <tooltip>
+                              <Tooltip text="Light mode">
+                                 <font>
+                                    <Font name="Calibri Italic" size="10.0" />
+                                 </font>
+                              </Tooltip>
+                           </tooltip>
             </Button>
          </children>
       </FlowPane>

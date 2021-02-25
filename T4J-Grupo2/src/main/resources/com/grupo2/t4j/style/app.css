@@ -4,7 +4,13 @@
 }
 
 .btnGoDark {
-    -fx-background-color: #CCCCCC;
+    -fx-background-color: #000000;
+    -fx-text-fill: #ffffff;
+    -fx-cursor: hand;
+}
+
+.btnGoLight {
+    -fx-background-color: #ffffff;
     -fx-text-fill: #000000;
     -fx-cursor: hand;
 }
