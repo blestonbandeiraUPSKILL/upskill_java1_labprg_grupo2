@@ -1,6 +1,6 @@
 .BorderPane {
     -font-family: Calibri;
-    -fx-background-color: #FFFFF0;
+    -fx-background-color: #eceff1;
 }
 
 .btnGoDark {
@@ -10,13 +10,14 @@
 }
 
 .btnLogin {
-    -fx-background-color: #191970;
+    -fx-background-color: #01579b;
     -fx-text-fill: #ffffff;
     -fx-cursor: hand;
 }
 
 .btnLogin:hover {
-    -fx-background-color: #383838;
+    -fx-background-color: #4f83cc;
+        -fx-text-fill: #000000;
     -fx-scale-y: 0.9;
 }
 
@@ -26,13 +27,14 @@
 }
 
 .btnRegistarOrganizacao {
-    -fx-background-color: #20B2AA;
+    -fx-background-color: #4db6ac;
     -fx-text-fill: #ffffff;
     -fx-cursor: hand;
 }
 
 .btnRegistarOrganizacao:hover {
-    -fx-background-color: #383838;
+    -fx-background-color: #82e9de;
+    -fx-text-fill: #000000;
     -fx-scale-y: 0.9;
 }
 
@@ -42,13 +44,14 @@
 }
 
 .btnSair {
-    -fx-background-color: #8B0000;
+    -fx-background-color: #AF4448;
     -fx-text-fill: #ffffff;
     -fx-cursor: hand;
 }
 
 .btnSair:hover {
-    -fx-background-color: #383838;
+    -fx-background-color: #E57373;
+    -fx-text-fill: #000000;
     -fx-scale-y: 0.9;
 }
 
@@ -66,17 +69,17 @@
 }
 
 .lblUser {
-    -fx-background-color: #191970;
+    -fx-background-color: #002f6c;
     -fx-text-fill: #FFFFFF;
     -fx-font-size:16;  
 }
 
 .AnchorPane {
-    -fx-background-color: #FFFFF0;
+    -fx-background-color: #eceff1;
 }
 
 .FlowPane {
-    -fx-background-color: #FFFFF0;
+    -fx-background-color: #eceff1;
 }
 
 .btnAddColaborador {
