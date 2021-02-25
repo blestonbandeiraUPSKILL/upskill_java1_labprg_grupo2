@@ -4,8 +4,7 @@
 
 ## Formato Breve
 
-O administrativo inicia a especificação de uma competência técnica. O sistema solicita os dados necessários (i.e. código único, área de atividade e descrição breve e detalhada). O administrativo introduz os dados solicitados. O sistema solicita os vários graus de proficiência aplicáveis a esta CT. O administrativo introduz os dados de cada grau. O sistema valida e apresenta os dados ao administrativo, pedindo que os confirme. O administrativo confirma
-os dados. O sistema regista os dados e informa o administrativo do sucesso da operação.
+O administrativo inicia a especificação de uma competência técnica. O sistema solicita os dados necessários (i.e. código único, área de atividade e descrição breve e detalhada). O administrativo introduz os dados solicitados. O sistema solicita os vários graus de proficiência aplicáveis a esta CT. O administrativo introduz os dados de cada grau. O sistema regista os dados e informa o administrativo do sucesso da operação.
 
 ## Formato Completo
 
@@ -33,8 +32,6 @@ os dados. O sistema regista os dados e informa o administrativo do sucesso da op
 1. O administrativo inicia o processo de definição de uma competência técnica.
 2. O sistema solicita os dados.
 3. O Administrativo introduz os dados.
-4. O sistema solicita a confirmação dos dados.
-5. O Administrativo confirma os dados.
 6. O sistema devolve mensagem a confirmar o sucesso da operação.
 
 

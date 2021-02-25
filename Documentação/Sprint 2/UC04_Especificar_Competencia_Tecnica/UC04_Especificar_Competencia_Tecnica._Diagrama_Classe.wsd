@@ -15,10 +15,9 @@ class EspecificarCompetenciaTecnicaUI{
 
 class EspecificarCompetenciaTecnicaCTRL{
     --
-    getRepositorioAreaAtividade()
-    getRepositorioCompetenciaTecnica()
-    novaCompetenciaTecnica(codCompetencia, descBreve, descDetalhada, at
-    registaCompetenciaTecnica(ct)
+
+    registarCompetenciaTecnica(codCompetencia, descBreve, descDetalhada, at
+    registarCompetenciaTecnica(ct)
 }
 
 class AreaAtividade{
@@ -42,16 +41,16 @@ class RepositorioAreaAtividade <<Singleton>>{
     -List<AreaAtividade>
     -AreaAtividade
     --
-    -allAreasAtividade()
-    -areaAtividade(codAreaAtividade)
+    -getAll()
+    -findByCodigo(codAreaAtividade)
 }
 
 class RepositorioCompetenciaTecnica <<Singleton>>{
     -List<CompetenciaTecnica>
     -CompetenciaTecnica
     --
-    -allCompetenciasTecnicas()
-    -competenciaTecnica(codCompetencia)
+    -getAll()
+    -findByCodigo(codCompetencia)
 }
 
 EspecificarCompetenciaTecnicaUI ..> EspecificarCompetenciaTecnicaCTRL

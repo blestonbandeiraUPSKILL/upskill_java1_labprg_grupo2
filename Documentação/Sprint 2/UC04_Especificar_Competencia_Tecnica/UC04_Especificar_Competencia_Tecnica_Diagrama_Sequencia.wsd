@@ -4,8 +4,7 @@ title UC04 - Especificar Competência Técnica
 actor Administrativo
 participant ":UI" as EspecificarCompetenciaTecnicaUI
 participant ":CTRL" as EspecificarCompetenciaTecnicaCTRL
-participant ":Plataforma" as Plataforma
-participant "ra:RepositorioAreaAtividade" as RepositorioAreaAtividade
+participant "ra:RepositorioAreaActividade" as RepositorioAreaActividade
 participant "rct:RepositorioCompetenciaTecnica" as RepositorioCompetenciaTecnica
 participant "ct:CompetenciaTecnica" as CompetenciaTecnica
 participant "gp:GrauProficiencia" as GrauProficiencia
@@ -18,42 +17,42 @@ activate EspecificarCompetenciaTecnicaUI
 EspecificarCompetenciaTecnicaUI -> EspecificarCompetenciaTecnicaCTRL: 1.1: la = listaAreasAtividade()
 activate EspecificarCompetenciaTecnicaCTRL
 
-EspecificarCompetenciaTecnicaUI --> Administrativo: 1.2: Solicita dados
+EspecificarCompetenciaTecnicaCTRL -> RepositorioAreaActividade: 1.1.2:  areasActividade = getAll()
+activate RepositorioAreaActividade 
+RepositorioAreaActividade --> EspecificarCompetenciaTecnicaCTRL: 1.1.3 areasActividade
+deactivate RepositorioAreaActividade
+deactivate EspecificarCompetenciaTecnicaCTRL
+EspecificarCompetenciaTecnicaCTRL --> EspecificarCompetenciaTecnicaUI: 1.2: areasActividade
+EspecificarCompetenciaTecnicaUI --> Administrativo: Solicita dados
 deactivate EspecificarCompetenciaTecnicaUI
 
-EspecificarCompetenciaTecnicaCTRL -> Plataforma: 1.1.1: ra = getRepositorioAreaAtividade()
-activate Plataforma
-deactivate Plataforma
-
-EspecificarCompetenciaTecnicaCTRL -> RepositorioAreaAtividade: 1.1.2: Ia = getListaAreasAtividade()
-activate RepositorioAreaAtividade
-deactivate RepositorioAreaAtividade
-deactivate EspecificarCompetenciaTecnicaCTRL
 
 Administrativo -> EspecificarCompetenciaTecnicaUI: 2: Introduz dados
 activate EspecificarCompetenciaTecnicaUI
 
-EspecificarCompetenciaTecnicaUI -> EspecificarCompetenciaTecnicaCTRL: 2.1: novaCompetenciaTecnica(codCompetencia, descBreve, descDetalhada, codAreaAtividade)
+EspecificarCompetenciaTecnicaUI -> EspecificarCompetenciaTecnicaCTRL: 2.1: registarCompetenciaTecnica(codCompetencia, descBreve, descDetalhada, codAreaActividade)
 activate EspecificarCompetenciaTecnicaCTRL
 
-EspecificarCompetenciaTecnicaCTRL -> RepositorioAreaAtividade : 2.1.1: at = areaAtividade(codAreaAtividade)
-activate RepositorioAreaAtividade
-deactivate RepositorioAreaAtividade
+EspecificarCompetenciaTecnicaCTRL -> RepositorioAreaActividade : 2.1.1: areaActividade = findByCodigo(codAreaActividade)
+activate RepositorioAreaActividade
+RepositorioAreaActividade --> EspecificarCompetenciaTecnicaCTRL: 2.1.2: areaActividade
+deactivate RepositorioAreaActividade
 
-EspecificarCompetenciaTecnicaUI --> Administrativo: 2.2: Solicita graus de proficiência
-deactivate EspecificarCompetenciaTecnicaUI
 
-EspecificarCompetenciaTecnicaCTRL -> Plataforma: 2.1.2: rct = getRepositorioCompetenciaTecnica()
-activate Plataforma
-deactivate Plataforma
-
-EspecificarCompetenciaTecnicaCTRL -> RepositorioCompetenciaTecnica: 2.1.3: novaCompetenciaTecnica(codCompetencia, descBreve, descDetalhada, at) 
+EspecificarCompetenciaTecnicaCTRL -> RepositorioCompetenciaTecnica: 2.1.3: registarCompetenciaTecnica(codCompetencia, descBreve, descDetalhada, areaActividade) 
 activate RepositorioCompetenciaTecnica
-deactivate EspecificarCompetenciaTecnicaCTRL
 
-RepositorioCompetenciaTecnica --> CompetenciaTecnica: 2.1.3.1: create(codCompetencia, descBreve, descDetalhada, at) 
+
+RepositorioCompetenciaTecnica --> CompetenciaTecnica: 2.1.3.1: competenciaTecnica = create(codCompetencia, descBreve, descDetalhada, at) 
+activate CompetenciaTecnica
+CompetenciaTecnica --> RepositorioCompetenciaTecnica: 2.1.3.2: competenciaTecnica
+deactivate CompetenciaTecnica
+RepositorioCompetenciaTecnica --> EspecificarCompetenciaTecnicaCTRL: 2.1.4: competenciaTecnica
 deactivate RepositorioCompetenciaTecnica
+EspecificarCompetenciaTecnicaCTRL --> EspecificarCompetenciaTecnicaUI: 2.2: competenciaTecnica
 deactivate EspecificarCompetenciaTecnicaCTRL
+EspecificarCompetenciaTecnicaUI --> Administrativo: Solicita graus de proficiência
+deactivate EspecificarCompetenciaTecnicaUI
 
 group sd loop
 
