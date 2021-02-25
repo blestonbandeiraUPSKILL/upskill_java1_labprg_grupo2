@@ -159,7 +159,7 @@ public class ColaboradorLogadoUI implements Initializable {
                 registarCategoriaController.findByAreaActividade(
                 cmbAreaActividade.getSelectionModel().getSelectedItem().getCodigo());
 
-        cmbCategoriaTarefa.getItems().addAll(listaCategoriasTarefa);
+        cmbCategoriaTarefa.getItems().setAll(listaCategoriasTarefa);
     }
 
 

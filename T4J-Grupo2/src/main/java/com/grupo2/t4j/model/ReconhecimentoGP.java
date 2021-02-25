@@ -22,7 +22,7 @@ public class ReconhecimentoGP {
     /**
      * A data em que foi atribuido o reconhecimento
      */
-    private Data dataReconhecimento;
+    private String dataReconhecimento;
    
     /**
      * O email do freelancer a quem se refere o reconhecimento
@@ -43,7 +43,7 @@ public class ReconhecimentoGP {
      * @param emailFreelancer
      * @param idCompetenciaTecnica 
      */
-    public ReconhecimentoGP(int idGrauProficiencia, Data dataReconhecimento,
+    public ReconhecimentoGP(int idGrauProficiencia, String dataReconhecimento,
              Email emailFreelancer, String idCompetenciaTecnica){
         setIdGrauProficiencia(idGrauProficiencia);
         setDataReconhecimento(dataReconhecimento);
@@ -82,7 +82,7 @@ public class ReconhecimentoGP {
      * Devolve a data em que foi feito o reconhecimento
      * @return dataReconhecimento
      */
-    public Data getDataReconhecimento() {
+    public String getDataReconhecimento() {
         return dataReconhecimento;
     }
 
@@ -90,7 +90,7 @@ public class ReconhecimentoGP {
      * Atualiza a data em que foi feito o reconhecimento
      * @param dataReconhecimento 
      */
-    public void setDataReconhecimento(Data dataReconhecimento) {
+    public void setDataReconhecimento(String dataReconhecimento) {
         this.dataReconhecimento = dataReconhecimento;
     }
 
