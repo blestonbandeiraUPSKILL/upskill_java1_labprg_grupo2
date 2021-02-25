@@ -138,7 +138,7 @@ public class RepositorioAnuncioDataBase implements RepositorioAnuncio {
     
     @Override
     public ArrayList<Anuncio> getAllByStatus(TipoStatusAnuncio status) throws SQLException {
-        ArrayList<Anuncio> anuncios = new ArrayList<>();
+        /*ArrayList<Anuncio> anuncios = new ArrayList<>();
 
         DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
         Connection connection = dbConnectionHandler.openConnection();
@@ -188,9 +188,9 @@ public class RepositorioAnuncioDataBase implements RepositorioAnuncio {
                 anunciosStatus.add(anuncio);
             }
         }
-        return anunciosStatus;
+        return anunciosStatus;*/
         
-        //return null;
+        return null;
     }
 
 
