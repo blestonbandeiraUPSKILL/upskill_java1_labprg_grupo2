@@ -18,6 +18,7 @@ import com.grupo2.t4j.model.ReconhecimentoGP;
 import com.grupo2.t4j.model.TipoRegimento;
 import com.grupo2.t4j.persistence.RepositorioAnuncio;
 import com.grupo2.t4j.utils.DBConnectionHandler;
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -63,7 +64,49 @@ public class RepositorioAnuncioDataBase implements RepositorioAnuncio {
     }
     
     @Override
-    public boolean save(Anuncio anuncio) throws AnuncioDuplicadoException{
+    public boolean save(Anuncio anuncio) throws SQLException {
+        DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
+        Connection connection = dbConnectionHandler.openConnection();
+
+        CallableStatement callableStatement = connection.prepareCall(
+                "{CALL createAnuncio(?,?,?,?,?,?,?,?,?)}");
+
+        //if (findByCodigo(anuncio.getIdAnuncio()) == null) {
+            try {
+                connection.setAutoCommit(false);
+
+                callableStatement.setString(1, anuncio.getDtInicioPub().toString());
+                callableStatement.setString(2, anuncio.getDtFimPub().toString());
+                callableStatement.setString(3, anuncio.getDtInicioCand().toString());
+                callableStatement.setString(4, anuncio.getDtFimCand().toString());
+                callableStatement.setString(5, anuncio.getDtInicioSeriacao().toString());
+                callableStatement.setString(6, anuncio.getDtFimSeriacao().toString());
+                callableStatement.setString(7, anuncio.getReferenciaTarefa());
+                callableStatement.setString(8, anuncio.getNifOrganizacao());
+                callableStatement.setString(3, anuncio.getIdTipoRegimento());
+
+                callableStatement.executeQuery();
+
+                connection.commit();
+                return true;
+            }
+            catch (SQLException exception) {
+                exception.printStackTrace();
+                exception.getSQLState();
+                try {
+                    System.err.print("Transaction is being rolled back");
+                    connection.rollback();
+                }
+                catch (SQLException sqlException) {
+                    sqlException.getErrorCode();
+                }
+            }
+
+            finally {
+                dbConnectionHandler.closeAll();
+            }
+        
+
         return false;
     }
     
