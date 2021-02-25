@@ -23,6 +23,14 @@ INSERT INTO Tarefa
 VALUES
     ('111222888', 'T_02_02', 'Remodelação de Website', 'Remodelação de Website da Empresa', 'Remodelação de Website da Empresa com nova paleta de cores', 10, 5000, 'AC-001_01', 'eduardo@inesengenharia.com');
     
+
+
+INSERT INTO Tarefa
+    (nifOrganizacao, referencia, designacao, descInformal, descTecnica, duracaoEstimada, custoEstimado, codigoCategoria, emailColaborador)
+VALUES
+    ('111222666', 'T_01_04', 'Instalação de Ar-Condicionado', 'Instalação de AC em Empresa', 'Instalação de AC em Sala de Reunião nova', 5, 1000, 'AC-006_03', 'francisca@marceloadvogados.pt');
+
+
 SELECT * FROM Tarefa;
 
 commit;

@@ -1,14 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.grupo2.t4j.controller;
 
-/**
- *
- * @author CAD
- */
 import com.grupo2.t4j.api.UsersAPI;
 import com.grupo2.t4j.files.*;
 import com.grupo2.t4j.model.*;
@@ -27,7 +18,16 @@ public class RegistarReconhecimentoGPController {
     
     private RepositorioReconhecimentoGPInMemory repositorioReconhecimentoGPInMemory;
     private FicheiroRepositorioReconhecimentoGP ficheiroRGP;
-    
+
+   /**
+    * Reconhecer o grau de proficiência boolean
+    *
+    * @param idGrauProficiência as código do grau de proficiência
+    * @param dataReconhecimento as data de atribuição do grau de proficiência
+    * @param emailFreelancer as email do freelancer
+    * @param idCompetenciaTecnica as código da competência técnica
+    * @return boolean
+    */     
      public boolean registarReconhecimentoGP(int idGrauProficiencia, String dataReconhecimento,
              Email emailFreelancer, String idCompetenciaTecnica) throws SQLException {
         

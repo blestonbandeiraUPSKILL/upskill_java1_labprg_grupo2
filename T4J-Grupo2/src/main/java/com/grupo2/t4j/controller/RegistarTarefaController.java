@@ -5,27 +5,15 @@
  */
 package com.grupo2.t4j.controller;
 
-import com.grupo2.t4j.model.AreaActividade;
-import com.grupo2.t4j.model.CaracterizacaoCT;
-import com.grupo2.t4j.model.Categoria;
-import com.grupo2.t4j.model.Tarefa;
+import com.grupo2.t4j.model.*;
 import com.grupo2.t4j.persistence.FabricaRepositorios;
-import com.grupo2.t4j.persistence.RepositorioAreaActividade;
-import com.grupo2.t4j.persistence.RepositorioCategoriaTarefa;
 import com.grupo2.t4j.persistence.RepositorioTarefa;
 import com.grupo2.t4j.persistence.database.FabricaRepositoriosDatabase;
-import com.grupo2.t4j.persistence.inmemory.FabricaRepositoriosInMemory;
-import com.grupo2.t4j.persistence.inmemory.RepositorioAreaActividadeInMemory;
-import com.grupo2.t4j.persistence.inmemory.RepositorioCategoriaTarefaInMemory;
-import com.grupo2.t4j.persistence.inmemory.RepositorioTarefaInMemory;
+
 import java.sql.SQLException;
 
 import java.util.List;
 
-/**
- *
- * @author acris
- */
 public class RegistarTarefaController {
 
     //private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosInMemory();
@@ -36,6 +24,20 @@ public class RegistarTarefaController {
         return repositorioTarefa.getAllOrganizacao(nifOrganizacao);
     }
 
+    /**
+    * Regista nova tarefa boolean
+    *
+    * @param codigoCategoriaTarefa as código da categoria da tarefa
+    * @param referencia as referência da tarefa
+    * @param designacao as designação da tarefa
+    * @param descInformal as descrição informal
+    * @param descTecnica as descrição técnica
+    * @param duracao as tempo estimado de realização da tarefa em horas
+    * @param custo as preço pela tarefa
+    * @param nifOrganizacao as nif da organização
+    * @param emailColaborador  as email do colaborador
+    * @return boolean
+    */
     public boolean registarTarefa( String codigoCategoriaTarefa,
                              String referencia, String designacao,
                              String descInformal, String descTecnica,
@@ -56,12 +58,17 @@ public class RegistarTarefaController {
         return repositorioTarefa.findByColaboradorENif(email, nifOrganizacao);
     }
     
-    public List<Tarefa> findTarefasPublicadas(String email, String nifOrganizacao) throws SQLException{
-        return repositorioTarefa.findTarefasComAnuncio(email, nifOrganizacao);
+    public List<Tarefa> findTarefasPublicadas(List<String> referenciasTarefa, String nifOrganizacao) throws SQLException{
+        return repositorioTarefa.findTarefasPublicadas(referenciasTarefa, nifOrganizacao);
     }
     
-    public List<Tarefa> findTarefasNaoPublicadas(String email, String nifOrganizacao) throws SQLException{
-        return repositorioTarefa.findTarefasSemAnuncio(email, nifOrganizacao);
+    public List<Tarefa> findTarefasNaoPublicadas(List<String> referenciasTarefa, String email, String nifOrganizacao) throws SQLException{
+        return repositorioTarefa.findTarefasNaoPublicadas(referenciasTarefa, email, nifOrganizacao);
     }
-    
+
+    public List<String> findRefenciaTarefa(String nifOrganizacao) throws SQLException {
+        return repositorioTarefa.findReferenciaTarefa(nifOrganizacao);
+    }
+
+
 }

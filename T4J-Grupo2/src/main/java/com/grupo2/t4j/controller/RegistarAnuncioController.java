@@ -1,14 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.grupo2.t4j.controller;
-
-/**
- *
- * @author CAD
- */
 
 import com.grupo2.t4j.files.*;
 import com.grupo2.t4j.model.*;
@@ -26,9 +16,24 @@ public class RegistarAnuncioController {
     private RepositorioAnuncio repositorioAnuncio = fabricaRepositorios.getRepositorioAnuncio();
     
     private FicheiroRepositorioAnuncio ficheiroAnuncio;
-    private RepositorioAnuncioInMemory repositorioAnuncioIM;
 
+
+   /**
+     * Registar anúncio boolean
+     *
+     * @param referenciaTarefa as referência da tarefa
+     * @param nifOrganizacao as nif da organização
+     * @param dtInicioPublicitacao as data de início de publicitação
+     * @param dtFimPublicitacao as data de fim de publicitação
+     * @param dtInicioCandidatura as data de início de candidatura
+     * @param dtFimCandidatura as data de término de candidatura
+     * @param dtInicioSeriacao as data de início de seriação
+     * @param dtFimSeriacao as data de término de seriação
+     * @param idTipoRegimento as tipo de regimento
+     * @return boolean
+     */
     public boolean registarAnuncio(String referenciaTarefa, String nifOrganizacao, Data dtInicioPublicitacao, 
+
             Data dtFimPublicitacao, Data dtInicioCandidatura, Data dtFimCandidatura, 
             Data dtInicioSeriacao, Data dtFimSeriacao, String idTipoRegimento) throws SQLException {
 
@@ -43,28 +48,5 @@ public class RegistarAnuncioController {
     }
 
     
-    ////FICHEIROS//////
 
-    public RegistarAnuncioController() {
-        ficheiroAnuncio = new FicheiroRepositorioAnuncio();
-        
-        desserializar();
-    }
-    public boolean serializar() {
-        return ficheiroAnuncio.serializar(repositorioAnuncioIM);
-    }
-
-    public boolean serializar(File ficheiroExportar) {
-        return ficheiroAnuncio.serializar(ficheiroExportar, repositorioAnuncioIM);
-    }
-
-    public void desserializar() {
-        repositorioAnuncioIM = ficheiroAnuncio.desserializar();
-    }
-
-    public int desserializar(File ficheiroImportar) {
-        RepositorioAnuncioInMemory listaAnunciosImportada = ficheiroAnuncio.desserializar(ficheiroImportar);
-
-        return RepositorioAnuncioInMemory.getInstance().adicionarListaAnuncios(listaAnunciosImportada);
-    }
 }

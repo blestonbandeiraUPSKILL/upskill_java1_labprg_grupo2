@@ -10,7 +10,6 @@ package com.grupo2.t4j.files;
  * @author CAD
  */
 
-import com.grupo2.t4j.persistence.inmemory.RepositorioAnuncioInMemory;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -20,7 +19,7 @@ import java.io.ObjectOutputStream;
 
 public class FicheiroRepositorioAnuncio {
     
-    public static final String NOME_FICHEIRO_SERIALIZAR = "RepositorioAnuncio.ltf";
+   /* public static final String NOME_FICHEIRO_SERIALIZAR = "RepositorioAnuncio.ltf";
 
     public FicheiroRepositorioAnuncio() {
     }
@@ -72,5 +71,5 @@ public class FicheiroRepositorioAnuncio {
         } catch (IOException | ClassNotFoundException ex) {
             return RepositorioAnuncioInMemory.getInstance();
         }
-    }
+    }*/
 }

@@ -24,6 +24,14 @@ public class RegistarCaracterizacaoCTController {
         return repositorioCaracterizacaoCT.getAll();
     }
 
+       /**
+     * Caracterizar a competência técnica boolean
+     *
+     * @param codigoCategoria as código da categoria
+     * @param codigoGP as código do grau de proficiência
+     * @param obrigatoriedade as requisito da competência técnica
+     * @return boolean
+     */
     public boolean registarCaracterizacaoCTS(String codigoCategoria, int codigoGP, Obrigatoriedade obrigatoriedade) throws SQLException {
 
         CaracterizacaoCT caracterizacaoCT = new CaracterizacaoCT(codigoCategoria, codigoGP, obrigatoriedade);

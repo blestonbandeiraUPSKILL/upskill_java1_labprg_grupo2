@@ -18,5 +18,10 @@ INSERT INTO Categoria
 VALUES
     ('AC-003_02', 'Elaboração de projetos', 'Elaboração de Projectos', 'AA-003');
     
+INSERT INTO Categoria
+    (codigoCategoria, descBreve, descDetalhada, codigoAreaActividade)
+VALUES
+    ('AC-006_03', 'Instalação e Reparos', 'Elaboração de Projectos', 'AA-003');
+    
 commit;
     

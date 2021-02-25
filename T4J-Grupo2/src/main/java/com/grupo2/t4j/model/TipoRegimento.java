@@ -16,7 +16,7 @@ public class TipoRegimento {
     /**
      * O Id do Tipo de Regimento.
      */
-    private String idTipoRegimento;
+    private int idTipoRegimento;
     
     /**
      * A designação do tipo de seriação adotado para este tipo de regimento.
@@ -34,7 +34,7 @@ public class TipoRegimento {
      * @param designacao - a designação do tipo de seriação adotado para este tipo de regimento.
      * @param descricaoRegras - as regras aplicáveis a este tipo de regimento.
      */
-    public TipoRegimento(String idTipoRegimento, String designacao,
+    public TipoRegimento(int idTipoRegimento, String designacao,
             String descricaoRegras){
         setIdTipoRegimento(idTipoRegimento);
         setDesignacaoSeriacao(designacao);
@@ -55,7 +55,7 @@ public class TipoRegimento {
      *
      * @param idTipoRegimento
      */
-    public void setIdTipoRegimento(String idTipoRegimento){
+    public void setIdTipoRegimento(int idTipoRegimento){
         this.idTipoRegimento = idTipoRegimento;
     }
     
@@ -82,7 +82,7 @@ public class TipoRegimento {
      * Devolve o Id do Tipo de Regimento.
      * @return idTipoRegimento
      */
-    public String getIdTipoRegimento(){
+    public int getIdTipoRegimento(){
         return idTipoRegimento;
     }
     
