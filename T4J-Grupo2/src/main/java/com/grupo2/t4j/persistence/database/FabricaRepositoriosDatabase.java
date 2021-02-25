@@ -20,6 +20,11 @@ public class FabricaRepositoriosDatabase implements FabricaRepositorios {
     public RepositorioAreaActividade getRepositorioAreaActividade() {
         return RepositorioAreaActividadeDatabase.getInstance();
     }
+    
+    @Override
+    public RepositorioCandidatura getRepositorioCandidatura() {
+        return RepositorioCandidaturaDatabase.getInstance();
+    }
 
     @Override
     public RepositorioCaracterizacaoCT getRepositorioCaracterizacaoCT() {
@@ -70,25 +75,13 @@ public class FabricaRepositoriosDatabase implements FabricaRepositorios {
     public RepositorioOrganizacao getRepositorioOrganizacao() throws SQLException {
         return RepositorioOrganizacaoDatabase.getInstance();
     }
-
-    @Override
-    public RepositorioTarefa getRepositorioTarefa() {
-        return RepositorioTarefaDatabase.getInstance();
-    }
-
-    @Override
-    public RepositorioCandidatura getRepositorioCandidatura() {
-        return null;
-    }
-
+    
     @Override
     public RepositorioReconhecimentoGP getRepositorioReconhecimentoGP() {
         return null;
     }
-
-
-
-
-
-
+    @Override
+    public RepositorioTarefa getRepositorioTarefa() {
+        return RepositorioTarefaDatabase.getInstance();
+    }    
 }

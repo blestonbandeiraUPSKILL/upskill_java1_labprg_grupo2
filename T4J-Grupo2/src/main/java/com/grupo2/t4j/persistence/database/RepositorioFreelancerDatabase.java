@@ -38,7 +38,7 @@ public class RepositorioFreelancerDatabase implements RepositorioFreelancer{
     /**
      * Devolve uma instância estática do Repositório dos Freelancers
      *
-     * @return RepositorioFreelancerrDatabase
+     * @return RepositorioFreelancerDatabase
      */
     public static RepositorioFreelancerDatabase getInstance(){
         if(repositorioFreelancerDatabase == null) {
