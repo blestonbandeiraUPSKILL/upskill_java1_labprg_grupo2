@@ -10,9 +10,6 @@ UtilizadorNaoRegistado -> Sistema: 1. Registar Organização
 Sistema --> UtilizadorNaoRegistado: 2. Solicita dados da organização (nome, NIF, endereço, telefone, website, email) e sobre o gestor (nome, funçao, telefone, email)
 
 UtilizadorNaoRegistado -> Sistema: 3. Introduz os dados solicitados
-UtilizadorNaoRegistado <-- Sistema: 4. Apresenta os dados inseridos e solicita confirmação
-
-UtilizadorNaoRegistado -> Sistema: 5. Confirma os dados inseridos
-UtilizadorNaoRegistado <-- Sistema: 6. Operação bem sucedida
+UtilizadorNaoRegistado <-- Sistema: 4. Operação bem sucedida
 
 @enduml

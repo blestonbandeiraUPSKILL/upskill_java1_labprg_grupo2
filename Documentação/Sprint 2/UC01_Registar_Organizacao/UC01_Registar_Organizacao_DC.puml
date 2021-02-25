@@ -34,26 +34,27 @@ class Colaborador {
 }
 
 class EnderecoPostal {
-    -String local
+    -String arruamento
+    -String numeroPorta
     -String codPostal
     -String localidade
     --
-    +EnderecoPostal(local, codPostal, localidade)
+    +EnderecoPostal(arruamento, numeroPorta, localidade, codPostal)
 }
 
-class RegistoOrganizacoes {
+class RepositorioOrganizacao {
     --
-    +Organizacao novaOrganizacao(nome, NIF, endLocal, endCodPostal, endLocalidade, tlf, site, email, nomeG, funcao, tlfG, emailG)
-    +validaOrganizacao(Organizacao org)
-    +registaOrganizacao(Organizacao org)
+    +Organizacao registaOrganizacao(nif, nome, website, \ntelefoneOrg, emailOrg, \nendArruamento, endPorta, endLocalidade, endCodPostal, \nnomeGestor, telefoneGestor, funcaoGestor)
+    
+    +saveOrganizacao(nif, nome, website, \ntelefoneOrg, emailOrg, \nendArruamento, endPorta, endLocalidade, endCodPostal, \nnomeGestor, telefoneGestor, funcaoGestor)
     -addOrganizacao(Organizacao org)
     -registaGestorComoUtilizador(Colaborador colabGestor)
-    -enviaPwd(Email emailG, Password pwd)
-}
+
+}RepositorioOrganizacao
 
 class AutorizacaoFacade {
     --
-    +registaUtilizadorComPapeis(nomeG,emailG,pwd,listaPapel)
+    +registaUtilizadorComPapeis(nomeG,emailG,pwd,rolename)
 }
 
 interface AlgoritmoGeradorPasswords {
@@ -64,23 +65,21 @@ interface AlgoritmoGeradorPasswords {
 class Plataforma {
     -String designacao
     --
-    +RepositorioOrganizacoes allOrganizacoes()
     +AutorizacaoFacade getAutorizacaoFacade()
     +AlgoritmoGeradorPasswords getAlgoritmoGeradorPwd()
 }
 
 RegistarOrganizacaoUI ..> RegistarOrganizacaoController
-RegistarOrganizacaoController ..> RegistoOrganizacoes
+RegistarOrganizacaoController ..> RepositorioOrganizacao
 RegistarOrganizacaoController ..> Organizacao
-RegistarOrganizacaoController ..> Plataforma
-Organizacao "1"-->"1..*" Colaborador : tem
-Organizacao "1"-->"1" Colaborador : tem gestor
-Organizacao "1"-->"1" EnderecoPostal : localizada em
-RegistoOrganizacoes "1"-->"*" Organizacao : tem registadas
-RegistoOrganizacoes ..> AutorizacaoFacade
-RegistoOrganizacoes ..> AlgoritmoGeradorPasswords
-RegistoOrganizacoes ..> Colaborador
-RegistoOrganizacoes ..> EnderecoPostal
+Organizacao "1"-->"1..*" Colaborador 
+Organizacao "1"-->"1" Colaborador 
+Organizacao "1"-->"1" EnderecoPostal 
+RepositorioOrganizacao "1"-->"*" Organizacao 
+RepositorioOrganizacao ..> AutorizacaoFacade
+RepositorioOrganizacao ..> AlgoritmoGeradorPasswords
+RepositorioOrganizacao ..> Colaborador
+RepositorioOrganizacao ..> EnderecoPostal
 
 newpage
 

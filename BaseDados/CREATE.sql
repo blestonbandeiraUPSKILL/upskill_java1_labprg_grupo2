@@ -76,10 +76,10 @@ CREATE TABLE Anuncio(
         CONSTRAINT pk_Anuncio_idAnuncio PRIMARY KEY,
     referenciaTarefa varchar(50),
     nifOrganizacao varchar(9),
-    dataInicioPublicacao date
-        CONSTRAINT nn_Anuncio_dataInicioPublicacao NOT NULL,
-    dataFimPublicacao date
-        CONSTRAINT nn_Anuncio_dataFimPublicacao NOT NULL,
+    dataInicioPublicitacao date
+        CONSTRAINT nn_Anuncio_dataInicioPublicitacao NOT NULL,
+    dataFimPublicitacao date
+        CONSTRAINT nn_Anuncio_dataFimPublicitacao NOT NULL,
     dataInicioCandidatura date
         CONSTRAINT nn_Anuncio_dataInicioCandidatura NOT NULL,
     dataFimCandidatura date

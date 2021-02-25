@@ -55,7 +55,7 @@ public class EfectuarCandidaturaController {
     }
 
     public List<Tarefa> findTarefasElegiveis(String email) throws SQLException {
-        List<Tarefa> tarefasElegiveis = new ArrayList<>();
+   /*     List<Tarefa> tarefasElegiveis = new ArrayList<>();
         List<Tarefa> listaTarefas = repositorioTarefa.getAll();
 
         for (Tarefa tarefa : listaTarefas) {
@@ -69,13 +69,13 @@ public class EfectuarCandidaturaController {
                     tarefasElegiveis.add(tarefa);
                 }
             }
-        }
+        }*/
         return null;
     }
 
     public List<Anuncio> findAnunciosElegiveis(String email) throws SQLException {
 
-        List<Anuncio> anunciosElegiveis = new ArrayList<>();
+        /*List<Anuncio> anunciosElegiveis = new ArrayList<>();
         Data dataAtual = Data.dataActual();
         if (findTarefasElegiveis(email) == null) {
             throw new TarefaInexistenteException("Não há tarefas para mostrar");
@@ -95,7 +95,8 @@ public class EfectuarCandidaturaController {
         if (anunciosElegiveis == null) {
             return new ArrayList<>();
         }
-        return anunciosElegiveis;
+        return anunciosElegiveis;*/
+        return null;
     }
 
     public List<CompetenciaTecnica> competenciasTecnicasDoFreelancer(String email) throws SQLException {
