@@ -46,8 +46,8 @@ public class StartingPageUI implements Initializable {
     Button btnGoLight;
 
     /**
-    * Initializes the controller (UI) class.
-    */
+     * Initializes the controller (UI) class.
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
@@ -64,14 +64,16 @@ public class StartingPageUI implements Initializable {
 
         Scene scene = btnGoDark.getScene();
 
-        //scene.getStylesheets().clear();
-        //scene.getStylesheets().add(getClass().getResource("/com/grupo2/t4j/style/dark.css").toExternalForm());
+        scene.getStylesheets().clear();
+        scene.getStylesheets().add(getClass().getResource("/com/grupo2/t4j/style/dark.css").toExternalForm());
     }
 
     @FXML
     void cssGoLight(ActionEvent event) {
 
         Scene scene = btnGoLight.getScene();
+        scene.getStylesheets().clear();
+        scene.getStylesheets().add(getClass().getResource("/com/grupo2/t4j/style/dark.css").toExternalForm());
     }
 
     public void registarOrganizacao(ActionEvent actionEvent) {
