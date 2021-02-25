@@ -1,11 +1,11 @@
 package com.grupo2.t4j.persistence;
 
 
-import com.grupo2.t4j.model.*;
+import com.grupo2.t4j.model.Categoria;
+import com.grupo2.t4j.model.Obrigatoriedade;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 
 public interface RepositorioCategoriaTarefa {
 

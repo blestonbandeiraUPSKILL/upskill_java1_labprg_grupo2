@@ -10,13 +10,6 @@ package com.grupo2.t4j.files;
  * @author CAD
  */
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-
 public class FicheiroRepositorioAnuncio {
     
    /* public static final String NOME_FICHEIRO_SERIALIZAR = "RepositorioAnuncio.ltf";

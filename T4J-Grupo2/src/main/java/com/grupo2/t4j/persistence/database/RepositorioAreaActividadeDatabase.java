@@ -11,10 +11,9 @@ package com.grupo2.t4j.persistence.database;
  */
 
 import com.grupo2.t4j.exception.AreaActividadeDuplicadaException;
-import com.grupo2.t4j.exception.AreaActividadeInexistenteException;
 import com.grupo2.t4j.model.AreaActividade;
-import com.grupo2.t4j.utils.DBConnectionHandler;
 import com.grupo2.t4j.persistence.RepositorioAreaActividade;
+import com.grupo2.t4j.utils.DBConnectionHandler;
 
 import java.sql.*;
 import java.util.ArrayList;

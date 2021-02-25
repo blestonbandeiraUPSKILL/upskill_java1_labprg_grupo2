@@ -6,9 +6,6 @@
 package com.grupo2.t4j.ui;
 
 import com.grupo2.t4j.controller.RegistarFreelancerController;
-import java.net.URL;
-import java.sql.SQLException;
-import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -17,6 +14,10 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+
+import java.net.URL;
+import java.sql.SQLException;
+import java.util.ResourceBundle;
 
 /**
  * FXML Controller class

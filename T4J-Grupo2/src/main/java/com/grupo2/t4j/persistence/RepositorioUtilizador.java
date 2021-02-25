@@ -10,11 +10,12 @@ package com.grupo2.t4j.persistence;
  * @author CAD
  */
 
-import com.grupo2.t4j.model.*;
-import com.grupo2.t4j.exception.*;
-import java.io.Serializable;
+import com.grupo2.t4j.exception.UtilizadorDuplicadoException;
+import com.grupo2.t4j.model.Email;
+import com.grupo2.t4j.model.Password;
+import com.grupo2.t4j.model.Utilizador;
+
 import java.util.ArrayList;
-import java.util.List;
 
 public interface RepositorioUtilizador {
 

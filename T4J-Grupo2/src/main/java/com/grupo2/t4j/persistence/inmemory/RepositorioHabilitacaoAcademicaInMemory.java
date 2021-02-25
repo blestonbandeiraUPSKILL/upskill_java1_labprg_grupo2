@@ -11,8 +11,9 @@ package com.grupo2.t4j.persistence.inmemory;
  */
 
 import com.grupo2.t4j.exception.HabilitacaoAcademicaDuplicadaException;
-import com.grupo2.t4j.model.*;
+import com.grupo2.t4j.model.HabilitacaoAcademica;
 import com.grupo2.t4j.persistence.RepositorioHabilitacaoAcademica;
+
 import java.io.Serializable;
 import java.sql.SQLException;
 import java.util.ArrayList;

@@ -2,12 +2,11 @@ package com.grupo2.t4j.controller;
 
 import com.grupo2.t4j.model.Anuncio;
 import com.grupo2.t4j.model.Data;
-import com.grupo2.t4j.model.DesignacaoSeriacao;
 import com.grupo2.t4j.model.TipoRegimento;
 import com.grupo2.t4j.persistence.FabricaRepositorios;
 import com.grupo2.t4j.persistence.RepositorioAnuncio;
 import com.grupo2.t4j.persistence.database.FabricaRepositoriosDatabase;
-import com.grupo2.t4j.persistence.inmemory.FabricaRepositoriosInMemory;
+
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;

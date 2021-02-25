@@ -8,6 +8,7 @@ package com.grupo2.t4j.persistence.inmemory;
 import com.grupo2.t4j.exception.CandidaturaDuplicadaException;
 import com.grupo2.t4j.model.Candidatura;
 import com.grupo2.t4j.persistence.RepositorioCandidatura;
+
 import java.io.Serializable;
 import java.sql.SQLException;
 import java.util.ArrayList;

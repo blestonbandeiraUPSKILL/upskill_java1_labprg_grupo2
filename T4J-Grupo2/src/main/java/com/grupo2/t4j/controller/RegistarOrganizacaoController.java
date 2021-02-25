@@ -1,14 +1,15 @@
 package com.grupo2.t4j.controller;
 
 import com.grupo2.t4j.api.UsersAPI;
-import com.grupo2.t4j.model.*;
+import com.grupo2.t4j.model.AlgoritmoGeradorPasswords;
+import com.grupo2.t4j.model.Colaborador;
+import com.grupo2.t4j.model.Organizacao;
+import com.grupo2.t4j.model.Password;
 import com.grupo2.t4j.persistence.FabricaRepositorios;
 import com.grupo2.t4j.persistence.RepositorioColaborador;
 import com.grupo2.t4j.persistence.RepositorioEnderecoPostal;
 import com.grupo2.t4j.persistence.RepositorioOrganizacao;
 import com.grupo2.t4j.persistence.database.FabricaRepositoriosDatabase;
-import com.grupo2.t4j.persistence.database.RepositorioOrganizacaoDatabase;
-import com.grupo2.t4j.persistence.inmemory.FabricaRepositoriosInMemory;
 
 import java.sql.SQLException;
 import java.util.List;

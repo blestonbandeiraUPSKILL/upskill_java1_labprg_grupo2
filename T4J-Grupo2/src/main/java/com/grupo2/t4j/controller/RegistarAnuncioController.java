@@ -1,18 +1,19 @@
 package com.grupo2.t4j.controller;
 
-import com.grupo2.t4j.files.*;
-import com.grupo2.t4j.model.*;
-import com.grupo2.t4j.persistence.*;
-import com.grupo2.t4j.persistence.database.*;
-import com.grupo2.t4j.persistence.inmemory.*;
-import java.io.File;
+import com.grupo2.t4j.files.FicheiroRepositorioAnuncio;
+import com.grupo2.t4j.model.Anuncio;
+import com.grupo2.t4j.model.Data;
+import com.grupo2.t4j.persistence.FabricaRepositorios;
+import com.grupo2.t4j.persistence.RepositorioAnuncio;
+import com.grupo2.t4j.persistence.database.FabricaRepositoriosDatabase;
+import com.grupo2.t4j.persistence.inmemory.FabricaRepositoriosInMemory;
+
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 public class RegistarAnuncioController {
     
-    private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosInMemory();
-    //private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosDatabase();
+    //private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosInMemory();
+    private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosDatabase();
     private RepositorioAnuncio repositorioAnuncio = fabricaRepositorios.getRepositorioAnuncio();
     
     private FicheiroRepositorioAnuncio ficheiroAnuncio;
@@ -32,10 +33,9 @@ public class RegistarAnuncioController {
      * @param idTipoRegimento as tipo de regimento
      * @return boolean
      */
-    public boolean registarAnuncio(String referenciaTarefa, String nifOrganizacao, Data dtInicioPublicitacao, 
-
-            Data dtFimPublicitacao, Data dtInicioCandidatura, Data dtFimCandidatura, 
-            Data dtInicioSeriacao, Data dtFimSeriacao, String idTipoRegimento) throws SQLException {
+    public boolean registarAnuncio(String referenciaTarefa, String nifOrganizacao, String dtInicioPublicitacao,
+                                   String dtFimPublicitacao, String dtInicioCandidatura, String dtFimCandidatura,
+                                   String dtInicioSeriacao, String dtFimSeriacao, int idTipoRegimento) throws SQLException {
 
         Anuncio anuncio = new Anuncio(referenciaTarefa, nifOrganizacao, dtInicioPublicitacao, dtFimPublicitacao, 
                 dtInicioCandidatura, dtFimCandidatura, dtInicioSeriacao, dtFimSeriacao, idTipoRegimento);

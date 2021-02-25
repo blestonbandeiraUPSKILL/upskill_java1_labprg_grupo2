@@ -10,7 +10,8 @@ package com.grupo2.t4j.model;
  * @author CAD
  */
 
-import com.grupo2.t4j.exception.*;
+import com.grupo2.t4j.exception.NifInvalidoException;
+
 import java.io.Serializable;
 
 /**

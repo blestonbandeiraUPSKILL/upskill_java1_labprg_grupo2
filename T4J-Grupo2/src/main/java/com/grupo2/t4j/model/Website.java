@@ -5,9 +5,8 @@
  */
 package com.grupo2.t4j.model;
 
-import org.apache.commons.validator.UrlValidator;
-
 import com.grupo2.t4j.exception.WebsiteInvalidoException;
+import org.apache.commons.validator.UrlValidator;
 
 /**
  *

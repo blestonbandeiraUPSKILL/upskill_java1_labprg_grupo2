@@ -1,7 +1,5 @@
 package com.grupo2.t4j.persistence.database;
 
-import com.grupo2.t4j.exception.CategoriaInexistenteException;
-import com.grupo2.t4j.model.CaracterizacaoCT;
 import com.grupo2.t4j.model.Categoria;
 import com.grupo2.t4j.model.Obrigatoriedade;
 import com.grupo2.t4j.persistence.RepositorioCategoriaTarefa;
@@ -9,7 +7,6 @@ import com.grupo2.t4j.utils.DBConnectionHandler;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.List;
 
 public class RepositorioCategoriaTarefaDatabase implements RepositorioCategoriaTarefa {
 

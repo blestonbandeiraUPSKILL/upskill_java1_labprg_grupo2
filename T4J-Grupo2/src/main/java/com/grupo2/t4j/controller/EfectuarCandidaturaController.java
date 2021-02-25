@@ -1,26 +1,8 @@
 package com.grupo2.t4j.controller;
 
-import com.grupo2.t4j.exception.TarefaInexistenteException;
-import com.grupo2.t4j.model.Anuncio;
-import com.grupo2.t4j.model.CaracterizacaoCT;
-import com.grupo2.t4j.model.CompetenciaTecnica;
-import com.grupo2.t4j.model.Data;
-import com.grupo2.t4j.model.GrauProficiencia;
-import com.grupo2.t4j.model.HabilitacaoAcademica;
-import com.grupo2.t4j.model.Obrigatoriedade;
-import com.grupo2.t4j.model.ReconhecimentoGP;
-import com.grupo2.t4j.model.Tarefa;
-import com.grupo2.t4j.persistence.FabricaRepositorios;
-import com.grupo2.t4j.persistence.RepositorioAnuncio;
-import com.grupo2.t4j.persistence.RepositorioCandidatura;
-import com.grupo2.t4j.persistence.RepositorioCaracterizacaoCT;
-import com.grupo2.t4j.persistence.RepositorioCategoriaTarefa;
-import com.grupo2.t4j.persistence.RepositorioCompetenciaTecnica;
-import com.grupo2.t4j.persistence.RepositorioGrauProficiencia;
-import com.grupo2.t4j.persistence.RepositorioReconhecimentoGP;
-import com.grupo2.t4j.persistence.RepositorioTarefa;
+import com.grupo2.t4j.model.*;
+import com.grupo2.t4j.persistence.*;
 import com.grupo2.t4j.persistence.database.FabricaRepositoriosDatabase;
-import com.grupo2.t4j.persistence.inmemory.FabricaRepositoriosInMemory;
 
 import java.sql.SQLException;
 import java.util.ArrayList;

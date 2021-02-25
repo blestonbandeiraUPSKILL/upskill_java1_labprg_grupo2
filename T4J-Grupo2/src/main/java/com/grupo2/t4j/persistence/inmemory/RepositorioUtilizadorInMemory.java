@@ -13,7 +13,6 @@ package com.grupo2.t4j.persistence.inmemory;
 import com.grupo2.t4j.exception.UtilizadorDuplicadoException;
 import com.grupo2.t4j.model.Email;
 import com.grupo2.t4j.model.Password;
-import com.grupo2.t4j.model.Rolename;
 import com.grupo2.t4j.model.Utilizador;
 import com.grupo2.t4j.persistence.RepositorioUtilizador;
 
