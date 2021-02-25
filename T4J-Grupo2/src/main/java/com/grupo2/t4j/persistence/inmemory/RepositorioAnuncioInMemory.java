@@ -106,7 +106,7 @@ public class RepositorioAnuncioInMemory implements Serializable, RepositorioAnun
     }
 
     @Override
-    public Anuncio findAnuncioByIdTarefa(String idTarefa){
+    public Anuncio findAnuncioByIdTarefa(String referenciaTarefa, String nifOrganizacao){
         /*Anuncio anuncio = null ;
         for (int i = 0; i < this.listaAnuncios.size(); i++) {
             anuncio = this.listaAnuncios.get(i);
@@ -122,6 +122,8 @@ public class RepositorioAnuncioInMemory implements Serializable, RepositorioAnun
     public ArrayList<TipoRegimento> getAllRegimento() throws SQLException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    
 
     
 }

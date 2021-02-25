@@ -92,11 +92,11 @@ public class FreelancerLogadoUI implements Initializable {
     public void updateTableViewAnuncio() throws SQLException {
 
 
-     /*   ObservableList<Anuncio> anunciosElegiveis = FXCollections.observableArrayList(
+        ObservableList<Anuncio> anunciosElegiveis = FXCollections.observableArrayList(
                 efectuarCandidaturaController.findAnunciosElegiveis(
                         gestaoUtilizadoresController.getEmail()));
 
-        tableAnuncios.setItems(anunciosElegiveis);*/
+        tableAnuncios.setItems(anunciosElegiveis);
     }
 
     public void logout(ActionEvent actionEvent) {

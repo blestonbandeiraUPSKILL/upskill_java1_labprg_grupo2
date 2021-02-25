@@ -29,7 +29,7 @@ public interface RepositorioAnuncio {
 
     ArrayList<Anuncio> getAll();
 
-    Anuncio findAnuncioByIdTarefa(String idTarefa);
+    Anuncio findAnuncioByIdTarefa(String referenciaTarefa, String nifOrganizacao);
 
     public ArrayList<TipoRegimento> getAllRegimento()throws SQLException;
 }
