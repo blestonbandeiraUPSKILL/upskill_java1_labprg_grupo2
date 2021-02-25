@@ -15,6 +15,9 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
+/**
+ * FXML Controller class
+ */
 public class RegistarColaboradorUI implements Initializable {
 
     private RegistarColaboradorController registarColaboradorController;
@@ -35,7 +38,10 @@ public class RegistarColaboradorUI implements Initializable {
     public void associarParentUI(GestorLogadoUI gestorLogadoUI) {
         this.gestorLogadoUI = gestorLogadoUI;
     }
-
+    
+    /**
+    * Initializes the controller (UI) class.
+    */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 

@@ -24,8 +24,6 @@ import javafx.stage.WindowEvent;
 
 /**
  * FXML Controller class
- *
- * @author acris
  */
 public class AdicionarAreaAtividadeUI implements Initializable {
 

@@ -22,6 +22,9 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.Set;
 
+/**
+ * FXML Controller class
+ */
 public class ColaboradorLogadoUI implements Initializable {
 
 
@@ -53,7 +56,10 @@ public class ColaboradorLogadoUI implements Initializable {
     public void associarParentUI(StartingPageUI startingPageUI) {
         this.startingPageUI = startingPageUI;
     }
-
+    
+    /**
+    * Initializes the controller (UI) class.
+    */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 

@@ -20,6 +20,9 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
+/**
+ * FXML Controller class
+ */
 public class StartingPageUI implements Initializable {
 
     private GestaoUtilizadoresController gestaoUtilizadoresController;
@@ -43,6 +46,9 @@ public class StartingPageUI implements Initializable {
     @FXML
     Button btnGoLight;
 
+    /**
+    * Initializes the controller (UI) class.
+    */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 

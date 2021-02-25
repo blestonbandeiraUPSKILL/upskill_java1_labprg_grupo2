@@ -19,8 +19,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 /**
- *
- * @author acris
+ * FXML Controller class
  */
 public class ConsultarFreelancerUI implements Initializable {
     
@@ -52,6 +51,9 @@ public class ConsultarFreelancerUI implements Initializable {
         this.administrativoLogadoUI = administrativoLogadoUI;
     }
     
+    /**
+    * Initializes the controller (UI) class.
+    */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 

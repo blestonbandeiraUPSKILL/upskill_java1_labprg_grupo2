@@ -24,12 +24,8 @@ import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-
-
 /**
  * FXML Controller class
- *
- * @author acris
  */
 public class ConsultarCompetenciaTecnicaUI implements Initializable {
     
@@ -49,8 +45,6 @@ public class ConsultarCompetenciaTecnicaUI implements Initializable {
     public void associarParentUI(AdministrativoLogadoUI administrativoLogadoUI) {
         this.administrativoLogadoUI = administrativoLogadoUI;
     }
-
-
 
     /**
      * Initializes the controller class.

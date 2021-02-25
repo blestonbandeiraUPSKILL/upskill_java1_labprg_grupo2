@@ -18,6 +18,9 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
+/**
+ * FXML Controller class
+ */
 public class RegistarOrgEGestorUI implements Initializable {
 
     private RegistarOrganizacaoController registarOrganizacaoController;
@@ -45,6 +48,9 @@ public class RegistarOrgEGestorUI implements Initializable {
         this.startingPageUI = startingPageUI;
     }
 
+    /**
+    * Initializes the controller (UI) class.
+    */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
