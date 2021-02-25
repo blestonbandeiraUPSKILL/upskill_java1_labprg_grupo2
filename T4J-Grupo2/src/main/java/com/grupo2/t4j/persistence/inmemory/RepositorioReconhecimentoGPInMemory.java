@@ -52,7 +52,7 @@ public class RepositorioReconhecimentoGPInMemory implements Serializable, Reposi
     }
 
     @Override
-    public boolean save(int idGrauProficiencia, Data dataReconhecimento,
+    public boolean save(int idGrauProficiencia, String dataReconhecimento,
              Email email, String idCompetenciaTecnica) throws ReconhecimentoDuplicadoException, SQLException {
         ReconhecimentoGP rgp = findByGrauEmail(idGrauProficiencia ,email.getEmailText());
         if (rgp == null) {
@@ -67,7 +67,7 @@ public class RepositorioReconhecimentoGPInMemory implements Serializable, Reposi
 
 
     @Override
-    public boolean save (ReconhecimentoGP reconhecimentoGP)throws ReconhecimentoDuplicadoException {
+    public boolean save (ReconhecimentoGP reconhecimentoGP)throws ReconhecimentoDuplicadoException, SQLException {
         ReconhecimentoGP rgp = findByGrauEmail(reconhecimentoGP.getIdGrauProficiencia(), reconhecimentoGP.getEmailFreelancer().getEmailText());
         if (rgp == null) {
             ReconhecimentoGP reconhecimento = new ReconhecimentoGP(reconhecimentoGP);
@@ -86,7 +86,7 @@ public class RepositorioReconhecimentoGPInMemory implements Serializable, Reposi
     }
  
     @Override
-    public List<ReconhecimentoGP> findByEmail(String email) {
+    public List<ReconhecimentoGP> findByEmail(String email) throws SQLException{
         ReconhecimentoGP reconhecimentoGP = null;
         List<ReconhecimentoGP> reconhecimentosGP = new ArrayList<>();
         for (int i = 0; i < this.listaReconhecimentoGP.size(); i++) {
@@ -99,7 +99,7 @@ public class RepositorioReconhecimentoGPInMemory implements Serializable, Reposi
     }
 
     @Override
-    public ReconhecimentoGP findByEmailCompetencia(String email, String idCompetenciaTecnica) {
+    public ReconhecimentoGP findByEmailCompetencia(String email, String idCompetenciaTecnica) throws SQLException{
         List<ReconhecimentoGP> reconhecimentosGP = findByEmail(email);
         for (ReconhecimentoGP rcp : reconhecimentosGP){
             if (rcp.getIdCompetenciaTecnica().equals(idCompetenciaTecnica))
@@ -108,7 +108,7 @@ public class RepositorioReconhecimentoGPInMemory implements Serializable, Reposi
         return null;
     }
     
-     public ReconhecimentoGP findByGrauEmail(int idGrauProficiencia, String email) {
+     public ReconhecimentoGP findByGrauEmail(int idGrauProficiencia, String email) throws SQLException {
         List<ReconhecimentoGP> reconhecimentosGP = findByEmail(email);
         for (ReconhecimentoGP rcp : reconhecimentosGP){
             if (rcp.getIdGrauProficiencia() == idGrauProficiencia){
@@ -118,7 +118,7 @@ public class RepositorioReconhecimentoGPInMemory implements Serializable, Reposi
         return null;
     }  
      
-     public int adicionarListaReconhecimentoGP(RepositorioReconhecimentoGPInMemory outraListaReconhecimentoGP){
+     public int adicionarListaReconhecimentoGP(RepositorioReconhecimentoGPInMemory outraListaReconhecimentoGP) throws SQLException{
         int totalReconhecimentoGPAdicionados = 0;
 
         for (ReconhecimentoGP reconhecimentoGP : outraListaReconhecimentoGP.listaReconhecimentoGP) {
@@ -129,4 +129,6 @@ public class RepositorioReconhecimentoGPInMemory implements Serializable, Reposi
         }
         return totalReconhecimentoGPAdicionados;
     }
+
+    
 }

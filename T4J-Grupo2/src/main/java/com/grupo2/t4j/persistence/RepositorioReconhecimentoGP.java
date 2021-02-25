@@ -18,7 +18,7 @@ import java.util.List;
  */
 public interface RepositorioReconhecimentoGP {
     
-    boolean save(int idGrauProficiencia, Data dataReconhecimento, 
+    boolean save(int idGrauProficiencia, String dataReconhecimento, 
              Email emailFreelancer, String idCompetenciaTecnica) throws ReconhecimentoDuplicadoException,
             SQLException;
     
@@ -27,8 +27,8 @@ public interface RepositorioReconhecimentoGP {
     
     List<ReconhecimentoGP> getAll() throws SQLException;
     
-    List<ReconhecimentoGP> findByEmail(String email);
+    List<ReconhecimentoGP> findByEmail(String email) throws SQLException;
     
-    ReconhecimentoGP findByEmailCompetencia(String email, String idCompetenciaTecnica);
+    ReconhecimentoGP findByEmailCompetencia(String email, String idCompetenciaTecnica) throws SQLException;
     
 }
