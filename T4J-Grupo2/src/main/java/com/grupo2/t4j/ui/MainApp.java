@@ -11,8 +11,7 @@ import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
 import java.io.IOException;
-
-
+import javafx.scene.image.Image;
 
 /**
  * JavaFX App
@@ -32,8 +31,12 @@ public class MainApp extends Application {
             //scene.getStylesheets().addAll(this.getClass().getResource("/com/grupo2/t4j/style/app.css").toExternalForm());
             scene.getStylesheets().add("com/grupo2/t4j/style/app.css");
             //scene.getStylesheets().addAll(this.getClass().getResource("/com/grupo2/t4j/style/dark.css").toExternalForm());
-            
+
             stage.setTitle(TITULO_APLICACAO);
+
+            // Set the application icon
+            stage.getIcons().add(new Image("com/grupo2/t4j/images/iconfinder_builder_worker_helmet_4043241.png"));
+          
             stage.setScene(scene);
 
             stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
@@ -51,8 +54,7 @@ public class MainApp extends Application {
             });
 
             stage.show();
-        }
-        catch (IOException exception) {
+        } catch (IOException exception) {
             exception.printStackTrace();
             AlertsUI.criarAlerta(Alert.AlertType.ERROR,
                     TITULO_APLICACAO,
