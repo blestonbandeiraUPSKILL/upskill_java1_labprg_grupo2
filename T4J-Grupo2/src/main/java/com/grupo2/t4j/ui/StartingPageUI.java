@@ -30,11 +30,18 @@ public class StartingPageUI implements Initializable {
     private Scene sceneColaborador;
     private Scene sceneFreelancer;
 
-    @FXML TextField txtEmailLogin;
-    @FXML PasswordField txtPasswordLogin;
-    @FXML Button btnSair;
-    @FXML Button btnLogin;
-    @FXML Button btnGoDark;
+    @FXML
+    TextField txtEmailLogin;
+    @FXML
+    PasswordField txtPasswordLogin;
+    @FXML
+    Button btnSair;
+    @FXML
+    Button btnLogin;
+    @FXML
+    Button btnGoDark;
+    @FXML
+    Button btnGoLight;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -45,9 +52,8 @@ public class StartingPageUI implements Initializable {
         adicionarStage.initModality(Modality.APPLICATION_MODAL);;
         adicionarStage.setResizable(false);
 
-
     }
-   
+
     @FXML
     void cssGoDark(ActionEvent event) {
 
@@ -55,25 +61,28 @@ public class StartingPageUI implements Initializable {
 
         //scene.getStylesheets().clear();
         //scene.getStylesheets().add(getClass().getResource("/com/grupo2/t4j/style/dark.css").toExternalForm());
-
     }
 
+    @FXML
+    void cssGoLight(ActionEvent event) {
+
+        Scene scene = btnGoLight.getScene();
+    }
 
     public void registarOrganizacao(ActionEvent actionEvent) {
 
         try {
-        FXMLLoader loaderRegistarOrg = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/RegistarOrgEGestorScene.fxml"));
-        Parent rootRegistarOrg = loaderRegistarOrg.load();
-        sceneRegistarOrganizacao = new Scene(rootRegistarOrg);
-        RegistarOrgEGestorUI registarOrgEGestorUI = loaderRegistarOrg.getController();
-        registarOrgEGestorUI.associarParentUI(this);
+            FXMLLoader loaderRegistarOrg = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/RegistarOrgEGestorScene.fxml"));
+            Parent rootRegistarOrg = loaderRegistarOrg.load();
+            sceneRegistarOrganizacao = new Scene(rootRegistarOrg);
+            RegistarOrgEGestorUI registarOrgEGestorUI = loaderRegistarOrg.getController();
+            registarOrgEGestorUI.associarParentUI(this);
 
-        adicionarStage.setScene(sceneRegistarOrganizacao);
-        adicionarStage.setTitle("Registar Organização");
-        adicionarStage.show();
+            adicionarStage.setScene(sceneRegistarOrganizacao);
+            adicionarStage.setTitle("Registar Organização");
+            adicionarStage.show();
 
-        }
-        catch (IOException exception) {
+        } catch (IOException exception) {
             exception.printStackTrace();
             AlertsUI.criarAlerta(Alert.AlertType.ERROR,
                     MainApp.TITULO_APLICACAO,
@@ -108,13 +117,11 @@ public class StartingPageUI implements Initializable {
                         navigateFreelancerLogado(actionEvent);
                 }
             }
-        }
-
-        catch (IOException exception) {
-                AlertsUI.criarAlerta(Alert.AlertType.ERROR,
-                MainApp.TITULO_APLICACAO,
-                "Erro ao validar os dados",
-                exception.getMessage());
+        } catch (IOException exception) {
+            AlertsUI.criarAlerta(Alert.AlertType.ERROR,
+                    MainApp.TITULO_APLICACAO,
+                    "Erro ao validar os dados",
+                    exception.getMessage());
 
         }
     }
@@ -138,25 +145,24 @@ public class StartingPageUI implements Initializable {
     }
 
     public void navigateAdministrativoLogado(ActionEvent actionEvent) throws IOException {
-       try {
-           FXMLLoader loaderAdministrativo = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/AdministrativoLogadoScene.fxml"));
-           Parent rootAdministrativo = loaderAdministrativo.load();
-           sceneAdministrativo = new Scene(rootAdministrativo);
-           AdministrativoLogadoUI administrativoLogadoUI = loaderAdministrativo.getController();
-           administrativoLogadoUI.associarParentUI(this);
+        try {
+            FXMLLoader loaderAdministrativo = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/AdministrativoLogadoScene.fxml"));
+            Parent rootAdministrativo = loaderAdministrativo.load();
+            sceneAdministrativo = new Scene(rootAdministrativo);
+            AdministrativoLogadoUI administrativoLogadoUI = loaderAdministrativo.getController();
+            administrativoLogadoUI.associarParentUI(this);
 
-           adicionarStage.setScene(sceneAdministrativo);
-           adicionarStage.setTitle("T4J - Administrativo");
-           adicionarStage.show();
-           btnLogin.getScene().getWindow().hide();
-       }
-       catch (IOException exception) {
-           exception.printStackTrace();
-           AlertsUI.criarAlerta(Alert.AlertType.ERROR,
-                   MainApp.TITULO_APLICACAO,
-                   "Erro",
-                   exception.getMessage());
-       }
+            adicionarStage.setScene(sceneAdministrativo);
+            adicionarStage.setTitle("T4J - Administrativo");
+            adicionarStage.show();
+            btnLogin.getScene().getWindow().hide();
+        } catch (IOException exception) {
+            exception.printStackTrace();
+            AlertsUI.criarAlerta(Alert.AlertType.ERROR,
+                    MainApp.TITULO_APLICACAO,
+                    "Erro",
+                    exception.getMessage());
+        }
     }
 
     public void navigateGestorLogado(ActionEvent actionEvent) {
@@ -172,8 +178,7 @@ public class StartingPageUI implements Initializable {
             adicionarStage.show();
 
             btnLogin.getScene().getWindow().hide();
-        }
-        catch (IOException exception) {
+        } catch (IOException exception) {
             exception.printStackTrace();
             AlertsUI.criarAlerta(Alert.AlertType.ERROR,
                     MainApp.TITULO_APLICACAO,
@@ -195,8 +200,7 @@ public class StartingPageUI implements Initializable {
             adicionarStage.show();
 
             btnLogin.getScene().getWindow().hide();
-        }
-        catch (IOException exception) {
+        } catch (IOException exception) {
             exception.printStackTrace();
             AlertsUI.criarAlerta(Alert.AlertType.ERROR,
                     MainApp.TITULO_APLICACAO,
@@ -217,8 +221,7 @@ public class StartingPageUI implements Initializable {
             adicionarStage.setTitle("T4J - Freelancer");
             adicionarStage.show();
             btnLogin.getScene().getWindow().hide();
-        }
-        catch (IOException exception) {
+        } catch (IOException exception) {
             exception.printStackTrace();
             AlertsUI.criarAlerta(Alert.AlertType.ERROR,
                     MainApp.TITULO_APLICACAO,

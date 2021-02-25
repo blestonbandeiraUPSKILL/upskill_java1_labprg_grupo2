@@ -8,9 +8,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane stylesheets="@../style/app.css" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="463.0" prefWidth="600.0" styleClass="BorderPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.ConsultarCompetenciaTecnicaUI">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="463.0" prefWidth="600.0" styleClass="BorderPane" stylesheets="@../style/app.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.ConsultarCompetenciaTecnicaUI">
     <top>
-        <Label styleClass="lblUser" text="Área do Administrativo" textFill="WHITE" BorderPane.alignment="CENTER_RIGHT">
+        <Label styleClass="lblUser" text="Área do Administrativo :::&gt; Consultar Competência Técnica" textFill="WHITE" BorderPane.alignment="CENTER_RIGHT">
             <font>
                 <Font name="Calibri" size="18.0" />
             </font>
@@ -32,14 +32,6 @@
                 <TextField fx:id="txtCodigoCompetenciaTecnica" editable="false" layoutX="194.0" layoutY="120.0" prefHeight="25.0" prefWidth="80.0" />
                 <TextField fx:id="txtDescricaoBreve" editable="false" layoutX="115.0" layoutY="164.0" prefHeight="25.0" prefWidth="158.0" />
                 <TextArea fx:id="txtDescricaoDetalhada" editable="false" layoutX="14.0" layoutY="235.0" prefHeight="106.0" prefWidth="264.0" />
-                <Label style="-fx-background-color: #000000;" text="Detalhes da Competência Técnica" textFill="WHITE">
-                    <font>
-                        <Font name="Calibri" size="18.0" />
-                    </font>
-                    <padding>
-                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                    </padding>
-                </Label>
             </children>
         </AnchorPane>
     </center>

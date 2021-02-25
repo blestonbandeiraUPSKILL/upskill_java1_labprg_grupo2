@@ -45,7 +45,7 @@ public class GestorLogadoUI implements Initializable {
     @FXML ComboBox<AreaActividade> cmbAreaActividade;
     @FXML ComboBox<Categoria> cmbCategoriaTarefa;
     @FXML Button btnLogout;
-       
+     
     public void associarParentUI(StartingPageUI startingPageUI) {
         this.startingPageUI = startingPageUI;
     }
