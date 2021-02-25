@@ -64,6 +64,11 @@ public class Anuncio implements Serializable {
     private  Data dtFimSeriacao;
     
     /**
+     * O id do tipo de regimento aplicavel ao anuncio
+     */
+    private String idTipoRegimento;
+    
+    /**
      * A data atual no formato da classe Data
      */
     private Calendar cal = Calendar.getInstance();
@@ -104,7 +109,7 @@ public class Anuncio implements Serializable {
      */
     public Anuncio(String referenciaTarefa, String nifOrganizacao, Data dtInicioPublicitacao, Data dtFimPublicitacao, Data 
             dtInicioCandidatura, Data dtFimCandidatura, Data dtInicioSeriacao,
-            Data dtFimSeriacao) {
+            Data dtFimSeriacao, String idTipoRegimento) {
         setReferenciaTarefa(referenciaTarefa);
         setNifOrganizacao(nifOrganizacao);
         setDtInicioPub(dtInicioPublicitacao);
@@ -112,10 +117,11 @@ public class Anuncio implements Serializable {
         setDtInicioCand(dtInicioCandidatura);
         setDtFimCand(dtFimCandidatura);
         setDtInicioSeriacao(dtInicioSeriacao);
-        setDtFimSeriacao(dtFimSeriacao);        
+        setDtFimSeriacao(dtFimSeriacao); 
+        setIdTipoRegimento(idTipoRegimento);
     }
     
-    public Anuncio(String idAnuncio,String referenciaTarefa, String nifOrganizacao,Data dtInicioPublicitacao, Data dtFimPublicitacao, Data 
+    /*public Anuncio(String idAnuncio,String referenciaTarefa, String nifOrganizacao,Data dtInicioPublicitacao, Data dtFimPublicitacao, Data 
             dtInicioCandidatura, Data dtFimCandidatura, Data dtInicioSeriacao,
             Data dtFimSeriacao) {
         setIdAnuncio(idAnuncio);
@@ -127,7 +133,7 @@ public class Anuncio implements Serializable {
         setDtFimCand(dtFimCandidatura);
         setDtInicioSeriacao(dtInicioSeriacao);
         setDtFimSeriacao(dtFimSeriacao);        
-    }
+    }*/
     
     /**
      * Construtor completo da classe Anuncio com as datas em formato texto
@@ -139,7 +145,7 @@ public class Anuncio implements Serializable {
      * @param txtDtInicioSeriacao - data de início do processo de seriação do anúncio em formato texto
      * @param txtDtFimSeriacao - data do fim do processo de seriação do anúncio em formato texto
      */
-    public Anuncio(String idAnuncio,String txtDtInicioPublicitacao, String txtDtFimPublicitacao, 
+    /*public Anuncio(String idAnuncio,String txtDtInicioPublicitacao, String txtDtFimPublicitacao, 
             String txtDtInicioCandidatura, String txtDtFimCandidatura, String txtDtInicioSeriacao,
             String txtDtFimSeriacao) {
         setIdAnuncio(idAnuncio);
@@ -149,7 +155,7 @@ public class Anuncio implements Serializable {
         setDtFimCand(eFormaData(txtDtFimCandidatura));
         setDtInicioSeriacao(eFormaData(txtDtInicioSeriacao));
         setDtFimSeriacao(eFormaData(txtDtFimSeriacao));        
-    }
+    }*/
            
     /**
      * Construtor da classe Anuncio
@@ -157,6 +163,8 @@ public class Anuncio implements Serializable {
      */
     public Anuncio (Anuncio anuncio){
         setIdAnuncio(anuncio.idAnuncio);
+        setReferenciaTarefa(anuncio.referenciaTarefa);
+        setNifOrganizacao(anuncio.nifOrganizacao);
         setDtInicioPub(anuncio.dtInicioPublicitacao);
         setDtFimPub(anuncio.dtFimPublicitacao);
         setDtInicioCand(anuncio.dtInicioCandidatura);
@@ -329,7 +337,7 @@ public class Anuncio implements Serializable {
         return referenciaTarefa;
     }
 
-    public void setReferenciaTarefa(String idTarefa) {
+    public void setReferenciaTarefa(String referenciaTarefa) {
         this.referenciaTarefa = referenciaTarefa;
     }
 
@@ -339,6 +347,14 @@ public class Anuncio implements Serializable {
 
     public void setNifOrganizacao(String nifOrganizacao) {
         this.nifOrganizacao = nifOrganizacao;
+    }
+
+    public String getIdTipoRegimento() {
+        return idTipoRegimento;
+    }
+
+    public void setIdTipoRegimento(String idTipoRegimento) {
+        this.idTipoRegimento = idTipoRegimento;
     }
     
     

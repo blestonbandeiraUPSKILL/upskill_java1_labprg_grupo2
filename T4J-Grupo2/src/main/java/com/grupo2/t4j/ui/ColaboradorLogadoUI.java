@@ -97,7 +97,7 @@ public class ColaboradorLogadoUI implements Initializable {
 
 
         try {
-            listViewTarefas.getItems().setAll(registarTarefaController.getAll(getNifOrganizacao()));
+            listViewTarefas.getItems().setAll(registarTarefaController.getAllOrganizacao(getNifOrganizacao()));
         } catch (SQLException exception) {
             exception.printStackTrace();
         }
@@ -127,7 +127,7 @@ public class ColaboradorLogadoUI implements Initializable {
     }
 
     public void updateListViewTarefas() throws SQLException {
-        listViewTarefas.getItems().setAll(registarTarefaController.getAll(
+        listViewTarefas.getItems().setAll(registarTarefaController.getAllOrganizacao(
                 getNifOrganizacao() ));
 
     }
@@ -136,6 +136,20 @@ public class ColaboradorLogadoUI implements Initializable {
         String email = gestaoUtilizadoresController.getEmail();
         String nifOrganizacao = registarColaboradorController.getNifOrganizacao(email);
         listViewTarefas.getItems().setAll(registarTarefaController.findByColaboradorENif(email, nifOrganizacao));
+        
+    }
+    
+    public void updateListViewTarefasPublicadas() throws SQLException {
+        String email = gestaoUtilizadoresController.getEmail();
+        String nifOrganizacao = registarColaboradorController.getNifOrganizacao(email);
+        listViewTarefas.getItems().setAll(registarTarefaController.findTarefasPublicadas(email, nifOrganizacao));
+        
+    }
+    
+    public void updateListViewTarefasNaoPublicadas() throws SQLException {
+        String email = gestaoUtilizadoresController.getEmail();
+        String nifOrganizacao = registarColaboradorController.getNifOrganizacao(email);
+        listViewTarefas.getItems().setAll(registarTarefaController.findTarefasNaoPublicadas(email, nifOrganizacao));
         
     }
     
@@ -232,10 +246,11 @@ public class ColaboradorLogadoUI implements Initializable {
                         updateListViewTarefasColaborador();
                         break;
                     case TAREFAS_PUBLICADAS:
-                        
+                        updateListViewTarefasPublicadas();
                         break;
                     case TAREFAS_PARA_PUBLICAR:
-                       btnPublicarTarefa.setDisable(false);
+                        updateListViewTarefasPublicadas();
+                        btnPublicarTarefa.setDisable(false);
                 }
     }
 

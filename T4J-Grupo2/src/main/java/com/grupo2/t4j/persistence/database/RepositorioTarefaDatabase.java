@@ -181,7 +181,7 @@ public class RepositorioTarefaDatabase implements RepositorioTarefa {
     }
 
     @Override
-    public ArrayList<Tarefa> getAll(String nifOrganizacao) throws SQLException {
+    public ArrayList<Tarefa> getAllOrganizacao(String nifOrganizacao) throws SQLException {
         ArrayList<Tarefa> tarefas = new ArrayList<>();
 
         DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
@@ -230,6 +230,58 @@ public class RepositorioTarefaDatabase implements RepositorioTarefa {
 
         return tarefas;
     }
+    
+    @Override
+    public ArrayList<Tarefa> getAll() throws SQLException {
+        ArrayList<Tarefa> tarefas = new ArrayList<>();
+
+        DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
+        Connection connection = dbConnectionHandler.openConnection();
+
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(
+                    "SELECT * FROM Tarefa"
+            );
+
+                        
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+
+                String nifOrganizacao = resultSet.getString(1);
+                String referencia = resultSet.getString(2);
+                String designacao = resultSet.getString(3);
+                String descInformal = resultSet.getString(4);
+                String descTecnica = resultSet.getString(5);
+                int duracaoEst  = resultSet.getInt(6);
+                double custoEst = resultSet.getDouble(7);
+                String codigoCategoriaTarefa = resultSet.getString(8);
+                String emailColaborador = resultSet.getString(9);
+
+                tarefas.add(new Tarefa(referencia, nifOrganizacao, designacao, descInformal,
+                        descTecnica, duracaoEst, custoEst,
+                        codigoCategoriaTarefa,  emailColaborador));
+            }
+        }
+        catch (SQLException exception) {
+            exception.printStackTrace();
+            exception.getSQLState();
+            try {
+                System.err.print("Transaction is being rolled back");
+                connection.rollback();
+            }
+            catch (SQLException sqlException) {
+                sqlException.getErrorCode();
+            }
+
+        }
+        finally {
+            dbConnectionHandler.closeAll();
+        }
+
+        return tarefas;
+    }
+    
 
     @Override
     public List<Tarefa> findByColaboradorENif(String email, String nifOrganizacao) throws SQLException {
@@ -282,4 +334,66 @@ public class RepositorioTarefaDatabase implements RepositorioTarefa {
 
         return tarefas;
     }
+
+    @Override
+    public List<Tarefa> findTarefasComAnuncio(String email, String nifOrganizacao) throws SQLException {
+        List<Tarefa> tarefasPublicadas = new ArrayList<>();
+        List<Tarefa> tarefas = new ArrayList<>();
+        tarefas = findByColaboradorENif(email, nifOrganizacao);
+        
+        for (Tarefa tarefa : tarefas){
+            if (findAnuncioByTarefa(tarefa.getEmailColaborador(), tarefa.getNifOrganizacao())!=null){
+              tarefasPublicadas.add(tarefa);  
+            } 
+            
+        }
+        return tarefasPublicadas;
+
+    }
+    
+    @Override
+    public List<Tarefa> findTarefasSemAnuncio(String email, String nifOrganizacao) throws SQLException {
+        List<Tarefa> tarefasNaoPublicadas = new ArrayList<>();
+        List<Tarefa> tarefas = new ArrayList<>();
+        tarefas = findByColaboradorENif(email, nifOrganizacao);
+        
+        for (Tarefa tarefa : tarefas){
+            if (findAnuncioByTarefa(tarefa.getEmailColaborador(), tarefa.getNifOrganizacao())==null){
+              tarefasNaoPublicadas.add(tarefa);  
+            } 
+            
+        }
+        return tarefasNaoPublicadas;
+
+    }
+    
+    @Override
+    public Tarefa findAnuncioByTarefa(String referencia, String nif) throws SQLException {
+        
+        DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
+        Connection connection = dbConnectionHandler.openConnection();
+
+        CallableStatement callableStatement = connection.prepareCall(
+                "{ CALL findAnuncioByTarefa(?, ?) }"
+        );
+
+        try {
+            connection.setAutoCommit(false);
+
+            callableStatement.setString(1, referencia);
+            callableStatement.setString(2, nif );
+
+            callableStatement.executeUpdate();
+            return null;
+
+        }
+        catch (SQLException exception) {
+            exception.printStackTrace();
+            exception.getSQLState();
+
+
+        }
+        return new Tarefa();
+    }
+
 }

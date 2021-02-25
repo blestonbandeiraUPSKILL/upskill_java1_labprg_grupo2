@@ -133,15 +133,33 @@ public class RepositorioTarefaInMemory implements Serializable, RepositorioTaref
      *
      * @return 
      */
-    public ArrayList<Tarefa> getAll(String nifOrganizacao) throws SQLException{
+    public ArrayList<Tarefa> getAllOrganizacao(String nifOrganizacao) throws SQLException{
 
         return new ArrayList<Tarefa>(listaTarefas);
+    }
+    public ArrayList<Tarefa> getAll() throws SQLException{
+        return null;
     }
 
     //getAllByOrgPublicadas, getAllByOrgNaoPublicadas, getAllByOrg
 
     @Override
     public List<Tarefa> findByColaboradorENif(String email, String nifOrganizacao) throws SQLException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<Tarefa> findTarefasComAnuncio(String email, String nifOrganizacao) throws SQLException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Tarefa findAnuncioByTarefa(String referencia, String nif) throws SQLException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<Tarefa> findTarefasSemAnuncio(String email, String nifOrganizacao) throws SQLException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

@@ -22,14 +22,14 @@ public interface RepositorioAnuncio {
              dtInicioCandidatura, Data dtFimCandidatura, Data dtInicioSeriacao,
                Data dtFimSeriacao) throws AnuncioDuplicadoException;
 
-     boolean save(Anuncio anuncio);
+     boolean save(Anuncio anuncio) throws SQLException;
 
 
     Anuncio findById(String idAnuncio);
 
     ArrayList<Anuncio> getAll();
 
-    Anuncio findAnuncioByIdTarefa(String idTarefa);
+    Anuncio findAnuncioByIdTarefa(String referenciaTarefa, String nifOrganizacao);
 
     public ArrayList<TipoRegimento> getAllRegimento()throws SQLException;
 }
