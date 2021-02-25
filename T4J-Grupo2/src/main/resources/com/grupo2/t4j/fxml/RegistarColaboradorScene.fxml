@@ -170,7 +170,7 @@
       </BorderPane>
    </center>
    <top>
-      <Label fx:id="lblUser" alignment="CENTER_RIGHT" styleClass="lblUser" text="Bem-vindo à Área do Gestor" textFill="WHITE" BorderPane.alignment="CENTER_RIGHT">
+      <Label fx:id="lblUser" alignment="CENTER_RIGHT" styleClass="lblUser" text="Área do Gestor :::&gt; Registar Colaborador" textFill="WHITE" BorderPane.alignment="CENTER_RIGHT">
          <font>
             <Font name="Calibri Italic" size="16.0" />
          </font>

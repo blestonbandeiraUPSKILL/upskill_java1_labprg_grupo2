@@ -139,4 +139,9 @@ public class RepositorioTarefaInMemory implements Serializable, RepositorioTaref
     }
 
     //getAllByOrgPublicadas, getAllByOrgNaoPublicadas, getAllByOrg
+
+    @Override
+    public List<Tarefa> findByColaboradorENif(String email, String nifOrganizacao) throws SQLException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

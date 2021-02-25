@@ -17,8 +17,10 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.HashSet;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.Set;
 
 public class ColaboradorLogadoUI implements Initializable {
 
@@ -130,6 +132,13 @@ public class ColaboradorLogadoUI implements Initializable {
 
     }
     
+    public void updateListViewTarefasColaborador() throws SQLException {
+        String email = gestaoUtilizadoresController.getEmail();
+        String nifOrganizacao = registarColaboradorController.getNifOrganizacao(email);
+        listViewTarefas.getItems().setAll(registarTarefaController.findByColaboradorENif(email, nifOrganizacao));
+        
+    }
+    
     public void updateCmbCategoriasTarefaLista(ActionEvent actionEvent) throws SQLException{
         List<Categoria> listaCategoriasTarefa =
                 registarCategoriaController.findByAreaActividade(
@@ -220,7 +229,7 @@ public class ColaboradorLogadoUI implements Initializable {
                         updateListViewTarefas();
                         break;
                     case AS_MINHAS_TAREFAS:
-                        
+                        updateListViewTarefasColaborador();
                         break;
                     case TAREFAS_PUBLICADAS:
                         

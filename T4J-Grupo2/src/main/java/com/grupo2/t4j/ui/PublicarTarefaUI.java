@@ -16,6 +16,7 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -69,11 +70,19 @@ public class PublicarTarefaUI implements Initializable {
         
         publicarTarefaController = new PublicarTarefaController();
         
+        
         try {
             cmbTipoSeriacao.getItems().setAll(publicarTarefaController.getAllRegimento());
         } catch (SQLException exception) {
            exception.printStackTrace();
         }
+        
+        cmbTipoSeriacao.setOnAction(new EventHandler<ActionEvent>() {
+           @Override
+           public void handle(ActionEvent event) {
+               txtRegrasGerais.setText(cmbTipoSeriacao.getSelectionModel().getSelectedItem().getDescricaoRegras());
+           }
+           });
     }    
     @FXML
     void publicarTarefaAction(ActionEvent actionEvent) throws SQLException{
