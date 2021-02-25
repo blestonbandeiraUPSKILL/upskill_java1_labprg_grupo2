@@ -26,6 +26,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 public class RepositorioAnuncioDataBase implements RepositorioAnuncio {
@@ -35,6 +36,13 @@ public class RepositorioAnuncioDataBase implements RepositorioAnuncio {
      * registados todos os Anúncios
      */
     private static RepositorioAnuncioDataBase repositorioAnuncioDataBase;
+    
+    /**
+     * A data atual no formato da classe Data
+     */
+    private Calendar cal = Calendar.getInstance();
+    private Data hoje = new Data(cal.get(Calendar.YEAR),cal.get(Calendar.MONTH),
+            cal.get(Calendar.DAY_OF_MONTH));
     
     String jdbcUrl = "jdbc:oracle:thin:@vsrvbd1.dei.isep.ipp.pt:1521/pdborcl";
     String username = "UPSKILL_BD_TURMA1_01";
@@ -128,7 +136,8 @@ public class RepositorioAnuncioDataBase implements RepositorioAnuncio {
         return null;
     }
     
-    public ArrayList<Anuncio> getAllByOrganizacaoColaborador(String nifOrg, String emailCol) throws SQLException {
+    @Override
+    public ArrayList<Anuncio> getAllByStatus(TipoStatusAnuncio status) throws SQLException {
         ArrayList<Anuncio> anuncios = new ArrayList<>();
 
         DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
@@ -172,14 +181,14 @@ public class RepositorioAnuncioDataBase implements RepositorioAnuncio {
             dbConnectionHandler.closeAll();
         }
         
-        ArrayList<Anuncio> anunciosOrg = new ArrayList<>();
+        ArrayList<Anuncio> anunciosStatus= new ArrayList<>();
         for(int i = 0; i < anuncios.size();i++){
             Anuncio anuncio = anuncios.get(i);
-            if(anuncio.getNifOrganizacao().equals(nifOrg)){
-                anunciosOrg.add(anuncio);
+            if(anuncio.getStatusAnuncio(hoje).equals(status)){
+                anunciosStatus.add(anuncio);
             }
         }
-        return anunciosOrg;
+        return anunciosStatus;
         
         //return null;
     }

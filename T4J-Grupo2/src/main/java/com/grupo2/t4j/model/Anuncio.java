@@ -360,15 +360,18 @@ public class Anuncio implements Serializable {
         this.idTipoRegimento = idTipoRegimento;
     }
     
- /*   public TipoStatusAnuncio getStatusAnuncio(Data dataAtual, Anuncio anuncio) throws AnuncioInvalidoException{
-        if(dataAtual.isMaior(anuncio.getDtFimPub())){
+
+ /*   
+    public TipoStatusAnuncio getStatusAnuncio(Data dataAtual) throws AnuncioInvalidoException{
+        if(dataAtual.isMaior(this.dtFimPublicitacao)){
+
             return TipoStatusAnuncio.EXPIRADOS;
         }
         else{
-            if(dataAtual.compareTo(anuncio.getDtInicioSeriacao()) >= 0 && dataAtual.compareTo(anuncio.getDtFimSeriacao()) <= 0){
+            if(dataAtual.compareTo(this.dtInicioSeriacao) >= 0 && dataAtual.compareTo(this.dtFimSeriacao) <= 0){
                 return TipoStatusAnuncio.PERIODO_DE_SERIACAO;
             }
-            if(dataAtual.compareTo(anuncio.getDtInicioCand()) >= 0 && dataAtual.compareTo(anuncio.getDtFimCand()) <= 0){
+            if(dataAtual.compareTo(this.dtInicioCandidatura) >= 0 && dataAtual.compareTo(this.dtFimCandidatura) <= 0){
                 return TipoStatusAnuncio.PERIODO_DE_CANDIDATURA;
             }
         }        
