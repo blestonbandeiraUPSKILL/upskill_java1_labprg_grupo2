@@ -28,8 +28,10 @@ public interface RepositorioAnuncio {
     Anuncio findById(String idAnuncio);
 
     ArrayList<Anuncio> getAll();
-
+    
     Anuncio findAnuncioByIdTarefa(String referenciaTarefa, String nifOrganizacao)throws SQLException;
 
     public ArrayList<TipoRegimento> getAllRegimento()throws SQLException;
+    
+    public ArrayList<Anuncio> getAllByStatus(TipoStatusAnuncio status) throws SQLException;
 }

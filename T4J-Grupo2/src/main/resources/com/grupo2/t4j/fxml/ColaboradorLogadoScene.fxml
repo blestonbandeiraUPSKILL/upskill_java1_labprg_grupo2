@@ -39,7 +39,7 @@
                      <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="AnchorPane">
                            <children>
-                              <VBox alignment="CENTER" layoutX="560.0" layoutY="201.0" AnchorPane.bottomAnchor="101.66666666666669" AnchorPane.rightAnchor="32.0" />
+                              <VBox alignment="CENTER" layoutX="560.0" layoutY="201.0" AnchorPane.bottomAnchor="100.0" AnchorPane.rightAnchor="32.0" />
                               <ListView fx:id="listViewTarefas" layoutX="14.0" layoutY="140.0" prefHeight="188.0" prefWidth="668.0" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="160.0" />
                               <Label layoutX="25.0" layoutY="107.0" prefHeight="40.0" prefWidth="215.0" text="Tarefas Registadas" AnchorPane.bottomAnchor="235.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="460.0" AnchorPane.topAnchor="125.0">
                                  <font>
@@ -103,45 +103,32 @@
                      <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="AnchorPane">
                            <children>
-                              <TableView layoutX="7.0" layoutY="3.0" prefHeight="340.0" prefWidth="700.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="20.0">
-                                <columns>
-                                  <TableColumn text="Anúncio" />
-                                  <TableColumn prefWidth="180.0" text="Período de Publicitação">
-                                       <columns>
-                                          <TableColumn text="Início" />
-                                          <TableColumn text="Fim" />
-                                       </columns>
-                                    </TableColumn>
-                                    <TableColumn minWidth="20.0" prefWidth="180.0" text="Período de Candidatura">
-                                       <columns>
-                                          <TableColumn text="Início" />
-                                          <TableColumn text="Fim" />
-                                       </columns>
-                                    </TableColumn>
-                                    <TableColumn minWidth="20.0" prefWidth="180.0" text="Período de Seriação">
-                                       <columns>
-                                          <TableColumn text="Início" />
-                                          <TableColumn text="Fim" />
-                                       </columns>
-                                    </TableColumn>
-                                    <TableColumn prefWidth="119.0" text="Tipo de Regimento" />
-                                </columns>
-                              </TableView>
+                              <VBox prefHeight="200.0" prefWidth="100.0" />
                            </children>
                         </AnchorPane>
                      </content>
                   </Tab>
                   <Tab text="Seriar Anúncios">
                      <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="AnchorPane">
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="370.0" prefWidth="700.0" styleClass="AnchorPane">
                            <children>
-                              <VBox alignment="CENTER" layoutX="560.0" layoutY="201.0" AnchorPane.bottomAnchor="101.66666666666669" AnchorPane.rightAnchor="32.0" />
-                              <Label alignment="CENTER" layoutX="24.0" layoutY="27.0" text="Anúncio a Seriar" AnchorPane.bottomAnchor="335.0" AnchorPane.leftAnchor="10.0">
-                                 <font>
-                                    <Font name="Calibri" size="14.0" />
-                                 </font>
-                              </Label>
-                              <ComboBox fx:id="cmbAnuncio" layoutX="165.0" layoutY="111.0" prefHeight="25.0" prefWidth="200.0" promptText="Escolha o Anúncio" AnchorPane.bottomAnchor="305.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="400.0" />
+                              <VBox prefHeight="370.0" prefWidth="700.0">
+                                 <children>
+                                    <Label text="Status do Anúncio">
+                                       <font>
+                                          <Font name="Calibri" size="14.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets bottom="5.0" left="10.0" top="10.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                    <ComboBox fx:id="cmbAnuncio" prefHeight="25.0" prefWidth="200.0" promptText="Escolha o Anúncio">
+                                       <VBox.margin>
+                                          <Insets left="10.0" />
+                                       </VBox.margin>
+                                    </ComboBox>
+                                 </children>
+                              </VBox>
                            </children>
                         </AnchorPane>
                      </content>
