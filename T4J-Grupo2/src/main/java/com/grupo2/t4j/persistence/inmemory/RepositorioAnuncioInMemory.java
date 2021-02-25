@@ -52,18 +52,18 @@ public class RepositorioAnuncioInMemory implements Serializable, RepositorioAnun
     
     @Override
     public void save(String idAnuncio, String idTarefa, Data dtInicioPublicitacao, Data dtFimPublicitacao, Data dtInicioCandidatura, Data dtFimCandidatura, Data dtInicioSeriacao, Data dtFimSeriacao) throws AnuncioDuplicadoException {
-        Anuncio a = findById(idAnuncio);
+        /*Anuncio a = findById(idAnuncio);
         if (a == null) {
             Anuncio anuncio = new Anuncio(idAnuncio, idTarefa, dtInicioPublicitacao, dtFimPublicitacao,
                     dtInicioCandidatura, dtFimCandidatura, dtInicioSeriacao, dtFimSeriacao);
             this.listaAnuncios.add(anuncio);
         } else {
             throw new AnuncioDuplicadoException(idAnuncio + ": Anúncio já registado!");
-        }
+        }*/
     }
 
     @Override
-    public boolean save(Anuncio anuncio) {
+    public boolean save(Anuncio anuncio) throws SQLException{
         Anuncio a = findById(anuncio.getIdAnuncio());
         if (a == null) {
             Anuncio anu = new Anuncio(anuncio);
@@ -96,12 +96,12 @@ public class RepositorioAnuncioInMemory implements Serializable, RepositorioAnun
     public int adicionarListaAnuncios(RepositorioAnuncioInMemory outraListaAnuncios) {
         int totalAnunciosAdicionados = 0;
 
-        for (Anuncio anuncio : outraListaAnuncios.listaAnuncios) {
+        /*for (Anuncio anuncio : outraListaAnuncios.listaAnuncios) {
             boolean anuncioAdicionado = save(anuncio);
             if (anuncioAdicionado) {
                 totalAnunciosAdicionados++;
             }
-        }
+        }*/
         return totalAnunciosAdicionados;
     }
 

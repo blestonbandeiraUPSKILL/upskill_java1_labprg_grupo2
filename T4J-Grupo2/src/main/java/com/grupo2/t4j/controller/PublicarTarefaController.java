@@ -32,8 +32,14 @@ public class PublicarTarefaController {
             LocalDate dtInicioPublicitacao, LocalDate dtFimPublicitacao, 
             LocalDate dtInicioCandidaturas, LocalDate dtFimCandidaturas, 
             LocalDate dtInicioSeriacao, LocalDate dtFimSeriacao, 
-            String regrasGerais, TipoRegimento idTipoRegimento) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            String idTipoRegimento) throws SQLException {
+        
+        Anuncio anuncio = new Anuncio(referencia, nifOrganizacao, 
+            data(dtInicioPublicitacao), data(dtFimPublicitacao), 
+            data(dtInicioCandidaturas), data(dtFimCandidaturas), 
+            data(dtInicioSeriacao), data(dtFimSeriacao), idTipoRegimento);
+        
+        return repositorioAnuncio.save(anuncio);
     }
     
     /**

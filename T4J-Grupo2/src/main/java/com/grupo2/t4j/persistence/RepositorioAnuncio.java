@@ -22,7 +22,7 @@ public interface RepositorioAnuncio {
              dtInicioCandidatura, Data dtFimCandidatura, Data dtInicioSeriacao,
                Data dtFimSeriacao) throws AnuncioDuplicadoException;
 
-     boolean save(Anuncio anuncio);
+     boolean save(Anuncio anuncio) throws SQLException;
 
 
     Anuncio findById(String idAnuncio);
