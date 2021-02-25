@@ -1,12 +1,6 @@
 package com.grupo2.t4j.controller;
 
 import com.grupo2.t4j.api.UsersAPI;
-import com.grupo2.t4j.model.*;
-import com.grupo2.t4j.persistence.FabricaRepositorios;
-import com.grupo2.t4j.persistence.RepositorioUtilizador;
-import com.grupo2.t4j.persistence.inmemory.FabricaRepositoriosInMemory;
-
-import java.sql.SQLException;
 
 public class GestaoUtilizadoresController {
 

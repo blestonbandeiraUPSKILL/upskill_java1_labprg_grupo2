@@ -5,13 +5,12 @@
  */
 package com.grupo2.t4j.controller;
 
-import com.grupo2.t4j.model.*;
+import com.grupo2.t4j.model.Tarefa;
 import com.grupo2.t4j.persistence.FabricaRepositorios;
 import com.grupo2.t4j.persistence.RepositorioTarefa;
 import com.grupo2.t4j.persistence.database.FabricaRepositoriosDatabase;
 
 import java.sql.SQLException;
-
 import java.util.List;
 
 public class RegistarTarefaController {

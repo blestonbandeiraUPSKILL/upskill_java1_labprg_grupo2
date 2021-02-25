@@ -13,18 +13,14 @@ package com.grupo2.t4j.persistence.database;
 import com.grupo2.t4j.exception.AnuncioDuplicadoException;
 import com.grupo2.t4j.model.Anuncio;
 import com.grupo2.t4j.model.Data;
-import com.grupo2.t4j.model.HabilitacaoAcademica;
-import com.grupo2.t4j.model.ReconhecimentoGP;
 import com.grupo2.t4j.model.TipoRegimento;
 import com.grupo2.t4j.model.TipoStatusAnuncio;
 import com.grupo2.t4j.persistence.RepositorioAnuncio;
 import com.grupo2.t4j.utils.DBConnectionHandler;
 
 import java.sql.*;
-
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.List;
 
 public class RepositorioAnuncioDataBase implements RepositorioAnuncio {
 
@@ -71,7 +67,7 @@ public class RepositorioAnuncioDataBase implements RepositorioAnuncio {
         Connection connection = dbConnectionHandler.openConnection();
 
         CallableStatement callableStatement = connection.prepareCall(
-                "{CALL createAnuncio(?, ?, ?, ?, ?, ?, ?, ?, ?)}");
+                "{CALL createAnuncio(?, ?, ?, ?, ?, ?, ?, ?, ?) }");
 
 
         try {
@@ -79,12 +75,12 @@ public class RepositorioAnuncioDataBase implements RepositorioAnuncio {
 
             callableStatement.setString(1, referenciaTarefa);
             callableStatement.setString(2, nifOrganizacao);
-            callableStatement.setDate(3, new Date(Long.parseLong(dtInicioPublicitacao)));
-            callableStatement.setDate(4, new Date(Long.parseLong(dtFimPublicitacao)));
-            callableStatement.setDate(5, new Date(Long.parseLong(dtInicioCandidatura)));
-            callableStatement.setDate(6, new Date(Long.parseLong(dtFimCandidatura)));
-            callableStatement.setDate(7, new Date(Long.parseLong(dtInicioSeriacao)));
-            callableStatement.setDate(8, new Date(Long.parseLong(dtFimSeriacao)));
+            callableStatement.setDate(3, Date.valueOf(dtInicioPublicitacao));
+            callableStatement.setDate(4, Date.valueOf(dtFimPublicitacao));
+            callableStatement.setDate(5, Date.valueOf(dtInicioCandidatura));
+            callableStatement.setDate(6, Date.valueOf(dtFimCandidatura));
+            callableStatement.setDate(7, Date.valueOf(dtInicioSeriacao));
+            callableStatement.setDate(8, Date.valueOf(dtFimSeriacao));
             callableStatement.setInt(9, idTipoRegimento);
 
             callableStatement.executeQuery();

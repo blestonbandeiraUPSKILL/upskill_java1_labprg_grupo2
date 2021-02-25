@@ -1,8 +1,9 @@
 package com.grupo2.t4j.model;
 
+import com.grupo2.t4j.exception.DataInvalidaException;
+
 import java.io.Serializable;
 import java.util.Calendar;
-import com.grupo2.t4j.exception.*;
 
 public class Anuncio implements Serializable {
     

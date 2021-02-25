@@ -11,8 +11,7 @@ package com.grupo2.t4j.persistence.database;
  * @author CAD
  */
 
-import com.grupo2.t4j.exception.OrganizacaoDuplicadaException;
-import com.grupo2.t4j.model.*;
+import com.grupo2.t4j.model.Organizacao;
 import com.grupo2.t4j.persistence.RepositorioOrganizacao;
 import com.grupo2.t4j.utils.DBConnectionHandler;
 

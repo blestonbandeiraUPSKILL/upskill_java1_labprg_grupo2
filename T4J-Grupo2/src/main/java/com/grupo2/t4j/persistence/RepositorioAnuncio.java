@@ -10,17 +10,19 @@ package com.grupo2.t4j.persistence;
  * @author CAD
  */
 
-import com.grupo2.t4j.model.*;
-import com.grupo2.t4j.exception.*;
-import java.io.Serializable;
+import com.grupo2.t4j.exception.AnuncioDuplicadoException;
+import com.grupo2.t4j.model.Anuncio;
+import com.grupo2.t4j.model.TipoRegimento;
+import com.grupo2.t4j.model.TipoStatusAnuncio;
+
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 public interface RepositorioAnuncio {
 
-     boolean save(String referenciaTarefa, String nifOrganizacao, String dtInicioPublicitacao, String dtFimPublicitacao, String
+    boolean save(String referenciaTarefa, String nifOrganizacao, String dtInicioPublicitacao, String dtFimPublicitacao, String
              dtInicioCandidatura, String dtFimCandidatura, String dtInicioSeriacao,
                String dtFimSeriacao, int idTipoRegimento) throws AnuncioDuplicadoException, SQLException;
+
 
      boolean save(Anuncio anuncio) throws SQLException;
 

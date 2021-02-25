@@ -1,6 +1,5 @@
 package com.grupo2.t4j.ui;
 
-import com.grupo2.t4j.api.UsersAPI;
 import com.grupo2.t4j.controller.GestaoUtilizadoresController;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;

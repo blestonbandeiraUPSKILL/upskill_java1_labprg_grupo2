@@ -1,14 +1,19 @@
 package com.grupo2.t4j.controller;
 
 import com.grupo2.t4j.api.UsersAPI;
-import com.grupo2.t4j.files.*;
-import com.grupo2.t4j.model.*;
-import com.grupo2.t4j.persistence.*;
-import com.grupo2.t4j.persistence.database.*;
-import com.grupo2.t4j.persistence.inmemory.*;
+import com.grupo2.t4j.files.FicheiroRepositorioFreelancer;
+import com.grupo2.t4j.model.AlgoritmoGeradorPasswords;
+import com.grupo2.t4j.model.Email;
+import com.grupo2.t4j.model.Freelancer;
+import com.grupo2.t4j.model.Password;
+import com.grupo2.t4j.persistence.FabricaRepositorios;
+import com.grupo2.t4j.persistence.RepositorioFreelancer;
+import com.grupo2.t4j.persistence.RepositorioUtilizador;
+import com.grupo2.t4j.persistence.database.FabricaRepositoriosDatabase;
+import com.grupo2.t4j.persistence.inmemory.RepositorioFreelancerInMemory;
+
 import java.io.File;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 public class RegistarFreelancerController {
     

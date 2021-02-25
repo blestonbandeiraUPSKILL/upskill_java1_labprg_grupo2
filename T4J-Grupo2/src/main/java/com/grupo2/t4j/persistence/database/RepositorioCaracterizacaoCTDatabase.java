@@ -6,11 +6,7 @@ import com.grupo2.t4j.model.Obrigatoriedade;
 import com.grupo2.t4j.persistence.RepositorioCaracterizacaoCT;
 import com.grupo2.t4j.utils.DBConnectionHandler;
 
-import java.sql.CallableStatement;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 

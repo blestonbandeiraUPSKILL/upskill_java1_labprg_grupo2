@@ -5,9 +5,9 @@
  */
 package com.grupo2.t4j.persistence.inmemory;
 
-import com.grupo2.t4j.exception.GrauProficienciaDuplicadoException;
 import com.grupo2.t4j.model.GrauProficiencia;
 import com.grupo2.t4j.persistence.RepositorioGrauProficiencia;
+
 import java.io.Serializable;
 import java.sql.SQLException;
 import java.util.ArrayList;

@@ -5,8 +5,9 @@
  */
 package com.grupo2.t4j.model;
 
+import com.grupo2.t4j.exception.NomeInvalidoException;
+
 import java.io.Serializable;
-import com.grupo2.t4j.exception.*;
 
 /**
  *

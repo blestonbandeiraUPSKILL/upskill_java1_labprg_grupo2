@@ -10,8 +10,10 @@ package com.grupo2.t4j.persistence;
  * @author CAD
  */
 
-import com.grupo2.t4j.model.*;
-import com.grupo2.t4j.exception.*;
+import com.grupo2.t4j.exception.FreelancerDuplicadoException;
+import com.grupo2.t4j.model.Freelancer;
+import com.grupo2.t4j.model.Password;
+
 import java.sql.SQLException;
 import java.util.ArrayList;
 

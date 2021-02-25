@@ -1,11 +1,13 @@
 package com.grupo2.t4j.persistence.database;
 
 import com.grupo2.t4j.exception.AdministrativoDuplicadoException;
-import com.grupo2.t4j.model.*;
+import com.grupo2.t4j.model.Administrativo;
+import com.grupo2.t4j.model.Email;
+import com.grupo2.t4j.model.Password;
+import com.grupo2.t4j.model.Rolename;
 import com.grupo2.t4j.persistence.RepositorioAdministrativo;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class RepositorioAdministrativoDatabase implements RepositorioAdministrativo {
 

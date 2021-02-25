@@ -11,7 +11,9 @@ package com.grupo2.t4j.persistence.database;
  */
 
 import com.grupo2.t4j.exception.FreelancerDuplicadoException;
-import com.grupo2.t4j.model.*;
+import com.grupo2.t4j.model.Email;
+import com.grupo2.t4j.model.Freelancer;
+import com.grupo2.t4j.model.Password;
 import com.grupo2.t4j.persistence.RepositorioFreelancer;
 import com.grupo2.t4j.utils.DBConnectionHandler;
 
@@ -38,7 +40,7 @@ public class RepositorioFreelancerDatabase implements RepositorioFreelancer{
     /**
      * Devolve uma instância estática do Repositório dos Freelancers
      *
-     * @return RepositorioFreelancerrDatabase
+     * @return RepositorioFreelancerDatabase
      */
     public static RepositorioFreelancerDatabase getInstance(){
         if(repositorioFreelancerDatabase == null) {

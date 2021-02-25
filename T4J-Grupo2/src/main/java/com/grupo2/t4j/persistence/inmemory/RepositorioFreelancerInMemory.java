@@ -11,8 +11,12 @@ package com.grupo2.t4j.persistence.inmemory;
  */
 
 import com.grupo2.t4j.exception.FreelancerDuplicadoException;
-import com.grupo2.t4j.model.*;
+import com.grupo2.t4j.model.Email;
+import com.grupo2.t4j.model.EnderecoPostal;
+import com.grupo2.t4j.model.Freelancer;
+import com.grupo2.t4j.model.Password;
 import com.grupo2.t4j.persistence.RepositorioFreelancer;
+
 import java.io.Serializable;
 import java.sql.SQLException;
 import java.util.ArrayList;

@@ -5,12 +5,9 @@
  */
 package com.grupo2.t4j.model;
 
-import com.grupo2.t4j.exception.CodigoInvalidoException;
 import com.grupo2.t4j.exception.CompetenciaTecnicaInexistenteException;
 import com.grupo2.t4j.exception.DescricaoInvalidaException;
 import com.grupo2.t4j.exception.GrauInvalidoException;
-
-import java.io.Serializable;
 
 /**
  *

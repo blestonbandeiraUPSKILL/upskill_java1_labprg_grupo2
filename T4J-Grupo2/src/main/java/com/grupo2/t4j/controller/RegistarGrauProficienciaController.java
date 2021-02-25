@@ -5,7 +5,6 @@ import com.grupo2.t4j.persistence.FabricaRepositorios;
 import com.grupo2.t4j.persistence.RepositorioCompetenciaTecnica;
 import com.grupo2.t4j.persistence.RepositorioGrauProficiencia;
 import com.grupo2.t4j.persistence.database.FabricaRepositoriosDatabase;
-import com.grupo2.t4j.persistence.inmemory.FabricaRepositoriosInMemory;
 
 import java.sql.SQLException;
 import java.util.List;

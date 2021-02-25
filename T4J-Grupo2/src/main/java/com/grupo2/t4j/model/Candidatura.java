@@ -1,9 +1,7 @@
 package com.grupo2.t4j.model;
 
-import com.grupo2.t4j.exception.*;
 import java.io.Serializable;
 import java.util.Calendar;
-import java.util.List;
 
 public class Candidatura implements Serializable {
     
@@ -59,6 +57,13 @@ public class Candidatura implements Serializable {
     private Calendar cal = Calendar.getInstance();
     private Data hoje = new Data(cal.get(Calendar.YEAR),cal.get(Calendar.MONTH),
             cal.get(Calendar.DAY_OF_MONTH));
+    
+    /**
+     * Construtor vazio da classe Candidatura
+     */
+    public Candidatura (){
+        
+    }
     
     /**
      * O construtor completo da classe Candidatura

@@ -3,9 +3,11 @@ package com.grupo2.t4j.ui;
 import com.grupo2.t4j.controller.*;
 import com.grupo2.t4j.files.FicheiroRepositorioAreaActividade;
 import com.grupo2.t4j.files.FileChooserT4J;
-import com.grupo2.t4j.model.*;
-import com.grupo2.t4j.persistence.inmemory.*;
-import java.io.File;
+import com.grupo2.t4j.model.AreaActividade;
+import com.grupo2.t4j.model.Categoria;
+import com.grupo2.t4j.model.CompetenciaTecnica;
+import com.grupo2.t4j.model.Freelancer;
+import com.grupo2.t4j.persistence.inmemory.RepositorioAreaActividadeInMemory;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -13,16 +15,17 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
-import javafx.stage.Window;
-import javafx.stage.WindowEvent;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.ListView;
+import javafx.stage.*;
+
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
-import javafx.stage.FileChooser;
 
 /**
  * FXML Controller class

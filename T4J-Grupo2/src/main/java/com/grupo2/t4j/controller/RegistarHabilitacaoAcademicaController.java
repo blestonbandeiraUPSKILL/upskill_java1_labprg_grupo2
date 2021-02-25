@@ -1,14 +1,14 @@
 package com.grupo2.t4j.controller;
 
-import com.grupo2.t4j.api.UsersAPI;
-import com.grupo2.t4j.files.*;
-import com.grupo2.t4j.model.*;
-import com.grupo2.t4j.persistence.*;
-import com.grupo2.t4j.persistence.database.*;
-import com.grupo2.t4j.persistence.inmemory.*;
+import com.grupo2.t4j.files.FicheiroRepositorioHabilitacaoAcademica;
+import com.grupo2.t4j.model.HabilitacaoAcademica;
+import com.grupo2.t4j.persistence.FabricaRepositorios;
+import com.grupo2.t4j.persistence.RepositorioHabilitacaoAcademica;
+import com.grupo2.t4j.persistence.database.FabricaRepositoriosDatabase;
+import com.grupo2.t4j.persistence.inmemory.RepositorioHabilitacaoAcademicaInMemory;
+
 import java.io.File;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 public class RegistarHabilitacaoAcademicaController {
     

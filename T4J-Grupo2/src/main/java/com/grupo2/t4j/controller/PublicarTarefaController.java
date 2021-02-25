@@ -2,12 +2,11 @@ package com.grupo2.t4j.controller;
 
 import com.grupo2.t4j.model.Anuncio;
 import com.grupo2.t4j.model.Data;
-import com.grupo2.t4j.model.DesignacaoSeriacao;
 import com.grupo2.t4j.model.TipoRegimento;
 import com.grupo2.t4j.persistence.FabricaRepositorios;
 import com.grupo2.t4j.persistence.RepositorioAnuncio;
 import com.grupo2.t4j.persistence.database.FabricaRepositoriosDatabase;
-import com.grupo2.t4j.persistence.inmemory.FabricaRepositoriosInMemory;
+
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
@@ -33,11 +32,11 @@ public class PublicarTarefaController {
      * @param idTipoRegimento as tipo de regimento
      * @return boolean
      */
-    public boolean publicarTarefa(String referencia, String nifOrganizacao, 
-            LocalDate dtInicioPublicitacao, LocalDate dtFimPublicitacao, 
-            LocalDate dtInicioCandidaturas, LocalDate dtFimCandidaturas, 
-            LocalDate dtInicioSeriacao, LocalDate dtFimSeriacao, 
-            String idTipoRegimento) throws SQLException {
+    public boolean publicarTarefa(String referencia, String nifOrganizacao,
+                                  String dtInicioPublicitacao, String dtFimPublicitacao,
+                                  String dtInicioCandidaturas, String dtFimCandidaturas,
+                                  String dtInicioSeriacao, String dtFimSeriacao,
+                                  int idTipoRegimento) throws SQLException {
         
         
         return repositorioAnuncio.save(referencia, nifOrganizacao, dtInicioPublicitacao, dtFimPublicitacao, dtInicioCandidaturas,

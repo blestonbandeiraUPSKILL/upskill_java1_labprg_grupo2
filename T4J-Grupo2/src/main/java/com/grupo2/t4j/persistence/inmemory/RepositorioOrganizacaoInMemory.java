@@ -12,7 +12,10 @@ package com.grupo2.t4j.persistence.inmemory;
  */
 
 import com.grupo2.t4j.exception.OrganizacaoDuplicadaException;
-import com.grupo2.t4j.model.*;
+import com.grupo2.t4j.model.Colaborador;
+import com.grupo2.t4j.model.Email;
+import com.grupo2.t4j.model.Organizacao;
+import com.grupo2.t4j.model.Website;
 import com.grupo2.t4j.persistence.RepositorioOrganizacao;
 
 import java.io.Serializable;
