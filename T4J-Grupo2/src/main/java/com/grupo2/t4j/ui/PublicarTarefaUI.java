@@ -14,11 +14,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.*;
 
 /**
  * FXML Controller class
@@ -28,15 +24,15 @@ public class PublicarTarefaUI implements Initializable {
     private ColaboradorLogadoUI colaboradorLogadoUI;
     private PublicarTarefaController publicarTarefaController;
 
-    @FXML DatePicker dtFimPublicitacao;
+    @FXML TextField dtFimPublicitacao;
+    @FXML TextField dtInicioCandidaturas;
+    @FXML TextField dtFimCandidaturas;
+    @FXML TextField dtInicioPublicitacao;
+    @FXML TextField dtInicioSeriacao;
+    @FXML TextField dtFimSeriacao;
     @FXML TextArea txtRegrasGerais;
-    @FXML DatePicker dtInicioCandidaturas;
     @FXML Button btnPublicar;
-    @FXML DatePicker dtFimCandidaturas;
     @FXML Button btnVoltar;
-    @FXML DatePicker dtInicioPublicitacao;
-    @FXML DatePicker dtInicioSeriacao;
-    @FXML DatePicker dtFimSeriacao;
     @FXML ComboBox<TipoRegimento> cmbTipoSeriacao;
 
     
@@ -72,17 +68,17 @@ public class PublicarTarefaUI implements Initializable {
             boolean adicionou = publicarTarefaController.publicarTarefa(
                     colaboradorLogadoUI.listViewTarefas.getSelectionModel().getSelectedItem().getReferencia(),
                     colaboradorLogadoUI.listViewTarefas.getSelectionModel().getSelectedItem().getNifOrganizacao(),
-                    dtInicioPublicitacao.getValue().toString(),
-                    dtFimPublicitacao.getValue().toString(),
-                    dtInicioCandidaturas.getValue().toString(),
-                    dtFimCandidaturas.getValue().toString(),
-                    dtInicioSeriacao.getValue().toString(),
-                    dtFimSeriacao.getValue().toString(),
+                    dtInicioPublicitacao.getText(),
+                    dtFimPublicitacao.getText(),
+                    dtInicioCandidaturas.getText(),
+                    dtFimCandidaturas.getText(),
+                    dtInicioSeriacao.getText(),
+                    dtFimSeriacao.getText(),
                     cmbTipoSeriacao.getSelectionModel().getSelectedItem().getIdTipoRegimento());
 
-            /*if (adicionou){
+            if (adicionou){
                 colaboradorLogadoUI.updateListViewTarefas();
-            }*/
+            }
             AlertsUI.criarAlerta(Alert.AlertType.INFORMATION,
                     MainApp.TITULO_APLICACAO,
                     "Publicar Tarefa.",
