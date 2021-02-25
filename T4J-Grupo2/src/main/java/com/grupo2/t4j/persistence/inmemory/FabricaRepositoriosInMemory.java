@@ -19,6 +19,11 @@ public class FabricaRepositoriosInMemory implements FabricaRepositorios {
     public RepositorioAreaActividade getRepositorioAreaActividade() {
         return RepositorioAreaActividadeInMemory.getInstance();
     }
+    
+    @Override
+    public RepositorioCandidatura getRepositorioCandidatura() {
+        return RepositorioCandidaturaInMemory.getInstance();
+    }
 
     @Override
     public RepositorioCaracterizacaoCT getRepositorioCaracterizacaoCT() {
@@ -64,7 +69,12 @@ public class FabricaRepositoriosInMemory implements FabricaRepositorios {
     public RepositorioOrganizacao getRepositorioOrganizacao() {
         return RepositorioOrganizacaoInMemory.getInstance();
     }
-
+    
+    @Override
+    public RepositorioReconhecimentoGP getRepositorioReconhecimentoGP() {
+        return RepositorioReconhecimentoGPInMemory.getInstance();
+    }
+    
     @Override
     public RepositorioTarefa getRepositorioTarefa() {
         return RepositorioTarefaInMemory.getInstance();
@@ -73,17 +83,5 @@ public class FabricaRepositoriosInMemory implements FabricaRepositorios {
     @Override
     public RepositorioUtilizador getRepositorioUtilizador() {
         return null;
-    }
-
-    @Override
-    public RepositorioCandidatura getRepositorioCandidatura() {
-        return RepositorioCandidaturaInMemory.getInstance();
-    }
-
-    @Override
-    public RepositorioReconhecimentoGP getRepositorioReconhecimentoGP() {
-        return RepositorioReconhecimentoGPInMemory.getInstance();
-    }
-
-
+    } 
 }

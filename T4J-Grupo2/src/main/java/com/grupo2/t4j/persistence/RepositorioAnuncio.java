@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 public interface RepositorioAnuncio {
 
-     void save(String idAnuncio, String idTarefa, Data dtInicioPublicitacao, Data dtFimPublicitacao, Data
+    void save(String idAnuncio, String idTarefa, Data dtInicioPublicitacao, Data dtFimPublicitacao, Data
              dtInicioCandidatura, Data dtFimCandidatura, Data dtInicioSeriacao,
                Data dtFimSeriacao) throws AnuncioDuplicadoException;
 

@@ -75,6 +75,13 @@ public class Candidatura implements Serializable {
             cal.get(Calendar.DAY_OF_MONTH));
     
     /**
+     * Construtor vazio da classe Candidatura
+     */
+    public Candidatura (){
+        
+    }
+    
+    /**
      * O construtor completo da classe Candidatura
      * @param idCandidatura - o id da Candidatura
      * @param emailFreelancer - o email do Freelancer em formato String
