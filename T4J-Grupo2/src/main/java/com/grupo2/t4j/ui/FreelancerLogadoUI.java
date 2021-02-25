@@ -11,6 +11,12 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -37,7 +43,7 @@ public class FreelancerLogadoUI implements Initializable {
     private GestaoUtilizadoresController gestaoUtilizadoresController;
     private RegistarAnuncioController registarAnuncioController;
     private EfectuarCandidaturaController efectuarCandidaturaController;
-
+         
     @FXML TableColumn<Anuncio, Data> inicioCandidatura;
     @FXML TableColumn<Anuncio, Data> fimCandidatura;
     @FXML TableColumn<Tarefa, String> tarefa;
@@ -47,6 +53,13 @@ public class FreelancerLogadoUI implements Initializable {
     @FXML TableColumn<Anuncio, Data> fimPublicitacao;
     @FXML TableColumn<TipoRegimento, String> tipoRegimento;
     @FXML TableColumn<Anuncio, Data> inicioSeriacao;
+    @FXML private ListView<?> listViewCandidaturas;
+    @FXML private ComboBox<?> cmbAnuncio;
+    @FXML private TextField txtValor;
+    @FXML private TextField txtDias;
+    @FXML private TextField txtApresentacao;
+    @FXML private TextField txtMotivacao;
+    @FXML private Button btnAddCandidatura;
     @FXML Button btnSair;
 
 
@@ -88,7 +101,7 @@ public class FreelancerLogadoUI implements Initializable {
     void verAnuncioAction(ActionEvent event) {
 
     }
-    
+        
     public void updateTableViewAnuncio() throws SQLException {
 
 
@@ -97,6 +110,11 @@ public class FreelancerLogadoUI implements Initializable {
                         gestaoUtilizadoresController.getEmail()));
 
         tableAnuncios.setItems(anunciosElegiveis);
+    }
+    
+    @FXML
+    void addCandidatura(ActionEvent event) {
+
     }
 
     public void logout(ActionEvent actionEvent) {
