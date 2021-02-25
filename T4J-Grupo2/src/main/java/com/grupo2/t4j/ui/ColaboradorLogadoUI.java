@@ -44,8 +44,9 @@ public class ColaboradorLogadoUI implements Initializable {
     @FXML ComboBox<AreaActividade> cmbAreaActividadeEspecificarTarefa;
     @FXML ComboBox<Categoria> cmbCategoriaTarefa;
     @FXML ListView<Tarefa> listViewTarefas;
+    @FXML ListView<Anuncio> listViewAnunciosStatus;
     @FXML ComboBox<FiltroTarefas> cmbFiltroTarefas;
-    @FXML ComboBox<Anuncio> cmbAnuncio;
+    @FXML ComboBox<Anuncio> cmbStatusAnuncio;
     @FXML Button btnPublicarTarefa;
 
 
