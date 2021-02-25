@@ -22,34 +22,34 @@
     <center>
         <AnchorPane maxHeight="400.0" maxWidth="750.0" styleClass="AnchorPane" BorderPane.alignment="CENTER">
             <children>
-                <TabPane layoutX="1.0" maxHeight="400.0" maxWidth="750.0" tabClosingPolicy="UNAVAILABLE">
+                <TabPane layoutX="1.0" maxHeight="400.0" maxWidth="750.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="5.0">
                     <tabs>
                         <Tab text="Anúncios Disponíveis">
                             <content>
                                 <AnchorPane maxHeight="400.0" maxWidth="750.0" minHeight="0.0" minWidth="0.0" styleClass="AnchorPane">
                                     <children>
-                                        <TableView fx:id="tableAnuncios" layoutX="7.0" layoutY="3.0" maxHeight="400.0" maxWidth="750.0" onMouseClicked="#verAnuncioAction" prefHeight="365.0" prefWidth="713.0" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="20.0">
+                                        <TableView fx:id="tableAnuncios" layoutX="7.0" layoutY="3.0" maxHeight="400.0" maxWidth="750.0" onMouseClicked="#verAnuncioAction" prefHeight="341.0" prefWidth="713.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="20.0">
                                             <columns>
-                                                <TableColumn fx:id="tarefa" prefWidth="140.0" text="Anúncio" />
-                                                <TableColumn minWidth="0.0" prefWidth="108.0" text="Período de Publicitação">
+                                                <TableColumn fx:id="tarefa" prefWidth="100.0" text="Anúncio" />
+                                                <TableColumn minWidth="0.0" prefWidth="180.0" text="Período de Publicitação">
                                                     <columns>
-                                                        <TableColumn fx:id="inicioPublicitacao" prefWidth="67.0" text="Início" />
-                                                        <TableColumn fx:id="fimPublicitacao" prefWidth="83.0" text="Fim" />
+                                                        <TableColumn fx:id="inicioPublicitacao" prefWidth="85.0" text="Início" />
+                                                        <TableColumn fx:id="fimPublicitacao" prefWidth="85.0" text="Fim" />
                                                     </columns>
                                                 </TableColumn>
-                                                <TableColumn prefWidth="170.0" text="Período de Candidatura">
+                                                <TableColumn prefWidth="180.0" text="Período de Candidatura">
                                                     <columns>
-                                                        <TableColumn fx:id="inicioCandidatura" prefWidth="63.0" text="Início" />
-                                                        <TableColumn fx:id="fimCandidatura" prefWidth="87.0" text="Fim" />
+                                                        <TableColumn fx:id="inicioCandidatura" prefWidth="85.0" text="Início" />
+                                                        <TableColumn fx:id="fimCandidatura" prefWidth="85.0" text="Fim" />
                                                     </columns>
                                                 </TableColumn>
-                                                <TableColumn prefWidth="119.0" text="Período de Seriação">
+                                                <TableColumn prefWidth="180.0" text="Período de Seriação">
                                                     <columns>
-                                                        <TableColumn fx:id="inicioSeriacao" prefWidth="60.0" text="Início" />
-                                                        <TableColumn fx:id="fimSeriacao" prefWidth="64.0" text="Fim" />
+                                                        <TableColumn fx:id="inicioSeriacao" prefWidth="85.0" text="Início" />
+                                                        <TableColumn fx:id="fimSeriacao" prefWidth="85.0" text="Fim" />
                                                     </columns>
                                                 </TableColumn>
-                                                <TableColumn fx:id="tipoRegimento" prefWidth="148.0" text="Tipo de Regimento" />
+                                                <TableColumn fx:id="tipoRegimento" prefWidth="114.0" text="Tipo de Regimento" />
                                             </columns>
                                         </TableView>
                                     </children>
@@ -145,6 +145,9 @@
                     </tabs>
                 </TabPane>
             </children>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
         </AnchorPane>
     </center>
     <bottom>

@@ -19,7 +19,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane stylesheets="@../style/app.css" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" styleClass="BorderPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.ColaboradorLogadoUI">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" styleClass="BorderPane" stylesheets="@../style/app.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.ColaboradorLogadoUI">
    <top>
       <Label alignment="CENTER_RIGHT" styleClass="lblUser" text="Bem-vindo à Área do Colaborador" textFill="WHITE" BorderPane.alignment="CENTER_RIGHT">
          <font>
@@ -70,7 +70,7 @@
                                     <Font name="Calibri" size="14.0" />
                                  </font>
                               </Label>
-                              <Button fx:id="btnNovaTarefa" layoutX="439.0" layoutY="335.0" mnemonicParsing="false" onAction="#navigateEspecificarTarefa" styleClass="btnNovaTarefa" text="Nova Tarefa" textFill="WHITE">
+                              <Button fx:id="btnNovaTarefa" layoutX="439.0" layoutY="335.0" mnemonicParsing="false" onAction="#navigateEspecificarTarefa" styleClass="btnNovaTarefa" text="Nova Tarefa" textFill="WHITE" AnchorPane.bottomAnchor="6.0">
                                  <font>
                                     <Font name="Calibri" size="14.0" />
                                  </font>
@@ -83,7 +83,7 @@
                             </tooltip>
                               </Button>
                               <ComboBox fx:id="cmbFiltroTarefas" layoutX="165.0" layoutY="111.0" prefWidth="150.0" />
-                              <Button fx:id="btnPublicarTarefa" disable="true" layoutX="321.0" layoutY="335.0" mnemonicParsing="false" onAction="#navigatePublicarTarefa" styleClass="btnNovaTarefa" text="Publicar Tarefa" textFill="WHITE">
+                              <Button fx:id="btnPublicarTarefa" disable="true" layoutX="321.0" layoutY="335.0" mnemonicParsing="false" onAction="#navigatePublicarTarefa" styleClass="btnNovaTarefa" text="Publicar Tarefa" textFill="WHITE" AnchorPane.bottomAnchor="6.0">
                                  <font>
                                     <Font name="Calibri" size="14.0" />
                                  </font>
