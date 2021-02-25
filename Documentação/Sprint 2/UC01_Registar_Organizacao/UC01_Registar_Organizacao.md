@@ -4,21 +4,13 @@
 
 ## Formato Breve
 
-O utilizador não registado inicia o registo de uma organização. O sistema solicita os dados
-necessários sobre a organização (i.e. nome da organização, o NIF, o endereço postal, um
-contacto telefónico, o endereço web, email) e sobre o colaborador (i.e. gestor) que está a
-proceder ao registo (i.e. nome, função, contacto telefónico e email). O utilizador não
-registado introduz os dados solicitados. O sistema valida e apresenta os dados, pedindo que
-os confirme. O utilizador não registado confirma. O sistema regista os dados da organização
-e do seu colaborador/gestor, tornando este último um utilizador registado, remetendo-lhe
-a sua palavra-passe (gerada pelo sistema) por email e informa o utilizador não registado
-do sucesso da operação.
+O utilizador não registado inicia o registo de uma organização. O sistema solicita os dados necessários sobre a organização (i.e. nome da organização, o NIF, o endereço postal, um contacto telefónico, o endereço web, email) e sobre o colaborador (i.e. gestor) que está a proceder ao registo (i.e. nome, função, contacto telefónico e email). O utilizador não registado introduz os dados solicitados. O sistema valida regista os dados da organização e do seu colaborador/gestor, tornando este último um utilizador registado, mostrando-lhe a sua palavra-passe (gerada pelo sistema) e informa o utilizador não registado do sucesso da operação.
 
 ## Formato Completo
 
 **_Ator Primário:_**
 
-- Colaborador da Organização
+- Colaborador/Gestor da Organização
 
 **_Partes interessadas e seus interesses:_**
 
@@ -28,6 +20,7 @@ do sucesso da operação.
 **_Pré-condições:_**
 
 * A plataforma tem de permitir o registo de organizações
+* A plataforma tem de conseguir gerar passwords aleatórias
 
 **_Pós-condições_**
 
@@ -36,11 +29,11 @@ do sucesso da operação.
 **_Cenário de sucesso principal:_**
 
 1. O colaborador inicia o registo de organização.
-2. O sistema solicita os dados necessários (Nome Organização, NIF, Endereço, Telefone, Email).
-3. O colaborador introduz os dados solicitados.
-4. O sistema valida e apresenta os dados ao colaborador, pedindo que os confirme.
-5. O colaborador confirma os dados.
-6. O sistema regista os dados e informa o colaborador do sucesso da operação.
+2. O sistema solicita os dados necessários da organização (nome, NIPC, Endereço, Telefone, Email, website) e do colaborador, que assumirá o papel de gestor, (nome, telefone, email, função)).
+3. O colaborador/gestor introduz os dados solicitados.
+4. O sistema regista os dados.
+5. O sistema gera a password do colaborador/gestor e mostra-a.
+6. O sistema informa o colaborador/gestor do sucesso da operação.
 
 **_Fluxos Alternativos:_**
 

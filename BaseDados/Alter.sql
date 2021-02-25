@@ -178,3 +178,4 @@ ALTER TABLE HabilitacaoAcademica
 
 ALTER TABLE Tarefa
     MODIFY custoEstimado numeric;
+

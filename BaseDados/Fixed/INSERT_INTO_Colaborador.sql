@@ -29,3 +29,5 @@ VALUES
     ('eduardo@inesengenharia.com', 'Coordenador de Mecânica', '212333994', '111222888');
     
 commit;
+
+SELECT * FROM Colaborador;

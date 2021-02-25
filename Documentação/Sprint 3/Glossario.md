@@ -7,7 +7,7 @@
 |<a name="Administrativo">Administrativo</a>|Pessoa responsável por realizar na plataforma várias actividades de suporte ao negócio. |
 | ADM  |  Acrónimo para [Administrativo](#Administrativo). |
 | <a name="Anuncio">Anúncio | [Tarefa](#Tarefa) publicada e disponível para que [freelancers](#Freelancer) se possam candidatar à sua execução. |
-| <a name="AreaActividade">Área de Actividade</a>  | Representa a área de negócio/mercado em que se actua como, por exemplo, IT (Information Technologies), Marketing e Design.  |
+| <a name="AreaActividade">Área de Actividade</a>  | Representa a área de negócio/mercado em que se a@martaua como, por exemplo, IT (Information Technologies), Marketing e Design.  |
 | AT  |  Acrónimo para [Área de Actividade](#AreaActividade). |
 | <a name="CandidatoFreelancer">Candidato a Freelancer | Pessoa singular que se candidata a ser [freelancer](#Freelancer). |
 | Categoria (de [Tarefa](#Tarefa))  | Corresponde a uma descrição usada para catalogar uma ou mais tarefas (semelhantes), caracterizada por um identificador interno atribuído automaticamente, uma descrição, [área de actividade](#AreaActividade) em que se enquadra e uma lista de [competências técnicas](#CompetenciaTecnica) tipicamente requeridas para a realização de tarefas dessa categoria.  |
