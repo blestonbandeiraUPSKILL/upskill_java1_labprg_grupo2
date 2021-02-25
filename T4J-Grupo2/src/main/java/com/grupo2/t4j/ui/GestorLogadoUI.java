@@ -117,7 +117,7 @@ public class GestorLogadoUI implements Initializable {
     }
 
     public void updateListViewTarefas() throws SQLException {
-        listViewTarefas.getItems().setAll(registarTarefaController.getAll(
+        listViewTarefas.getItems().setAll(registarTarefaController.getAllOrganizacao(
                 getNifOrganizacao()));
 
     }

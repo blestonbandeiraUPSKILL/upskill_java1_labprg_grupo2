@@ -54,9 +54,9 @@ public class EfectuarCandidaturaController {
         return repositorioReconhecimentoGP.findByEmail(email);
     }
 
-    public List<Tarefa> findTarefasElegiveis(String email, String nifOrganizacao) throws SQLException {
+    public List<Tarefa> findTarefasElegiveis(String email) throws SQLException {
         List<Tarefa> tarefasElegiveis = new ArrayList<>();
-        List<Tarefa> listaTarefas = repositorioTarefa.getAll(nifOrganizacao);
+        List<Tarefa> listaTarefas = repositorioTarefa.getAll();
 
         for (Tarefa tarefa : listaTarefas) {
             List<CaracterizacaoCT> competenciasDaTarefa = repositorioCategoriaTarefa.findByCodigo(
