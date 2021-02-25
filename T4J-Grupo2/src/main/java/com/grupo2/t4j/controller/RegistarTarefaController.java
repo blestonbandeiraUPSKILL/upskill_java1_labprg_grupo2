@@ -22,10 +22,6 @@ import java.sql.SQLException;
 
 import java.util.List;
 
-/**
- *
- * @author acris
- */
 public class RegistarTarefaController {
 
     //private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosInMemory();
@@ -36,6 +32,20 @@ public class RegistarTarefaController {
         return repositorioTarefa.getAllOrganizacao(nifOrganizacao);
     }
 
+    /**
+    * Regista nova tarefa boolean
+    *
+    * @param codigoCategoriaTarefa as código da categoria da tarefa
+    * @param referencia as referência da tarefa
+    * @param designacao as designação da tarefa
+    * @param descInformal as descrição informal
+    * @param descTecnica as descrição técnica
+    * @param duracao as tempo estimado de realização da tarefa em horas
+    * @param custo as preço pela tarefa
+    * @param nifOrganizacao as nif da organização
+    * @param emailColaborador  as email do colaborador
+    * @return boolean
+    */
     public boolean registarTarefa( String codigoCategoriaTarefa,
                              String referencia, String designacao,
                              String descInformal, String descTecnica,

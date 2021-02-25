@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.grupo2.t4j.controller;
 
 import com.grupo2.t4j.files.FicheiroRepositorioCategoria;
@@ -20,10 +15,6 @@ import java.io.File;
 import java.sql.SQLException;
 import java.util.List;
 
-/**
- *
- * @author acris
- */
 public class RegistarCategoriaController {
 
     //private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosInMemory();
@@ -34,6 +25,15 @@ public class RegistarCategoriaController {
     private FicheiroRepositorioCategoria ficheiroCat;
     private RepositorioCategoriaTarefaInMemory repositorioCategoriaTarefaInMemory;
 
+    /**
+    * Registar categoria boolean
+    *
+    * @param codigoCategoria as código da categoria
+    * @param descBreve as descrição breve da categoria
+    * @param descDetalhada as descrição detalhada da categoria
+    * @param codigoAreaActividade as código da área da actividade
+    * @return boolean
+    */
     public boolean registarCategoria(String codigoCategoria, String descBreve,
                                      String descDetalhada, String codigoAreaActividade
                                      ) throws SQLException {
