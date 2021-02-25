@@ -20,7 +20,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane stylesheets="@../style/app.css" fx:id="BorderPane" focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="600.0" styleClass="BorderPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.StartingPageUI">
+<BorderPane fx:id="BorderPane" focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="600.0" styleClass="BorderPane" stylesheets="@../style/app.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.StartingPageUI">
    <center>
       <GridPane alignment="CENTER" prefHeight="133.0" prefWidth="600.0" BorderPane.alignment="CENTER">
         <columnConstraints>
@@ -34,7 +34,7 @@
             <RowConstraints maxHeight="171.0" minHeight="10.0" prefHeight="70.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="115.0" prefWidth="115.0" text="Login" GridPane.columnIndex="1">
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="115.0" prefWidth="115.0" GridPane.columnIndex="1">
                <GridPane.margin>
                   <Insets />
                </GridPane.margin>
@@ -46,14 +46,14 @@
                <font>
                   <Font name="Calibri" size="14.0" />
                </font></TextField>
-            <PasswordField fx:id="txtPasswordLogin" maxHeight="49.0" maxWidth="200.0" prefHeight="49.0" prefWidth="200.0" promptText="password" GridPane.columnIndex="1" GridPane.rowIndex="3">
+            <PasswordField fx:id="txtPasswordLogin" maxHeight="49.0" maxWidth="200.0" prefHeight="49.0" prefWidth="200.0" promptText="password" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <font>
                   <Font name="Calibri" size="14.0" />
                </font>
             </PasswordField>
-            <Label fx:id="lblLogin" alignment="CENTER" contentDisplay="CENTER" layoutX="253.0" layoutY="10.0" prefHeight="115.0" prefWidth="115.0" text="Login" GridPane.columnIndex="1">
+            <Label fx:id="lblLogin" alignment="CENTER" contentDisplay="CENTER" layoutX="253.0" layoutY="10.0" prefHeight="115.0" prefWidth="115.0" text="Área de Login" GridPane.columnIndex="1">
                <font>
-                  <Font name="Calibri" size="24.0" />
+                  <Font name="Calibri" size="18.0" />
                </font>
             </Label>
          </children>
@@ -82,7 +82,7 @@
                            <tooltip>
                               <Tooltip text="Quero registar a minha Organização">
                                  <font>
-                                    <Font size="12.0" />
+                                    <Font name="Calibri Italic" size="12" />
                                  </font>
                               </Tooltip>
                            </tooltip>
@@ -98,9 +98,9 @@
                               <Insets top="10.0" />
                            </VBox.margin>
                            <tooltip>
-                              <Tooltip text="Logout">
+                              <Tooltip text="Sair da aplicação">
                                  <font>
-                                    <Font size="12.0" />
+                                    <Font name="Calibri Italic" size="12.0" />
                                  </font>
                               </Tooltip>
                            </tooltip>
@@ -130,9 +130,9 @@
                         <Insets left="5.0" right="5.0" />
                      </FlowPane.margin>
                      <tooltip>
-                        <Tooltip text="Entrar">
+                        <Tooltip text="Login">
                            <font>
-                              <Font size="12.0" />
+                              <Font name="Calibri Italic" size="12.0" />
                            </font>
                         </Tooltip>
                      </tooltip>

@@ -17,205 +17,217 @@
 <?import javafx.scene.text.Font?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="425.0" prefWidth="750.0" styleClass="BorderPane" stylesheets="@../style/app.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.ConfirmarRegistoOrgUI">
-   <center>
-      <BorderPane prefHeight="200.0" prefWidth="200.0" styleClass="BorderPane" BorderPane.alignment="CENTER">
-         <left>
-             <GridPane prefHeight="315.0" prefWidth="460.0" BorderPane.alignment="CENTER">
-                 <columnConstraints>
-                     <ColumnConstraints hgrow="SOMETIMES" maxWidth="150.0" minWidth="10.0" prefWidth="150.0" />
-                     <ColumnConstraints hgrow="SOMETIMES" maxWidth="285.0" minWidth="10.0" prefWidth="285.0" />
-                     <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.0" minWidth="0.0" prefWidth="0.0" />
-                 </columnConstraints>
-                 <rowConstraints>
-                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                 </rowConstraints>
-                 <BorderPane.margin>
-                     <Insets left="15.0" top="10.0" />
-                 </BorderPane.margin>
-                <children>
-                    <Label text="Nome da Organização">
-                       <font>
-                           <Font name="Calibri" size="14.0" />
-                       </font>
-                    </Label>
-                    <Label text="NIPC" GridPane.rowIndex="1">
-                       <font>
-                           <Font name="Calibri" size="14.0" />
-                       </font>
-                    </Label>
-                    <Label text="Contacto Telefónico" GridPane.rowIndex="2">
-                       <font>
-                           <Font name="Calibri" size="14.0" />
-                       </font>
-                    </Label>
-                    <Label text="Website" GridPane.rowIndex="3">
-                       <font>
-                           <Font name="Calibri" size="14.0" />
-                       </font>
-                    </Label>
-                    <Label text="email da Organização" GridPane.rowIndex="4">
-                       <font>
-                           <Font name="Calibri" size="14.0" />
-                       </font>
-                    </Label>
-                    <Label text="Endereço Postal" GridPane.rowIndex="5">
-                       <font>
-                           <Font name="Calibri" size="14.0" />
-                       </font>
-                    </Label>
-                    <TextField fx:id="txtConfNomeOrganizacao" disable="true" editable="false" GridPane.columnIndex="1">
-                       <font>
-                           <Font name="Calibri" size="14.0" />
-                       </font>
-                    </TextField>
-                    <TextField fx:id="txtConfNif" disable="true" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                       <font>
-                           <Font name="Calibri" size="14.0" />
-                       </font>
-                    </TextField>
-                    <TextField fx:id="txtConfTelefoneOrganizacao" disable="true" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                       <font>
-                           <Font name="Calibri" size="14.0" />
-                       </font>
-                    </TextField>
-                    <TextField fx:id="txtConfWebsite" disable="true" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="3">
-                       <font>
-                           <Font name="Calibri" size="14.0" />
-                       </font>
-                    </TextField>
-                    <TextField fx:id="txtConfEmailOrganizacao" disable="true" editable="false" prefHeight="25.0" prefWidth="188.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
-                       <font>
-                           <Font name="Calibri" size="14.0" />
-                       </font>
-                    </TextField>
-                    <TextField fx:id="txtConfEndArruamento" disable="true" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="5">
-                       <font>
-                           <Font name="Calibri" size="14.0" />
-                       </font>
-                    </TextField>
-                    <TextField fx:id="txtConfEndPorta" disable="true" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="6">
-                       <font>
-                           <Font name="Calibri" size="14.0" />
-                       </font>
-                    </TextField>
-                    <TextField fx:id="txtConfEndLocalidade" disable="true" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="7">
-                       <font>
-                           <Font name="Calibri" size="14.0" />
-                       </font>
-                    </TextField>
-                    <TextField fx:id="txtConfEndCodPostal" disable="true" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="8">
-                       <font>
-                           <Font name="Calibri" size="14.0" />
-                       </font>
-                    </TextField>
-                </children>
-             </GridPane>
-         </left>
-         <right>
-             <GridPane prefHeight="315.0" prefWidth="230.0" BorderPane.alignment="CENTER">
-                 <columnConstraints>
-                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                 </columnConstraints>
-                 <rowConstraints>
-                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                 </rowConstraints>
-                 <BorderPane.margin>
-                     <Insets right="15.0" />
-                 </BorderPane.margin>
-                <children>
-                    <Label text="Nome do Gestor">
-                       <font>
-                           <Font name="Calibri" size="14.0" />
-                       </font>
-                    </Label>
-                    <Label text="Contacto Telefónico" GridPane.rowIndex="2">
-                       <font>
-                           <Font name="Calibri" size="14.0" />
-                       </font>
-                    </Label>
-                    <Label text="email do Gestor" GridPane.rowIndex="4">
-                       <font>
-                           <Font name="Calibri" size="14.0" />
-                       </font>
-                    </Label>
-                    <TextField fx:id="txtConfNomeGestor" disable="true" editable="false" GridPane.rowIndex="1">
-                       <font>
-                           <Font name="Calibri" size="14.0" />
-                       </font>
-                    </TextField>
-                    <TextField fx:id="txtConfTelefoneGestor" disable="true" editable="false" GridPane.rowIndex="3">
-                       <font>
-                           <Font name="Calibri" size="14.0" />
-                       </font>
-                    </TextField>
-                    <TextField fx:id="txtConfEmailGestor" disable="true" editable="false" GridPane.rowIndex="5">
-                       <font>
-                           <Font name="Calibri" size="14.0" />
-                       </font>
-                    </TextField>
-                </children>
-             </GridPane>
-         </right>
-      </BorderPane>
-   </center>
-   <top>
-      <Label styleClass="lblUser" text="Confirmar Registo de Organização" textFill="WHITE" BorderPane.alignment="CENTER_RIGHT">
-         <font>
-            <Font name="Calibri" size="18.0" />
-         </font>
-         <padding>
-            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-         </padding>
-      </Label>
-   </top>
-   <bottom>
-       <FlowPane alignment="CENTER_RIGHT" columnHalignment="CENTER" prefHeight="50.0" prefWidth="600.0" styleClass="FlowPane" BorderPane.alignment="CENTER">
-          <children>
-              <Button fx:id="btnGravarOrganizacao" defaultButton="true" mnemonicParsing="false" onAction="#addOrganizacao" styleClass="btnConfirmar" text="Confirmar Registo">
-                 <font>
-                     <Font name="Calibri" size="14.0" />
-                 </font>
-               <tooltip>
-                  <Tooltip text="Confirmar Registo" />
-               </tooltip>
-              </Button>
-              <Button mnemonicParsing="false" styleClass="btnConfirmar" text="Editar Dados">
-                 <FlowPane.margin>
-                     <Insets left="10.0" right="10.0" />
-                 </FlowPane.margin>
-                 <font>
-                     <Font name="Calibri" size="14.0" />
-                 </font>
-               <tooltip>
-                  <Tooltip text="Editar Dados" />
-               </tooltip>
-              </Button>
-            <Button fx:id="btnCancelarRegisto" mnemonicParsing="false" onAction="#cancelarRegisto" styleClass="btnCancelar" text="Cancelar Registo">
-               <font>
-                  <Font name="Calibri" size="14.0" />
-               </font>
-               <FlowPane.margin>
-                  <Insets right="10.0" />
-               </FlowPane.margin>
-               <tooltip>
-                  <Tooltip text="Cancelar Registo" />
-               </tooltip>
-            </Button>
-          </children>
-       </FlowPane>
-   </bottom>
+    <center>
+        <BorderPane prefHeight="200.0" prefWidth="200.0" styleClass="BorderPane" BorderPane.alignment="CENTER">
+            <left>
+                <GridPane prefHeight="315.0" prefWidth="460.0" BorderPane.alignment="CENTER">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="150.0" minWidth="10.0" prefWidth="150.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="285.0" minWidth="10.0" prefWidth="285.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.0" minWidth="0.0" prefWidth="0.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                    <BorderPane.margin>
+                        <Insets left="15.0" top="10.0" />
+                    </BorderPane.margin>
+                    <children>
+                        <Label text="Nome da Organização">
+                            <font>
+                                <Font name="Calibri" size="14.0" />
+                            </font>
+                        </Label>
+                        <Label text="NIPC" GridPane.rowIndex="1">
+                            <font>
+                                <Font name="Calibri" size="14.0" />
+                            </font>
+                        </Label>
+                        <Label text="Contacto Telefónico" GridPane.rowIndex="2">
+                            <font>
+                                <Font name="Calibri" size="14.0" />
+                            </font>
+                        </Label>
+                        <Label text="Website" GridPane.rowIndex="3">
+                            <font>
+                                <Font name="Calibri" size="14.0" />
+                            </font>
+                        </Label>
+                        <Label text="email da Organização" GridPane.rowIndex="4">
+                            <font>
+                                <Font name="Calibri" size="14.0" />
+                            </font>
+                        </Label>
+                        <Label text="Endereço Postal" GridPane.rowIndex="5">
+                            <font>
+                                <Font name="Calibri" size="14.0" />
+                            </font>
+                        </Label>
+                        <TextField fx:id="txtConfNomeOrganizacao" disable="true" editable="false" GridPane.columnIndex="1">
+                            <font>
+                                <Font name="Calibri" size="14.0" />
+                            </font>
+                        </TextField>
+                        <TextField fx:id="txtConfNif" disable="true" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                            <font>
+                                <Font name="Calibri" size="14.0" />
+                            </font>
+                        </TextField>
+                        <TextField fx:id="txtConfTelefoneOrganizacao" disable="true" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                            <font>
+                                <Font name="Calibri" size="14.0" />
+                            </font>
+                        </TextField>
+                        <TextField fx:id="txtConfWebsite" disable="true" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                            <font>
+                                <Font name="Calibri" size="14.0" />
+                            </font>
+                        </TextField>
+                        <TextField fx:id="txtConfEmailOrganizacao" disable="true" editable="false" prefHeight="25.0" prefWidth="188.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                            <font>
+                                <Font name="Calibri" size="14.0" />
+                            </font>
+                        </TextField>
+                        <TextField fx:id="txtConfEndArruamento" disable="true" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                            <font>
+                                <Font name="Calibri" size="14.0" />
+                            </font>
+                        </TextField>
+                        <TextField fx:id="txtConfEndPorta" disable="true" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                            <font>
+                                <Font name="Calibri" size="14.0" />
+                            </font>
+                        </TextField>
+                        <TextField fx:id="txtConfEndLocalidade" disable="true" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                            <font>
+                                <Font name="Calibri" size="14.0" />
+                            </font>
+                        </TextField>
+                        <TextField fx:id="txtConfEndCodPostal" disable="true" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="8">
+                            <font>
+                                <Font name="Calibri" size="14.0" />
+                            </font>
+                        </TextField>
+                    </children>
+                </GridPane>
+            </left>
+            <right>
+                <GridPane prefHeight="315.0" prefWidth="230.0" BorderPane.alignment="CENTER">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                    <BorderPane.margin>
+                        <Insets right="15.0" />
+                    </BorderPane.margin>
+                    <children>
+                        <Label text="Nome do Gestor">
+                            <font>
+                                <Font name="Calibri" size="14.0" />
+                            </font>
+                        </Label>
+                        <Label text="Contacto Telefónico" GridPane.rowIndex="2">
+                            <font>
+                                <Font name="Calibri" size="14.0" />
+                            </font>
+                        </Label>
+                        <Label text="email do Gestor" GridPane.rowIndex="4">
+                            <font>
+                                <Font name="Calibri" size="14.0" />
+                            </font>
+                        </Label>
+                        <TextField fx:id="txtConfNomeGestor" disable="true" editable="false" GridPane.rowIndex="1">
+                            <font>
+                                <Font name="Calibri" size="14.0" />
+                            </font>
+                        </TextField>
+                        <TextField fx:id="txtConfTelefoneGestor" disable="true" editable="false" GridPane.rowIndex="3">
+                            <font>
+                                <Font name="Calibri" size="14.0" />
+                            </font>
+                        </TextField>
+                        <TextField fx:id="txtConfEmailGestor" disable="true" editable="false" GridPane.rowIndex="5">
+                            <font>
+                                <Font name="Calibri" size="14.0" />
+                            </font>
+                        </TextField>
+                    </children>
+                </GridPane>
+            </right>
+        </BorderPane>
+    </center>
+    <top>
+        <Label styleClass="lblUser" text="Confirmar Registo de Organização" textFill="WHITE" BorderPane.alignment="CENTER_RIGHT">
+            <font>
+                <Font name="Calibri" size="18.0" />
+            </font>
+            <padding>
+                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+            </padding>
+        </Label>
+    </top>
+    <bottom>
+        <FlowPane alignment="CENTER_RIGHT" columnHalignment="CENTER" prefHeight="50.0" prefWidth="600.0" styleClass="FlowPane" BorderPane.alignment="CENTER">
+            <children>
+                <Button fx:id="btnGravarOrganizacao" defaultButton="true" mnemonicParsing="false" onAction="#addOrganizacao" styleClass="btnConfirmar" text="Confirmar Registo">
+                    <font>
+                        <Font name="Calibri" size="14.0" />
+                    </font>
+                    <tooltip>
+                        <Tooltip text="Confirmar Registo">
+                            <font>
+                                <Font name="Calibri Italic" size="12.0" />
+                            </font>
+                        </Tooltip>
+                    </tooltip>
+                </Button>
+                <Button mnemonicParsing="false" styleClass="btnConfirmar" text="Editar Dados">
+                    <FlowPane.margin>
+                        <Insets left="10.0" right="10.0" />
+                    </FlowPane.margin>
+                    <font>
+                        <Font name="Calibri" size="14.0" />
+                    </font>
+                    <tooltip>
+                        <Tooltip text="Editar Dados">
+                            <font>
+                                <Font name="Calibri Italic" size="12.0" />
+                            </font>
+                        </Tooltip>
+                    </tooltip>
+                </Button>
+                <Button fx:id="btnCancelarRegisto" mnemonicParsing="false" onAction="#cancelarRegisto" styleClass="btnCancelar" text="Cancelar Registo">
+                    <font>
+                        <Font name="Calibri" size="14.0" />
+                    </font>
+                    <FlowPane.margin>
+                        <Insets right="10.0" />
+                    </FlowPane.margin>
+                    <tooltip>
+                        <Tooltip text="Cancelar Registo">
+                            <font>
+                                <Font name="Calibri Italic" size="12.0" />
+                            </font>
+                        </Tooltip>
+                    </tooltip>
+                </Button>
+            </children>
+        </FlowPane>
+    </bottom>
 </BorderPane>

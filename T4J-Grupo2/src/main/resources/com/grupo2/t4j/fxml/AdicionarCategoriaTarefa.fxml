@@ -152,9 +152,13 @@
                      <font>
                         <Font size="14.0" />
                      </font>
-                     <tooltip>
-                        <Tooltip text="Confirmar" />
-                     </tooltip>
+                            <tooltip>
+                                <Tooltip text="Confirmar">
+                                    <font>
+                                        <Font name="Calibri Italic" size="12.0" />
+                                    </font>
+                                </Tooltip>
+                            </tooltip>
                   </Button>
                   <Button fx:id="btnCancelar" mnemonicParsing="false" onAction="#cancelarAction" text="Cancelar">
                      <FlowPane.margin>
@@ -163,9 +167,13 @@
                      <font>
                         <Font size="14.0" />
                      </font>
-                     <tooltip>
-                        <Tooltip text="Cancelar" />
-                     </tooltip>
+                            <tooltip>
+                                <Tooltip text="Cancelar">
+                                    <font>
+                                        <Font name="Calibri Italic" size="12.0" />
+                                    </font>
+                                </Tooltip>
+                            </tooltip>
                   </Button>
                </children>
                <BorderPane.margin>
