@@ -60,4 +60,6 @@ public class PublicarTarefaController {
         return repositorioAnuncio.getAllRegimento();
     }
     
+    
+    
 }

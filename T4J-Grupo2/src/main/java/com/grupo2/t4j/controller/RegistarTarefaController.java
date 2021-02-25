@@ -32,8 +32,8 @@ public class RegistarTarefaController {
     private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosDatabase();
     private RepositorioTarefa repositorioTarefa = fabricaRepositorios.getRepositorioTarefa();
 
-    public List<Tarefa> getAll(String nifOrganizacao) throws SQLException {
-        return repositorioTarefa.getAll(nifOrganizacao);
+    public List<Tarefa> getAllOrganizacao(String nifOrganizacao) throws SQLException {
+        return repositorioTarefa.getAllOrganizacao(nifOrganizacao);
     }
 
     public boolean registarTarefa( String codigoCategoriaTarefa,
@@ -55,4 +55,13 @@ public class RegistarTarefaController {
     public List<Tarefa> findByColaboradorENif(String email, String nifOrganizacao) throws SQLException{
         return repositorioTarefa.findByColaboradorENif(email, nifOrganizacao);
     }
+    
+    public List<Tarefa> findTarefasPublicadas(String email, String nifOrganizacao) throws SQLException{
+        return repositorioTarefa.findTarefasComAnuncio(email, nifOrganizacao);
+    }
+    
+    public List<Tarefa> findTarefasNaoPublicadas(String email, String nifOrganizacao) throws SQLException{
+        return repositorioTarefa.findTarefasSemAnuncio(email, nifOrganizacao);
+    }
+    
 }
