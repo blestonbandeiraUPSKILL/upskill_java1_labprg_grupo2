@@ -145,7 +145,7 @@ public class Anuncio implements Serializable {
      * @param txtDtInicioSeriacao - data de início do processo de seriação do anúncio em formato texto
      * @param txtDtFimSeriacao - data do fim do processo de seriação do anúncio em formato texto
      */
-    public Anuncio(String idAnuncio,String txtDtInicioPublicitacao, String txtDtFimPublicitacao, 
+    /*public Anuncio(String idAnuncio,String txtDtInicioPublicitacao, String txtDtFimPublicitacao, 
             String txtDtInicioCandidatura, String txtDtFimCandidatura, String txtDtInicioSeriacao,
             String txtDtFimSeriacao) {
         setIdAnuncio(idAnuncio);
@@ -155,7 +155,7 @@ public class Anuncio implements Serializable {
         setDtFimCand(eFormaData(txtDtFimCandidatura));
         setDtInicioSeriacao(eFormaData(txtDtInicioSeriacao));
         setDtFimSeriacao(eFormaData(txtDtFimSeriacao));        
-    }
+    }*/
            
     /**
      * Construtor da classe Anuncio
