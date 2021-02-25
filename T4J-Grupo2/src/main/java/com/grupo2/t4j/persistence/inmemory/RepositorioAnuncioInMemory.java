@@ -91,6 +91,11 @@ public class RepositorioAnuncioInMemory implements Serializable, RepositorioAnun
         return new ArrayList<Anuncio>(listaAnuncios);
     }
     
+    @Override
+    public ArrayList<Anuncio> getAllByStatus(TipoStatusAnuncio status) {
+        return null;
+    }
+    
     
     
     public int adicionarListaAnuncios(RepositorioAnuncioInMemory outraListaAnuncios) {
