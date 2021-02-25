@@ -18,6 +18,7 @@ public class PublicarTarefaController {
     private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosDatabase();
     private RepositorioAnuncio repositorioAnuncio = fabricaRepositorios.getRepositorioAnuncio();
     
+
    /**
      * Publicar tarefa boolean.
      *
@@ -38,12 +39,9 @@ public class PublicarTarefaController {
             LocalDate dtInicioSeriacao, LocalDate dtFimSeriacao, 
             String idTipoRegimento) throws SQLException {
         
-        Anuncio anuncio = new Anuncio(referencia, nifOrganizacao, 
-            data(dtInicioPublicitacao), data(dtFimPublicitacao), 
-            data(dtInicioCandidaturas), data(dtFimCandidaturas), 
-            data(dtInicioSeriacao), data(dtFimSeriacao), idTipoRegimento);
         
-        return repositorioAnuncio.save(anuncio);
+        return repositorioAnuncio.save(referencia, nifOrganizacao, dtInicioPublicitacao, dtFimPublicitacao, dtInicioCandidaturas,
+                dtFimCandidaturas, dtInicioSeriacao, dtFimSeriacao, idTipoRegimento);
     }
     
     /**

@@ -24,29 +24,21 @@ import javafx.scene.control.TextArea;
  * FXML Controller class
  */
 public class PublicarTarefaUI implements Initializable {
-    
-    @FXML DatePicker dtFimPublicitacao;
 
-    @FXML TextArea txtRegrasGerais;
-
-    @FXML DatePicker dtInicioCandidaturas;
-
-    @FXML Button btnPublicar;
-
-    @FXML DatePicker dtFimCandidaturas;
-
-    @FXML Button btnVoltar;
-
-    @FXML DatePicker dtInicioPublicitacao;
-
-    @FXML DatePicker dtInicioSeriacao;
-
-    @FXML DatePicker dtFimSeriacao;
-
-    @FXML ComboBox<TipoRegimento> cmbTipoSeriacao;
-    
     private ColaboradorLogadoUI colaboradorLogadoUI;
     private PublicarTarefaController publicarTarefaController;
+
+    @FXML DatePicker dtFimPublicitacao;
+    @FXML TextArea txtRegrasGerais;
+    @FXML DatePicker dtInicioCandidaturas;
+    @FXML Button btnPublicar;
+    @FXML DatePicker dtFimCandidaturas;
+    @FXML Button btnVoltar;
+    @FXML DatePicker dtInicioPublicitacao;
+    @FXML DatePicker dtInicioSeriacao;
+    @FXML DatePicker dtFimSeriacao;
+    @FXML ComboBox<TipoRegimento> cmbTipoSeriacao;
+
     
     public void associarParentUI(ColaboradorLogadoUI colaboradorLogadoUI) {
         this.colaboradorLogadoUI = colaboradorLogadoUI;
@@ -80,12 +72,12 @@ public class PublicarTarefaUI implements Initializable {
             boolean adicionou = publicarTarefaController.publicarTarefa(
                     colaboradorLogadoUI.listViewTarefas.getSelectionModel().getSelectedItem().getReferencia(),
                     colaboradorLogadoUI.listViewTarefas.getSelectionModel().getSelectedItem().getNifOrganizacao(),
-                    dtInicioPublicitacao.getValue(),
-                    dtFimPublicitacao.getValue(),
-                    dtInicioCandidaturas.getValue(),
-                    dtFimCandidaturas.getValue(),
-                    dtInicioSeriacao.getValue(),
-                    dtFimSeriacao.getValue(),
+                    dtInicioPublicitacao.getValue().toString(),
+                    dtFimPublicitacao.getValue().toString(),
+                    dtInicioCandidaturas.getValue().toString(),
+                    dtFimCandidaturas.getValue().toString(),
+                    dtInicioSeriacao.getValue().toString(),
+                    dtFimSeriacao.getValue().toString(),
                     cmbTipoSeriacao.getSelectionModel().getSelectedItem().getIdTipoRegimento());
 
             /*if (adicionou){
