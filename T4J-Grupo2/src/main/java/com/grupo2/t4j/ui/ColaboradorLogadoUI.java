@@ -249,7 +249,7 @@ public class ColaboradorLogadoUI implements Initializable {
                         updateListViewTarefasPublicadas();
                         break;
                     case TAREFAS_PARA_PUBLICAR:
-                        updateListViewTarefasPublicadas();
+                        updateListViewTarefasNaoPublicadas();
                         btnPublicarTarefa.setDisable(false);
                 }
     }
