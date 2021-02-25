@@ -33,11 +33,11 @@ public class PublicarTarefaController {
      * @param idTipoRegimento as tipo de regimento
      * @return boolean
      */
-    public boolean publicarTarefa(String referencia, String nifOrganizacao, 
-            LocalDate dtInicioPublicitacao, LocalDate dtFimPublicitacao, 
-            LocalDate dtInicioCandidaturas, LocalDate dtFimCandidaturas, 
-            LocalDate dtInicioSeriacao, LocalDate dtFimSeriacao, 
-            String idTipoRegimento) throws SQLException {
+    public boolean publicarTarefa(String referencia, String nifOrganizacao,
+                                  String dtInicioPublicitacao, String dtFimPublicitacao,
+                                  String dtInicioCandidaturas, String dtFimCandidaturas,
+                                  String dtInicioSeriacao, String dtFimSeriacao,
+                                  int idTipoRegimento) throws SQLException {
         
         
         return repositorioAnuncio.save(referencia, nifOrganizacao, dtInicioPublicitacao, dtFimPublicitacao, dtInicioCandidaturas,
