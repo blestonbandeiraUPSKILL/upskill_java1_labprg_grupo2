@@ -37,7 +37,7 @@ public class AdicionarReconhecimentoGPUI  implements Initializable {
     
     private Stage adicionarStage;
     
-    @FXML private ComboBox<String> cmbNomeFreelancer;
+    @FXML private TextField txtNomeFreelancer;
     
     @FXML private ComboBox<String> cmbEmailFreelancer;
 
