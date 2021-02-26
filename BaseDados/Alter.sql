@@ -203,7 +203,7 @@ ALTER TABLE Anuncio
     FOREIGN KEY (idTipoRegimento)
     REFERENCES TipoRegimento(idTipoRegimento);
 
-ALTER TABLE Candidatura
-    MODIFY valorPretendido numeric;
+--ALTER TABLE Candidatura
+--    MODIFY valorPretendido numeric;
 
 commit;

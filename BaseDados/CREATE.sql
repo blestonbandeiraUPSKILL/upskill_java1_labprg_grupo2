@@ -88,7 +88,8 @@ CREATE TABLE Anuncio(
         CONSTRAINT nn_Anuncio_dataInicioSeriacao NOT NULL,
     dataFimSeriacao date
         CONSTRAINT nn_Anuncio_dataFimSeriacao NOT NULL,
-    idProcessoSeriacao integer
+    idProcessoSeriacao integer,
+    idTipoRegimento integer
 );
 
 CREATE TABLE Candidatura(
@@ -96,7 +97,7 @@ CREATE TABLE Candidatura(
         CONSTRAINT pk_Candidatura_idCandidatura PRIMARY KEY,
     dataFimCandidatura date
         CONSTRAINT nn_Candidatura_dataFimCandidatura NOT NULL,
-    valorPretendido float(2)
+    valorPretendido numeric
         CONSTRAINT nn_Candidatura_valorPretendido NOT NULL,
     numeroDias integer
         CONSTRAINT nn_Candidatura_numeroDias NOT NULL,
