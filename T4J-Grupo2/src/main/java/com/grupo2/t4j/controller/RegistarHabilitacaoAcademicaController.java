@@ -2,6 +2,7 @@ package com.grupo2.t4j.controller;
 
 import com.grupo2.t4j.files.FicheiroRepositorioHabilitacaoAcademica;
 import com.grupo2.t4j.model.HabilitacaoAcademica;
+import com.grupo2.t4j.model.ReconhecimentoGP;
 import com.grupo2.t4j.persistence.FabricaRepositorios;
 import com.grupo2.t4j.persistence.RepositorioHabilitacaoAcademica;
 import com.grupo2.t4j.persistence.database.FabricaRepositoriosDatabase;
@@ -43,17 +44,13 @@ public class RegistarHabilitacaoAcademicaController {
     public List<HabilitacaoAcademica> getAll(String emailFreelancer) throws SQLException{
         return repositorioHabilitacaoAcademica.getAll(emailFreelancer);
     }
-
-    public List<HabilitacaoAcademica> getAllByEmail(String emailFreelancer) throws SQLException{
-        return repositorioHabilitacaoAcademica.getAllByEmail(emailFreelancer);
-    }
         
     public HabilitacaoAcademica findById(int idHabilitacao) throws SQLException{
         return repositorioHabilitacaoAcademica.findById(idHabilitacao);
     }
     
     public HabilitacaoAcademica findByGrauDesigInst(String grau, String designacaoCurso,
-           String nomeInstituicao, String emailFreelancer) throws SQLException{
+                                                String nomeInstituicao, String emailFreelancer) throws SQLException{
         return repositorioHabilitacaoAcademica.findByGrauDesigInst(grau, designacaoCurso,
            nomeInstituicao, emailFreelancer);
     }

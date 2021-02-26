@@ -6,6 +6,8 @@
 package com.grupo2.t4j.ui;
 
 import com.grupo2.t4j.controller.RegistarFreelancerController;
+import com.grupo2.t4j.model.HabilitacaoAcademica;
+import com.grupo2.t4j.model.ReconhecimentoGP;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -23,31 +25,22 @@ import java.util.ResourceBundle;
  * FXML Controller class
  */
 public class ConsultarFreelancerUI implements Initializable {
-    
-    @FXML TextField txtPorta;
 
-    @FXML ListView<?> listViewCompTec;
-
-    @FXML Button btnVoltar;
-
-    @FXML ListView<?> listViewHabAcad;
-
-    @FXML TextField txtNif;
-
-    @FXML TextField txtNome;
-
-    @FXML TextField txtEmail;
-
-    @FXML TextField txtCodigoPostal;
-
-    @FXML TextField txtLocalidade;
-
-    @FXML TextField txtArruamento;
-    
     private AdministrativoLogadoUI administrativoLogadoUI;
     private Stage adicionarStage;
     private RegistarFreelancerController registarFreelancerController;
-    
+
+    @FXML TextField txtPorta;
+    @FXML TextField txtNif;
+    @FXML TextField txtNome;
+    @FXML TextField txtEmail;
+    @FXML TextField txtCodigoPostal;
+    @FXML TextField txtLocalidade;
+    @FXML TextField txtArruamento;
+    @FXML ListView<ReconhecimentoGP> listViewCompTec;
+    @FXML ListView<HabilitacaoAcademica> listViewHabAcad;
+    @FXML Button btnVoltar;
+
     public void associarParentUI(AdministrativoLogadoUI administrativoLogadoUI) {
         this.administrativoLogadoUI = administrativoLogadoUI;
     }
@@ -66,12 +59,22 @@ public class ConsultarFreelancerUI implements Initializable {
     }   
 
     public void transferData() throws SQLException {
+        String emailFreelancer = administrativoLogadoUI.listaFreelancer.getSelectionModel().getSelectedItem().getEmail().getEmailText();
+
+        String arruamento = registarFreelancerController.getEnderecoPostal(emailFreelancer).getArruamento();
+        String numeroPorta = registarFreelancerController.getEnderecoPostal(emailFreelancer).getPorta();
+        String localidade = registarFreelancerController.getEnderecoPostal(emailFreelancer).getLocalidade();
+        String codPostal = registarFreelancerController.getEnderecoPostal(emailFreelancer).getCodigoPostal();
 
         txtNome.setText(administrativoLogadoUI.listaFreelancer.getSelectionModel().getSelectedItem().getNome());
         txtNif.setText(administrativoLogadoUI.listaFreelancer.getSelectionModel().getSelectedItem().getNif());
         txtEmail.setText(administrativoLogadoUI.listaFreelancer.getSelectionModel().getSelectedItem().getEmail().getEmailText());
-        //txtArruamento.setText(administrativoLogadoUI.listaFreelancer.getSelectionModel().getSelectedItem().getEnderecoFreelancer());
-        //listViewCompTec.getItems().setAll(administrativoLogadoUI.listaFreelancer.getSelectionModel().getSelectedItem().ge)
+        txtArruamento.setText(arruamento);
+        txtPorta.setText(numeroPorta);
+        txtLocalidade.setText(localidade);
+        txtCodigoPostal.setText(codPostal);
+        listViewCompTec.getItems().setAll(registarFreelancerController.getAllReconhecimentoGP(emailFreelancer));
+        listViewHabAcad.getItems().setAll(registarFreelancerController.getAllHabsAcademicas(emailFreelancer));
         
     }
     

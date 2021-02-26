@@ -4,6 +4,7 @@ import com.grupo2.t4j.controller.RegistarFreelancerController;
 import com.grupo2.t4j.controller.RegistarHabilitacaoAcademicaController;
 import com.grupo2.t4j.model.Freelancer;
 import com.grupo2.t4j.model.HabilitacaoAcademica;
+import com.grupo2.t4j.model.ReconhecimentoGP;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -80,7 +81,8 @@ public class AdicionarHabilitacaoAcademicaUI implements Initializable {
             public void handle(ActionEvent event) {
                 try {
                     updateTxtNomeFreelancer(event);
-                    //updateListViewHabilitacaoFreelancer();
+                    updateListViewHabilitacaoFreelancer(
+                            cmbEmailFreelancer.getSelectionModel().getSelectedItem().getEmail().getEmailText());
                 } catch (SQLException exception) {
                     exception.printStackTrace();
                 }

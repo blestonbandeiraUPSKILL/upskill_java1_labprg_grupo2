@@ -12,6 +12,7 @@ package com.grupo2.t4j.persistence;
 
 import com.grupo2.t4j.exception.HabilitacaoAcademicaDuplicadaException;
 import com.grupo2.t4j.model.HabilitacaoAcademica;
+import com.grupo2.t4j.model.ReconhecimentoGP;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -26,9 +27,8 @@ public interface RepositorioHabilitacaoAcademica {
     HabilitacaoAcademica findById(int idHabilitacao) throws SQLException;
            
     HabilitacaoAcademica findByGrauDesigInst(String grau, String designacaoCurso,
-           String nomeInstituicao, String emailFreelancer) throws SQLException;
+                                             String nomeInstituicao, String emailFreelancer) throws SQLException;
     
     ArrayList<HabilitacaoAcademica> getAll(String emailFreelancer) throws SQLException;
-    
-    ArrayList<HabilitacaoAcademica> getAllByEmail(String emailFreelancer) throws SQLException;
+
 }

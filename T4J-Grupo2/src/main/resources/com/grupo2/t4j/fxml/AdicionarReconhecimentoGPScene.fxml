@@ -51,7 +51,7 @@
                               <Insets bottom="10.0" />
                            </VBox.margin>
                         </Label>
-                        <ListView fx:id="listaCompetenciaFreelancer" layoutX="21.0" layoutY="126.0" prefHeight="142.0" prefWidth="327.0">
+                        <ListView fx:id="listReconhecimentoGP" layoutX="21.0" layoutY="126.0" prefHeight="142.0" prefWidth="327.0">
                            <VBox.margin>
                               <Insets bottom="5.0" top="5.0" />
                            </VBox.margin>
@@ -64,7 +64,7 @@
          <right>
             <AnchorPane prefHeight="342.0" prefWidth="354.0" BorderPane.alignment="CENTER">
                <children>
-                  <VBox layoutX="63.0" layoutY="42.0" prefHeight="257.0" prefWidth="317.0" AnchorPane.rightAnchor="23.0">
+                  <VBox layoutX="50.0" layoutY="43.0" prefHeight="257.0" prefWidth="254.0" AnchorPane.rightAnchor="50.0">
                      <children>
                         <Label text="Selecionar Competência Técnica">
                            <VBox.margin>
@@ -91,7 +91,10 @@
                               <Insets bottom="10.0" />
                            </VBox.margin>
                         </Label>
-                        <TextField fx:id="txtIDataValidacao" promptText="dd/mm/aaaa" />
+                        <TextField fx:id="txtIDataValidacao" prefHeight="25.0" prefWidth="161.0" promptText="aaaa-mm-dd">
+                           <VBox.margin>
+                              <Insets right="100.0" />
+                           </VBox.margin></TextField>
                      </children>
                   </VBox>
                   <Button fx:id="btnCancelar" layoutX="239.0" layoutY="316.0" mnemonicParsing="false" onAction="#cancelarAction" text="Limpar Campos" />

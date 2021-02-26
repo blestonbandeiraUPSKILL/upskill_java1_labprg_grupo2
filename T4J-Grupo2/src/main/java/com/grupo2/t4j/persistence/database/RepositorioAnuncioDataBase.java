@@ -116,12 +116,12 @@ public class RepositorioAnuncioDataBase implements RepositorioAnuncio {
 
             callableStatement.setString(1, anuncio.getReferenciaTarefa());
             callableStatement.setString(2, anuncio.getNifOrganizacao());
-            callableStatement.setDate(3, new Date(Long.parseLong(anuncio.getDtInicioPub())));
-            callableStatement.setDate(4, new Date(Long.parseLong(anuncio.getDtFimPub())));
-            callableStatement.setDate(5, new Date(Long.parseLong(anuncio.getDtInicioCand())));
-            callableStatement.setDate(6, new Date(Long.parseLong(anuncio.getDtFimCand())));
-            callableStatement.setDate(7, new Date(Long.parseLong(anuncio.getDtInicioSeriacao())));
-            callableStatement.setDate(8, new Date(Long.parseLong(anuncio.getDtFimSeriacao())));
+            callableStatement.setDate(3, Date.valueOf(anuncio.getDtInicioPub()));
+            callableStatement.setDate(4, Date.valueOf(anuncio.getDtFimPub()));
+            callableStatement.setDate(5, Date.valueOf(anuncio.getDtInicioCand()));
+            callableStatement.setDate(6, Date.valueOf(anuncio.getDtFimCand()));
+            callableStatement.setDate(7, Date.valueOf(anuncio.getDtInicioSeriacao()));
+            callableStatement.setDate(8, Date.valueOf(anuncio.getDtFimSeriacao()));
             callableStatement.setInt(9, anuncio.getIdTipoRegimento());
 
             callableStatement.executeQuery();

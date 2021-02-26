@@ -11,14 +11,14 @@ package com.grupo2.t4j.persistence.database;
  */
 
 import com.grupo2.t4j.exception.FreelancerDuplicadoException;
-import com.grupo2.t4j.model.Email;
-import com.grupo2.t4j.model.Freelancer;
-import com.grupo2.t4j.model.Password;
+import com.grupo2.t4j.model.ReconhecimentoGP;
+import com.grupo2.t4j.model.*;
 import com.grupo2.t4j.persistence.RepositorioFreelancer;
 import com.grupo2.t4j.utils.DBConnectionHandler;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.List;
 
 public class RepositorioFreelancerDatabase implements RepositorioFreelancer{
     
@@ -307,5 +307,145 @@ public class RepositorioFreelancerDatabase implements RepositorioFreelancer{
         }
         return listaEmailfreelancers;
 
+    }
+
+    @Override
+    public List<ReconhecimentoGP> getAllReconhecimentoGP(String emailFreelancer) throws SQLException {
+        ArrayList<ReconhecimentoGP> reconhecimentosGP = new ArrayList<>();
+
+        DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
+        Connection connection = dbConnectionHandler.openConnection();
+
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(
+                    "SELECT * FROM ReconhecimentoGP " +
+                            "INNER JOIN Freelancer " +
+                            "ON ReconhecimentoGP.emailFreelancer LIKE Freelancer.email " +
+                            "INNER JOIN GrauProficiencia " +
+                            "ON ReconhecimentoGP.idGrauProficiencia = GrauProficiencia.idGrauProficiencia " +
+                            "WHERE Freelancer.email LIKE ?"
+            );
+
+            preparedStatement.setString(1, emailFreelancer);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while(resultSet.next()) {
+                int idGrauProficiencia = resultSet.getInt(1);
+                String dataReconhecimento = resultSet.getDate(3).toString();
+
+                reconhecimentosGP.add(new ReconhecimentoGP(idGrauProficiencia, emailFreelancer, dataReconhecimento));
+            }
+        }
+        catch (SQLException exception) {
+            exception.printStackTrace();
+            exception.getSQLState();
+            try {
+                System.err.print("Transaction is being rolled back");
+                connection.rollback();
+            }
+            catch (SQLException sqlException) {
+                sqlException.getErrorCode();
+            }
+        }
+        finally {
+            dbConnectionHandler.closeAll();
+        }
+
+        return reconhecimentosGP;
+
+    }
+
+    @Override
+    public List<HabilitacaoAcademica> getAllHabsAcademicas(String emailFreelancer) throws SQLException {
+        ArrayList<HabilitacaoAcademica> habsAcademicas = new ArrayList<>();
+
+        DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
+        Connection connection = dbConnectionHandler.openConnection();
+
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(
+                    "SELECT * FROM HabilitacaoAcademica " +
+                            "INNER JOIN FreelancerHabAcademica " +
+                            "ON HabilitacaoAcademica.idHabilitacaoAcademica = FreelancerHabAcademica.idHabilitacaoAcademica " +
+                            "INNER JOIN Freelancer " +
+                            "ON FreelancerHabAcademica.emailFreelancer LIKE Freelancer.email " +
+                            "WHERE Freelancer.email LIKE ?"
+            );
+
+            preparedStatement.setString(1, emailFreelancer);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while(resultSet.next()) {
+               int idHabilitacaoAcademica = resultSet.getInt(1);
+               String grau = resultSet.getString(2);
+               String designacaoCurso = resultSet.getString(3);
+               String nomeInstituicao = resultSet.getString(4);
+               double mediaCurso = resultSet.getDouble(5);
+
+                habsAcademicas.add(new HabilitacaoAcademica(idHabilitacaoAcademica, grau, designacaoCurso, nomeInstituicao, mediaCurso));
+            }
+        }
+        catch (SQLException exception) {
+            exception.printStackTrace();
+            exception.getSQLState();
+            try {
+                System.err.print("Transaction is being rolled back");
+                connection.rollback();
+            }
+            catch (SQLException sqlException) {
+                sqlException.getErrorCode();
+            }
+        }
+        finally {
+            dbConnectionHandler.closeAll();
+        }
+
+        return habsAcademicas;
+    }
+
+    @Override
+    public EnderecoPostal getEnderecoPostal(String emailFreelancer) throws SQLException {
+        EnderecoPostal enderecoPostal = new EnderecoPostal();
+
+        DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
+        Connection connection = dbConnectionHandler.openConnection();
+
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(
+                    "SELECT * From EnderecoPostal " +
+                            "INNER JOIN Freelancer " +
+                            "ON EnderecoPostal.idEnderecoPostal LIKE Freelancer.idEnderecoPostal " +
+                            "WHERE Freelancer.email LIKE ?"
+            );
+
+            preparedStatement.setString(1, emailFreelancer);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while(resultSet.next()) {
+                enderecoPostal.setArruamento(resultSet.getString(2));
+                enderecoPostal.setPorta(resultSet.getString(3));
+                enderecoPostal.setLocalidade(resultSet.getString(4));
+                enderecoPostal.setCodigoPostal(resultSet.getString(5));
+            }
+        }
+        catch (SQLException exception) {
+            exception.printStackTrace();
+            exception.getSQLState();
+            try {
+                System.err.print("Transaction is being rolled back");
+                connection.rollback();
+            }
+            catch (SQLException sqlException) {
+                sqlException.getErrorCode();
+            }
+        }
+        finally {
+            dbConnectionHandler.closeAll();
+        }
+
+        return enderecoPostal;
     }
 }
