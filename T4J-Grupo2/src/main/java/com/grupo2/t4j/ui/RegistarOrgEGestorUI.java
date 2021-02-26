@@ -12,6 +12,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import javafx.stage.Window;
 import javafx.stage.WindowEvent;
+import javafx.scene.Scene;
 
 import java.io.IOException;
 import java.net.URL;
@@ -45,7 +46,7 @@ public class RegistarOrgEGestorUI implements Initializable {
     @FXML Button btnCancelarRegisto;
 
     public void associarParentUI(StartingPageUI startingPageUI) {
-        this.startingPageUI = startingPageUI;
+        this.startingPageUI = startingPageUI;       
     }
 
     /**
@@ -54,7 +55,7 @@ public class RegistarOrgEGestorUI implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
-            registarOrganizacaoController = new RegistarOrganizacaoController();
+            registarOrganizacaoController = new RegistarOrganizacaoController();                            
         } catch (SQLException exception) {
             exception.printStackTrace();
         }

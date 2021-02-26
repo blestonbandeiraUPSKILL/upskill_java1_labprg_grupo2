@@ -52,29 +52,7 @@ public class EfectuarCandidaturaController {
     }
 
     public List<Anuncio> findAnunciosElegiveis(String email) throws SQLException {
-
-        /*List<Anuncio> anunciosElegiveis = new ArrayList<>();
-        Data dataAtual = Data.dataActual();
-        if (findTarefasElegiveis(email) == null) {
-            throw new TarefaInexistenteException("Não há tarefas para mostrar");
-        }
-        else {
-
-            for (Tarefa tarefa : findTarefasElegiveis(email)) {
-                Anuncio anuncio = repositorioAnuncio.findAnuncioByIdTarefa(tarefa.getReferencia(),tarefa.getNifOrganizacao());
-                if (dataAtual.isMaior(anuncio.getDtInicioCand()) && dataAtual.isMaior(anuncio.getDtInicioPub())) {
-                    if (anuncio != null) {
-                        anunciosElegiveis.add(anuncio);
-                    }
-                }
-            }
-        }
-
-        if (anunciosElegiveis == null) {
-            return new ArrayList<>();
-        }
-        return anunciosElegiveis;*/
-        return null;
+        return repositorioAnuncio.findAnunciosElegiveis(email);
     }
 
     public List<CompetenciaTecnica> competenciasTecnicasDoFreelancer(String email) throws SQLException {
