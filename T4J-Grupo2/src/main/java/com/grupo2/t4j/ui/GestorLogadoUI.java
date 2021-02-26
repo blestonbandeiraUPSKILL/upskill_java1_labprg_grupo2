@@ -167,6 +167,9 @@ public class GestorLogadoUI implements Initializable {
                             exception.printStackTrace();
                         }
                         sceneStartingPage = new Scene(rootStartingPage);
+                        
+                        sceneStartingPage.getStylesheets().add(startingPageUI.estilo);
+                        
                         adicionarStage.setScene(sceneStartingPage);
                         adicionarStage.setTitle(MainApp.TITULO_APLICACAO);
                         adicionarStage.show();
@@ -193,7 +196,7 @@ public class GestorLogadoUI implements Initializable {
             FXMLLoader loaderAddColaborador = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/RegistarColaboradorScene.fxml"));
             Parent rootAddColaborador = loaderAddColaborador.load();
             sceneAddColaborador = new Scene(rootAddColaborador);
-            sceneAddColaborador.getStylesheets().add("/com/grupo2/t4j/style/app.css");
+            sceneAddColaborador.getStylesheets().add(startingPageUI.estilo);
             RegistarColaboradorUI registarColaboradorUI = loaderAddColaborador.getController();
             registarColaboradorUI.associarParentUI(this);
             registarColaboradorUI.transferNif();
@@ -217,7 +220,7 @@ public class GestorLogadoUI implements Initializable {
             FXMLLoader loaderAddTarefa = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/EspecificarTarefaGestorScene.fxml"));
             Parent rootAddTarefa = loaderAddTarefa.load();
             sceneAddTarefa = new Scene(rootAddTarefa);
-            sceneAddTarefa.getStylesheets().add("/com/grupo2/t4j/style/app.css");
+            sceneAddTarefa.getStylesheets().add(startingPageUI.estilo);
             EspecificarTarefaGestorUI especificarTarefaUI = loaderAddTarefa.getController();
             especificarTarefaUI.associarParentUI(this);
 
