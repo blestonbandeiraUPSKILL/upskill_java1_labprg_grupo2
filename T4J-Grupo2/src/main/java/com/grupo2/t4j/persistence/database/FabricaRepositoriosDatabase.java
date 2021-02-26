@@ -78,7 +78,7 @@ public class FabricaRepositoriosDatabase implements FabricaRepositorios {
     
     @Override
     public RepositorioReconhecimentoGP getRepositorioReconhecimentoGP() {
-        return null;
+        return  RepositorioReconhecimentoGPDatabase.getInstance();
     }
     @Override
     public RepositorioTarefa getRepositorioTarefa() {

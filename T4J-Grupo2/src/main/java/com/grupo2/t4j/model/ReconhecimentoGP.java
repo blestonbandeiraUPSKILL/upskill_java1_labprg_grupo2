@@ -5,6 +5,8 @@
  */
 package com.grupo2.t4j.model;
 
+import com.grupo2.t4j.model.Email;
+
 /**
  *
  * @author acris
@@ -14,11 +16,7 @@ public class ReconhecimentoGP {
      * O id do Grau de Proficiência a que se refere o reconhecimento
      */
     private int idGrauProficiencia;
-    
-    /**
-     * O id da Competência Técnica a que se refere este reconhecimento de grau de proficiência
-     */
-    private String idCompetenciaTecnica;
+
     /**
      * A data em que foi atribuido o reconhecimento
      */
@@ -41,14 +39,12 @@ public class ReconhecimentoGP {
      * @param idGrauProficiencia
      * @param dataReconhecimento
      * @param emailFreelancer
-     * @param idCompetenciaTecnica 
      */
-    public ReconhecimentoGP(int idGrauProficiencia, String dataReconhecimento,
-             Email emailFreelancer, String idCompetenciaTecnica){
+    public ReconhecimentoGP(int idGrauProficiencia,
+             Email emailFreelancer, String dataReconhecimento){
         setIdGrauProficiencia(idGrauProficiencia);
         setDataReconhecimento(dataReconhecimento);
         setEmailFreelancer(emailFreelancer);
-        setIdCompetenciaTecnica(idCompetenciaTecnica);
     }
      
     /**
@@ -59,7 +55,12 @@ public class ReconhecimentoGP {
         setIdGrauProficiencia(reconhecimentoGP.idGrauProficiencia);
         setDataReconhecimento(reconhecimentoGP.dataReconhecimento);
         setEmailFreelancer(reconhecimentoGP.emailFreelancer);
-        setIdCompetenciaTecnica(reconhecimentoGP.idCompetenciaTecnica);
+    }
+
+    public ReconhecimentoGP(int idGrauProficiencia, String emailFreelancer, String dataReconhecimento) {
+        setIdGrauProficiencia(idGrauProficiencia);
+        setEmailFreelancer(new Email(emailFreelancer));
+        setDataReconhecimento(dataReconhecimento);
     }
 
     /**
@@ -110,23 +111,11 @@ public class ReconhecimentoGP {
         this.emailFreelancer = emailFreelancer;
     }
 
-    private void setIdCompetenciaTecnica(String idCompetenciaTecnica) {
-        this.idCompetenciaTecnica=idCompetenciaTecnica;
-    }
-    
-    public String getIdCompetenciaTecnica(){
-        return idCompetenciaTecnica;
-    }
-    
-    /**
-     * Representação textual da classe de reconhecimento de grau de proficiência em 
-     * formato de exibição
-     * @return 
-     */
+
     @Override
     public String toString(){
-        return String.format("ID GP: %-10d |ID CP: %-12s |Data Reconhecimento: %-12s "
-                + "|Email Freelancer: %-20s",idGrauProficiencia, idCompetenciaTecnica,
-                dataReconhecimento,emailFreelancer);
+        return String.format("ID GP: %-10d |Data Reconhecimento: %-12s "
+                + "|Email Freelancer: %-20s",idGrauProficiencia,
+                dataReconhecimento, emailFreelancer.getEmailText());
     }    
 }

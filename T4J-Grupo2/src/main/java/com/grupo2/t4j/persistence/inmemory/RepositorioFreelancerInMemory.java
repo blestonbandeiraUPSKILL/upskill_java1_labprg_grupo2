@@ -11,10 +11,7 @@ package com.grupo2.t4j.persistence.inmemory;
  */
 
 import com.grupo2.t4j.exception.FreelancerDuplicadoException;
-import com.grupo2.t4j.model.Email;
-import com.grupo2.t4j.model.EnderecoPostal;
-import com.grupo2.t4j.model.Freelancer;
-import com.grupo2.t4j.model.Password;
+import com.grupo2.t4j.model.*;
 import com.grupo2.t4j.persistence.RepositorioFreelancer;
 
 import java.io.Serializable;
@@ -126,7 +123,22 @@ public class RepositorioFreelancerInMemory implements Serializable, RepositorioF
         }
         return listaEmailFreelancers;
     }
-        
+
+    @Override
+    public List<ReconhecimentoGP> getAllReconhecimentoGP(String emailFreelancer) throws SQLException {
+        return null;
+    }
+
+    @Override
+    public List<HabilitacaoAcademica> getAllHabsAcademicas(String emailFreelancer) throws SQLException {
+        return null;
+    }
+
+    @Override
+    public EnderecoPostal getEnderecoPostal(String emailFreelancer) {
+        return null;
+    }
+
     public int adicionarListaFreelancer(RepositorioFreelancerInMemory outraListaFreelancer) {
         int totalFreelancersAdicionados = 0;
 

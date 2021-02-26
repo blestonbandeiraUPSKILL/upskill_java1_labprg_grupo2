@@ -12,6 +12,7 @@ package com.grupo2.t4j.persistence.database;
 
 import com.grupo2.t4j.exception.HabilitacaoAcademicaDuplicadaException;
 import com.grupo2.t4j.model.HabilitacaoAcademica;
+import com.grupo2.t4j.model.ReconhecimentoGP;
 import com.grupo2.t4j.persistence.RepositorioHabilitacaoAcademica;
 import com.grupo2.t4j.utils.DBConnectionHandler;
 
@@ -142,7 +143,7 @@ public class RepositorioHabilitacaoAcademicaDatabase implements RepositorioHabil
 
     @Override
     public HabilitacaoAcademica findByGrauDesigInst(String grau, String designacaoCurso,
-           String nomeInstituicao, String emailFreelancer) throws SQLException{
+                                                String nomeInstituicao, String emailFreelancer) throws SQLException{
 
         HabilitacaoAcademica habilitacaoAcademica = new HabilitacaoAcademica();
 
@@ -203,7 +204,7 @@ public class RepositorioHabilitacaoAcademicaDatabase implements RepositorioHabil
         return null;
     }
     
-    public HabilitacaoAcademica findByEmail(String emailFreelancer) throws SQLException{
+    public ReconhecimentoGP findByEmail(String emailFreelancer) throws SQLException{
          
         /*DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
         Connection connection = dbConnectionHandler.openConnection();
@@ -281,45 +282,5 @@ public class RepositorioHabilitacaoAcademicaDatabase implements RepositorioHabil
         return habilitacoesAcademicas;
     }
     
-    @Override
-    public ArrayList<HabilitacaoAcademica> getAllByEmail(String emailFreelancer) throws SQLException {
-        
-        /*ArrayList<HabilitacaoAcademica> listaHabilitacaoUmFreelancer = new ArrayList<>();
 
-        DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
-        Connection connection = dbConnectionHandler.openConnection();
-        
-        CallableStatement callableStatementOrg = connection.prepareCall(
-                 "{CALL findByEmail(?)}");
-        try {
-            PreparedStatement preparedStatement = connection.prepareStatement(
-                    "SELECT * FROM HabilitacaoAcademica"
-            );
-
-            ResultSet resultSet = preparedStatement.executeQuery();
-
-            while(resultSet.next()) {
-                callableStatementOrg.setInt(5,  emailFreelancer);
-                listaHabilitacaoUmFreelancer.add(new HabilitacaoAcademica());
-            }
-        }
-        catch (SQLException exception) {
-            exception.printStackTrace();
-            exception.getSQLState();
-            try {
-                System.err.print("Transaction is being rolled back");
-                connection.rollback();
-            }
-            catch (SQLException sqlException) {
-                sqlException.getErrorCode();
-            }
-
-        }
-        finally {
-            dbConnectionHandler.closeAll();
-        }
-        return listaHabilitacaoUmFreelancer;*/
-          
-        return null;
-    }
 }

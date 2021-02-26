@@ -55,14 +55,9 @@ public class EfectuarCandidaturaController {
         return repositorioAnuncio.findAnunciosElegiveis(email);
     }
 
-    public List<CompetenciaTecnica> competenciasTecnicasDoFreelancer(String email) throws SQLException {
+    public List<ReconhecimentoGP> competenciasTecnicasDoFreelancer(String email) throws SQLException {
+       return repositorioReconhecimentoGP.getAll(email);
 
-        List<CompetenciaTecnica> listaCompetencias = new ArrayList<>();
-        List<ReconhecimentoGP> listaReconhecimentos = repositorioReconhecimentoGP.findByEmail(email);
-        for (ReconhecimentoGP rgp : listaReconhecimentos) {
-            listaCompetencias.add(repositorioCompetenciaTecnica.findByCodigo(rgp.getIdCompetenciaTecnica()));
-        }
-        return listaCompetencias;
     }
 
     public boolean comparaCompetencias(String email, String idCompetenciaTecnica) throws SQLException {

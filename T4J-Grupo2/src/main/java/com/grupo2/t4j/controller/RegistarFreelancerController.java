@@ -2,10 +2,8 @@ package com.grupo2.t4j.controller;
 
 import com.grupo2.t4j.api.UsersAPI;
 import com.grupo2.t4j.files.FicheiroRepositorioFreelancer;
-import com.grupo2.t4j.model.AlgoritmoGeradorPasswords;
-import com.grupo2.t4j.model.Email;
-import com.grupo2.t4j.model.Freelancer;
-import com.grupo2.t4j.model.Password;
+import com.grupo2.t4j.model.ReconhecimentoGP;
+import com.grupo2.t4j.model.*;
 import com.grupo2.t4j.persistence.FabricaRepositorios;
 import com.grupo2.t4j.persistence.RepositorioFreelancer;
 import com.grupo2.t4j.persistence.RepositorioUtilizador;
@@ -102,5 +100,17 @@ public class RegistarFreelancerController {
 
     public Password findPassword(String email) throws SQLException {
         return  repositorioFreelancer.findPassword(email);
+    }
+
+    public List<ReconhecimentoGP> getAllReconhecimentoGP(String emailFreelancer) throws SQLException {
+        return repositorioFreelancer.getAllReconhecimentoGP(emailFreelancer);
+    }
+
+    public List<HabilitacaoAcademica> getAllHabsAcademicas(String emailFreelancer) throws SQLException {
+        return repositorioFreelancer.getAllHabsAcademicas(emailFreelancer);
+    }
+
+    public EnderecoPostal getEnderecoPostal(String emailFreelancer) throws SQLException {
+        return repositorioFreelancer.getEnderecoPostal(emailFreelancer);
     }
 }
