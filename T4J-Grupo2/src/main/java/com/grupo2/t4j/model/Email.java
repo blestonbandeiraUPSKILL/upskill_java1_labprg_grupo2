@@ -94,12 +94,12 @@ public class Email implements IEmail {
       * @param email 
       */
     public void setEmail(String email){
-        if(eEmailValido(email)){
+       // if(eEmailValido(email)){
             this.email = email;
-        }
+        /*}
         else{
             throw new IllegalArgumentException("O email é inválido!");
-        }
+        }*/
     }
     
     // https://receitasdecodigo.com.br/java/validar-email-em-java
