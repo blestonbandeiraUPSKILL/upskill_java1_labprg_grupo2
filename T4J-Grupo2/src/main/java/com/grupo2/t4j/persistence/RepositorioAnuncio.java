@@ -17,6 +17,7 @@ import com.grupo2.t4j.model.TipoStatusAnuncio;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 public interface RepositorioAnuncio {
 
     boolean save(String referenciaTarefa, String nifOrganizacao, String dtInicioPublicitacao, String dtFimPublicitacao, String
@@ -36,4 +37,6 @@ public interface RepositorioAnuncio {
     public ArrayList<TipoRegimento> getAllRegimento()throws SQLException;
     
     public ArrayList<Anuncio> getAllByStatus(TipoStatusAnuncio status) throws SQLException;
+
+    public List<Anuncio> findAnunciosElegiveis(String email) throws SQLException;
 }

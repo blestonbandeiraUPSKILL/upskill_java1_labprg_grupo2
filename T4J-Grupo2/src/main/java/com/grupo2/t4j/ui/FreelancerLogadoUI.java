@@ -24,6 +24,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * FXML Controller class
@@ -38,15 +40,7 @@ public class FreelancerLogadoUI implements Initializable {
     private RegistarAnuncioController registarAnuncioController;
     private EfectuarCandidaturaController efectuarCandidaturaController;
          
-    @FXML TableColumn<Anuncio, Data> inicioCandidatura;
-    @FXML TableColumn<Anuncio, Data> fimCandidatura;
-    @FXML TableColumn<Tarefa, String> tarefa;
-    @FXML TableColumn<Anuncio, Data> fimSeriacao;
-    @FXML TableView<Anuncio> tableAnuncios;
-    @FXML TableColumn<Anuncio, Data> inicioPublicitacao;
-    @FXML TableColumn<Anuncio, Data> fimPublicitacao;
-    @FXML TableColumn<TipoRegimento, String> tipoRegimento;
-    @FXML TableColumn<Anuncio, Data> inicioSeriacao;
+    @FXML private ListView<Anuncio> listViewAnuncios;
     @FXML private ListView<Candidatura> listViewCandidaturas;
     @FXML private ComboBox<Anuncio> cmbAnuncio;
     @FXML private TextField txtValor;
@@ -78,20 +72,12 @@ public class FreelancerLogadoUI implements Initializable {
         adicionarStage.initModality(Modality.APPLICATION_MODAL);;
         adicionarStage.setResizable(false);
         
-        
-        tarefa.setCellValueFactory(new PropertyValueFactory<>("idTarefa"));
-        inicioPublicitacao.setCellValueFactory(new PropertyValueFactory<>("dtInicioPublicitacao"));
-        fimPublicitacao.setCellValueFactory(new PropertyValueFactory<>("dtFimPublicitacao"));
-        inicioCandidatura.setCellValueFactory(new PropertyValueFactory<>("dtInicioCandidatura"));
-        fimCandidatura.setCellValueFactory(new PropertyValueFactory<>("dtFimCandidatura"));
-        inicioSeriacao.setCellValueFactory(new PropertyValueFactory<>("dtInicioSeriacao"));
-        fimSeriacao.setCellValueFactory(new PropertyValueFactory<>("dtFimSeriacao"));
-
-     /*   try {
-            updateTableViewAnuncio();
+        try {
+            updateListViewAnuncio();
         } catch (SQLException exception) {
             exception.printStackTrace();
-        }*/
+        }
+        
 
     }
     @FXML
@@ -99,14 +85,9 @@ public class FreelancerLogadoUI implements Initializable {
 
     }
         
-    public void updateTableViewAnuncio() throws SQLException {
-
-
-        ObservableList<Anuncio> anunciosElegiveis = FXCollections.observableArrayList(
-                efectuarCandidaturaController.findAnunciosElegiveis(
-                        gestaoUtilizadoresController.getEmail()));
-
-        tableAnuncios.setItems(anunciosElegiveis);
+    public void updateListViewAnuncio() throws SQLException {
+        String email = gestaoUtilizadoresController.getEmail();
+        listViewAnuncios.getItems().setAll(efectuarCandidaturaController.findAnunciosElegiveis(email));
     }
     
     @FXML
