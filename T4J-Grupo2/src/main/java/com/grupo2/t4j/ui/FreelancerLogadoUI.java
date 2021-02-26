@@ -77,9 +77,9 @@ public class FreelancerLogadoUI implements Initializable {
         } catch (SQLException exception) {
             exception.printStackTrace();
         }
-        
 
     }
+
     @FXML
     void verAnuncioAction(ActionEvent event) {
 
