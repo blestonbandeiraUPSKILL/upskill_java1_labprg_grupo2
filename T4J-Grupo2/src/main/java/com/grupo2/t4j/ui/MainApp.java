@@ -28,14 +28,13 @@ public class MainApp extends Application {
             Parent root = loader.load();
 
             Scene scene = new Scene(root);
-            //scene.getStylesheets().addAll(this.getClass().getResource("/com/grupo2/t4j/style/app.css").toExternalForm());
             scene.getStylesheets().add("com/grupo2/t4j/style/app.css");
-            //scene.getStylesheets().addAll(this.getClass().getResource("/com/grupo2/t4j/style/dark.css").toExternalForm());
+
 
             stage.setTitle(TITULO_APLICACAO);
 
             // Set the application icon
-            //stage.getIcons().add(new Image("com/grupo2/t4j/images/iconfinder_builder_worker_helmet_4043241.png"));
+            stage.getIcons().add(new Image("com/grupo2/t4j/images/iconfinder_builder_worker_helmet_4043241.png"));
           
             stage.setScene(scene);
 

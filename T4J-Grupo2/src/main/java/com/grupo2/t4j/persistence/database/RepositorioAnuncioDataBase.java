@@ -155,6 +155,7 @@ public class RepositorioAnuncioDataBase implements RepositorioAnuncio {
         
         return null;
     }*/
+
     @Override
     public ArrayList<Anuncio> getAll() {
         return null;
@@ -304,7 +305,8 @@ public class RepositorioAnuncioDataBase implements RepositorioAnuncio {
                             + "ON GrauProficiencia.idGrauProficiencia = ReconhecimentoGP.idGrauProficiencia "
                             + "INNER JOIN Freelancer "
                             + "ON ReconhecimentoGP.emailFreelancer = Freelancer.email "
-                            + "WHERE Freelancer.email LIKE ? "
+                            + "WHERE Freelancer.email LIKE ? " +
+                            "AND CaracterCT.obrigatoria = 'obrigatoria'"
                            
             );
             

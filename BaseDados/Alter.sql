@@ -195,3 +195,15 @@ ALTER TABLE Anuncio
     ADD CONSTRAINT DATAfimSERIACAO
     CHECK (DATAINICIOSERIACAO < DATAfimSERIACAO);
     
+--ALTER TABLE Anuncio
+--  ADD idTipoRegimento integer;
+
+ALTER TABLE Anuncio
+    ADD CONSTRAINT fk_Anuncio_idTipoRegimento
+    FOREIGN KEY (idTipoRegimento)
+    REFERENCES TipoRegimento(idTipoRegimento);
+
+--ALTER TABLE Candidatura
+--    MODIFY valorPretendido numeric;
+
+commit;

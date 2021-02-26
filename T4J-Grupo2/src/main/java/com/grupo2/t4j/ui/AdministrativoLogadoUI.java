@@ -319,8 +319,8 @@ public class AdministrativoLogadoUI implements Initializable {
         return listViewCompetenciasTecnicas.getSelectionModel().getSelectedItem().getCodigo();
     }
     
-    @FXML
-    void consultarCompetenciaTecnicaAction(ActionEvent event) {
+
+    public void consultarCompetenciaTecnicaAction(ActionEvent event) {
         
         try {
 
@@ -345,9 +345,8 @@ public class AdministrativoLogadoUI implements Initializable {
         }
 
     }
-    
-    @FXML
-    void consultarAreaActividadeAction(ActionEvent event) {
+
+    public void consultarAreaActividadeAction(ActionEvent event) {
         
         try {
             FXMLLoader loaderConsultarAreaActividade = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/ConsultarAreaActividadeScene.fxml"));
@@ -372,9 +371,8 @@ public class AdministrativoLogadoUI implements Initializable {
         }
 
     }
-    
-    @FXML
-    void consultarCategoriaAction(ActionEvent event) throws SQLException {
+
+    public void consultarCategoriaAction(ActionEvent event) throws SQLException {
         
         try {
                 
@@ -424,164 +422,6 @@ public class AdministrativoLogadoUI implements Initializable {
                     exception.getMessage());
         }
     }
-
-    ///////////////// Ficheiros /////////////////
-    public void exportAreasActividade(ActionEvent actionEvent) {
-        String descricao, extensao;
-
-        descricao = /*DESCRICAO_SERIALIZACAO*/ "Ficheiro Area de Atividade";
-        extensao = /*EXTENSAO_SERIALIZACAO*/"*.txt";
-        FileChooser flChooser = FileChooserT4J.criarFileChooserT4J(descricao, extensao);
-        File ficheiroExportar = flChooser.showSaveDialog(listaAreasActividade.getScene().getWindow());
-
-        if (ficheiroExportar != null) {
-            boolean gravou = false;
-                gravou = registarAreaActividadeController.serializar(ficheiroExportar);
-                if (gravou) {
-                AlertsUI.criarAlerta(Alert.AlertType.INFORMATION, MainApp.TITULO_APLICACAO, CABECALHO_EXPORTAR,
-                        "Áreas de actividade exportadas com sucesso.").show();
-            } else {
-                AlertsUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO, CABECALHO_EXPORTAR,
-                        "Problema a exportar a lista de áreas de actividade!").show();
-            }
-        } else {
-            AlertsUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO, CABECALHO_EXPORTAR,
-                    "Não foi seleccionado nenhum ficheiro!").show();
-        }
-    }
-
-    public void importAreasActividade(ActionEvent actionEvent) throws SQLException {
-        String descricao, extensao;
-
-        descricao = /*DESCRICAO_SERIALIZACAO*/"Ficheiro Area de Atividade";
-        extensao = /*EXTENSAO_SERIALIZACAO*/"*.txt";
-        FileChooser flChooser = FileChooserT4J.criarFileChooserT4J(descricao, extensao);
-        File ficheiroImportar = flChooser.showOpenDialog(listaAreasActividade.getScene().getWindow());
-
-        if (ficheiroImportar != null) {
-            int numeroAreasImportadas = 0;
-                numeroAreasImportadas = registarAreaActividadeController.desserializar(ficheiroImportar);
-            
-
-            if (numeroAreasImportadas > 0) {
-                updateListViewAreasActividade();
-
-                AlertsUI.criarAlerta(Alert.AlertType.INFORMATION, MainApp.TITULO_APLICACAO, CABECALHO_IMPORTAR,
-                        String.format("%d área(s) de actividade importada(s).", numeroAreasImportadas)).show();
-            } else {
-                AlertsUI.criarAlerta(Alert.AlertType.INFORMATION, MainApp.TITULO_APLICACAO, CABECALHO_IMPORTAR,
-                        "Ficheiro sem áreas de actividade para importar!").show();
-            }
-        } else {
-            AlertsUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO, CABECALHO_IMPORTAR,
-                    "Não foi seleccionado nenhum ficheiro!").show();
-        }
-    }
-
-    public void exportCompetenciasTecnicas(ActionEvent actionEvent) {
-        String descricao, extensao;
-
-        descricao = /*DESCRICAO_SERIALIZACAO*/ "Ficheiro Competência Técnica";
-        extensao = /*EXTENSAO_SERIALIZACAO*/".txt";
-        FileChooser flChooser = FileChooserT4J.criarFileChooserT4J(descricao, extensao);
-        File ficheiroExportar = flChooser.showSaveDialog(listViewCompetenciasTecnicas.getScene().getWindow());
-
-        if (ficheiroExportar != null) {
-            boolean gravou = false;
-                gravou = registarCompetenciaTecnicaController.serializar(ficheiroExportar);
-                if (gravou) {
-                AlertsUI.criarAlerta(Alert.AlertType.INFORMATION, MainApp.TITULO_APLICACAO, CABECALHO_EXPORTAR,
-                        "Competências técnicas exportadas com sucesso.").show();
-            } else {
-                AlertsUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO, CABECALHO_EXPORTAR,
-                        "Problema a exportar a lista de competências técnicas!").show();
-            }
-        } else {
-            AlertsUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO, CABECALHO_EXPORTAR,
-                    "Não foi seleccionado nenhum ficheiro!").show();
-        }
-    }
-
-    public void importCompetenciasTecnicas(ActionEvent actionEvent) throws SQLException {
-        String descricao, extensao;
-
-        descricao = /*DESCRICAO_SERIALIZACAO*/"Ficheiro Competencias Tecnicas";
-        extensao = /*EXTENSAO_SERIALIZACAO*/"*.txt";
-        FileChooser flChooser = FileChooserT4J.criarFileChooserT4J(descricao, extensao);
-        File ficheiroImportar = flChooser.showOpenDialog(listViewCompetenciasTecnicas.getScene().getWindow());
-
-        if (ficheiroImportar != null) {
-            int numeroCompetenciasImportadas = 0;
-                numeroCompetenciasImportadas = registarCompetenciaTecnicaController.desserializar(ficheiroImportar);
-            
-
-            if (numeroCompetenciasImportadas > 0) {
-                updateListViewCompetenciasTecnicas();
-
-                AlertsUI.criarAlerta(Alert.AlertType.INFORMATION, MainApp.TITULO_APLICACAO, CABECALHO_IMPORTAR,
-                        String.format("%d competência(s) de actividade importada(s).", numeroCompetenciasImportadas)).show();
-            } else {
-                AlertsUI.criarAlerta(Alert.AlertType.INFORMATION, MainApp.TITULO_APLICACAO, CABECALHO_IMPORTAR,
-                        "Ficheiro sem competências técnicas para importar!").show();
-            }
-        } else {
-            AlertsUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO, CABECALHO_IMPORTAR,
-                    "Não foi seleccionado nenhum ficheiro!").show();
-        }
-    }
-
-    public void exportCategoriasTarefa(ActionEvent actionEvent) {
-        String descricao, extensao;
-
-        descricao = /*DESCRICAO_SERIALIZACAO*/ "Ficheiro Categoria";
-        extensao = /*EXTENSAO_SERIALIZACAO*/".txt";
-        FileChooser flChooser = FileChooserT4J.criarFileChooserT4J(descricao, extensao);
-        File ficheiroExportar = flChooser.showSaveDialog(listaCategorias.getScene().getWindow());
-
-        if (ficheiroExportar != null) {
-            boolean gravou = false;
-                gravou = registarCategoriaController.serializar(ficheiroExportar);
-                if (gravou) {
-                AlertsUI.criarAlerta(Alert.AlertType.INFORMATION, MainApp.TITULO_APLICACAO, CABECALHO_EXPORTAR,
-                        "Categorias exportados com sucesso.").show();
-            } else {
-                AlertsUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO, CABECALHO_EXPORTAR,
-                        "Problema a exportar a lista de categorias!").show();
-            }
-        } else {
-            AlertsUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO, CABECALHO_EXPORTAR,
-                    "Não foi seleccionado nenhum ficheiro!").show();
-        }
-    }
-    
-    public void importCategorias(ActionEvent actionEvent) throws SQLException {
-        String descricao, extensao;
-
-        descricao = /*DESCRICAO_SERIALIZACAO*/"Ficheiro Categoria";
-        extensao = /*EXTENSAO_SERIALIZACAO*/"*.txt";
-        FileChooser flChooser = FileChooserT4J.criarFileChooserT4J(descricao, extensao);
-        File ficheiroImportar = flChooser.showOpenDialog(listaCategorias.getScene().getWindow());
-
-        if (ficheiroImportar != null) {
-            int numeroCategoriasImportadas = 0;
-                numeroCategoriasImportadas = registarCategoriaController.desserializar(ficheiroImportar);
-            
-
-            if (numeroCategoriasImportadas > 0) {
-                updateListViewCategoriasTarefa();
-
-                AlertsUI.criarAlerta(Alert.AlertType.INFORMATION, MainApp.TITULO_APLICACAO, CABECALHO_IMPORTAR,
-                        String.format("%d categoria(s) importada(s).", numeroCategoriasImportadas)).show();
-            } else {
-                AlertsUI.criarAlerta(Alert.AlertType.INFORMATION, MainApp.TITULO_APLICACAO, CABECALHO_IMPORTAR,
-                        "Ficheiro sem categorias para importar!").show();
-            }
-        } else {
-            AlertsUI.criarAlerta(Alert.AlertType.ERROR, MainApp.TITULO_APLICACAO, CABECALHO_IMPORTAR,
-                    "Não foi seleccionado nenhum ficheiro!").show();
-        }
-    }
-
 
 
 }
