@@ -77,7 +77,8 @@ public class StartingPageUI implements Initializable {
     void cssGoLight(ActionEvent event) {
 
         Scene scene = btnGoLight.getScene();
-        
+
+        estilo = "/com/grupo2/t4j/style/app.css";
         scene.getStylesheets().clear();
         scene.getStylesheets().add(getClass().getResource(estilo).toExternalForm());
 
