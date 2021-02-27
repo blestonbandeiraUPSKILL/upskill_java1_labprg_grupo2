@@ -141,15 +141,14 @@ public class AdicionarReconhecimentoGPUI  implements Initializable {
             
                 AlertsUI.criarAlerta(Alert.AlertType.INFORMATION,
                     MainApp.TITULO_APLICACAO, "Registar Validação de Competência Técnica.",
-                    adicionou ? "Competência Técnica de Freelancer validada com sucesso."
-                                : "Não foi possível validar a Competência Técnica.").show();
+                     "Competência Técnica de Freelancer validada com sucesso.").show();
             }
         }
-        catch (IllegalArgumentException | SQLException ex) {
+        catch (IllegalArgumentException | SQLException exception) {
             AlertsUI.criarAlerta(Alert.AlertType.ERROR,
                     MainApp.TITULO_APLICACAO,
-                    "Erro nos dados.",
-                    ex.getMessage()).show();
+                    "Registar Validação de Competência Técnica - Erro nos dados.",
+                    "Não foi possível validar a Competência Técnica." + exception.getMessage()).show();
         
      
         }
@@ -178,8 +177,6 @@ public class AdicionarReconhecimentoGPUI  implements Initializable {
         });
         window.fireEvent(new WindowEvent(window, WindowEvent.WINDOW_CLOSE_REQUEST));
     }
-    /*
-    public void updateListViewReconhecimentoGPFreelancer() throws SQLException {
-         listaCompetenciaFreelancer.getItems().setAll(registarReconhecimentoGPController.getAll());
-    }*/
+
+
 }

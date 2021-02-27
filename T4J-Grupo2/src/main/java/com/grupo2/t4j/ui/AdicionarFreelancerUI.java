@@ -90,15 +90,14 @@ public class AdicionarFreelancerUI implements Initializable {
             
                 AlertsUI.criarAlerta(Alert.AlertType.INFORMATION,
                     MainApp.TITULO_APLICACAO, "Registar Freelancer.",
-                    adicionou ? "Freelancer registado com sucesso."
-                                : "Não foi possível registar o Freelancer.").show();
+                        "Freelancer registado com sucesso.").show();
             }
         }
-        catch (IllegalArgumentException | SQLException ex) {
+        catch (IllegalArgumentException | SQLException exception) {
             AlertsUI.criarAlerta(Alert.AlertType.ERROR,
                     MainApp.TITULO_APLICACAO,
-                    "Erro nos dados.",
-                    ex.getMessage()).show();
+                    "Registar Freelancer - Erro nos dados.",
+                    "Não foi possível registar o Freelancer." + exception.getMessage()).show();
         
         }
     }

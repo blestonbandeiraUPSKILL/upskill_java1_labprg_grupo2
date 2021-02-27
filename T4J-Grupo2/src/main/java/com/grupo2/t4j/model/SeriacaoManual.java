@@ -32,11 +32,11 @@ public class SeriacaoManual {
     
     public SeriacaoManual(String idAnuncio, List<Candidatura> 
             listaCandidaturas, String ordemColocacao, Data dataSeriacao){
-        for(int i = 0; i < listaCandidaturas.size();i++){
+     /*   for(int i = 0; i < listaCandidaturas.size();i++){
             ColocacaoSeriacao colocacao = new ColocacaoSeriacao(idAnuncio, listaCandidaturas.get(i).getIdCandidatura(),
             listaCandidaturas.get(i).getEmailFreelancer(), Integer.parseInt(ordemColocacao), dataSeriacao);
             listaSeriadaFreelancers.add(colocacao);
-        }
+        }*/
     }
     
     //public 

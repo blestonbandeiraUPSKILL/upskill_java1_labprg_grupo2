@@ -346,4 +346,58 @@ public class RepositorioAnuncioDataBase implements RepositorioAnuncio {
         return anunciosElegiveis;
     }
 
+    @Override
+    public Anuncio getAnuncio(int idAnuncio) throws SQLException {
+        Anuncio anuncio = new Anuncio();
+
+        DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
+        Connection connection = dbConnectionHandler.openConnection();
+
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(
+                    "SELECT idAnuncio, referenciaTarefa, nifOrganizacao, " +
+                            "TO_CHAR (dataInicioPublicitacao, 'yyyy-mm-dd'), " +
+                            "TO_CHAR (dataFimPublicitacao, 'yyyy-mm-dd'), " +
+                            "TO_CHAR (dataInicioCandidatura, 'yyyy-mm-dd'), " +
+                            "TO_CHAR (dataFimCandidatura, 'yyyy-mm-dd'), " +
+                            "TO_CHAR (dataInicioSeriacao, 'yyyy-mm-dd'), " +
+                            "TO_CHAR (dataFimSeriacao, 'yyyy-mm-dd'), " +
+                            "idProcessoSeriacao, idTipoRegimento " +
+                            " FROM Anuncio " +
+                            "WHERE idAnuncio = ?"
+
+            );
+
+            preparedStatement.setInt(1, idAnuncio);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                anuncio.setReferenciaTarefa(resultSet.getString(2));
+                anuncio.setNifOrganizacao(resultSet.getString(3));
+                anuncio.setDtInicioPub(resultSet.getString(4));
+                anuncio.setDtFimPub(resultSet.getString(5));
+                anuncio.setDtInicioCand(resultSet.getString(6));
+                anuncio.setDtFimCand(resultSet.getString(7));
+                anuncio.setDtInicioSeriacao(resultSet.getString(8));
+                anuncio.setDtFimSeriacao(resultSet.getString(9));
+                anuncio.setIdTipoRegimento(resultSet.getInt(11));
+
+            }
+
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+            exception.getSQLState();
+            try {
+                System.err.print("Transaction is being rolled back");
+                connection.rollback();
+            } catch (SQLException sqlException) {
+                sqlException.getErrorCode();
+            }
+
+        } finally {
+            dbConnectionHandler.closeAll();
+        }
+        return anuncio;
+    }
 }

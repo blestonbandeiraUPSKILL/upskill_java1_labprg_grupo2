@@ -303,11 +303,10 @@ public class RepositorioTarefaDatabase implements RepositorioTarefa {
                 int duracaoEst  = resultSet.getInt(6);
                 double custoEst = resultSet.getDouble(7);
                 String codigoCategoriaTarefa = resultSet.getString(8);
-                String emailColaborador = resultSet.getString(9);
 
                 tarefas.add(new Tarefa(referencia, nifOrganizacao, designacao, descInformal,
                         descTecnica, duracaoEst, custoEst,
-                        codigoCategoriaTarefa,  emailColaborador));
+                        codigoCategoriaTarefa, email));
             }
         }
         catch (SQLException exception) {
@@ -330,7 +329,7 @@ public class RepositorioTarefaDatabase implements RepositorioTarefa {
     }
 
     @Override
-    public List<Tarefa> findTarefasPublicadas(List<String> referenciasTarefa, String nifOrganizacao) throws SQLException {
+    public List<Tarefa> findTarefasPublicadas(List<String> referenciasTarefa, String nifOrganizacao, String emailColaborador) throws SQLException {
         List<Tarefa> tarefasComAnuncio = new ArrayList<>();
 
         DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
@@ -344,12 +343,14 @@ public class RepositorioTarefaDatabase implements RepositorioTarefa {
                                 "ON Tarefa.referencia LIKE Anuncio.referenciaTarefa " +
                                 "AND Tarefa.nifOrganizacao LIKE Anuncio.nifOrganizacao " +
                                 "WHERE tarefa.referencia LIKE ? " +
-                                "AND tarefa.nifOrganizacao LIKE ?"
+                                "AND tarefa.nifOrganizacao LIKE ?" +
+                                "AND Tarefa.emailColaborador LIKE ? "
                 );
 
 
                 callableStatement.setString(1, referencia);
                 callableStatement.setString(2, nifOrganizacao);
+                callableStatement.setString(3, emailColaborador);
 
                 callableStatement.executeUpdate();
 
@@ -363,7 +364,6 @@ public class RepositorioTarefaDatabase implements RepositorioTarefa {
                     int duracaoEstimada = resultSet.getInt(6);
                     double custoEstimado = resultSet.getDouble(7);
                     String codigoCategoria = resultSet.getString(8);
-                    String emailColaborador = resultSet.getString(9);
                     tarefasComAnuncio.add(new Tarefa(referencia, nifOrganizacao,
                             designacao, descInformal, descTecnica, duracaoEstimada, custoEstimado, codigoCategoria, emailColaborador));
 
@@ -453,11 +453,13 @@ public class RepositorioTarefaDatabase implements RepositorioTarefa {
                                 "ON Tarefa.referencia LIKE Anuncio.referenciaTarefa " +
                                 "AND Tarefa.nifOrganizacao LIKE Anuncio.nifOrganizacao " +
                                 "WHERE Anuncio.referenciaTAREFA IS NULL AND Anuncio.nifOrganizacao IS NULL " +
-                                "AND Tarefa.referencia LIKE ? AND Tarefa.nifOrganizacao LIKE ? "
+                                "AND Tarefa.referencia LIKE ? AND Tarefa.nifOrganizacao LIKE ? " +
+                                "AND Tarefa.emailColaborador LIKE ?"
                 );
 
                 callableStatement.setString(1, referenciaTarefa);
                 callableStatement.setString(2, nifOrganizacao);
+                callableStatement.setString(3, email);
 
                 callableStatement.executeUpdate();
 
@@ -471,9 +473,8 @@ public class RepositorioTarefaDatabase implements RepositorioTarefa {
                     int duracaoEstimada = resultSet.getInt(6);
                     double custoEstimado = resultSet.getDouble(7);
                     String codigoCategoria = resultSet.getString(8);
-                    String emailColaborador = resultSet.getString(9);
                     tarefasSemAnuncio.add(new Tarefa(referenciaTarefa, nifOrganizacao,
-                            designacao, descInformal, descTecnica, duracaoEstimada, custoEstimado, codigoCategoria, emailColaborador));
+                            designacao, descInformal, descTecnica, duracaoEstimada, custoEstimado, codigoCategoria, email));
 
                 }
             }
@@ -537,4 +538,53 @@ public class RepositorioTarefaDatabase implements RepositorioTarefa {
         return null;
     }
 
+    @Override
+    public Tarefa findTarefa(int idAnuncio) throws SQLException {
+        Tarefa tarefa = new Tarefa();
+
+        DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
+        Connection connection = dbConnectionHandler.openConnection();
+
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(
+                    "SELECT * FROM Tarefa " +
+                            "INNER JOIN Anuncio " +
+                            "ON Anuncio.referenciaTarefa LIKE Tarefa.referencia " +
+                            "AND Anuncio.nifOrganizacao LIKE Tarefa.nifOrganizacao " +
+                            "WHERE idAnuncio =  ?"
+
+            );
+
+            preparedStatement.setInt(1, idAnuncio);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+
+                tarefa.setNifOrganizacao(resultSet.getString(1));
+                tarefa.setReferencia(resultSet.getString(2));
+                tarefa.setDesignacao(resultSet.getString(3));
+                tarefa.setDescInformal(resultSet.getString(4));
+                tarefa.setDescTecnica(resultSet.getString(5));
+                tarefa.setDuracaoEst(resultSet.getInt(6));
+                tarefa.setCustoEst(resultSet.getDouble(7));
+                tarefa.setCodigoCategoriaTarefa(resultSet.getString(8));
+                tarefa.setEmailColaborador(resultSet.getString(9));
+            }
+
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+            exception.getSQLState();
+            try {
+                System.err.print("Transaction is being rolled back");
+                connection.rollback();
+            } catch (SQLException sqlException) {
+                sqlException.getErrorCode();
+            }
+
+        } finally {
+            dbConnectionHandler.closeAll();
+        }
+        return tarefa;
+    }
 }

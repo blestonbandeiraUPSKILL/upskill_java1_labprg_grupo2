@@ -39,4 +39,6 @@ public interface RepositorioAnuncio {
     ArrayList<Anuncio> getAllByStatus(TipoStatusAnuncio status) throws SQLException;
 
     List<Anuncio> findAnunciosElegiveis(String email) throws SQLException;
+
+    Anuncio getAnuncio(int idAnuncio) throws SQLException;
 }

@@ -55,7 +55,7 @@ public class RepositorioOrganizacaoDatabase implements RepositorioOrganizacao {
     public boolean save(String nif, String nome, String website, String telefone,
                         String emailOrganizacao, String emailGestor, String arruamento, String numeroPorta,
                         String localidade, String codPostal,
-                     String nomeGestor, String pass, String telefoneGestor, String funcao) throws SQLException {
+                     String nomeGestor, String telefoneGestor, String funcao, String pass) throws SQLException {
 
         DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
         Connection connection = dbConnectionHandler.openConnection();

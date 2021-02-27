@@ -1,26 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.image.*?>
-<?import javafx.scene.shape.*?>
-<?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.PasswordField?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.FlowPane?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="BorderPane" focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="600.0" styleClass="BorderPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.StartingPageUI">
+<BorderPane fx:id="BorderPane" focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="600.0" styleClass="BorderPane" stylesheets="@../style/app.css" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.StartingPageUI">
    <center>
       <GridPane alignment="CENTER" prefHeight="133.0" prefWidth="600.0" BorderPane.alignment="CENTER">
         <columnConstraints>
@@ -30,7 +15,7 @@
         <rowConstraints>
             <RowConstraints maxHeight="276.0" minHeight="10.0" prefHeight="79.33331298828125" vgrow="SOMETIMES" />
           <RowConstraints maxHeight="171.0" minHeight="10.0" prefHeight="70.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="171.0" minHeight="10.0" prefHeight="70.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="5.0" minHeight="5.0" prefHeight="70.0" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="171.0" minHeight="10.0" prefHeight="70.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
@@ -42,14 +27,20 @@
                   <Font name="Calibri" size="24.0" />
                </font>
             </Label>
-            <TextField fx:id="txtEmailLogin" alignment="CENTER" maxHeight="30.0" maxWidth="200.0" promptText="email" GridPane.columnIndex="1" GridPane.rowIndex="1">
-               <font>
-                  <Font name="Calibri" size="14.0" />
-               </font></TextField>
-            <PasswordField fx:id="txtPasswordLogin" alignment="CENTER" maxHeight="49.0" maxWidth="200.0" prefHeight="41.0" prefWidth="200.0" promptText="password" GridPane.columnIndex="1" GridPane.rowIndex="3">
+            <TextField fx:id="txtEmailLogin" alignment="CENTER" promptText="email" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <font>
                   <Font name="Calibri" size="14.0" />
                </font>
+               <GridPane.margin>
+                  <Insets left="100.0" right="100.0" />
+               </GridPane.margin></TextField>
+            <PasswordField fx:id="txtPasswordLogin" alignment="CENTER" promptText="password" GridPane.columnIndex="1" GridPane.rowIndex="3">
+               <font>
+                  <Font name="Calibri" size="14.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets left="100.0" right="100.0" />
+               </GridPane.margin>
             </PasswordField>
             <Label fx:id="lblLogin" alignment="CENTER" contentDisplay="CENTER" layoutX="253.0" layoutY="10.0" prefHeight="115.0" prefWidth="115.0" text="Área de Login" GridPane.columnIndex="1">
                <font>

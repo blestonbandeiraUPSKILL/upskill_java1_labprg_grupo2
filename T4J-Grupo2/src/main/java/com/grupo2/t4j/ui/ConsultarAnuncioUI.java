@@ -5,10 +5,14 @@
  */
 package com.grupo2.t4j.ui;
 
+import javafx.event.ActionEvent;
+
 /**
  *
  * @author carol
  */
 public class ConsultarAnuncioUI {
-    
+
+    public void voltarAtras(ActionEvent actionEvent) {
+    }
 }

@@ -53,7 +53,6 @@ public class RegistarColaboradorUI implements Initializable {
 
     }
 
-
     void transferNif() throws SQLException {
         txtNifOrganizacao.setText(
                 gestorLogadoUI.getNifOrganizacao());
@@ -70,7 +69,6 @@ public class RegistarColaboradorUI implements Initializable {
                     txtNifOrganizacao.getText());
 
             if (adicionou) {
-
                 txtPasswordColaborador.setText(
                         registarColaboradorController.findPassword(txtEmailColaborador.getText()).getPasswordText());
                 btnRegistarColaborador.setDisable(true);
@@ -81,17 +79,16 @@ public class RegistarColaboradorUI implements Initializable {
                 AlertsUI.criarAlerta(Alert.AlertType.INFORMATION,
                         MainApp.TITULO_APLICACAO,
                         "Registar Colaborador.",
-                        adicionou ? ("Colaborador registado com sucesso.")
-                                : "Não foi possível registar o Colaborador.").show();
+                        "Colaborador registado com sucesso.").show();
             }
 
-
         }
-        catch (IllegalArgumentException | SQLException iae) {
+
+        catch (IllegalArgumentException | SQLException exception) {
             AlertsUI.criarAlerta(Alert.AlertType.ERROR,
                     MainApp.TITULO_APLICACAO,
-                    "Erro nos dados.",
-                    iae.getMessage()).show();
+                    " Registar Colaborador + Erro nos dados.",
+                    "Não foi possível registar o Colaborador." + exception.getMessage()).show();
         }
     }
 

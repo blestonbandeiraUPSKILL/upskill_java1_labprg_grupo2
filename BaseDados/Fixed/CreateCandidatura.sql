@@ -1,5 +1,4 @@
 CREATE OR REPLACE PROCEDURE createCandidatura(
-    p_dataFimCandidatura candidatura.datafimcandidatura%type,
     p_valorPretendido candidatura.valorpretendido%type,
     p_numeroDias candidatura.numerodias%type,
     p_txtApresentacao candidatura.txtapresentacao%type,
@@ -14,9 +13,9 @@ IS
 BEGIN
 
     INSERT INTO Candidatura
-        (dataFimCandidatura, valorPretendido, numeroDias, txtApresentacao, txtMotivacao, idAnuncio, emailFreelancer)
+        (valorPretendido, numeroDias, txtApresentacao, txtMotivacao, idAnuncio, emailFreelancer, dataCandidatura)
     VALUES
-        (p_dataFimCandidatura, p_valorPretendido, p_numeroDias, p_txtApresentacao, p_txtMotivacao, p_idAnuncio, p_emailFreelancer);
+        (p_valorPretendido, p_numeroDias, p_txtApresentacao, p_txtMotivacao, p_idAnuncio, p_emailFreelancer, trunc(sysdate));
     
 
 END;

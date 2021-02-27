@@ -367,10 +367,11 @@ public class Anuncio implements Serializable {
         return String.format("ID: %-12s |Início publicitação: %-12s"
                 + " |Fim publicitação: %-12s |Início candidatura: %-12s"
                 + " |Fim candidatura: %-12s |Início seriação: %-12s"
-                + " |Fim seriação: %-12s", idAnuncio, dtInicioPublicitacao,
+                + " |Fim seriação: %-12s"
+                + " |Tipo de Regimento: %s", idAnuncio, dtInicioPublicitacao,
                 dtFimPublicitacao, dtInicioCandidatura,
                 dtFimCandidatura, dtInicioSeriacao,
-                dtFimSeriacao);
+                dtFimSeriacao, idTipoRegimento);
     }
     
     /**
@@ -379,12 +380,19 @@ public class Anuncio implements Serializable {
      * e fim do período de candidatura e do início e do fim do período de seriação
      */   
     public String toStringCompleto(){
-        return String.format("ID: %s  %nInício publicitação: %s"
-                + "%nFim publicitação: %s %nInício candidatura: %s"
+        return String.format("ID Anúncio: %s%n"
+                        + "Referencia Tarefa : %s%n"
+                        + "Nif Organização: %s%n"
+                        + "Início publicitação: %s%n"
+                        + "Fim publicitação: %s %n"
+                        + "Início candidatura: %s"
                 + "%nFim candidatura: %s %nInício seriação: %s"
-                + "%nFim seriação: %s", idAnuncio, dtInicioPublicitacao,
+                + "%nFim seriação: %s"
+                + "%nTipo de Regimento: %d",
+                idAnuncio, referenciaTarefa,
+                nifOrganizacao, dtInicioPublicitacao,
                 dtFimPublicitacao, dtInicioCandidatura,
                 dtFimCandidatura, dtInicioSeriacao,
-                dtFimSeriacao);
+                dtFimSeriacao, idTipoRegimento);
     }
 }
