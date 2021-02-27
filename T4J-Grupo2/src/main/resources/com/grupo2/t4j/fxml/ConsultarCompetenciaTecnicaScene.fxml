@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.*?>
-<?import javafx.scene.text.*?>
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="463.0" prefWidth="600.0" styleClass="BorderPane" stylesheets="@../style/app.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.ConsultarCompetenciaTecnicaUI">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="463.0" prefWidth="600.0" styleClass="BorderPane" stylesheets="@../style/app.css" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.ConsultarCompetenciaTecnicaUI">
     <top>
         <Label styleClass="lblUser" text="Área do Administrativo :::&gt; Consultar Competência Técnica" textFill="WHITE" BorderPane.alignment="CENTER_RIGHT">
             <font>
@@ -26,7 +23,7 @@
                 <Label layoutX="14.0" layoutY="124.0" text="Código da Competência Técnica:" />
                 <Label layoutX="14.0" layoutY="168.0" text="Descrição Breve:" />
                 <Label layoutX="14.0" layoutY="211.0" text="Descrição Detalhada:" />
-                <Label layoutX="366.0" layoutY="45.0" text="Graus de Proficiência Aplicáveis" />
+                <Label layoutX="327.0" layoutY="55.0" text="Graus de Proficiência Aplicáveis" />
                 <ListView fx:id="listViewGrausAplicaveis" layoutX="327.0" layoutY="76.0" prefHeight="264.0" prefWidth="244.0" />
                 <TextField fx:id="txtAreaActividade" editable="false" layoutX="125.0" layoutY="72.0" />
                 <TextField fx:id="txtCodigoCompetenciaTecnica" editable="false" layoutX="194.0" layoutY="120.0" prefHeight="25.0" prefWidth="80.0" />
@@ -38,7 +35,7 @@
     <bottom>
         <FlowPane alignment="CENTER_RIGHT" prefHeight="77.0" prefWidth="600.0" styleClass="FlowPane" BorderPane.alignment="CENTER">
             <children>
-                <Button fx:id="btnVoltar" mnemonicParsing="false" onAction="#voltarAtras" styleClass="btnConfirmar" text="Voltar">
+                <Button fx:id="btnVoltar" mnemonicParsing="false" onAction="#voltarAtras" styleClass="btnSair" text="Voltar">
                     <FlowPane.margin>
                         <Insets right="10.0" />
                     </FlowPane.margin>

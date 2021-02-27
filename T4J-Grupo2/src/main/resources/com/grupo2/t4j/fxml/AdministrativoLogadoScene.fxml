@@ -1,22 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.Tab?>
-<?import javafx.scene.control.TabPane?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" styleClass="BorderPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.AdministrativoLogadoUI">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" styleClass="BorderPane" stylesheets="@../style/app.css" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.AdministrativoLogadoUI">
     <center>
         <BorderPane prefHeight="200.0" prefWidth="200.0" styleClass="BorderPane" BorderPane.alignment="CENTER">
             <top>
@@ -33,7 +22,7 @@
                                                 <Font name="Calibri" size="16.0" />
                                             </font>
                                         </Label>
-                                        <Button fx:id="btnConsultarAreaActividade" layoutX="557.0" layoutY="180.0" mnemonicParsing="false" onAction="#consultarAreaActividadeAction" prefHeight="25.0" prefWidth="80.0" styleClass="btnConsultar1" text="Consultar" AnchorPane.bottomAnchor="122.0">
+                                        <Button fx:id="btnConsultarAreaActividade" layoutX="557.0" layoutY="180.0" mnemonicParsing="false" onAction="#consultarAreaActividadeAction" prefHeight="25.0" prefWidth="80.0" styleClass="btnConfirmar" text="Consultar" AnchorPane.bottomAnchor="122.0">
                                             <tooltip>
                                                 <Tooltip text="Consultar">
                                                     <font>
@@ -45,7 +34,7 @@
                                                 <Font name="Calibri" size="14.0" />
                                             </font>
                                         </Button>
-                                        <Button fx:id="btnAddAreaAtividade" alignment="CENTER" layoutX="565.0" layoutY="220.0" mnemonicParsing="false" onAction="#addAreaActividade" styleClass="btnAddAreaAtividade" text="Adicionar">
+                                        <Button fx:id="btnAddAreaAtividade" alignment="CENTER" layoutX="565.0" layoutY="220.0" mnemonicParsing="false" onAction="#addAreaActividade" styleClass="btnConfirmar" text="Adicionar">
                                             <font>
                                                 <Font name="Calibri" size="14.0" />
                                             </font>
@@ -188,6 +177,9 @@
                                                             </font>
                                                         </Tooltip>
                                                     </tooltip>
+                                       <padding>
+                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                       </padding>
                                                 </Button>
                                                 <Button fx:id="btnAdicionarReconGP" alignment="CENTER" mnemonicParsing="false" onAction="#addReconhecimentoGP" styleClass="btnConfirmar" text="Adicionar Competência Técnica">
                                                     <font>
@@ -221,6 +213,9 @@
                                                             </font>
                                                         </Tooltip>
                                                     </tooltip>
+                                       <VBox.margin>
+                                          <Insets bottom="20.0" />
+                                       </VBox.margin>
                                                 </Button>
                                             </children>
                                         </VBox>
