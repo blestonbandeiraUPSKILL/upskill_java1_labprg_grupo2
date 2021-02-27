@@ -126,7 +126,7 @@ public class Candidatura implements Serializable {
         setMotivacao(motivacao);
     }
 
-    private void setIdAnuncio(int idAnuncio) {
+    public void setIdAnuncio(int idAnuncio) {
         if (idAnuncio > 0) {
             this.idAnuncio = idAnuncio;
         }
@@ -289,11 +289,20 @@ public class Candidatura implements Serializable {
      */   
     @Override
     public String toString(){
-        return String.format("ID: %-12s |Freelancer: %-20s |Data Candidatura: %-12s"
-                + " |Valor pretendido: %-12f.2  euros |Número de dias: %-8d"
-                + " |Apresentação: %-50s |Motivação: %-50s", idCandidatura, emailFreelancer, 
-                dataCandidatura, valorPretendido,
-                numeroDias, txtApresentacao, txtMotivacao);
+        return String.format("ID: %-12s " +
+                        "|Freelancer: %-20s " +
+                        "|Data Candidatura: %-12s" +
+                        "|Valor pretendido: %f.2  euros " +
+                        "|Número de dias: %-8d" +
+                        "|Apresentação: %-50s " +
+                        "|Motivação: %-50s",
+                idCandidatura,
+                emailFreelancer,
+                dataCandidatura,
+                valorPretendido,
+                numeroDias,
+                txtApresentacao,
+                txtMotivacao);
     }
     
     /**

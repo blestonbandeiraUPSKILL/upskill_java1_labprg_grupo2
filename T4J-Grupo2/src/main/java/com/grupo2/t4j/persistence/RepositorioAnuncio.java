@@ -30,7 +30,7 @@ public interface RepositorioAnuncio {
 
     Anuncio findById(String idAnuncio);
 
-    ArrayList<Anuncio> getAll();
+    ArrayList<Anuncio> getAll() throws SQLException;
     
     Anuncio findAnuncioByIdTarefa(String referenciaTarefa, String nifOrganizacao)throws SQLException;
 

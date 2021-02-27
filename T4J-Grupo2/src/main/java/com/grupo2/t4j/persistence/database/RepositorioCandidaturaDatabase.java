@@ -164,11 +164,17 @@ public class RepositorioCandidaturaDatabase implements RepositorioCandidatura{
     
     @Override
     public Candidatura findByEmail (String emailFreelancer) throws SQLException{
+        Candidatura candidatura = new Candidatura();
+
         DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
         Connection connection = dbConnectionHandler.openConnection();
 
         CallableStatement callableStatementOrg = connection.prepareCall(
-                 "{CALL findCandidaturaByEmail(?)}");
+                 "SELECT idCandidatura, valorPretendido, numeroDias, txtApresentacao, " +
+                         "txtMotivacao, idAnuncio, emailFreelancer, TO_CHAR(dataCandidatura, 'yyyy-mm-dd') " +
+                         "FROM Candidatura " +
+                         "WHERE emailFreelancer LIKE ?"
+        );
 
         try {
             connection.setAutoCommit(false);
@@ -176,14 +182,25 @@ public class RepositorioCandidaturaDatabase implements RepositorioCandidatura{
             callableStatementOrg.setString(1, emailFreelancer);
             callableStatementOrg.executeQuery();
 
-            return null;
+            ResultSet resultSet = callableStatementOrg.getResultSet();
+
+            while(resultSet.next()) {
+                candidatura.setIdCandidatura(resultSet.getInt(1));
+                candidatura.setValor(resultSet.getDouble(2));
+                candidatura.setDias(resultSet.getInt(3));
+                candidatura.setApresentacao(resultSet.getString(4));
+                candidatura.setMotivacao(resultSet.getString(5));
+                candidatura.setIdAnuncio(resultSet.getInt(6));
+                candidatura.setEmailFreelancer(emailFreelancer);
+                candidatura.setData(resultSet.getString(7));
+            }
 
         } catch (SQLException exceptionOrg) {
             exceptionOrg.printStackTrace();
             exceptionOrg.getSQLState();
         }
 
-        return new Candidatura();
+        return candidatura;
     }
     
     @Override

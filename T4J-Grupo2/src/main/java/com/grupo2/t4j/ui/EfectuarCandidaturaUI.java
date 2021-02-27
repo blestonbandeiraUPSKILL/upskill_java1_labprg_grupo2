@@ -7,6 +7,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.stage.Window;
 import javafx.stage.WindowEvent;
@@ -28,6 +29,7 @@ public class EfectuarCandidaturaUI implements Initializable {
     @FXML TextField txtValor;
     @FXML TextField txtDias;
     @FXML Button btnCancelar;
+    @FXML Button btnAddCandidatura;
 
 
     public void associarParentUI(FreelancerLogadoUI freelancerLogadoUI) {
@@ -47,15 +49,21 @@ public class EfectuarCandidaturaUI implements Initializable {
 
     }
     
-    
+    public int getIdAnuncio() throws SQLException {
+        String nifOrganizacao = freelancerLogadoUI.listViewAnuncios.getSelectionModel().getSelectedItem().getNifOrganizacao();
+        String referenciaTarefa = freelancerLogadoUI.listViewAnuncios.getSelectionModel().getSelectedItem().getReferencia();
+        int idAnuncio = registarTarefaController.findIdAnuncio(nifOrganizacao, referenciaTarefa);
 
-    public void addCandidatura(ActionEvent actionEvent) {
-        int idAnuncio = freelancerLogadoUI.listViewAnuncios.getSelectionModel().getSelectedItem().getIdAnuncio();
+        return idAnuncio ;
+    }
+
+    public void addCandidatura(ActionEvent actionEvent) throws SQLException {
+
         String emailFreelancer = freelancerLogadoUI.getEmail();
 
         try {
             boolean adicionou = efectuarCandidaturaController.registarCandidatura(
-                    idAnuncio,
+                    getIdAnuncio(),
                     Double.parseDouble(txtValor.getText()),
                     Integer.parseInt(txtDias.getText()),
                     txtApresentacao.getText(),
@@ -64,14 +72,24 @@ public class EfectuarCandidaturaUI implements Initializable {
 
             if(adicionou) {
 
+                freelancerLogadoUI.updateListViewCandidaturas();
+                btnAddCandidatura.setDisable(true);
+
+                AlertsUI.criarAlerta(Alert.AlertType.INFORMATION,
+                        MainApp.TITULO_APLICACAO,
+                        "Efectuar Candidatura.",
+                        "Candidatura efectuada com sucesso.").show();
+
+                closeEfectuarCandidatura(actionEvent);
+
             }
 
         }
-        catch (IllegalArgumentException | SQLException iae) {
+        catch (IllegalArgumentException | SQLException exception) {
             AlertsUI.criarAlerta(Alert.AlertType.ERROR,
                     MainApp.TITULO_APLICACAO,
                     "Efecutar Candidatura - Erro nos dados.",
-                    "Não foi possível Efectuar a candidatura: " + iae.getMessage()).show();
+                    "Não foi possível Efectuar a candidatura: " + exception.getMessage()).show();
         }
 
     }
@@ -95,9 +113,16 @@ public class EfectuarCandidaturaUI implements Initializable {
     }
 
     public void transferData() throws SQLException {
-        int idAnuncio = freelancerLogadoUI.listViewAnuncios.getSelectionModel().getSelectedItem().getIdAnuncio();
+        txtAnuncio.setText(registarTarefaController.findTarefa(getIdAnuncio()).toStringCompleto());
 
-        txtAnuncio.setText(registarTarefaController.findTarefa(idAnuncio).toStringCompleto());
+    }
 
+    private void closeEfectuarCandidatura(ActionEvent event) {
+        this.txtAnuncio.clear();
+        this.txtApresentacao.clear();
+        this.txtMotivacao.clear();
+        this.txtValor.clear();
+        this.txtDias.clear();
+        ((Node) event.getSource()).getScene().getWindow().hide();
     }
 }
