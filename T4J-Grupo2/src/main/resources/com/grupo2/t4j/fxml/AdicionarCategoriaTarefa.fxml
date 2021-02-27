@@ -11,11 +11,6 @@
          <top>
             <TabPane prefHeight="417.0" prefWidth="700.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
               <tabs>
-                <Tab disable="true" text="Áreas de Atividade">
-                  <content>
-                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-                  </content>
-                </Tab>
                 <Tab text="Categorias de Tarefa">
                      <content>
                         <BorderPane prefHeight="319.0" prefWidth="700.0">
@@ -122,11 +117,6 @@
                         </BorderPane>
                      </content>
                 </Tab>
-                  <Tab disable="true" text="Competências Técnicas">
-                     <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-                     </content>
-                  </Tab>
               </tabs>
             </TabPane>
          </top>

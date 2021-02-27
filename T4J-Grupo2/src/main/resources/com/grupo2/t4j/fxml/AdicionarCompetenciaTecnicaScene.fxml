@@ -1,26 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollBar?>
-<?import javafx.scene.control.Tab?>
-<?import javafx.scene.control.TabPane?>
-<?import javafx.scene.control.TextArea?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.FlowPane?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" styleClass="BorderPane" stylesheets="@../style/app.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.AdicionarCompetenciaTecnicaUI">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" styleClass="BorderPane" stylesheets="@../style/app.css" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.AdicionarCompetenciaTecnicaUI">
    <top>
       <Label styleClass="lblUser" text="Área do Administrativo :::&gt; Adicionar Competência Técnica" BorderPane.alignment="CENTER_RIGHT">
          <padding>
@@ -49,17 +34,16 @@
                                 </Tooltip>
                             </tooltip>
             </Button>
+            <Button fx:id="btnCancelar" mnemonicParsing="false" onAction="#cancelarRegisto" styleClass="btnSair" text="Cancelar">
+               <FlowPane.margin>
+                  <Insets right="21.0" />
+               </FlowPane.margin></Button>
          </children>
       </FlowPane>
    </bottom>
    <center>
       <TabPane prefHeight="281.0" prefWidth="700.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
         <tabs>
-          <Tab disable="true" text="Áreas de Atividade">
-            <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefWidth="350.0" styleClass="AnchorPane" />
-            </content>
-          </Tab>
             <Tab text="Competências Técnicas">
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="290.0" prefWidth="700.0" styleClass="AnchorPane">
@@ -161,16 +145,6 @@
                   </AnchorPane>
                </content>
             </Tab>
-          <Tab disable="true" text="Categorias de Tarefa">
-               <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="253.0" prefWidth="700.0">
-                     <children>
-                        <BorderPane prefHeight="200.0" prefWidth="200.0" />
-                        <FlowPane alignment="TOP_RIGHT" layoutX="486.0" layoutY="160.0" prefHeight="154.0" prefWidth="200.0" />
-                     </children>
-                  </AnchorPane>
-               </content>
-          </Tab>
         </tabs>
       </TabPane>
    </center>

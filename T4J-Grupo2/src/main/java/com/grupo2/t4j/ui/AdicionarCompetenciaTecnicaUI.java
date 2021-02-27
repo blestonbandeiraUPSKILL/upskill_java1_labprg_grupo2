@@ -163,4 +163,7 @@ public class AdicionarCompetenciaTecnicaUI implements Initializable {
     public void voltarAtras(ActionEvent actionEvent) {
         btnVoltar.getScene().getWindow().hide();
     }
+
+    public void cancelarRegisto(ActionEvent actionEvent) {
+    }
 }
