@@ -289,10 +289,10 @@ public class Candidatura implements Serializable {
      */   
     @Override
     public String toString(){
-        return String.format("ID: %-12s " +
+        return String.format("ID2: %-12s " +
                         "|Freelancer: %-20s " +
                         "|Data Candidatura: %-12s" +
-                        "|Valor pretendido: %f.2  euros " +
+                        "|Valor pretendido: %.2f euros " +
                         "|Número de dias: %-8d" +
                         "|Apresentação: %-50s " +
                         "|Motivação: %-50s",

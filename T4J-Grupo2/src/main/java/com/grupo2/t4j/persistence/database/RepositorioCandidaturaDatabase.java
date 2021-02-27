@@ -171,7 +171,7 @@ public class RepositorioCandidaturaDatabase implements RepositorioCandidatura{
 
         CallableStatement callableStatementOrg = connection.prepareCall(
                  "SELECT idCandidatura, valorPretendido, numeroDias, txtApresentacao, " +
-                         "txtMotivacao, idAnuncio, emailFreelancer, TO_CHAR(dataCandidatura, 'yyyy-mm-dd') " +
+                         "txtMotivacao, idAnuncio, TO_CHAR(dataCandidatura, 'yyyy-mm-dd') " +
                          "FROM Candidatura " +
                          "WHERE emailFreelancer LIKE ?"
         );
