@@ -3,6 +3,7 @@ package com.grupo2.t4j.ui;
 import com.grupo2.t4j.controller.EfectuarCandidaturaController;
 import com.grupo2.t4j.controller.GestaoUtilizadoresController;
 import com.grupo2.t4j.controller.RegistarAnuncioController;
+import com.grupo2.t4j.controller.RegistarTarefaController;
 import com.grupo2.t4j.model.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -40,16 +41,16 @@ public class FreelancerLogadoUI implements Initializable {
     private GestaoUtilizadoresController gestaoUtilizadoresController;
     private RegistarAnuncioController registarAnuncioController;
     private EfectuarCandidaturaController efectuarCandidaturaController;
+    private RegistarTarefaController registarTarefaController;
          
-    @FXML
-    ListView<Anuncio> listViewAnuncios;
-    @FXML private ListView<Candidatura> listViewCandidaturas;
-    @FXML private ComboBox<Anuncio> cmbAnuncio;
-    @FXML private TextField txtValor;
-    @FXML private TextField txtDias;
-    @FXML private TextField txtApresentacao;
-    @FXML private TextField txtMotivacao;
-    @FXML private Button btnAddCandidatura;
+    @FXML ListView<Tarefa> listViewAnuncios;
+    @FXML ListView<Candidatura> listViewCandidaturas;
+    @FXML ComboBox<Anuncio> cmbAnuncio;
+    @FXML TextField txtValor;
+    @FXML TextField txtDias;
+    @FXML TextField txtApresentacao;
+    @FXML TextField txtMotivacao;
+    @FXML Button btnAddCandidatura;
     @FXML Button btnSair;
 
 
@@ -69,6 +70,7 @@ public class FreelancerLogadoUI implements Initializable {
             exception.printStackTrace();
         }
         gestaoUtilizadoresController = new GestaoUtilizadoresController();
+        registarTarefaController = new RegistarTarefaController();
 
         adicionarStage = new Stage();
         adicionarStage.initModality(Modality.APPLICATION_MODAL);;
@@ -92,8 +94,8 @@ public class FreelancerLogadoUI implements Initializable {
     }
         
     public void updateListViewAnuncio() throws SQLException {
-        String email = gestaoUtilizadoresController.getEmail();
-        listViewAnuncios.getItems().setAll(efectuarCandidaturaController.findAnunciosElegiveis(email));
+
+        listViewAnuncios.getItems().setAll(registarTarefaController.getAllTarefasPublicadas());
     }
 
     public void logout(ActionEvent actionEvent) {

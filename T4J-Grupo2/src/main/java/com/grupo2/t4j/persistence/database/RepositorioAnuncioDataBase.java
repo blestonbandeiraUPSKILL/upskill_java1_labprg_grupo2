@@ -157,8 +157,10 @@ public class RepositorioAnuncioDataBase implements RepositorioAnuncio {
     }*/
 
     @Override
-    public ArrayList<Anuncio> getAll() {
+    public ArrayList<Anuncio> getAll() throws SQLException {
+
         return null;
+
     }
 
     public ArrayList<Anuncio> getAllByStatus(TipoStatusAnuncio status) throws SQLException {
@@ -292,25 +294,8 @@ public class RepositorioAnuncioDataBase implements RepositorioAnuncio {
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(
                     "SELECT * FROM Anuncio "
-                            + "INNER JOIN Tarefa "
-                            + "ON Anuncio.referenciaTarefa = Tarefa.referencia "
-                            + "AND Anuncio.nifOrganizacao = Tarefa.nifOrganizacao "
-                            + "INNER JOIN Categoria "
-                            + "ON Tarefa.codigoCategoria = Categoria.codigoCategoria "
-                            + "INNER JOIN CaracterCT "
-                            + "ON categoria.codigocategoria = CaracterCT.codigoCategoria "
-                            + "INNER JOIN GrauProficiencia "
-                            + "ON CaracterCT.grauProfMinimo = GrauProficiencia.idGrauProficiencia "
-                            + "INNER JOIN ReconhecimentoGP "
-                            + "ON GrauProficiencia.idGrauProficiencia = ReconhecimentoGP.idGrauProficiencia "
-                            + "INNER JOIN Freelancer "
-                            + "ON ReconhecimentoGP.emailFreelancer = Freelancer.email "
-                            + "WHERE Freelancer.email LIKE ? " +
-                            "AND CaracterCT.obrigatoria = 'obrigatoria'"
                            
             );
-            
-            preparedStatement.setString(1, email);
 
             ResultSet resultSet = preparedStatement.executeQuery();
 

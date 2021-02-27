@@ -86,7 +86,7 @@ public class Tarefa implements Serializable{
         setCustoEst(custo);
     }
     
-    public Tarefa(String referencia, String nifOrganizacao, String designacao,
+    public Tarefa(String nifOrganizacao, String referencia, String designacao,
                   String descInformal, String descTecnica, int duracao, double custo,
                   String codigoCategoriaTarefa,  String emailColaborador) {
         setCodigoCategoriaTarefa(codigoCategoriaTarefa);
@@ -299,4 +299,6 @@ public class Tarefa implements Serializable{
                         "%n \t %.2f euros", referencia,
                 designacao, descInformal, descTecnica, duracaoEst, custoEst);
     }
+
+
 }

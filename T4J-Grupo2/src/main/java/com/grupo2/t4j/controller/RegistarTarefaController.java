@@ -73,6 +73,12 @@ public class RegistarTarefaController {
         return repositorioTarefa.findTarefa(idAnuncio);
     }
 
+    public List<Tarefa> getAllTarefasPublicadas() throws SQLException {
+        return repositorioTarefa.getAllTarefasPublicadas();
+    }
 
 
+    public int findIdAnuncio(String nifOrganizacao, String referenciaTarefa) throws SQLException {
+        return repositorioTarefa.findIdAnuncio(nifOrganizacao, referenciaTarefa);
+    }
 }
