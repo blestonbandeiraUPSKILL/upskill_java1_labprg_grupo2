@@ -75,26 +75,24 @@ public class PublicarTarefaUI implements Initializable {
 
             if (adicionou){
                 colaboradorLogadoUI.updateListViewTarefas();
-            }
+
             AlertsUI.criarAlerta(Alert.AlertType.INFORMATION,
                     MainApp.TITULO_APLICACAO,
                     "Publicar Tarefa.",
-                    adicionou ? "Tarefa publicada com sucesso."
-                            : "Não foi possível publicar a Tarefa.").show();
-
+                    "Tarefa publicada com sucesso.").show();
+            }
         }
-        catch (IllegalArgumentException iae) {
+        catch (IllegalArgumentException exception) {
             AlertsUI.criarAlerta(Alert.AlertType.ERROR,
                     MainApp.TITULO_APLICACAO,
-                    "Erro nos dados.",
-                    iae.getMessage()).show();
+                    "Publicar Tarefa - Erro nos dados.",
+                    "Não foi possível publicar a Tarefa." + exception.getMessage()).show();
 
         }
 
         closePublicarTarefa(actionEvent);
         
     }
-
     
     @FXML
     void voltarAtras(ActionEvent event) {
@@ -102,15 +100,6 @@ public class PublicarTarefaUI implements Initializable {
     }
     
     private void closePublicarTarefa(ActionEvent actionEvent) {
-        /*this.cmbAreaActividade.setItems(null);
-        this.cmbCategoriaTarefa.setItems(null);
-        this.txtReferencia.clear();
-        this.txtDesignacao.clear();
-        this.txtDescInformal.clear();
-        this.txtDescTecnica.clear();
-        this.txtEstimativaDuracao.clear();
-        this.txtEstimativaCusto.clear();*/
-
 
         ((Node) actionEvent.getSource()).getScene().getWindow().hide();
     }

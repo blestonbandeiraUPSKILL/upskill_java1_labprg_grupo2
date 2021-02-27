@@ -2,6 +2,7 @@ package com.grupo2.t4j.ui;
 
 import com.grupo2.t4j.controller.EfectuarCandidaturaController;
 import com.grupo2.t4j.controller.RegistarAnuncioController;
+import com.grupo2.t4j.controller.RegistarTarefaController;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -19,6 +20,7 @@ public class EfectuarCandidaturaUI implements Initializable {
     private FreelancerLogadoUI freelancerLogadoUI;
     private EfectuarCandidaturaController efectuarCandidaturaController;
     private RegistarAnuncioController registarAnuncioController;
+    private RegistarTarefaController registarTarefaController;
 
     @FXML TextArea txtAnuncio;
     @FXML TextArea txtApresentacao;
@@ -41,6 +43,7 @@ public class EfectuarCandidaturaUI implements Initializable {
         }
 
         registarAnuncioController = new RegistarAnuncioController();
+        registarTarefaController = new RegistarTarefaController();
 
     }
     
@@ -93,9 +96,8 @@ public class EfectuarCandidaturaUI implements Initializable {
 
     public void transferData() throws SQLException {
         int idAnuncio = freelancerLogadoUI.listViewAnuncios.getSelectionModel().getSelectedItem().getIdAnuncio();
-        String emailFreelancer = freelancerLogadoUI.getEmail();
 
-        txtAnuncio.setText(registarAnuncioController.getAnuncio(idAnuncio).toStringCompleto());
+        txtAnuncio.setText(registarTarefaController.findTarefa(idAnuncio).toStringCompleto());
 
     }
 }

@@ -59,8 +59,6 @@ public class ConsultarCompetenciaTecnicaUI implements Initializable {
             
             registarAreaActividadeController = new RegistarAreaActividadeController();
             registarGrauProficienciaController = new RegistarGrauProficienciaController();
-
-
             
         } catch (SQLException exception) {
             exception.printStackTrace();

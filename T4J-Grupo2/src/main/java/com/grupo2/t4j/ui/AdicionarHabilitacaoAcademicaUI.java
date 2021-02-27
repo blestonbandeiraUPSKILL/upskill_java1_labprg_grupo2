@@ -111,15 +111,14 @@ public class AdicionarHabilitacaoAcademicaUI implements Initializable {
 
                 AlertsUI.criarAlerta(Alert.AlertType.INFORMATION,
                     MainApp.TITULO_APLICACAO, "Registar Habilitação Académica.",
-                    adicionou ? "Habilitação Académica registada com sucesso."
-                                : "Não foi possível registar a Habilitação Académica.").show();
+                        "Habilitação Académica registada com sucesso.").show();
             }
         }
-        catch (IllegalArgumentException | SQLException ex) {
+        catch (IllegalArgumentException | SQLException exception) {
             AlertsUI.criarAlerta(Alert.AlertType.ERROR,
                     MainApp.TITULO_APLICACAO,
-                    "Erro nos dados.",
-                    ex.getMessage()).show();
+                    "Registar Habilitação Académica - Erro nos dados.",
+                    "Não foi possível registar a Habilitação Académica." + exception.getMessage()).show();
         
         } 
     }

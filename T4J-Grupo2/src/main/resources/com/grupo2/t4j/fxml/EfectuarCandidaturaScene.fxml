@@ -1,19 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.*?>
-<?import javafx.scene.text.*?>
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<BorderPane maxHeight="500.0" maxWidth="700.0" prefHeight="400.0" prefWidth="700.0" stylesheets="@../style/app.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.EfectuarCandidaturaUI">
+<BorderPane maxHeight="500.0" maxWidth="700.0" prefHeight="400.0" prefWidth="700.0" stylesheets="@../style/app.css" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.EfectuarCandidaturaUI">
    <center>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
             <TextArea fx:id="txtAnuncio" layoutX="33.0" layoutY="67.0" prefHeight="224.0" prefWidth="200.0" />
-            <Label layoutX="33.0" layoutY="42.0" text="Detalhes do Anúncio">
+            <Label layoutX="33.0" layoutY="42.0" text="Detalhes :">
                <font>
                   <Font name="Calibri" size="14.0" />
                </font>

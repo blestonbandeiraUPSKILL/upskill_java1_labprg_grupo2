@@ -90,33 +90,11 @@ public class ColaboradorLogadoUI implements Initializable {
            }
            });
 
-    /*    try {
-            cmbAreaActividade.getItems().setAll(registarAreaActividadeController.getAll());
-        } catch (SQLException exception) {
-            exception.printStackTrace();
-        }*/
-
-   /*     cmbAreaActividade.setOnAction(new EventHandler<ActionEvent>() {
-           @Override
-           public void handle(ActionEvent event) {
-               try {
-                   updateCmbCategoriasTarefaLista(event);
-               } catch (SQLException exception) {
-                   exception.printStackTrace();
-               }
-           }
-        });*/
-
-
         try {
             listViewTarefas.getItems().setAll(registarTarefaController.getAllOrganizacao(getNifOrganizacao()));
         } catch (SQLException exception) {
             exception.printStackTrace();
         }
-
-
-
-
     }
 
     public void updateListViewTarefas() throws SQLException {
@@ -136,7 +114,7 @@ public class ColaboradorLogadoUI implements Initializable {
         String email = gestaoUtilizadoresController.getEmail();
         String nifOrganizacao = registarColaboradorController.getNifOrganizacao(email);
         List<String> referenciasTarefa = registarTarefaController.findRefenciaTarefa(nifOrganizacao);
-        listViewTarefas.getItems().setAll(registarTarefaController.findTarefasPublicadas(referenciasTarefa, nifOrganizacao));
+        listViewTarefas.getItems().setAll(registarTarefaController.findTarefasPublicadas(referenciasTarefa, nifOrganizacao, email));
         
     }
     
@@ -147,15 +125,6 @@ public class ColaboradorLogadoUI implements Initializable {
         listViewTarefas.getItems().setAll(registarTarefaController.findTarefasNaoPublicadas(referenciasTarefa, email, nifOrganizacao));
         
     }
-    
- /*   public void updateCmbCategoriasTarefaLista(ActionEvent actionEvent) throws SQLException{
-        List<Categoria> listaCategoriasTarefa =
-                registarCategoriaController.findByAreaActividade(
-                cmbAreaActividade.getSelectionModel().getSelectedItem().getCodigo());
-
-        cmbCategoriaTarefa.getItems().setAll(listaCategoriasTarefa);
-    }*/
-
 
     public void logout(ActionEvent actionEvent) {
         Window window = btnLogout.getScene().getWindow();
@@ -206,13 +175,11 @@ public class ColaboradorLogadoUI implements Initializable {
                 gestaoUtilizadoresController.getEmail());
     }
 
-
     public void navigateEspecificarTarefa(ActionEvent actionEvent) {
         try {
             FXMLLoader loaderAddTarefa = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/EspecificarTarefaColaboradorScene.fxml"));
             Parent rootAddTarefa = loaderAddTarefa.load();
             sceneAddTarefa = new Scene(rootAddTarefa);
-            sceneAddTarefa.getStylesheets().add(startingPageUI.estilo);
             EspecificarTarefaColaboradorUI especificarTarefaColaboradorUI = loaderAddTarefa.getController();
             especificarTarefaColaboradorUI.associarParentUI(this);
 
@@ -227,9 +194,6 @@ public class ColaboradorLogadoUI implements Initializable {
                     "Erro",
                     exception.getMessage());
         }
-
-
-
     }
     
     public void aplicarFiltroTarefas(ActionEvent actionEvent)throws SQLException {
@@ -255,9 +219,6 @@ public class ColaboradorLogadoUI implements Initializable {
             FXMLLoader loaderPublicarTarefa = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/PublicarTarefaScene.fxml"));
             Parent rootPublicarTarefa = loaderPublicarTarefa.load();
             scenePublicarTarefa = new Scene(rootPublicarTarefa);
-            
-            scenePublicarTarefa.getStylesheets().add(startingPageUI.estilo);
-            scenePublicarTarefa.getStylesheets().add("/com/grupo2/t4j/style/app.css");
             PublicarTarefaUI PublicarTarefaUI = loaderPublicarTarefa.getController();
             PublicarTarefaUI.associarParentUI(this);
 

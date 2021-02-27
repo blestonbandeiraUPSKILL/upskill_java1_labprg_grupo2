@@ -121,20 +121,17 @@ public class GestorLogadoUI implements Initializable {
         listViewTarefas.getItems().setAll(
                 registarTarefaController.findByCategoria(codigoCategoria)
         );
-
     }
 
     public void updateListViewTarefas() throws SQLException {
         listViewTarefas.getItems().setAll(registarTarefaController.getAllOrganizacao(
                 getNifOrganizacao()));
-
     }
 
     private void updateCmbCategoriaTarefa(ActionEvent event) throws SQLException {
         String codigoAreaActividade = cmbAreaActividade.getSelectionModel().getSelectedItem().getCodigo();
         cmbCategoriaTarefa.getItems().setAll(
                 registarCategoriaController.findByCodigo(codigoAreaActividade));
-
     }
 
     public void updateListViewColaboradores() throws SQLException {

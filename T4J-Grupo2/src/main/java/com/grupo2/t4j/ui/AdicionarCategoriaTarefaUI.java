@@ -207,11 +207,11 @@ public class AdicionarCategoriaTarefaUI implements Initializable {
 
             }
         }
-        catch (IllegalArgumentException | SQLException iae) {
+        catch (IllegalArgumentException | SQLException exception) {
             AlertsUI.criarAlerta(Alert.AlertType.ERROR,
                 MainApp.TITULO_APLICACAO,
                 "Registar Categoria de Tarefa - Erro nos dados.",
-                "Não foi possível registar a Categoria de Tarefa: " + iae.getMessage()).show();
+                "Não foi possível registar a Categoria de Tarefa: " + exception.getMessage()).show();
 
         }
     }

@@ -152,7 +152,7 @@ public class FreelancerLogadoUI implements Initializable {
             sceneEfectuarCandidatura = new Scene(rootEfectuarCandidatura);
 
             adicionarStage.setScene(sceneEfectuarCandidatura);
-            adicionarStage.setTitle("Adicionar Área de Actividade");
+            adicionarStage.setTitle("Efectuar Candidatura");
             adicionarStage.show();
         }
 
