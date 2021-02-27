@@ -139,4 +139,7 @@ public class FreelancerLogadoUI implements Initializable {
 
 
     }
+
+    public void navigateEfectuarCandidatura(ActionEvent actionEvent) {
+    }
 }

@@ -59,7 +59,7 @@ public class RegistarOrganizacaoController {
 
         return repositorioOrganizacao.save(nif, nome, website, telefone,
                 emailOrganizacao, emailGestor, arruamento, numeroPorta, localidade,
-                codigoPostal, nomeGestor, pass, telefoneGestor, funcaoGestor);
+                codigoPostal, nomeGestor, telefoneGestor, funcaoGestor, pass);
     }
 
     public List<Organizacao> getAll() {
