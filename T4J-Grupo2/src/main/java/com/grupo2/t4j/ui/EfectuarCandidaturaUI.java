@@ -7,6 +7,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.stage.Window;
 import javafx.stage.WindowEvent;
@@ -28,6 +29,7 @@ public class EfectuarCandidaturaUI implements Initializable {
     @FXML TextField txtValor;
     @FXML TextField txtDias;
     @FXML Button btnCancelar;
+    @FXML Button btnAddCandidatura;
 
 
     public void associarParentUI(FreelancerLogadoUI freelancerLogadoUI) {
@@ -69,10 +71,17 @@ public class EfectuarCandidaturaUI implements Initializable {
                     emailFreelancer);
 
             if(adicionou) {
+
+                freelancerLogadoUI.updateListViewCandidaturas();
+                btnAddCandidatura.setDisable(true);
+
                 AlertsUI.criarAlerta(Alert.AlertType.INFORMATION,
                         MainApp.TITULO_APLICACAO,
                         "Efectuar Candidatura.",
                         "Candidatura efectuada com sucesso.").show();
+
+                closeEfectuarCandidatura(actionEvent);
+
             }
 
         }
@@ -106,5 +115,14 @@ public class EfectuarCandidaturaUI implements Initializable {
     public void transferData() throws SQLException {
         txtAnuncio.setText(registarTarefaController.findTarefa(getIdAnuncio()).toStringCompleto());
 
+    }
+
+    private void closeEfectuarCandidatura(ActionEvent event) {
+        this.txtAnuncio.clear();
+        this.txtApresentacao.clear();
+        this.txtMotivacao.clear();
+        this.txtValor.clear();
+        this.txtDias.clear();
+        ((Node) event.getSource()).getScene().getWindow().hide();
     }
 }

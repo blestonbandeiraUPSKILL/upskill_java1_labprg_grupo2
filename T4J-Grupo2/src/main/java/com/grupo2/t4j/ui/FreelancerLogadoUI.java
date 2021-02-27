@@ -82,6 +82,12 @@ public class FreelancerLogadoUI implements Initializable {
             exception.printStackTrace();
         }
 
+        try {
+            updateListViewCandidaturas();
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }
+
     }
 
     public String getEmail() {
@@ -165,5 +171,10 @@ public class FreelancerLogadoUI implements Initializable {
                     "Erro",
                     exception.getMessage());
         }
+    }
+
+    public void updateListViewCandidaturas() throws SQLException {
+        String emailFreelancer = gestaoUtilizadoresController.getEmail();
+        listViewCandidaturas.getItems().setAll(efectuarCandidaturaController.findByEmail(emailFreelancer));
     }
 }
