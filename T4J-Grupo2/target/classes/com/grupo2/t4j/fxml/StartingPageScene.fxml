@@ -27,14 +27,20 @@
                   <Font name="Calibri" size="24.0" />
                </font>
             </Label>
-            <TextField fx:id="txtEmailLogin" alignment="CENTER" maxHeight="30.0" maxWidth="200.0" promptText="email" GridPane.columnIndex="1" GridPane.rowIndex="1">
-               <font>
-                  <Font name="Calibri" size="14.0" />
-               </font></TextField>
-            <PasswordField fx:id="txtPasswordLogin" alignment="CENTER" maxHeight="49.0" maxWidth="200.0" prefHeight="41.0" prefWidth="200.0" promptText="password" GridPane.columnIndex="1" GridPane.rowIndex="3">
+            <TextField fx:id="txtEmailLogin" alignment="CENTER" promptText="email" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <font>
                   <Font name="Calibri" size="14.0" />
                </font>
+               <GridPane.margin>
+                  <Insets left="100.0" right="100.0" />
+               </GridPane.margin></TextField>
+            <PasswordField fx:id="txtPasswordLogin" alignment="CENTER" promptText="password" GridPane.columnIndex="1" GridPane.rowIndex="3">
+               <font>
+                  <Font name="Calibri" size="14.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets left="100.0" right="100.0" />
+               </GridPane.margin>
             </PasswordField>
             <Label fx:id="lblLogin" alignment="CENTER" contentDisplay="CENTER" layoutX="253.0" layoutY="10.0" prefHeight="115.0" prefWidth="115.0" text="Área de Login" GridPane.columnIndex="1">
                <font>

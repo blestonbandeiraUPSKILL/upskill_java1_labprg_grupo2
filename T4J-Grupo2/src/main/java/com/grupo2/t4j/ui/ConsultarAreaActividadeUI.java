@@ -38,20 +38,12 @@ public class ConsultarAreaActividadeUI implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
-        //try {
 
             adicionarStage = new Stage();
             adicionarStage.initModality(Modality.APPLICATION_MODAL);;
             adicionarStage.setResizable(false);
             
             registarAreaActividadeController = new RegistarAreaActividadeController();
-            
-
-            
-        /*} catch (SQLException exception) {
-            exception.printStackTrace();
-        }*/
 
     }    
     public void transferData() throws SQLException {

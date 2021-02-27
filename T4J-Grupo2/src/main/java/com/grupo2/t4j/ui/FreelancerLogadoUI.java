@@ -35,12 +35,14 @@ public class FreelancerLogadoUI implements Initializable {
     private StartingPageUI startingPageUI;
     private Stage adicionarStage;
     private Scene sceneStartingPage;
+    private Scene sceneEfectuarCandidatura;
 
     private GestaoUtilizadoresController gestaoUtilizadoresController;
     private RegistarAnuncioController registarAnuncioController;
     private EfectuarCandidaturaController efectuarCandidaturaController;
          
-    @FXML private ListView<Anuncio> listViewAnuncios;
+    @FXML
+    ListView<Anuncio> listViewAnuncios;
     @FXML private ListView<Candidatura> listViewCandidaturas;
     @FXML private ComboBox<Anuncio> cmbAnuncio;
     @FXML private TextField txtValor;
@@ -80,6 +82,10 @@ public class FreelancerLogadoUI implements Initializable {
 
     }
 
+    public String getEmail() {
+        return gestaoUtilizadoresController.getEmail();
+    }
+
     @FXML
     void verAnuncioAction(ActionEvent event) {
 
@@ -88,11 +94,6 @@ public class FreelancerLogadoUI implements Initializable {
     public void updateListViewAnuncio() throws SQLException {
         String email = gestaoUtilizadoresController.getEmail();
         listViewAnuncios.getItems().setAll(efectuarCandidaturaController.findAnunciosElegiveis(email));
-    }
-    
-    @FXML
-    void addCandidatura(ActionEvent event) {
-
     }
 
     public void logout(ActionEvent actionEvent) {
@@ -141,5 +142,26 @@ public class FreelancerLogadoUI implements Initializable {
     }
 
     public void navigateEfectuarCandidatura(ActionEvent actionEvent) {
+
+        try {
+            FXMLLoader loaderEfectuarCandidatura = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/EfectuarCandidaturaScene.fxml"));
+            Parent rootEfectuarCandidatura = loaderEfectuarCandidatura.load();
+            EfectuarCandidaturaUI efectuarCandidaturaUI = loaderEfectuarCandidatura.getController();
+            efectuarCandidaturaUI.associarParentUI(this);
+            efectuarCandidaturaUI.transferData();
+            sceneEfectuarCandidatura = new Scene(rootEfectuarCandidatura);
+
+            adicionarStage.setScene(sceneEfectuarCandidatura);
+            adicionarStage.setTitle("Adicionar Área de Actividade");
+            adicionarStage.show();
+        }
+
+        catch (IOException | SQLException exception) {
+            exception.printStackTrace();
+            AlertsUI.criarAlerta(Alert.AlertType.ERROR,
+                    MainApp.TITULO_APLICACAO,
+                    "Erro",
+                    exception.getMessage());
+        }
     }
 }

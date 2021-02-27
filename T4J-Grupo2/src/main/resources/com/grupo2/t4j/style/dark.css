@@ -50,6 +50,8 @@
 }
 
 .btnSair {
+    -fx-font-family: Calibri;
+    -fx-font-size: 14px;
     -fx-background-color: #AF4448;
     -fx-text-fill: #ffffff;
     -fx-cursor: hand;
@@ -88,58 +90,10 @@
     -fx-background-color: #a4a4a4;
 }
 
-.btnAddColaborador {
-    -fx-background-color: #4db6ac;
-    -fx-text-fill: #ffffff;
-    -fx-cursor: hand;
-}
-
-.btnAddColaborador:hover {
-   -fx-background-color: #82e9de;
-   -fx-text-fill: #000000;
-    -fx-scale-y: 0.9;
-}
-
-.btnAddColaborador:pressed {
-    -fx-scale-y: 0.9;
-    -fx-scale-x: 0.9;
-}
-
-.btnRegistarColaborador {
-    -fx-background-color: #4db6ac;
-    -fx-text-fill: #ffffff;
-    -fx-cursor: hand;    
-}
-
-.btnRegistarColaborador:hover {
-   -fx-background-color: #82e9de;
-   -fx-text-fill: #000000;
-    -fx-scale-y: 0.9;
-}
-
-.btnRegistarColaborador:pressed {
-    -fx-scale-y: 0.9;
-    -fx-scale-x: 0.9;
-}
-
-.btnAddAreaAtividade {
-    -fx-background-color: #4db6ac;
-    -fx-text-fill: #ffffff;
-    -fx-cursor: hand;    
-}
-
-.btnAddAreaAtividade:hover {
-    -fx-background-color: #82e9de;
-    -fx-text-fill: #000000;
-    -fx-scale-y: 0.9;
-}
-
-.btnAddAreaAtividade:pressed {
-    -fx-scale-y: 0.9;
-    -fx-scale-x: 0.9;
-}
 
 .btnConfirmar {
+    -fx-font-family: Calibri;
+    -fx-font-size: 14px;
     -fx-background-color: #4db6ac;
     -fx-text-fill: #ffffff;
     -fx-cursor: hand;    
@@ -156,85 +110,5 @@
     -fx-scale-x: 0.9;
 }
 
-.btnAddCompTecCat {
-    -fx-background-color: #4db6ac;
-    -fx-text-fill: #ffffff;
-    -fx-cursor: hand; 
-}
 
-.btnAddCompTecCat:hover {
-   -fx-background-color: #82e9de;    -fx-text-fill: #000000;
-    -fx-scale-y: 0.9;
-}
-
-.btnAddCompTecCat:pressed {
-    -fx-scale-y: 0.9;
-    -fx-scale-x: 0.9;
-}
-
-.btnAvancarRegisto {
-    -fx-background-color: #4db6ac;
-    -fx-text-fill: #ffffff;
-    -fx-cursor: hand;     
-}
-
-.btnAvancarRegisto:hover {
-   -fx-background-color: #82e9de;
-   -fx-text-fill: #000000;
-    -fx-scale-y: 0.9;
-}
-
-.btnAvancarRegisto:pressed {
-    -fx-scale-y: 0.9;
-    -fx-scale-x: 0.9;
-}
-
-.btnNovaTarefa {
-    -fx-background-color: #4db6ac;
-    -fx-text-fill: #ffffff;
-    -fx-cursor: hand; 
-}
-
-.btnNovaTarefa:hover {
-   -fx-background-color: #82e9de;
-   -fx-text-fill: #000000;
-    -fx-scale-y: 0.9;
-}
-
-.btnNovaTarefa:pressed {
-    -fx-scale-y: 0.9;
-    -fx-scale-x: 0.9;
-}
-
-.btnConsultar1 {
-    -fx-background-color: #4db6ac;
-    -fx-text-fill: #ffffff;
-    -fx-cursor: hand;     
-}
-
-.btnConsultar1:hover {
-   -fx-background-color: #82e9de;
-   -fx-text-fill: #000000;
-    -fx-scale-y: 0.9;
-}
-
-.btnConsultar1:pressed {
-    -fx-scale-y: 0.9;
-    -fx-scale-x: 0.9;
-}
-
-.btnCancelar{
-    -fx-cursor: hand;   
-}
-
-.btnCancelar:hover {
-   -fx-background-color: #82e9de;
-   -fx-text-fill: #000000;
-    -fx-text-fill: #ffffff;
-    -fx-scale-y: 0.9;
-}
-
-.btnCancelar:pressed {
-    -fx-scale-y: 0.9;
-    -fx-scale-x: 0.9;
 }

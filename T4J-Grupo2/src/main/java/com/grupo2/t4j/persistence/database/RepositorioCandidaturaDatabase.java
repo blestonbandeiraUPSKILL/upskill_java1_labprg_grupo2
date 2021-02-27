@@ -93,7 +93,47 @@ public class RepositorioCandidaturaDatabase implements RepositorioCandidatura{
     
     @Override
     public boolean save(Candidatura candidatura) throws SQLException{
+        DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, this.password);
+        Connection connection = dbConnectionHandler.openConnection();
+
+        CallableStatement callableStatement = connection.prepareCall(
+                "{CALL createCandidatura(?, ?, ?, ?, ?, ?) } ");
+
+        //if (findById(idCandidatura) == null && findByEmail(emailFreelancer) == null){
+
+        try {
+            connection.setAutoCommit(false);
+
+            callableStatement.setDouble(1, candidatura.getValorPretendido());
+            callableStatement.setInt(2, candidatura.getNumeroDias());
+            callableStatement.setString(3, candidatura.getApresentacao());
+            callableStatement.setString(4, candidatura.getMotivacao());
+            callableStatement.setInt(5, candidatura.getIdAnuncio());
+            callableStatement.setString(6, candidatura.getEmailFreelancer());
+
+            callableStatement.executeQuery();
+
+            connection.commit();
+            return true;
+        }
+        catch (SQLException exception) {
+            exception.printStackTrace();
+            exception.getSQLState();
+            try {
+                System.err.print("Transaction is being rolled back");
+                connection.rollback();
+            }
+            catch (SQLException sqlException) {
+                sqlException.getErrorCode();
+            }
+        }
+
+        finally {
+            dbConnectionHandler.closeAll();
+        }
+
         return false;
+
     }
 
     @Override
@@ -162,15 +202,18 @@ public class RepositorioCandidaturaDatabase implements RepositorioCandidatura{
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
-                String idCandidatura = resultSet.getString(1);
-                String emailFreelancer = resultSet.getString(2);
-                String valorPretendido = resultSet.getString(3);
-                String numeroDias = resultSet.getString(4);
-                String txtApresentacao = resultSet.getString(5);
-                String txtMotivacao = resultSet.getString(6);
-                candidaturas.add(new Candidatura(idCandidatura, emailFreelancer, 
+                int idCandidatura = resultSet.getInt(1);
+                String valorPretendido = resultSet.getString(2);
+                String numeroDias = resultSet.getString(3);
+                String txtApresentacao = resultSet.getString(4);
+                String txtMotivacao = resultSet.getString(5);
+                int idAnuncio = resultSet.getInt(6);
+                String emailFreelancer = resultSet.getString(7);
+                String dataCandidatura = resultSet.getDate(8).toString();
+
+                candidaturas.add(new Candidatura(idCandidatura, idAnuncio, emailFreelancer,
                         Double.parseDouble(valorPretendido),Integer.parseInt(numeroDias),
-                txtApresentacao, txtMotivacao));
+                txtApresentacao, txtMotivacao, dataCandidatura));
             }
 
         }

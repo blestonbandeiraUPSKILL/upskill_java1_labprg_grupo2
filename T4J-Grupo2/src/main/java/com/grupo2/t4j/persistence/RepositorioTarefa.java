@@ -59,4 +59,6 @@ public interface RepositorioTarefa {
     List<String> findReferenciaTarefa(String nifOrganizacao) throws SQLException;
 
     List<Tarefa> findTarefasNaoPublicadas(List<String> referenciasTarefa, String email, String nifOrganizacao) throws SQLException;
+
+    Tarefa findTarefaByIdAnuncio(String referencia, String nifOrganizaca) throws SQLException;
 }

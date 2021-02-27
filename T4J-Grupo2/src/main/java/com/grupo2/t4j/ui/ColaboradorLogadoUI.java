@@ -184,8 +184,6 @@ public class ColaboradorLogadoUI implements Initializable {
                         }
                         sceneStartingPage = new Scene(rootStartingPage);
                         
-                        sceneStartingPage.getStylesheets().add(startingPageUI.estilo);
-                        
                         adicionarStage.setScene(sceneStartingPage);
                         adicionarStage.setTitle(MainApp.TITULO_APLICACAO);
                         adicionarStage.show();

@@ -23,6 +23,7 @@ public class EfectuarCandidaturaController {
     private RepositorioGrauProficiencia repositorioGrauProficiencia = fabricaRepositorios.getRepositorioGrauProficiencia();
     private RepositorioCaracterizacaoCT repositorioCaracterizacaoCT = fabricaRepositorios.getRepositorioCaracterizacaoCT();
     private RepositorioCategoriaTarefa repositorioCategoriaTarefa = fabricaRepositorios.getRepositorioCategoriaTarefa();
+    private RepositorioCandidatura repositorioCandidatura = fabricaRepositorios.getRepositorioCandidatura();
 
     public EfectuarCandidaturaController() throws SQLException {
     }
@@ -77,4 +78,11 @@ public class EfectuarCandidaturaController {
 
     }
 
+    public boolean registarCandidatura(int idAnuncio, double valor, int dias,
+                                       String apresentacao, String motivacao,
+                                       String emailFreelancer) throws SQLException {
+        Candidatura candidatura = new Candidatura(idAnuncio, emailFreelancer, valor, dias, apresentacao, motivacao);
+
+        return repositorioCandidatura.save(candidatura);
+    }
 }

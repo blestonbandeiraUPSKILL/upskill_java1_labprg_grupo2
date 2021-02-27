@@ -537,4 +537,50 @@ public class RepositorioTarefaDatabase implements RepositorioTarefa {
         return null;
     }
 
+    @Override
+    public Tarefa findTarefaByIdAnuncio(String referencia, String nifOrganizaca) throws SQLException {
+        Tarefa tarefa = new Tarefa();
+
+        DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
+        Connection connection = dbConnectionHandler.openConnection();
+
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(
+                    "SELECT * FROM Tarefa " +
+                            "WHERE nifOrganizacao LIKE ?" +
+                            "AND referencia LIKE ?"
+
+            );
+
+            preparedStatement.setString(1, referencia);
+            preparedStatement.setString(2, nifOrganizaca);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                tarefa.setDesignacao(resultSet.getString(3));
+                tarefa.setDescInformal(resultSet.getString(4));
+                tarefa.setDescInformal(resultSet.getString(5));
+                tarefa.setDescTecnica(resultSet.getString(6));
+                tarefa.setDuracaoEst(resultSet.getInt(7));
+                tarefa.setCustoEst(resultSet.getDouble(8));
+                tarefa.setCodigoCategoriaTarefa(resultSet.getString(9));
+                tarefa.setEmailColaborador(resultSet.getString(10));
+            }
+
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+            exception.getSQLState();
+            try {
+                System.err.print("Transaction is being rolled back");
+                connection.rollback();
+            } catch (SQLException sqlException) {
+                sqlException.getErrorCode();
+            }
+
+        } finally {
+            dbConnectionHandler.closeAll();
+        }
+        return tarefa;
+    }
 }

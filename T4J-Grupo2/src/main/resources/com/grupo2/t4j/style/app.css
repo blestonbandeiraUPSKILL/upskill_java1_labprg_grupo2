@@ -50,6 +50,8 @@
 }
 
 .btnSair {
+    -fx-font-family: Calibri;
+    -fx-font-size: 14px;
     -fx-background-color: #AF4448;
     -fx-text-fill: #ffffff;
     -fx-cursor: hand;
@@ -86,23 +88,6 @@
 
 .FlowPane {
     -fx-background-color: #eceff1;
-}
-
-.btnAddColaborador {
-    -fx-background-color: #4db6ac;
-    -fx-text-fill: #ffffff;
-    -fx-cursor: hand;
-}
-
-.btnAddColaborador:hover {
-   -fx-background-color: #82e9de;
-   -fx-text-fill: #000000;
-    -fx-scale-y: 0.9;
-}
-
-.btnAddColaborador:pressed {
-    -fx-scale-y: 0.9;
-    -fx-scale-x: 0.9;
 }
 
 .btnConfirmar {

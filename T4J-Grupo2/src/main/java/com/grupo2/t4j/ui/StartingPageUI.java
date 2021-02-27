@@ -69,7 +69,6 @@ public class StartingPageUI implements Initializable {
         estilo = "/com/grupo2/t4j/style/dark.css";
 
         scene.getStylesheets().clear();
-
         scene.getStylesheets().add(getClass().getResource(estilo).toExternalForm());
     }
 
@@ -92,8 +91,6 @@ public class StartingPageUI implements Initializable {
             sceneRegistarOrganizacao = new Scene(rootRegistarOrg);
             RegistarOrgEGestorUI registarOrgEGestorUI = loaderRegistarOrg.getController();
             registarOrgEGestorUI.associarParentUI(this);
-            
-            sceneRegistarOrganizacao.getStylesheets().add(getClass().getResource(estilo).toExternalForm());
 
             adicionarStage.setScene(sceneRegistarOrganizacao);
             adicionarStage.setTitle("Registar Organização");
@@ -168,9 +165,7 @@ public class StartingPageUI implements Initializable {
             sceneAdministrativo = new Scene(rootAdministrativo);
             AdministrativoLogadoUI administrativoLogadoUI = loaderAdministrativo.getController();
             administrativoLogadoUI.associarParentUI(this);
-            
-            sceneAdministrativo.getStylesheets().add(getClass().getResource(estilo).toExternalForm());
-            
+
             adicionarStage.setScene(sceneAdministrativo);
             adicionarStage.setTitle("T4J - Administrativo");
             adicionarStage.show();
@@ -191,9 +186,7 @@ public class StartingPageUI implements Initializable {
             sceneGestor = new Scene(rootGestor);
             GestorLogadoUI gestorLogadoUI = loaderGestor.getController();
             gestorLogadoUI.associarParentUI(this);
-            
-            sceneGestor.getStylesheets().add(getClass().getResource(estilo).toExternalForm());
-            
+
             adicionarStage.setScene(sceneGestor);
             adicionarStage.setTitle("T4J - Gestor da Organização");
             adicionarStage.show();
@@ -215,9 +208,7 @@ public class StartingPageUI implements Initializable {
             sceneColaborador = new Scene(rootColaborador);
             ColaboradorLogadoUI colaboradorLogadoUI = loaderColaborador.getController();
             colaboradorLogadoUI.associarParentUI(this);
-            
-            sceneColaborador.getStylesheets().add(getClass().getResource(estilo).toExternalForm());
-            
+
             adicionarStage.setScene(sceneColaborador);
             adicionarStage.setTitle("T4J - Colaborador");
             adicionarStage.show();
@@ -239,8 +230,6 @@ public class StartingPageUI implements Initializable {
             sceneFreelancer = new Scene(rootFreelancer);
             FreelancerLogadoUI freelancerLogadoUI = loaderFreelancer.getController();
             freelancerLogadoUI.associarParentUI(this);
-            
-            sceneFreelancer.getStylesheets().add(getClass().getResource(estilo).toExternalForm());
             
             adicionarStage.setScene(sceneFreelancer);
             adicionarStage.setTitle("T4J - Freelancer");

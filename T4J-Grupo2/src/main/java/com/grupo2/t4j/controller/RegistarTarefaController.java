@@ -69,5 +69,9 @@ public class RegistarTarefaController {
         return repositorioTarefa.findReferenciaTarefa(nifOrganizacao);
     }
 
+    public Tarefa findTarefaByIdAnuncio(String referencia, String nifOrganizacao) throws SQLException {
+        return repositorioTarefa.findTarefaByIdAnuncio(referencia, nifOrganizacao)
+    }
+
 
 }
