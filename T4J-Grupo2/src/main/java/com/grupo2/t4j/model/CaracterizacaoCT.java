@@ -24,8 +24,6 @@ public class CaracterizacaoCT implements Serializable{
      * A obrigatoriedade da competencia tecnica
      */
     private Obrigatoriedade obrigatoriedade;
-
-    
     
     public CaracterizacaoCT (){
     }
@@ -80,9 +78,6 @@ public class CaracterizacaoCT implements Serializable{
         this.codigoGP = codigoGP;
     }
 
-
-    
-
     /**
      * Actualiza a obrigatoriedade da competencia tecnica
      * @param obrigatoriedade the obrigatoriedade to set
@@ -90,9 +85,6 @@ public class CaracterizacaoCT implements Serializable{
     public void setObrigatoriedade(Obrigatoriedade obrigatoriedade) {
         this.obrigatoriedade = obrigatoriedade;
     }
-
-
-    
     
     /**
      * Representacao textual da competencia tecnica caracterizada em formato de exibição

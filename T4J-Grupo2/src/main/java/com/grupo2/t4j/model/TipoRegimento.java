@@ -5,6 +5,8 @@
  */
 package com.grupo2.t4j.model;
 
+import com.grupo2.t4j.exception.DescricaoInvalidaException;
+import com.grupo2.t4j.exception.IdInvalidoException;
 import com.grupo2.t4j.exception.NomeInvalidoException;
 
 /**
@@ -27,6 +29,8 @@ public class TipoRegimento {
      * As regras aplicáveis a este tipo de regimento.
      */
     private String descricaoRegras;
+
+    public TipoRegimento(){}
     
     /**
      * Construtor completo da classe Tipo de Regimento
@@ -37,7 +41,7 @@ public class TipoRegimento {
     public TipoRegimento(int idTipoRegimento, String designacao,
             String descricaoRegras){
         setIdTipoRegimento(idTipoRegimento);
-        setDesignacaoSeriacao(designacao);
+        setDesignacao(designacao);
         setDescricaoRegras(descricaoRegras);
     }
     
@@ -47,7 +51,7 @@ public class TipoRegimento {
      */
     public TipoRegimento (TipoRegimento tipoRegimento){
         setIdTipoRegimento(tipoRegimento.idTipoRegimento);
-        setDesignacaoSeriacao(tipoRegimento.designacao);
+        setDesignacao(tipoRegimento.designacao);
         setDescricaoRegras(tipoRegimento.descricaoRegras);
     }
     
@@ -56,14 +60,22 @@ public class TipoRegimento {
      * @param idTipoRegimento
      */
     public void setIdTipoRegimento(int idTipoRegimento){
-        this.idTipoRegimento = idTipoRegimento;
+        if(idTipoRegimento > 0 ) {
+            this.idTipoRegimento = idTipoRegimento;
+        }
+        else {
+            throw new IdInvalidoException("O id do tipo de regimento não é válido.");
+        }
     }
     
     /**
      * Define a designação do tipo de seriação adotado para este tipo de regimento.
      * @param designacao
      */
-    public void setDesignacaoSeriacao(String designacao){
+    public void setDesignacao(String designacao){
+        if (designacao == null || designacao.trim().isEmpty()) {
+            throw new DescricaoInvalidaException("A designação tem de ser preenchida.");
+        }
         this.designacao = designacao;
     }
     
@@ -90,7 +102,7 @@ public class TipoRegimento {
      * Devolve a designação do tipo de seriação adotado para este tipo de regimento.
      * @return designacao
      */
-    public String getDesignacaoSeriacao(){
+    public String getDesignacao(){
         return designacao;
     }
     

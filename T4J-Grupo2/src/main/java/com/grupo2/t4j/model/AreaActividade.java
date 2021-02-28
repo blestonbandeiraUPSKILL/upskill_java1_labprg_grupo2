@@ -59,10 +59,6 @@ public class AreaActividade implements Serializable{
         if (codigo == null || codigo.trim().isEmpty()) {
             throw new AreaActividadeDuplicadaException("O Código da Área de Actividade é um campo obrigatório!");
         }
-       /* if (RepositorioAreaActividade.getInstance().getAreaActividadeByCodigo(codigo).equals(codigo)) {
-            throw new AreaActividadeDuplicadaException("Código de Área de Actividade "
-                    + "já existe!");
-        }*/
         this.codigo = codigo;
     }
     

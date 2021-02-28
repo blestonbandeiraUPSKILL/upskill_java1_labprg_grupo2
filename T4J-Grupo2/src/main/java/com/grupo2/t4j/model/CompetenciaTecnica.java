@@ -38,14 +38,8 @@ public class CompetenciaTecnica implements Serializable {
      */
     private String codigoAreaActividade;
 
-
-    
-    //private static List<GrauProficiencia> grausProficienciaAplicaveis = new ArrayList<>();
-
     public CompetenciaTecnica() {
-
     }
-
 
     /**
      * Construtor CompetenciaTecnica

@@ -26,7 +26,7 @@ public interface RepositorioGrauProficiencia {
     
     ArrayList<GrauProficiencia> findByCompetenciaTecnica(String codigoCompetenciaTecnica) throws SQLException;
     
-    GrauProficiencia findByGrau(String grau) throws SQLException;
+    GrauProficiencia findByGrau(int grau) throws SQLException;
 
-    GrauProficiencia findByGrauECompetencia(String grau, String codigoCompetenciaTecnica) throws SQLException;
+    GrauProficiencia findByGrauECompetencia(int grau, String codigoCompetenciaTecnica) throws SQLException;
 }

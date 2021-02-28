@@ -59,7 +59,7 @@ public class RepositorioFreelancerInMemory implements Serializable, RepositorioF
         Freelancer f2 = findByEmail(emailFree);
         if (f1 == null && f2 == null) {
             EnderecoPostal endereco = new EnderecoPostal(arruamento, numeroPorta, localidade, codPostal);
-            Freelancer freel = new Freelancer(new Email(emailFree), nome, new Password(passwordFree), nif, telefone, endereco.getCodigoEnderecoPostal());
+            Freelancer freel = new Freelancer(new Email(emailFree), nome, new Password(passwordFree), nif, telefone, endereco.getIdEnderecoPostal());
             this.listaFreelancers.add(freel);
             return true;
         } else {

@@ -29,7 +29,7 @@ public class Organizacao implements Serializable{
     /**
      * O NIF da organização
      */
-    private String NIF;
+    private String nif;
     
     /**
      * O id do endereço postal da organização
@@ -91,15 +91,15 @@ public class Organizacao implements Serializable{
 
     /**
      * Define o NIF da organização
-     * @param NIF
+     * @param nif
      * @throws NifInvalidoException
      */
-    public void setNif(String NIF) throws NifInvalidoException {
-        long numNif = Long.parseLong(NIF);
+    public void setNif(String nif) throws NifInvalidoException {
+        long numNif = Long.parseLong(nif);
         if (numNif >= 100000000 && numNif <= 999999999) {
-            this.NIF = NIF;
+            this.nif = nif;
         } else {
-            throw new NifInvalidoException(NIF + ": NIF inválido!");
+            throw new NifInvalidoException(nif + ": NIF inválido!");
         }
     }
 
@@ -152,7 +152,7 @@ public class Organizacao implements Serializable{
      * @return NIF
      */
     public String getNif(){
-        return NIF;
+        return nif;
     }
 
     /**
@@ -196,6 +196,6 @@ public class Organizacao implements Serializable{
      * @return o nome, NIF e email da organização
      */
     public String toString(){
-        return String.format("Nome da Organização: %-15s |NIF: %-15s |Email: %-20s",nomeOrg, NIF, emailOrg.getEmailText());
+        return String.format("Nome da Organização: %-15s |NIF: %-15s |Email: %-20s",nomeOrg, nif, emailOrg.getEmailText());
     }
 }

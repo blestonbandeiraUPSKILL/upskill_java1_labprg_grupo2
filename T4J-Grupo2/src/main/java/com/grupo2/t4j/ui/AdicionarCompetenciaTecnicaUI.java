@@ -126,7 +126,7 @@ public class AdicionarCompetenciaTecnicaUI implements Initializable {
             boolean adicionou = registarGrauProficienciaController.registarGrauProficiencia(
                     txtValor.getText(),
                     txtDesignacao.getText(),
-                    txtCodigo.getText());
+                    Integer.parseInt(txtCodigo.getText()));
 
             if(adicionou) {
                 updateListViewGrausProficiencia(actionEvent);
@@ -153,7 +153,7 @@ public class AdicionarCompetenciaTecnicaUI implements Initializable {
     public void updateListViewGrausProficiencia(ActionEvent actionEvent) throws SQLException {
         listViewGrausAdicionados.getItems().add(
                 registarGrauProficienciaController.findByGrauECompetenciaTecnica(
-                        txtValor.getText(), txtCodigo.getText())
+                        Integer.parseInt(txtValor.getText()), txtCodigo.getText())
         );
     }
 

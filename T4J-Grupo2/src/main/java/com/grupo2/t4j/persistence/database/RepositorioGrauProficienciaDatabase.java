@@ -47,7 +47,7 @@ public class RepositorioGrauProficienciaDatabase implements RepositorioGrauProfi
             try {
                 connection.setAutoCommit(false);
 
-                callableStatement.setString(1, grauProficiencia.getGrau());
+                callableStatement.setInt(1, grauProficiencia.getGrau());
                 callableStatement.setString(2, grauProficiencia.getDesignacao());
                 callableStatement.setString(3, grauProficiencia.getCodigoCompetenciaTecnica());
 
@@ -83,7 +83,7 @@ public class RepositorioGrauProficienciaDatabase implements RepositorioGrauProfi
     }
 
 
-    public GrauProficiencia findByGrauECompetencia(String grau, String codigoCompetenciaTecnica) throws SQLException {
+    public GrauProficiencia findByGrauECompetencia(int grau, String codigoCompetenciaTecnica) throws SQLException {
         DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
         Connection connection = dbConnectionHandler.openConnection();
 
@@ -94,7 +94,7 @@ public class RepositorioGrauProficienciaDatabase implements RepositorioGrauProfi
         try {
             connection.setAutoCommit(false);
 
-            callableStatement.setString(1, grau);
+            callableStatement.setInt(1, grau);
             callableStatement.setString(2, codigoCompetenciaTecnica);
 
             callableStatement.executeUpdate();
@@ -128,7 +128,7 @@ public class RepositorioGrauProficienciaDatabase implements RepositorioGrauProfi
 
             while (resultSet.next()) {
                 int idGrauProficiencia = resultSet.getInt(1);
-                String grau = resultSet.getString(2);
+                int grau = resultSet.getInt(2);
                 String designacao = resultSet.getString(3);
                 grausProficiencia.add(new GrauProficiencia(idGrauProficiencia, grau, designacao, codigoCompetenciaTecnica));
             }
@@ -172,7 +172,7 @@ public class RepositorioGrauProficienciaDatabase implements RepositorioGrauProfi
             while (resultSet.next()) {
                 int idGrauProficiencia = resultSet.getInt(1);
                 String designacao = resultSet.getString(2);
-                String grau = resultSet.getString(3);
+                int grau = resultSet.getInt(3);
                 grausProficiencia.add(new GrauProficiencia(idGrauProficiencia, grau, designacao, codigoCompetenciaTecnica));
 
             }
@@ -198,7 +198,7 @@ public class RepositorioGrauProficienciaDatabase implements RepositorioGrauProfi
     }
 
     @Override
-    public GrauProficiencia findByGrau(String grau) throws SQLException {
+    public GrauProficiencia findByGrau(int grau) throws SQLException {
         return null;
     }
 

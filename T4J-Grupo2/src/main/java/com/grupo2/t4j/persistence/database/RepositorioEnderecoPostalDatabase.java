@@ -39,7 +39,7 @@ public class RepositorioEnderecoPostalDatabase implements RepositorioEnderecoPos
                 "{CALL EnderecoPostal(?, ?, ?, ?)}"
         );
 
-        if (findById(enderecoPostal.getCodigoEnderecoPostal()) == null) {
+        if (findById(enderecoPostal.getIdEnderecoPostal()) == null) {
             try {
                 connection.setAutoCommit(false);
 

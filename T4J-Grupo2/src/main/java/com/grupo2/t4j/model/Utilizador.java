@@ -61,6 +61,7 @@ public class Utilizador implements Serializable{
         this.email = utilizador.getEmail();
         this.nome = utilizador.getNome();
         this.password = utilizador.getPassword();
+        this.rolename = utilizador.getRolename();
     }
 
     public Utilizador(String emailUtilizador, String nome, String password, String rolename) {
@@ -71,7 +72,7 @@ public class Utilizador implements Serializable{
 
     }
 
-    public Utilizador(String nome, String email) {
+    public Utilizador(String email, String nome) {
         setNome(nome);
         setEmail(new Email(email));
     }
