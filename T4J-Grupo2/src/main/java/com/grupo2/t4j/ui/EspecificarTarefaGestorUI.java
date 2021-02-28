@@ -50,7 +50,11 @@ public class EspecificarTarefaGestorUI implements Initializable {
     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        registarTarefaController = new RegistarTarefaController();
+        try {
+            registarTarefaController = new RegistarTarefaController();
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }
         registarAreaActividadeController = new RegistarAreaActividadeController();
         registarCategoriaController = new RegistarCategoriaController();
         gestaoUtilizadoresController = new GestaoUtilizadoresController();

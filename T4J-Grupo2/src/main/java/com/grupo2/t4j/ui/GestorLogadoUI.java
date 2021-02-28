@@ -66,7 +66,11 @@ public class GestorLogadoUI implements Initializable {
         adicionarStage.setResizable(false);
 
         registarAreaActividadeController = new RegistarAreaActividadeController();
-        registarTarefaController = new RegistarTarefaController();
+        try {
+            registarTarefaController = new RegistarTarefaController();
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }
         registarCategoriaController = new RegistarCategoriaController();
         registarColaboradorController = new RegistarColaboradorController();
         gestaoUtilizadoresController = new GestaoUtilizadoresController();

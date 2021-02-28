@@ -88,6 +88,8 @@ public class RepositorioHabilitacaoAcademicaDatabase implements RepositorioHabil
         finally {
             DBConnectionHandler.getInstance().closeAll();
         }
+
+
         return false;
     }
 

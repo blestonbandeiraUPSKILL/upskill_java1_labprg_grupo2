@@ -6,6 +6,7 @@
 package com.grupo2.t4j.persistence.inmemory;
 
 import com.grupo2.t4j.model.GrauProficiencia;
+import com.grupo2.t4j.model.Tarefa;
 import com.grupo2.t4j.persistence.RepositorioGrauProficiencia;
 
 import java.io.Serializable;
@@ -87,6 +88,11 @@ public class RepositorioGrauProficienciaInMemory implements Serializable, Reposi
 
     @Override
     public GrauProficiencia findByGrauECompetencia(int grau, String codigoCompetenciaTecnica) throws SQLException {
+        return null;
+    }
+
+    @Override
+    public List<GrauProficiencia> getAllGrausTarefa(Tarefa tarefa) throws SQLException {
         return null;
     }
 

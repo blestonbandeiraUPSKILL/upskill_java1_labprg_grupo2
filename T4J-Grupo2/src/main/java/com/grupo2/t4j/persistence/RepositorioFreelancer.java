@@ -41,4 +41,6 @@ public interface RepositorioFreelancer {
     List<HabilitacaoAcademica> getAllHabsAcademicas(String emailFreelancer) throws SQLException;
 
     EnderecoPostal getEnderecoPostal(String emailFreelancer) throws SQLException;
+
+    List<GrauProficiencia> getAllGrausFreelancer(String emailFreelancer) throws SQLException;
 }

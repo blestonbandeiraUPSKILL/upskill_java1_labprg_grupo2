@@ -70,7 +70,11 @@ public class FreelancerLogadoUI implements Initializable {
             exception.printStackTrace();
         }
         gestaoUtilizadoresController = new GestaoUtilizadoresController();
-        registarTarefaController = new RegistarTarefaController();
+        try {
+            registarTarefaController = new RegistarTarefaController();
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }
 
         adicionarStage = new Stage();
         adicionarStage.initModality(Modality.APPLICATION_MODAL);;
@@ -101,7 +105,8 @@ public class FreelancerLogadoUI implements Initializable {
         
     public void updateListViewAnuncio() throws SQLException {
 
-        listViewAnuncios.getItems().setAll(registarTarefaController.getAllTarefasPublicadas());
+        String emailFreelancer = gestaoUtilizadoresController.getEmail();
+        listViewAnuncios.getItems().setAll(registarTarefaController.getAllTarefasElegíveis(emailFreelancer));
     }
 
     public void logout(ActionEvent actionEvent) {

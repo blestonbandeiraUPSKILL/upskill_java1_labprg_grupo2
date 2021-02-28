@@ -45,7 +45,11 @@ public class EfectuarCandidaturaUI implements Initializable {
         }
 
         registarAnuncioController = new RegistarAnuncioController();
-        registarTarefaController = new RegistarTarefaController();
+        try {
+            registarTarefaController = new RegistarTarefaController();
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }
 
     }
     
