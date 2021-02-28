@@ -52,6 +52,13 @@ public class FreelancerLogadoUI implements Initializable {
     @FXML TextField txtMotivacao;
     @FXML Button btnAddCandidatura;
     @FXML Button btnSair;
+    
+    @FXML TableColumn colunaReferencia;
+    @FXML TableColumn colunaDesignacao;
+    @FXML TableColumn colunaDuracao;
+    @FXML TableColumn colunaCusto;
+ 
+    @FXML TableView tabelaAnuncios;
 
 
     public void associarParentUI(StartingPageUI startingPageUI) {
@@ -81,7 +88,7 @@ public class FreelancerLogadoUI implements Initializable {
         adicionarStage.setResizable(false);
         
         try {
-            updateListViewAnuncio();
+            updateTableViewAnuncio();
         } catch (SQLException exception) {
             exception.printStackTrace();
         }
@@ -101,6 +108,21 @@ public class FreelancerLogadoUI implements Initializable {
     @FXML
     void verAnuncioAction(ActionEvent event) {
 
+    }
+    
+    private ObservableList<Tarefa> listaAnuncios() throws SQLException {
+        return FXCollections.observableArrayList(registarTarefaController.getAllTarefasPublicadas());
+    }
+    
+    public void updateTableViewAnuncio() throws SQLException {
+        
+        tabelaAnuncios.setItems(listaAnuncios());
+
+        colunaDesignacao.setCellValueFactory( new PropertyValueFactory<>("designacao"));
+        colunaReferencia.setCellValueFactory( new PropertyValueFactory<>("referencia"));
+        colunaDuracao.setCellValueFactory( new PropertyValueFactory<>("duracaoEst"));
+        colunaCusto.setCellValueFactory( new PropertyValueFactory<>("custoEst"));
+        
     }
         
     public void updateListViewAnuncio() throws SQLException {
