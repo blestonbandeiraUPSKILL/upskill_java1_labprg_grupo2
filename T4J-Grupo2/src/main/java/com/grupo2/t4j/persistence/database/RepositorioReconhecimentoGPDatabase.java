@@ -28,10 +28,6 @@ public class RepositorioReconhecimentoGPDatabase implements RepositorioReconheci
      */
     private static RepositorioReconhecimentoGPDatabase repositorioReconhecimentoGPDatabase;
     
-    String jdbcUrl = "jdbc:oracle:thin:@vsrvbd1.dei.isep.ipp.pt:1521/pdborcl";
-    String username = "UPSKILL_BD_TURMA1_01";
-    String password = "qwerty";
-    
     /**
      * Inicializa o Repositório de todas as Competências Técnicas de grau de proficiência 
      * reconhecidaas de todos os Freelancers
@@ -55,16 +51,13 @@ public class RepositorioReconhecimentoGPDatabase implements RepositorioReconheci
     public boolean save(int idGrauProficiencia, String emailFreelancer, String dataReconhecimento) throws  ReconhecimentoDuplicadoException,
             SQLException{
 
+        Connection connection = DBConnectionHandler.getInstance().openConnection();
 
-        DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
-        Connection connection = dbConnectionHandler.openConnection();
-
-        CallableStatement callableStatement = connection.prepareCall(
-                "{CALL createReconhecimentoGP(?, ?, ?)}"
-        );
-
-        // if (findByCategoriaEGrau(reconhecimentoGP.getCodigoCategoria(), caracterizacaoCT.getCodigoGP()) == null){
         try {
+            CallableStatement callableStatement = connection.prepareCall(
+                    "{CALL createReconhecimentoGP(?, ?, ?)}"
+            );
+
             connection.setAutoCommit(false);
 
             callableStatement.setInt(1, idGrauProficiencia);
@@ -88,7 +81,7 @@ public class RepositorioReconhecimentoGPDatabase implements RepositorioReconheci
             }
         }
         finally {
-            dbConnectionHandler.closeAll();
+            DBConnectionHandler.getInstance().closeAll();
         }
         return false;
 
@@ -97,40 +90,39 @@ public class RepositorioReconhecimentoGPDatabase implements RepositorioReconheci
     @Override
     public boolean save(ReconhecimentoGP reconhecimentoGP) throws ReconhecimentoDuplicadoException,
             SQLException {
-        
-        DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
-        Connection connection = dbConnectionHandler.openConnection();
 
-        CallableStatement callableStatement = connection.prepareCall(
-                "{CALL createReconhecimentoGP(?, ?, ?)}"
-        );
-       // if (findByCategoriaEGrau(reconhecimentoGP.getCodigoCategoria(), caracterizacaoCT.getCodigoGP()) == null){
+        Connection connection = DBConnectionHandler.getInstance().openConnection();
+
+        try {
+            CallableStatement callableStatement = connection.prepareCall(
+                    "{CALL createReconhecimentoGP(?, ?, ?)}"
+            );
+
+            connection.setAutoCommit(false);
+
+            callableStatement.setInt(1, reconhecimentoGP.getIdGrauProficiencia());
+            callableStatement.setString(2, reconhecimentoGP.getEmailFreelancer().getEmailText());
+            callableStatement.setString(3, reconhecimentoGP.getDataReconhecimento());
+
+            callableStatement.executeQuery();
+
+            connection.commit();
+            return true;
+        }
+        catch (SQLException exception) {
+            exception.printStackTrace();
+            exception.getSQLState();
             try {
-                connection.setAutoCommit(false);
-
-                callableStatement.setInt(1, reconhecimentoGP.getIdGrauProficiencia());
-                callableStatement.setString(2, reconhecimentoGP.getEmailFreelancer().getEmailText());
-                callableStatement.setString(3, reconhecimentoGP.getDataReconhecimento());
-
-                callableStatement.executeQuery();
-
-                connection.commit();
-                return true;
+                System.err.print("Transaction is being rolled back");
+                connection.rollback();
             }
-            catch (SQLException exception) {
-                exception.printStackTrace();
-                exception.getSQLState();
-                try {
-                    System.err.print("Transaction is being rolled back");
-                    connection.rollback();
-                }
-                catch (SQLException sqlException) {
-                    sqlException.getErrorCode();
-                }
+            catch (SQLException sqlException) {
+                sqlException.getErrorCode();
             }
-            finally {
-                dbConnectionHandler.closeAll();
-            }
+        }
+        finally {
+            DBConnectionHandler.getInstance().closeAll();
+        }
         return false;
     }
     
@@ -138,8 +130,7 @@ public class RepositorioReconhecimentoGPDatabase implements RepositorioReconheci
     public ArrayList<ReconhecimentoGP> getAll(String email) throws SQLException {
         ArrayList<ReconhecimentoGP> reconhecimentosGP = new ArrayList<>();
 
-        DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
-        Connection connection = dbConnectionHandler.openConnection();
+        Connection connection = DBConnectionHandler.getInstance().openConnection();
 
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(
@@ -174,7 +165,7 @@ public class RepositorioReconhecimentoGPDatabase implements RepositorioReconheci
             }
 
         } finally {
-            dbConnectionHandler.closeAll();
+            DBConnectionHandler.getInstance().closeAll();
         }
         return reconhecimentosGP;
 
@@ -192,8 +183,7 @@ public class RepositorioReconhecimentoGPDatabase implements RepositorioReconheci
         
         ReconhecimentoGP reconhecimentoGP = null;
 
-        DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
-        Connection connection = dbConnectionHandler.openConnection();
+        Connection connection = DBConnectionHandler.getInstance().openConnection();
 
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(
@@ -228,7 +218,7 @@ public class RepositorioReconhecimentoGPDatabase implements RepositorioReconheci
 
         }
         finally {
-            dbConnectionHandler.closeAll();
+            DBConnectionHandler.getInstance().closeAll();
         }
 
         return reconhecimentoGP;

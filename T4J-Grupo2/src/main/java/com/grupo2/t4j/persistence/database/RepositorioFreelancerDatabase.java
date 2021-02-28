@@ -28,10 +28,6 @@ public class RepositorioFreelancerDatabase implements RepositorioFreelancer{
      */
     private static RepositorioFreelancerDatabase repositorioFreelancerDatabase;
     
-    String jdbcUrl = "jdbc:oracle:thin:@vsrvbd1.dei.isep.ipp.pt:1521/pdborcl";
-    String username = "UPSKILL_BD_TURMA1_01";
-    String password = "qwerty";
-    
     /**
      * Inicializa o Repositório de Freelancers
      */
@@ -55,15 +51,14 @@ public class RepositorioFreelancerDatabase implements RepositorioFreelancer{
                         String numeroPorta, String localidade, String codPostal) throws FreelancerDuplicadoException,
             SQLException{
 
-        DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, this.password);
-        Connection connection = dbConnectionHandler.openConnection();
-
-        CallableStatement callableStatement = connection.prepareCall(
+        Connection connection = DBConnectionHandler.getInstance().openConnection();
+        try {
+            CallableStatement callableStatement = connection.prepareCall(
                 "{CALL createFreelancer(?, ?, ?, ?, ?, ?, ?, ?, ?) } ");
 
-        if (findByNif(nif) == null && findByEmail(emailFree) == null){
+            if (findByNif(nif) == null && findByEmail(emailFree) == null){
 
-            try {
+
                 connection.setAutoCommit(false);
 
                 callableStatement.setString(1, emailFree);
@@ -81,21 +76,21 @@ public class RepositorioFreelancerDatabase implements RepositorioFreelancer{
                 connection.commit();
                 return true;
             }
-            catch (SQLException exception) {
-                exception.printStackTrace();
-                exception.getSQLState();
-                try {
-                    System.err.print("Transaction is being rolled back");
-                    connection.rollback();
-                }
-                catch (SQLException sqlException) {
-                    sqlException.getErrorCode();
-                }
+        }
+        catch (SQLException exception) {
+            exception.printStackTrace();
+            exception.getSQLState();
+            try {
+                System.err.print("Transaction is being rolled back");
+                connection.rollback();
             }
+            catch (SQLException sqlException) {
+                sqlException.getErrorCode();
+            }
+        }
 
-            finally {
-                dbConnectionHandler.closeAll();
-            }
+        finally {
+            DBConnectionHandler.getInstance().closeAll();
         }
 
         return false;
@@ -110,14 +105,13 @@ public class RepositorioFreelancerDatabase implements RepositorioFreelancer{
 
     @Override
     public Freelancer findByNif(String nif) throws SQLException{
-        
-        DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
-        Connection connection = dbConnectionHandler.openConnection();
 
-        CallableStatement callableStatementOrg = connection.prepareCall(
-                 "{CALL findFreelancerByNif(?)}");
+        Connection connection = DBConnectionHandler.getInstance().openConnection();
 
         try {
+            CallableStatement callableStatementOrg = connection.prepareCall(
+                    "{CALL findFreelancerByNif(?)}");
+
             connection.setAutoCommit(false);
 
             callableStatementOrg.setString(1, nif);
@@ -131,24 +125,24 @@ public class RepositorioFreelancerDatabase implements RepositorioFreelancer{
 
 
         }
+        finally {
+            DBConnectionHandler.getInstance().closeAll();
+        }
 
         return new Freelancer();
-        
-
     }
 
     @Override
     public Password findPassword(String email) throws SQLException {
 
-        DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
-        Connection connection = dbConnectionHandler.openConnection();
-
-        PreparedStatement preparedStatement = connection.prepareStatement(
-                "SELECT utilizador.password FROM Utilizador " +
-                        "INNER JOIN Freelancer ON freelancer.email LIKE ? "
-        );
+        Connection connection = DBConnectionHandler.getInstance().openConnection();
 
         try {
+            PreparedStatement preparedStatement = connection.prepareStatement(
+                "SELECT utilizador.password FROM Utilizador " +
+                        "INNER JOIN Freelancer ON freelancer.email LIKE ? "
+            );
+
             connection.setAutoCommit(false);
 
             preparedStatement.setString(1, email);
@@ -165,6 +159,9 @@ public class RepositorioFreelancerDatabase implements RepositorioFreelancer{
             exception.printStackTrace();
             exception.getSQLState();
         }
+        finally {
+            DBConnectionHandler.getInstance().closeAll();
+        }
 
         return null;
     }
@@ -174,47 +171,46 @@ public class RepositorioFreelancerDatabase implements RepositorioFreelancer{
 
         Freelancer freelancer = new Freelancer();
 
-        DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
-        Connection connection = dbConnectionHandler.openConnection();
-
-        CallableStatement callableStatement = connection.prepareCall(
-                 "{CALL findFreelancerByEmail(?)}"
-        );
+        Connection connection = DBConnectionHandler.getInstance().openConnection();
 
         try {
+            CallableStatement callableStatement = connection.prepareCall(
+                    "{CALL findFreelancerByEmail(?)}"
+            );
+
             connection.setAutoCommit(false);
 
             callableStatement.setString(1, emailFree);
             callableStatement.executeQuery();
 
-            return null;
+            PreparedStatement preparedStatement = connection.prepareStatement(
+                    "SELECT Freelancer.telefone, " +
+                            "Freelancer.nif, " +
+                            "Utilizador.nome, " +
+                            "Freelancer.idEnderecoPostal " +
+                            "FROM Freelancer INNER JOIN Utilizador " +
+                            "ON freelancer.email LIKE utilizador.email " +
+                            "WHERE freelancer.email LIKE ?"
+            );
 
+            preparedStatement.setString(1, emailFree);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while(resultSet.next()) {
+                freelancer.setEmail(new Email(emailFree));
+                freelancer.setTelefone(resultSet.getString(1));
+                freelancer.setNif(resultSet.getString(2));
+                freelancer.setNome(resultSet.getString(3));
+                freelancer.setIdEnderecoPostal(resultSet.getInt(4));
+            }
         } catch (SQLException exception) {
             exception.printStackTrace();
             exception.getSQLState();
 
         }
-
-        PreparedStatement preparedStatement = connection.prepareStatement(
-                "SELECT Freelancer.telefone, " +
-                        "Freelancer.nif, " +
-                        "Utilizador.nome, " +
-                        "Freelancer.idEnderecoPostal " +
-                        "FROM Freelancer INNER JOIN Utilizador " +
-                        "ON freelancer.email LIKE utilizador.email " +
-                        "WHERE freelancer.email LIKE ?"
-        );
-
-        preparedStatement.setString(1, emailFree);
-
-        ResultSet resultSet = preparedStatement.executeQuery();
-
-        while(resultSet.next()) {
-            freelancer.setEmail(new Email(emailFree));
-            freelancer.setTelefone(resultSet.getString(1));
-            freelancer.setNif(resultSet.getString(2));
-            freelancer.setNome(resultSet.getString(3));
-            freelancer.setIdEnderecoPostal(resultSet.getInt(4));
+        finally {
+            DBConnectionHandler.getInstance().closeAll();
         }
 
         return freelancer;
@@ -226,8 +222,7 @@ public class RepositorioFreelancerDatabase implements RepositorioFreelancer{
         
         ArrayList<Freelancer> freelancers = new ArrayList<>();
 
-        DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
-        Connection connection = dbConnectionHandler.openConnection();
+        Connection connection = DBConnectionHandler.getInstance().openConnection();
 
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(
@@ -259,7 +254,7 @@ public class RepositorioFreelancerDatabase implements RepositorioFreelancer{
             }
         }
         finally {
-            dbConnectionHandler.closeAll();
+            DBConnectionHandler.getInstance().closeAll();
         }
 
         return freelancers;
@@ -270,8 +265,7 @@ public class RepositorioFreelancerDatabase implements RepositorioFreelancer{
         
         ArrayList<String> listaEmailfreelancers = new ArrayList<>();
 
-        DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
-        Connection connection = dbConnectionHandler.openConnection();
+        Connection connection = DBConnectionHandler.getInstance().openConnection();
 
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(
@@ -303,7 +297,7 @@ public class RepositorioFreelancerDatabase implements RepositorioFreelancer{
 
         }
         finally {
-            dbConnectionHandler.closeAll();
+            DBConnectionHandler.getInstance().closeAll();
         }
         return listaEmailfreelancers;
 
@@ -313,8 +307,7 @@ public class RepositorioFreelancerDatabase implements RepositorioFreelancer{
     public List<ReconhecimentoGP> getAllReconhecimentoGP(String emailFreelancer) throws SQLException {
         ArrayList<ReconhecimentoGP> reconhecimentosGP = new ArrayList<>();
 
-        DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
-        Connection connection = dbConnectionHandler.openConnection();
+        Connection connection = DBConnectionHandler.getInstance().openConnection();
 
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(
@@ -349,7 +342,7 @@ public class RepositorioFreelancerDatabase implements RepositorioFreelancer{
             }
         }
         finally {
-            dbConnectionHandler.closeAll();
+            DBConnectionHandler.getInstance().closeAll();
         }
 
         return reconhecimentosGP;
@@ -360,8 +353,7 @@ public class RepositorioFreelancerDatabase implements RepositorioFreelancer{
     public List<HabilitacaoAcademica> getAllHabsAcademicas(String emailFreelancer) throws SQLException {
         ArrayList<HabilitacaoAcademica> habsAcademicas = new ArrayList<>();
 
-        DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
-        Connection connection = dbConnectionHandler.openConnection();
+        Connection connection = DBConnectionHandler.getInstance().openConnection();
 
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(
@@ -399,7 +391,7 @@ public class RepositorioFreelancerDatabase implements RepositorioFreelancer{
             }
         }
         finally {
-            dbConnectionHandler.closeAll();
+            DBConnectionHandler.getInstance().closeAll();
         }
 
         return habsAcademicas;
@@ -409,8 +401,7 @@ public class RepositorioFreelancerDatabase implements RepositorioFreelancer{
     public EnderecoPostal getEnderecoPostal(String emailFreelancer) throws SQLException {
         EnderecoPostal enderecoPostal = new EnderecoPostal();
 
-        DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
-        Connection connection = dbConnectionHandler.openConnection();
+        Connection connection = DBConnectionHandler.getInstance().openConnection();
 
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(
@@ -443,7 +434,7 @@ public class RepositorioFreelancerDatabase implements RepositorioFreelancer{
             }
         }
         finally {
-            dbConnectionHandler.closeAll();
+            DBConnectionHandler.getInstance().closeAll();
         }
 
         return enderecoPostal;

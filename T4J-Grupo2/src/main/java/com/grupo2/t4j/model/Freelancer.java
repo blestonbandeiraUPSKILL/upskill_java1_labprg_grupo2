@@ -41,7 +41,6 @@ public class Freelancer extends Utilizador implements Serializable{
      * O construtor vazio da classe Freelancer
      */
     public Freelancer(){
-        
     }
     
     /**

@@ -31,17 +31,6 @@ public class RepositorioAnuncioDataBase implements RepositorioAnuncio {
     private static RepositorioAnuncioDataBase repositorioAnuncioDataBase;
 
     /**
-     * A data atual no formato da classe Data
-     */
-    private Calendar cal = Calendar.getInstance();
-    private Data hoje = new Data(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH),
-            cal.get(Calendar.DAY_OF_MONTH));
-
-    String jdbcUrl = "jdbc:oracle:thin:@vsrvbd1.dei.isep.ipp.pt:1521/pdborcl";
-    String username = "UPSKILL_BD_TURMA1_01";
-    String password = "qwerty";
-
-    /**
      * Inicializa o Repositório de Anúncios
      */
     private RepositorioAnuncioDataBase() {
@@ -63,13 +52,13 @@ public class RepositorioAnuncioDataBase implements RepositorioAnuncio {
     public boolean save(String referenciaTarefa, String nifOrganizacao, String dtInicioPublicitacao, String dtFimPublicitacao, String dtInicioCandidatura, String dtFimCandidatura, String dtInicioSeriacao,
             String dtFimSeriacao, int idTipoRegimento) throws AnuncioDuplicadoException, SQLException {
 
-        DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
-        Connection connection = dbConnectionHandler.openConnection();
-
-        CallableStatement callableStatement = connection.prepareCall(
-                "{CALL createAnuncio(?, ?, ?, ?, ?, ?, ?, ?, ?) }");
+        Connection connection = DBConnectionHandler.getInstance().openConnection();
 
         try {
+
+            CallableStatement callableStatement = connection.prepareCall(
+                    "{CALL createAnuncio(?, ?, ?, ?, ?, ?, ?, ?, ?) }");
+
             connection.setAutoCommit(false);
 
             callableStatement.setString(1, referenciaTarefa);
@@ -96,7 +85,7 @@ public class RepositorioAnuncioDataBase implements RepositorioAnuncio {
                 sqlException.getErrorCode();
             }
         } finally {
-            dbConnectionHandler.closeAll();
+            DBConnectionHandler.getInstance().closeAll();
         }
 
         return false;
@@ -105,13 +94,13 @@ public class RepositorioAnuncioDataBase implements RepositorioAnuncio {
 
     @Override
     public boolean save(Anuncio anuncio) throws SQLException {
-        DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
-        Connection connection = dbConnectionHandler.openConnection();
 
-        CallableStatement callableStatement = connection.prepareCall(
-                "{CALL createAnuncio(?, ?, ?, ?, ?, ?, ?, ?, ?)}");
+        Connection connection = DBConnectionHandler.getInstance().openConnection();
 
         try {
+            CallableStatement callableStatement = connection.prepareCall(
+                    "{CALL createAnuncio(?, ?, ?, ?, ?, ?, ?, ?, ?)}");
+
             connection.setAutoCommit(false);
 
             callableStatement.setString(1, anuncio.getReferenciaTarefa());
@@ -128,6 +117,7 @@ public class RepositorioAnuncioDataBase implements RepositorioAnuncio {
 
             connection.commit();
             return true;
+
         } catch (SQLException exception) {
             exception.printStackTrace();
             exception.getSQLState();
@@ -138,7 +128,7 @@ public class RepositorioAnuncioDataBase implements RepositorioAnuncio {
                 sqlException.getErrorCode();
             }
         } finally {
-            dbConnectionHandler.closeAll();
+            DBConnectionHandler.getInstance().closeAll();
         }
 
         return false;
@@ -149,86 +139,22 @@ public class RepositorioAnuncioDataBase implements RepositorioAnuncio {
         return null;
     }
 
-    /*@Override
-    public ArrayList<Anuncio> getAllByStatus(TipoStatusAnuncio status) throws SQLException{
-        
-        
-        return null;
-    }*/
-
     @Override
     public ArrayList<Anuncio> getAll() throws SQLException {
-
-        return null;
-
-    }
-
-    public ArrayList<Anuncio> getAllByStatus(TipoStatusAnuncio status) throws SQLException {
-        /*ArrayList<Anuncio> anuncios = new ArrayList<>();
-
-        DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
-        Connection connection = dbConnectionHandler.openConnection();
-
-        try {
-            PreparedStatement preparedStatement = connection.prepareStatement(
-                    "SELECT * FROM Anuncio"
-            );
-
-            ResultSet resultSet = preparedStatement.executeQuery();
-
-            while(resultSet.next()) {
-                String dtInicioPublicitacao = resultSet.getString(1);
-                String dtFimPublicitacao = resultSet.getString(2);
-                String dtInicioCandidatura = resultSet.getString(3);
-                String dtFimCandidatura = resultSet.getString(4);
-                String dtInicioSeriacao = resultSet.getString(5);
-                String dtFimSeriacao = resultSet.getString(6);
-                String referenciaTarefa = resultSet.getString(7);
-                String nifOrganizacao = resultSet.getString(8);
-                String idTipoRegimento = resultSet.getString(9);
-                
-                anuncios.add(new Anuncio(referenciaTarefa, nifOrganizacao, new Data(dtInicioPublicitacao), 
-                    new Data(dtFimPublicitacao),new Data(dtInicioCandidatura), new Data(dtFimCandidatura), 
-                        new Data(dtInicioSeriacao), new Data(dtFimSeriacao), idTipoRegimento));
-            }
-        }
-        catch (SQLException exception) {
-            exception.printStackTrace();
-            exception.getSQLState();
-            try {
-                System.err.print("Transaction is being rolled back");
-                connection.rollback();
-            }
-            catch (SQLException sqlException) {
-                sqlException.getErrorCode();
-            }
-        }
-        finally {
-            dbConnectionHandler.closeAll();
-        }
-        
-        ArrayList<Anuncio> anunciosStatus= new ArrayList<>();
-        for(int i = 0; i < anuncios.size();i++){
-            Anuncio anuncio = anuncios.get(i);
-            if(anuncio.getStatusAnuncio(hoje).equals(status)){
-                anunciosStatus.add(anuncio);
-            }
-        }
-        return anunciosStatus;*/
-
         return null;
     }
+
 
     @Override
     public Anuncio findAnuncioByIdTarefa(String referenciaTarefa, String nifOrganizacao) throws SQLException {
-        DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
-        Connection connection = dbConnectionHandler.openConnection();
 
-        CallableStatement callableStatement = connection.prepareCall(
-                "{ CALL findAnuncioByTarefa(?, ?) }"
-        );
+        Connection connection = DBConnectionHandler.getInstance().openConnection();
 
         try {
+            CallableStatement callableStatement = connection.prepareCall(
+                    "{ CALL findAnuncioByTarefa(?, ?) }"
+            );
+
             connection.setAutoCommit(false);
 
             callableStatement.setString(1, referenciaTarefa);
@@ -242,6 +168,9 @@ public class RepositorioAnuncioDataBase implements RepositorioAnuncio {
             exception.getSQLState();
 
         }
+        finally {
+            DBConnectionHandler.getInstance().closeAll();
+        }
         return new Anuncio();
     }
 
@@ -250,8 +179,7 @@ public class RepositorioAnuncioDataBase implements RepositorioAnuncio {
 
         ArrayList<TipoRegimento> tiposRegimento = new ArrayList<>();
 
-        DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
-        Connection connection = dbConnectionHandler.openConnection();
+        Connection connection = DBConnectionHandler.getInstance().openConnection();
 
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(
@@ -279,7 +207,7 @@ public class RepositorioAnuncioDataBase implements RepositorioAnuncio {
             }
 
         } finally {
-            dbConnectionHandler.closeAll();
+            DBConnectionHandler.getInstance().closeAll();
         }
         return tiposRegimento;
     }
@@ -288,13 +216,11 @@ public class RepositorioAnuncioDataBase implements RepositorioAnuncio {
     public List<Anuncio> findAnunciosElegiveis(String email) throws SQLException {
         ArrayList<Anuncio> anunciosElegiveis = new ArrayList<>();
 
-        DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
-        Connection connection = dbConnectionHandler.openConnection();
+        Connection connection = DBConnectionHandler.getInstance().openConnection();
 
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(
                     "SELECT * FROM Anuncio "
-                           
             );
 
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -326,7 +252,7 @@ public class RepositorioAnuncioDataBase implements RepositorioAnuncio {
             }
 
         } finally {
-            dbConnectionHandler.closeAll();
+            DBConnectionHandler.getInstance().closeAll();
         }
         return anunciosElegiveis;
     }
@@ -335,8 +261,7 @@ public class RepositorioAnuncioDataBase implements RepositorioAnuncio {
     public Anuncio getAnuncio(int idAnuncio) throws SQLException {
         Anuncio anuncio = new Anuncio();
 
-        DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
-        Connection connection = dbConnectionHandler.openConnection();
+        Connection connection = DBConnectionHandler.getInstance().openConnection();
 
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(
@@ -381,7 +306,7 @@ public class RepositorioAnuncioDataBase implements RepositorioAnuncio {
             }
 
         } finally {
-            dbConnectionHandler.closeAll();
+            DBConnectionHandler.getInstance().closeAll();
         }
         return anuncio;
     }

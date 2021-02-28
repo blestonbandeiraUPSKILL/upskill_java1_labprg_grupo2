@@ -92,9 +92,6 @@ public class Anuncio implements Serializable {
         setDtFimSeriacao(dtFimSeriacao); 
         setIdTipoRegimento(idTipoRegimento);
     }
-    
-
-
            
     /**
      * Construtor da classe Anuncio
@@ -154,13 +151,10 @@ public class Anuncio implements Serializable {
      * @param dtInicioPublicitacao
      */
     public void setDtInicioPub(String dtInicioPublicitacao) {
-       /* if(dtInicioPublicitacao.compareTo(hoje) >= 0){*/
-           this.dtInicioPublicitacao = dtInicioPublicitacao;
-       /* }
-        else{
-           throw new DataInvalidaException("A data de início de publicitação deve "
-                   + "ser maior ou igual à data atual.");
-        }      */
+        if(dtInicioPublicitacao == null || dtInicioPublicitacao.trim().isEmpty()){
+            throw new DataInvalidaException("A data de início de publicitação não é válida.");
+        }
+        this.dtInicioPublicitacao = dtInicioPublicitacao;
     }
     
     /**
@@ -168,13 +162,10 @@ public class Anuncio implements Serializable {
      * @param dtFimPublicitacao
      */
     public void setDtFimPub(String dtFimPublicitacao) {
-       /* if(dtFimPublicitacao.isMaior(dtInicioPublicitacao)){*/
-           this.dtFimPublicitacao = dtFimPublicitacao;
-       /* }
-        else{
-           throw new DataInvalidaException("A data do fim da publicitação deve ser "
-                   + "maior que a data de início da publicitação.");
-        }      */
+        if(dtFimPublicitacao == null || dtFimPublicitacao.trim().isEmpty()) {
+            throw new DataInvalidaException("A data de fim de publicitação não é válida.");
+        }
+        this.dtFimPublicitacao = dtFimPublicitacao;
     }
     
     /**
@@ -182,14 +173,10 @@ public class Anuncio implements Serializable {
      * @param dtInicioCandidatura
      */
     public void setDtInicioCand(String dtInicioCandidatura) {
-      /*  if((dtInicioCandidatura.compareTo(dtInicioPublicitacao) >=0) &&
-                (dtInicioCandidatura.compareTo(dtFimPublicitacao) <=0)){*/
-           this.dtInicioCandidatura = dtInicioCandidatura;
-       /* }
-        else{
-           throw new DataInvalidaException("A data do início da candidatura deve"
-                   + "estar contida dentro do período de publicitação.");
-        }*/
+        if(dtInicioCandidatura == null || dtInicioCandidatura.trim().isEmpty()){
+            throw new DataInvalidaException("A data de início de candidatura não é válida.");
+        }
+        this.dtInicioCandidatura = dtInicioCandidatura;
     }
     
     /**
@@ -197,15 +184,10 @@ public class Anuncio implements Serializable {
      * @param dtFimCandidatura
      */
     public void setDtFimCand(String dtFimCandidatura) {
-       /* if((dtFimCandidatura.compareTo(dtInicioCandidatura) >=0) &&
-                (dtFimCandidatura.compareTo(dtFimPublicitacao) <=0)){*/
-           this.dtFimCandidatura = dtFimCandidatura;
-        /*}
-        else{
-           throw new DataInvalidaException("A data do fim da candidatura deve"
-                   + " ser maior do que a data de início do processo de candidatura, e"
-                   + " deve estar contida dentro do período de publicitação.");
-        }      */
+        if(dtFimCandidatura == null || dtFimCandidatura.trim().isEmpty()){
+            throw new DataInvalidaException("A data de fim de candidatura não é válida.");
+        }
+        this.dtFimCandidatura = dtFimCandidatura;
     }
     
     /**
@@ -213,16 +195,10 @@ public class Anuncio implements Serializable {
      * @param dtInicioSeriacao
      */
     public void setDtInicioSeriacao(String dtInicioSeriacao) {
-       /* if((dtInicioSeriacao.compareTo(dtInicioPublicitacao) >=0) &&
-                (dtInicioSeriacao.compareTo(dtFimPublicitacao) <=0) &&
-               (dtInicioSeriacao.isMaior(dtFimCandidatura))){*/
-            this.dtInicioSeriacao = dtInicioSeriacao;
-        /*}
-        else{
-           throw new DataInvalidaException("A data do início da seriação deve"
-                   + "estar contida dentro do período de publicitação e começar"
-                   + "após o término do processo de candidaturas.");
-        } */
+        if(dtInicioSeriacao == null || dtInicioSeriacao.trim().isEmpty()){
+            throw new DataInvalidaException("A data de início de seriação não é válida.");
+        }
+        this.dtInicioSeriacao = dtInicioSeriacao;
     }
     
     /**
@@ -230,15 +206,10 @@ public class Anuncio implements Serializable {
      * @param dtFimSeriacao
      */
     public void setDtFimSeriacao(String dtFimSeriacao) {
-        /*if((dtFimSeriacao.compareTo(dtInicioSeriacao) >=0) &&
-                (dtFimSeriacao.compareTo(dtFimPublicitacao) <=0)){*/
-            this.dtFimSeriacao = dtFimSeriacao;
-        /*}
-        else{
-           throw new DataInvalidaException("A data do fim da seriação deve"
-                   + "estar contida dentro do período de publicitação ser maior"
-                   + " ou igual à data de início da seriação.");
-        }*/
+        if(dtFimSeriacao == null || dtFimSeriacao.trim().isEmpty()){
+            throw new DataInvalidaException("A data de fim de seriação não é válida.");
+        }
+        this.dtFimSeriacao = dtFimSeriacao;
         
     }
     
@@ -320,41 +291,6 @@ public class Anuncio implements Serializable {
 
     public void setIdTipoRegimento(int idTipoRegimento) {
         this.idTipoRegimento = idTipoRegimento;
-    }
-    
-
- /*   
-    public TipoStatusAnuncio getStatusAnuncio(Data dataAtual) throws AnuncioInvalidoException{
-        if(dataAtual.isMaior(this.dtFimPublicitacao)){
-
-            return TipoStatusAnuncio.EXPIRADOS;
-        }
-        else{
-            if(dataAtual.compareTo(this.dtInicioSeriacao) >= 0 && dataAtual.compareTo(this.dtFimSeriacao) <= 0){
-                return TipoStatusAnuncio.PERIODO_DE_SERIACAO;
-            }
-            if(dataAtual.compareTo(this.dtInicioCandidatura) >= 0 && dataAtual.compareTo(this.dtFimCandidatura) <= 0){
-                return TipoStatusAnuncio.PERIODO_DE_CANDIDATURA;
-            }
-        }        
-        throw new AnuncioInvalidoException ("O anúncio é inválido!");
-    }*/
-    
-    /**
-     * Verifica se uma data inserida como texto tem formato válido
-     * @param dataTexto - data em formato aaaa/mm/dd
-     * @return a dataTexto em formato da classe Data
-     */
-    public Data eFormaData(String dataTexto){
-        try{
-            int dia = Integer.parseInt(dataTexto.substring(8,10));
-            int mes = Integer.parseInt(dataTexto.substring(5,7));
-            int ano = Integer.parseInt(dataTexto.substring(0,4));
-            return new Data(ano, mes, dia);
-        }
-        catch(IllegalArgumentException iae){
-            throw new DataInvalidaException("A data informada é inválida!");
-        }
     }
     
     /**

@@ -53,7 +53,7 @@ public class RepositorioEnderecoPostalInMemory implements Serializable, Reposito
 
     @Override
     public boolean save(EnderecoPostal enderecoPostal) {
-        EnderecoPostal ep = findById(enderecoPostal.getCodigoEnderecoPostal());
+        EnderecoPostal ep = findById(enderecoPostal.getIdEnderecoPostal());
         if (ep == null) {
             return listaEnderecoPostal.add(enderecoPostal);
         } else {
@@ -71,7 +71,7 @@ public class RepositorioEnderecoPostalInMemory implements Serializable, Reposito
     public EnderecoPostal findById(int codigo) {
         for (int i = 0; i < this.listaEnderecoPostal.size(); i++) {
             EnderecoPostal enderecoPostal = this.listaEnderecoPostal.get(i);
-            if (enderecoPostal.getCodigoEnderecoPostal() == codigo) {
+            if (enderecoPostal.getIdEnderecoPostal() == codigo) {
                 return enderecoPostal;
             }
         }

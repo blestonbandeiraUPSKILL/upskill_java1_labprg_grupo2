@@ -18,10 +18,6 @@ public class RepositorioCaracterizacaoCTDatabase implements RepositorioCaracteri
      */
     private static RepositorioCaracterizacaoCTDatabase repositorioCaracterizacaoCTDatabase;
 
-    String jdbcUrl = "jdbc:oracle:thin:@vsrvbd1.dei.isep.ipp.pt:1521/pdborcl";
-    String username = "UPSKILL_BD_TURMA1_01";
-    String password = "qwerty";
-
     /**
      * Inicializa o Repositório de Caracterizações de Competências Técnicas
      */
@@ -46,15 +42,15 @@ public class RepositorioCaracterizacaoCTDatabase implements RepositorioCaracteri
 
     @Override
     public boolean save(CaracterizacaoCT caracterizacaoCT) throws SQLException {
-       
-        DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
-        Connection connection = dbConnectionHandler.openConnection();
 
-        CallableStatement callableStatement = connection.prepareCall(
+        Connection connection = DBConnectionHandler.getInstance().openConnection();
+
+        try {
+            CallableStatement callableStatement = connection.prepareCall(
                 "{CALL createCaracterCT(?, ?, ?)}"
-        );
-        if (findByCategoriaEGrau(caracterizacaoCT.getCodigoCategoria(), caracterizacaoCT.getCodigoGP()) == null){
-            try {
+            );
+            if (findByCategoriaEGrau(caracterizacaoCT.getCodigoCategoria(), caracterizacaoCT.getCodigoGP()) == null){
+
                 connection.setAutoCommit(false);
 
                 callableStatement.setString(1, caracterizacaoCT.getCodigoCategoria());
@@ -66,20 +62,20 @@ public class RepositorioCaracterizacaoCTDatabase implements RepositorioCaracteri
                 connection.commit();
                 return true;
             }
-            catch (SQLException exception) {
-                exception.printStackTrace();
-                exception.getSQLState();
-                try {
-                    System.err.print("Transaction is being rolled back");
-                    connection.rollback();
-                }
-                catch (SQLException sqlException) {
-                    sqlException.getErrorCode();
-                }
+        }
+        catch (SQLException exception) {
+            exception.printStackTrace();
+            exception.getSQLState();
+            try {
+                System.err.print("Transaction is being rolled back");
+                connection.rollback();
             }
-            finally {
-                dbConnectionHandler.closeAll();
+            catch (SQLException sqlException) {
+                sqlException.getErrorCode();
             }
+        }
+        finally {
+            DBConnectionHandler.getInstance().closeAll();
         }
 
         return false;
@@ -95,8 +91,7 @@ public class RepositorioCaracterizacaoCTDatabase implements RepositorioCaracteri
     public List<CaracterizacaoCT> findByCategoria(String codigoCategoria) throws SQLException{
         ArrayList<CaracterizacaoCT> listaCaracterizacaoCT = new ArrayList<>();
 
-        DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
-        Connection connection = dbConnectionHandler.openConnection();
+        Connection connection = DBConnectionHandler.getInstance().openConnection();
 
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(
@@ -133,7 +128,7 @@ public class RepositorioCaracterizacaoCTDatabase implements RepositorioCaracteri
 
         }
         finally {
-            dbConnectionHandler.closeAll();
+            DBConnectionHandler.getInstance().closeAll();
         }
 
         return listaCaracterizacaoCT;
@@ -148,14 +143,13 @@ public class RepositorioCaracterizacaoCTDatabase implements RepositorioCaracteri
     public CaracterizacaoCT findByCategoriaEGrau(String codigoCategoria,
                                                  int codigoGP) throws SQLException {
 
-        DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
-        Connection connection = dbConnectionHandler.openConnection();
-
-        CallableStatement callableStatement = connection.prepareCall(
-                "{ CALL findByCodigoCategoriaECodigoGrau(?, ?) }"
-        );
+        Connection connection = DBConnectionHandler.getInstance().openConnection();
 
         try {
+            CallableStatement callableStatement = connection.prepareCall(
+                    "{ CALL findByCodigoCategoriaECodigoGrau(?, ?) }"
+            );
+
             connection.setAutoCommit(false);
 
             callableStatement.setString(1, codigoCategoria);
@@ -170,6 +164,9 @@ public class RepositorioCaracterizacaoCTDatabase implements RepositorioCaracteri
             exception.getSQLState();
 
 
+        }
+        finally {
+            DBConnectionHandler.getInstance().closeAll();
         }
         return new CaracterizacaoCT();
     }

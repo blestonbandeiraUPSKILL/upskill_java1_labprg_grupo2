@@ -44,16 +44,7 @@ public class Candidatura implements Serializable {
      * O texto de motivação do Freelancer para sua candidatura a uma dada Tarefa
      */
     private String txtMotivacao;
-    
-    /**
-     *  O texto de apresentação do Freelancer para uma candidatura por omissão
-     */
-    private static final String APRESENTACAO_POR_OMISSAO = "Sem apresentação";
-    
-    /**
-     *  O texto de motivação do Freelancer para uma candidatura por omissão
-     */
-    private static final String MOTIVACAO_POR_OMISSAO = "Sem motivação";
+
 
     /**
      * Construtor vazio da classe Candidatura
@@ -196,12 +187,7 @@ public class Candidatura implements Serializable {
      * @param txtApresentacao
      */
     public void setApresentacao(String txtApresentacao){
-        if (txtApresentacao == null || txtApresentacao.trim().isEmpty()) {
-            throw new IllegalArgumentException("O texto de apresentação é inválido!");
-        }
-        else{
-            this.txtApresentacao = txtApresentacao;
-        }
+        this.txtApresentacao = txtApresentacao;
     }
     
     /**
@@ -209,12 +195,7 @@ public class Candidatura implements Serializable {
      * @param txtMotivacao
      */
     public void setMotivacao(String txtMotivacao){
-        if (txtMotivacao == null || txtMotivacao.trim().isEmpty()) {
-            throw new IllegalArgumentException("O texto de motivação é inválido!");
-        }
-        else{
-            this.txtMotivacao = txtMotivacao;
-        }
+        this.txtMotivacao = txtMotivacao;
     }
     
     /**
@@ -289,10 +270,10 @@ public class Candidatura implements Serializable {
      */   
     @Override
     public String toString(){
-        return String.format("ID: %-12s " +
+        return String.format("ID2: %-12s " +
                         "|Freelancer: %-20s " +
                         "|Data Candidatura: %-12s" +
-                        "|Valor pretendido: %f.2  euros " +
+                        "|Valor pretendido: %.2f euros " +
                         "|Número de dias: %-8d" +
                         "|Apresentação: %-50s " +
                         "|Motivação: %-50s",

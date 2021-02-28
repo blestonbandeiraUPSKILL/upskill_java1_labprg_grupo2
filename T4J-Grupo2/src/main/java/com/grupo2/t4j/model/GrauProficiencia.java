@@ -17,7 +17,7 @@ import com.grupo2.t4j.exception.GrauInvalidoException;
 public class GrauProficiencia {
 
     private int idGrauProficiencia;
-    private String grau;
+    private int grau;
     private String designacao;
     private String codigoCompetenciaTecnica;
 
@@ -29,20 +29,19 @@ public class GrauProficiencia {
         setDesignacao(gp.designacao);
     }
     
-    public GrauProficiencia(String grau, String designacao) {
-
+    public GrauProficiencia(int grau, String designacao) {
         setGrau(grau);
         setDesignacao(designacao);
         
     }
-    public GrauProficiencia(int idGrauProficiencia, String grau, String designacao, String codigoCompetenciaTecnica){
+    public GrauProficiencia(int idGrauProficiencia, int grau, String designacao, String codigoCompetenciaTecnica){
         this.idGrauProficiencia = idGrauProficiencia;
         setGrau(grau);
         setDesignacao(designacao);
         setCodigoCompetenciaTecnica(codigoCompetenciaTecnica);
     }
 
-    public GrauProficiencia(String grau, String designacao, String codigoCompetenciaTecnica) {
+    public GrauProficiencia(int grau, String designacao, String codigoCompetenciaTecnica) {
         setGrau(grau);
         setDesignacao(designacao);
         setCodigoCompetenciaTecnica(codigoCompetenciaTecnica);
@@ -52,12 +51,12 @@ public class GrauProficiencia {
         return idGrauProficiencia;
     }
 
-    public String getGrau() {
+    public int getGrau() {
         return grau;
     }
 
-    public void setGrau(String grau) {
-        if (grau == null || grau.trim().isEmpty()) {
+    public void setGrau(int grau) {
+        if (grau < 0) {
             throw new GrauInvalidoException("O valor do grau é inválido.");
         }
         this.grau = grau;
@@ -86,6 +85,7 @@ public class GrauProficiencia {
             throw new CompetenciaTecnicaInexistenteException ("A competência técnica não existe");
         }
     }
+
     /**
      * Representação textual do Grau de Proficiência no formato de exibição
      * @return 

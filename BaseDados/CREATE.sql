@@ -95,8 +95,6 @@ CREATE TABLE Anuncio(
 CREATE TABLE Candidatura(
     idCandidatura integer GENERATED AS IDENTITY
         CONSTRAINT pk_Candidatura_idCandidatura PRIMARY KEY,
-    dataFimCandidatura date
-        CONSTRAINT nn_Candidatura_dataFimCandidatura NOT NULL,
     valorPretendido numeric
         CONSTRAINT nn_Candidatura_valorPretendido NOT NULL,
     numeroDias integer
@@ -104,7 +102,8 @@ CREATE TABLE Candidatura(
     txtApresentacao varchar(250),
     txtMotivacao varchar(250),
     idAnuncio integer,
-    emailFreelancer  varchar(20)
+    emailFreelancer  varchar(20), 
+    dataCandidatura date
 );
 
 CREATE TABLE ReconhecimentoGP(
