@@ -108,6 +108,7 @@ public class RegistarTarefaController {
                     if (grau.getIdGrauProficiencia() == grauProficienciaFreelancer.getIdGrauProficiencia() && grau.getGrau() < grauProficienciaFreelancer.getGrau()) {
                         tarefasElegíveis.add(tarefa);
                     }
+                    
                 }
             }
         }
