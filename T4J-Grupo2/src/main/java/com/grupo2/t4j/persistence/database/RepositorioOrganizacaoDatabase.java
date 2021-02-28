@@ -27,10 +27,6 @@ public class RepositorioOrganizacaoDatabase implements RepositorioOrganizacao {
      */
     private static RepositorioOrganizacaoDatabase repositorioOrganizacaoDatabase;
 
-    String jdbcUrl = "jdbc:oracle:thin:@vsrvbd1.dei.isep.ipp.pt:1521/pdborcl";
-    String username = "UPSKILL_BD_TURMA1_01";
-    String password = "qwerty";
-
     /**
      * Construtor da classe Singleton RepositorioOrganizacao
      */
@@ -57,15 +53,14 @@ public class RepositorioOrganizacaoDatabase implements RepositorioOrganizacao {
                         String localidade, String codPostal,
                      String nomeGestor, String telefoneGestor, String funcao, String pass) throws SQLException {
 
-        DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
-        Connection connection = dbConnectionHandler.openConnection();
+        Connection connection = DBConnectionHandler.getInstance().openConnection();
 
-        CallableStatement callableStatement = connection.prepareCall(
+        try {
+            CallableStatement callableStatement = connection.prepareCall(
                 "{CALL createOrganizacao(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) } ");
 
-        if (findByNif(nif) == null) {
+            if (findByNif(nif) == null) {
 
-            try {
                 connection.setAutoCommit(false);
 
                 callableStatement.setString(1, nif);
@@ -88,21 +83,21 @@ public class RepositorioOrganizacaoDatabase implements RepositorioOrganizacao {
                 connection.commit();
                 return true;
             }
-            catch (SQLException exception) {
-                exception.printStackTrace();
-                exception.getSQLState();
-                try {
-                    System.err.print("Transaction is being rolled back");
-                    connection.rollback();
-                }
-                catch (SQLException sqlException) {
-                    sqlException.getErrorCode();
-                }
+        }
+        catch (SQLException exception) {
+            exception.printStackTrace();
+            exception.getSQLState();
+            try {
+                System.err.print("Transaction is being rolled back");
+                connection.rollback();
             }
+            catch (SQLException sqlException) {
+                sqlException.getErrorCode();
+            }
+        }
 
-            finally {
-                dbConnectionHandler.closeAll();
-            }
+        finally {
+            DBConnectionHandler.getInstance().closeAll();
         }
 
         return false;
@@ -125,13 +120,12 @@ public class RepositorioOrganizacaoDatabase implements RepositorioOrganizacao {
      */
     public Organizacao findByNif(String nif) throws SQLException {
 
-        DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
-        Connection connection = dbConnectionHandler.openConnection();
-
-        CallableStatement callableStatementOrg = connection.prepareCall(
-                 "{CALL findByNif(?)}");
+        Connection connection = DBConnectionHandler.getInstance().openConnection();
 
         try {
+            CallableStatement callableStatementOrg = connection.prepareCall(
+                    "{CALL findByNif(?)}");
+
             connection.setAutoCommit(false);
 
             callableStatementOrg.setString(1, nif);
@@ -144,6 +138,9 @@ public class RepositorioOrganizacaoDatabase implements RepositorioOrganizacao {
             exceptionOrg.getSQLState();
 
 
+        }
+        finally {
+            DBConnectionHandler.getInstance().closeAll();
         }
 
         return new Organizacao();

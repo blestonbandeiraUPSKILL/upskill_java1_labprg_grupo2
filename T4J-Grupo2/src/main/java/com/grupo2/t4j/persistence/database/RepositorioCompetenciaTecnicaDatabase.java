@@ -17,10 +17,6 @@ public class RepositorioCompetenciaTecnicaDatabase implements RepositorioCompete
      */
     private static RepositorioCompetenciaTecnicaDatabase repositorioCompetenciaTecnicaDatabase;
 
-    String jdbcUrl = "jdbc:oracle:thin:@vsrvbd1.dei.isep.ipp.pt:1521/pdborcl";
-    String username = "UPSKILL_BD_TURMA1_01";
-    String password = "qwerty";
-
     /**
      * Inicializa o Repositório de Colaboradores
      */
@@ -45,15 +41,16 @@ public class RepositorioCompetenciaTecnicaDatabase implements RepositorioCompete
 
     @Override
     public boolean save(CompetenciaTecnica competenciaTecnica) throws SQLException {
-        DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
-        Connection connection = dbConnectionHandler.openConnection();
 
-        CallableStatement callableStatement = connection.prepareCall(
+        Connection connection = DBConnectionHandler.getInstance().openConnection();
+
+        try {
+            CallableStatement callableStatement = connection.prepareCall(
                 "{CALL createCompetenciaTecnica(?, ?, ?, ?) }"
-        );
+            );
 
-        if(findByCodigo(competenciaTecnica.getCodigo()) == null) {
-            try {
+            if(findByCodigo(competenciaTecnica.getCodigo()) == null) {
+
                 connection.setAutoCommit(false);
 
                 callableStatement.setString(1, competenciaTecnica.getCodigo());
@@ -66,23 +63,22 @@ public class RepositorioCompetenciaTecnicaDatabase implements RepositorioCompete
                 connection.commit();
                 return true;
             }
-            catch (SQLException exception) {
-                exception.printStackTrace();
-                exception.getSQLState();
-                try {
-                    System.err.print("Transaction is being rolled back");
-                    connection.rollback();
-                }
-                catch (SQLException sqlException) {
-                    sqlException.getErrorCode();
-                }
+
+        }
+
+        catch (SQLException exception) {
+            exception.printStackTrace();
+            exception.getSQLState();
+            try {
+                System.err.print("Transaction is being rolled back");
+                connection.rollback();
             }
-            finally {
-                dbConnectionHandler.closeAll();
+            catch (SQLException sqlException) {
+                sqlException.getErrorCode();
             }
         }
-        else {
-            throw new CompetenciaTecnicaDuplicadaException(competenciaTecnica.getCodigo() + ": Competência técnica já registada");
+            finally {
+            DBConnectionHandler.getInstance().closeAll();
         }
         return false;
     }
@@ -91,8 +87,7 @@ public class RepositorioCompetenciaTecnicaDatabase implements RepositorioCompete
     public List<CompetenciaTecnica> getAll() throws SQLException {
         ArrayList<CompetenciaTecnica> competenciasTecnicas = new ArrayList<>();
 
-        DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
-        Connection connection = dbConnectionHandler.openConnection();
+        Connection connection = DBConnectionHandler.getInstance().openConnection();
 
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(
@@ -122,7 +117,7 @@ public class RepositorioCompetenciaTecnicaDatabase implements RepositorioCompete
 
         }
         finally {
-            dbConnectionHandler.closeAll();
+            DBConnectionHandler.getInstance().closeAll();
         }
 
         return competenciasTecnicas;
@@ -131,14 +126,13 @@ public class RepositorioCompetenciaTecnicaDatabase implements RepositorioCompete
     @Override
     public CompetenciaTecnica findByCodigo(String codigo) throws SQLException {
 
-        DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
-        Connection connection = dbConnectionHandler.openConnection();
-
-        CallableStatement callableStatement = connection.prepareCall(
-                "{CALL findByCodigoCompetenciaTecnica(?)}"
-        );
+        Connection connection = DBConnectionHandler.getInstance().openConnection();
 
         try {
+            CallableStatement callableStatement = connection.prepareCall(
+                    "{CALL findByCodigoCompetenciaTecnica(?)}"
+            );
+
             connection.setAutoCommit(false);
 
             callableStatement.setString(1, codigo);
@@ -151,21 +145,23 @@ public class RepositorioCompetenciaTecnicaDatabase implements RepositorioCompete
             exception.printStackTrace();
             exception.getSQLState();
         }
+
+        finally {
+            DBConnectionHandler.getInstance().closeAll();
+        }
         return new CompetenciaTecnica();
     }
 
     @Override
     public CompetenciaTecnica findCompetenciaByAreaActividade(String codigoAreaActividade) throws SQLException {
 
-
-        DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
-        Connection connection = dbConnectionHandler.openConnection();
-
-        CallableStatement callableStatement = connection.prepareCall(
-                "{CALL findCompTecnicaByAreaActividade(?) }"
-        );
+        Connection connection = DBConnectionHandler.getInstance().openConnection();
 
         try {
+            CallableStatement callableStatement = connection.prepareCall(
+                    "{CALL findCompTecnicaByAreaActividade(?) }"
+            );
+
             connection.setAutoCommit(false);
 
             callableStatement.setString(1, codigoAreaActividade);
@@ -176,9 +172,11 @@ public class RepositorioCompetenciaTecnicaDatabase implements RepositorioCompete
         } catch (SQLException exception) {
             exception.printStackTrace();
             exception.getSQLState();
-
-
         }
+        finally {
+            DBConnectionHandler.getInstance().closeAll();
+        }
+
         return new CompetenciaTecnica();
     }
 
@@ -187,8 +185,7 @@ public class RepositorioCompetenciaTecnicaDatabase implements RepositorioCompete
     public List<CompetenciaTecnica> findByAreaActividade(String codigoAreaActividade) throws SQLException {
         ArrayList<CompetenciaTecnica> competenciasTecnicas = new ArrayList<>();
 
-        DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
-        Connection connection = dbConnectionHandler.openConnection();
+        Connection connection = DBConnectionHandler.getInstance().openConnection();
 
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(
@@ -220,11 +217,10 @@ public class RepositorioCompetenciaTecnicaDatabase implements RepositorioCompete
 
         }
         finally {
-            dbConnectionHandler.closeAll();
+            DBConnectionHandler.getInstance().closeAll();
         }
 
         return competenciasTecnicas;
-
 
     }
 

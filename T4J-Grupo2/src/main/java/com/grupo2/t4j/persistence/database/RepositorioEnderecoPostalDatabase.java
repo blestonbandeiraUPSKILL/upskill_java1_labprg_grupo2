@@ -11,9 +11,6 @@ import java.util.List;
 public class RepositorioEnderecoPostalDatabase implements RepositorioEnderecoPostal {
 
     private static RepositorioEnderecoPostalDatabase repositorioEnderecoPostalDatabase;
-    String jdbcUrl = "jdbc:oracle:thin:@vsrvbd1.dei.isep.ipp.pt:1521/pdborcl";
-    String username = "UPSKILL_BD_TURMA1_01";
-    String password = "qwerty";
 
     private RepositorioEnderecoPostalDatabase() throws SQLException{}
 
@@ -32,15 +29,15 @@ public class RepositorioEnderecoPostalDatabase implements RepositorioEnderecoPos
     @Override
     public boolean save(EnderecoPostal enderecoPostal) throws SQLException {
 
-        DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
-        Connection connection = dbConnectionHandler.openConnection();
+        Connection connection = DBConnectionHandler.getInstance().openConnection();
 
-        CallableStatement callableStatement = connection.prepareCall(
+        try {
+            CallableStatement callableStatement = connection.prepareCall(
                 "{CALL EnderecoPostal(?, ?, ?, ?)}"
-        );
+            );
 
-        if (findById(enderecoPostal.getIdEnderecoPostal()) == null) {
-            try {
+            if (findById(enderecoPostal.getIdEnderecoPostal()) == null) {
+
                 connection.setAutoCommit(false);
 
                 callableStatement.setString(1, enderecoPostal.getArruamento());
@@ -53,21 +50,21 @@ public class RepositorioEnderecoPostalDatabase implements RepositorioEnderecoPos
                 connection.commit();
                 return true;
             }
-            catch (SQLException exception) {
-                exception.printStackTrace();
-                exception.getSQLState();
-                try {
-                    System.err.print("Transaction is being rolled back");
-                    connection.rollback();
-                }
-                catch (SQLException sqlException) {
-                    sqlException.getErrorCode();
-                }
+        }
+        catch (SQLException exception) {
+            exception.printStackTrace();
+            exception.getSQLState();
+            try {
+                System.err.print("Transaction is being rolled back");
+                connection.rollback();
             }
+            catch (SQLException sqlException) {
+                sqlException.getErrorCode();
+            }
+        }
 
-            finally {
-                dbConnectionHandler.closeAll();
-            }
+        finally {
+            DBConnectionHandler.getInstance().closeAll();
         }
 
         return false;
@@ -78,8 +75,7 @@ public class RepositorioEnderecoPostalDatabase implements RepositorioEnderecoPos
 
         ArrayList<EnderecoPostal> enderecosPostais = new ArrayList<>();
 
-        DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
-        Connection connection = dbConnectionHandler.openConnection();
+        Connection connection = DBConnectionHandler.getInstance().openConnection();
 
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(
@@ -110,7 +106,7 @@ public class RepositorioEnderecoPostalDatabase implements RepositorioEnderecoPos
 
         }
         finally {
-            dbConnectionHandler.closeAll();
+            DBConnectionHandler.getInstance().closeAll();
         }
         return enderecosPostais;
     }
@@ -118,14 +114,13 @@ public class RepositorioEnderecoPostalDatabase implements RepositorioEnderecoPos
     @Override
     public EnderecoPostal findById(int codigo) throws SQLException {
 
-        DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
-        Connection connection = dbConnectionHandler.openConnection();
-
-        CallableStatement callableStatement = connection.prepareCall(
-                "{CALL findById (?) }"
-        );
+        Connection connection = DBConnectionHandler.getInstance().openConnection();
 
         try {
+            CallableStatement callableStatement = connection.prepareCall(
+                    "{CALL findById (?) }"
+            );
+
             connection.setAutoCommit(false);
 
             callableStatement.setInt(1, codigo);
@@ -136,8 +131,11 @@ public class RepositorioEnderecoPostalDatabase implements RepositorioEnderecoPos
         } catch (SQLException exception) {
             exception.printStackTrace();
             exception.getSQLState();
-
         }
+        finally {
+            DBConnectionHandler.getInstance().closeAll();
+        }
+
         return new EnderecoPostal();
     }
 

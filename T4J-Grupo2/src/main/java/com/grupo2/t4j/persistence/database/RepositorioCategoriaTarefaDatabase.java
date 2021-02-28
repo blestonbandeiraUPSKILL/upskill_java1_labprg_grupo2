@@ -16,10 +16,6 @@ public class RepositorioCategoriaTarefaDatabase implements RepositorioCategoriaT
      */
     private static RepositorioCategoriaTarefaDatabase repositorioCategoriaTarefaDatabase;
 
-    String jdbcUrl = "jdbc:oracle:thin:@vsrvbd1.dei.isep.ipp.pt:1521/pdborcl";
-    String username = "UPSKILL_BD_TURMA1_01";
-    String password = "qwerty";
-
     /**
      * Inicializa o Repositório de Categorias de Tarefa
      */
@@ -42,15 +38,15 @@ public class RepositorioCategoriaTarefaDatabase implements RepositorioCategoriaT
                      String descDetalhada, String codigoAreaActividade, int idGrauProficiencia,
                      Obrigatoriedade obrigatoriedade) throws SQLException {
 
-        DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
-        Connection connection = dbConnectionHandler.openConnection();
+        Connection connection = DBConnectionHandler.getInstance().openConnection();
 
-        CallableStatement callableStatement = connection.prepareCall(
+        try {
+            CallableStatement callableStatement = connection.prepareCall(
                 "{CALL createCategoria (?, ?, ?, ?, ?, ?) }"
-        );
+            );
 
-        if (findByCodigo(codigoCategoria) == null) {
-            try {
+            if (findByCodigo(codigoCategoria) == null) {
+
                 connection.setAutoCommit(false);
 
                 callableStatement.setString(1, codigoCategoria);
@@ -64,34 +60,35 @@ public class RepositorioCategoriaTarefaDatabase implements RepositorioCategoriaT
 
                 connection.commit();
                 return true;
-
-            } catch (SQLException exception) {
-                exception.printStackTrace();
-                exception.getSQLState();
-                try {
-                    System.err.print("Transaction is being rolled back");
-                    connection.rollback();
-                } catch (SQLException sqlException) {
-                    sqlException.getErrorCode();
-                }
-            } finally {
-                dbConnectionHandler.closeAll();
             }
+        }
+        catch (SQLException exception) {
+            exception.printStackTrace();
+            exception.getSQLState();
+            try {
+                System.err.print("Transaction is being rolled back");
+                connection.rollback();
+            } catch (SQLException sqlException) {
+                sqlException.getErrorCode();
+            }
+        } finally {
+            DBConnectionHandler.getInstance().closeAll();
         }
         return false;
     }
 
     @Override
     public boolean save(Categoria categoria) throws SQLException {
-        DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
-        Connection connection = dbConnectionHandler.openConnection();
 
-        CallableStatement callableStatement = connection.prepareCall(
+        Connection connection = DBConnectionHandler.getInstance().openConnection();
+
+        try {
+            CallableStatement callableStatement = connection.prepareCall(
                 "{CALL createCategoria(?, ?, ?, ?)}"
-        );
+            );
 
-        if (findByCodigo(categoria.getCodigoCategoria()) == null) {
-            try {
+            if (findByCodigo(categoria.getCodigoCategoria()) == null) {
+
                 connection.setAutoCommit(false);
 
                 callableStatement.setString(1, categoria.getCodigoCategoria());
@@ -103,18 +100,19 @@ public class RepositorioCategoriaTarefaDatabase implements RepositorioCategoriaT
 
                 connection.commit();
                 return true;
-            } catch (SQLException exception) {
-                exception.printStackTrace();
-                exception.getSQLState();
-                try {
-                    System.err.print("Transaction is being rolled back");
-                    connection.rollback();
-                } catch (SQLException sqlException) {
-                    sqlException.getErrorCode();
-                }
-            } finally {
-                dbConnectionHandler.closeAll();
             }
+        }
+        catch (SQLException exception) {
+            exception.printStackTrace();
+            exception.getSQLState();
+            try {
+                System.err.print("Transaction is being rolled back");
+                connection.rollback();
+            } catch (SQLException sqlException) {
+                sqlException.getErrorCode();
+            }
+        } finally {
+            DBConnectionHandler.getInstance().closeAll();
         }
 
         return false;
@@ -125,40 +123,40 @@ public class RepositorioCategoriaTarefaDatabase implements RepositorioCategoriaT
 
         Categoria categoria = new Categoria();
 
-        DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
-        Connection connection = dbConnectionHandler.openConnection();
-
-        CallableStatement callableStatement = connection.prepareCall(
-                "{CALL findByCodigoCategoria(?) }"
-        );
+        Connection connection = DBConnectionHandler.getInstance().openConnection();
 
         try {
+            CallableStatement callableStatement = connection.prepareCall(
+                    "{CALL findByCodigoCategoria(?) }"
+            );
+
             connection.setAutoCommit(false);
 
             callableStatement.setString(1, codigoCategoria);
             callableStatement.executeQuery();
 
-            return null;
+            PreparedStatement preparedStatement = connection.prepareStatement(
+                    "SELECT * FROM Categoria WHERE codigoCategoria LIKE ?"
+            );
+
+            preparedStatement.setString(1, codigoCategoria);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                categoria.setCodigo(codigoCategoria);
+                categoria.setDescBreve(resultSet.getString(2));
+                categoria.setDescDetalhada(resultSet.getString(3));
+                categoria.setCodigoAreaActividade(resultSet.getString(4));
+
+            }
         }
         catch (SQLException exception) {
             exception.printStackTrace();
             exception.getSQLState();
         }
-
-        PreparedStatement preparedStatement = connection.prepareStatement(
-                "SELECT * FROM Categoria WHERE codigoCategoria LIKE ?"
-        );
-
-        preparedStatement.setString(1, codigoCategoria);
-
-        ResultSet resultSet = preparedStatement.executeQuery();
-
-        while (resultSet.next()) {
-            categoria.setCodigo(codigoCategoria);
-            categoria.setDescBreve(resultSet.getString(2));
-            categoria.setDescDetalhada(resultSet.getString(3));
-            categoria.setCodigoAreaActividade(resultSet.getString(4));
-
+        finally {
+            DBConnectionHandler.getInstance().closeAll();
         }
 
         return categoria;
@@ -168,8 +166,7 @@ public class RepositorioCategoriaTarefaDatabase implements RepositorioCategoriaT
     public ArrayList<Categoria> findByAreaActividade(String codigoAreaActividade) throws SQLException {
         ArrayList<Categoria> categoriasTarefa = new ArrayList<>();
 
-        DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
-        Connection connection = dbConnectionHandler.openConnection();
+        Connection connection = DBConnectionHandler.getInstance().openConnection();
 
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(
@@ -201,7 +198,7 @@ public class RepositorioCategoriaTarefaDatabase implements RepositorioCategoriaT
 
         }
         finally {
-            dbConnectionHandler.closeAll();
+            DBConnectionHandler.getInstance().closeAll();
         }
 
         return categoriasTarefa;
@@ -211,8 +208,7 @@ public class RepositorioCategoriaTarefaDatabase implements RepositorioCategoriaT
     public ArrayList<Categoria> getAll() throws SQLException {
         ArrayList<Categoria> categorias = new ArrayList<>();
 
-        DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
-        Connection connection = dbConnectionHandler.openConnection();
+        Connection connection = DBConnectionHandler.getInstance().openConnection();
 
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(
@@ -242,7 +238,7 @@ public class RepositorioCategoriaTarefaDatabase implements RepositorioCategoriaT
 
         }
         finally {
-            dbConnectionHandler.closeAll();
+            DBConnectionHandler.getInstance().closeAll();
         }
 
         return categorias;

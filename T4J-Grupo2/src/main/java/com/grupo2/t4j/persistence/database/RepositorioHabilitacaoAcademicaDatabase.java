@@ -26,11 +26,7 @@ public class RepositorioHabilitacaoAcademicaDatabase implements RepositorioHabil
      * registados todas as Habilitações Acadêmicas dos Freelancers
      */
     private static RepositorioHabilitacaoAcademicaDatabase repositorioHabilitacaoAcademicaDatabase;
-    
-    String jdbcUrl = "jdbc:oracle:thin:@vsrvbd1.dei.isep.ipp.pt:1521/pdborcl";
-    String username = "UPSKILL_BD_TURMA1_01";
-    String password = "qwerty";
-    
+
     /**
      * Inicializa o Repositório das Habilitações Acadêmicas dos Freelancers
      */
@@ -53,16 +49,16 @@ public class RepositorioHabilitacaoAcademicaDatabase implements RepositorioHabil
     public boolean save(String grau, String designacaoCurso,
            String nomeInstituicao, double mediaCurso, String emailFreelancer) throws HabilitacaoAcademicaDuplicadaException,
             SQLException{
-        
-        DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
-        Connection connection = dbConnectionHandler.openConnection();
 
-        CallableStatement callableStatement = connection.prepareCall(
+        Connection connection = DBConnectionHandler.getInstance().openConnection();
+
+        try {
+            CallableStatement callableStatement = connection.prepareCall(
                 "{CALL createHabilitacao(?, ?, ?, ?, ?) } ");
 
-        if (findByGrauDesigInst(grau, designacaoCurso, nomeInstituicao, emailFreelancer) == null){
+            if (findByGrauDesigInst(grau, designacaoCurso, nomeInstituicao, emailFreelancer) == null){
 
-            try {
+
                 connection.setAutoCommit(false);
 
                 callableStatement.setString(1, grau);
@@ -76,21 +72,21 @@ public class RepositorioHabilitacaoAcademicaDatabase implements RepositorioHabil
                 connection.commit();
                 return true;
             }
-            catch (SQLException exception) {
-                exception.printStackTrace();
-                exception.getSQLState();
-                try {
-                    System.err.print("Transaction is being rolled back");
-                    connection.rollback();
-                }
-                catch (SQLException sqlException) {
-                    sqlException.getErrorCode();
-                }
+        }
+        catch (SQLException exception) {
+            exception.printStackTrace();
+            exception.getSQLState();
+            try {
+                System.err.print("Transaction is being rolled back");
+                connection.rollback();
             }
+            catch (SQLException sqlException) {
+                sqlException.getErrorCode();
+            }
+        }
 
-            finally {
-                dbConnectionHandler.closeAll();
-            }
+        finally {
+            DBConnectionHandler.getInstance().closeAll();
         }
         return false;
     }
@@ -98,17 +94,18 @@ public class RepositorioHabilitacaoAcademicaDatabase implements RepositorioHabil
     @Override
     public boolean save(HabilitacaoAcademica habilitacaoAcademica, String emailFreelancer) throws HabilitacaoAcademicaDuplicadaException,
             SQLException {
-        DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
-        Connection connection = dbConnectionHandler.openConnection();
 
-        CallableStatement callableStatement = connection.prepareCall(
+        Connection connection = DBConnectionHandler.getInstance().openConnection();
+
+        try {
+            CallableStatement callableStatement = connection.prepareCall(
                 "{CALL createHabilitacaoAcademica(?, ?, ?, ?, ?) } ");
 
-        if (findByGrauDesigInst(habilitacaoAcademica.getGrau(),
+            if (findByGrauDesigInst(habilitacaoAcademica.getGrau(),
                 habilitacaoAcademica.getDesignacaoCurso(),
                 habilitacaoAcademica.getNomeInstituicao(), emailFreelancer) == null){
 
-            try {
+
                 connection.setAutoCommit(false);
 
                 callableStatement.setString(1, habilitacaoAcademica.getGrau());
@@ -122,21 +119,21 @@ public class RepositorioHabilitacaoAcademicaDatabase implements RepositorioHabil
                 connection.commit();
                 return true;
             }
-            catch (SQLException exception) {
-                exception.printStackTrace();
-                exception.getSQLState();
-                try {
-                    System.err.print("Transaction is being rolled back");
-                    connection.rollback();
-                }
-                catch (SQLException sqlException) {
-                    sqlException.getErrorCode();
-                }
+        }
+        catch (SQLException exception) {
+            exception.printStackTrace();
+            exception.getSQLState();
+            try {
+                System.err.print("Transaction is being rolled back");
+                connection.rollback();
             }
+            catch (SQLException sqlException) {
+                sqlException.getErrorCode();
+            }
+        }
 
-            finally {
-                dbConnectionHandler.closeAll();
-            }
+        finally {
+            DBConnectionHandler.getInstance().closeAll();
         }
         return false;
     }
@@ -147,13 +144,13 @@ public class RepositorioHabilitacaoAcademicaDatabase implements RepositorioHabil
 
         HabilitacaoAcademica habilitacaoAcademica = new HabilitacaoAcademica();
 
-        DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
-        Connection connection = dbConnectionHandler.openConnection();
-
-        CallableStatement callableStatement = connection.prepareCall(
-                 "{CALL findByGrauDesigInst(?, ?, ?, ?)}");
+        Connection connection = DBConnectionHandler.getInstance().openConnection();
 
         try {
+            CallableStatement callableStatement = connection.prepareCall(
+                    "{CALL findByGrauDesigInst(?, ?, ?, ?)}");
+
+
             connection.setAutoCommit(false);
 
             callableStatement.setString(1, grau);
@@ -169,6 +166,9 @@ public class RepositorioHabilitacaoAcademicaDatabase implements RepositorioHabil
             exceptionOrg.printStackTrace();
             exceptionOrg.getSQLState();
 
+        }
+        finally {
+            DBConnectionHandler.getInstance().closeAll();
         }
 
         return habilitacaoAcademica;
@@ -237,8 +237,7 @@ public class RepositorioHabilitacaoAcademicaDatabase implements RepositorioHabil
         
         ArrayList<HabilitacaoAcademica> habilitacoesAcademicas = new ArrayList<>();
 
-        DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
-        Connection connection = dbConnectionHandler.openConnection();
+        Connection connection = DBConnectionHandler.getInstance().openConnection();
 
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(
@@ -277,7 +276,7 @@ public class RepositorioHabilitacaoAcademicaDatabase implements RepositorioHabil
             }
         }
         finally {
-            dbConnectionHandler.closeAll();
+            DBConnectionHandler.getInstance().closeAll();
         }
         return habilitacoesAcademicas;
     }
