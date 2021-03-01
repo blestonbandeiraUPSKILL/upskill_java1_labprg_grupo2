@@ -1,22 +1,27 @@
 @startuml
 title UC08 - Publicar Tarefa
 
-class Plataforma <<Singleton>> {
-    -String designacao
-}
+'left to right direction
 
 class PublicarTarefaUI{
     --
-    allTarefas()
-    novoAnuncio(dtInPub, dtFimPub, dtInCand, dtFimCand, dtInSer, dtFimSer, desigRegimento, regrasRegimento)
-    registaAnuncio()
+    -getAllTarefasPorPublicar()
+    -findByRefENif(referenciaTarefa, nifOrganizacao)
+    -registarAnuncio(dtInPub, dtFimPub, dtInCand, dtFimCand, \ndtInSer, dtFimSer, idTipoRegimento)
+    
 }
 
 class PublicarTarefaCTRL{
    --
-   allTarefas()
-   novoAnuncio(dtInPub, dtFimPub, dtInCand, dtFimCand, dtInSer, dtFimSer, desigRegimento, regrasRegimento)
-   registaAnuncio(a)
+   -getAllTarefasPorPublicar()
+   -findByRefENif(referenciaTarefa, nifOrganizacao)
+   -new Anuncio((dtInPub, dtFimPub, dtInCand, dtFimCand, \ndtInSer, dtFimSer, idTipoRegimento)
+   -save(anunci)
+}
+
+class RepositorioAnuncio {
+    --
+    -save(anuncio)
 }
 
 class Anuncio{
@@ -26,40 +31,41 @@ class Anuncio{
     -date dtFimCandidatura
     -date dtInicioSeriacao
     -date dtFimSeriacao
+    -int idTipoRegimento
 }
 
 class Tarefa{
-  -String referencia
-  -String designacao
-  -String descInformal
-  -String descTecnica
-  -int duracaoEst
-  -double custoEst 
+    -String referencia
+    -String nifOrganizacao
+    -String designacao
+    -String descInformal
+    -String descTecnica
+    -int duracaoEst
+    -double custoEst 
+    -String codigoCategoria
 }
 
 class TipoRegimento{
-  -String designacao
-  -String descricaoRegras
+    -int idTipoRegimento
+    -String designacao
+    -String descricaoRegras
 }
 
 class RepositorioAnuncio <<Singleton>>{
     -List<Anuncio> anuncios
     -Anuncio anuncio
     --
-    -allAnuncios()
-    -Anuncio(idAnuncio)
 }
 
 class RepositorioTarefa <<Singleton>>{
     -List<Tarefa> tarefas
     -Tarefa tarefa
     --
-    -allTarefas()
-    -Tarefa(referencia)    
+    -allTarefasPorPublicar(nifOrganizacao)
+    -tarefa(referencia, nifOrganizacao)    
 }
 
 PublicarTarefaUI ..> PublicarTarefaCTRL
-PublicarTarefaCTRL ..> Plataforma
 PublicarTarefaCTRL ..> RepositorioTarefa
 PublicarTarefaCTRL ..> RepositorioAnuncio
 
