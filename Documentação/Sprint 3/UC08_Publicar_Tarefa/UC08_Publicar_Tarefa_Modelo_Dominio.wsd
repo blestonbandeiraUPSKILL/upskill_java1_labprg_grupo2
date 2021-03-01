@@ -45,21 +45,13 @@ Class Colaborador{
 }
 
 Tarefa "*" -- "1" Colaborador: especificada por >
-
 Plataforma "1" --"*" Organizacao: tem registadas >
-
 Anuncio "0..1" -- "1" Tarefa: publicita >
-
 Anuncio "0..1" -- "1" Tarefa: < dá origem
-
 Plataforma "1" - "*" Anuncio: publicita >
-
 Plataforma "1" -up- "*" TipoRegimento: suporta >
-
 Organizacao "1" -- "*" Tarefa: possui >
-
 Anuncio "*" -- "1" TipoRegimento: rege-se por >
-
 Anuncio "*" ----- "1" Colaborador: publicado por >
 
 @enduml

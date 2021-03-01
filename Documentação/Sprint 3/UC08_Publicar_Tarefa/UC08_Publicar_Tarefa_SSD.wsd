@@ -1,0 +1,17 @@
+@startuml
+
+title UC08 - Publicar Tarefa
+
+actor "Colaborador da Organização" as Colaborador
+participant ":Sistema" as Sistema
+
+activate Colaborador
+Colaborador -> Sistema : 1 selecciona uma tarefa para publicar
+activate Sistema
+Sistema --> Colaborador: 2 solicita dados para a publicação da tarefa \n(i.e. período de publicação, período de apresentação de candidaturas, \nperíodo de seriação, e tipo de regimento aplicável)
+Colaborador -> Sistema: 3 introduz os dados solicitados
+Sistema --> Colaborador: 4 cria o anúncio e informa o sucesso da operação
+deactivate Colaborador
+deactivate Sistema
+
+@enduml
