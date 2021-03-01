@@ -72,12 +72,12 @@ public class ConsultarCompetenciaTecnicaUI implements Initializable {
     public void transferData() throws SQLException {
 
         String codigoCompetenciaTecnica = administrativoLogadoUI.getCodigoCompetenciaTecnica();
-        String codigoAreaActividade = administrativoLogadoUI.listViewCompetenciasTecnicas.getSelectionModel().getSelectedItem().getCodigoAreaActividade();
+        //String codigoAreaActividade = administrativoLogadoUI.tableViewCompetenciaTecnica.getSelectionModel().getSelectedItem().getCodigoAreaActividade();
         txtCodigoCompetenciaTecnica.setText(codigoCompetenciaTecnica);
-        txtDescricaoBreve.setText(administrativoLogadoUI.listViewCompetenciasTecnicas.getSelectionModel().getSelectedItem().getDescricaoBreve());
-        txtDescricaoDetalhada.setText(administrativoLogadoUI.listViewCompetenciasTecnicas.getSelectionModel().getSelectedItem().getDescricaoDetalhada());
+        txtDescricaoBreve.setText(administrativoLogadoUI.tableViewCompetenciaTecnica.getSelectionModel().getSelectedItem().getDescricaoBreve());
+        txtDescricaoDetalhada.setText(administrativoLogadoUI.tableViewCompetenciaTecnica.getSelectionModel().getSelectedItem().getDescricaoDetalhada());
         listViewGrausAplicaveis.getItems().setAll(registarGrauProficienciaController.findByCompetenciaTecnica(txtCodigoCompetenciaTecnica.getText()));
-        txtAreaActividade.setText(registarAreaActividadeController.findByCodigo(codigoAreaActividade).getDescBreve());
+       // txtAreaActividade.setText(registarAreaActividadeController.findByCodigo(codigoAreaActividade).getDescBreve());
     }
 
 

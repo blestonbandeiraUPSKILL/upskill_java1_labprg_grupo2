@@ -1,0 +1,45 @@
+@startuml
+
+participant Freelancer
+participant UC11_UI
+participant UC11_Ctrl
+participant RepositorioTarefas
+
+
+title UC1 - Editar Candidatura
+activate Freelancer
+Freelancer -> UC11_UI : consulta anúncios elegíveis
+activate UC11_UI
+UC11_UI -> UC11_Ctrl : getAllTarefasElegiveis (emailFreelancer)
+activate UC9_Ctrl
+UC11_Ctrl -> RepositorioTarefas : getAllTarefasElegiveis
+activate RepositorioTarefas
+RepositorioTarefas --> UC11_Ctrl : listaTarefasElegiveis
+deactivate RepositorioTarefas
+UC11_Ctrl --> UC11_UI : listaTarefasElegiveis
+deactivate UC11_Ctrl
+alt Não existem tarefas elegíveis
+UC11_UI --> Freelancer : Não existem tarefas disponíveis
+deactivate UC11_UI
+else existem tarefas elegíveis
+Freelancer -> UC11_UI : Seleciona tarefa \n Faz candidatura
+activate UC11_UI
+UC11_UI --> Freelancer : Solicita os dados necessários
+Freelancer -> UC9_UI : Introduz os dados solicitados
+UC11_UI -> UC11_Ctrl : registarCandidatura(idAnuncio, custo,\n  duracao, txtApresentacao, txtMotivacao,\n emailFreelancer )
+deactivate UC11_UI
+activate UC11_Ctrl
+UC11_Ctrl -> RepositorioCandidatura : save (idAnuncio, custo,\n  duracao, txtApresentacao, txtMotivacao,\n emailFreelancer )
+deactivate UC11_Ctrl
+activate RepositorioCandidatura
+RepositorioCandidatura --> UC11_Ctrl : true
+deactivate RepositorioCandidatura
+activate UC11_Ctrl
+UC11_Ctrl --> UC11_UI : true
+deactivate UC11_Ctrl
+activate UC11_UI
+UC11_UI --> Freelancer : Candidatura registada com sucesso
+deactivate UC11_UI
+end
+deactivate Freelancer
+@enduml

@@ -87,7 +87,7 @@ public class AdicionarCompetenciaTecnicaUI implements Initializable {
             );
 
             if (adicionou) {
-                administrativoLogadoUI.updateListViewCompetenciasTecnicas();
+                administrativoLogadoUI.updateTableViewCompetenciasTecnicas();
                 AlertsUI.criarAlerta(Alert.AlertType.INFORMATION,
                         MainApp.TITULO_APLICACAO,
                         "Registar Competência Técnica.",

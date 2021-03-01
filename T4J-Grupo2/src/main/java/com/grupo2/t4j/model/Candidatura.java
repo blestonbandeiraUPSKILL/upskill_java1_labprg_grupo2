@@ -11,7 +11,10 @@ public class Candidatura implements Serializable {
      * O id da Candidatura
      */
     private int idCandidatura;
-
+    
+    /**
+     * O id do Anúncio a que se refere a Candidatura
+     */
     private int idAnuncio;
     
     /**
@@ -23,6 +26,11 @@ public class Candidatura implements Serializable {
      * A data da Candidatura
      */
     private String dataCandidatura;
+    
+    /**
+     * A data de edição mais recente da Candidatura
+     */
+    private String dataEdicaoCandidatura;
     
     /**
      * O valor pretendido pelo Freelancer na sua candidatura a uma dada Tarefa
@@ -62,6 +70,34 @@ public class Candidatura implements Serializable {
      * a que se candidatou
      * @param txtApresentacao - o texto de apresentação do Freelancer para sua candidatura a uma dada Tarefa
      * @param txtMotivacao - o texto de motivação do Freelancer para sua candidatura a uma dada Tarefa
+     * @param dataCandidatura - a data de Candidatura (sempre a data atual do calendário)
+     * @param dataEdicaoCandidatura -  a data da edição da Candidatura (sempre a data atual do calendário)
+     */
+    public Candidatura(int idCandidatura, int idAnuncio, String emailFreelancer, double valorPretendido,
+            int numeroDias, String txtApresentacao, String txtMotivacao, String dataCandidatura,
+            String dataEdicaoCandidatura){
+        setIdCandidatura(idCandidatura);
+        setIdAnuncio(idAnuncio);
+        setEmailFreelancer(emailFreelancer);
+        setValor(valorPretendido);
+        setDias(numeroDias);
+        setApresentacao(txtApresentacao);
+        setMotivacao(txtMotivacao);
+        setData(dataCandidatura);
+        setDataEdicao(dataEdicaoCandidatura);
+    }
+    
+    /**
+     * O construtor da classe Candidatura sem data de edição da candidatura
+     * (a data de edição da candidatura assume a mesma data da criação da candidatura)
+     * @param idCandidatura - o id da Candidatura
+     * @param emailFreelancer - o email do Freelancer em formato String
+     * @param valorPretendido - o valor pretendido pelo Freelancer na sua candidatura a uma dada Tarefa
+     * @param numeroDias - número de dias que o Freelancer indica para a realização de uma dada Tarefa
+     * a que se candidatou
+     * @param txtApresentacao - o texto de apresentação do Freelancer para sua candidatura a uma dada Tarefa
+     * @param txtMotivacao - o texto de motivação do Freelancer para sua candidatura a uma dada Tarefa
+     * @param dataCandidatura - a data de Candidatura (sempre a data atual do calendário)
      */
     public Candidatura(int idCandidatura, int idAnuncio, String emailFreelancer, double valorPretendido,
             int numeroDias, String txtApresentacao, String txtMotivacao, String dataCandidatura){
@@ -73,6 +109,7 @@ public class Candidatura implements Serializable {
         setApresentacao(txtApresentacao);
         setMotivacao(txtMotivacao);
         setData(dataCandidatura);
+        setDataEdicao(dataCandidatura);
     }
     
     /**
@@ -106,6 +143,9 @@ public class Candidatura implements Serializable {
         setDias(candidatura.numeroDias);
         setApresentacao(candidatura.txtApresentacao);
         setMotivacao(candidatura.txtMotivacao);
+        setData(candidatura.dataCandidatura);
+        setDataEdicao(candidatura.dataEdicaoCandidatura);
+        
     }
 
     public Candidatura(int idAnuncio, String emailFreelancer, double valor, int dias, String apresentacao, String motivacao) {
@@ -116,7 +156,11 @@ public class Candidatura implements Serializable {
         setApresentacao(apresentacao);
         setMotivacao(motivacao);
     }
-
+    
+    /**
+     * Define o id do Anúncio
+     * @param idAnuncio 
+     */
     public void setIdAnuncio(int idAnuncio) {
         if (idAnuncio > 0) {
             this.idAnuncio = idAnuncio;
@@ -146,12 +190,21 @@ public class Candidatura implements Serializable {
     }
 
     /**
-     * Define a data de Candidatura como sendo sempre a data atual do calendário     *   
+     * Define a data de Candidatura como sendo sempre a data atual do calendário  
      */
     public void setData(String dataCandidatura){
         this.dataCandidatura = dataCandidatura;
     }
-      
+    
+    /**
+     * Define a data de edição da Candidatura como sendo sempre a data atual do calendário 
+     * Caso a candidatura não tenha sido editada, a data de edição é igual à 
+     * data de criação da candidatura.
+     */
+    public void setDataEdicao(String dataEdicaoCandidatura){
+        this.dataEdicaoCandidatura = dataEdicaoCandidatura;
+    }
+    
     /**
      * Define o valor pretendido pelo Freelancer para realização da Tarefa à qual
      * se candidatou em euros
@@ -219,11 +272,20 @@ public class Candidatura implements Serializable {
     }
     
     /**
-     * Devolve a data de Candidatura no formato Data
-     * @return dataCandidatura
+     * Devolve a data de Candidatura 
      */
     public String getDataCandidatura(){
         return dataCandidatura;
+    }
+    
+    /**
+     * Devolve a data da edição da Candidatura 
+     * Caso a candidatura não tenha sido editada, a data de edição é igual à 
+     * data de criação da candidatura.
+     * @return dataEdicaoCandidatura
+     */
+    public String getDataEdicaoCandidatura(){
+        return dataEdicaoCandidatura;
     }
     
     /**
