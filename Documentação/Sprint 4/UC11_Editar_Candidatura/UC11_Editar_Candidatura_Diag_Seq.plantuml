@@ -30,7 +30,7 @@ UC11_Ctrl -> RepositorioCandidatura : getCandidatura(idCandidatura)
 activate RepositorioCandidatura
 RepositorioCandidatura --> UC11_Ctrl : Candidatura(valorPretendido, \nnumeroDias, txtApresentacao, txtMotivacao)
 deactivate RepositorioCandidatura
-UC11_Ctrl -> UC11_UI : Candidatura(valorPretendido, \nnumeroDias, txtApresentacao, txtMotivacao)
+UC11_Ctrl --> UC11_UI : Candidatura(valorPretendido, \nnumeroDias, txtApresentacao, txtMotivacao)
 deactivate UC11_Ctrl
 UC11_UI --> Freelancer : Apresenta os dados registados \nSolicita confirmar/editar os dados
 deactivate UC11_UI
@@ -40,7 +40,7 @@ UC11_UI -> UC11_Ctrl : setCandidatura(idCandidatura, valorPretendido, \nnumeroDi
 activate UC11_Ctrl
 UC11_Ctrl -> RepositorioCandidatura : setCandidatura(idCandidatura, valorPretendido, \nnumeroDias, txtApresentacao, txtMotivacao)
 activate RepositorioCandidatura
-UC11_UI -> Freelancer : Apresenta os dados e solicita confirmação
+UC11_UI --> Freelancer : Apresenta os dados e solicita confirmação
 deactivate RepositorioCandidatura
 deactivate UC11_Ctrl
 deactivate UC11_UI
@@ -51,9 +51,9 @@ activate UC11_Ctrl
 UC11_Ctrl -> RepositorioCandidatura : setCandidatura(idCandidatura, valorPretendido, \nnumeroDias, txtApresentacao, txtMotivacao)
 activate RepositorioCandidatura
 RepositorioCandidatura -> RepositorioCandidatura : setSave(idCandidatura, valorPretendido, \nnumeroDias, txtApresentacao, txtMotivacao)
-RepositorioCandidatura -> UC11_Ctrl : true
+RepositorioCandidatura --> UC11_Ctrl : true
 deactivate RepositorioCandidatura
-UC11_Ctrl -> UC11_UI : true
+UC11_Ctrl --> UC11_UI : true
 deactivate UC11_Ctrl
 UC11_UI --> Freelancer : Candidatura registada com sucesso
 deactivate UC11_UI
