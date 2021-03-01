@@ -1,0 +1,45 @@
+@startuml
+
+participant Freelancer
+participant UC9_UI
+participant UC9_Ctrl
+participant RepositorioTarefas
+
+
+title UC9 - Efectuar Candidatura
+activate Freelancer
+Freelancer -> UC9_UI : consulta anúncios elegíveis
+activate UC9_UI
+UC9_UI -> UC9_Ctrl : getAllTarefasElegiveis (emailFreelancer)
+activate UC9_Ctrl
+UC9_Ctrl -> RepositorioTarefas : getAllTarefasElegiveis
+activate RepositorioTarefas
+RepositorioTarefas --> UC9_Ctrl : listaTarefasElegiveis
+deactivate RepositorioTarefas
+UC9_Ctrl --> UC9_UI : listaTarefasElegiveis
+deactivate UC9_Ctrl
+alt Não existem tarefas elegíveis
+UC9_UI --> Freelancer : Não existem tarefas disponíveis
+deactivate UC9_UI
+else existem tarefas elegíveis
+Freelancer -> UC9_UI : Seleciona tarefa \n Faz candidatura
+activate UC9_UI
+UC9_UI --> Freelancer : Solicita os dados necessários
+Freelancer -> UC9_UI : Introduz os dados solicitados
+UC9_UI -> UC9_Ctrl : registarCandidatura(idAnuncio, custo,\n  duracao, txtApresentacao, txtMotivacao,\n emailFreelancer )
+deactivate UC9_UI
+activate UC9_Ctrl
+UC9_Ctrl -> RepositorioCandidatura : save (idAnuncio, custo,\n  duracao, txtApresentacao, txtMotivacao,\n emailFreelancer )
+deactivate UC9_Ctrl
+activate RepositorioCandidatura
+RepositorioCandidatura --> UC9_Ctrl : true
+deactivate RepositorioCandidatura
+activate UC9_Ctrl
+UC9_Ctrl --> UC9_UI : true
+deactivate UC9_Ctrl
+activate UC9_UI
+UC9_UI --> Freelancer : Candidatura registada com sucesso
+deactivate UC9_UI
+end
+deactivate Freelancer
+@enduml
