@@ -69,7 +69,6 @@
                                                 <Font name="Calibri" size="16.0" />
                                             </font>
                                         </Label>
-                                        <ListView fx:id="listViewCompetenciasTecnicas" layoutX="14.0" layoutY="48.0" prefHeight="260.0" prefWidth="475.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="210.0" AnchorPane.topAnchor="50.0" />
                                         <VBox alignment="CENTER" layoutX="586.0" layoutY="260.0" AnchorPane.bottomAnchor="50.0" AnchorPane.rightAnchor="40.0" />
 
                                         <Button fx:id="btnConsultarCompetenciaTecnica" layoutX="557.0" layoutY="180.0" mnemonicParsing="false" onAction="#consultarCompetenciaTecnicaAction" prefHeight="25.0" prefWidth="80.0" styleClass="btnConfirmar" text="Consultar">
@@ -99,6 +98,14 @@
                                                 </Tooltip>
                                             </tooltip>
                                         </Button>
+                              <TableView layoutX="20.0" layoutY="65.0" prefHeight="245.0" prefWidth="518.0">
+                                <columns>
+                                  <TableColumn fx:id="colunaCodigoCT" prefWidth="75.0" text="Código " />
+                                  <TableColumn fx:id="ColunaCodigoATCT" prefWidth="75.0" text="Código AT" />
+                                    <TableColumn fx:id="colunaDescBreveCT" prefWidth="103.0" text="Descrição Breve" />
+                                    <TableColumn fx:id="colunaDescDetalhadaCT" prefWidth="264.0" text="Descrição Detalhada" />
+                                </columns>
+                              </TableView>
 
                                     </children>
                                 </AnchorPane>
