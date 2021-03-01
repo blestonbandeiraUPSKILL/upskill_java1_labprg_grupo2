@@ -32,6 +32,11 @@
 - [UC09 - Efectuar Candidatura](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Documenta%C3%A7%C3%A3o/Sprint%203/UC09_Efectuar_Candidatura/UC09_Efectuar_Candidatura.md)
 - [UC10 - Seriar (não automaticamente) Candidaturas de Anúncio](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Documenta%C3%A7%C3%A3o/Sprint%203/UC10_Seriar_(n%C3%A3o_automaticamente)_Candidaturas/UC10_Seria%C3%A7%C3%A3o_(N%C3%A3o_Autom%C3%A1tica)_de_Candidaturas.md)
 
+##### Sprint 4
+- [UC11 - Editar Candidatura](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Documenta%C3%A7%C3%A3o/Sprint%203/UC07_Registar_Freelancer/UC07.md)
+- [UC12 - Eliminar Candidatura](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Documenta%C3%A7%C3%A3o/Sprint%203/UC08_Publicar_Tarefa/UC08_Publicar_Tarefa.md)
+
+
 ## Links úteis
 
 - [Trabalho desenvolvido no módulo PDS](https://github.com/ajorgesantosp/upskill_java1_g1)

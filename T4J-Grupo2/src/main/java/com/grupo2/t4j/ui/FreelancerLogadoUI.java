@@ -107,7 +107,7 @@ public class FreelancerLogadoUI implements Initializable {
     }
     
     private ObservableList<Tarefa> listaAnuncios() throws SQLException {
-        return FXCollections.observableArrayList(registarTarefaController.getAllTarefasElegíveis(gestaoUtilizadoresController.getEmail()));
+        return FXCollections.observableArrayList(registarTarefaController.getAllTarefasPublicadas(/*gestaoUtilizadoresController.getEmail()*/));
     }
     
     public void updateTableViewAnuncio() throws SQLException {
@@ -124,7 +124,7 @@ public class FreelancerLogadoUI implements Initializable {
     public void updateListViewAnuncio() throws SQLException {
 
         String emailFreelancer = gestaoUtilizadoresController.getEmail();
-        listViewAnuncios.getItems().setAll(registarTarefaController.getAllTarefasElegíveis(emailFreelancer));
+        listViewAnuncios.getItems().setAll(registarTarefaController.getAllTarefasPublicadas());
     }
 
     public void logout(ActionEvent actionEvent) {

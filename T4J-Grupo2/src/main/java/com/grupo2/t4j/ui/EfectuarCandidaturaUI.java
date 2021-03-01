@@ -54,9 +54,9 @@ public class EfectuarCandidaturaUI implements Initializable {
     }
     
     public int getIdAnuncio() throws SQLException {
-        //freelancerLogadoUI.tabelaAnuncios.getSelectionModel().get
-        String nifOrganizacao = freelancerLogadoUI.listViewAnuncios.getSelectionModel().getSelectedItem().getNifOrganizacao();
-        String referenciaTarefa = freelancerLogadoUI.listViewAnuncios.getSelectionModel().getSelectedItem().getReferencia();
+
+        String nifOrganizacao = freelancerLogadoUI.tabelaAnuncios.getSelectionModel().getSelectedItem().getNifOrganizacao();
+        String referenciaTarefa = freelancerLogadoUI.tabelaAnuncios.getSelectionModel().getSelectedItem().getReferencia();
         int idAnuncio = registarTarefaController.findIdAnuncio(nifOrganizacao, referenciaTarefa);
 
         return idAnuncio ;
