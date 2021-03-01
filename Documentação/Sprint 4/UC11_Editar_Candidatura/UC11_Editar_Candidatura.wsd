@@ -8,11 +8,11 @@ activate ":Sistema"
 deactivate ":Sistema"
 Freelancer -> ":Sistema" : 3 - Seleciona a candidatura a editar
 activate ":Sistema"
-":Sistema" --> Freelancer : 4 - Solicita dados para a candidatura \n(i.e. valor pretendido, numero de dias, \ntexto apresentação (opcional), texto motivação (opcional) )
+":Sistema" --> Freelancer : 4 - Informa os dados registados para a candidatura e possibilita edição \n(i.e. valor pretendido, numero de dias, texto apresentação (opcional), \ntexto motivação (opcional) )
 deactivate ":Sistema"
 Freelancer -> ":Sistema" : 5 - Mantém ou modifica os dados existentes solicitados
 activate ":Sistema"
-":Sistema" --> Freelancer : 6 - Apresenta os dados e solicita confirmação
+":Sistema" --> Freelancer : 6 - Apresenta os dados atualizados e solicita confirmação
 deactivate ":Sistema"
 Freelancer -> ":Sistema" : 7 - Confirma os dados
 activate ":Sistema"

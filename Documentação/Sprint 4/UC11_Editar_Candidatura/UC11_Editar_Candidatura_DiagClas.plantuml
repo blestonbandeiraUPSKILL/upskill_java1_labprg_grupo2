@@ -21,7 +21,7 @@ class Candidatura {
 
 class UC11_UI{
     --
-    getListaCandidaturasEditaveis(emailFreelancer, dataAtual)
+    getAllCandidaturasEditaveis(emailFreelancer, dataAtual)
     getCandidatura(idCandidatura)
     setCandidatura(idCandidatura, valorPretendido, numeroDias,
     txtApresentacao, txtMotivacao)    
@@ -29,7 +29,7 @@ class UC11_UI{
 
 class UC11_CTRL{
     --
-    getListaCandidaturasEditaveis(emailFreelancer, dataAtual)
+    getAllCandidaturasEditaveis(emailFreelancer, dataAtual)
     getCandidatura(idCandidatura)
     setCandidatura(idCandidatura, valorPretendido, numeroDias,
     txtApresentacao, txtMotivacao)   
