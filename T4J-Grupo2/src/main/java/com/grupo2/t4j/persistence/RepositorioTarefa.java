@@ -59,5 +59,5 @@ public interface RepositorioTarefa {
     public List<Tarefa> getAllTarefasPublicadas() throws SQLException;
 
 
-    List<Tarefa> getgetAllTarefasElegíveis(String emailFreelancer);
+    List<Tarefa> getgetAllTarefasElegíveis(String emailFreelancer) throws SQLException;
 }
