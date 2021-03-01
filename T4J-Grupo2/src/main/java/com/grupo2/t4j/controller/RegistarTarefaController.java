@@ -100,18 +100,18 @@ public class RegistarTarefaController {
         List<GrauProficiencia> grausFreelancer = getAllGrausFreelancer(emailFreelancer);
 
         List<Tarefa> tarefasElegíveis = new ArrayList<>();
-
         for(Tarefa tarefa : tarefasPublicadas) {
             List<GrauProficiencia> grauTarefa = getAllGrausTarefa(tarefa);
             for(GrauProficiencia grau : grauTarefa) {
                 for (GrauProficiencia grauProficienciaFreelancer : grausFreelancer) {
                     if (grau.getDesignacao().equals(grauProficienciaFreelancer.getDesignacao()) &&
-                                    grau.getGrau() < grauProficienciaFreelancer.getGrau()) {
+                            grau.getGrau() < grauProficienciaFreelancer.getGrau()) {
                         tarefasElegíveis.add(tarefa);
                     }
                 }
             }
         }
+
         return tarefasElegíveis;
     }
 
