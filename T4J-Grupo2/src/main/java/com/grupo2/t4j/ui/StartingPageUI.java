@@ -66,8 +66,8 @@ public class StartingPageUI implements Initializable {
 
         Scene scene = btnGoDark.getScene();
         
-        estilo = "/com/grupo2/t4j/style/dark.css";
-
+        estilo = "/com/grupo2/t4j/style/dark.css";       
+        
         scene.getStylesheets().clear();
         scene.getStylesheets().add(getClass().getResource(estilo).toExternalForm());
     }
@@ -76,8 +76,9 @@ public class StartingPageUI implements Initializable {
     void cssGoLight(ActionEvent event) {
 
         Scene scene = btnGoLight.getScene();
-
+       
         estilo = "/com/grupo2/t4j/style/app.css";
+            
         scene.getStylesheets().clear();
         scene.getStylesheets().add(getClass().getResource(estilo).toExternalForm());
 

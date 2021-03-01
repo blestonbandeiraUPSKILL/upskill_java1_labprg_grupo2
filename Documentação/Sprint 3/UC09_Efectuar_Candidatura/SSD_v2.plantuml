@@ -1,0 +1,18 @@
+@startuml
+title UC9 - Efectuar Candidatura
+actor Freelancer
+activate Freelancer
+Freelancer -> Sistema : 1 - Inicia a Candidatura a um anúncio
+activate Sistema
+Sistema --> Freelancer : 2 - Solicita escolha de um anúncio elegível
+deactivate Sistema
+Freelancer -> Sistema : 3 - Seleciona anúncio para registar candidatura
+activate Sistema
+Sistema --> Freelancer : 4 - Solicita dados para a candidatura \n (i.e. valor pretendido, numerdo dias, texto apresentação (opcional), texto motivação (opcional) )
+deactivate Sistema
+Freelancer -> Sistema : 5 - Introduz os dados solicitados
+activate Sistema
+Sistema --> Freelancer : 6 - Regista a nova candidatura e informa sucesso da operação
+deactivate Sistema
+deactivate Freelancer
+@enduml
