@@ -20,22 +20,24 @@ class Candidatura {
 
 class UC11_UI{
     --
-    showListaCandidaturasEditaveis(dataAtual)
+    getListaCandidaturasEditaveis(emailFreelancer, dataAtual)
     getCandidatura(idCandidatura)
-    setCandidatura(valorPretendido, numeroDias,
+    setCandidatura(idCandidatura, valorPretendido, numeroDias,
     txtApresentacao, txtMotivacao)
     
 }
 class UC11_CTRL{
     --
-    showListaCandidaturasEditaveis(dataAtual)
+    getListaCandidaturasEditaveis(emailFreelancer, dataAtual)
     getCandidatura(idCandidatura)
-    setCandidatura(valorPretendido, numeroDias,
+    setCandidatura(idCandidatura, valorPretendido, numeroDias,
     txtApresentacao, txtMotivacao)
    
 }
 
 class RepositorioCandidatura {
+    setSave(idCandidatura, valorPretendido, numeroDias,
+    txtApresentacao, txtMotivacao)
 
 }
 
