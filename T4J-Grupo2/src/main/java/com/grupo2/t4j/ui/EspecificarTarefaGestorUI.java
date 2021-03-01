@@ -50,7 +50,11 @@ public class EspecificarTarefaGestorUI implements Initializable {
     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        registarTarefaController = new RegistarTarefaController();
+        try {
+            registarTarefaController = new RegistarTarefaController();
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }
         registarAreaActividadeController = new RegistarAreaActividadeController();
         registarCategoriaController = new RegistarCategoriaController();
         gestaoUtilizadoresController = new GestaoUtilizadoresController();
@@ -115,19 +119,18 @@ public class EspecificarTarefaGestorUI implements Initializable {
 
             if (adicionou){
                gestorLogadoUI.updateListViewTarefas();
-            }
+
             AlertsUI.criarAlerta(Alert.AlertType.INFORMATION,
                     MainApp.TITULO_APLICACAO,
                     "Registar Tarefa.",
-                    adicionou ? "Tarefa registada com sucesso."
-                            : "Não foi possível registar a Tarefa.").show();
-
+                    "Tarefa registada com sucesso.").show();
+            }
         }
-        catch (IllegalArgumentException iae) {
+        catch (IllegalArgumentException exception) {
             AlertsUI.criarAlerta(Alert.AlertType.ERROR,
                     MainApp.TITULO_APLICACAO,
-                    "Erro nos dados.",
-                    iae.getMessage()).show();
+                    "Registar Tarefa - Erro nos dados.",
+                    "Não foi possível registar a Tarefa." + exception.getMessage()).show();
 
         }
 

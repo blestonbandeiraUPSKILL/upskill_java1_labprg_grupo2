@@ -161,22 +161,19 @@ public class AdicionarCategoriaTarefaUI implements Initializable {
                 cmbGrauProficiencia.getSelectionModel().clearSelection();
                 cmbGrauProficiencia.getItems().clear();
                 cmbObrigatoriedade.getSelectionModel().clearSelection();
-            }
 
-            AlertsUI.criarAlerta(Alert.AlertType.INFORMATION,
+                AlertsUI.criarAlerta(Alert.AlertType.INFORMATION,
                     MainApp.TITULO_APLICACAO,
                     "Registar Caracterização de Competencia.",
-                    adicionou ? "Caracterização efectuada com sucesso. Pode regressar à página anterior."
-                            : "Não foi possível efectuar a caracterização.").show();
-
+                    "Caracterização efectuada com sucesso. Pode regressar à página anterior.").show();
+            }
         }
         catch (IllegalArgumentException | SQLException iae) {
             AlertsUI.criarAlerta(Alert.AlertType.ERROR,
-                    MainApp.TITULO_APLICACAO,
-                    "Erro nos dados.",
-                    iae.getMessage()).show();
+                MainApp.TITULO_APLICACAO,
+                "Registar Caracterização de Competencia - Erro nos dados.",
+                "Não foi possível registar a caracterização: " + iae.getMessage()).show();
         }
-
 
 
     }
@@ -201,20 +198,20 @@ public class AdicionarCategoriaTarefaUI implements Initializable {
             if(adicionou) {
                 administrativoLogadoUI.updateListViewCategoriasTarefa();
                 cmbAreaActividade.setDisable(true);
-            }
+
 
             AlertsUI.criarAlerta(Alert.AlertType.INFORMATION,
-                    MainApp.TITULO_APLICACAO,
-                    "Registar Categoria de Tarefa.",
-                    adicionou ? "Categoria de Tarefa registada com sucesso. Pode adicionar os Graus de Proficiência aplicáveis."
-                            : "Não foi possível registar a Categoria de Tarefa.").show();
+                MainApp.TITULO_APLICACAO,
+                "Registar Categoria de Tarefa.",
+                "Categoria de Tarefa registada com sucesso. Pode adicionar os Graus de Proficiência aplicáveis.").show();
 
+            }
         }
-        catch (IllegalArgumentException | SQLException iae) {
+        catch (IllegalArgumentException | SQLException exception) {
             AlertsUI.criarAlerta(Alert.AlertType.ERROR,
-                    MainApp.TITULO_APLICACAO,
-                    "Erro nos dados.",
-                    iae.getMessage()).show();
+                MainApp.TITULO_APLICACAO,
+                "Registar Categoria de Tarefa - Erro nos dados.",
+                "Não foi possível registar a Categoria de Tarefa: " + exception.getMessage()).show();
 
         }
     }

@@ -28,15 +28,11 @@ public class RepositorioReconhecimentoGPDatabase implements RepositorioReconheci
      */
     private static RepositorioReconhecimentoGPDatabase repositorioReconhecimentoGPDatabase;
     
-    String jdbcUrl = "jdbc:oracle:thin:@vsrvbd1.dei.isep.ipp.pt:1521/pdborcl";
-    String username = "UPSKILL_BD_TURMA1_01";
-    String password = "qwerty";
-    
     /**
      * Inicializa o Repositório de todas as Competências Técnicas de grau de proficiência 
      * reconhecidaas de todos os Freelancers
      */
-    RepositorioReconhecimentoGPDatabase(){    }
+    private RepositorioReconhecimentoGPDatabase(){    }
 
     /**
      * Devolve uma instância estática do Repositório de Reconhecimento de GP
@@ -52,89 +48,26 @@ public class RepositorioReconhecimentoGPDatabase implements RepositorioReconheci
 
 
     @Override
-    public boolean save(int idGrauProficiencia, String dataReconhecimento, 
-             Email emailFreelancer, String idCompetenciaTecnica) throws  ReconhecimentoDuplicadoException,
+    public boolean save(int idGrauProficiencia, String emailFreelancer, String dataReconhecimento) throws  ReconhecimentoDuplicadoException,
             SQLException{
-        
-        
-        return false;
 
-    }
-
-    @Override
-    public boolean save(ReconhecimentoGP reconhecimentoGP) throws ReconhecimentoDuplicadoException,
-            SQLException {
-        
-        DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
-        Connection connection = dbConnectionHandler.openConnection();
-
-        CallableStatement callableStatement = connection.prepareCall(
-                "{CALL createReconhecimentoGP(?, ?, ?, ?)}"
-        );
-       // if (findByCategoriaEGrau(reconhecimentoGP.getCodigoCategoria(), caracterizacaoCT.getCodigoGP()) == null){
-            try {
-                connection.setAutoCommit(false);
-
-                callableStatement.setInt(1, reconhecimentoGP.getIdGrauProficiencia());
-                callableStatement.setString(2, reconhecimentoGP.getIdCompetenciaTecnica());
-                callableStatement.setString(3, reconhecimentoGP.getEmailFreelancer().getEmailText());
-                callableStatement.setString(4, reconhecimentoGP.getDataReconhecimento());
-                
-
-                callableStatement.executeQuery();
-
-                connection.commit();
-                return true;
-            }
-            catch (SQLException exception) {
-                exception.printStackTrace();
-                exception.getSQLState();
-                try {
-                    System.err.print("Transaction is being rolled back");
-                    connection.rollback();
-                }
-                catch (SQLException sqlException) {
-                    sqlException.getErrorCode();
-                }
-            }
-            finally {
-                dbConnectionHandler.closeAll();
-            }
-        return false;
-    }
-    
-    @Override
-    public ArrayList<ReconhecimentoGP> getAll() throws SQLException {
-        return null;
-    }
-    
-    @Override
-    public ArrayList<ReconhecimentoGP> findByEmail(String email) throws SQLException {
-        ArrayList<ReconhecimentoGP> reconhecimentosFreelancer = new ArrayList<>();
-
-        DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
-        Connection connection = dbConnectionHandler.openConnection();
+        Connection connection = DBConnectionHandler.getInstance().openConnection();
 
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement(
-                    "SELECT * FROM ReconhecimentoGO WHERE emailFreelancer LIKE ?"
+            CallableStatement callableStatement = connection.prepareCall(
+                    "{CALL createReconhecimentoGP(?, ?, ?)}"
             );
 
-            preparedStatement.setString(1, email);
-            
-            ResultSet resultSet = preparedStatement.executeQuery();
+            connection.setAutoCommit(false);
 
-            while (resultSet.next()) {
+            callableStatement.setInt(1, idGrauProficiencia);
+            callableStatement.setString(2, emailFreelancer);
+            callableStatement.setDate(3, Date.valueOf(dataReconhecimento));
 
-                
-                int idGrauProficiencia  = resultSet.getInt(1);
-                String idCompetenciaTecnica = resultSet.getString(2);
-                String dataReconhecimento = resultSet.getString(4);
-                
-                reconhecimentosFreelancer.add(new ReconhecimentoGP(
-                        idGrauProficiencia, idCompetenciaTecnica, 
-                        new Email(email), dataReconhecimento));
-            }
+            callableStatement.executeQuery();
+
+            connection.commit();
+            return true;
         }
         catch (SQLException exception) {
             exception.printStackTrace();
@@ -146,13 +79,103 @@ public class RepositorioReconhecimentoGPDatabase implements RepositorioReconheci
             catch (SQLException sqlException) {
                 sqlException.getErrorCode();
             }
-
         }
         finally {
-            dbConnectionHandler.closeAll();
+            DBConnectionHandler.getInstance().closeAll();
         }
+        return false;
 
-        return reconhecimentosFreelancer;
+    }
+
+    @Override
+    public boolean save(ReconhecimentoGP reconhecimentoGP) throws ReconhecimentoDuplicadoException,
+            SQLException {
+
+        Connection connection = DBConnectionHandler.getInstance().openConnection();
+
+        try {
+            CallableStatement callableStatement = connection.prepareCall(
+                    "{CALL createReconhecimentoGP(?, ?, ?)}"
+            );
+
+            connection.setAutoCommit(false);
+
+            callableStatement.setInt(1, reconhecimentoGP.getIdGrauProficiencia());
+            callableStatement.setString(2, reconhecimentoGP.getEmailFreelancer().getEmailText());
+            callableStatement.setString(3, reconhecimentoGP.getDataReconhecimento());
+
+            callableStatement.executeQuery();
+
+            connection.commit();
+            return true;
+        }
+        catch (SQLException exception) {
+            exception.printStackTrace();
+            exception.getSQLState();
+            try {
+                System.err.print("Transaction is being rolled back");
+                connection.rollback();
+            }
+            catch (SQLException sqlException) {
+                sqlException.getErrorCode();
+            }
+        }
+        finally {
+            DBConnectionHandler.getInstance().closeAll();
+        }
+        return false;
+    }
+    
+    @Override
+    public ArrayList<ReconhecimentoGP> getAll(String email) throws SQLException {
+        ArrayList<ReconhecimentoGP> reconhecimentosGP = new ArrayList<>();
+
+        Connection connection = DBConnectionHandler.getInstance().openConnection();
+
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(
+                    "SELECT * FROM ReconhecimentoGP " +
+                            "INNER JOIN Freelancer " +
+                            "ON ReconhecimentoGP.emailFreelancer = Freelancer.email " +
+                            "INNER JOIN GrauProficiencia " +
+                            "ON GrauProficiencia.idGrauProficiencia = ReconhecimentoGP.idGrauProficiencia " +
+                            "WHERE Freelancer.email = ? "
+            );
+
+            preparedStatement.setString(1, email);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while(resultSet.next()) {
+                int idGrauProficiencia = resultSet.getInt(1);
+                String dataReconhecimento = resultSet.getString(3);
+
+                reconhecimentosGP.add(new ReconhecimentoGP(idGrauProficiencia, new Email(email), dataReconhecimento));
+
+            }
+        }
+        catch (SQLException exception) {
+            exception.printStackTrace();
+            exception.getSQLState();
+            try {
+                System.err.print("Transaction is being rolled back");
+                connection.rollback();
+            } catch (SQLException sqlException) {
+                sqlException.getErrorCode();
+            }
+
+        } finally {
+            DBConnectionHandler.getInstance().closeAll();
+        }
+        return reconhecimentosGP;
+
+
+
+    }
+    
+    @Override
+    public ArrayList<ReconhecimentoGP> findByEmail(String email) throws SQLException {
+        return null;
     }
     
     @Override
@@ -160,8 +183,7 @@ public class RepositorioReconhecimentoGPDatabase implements RepositorioReconheci
         
         ReconhecimentoGP reconhecimentoGP = null;
 
-        DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
-        Connection connection = dbConnectionHandler.openConnection();
+        Connection connection = DBConnectionHandler.getInstance().openConnection();
 
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(
@@ -176,10 +198,10 @@ public class RepositorioReconhecimentoGPDatabase implements RepositorioReconheci
             while (resultSet.next()) {
 
                 int idGrauProficiencia  = resultSet.getInt(1);
-                String dataReconhecimento = resultSet.getString(4);
+                String dataReconhecimento = resultSet.getString(3);
                 
                 reconhecimentoGP = new ReconhecimentoGP( 
-                        idGrauProficiencia, idCompetenciaTecnica, 
+                        idGrauProficiencia,
                         new Email(email), dataReconhecimento);
             }
         }
@@ -196,7 +218,7 @@ public class RepositorioReconhecimentoGPDatabase implements RepositorioReconheci
 
         }
         finally {
-            dbConnectionHandler.closeAll();
+            DBConnectionHandler.getInstance().closeAll();
         }
 
         return reconhecimentoGP;

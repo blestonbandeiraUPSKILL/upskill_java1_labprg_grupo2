@@ -12,6 +12,7 @@ package com.grupo2.t4j.persistence.inmemory;
 
 import com.grupo2.t4j.exception.HabilitacaoAcademicaDuplicadaException;
 import com.grupo2.t4j.model.HabilitacaoAcademica;
+import com.grupo2.t4j.model.HabilitacaoAcademica;
 import com.grupo2.t4j.persistence.RepositorioHabilitacaoAcademica;
 
 import java.io.Serializable;
@@ -58,7 +59,7 @@ public class RepositorioHabilitacaoAcademicaInMemory  implements Serializable, R
     public boolean save(String grau, String designacaoCurso,
            String nomeInstituicao, double mediaCurso, String emailFreelancer) throws HabilitacaoAcademicaDuplicadaException {
         /*HabilitacaoAcademica ha1 = findById(idHabilitacao);*/
-        HabilitacaoAcademica ha2 = findByGrauDesigInst(grau, designacaoCurso, 
+        HabilitacaoAcademica ha2 = findByGrauDesigInst(grau, designacaoCurso,
                 nomeInstituicao, emailFreelancer);
         if (ha2 == null) {
             HabilitacaoAcademica habilitacao = new HabilitacaoAcademica(cont,
@@ -79,7 +80,7 @@ public class RepositorioHabilitacaoAcademicaInMemory  implements Serializable, R
 
     public boolean save(HabilitacaoAcademica habilitacaoAcademica) throws HabilitacaoAcademicaDuplicadaException {
         //HabilitacaoAcademica ha1 = findById(habilitacaoAcademica.getIdHabilitacao());
-        HabilitacaoAcademica ha2 = findByGrauDesigInst(habilitacaoAcademica.getGrau(), 
+        HabilitacaoAcademica ha2 = findByGrauDesigInst(habilitacaoAcademica.getGrau(),
                 habilitacaoAcademica.getDesignacaoCurso(), habilitacaoAcademica.getNomeInstituicao(),
                 habilitacaoAcademica.getEmailFreelancer());
         if (ha2 == null) {
@@ -108,17 +109,7 @@ public class RepositorioHabilitacaoAcademicaInMemory  implements Serializable, R
     }
 
     @Override
-    public ArrayList<HabilitacaoAcademica> getAll(String emailFreelancer) throws SQLException {
-        return null;
-    }
-
-
-    public ArrayList<HabilitacaoAcademica> getAll() {
-        return new ArrayList<HabilitacaoAcademica>(listaHabilitacoesAcademicas);
-    }
-    
-    @Override
-    public ArrayList<HabilitacaoAcademica> getAllByEmail(String emailFreelancer) {
+    public ArrayList<HabilitacaoAcademica> getAll(String emailFreelancer) {
         ArrayList<HabilitacaoAcademica> listaHabilitacoesUmFreelancer = new ArrayList<>();
         for(int i = 0; i < listaHabilitacoesAcademicas.size();i++){
             HabilitacaoAcademica habilitacao = this.listaHabilitacoesAcademicas.get(i);
@@ -126,8 +117,9 @@ public class RepositorioHabilitacaoAcademicaInMemory  implements Serializable, R
                 listaHabilitacoesUmFreelancer.add(habilitacao);
             }
         }
-        return listaHabilitacoesUmFreelancer;     
+        return listaHabilitacoesUmFreelancer;
     }
+
         
     public int adicionarListaHabilitacao(RepositorioHabilitacaoAcademicaInMemory outraListaHabilitacao) {
         int totalHabilitacoesAdicionadas = 0;
@@ -143,8 +135,8 @@ public class RepositorioHabilitacaoAcademicaInMemory  implements Serializable, R
     
 
     public HabilitacaoAcademica findByGrauDesigInst(String grau, String designacaoCurso,
-           String nomeInstituicao, String emailFreelancer){
-        for (int i = 0; i < this.listaHabilitacoesAcademicas.size(); i++) {
+                                                String nomeInstituicao, String emailFreelancer){
+       /* for (int i = 0; i < this.listaHabilitacoesAcademicas.size(); i++) {
             HabilitacaoAcademica habilitacao = this.listaHabilitacoesAcademicas.get(i);
             if (habilitacao.getEmailFreelancer().equals(emailFreelancer) && habilitacao.getGrau().equals(grau)){
                 if(habilitacao.getDesignacaoCurso().equals(designacaoCurso) && 
@@ -152,7 +144,7 @@ public class RepositorioHabilitacaoAcademicaInMemory  implements Serializable, R
                     return habilitacao;
                 }
             }
-        }
+        }*/
         return null;
     }
     

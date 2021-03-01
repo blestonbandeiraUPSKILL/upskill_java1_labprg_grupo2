@@ -53,7 +53,7 @@ public class PublicarTarefaController {
         return data;
     }
     
-    public List<Anuncio> getAll() {
+    public List<Anuncio> getAll() throws SQLException {
         return repositorioAnuncio.getAll();
     }
     

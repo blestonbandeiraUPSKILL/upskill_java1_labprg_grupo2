@@ -1,5 +1,7 @@
 package com.grupo2.t4j.model;
 
+import com.grupo2.t4j.exception.IdInvalidoException;
+
 import java.io.Serializable;
 import java.util.Calendar;
 
@@ -8,7 +10,9 @@ public class Candidatura implements Serializable {
     /**
      * O id da Candidatura
      */
-    private String idCandidatura;
+    private int idCandidatura;
+
+    private int idAnuncio;
     
     /**
      * O email do Freelancer que se candidatou ao anúncio
@@ -18,7 +22,7 @@ public class Candidatura implements Serializable {
     /**
      * A data da Candidatura
      */
-    private Data dataCandidatura;
+    private String dataCandidatura;
     
     /**
      * O valor pretendido pelo Freelancer na sua candidatura a uma dada Tarefa
@@ -40,24 +44,8 @@ public class Candidatura implements Serializable {
      * O texto de motivação do Freelancer para sua candidatura a uma dada Tarefa
      */
     private String txtMotivacao;
-    
-    /**
-     *  O texto de apresentação do Freelancer para uma candidatura por omissão
-     */
-    private static final String APRESENTACAO_POR_OMISSAO = "Sem apresentação";
-    
-    /**
-     *  O texto de motivação do Freelancer para uma candidatura por omissão
-     */
-    private static final String MOTIVACAO_POR_OMISSAO = "Sem motivação";
-    
-     /**
-     * A data atual no formato da classe Data
-     */
-    private Calendar cal = Calendar.getInstance();
-    private Data hoje = new Data(cal.get(Calendar.YEAR),cal.get(Calendar.MONTH),
-            cal.get(Calendar.DAY_OF_MONTH));
-    
+
+
     /**
      * Construtor vazio da classe Candidatura
      */
@@ -75,15 +63,16 @@ public class Candidatura implements Serializable {
      * @param txtApresentacao - o texto de apresentação do Freelancer para sua candidatura a uma dada Tarefa
      * @param txtMotivacao - o texto de motivação do Freelancer para sua candidatura a uma dada Tarefa
      */
-    public Candidatura(String idCandidatura, String emailFreelancer, double valorPretendido, 
-            int numeroDias, String txtApresentacao,String txtMotivacao){
+    public Candidatura(int idCandidatura, int idAnuncio, String emailFreelancer, double valorPretendido,
+            int numeroDias, String txtApresentacao, String txtMotivacao, String dataCandidatura){
         setIdCandidatura(idCandidatura);
+        setIdAnuncio(idAnuncio);
         setEmailFreelancer(emailFreelancer);
-        setData();
         setValor(valorPretendido);
         setDias(numeroDias);
         setApresentacao(txtApresentacao);
         setMotivacao(txtMotivacao);
+        setData(dataCandidatura);
     }
     
     /**
@@ -95,15 +84,14 @@ public class Candidatura implements Serializable {
      * @param numeroDias - número de dias que o Freelancer indica para a realização de uma dada Tarefa
      * a que se candidatou
      */
-    public Candidatura(String idCandidatura, String emailFreelancer, double valorPretendido, 
+    public Candidatura(int idCandidatura, String emailFreelancer, double valorPretendido,
             int numeroDias){
         setIdCandidatura(idCandidatura);
         setEmailFreelancer(emailFreelancer);
-        setData();
         setValor(valorPretendido);
         setDias(numeroDias);
-        setApresentacao(APRESENTACAO_POR_OMISSAO);
-        setMotivacao(MOTIVACAO_POR_OMISSAO);
+        setApresentacao("");
+        setMotivacao("");
     }
     
     /**
@@ -113,20 +101,38 @@ public class Candidatura implements Serializable {
     public Candidatura(Candidatura candidatura){
         setIdCandidatura(candidatura.idCandidatura);
         setEmailFreelancer(candidatura.emailFreelancer);
-        setData();
+        setData(candidatura.dataCandidatura);
         setValor(candidatura.valorPretendido);
         setDias(candidatura.numeroDias);
         setApresentacao(candidatura.txtApresentacao);
         setMotivacao(candidatura.txtMotivacao);
     }
-    
+
+    public Candidatura(int idAnuncio, String emailFreelancer, double valor, int dias, String apresentacao, String motivacao) {
+        setIdAnuncio(idAnuncio);
+        setEmailFreelancer(emailFreelancer);
+        setValor(valor);
+        setDias(dias);
+        setApresentacao(apresentacao);
+        setMotivacao(motivacao);
+    }
+
+    public void setIdAnuncio(int idAnuncio) {
+        if (idAnuncio > 0) {
+            this.idAnuncio = idAnuncio;
+        }
+        else {
+            throw new IdInvalidoException("O id não é válido.");
+        }
+    }
+
     /**
      * Define o id da Candidatura
      * @param idCandidatura - o id da Candidatura
      */
-    public void setIdCandidatura(String idCandidatura){
-        if (idCandidatura == null || idCandidatura.trim().isEmpty()) {
-            throw new IllegalArgumentException("Id da Candidatura é inválido!");
+    public void setIdCandidatura(int idCandidatura){
+        if (idCandidatura < 0 ) {
+            throw new IdInvalidoException("Id da Candidatura é inválido!");
         }
         this.idCandidatura = idCandidatura;
     }
@@ -142,8 +148,8 @@ public class Candidatura implements Serializable {
     /**
      * Define a data de Candidatura como sendo sempre a data atual do calendário     *   
      */
-    public void setData(){
-        this.dataCandidatura = hoje;
+    public void setData(String dataCandidatura){
+        this.dataCandidatura = dataCandidatura;
     }
       
     /**
@@ -181,12 +187,7 @@ public class Candidatura implements Serializable {
      * @param txtApresentacao
      */
     public void setApresentacao(String txtApresentacao){
-        if (txtApresentacao == null || txtApresentacao.trim().isEmpty()) {
-            throw new IllegalArgumentException("O texto de apresentação é inválido!");
-        }
-        else{
-            this.txtApresentacao = txtApresentacao;
-        }
+        this.txtApresentacao = txtApresentacao;
     }
     
     /**
@@ -194,22 +195,21 @@ public class Candidatura implements Serializable {
      * @param txtMotivacao
      */
     public void setMotivacao(String txtMotivacao){
-        if (txtMotivacao == null || txtMotivacao.trim().isEmpty()) {
-            throw new IllegalArgumentException("O texto de motivação é inválido!");
-        }
-        else{
-            this.txtMotivacao = txtMotivacao;
-        }
+        this.txtMotivacao = txtMotivacao;
     }
     
     /**
      * Devolve o id da Candidatura
      * @return idCandidatura
      */
-    public String getIdCandidatura(){
+    public int getIdCandidatura(){
         return idCandidatura;
     }
-    
+
+    public int getIdAnuncio() {
+        return idAnuncio;
+    }
+
     /**
      * Devolve o email do Freelancer que se candidatou ao anúncio
      * @return emailFreelancer
@@ -222,7 +222,7 @@ public class Candidatura implements Serializable {
      * Devolve a data de Candidatura no formato Data
      * @return dataCandidatura
      */
-    public Data getDataCandidatura(){
+    public String getDataCandidatura(){
         return dataCandidatura;
     }
     
@@ -270,11 +270,20 @@ public class Candidatura implements Serializable {
      */   
     @Override
     public String toString(){
-        return String.format("ID: %-12s |Freelancer: %-20s |Data Candidatura: %-12s"
-                + " |Valor pretendido: %-12f.2  euros |Número de dias: %-8d"
-                + " |Apresentação: %-50s |Motivação: %-50s", idCandidatura, emailFreelancer, 
-                dataCandidatura.toAnoMesDiaString(), valorPretendido,
-                numeroDias, txtApresentacao, txtMotivacao);
+        return String.format("ID2: %-12s " +
+                        "|Freelancer: %-20s " +
+                        "|Data Candidatura: %-12s" +
+                        "|Valor pretendido: %.2f euros " +
+                        "|Número de dias: %-8d" +
+                        "|Apresentação: %-50s " +
+                        "|Motivação: %-50s",
+                idCandidatura,
+                emailFreelancer,
+                dataCandidatura,
+                valorPretendido,
+                numeroDias,
+                txtApresentacao,
+                txtMotivacao);
     }
     
     /**
@@ -289,7 +298,7 @@ public class Candidatura implements Serializable {
         return String.format("ID: %s  %nEmail do Freelancer: %s %nData Candidatura: %s"
                 + "%nValor pretendido: %f.2  euros %nNúmero de dias: %"
                 + "%nApresentação: %s %nMotivação: %s", idCandidatura, emailFreelancer, 
-                dataCandidatura.toAnoMesDiaString(), valorPretendido,
+                dataCandidatura, valorPretendido,
                 numeroDias, txtApresentacao, txtMotivacao);
     }    
 }

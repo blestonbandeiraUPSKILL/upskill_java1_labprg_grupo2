@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="BorderPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.PublicarTarefaUI">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="BorderPane" stylesheets="@../style/app.css" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.PublicarTarefaUI">
     <top>
         <Label styleClass="lblUser" text="Área do Colaborador :::&gt; Publicar Tarefa" BorderPane.alignment="CENTER_RIGHT">
             <font>
@@ -35,7 +34,7 @@
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </padding>
                 </Button>
-                <Button fx:id="btnVoltar" mnemonicParsing="false" onAction="#voltarAtras" styleClass="btnCancelar" text="Cancelar">
+                <Button fx:id="btnVoltar" mnemonicParsing="false" onAction="#voltarAtras" styleClass="btnSair" text="Cancelar">
                     <FlowPane.margin>
                         <Insets left="10.0" right="10.0" />
                     </FlowPane.margin>

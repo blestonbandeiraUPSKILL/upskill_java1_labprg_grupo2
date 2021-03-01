@@ -86,7 +86,7 @@ public class Tarefa implements Serializable{
         setCustoEst(custo);
     }
     
-    public Tarefa(String referencia, String nifOrganizacao, String designacao,
+    public Tarefa(String nifOrganizacao, String referencia, String designacao,
                   String descInformal, String descTecnica, int duracao, double custo,
                   String codigoCategoriaTarefa,  String emailColaborador) {
         setCodigoCategoriaTarefa(codigoCategoriaTarefa);
@@ -276,8 +276,8 @@ public class Tarefa implements Serializable{
     @Override
     public String toString(){
         return String.format("Referência: %-15s |Designação: %-15s"
-                + " |Duração estimada: %-5d dias |Custo estimado: %-5.2f euros", referencia,
-                designacao, duracaoEst, custoEst);
+                + " |Duração estimada: %-5d dias |Custo estimado: %-5.2f euros |Colaborador: %-15s" , referencia,
+                designacao, duracaoEst, custoEst, emailColaborador);
     }
     
     /**
@@ -285,9 +285,20 @@ public class Tarefa implements Serializable{
      * @return referencia, designacao, descInformal, descTecnica, duracaoEst, custoEst
      */  
     public String toStringCompleto(){
-        return String.format("A tarefa indicada tem os seguintes dados: %nReferência: "
-                + "%s /%nDesignação: %s %nDescrição informal: %s %nDescrição Técnica: %s"
-                + "%nDuração estimada: %d dias %nCusto estimado: %.2f euros", referencia,
+        return String.format("Referência: " +
+                        "%n \t %s " +
+                        "%nDesignação: " +
+                        "%n \t %s" +
+                        "%nDescrição informal: " +
+                        "%n \t %s" +
+                        "%nDescrição Técnica: " +
+                        "%n \t %s" +
+                        "%nDuração estimada: " +
+                        "%n \t %d dias" +
+                        "%nCusto estimado: " +
+                        "%n \t %.2f euros", referencia,
                 designacao, descInformal, descTecnica, duracaoEst, custoEst);
     }
+
+
 }

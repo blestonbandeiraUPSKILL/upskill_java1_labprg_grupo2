@@ -6,6 +6,7 @@
 package com.grupo2.t4j.persistence;
 
 import com.grupo2.t4j.model.GrauProficiencia;
+import com.grupo2.t4j.model.Tarefa;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -26,7 +27,9 @@ public interface RepositorioGrauProficiencia {
     
     ArrayList<GrauProficiencia> findByCompetenciaTecnica(String codigoCompetenciaTecnica) throws SQLException;
     
-    GrauProficiencia findByGrau(String grau) throws SQLException;
+    GrauProficiencia findByGrau(int grau) throws SQLException;
 
-    GrauProficiencia findByGrauECompetencia(String grau, String codigoCompetenciaTecnica) throws SQLException;
+    GrauProficiencia findByGrauECompetencia(int grau, String codigoCompetenciaTecnica) throws SQLException;
+
+    List<GrauProficiencia> getAllGrausTarefa(Tarefa tarefa) throws SQLException;
 }

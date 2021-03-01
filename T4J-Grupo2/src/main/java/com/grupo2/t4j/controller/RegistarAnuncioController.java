@@ -43,10 +43,12 @@ public class RegistarAnuncioController {
         return repositorioAnuncio.save(anuncio);
     }
 
-    public List<Anuncio> getAll() {
+    public List<Anuncio> getAll() throws SQLException {
         return repositorioAnuncio.getAll();
     }
 
-    
 
+    public Anuncio getAnuncio(int idAnuncio) throws SQLException {
+        return repositorioAnuncio.getAnuncio(idAnuncio);
+    }
 }

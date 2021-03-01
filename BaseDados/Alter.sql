@@ -206,4 +206,13 @@ ALTER TABLE Anuncio
 --ALTER TABLE Candidatura
 --    MODIFY valorPretendido numeric;
 
+--ALTER TABLE Candidatura
+--    DROP COLUMN dataFimCandidatura;
+    
+--ALTER TABLE Candidatura
+--    ADD dataCandidatura date;
+
+
+ALTER TABLE GrauProficiencia
+    MODIFY grau int;
 commit;

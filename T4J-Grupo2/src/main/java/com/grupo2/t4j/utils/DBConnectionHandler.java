@@ -5,9 +5,11 @@ import oracle.jdbc.pool.OracleDataSource;
 
 public class DBConnectionHandler {
 
-    private String jdbcUrl;
-    private String username;
-    private String password;
+    private static final String JDBC_URL = "jdbc:oracle:thin:@vsrvbd1.dei.isep.ipp.pt:1521/pdborcl";
+    private static final String USERNAME = "UPSKILL_BD_TURMA1_01";
+    private static final String PASSWORD = "qwerty";
+
+    private static DBConnectionHandler instance;
 
     private Connection connection;
     private PreparedStatement preparedStatement;
@@ -15,10 +17,14 @@ public class DBConnectionHandler {
     private ResultSet resultSet;
     private CallableStatement callableStatement;
 
-    public DBConnectionHandler(String jdbcUrl, String username, String password) {
-        this.jdbcUrl = jdbcUrl;
-        this.username = username;
-        this.password = password;
+    public static DBConnectionHandler getInstance() {
+        if (instance == null) {
+            instance = new DBConnectionHandler();
+        }
+        return instance;
+    }
+
+    private DBConnectionHandler() {
 
         connection = null;
         preparedStatement = null;
@@ -32,8 +38,8 @@ public class DBConnectionHandler {
         try {
 
             OracleDataSource ds = new OracleDataSource();
-            ds.setURL(jdbcUrl);
-            connection = ds.getConnection(username, password);
+            ds.setURL(JDBC_URL);
+            connection = ds.getConnection(USERNAME, PASSWORD);
         }
         catch (SQLException exception) {
             exception.printStackTrace();

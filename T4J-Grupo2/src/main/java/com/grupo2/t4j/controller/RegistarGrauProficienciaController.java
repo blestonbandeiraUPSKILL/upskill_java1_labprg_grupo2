@@ -31,9 +31,9 @@ public class RegistarGrauProficienciaController {
      * @param grau as atribuição do grau de proficiência respsctivo
      * @return boolean
      */ 
-    public boolean registarGrauProficiencia(String designacao, String codigoCompetenciaTecnica, String grau) throws SQLException {
+    public boolean registarGrauProficiencia(String designacao, String codigoCompetenciaTecnica, int grau) throws SQLException {
 
-        GrauProficiencia grauProficiencia = new GrauProficiencia (designacao, codigoCompetenciaTecnica, grau);
+        GrauProficiencia grauProficiencia = new GrauProficiencia (grau, codigoCompetenciaTecnica, designacao);
 
         return repositorioGrauProficiencia.save(grauProficiencia);
     }
@@ -42,11 +42,11 @@ public class RegistarGrauProficienciaController {
         return repositorioGrauProficiencia.findByCompetenciaTecnica(codigoCompetenciaTecnica);
     }
     
-    public GrauProficiencia findByValor(String grau) throws SQLException {
+    public GrauProficiencia findByValor(int grau) throws SQLException {
         return repositorioGrauProficiencia.findByGrau(grau);
     }
 
-    public GrauProficiencia findByGrauECompetenciaTecnica(String grau, String codigoCompetenciaTecnica) throws SQLException {
+    public GrauProficiencia findByGrauECompetenciaTecnica(int grau, String codigoCompetenciaTecnica) throws SQLException {
         return repositorioGrauProficiencia.findByGrauECompetencia(grau, codigoCompetenciaTecnica);
     }
     

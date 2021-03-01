@@ -91,16 +91,15 @@ public class AdicionarCompetenciaTecnicaUI implements Initializable {
                 AlertsUI.criarAlerta(Alert.AlertType.INFORMATION,
                         MainApp.TITULO_APLICACAO,
                         "Registar Competência Técnica.",
-                        adicionou ? "Competencia Tecnica registada com sucesso.  Pode adicionar os graus de proficiência."
-                                : "Não foi possível registar a Competência Técncia.").show();
-
+                        "Competencia Tecnica registada com sucesso.  Pode adicionar os graus de proficiência."
+                                ).show();
             }
 
-        } catch (IllegalArgumentException | SQLException iae) {
+        } catch (IllegalArgumentException | SQLException exception) {
             AlertsUI.criarAlerta(Alert.AlertType.ERROR,
                     MainApp.TITULO_APLICACAO,
                     "Erro nos dados.",
-                    iae.getMessage()).show();
+                    "Não foi possível registar a Competência Técncia." + exception.getMessage()).show();
         }
     }
 
@@ -127,7 +126,7 @@ public class AdicionarCompetenciaTecnicaUI implements Initializable {
             boolean adicionou = registarGrauProficienciaController.registarGrauProficiencia(
                     txtValor.getText(),
                     txtDesignacao.getText(),
-                    txtCodigo.getText());
+                    Integer.parseInt(txtCodigo.getText()));
 
             if(adicionou) {
                 updateListViewGrausProficiencia(actionEvent);
@@ -138,15 +137,14 @@ public class AdicionarCompetenciaTecnicaUI implements Initializable {
             AlertsUI.criarAlerta(Alert.AlertType.INFORMATION,
                     MainApp.TITULO_APLICACAO,
                     "Registar Grau de Proficiência.",
-                    adicionou ? "Grau de Proficiência registado com sucesso. Pode regressar à página anterior."
-                            : "Não foi possível registar o Grau de Proficiência.").show();
+                    "Grau de Proficiência registado com sucesso. Pode regressar à página anterior.").show();
 
         }
-        catch (IllegalArgumentException | SQLException iae) {
+        catch (IllegalArgumentException | SQLException exception) {
             AlertsUI.criarAlerta(Alert.AlertType.ERROR,
                     MainApp.TITULO_APLICACAO,
-                    "Erro nos dados.",
-                    iae.getMessage()).show();
+                    "Registar Grau de Proficiência - Erro nos dados",
+                    "Não foi possível registar o Grau de Proficiência." + exception.getMessage()).show();
         }
 
     }
@@ -155,12 +153,15 @@ public class AdicionarCompetenciaTecnicaUI implements Initializable {
     public void updateListViewGrausProficiencia(ActionEvent actionEvent) throws SQLException {
         listViewGrausAdicionados.getItems().add(
                 registarGrauProficienciaController.findByGrauECompetenciaTecnica(
-                        txtValor.getText(), txtCodigo.getText())
+                        Integer.parseInt(txtValor.getText()), txtCodigo.getText())
         );
     }
 
 
     public void voltarAtras(ActionEvent actionEvent) {
         btnVoltar.getScene().getWindow().hide();
+    }
+
+    public void cancelarRegisto(ActionEvent actionEvent) {
     }
 }

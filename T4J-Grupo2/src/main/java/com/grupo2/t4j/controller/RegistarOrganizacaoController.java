@@ -52,14 +52,14 @@ public class RegistarOrganizacaoController {
         AlgoritmoGeradorPasswords algoritmoGeradorPasswords = new AlgoritmoGeradorPasswords();
         String pass = algoritmoGeradorPasswords.geraPassword();
 
-        Colaborador gestor = new Colaborador(emailGestor, nomeGestor, pass, funcaoGestor, telefoneGestor);
+        Colaborador gestor = new Colaborador(emailGestor, nomeGestor, pass, telefoneGestor, funcaoGestor);
 
         UsersAPI usersAPI = UsersAPI.getInstance();
         usersAPI.registerUserWithRoles(gestor.getEmail(), gestor.getNome(), new Password(pass), "gestor");
 
         return repositorioOrganizacao.save(nif, nome, website, telefone,
                 emailOrganizacao, emailGestor, arruamento, numeroPorta, localidade,
-                codigoPostal, nomeGestor, pass, telefoneGestor, funcaoGestor);
+                codigoPostal, nomeGestor, telefoneGestor, funcaoGestor, pass);
     }
 
     public List<Organizacao> getAll() {

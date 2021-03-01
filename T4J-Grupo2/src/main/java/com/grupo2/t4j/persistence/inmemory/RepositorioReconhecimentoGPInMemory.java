@@ -52,35 +52,29 @@ public class RepositorioReconhecimentoGPInMemory implements Serializable, Reposi
     }
 
     @Override
-    public boolean save(int idGrauProficiencia, String dataReconhecimento,
-             Email email, String idCompetenciaTecnica) throws ReconhecimentoDuplicadoException, SQLException {
-        ReconhecimentoGP rgp = findByGrauEmail(idGrauProficiencia ,email.getEmailText());
-        if (rgp == null) {
-            ReconhecimentoGP reconhecimentoGP = new ReconhecimentoGP(idGrauProficiencia, 
-                    dataReconhecimento, email, idCompetenciaTecnica);
-            this.listaReconhecimentoGP.add(reconhecimentoGP);
-        } else {
-            throw new ReconhecimentoDuplicadoException("Reconhecimento já registado");
-        }
-       return false;
+    public boolean save(int idGrauProficiencia, String emailFreelancer, String dataReconhecimento) throws ReconhecimentoDuplicadoException, SQLException {
+        return false;
     }
-
 
     @Override
     public boolean save (ReconhecimentoGP reconhecimentoGP)throws ReconhecimentoDuplicadoException, SQLException {
-        ReconhecimentoGP rgp = findByGrauEmail(reconhecimentoGP.getIdGrauProficiencia(), reconhecimentoGP.getEmailFreelancer().getEmailText());
+        /*ReconhecimentoGP rgp = findByGrauEmail(reconhecimentoGP.getIdGrauProficiencia(), reconhecimentoGP.getEmailFreelancer().getEmailText());
         if (rgp == null) {
             ReconhecimentoGP reconhecimento = new ReconhecimentoGP(reconhecimentoGP);
             this.listaReconhecimentoGP.add(reconhecimento);
         } else {
             throw new ReconhecimentoDuplicadoException(reconhecimentoGP.getIdGrauProficiencia() 
                     + ": Grau de proficiência já registado para a seguinte competência "
-                            + "técnica" +reconhecimentoGP.getIdCompetenciaTecnica());
-        }
+                            + "técnica");
+        }*/
         return false;
     }
-    
+
     @Override
+    public List<ReconhecimentoGP> getAll(String email) throws SQLException {
+        return null;
+    }
+
     public ArrayList<ReconhecimentoGP> getAll() {
         return new ArrayList<ReconhecimentoGP>(listaReconhecimentoGP);
     }
@@ -100,11 +94,11 @@ public class RepositorioReconhecimentoGPInMemory implements Serializable, Reposi
 
     @Override
     public ReconhecimentoGP findByEmailCompetencia(String email, String idCompetenciaTecnica) throws SQLException{
-        List<ReconhecimentoGP> reconhecimentosGP = findByEmail(email);
+     /*   List<ReconhecimentoGP> reconhecimentosGP = findByEmail(email);
         for (ReconhecimentoGP rcp : reconhecimentosGP){
             if (rcp.getIdCompetenciaTecnica().equals(idCompetenciaTecnica))
                  return rcp;
-        }
+        }*/
         return null;
     }
     

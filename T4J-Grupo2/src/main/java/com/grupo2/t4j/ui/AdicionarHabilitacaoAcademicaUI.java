@@ -4,6 +4,7 @@ import com.grupo2.t4j.controller.RegistarFreelancerController;
 import com.grupo2.t4j.controller.RegistarHabilitacaoAcademicaController;
 import com.grupo2.t4j.model.Freelancer;
 import com.grupo2.t4j.model.HabilitacaoAcademica;
+import com.grupo2.t4j.model.ReconhecimentoGP;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -80,7 +81,8 @@ public class AdicionarHabilitacaoAcademicaUI implements Initializable {
             public void handle(ActionEvent event) {
                 try {
                     updateTxtNomeFreelancer(event);
-                    //updateListViewHabilitacaoFreelancer();
+                    updateListViewHabilitacaoFreelancer(
+                            cmbEmailFreelancer.getSelectionModel().getSelectedItem().getEmail().getEmailText());
                 } catch (SQLException exception) {
                     exception.printStackTrace();
                 }
@@ -109,15 +111,14 @@ public class AdicionarHabilitacaoAcademicaUI implements Initializable {
 
                 AlertsUI.criarAlerta(Alert.AlertType.INFORMATION,
                     MainApp.TITULO_APLICACAO, "Registar Habilitação Académica.",
-                    adicionou ? "Habilitação Académica registada com sucesso."
-                                : "Não foi possível registar a Habilitação Académica.").show();
+                        "Habilitação Académica registada com sucesso.").show();
             }
         }
-        catch (IllegalArgumentException | SQLException ex) {
+        catch (IllegalArgumentException | SQLException exception) {
             AlertsUI.criarAlerta(Alert.AlertType.ERROR,
                     MainApp.TITULO_APLICACAO,
-                    "Erro nos dados.",
-                    ex.getMessage()).show();
+                    "Registar Habilitação Académica - Erro nos dados.",
+                    "Não foi possível registar a Habilitação Académica." + exception.getMessage()).show();
         
         } 
     }

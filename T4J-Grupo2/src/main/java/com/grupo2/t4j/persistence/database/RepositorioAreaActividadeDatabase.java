@@ -31,10 +31,6 @@ public class RepositorioAreaActividadeDatabase implements RepositorioAreaActivid
      */
     private static RepositorioAreaActividadeDatabase repositorioAreaActividadeDatabase;
 
-    String jdbcUrl = "jdbc:oracle:thin:@vsrvbd1.dei.isep.ipp.pt:1521/pdborcl";
-    String username = "UPSKILL_BD_TURMA1_01";
-    String password = "qwerty";
-
     /**
      * Inicializa o Repositório de Areas de Actividade
      */
@@ -54,14 +50,14 @@ public class RepositorioAreaActividadeDatabase implements RepositorioAreaActivid
 
     public void save(String codigo, String descBreve, String descDetalhada) throws AreaActividadeDuplicadaException, SQLException {
 
-        DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
-        Connection connection = dbConnectionHandler.openConnection();
+        Connection connection = DBConnectionHandler.getInstance().openConnection();
 
-        CallableStatement callableStatement = connection.prepareCall(
-                "{CALL createAreaActividade(?,?,?)}");
+        try {
+            CallableStatement callableStatement = connection.prepareCall(
+                    "{CALL createAreaActividade(?,?,?)}");
 
-        if (findByCodigo(codigo) == null) {
-            try {
+            if (findByCodigo(codigo) == null) {
+
                 connection.setAutoCommit(false);
 
                 callableStatement.setString(1, codigo);
@@ -71,24 +67,21 @@ public class RepositorioAreaActividadeDatabase implements RepositorioAreaActivid
                 callableStatement.executeQuery();
 
                 connection.commit();
-            }
-            catch (SQLException exception) {
-                exception.printStackTrace();
-                exception.getSQLState();
-                try {
-                    System.err.print("Transaction is being rolled back");
-                    connection.rollback();
                 }
-                catch (SQLException sqlException) {
-                    sqlException.getErrorCode();
-                }
+        }
+        catch (SQLException exception) {
+            exception.printStackTrace();
+            exception.getSQLState();
+            try {
+                System.err.print("Transaction is being rolled back");
+                connection.rollback();
             }
-            finally {
-                dbConnectionHandler.closeAll();
+            catch (SQLException sqlException) {
+                sqlException.getErrorCode();
             }
         }
-        else {
-            throw new AreaActividadeDuplicadaException(codigo + ": Área de actividade já registada");
+        finally {
+            DBConnectionHandler.getInstance().closeAll();
         }
 
     }
@@ -96,14 +89,14 @@ public class RepositorioAreaActividadeDatabase implements RepositorioAreaActivid
     @Override
     public boolean save(AreaActividade areaActividade) throws SQLException {
 
-        DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
-        Connection connection = dbConnectionHandler.openConnection();
+        Connection connection = DBConnectionHandler.getInstance().openConnection();
 
-        CallableStatement callableStatement = connection.prepareCall(
+        try {
+            CallableStatement callableStatement = connection.prepareCall(
                 "{CALL createAreaActividade(?,?,?)}");
 
-        if (findByCodigo(areaActividade.getCodigo()) == null) {
-            try {
+            if (findByCodigo(areaActividade.getCodigo()) == null) {
+
                 connection.setAutoCommit(false);
 
                 callableStatement.setString(1, areaActividade.getCodigo());
@@ -115,23 +108,23 @@ public class RepositorioAreaActividadeDatabase implements RepositorioAreaActivid
                 connection.commit();
                 return true;
             }
-            catch (SQLException exception) {
-                exception.printStackTrace();
-                exception.getSQLState();
-                try {
-                    System.err.print("Transaction is being rolled back");
-                    connection.rollback();
-                }
-                catch (SQLException sqlException) {
-                    sqlException.getErrorCode();
-                }
-            }
 
-            finally {
-                dbConnectionHandler.closeAll();
+        }
+        catch (SQLException exception) {
+            exception.printStackTrace();
+            exception.getSQLState();
+            try {
+                System.err.print("Transaction is being rolled back");
+                connection.rollback();
+            }
+            catch (SQLException sqlException) {
+                sqlException.getErrorCode();
             }
         }
 
+        finally {
+            DBConnectionHandler.getInstance().closeAll();
+        }
         return false;
     }
 
@@ -140,8 +133,7 @@ public class RepositorioAreaActividadeDatabase implements RepositorioAreaActivid
 
         ArrayList<AreaActividade> areasActividade = new ArrayList<>();
 
-        DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
-        Connection connection = dbConnectionHandler.openConnection();
+        Connection connection = DBConnectionHandler.getInstance().openConnection();
 
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(
@@ -171,21 +163,21 @@ public class RepositorioAreaActividadeDatabase implements RepositorioAreaActivid
 
         }
         finally {
-            dbConnectionHandler.closeAll();
+            DBConnectionHandler.getInstance().closeAll();
         }
         return areasActividade;
     }
 
     @Override
     public AreaActividade findByCodigo(String codigo) throws SQLException {
-        DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
-        Connection connection = dbConnectionHandler.openConnection();
 
-        CallableStatement callableStatement = connection.prepareCall(
-                "{CALL findByCodigoAreaActividade(?)}"
-        );
+        Connection connection = DBConnectionHandler.getInstance().openConnection();
 
         try {
+            CallableStatement callableStatement = connection.prepareCall(
+                    "{CALL findByCodigoAreaActividade(?)}"
+            );
+
             connection.setAutoCommit(false);
 
             callableStatement.setString(1, codigo);
@@ -197,6 +189,9 @@ public class RepositorioAreaActividadeDatabase implements RepositorioAreaActivid
             exception.printStackTrace();
             exception.getSQLState();
 
+        }
+        finally {
+            DBConnectionHandler.getInstance().closeAll();
         }
         return new AreaActividade();
     }

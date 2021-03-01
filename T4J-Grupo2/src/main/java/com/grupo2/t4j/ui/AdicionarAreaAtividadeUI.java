@@ -104,8 +104,9 @@ public class AdicionarAreaAtividadeUI implements Initializable {
         catch (IllegalArgumentException | SQLException exception) {
             AlertsUI.criarAlerta(Alert.AlertType.ERROR,
                     MainApp.TITULO_APLICACAO,
-                    "Erro nos dados.",
-                    exception.getMessage()).show();
+                    "Registar Área de Actividade - Erro nos dados.",
+                    "Não foi possível registar a Área de Actividade. " + exception.getMessage()
+            ).show();
         
         }
 

@@ -66,7 +66,11 @@ public class GestorLogadoUI implements Initializable {
         adicionarStage.setResizable(false);
 
         registarAreaActividadeController = new RegistarAreaActividadeController();
-        registarTarefaController = new RegistarTarefaController();
+        try {
+            registarTarefaController = new RegistarTarefaController();
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }
         registarCategoriaController = new RegistarCategoriaController();
         registarColaboradorController = new RegistarColaboradorController();
         gestaoUtilizadoresController = new GestaoUtilizadoresController();
@@ -121,20 +125,17 @@ public class GestorLogadoUI implements Initializable {
         listViewTarefas.getItems().setAll(
                 registarTarefaController.findByCategoria(codigoCategoria)
         );
-
     }
 
     public void updateListViewTarefas() throws SQLException {
         listViewTarefas.getItems().setAll(registarTarefaController.getAllOrganizacao(
                 getNifOrganizacao()));
-
     }
 
     private void updateCmbCategoriaTarefa(ActionEvent event) throws SQLException {
         String codigoAreaActividade = cmbAreaActividade.getSelectionModel().getSelectedItem().getCodigo();
         cmbCategoriaTarefa.getItems().setAll(
                 registarCategoriaController.findByCodigo(codigoAreaActividade));
-
     }
 
     public void updateListViewColaboradores() throws SQLException {
@@ -168,8 +169,6 @@ public class GestorLogadoUI implements Initializable {
                         }
                         sceneStartingPage = new Scene(rootStartingPage);
                         
-                        sceneStartingPage.getStylesheets().add(startingPageUI.estilo);
-                        
                         adicionarStage.setScene(sceneStartingPage);
                         adicionarStage.setTitle(MainApp.TITULO_APLICACAO);
                         adicionarStage.show();
@@ -196,7 +195,6 @@ public class GestorLogadoUI implements Initializable {
             FXMLLoader loaderAddColaborador = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/RegistarColaboradorScene.fxml"));
             Parent rootAddColaborador = loaderAddColaborador.load();
             sceneAddColaborador = new Scene(rootAddColaborador);
-            sceneAddColaborador.getStylesheets().add(startingPageUI.estilo);
             RegistarColaboradorUI registarColaboradorUI = loaderAddColaborador.getController();
             registarColaboradorUI.associarParentUI(this);
             registarColaboradorUI.transferNif();
@@ -220,7 +218,6 @@ public class GestorLogadoUI implements Initializable {
             FXMLLoader loaderAddTarefa = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/EspecificarTarefaGestorScene.fxml"));
             Parent rootAddTarefa = loaderAddTarefa.load();
             sceneAddTarefa = new Scene(rootAddTarefa);
-            sceneAddTarefa.getStylesheets().add(startingPageUI.estilo);
             EspecificarTarefaGestorUI especificarTarefaUI = loaderAddTarefa.getController();
             especificarTarefaUI.associarParentUI(this);
 

@@ -112,8 +112,7 @@ public class RegistarOrgEGestorUI implements Initializable {
                 AlertsUI.criarAlerta(Alert.AlertType.INFORMATION,
                     MainApp.TITULO_APLICACAO,
                     "Registar Organização.",
-                    registou ? ("Organização registada com sucesso.")
-                                : "Não foi possível registar a Organização.").show();
+                    "Organização registada com sucesso.").show();
 
                 btnAvancarRegisto.disabledProperty();
 
@@ -123,8 +122,8 @@ public class RegistarOrgEGestorUI implements Initializable {
             exception.printStackTrace();
             AlertsUI.criarAlerta(Alert.AlertType.ERROR,
                     MainApp.TITULO_APLICACAO,
-                    "Erro nos dados da organização.",
-                    exception.getMessage()).show();
+                    "Registar Organização - Erro nos dados.",
+                    "Não foi possível registar a Organização." + exception.getMessage()).show();
         }
     }
 

@@ -5,10 +5,11 @@
  */
 package com.grupo2.t4j.ui;
 
+import com.grupo2.t4j.controller.RegistarCompetenciaTecnicaController;
+import com.grupo2.t4j.controller.RegistarFreelancerController;
+import com.grupo2.t4j.controller.RegistarGrauProficienciaController;
 import com.grupo2.t4j.controller.RegistarReconhecimentoGPController;
-import com.grupo2.t4j.model.CompetenciaTecnica;
-import com.grupo2.t4j.model.Email;
-import com.grupo2.t4j.model.GrauProficiencia;
+import com.grupo2.t4j.model.*;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -31,26 +32,21 @@ public class AdicionarReconhecimentoGPUI  implements Initializable {
     private AdministrativoLogadoUI administrativoLogadoUI;
     
     private RegistarReconhecimentoGPController registarReconhecimentoGPController;
+    private RegistarFreelancerController registarFreelancerController;
+    private RegistarCompetenciaTecnicaController registarCompetenciaTecnicaController;
+    private RegistarGrauProficienciaController registarGrauProficienciaController;
     
     private Stage adicionarStage;
     
-    @FXML private TextField txtNomeFreelancer;
-    
-    @FXML private ComboBox<String> cmbEmailFreelancer;
-
-    @FXML private ListView<CompetenciaTecnica> listaCompetenciaFreelancer;
-
-    @FXML private ComboBox<CompetenciaTecnica> cmbCompetencia;
-    
-    @FXML private ComboBox<GrauProficiencia> cmbProficiencia;
-    
-    @FXML private TextField txtIDataValidacao;
-    
-    @FXML private Button btnAddCompetencia;
-    
-    @FXML private Button btnCancelar;
-
-    @FXML private Button btnSair;
+    @FXML TextField txtNomeFreelancer;
+    @FXML TextField txtIDataValidacao;
+    @FXML ComboBox<Freelancer> cmbEmailFreelancer;
+    @FXML ComboBox<CompetenciaTecnica> cmbCompetencia;
+    @FXML ComboBox<GrauProficiencia> cmbProficiencia;
+    @FXML ListView<ReconhecimentoGP> listReconhecimentoGP;
+    @FXML Button btnAddCompetencia;
+    @FXML Button btnCancelar;
+    @FXML Button btnSair;
     
     
     public void associarParentUI(AdministrativoLogadoUI administrativoLogadoUI) {
@@ -64,16 +60,71 @@ public class AdicionarReconhecimentoGPUI  implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
 
         registarReconhecimentoGPController = new RegistarReconhecimentoGPController();
-           
+        registarFreelancerController = new RegistarFreelancerController();
+        registarCompetenciaTecnicaController = new RegistarCompetenciaTecnicaController();
+        try {
+            registarGrauProficienciaController = new RegistarGrauProficienciaController();
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }
+
         adicionarStage = new Stage();
         adicionarStage.initModality(Modality.APPLICATION_MODAL);;
         adicionarStage.setResizable(false);
-        
-        /*try {
-            updateListViewReconhecimentoGP();
+
+        try {
+            cmbEmailFreelancer.getItems().setAll(registarFreelancerController.getAll());
         } catch (SQLException exception) {
             exception.printStackTrace();
-        }*/
+        }
+
+        try {
+            cmbCompetencia.getItems().setAll(registarCompetenciaTecnicaController.getAll());
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }
+
+        cmbCompetencia.setOnAction(new EventHandler<ActionEvent>(){
+            @Override
+            public void handle(ActionEvent event) {
+                try {
+                    updateCmbGrauProficiencia(event);
+
+                } catch (SQLException exception) {
+                    exception.printStackTrace();
+                }
+            }
+        });
+
+        cmbEmailFreelancer.setOnAction(new EventHandler<ActionEvent>(){
+            @Override
+            public void handle(ActionEvent event) {
+                try {
+                    updateTxtNomeFreelancer(event);
+                    updateListViewReconhecimentoGP();
+                } catch (SQLException exception) {
+                    exception.printStackTrace();
+                }
+            }
+        });
+
+    }
+
+    public void updateCmbGrauProficiencia(ActionEvent actionEvent) throws SQLException {
+        String codigoCompetenciaTecnica = cmbCompetencia.getSelectionModel().getSelectedItem().getCodigo();
+        cmbProficiencia.getItems().setAll(
+                registarGrauProficienciaController.findByCompetenciaTecnica(codigoCompetenciaTecnica));
+    }
+
+    public void updateListViewReconhecimentoGP() throws SQLException {
+        String emailFreelancer = cmbEmailFreelancer.getSelectionModel().getSelectedItem().getEmail().getEmailText();
+        listReconhecimentoGP.getItems().setAll(
+                registarReconhecimentoGPController.getAll(emailFreelancer));
+    }
+
+    public void updateTxtNomeFreelancer(ActionEvent actionEvent) throws SQLException {
+        String emailFreelancer = cmbEmailFreelancer.getSelectionModel().getSelectedItem().getEmail().getEmailText();
+        txtNomeFreelancer.setText(registarFreelancerController.findByEmail(emailFreelancer).getNome());
     }
     
     @FXML
@@ -81,23 +132,23 @@ public class AdicionarReconhecimentoGPUI  implements Initializable {
         try{                      
             
             boolean adicionou = registarReconhecimentoGPController.registarReconhecimentoGP(
-                    cmbProficiencia.getSelectionModel().getSelectedIndex(), txtIDataValidacao.getText(),
-                    new Email(cmbEmailFreelancer.getPromptText()),cmbCompetencia.getSelectionModel().getSelectedItem().getCodigo());
+                    cmbProficiencia.getSelectionModel().getSelectedItem().getIdGrauProficiencia(),
+                    cmbEmailFreelancer.getSelectionModel().getSelectedItem().getEmail().getEmailText(),
+                    txtIDataValidacao.getText());
 
             if(adicionou) {
-                //updateListViewReconhecimentoGPFreelancer();
+                updateListViewReconhecimentoGP();
             
                 AlertsUI.criarAlerta(Alert.AlertType.INFORMATION,
-                    MainApp.TITULO_APLICACAO, "Registar Competência Técnica.",
-                    adicionou ? "Competência Técnica de Freelancer registada com sucesso."
-                                : "Não foi possível registar a Competência Técnica.").show();
+                    MainApp.TITULO_APLICACAO, "Registar Validação de Competência Técnica.",
+                     "Competência Técnica de Freelancer validada com sucesso.").show();
             }
         }
-        catch (IllegalArgumentException | SQLException ex) {
+        catch (IllegalArgumentException | SQLException exception) {
             AlertsUI.criarAlerta(Alert.AlertType.ERROR,
                     MainApp.TITULO_APLICACAO,
-                    "Erro nos dados.",
-                    ex.getMessage()).show();
+                    "Registar Validação de Competência Técnica - Erro nos dados.",
+                    "Não foi possível validar a Competência Técnica." + exception.getMessage()).show();
         
      
         }
@@ -126,8 +177,6 @@ public class AdicionarReconhecimentoGPUI  implements Initializable {
         });
         window.fireEvent(new WindowEvent(window, WindowEvent.WINDOW_CLOSE_REQUEST));
     }
-    /*
-    public void updateListViewReconhecimentoGPFreelancer() throws SQLException {
-         listaCompetenciaFreelancer.getItems().setAll(registarReconhecimentoGPController.getAll());
-    }*/
+
+
 }

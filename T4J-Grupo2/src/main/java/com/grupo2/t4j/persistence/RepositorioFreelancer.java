@@ -11,11 +11,11 @@ package com.grupo2.t4j.persistence;
  */
 
 import com.grupo2.t4j.exception.FreelancerDuplicadoException;
-import com.grupo2.t4j.model.Freelancer;
-import com.grupo2.t4j.model.Password;
+import com.grupo2.t4j.model.*;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 public interface RepositorioFreelancer {
     
@@ -35,4 +35,12 @@ public interface RepositorioFreelancer {
     ArrayList<Freelancer> getAll() throws SQLException;
     
     ArrayList<String> getAllEmails() throws SQLException;
+
+    List<ReconhecimentoGP> getAllReconhecimentoGP(String emailFreelancer) throws SQLException;
+
+    List<HabilitacaoAcademica> getAllHabsAcademicas(String emailFreelancer) throws SQLException;
+
+    EnderecoPostal getEnderecoPostal(String emailFreelancer) throws SQLException;
+
+    List<GrauProficiencia> getAllGrausFreelancer(String emailFreelancer) throws SQLException;
 }

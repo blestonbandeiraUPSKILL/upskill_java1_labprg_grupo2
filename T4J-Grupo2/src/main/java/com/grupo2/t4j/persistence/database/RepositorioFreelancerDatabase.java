@@ -11,14 +11,14 @@ package com.grupo2.t4j.persistence.database;
  */
 
 import com.grupo2.t4j.exception.FreelancerDuplicadoException;
-import com.grupo2.t4j.model.Email;
-import com.grupo2.t4j.model.Freelancer;
-import com.grupo2.t4j.model.Password;
+import com.grupo2.t4j.model.ReconhecimentoGP;
+import com.grupo2.t4j.model.*;
 import com.grupo2.t4j.persistence.RepositorioFreelancer;
 import com.grupo2.t4j.utils.DBConnectionHandler;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.List;
 
 public class RepositorioFreelancerDatabase implements RepositorioFreelancer{
     
@@ -27,10 +27,6 @@ public class RepositorioFreelancerDatabase implements RepositorioFreelancer{
      * registados todos os Freelancers
      */
     private static RepositorioFreelancerDatabase repositorioFreelancerDatabase;
-    
-    String jdbcUrl = "jdbc:oracle:thin:@vsrvbd1.dei.isep.ipp.pt:1521/pdborcl";
-    String username = "UPSKILL_BD_TURMA1_01";
-    String password = "qwerty";
     
     /**
      * Inicializa o Repositório de Freelancers
@@ -55,15 +51,13 @@ public class RepositorioFreelancerDatabase implements RepositorioFreelancer{
                         String numeroPorta, String localidade, String codPostal) throws FreelancerDuplicadoException,
             SQLException{
 
-        DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, this.password);
-        Connection connection = dbConnectionHandler.openConnection();
-
-        CallableStatement callableStatement = connection.prepareCall(
+        Connection connection = DBConnectionHandler.getInstance().openConnection();
+        try {
+            CallableStatement callableStatement = connection.prepareCall(
                 "{CALL createFreelancer(?, ?, ?, ?, ?, ?, ?, ?, ?) } ");
 
-        if (findByNif(nif) == null && findByEmail(emailFree) == null){
+            if (findByNif(nif) == null){
 
-            try {
                 connection.setAutoCommit(false);
 
                 callableStatement.setString(1, emailFree);
@@ -81,21 +75,21 @@ public class RepositorioFreelancerDatabase implements RepositorioFreelancer{
                 connection.commit();
                 return true;
             }
-            catch (SQLException exception) {
-                exception.printStackTrace();
-                exception.getSQLState();
-                try {
-                    System.err.print("Transaction is being rolled back");
-                    connection.rollback();
-                }
-                catch (SQLException sqlException) {
-                    sqlException.getErrorCode();
-                }
+        }
+        catch (SQLException exception) {
+            exception.printStackTrace();
+            exception.getSQLState();
+            try {
+                System.err.print("Transaction is being rolled back");
+                connection.rollback();
             }
+            catch (SQLException sqlException) {
+                sqlException.getErrorCode();
+            }
+        }
 
-            finally {
-                dbConnectionHandler.closeAll();
-            }
+        finally {
+            DBConnectionHandler.getInstance().closeAll();
         }
 
         return false;
@@ -110,14 +104,13 @@ public class RepositorioFreelancerDatabase implements RepositorioFreelancer{
 
     @Override
     public Freelancer findByNif(String nif) throws SQLException{
-        
-        DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
-        Connection connection = dbConnectionHandler.openConnection();
 
-        CallableStatement callableStatementOrg = connection.prepareCall(
-                 "{CALL findFreelancerByNif(?)}");
+        Connection connection = DBConnectionHandler.getInstance().openConnection();
 
         try {
+            CallableStatement callableStatementOrg = connection.prepareCall(
+                    "{CALL findFreelancerByNif(?)}");
+
             connection.setAutoCommit(false);
 
             callableStatementOrg.setString(1, nif);
@@ -131,24 +124,24 @@ public class RepositorioFreelancerDatabase implements RepositorioFreelancer{
 
 
         }
+        finally {
+            DBConnectionHandler.getInstance().closeAll();
+        }
 
         return new Freelancer();
-        
-
     }
 
     @Override
     public Password findPassword(String email) throws SQLException {
 
-        DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
-        Connection connection = dbConnectionHandler.openConnection();
-
-        PreparedStatement preparedStatement = connection.prepareStatement(
-                "SELECT utilizador.password FROM Utilizador " +
-                        "INNER JOIN Freelancer ON freelancer.email LIKE ? "
-        );
+        Connection connection = DBConnectionHandler.getInstance().openConnection();
 
         try {
+            PreparedStatement preparedStatement = connection.prepareStatement(
+                "SELECT utilizador.password FROM Utilizador " +
+                        "INNER JOIN Freelancer ON freelancer.email LIKE ? "
+            );
+
             connection.setAutoCommit(false);
 
             preparedStatement.setString(1, email);
@@ -165,6 +158,9 @@ public class RepositorioFreelancerDatabase implements RepositorioFreelancer{
             exception.printStackTrace();
             exception.getSQLState();
         }
+        finally {
+            DBConnectionHandler.getInstance().closeAll();
+        }
 
         return null;
     }
@@ -174,47 +170,46 @@ public class RepositorioFreelancerDatabase implements RepositorioFreelancer{
 
         Freelancer freelancer = new Freelancer();
 
-        DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
-        Connection connection = dbConnectionHandler.openConnection();
-
-        CallableStatement callableStatement = connection.prepareCall(
-                 "{CALL findFreelancerByEmail(?)}"
-        );
+        Connection connection = DBConnectionHandler.getInstance().openConnection();
 
         try {
+            CallableStatement callableStatement = connection.prepareCall(
+                    "{CALL findFreelancerByEmail(?)}"
+            );
+
             connection.setAutoCommit(false);
 
             callableStatement.setString(1, emailFree);
             callableStatement.executeQuery();
 
-            return null;
+            PreparedStatement preparedStatement = connection.prepareStatement(
+                    "SELECT Freelancer.telefone, " +
+                            "Freelancer.nif, " +
+                            "Utilizador.nome, " +
+                            "Freelancer.idEnderecoPostal " +
+                            "FROM Freelancer INNER JOIN Utilizador " +
+                            "ON freelancer.email LIKE utilizador.email " +
+                            "WHERE freelancer.email LIKE ?"
+            );
 
+            preparedStatement.setString(1, emailFree);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while(resultSet.next()) {
+                freelancer.setEmail(new Email(emailFree));
+                freelancer.setTelefone(resultSet.getString(1));
+                freelancer.setNif(resultSet.getString(2));
+                freelancer.setNome(resultSet.getString(3));
+                freelancer.setIdEnderecoPostal(resultSet.getInt(4));
+            }
         } catch (SQLException exception) {
             exception.printStackTrace();
             exception.getSQLState();
 
         }
-
-        PreparedStatement preparedStatement = connection.prepareStatement(
-                "SELECT Freelancer.telefone, " +
-                        "Freelancer.nif, " +
-                        "Utilizador.nome, " +
-                        "Freelancer.idEnderecoPostal " +
-                        "FROM Freelancer INNER JOIN Utilizador " +
-                        "ON freelancer.email LIKE utilizador.email " +
-                        "WHERE freelancer.email LIKE ?"
-        );
-
-        preparedStatement.setString(1, emailFree);
-
-        ResultSet resultSet = preparedStatement.executeQuery();
-
-        while(resultSet.next()) {
-            freelancer.setEmail(new Email(emailFree));
-            freelancer.setTelefone(resultSet.getString(1));
-            freelancer.setNif(resultSet.getString(2));
-            freelancer.setNome(resultSet.getString(3));
-            freelancer.setIdEnderecoPostal(resultSet.getInt(4));
+        finally {
+            DBConnectionHandler.getInstance().closeAll();
         }
 
         return freelancer;
@@ -226,8 +221,7 @@ public class RepositorioFreelancerDatabase implements RepositorioFreelancer{
         
         ArrayList<Freelancer> freelancers = new ArrayList<>();
 
-        DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
-        Connection connection = dbConnectionHandler.openConnection();
+        Connection connection = DBConnectionHandler.getInstance().openConnection();
 
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(
@@ -259,7 +253,7 @@ public class RepositorioFreelancerDatabase implements RepositorioFreelancer{
             }
         }
         finally {
-            dbConnectionHandler.closeAll();
+            DBConnectionHandler.getInstance().closeAll();
         }
 
         return freelancers;
@@ -270,8 +264,7 @@ public class RepositorioFreelancerDatabase implements RepositorioFreelancer{
         
         ArrayList<String> listaEmailfreelancers = new ArrayList<>();
 
-        DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
-        Connection connection = dbConnectionHandler.openConnection();
+        Connection connection = DBConnectionHandler.getInstance().openConnection();
 
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(
@@ -303,9 +296,193 @@ public class RepositorioFreelancerDatabase implements RepositorioFreelancer{
 
         }
         finally {
-            dbConnectionHandler.closeAll();
+            DBConnectionHandler.getInstance().closeAll();
         }
         return listaEmailfreelancers;
 
+    }
+
+    @Override
+    public List<ReconhecimentoGP> getAllReconhecimentoGP(String emailFreelancer) throws SQLException {
+        ArrayList<ReconhecimentoGP> reconhecimentosGP = new ArrayList<>();
+
+        Connection connection = DBConnectionHandler.getInstance().openConnection();
+
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(
+                    "SELECT * FROM ReconhecimentoGP " +
+                            "INNER JOIN Freelancer " +
+                            "ON ReconhecimentoGP.emailFreelancer LIKE Freelancer.email " +
+                            "INNER JOIN GrauProficiencia " +
+                            "ON ReconhecimentoGP.idGrauProficiencia = GrauProficiencia.idGrauProficiencia " +
+                            "WHERE Freelancer.email LIKE ?"
+            );
+
+            preparedStatement.setString(1, emailFreelancer);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while(resultSet.next()) {
+                int idGrauProficiencia = resultSet.getInt(1);
+                String dataReconhecimento = resultSet.getDate(3).toString();
+
+                reconhecimentosGP.add(new ReconhecimentoGP(idGrauProficiencia, emailFreelancer, dataReconhecimento));
+            }
+        }
+        catch (SQLException exception) {
+            exception.printStackTrace();
+            exception.getSQLState();
+            try {
+                System.err.print("Transaction is being rolled back");
+                connection.rollback();
+            }
+            catch (SQLException sqlException) {
+                sqlException.getErrorCode();
+            }
+        }
+        finally {
+            DBConnectionHandler.getInstance().closeAll();
+        }
+
+        return reconhecimentosGP;
+
+    }
+
+    @Override
+    public List<HabilitacaoAcademica> getAllHabsAcademicas(String emailFreelancer) throws SQLException {
+        ArrayList<HabilitacaoAcademica> habsAcademicas = new ArrayList<>();
+
+        Connection connection = DBConnectionHandler.getInstance().openConnection();
+
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(
+                    "SELECT * FROM HabilitacaoAcademica " +
+                            "INNER JOIN FreelancerHabAcademica " +
+                            "ON HabilitacaoAcademica.idHabilitacaoAcademica = FreelancerHabAcademica.idHabilitacaoAcademica " +
+                            "INNER JOIN Freelancer " +
+                            "ON FreelancerHabAcademica.emailFreelancer LIKE Freelancer.email " +
+                            "WHERE Freelancer.email LIKE ?"
+            );
+
+            preparedStatement.setString(1, emailFreelancer);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while(resultSet.next()) {
+               int idHabilitacaoAcademica = resultSet.getInt(1);
+               String grau = resultSet.getString(2);
+               String designacaoCurso = resultSet.getString(3);
+               String nomeInstituicao = resultSet.getString(4);
+               double mediaCurso = resultSet.getDouble(5);
+
+                habsAcademicas.add(new HabilitacaoAcademica(idHabilitacaoAcademica, grau, designacaoCurso, nomeInstituicao, mediaCurso));
+            }
+        }
+        catch (SQLException exception) {
+            exception.printStackTrace();
+            exception.getSQLState();
+            try {
+                System.err.print("Transaction is being rolled back");
+                connection.rollback();
+            }
+            catch (SQLException sqlException) {
+                sqlException.getErrorCode();
+            }
+        }
+        finally {
+            DBConnectionHandler.getInstance().closeAll();
+        }
+
+        return habsAcademicas;
+    }
+
+    @Override
+    public EnderecoPostal getEnderecoPostal(String emailFreelancer) throws SQLException {
+        EnderecoPostal enderecoPostal = new EnderecoPostal();
+
+        Connection connection = DBConnectionHandler.getInstance().openConnection();
+
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(
+                    "SELECT * From EnderecoPostal " +
+                            "INNER JOIN Freelancer " +
+                            "ON EnderecoPostal.idEnderecoPostal LIKE Freelancer.idEnderecoPostal " +
+                            "WHERE Freelancer.email LIKE ?"
+            );
+
+            preparedStatement.setString(1, emailFreelancer);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while(resultSet.next()) {
+                enderecoPostal.setArruamento(resultSet.getString(2));
+                enderecoPostal.setPorta(resultSet.getString(3));
+                enderecoPostal.setLocalidade(resultSet.getString(4));
+                enderecoPostal.setCodigoPostal(resultSet.getString(5));
+            }
+        }
+        catch (SQLException exception) {
+            exception.printStackTrace();
+            exception.getSQLState();
+            try {
+                System.err.print("Transaction is being rolled back");
+                connection.rollback();
+            }
+            catch (SQLException sqlException) {
+                sqlException.getErrorCode();
+            }
+        }
+        finally {
+            DBConnectionHandler.getInstance().closeAll();
+        }
+
+        return enderecoPostal;
+    }
+
+    @Override
+    public List<GrauProficiencia> getAllGrausFreelancer(String emailFreelancer) throws SQLException {
+
+        List<GrauProficiencia> grausFreelancer = new ArrayList<>();
+
+        Connection connection = DBConnectionHandler.getInstance().openConnection();
+
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(
+                    "SELECT * FROM GrauProficiencia " +
+                            "INNER JOIN ReconhecimentoGP " +
+                            "ON GrauProficiencia.idGrauProficiencia = ReconhecimentoGP.idGrauProficiencia " +
+                            "INNER JOIN Freelancer " +
+                            "ON ReconhecimentoGP.emailFreelancer LIKE Freelancer.email " +
+                            "WHERE Freelancer.email LIKE ?"
+            );
+
+            preparedStatement.setString(1, emailFreelancer);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while(resultSet.next()) {
+                int idGrauProficiencia = resultSet.getInt(1);
+                int grau = resultSet.getInt(2);
+                String designacao = resultSet.getString(3);
+                String codigoCompetenciaTecnica = resultSet.getString(4);
+                grausFreelancer.add(new GrauProficiencia(idGrauProficiencia, grau, designacao, codigoCompetenciaTecnica));
+            }
+        }
+        catch (SQLException exception) {
+            exception.printStackTrace();
+            exception.getSQLState();
+            try {
+                System.err.print("Transaction is being rolled back");
+                connection.rollback();
+            }
+            catch (SQLException sqlException) {
+                sqlException.getErrorCode();
+            }
+        }
+        finally {
+            DBConnectionHandler.getInstance().closeAll();
+        }
+
+        return grausFreelancer;
     }
 }

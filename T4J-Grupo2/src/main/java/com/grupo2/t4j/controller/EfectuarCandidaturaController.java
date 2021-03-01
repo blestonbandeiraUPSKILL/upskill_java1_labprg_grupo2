@@ -23,6 +23,7 @@ public class EfectuarCandidaturaController {
     private RepositorioGrauProficiencia repositorioGrauProficiencia = fabricaRepositorios.getRepositorioGrauProficiencia();
     private RepositorioCaracterizacaoCT repositorioCaracterizacaoCT = fabricaRepositorios.getRepositorioCaracterizacaoCT();
     private RepositorioCategoriaTarefa repositorioCategoriaTarefa = fabricaRepositorios.getRepositorioCategoriaTarefa();
+    private RepositorioCandidatura repositorioCandidatura = fabricaRepositorios.getRepositorioCandidatura();
 
     public EfectuarCandidaturaController() throws SQLException {
     }
@@ -55,14 +56,9 @@ public class EfectuarCandidaturaController {
         return repositorioAnuncio.findAnunciosElegiveis(email);
     }
 
-    public List<CompetenciaTecnica> competenciasTecnicasDoFreelancer(String email) throws SQLException {
+    public List<ReconhecimentoGP> competenciasTecnicasDoFreelancer(String email) throws SQLException {
+       return repositorioReconhecimentoGP.getAll(email);
 
-        List<CompetenciaTecnica> listaCompetencias = new ArrayList<>();
-        List<ReconhecimentoGP> listaReconhecimentos = repositorioReconhecimentoGP.findByEmail(email);
-        for (ReconhecimentoGP rgp : listaReconhecimentos) {
-            listaCompetencias.add(repositorioCompetenciaTecnica.findByCodigo(rgp.getIdCompetenciaTecnica()));
-        }
-        return listaCompetencias;
     }
 
     public boolean comparaCompetencias(String email, String idCompetenciaTecnica) throws SQLException {
@@ -82,4 +78,15 @@ public class EfectuarCandidaturaController {
 
     }
 
+    public boolean registarCandidatura(int idAnuncio, double valor, int dias,
+                                       String apresentacao, String motivacao,
+                                       String emailFreelancer) throws SQLException {
+        Candidatura candidatura = new Candidatura(idAnuncio, emailFreelancer, valor, dias, apresentacao, motivacao);
+
+        return repositorioCandidatura.save(candidatura);
+    }
+
+    public Candidatura findByEmail(String emailFreelancer) throws SQLException {
+        return repositorioCandidatura.findByEmail(emailFreelancer);
+    }
 }

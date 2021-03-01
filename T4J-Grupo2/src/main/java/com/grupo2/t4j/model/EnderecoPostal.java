@@ -21,7 +21,7 @@ public class EnderecoPostal {
     /**
      * O código que identifica um endereço postal
      */
-    private int codigoEnderecoPostal;
+    private int idEnderecoPostal;
 
     /**
      * O arruamento do endereço postal
@@ -55,7 +55,7 @@ public class EnderecoPostal {
      * @param codigoPostal corresponde à quarta linha do Endereço Postal, ou código Postal
      */
     public EnderecoPostal(int codigoEnderecoPostal, String arruamento, String numeroPorta, String localidade, String codigoPostal) {
-        setCodigoEnderecoPostal(codigoEnderecoPostal);
+        setIdEnderecoPostal(codigoEnderecoPostal);
         setArruamento(arruamento);
         setPorta(numeroPorta);
         setLocalidade(localidade);
@@ -67,7 +67,7 @@ public class EnderecoPostal {
      * @param endereco um endereço postal único
      */
     public EnderecoPostal(EnderecoPostal endereco){
-        setCodigoEnderecoPostal(endereco.codigoEnderecoPostal);
+        setIdEnderecoPostal(endereco.idEnderecoPostal);
         setArruamento(endereco.arruamento);
         setPorta(endereco.numeroPorta);
         setLocalidade(endereco.localidade);
@@ -86,8 +86,8 @@ public class EnderecoPostal {
      * @return codigoEnderecoPostal
      */
 
-    public int getCodigoEnderecoPostal() {
-        return codigoEnderecoPostal;
+    public int getIdEnderecoPostal() {
+        return idEnderecoPostal;
     }
 
     /**
@@ -122,11 +122,11 @@ public class EnderecoPostal {
         return codigoPostal;
     }
 
-    public void setCodigoEnderecoPostal(int codigoEnderecoPostal) {
-        if (codigoEnderecoPostal < 0 ) {
+    public void setIdEnderecoPostal(int idEnderecoPostal) {
+        if (idEnderecoPostal < 0 ) {
             throw new NomeInvalidoException("O código do Endereço Postal é invalido");
         }
-        this.codigoEnderecoPostal = codigoEnderecoPostal;
+        this.idEnderecoPostal = idEnderecoPostal;
     }
 
     /**

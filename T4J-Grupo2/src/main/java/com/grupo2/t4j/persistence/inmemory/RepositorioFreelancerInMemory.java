@@ -11,10 +11,7 @@ package com.grupo2.t4j.persistence.inmemory;
  */
 
 import com.grupo2.t4j.exception.FreelancerDuplicadoException;
-import com.grupo2.t4j.model.Email;
-import com.grupo2.t4j.model.EnderecoPostal;
-import com.grupo2.t4j.model.Freelancer;
-import com.grupo2.t4j.model.Password;
+import com.grupo2.t4j.model.*;
 import com.grupo2.t4j.persistence.RepositorioFreelancer;
 
 import java.io.Serializable;
@@ -62,7 +59,7 @@ public class RepositorioFreelancerInMemory implements Serializable, RepositorioF
         Freelancer f2 = findByEmail(emailFree);
         if (f1 == null && f2 == null) {
             EnderecoPostal endereco = new EnderecoPostal(arruamento, numeroPorta, localidade, codPostal);
-            Freelancer freel = new Freelancer(new Email(emailFree), nome, new Password(passwordFree), nif, telefone, endereco.getCodigoEnderecoPostal());
+            Freelancer freel = new Freelancer(new Email(emailFree), nome, new Password(passwordFree), nif, telefone, endereco.getIdEnderecoPostal());
             this.listaFreelancers.add(freel);
             return true;
         } else {
@@ -126,7 +123,27 @@ public class RepositorioFreelancerInMemory implements Serializable, RepositorioF
         }
         return listaEmailFreelancers;
     }
-        
+
+    @Override
+    public List<ReconhecimentoGP> getAllReconhecimentoGP(String emailFreelancer) throws SQLException {
+        return null;
+    }
+
+    @Override
+    public List<HabilitacaoAcademica> getAllHabsAcademicas(String emailFreelancer) throws SQLException {
+        return null;
+    }
+
+    @Override
+    public EnderecoPostal getEnderecoPostal(String emailFreelancer) {
+        return null;
+    }
+
+    @Override
+    public List<GrauProficiencia> getAllGrausFreelancer(String emailFreelancer) throws SQLException {
+        return null;
+    }
+
     public int adicionarListaFreelancer(RepositorioFreelancerInMemory outraListaFreelancer) {
         int totalFreelancersAdicionados = 0;
 

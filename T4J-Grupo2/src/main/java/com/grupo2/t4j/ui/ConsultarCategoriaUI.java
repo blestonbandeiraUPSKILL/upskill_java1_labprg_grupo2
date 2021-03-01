@@ -31,16 +31,11 @@ public class ConsultarCategoriaUI implements Initializable {
     private RegistarAreaActividadeController registarAreaActividadeController;
     
     @FXML TextField txtDescBreve;
-
-    @FXML TextField txtAreaActividade;
-
-    @FXML Button btnVoltar;
-
-    @FXML ListView<CaracterizacaoCT> listViewCaracterizacao;
-
     @FXML TextField txtCodigo;
-
+    @FXML TextField txtAreaActividade;
     @FXML TextArea txtDescDetalhada;
+    @FXML Button btnVoltar;
+    @FXML ListView<CaracterizacaoCT> listViewCaracterizacao;
     
     public void associarParentUI(AdministrativoLogadoUI administrativoLogadoUI) {
         this.administrativoLogadoUI = administrativoLogadoUI;

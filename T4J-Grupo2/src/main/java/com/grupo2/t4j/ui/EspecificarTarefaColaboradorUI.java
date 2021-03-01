@@ -50,7 +50,11 @@ public class EspecificarTarefaColaboradorUI implements Initializable {
     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        registarTarefaController = new RegistarTarefaController();
+        try {
+            registarTarefaController = new RegistarTarefaController();
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }
         registarAreaActividadeController = new RegistarAreaActividadeController();
         registarCategoriaController = new RegistarCategoriaController();
         gestaoUtilizadoresController = new GestaoUtilizadoresController();
@@ -81,9 +85,7 @@ public class EspecificarTarefaColaboradorUI implements Initializable {
             }
         });
 
-
     }
-
 
     public void updateCmbCategoriasTarefaRegisto(ActionEvent actionEvent) throws SQLException {
         List<Categoria> listaCategoriasTarefa =
@@ -93,14 +95,11 @@ public class EspecificarTarefaColaboradorUI implements Initializable {
         cmbCategoriaTarefa.getItems().setAll(listaCategoriasTarefa);
     }
 
-
     public void updateListViewCaracterizacaoCTS(ActionEvent actionEvent){
 
         listViewCaracterizacaoCT.getItems().setAll(
                 cmbCategoriaTarefa.getSelectionModel().getSelectedItem().getCompTecnicasCaracter());
     }
-
-
 
     public void registarTarefa(ActionEvent actionEvent) throws SQLException{
         try {
@@ -117,19 +116,18 @@ public class EspecificarTarefaColaboradorUI implements Initializable {
 
             if (adicionou){
                 colaboradorLogadoUI.updateListViewTarefas();
-            }
-            AlertsUI.criarAlerta(Alert.AlertType.INFORMATION,
+
+                AlertsUI.criarAlerta(Alert.AlertType.INFORMATION,
                     MainApp.TITULO_APLICACAO,
                     "Registar Tarefa.",
-                    adicionou ? "Tarefa registada com sucesso."
-                            : "Não foi possível registar a Tarefa.").show();
-
+                     "Tarefa registada com sucesso.").show();
+            }
         }
-        catch (IllegalArgumentException iae) {
+        catch (IllegalArgumentException exception) {
             AlertsUI.criarAlerta(Alert.AlertType.ERROR,
                     MainApp.TITULO_APLICACAO,
-                    "Erro nos dados.",
-                    iae.getMessage()).show();
+                    "Registar Tarefa - Erro nos dados.",
+                    "Não foi possível registar a Tarefa." + exception.getMessage()).show();
 
         }
 
@@ -167,6 +165,5 @@ public class EspecificarTarefaColaboradorUI implements Initializable {
 
         ((Node) actionEvent.getSource()).getScene().getWindow().hide();
     }
-
 
 }

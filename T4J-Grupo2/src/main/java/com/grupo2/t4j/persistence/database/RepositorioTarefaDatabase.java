@@ -16,10 +16,6 @@ public class RepositorioTarefaDatabase implements RepositorioTarefa {
      * registadas todas as Tarefas
      */
     private static RepositorioTarefaDatabase repositorioTarefaDatabase;
-    
-    String jdbcUrl = "jdbc:oracle:thin:@vsrvbd1.dei.isep.ipp.pt:1521/pdborcl";
-    String username = "UPSKILL_BD_TURMA1_01";
-    String password = "qwerty";
 
     /**
      * Inicializa o Repositório de Tarefas
@@ -49,15 +45,15 @@ public class RepositorioTarefaDatabase implements RepositorioTarefa {
     @Override
     public boolean save(Tarefa tarefa) throws SQLException {
 
-        DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
-        Connection connection = dbConnectionHandler.openConnection();
+        Connection connection = DBConnectionHandler.getInstance().openConnection();
 
-        CallableStatement callableStatement = connection.prepareCall(
-                "{CALL createTarefa(?, ?, ?, ?, ?, ?, ?, ?, ?) }"
-        );
+        try {
+            CallableStatement callableStatement = connection.prepareCall(
+                    "{CALL createTarefa(?, ?, ?, ?, ?, ?, ?, ?, ?) }"
+            );
 
-        if (findByReferenciaENIF(tarefa.getReferencia(), tarefa.getNifOrganizacao()) == null) {
-            try {
+            if (findByReferenciaENIF(tarefa.getReferencia(), tarefa.getNifOrganizacao()) == null) {
+
                 connection.setAutoCommit(false);
 
                 callableStatement.setString(1, tarefa.getNifOrganizacao());
@@ -75,36 +71,34 @@ public class RepositorioTarefaDatabase implements RepositorioTarefa {
                 connection.commit();
                 return true;
             }
-            catch (SQLException exception) {
-                exception.printStackTrace();
-                exception.getSQLState();
-                try {
-                    System.err.print("Transaction is being rolled back");
-                    connection.rollback();
-                }
-                catch (SQLException sqlException) {
-                    sqlException.getErrorCode();
-                }
+        }
+        catch (SQLException exception) {
+            exception.printStackTrace();
+            exception.getSQLState();
+            try {
+                System.err.print("Transaction is being rolled back");
+                connection.rollback();
             }
-            finally {
-                dbConnectionHandler.closeAll();
+            catch (SQLException sqlException) {
+                sqlException.getErrorCode();
             }
         }
-
+        finally {
+            DBConnectionHandler.getInstance().closeAll();
+        }
         return false;
     }
 
     @Override
     public Tarefa findByReferenciaENIF(String referencia, String nif) throws SQLException {
-        
-        DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
-        Connection connection = dbConnectionHandler.openConnection();
 
-        CallableStatement callableStatement = connection.prepareCall(
-                "{ CALL findByRefENif(?, ?) }"
-        );
+        Connection connection = DBConnectionHandler.getInstance().openConnection();
 
         try {
+            CallableStatement callableStatement = connection.prepareCall(
+                    "{ CALL findByRefENif(?, ?) }"
+            );
+
             connection.setAutoCommit(false);
 
             callableStatement.setString(1, referencia);
@@ -117,8 +111,10 @@ public class RepositorioTarefaDatabase implements RepositorioTarefa {
         catch (SQLException exception) {
             exception.printStackTrace();
             exception.getSQLState();
+        }
 
-
+        finally {
+            DBConnectionHandler.getInstance().closeAll();
         }
         return new Tarefa();
     }
@@ -127,8 +123,7 @@ public class RepositorioTarefaDatabase implements RepositorioTarefa {
     public List<Tarefa> findByCategoria(String codigoCategoria) throws SQLException {
         ArrayList<Tarefa> tarefas = new ArrayList<>();
 
-        DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
-        Connection connection = dbConnectionHandler.openConnection();
+        Connection connection = DBConnectionHandler.getInstance().openConnection();
 
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(
@@ -168,7 +163,7 @@ public class RepositorioTarefaDatabase implements RepositorioTarefa {
 
         }
         finally {
-            dbConnectionHandler.closeAll();
+            DBConnectionHandler.getInstance().closeAll();
         }
 
         return tarefas;
@@ -178,8 +173,7 @@ public class RepositorioTarefaDatabase implements RepositorioTarefa {
     public ArrayList<Tarefa> getAllOrganizacao(String nifOrganizacao) throws SQLException {
         ArrayList<Tarefa> tarefas = new ArrayList<>();
 
-        DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
-        Connection connection = dbConnectionHandler.openConnection();
+        Connection connection = DBConnectionHandler.getInstance().openConnection();
 
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(
@@ -219,7 +213,7 @@ public class RepositorioTarefaDatabase implements RepositorioTarefa {
 
         }
         finally {
-            dbConnectionHandler.closeAll();
+            DBConnectionHandler.getInstance().closeAll();
         }
 
         return tarefas;
@@ -229,8 +223,7 @@ public class RepositorioTarefaDatabase implements RepositorioTarefa {
     public ArrayList<Tarefa> getAll() throws SQLException {
         ArrayList<Tarefa> tarefas = new ArrayList<>();
 
-        DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
-        Connection connection = dbConnectionHandler.openConnection();
+        Connection connection = DBConnectionHandler.getInstance().openConnection();
 
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(
@@ -270,7 +263,7 @@ public class RepositorioTarefaDatabase implements RepositorioTarefa {
 
         }
         finally {
-            dbConnectionHandler.closeAll();
+            DBConnectionHandler.getInstance().closeAll();
         }
 
         return tarefas;
@@ -281,8 +274,7 @@ public class RepositorioTarefaDatabase implements RepositorioTarefa {
     public List<Tarefa> findByColaboradorENif(String email, String nifOrganizacao) throws SQLException {
         ArrayList<Tarefa> tarefas = new ArrayList<>();
 
-        DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
-        Connection connection = dbConnectionHandler.openConnection();
+        Connection connection = DBConnectionHandler.getInstance().openConnection();
 
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(
@@ -303,11 +295,10 @@ public class RepositorioTarefaDatabase implements RepositorioTarefa {
                 int duracaoEst  = resultSet.getInt(6);
                 double custoEst = resultSet.getDouble(7);
                 String codigoCategoriaTarefa = resultSet.getString(8);
-                String emailColaborador = resultSet.getString(9);
 
                 tarefas.add(new Tarefa(referencia, nifOrganizacao, designacao, descInformal,
                         descTecnica, duracaoEst, custoEst,
-                        codigoCategoriaTarefa,  emailColaborador));
+                        codigoCategoriaTarefa, email));
             }
         }
         catch (SQLException exception) {
@@ -323,18 +314,17 @@ public class RepositorioTarefaDatabase implements RepositorioTarefa {
 
         }
         finally {
-            dbConnectionHandler.closeAll();
+            DBConnectionHandler.getInstance().closeAll();
         }
 
         return tarefas;
     }
 
     @Override
-    public List<Tarefa> findTarefasPublicadas(List<String> referenciasTarefa, String nifOrganizacao) throws SQLException {
+    public List<Tarefa> findTarefasPublicadas(List<String> referenciasTarefa, String nifOrganizacao, String emailColaborador) throws SQLException {
         List<Tarefa> tarefasComAnuncio = new ArrayList<>();
 
-        DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
-        Connection connection = dbConnectionHandler.openConnection();
+        Connection connection = DBConnectionHandler.getInstance().openConnection();
 
         try {
             for (String referencia : referenciasTarefa) {
@@ -344,12 +334,14 @@ public class RepositorioTarefaDatabase implements RepositorioTarefa {
                                 "ON Tarefa.referencia LIKE Anuncio.referenciaTarefa " +
                                 "AND Tarefa.nifOrganizacao LIKE Anuncio.nifOrganizacao " +
                                 "WHERE tarefa.referencia LIKE ? " +
-                                "AND tarefa.nifOrganizacao LIKE ?"
+                                "AND tarefa.nifOrganizacao LIKE ?" +
+                                "AND Tarefa.emailColaborador LIKE ? "
                 );
 
 
                 callableStatement.setString(1, referencia);
                 callableStatement.setString(2, nifOrganizacao);
+                callableStatement.setString(3, emailColaborador);
 
                 callableStatement.executeUpdate();
 
@@ -363,7 +355,6 @@ public class RepositorioTarefaDatabase implements RepositorioTarefa {
                     int duracaoEstimada = resultSet.getInt(6);
                     double custoEstimado = resultSet.getDouble(7);
                     String codigoCategoria = resultSet.getString(8);
-                    String emailColaborador = resultSet.getString(9);
                     tarefasComAnuncio.add(new Tarefa(referencia, nifOrganizacao,
                             designacao, descInformal, descTecnica, duracaoEstimada, custoEstimado, codigoCategoria, emailColaborador));
 
@@ -375,39 +366,49 @@ public class RepositorioTarefaDatabase implements RepositorioTarefa {
             exception.getSQLState();
 
         }
+        finally {
+            DBConnectionHandler.getInstance().closeAll();
+        }
         return tarefasComAnuncio;
     }
 
+    public int findIdAnuncio(String nifOrganizacao, String referenciaTarefa) throws SQLException {
+        int idAnuncio = 0;
 
-  /*  @Override
-    public List<Tarefa> findTarefasComAnuncio(String email, String nifOrganizacao) throws SQLException {
-        List<Tarefa> tarefasPublicadas = new ArrayList<>();
-        List<Tarefa> tarefas = new ArrayList<>();
-        tarefas = findByColaboradorENif(email, nifOrganizacao);
-        
-        for (Tarefa tarefa : tarefas){
-            if (findAnuncioByTarefa(tarefa.getEmailColaborador(), tarefa.getNifOrganizacao())!=null){
-              tarefasPublicadas.add(tarefa);  
-            } 
-            
-        }
-        return tarefasPublicadas;
+        Connection connection = DBConnectionHandler.getInstance().openConnection();
 
-    }*/
-    
-    @Override
-    public List<Tarefa> findTarefasSemAnuncio(String email, String nifOrganizacao) throws SQLException {
-        List<Tarefa> tarefasNaoPublicadas = new ArrayList<>();
-        List<Tarefa> tarefas = new ArrayList<>();
-        tarefas = findByColaboradorENif(email, nifOrganizacao);
-        
-        for (Tarefa tarefa : tarefas){
-            if (findAnuncioByTarefa(tarefa.getEmailColaborador(), tarefa.getNifOrganizacao())==null){
-              tarefasNaoPublicadas.add(tarefa);  
-            } 
-            
+        try {
+            CallableStatement callableStatement = connection.prepareCall(
+                    "SELECT idAnuncio FROM Anuncio " +
+                            "INNER JOIN Tarefa " +
+                            "ON Anuncio.referenciaTarefa LIKE Tarefa.referencia " +
+                            "AND Anuncio.nifOrganizacao LIKE Tarefa.nifOrganizacao " +
+                            " WHERE Anuncio.nifOrganizacao LIKE ? AND Anuncio.referenciaTarefa LIKE ?"
+            );
+
+            callableStatement.setString(1, nifOrganizacao);
+            callableStatement.setString(2, referenciaTarefa);
+
+
+            callableStatement.executeUpdate();
+
+            ResultSet resultSet = callableStatement.getResultSet();
+
+            while(resultSet.next()) {
+                idAnuncio = resultSet.getInt(1);
+
+            }
         }
-        return tarefasNaoPublicadas;
+        catch (SQLException exception) {
+            exception.printStackTrace();
+            exception.getSQLState();
+
+        }
+        finally {
+            DBConnectionHandler.getInstance().closeAll();
+        }
+
+        return idAnuncio;
 
     }
 
@@ -415,24 +416,35 @@ public class RepositorioTarefaDatabase implements RepositorioTarefa {
     public List<String> findReferenciaTarefa(String nifOrganizacao) throws SQLException {
         List<String> referenciasTarefa = new ArrayList<>();
 
-        DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
-        Connection connection = dbConnectionHandler.openConnection();
+        Connection connection = DBConnectionHandler.getInstance().openConnection();
 
-        CallableStatement callableStatement = connection.prepareCall(
-                "SELECT referencia FROM Tarefa WHERE nifOrganizacao LIKE ?"
-        );
+        try {
+            CallableStatement callableStatement = connection.prepareCall(
+                    "SELECT referencia FROM Tarefa WHERE nifOrganizacao LIKE ?"
+            );
 
-        callableStatement.setString(1, nifOrganizacao);
+            callableStatement.setString(1, nifOrganizacao);
 
 
-        callableStatement.executeUpdate();
+            callableStatement.executeUpdate();
 
-        ResultSet resultSet = callableStatement.getResultSet();
+            ResultSet resultSet = callableStatement.getResultSet();
 
-        while(resultSet.next()) {
-            String referenciaTarefa = resultSet.getString(1);
-            referenciasTarefa.add(referenciaTarefa);
+            while(resultSet.next()) {
+                String referenciaTarefa = resultSet.getString(1);
+                referenciasTarefa.add(referenciaTarefa);
+            }
         }
+
+        catch (SQLException exception) {
+            exception.printStackTrace();
+            exception.getSQLState();
+
+        }
+        finally {
+            DBConnectionHandler.getInstance().closeAll();
+        }
+
 
         return referenciasTarefa;
     }
@@ -442,8 +454,7 @@ public class RepositorioTarefaDatabase implements RepositorioTarefa {
 
         List<Tarefa> tarefasSemAnuncio = new ArrayList<>();
 
-        DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
-        Connection connection = dbConnectionHandler.openConnection();
+        Connection connection = DBConnectionHandler.getInstance().openConnection();
 
         try {
             for (String referenciaTarefa : referenciasTarefa) {
@@ -453,11 +464,13 @@ public class RepositorioTarefaDatabase implements RepositorioTarefa {
                                 "ON Tarefa.referencia LIKE Anuncio.referenciaTarefa " +
                                 "AND Tarefa.nifOrganizacao LIKE Anuncio.nifOrganizacao " +
                                 "WHERE Anuncio.referenciaTAREFA IS NULL AND Anuncio.nifOrganizacao IS NULL " +
-                                "AND Tarefa.referencia LIKE ? AND Tarefa.nifOrganizacao LIKE ? "
+                                "AND Tarefa.referencia LIKE ? AND Tarefa.nifOrganizacao LIKE ? " +
+                                "AND Tarefa.emailColaborador LIKE ?"
                 );
 
                 callableStatement.setString(1, referenciaTarefa);
                 callableStatement.setString(2, nifOrganizacao);
+                callableStatement.setString(3, email);
 
                 callableStatement.executeUpdate();
 
@@ -471,9 +484,8 @@ public class RepositorioTarefaDatabase implements RepositorioTarefa {
                     int duracaoEstimada = resultSet.getInt(6);
                     double custoEstimado = resultSet.getDouble(7);
                     String codigoCategoria = resultSet.getString(8);
-                    String emailColaborador = resultSet.getString(9);
                     tarefasSemAnuncio.add(new Tarefa(referenciaTarefa, nifOrganizacao,
-                            designacao, descInformal, descTecnica, duracaoEstimada, custoEstimado, codigoCategoria, emailColaborador));
+                            designacao, descInformal, descTecnica, duracaoEstimada, custoEstimado, codigoCategoria, email));
 
                 }
             }
@@ -482,6 +494,9 @@ public class RepositorioTarefaDatabase implements RepositorioTarefa {
             exception.printStackTrace();
             exception.getSQLState();
 
+        }
+        finally {
+            DBConnectionHandler.getInstance().closeAll();
         }
         return tarefasSemAnuncio;
 
@@ -492,14 +507,13 @@ public class RepositorioTarefaDatabase implements RepositorioTarefa {
 
         List<Anuncio> tarefasComAnuncio = new ArrayList<>();
 
-        DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
-        Connection connection = dbConnectionHandler.openConnection();
-
-        CallableStatement callableStatement = connection.prepareCall(
-                " SELECT * FROM Anuncio WHERE referenciaTarefa LIKE ? AND nifOrganizacao LIKE ? "
-        );
+        Connection connection = DBConnectionHandler.getInstance().openConnection();
 
         try {
+            CallableStatement callableStatement = connection.prepareCall(
+                    " SELECT * FROM Anuncio WHERE referenciaTarefa LIKE ? AND nifOrganizacao LIKE ? "
+            );
+
             connection.setAutoCommit(false);
 
             callableStatement.setString(1, referencia);
@@ -525,16 +539,111 @@ public class RepositorioTarefaDatabase implements RepositorioTarefa {
                 tarefasComAnuncio.add(new Anuncio(idAnuncio, referenciaTarefa, nifOrganizacao, dataInicioPublicitacao, dataFimPublicitacao, dataInicioCandidatura, dataFimCandidatura,
                         dataInicioSeriacao, dataFimSeriacao, idTipoRegimento));
             }
-           return tarefasComAnuncio;
 
         }
         catch (SQLException exception) {
             exception.printStackTrace();
             exception.getSQLState();
-
-
         }
-        return null;
+
+        finally {
+            DBConnectionHandler.getInstance().closeAll();
+        }
+        return tarefasComAnuncio;
     }
 
+    @Override
+    public Tarefa findTarefa(int idAnuncio) throws SQLException {
+        Tarefa tarefa = new Tarefa();
+
+        Connection connection = DBConnectionHandler.getInstance().openConnection();
+
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(
+                    "SELECT * FROM Tarefa " +
+                            "INNER JOIN Anuncio " +
+                            "ON Anuncio.referenciaTarefa LIKE Tarefa.referencia " +
+                            "AND Anuncio.nifOrganizacao LIKE Tarefa.nifOrganizacao " +
+                            "WHERE idAnuncio =  ?"
+
+            );
+
+            preparedStatement.setInt(1, idAnuncio);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+
+                tarefa.setNifOrganizacao(resultSet.getString(1));
+                tarefa.setReferencia(resultSet.getString(2));
+                tarefa.setDesignacao(resultSet.getString(3));
+                tarefa.setDescInformal(resultSet.getString(4));
+                tarefa.setDescTecnica(resultSet.getString(5));
+                tarefa.setDuracaoEst(resultSet.getInt(6));
+                tarefa.setCustoEst(resultSet.getDouble(7));
+                tarefa.setCodigoCategoriaTarefa(resultSet.getString(8));
+                tarefa.setEmailColaborador(resultSet.getString(9));
+            }
+
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+            exception.getSQLState();
+            try {
+                System.err.print("Transaction is being rolled back");
+                connection.rollback();
+            } catch (SQLException sqlException) {
+                sqlException.getErrorCode();
+            }
+
+        } finally {
+            DBConnectionHandler.getInstance().closeAll();
+        }
+        return tarefa;
+    }
+
+    public List<Tarefa> getAllTarefasPublicadas() throws SQLException {
+        List<Tarefa> tarefas = new ArrayList<>();
+
+        Connection connection = DBConnectionHandler.getInstance().openConnection();
+
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(
+                    "SELECT * FROM Tarefa INNER JOIN Anuncio " +
+                            "ON Tarefa.referencia LIKE Anuncio.referenciaTarefa " +
+                            "AND Tarefa.nifOrganizacao LIKE Anuncio.nifOrganizacao"
+            );
+
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                String nifOrganizacao = resultSet.getString(1);
+                String referencia = resultSet.getString(2);
+                String designacao = resultSet.getString(3);
+                String descInformal = resultSet.getString(4);
+                String descTecnica = resultSet.getString(5);
+                int duracaoEstimada = resultSet.getInt(6);
+                double custoEstimado = resultSet.getDouble(7);
+                String codigoCategoria = resultSet.getString(8);
+                String emailColaborador = resultSet.getString(9);
+
+                tarefas.add(new Tarefa(nifOrganizacao, referencia, designacao, descInformal,
+                        descTecnica, duracaoEstimada, custoEstimado, codigoCategoria, emailColaborador));
+            }
+
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+            exception.getSQLState();
+            try {
+                System.err.print("Transaction is being rolled back");
+                connection.rollback();
+            } catch (SQLException sqlException) {
+                sqlException.getErrorCode();
+            }
+
+        } finally {
+            DBConnectionHandler.getInstance().closeAll();
+        }
+        return tarefas;
+    }
 }

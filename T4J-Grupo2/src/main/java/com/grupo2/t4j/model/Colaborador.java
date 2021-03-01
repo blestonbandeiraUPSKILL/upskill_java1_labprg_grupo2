@@ -62,7 +62,7 @@ public class Colaborador extends Utilizador implements Serializable{
         setTelefone(telefone);
     }
 
-    public Colaborador(String nome, String email, String funcao, String telefone, String nifOrganizacao) {
+    public Colaborador(String email, String nome, String funcao, String telefone, String nifOrganizacao) {
         super(nome, email);
         setFuncao(funcao);
         setTelefone(telefone);

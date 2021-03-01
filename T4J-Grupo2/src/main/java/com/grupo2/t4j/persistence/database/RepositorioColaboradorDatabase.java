@@ -17,10 +17,6 @@ public class RepositorioColaboradorDatabase implements RepositorioColaborador {
      */
     private static RepositorioColaboradorDatabase repositorioColaboradorDatabase;
 
-    String jdbcUrl = "jdbc:oracle:thin:@vsrvbd1.dei.isep.ipp.pt:1521/pdborcl";
-    String username = "UPSKILL_BD_TURMA1_01";
-    String password = "qwerty";
-
     /**
      * Inicializa o Repositório de Colaboradores
      */
@@ -45,15 +41,16 @@ public class RepositorioColaboradorDatabase implements RepositorioColaborador {
 
     @Override
     public boolean save(Colaborador colaborador) throws SQLException {
-        DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
-        Connection connection = dbConnectionHandler.openConnection();
 
-        CallableStatement callableStatement = connection.prepareCall(
+        Connection connection = DBConnectionHandler.getInstance().openConnection();
+
+        try {
+            CallableStatement callableStatement = connection.prepareCall(
                 "{CALL createUtilizadorColaborador(?, ?, ?, ?, ?, ?)}"
-        );
+            );
 
-        if(findByEmail(colaborador.getEmail().getEmailText()) == null) {
-            try {
+            if(findByEmail(colaborador.getEmail().getEmailText()) == null) {
+
                 connection.setAutoCommit(false);
 
                 callableStatement.setString(1, colaborador.getEmail().getEmailText());
@@ -68,19 +65,19 @@ public class RepositorioColaboradorDatabase implements RepositorioColaborador {
                 return true;
 
             }
-            catch (SQLException exception) {
-                exception.printStackTrace();
-                exception.getSQLState();
-                try {
-                    System.err.print("Transaction is being rolled back");
-                    connection.rollback();
-                } catch (SQLException sqlException) {
-                    sqlException.getErrorCode();
-                }
-
-            } finally {
-                dbConnectionHandler.closeAll();
+        }
+        catch (SQLException exception) {
+            exception.printStackTrace();
+            exception.getSQLState();
+            try {
+                System.err.print("Transaction is being rolled back");
+                connection.rollback();
+            } catch (SQLException sqlException) {
+                sqlException.getErrorCode();
             }
+
+        } finally {
+            DBConnectionHandler.getInstance().closeAll();
         }
         return false;
     }
@@ -88,14 +85,13 @@ public class RepositorioColaboradorDatabase implements RepositorioColaborador {
     @Override
     public Colaborador findByEmail(String email) throws SQLException {
 
-        DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
-        Connection connection = dbConnectionHandler.openConnection();
-
-        CallableStatement callableStatement = connection.prepareCall(
-                "{CALL findByEmail(?) }"
-        );
+        Connection connection = DBConnectionHandler.getInstance().openConnection();
 
         try {
+            CallableStatement callableStatement = connection.prepareCall(
+                    "{CALL findByEmail(?) }"
+            );
+
             connection.setAutoCommit(false);
 
             callableStatement.setString(1, email);
@@ -108,6 +104,9 @@ public class RepositorioColaboradorDatabase implements RepositorioColaborador {
             exception.getSQLState();
 
         }
+        finally {
+            DBConnectionHandler.getInstance().closeAll();
+        }
 
         return new Colaborador();
 
@@ -118,8 +117,7 @@ public class RepositorioColaboradorDatabase implements RepositorioColaborador {
 
         ArrayList<Colaborador> colaboradores = new ArrayList<>();
 
-        DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
-        Connection connection = dbConnectionHandler.openConnection();
+        Connection connection = DBConnectionHandler.getInstance().openConnection();
 
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(
@@ -154,7 +152,7 @@ public class RepositorioColaboradorDatabase implements RepositorioColaborador {
 
         }
         finally {
-            dbConnectionHandler.closeAll();
+            DBConnectionHandler.getInstance().closeAll();
         }
         return colaboradores;
     }
@@ -164,8 +162,7 @@ public class RepositorioColaboradorDatabase implements RepositorioColaborador {
 
         String nifOrganizacao = null;
 
-        DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
-        Connection connection = dbConnectionHandler.openConnection();
+        Connection connection = DBConnectionHandler.getInstance().openConnection();
 
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(
@@ -193,7 +190,7 @@ public class RepositorioColaboradorDatabase implements RepositorioColaborador {
 
         }
         finally {
-            dbConnectionHandler.closeAll();
+            DBConnectionHandler.getInstance().closeAll();
         }
 
         return null;
@@ -202,15 +199,14 @@ public class RepositorioColaboradorDatabase implements RepositorioColaborador {
     @Override
     public Password findPassword(String email) throws SQLException {
 
-        DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
-        Connection connection = dbConnectionHandler.openConnection();
-
-        PreparedStatement preparedStatement = connection.prepareStatement(
-                "SELECT utilizador.password FROM Utilizador " +
-                        "INNER JOIN Colaborador ON colaborador.email LIKE utilizador.email WHERE colaborador.email LIKE ?"
-        );
+        Connection connection = DBConnectionHandler.getInstance().openConnection();
 
         try {
+            PreparedStatement preparedStatement = connection.prepareStatement(
+                    "SELECT utilizador.password FROM Utilizador " +
+                            "INNER JOIN Colaborador ON colaborador.email LIKE utilizador.email WHERE colaborador.email LIKE ?"
+            );
+
             connection.setAutoCommit(false);
 
             preparedStatement.setString(1, email);
@@ -224,6 +220,9 @@ public class RepositorioColaboradorDatabase implements RepositorioColaborador {
         } catch (SQLException exception) {
             exception.printStackTrace();
             exception.getSQLState();
+        }
+        finally {
+            DBConnectionHandler.getInstance().closeAll();
         }
 
         return null;

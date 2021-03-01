@@ -139,7 +139,6 @@ entity "Classificacao" {
 entity "Candidatura" {
     idCandidatura: number {PK}
     --
-    dataFimCandidatura: date {NN}
     valorPretendido: number {NN}
     numeroDias: integer {NN}
     txtApresentacao: text
