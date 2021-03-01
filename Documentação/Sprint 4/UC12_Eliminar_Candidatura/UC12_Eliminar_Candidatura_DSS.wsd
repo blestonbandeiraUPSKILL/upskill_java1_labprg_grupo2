@@ -10,7 +10,7 @@ Freelancer -> ":Sistema" : 3. O Freelancer selecciona uma das suas candidaturas 
 activate ":Sistema"
 ":Sistema" --> Freelancer : 4. O Sistema 
 deactivate ":Sistema"
-Freelancer -> ":Sistema" : 5 - 
+Freelancer -> ":Sistema" : 5.  
 deactivate ":Sistema"
 deactivate Freelancer
 @enduml
