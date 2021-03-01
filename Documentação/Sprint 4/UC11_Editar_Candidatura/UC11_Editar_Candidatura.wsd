@@ -1,0 +1,22 @@
+@startuml
+title UC11 - Editar Candidatura
+actor Freelancer
+activate Freelancer
+Freelancer -> ":Sistema" : 1 - Inicia a consulta a candidaturas em período de submissão/edição
+activate ":Sistema"
+":Sistema" --> Freelancer : 2 - Solicita escolha de uma candidatura a editar
+deactivate ":Sistema"
+Freelancer -> ":Sistema" : 3 - Seleciona a candidatura a editar
+activate ":Sistema"
+":Sistema" --> Freelancer : 4 - Solicita dados para a candidatura \n(i.e. valor pretendido, numero de dias, \ntexto apresentação (opcional), texto motivação (opcional) )
+deactivate ":Sistema"
+Freelancer -> ":Sistema" : 5 - Mantém ou modifica os dados existentes solicitados
+activate ":Sistema"
+":Sistema" --> Freelancer : 6 - Apresenta os dados e solicita confirmação
+deactivate ":Sistema"
+Freelancer -> ":Sistema" : 7 - Confirma os dados
+activate ":Sistema"
+":Sistema" --> Freelancer : 8 - Atualiza os dados da candidatura e informa sucesso da operação
+deactivate ":Sistema"
+deactivate Freelancer
+@enduml

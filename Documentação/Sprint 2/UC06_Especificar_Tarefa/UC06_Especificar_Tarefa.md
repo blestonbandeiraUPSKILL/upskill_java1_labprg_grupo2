@@ -3,19 +3,19 @@
 # UC6 - Especificar Tarefa <br/>
 
 ## Formato breve <br/><br/>
-O Colaborador da organização de organização inicia a especificação de uma tarefa. O sistema solicita os dados necessários (i.e. uma referência única por organização, uma designação, uma descrição informal e outra de carácter técnico, uma estimativa de duração e custo, a categoria). O Colaborador da organização de organização introduz os dados solicitados. O sistema valida e apresenta os dados ao Colaborador da organização de organização, pedindo que os confirme. O Colaborador da organização de organzação confirma. O sistema regista os dados e informa o Colaborador da organização de organização do sucesso da operação.
+O Colaborador da organização de organização inicia a especificação de uma tarefa. O sistema solicita os dados necessários (i.e. uma área de actividade, uma categoria de tarefa, as competências técnicas necessárias para a realização da mesma, uma referência única por organização, uma designação, uma descrição informal e outra de carácter técnico e uma estimativa de duração e custo). O Colaborador da organização de organização introduz os dados solicitados. O sistema regista os dados e informa o Colaborador da organização de organização do sucesso da operação.
 
 ## Formato completo <br/><br/>
 
 **_Ator Primário:_**
 
-- Colaborador da organização de Organização
+- Colaborador da organização
 
 **_Partes interessadas e seus interesses:_**
 
 - Colaborador da organização: pretende adicionar uma nova tarefa ao sistema.
 - Organização: pretende que as tarefas a realizar sejam introduzidas no sistema.
-- T4J: pretende que as organizações e seus Colaborador da organizaçãoes consigam adicionar tarefas ao sistema
+- T4J: pretende que as organizações e seus colaboradores consigam adicionar tarefas ao sistema.
 
 **_Pré-condições:_**
 
@@ -29,11 +29,18 @@ O Colaborador da organização de organização inicia a especificação de uma 
 
 **_Cenário de sucesso principal:_**
 1. O Colaborador da organização inicia a especificação de uma tarefa.
-2. O sistema solicita os dados necessários - referência única por organização, designação, descrição informal, descrição técnica, estimativa de duração, custo, categoria.
+2. O sistema solicita os dados necessários: <br/>
+    a. Área de Actividade, <br/>
+    b. Categoria de Tarefa, <br/>
+    c. Competências Técnicas necessárias, <br/>
+    d. referência única por organização, <br/>
+    e. designação, <br/>
+    f. descrição informal, <br/>
+    g. descrição técnica, <br/>
+    h. estimativa de duração, <br/>
+    i. estimativa de custo.
 3. O Colaborador da organização introduz os dados solicitados.
-4. O sistema valida os dados e apresenta-os ao Colaborador da organização para confirmação.
-5. O Colaborador da organização confirma os dados.
-6. O sistema regista os dados e informa o Colaborador da organização do sucesso da operação.
+4. O sistema regista os dados e informa o Colaborador da organização do sucesso da operação.
 
 **_Fluxos Alternativos:_**
 1. O Colaborador da organização cancala o processo de especificação de uma tarefa.<br/>
