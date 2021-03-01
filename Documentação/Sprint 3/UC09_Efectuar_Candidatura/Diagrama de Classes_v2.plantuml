@@ -1,0 +1,68 @@
+@startuml
+left to right direction
+
+title UC9 - Efectuar Candidatura
+
+
+
+
+
+class GrauProficiencia {
+    Integer valor
+    String designacao
+}
+
+class Tarefa {
+    String referencia
+    String designacao
+    String descricaoInformal
+    String descricaoTecnica
+    Integer duracaoEstimada
+    double custoEstimado
+}
+
+class Freelancer {
+    String nome 
+    String NIF
+    String telefone
+    Email email
+}
+class Candidatura {
+    Data dataFimCandidatura
+    Double valorPretendido
+    Integer numeroDias
+    String txtApresentacao
+    String txtMotivacao
+}
+
+class UC9_UI{
+    --
+    showListaTarefasPublicadas(categoria)
+    getAnuncioTarefa(tarefa)
+    verificarCompetencias(freelancer, tarefa)
+}
+class UC9_CTRL{
+    --
+    showListaTarefasPublicadas(categoria)
+    getAnuncioTarefa(tarefa)
+    verificarCompetencias(freelancer, tarefa)
+}
+
+class RepositorioTarefa{
+
+}
+
+class RepositorioCandidatura {
+
+}
+
+UC9_UI - UC9_CTRL
+UC9_CTRL - RepositorioTarefa
+UC9_CTRL -- RepositorioCandidatura
+RepositorioTarefa - Tarefa
+RepositorioCandidatura -- Candidatura
+Freelancer - UC9_UI
+Freelancer - GrauProficiencia
+Tarefa ---- GrauProficiencia
+Freelancer - Candidatura
+@enduml
