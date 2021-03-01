@@ -69,7 +69,11 @@ public class ColaboradorLogadoUI implements Initializable {
 
         registarAreaActividadeController = new RegistarAreaActividadeController();
         registarCategoriaController = new RegistarCategoriaController();
-        registarTarefaController = new RegistarTarefaController();
+        try {
+            registarTarefaController = new RegistarTarefaController();
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }
         gestaoUtilizadoresController = new GestaoUtilizadoresController();
         registarColaboradorController = new RegistarColaboradorController();
 

@@ -45,11 +45,16 @@ public class EfectuarCandidaturaUI implements Initializable {
         }
 
         registarAnuncioController = new RegistarAnuncioController();
-        registarTarefaController = new RegistarTarefaController();
+        try {
+            registarTarefaController = new RegistarTarefaController();
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }
 
     }
     
     public int getIdAnuncio() throws SQLException {
+        //freelancerLogadoUI.tabelaAnuncios.getSelectionModel().get
         String nifOrganizacao = freelancerLogadoUI.listViewAnuncios.getSelectionModel().getSelectedItem().getNifOrganizacao();
         String referenciaTarefa = freelancerLogadoUI.listViewAnuncios.getSelectionModel().getSelectedItem().getReferencia();
         int idAnuncio = registarTarefaController.findIdAnuncio(nifOrganizacao, referenciaTarefa);

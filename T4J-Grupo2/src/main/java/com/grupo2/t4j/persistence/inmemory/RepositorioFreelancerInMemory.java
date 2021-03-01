@@ -139,6 +139,11 @@ public class RepositorioFreelancerInMemory implements Serializable, RepositorioF
         return null;
     }
 
+    @Override
+    public List<GrauProficiencia> getAllGrausFreelancer(String emailFreelancer) throws SQLException {
+        return null;
+    }
+
     public int adicionarListaFreelancer(RepositorioFreelancerInMemory outraListaFreelancer) {
         int totalFreelancersAdicionados = 0;
 

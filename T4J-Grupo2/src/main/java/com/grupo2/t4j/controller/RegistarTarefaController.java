@@ -5,12 +5,14 @@
  */
 package com.grupo2.t4j.controller;
 
+import com.grupo2.t4j.model.CaracterizacaoCT;
+import com.grupo2.t4j.model.GrauProficiencia;
 import com.grupo2.t4j.model.Tarefa;
-import com.grupo2.t4j.persistence.FabricaRepositorios;
-import com.grupo2.t4j.persistence.RepositorioTarefa;
+import com.grupo2.t4j.persistence.*;
 import com.grupo2.t4j.persistence.database.FabricaRepositoriosDatabase;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class RegistarTarefaController {
@@ -18,6 +20,12 @@ public class RegistarTarefaController {
     //private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosInMemory();
     private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosDatabase();
     private RepositorioTarefa repositorioTarefa = fabricaRepositorios.getRepositorioTarefa();
+    private RepositorioGrauProficiencia repositorioGrauProficiencia = fabricaRepositorios.getRepositorioGrauProficiencia();
+    private RepositorioFreelancer repositorioFreelancer = fabricaRepositorios.getRepositorioFreelancer();
+    private RepositorioCaracterizacaoCT repositorioCaracterizacaoCT = fabricaRepositorios.getRepositorioCaracterizacaoCT();
+
+    public RegistarTarefaController() throws SQLException {
+    }
 
     public List<Tarefa> getAllOrganizacao(String nifOrganizacao) throws SQLException {
         return repositorioTarefa.getAllOrganizacao(nifOrganizacao);
@@ -73,11 +81,46 @@ public class RegistarTarefaController {
         return repositorioTarefa.findTarefa(idAnuncio);
     }
 
+    public List<GrauProficiencia> getAllGrausTarefa(Tarefa tarefa) throws SQLException {
+        return repositorioGrauProficiencia.getAllGrausTarefa(tarefa);
+    }
+
+    public List<GrauProficiencia> getAllGrausFreelancer(String emailFreelancer) throws SQLException {
+        return repositorioFreelancer.getAllGrausFreelancer(emailFreelancer);
+    }
+
+    public List<CaracterizacaoCT> findCTSByCategoria(String codigoCategoria) throws SQLException {
+        return repositorioCaracterizacaoCT.findByCategoria(codigoCategoria);
+    }
+
+    public List<Tarefa> getAllTarefasElegíveis(String emailFreelancer) throws SQLException {
+
+        List<Tarefa> tarefasPublicadas = getAllTarefasPublicadas();
+
+        List<GrauProficiencia> grausFreelancer = getAllGrausFreelancer(emailFreelancer);
+
+        List<Tarefa> tarefasElegíveis = new ArrayList<>();
+
+        for(Tarefa tarefa : tarefasPublicadas) {
+            List<GrauProficiencia> grauTarefa = getAllGrausTarefa(tarefa);
+            for(GrauProficiencia grau : grauTarefa) {
+                for (GrauProficiencia grauProficienciaFreelancer : grausFreelancer) {
+                    if (grau.getDesignacao().equals(grauProficienciaFreelancer.getDesignacao()) &&
+                                    grau.getGrau() < grauProficienciaFreelancer.getGrau()) {
+                        tarefasElegíveis.add(tarefa);
+                    }
+                }
+            }
+        }
+        return tarefasElegíveis;
+    }
+
+
     public List<Tarefa> getAllTarefasPublicadas() throws SQLException {
         return repositorioTarefa.getAllTarefasPublicadas();
     }
 
-
+    //findListGPsTarefasPublicadas(List<Tarefa>)
     public int findIdAnuncio(String nifOrganizacao, String referenciaTarefa) throws SQLException {
         return repositorioTarefa.findIdAnuncio(nifOrganizacao, referenciaTarefa);
     }
