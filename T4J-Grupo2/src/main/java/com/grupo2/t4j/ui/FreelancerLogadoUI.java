@@ -25,8 +25,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * FXML Controller class
@@ -36,7 +34,6 @@ public class FreelancerLogadoUI implements Initializable {
     private StartingPageUI startingPageUI;
     private Stage adicionarStage;
     private Scene sceneStartingPage;
-    private Scene sceneEfectuarCandidatura;
 
     private GestaoUtilizadoresController gestaoUtilizadoresController;
     private RegistarAnuncioController registarAnuncioController;
@@ -53,12 +50,11 @@ public class FreelancerLogadoUI implements Initializable {
     @FXML Button btnAddCandidatura;
     @FXML Button btnSair;
     
-    @FXML TableColumn colunaReferencia;
-    @FXML TableColumn colunaDesignacao;
-    @FXML TableColumn colunaDuracao;
-    @FXML TableColumn colunaCusto;
- 
-    @FXML TableView tabelaAnuncios;
+    @FXML TableColumn<Object, Object> colunaReferencia;
+    @FXML TableColumn<Object, Object> colunaDesignacao;
+    @FXML TableColumn<Object, Object> colunaDuracao;
+    @FXML TableColumn<Object, Object> colunaCusto;
+    @FXML TableView<Tarefa> tabelaAnuncios;
 
 
     public void associarParentUI(StartingPageUI startingPageUI) {
@@ -111,7 +107,7 @@ public class FreelancerLogadoUI implements Initializable {
     }
     
     private ObservableList<Tarefa> listaAnuncios() throws SQLException {
-        return FXCollections.observableArrayList(registarTarefaController.getAllTarefasPublicadas());
+        return FXCollections.observableArrayList(registarTarefaController.getAllTarefasElegíveis(gestaoUtilizadoresController.getEmail()));
     }
     
     public void updateTableViewAnuncio() throws SQLException {
@@ -156,6 +152,7 @@ public class FreelancerLogadoUI implements Initializable {
                         } catch (IOException exception) {
                             exception.printStackTrace();
                         }
+                        assert rootStartingPage != null;
                         sceneStartingPage = new Scene(rootStartingPage);
                         
                         sceneStartingPage.getStylesheets().add(startingPageUI.estilo);
@@ -184,7 +181,7 @@ public class FreelancerLogadoUI implements Initializable {
             EfectuarCandidaturaUI efectuarCandidaturaUI = loaderEfectuarCandidatura.getController();
             efectuarCandidaturaUI.associarParentUI(this);
             efectuarCandidaturaUI.transferData();
-            sceneEfectuarCandidatura = new Scene(rootEfectuarCandidatura);
+            Scene sceneEfectuarCandidatura = new Scene(rootEfectuarCandidatura);
 
             adicionarStage.setScene(sceneEfectuarCandidatura);
             adicionarStage.setTitle("Efectuar Candidatura");

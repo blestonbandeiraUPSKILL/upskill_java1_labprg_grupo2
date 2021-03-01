@@ -105,10 +105,10 @@ public class RegistarTarefaController {
             List<GrauProficiencia> grauTarefa = getAllGrausTarefa(tarefa);
             for(GrauProficiencia grau : grauTarefa) {
                 for (GrauProficiencia grauProficienciaFreelancer : grausFreelancer) {
-                    if (grau.getIdGrauProficiencia() == grauProficienciaFreelancer.getIdGrauProficiencia() && grau.getGrau() < grauProficienciaFreelancer.getGrau()) {
+                    if (grau.getDesignacao().equals(grauProficienciaFreelancer.getDesignacao()) &&
+                                    grau.getGrau() < grauProficienciaFreelancer.getGrau()) {
                         tarefasElegíveis.add(tarefa);
                     }
-                    
                 }
             }
         }

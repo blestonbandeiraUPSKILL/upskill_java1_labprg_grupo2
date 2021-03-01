@@ -465,7 +465,7 @@ public class RepositorioFreelancerDatabase implements RepositorioFreelancer{
                 int grau = resultSet.getInt(2);
                 String designacao = resultSet.getString(3);
                 String codigoCompetenciaTecnica = resultSet.getString(4);
-                grausFreelancer.add(new GrauProficiencia());
+                grausFreelancer.add(new GrauProficiencia(idGrauProficiencia, grau, designacao, codigoCompetenciaTecnica));
             }
         }
         catch (SQLException exception) {
