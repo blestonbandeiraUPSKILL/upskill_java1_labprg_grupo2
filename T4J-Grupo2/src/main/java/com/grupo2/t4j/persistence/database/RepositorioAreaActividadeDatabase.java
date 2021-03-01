@@ -15,6 +15,7 @@ import com.grupo2.t4j.model.AreaActividade;
 import com.grupo2.t4j.persistence.RepositorioAreaActividade;
 import com.grupo2.t4j.utils.DBConnectionHandler;
 
+import java.awt.geom.Area;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -181,7 +182,7 @@ public class RepositorioAreaActividadeDatabase implements RepositorioAreaActivid
             connection.setAutoCommit(false);
 
             callableStatement.setString(1, codigo);
-            callableStatement.executeUpdate();
+            callableStatement.executeQuery();
 
             return null;
 
@@ -194,6 +195,43 @@ public class RepositorioAreaActividadeDatabase implements RepositorioAreaActivid
             DBConnectionHandler.getInstance().closeAll();
         }
         return new AreaActividade();
+    }
+
+    @Override
+    public AreaActividade getAreaActividade(String codigoAreaActividade) throws SQLException {
+
+        AreaActividade areaActividade = new AreaActividade();
+
+        Connection connection = DBConnectionHandler.getInstance().openConnection();
+
+        try {
+            CallableStatement callableStatement = connection.prepareCall(
+                    "SELECT * FROM AreaActividade WHERE codigoAreaActividade LIKE ?"
+            );
+
+            connection.setAutoCommit(false);
+
+            callableStatement.setString(1, codigoAreaActividade);
+            callableStatement.executeQuery();
+
+            ResultSet resultSet = callableStatement.getResultSet();
+
+            while (resultSet.next()) {
+                areaActividade.setCodigo(codigoAreaActividade);
+                areaActividade.setDescBreve(resultSet.getString(2));
+                areaActividade.setDescDetalhada(resultSet.getString(3));
+            }
+
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+            exception.getSQLState();
+
+        }
+        finally {
+            DBConnectionHandler.getInstance().closeAll();
+        }
+        return areaActividade;
+
     }
 
 

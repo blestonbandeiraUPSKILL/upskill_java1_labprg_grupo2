@@ -164,8 +164,9 @@ public class RepositorioGrauProficienciaDatabase implements RepositorioGrauProfi
 
             while (resultSet.next()) {
                 int idGrauProficiencia = resultSet.getInt(1);
-                String designacao = resultSet.getString(2);
-                int grau = resultSet.getInt(3);
+                int grau = resultSet.getInt(2);
+                String designacao = resultSet.getString(3);
+
                 grausProficiencia.add(new GrauProficiencia(idGrauProficiencia, grau, designacao, codigoCompetenciaTecnica));
 
             }

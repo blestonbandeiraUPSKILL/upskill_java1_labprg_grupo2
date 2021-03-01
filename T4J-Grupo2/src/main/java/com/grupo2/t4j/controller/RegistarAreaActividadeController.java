@@ -52,6 +52,10 @@ public class RegistarAreaActividadeController /*implements Serializable*/{
         return repositorioAreaActividade.findByCodigo(codigo);
     }
 
+    public AreaActividade getAreaActividade(String codigoAreaActividade) throws SQLException {
+        return repositorioAreaActividade.getAreaActividade(codigoAreaActividade);
+    }
+
     //////FICHEIROS////////
     public RegistarAreaActividadeController() {
         ficheiroAt = new FicheiroRepositorioAreaActividade();

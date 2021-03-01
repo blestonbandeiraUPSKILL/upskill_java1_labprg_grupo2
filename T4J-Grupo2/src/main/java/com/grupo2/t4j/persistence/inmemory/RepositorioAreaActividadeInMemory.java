@@ -91,6 +91,11 @@ public class RepositorioAreaActividadeInMemory implements Serializable, Reposito
         return null;
     }
 
+    @Override
+    public AreaActividade getAreaActividade(String codigoAreaActividade) {
+        return null;
+    }
+
     public int adicionarListaAreasActividade(RepositorioAreaActividadeInMemory outraListaAreasActividade) {
 
         int totalAreasAdicionadas = 0;
