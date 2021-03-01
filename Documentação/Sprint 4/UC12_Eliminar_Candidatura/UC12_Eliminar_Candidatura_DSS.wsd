@@ -1,0 +1,16 @@
+@startuml
+title UC12 - Eliminar Candidatura
+actor Freelancer
+activate Freelancer
+Freelancer -> ":Sistema" : 1 - Inicia a consulta a candidaturas em período de submissão/edição
+activate ":Sistema"
+":Sistema" --> Freelancer : 2 - Solicita escolha de uma candidatura a eliminar
+deactivate ":Sistema"
+Freelancer -> ":Sistema" : 3 - Seleciona a candidatura a eliminar
+activate ":Sistema"
+":Sistema" --> Freelancer : 4 - 
+deactivate ":Sistema"
+Freelancer -> ":Sistema" : 5 - 
+deactivate ":Sistema"
+deactivate Freelancer
+@enduml
