@@ -98,7 +98,7 @@
                                                 </Tooltip>
                                             </tooltip>
                                         </Button>
-                              <TableView layoutX="20.0" layoutY="65.0" prefHeight="245.0" prefWidth="518.0">
+                              <TableView fx:id="tableViewCompetenciaTecnica" layoutX="20.0" layoutY="65.0" prefHeight="245.0" prefWidth="518.0">
                                 <columns>
                                   <TableColumn fx:id="colunaCodigoCT" prefWidth="75.0" text="Código " />
                                   <TableColumn fx:id="ColunaCodigoATCT" prefWidth="75.0" text="Código AT" />

@@ -74,13 +74,21 @@ public class AdministrativoLogadoUI implements Initializable {
     @FXML ListView<CompetenciaTecnica> listViewCompetenciasTecnicas;
     @FXML ListView<Freelancer> listaFreelancer;
     
-    //TableView
+    //TableView AreaActividade
     
     @FXML TableColumn<Object, Object> colunaDescBreve;
     @FXML TableColumn<Object, Object> colunaDescDetalhada;
     @FXML TableColumn<Object, Object> colunaCodigo;
-
     @FXML TableView<AreaActividade> tableViewAreaActividade;
+    
+    //TableView CompetenciaTecnica
+    
+    @FXML TableColumn<Object, Object> colunaDescBreveCT;
+    @FXML TableColumn<Object, Object> colunaDescDetalhadaCT;
+    @FXML TableColumn<Object, Object> colunaCodigoCT;
+    @FXML TableColumn<Object, Object> colunaCodigoATCT;
+    @FXML TableView<CompetenciaTecnica> tableViewCompetenciaTecnica;
+    
 
 
     public void associarParentUI(StartingPageUI startingPageUI) {
@@ -112,7 +120,7 @@ public class AdministrativoLogadoUI implements Initializable {
         }
 
         try {
-            updateListViewCompetenciasTecnicas();
+            updateTableViewCompetenciasTecnicas();
         } catch (SQLException exception) {
             exception.printStackTrace();
         }
@@ -276,8 +284,12 @@ public class AdministrativoLogadoUI implements Initializable {
         listaCategorias.getItems().setAll(registarCategoriaController.getAll());
     }
 
-    public void updateListViewCompetenciasTecnicas() throws SQLException {
-        listViewCompetenciasTecnicas.getItems().setAll(registarCompetenciaTecnicaController.getAll());
+    public void updateTableViewCompetenciasTecnicas() throws SQLException {
+        tableViewCompetenciaTecnica.getItems().setAll(registarCompetenciaTecnicaController.getAll());
+        colunaCodigoCT.setCellValueFactory( new PropertyValueFactory<>("codigo"));
+        //colunaCodigoATCT.setCellValueFactory( new PropertyValueFactory<>("codigoAreaActividade"));
+        colunaDescBreveCT.setCellValueFactory( new PropertyValueFactory<>("descricaoBreve"));
+        colunaDescDetalhadaCT.setCellValueFactory( new PropertyValueFactory<>("descricaoDetalhada"));
     }
 
     public String getCodigoCompetenciaTecnica() {
