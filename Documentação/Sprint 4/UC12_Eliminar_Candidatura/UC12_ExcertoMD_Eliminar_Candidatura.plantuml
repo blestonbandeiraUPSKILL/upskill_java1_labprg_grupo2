@@ -1,0 +1,96 @@
+@startuml
+
+
+title UC12 - Eliminar Candidatura
+
+class Plataforma {
+    String designacao
+}
+
+class Anuncio {
+    Data dataInicioPublicitacao
+    Data dataFimPublicitacao
+    Data dataInicioCandidatura
+    Data dataFimCandidatura
+    Data inicioSeriacao
+    Data fimSeriacao
+}
+
+class Categoria {
+    String id 
+    String descricao
+}
+
+class GrauProficiencia {
+    Integer valor
+    String designacao
+}
+class CaracterizacaoCT {
+    boolean obrigatoria
+}
+class CompetenciaTecnica {
+    String codigo
+    String descricaoBreve
+    String descricaoDetalhada
+}
+class Tarefa {
+    String referencia
+    String designacao
+    String descricaoInformal
+    String descricaoTecnica
+    Integer duracaoEstimada
+    double custoEstimado
+}
+
+class Freelancer {
+    String nome 
+    String NIF
+    String telefone
+    Email email
+}
+class Candidatura {
+    Data dataFimCandidatura
+    Double valorPretendido
+    Integer numeroDias
+    String txtApresentacao
+    String txtMotivacao
+}
+class HabilitacaoAcademica{
+    String grau
+    String designacaoCurso
+    String nomeInstituicao
+    Double mediaCurso
+}
+class ReconhecimentoCT {
+    Data dataReconhecimento
+}
+
+
+Plataforma "1" -- "*" Categoria : possui >
+Plataforma "1" -- "*" Anuncio : publicita >
+Plataforma "1" -- "*" CompetenciaTecnica : possui >
+Plataforma "1" -- "*" Freelancer : tem/usa >
+
+Anuncio "0..1" -- "1" Tarefa : publicita >
+Anuncio "0..1" -- "1" Tarefa : dá origem <
+Anuncio "1" - "*" Candidatura : recebe >
+
+Tarefa "*" -- "1" Categoria : enquadra-se em >
+
+Candidatura "*" -- "1" Freelancer : realizada por >
+
+Freelancer "1" --- "*" HabilitacaoAcademica : tem >
+Freelancer "1" --- "*" ReconhecimentoCT : recebe(u) <
+
+ReconhecimentoCT "*" - "1" CompetenciaTecnica : relativo a >
+ReconhecimentoCT "*" -- "1" GrauProficiencia : reconhece >
+
+CompetenciaTecnica "1" - "*" GrauProficiencia : aplica >
+
+CaracterizacaoCT "*" - "1" GrauProficiencia : exige (como mínimo) >
+
+Categoria "*" --- "*" CompetenciaTecnica : requer >
+
+(Categoria, CompetenciaTecnica) . CaracterizacaoCT
+
+@enduml
