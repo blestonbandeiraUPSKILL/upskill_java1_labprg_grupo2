@@ -4,25 +4,19 @@ title UC05 - Especificar Colaborador
 
 left to right direction
 
-class Plataforma <<Singleton>> {
-    -String designacao
-    --
-    getRepositorioOrganizacao()
-}
 
 class EspecificarColaboradorUI{
     --
     -novoColaborador(nome, funcao, telefone, email)
     -registaColaborador()
-
 }
 
 class EspecificarColaboradorCTRL{
     --
-    novoColaborador(nome, funcao, telefone, email)
-    validaColaborador(c)
-    registaColaborador(c)
-    registaUtilizadorComPapel(nome, email, password, "colaborador")
+    novoColaborador(nome, funcao, telefone, email, nofOrganizacao, password)
+    novoUtilizador(nome, email, password, rolename)
+    save(colaborador)
+    registerUserWithRoles(nome, email, password, "colaborador")
 }
 
 class Organizacao {
@@ -45,27 +39,20 @@ class Utilizador {
     -Password password
 }
 
-class GestaoUtilizadoresFacade{
-    getGestaoUtilizadoresFacade()
-}
-
-class SessaoAtual{
+class GestaoUtilizadoresController{
+    getGestaoUtilizadoresController()
     --
-    getSessaoAtual()
-}
-
-class SessaoUtilizador{
-    --
-    getEmailUtilizador()
+    getSessaoActual()
+    getEmail()
 }
 
 class RepositorioOrganizacao{
     --
-    organizacaoByEmailUtilizador(email)
+    findNifByEmail(emailGestor)
 }
 
 interface AlgoritmoGeradorPasswords{
-    getAlgoritmoGeradorPasswords()
+    geraPassword()
 }
 
 class Password{
@@ -74,14 +61,9 @@ class Password{
     getPassword()
 }
 
-class UtilizadorComPapel{
-}
-
-
 class Email {
     -String email
     --
-    getEmailUtilizador()
 }
 
 EspecificarColaboradorUI ..> EspecificarColaboradorCTRL

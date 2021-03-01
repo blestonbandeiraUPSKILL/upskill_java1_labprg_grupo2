@@ -2,7 +2,7 @@
 title UC5 - Especificar colaborador da Organização
 left to right direction
 
-class Plataforma {
+class Plataforma <<Singleton>>{
     -String designacao
 }
 
