@@ -1,35 +1,55 @@
 @startuml
+
 title UC07 - Registar Freelancer
-activate User
-User->UC07_UI:create
-activate UC07_UI
-UC07_UI-->User:Introduza os dados
-User->UC07_UI:introduz nome, NIF, endPostal, telefone, email
-UC07_UI->UC07_Controller:registarFreelancer(nome, NIF)
-deactivate UC07_UI
-activate UC07_Controller
-UC07_Controller-->Plataforma:findFreelancer(NIF)
-activate Plataforma
-Plataforma-->UC07_Controller: já existe
+
+participant "Administrativo" as Administrativo
+participant "RegistarFreelancerUI" as RegistarFreelancerUI
+participant "RegistarFreelancerCTRL" as RegistarFreelancerCTRL
+participant "rf: RepositorioFreelancer" as RepositorioFreelancer
+
+
+activate Administrativo
+Administrativo -> RegistarFreelancerUI : inicia o registo de um freelancer( nome, NIF, endPostal, telefone, email)
+activate RegistarFreelancerUI
+RegistarFreelancerUI -> RegistarFreelancerCTRL: findByNif(nif)
+activate RegistarFreelancerCTRL
+RegistarFreelancerCTRL -> RepositorioFreelancer: findByNif(nif)
+activate RepositorioFreelancer
 alt exist true
-UC07_Controller--> UC07_UI: freelancer já existe
-UC07_UI -->User: freelancer já existe
+    RepositorioFreelancer --> RegistarFreelancerCTRL: nif já registado
+    deactivate RepositorioFreelancer
+    RegistarFreelancerCTRL --> RegistarFreelancerUI: nif já registado
+    deactivate RegistarFreelancerCTRL
+    RegistarFreelancerUI --> Administrativo: Freelancer com esse NIF já existe
+    deactivate RegistarFreelancerUI
+
 else exist false
-deactivate Plataforma
-UC07_Controller->Repositorio_Freelancer: create(nome, NIF)
-activate Repositorio_Freelancer
-Repositorio_Freelancer-->UC07_Controller:f1
-deactivate Repositorio_Freelancer
-UC07_Controller ->Plataforma:adicionarFreelancer(f1)
-activate Plataforma
-Plataforma->Plataforma:adicionar(f1)
-Plataforma-->UC07_Controller:sucesso
-deactivate Plataforma
-UC07_Controller -->UC07_UI:sucesso
-deactivate UC07_Controller
-activate UC07_UI
-UC07_UI-->User:Freelancer registado com sucesso
-deactivate UC07_UI
-deactivate User
+    RepositorioFreelancer --> RegistarFreelancerCTRL: não existe
+    activate RegistarFreelancerCTRL
+    
 end
+
+RegistarFreelancerCTRL -> AlgoritmoGeradorPasswords: geraPassword
+AlgoritmoGeradorPasswords --> RegistarFreelancerCTRL: password 
+
+RegistarFreelancerCTRL -> GestaoUtilizadoresCTRL: registerUserWithRoles(email, nome, password, rolename)
+activate GestaoUtilizadoresCTRL
+GestaoUtilizadoresCTRL --> RegistarFreelancerCTRL: utilizadorFreelancer
+deactivate GestaoUtilizadoresCTRL
+create Freelancer
+RegistarFreelancerCTRL -> Freelancer: new Freelancer(nome, password, NIF, endPostal, telefone, email)
+RegistarFreelancerCTRL -> RepositorioFreelancer: save(freelancer)
+activate RepositorioFreelancer
+RepositorioFreelancer --> RegistarFreelancerCTRL: success
+deactivate RepositorioFreelancer
+RegistarFreelancerCTRL --> RegistarFreelancerUI: success
+deactivate RegistarFreelancerCTRL
+activate RegistarFreelancerUI
+RegistarFreelancerUI --> Administrativo: operação bem sucedida
+deactivate RegistarFreelancerUI
+deactivate Administrativo
+
+
+
+
 @enduml

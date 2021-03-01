@@ -2,48 +2,31 @@
 
 title UC07 - Registar Freelancer
 
-actor Administrador
+actor Administrativo
 participant ":Sistema" as Sistema
 
-activate Administrador
+activate Administrativo
 
-Administrador -> Sistema : 1 registar freelancer
+Administrativo -> Sistema : 1 registar freelancer
 activate Sistema
 
-Sistema --> Administrador: 2 solicita os dados  do freelancer (nome, NIF, endereço postal, contacto telefónico, email)
-deactivate Sistema
+Sistema --> Administrativo: 2 solicita os dados  do freelancer (nome, NIF, endereço postal, contacto telefónico, email)
 
-Administrador -> Sistema: 3 introduz os dados solicitados
-activate Sistema
+Administrativo -> Sistema: 3 introduz os dados solicitados
+Sistema --> Administrativo: 4 Operação bem sucedida
 
 loop
-
-Sistema --> Administrador: 4 solicita habilitações académicas (grau, designação do curso, instituição que concedeu o grau e média do curso)
-deactivate Sistema
-
-Administrador -> Sistema: 5 introduz os dados solicitados
-activate Sistema
-
+Administrativo -> Sistema : 5 Introduz os dados de habilitações académicas (grau, designação do curso, instituição que concedeu o grau e média do curso)
+Sistema --> Administrativo : 6 Operação bem sucedida
 end
 
 loop
-
-Sistema --> Administrador: 6 solicita reconhecimentos de competências técnicas (data, competência técnica e grau de proficiência)
-deactivate Sistema
-
-Administrador -> Sistema: 7 introduz os dados solicitados
-activate Sistema
-
+Administrativo -> Sistema: 7 introduz os reconhecimentos de competências técnicas (data, competência técnica e grau de proficiência)
+Sistema --> Administrativo: 8 Operação bem sucedida
 end
 
-Sistema --> Administrador: 8 apresenta dados e solicita confirmação
-deactivate Sistema
 
-Administrador -> Sistema: 9 confirma
-activate Sistema
-
-Sistema --> Administrador: 10 operação bem sucedida
+deactivate Administrativo
 deactivate Sistema
-deactivate Administrador
 
 @enduml
