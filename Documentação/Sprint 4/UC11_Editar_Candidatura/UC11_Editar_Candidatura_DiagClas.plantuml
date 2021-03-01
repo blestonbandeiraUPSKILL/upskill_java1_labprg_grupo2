@@ -9,6 +9,7 @@ class Freelancer {
     String telefone
     Email email
 }
+
 class Candidatura {
     Data dataCandidatura
     Data dataEdicaoCandidatura
@@ -23,22 +24,20 @@ class UC11_UI{
     getListaCandidaturasEditaveis(emailFreelancer, dataAtual)
     getCandidatura(idCandidatura)
     setCandidatura(idCandidatura, valorPretendido, numeroDias,
-    txtApresentacao, txtMotivacao)
-    
+    txtApresentacao, txtMotivacao)    
 }
+
 class UC11_CTRL{
     --
     getListaCandidaturasEditaveis(emailFreelancer, dataAtual)
     getCandidatura(idCandidatura)
     setCandidatura(idCandidatura, valorPretendido, numeroDias,
-    txtApresentacao, txtMotivacao)
-   
+    txtApresentacao, txtMotivacao)   
 }
 
 class RepositorioCandidatura {
     setSave(idCandidatura, valorPretendido, numeroDias,
     txtApresentacao, txtMotivacao)
-
 }
 
 UC11_UI - UC11_CTRL
