@@ -54,6 +54,7 @@ public class FreelancerLogadoUI implements Initializable {
     @FXML TableColumn<Object, Object> colunaDesignacao;
     @FXML TableColumn<Object, Object> colunaDuracao;
     @FXML TableColumn<Object, Object> colunaCusto;
+
     @FXML TableView<Tarefa> tabelaAnuncios;
 
 

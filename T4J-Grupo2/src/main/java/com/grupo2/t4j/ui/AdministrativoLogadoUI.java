@@ -76,9 +76,10 @@ public class AdministrativoLogadoUI implements Initializable {
     
     //TableView
     
-    @FXML TableColumn<AreaActividade, String> colunaDescBreve;
-    @FXML TableColumn<AreaActividade, String> colunaDescDetalhada;
-    @FXML TableColumn<AreaActividade, String> colunaCodigo;
+    @FXML TableColumn<Object, Object> colunaDescBreve;
+    @FXML TableColumn<Object, Object> colunaDescDetalhada;
+    @FXML TableColumn<Object, Object> colunaCodigo;
+
     @FXML TableView<AreaActividade> tableViewAreaActividade;
 
 

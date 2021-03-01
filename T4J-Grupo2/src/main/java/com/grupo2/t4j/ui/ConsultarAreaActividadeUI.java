@@ -48,9 +48,9 @@ public class ConsultarAreaActividadeUI implements Initializable {
     }    
     public void transferData() throws SQLException {
 
-        txtCodigo.setText(administrativoLogadoUI.listaAreasActividade.getSelectionModel().getSelectedItem().getCodigo());
-        txtDescBreve.setText(administrativoLogadoUI.listaAreasActividade.getSelectionModel().getSelectedItem().getDescBreve());
-        txtDescDetalhada.setText(administrativoLogadoUI.listaAreasActividade.getSelectionModel().getSelectedItem().getDescDetalhada());
+        txtCodigo.setText(administrativoLogadoUI.tableViewAreaActividade.getSelectionModel().getSelectedItem().getCodigo());
+        txtDescBreve.setText(administrativoLogadoUI.tableViewAreaActividade.getSelectionModel().getSelectedItem().getDescBreve());
+        txtDescDetalhada.setText(administrativoLogadoUI.tableViewAreaActividade.getSelectionModel().getSelectedItem().getDescDetalhada());
         
     }
 
