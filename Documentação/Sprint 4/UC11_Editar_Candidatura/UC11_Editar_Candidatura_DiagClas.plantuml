@@ -1,0 +1,49 @@
+@startuml
+left to right direction
+
+title UC11 - Editar Candidatura
+
+class Freelancer {
+    String nome 
+    String NIF
+    String telefone
+    Email email
+}
+class Candidatura {
+    Data dataCandidatura
+    Data dataEdicaoCandidatura
+    Double valorPretendido
+    Integer numeroDias
+    String txtApresentacao
+    String txtMotivacao
+}
+
+class UC11_UI{
+    --
+    getListaCandidaturasEditaveis(emailFreelancer, dataAtual)
+    getCandidatura(idCandidatura)
+    setCandidatura(idCandidatura, valorPretendido, numeroDias,
+    txtApresentacao, txtMotivacao)
+    
+}
+class UC11_CTRL{
+    --
+    getListaCandidaturasEditaveis(emailFreelancer, dataAtual)
+    getCandidatura(idCandidatura)
+    setCandidatura(idCandidatura, valorPretendido, numeroDias,
+    txtApresentacao, txtMotivacao)
+   
+}
+
+class RepositorioCandidatura {
+    setSave(idCandidatura, valorPretendido, numeroDias,
+    txtApresentacao, txtMotivacao)
+
+}
+
+UC11_UI - UC11_CTRL
+UC11_CTRL -- RepositorioCandidatura
+RepositorioCandidatura -- Candidatura
+Freelancer - UC11_UI
+Freelancer - Candidatura
+@enduml
