@@ -1,6 +1,6 @@
 ##### [Voltar ao início](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/tree/main/README.md)
 
-# UC10 - Seriação (Não Automática) de Candidaturas
+# UC10 - Seriação de Candidaturas
 
 
 ## Formato Breve

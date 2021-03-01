@@ -86,10 +86,10 @@ public class Colaborador extends Utilizador implements Serializable{
      * @param telefone o telefone do Colaborador
      */
     public void setTelefone(String telefone) {
-        int numero = Integer.parseInt(telefone);
+        /*int numero = Integer.parseInt(telefone);
         if (numero < 100000000 || numero > 999999999) {
             throw new IllegalArgumentException("Número é inválido!");
-        }
+        }*/
         this.telefone = telefone;
     }
 
