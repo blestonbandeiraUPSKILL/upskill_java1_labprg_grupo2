@@ -17,9 +17,9 @@ import java.io.IOException;
  * JavaFX App
  */
 public class MainApp extends Application {
-
+           
     public static final String TITULO_APLICACAO = "Tasks 4 Joe";
-
+    
     @Override
     public void start(Stage stage) {
         try {
@@ -65,6 +65,6 @@ public class MainApp extends Application {
 
     public static void main(String[] args) {
         launch();
-    }
+    }  
 
 }
