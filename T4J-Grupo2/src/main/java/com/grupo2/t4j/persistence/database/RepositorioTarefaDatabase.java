@@ -646,4 +646,75 @@ public class RepositorioTarefaDatabase implements RepositorioTarefa {
         }
         return tarefas;
     }
+
+    @Override
+    public List<Tarefa> getgetAllTarefasElegíveis(String emailFreelancer) throws SQLException {
+
+        List<Tarefa> tarefasElegíveis = new ArrayList<>();
+
+        Connection connection = DBConnectionHandler.getInstance().openConnection();
+
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(
+                    "SELECT * FROM Tarefa " +
+                            "INNER JOIN Categoria " +
+                            "ON Categoria.codigoCategoria LIKE Tarefa.codigoCategoria " +
+                            "INNER JOIN CaracterCT " +
+                            "ON CaracterCT.codigoCategoria LIKE Categoria.codigoCategoria " +
+                            "INNER JOIN GrauProficiencia " +
+                            "ON CaracterCT.grauProfMinimo = GrauProficiencia.idGrauProficiencia " +
+                            "INNER JOIN ReconhecimentoGP " +
+                            "ON GrauProficiencia.idGrauProficiencia = ReconhecimentoGP.idGrauProficiencia " +
+                            "INNER JOIN Freelancer " +
+                            "ON ReconhecimentoGP.emailFreelancer LIKE Freelancer.email " +
+                            "WHERE freelancer.email LIKE ? "
+                           /* +
+                            "AND " +
+                                "(SELECT GrauProficiencia.grau " +
+                                "INNER JOIN ReconhecimentoGP " +
+                                "ON ReconhecimentoGP.idGrauProficiencia = GrauProficiencia.idGrauProficiencia) < " +
+                                "(SELECT GrauProficiencia.grau, GrauProficiencia.designacao " +
+                                "INNER JOIN CaracterCT.grauProfMinimo = GrauProficiencia.idGrauProficiencia) " +
+
+                                "(SELECT GrauProficiencia.designacao " +
+                                "INNER JOIN ReconhecimentoGP " +
+                                "ON ReconhecimentoGP.idGrauProficiencia = GrauProficiencia.idGrauProficiencia) = " +
+                                "(SELECT GrauProficiencia.grau, GrauProficiencia.designacao " +
+                                "INNER JOIN CaracterCT.grauProfMinimo = GrauProficiencia.idGrauProficiencia) "*/
+            );
+
+            preparedStatement.setString(1, emailFreelancer);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                String nifOrganizacao = resultSet.getString(1);
+                String referencia = resultSet.getString(2);
+                String designacao = resultSet.getString(3);
+                String descInformal = resultSet.getString(4);
+                String descTecnica = resultSet.getString(5);
+                int duracaoEstimada = resultSet.getInt(6);
+                double custoEstimado = resultSet.getDouble(7);
+                String codigoCategoria = resultSet.getString(8);
+                String emailColaborador = resultSet.getString(9);
+
+                tarefasElegíveis.add(new Tarefa(nifOrganizacao, referencia, designacao, descInformal,
+                        descTecnica, duracaoEstimada, custoEstimado, codigoCategoria, emailColaborador));
+            }
+
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+            exception.getSQLState();
+            try {
+                System.err.print("Transaction is being rolled back");
+                connection.rollback();
+            } catch (SQLException sqlException) {
+                sqlException.getErrorCode();
+            }
+
+        } finally {
+            DBConnectionHandler.getInstance().closeAll();
+        }
+        return tarefasElegíveis;
+    }
 }

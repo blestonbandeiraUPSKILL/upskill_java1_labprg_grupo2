@@ -85,34 +85,8 @@ public class RegistarTarefaController {
         return repositorioGrauProficiencia.getAllGrausTarefa(tarefa);
     }
 
-    public List<GrauProficiencia> getAllGrausFreelancer(String emailFreelancer) throws SQLException {
-        return repositorioFreelancer.getAllGrausFreelancer(emailFreelancer);
-    }
-
-    public List<CaracterizacaoCT> findCTSByCategoria(String codigoCategoria) throws SQLException {
-        return repositorioCaracterizacaoCT.findByCategoria(codigoCategoria);
-    }
-
     public List<Tarefa> getAllTarefasElegíveis(String emailFreelancer) throws SQLException {
-
-        List<Tarefa> tarefasPublicadas = getAllTarefasPublicadas();
-
-        List<GrauProficiencia> grausFreelancer = getAllGrausFreelancer(emailFreelancer);
-
-        List<Tarefa> tarefasElegíveis = new ArrayList<>();
-        for(Tarefa tarefa : tarefasPublicadas) {
-            List<GrauProficiencia> grauTarefa = getAllGrausTarefa(tarefa);
-            for(GrauProficiencia grau : grauTarefa) {
-                for (GrauProficiencia grauProficienciaFreelancer : grausFreelancer) {
-                    if (grau.getDesignacao().equals(grauProficienciaFreelancer.getDesignacao()) &&
-                            grau.getGrau() < grauProficienciaFreelancer.getGrau()) {
-                        tarefasElegíveis.add(tarefa);
-                    }
-                }
-            }
-        }
-
-        return tarefasElegíveis;
+       return repositorioTarefa.getgetAllTarefasElegíveis(emailFreelancer);
     }
 
 

@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" styleClass="BorderPane" stylesheets="@../style/app.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.AdministrativoLogadoUI">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" styleClass="BorderPane" stylesheets="@../style/app.css" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.AdministrativoLogadoUI">
     <center>
         <BorderPane prefHeight="200.0" prefWidth="200.0" styleClass="BorderPane" BorderPane.alignment="CENTER">
             <top>
@@ -101,7 +100,7 @@
                               <TableView fx:id="tableViewCompetenciaTecnica" layoutX="20.0" layoutY="65.0" prefHeight="245.0" prefWidth="518.0">
                                 <columns>
                                   <TableColumn fx:id="colunaCodigoCT" prefWidth="75.0" text="Código " />
-                                  <TableColumn fx:id="ColunaCodigoATCT" prefWidth="75.0" text="Código AT" />
+                                  <TableColumn fx:id="colunaCodigoATCT" prefWidth="75.0" text="Código AT" />
                                     <TableColumn fx:id="colunaDescBreveCT" prefWidth="103.0" text="Descrição Breve" />
                                     <TableColumn fx:id="colunaDescDetalhadaCT" prefWidth="264.0" text="Descrição Detalhada" />
                                 </columns>

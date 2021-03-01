@@ -286,10 +286,11 @@ public class AdministrativoLogadoUI implements Initializable {
 
     public void updateTableViewCompetenciasTecnicas() throws SQLException {
         tableViewCompetenciaTecnica.getItems().setAll(registarCompetenciaTecnicaController.getAll());
+
         colunaCodigoCT.setCellValueFactory( new PropertyValueFactory<>("codigo"));
-        //colunaCodigoATCT.setCellValueFactory( new PropertyValueFactory<>("codigoAreaActividade"));
         colunaDescBreveCT.setCellValueFactory( new PropertyValueFactory<>("descricaoBreve"));
         colunaDescDetalhadaCT.setCellValueFactory( new PropertyValueFactory<>("descricaoDetalhada"));
+        colunaCodigoATCT.setCellValueFactory( new PropertyValueFactory<>("codigoAreaActividade"));
     }
 
     public String getCodigoCompetenciaTecnica() {

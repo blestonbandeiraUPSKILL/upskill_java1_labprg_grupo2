@@ -103,7 +103,7 @@ public class AdicionarCompetenciaTecnicaUI implements Initializable {
         }
     }
 
-    public void cancelarAction(ActionEvent actionEvent) {
+    public void cancelarRegisto(ActionEvent actionEvent) {
         Window window = btnCancelar.getScene().getWindow();
         window.setOnCloseRequest(new EventHandler<WindowEvent>() {
             @Override
@@ -162,6 +162,4 @@ public class AdicionarCompetenciaTecnicaUI implements Initializable {
         btnVoltar.getScene().getWindow().hide();
     }
 
-    public void cancelarRegisto(ActionEvent actionEvent) {
-    }
 }

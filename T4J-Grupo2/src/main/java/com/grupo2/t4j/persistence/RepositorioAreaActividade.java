@@ -30,8 +30,8 @@ public interface RepositorioAreaActividade {
 
     AreaActividade findByCodigo(String codigo) throws SQLException;
 
+    public AreaActividade getAreaActividade(String codigoAreaActividade) throws SQLException;
 
-    //update, delete
 
 
 
