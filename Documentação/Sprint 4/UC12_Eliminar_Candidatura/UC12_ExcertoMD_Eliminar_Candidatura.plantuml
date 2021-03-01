@@ -1,7 +1,7 @@
 @startuml
 
-title UC11 - Editar  Candidatura
 
+title UC12 - Eliminar Candidatura
 
 class Plataforma {
     String designacao
@@ -25,7 +25,6 @@ class GrauProficiencia {
     Integer valor
     String designacao
 }
-
 class CaracterizacaoCT {
     boolean obrigatoria
 }
@@ -34,7 +33,6 @@ class CompetenciaTecnica {
     String descricaoBreve
     String descricaoDetalhada
 }
-
 class Tarefa {
     String referencia
     String designacao
@@ -50,23 +48,19 @@ class Freelancer {
     String telefone
     Email email
 }
-
 class Candidatura {
-    Data dataCandidatura
-    Data dataEdicaoCandidatura
+    Data dataFimCandidatura
     Double valorPretendido
     Integer numeroDias
     String txtApresentacao
     String txtMotivacao
 }
-
 class HabilitacaoAcademica{
     String grau
     String designacaoCurso
     String nomeInstituicao
     Double mediaCurso
 }
-
 class ReconhecimentoCT {
     Data dataReconhecimento
 }

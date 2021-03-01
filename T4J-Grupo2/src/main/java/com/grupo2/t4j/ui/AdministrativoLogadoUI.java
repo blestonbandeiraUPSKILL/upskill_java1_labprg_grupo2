@@ -26,6 +26,9 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 /**
  * FXML Controller class
@@ -70,6 +73,22 @@ public class AdministrativoLogadoUI implements Initializable {
     @FXML ListView<Categoria> listaCategorias;
     @FXML ListView<CompetenciaTecnica> listViewCompetenciasTecnicas;
     @FXML ListView<Freelancer> listaFreelancer;
+    
+    //TableView AreaActividade
+    
+    @FXML TableColumn<Object, Object> colunaDescBreve;
+    @FXML TableColumn<Object, Object> colunaDescDetalhada;
+    @FXML TableColumn<Object, Object> colunaCodigo;
+    @FXML TableView<AreaActividade> tableViewAreaActividade;
+    
+    //TableView CompetenciaTecnica
+    
+    @FXML TableColumn<Object, Object> colunaDescBreveCT;
+    @FXML TableColumn<Object, Object> colunaDescDetalhadaCT;
+    @FXML TableColumn<Object, Object> colunaCodigoCT;
+    @FXML TableColumn<Object, Object> colunaCodigoATCT;
+    @FXML TableView<CompetenciaTecnica> tableViewCompetenciaTecnica;
+    
 
 
     public void associarParentUI(StartingPageUI startingPageUI) {
@@ -95,13 +114,13 @@ public class AdministrativoLogadoUI implements Initializable {
         gestaoUtilizadoresController = new GestaoUtilizadoresController();
                      
         try {
-            updateListViewAreasActividade();
+            updateTableViewAreasActividade();
         } catch (SQLException exception) {
             exception.printStackTrace();
         }
 
         try {
-            updateListViewCompetenciasTecnicas();
+            updateTableViewCompetenciasTecnicas();
         } catch (SQLException exception) {
             exception.printStackTrace();
         }
@@ -255,15 +274,22 @@ public class AdministrativoLogadoUI implements Initializable {
          listaFreelancer.getItems().setAll(registarFreelancerController.getAll());
     }
     
-    public void updateListViewAreasActividade() throws SQLException {
-        listaAreasActividade.getItems().setAll(registarAreaActividadeController.getAll());
+    public void updateTableViewAreasActividade() throws SQLException {
+        tableViewAreaActividade.getItems().setAll(registarAreaActividadeController.getAll());
+        colunaCodigo.setCellValueFactory( new PropertyValueFactory<>("codigo"));
+        colunaDescBreve.setCellValueFactory( new PropertyValueFactory<>("descBreve"));
+        colunaDescDetalhada.setCellValueFactory( new PropertyValueFactory<>("descDetalhada"));
     }
     public void updateListViewCategoriasTarefa() throws SQLException {
         listaCategorias.getItems().setAll(registarCategoriaController.getAll());
     }
 
-    public void updateListViewCompetenciasTecnicas() throws SQLException {
-        listViewCompetenciasTecnicas.getItems().setAll(registarCompetenciaTecnicaController.getAll());
+    public void updateTableViewCompetenciasTecnicas() throws SQLException {
+        tableViewCompetenciaTecnica.getItems().setAll(registarCompetenciaTecnicaController.getAll());
+        colunaCodigoCT.setCellValueFactory( new PropertyValueFactory<>("codigo"));
+        //colunaCodigoATCT.setCellValueFactory( new PropertyValueFactory<>("codigoAreaActividade"));
+        colunaDescBreveCT.setCellValueFactory( new PropertyValueFactory<>("descricaoBreve"));
+        colunaDescDetalhadaCT.setCellValueFactory( new PropertyValueFactory<>("descricaoDetalhada"));
     }
 
     public String getCodigoCompetenciaTecnica() {
