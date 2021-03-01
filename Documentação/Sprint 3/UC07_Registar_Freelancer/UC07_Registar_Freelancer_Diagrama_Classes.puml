@@ -4,25 +4,27 @@ title UC07 - Registar Freelancer
 
 top to bottom direction
 
-class Plataforma <<Singleton>> {
-    -String designacao
-    --
-    getRepositorioOrganizacao()
-}
-
 class RegistarFreelancerUI{
     --
-    -novoFreelancer(nome, NIF, endereço postal, telefone, email)
-    -registaFreelancer()
-
+    -findByNif(nifFreelancer)
+    -registaFreelancer(nome, NIF, enderecoPostal, telefone, email)  
 }
 
-class RegistarFreelancerController{
+class RegistarFreelancerCTRL{
     --
-    novoFreelancer(NIF, telefone)
-    validaFreelancer(c)
-    registaFreelancer(c)
-    registaUtilizadorComPapel(nome, email, password, "freelancer")
+    -findByNif(nifFreelancer)
+    -new Freelancer(nome, nif, enderecoPostal, telefone, email)
+    -save(freelancer)
+}
+
+class GestaoUtilizadoresCTRL {
+    --
+    -registerUserWithRoles(nome, email, password, rolename)
+}
+
+class AlgoritomoGeradorPasswords{
+    --
+    -geraPassword
 }
 
 class Freelancer {
@@ -38,30 +40,10 @@ class EnderecoPostal {
     -String localidade
 }
 
-class ReconhecimentoGT {
-    -Date dataReconhecimento
-}
-
-class HabilitacaoAcademica {
-    -String grau
-    -String designacaoCurso
-    -String nomeInstituicao
-    -Double mediaCurso
-}
-
-class CompetenciaTecnica {
-    -String codigo
-    -String descBreve
-    -String descDetalhada
-}
-
-class GrauProficiencia {
-    -Integer valor
-    -String designacao
-}
 
 class RepositorioFreelancer{
-
+    --
+    -save(freelancer)
 }
 
 class Email {
@@ -70,15 +52,12 @@ class Email {
     getEmailUtilizador()
 }
 
-RegistarFreelancerUI ..> RegistarFreelancerController
-RegistarFreelancerController ..> Plataforma
-Freelancer --> ReconhecimentoGT: recebe(u) >
-ReconhecimentoGT --> CompetenciaTecnica: relativa a >
-CompetenciaTecnica --> GrauProficiencia: aplica >
-Freelancer --> HabilitacaoAcademica: tem >
+RegistarFreelancerUI ..> RegistarFreelancerCTRL
 Freelancer --> EnderecoPostal: tem >
 Freelancer --> Email: tem >
-Plataforma ..> RepositorioFreelancer
 RepositorioFreelancer -- Freelancer
+RegistarFreelancerCTRL ..> RepositorioFreelancer
+RegistarFreelancerCTRL ..> GestaoUtilizadoresCTRL
+RegistarFreelancerCTRL ..> AlgoritomoGeradorPasswords
 
 @enduml

@@ -7,9 +7,8 @@ participant "RegistarFreelancerUI" as RegistarFreelancerUI
 participant "RegistarFreelancerCTRL" as RegistarFreelancerCTRL
 participant "rf: RepositorioFreelancer" as RepositorioFreelancer
 
-
 activate Administrativo
-Administrativo -> RegistarFreelancerUI : inicia o registo de um freelancer( nome, NIF, endPostal, telefone, email)
+Administrativo -> RegistarFreelancerUI : inicia o registo de um freelancer \n(nome, NIF, endPostal, telefone, email)
 activate RegistarFreelancerUI
 RegistarFreelancerUI -> RegistarFreelancerCTRL: findByNif(nif)
 activate RegistarFreelancerCTRL
@@ -26,10 +25,14 @@ alt exist true
 else exist false
     RepositorioFreelancer --> RegistarFreelancerCTRL: não existe
     activate RegistarFreelancerCTRL
+    RegistarFreelancerCTRL --> RegistarFreelancerUI: não existe
+    activate RegistarFreelancerUI
+    RegistarFreelancerUI -> RegistarFreelancerCTRL: registarFreelancer(nome, NIF, endPostal, telefone, email)
+    deactivate RegistarFreelancerUI
     
 end
 
-RegistarFreelancerCTRL -> AlgoritmoGeradorPasswords: geraPassword
+RegistarFreelancerCTRL -> AlgoritmoGeradorPasswords: geraPassword()
 AlgoritmoGeradorPasswords --> RegistarFreelancerCTRL: password 
 
 RegistarFreelancerCTRL -> GestaoUtilizadoresCTRL: registerUserWithRoles(email, nome, password, rolename)
@@ -43,13 +46,10 @@ activate RepositorioFreelancer
 RepositorioFreelancer --> RegistarFreelancerCTRL: success
 deactivate RepositorioFreelancer
 RegistarFreelancerCTRL --> RegistarFreelancerUI: success
-deactivate RegistarFreelancerCTRL
 activate RegistarFreelancerUI
+deactivate RegistarFreelancerCTRL
 RegistarFreelancerUI --> Administrativo: operação bem sucedida
 deactivate RegistarFreelancerUI
-deactivate Administrativo
-
-
 
 
 @enduml
