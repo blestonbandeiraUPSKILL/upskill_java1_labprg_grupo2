@@ -4,40 +4,40 @@ left to right direction
 title UC11 - Editar Candidatura
 
 class Freelancer {
-    String nome 
-    String NIF
-    String telefone
-    Email email
+    -String nome 
+    -String NIF
+    -String telefone
+    -Email email
 }
 
 class Candidatura {
-    Data dataCandidatura
-    Data dataEdicaoCandidatura
-    Double valorPretendido
-    Integer numeroDias
-    String txtApresentacao
-    String txtMotivacao
+    -Data dataCandidatura
+    -Data dataEdicaoCandidatura
+    -Double valorPretendido
+    -Integer numeroDias
+    -String txtApresentacao
+    -String txtMotivacao
 }
 
 class UC11_UI{
     --
-    getAllCandidaturasEditaveis(emailFreelancer, dataAtual)
-    getCandidatura(idCandidatura)
-    setCandidatura(idCandidatura, valorPretendido, numeroDias,
-    txtApresentacao, txtMotivacao)    
+    -getAllCandidaturasEditaveis(emailFreelancer, dataAtual)
+    -getCandidatura(idCandidatura)
+    -setCandidatura(idCandidatura, valorPretendido, numeroDias,
+    -txtApresentacao, txtMotivacao)    
 }
 
 class UC11_CTRL{
     --
-    getAllCandidaturasEditaveis(emailFreelancer, dataAtual)
-    getCandidatura(idCandidatura)
-    setCandidatura(idCandidatura, valorPretendido, numeroDias,
-    txtApresentacao, txtMotivacao)   
+    -getAllCandidaturasEditaveis(emailFreelancer, dataAtual)
+    -getCandidatura(idCandidatura)
+    -setCandidatura(idCandidatura, valorPretendido, numeroDias,
+    -txtApresentacao, txtMotivacao)   
 }
 
 class RepositorioCandidatura {
-    setSave(idCandidatura, valorPretendido, numeroDias,
-    txtApresentacao, txtMotivacao)
+    -setSave(idCandidatura, valorPretendido, numeroDias,
+    -txtApresentacao, txtMotivacao)
 }
 
 UC11_UI - UC11_CTRL
