@@ -23,7 +23,7 @@ anúncio e informa o Freelancer do sucesso da operação.
 
 - Plataforma: Pretende que os Freelancers se candidatem a tarefas
 - Organização: Pretende ter Freelancers candidatos às suas tarefas;
-- Freelancers: Pretendem candidatar-se a tarefas;
+- Freelancers: Pretendem candidatar-se a tarefas.
 
 
 **_Pré-condições:_**
@@ -36,7 +36,7 @@ anúncio e informa o Freelancer do sucesso da operação.
 **_Pós-condições_**
 
 - O Freelancer candidatou-se a uma dada tarefa com sucesso;
-- O Freelancer consta na lista de Freelancers que irá passar pelo processo de seriação;
+- O Freelancer consta na lista de Freelancers que irá passar pelo processo de seriação.
 
 **_Cenário de sucesso principal:_**
 

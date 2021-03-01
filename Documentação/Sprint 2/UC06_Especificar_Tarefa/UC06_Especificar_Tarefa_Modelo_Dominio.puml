@@ -3,16 +3,8 @@
 title UC6 - Especificar Tarefa
 left to right direction
 
-class Plataforma {
+class Plataforma <<Singleton>>{
     -String designacao
-}
-
-class Organizacao {
-    -String nome
-    -String NIF
-    -String website
-    -String telefone
-    -Email email
 }
 
 class Colaborador {
@@ -44,8 +36,15 @@ class Password {
 }
 
 class Categoria {
-    -String id
-    -String descricao
+    -String codigo
+    -String descBreve
+    -String descDetalhada
+}
+
+class AreaActividade {
+    -String codigo
+    -String descBreve
+    -String descDetalhada
 }
 
 Plataforma"1" -- "*"Organizacao: tem registadas >
@@ -53,6 +52,7 @@ Organizacao"1" -- "1..*"Colaborador: tem >
 Colaborador"1" -- "*"Tarefa: especificada por <
 Organizacao"1" -- "*"Tarefa: possui >
 Tarefa"*" -- "1"Categoria: enquadra-se em >
+Categoria"1..*" -- "1"AreaActividade: pertence a > 
 Plataforma"1" -- "*"Categoria: possui >
 Colaborador"0..1" --|> "1"Utilizador: actua como <
 Utilizador "1" -- "1"Email: possui >

@@ -3,36 +3,44 @@
 title UC06 - Especificar Tarefa
 left to right direction
 
-class Plataforma <<Singleton>> {
-    -String designacao
-}
-
 class EspecificarTarefaUI {
     --
-    allCategorias()
-    novaTarefa(ref, designacao, descInformal, descTecnica, duracao, custo, catCod)
-    registaTarefa(t)
+    getEmail()
+    findNifByEmail(emailColaborador)
+    getAllAreasActividade()
+    getAllCategorias(codigoAreaActividade)
+    getAllCaracterizacaoCompetenciaTecnica(codigoCategoria)
+    registarTarefa(referencia, nifOrganizacao, designacao, descInformal, descTecnica, duracao, custo, catCod)
 }
 
-class EspecificarTarefasCTRL {
+class EspecificarTarefaCTRL {
     --
+    findNifByEmail(emailColaborador)
+    getAllAreasActividade()
+    getAllCategorias(codigoAreaActividade)
+    getAllCaracterizacaoCompetenciaTecnica(codigoCategoria)
     novaTarefa(ref, designacao, descInformal, descTecnica, duracao, custo, cat, colab)
-    registaTarefa(t)
+    save(tarefa)
 }
 
 class RepositorioTarefa <<Singleton>> {
-    List<Tarefa> tarefas
+    
     --
-    create(ref, designacao, descInformal, descTecnica, duracao, custo, cat, colab)
-    valida(t)
-    add(t)
+    save(tarefa)
 }
 
+class RepositorioAreaActividade <<Singleton>> {
+    -List<AreaActividade>
+    -AreaActividade
+    --
+    getAllAreasActividade()
+    areaActividade()
+}
 class RepositorioCategoria <<Singleton>>{
     -List<Categoria>
     -categoria
     --
-    allCategorias()
+    getAllCategorias()
     categoria(catCod)
 }
 
@@ -40,15 +48,21 @@ class RepositorioOrganizacao <<Singleton>> {
     -List<Organizacao>
     -organizacao
     --
-    -allOrganizacoes()
-    -organizacaoByNif(NIF)
+    -findNifByEmail(emailColaborador)
 }
 
-class RepositorioColaborador <<Singleton>> {
-    List<Colaborador> listaColab
+class RepositorioCaracterizacaoCT <<Singleton>> {
+    -List<CaracterizacaoCT>
+    -caracterizacaoCT
     --
-    allColaboradores()
-    colaboradorByEmail(email)
+    getAllCaracterizacaoCompetenciaTecnica(codigoCategoria)
+    cct(codigoCategoria)
+}
+
+
+class GestaoUtilizadoresCTRL {
+    --
+    -getEmail()
 }
 
 class Organizacao {
@@ -68,6 +82,7 @@ class Colaborador {
 
 class Tarefa {
     -String referencia
+    -String nifOrganizacao
     -String designacao
     -String descInformal
     -String descTecnica
@@ -82,36 +97,52 @@ class Utilizador {
     -Password password
 }
 
+class AreaActividade{
+    -String codigoAreactividade
+    -String descBreve
+    -String descDetalhada
+}
+
 class Categoria {
-    -String id
-    -String descricao
+    -String codigoCategoria
+    -String descBreve
+    -String descDetalhada
+}
+
+class CaracterizacaoCT {
+    -int idCCT
+    -int grauProfMinimo
+    -String obrigatoriedade
+    -String codigoCategoria
 }
 
 class Email {
     -String email
-    --
-    validaEMail(email)
 }
 
 class Password {
     -String password
-    --
-    -validaPassword(password)
 }
 
 Colaborador"0..1" --|> "1"Utilizador
-EspecificarTarefaUI ..> EspecificarTarefasCTRL
-EspecificarTarefasCTRL ..> Plataforma
-EspecificarTarefasCTRL ..> RepositorioCategoria
-EspecificarTarefasCTRL ..> RepositorioTarefa
-EspecificarTarefasCTRL ..> RepositorioOrganizacao
+EspecificarTarefaUI ..> EspecificarTarefaCTRL
+EspecificarTarefaCTRL ..> Plataforma
+EspecificarTarefaCTRL ..> RepositorioCategoria
+EspecificarTarefaCTRL ..> RepositorioTarefa
+EspecificarTarefaCTRL ..> RepositorioOrganizacao
 RepositorioOrganizacao"1" --> "1.."Organizacao
-EspecificarTarefasCTRL ..> RepositorioColaborador
+EspecificarTarefaCTRL ..> RepositorioColaborador
 RepositorioColaborador"1" --> "1..*"Colaborador
 RepositorioTarefa"1" --> "1..*"Tarefa
 RepositorioCategoria"1" --> "1..*"Categoria
 Plataforma <-- Tarefa
 Utilizador"1" --> "1"Email
 Utilizador"1" --> "1"Password
+EspecificarTarefaUI ..> GestaoUtilizadoresCTRL
+EspecificarTarefaCTRL ..> RepositorioAreaActividade
+RepositorioAreaActividade"1" --> "1..*"AreaActividade
+EspecificarTarefaCTRL ..> RepositorioCaracterizacaoCT
+RepositorioCaracterizacaoCT"1" --> "1..*"CaracterizacaoCT
+
 
 @enduml

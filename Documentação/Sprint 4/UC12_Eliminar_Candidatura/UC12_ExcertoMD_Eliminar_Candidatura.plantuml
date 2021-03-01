@@ -1,7 +1,7 @@
 @startuml
 
 
-title UC9 - Efectuar Candidatura
+title UC12 - Eliminar Candidatura
 
 class Plataforma {
     String designacao
@@ -49,8 +49,7 @@ class Freelancer {
     Email email
 }
 class Candidatura {
-    Data dataCandidatura
-    Data dataEdicaoCandidatura
+    Data dataFimCandidatura
     Double valorPretendido
     Integer numeroDias
     String txtApresentacao
