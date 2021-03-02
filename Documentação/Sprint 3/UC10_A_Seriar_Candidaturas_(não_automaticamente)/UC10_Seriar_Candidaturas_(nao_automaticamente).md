@@ -58,9 +58,6 @@ confirmação dos dados ao colaborador.
     b.  O colaborador não altera os dados.
     c.  O caso de uso termina.
 
-
-
-
 ## Diagrama de Sequência do Sistema
 ![UC10_Seriação_(Não_Automática)_de_Candidaturas_SSD](UC10_Seriação_(Não_Automática)_de_Candidaturas_SSD.png)
 

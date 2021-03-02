@@ -1,11 +1,11 @@
 ##### [Voltar ao início](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/tree/main/README.md)
 
-# UC10 - Seriação de Candidaturas
+# UC10 - Seriar Candidaturas (automaticamente)
 
 
 ## Formato Breve
 
-O colaborador de organização inicia o processo não automático de seriação dos candidatos à realização de um anúncio por si publicado. O sistema solicita dados (i.e. o anúncio, a classificação de cada uma das candidaturas e os outros colaboradores da organização participantes no processo). O colaborador introduz os dados solicitados. O sistema valida e apresenta os dados, pedindo que os confirme. O colaborador confirma. O sistema regista os dados juntamente com a data/hora atual e informa o colaborador do sucesso da operação.
+O colaborador de organização inicia o processo de seriação dos candidatos a um anúncio por si publicado. O sistema informa os candidatos habilitados para seriação e solicita ao colaborador informar se deseja proceder a seriação das candidaturas. O colaborador confirma que deseja proceder a operaçãoo de seriação. O sistema realiza a seriação automática das candidaturas e apresenta o resultado ao colaborador. O sistema regista o resultado da seriação juntamente com a data/hora atual e informa o colaborador do sucesso da operação.
 
 ## Formato Completo
 
@@ -15,18 +15,17 @@ O colaborador de organização inicia o processo não automático de seriação 
 
 **_Partes interessadas e seus interesses:_**
 
-- T4J: pretende que a plataforma seleccione candidaturas para a realização de tarefas publicadas pelas organizações.
-- Organização: pretende estabelecer critérios que vão ao encontro das necessidades de cada tarefa.
+- Plataforma: Pretende que as Organizações possam seriar as candidaturas para a realização das tarefas por si publicadas.
+- Organização: Pretende determinar e ordenar as melhores candidaturas às tarefas por si publicadas
+- Freelancer: Pretende saber o resultado de sua candidatura a um anúncio.
 
 **_Pré-condições:_**
 
 1.	O colaborador da organização tem de estar registado na plataforma.
-2.	A tarefa tem de estar publicada.
-3.	O período de apresentação de candidaturas tem de ter terminado.
-4.	O período de seriação e adjudicação das tarefas tem de ter iniciado.
-5.	As candidaturas à tarefa não podem ainda ter sido seriadas.
-6.	A tarefa não pode ainda ter sido adjudicada.
-7.	Tem de existir pelo menos uma candidatura à oferta supra indicada.
+2.	O colaborador tem que ter publicado ao menos uma tarefa.
+3.	O anúncio da tarefa publicada por este colaborador tem de estar no período de seriação de candidaturas.
+4.  Deve haver ao menos uma candidatura válida ao anúncio da tarefa.
+5.  A(s) candidatura(s) não poderm ter sido ainda seriadas.
 
 **_Pós-condições_**
 
@@ -34,11 +33,14 @@ O colaborador de organização inicia o processo não automático de seriação 
 
 **_Cenário de sucesso principal:_**
 
-1.	O colaborador da organização consulta a lista de tarefas publicadas e por adjudicar. 
-2.	O colaborador da organização solicita ao sistema a seriação das candidaturas. 
-    a.	No caso de seriação subjectiva com atribuição opcional, se não houver nenhuma candidatura que preencha os critérios definidos, não é seleccionada nenhuma candidatura.
-    b.	No caso de seriação subjectiva com atribuição obrigatória, o colaborador selecciona um freelancer, que cumpra os requisitos definidos pela organização, para a realização da tarefa.    
-3.	O sistema procede à seriação das candidaturas e apresenta ao colaborador da organização uma candidatura correspondente aos critérios seleccionados.
+1.	O colaborador da organização consulta a lista de tarefas publicadas que estejam com o período de seriação aberto e ainda não estejam seriadas.
+2.  O colaborador seleciona uma tarefa desta lista e solicita ao sistema a lista de candidaturas válidas para este anúncio.
+3.  O sistema informa as candidaturas válidas recebidas para este anúncio e solicita ao colaborador a seriação dessas candidaturas.
+4.  O colaborador informa, para cada candidatura válida recebida, o valor de colocação ordenada para o processo de seriação deste anúncio.
+5.  O sistema recebe os dados de colocação ordenada de cada candidatura e mostra ao colaborador a lista final da seriação das candidaturas pedindo 
+confirmação dos dados ao colaborador.
+6.  O colaborador confirma a ordenação das candidaturas ao sistema.
+7.  O sistema regista a seriação dada às candidaturas e informa o sucesso da operação. 
 
 
 ### Fluxos alternativos
