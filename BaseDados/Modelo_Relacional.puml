@@ -152,6 +152,7 @@ entity "Candidatura" {
     txtMotivacao: text
     idAnuncio: number {FK}
     emailFreelancer: text {FK}
+    dataCandidatura: date
 }
 
 entity "HabilitacaoAcademica" {

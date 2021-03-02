@@ -33,6 +33,14 @@ RepositorioFreelancer --> AdicionarHabilitacoesAcademicasCTRL: freelancer
 deactivate RepositorioFreelancer
 AdicionarHabilitacoesAcademicasCTRL --> AdicionarHabilitacoesAcademicasUI: freelancer
 deactivate AdicionarHabilitacoesAcademicasCTRL
+AdicionarHabilitacoesAcademicasUI -> AdicionarHabilitacoesAcademicasCTRL: getAllHabsAcademicas(emailFreelancer)
+activate AdicionarHabilitacoesAcademicasCTRL
+AdicionarHabilitacoesAcademicasCTRL -> RepositorioHabilitacaoAcademica: getAllHabsAcademicas(emailFreelancer)
+activate RepositorioHabilitacaoAcademica
+RepositorioHabilitacaoAcademica --> AdicionarHabilitacoesAcademicasCTRL: habsAcademicas
+deactivate RepositorioHabilitacaoAcademica
+AdicionarHabilitacoesAcademicasCTRL --> AdicionarHabilitacoesAcademicasUI: habsAcademicas
+deactivate AdicionarHabilitacoesAcademicasCTRL
 AdicionarHabilitacoesAcademicasUI --> Administrativo: nome, email e habilitações académicas \njá registadas do freelancer em questão
 deactivate AdicionarHabilitacoesAcademicasUI
 
