@@ -1,0 +1,35 @@
+@startuml
+
+left to right direction
+
+title UC07a - Adicionar Habilitações Académicas Freelancer
+
+class Plataforma {
+  -String designacao
+}
+
+class Freelancer {
+  -String nome
+  -String NIF
+  -String telefone
+  -String email
+}
+
+class Administrativo {
+  -String email
+}
+
+class HabilitacaoAcademica{
+-String grau
+-String designacaoCurso
+-String nomeInstituicao
+-Double mediaCurso
+
+}
+
+Plataforma "1" -- "*" Freelancer : tem/usa >
+Plataforma"1" -- "1..*"Administrativo: possui
+Administrativo"1..*" -- "1..*"Freelancer: regista >
+Administrativo"1" -- "1..*"HabilitacaoAcademica: adiciona >
+Freelancer "1" -- "*" HabilitacaoAcademica : tem >
+@enduml

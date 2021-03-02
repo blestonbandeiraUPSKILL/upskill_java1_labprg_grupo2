@@ -53,10 +53,10 @@ O administrativo inicia o processo de inserção das habilitações académicas 
 ![UC07a_Adicionar_Habilitacoes_Academicas_SSD](UC07a_Adicionar_Habilitacoes_Academicas_SSD.png)
 
 ## Excerto do Modelo de Domínio
-![]()
+![UC07a_Adicionar_Habilitacoes_Academicas_Modelo_Dominio](UC07a_Adicionar_Habilitacoes_Academicas_Modelo_Dominio.png)
 
 ## Diagrama de Sequência <br/>
-![]()
+![UC07a_Adicionar_Habilitacoes_Academicas_Diagrama_Sequencia](UC07a_Adicionar_Habilitacoes_Academicas_Diagrama_Sequencia.png)
 
 ## Diagrama de Classes <br/>
 ![]()

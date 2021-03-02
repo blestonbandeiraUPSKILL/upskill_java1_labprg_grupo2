@@ -1,0 +1,55 @@
+@startuml
+
+title UC07 - Adicionar Habilitaçoes Académicas Freelancer
+
+participant "Administrativo" as Administrativo
+participant "AdicionarHabilitacoesAcademicasUI" as AdicionarHabilitacoesAcademicasUI
+participant "AdicionarHabilitacoesAcademicasCTRL" as AdicionarHabilitacoesAcademicasCTRL
+participant "rf: RepositorioFreelancer" as RepositorioFreelancer
+participant "rhb: RepositorioHabilitacaoAcademica" as RepositorioHabilitacaoAcademica
+
+activate Administrativo
+Administrativo -> AdicionarHabilitacoesAcademicasUI : inicia a adição de habilitações académicas de freelancer
+activate AdicionarHabilitacoesAcademicasUI
+AdicionarHabilitacoesAcademicasUI -> AdicionarHabilitacoesAcademicasCTRL: getAll()
+activate AdicionarHabilitacoesAcademicasCTRL
+AdicionarHabilitacoesAcademicasCTRL -> RepositorioFreelancer: getAll()
+activate RepositorioFreelancer
+
+RepositorioFreelancer --> AdicionarHabilitacoesAcademicasCTRL: freelancers
+deactivate RepositorioFreelancer
+AdicionarHabilitacoesAcademicasCTRL --> AdicionarHabilitacoesAcademicasUI: freelancerso
+deactivate AdicionarHabilitacoesAcademicasCTRL
+AdicionarHabilitacoesAcademicasUI --> Administrativo: lista de freelancers registados
+deactivate AdicionarHabilitacoesAcademicasUI
+
+Administrativo -> AdicionarHabilitacoesAcademicasUI: selecciona um freelancer
+activate AdicionarHabilitacoesAcademicasUI
+AdicionarHabilitacoesAcademicasUI -> AdicionarHabilitacoesAcademicasCTRL: findByEmail(email)
+activate AdicionarHabilitacoesAcademicasCTRL
+AdicionarHabilitacoesAcademicasCTRL -> RepositorioFreelancer: findByEmail(email)
+activate RepositorioFreelancer
+RepositorioFreelancer --> AdicionarHabilitacoesAcademicasCTRL: freelancer
+deactivate RepositorioFreelancer
+AdicionarHabilitacoesAcademicasCTRL --> AdicionarHabilitacoesAcademicasUI: freelancer
+deactivate AdicionarHabilitacoesAcademicasCTRL
+AdicionarHabilitacoesAcademicasUI --> Administrativo: nome, email e habilitações académicas \njá registadas do freelancer em questão
+deactivate AdicionarHabilitacoesAcademicasUI
+
+Administrativo -> AdicionarHabilitacoesAcademicasUI: insere os dados das habilitções académicas \n(grau, nomeCurso, instituicao, mediaCurso)
+activate AdicionarHabilitacoesAcademicasUI
+AdicionarHabilitacoesAcademicasUI -> AdicionarHabilitacoesAcademicasCTRL: registarHabilitacaoAcademica\n(grau, nomeCurso, instituicao, mediaCurso)
+activate AdicionarHabilitacoesAcademicasCTRL
+create HabilitacaoAcademica
+AdicionarHabilitacoesAcademicasCTRL -> HabilitacaoAcademica: new HabilitacaoAcademica(grau, nomeCurso, instituicao, mediaCurso)
+AdicionarHabilitacoesAcademicasCTRL -> RepositorioHabilitacaoAcademica: save(habilitacaoAcademica)
+activate RepositorioHabilitacaoAcademica
+RepositorioHabilitacaoAcademica --> AdicionarHabilitacoesAcademicasCTRL: success
+deactivate RepositorioHabilitacaoAcademica
+AdicionarHabilitacoesAcademicasCTRL --> AdicionarHabilitacoesAcademicasUI: success
+deactivate AdicionarHabilitacoesAcademicasCTRL
+AdicionarHabilitacoesAcademicasUI --> Administrativo: habilitação académica adicionada com sucesso
+deactivate AdicionarHabilitacoesAcademicasUI
+deactivate Administrativo
+
+@enduml

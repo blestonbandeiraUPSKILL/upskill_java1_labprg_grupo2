@@ -1,0 +1,55 @@
+@startuml
+
+title UC07b - Adicionar Competências Técnicas Freelancer
+
+participant "Administrativo" as Administrativo
+participant "AdicionarCompetenciasTecnicasUI" as AdicionarCompetenciasTecnicasUI
+participant "AdicionarCompetenciasTecnicasCTRL" as AdicionarCompetenciasTecnicasCTRL
+participant "rf: RepositorioFreelancer" as RepositorioFreelancer
+participant "rct: RepositorioReconhecimentoCT" as RepositorioReconhecimentoCT
+
+activate Administrativo
+Administrativo -> AdicionarCompetenciasTecnicasUI : inicia a adição de reconhecimentos \nde competências técnicas de freelancer
+activate AdicionarCompetenciasTecnicasUI
+AdicionarCompetenciasTecnicasUI -> AdicionarCompetenciasTecnicasCTRL: getAll()
+activate AdicionarCompetenciasTecnicasCTRL
+AdicionarCompetenciasTecnicasCTRL -> RepositorioFreelancer: getAll()
+activate RepositorioFreelancer
+
+RepositorioFreelancer --> AdicionarCompetenciasTecnicasCTRL: freelancers
+deactivate RepositorioFreelancer
+AdicionarCompetenciasTecnicasCTRL --> AdicionarCompetenciasTecnicasUI: freelancerso
+deactivate AdicionarCompetenciasTecnicasCTRL
+AdicionarCompetenciasTecnicasUI --> Administrativo: lista de freelancers registados
+deactivate AdicionarCompetenciasTecnicasUI
+
+Administrativo -> AdicionarCompetenciasTecnicasUI: selecciona um freelancer
+activate AdicionarCompetenciasTecnicasUI
+AdicionarCompetenciasTecnicasUI -> AdicionarCompetenciasTecnicasCTRL: findByEmail(email)
+activate AdicionarCompetenciasTecnicasCTRL
+AdicionarCompetenciasTecnicasCTRL -> RepositorioFreelancer: findByEmail(email)
+activate RepositorioFreelancer
+RepositorioFreelancer --> AdicionarCompetenciasTecnicasCTRL: freelancer
+deactivate RepositorioFreelancer
+AdicionarCompetenciasTecnicasCTRL --> AdicionarCompetenciasTecnicasUI: freelancer
+deactivate AdicionarCompetenciasTecnicasCTRL
+AdicionarCompetenciasTecnicasUI --> Administrativo: nome, email e reconhecimentos \nde competências técnicas já registados do freelancer em questão
+deactivate AdicionarCompetenciasTecnicasUI
+
+Administrativo -> AdicionarCompetenciasTecnicasUI: insere os dados dos reconhecimentos das competências técnicas\n(dataReconhecimento, competenciaTecnica, grauProficiencia)
+activate AdicionarCompetenciasTecnicasUI
+AdicionarCompetenciasTecnicasUI -> AdicionarCompetenciasTecnicasCTRL: registarHabilitacaoAcademica\n(dataReconhecimento, competenciaTecnica, grauProficiencia)
+activate AdicionarCompetenciasTecnicasCTRL
+create HabilitacaoAcademica
+AdicionarCompetenciasTecnicasCTRL -> HabilitacaoAcademica: new HabilitacaoAcademica(grau, nomeCurso, instituicao, mediaCurso)
+AdicionarCompetenciasTecnicasCTRL -> RepositorioReconhecimentoCT: save(habilitacaoAcademica)
+activate RepositorioReconhecimentoCT
+RepositorioReconhecimentoCT --> AdicionarCompetenciasTecnicasCTRL: success
+deactivate RepositorioReconhecimentoCT
+AdicionarCompetenciasTecnicasCTRL --> AdicionarCompetenciasTecnicasUI: success
+deactivate AdicionarCompetenciasTecnicasCTRL
+AdicionarCompetenciasTecnicasUI --> Administrativo: habilitação académica adicionada com sucesso
+deactivate AdicionarCompetenciasTecnicasUI
+deactivate Administrativo
+
+@enduml

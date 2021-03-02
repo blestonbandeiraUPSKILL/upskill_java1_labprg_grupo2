@@ -53,7 +53,7 @@ O administrativo inicia o processo de inserção dos reconhecimentos de competê
 ![UC07b_Adicionar_Competencias_Tecnicas_Diagrama_Sequencia_Sistema](UC07b_Adicionar_Competencias_Tecnicas_Diagrama_Sequencia_Sistema.png)
 
 ## Excerto do Modelo de Domínio
-![]()
+![UC07b_Adicionar_Competencias_Tecnicas_Modelo_Dominio](UC07b_Adicionar_Competencias_Tecnicas_Modelo_Dominio)
 
 ## Diagrama de Sequência <br/>
 ![]()
