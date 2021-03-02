@@ -85,7 +85,7 @@ public class FreelancerLogadoUI implements Initializable {
         adicionarStage.setResizable(false);
         
         try {
-            updateListViewAnuncio();
+            //updateListViewAnuncio();
             updateTableViewAnuncio();
         } catch (SQLException exception) {
             exception.printStackTrace();
@@ -201,7 +201,7 @@ public class FreelancerLogadoUI implements Initializable {
     }
 
     public void updateListViewCandidaturas() throws SQLException {
-        cmbAnuncio.getSelectionModel().clearSelection();
+        //cmbAnuncio.getSelectionModel().clearSelection();
 
         String emailFreelancer = gestaoUtilizadoresController.getEmail();
         listViewCandidaturas.getItems().setAll(efectuarCandidaturaController.findByEmail(emailFreelancer));

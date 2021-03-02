@@ -51,11 +51,21 @@ public class GestorLogadoUI implements Initializable {
     @FXML ComboBox<AreaActividade> cmbAreaActividade;
     @FXML ComboBox<Categoria> cmbCategoriaTarefa;
     @FXML Button btnLogout;
+    
+    //TableView Colaboradores
     @FXML TableView<Colaborador> listViewColaboradores;
     @FXML TableColumn<Object, Object> colunaEmail;
     @FXML TableColumn<Object, Object> colunaNome;
     @FXML TableColumn<Object, Object> colunaTelefone;
     @FXML TableColumn<Object, Object> colunaFuncao;
+    
+    //TableView Tarefas
+    @FXML TableColumn<Object, Object> colunaReferencia;
+    @FXML TableColumn<Object, Object> colunaDesignacao;
+    @FXML TableColumn<Object, Object> colunaDuracao;
+    @FXML TableColumn<Object, Object> colunaCusto;
+
+    @FXML TableView<Tarefa> tabelaTarefas;
      
     public void associarParentUI(StartingPageUI startingPageUI) {
         this.startingPageUI = startingPageUI;
@@ -88,7 +98,7 @@ public class GestorLogadoUI implements Initializable {
         }
 
         try {
-            updateListViewTarefas();
+            updateTableViewTarefas();
         } catch (SQLException exception) {
             exception.printStackTrace();
         }
@@ -133,9 +143,14 @@ public class GestorLogadoUI implements Initializable {
         );
     }
 
-    public void updateListViewTarefas() throws SQLException {
-        listViewTarefas.getItems().setAll(registarTarefaController.getAllOrganizacao(
+    public void updateTableViewTarefas() throws SQLException {
+        tabelaTarefas.getItems().setAll(registarTarefaController.getAllOrganizacao(
                 getNifOrganizacao()));
+        
+        colunaDesignacao.setCellValueFactory( new PropertyValueFactory<>("designacao"));
+        colunaReferencia.setCellValueFactory( new PropertyValueFactory<>("referencia"));
+        colunaDuracao.setCellValueFactory( new PropertyValueFactory<>("duracaoEst"));
+        colunaCusto.setCellValueFactory( new PropertyValueFactory<>("custoEst"));
     }
 
     private void updateCmbCategoriaTarefa(ActionEvent event) throws SQLException {

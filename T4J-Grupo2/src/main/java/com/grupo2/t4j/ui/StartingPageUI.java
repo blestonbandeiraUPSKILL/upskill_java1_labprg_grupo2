@@ -226,8 +226,7 @@ public class StartingPageUI implements Initializable {
 
     public void navigateFreelancerLogado(ActionEvent actionEvent) throws IOException {
         try {
-            FXMLLoader loaderFreelancer = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/FreelancerLogadoScene_TableView.fxml"));
-            //FXMLLoader loaderFreelancer = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/FreelancerLogadoScene.fxml"));
+            FXMLLoader loaderFreelancer = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/FreelancerLogadoScene.fxml"));
             Parent rootFreelancer = loaderFreelancer.load();
             sceneFreelancer = new Scene(rootFreelancer);
             FreelancerLogadoUI freelancerLogadoUI = loaderFreelancer.getController();
