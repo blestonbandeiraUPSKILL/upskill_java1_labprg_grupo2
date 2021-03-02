@@ -32,7 +32,7 @@
 - [UC09 - Efectuar Candidatura](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Documenta%C3%A7%C3%A3o/Sprint%203/UC09_Efectuar_Candidatura/UC09_Efectuar_Candidatura.md)
 - UC10 - Seriar Candidaturas de Anúncio:
     - [UC10-A - Seriar Candidaturas de Anúncio (não automaticamente)](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Documenta%C3%A7%C3%A3o/Sprint%203/UC10_A_Seriar_Candidaturas_(n%C3%A3o_automaticamente)/UC10_A_Seriar_Candidaturas_(nao_automaticamente).md)
-    - [UC10-B - Seriar Candidaturas de Anúncio (automaticamente)](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Documenta%C3%A7%C3%A3o/Sprint%203/UC10_B_Seriar_Candidaturas_(automaticamente)/UC10_Seriar_Candidaturas_(automaticamente).md)
+    - [UC10-B - Seriar Candidaturas de Anúncio (automaticamente)](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Documenta%C3%A7%C3%A3o/Sprint%203/UC10_B_Seriar_Candidaturas_(automaticamente)/UC10_B_Seriar_Candidaturas_(automaticamente).md)
 
 ##### Sprint 4
 - [UC11 - Editar Candidatura](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Documenta%C3%A7%C3%A3o/Sprint%204/UC11_Editar_Candidatura/UC11.md)

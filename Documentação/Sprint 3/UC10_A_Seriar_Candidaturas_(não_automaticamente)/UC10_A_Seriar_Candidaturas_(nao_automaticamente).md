@@ -64,7 +64,7 @@ que estejam com o período de seriação aberto e ainda não estejam seriadas.
     c.  O caso de uso termina.
 
 ## Diagrama de Sequência do Sistema
-![UC10_Seriação_(Não_Automática)_de_Candidaturas_SSD](UC10_Seriação_(Não_Automática)_de_Candidaturas_SSD.png)
+![UC10_A_Seriar_Candidaturas_(nao_automaticamente).png](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Documenta%C3%A7%C3%A3o/Sprint%203/UC10_A_Seriar_Candidaturas_(n%C3%A3o_automaticamente)/UC10_A_Seriar_Candidaturas_(nao_automaticamente).png)
 
 ## Excerto do Modelo de Domínio
 ![UC10_Seriação_(Não_Automática)_de_Candidaturas_Modelo_Domin](UC10_Seriação_(Não_Automática)_de_Candidaturas_Modelo_Domin.png)
