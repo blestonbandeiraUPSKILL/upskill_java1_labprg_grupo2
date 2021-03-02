@@ -6,6 +6,7 @@
 package com.grupo2.t4j.ui;
 
 import com.grupo2.t4j.controller.RegistarAreaActividadeController;
+import com.grupo2.t4j.controller.RegistarCaracterizacaoCTController;
 import com.grupo2.t4j.model.CaracterizacaoCT;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -29,6 +30,7 @@ public class ConsultarCategoriaUI implements Initializable {
     private AdministrativoLogadoUI administrativoLogadoUI;
     private Stage adicionarStage;
     private RegistarAreaActividadeController registarAreaActividadeController;
+    private RegistarCaracterizacaoCTController registarCaracterizacaoCTController;
     
     @FXML TextField txtDescBreve;
     @FXML TextField txtCodigo;
@@ -51,18 +53,20 @@ public class ConsultarCategoriaUI implements Initializable {
             adicionarStage.initModality(Modality.APPLICATION_MODAL);;
             adicionarStage.setResizable(false);
             
-            registarAreaActividadeController = new RegistarAreaActividadeController();
+        registarAreaActividadeController = new RegistarAreaActividadeController();
+        registarCaracterizacaoCTController = new RegistarCaracterizacaoCTController();
         
     }    
     public void transferData() throws SQLException {
         
         String codigoAreaActividade = administrativoLogadoUI.tableViewCategoria.getSelectionModel().getSelectedItem().getCodigoAreaActividade();
+        String codigoCategoria = administrativoLogadoUI.tableViewCategoria.getSelectionModel().getSelectedItem().getCodigoCategoria();
         txtCodigo.setText(administrativoLogadoUI.tableViewCategoria.getSelectionModel().getSelectedItem().getCodigoCategoria());
         txtAreaActividade.setText(registarAreaActividadeController.getAreaActividade(codigoAreaActividade).getDescBreve());
         txtDescBreve.setText(administrativoLogadoUI.tableViewCategoria.getSelectionModel().getSelectedItem().getDescBreve());
         txtDescDetalhada.setText(administrativoLogadoUI.tableViewCategoria.getSelectionModel().getSelectedItem().getDescDetalhada());
-
-        
+        listViewCaracterizacao.getItems().setAll(
+                registarCaracterizacaoCTController.getAllByCategoria(codigoCategoria));
     }
     
     @FXML

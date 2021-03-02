@@ -50,4 +50,8 @@ public class RegistarCaracterizacaoCTController {
             int codigoGP) throws SQLException {
         return repositorioCaracterizacaoCT.findByCategoriaEGrau(codigoCategoria,codigoGP);
     }
+
+    public List<CaracterizacaoCT> getAllByCategoria(String codigoCategoria) throws SQLException {
+        return repositorioCaracterizacaoCT.getAllByCategoria(codigoCategoria);
+    }
 }

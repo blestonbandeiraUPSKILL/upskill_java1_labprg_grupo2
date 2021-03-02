@@ -170,4 +170,40 @@ public class RepositorioCaracterizacaoCTDatabase implements RepositorioCaracteri
         }
         return new CaracterizacaoCT();
     }
+
+    @Override
+    public List<CaracterizacaoCT> getAllByCategoria(String codigoCategoria) throws SQLException {
+        List<CaracterizacaoCT> caracterizacoesCT = new ArrayList<>();
+
+        Connection connection = DBConnectionHandler.getInstance().openConnection();
+
+        try {
+            CallableStatement callableStatement = connection.prepareCall(
+                    "SELECT * FROM CaracterCT WHERE codigoCategoria LIKE ? "
+            );
+
+            callableStatement.setString(1, codigoCategoria);
+            callableStatement.executeQuery();
+
+            ResultSet resultSet = callableStatement.getResultSet();
+
+            while(resultSet.next()) {
+                int idCaracterCT = resultSet.getInt(1);
+                String obrigatoria = resultSet.getString(2);
+                int grauProfMinimo = resultSet.getInt(3);
+                caracterizacoesCT.add(new CaracterizacaoCT(idCaracterCT, obrigatoria, grauProfMinimo, codigoCategoria));
+            }
+
+        }
+        catch (SQLException exception) {
+            exception.printStackTrace();
+            exception.getSQLState();
+
+        }
+        finally {
+            DBConnectionHandler.getInstance().closeAll();
+        }
+
+        return caracterizacoesCT;
+    }
 }

@@ -83,4 +83,9 @@ public class RepositorioCaracterizacaoCTInMemory implements Serializable, Reposi
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    @Override
+    public List<CaracterizacaoCT> getAllByCategoria(String codigoCategoria) throws SQLException {
+        return null;
+    }
+
 }
