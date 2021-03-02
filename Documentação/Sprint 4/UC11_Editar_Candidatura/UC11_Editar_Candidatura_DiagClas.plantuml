@@ -21,23 +21,20 @@ class Candidatura {
 
 class UC11_UI{
     --
-    -getAllCandidaturasEditaveis(emailFreelancer, dataAtual)
+    -getAllCandidaturasElegiveis(emailFreelancer)
     -getCandidatura(idCandidatura)
-    -setCandidatura(idCandidatura, valorPretendido, numeroDias,
-    -txtApresentacao, txtMotivacao)    
+    -updateCandidatura(idCandidatura, valorPretendido, \nnumeroDias, txtApresentacao, txtMotivacao)    
 }
 
 class UC11_CTRL{
     --
-    -getAllCandidaturasEditaveis(emailFreelancer, dataAtual)
+    -getAllCandidaturasElegiveis(emailFreelancer)
     -getCandidatura(idCandidatura)
-    -setCandidatura(idCandidatura, valorPretendido, numeroDias,
-    -txtApresentacao, txtMotivacao)   
+    -updateCandidatura(idCandidatura, valorPretendido, \nnumeroDias, txtApresentacao, txtMotivacao)   
 }
 
 class RepositorioCandidatura {
-    -setSave(idCandidatura, valorPretendido, numeroDias,
-    -txtApresentacao, txtMotivacao)
+    -updateCandidatura(idCandidatura, valorPretendido, \nnumeroDias, txtApresentacao, txtMotivacao)
 }
 
 UC11_UI ..> UC11_CTRL
