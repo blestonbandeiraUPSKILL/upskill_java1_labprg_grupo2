@@ -85,6 +85,7 @@ public class FreelancerLogadoUI implements Initializable {
         adicionarStage.setResizable(false);
         
         try {
+            updateListViewAnuncio();
             updateTableViewAnuncio();
         } catch (SQLException exception) {
             exception.printStackTrace();
