@@ -118,7 +118,7 @@ public class EspecificarTarefaGestorUI implements Initializable {
                     gestaoUtilizadoresController.getEmail());
 
             if (adicionou){
-               gestorLogadoUI.updateListViewTarefas();
+               gestorLogadoUI.updateTableViewTarefas();
 
             AlertsUI.criarAlerta(Alert.AlertType.INFORMATION,
                     MainApp.TITULO_APLICACAO,

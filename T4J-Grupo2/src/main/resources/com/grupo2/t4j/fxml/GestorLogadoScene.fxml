@@ -39,8 +39,6 @@
                             <content>
                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="AnchorPane">
                                     <children>
-
-                                        <ListView fx:id="listViewTarefas" layoutX="28.0" layoutY="158.0" maxHeight="320.0" maxWidth="510.0" prefHeight="281.0" prefWidth="510.0" AnchorPane.bottomAnchor="19.0" AnchorPane.leftAnchor="28.0" AnchorPane.rightAnchor="162.0" AnchorPane.topAnchor="158.0" />
                                         <VBox layoutX="235.0" layoutY="26.0" prefHeight="81.0" prefWidth="200.0">
                                             <children>
                                                 <ComboBox fx:id="cmbAreaActividade" prefHeight="25.0" prefWidth="200.0" promptText="Escolha a Área de Actividade" VBox.vgrow="NEVER">
@@ -78,6 +76,14 @@
                                             </font>
                                         </Label>
                               <Label layoutX="30.0" layoutY="130.0" prefHeight="17.0" prefWidth="49.0" text="Tarefas" />
+                              <TableView fx:id="tabelaTarefas" layoutX="30.0" layoutY="149.0" prefHeight="254.0" prefWidth="526.0">
+                                 <columns>
+                                    <TableColumn fx:id="colunaReferencia" prefWidth="75.0" text="Referencia" />
+                                    <TableColumn fx:id="colunaDesignacao" prefWidth="184.0" text="Designação" />
+                                    <TableColumn fx:id="colunaDuracao" prefWidth="149.0" text="Duração Estimada (dias)" />
+                                    <TableColumn fx:id="colunaCusto" prefWidth="117.0" text="Custo Estimado (€)" />
+                                 </columns>
+                              </TableView>
                                     </children>
                                 </AnchorPane>
                             </content>
