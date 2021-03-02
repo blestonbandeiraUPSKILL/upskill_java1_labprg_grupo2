@@ -24,6 +24,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 /**
  * FXML Controller class
@@ -45,11 +46,16 @@ public class GestorLogadoUI implements Initializable {
     private FicheiroRepositorioColaborador ficheiroC;
     private RepositorioColaboradorInMemory repositorioColaboradorInMemory;
 
-    @FXML ListView<Colaborador> listViewColaboradores;
+    
     @FXML ListView<Tarefa> listViewTarefas;
     @FXML ComboBox<AreaActividade> cmbAreaActividade;
     @FXML ComboBox<Categoria> cmbCategoriaTarefa;
     @FXML Button btnLogout;
+    @FXML TableView<Colaborador> listViewColaboradores;
+    @FXML TableColumn<Object, Object> colunaEmail;
+    @FXML TableColumn<Object, Object> colunaNome;
+    @FXML TableColumn<Object, Object> colunaTelefone;
+    @FXML TableColumn<Object, Object> colunaFuncao;
      
     public void associarParentUI(StartingPageUI startingPageUI) {
         this.startingPageUI = startingPageUI;
@@ -140,6 +146,16 @@ public class GestorLogadoUI implements Initializable {
 
     public void updateListViewColaboradores() throws SQLException {
         listViewColaboradores.getItems().setAll(registarColaboradorController.getAll());
+        
+        colunaNome.setCellValueFactory( new PropertyValueFactory<>("nome"));
+        colunaFuncao.setCellValueFactory( new PropertyValueFactory<>("funcao"));
+        colunaTelefone.setCellValueFactory( new PropertyValueFactory<>("telefone"));
+        colunaEmail.setCellValueFactory( new PropertyValueFactory<>("email"));
+        
+
+
+
+        
     }
 
     public void logout(ActionEvent actionEvent) {

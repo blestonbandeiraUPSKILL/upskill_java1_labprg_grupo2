@@ -95,7 +95,7 @@ public class RepositorioCaracterizacaoCTDatabase implements RepositorioCaracteri
 
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(
-                    "SELECT * FROM CaracterizacaoCT WHERE codigoCategoria LIKE ?"
+                    "SELECT * FROM CaracterCT WHERE codigoCategoria LIKE ?"
             );
 
             preparedStatement.setString(1, codigoCategoria);
