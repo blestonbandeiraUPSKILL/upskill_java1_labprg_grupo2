@@ -8,7 +8,7 @@
 
 <BorderPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" styleClass="BorderPane" stylesheets="@../style/app.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.FreelancerLogadoUI">
     <top>
-        <Label styleClass="lblUser" text="Bem-vindo à Área do Freelancer" textFill="WHITE" BorderPane.alignment="CENTER_RIGHT">
+        <Label styleClass="lblUser" text="Área do Freelancer :::&gt; Eliminar Candidatura" textFill="WHITE" BorderPane.alignment="CENTER_RIGHT">
             <font>
                 <Font name="Calibri" size="18.0" />
             </font>
