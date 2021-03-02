@@ -186,14 +186,27 @@ ALTER TABLE Anuncio
 ALTER TABLE Anuncio
     ADD CONSTRAINT ck_Anuncio_dataFimCandidatura
     CHECK (dataFimCandidatura BETWEEN dataInicioPublicitacao AND dataFimPublicitacao);
+
+
+ALTER TABLE Anuncio
+    ADD CONSTRAINT ck_Anuncio_dataInicioSeriacao
+    CHECK (dataInicioSeriacao BETWEEN dataInicioPublicitacao AND dataFimPublicitacao);
+
+ALTER TABLE Anuncio
+    ADD CONSTRAINT ck_Anuncio_dataFimSeriacao
+    CHECK (dataFimSeriacao BETWEEN dataInicioPublicitacao AND dataFimPublicitacao);
     
 ALTER TABLE Anuncio
-    ADD CONSTRAINT DATAINICIOSERIACAO
-    CHECK (dataFimPublicitacao < DATAINICIOSERIACAO);
+    ADD CONSTRAINT ck_Anuncio_dataInicioSeriacao_dataFimSeriacao
+    CHECK (dataInicioSeriacao < dataFimSeriacao);
     
 ALTER TABLE Anuncio
-    ADD CONSTRAINT DATAfimSERIACAO
-    CHECK (DATAINICIOSERIACAO < DATAfimSERIACAO);
+    ADD CONSTRAINT ck_Anuncio_dataInicioPublicitacao_dataFimPublicitacao
+    CHECK (dataInicioPublicitacao < dataFimPublicitacao);
+
+ALTER TABLE Anuncio
+    ADD CONSTRAINT ck_Anuncio_dataInicioCandidatura_dataFimCandidatura
+    CHECK (dataInicioCandidatura < dataFimCandidatura);
     
 --ALTER TABLE Anuncio
 --  ADD idTipoRegimento integer;

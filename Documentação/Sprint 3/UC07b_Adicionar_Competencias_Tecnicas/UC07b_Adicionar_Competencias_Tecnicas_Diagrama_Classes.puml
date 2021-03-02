@@ -1,0 +1,67 @@
+@startuml
+
+title UC07b - Adicionar Reconhecimento de Competências Técnicas Freelancer
+
+class ReconhecimentoGPUI{
+    --
+    -getAll()
+    -findByEmail(emailFreelancer)
+    -getAllCompsTecnicas(emailFreelancer)
+    -registaReconhecimentoGP(dataReconhecimento, \ncompetenicaTecnica,\ngrauProficiencia)  
+}
+
+class ReconhecimentoGPCTRL{
+    --
+    -getAll()
+    -findByEmail(emailFreelancer)
+    -getAllCompsTecnicas(emailFreelancer)
+    -new ReconhecimentoGP(dataReconhecimento, \ncompetenicaTecnica,\ngrauProficiencia)
+    -save(reconhecimentoGP)  
+}
+
+class RepositorioFreelancer {
+    -getAll()
+    -findByEmail(emailFreelancer)  
+}
+
+class RepositorioReconhecimentoGP {
+    -getAllCompsTecnicas(emailFreelancer)
+}
+
+
+class Freelancer {
+    -String nome
+    -String NIF
+    -String telefone
+    -Email email
+}
+
+class GrauProficiencia   {
+    -Integer valor
+    -String designacao
+}
+
+class ReconhecimentoGP {
+    -Data dataReconhecimento
+}
+
+class CompetenciaTecnica {
+    -String codigo
+    -String descBreve
+    -String descDetalhada
+}
+
+
+
+ReconhecimentoGPUI ..> ReconhecimentoGPCTRL
+RepositorioFreelancer -- Freelancer
+ReconhecimentoGPCTRL ..> RepositorioFreelancer
+RepositorioReconhecimentoGP -- ReconhecimentoGP
+ReconhecimentoGPCTRL ..> RepositorioReconhecimentoGP
+Freelancer"1" -- "*"ReconhecimentoGP: recebe(u) >
+ReconhecimentoGP"*" -- "1"CompetenciaTecnica: relativa a >
+ReconhecimentoGP"*" -- "1"GrauProficiencia: reconhece >
+CompetenciaTecnica"1" -- "*"GrauProficiencia: aplica >
+
+
+@enduml

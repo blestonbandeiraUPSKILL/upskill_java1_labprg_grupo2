@@ -23,6 +23,12 @@ entity "Colaborador" {
     funcao: text
     telefone: text
     nifOrganizacao: text {FK}
+
+}
+
+entity "ColaboradorClassificacao" {
+    emailColaborador: text {PK, FK}
+    idClassificacao: int {PK, FK}
 }
 
 entity "Utilizador" {
@@ -119,7 +125,7 @@ entity "ProcessoSeriacao" {
     idProcessoSeriacao: number {PK}
     --
     dataRealizacao: date {NN}
-   
+    idAnuncio: int {FK}
 }
 
 entity "TipoRegimento" {
@@ -134,6 +140,7 @@ entity "Classificacao" {
     --
     lugar: integer {NN, UK}
     idProcessoSeriacao: text {FK}
+    idCandidatura: int {FK}
 }
 
 entity "Candidatura" {
@@ -145,6 +152,7 @@ entity "Candidatura" {
     txtMotivacao: text
     idAnuncio: number {FK}
     emailFreelancer: text {FK}
+    dataCandidatura: date
 }
 
 entity "HabilitacaoAcademica" {
@@ -162,7 +170,6 @@ entity "ReconhecimentoGP" {
     --
     dataReconhecimento: date {NN}
 }
-   
 
 entity "FreelancerHabAcademica" {
     emailFreelancer: text {PK, FK}
@@ -174,7 +181,7 @@ entity "CaracterCT" {
     --
     obrigatoria: boolean {NN}
     grauProfMinimo: text {FK, NN}
-    cogicoCategoria: text {FK}
+    codigoCategoria: text {FK}
 }
 
 AreaActividade ||--|{ Categoria
@@ -188,18 +195,21 @@ Tarefa ||--o| Anuncio
 Organizacao ||--|{ Colaborador
 Colaborador |o--|| Utilizador
 Anuncio ||--|{ Candidatura
+Candidatura ||--|| Classificacao
 Freelancer||--o{ Candidatura
 Organizacao ||--|| EnderecoPostal
 Freelancer ||--|| EnderecoPostal
-Anuncio }|--|| ProcessoSeriacao
+Anuncio ||--|| ProcessoSeriacao
 Anuncio }|--|| TipoRegimento
-ProcessoSeriacao ||--|{ Classificacao
+ProcessoSeriacao ||--|| Classificacao
 Freelancer ||--|{ FreelancerHabAcademica
 HabilitacaoAcademica ||--|{ FreelancerHabAcademica
 Freelancer ||--|{ ReconhecimentoGP
 ReconhecimentoGP }|--|| GrauProficiencia
 CaracterCT }|--|| Categoria
 CaracterCT }|--|| GrauProficiencia
+Classificacao ||--|{ ColaboradorClassificacao
+Colaborador ||--|{ ColaboradorClassificacao
 
 
 @enduml

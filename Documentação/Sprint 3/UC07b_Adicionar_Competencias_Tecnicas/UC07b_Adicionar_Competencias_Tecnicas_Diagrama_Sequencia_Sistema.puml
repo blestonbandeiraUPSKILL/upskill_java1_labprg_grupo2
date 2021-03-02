@@ -1,0 +1,23 @@
+@startuml
+
+title UC07b - Adicionar Competências Técnicas
+
+actor Administrativo
+participant ":Sistema" as Sistema
+
+activate Administrativo
+
+Administrativo -> Sistema : 1 O administrativo inicia o processo de adicionar competências técnicas do freelancer
+activate Sistema
+
+loop
+Sistema --> Administrativo: 2 solicita o email do Freelancer (email)
+Administrativo -> Sistema: 3 O administrativo selecciona o email do Freelancer a partir da lista fornecida
+Administrativo -> Sistema: 4 introduz os reconhecimentos das competências técnicas \n(dataReconhecimento, grau, competência)
+Sistema --> Administrativo: 5 Operação bem sucedida
+end
+
+deactivate Administrativo
+deactivate Sistema
+
+@enduml
