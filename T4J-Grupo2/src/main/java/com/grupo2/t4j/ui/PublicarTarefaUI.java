@@ -81,6 +81,9 @@ public class PublicarTarefaUI implements Initializable {
                     "Publicar Tarefa.",
                     "Tarefa publicada com sucesso.").show();
             }
+
+            closePublicarTarefa(actionEvent);
+
         }
         catch (IllegalArgumentException exception) {
             AlertsUI.criarAlerta(Alert.AlertType.ERROR,
@@ -90,8 +93,6 @@ public class PublicarTarefaUI implements Initializable {
 
         }
 
-        closePublicarTarefa(actionEvent);
-        
     }
     
     @FXML

@@ -248,6 +248,42 @@ public class RepositorioGrauProficienciaDatabase implements RepositorioGrauProfi
         return graus;
     }
 
+    @Override
+    public List<GrauProficiencia> getAllByCompetenciaTecnica(String codigoCompetenciaTecnica) throws SQLException {
+        List<GrauProficiencia> grausProficiencia = new ArrayList<>();
+
+        Connection connection = DBConnectionHandler.getInstance().openConnection();
+
+        try {
+            CallableStatement callableStatement = connection.prepareCall(
+                    "SELECT * FROM GrauProficiencia WHERE codigoCompetenciaTecnica LIKE ?"
+            );
+
+            connection.setAutoCommit(false);
+
+            callableStatement.setString(1, codigoCompetenciaTecnica);
+            callableStatement.executeQuery();
+
+            ResultSet resultSet = callableStatement.getResultSet();
+
+            while (resultSet.next()) {
+                int idGrauProficiencia = resultSet.getInt(1);
+                int grau = resultSet.getInt(2);
+                String designacao = resultSet.getString(3);
+                grausProficiencia.add(new GrauProficiencia(idGrauProficiencia, grau, designacao, codigoCompetenciaTecnica));
+            }
+
+
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+            exception.getSQLState();
+
+        }
+            finally {
+            DBConnectionHandler.getInstance().closeAll();
+        }
+        return grausProficiencia;
+    }
 
 
 }

@@ -41,6 +41,10 @@ public class RegistarGrauProficienciaController {
     public List<GrauProficiencia> findByCompetenciaTecnica(String codigoCompetenciaTecnica) throws SQLException {
         return repositorioGrauProficiencia.findByCompetenciaTecnica(codigoCompetenciaTecnica);
     }
+
+    public List<GrauProficiencia> getAllByCompetenciaTecnica(String codigoCompetenciaTecnica) throws SQLException {
+        return repositorioGrauProficiencia.getAllByCompetenciaTecnica(codigoCompetenciaTecnica);
+    }
     
     public GrauProficiencia findByValor(int grau) throws SQLException {
         return repositorioGrauProficiencia.findByGrau(grau);

@@ -96,6 +96,11 @@ public class RepositorioGrauProficienciaInMemory implements Serializable, Reposi
         return null;
     }
 
+    @Override
+    public List<GrauProficiencia> getAllByCompetenciaTecnica(String codigoCompetenciaTecnica) throws SQLException {
+        return null;
+    }
+
 
 /*
     @Override

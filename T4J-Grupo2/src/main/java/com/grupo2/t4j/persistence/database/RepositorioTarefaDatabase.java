@@ -195,7 +195,7 @@ public class RepositorioTarefaDatabase implements RepositorioTarefa {
                 String codigoCategoriaTarefa = resultSet.getString(8);
                 String emailColaborador = resultSet.getString(9);
 
-                tarefas.add(new Tarefa(referencia, nifOrganizacao, designacao, descInformal,
+                tarefas.add(new Tarefa(nifOrganizacao, referencia,  designacao, descInformal,
                         descTecnica, duracaoEst, custoEst,
                         codigoCategoriaTarefa,  emailColaborador));
             }
@@ -245,7 +245,7 @@ public class RepositorioTarefaDatabase implements RepositorioTarefa {
                 String codigoCategoriaTarefa = resultSet.getString(8);
                 String emailColaborador = resultSet.getString(9);
 
-                tarefas.add(new Tarefa(referencia, nifOrganizacao, designacao, descInformal,
+                tarefas.add(new Tarefa(nifOrganizacao, referencia,  designacao, descInformal,
                         descTecnica, duracaoEst, custoEst,
                         codigoCategoriaTarefa,  emailColaborador));
             }
@@ -296,7 +296,7 @@ public class RepositorioTarefaDatabase implements RepositorioTarefa {
                 double custoEst = resultSet.getDouble(7);
                 String codigoCategoriaTarefa = resultSet.getString(8);
 
-                tarefas.add(new Tarefa(referencia, nifOrganizacao, designacao, descInformal,
+                tarefas.add(new Tarefa(nifOrganizacao, referencia, designacao, descInformal,
                         descTecnica, duracaoEst, custoEst,
                         codigoCategoriaTarefa, email));
             }
@@ -355,7 +355,7 @@ public class RepositorioTarefaDatabase implements RepositorioTarefa {
                     int duracaoEstimada = resultSet.getInt(6);
                     double custoEstimado = resultSet.getDouble(7);
                     String codigoCategoria = resultSet.getString(8);
-                    tarefasComAnuncio.add(new Tarefa(referencia, nifOrganizacao,
+                    tarefasComAnuncio.add(new Tarefa(nifOrganizacao, referencia,
                             designacao, descInformal, descTecnica, duracaoEstimada, custoEstimado, codigoCategoria, emailColaborador));
 
                 }
@@ -484,7 +484,7 @@ public class RepositorioTarefaDatabase implements RepositorioTarefa {
                     int duracaoEstimada = resultSet.getInt(6);
                     double custoEstimado = resultSet.getDouble(7);
                     String codigoCategoria = resultSet.getString(8);
-                    tarefasSemAnuncio.add(new Tarefa(referenciaTarefa, nifOrganizacao,
+                    tarefasSemAnuncio.add(new Tarefa(nifOrganizacao, referenciaTarefa,
                             designacao, descInformal, descTecnica, duracaoEstimada, custoEstimado, codigoCategoria, email));
 
                 }
@@ -648,7 +648,7 @@ public class RepositorioTarefaDatabase implements RepositorioTarefa {
     }
 
     @Override
-    public List<Tarefa> getgetAllTarefasElegíveis(String emailFreelancer) throws SQLException {
+    public List<Tarefa> getAllTarefasElegíveis(String emailFreelancer) throws SQLException {
 
         List<Tarefa> tarefasElegíveis = new ArrayList<>();
 
