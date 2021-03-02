@@ -275,9 +275,6 @@ public class AdministrativoLogadoUI implements Initializable {
         
     }
 
-
-
-    
     public void updateListViewFreelancer() throws SQLException {
          listaFreelancer.getItems().setAll(registarFreelancerController.getAll());
     }
@@ -288,6 +285,12 @@ public class AdministrativoLogadoUI implements Initializable {
         colunaDescBreve.setCellValueFactory( new PropertyValueFactory<>("descBreve"));
         colunaDescDetalhada.setCellValueFactory( new PropertyValueFactory<>("descDetalhada"));
     }
+
+
+    public void updateListViewCategoriasTarefa() throws SQLException {
+        listaCategorias.getItems().setAll(registarCategoriaController.getAll());
+    }
+
     public void updateTableViewCategoriasTarefa() throws SQLException {
         tableViewCategoria.getItems().setAll(registarCategoriaController.getAll());
         
@@ -295,6 +298,7 @@ public class AdministrativoLogadoUI implements Initializable {
         colunaDescBreveCat.setCellValueFactory( new PropertyValueFactory<>("descBreve"));
         colunaDescDetalhadaCat.setCellValueFactory( new PropertyValueFactory<>("descDetalhada"));
         colunaCodigoATCat.setCellValueFactory( new PropertyValueFactory<>("codigoAreaActividade"));
+
     }
 
     public void updateTableViewCompetenciasTecnicas() throws SQLException {

@@ -41,7 +41,7 @@ public class EfectuarCandidaturaController {
             List<CaracterizacaoCT> competenciasDaTarefa = repositorioCategoriaTarefa.findByCodigo(
                     tarefa.getCodigoCategoriaTarefa()).getCompTecnicasCaracter();
             for (CaracterizacaoCT cct : competenciasDaTarefa) {
-                if (cct.getObrigatoriedade() == Obrigatoriedade.OBRIGATORIO
+                if (cct.getObrigatoriedade() == Obrigatoriedade.OBRIGATORIA
                         && comparaCompetencias(email, cct.getCodigoCategoria())
                         && comparaGrau(email, cct.getCodigoCategoria(), cct.getCodigoGP())) {
 

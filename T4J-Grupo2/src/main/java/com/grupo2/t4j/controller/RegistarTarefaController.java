@@ -50,7 +50,7 @@ public class RegistarTarefaController {
                              String descInformal, String descTecnica,
                              int duracao, double custo, String nifOrganizacao, String emailColaborador) throws SQLException{
 
-        Tarefa tarefa = new Tarefa(referencia, nifOrganizacao, designacao, descInformal,
+        Tarefa tarefa = new Tarefa(nifOrganizacao, referencia, designacao, descInformal,
                 descTecnica, duracao, custo,
                 codigoCategoriaTarefa,  emailColaborador);
 
@@ -86,7 +86,7 @@ public class RegistarTarefaController {
     }
 
     public List<Tarefa> getAllTarefasElegíveis(String emailFreelancer) throws SQLException {
-       return repositorioTarefa.getgetAllTarefasElegíveis(emailFreelancer);
+       return repositorioTarefa.getAllTarefasElegíveis(emailFreelancer);
     }
 
 

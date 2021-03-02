@@ -2,6 +2,7 @@ package com.grupo2.t4j.controller;
 
 import com.grupo2.t4j.model.GrauProficiencia;
 import com.grupo2.t4j.persistence.FabricaRepositorios;
+import com.grupo2.t4j.persistence.RepositorioCaracterizacaoCT;
 import com.grupo2.t4j.persistence.RepositorioCompetenciaTecnica;
 import com.grupo2.t4j.persistence.RepositorioGrauProficiencia;
 import com.grupo2.t4j.persistence.database.FabricaRepositoriosDatabase;
@@ -15,6 +16,7 @@ public class RegistarGrauProficienciaController {
     private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosDatabase();
     private RepositorioGrauProficiencia repositorioGrauProficiencia = fabricaRepositorios.getRepositorioGrauProficiencia();
     private RepositorioCompetenciaTecnica repositorioCompetenciaTecnica = fabricaRepositorios.getRepositorioCompetenciaTecnica();
+    private RepositorioCaracterizacaoCT repositorioCaracterizacaoCT = fabricaRepositorios.getRepositorioCaracterizacaoCT();
 
     public RegistarGrauProficienciaController() throws SQLException {
     }
@@ -40,6 +42,10 @@ public class RegistarGrauProficienciaController {
 
     public List<GrauProficiencia> findByCompetenciaTecnica(String codigoCompetenciaTecnica) throws SQLException {
         return repositorioGrauProficiencia.findByCompetenciaTecnica(codigoCompetenciaTecnica);
+    }
+
+    public List<GrauProficiencia> getAllByCompetenciaTecnica(String codigoCompetenciaTecnica) throws SQLException {
+        return repositorioGrauProficiencia.getAllByCompetenciaTecnica(codigoCompetenciaTecnica);
     }
     
     public GrauProficiencia findByValor(int grau) throws SQLException {

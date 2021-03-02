@@ -102,12 +102,14 @@ public class ColaboradorLogadoUI implements Initializable {
     }
 
     public void updateListViewTarefas() throws SQLException {
+        cmbFiltroTarefas.getSelectionModel().clearSelection();
         listViewTarefas.getItems().setAll(registarTarefaController.getAllOrganizacao(
                 getNifOrganizacao() ));
 
     }
     
     public void updateListViewTarefasColaborador() throws SQLException {
+        cmbFiltroTarefas.getSelectionModel().clearSelection();
         String email = gestaoUtilizadoresController.getEmail();
         String nifOrganizacao = registarColaboradorController.getNifOrganizacao(email);
         listViewTarefas.getItems().setAll(registarTarefaController.findByColaboradorENif(email, nifOrganizacao));
@@ -115,6 +117,7 @@ public class ColaboradorLogadoUI implements Initializable {
     }
     
     public void updateListViewTarefasPublicadas() throws SQLException {
+        cmbFiltroTarefas.getSelectionModel().clearSelection();
         String email = gestaoUtilizadoresController.getEmail();
         String nifOrganizacao = registarColaboradorController.getNifOrganizacao(email);
         List<String> referenciasTarefa = registarTarefaController.findRefenciaTarefa(nifOrganizacao);
@@ -123,6 +126,7 @@ public class ColaboradorLogadoUI implements Initializable {
     }
     
     public void updateListViewTarefasNaoPublicadas() throws SQLException {
+        cmbFiltroTarefas.getSelectionModel().clearSelection();
         String email = gestaoUtilizadoresController.getEmail();
         String nifOrganizacao = registarColaboradorController.getNifOrganizacao(email);
         List<String> referenciasTarefa = registarTarefaController.findRefenciaTarefa(nifOrganizacao);

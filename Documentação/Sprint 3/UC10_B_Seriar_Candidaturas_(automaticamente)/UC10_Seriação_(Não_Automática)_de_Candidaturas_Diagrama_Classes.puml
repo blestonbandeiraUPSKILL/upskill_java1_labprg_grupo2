@@ -1,0 +1,39 @@
+@startuml
+
+title UC10 - Seriação (Não Automática) de Candidaturas
+
+left to right direction
+
+class Plataforma << Singleton >> {
+    String: designacao
+}
+
+class Colaborador {
+    -String funcao
+    -String telefone
+}
+
+
+class SeriarCandidaturasUI {
+    --
+    getCandidaturas()
+    ordenar(listaCandidaturas)
+}
+
+class SeriarCandidaturasCtrl {
+    --
+    getCandidaturas()
+    ordenar(listaCandidaturas)
+}
+
+class RepositorioCandidatura {
+
+}
+
+Plataforma -- Colaborador
+Colaborador ..> SeriarCandidaturasUI
+SeriarCandidaturasUI ..> SeriarCandidaturasCtrl
+SeriarCandidaturasCtrl ..> RepositorioCandidatura
+RepositorioCandidatura ..> Plataforma
+
+@enduml
