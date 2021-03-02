@@ -5,42 +5,72 @@ title UC10-A - Seriar Candidaturas de Anúncio (não automaticamente)
 participant Colaborador
 participant SeriarCandidaturasUI
 participant SeriarCandidaturasCtrl
+participant RepositorioAnuncio
 participant RepositorioCandidatura
 participant RepositorioClassificacao
+participant RepositorioColaborador
 
 
 activate Colaborador
-Colaborador -> SeriarCandidaturasUI: solicita lista das candidaturas \nà tarefa cujo período de apresentação \nde candidaturas terminou
+Colaborador -> SeriarCandidaturasUI: Consulta anúncios com regime \nde seriação manual, em periodo \nde seriação, ainda não seriados
 activate SeriarCandidaturasUI
-SeriarCandidaturasUI -> SeriarCandidaturasCtrl: getCandidaturas()
+SeriarCandidaturasUI -> SeriarCandidaturasCtrl: getAllAnunciosASeriar\n(idRegimentoManual)
 activate SeriarCandidaturasCtrl
-SeriarCandidaturasCtrl -> RepositorioCandidatura: getCandidaturas()
-activate RepositorioCandidatura
-
-
-
-RepositorioCandidatura --> SeriarCandidaturasCtrl: listaCandidaturas
-deactivate RepositorioCandidatura
-SeriarCandidaturasCtrl --> SeriarCandidaturasUI: listaCandidaturas
-SeriarCandidaturasUI --> Colaborador: lista de candidaturas à tarefa
-
-deactivate SeriarCandidaturasUI
+SeriarCandidaturasCtrl -> RepositorioAnuncio: getAllAnunciosASeriar\n(idRegimentoManual)
+activate RepositorioAnuncio
+RepositorioAnuncio --> SeriarCandidaturasCtrl: listaAnunciosASeriar\n(idRegimentoManual)
+deactivate RepositorioAnuncio
+SeriarCandidaturasCtrl --> SeriarCandidaturasUI: listaAnunciosASeriar\n(idRegimentoManual)
 deactivate SeriarCandidaturasCtrl
+alt (Não existem anúncios a seriar manualmente)
+SeriarCandidaturasUI --> Colaborador: Não existem anúncios \ndisponiveis
 
-Colaborador -> SeriarCandidaturasUI: atribui classificação \nàs candidaturas apresentadas
+else Existem anúncios a seriar manualmente 
+SeriarCandidaturasUI --> Colaborador: Mostra a lista dos Anúncios a \nseriar manualmente
+deactivate SeriarCandidaturasUI
+
+alt (Não existem colaboradores participantes adicionais)
+Colaborador -> SeriarCandidaturasUI: Seleciona um anúncio a seriar \nsem colaboradores participantes \nadicionais
 activate SeriarCandidaturasUI
-SeriarCandidaturasUI -> SeriarCandidaturasCtrl: ordenar(listaCandidaturas, classificacao)
+SeriarCandidaturasUI -> SeriarCandidaturasCtrl: getAllCandidaturas(idAnuncio)
 activate SeriarCandidaturasCtrl
-SeriarCandidaturasCtrl -> RepositorioCandidatura: ordenarCandidaturas(listaCandidaturas, classificacao)
+SeriarCandidaturasCtrl -> RepositorioCandidatura: getAllCandidaturas(idAnuncio)
 activate RepositorioCandidatura
-
-RepositorioCandidatura --> SeriarCandidaturasCtrl: listaCandidaturasOrdenadas
+RepositorioCandidatura --> SeriarCandidaturasCtrl: listaCandidaturas(idAnuncio)
 deactivate RepositorioCandidatura
-SeriarCandidaturasCtrl --> SeriarCandidaturasUI: listaCandidaturasOrdenadas
+SeriarCandidaturasCtrl --> SeriarCandidaturasUI: listaCandidaturas(idAnuncio)
 deactivate SeriarCandidaturasCtrl
-SeriarCandidaturasUI --> Colaborador: candidatura seleccionada com \nbase nos critérios de seriação
+SeriarCandidaturasUI --> Colaborador: Mostra a lista de candidaturas \nao anúncio e solicita a classificação \nde cada candidatura
 deactivate SeriarCandidaturasUI
-deactivate Colaborador
+loop
+Colaborador -> SeriarCandidaturasUI: Atribui uma classificação a uma \ndada candidatura
+activate SeriarCandidaturasUI
+SeriarCandidaturasUI -> SeriarCandidaturasCtrl: saveSeriaocao\n(idAnuncio, idCandidatura, posicao, )
+activate SeriarCandidaturasCtrl
+SeriarCandidaturasCtrl -> RepositorioClassificacao: saveSeriacao(idAnuncio, idCandidatura, posicao)
+activate RepositorioClassificacao
+end loop
+RepositorioClassificacao --> SeriarCandidaturasCtrl: listaCandidaturasSeriada(idAnuncio)
+deactivate RepositorioClassificacao
+SeriarCandidaturasCtrl --> SeriarCandidaturasUI: listaCandidaturasSeriadas\n(idAnuncio)
+deactivate SeriarCandidaturasCtrl
+SeriarCandidaturasUI --> Colaborador: Mostra a lista seriada \nde candidaturas e informa \no sucesso da operação
+deactivate SeriarCandidaturasUI
+else Existem colaboradores participantes adicionais
+Colaborador -> SeriarCandidaturasUI: Indica que há colaboradores participantes \nadicionais
+activate SeriarCandidaturasUI
+SeriarCandidaturasUI -> SeriarCandidaturasCtrl: getAllColaboradores(nifOrganizacao)
+activate SeriarCandidaturasCtrl
+SeriarCandidaturasCtrl -> RepositorioColaborador: getAllColaboradores(nifOrganizacao)
+activate RepositorioColaborador
+RepositorioColaborador --> SeriarCandidaturasCtrl: listaColaboradores(nifOrganizacao)
+deactivate RepositorioColaborador
+SeriarCandidaturasCtrl --> SeriarCandidaturasUI: listaColaboradores(nifOrganizacao)
+deactivate SeriarCandidaturasCtrl
+SeriarCandidaturasUI --> Colaborador: Mostra os colaboradores da organização \ne solicita selecionar os demais envolvidos \nna seriação
+deactivate SeriarCandidaturasUI
 
+end alt
+end alt
 
 @enduml
