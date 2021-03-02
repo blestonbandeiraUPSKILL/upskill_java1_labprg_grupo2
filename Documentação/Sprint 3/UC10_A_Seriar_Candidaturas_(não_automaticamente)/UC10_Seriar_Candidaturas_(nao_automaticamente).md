@@ -1,6 +1,6 @@
 ##### [Voltar ao início](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/tree/main/README.md)
 
-# UC10_A - Seriação de Candidaturas (Não automática)
+# UC10_A - Seriar Candidaturas de Anúncio (não automaticamente)
 
 
 ## Formato Breve
@@ -16,7 +16,8 @@ O colaborador de organização inicia o processo de seriação dos candidatos a 
 **_Partes interessadas e seus interesses:_**
 
 - Plataforma: Pretende que as Organizações possam seriar as candidaturas para a realização das tarefas por si publicadas.
-- Organização: Pretende determinar e ordenar as melhores candidaturas às tarefas por si publicadas
+- Organização: Pretende que os anúncios para as tarefas publicadas da organização tenham resultado seriado das candidaturas recebidas.
+- Colaborador da organização: Pretende determinar e ordenar as melhores candidaturas às tarefas por si publicadas
 - Freelancer: Pretende saber o resultado de sua candidatura a um anúncio.
 
 **_Pré-condições:_**
@@ -53,7 +54,7 @@ confirmação dos dados ao colaborador.
     a.	O caso de uso termina.
 4.  O sistema detecta que não houve nenhuma candidatura ao anúncio em período de seriação.
     a.	O caso de uso termina.
-4.  O colaborador insere a mesma colocação para duas candidaturas diferentes.
+5.  O colaborador insere a mesma colocação para duas candidaturas diferentes.
     a.	O sistema permite a correção dos dados introduzidos (passo 3).
     b.  O colaborador não altera os dados.
     c.  O caso de uso termina.
