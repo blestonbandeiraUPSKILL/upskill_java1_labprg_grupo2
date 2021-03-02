@@ -5,7 +5,7 @@
 
 ## Formato Breve
 
-O colaborador de organização inicia o processo de seriação dos candidatos a um anúncio por si publicado. O sistema informa os candidatos habilitados para seriação e solicita ao colaborador informar se deseja proceder a seriação das candidaturas. O colaborador confirma que deseja proceder a operaçãoo de seriação. O sistema realiza a seriação automática das candidaturas e apresenta o resultado ao colaborador. O sistema regista o resultado da seriação juntamente com a data/hora atual e informa ao colaborador do sucesso da operação.
+O colaborador de organização inicia o processo de seriação dos candidatos a um anúncio por si publicado que tenha como tipo de regimento atribuído a 'Seriação automática'. O sistema informa os candidatos habilitados para a seriação e solicita ao colaborador informar se deseja proceder à seriação. O colaborador confirma. O sistema realiza a seriação automática apresentando-a ao colaborador. O sistema regista a seriação juntamente com a data/hora atual e informa o colaborador do sucesso da operação.
 
 ## Formato Completo
 
@@ -26,7 +26,7 @@ O colaborador de organização inicia o processo de seriação dos candidatos a 
 2.	O colaborador tem que ter publicado ao menos uma tarefa.
 3.	O anúncio da tarefa publicada por este colaborador tem de estar no período de seriação de candidaturas.
 4.  Deve haver ao menos uma candidatura válida ao anúncio da tarefa.
-5.  A(s) candidatura(s) não poderm ter sido ainda seriadas.
+5.  A(s) candidatura(s) não podem ter sido ainda seriadas.
 
 **_Pós-condições_**
 
@@ -34,11 +34,14 @@ O colaborador de organização inicia o processo de seriação dos candidatos a 
 
 **_Cenário de sucesso principal:_**
 
-1.	O colaborador da organização consulta a lista de tarefas publicadas que estejam com o período de seriação aberto e ainda não estejam seriadas.
+1.	O colaborador da organização consulta a lista de tarefas publicadas, com tipo de regimento atribuído sendo de 'Seriação automática',
+que estejam com o período de seriação aberto e ainda não estejam seriadas.
 2.  O colaborador seleciona uma tarefa desta lista e solicita ao sistema a lista de candidaturas válidas para este anúncio.
-3.  O sistema informa as candidaturas válidas recebidas para este anúncio e solicita ao colaborador informar se deseja proceder com a seriação dessas candidaturas.
-4.  O colaborador confirma. O sistema procede a seriação automática das candidaturas e mostra ao colaborador a lista final da seriação das candidaturas.
-5.  O sistema regista a seriação dada às candidaturas e informa o sucesso da operação.
+3.  O sistema informa as candidaturas válidas recebidas para este anúncio e solicita ao colaborador informar se deseja proceder com a seriação 
+dessas candidaturas.
+4.  O colaborador confirma. 
+5.  O sistema procede a seriação automática das candidaturas e mostra ao colaborador a lista final da seriação das candidaturas.
+6.  O sistema regista a seriação dada às candidaturas juntamente com a data/hora atual e informa o sucesso da operação.
 
 
 ### Fluxos alternativos
