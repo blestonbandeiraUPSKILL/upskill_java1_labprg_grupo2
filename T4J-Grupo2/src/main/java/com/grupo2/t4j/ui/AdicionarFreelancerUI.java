@@ -86,7 +86,7 @@ public class AdicionarFreelancerUI implements Initializable {
                 btnAddFreelancer.disabledProperty();
                 btnSair.setText("Voltar");
 
-                administrativoLogadoUI.updateListViewFreelancer();
+                administrativoLogadoUI.updateTableViewFreelancer();
             
                 AlertsUI.criarAlerta(Alert.AlertType.INFORMATION,
                     MainApp.TITULO_APLICACAO, "Registar Freelancer.",

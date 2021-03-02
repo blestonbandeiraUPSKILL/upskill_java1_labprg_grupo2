@@ -59,16 +59,16 @@ public class ConsultarFreelancerUI implements Initializable {
     }   
 
     public void transferData() throws SQLException {
-        String emailFreelancer = administrativoLogadoUI.listaFreelancer.getSelectionModel().getSelectedItem().getEmail().getEmailText();
+        String emailFreelancer = administrativoLogadoUI.tableViewFreelancer.getSelectionModel().getSelectedItem().getEmail().getEmailText();
 
         String arruamento = registarFreelancerController.getEnderecoPostal(emailFreelancer).getArruamento();
         String numeroPorta = registarFreelancerController.getEnderecoPostal(emailFreelancer).getPorta();
         String localidade = registarFreelancerController.getEnderecoPostal(emailFreelancer).getLocalidade();
         String codPostal = registarFreelancerController.getEnderecoPostal(emailFreelancer).getCodigoPostal();
 
-        txtNome.setText(administrativoLogadoUI.listaFreelancer.getSelectionModel().getSelectedItem().getNome());
-        txtNif.setText(administrativoLogadoUI.listaFreelancer.getSelectionModel().getSelectedItem().getNif());
-        txtEmail.setText(administrativoLogadoUI.listaFreelancer.getSelectionModel().getSelectedItem().getEmail().getEmailText());
+        txtNome.setText(administrativoLogadoUI.tableViewFreelancer.getSelectionModel().getSelectedItem().getNome());
+        txtNif.setText(administrativoLogadoUI.tableViewFreelancer.getSelectionModel().getSelectedItem().getNif());
+        txtEmail.setText(administrativoLogadoUI.tableViewFreelancer.getSelectionModel().getSelectedItem().getEmail().getEmailText());
         txtArruamento.setText(arruamento);
         txtPorta.setText(numeroPorta);
         txtLocalidade.setText(localidade);

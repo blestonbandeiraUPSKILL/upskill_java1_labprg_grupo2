@@ -248,7 +248,14 @@
                                                 <Insets bottom="5.0" top="20.0" />
                                             </padding>
                                         </Label>
-                                        <ListView fx:id="listaFreelancer" layoutX="21.0" layoutY="51.0" prefHeight="272.0" prefWidth="447.0" />
+                              <TableView fx:id="tableViewFreelancer" layoutX="14.0" layoutY="44.0" prefHeight="275.0" prefWidth="460.0">
+                                <columns>
+                                  <TableColumn fx:id="colunaNome" prefWidth="75.0" text="Nome" />
+                                  <TableColumn fx:id="colunaNif" prefWidth="75.0" text="NIF" />
+                                    <TableColumn fx:id="colunaTelefone" prefWidth="75.0" text="Telefone" />
+                                    <TableColumn fx:id="colunaEmail" prefWidth="234.0" text="Email" />
+                                </columns>
+                              </TableView>
                                     </children>
                                 </AnchorPane>
                             </content>

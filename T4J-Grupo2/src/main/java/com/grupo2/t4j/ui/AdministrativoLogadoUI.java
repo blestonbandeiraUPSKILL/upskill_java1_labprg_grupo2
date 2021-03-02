@@ -6,6 +6,7 @@ import com.grupo2.t4j.files.FileChooserT4J;
 import com.grupo2.t4j.model.AreaActividade;
 import com.grupo2.t4j.model.Categoria;
 import com.grupo2.t4j.model.CompetenciaTecnica;
+import com.grupo2.t4j.model.Email;
 import com.grupo2.t4j.model.Freelancer;
 import com.grupo2.t4j.persistence.inmemory.RepositorioAreaActividadeInMemory;
 import javafx.event.ActionEvent;
@@ -26,7 +27,9 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
+import javafx.beans.value.ObservableValue;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
@@ -97,6 +100,14 @@ public class AdministrativoLogadoUI implements Initializable {
     @FXML TableColumn<Object, Object> colunaCodigoATCat;
     @FXML TableView<Categoria> tableViewCategoria;
     
+    //TableView Freelancer
+    
+    @FXML TableColumn<Object, Object> colunaNome;
+    @FXML TableColumn<Object, Object> colunaNif;
+    @FXML TableColumn<Object, Object> colunaTelefone;
+    @FXML TableColumn<Email, String> colunaEmail;
+    @FXML TableView<Freelancer> tableViewFreelancer;
+    
 
 
     public void associarParentUI(StartingPageUI startingPageUI) {
@@ -140,7 +151,7 @@ public class AdministrativoLogadoUI implements Initializable {
         }
 
         try {
-            updateListViewFreelancer();
+            updateTableViewFreelancer();
         } catch (SQLException exception) {
             exception.printStackTrace();
         }
@@ -275,8 +286,14 @@ public class AdministrativoLogadoUI implements Initializable {
         
     }
 
-    public void updateListViewFreelancer() throws SQLException {
-         listaFreelancer.getItems().setAll(registarFreelancerController.getAll());
+    public void updateTableViewFreelancer() throws SQLException {
+        tableViewFreelancer.getItems().setAll(registarFreelancerController.getAll());
+                 
+        colunaNome.setCellValueFactory( new PropertyValueFactory<>("nome"));
+        colunaNif.setCellValueFactory( new PropertyValueFactory<>("nif"));
+        colunaTelefone.setCellValueFactory( new PropertyValueFactory<>("telefone"));
+        colunaEmail.setCellValueFactory( new PropertyValueFactory<>("email"));
+        
     }
     
     public void updateTableViewAreasActividade() throws SQLException {
@@ -287,11 +304,7 @@ public class AdministrativoLogadoUI implements Initializable {
     }
 
 
-    public void updateListViewCategoriasTarefa() throws SQLException {
-        listaCategorias.getItems().setAll(registarCategoriaController.getAll());
-    }
-
-    public void updateTableViewCategoriasTarefa() throws SQLException {
+      public void updateTableViewCategoriasTarefa() throws SQLException {
         tableViewCategoria.getItems().setAll(registarCategoriaController.getAll());
         
         colunaCodigoCat.setCellValueFactory( new PropertyValueFactory<>("codigoCategoria"));

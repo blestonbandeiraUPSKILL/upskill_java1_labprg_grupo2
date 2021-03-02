@@ -24,7 +24,7 @@ public class Utilizador implements Serializable{
     /**
      * O email do Utilizador
      */
-    private Email email;
+    Email email;
     
     /**
      * A password do Utilizador
