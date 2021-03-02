@@ -59,7 +59,7 @@ O administrativo inicia o processo de inserção das habilitações académicas 
 ![UC07a_Adicionar_Habilitacoes_Academicas_Diagrama_Sequencia](UC07a_Adicionar_Habilitacoes_Academicas_Diagrama_Sequencia.png)
 
 ## Diagrama de Classes <br/>
-![]()
+![UC07a_Adicionar_Habilitacoes_Academicas_Diagrama_Classes](UC07a_Adicionar_Habilitacoes_Academicas_Diagrama_Classes)
 
 ## Plano de Testes <br/>
 []()
