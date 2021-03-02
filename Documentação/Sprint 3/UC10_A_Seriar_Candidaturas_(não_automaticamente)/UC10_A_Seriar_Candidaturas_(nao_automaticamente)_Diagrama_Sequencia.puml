@@ -1,12 +1,13 @@
 @startuml
 
-title UC10 - Seriação (Não Automática) de Candidaturas
+title UC10-A - Seriar Candidaturas de Anúncio (não automaticamente)
 
 participant Colaborador
 participant SeriarCandidaturasUI
 participant SeriarCandidaturasCtrl
 participant RepositorioCandidatura
-participant Plataforma  << Singleton >> 
+participant RepositorioClassificacao
+
 
 activate Colaborador
 Colaborador -> SeriarCandidaturasUI: solicita lista das candidaturas \nà tarefa cujo período de apresentação \nde candidaturas terminou
@@ -15,10 +16,9 @@ SeriarCandidaturasUI -> SeriarCandidaturasCtrl: getCandidaturas()
 activate SeriarCandidaturasCtrl
 SeriarCandidaturasCtrl -> RepositorioCandidatura: getCandidaturas()
 activate RepositorioCandidatura
-RepositorioCandidatura -> Plataforma:getCandidaturas()
-activate Plataforma
-Plataforma --> RepositorioCandidatura: listaCandidaturas
-deactivate Plataforma
+
+
+
 RepositorioCandidatura --> SeriarCandidaturasCtrl: listaCandidaturas
 deactivate RepositorioCandidatura
 SeriarCandidaturasCtrl --> SeriarCandidaturasUI: listaCandidaturas
@@ -33,10 +33,7 @@ SeriarCandidaturasUI -> SeriarCandidaturasCtrl: ordenar(listaCandidaturas, class
 activate SeriarCandidaturasCtrl
 SeriarCandidaturasCtrl -> RepositorioCandidatura: ordenarCandidaturas(listaCandidaturas, classificacao)
 activate RepositorioCandidatura
-RepositorioCandidatura -> Plataforma: ordenarCandidaturas(listaCandidaturas, classificacao)
-activate Plataforma
-Plataforma --> RepositorioCandidatura: listaCandidaturasOrdenadas
-deactivate Plataforma
+
 RepositorioCandidatura --> SeriarCandidaturasCtrl: listaCandidaturasOrdenadas
 deactivate RepositorioCandidatura
 SeriarCandidaturasCtrl --> SeriarCandidaturasUI: listaCandidaturasOrdenadas
