@@ -1,16 +1,17 @@
 @startuml
+
 title UC12 - Eliminar Candidatura
+
 actor Freelancer
+participant ":Sistema" as Sistema
 activate Freelancer
-Freelancer -> ":Sistema" : 1. O Freelancer pede para consultar as suas candidaturas a tarefas;
-activate ":Sistema"
-":Sistema" --> Freelancer : 2. O Sistema apresenta as candidaturas efetuadas pelo Freelancer que ainda estejam a decorrer;  
-deactivate ":Sistema"
-Freelancer -> ":Sistema" : 3. O Freelancer selecciona uma das suas candidaturas e solicita a sua eliminação
-activate ":Sistema"
-":Sistema" --> Freelancer : 4. O Sistema 
-deactivate ":Sistema"
-Freelancer -> ":Sistema" : 5.  
-deactivate ":Sistema"
+
+Freelancer -> Sistema : 1. Inicia a consulta a candidaturas em período de submissão
+activate Sistema
+Freelancer -> Sistema : 3. Seleciona a candidatura que pretend eliminar
+Sistema --> Freelancer : 4. Solicita a confirmação do pedido de eliminação da candidatura
+Freelancer -> Sistema : 5. Confirma o pedido de eliminação da candidatura
+Sistema --> Freelancer : 6. Informa que a operação de eliminação da candidatura foi realizada com sucesso
+deactivate Sistema
 deactivate Freelancer
 @enduml
