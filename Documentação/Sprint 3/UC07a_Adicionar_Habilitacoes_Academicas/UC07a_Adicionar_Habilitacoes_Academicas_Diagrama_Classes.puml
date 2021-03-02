@@ -1,0 +1,57 @@
+@startuml
+
+title UC07a - Adicionar Habilitações Académicas Freelancer
+
+left to right direction
+
+class AdicionarHabilitacoesAcademicasUI{
+    --
+    -getAll()
+    -findByEmail(emailFreelancer)
+    -getAllHabsAcademicas(emailFreelancer)
+    -registaHabilitacaoAcademica(grau, \nnomeCurso, instituicao, mediaCurso)  
+}
+
+class AdicionarHabilitacoesAcademicasCTRL{
+    --
+    -getAll()
+    -findByEmail(emailFreelancer)
+    -getAllHabsAcademicas(emailFreelancer)
+    -new HabilitacaoAcademica(grau, \nnomeCurso, instituicao, mediaCurso)
+    -save(habilitacaoAcademica)  
+}
+
+class RepositorioFreelancer {
+    -getAll()
+    -findByEmail(emailFreelancer)  
+}
+
+class RepositorioHabilitacaoAcademica {
+    -getAllHabsAcademicas(emailFreelancer)
+}
+
+
+class Freelancer {
+    -String nome
+    -String NIF
+    -String telefone
+    -Email email
+}
+
+class HabilitacaoAcademica {
+    -String grau
+    -String designacaoCurso
+    -String nomeInstituicao
+    -Double mediaCurso
+}
+
+
+
+AdicionarHabilitacoesAcademicasUI ..> AdicionarHabilitacoesAcademicasCTRL
+RepositorioFreelancer -- Freelancer
+Freelancer -- HabilitacaoAcademica
+AdicionarHabilitacoesAcademicasCTRL ..> RepositorioFreelancer
+AdicionarHabilitacoesAcademicasCTRL ..> RepositorioHabilitacaoAcademica
+
+
+@enduml

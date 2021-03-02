@@ -1,0 +1,63 @@
+@startuml
+
+title UC07b - Adicionar Competências Técnicas Freelancer
+
+participant "Administrativo" as Administrativo
+participant "AdicionarCompetenciasTecnicasUI" as AdicionarCompetenciasTecnicasUI
+participant "AdicionarCompetenciasTecnicasCTRL" as AdicionarCompetenciasTecnicasCTRL
+participant "rf: RepositorioFreelancer" as RepositorioFreelancer
+participant "rct: RepositorioReconhecimentoGP" as RepositorioReconhecimentoGP
+
+activate Administrativo
+Administrativo -> AdicionarCompetenciasTecnicasUI : inicia a adição de reconhecimentos \nde competências técnicas de freelancer
+activate AdicionarCompetenciasTecnicasUI
+AdicionarCompetenciasTecnicasUI -> AdicionarCompetenciasTecnicasCTRL: getAll()
+activate AdicionarCompetenciasTecnicasCTRL
+AdicionarCompetenciasTecnicasCTRL -> RepositorioFreelancer: getAll()
+activate RepositorioFreelancer
+
+RepositorioFreelancer --> AdicionarCompetenciasTecnicasCTRL: freelancers
+deactivate RepositorioFreelancer
+AdicionarCompetenciasTecnicasCTRL --> AdicionarCompetenciasTecnicasUI: freelancerso
+deactivate AdicionarCompetenciasTecnicasCTRL
+AdicionarCompetenciasTecnicasUI --> Administrativo: lista de freelancers registados
+deactivate AdicionarCompetenciasTecnicasUI
+
+Administrativo -> AdicionarCompetenciasTecnicasUI: selecciona um freelancer
+activate AdicionarCompetenciasTecnicasUI
+AdicionarCompetenciasTecnicasUI -> AdicionarCompetenciasTecnicasCTRL: findByEmail(email)
+activate AdicionarCompetenciasTecnicasCTRL
+AdicionarCompetenciasTecnicasCTRL -> RepositorioFreelancer: findByEmail(email)
+activate RepositorioFreelancer
+RepositorioFreelancer --> AdicionarCompetenciasTecnicasCTRL: freelancer
+deactivate RepositorioFreelancer
+AdicionarCompetenciasTecnicasCTRL --> AdicionarCompetenciasTecnicasUI: freelancer
+deactivate AdicionarCompetenciasTecnicasCTRL
+AdicionarCompetenciasTecnicasUI -> AdicionarCompetenciasTecnicasCTRL: getAllCompsTecnicas(emailFreelancer)
+activate AdicionarCompetenciasTecnicasCTRL
+AdicionarCompetenciasTecnicasCTRL -> RepositorioReconhecimentoGP: getAllCompsTecnicas(emailFreelancer)
+activate RepositorioReconhecimentoGP
+RepositorioReconhecimentoGP --> AdicionarCompetenciasTecnicasCTRL: competenciasTecnicas
+deactivate RepositorioReconhecimentoGP
+AdicionarCompetenciasTecnicasCTRL --> AdicionarCompetenciasTecnicasUI: competenciasTecnicas
+deactivate AdicionarCompetenciasTecnicasCTRL
+AdicionarCompetenciasTecnicasUI --> Administrativo: nome, email e reconhecimentos \nde competências técnicas \njá registadas do freelancer em questão
+deactivate AdicionarCompetenciasTecnicasUI
+
+Administrativo -> AdicionarCompetenciasTecnicasUI: insere os dados dos reconhecimentos das \ncompetências técnicas(dataReconhecimento, \ncompetenciaTecnica, grauProficiencia)
+activate AdicionarCompetenciasTecnicasUI
+AdicionarCompetenciasTecnicasUI -> AdicionarCompetenciasTecnicasCTRL: registarReconhecimentoGP\n(dataReconhecimento, competenciaTecnica, grauProficiencia)
+activate AdicionarCompetenciasTecnicasCTRL
+create ReconhecimentoGP
+AdicionarCompetenciasTecnicasCTRL -> ReconhecimentoGP: new ReconhecimentoGP(dataReconhecimento, competenciaTecnica, grauProficiencia)
+AdicionarCompetenciasTecnicasCTRL -> RepositorioReconhecimentoGP: save(reconhecimentoGP)
+activate RepositorioReconhecimentoGP
+RepositorioReconhecimentoGP --> AdicionarCompetenciasTecnicasCTRL: success
+deactivate RepositorioReconhecimentoGP
+AdicionarCompetenciasTecnicasCTRL --> AdicionarCompetenciasTecnicasUI: success
+deactivate AdicionarCompetenciasTecnicasCTRL
+AdicionarCompetenciasTecnicasUI --> Administrativo: reconhecimento de competência técnica \nadicionado com sucesso
+deactivate AdicionarCompetenciasTecnicasUI
+deactivate Administrativo
+
+@enduml

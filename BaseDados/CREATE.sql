@@ -185,7 +185,7 @@ CREATE TABLE ProcessoSeriacao(
         CONSTRAINT pk_ProcessoSeriacao_idProcessoSeriacao PRIMARY KEY,
     dataRealizacao date
         CONSTRAINT nn_ProcessoSeriacao_dataRealizacao NOT NULL,
-    idTipoRegimento integer
+    idAnuncio integer
 );
 
 CREATE TABLE TipoRegimento(
@@ -201,10 +201,16 @@ CREATE TABLE TipoRegimento(
 CREATE TABLE Classificacao(
     idClassificacao integer GENERATED AS IDENTITY
         CONSTRAINT pk_Classificacao_idClassificacao PRIMARY KEY,
-    lugar integer
+    posicao integer
         CONSTRAINT nn_Classificacao_lugar NOT NULL
         CONSTRAINT uk_Classificao_lugar UNIQUE,
-    idProcessoSeriacao integer
+    idProcessoSeriacao integer,
+    idCandidatura integer
+);
+
+CREATE TABLE ColaboradorClassificacao(
+    emailColaborador varchar(50),
+    idClassificacao integer
 );
 
 

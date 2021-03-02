@@ -1,0 +1,47 @@
+@startuml
+
+left to right direction
+
+title UC07b - Adicionar Competências Técnicas Freelancer
+
+class Plataforma {
+  -String designacao
+}
+
+class Freelancer {
+  -String nome
+  -String NIF
+  -String telefone
+  -String email
+}
+
+class Administrativo {
+  -String email
+}
+
+class ReconhecimentoGP{
+  -Date dataReconhecimento
+}
+
+class CompetenciaTecnica {
+  -String codigo
+  -String descBreve
+  -String descDetalhada
+}
+
+class GrauProficiencia {
+  -Integer valor
+  -String designacao
+}
+
+Plataforma "1" -- "*" CompetenciaTecnica : possui >
+Plataforma "1" -- "1..*" Administrativo: possui >
+Administrativo "1..*" -- Freelancer: regista >
+Administrativo "1..*" -- ReconhecimentoGP: adiciona >
+Plataforma "1" -- "1..*" Freelancer : tem/usa >
+Freelancer "1" -- "*" ReconhecimentoGP : recebe(u) >
+ReconhecimentoGP "*" -- "1" CompetenciaTecnica : relativa a >
+ReconhecimentoGP "*" -- "1" GrauProficiencia : reconhece >
+CompetenciaTecnica "1" -- "*" GrauProficiencia : aplica >
+
+@enduml

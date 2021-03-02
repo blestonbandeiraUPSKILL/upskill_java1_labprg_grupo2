@@ -15,17 +15,6 @@ Sistema --> Administrativo: 2 solicita os dados  do freelancer (nome, NIF, ender
 Administrativo -> Sistema: 3 introduz os dados solicitados
 Sistema --> Administrativo: 4 Operação bem sucedida
 
-loop
-Administrativo -> Sistema : 5 Introduz os dados de habilitações académicas (grau, designação do curso, instituição que concedeu o grau e média do curso)
-Sistema --> Administrativo : 6 Operação bem sucedida
-end
-
-loop
-Administrativo -> Sistema: 7 introduz os reconhecimentos de competências técnicas (data, competência técnica e grau de proficiência)
-Sistema --> Administrativo: 8 Operação bem sucedida
-end
-
-
 deactivate Administrativo
 deactivate Sistema
 

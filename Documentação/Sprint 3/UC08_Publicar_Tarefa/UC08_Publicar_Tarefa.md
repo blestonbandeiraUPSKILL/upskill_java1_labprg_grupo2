@@ -42,7 +42,7 @@ O colaborador da organização inicia a publicação de uma tarefa, seleccionand
 9.	O sistema retorna uma mensagem de sucesso: a tarefa foi publicada.
 10.	O colaborador termina o processo.
 
-### Fluxos alternativos
+**_Fluxos Alternativos:_**
 
 1.	O sistema não encontra tarefas por publicar relativas à organização do colaborador. <br/>
     a. O caso de uso termina.
