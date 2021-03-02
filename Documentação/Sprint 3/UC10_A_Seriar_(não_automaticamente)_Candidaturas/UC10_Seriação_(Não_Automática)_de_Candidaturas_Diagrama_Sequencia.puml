@@ -1,0 +1,49 @@
+@startuml
+
+title UC10 - Seriação (Não Automática) de Candidaturas
+
+participant Colaborador
+participant SeriarCandidaturasUI
+participant SeriarCandidaturasCtrl
+participant RepositorioCandidatura
+participant Plataforma  << Singleton >> 
+
+activate Colaborador
+Colaborador -> SeriarCandidaturasUI: solicita lista das candidaturas \nà tarefa cujo período de apresentação \nde candidaturas terminou
+activate SeriarCandidaturasUI
+SeriarCandidaturasUI -> SeriarCandidaturasCtrl: getCandidaturas()
+activate SeriarCandidaturasCtrl
+SeriarCandidaturasCtrl -> RepositorioCandidatura: getCandidaturas()
+activate RepositorioCandidatura
+RepositorioCandidatura -> Plataforma:getCandidaturas()
+activate Plataforma
+Plataforma --> RepositorioCandidatura: listaCandidaturas
+deactivate Plataforma
+RepositorioCandidatura --> SeriarCandidaturasCtrl: listaCandidaturas
+deactivate RepositorioCandidatura
+SeriarCandidaturasCtrl --> SeriarCandidaturasUI: listaCandidaturas
+SeriarCandidaturasUI --> Colaborador: lista de candidaturas à tarefa
+
+deactivate SeriarCandidaturasUI
+deactivate SeriarCandidaturasCtrl
+
+Colaborador -> SeriarCandidaturasUI: atribui classificação \nàs candidaturas apresentadas
+activate SeriarCandidaturasUI
+SeriarCandidaturasUI -> SeriarCandidaturasCtrl: ordenar(listaCandidaturas, classificacao)
+activate SeriarCandidaturasCtrl
+SeriarCandidaturasCtrl -> RepositorioCandidatura: ordenarCandidaturas(listaCandidaturas, classificacao)
+activate RepositorioCandidatura
+RepositorioCandidatura -> Plataforma: ordenarCandidaturas(listaCandidaturas, classificacao)
+activate Plataforma
+Plataforma --> RepositorioCandidatura: listaCandidaturasOrdenadas
+deactivate Plataforma
+RepositorioCandidatura --> SeriarCandidaturasCtrl: listaCandidaturasOrdenadas
+deactivate RepositorioCandidatura
+SeriarCandidaturasCtrl --> SeriarCandidaturasUI: listaCandidaturasOrdenadas
+deactivate SeriarCandidaturasCtrl
+SeriarCandidaturasUI --> Colaborador: candidatura seleccionada com \nbase nos critérios de seriação
+deactivate SeriarCandidaturasUI
+deactivate Colaborador
+
+
+@enduml

@@ -1,0 +1,78 @@
+@startuml
+left to right direction
+
+title UC10 - Seriação (Não Automática) de Candidaturas
+
+class Plataforma{
+    -String designacao
+}
+
+class Anuncio{
+    -date dtInicioPublicitacao
+    -date dtFimPublicitacao
+    -date dtInicioCandidatura
+    -date dtFimCandidatura
+    -date dtInicioSeriacao
+    -date dtFimSeriacao
+}
+
+class Organizacao{
+  -String nome 
+  -String NIF 
+  -Website website
+  -String telefone
+}
+
+class TipoRegimento{
+  -String designacao
+  -String descricaoRegras
+}
+
+class Colaborador{
+    -String nome
+    -String funcao
+    -String telefone
+    -Email email
+}
+
+class ProcessoSeriacao{
+    -Data dataRealizacao
+}
+
+class Classificacao{
+    integer lugar
+}
+
+class Candidatura{
+    -Data dataCandidatura
+    -double valorPretendido
+    -integer nrClassificacao
+    -String txtApresentacao
+    -String txtMotivacao
+}
+
+class Freelancer{
+    -String nome
+    -String NIF
+    -String telefone
+    -Email email
+}
+
+Candidatura "*" -- "1" Freelancer: realizada por >
+Classificacao "0..1" -- "1" Candidatura: referente a >
+ProcessoSeriacao "1"- "*" Classificacao: resulta >
+Anuncio "1" - "0..1" ProcessoSeriacao: despoleta >
+Plataforma "1" -- "*" Anuncio: publicita >
+Plataforma "1" -- "*" Organizacao: tem registadas >
+ProcessoSeriacao "1"- "1..*" Colaborador: realizado por  >
+Anuncio "*" --- "1" Colaborador: publicado por >
+Organizacao "1" -- "1..*" Colaborador: tem >
+Anuncio "1" --- "*" Candidatura: recebe >
+Plataforma "1" - "*" TipoRegimento: suporta >
+Anuncio "1" -- "1" TipoRegimento: rege-se por >
+
+
+
+
+
+@enduml
