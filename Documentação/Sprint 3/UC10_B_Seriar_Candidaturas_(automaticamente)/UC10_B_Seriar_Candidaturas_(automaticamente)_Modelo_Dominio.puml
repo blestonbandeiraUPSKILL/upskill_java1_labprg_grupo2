@@ -1,7 +1,7 @@
 @startuml
 left to right direction
 
-title UC10 - Seriação (Não Automática) de Candidaturas
+title UC10-B - Seriar Candidaturas de Anúncio (automaticamente)
 
 class Plataforma{
     -String designacao
@@ -18,7 +18,8 @@ class Anuncio{
 
 class Organizacao{
   -String nome 
-  -String NIF 
+  -String NIF
+  -Email email 
   -Website website
   -String telefone
 }
@@ -40,11 +41,12 @@ class ProcessoSeriacao{
 }
 
 class Classificacao{
-    integer lugar
+    -integer lugar
 }
 
 class Candidatura{
     -Data dataCandidatura
+    -Data dataEdicaoCandidatura
     -double valorPretendido
     -integer nrClassificacao
     -String txtApresentacao
@@ -59,13 +61,13 @@ class Freelancer{
 }
 
 Candidatura "*" -- "1" Freelancer: realizada por >
-Classificacao "0..1" -- "1" Candidatura: referente a >
-ProcessoSeriacao "1"- "*" Classificacao: resulta >
-Anuncio "1" - "0..1" ProcessoSeriacao: despoleta >
+Classificacao "1" -- "1" Candidatura: referente a >
+ProcessoSeriacao "1"- "1..*" Classificacao: resulta >
+Anuncio "1" - "*" ProcessoSeriacao: despoleta >
 Plataforma "1" -- "*" Anuncio: publicita >
-Plataforma "1" -- "*" Organizacao: tem registadas >
-ProcessoSeriacao "1"- "1..*" Colaborador: realizado por  >
-Anuncio "*" --- "1" Colaborador: publicado por >
+Plataforma "1" --down- "*" Organizacao: tem registadas >
+ProcessoSeriacao "1"--- "1" Colaborador: solicitado por  >
+Anuncio "*" ---- "1" Colaborador: publicado por >
 Organizacao "1" -- "1..*" Colaborador: tem >
 Anuncio "1" --- "*" Candidatura: recebe >
 Plataforma "1" - "*" TipoRegimento: suporta >
