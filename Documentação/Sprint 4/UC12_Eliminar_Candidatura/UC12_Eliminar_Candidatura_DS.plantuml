@@ -1,0 +1,51 @@
+@startuml
+participant Freelancer
+participant "EliminarCandidaturaUI" as EliminarCandidaturaUI
+participant "EliminarCandidaturaCTRL" as EliminarCandidaturaCTRL
+participant RepositorioCandidatura
+
+
+title UC12 - Eliminar Candidatura
+activate Freelancer
+Freelancer -> EliminarCandidaturaUI : Consulta candidaturas elegíveis
+activate EliminarCandidaturaUI
+EliminarCandidaturaUI -> EliminarCandidaturaCTRL : getAllCandidaturasElegíveis \n(emailFreelancer)
+activate EliminarCandidaturaCTRL
+EliminarCandidaturaCTRL -> RepositorioCandidatura : getAllCandidaturasElegíveis()
+activate RepositorioCandidatura
+RepositorioCandidatura --> EliminarCandidaturaCTRL : candidaturasElegíveis
+deactivate RepositorioCandidatura
+EliminarCandidaturaCTRL --> EliminarCandidaturaUI : candidaturasElegíveis
+deactivate EliminarCandidaturaCTRL
+alt Não existem candidaturas elegíveis
+EliminarCandidaturaUI --> Freelancer : Não existem candidaturas elegíveis
+deactivate EliminarCandidaturaUI
+else Existem candidaturas elegíveis
+Freelancer -> EliminarCandidaturaUI : Seleciona a candidatura
+activate EliminarCandidaturaUI
+EliminarCandidaturaUI -> EliminarCandidaturaCTRL : getCandidatura(idCandidatura)
+activate EliminarCandidaturaCTRL
+EliminarCandidaturaCTRL -> RepositorioCandidatura : getCandidatura(idCandidatura)
+activate RepositorioCandidatura
+RepositorioCandidatura --> EliminarCandidaturaCTRL : candidatura
+deactivate RepositorioCandidatura
+EliminarCandidaturaCTRL --> EliminarCandidaturaUI : candidatura
+deactivate EliminarCandidaturaCTRL
+EliminarCandidaturaUI --> Freelancer : Apresenta os dados registados \nSolicita eliminar a candidatura
+deactivate EliminarCandidaturaUI
+Freelancer -> EliminarCandidaturaUI : Elimina a candidatura
+activate EliminarCandidaturaUI
+EliminarCandidaturaUI -> EliminarCandidaturaCTRL : deleteCandidatura(idCandidatura, valorPretendido, \nnumeroDias, txtApresentacao, txtMotivacao)
+activate EliminarCandidaturaCTRL
+EliminarCandidaturaCTRL -> RepositorioCandidatura : deleteCandidatura(idCandidatura, valorPretendido, \nnumeroDias, txtApresentacao, txtMotivacao)
+activate RepositorioCandidatura
+RepositorioCandidatura -> RepositorioCandidatura: delete(idCandidatura, valorPretendido, \nnumeroDias, txtApresentacao, txtMotivacao)
+RepositorioCandidatura --> EliminarCandidaturaCTRL: candidaturaEliminada
+deactivate RepositorioCandidatura
+EliminarCandidaturaCTRL --> EliminarCandidaturaUI: candidaturaEliminada
+deactivate EliminarCandidaturaCTRL
+EliminarCandidaturaUI --> Freelancer: Candidatura eliminada com sucesso
+deactivate EliminarCandidaturaUI
+end
+deactivate Freelancer
+@enduml
