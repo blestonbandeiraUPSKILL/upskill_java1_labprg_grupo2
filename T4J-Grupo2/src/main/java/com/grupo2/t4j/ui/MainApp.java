@@ -34,7 +34,7 @@ public class MainApp extends Application {
             stage.setTitle(TITULO_APLICACAO);
 
             // Set the application icon
-            //stage.getIcons().add(new Image("com/grupo2/t4j/images/iconfinder_builder_worker_helmet_4043241.png"));
+            stage.getIcons().add(new Image("com/grupo2/t4j/images/iconfinder_builder_worker_helmet_4043241.png"));
           
             stage.setScene(scene);
 

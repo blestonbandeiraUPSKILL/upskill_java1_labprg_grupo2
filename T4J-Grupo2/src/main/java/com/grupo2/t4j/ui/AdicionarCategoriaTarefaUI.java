@@ -196,7 +196,7 @@ public class AdicionarCategoriaTarefaUI implements Initializable {
                     cmbAreaActividade.getSelectionModel().getSelectedItem().getCodigo());
 
             if(adicionou) {
-                administrativoLogadoUI.updateListViewCategoriasTarefa();
+                administrativoLogadoUI.updateTableViewCategoriasTarefa();
                 cmbAreaActividade.setDisable(true);
 
 
