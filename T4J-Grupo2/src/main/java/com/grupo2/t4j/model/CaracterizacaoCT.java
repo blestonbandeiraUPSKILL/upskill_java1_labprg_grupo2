@@ -54,6 +54,13 @@ public class CaracterizacaoCT implements Serializable{
         setObrigatoriedade(obrigatoriedade);
     }
 
+    public CaracterizacaoCT(int idCaracterCT, String obrigatoria, int grauProfMinimo, String codigoCategoria) {
+        setIdCaracterizacao(idCaracterCT);
+        setObrigatoriedade(Obrigatoriedade.valueOf(obrigatoria));
+        setCodigoGP(grauProfMinimo);
+        setCodigoCategoria(codigoCategoria);
+    }
+
     public int getCodigoGP() {
         return codigoGP;
     }

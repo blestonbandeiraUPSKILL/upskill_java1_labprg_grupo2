@@ -22,4 +22,6 @@ public interface RepositorioCaracterizacaoCT {
     
     CaracterizacaoCT findByCategoriaEGrau (String codigoCategoria,
                                            int codigoGP) throws SQLException;
+
+    List<CaracterizacaoCT> getAllByCategoria(String codigoCategoria) throws SQLException;
 }
