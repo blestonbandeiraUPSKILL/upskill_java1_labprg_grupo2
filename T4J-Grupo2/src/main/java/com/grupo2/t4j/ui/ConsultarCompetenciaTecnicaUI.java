@@ -8,6 +8,7 @@ package com.grupo2.t4j.ui;
 
 import com.grupo2.t4j.controller.RegistarAreaActividadeController;
 import com.grupo2.t4j.controller.RegistarGrauProficienciaController;
+import com.grupo2.t4j.model.CaracterizacaoCT;
 import com.grupo2.t4j.model.GrauProficiencia;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -35,7 +36,7 @@ public class ConsultarCompetenciaTecnicaUI implements Initializable {
     
     @FXML TextArea txtDescricaoDetalhada;
     @FXML TextField txtAreaActividade;
-    @FXML ListView<GrauProficiencia> listViewGrausAplicaveis;
+    @FXML ListView<CaracterizacaoCT> listViewGrausAplicaveis;
     @FXML TextField txtDescricaoBreve;
     @FXML TextField txtCodigoCompetenciaTecnica;
     @FXML Button btnVoltar;
@@ -73,7 +74,9 @@ public class ConsultarCompetenciaTecnicaUI implements Initializable {
         txtCodigoCompetenciaTecnica.setText(codigoCompetenciaTecnica);
         txtDescricaoBreve.setText(administrativoLogadoUI.tableViewCompetenciaTecnica.getSelectionModel().getSelectedItem().getDescricaoBreve());
         txtDescricaoDetalhada.setText(administrativoLogadoUI.tableViewCompetenciaTecnica.getSelectionModel().getSelectedItem().getDescricaoDetalhada());
-        listViewGrausAplicaveis.getItems().setAll(registarGrauProficienciaController.getAllByCompetenciaTecnica(txtCodigoCompetenciaTecnica.getText()));
+        listViewGrausAplicaveis.getItems().setAll(
+                registarGrauProficienciaController.getAllByCompetenciaTecnica(
+                        txtCodigoCompetenciaTecnica.getText()));
         txtAreaActividade.setText(registarAreaActividadeController.getAreaActividade(codigoAreaActividade).getDescBreve());
     }
 
