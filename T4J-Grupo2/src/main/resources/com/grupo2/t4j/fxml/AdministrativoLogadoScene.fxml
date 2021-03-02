@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" styleClass="BorderPane" stylesheets="@../style/app.css" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.AdministrativoLogadoUI">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" styleClass="BorderPane" stylesheets="@../style/app.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.AdministrativoLogadoUI">
     <center>
         <BorderPane prefHeight="200.0" prefWidth="200.0" styleClass="BorderPane" BorderPane.alignment="CENTER">
             <top>
@@ -119,7 +120,6 @@
                                                 <Font name="Calibri" size="16.0" />
                                             </font>
                                         </Label>
-                                        <ListView fx:id="listaCategorias" layoutX="14.0" layoutY="48.0" prefHeight="260.0" prefWidth="475.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="210.0" AnchorPane.topAnchor="50.0" />
                                         <VBox alignment="CENTER" layoutX="585.0" layoutY="260.0" AnchorPane.bottomAnchor="50.0" AnchorPane.rightAnchor="40.0" />
                                         <Button fx:id="btnConsultarCategoriaTarefa" layoutX="557.0" layoutY="180.0" mnemonicParsing="false" onAction="#consultarCategoriaAction" prefHeight="25.0" prefWidth="80.0" styleClass="btnConfirmar" text="Consultar">
                                             <font>
@@ -148,6 +148,14 @@
                                                 </Tooltip>
                                             </tooltip>
                                         </Button>
+                              <TableView fx:id="tableViewCategoria" layoutX="14.0" layoutY="58.0" prefHeight="245.0" prefWidth="518.0">
+                                 <columns>
+                                    <TableColumn fx:id="colunaCodigoCat" prefWidth="75.0" text="Código " />
+                                    <TableColumn fx:id="colunaCodigoATCat" prefWidth="75.0" text="Código AT" />
+                                    <TableColumn fx:id="colunaDescBreveCat" prefWidth="103.0" text="Descrição Breve" />
+                                    <TableColumn fx:id="colunaDescDetalhadaCat" prefWidth="264.0" text="Descrição Detalhada" />
+                                 </columns>
+                              </TableView>
                                     </children>
                                 </AnchorPane>
                             </content>

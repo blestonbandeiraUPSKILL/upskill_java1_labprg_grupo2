@@ -89,6 +89,14 @@ public class AdministrativoLogadoUI implements Initializable {
     @FXML TableColumn<Object, Object> colunaCodigoATCT;
     @FXML TableView<CompetenciaTecnica> tableViewCompetenciaTecnica;
     
+    //TableView Categoria
+    
+    @FXML TableColumn<Object, Object> colunaDescBreveCat;
+    @FXML TableColumn<Object, Object> colunaDescDetalhadaCat;
+    @FXML TableColumn<Object, Object> colunaCodigoCat;
+    @FXML TableColumn<Object, Object> colunaCodigoATCat;
+    @FXML TableView<Categoria> tableViewCategoria;
+    
 
 
     public void associarParentUI(StartingPageUI startingPageUI) {
@@ -126,7 +134,7 @@ public class AdministrativoLogadoUI implements Initializable {
         }
 
         try {
-            updateListViewCategoriasTarefa();
+            updateTableViewCategoriasTarefa();
         } catch (SQLException exception) {
             exception.printStackTrace();
         }
@@ -280,6 +288,15 @@ public class AdministrativoLogadoUI implements Initializable {
 
     public void updateListViewCategoriasTarefa() throws SQLException {
         listaCategorias.getItems().setAll(registarCategoriaController.getAll());
+    }
+    
+    public void updateTableViewCategoriasTarefa() throws SQLException {
+        tableViewCategoria.getItems().setAll(registarCategoriaController.getAll());
+        
+        colunaCodigoCat.setCellValueFactory( new PropertyValueFactory<>("codigoCategoria"));
+        colunaDescBreveCat.setCellValueFactory( new PropertyValueFactory<>("descBreve"));
+        colunaDescDetalhadaCat.setCellValueFactory( new PropertyValueFactory<>("descDetalhada"));
+        colunaCodigoATCat.setCellValueFactory( new PropertyValueFactory<>("codigoAreaActividade"));
     }
 
     public void updateTableViewCompetenciasTecnicas() throws SQLException {
