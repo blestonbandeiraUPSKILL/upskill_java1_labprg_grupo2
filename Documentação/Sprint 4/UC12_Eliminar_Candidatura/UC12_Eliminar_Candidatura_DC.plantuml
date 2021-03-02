@@ -1,0 +1,45 @@
+@startuml
+left to right direction
+
+title UC12 - Eliminar Candidatura
+
+class Freelancer {
+    -String nome 
+    -String NIF
+    -String telefone
+    -Email email
+}
+
+class Candidatura {
+    -Data dataCandidatura
+    -Data dataEdicaoCandidatura
+    -Double valorPretendido
+    -Integer numeroDias
+    -String txtApresentacao
+    -String txtMotivacao
+}
+
+class UC12_UI{
+    --
+    -getAllCandidaturasElegiveis(emailFreelancer)
+    -getCandidatura(idCandidatura)
+    -deleteCandidatura(idCandidatura, valorPretendido, \nnumeroDias, txtApresentacao, txtMotivacao)    
+}
+
+class UC12_CTRL{
+    --
+    -getAllCandidaturasElegiveis(emailFreelancer)
+    -getCandidatura(idCandidatura)
+    -deleteCandidatura(idCandidatura, valorPretendido, \nnumeroDias, txtApresentacao, txtMotivacao)   
+}
+
+class RepositorioCandidatura {
+    -deleteCandidatura(idCandidatura, valorPretendido, \nnumeroDias, txtApresentacao, txtMotivacao)
+}
+
+UC12_UI ..> UC12_CTRL
+UC12_CTRL ..> RepositorioCandidatura
+RepositorioCandidatura -- Candidatura
+Freelancer - UC12_UI
+Freelancer - Candidatura
+@enduml
