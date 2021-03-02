@@ -8,6 +8,7 @@ participant SeriarCandidaturasCtrl
 participant RepositorioAnuncio
 participant RepositorioCandidatura
 participant RepositorioClassificacao
+participant RepositorioColaborador
 
 
 activate Colaborador
@@ -25,10 +26,11 @@ alt (Não existem anúncios a seriar manualmente)
 SeriarCandidaturasUI --> Colaborador: Não existem anúncios \ndisponiveis
 
 else Existem anúncios a seriar manualmente 
-SeriarCandidaturasUI --> Colaborador: Lista dos Anúncios a \nseriar manualmente
+SeriarCandidaturasUI --> Colaborador: Mostra a lista dos Anúncios a \nseriar manualmente
 deactivate SeriarCandidaturasUI
 
-Colaborador -> SeriarCandidaturasUI: Seleciona um anúncio a seriar
+alt (Não existem colaboradores participantes adicionais)
+Colaborador -> SeriarCandidaturasUI: Seleciona um anúncio a seriar \nsem colaboradores participantes \nadicionais
 activate SeriarCandidaturasUI
 SeriarCandidaturasUI -> SeriarCandidaturasCtrl: getAllCandidaturas(idAnuncio)
 activate SeriarCandidaturasCtrl
@@ -40,13 +42,10 @@ SeriarCandidaturasCtrl --> SeriarCandidaturasUI: listaCandidaturas(idAnuncio)
 deactivate SeriarCandidaturasCtrl
 SeriarCandidaturasUI --> Colaborador: Mostra a lista de candidaturas \nao anúncio e solicita a classificação \nde cada candidatura
 deactivate SeriarCandidaturasUI
-
-
-
 loop
 Colaborador -> SeriarCandidaturasUI: Atribui uma classificação a uma \ndada candidatura
 activate SeriarCandidaturasUI
-SeriarCandidaturasUI -> SeriarCandidaturasCtrl: setSeriacao\n(idCandidatura, posicao)
+SeriarCandidaturasUI -> SeriarCandidaturasCtrl: saveSeriaocao\n(idAnuncio, idCandidatura, posicao, )
 activate SeriarCandidaturasCtrl
 SeriarCandidaturasCtrl -> RepositorioClassificacao: saveSeriacao(idAnuncio, idCandidatura, posicao)
 activate RepositorioClassificacao
@@ -55,18 +54,23 @@ RepositorioClassificacao --> SeriarCandidaturasCtrl: listaCandidaturasSeriada(id
 deactivate RepositorioClassificacao
 SeriarCandidaturasCtrl --> SeriarCandidaturasUI: listaCandidaturasSeriadas\n(idAnuncio)
 deactivate SeriarCandidaturasCtrl
-SeriarCandidaturasUI --> Colaborador: Mostra a lista seriada \nde candidaturas e solicita \nconfirmação
+SeriarCandidaturasUI --> Colaborador: Mostra a lista seriada \nde candidaturas e informa \no sucesso da operação
+deactivate SeriarCandidaturasUI
+else Existem colaboradores participantes adicionais
+Colaborador -> SeriarCandidaturasUI: Indica que há colaboradores participantes \nadicionais
+activate SeriarCandidaturasUI
+SeriarCandidaturasUI -> SeriarCandidaturasCtrl: getAllColaboradores(nifOrganizacao)
+activate SeriarCandidaturasCtrl
+SeriarCandidaturasCtrl -> RepositorioColaborador: getAllColaboradores(nifOrganizacao)
+activate RepositorioColaborador
+RepositorioColaborador --> SeriarCandidaturasCtrl: listaColaboradores(nifOrganizacao)
+deactivate RepositorioColaborador
+SeriarCandidaturasCtrl --> SeriarCandidaturasUI: listaColaboradores(nifOrganizacao)
+deactivate SeriarCandidaturasCtrl
+SeriarCandidaturasUI --> Colaborador: Mostra os colaboradores da organização \ne solicita selecionar os demais envolvidos \nna seriação
+deactivate SeriarCandidaturasUI
 
-Colaborador -> SeriarCandidaturasUI: Confirma a seriação realizada
-
-'\ninformar se houve mais colaboradores \npartipantes envolvidos na seriação
-
-alt (Não existem colaboradores participantes adicionais)
-Colaborador -> SeriarCandidaturasUI: Confirma a seriação e não indica 
 end alt
-
-
-
 end alt
 
 @enduml
