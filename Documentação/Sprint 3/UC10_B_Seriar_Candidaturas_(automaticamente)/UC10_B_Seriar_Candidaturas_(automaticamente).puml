@@ -1,0 +1,35 @@
+@startuml
+
+title UC10-B - Seriar Candidaturas de Anúncio (automaticamente)
+
+actor "Colaborador da Organização" as Colaborador
+actor ":Sistema" as Sistema
+
+activate Colaborador
+Colaborador -> Sistema : 1. Inicia o processo automático de seriação \ndos candidatos à realização de um anúncio
+activate Sistema
+
+Sistema --> Colaborador: 2. Mostra uma lista de anúncios publicados \npelo colaborador, em fase de seriação \nautomática, e que ainda não foram seriados, \ne pede-lhe para selecionar um desses anúncios.
+deactivate Sistema
+
+Colaborador -> Sistema: 3. Seleciona um anúncio
+activate Sistema
+
+Sistema --> Colaborador: 4. Mostra as candidaturas válidas para o anuncio \ne solicita confirmar a operação
+deactivate Sistema
+
+Colaborador -> Sistema: 5. Confirma proceder seriação automática
+activate Sistema
+
+Sistema --> Colaborador: 6. Mostra a lista classificada de \ncandidaturas para visualização
+deactivate Sistema
+
+Colaborador -> Sistema: 7. Visualiza o resultado da seriação realizada
+activate Sistema
+
+Sistema --> Colaborador: 8. Regista a seriação e informa o sucesso da operação
+deactivate Sistema
+
+deactivate Colaborador
+
+@enduml

@@ -17,7 +17,8 @@ O colaborador de organização inicia o processo de seriação dos candidatos a 
 
 - Plataforma: Pretende que as Organizações possam seriar as candidaturas para a realização das tarefas por si publicadas.
 - Organização: Pretende que os anúncios para as tarefas publicadas da organização tenham resultado seriado das candidaturas recebidas.
-- Colaborador da organização: Pretende determinar e ordenar as melhores candidaturas às tarefas por si publicadas
+- Colaborador da organização (responsável): Pretende determinar e ordenar as melhores candidaturas às tarefas por si publicadas
+- Colaborador da organização (participantes): Pretendem auxiliar na ordenação das melhores candidaturas às tarefas publicadas por sua organização
 - Freelancer: Pretende saber o resultado de sua candidatura a um anúncio.
 
 **_Pré-condições:_**
@@ -26,7 +27,7 @@ O colaborador de organização inicia o processo de seriação dos candidatos a 
 2.	O colaborador tem que ter publicado ao menos uma tarefa.
 3.	O anúncio da tarefa publicada por este colaborador tem de estar no período de seriação de candidaturas.
 4.  Deve haver ao menos uma candidatura válida ao anúncio da tarefa.
-5.  A(s) candidatura(s) não poderm ter sido ainda seriadas.
+5.  A(s) candidatura(s) não podem ter sido ainda seriadas.
 
 **_Pós-condições_**
 
