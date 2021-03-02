@@ -90,7 +90,7 @@ public class Freelancer extends Utilizador implements Serializable{
     }
 
     public Freelancer(String email, String nome, String telefone, String nif, int idEnderecoPostal) {
-        setEmail(new Email(email));
+        setEmail(email);
         setNome(nome);
         setTelefone(telefone);
         setNif(nif);

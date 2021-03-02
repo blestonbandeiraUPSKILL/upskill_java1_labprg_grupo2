@@ -105,10 +105,9 @@ public class AdministrativoLogadoUI implements Initializable {
     @FXML TableColumn<Object, Object> colunaNome;
     @FXML TableColumn<Object, Object> colunaNif;
     @FXML TableColumn<Object, Object> colunaTelefone;
-    @FXML TableColumn<Email, String> colunaEmail;
+    @FXML TableColumn<Object, Object> colunaEmail;
     @FXML TableView<Freelancer> tableViewFreelancer;
     
-
 
     public void associarParentUI(StartingPageUI startingPageUI) {
         this.startingPageUI = startingPageUI;

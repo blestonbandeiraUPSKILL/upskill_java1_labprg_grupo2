@@ -5,6 +5,7 @@
  */
 package com.grupo2.t4j.model;
 
+import com.grupo2.t4j.exception.EmailInvalidoException;
 import com.grupo2.t4j.exception.NomeInvalidoException;
 
 import java.io.Serializable;
@@ -94,7 +95,11 @@ public class Utilizador implements Serializable{
      * @param email o email do Utilizador
      */
     public void setEmail(Email email){
-        this.email = email;
+        this.email = new Email(email);
+    }
+
+    public void setEmail(String email) {
+        this.email = new Email(email);
     }
     
     /**
