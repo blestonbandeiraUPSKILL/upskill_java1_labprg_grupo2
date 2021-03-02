@@ -1,62 +1,52 @@
 @startuml
 
 participant Freelancer
-participant UC11_UI
-participant UC11_Ctrl
+participant "EditarCandidataturaUI" as EditarCandidataturaUI
+participant "EditarCandidaturaCTRL" as EditarCandidaturaCTRL
 participant RepositorioCandidatura
 
 
 title UC11 - Editar Candidatura
 activate Freelancer
-Freelancer -> UC11_UI : Consulta candidaturas editáveis
-activate UC11_UI
-UC11_UI -> UC11_Ctrl : getAllCandidaturasEditaveis \n(emailFreelancer, dataAtual)
-activate UC11_Ctrl
-UC11_Ctrl -> RepositorioCandidatura : getAllCandidaturasEditaveis
+Freelancer -> EditarCandidataturaUI : Consulta candidaturas editáveis
+activate EditarCandidataturaUI
+EditarCandidataturaUI -> EditarCandidaturaCTRL : getAllCandidaturasElegiveis \n(emailFreelancer)
+activate EditarCandidaturaCTRL
+EditarCandidaturaCTRL -> RepositorioCandidatura : getAllCandidaturasElegiveis()
 activate RepositorioCandidatura
-RepositorioCandidatura --> UC11_Ctrl : listaCandidaturasEditaveis
+RepositorioCandidatura --> EditarCandidaturaCTRL : candidaturasElegiveis
 deactivate RepositorioCandidatura
-UC11_Ctrl --> UC11_UI : listaCandidaturasEditaveis
-deactivate UC11_Ctrl
+EditarCandidaturaCTRL --> EditarCandidataturaUI : candidaturasElegiveis
+deactivate EditarCandidaturaCTRL
 alt Não existem candidaturas editáveis
-UC11_UI --> Freelancer : Não existem candidaturas disponíveis
-deactivate UC11_UI
+EditarCandidataturaUI --> Freelancer : Não existem candidaturas disponíveis
+deactivate EditarCandidataturaUI
 else existem candidaturas editáveis
-Freelancer -> UC11_UI : Seleciona candidatura
-activate UC11_UI
-UC11_UI -> UC11_Ctrl : getCandidatura(idCandidatura)
-activate UC11_Ctrl
-UC11_Ctrl -> RepositorioCandidatura : getCandidatura(idCandidatura)
+Freelancer -> EditarCandidataturaUI : Seleciona candidatura
+activate EditarCandidataturaUI
+EditarCandidataturaUI -> EditarCandidaturaCTRL : getCandidatura(idCandidatura)
+activate EditarCandidaturaCTRL
+EditarCandidaturaCTRL -> RepositorioCandidatura : getCandidatura(idCandidatura)
 activate RepositorioCandidatura
-RepositorioCandidatura --> UC11_Ctrl : Candidatura(valorPretendido, \nnumeroDias, txtApresentacao, txtMotivacao)
+RepositorioCandidatura --> EditarCandidaturaCTRL : candidatura
 deactivate RepositorioCandidatura
-UC11_Ctrl --> UC11_UI : Candidatura(valorPretendido, \nnumeroDias, txtApresentacao, txtMotivacao)
-deactivate UC11_Ctrl
-UC11_UI --> Freelancer : Apresenta os dados registados \nSolicita confirmar/editar os dados
-deactivate UC11_UI
-Freelancer -> UC11_UI : Mantém/modifica os dados registados
-activate UC11_UI
-UC11_UI -> UC11_Ctrl : setCandidatura(idCandidatura, valorPretendido, \nnumeroDias, txtApresentacao, txtMotivacao)
-activate UC11_Ctrl
-UC11_Ctrl -> RepositorioCandidatura : setCandidatura(idCandidatura, valorPretendido, \nnumeroDias, txtApresentacao, txtMotivacao)
+EditarCandidaturaCTRL --> EditarCandidataturaUI : candidatura
+deactivate EditarCandidaturaCTRL
+EditarCandidataturaUI --> Freelancer : Apresenta os dados registados \nSolicita confirmar/editar os dados
+deactivate EditarCandidataturaUI
+Freelancer -> EditarCandidataturaUI : Mantém/modifica os dados registados
+activate EditarCandidataturaUI
+EditarCandidataturaUI -> EditarCandidaturaCTRL : updateCandidatura(idCandidatura, valorPretendido, \nnumeroDias, txtApresentacao, txtMotivacao)
+activate EditarCandidaturaCTRL
+EditarCandidaturaCTRL -> RepositorioCandidatura : updateCandidatura(idCandidatura, valorPretendido, \nnumeroDias, txtApresentacao, txtMotivacao)
 activate RepositorioCandidatura
-UC11_UI --> Freelancer : Apresenta os dados e solicita confirmação
+RepositorioCandidatura -> RepositorioCandidatura: update(idCandidatura, valorPretendido, \nnumeroDias, txtApresentacao, txtMotivacao)
+RepositorioCandidatura --> EditarCandidaturaCTRL: candidaturaActualizada
 deactivate RepositorioCandidatura
-deactivate UC11_Ctrl
-deactivate UC11_UI
-Freelancer -> UC11_UI : Confirma
-activate UC11_UI
-UC11_UI -> UC11_Ctrl : setCandidatura(idCandidatura, valorPretendido, \nnumeroDias, txtApresentacao, txtMotivacao)
-activate UC11_Ctrl
-UC11_Ctrl -> RepositorioCandidatura : setCandidatura(idCandidatura, valorPretendido, \nnumeroDias, txtApresentacao, txtMotivacao)
-activate RepositorioCandidatura
-RepositorioCandidatura -> RepositorioCandidatura : setSave(idCandidatura, valorPretendido, \nnumeroDias, txtApresentacao, txtMotivacao)
-RepositorioCandidatura --> UC11_Ctrl : true
-deactivate RepositorioCandidatura
-UC11_Ctrl --> UC11_UI : true
-deactivate UC11_Ctrl
-UC11_UI --> Freelancer : Candidatura registada com sucesso
-deactivate UC11_UI
+EditarCandidaturaCTRL --> EditarCandidataturaUI: candidaturaActualizada
+deactivate EditarCandidaturaCTRL
+EditarCandidataturaUI --> Freelancer: Candidatura actualizada com sucesso
+deactivate EditarCandidataturaUI
 end
 deactivate Freelancer
 @enduml
