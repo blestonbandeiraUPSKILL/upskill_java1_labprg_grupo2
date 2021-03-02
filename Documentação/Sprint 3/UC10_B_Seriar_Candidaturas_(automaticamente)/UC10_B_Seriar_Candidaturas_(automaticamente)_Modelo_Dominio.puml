@@ -41,7 +41,7 @@ class ProcessoSeriacao{
 }
 
 class Classificacao{
-    -integer lugar
+    -integer posicao
 }
 
 class Candidatura{
