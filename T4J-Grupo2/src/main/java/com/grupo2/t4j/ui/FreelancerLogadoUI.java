@@ -113,7 +113,6 @@ public class FreelancerLogadoUI implements Initializable {
     }
     
     public void updateTableViewAnuncio() throws SQLException {
-        
         tabelaAnuncios.setItems(listaAnuncios());
 
         colunaDesignacao.setCellValueFactory( new PropertyValueFactory<>("designacao"));
@@ -124,6 +123,8 @@ public class FreelancerLogadoUI implements Initializable {
     }
         
     public void updateListViewAnuncio() throws SQLException {
+        cmbAnuncio.getSelectionModel().clearSelection();
+
 
         String emailFreelancer = gestaoUtilizadoresController.getEmail();
         listViewAnuncios.getItems().setAll(registarTarefaController.getAllTarefasElegíveis(emailFreelancer));
@@ -200,6 +201,8 @@ public class FreelancerLogadoUI implements Initializable {
     }
 
     public void updateListViewCandidaturas() throws SQLException {
+        cmbAnuncio.getSelectionModel().clearSelection();
+
         String emailFreelancer = gestaoUtilizadoresController.getEmail();
         listViewCandidaturas.getItems().setAll(efectuarCandidaturaController.findByEmail(emailFreelancer));
     }
