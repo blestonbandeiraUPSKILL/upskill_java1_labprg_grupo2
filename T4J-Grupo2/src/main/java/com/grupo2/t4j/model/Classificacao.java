@@ -12,37 +12,60 @@ package com.grupo2.t4j.model;
 public class Classificacao {
     
     /**
-     * 
+     * O id da Classificação
      */
     private int idClassificacao;
     
     /**
      * O id do Anúncio
      */
-    private String idAnuncio;
+    private int idAnuncio;
     
     /**
      * O id da Candidatura
      */
-    private String idCandidatura;
+    private int idCandidatura;
    
     /**
      * A colocação ordinal do Freelancer
      */
     private int posicao;
-
+    
+    /**
+     * Construtor vazio da classe Classificacao
+     */
+    public Classificacao(){
+        
+    }
     
     /**
      * Construtor completo da classe Classificacao
+     * @param idClassificacao - o id da Classificação
      * @param idAnuncio - o id do Anúncio
      * @param idCandidatura - o id da Candidatura
      * @param posicao - a colocação ordinal do Freelancer     
      */
-    public Classificacao(String idAnuncio, String idCandidatura, int posicao){
+    public Classificacao(int idClassificacao, int idAnuncio, int idCandidatura, 
+            int posicao){
+        setIdClassificacao(idClassificacao);
         setIdAnuncio(idAnuncio);
         setIdCandidatura(idCandidatura);
         setColocacaoFreelancer(posicao);        
     }
+    
+     /**
+     * Construtor da classe Classificacao com id ainda a ser atribuído na BD
+     * @param idAnuncio - o id do Anúncio
+     * @param idCandidatura - o id da Candidatura
+     * @param posicao - a colocação ordinal do Freelancer     
+     */
+    public Classificacao(int idAnuncio, int idCandidatura, 
+            int posicao){
+        setIdAnuncio(idAnuncio);
+        setIdCandidatura(idCandidatura);
+        setColocacaoFreelancer(posicao);        
+    }
+    
     
     /**
      * Construtor da classe Classificação que recebe como 
@@ -50,16 +73,24 @@ public class Classificacao {
      * @param classificacao 
      */
     public Classificacao(Classificacao classificacao){
+        setIdClassificacao(classificacao.idClassificacao);
         setIdAnuncio(classificacao.idAnuncio);
         setIdCandidatura(classificacao.idCandidatura);
         setColocacaoFreelancer(classificacao.posicao);        
     }
     
     /**
+     * 
+     */
+    public void setIdClassificacao(int idClassificacao){
+        this.idClassificacao = idClassificacao;
+    }
+    
+    /**
      * Define o id do Anúncio
      * @param idAnuncio
      */
-    public void setIdAnuncio(String idAnuncio){
+    public void setIdAnuncio(int idAnuncio){
         this.idAnuncio = idAnuncio;
     }
     
@@ -67,7 +98,7 @@ public class Classificacao {
      * Define o id da Candidatura
      * @param idCandidatura
      */
-    public void setIdCandidatura(String idCandidatura){
+    public void setIdCandidatura(int idCandidatura){
         this.idCandidatura = idCandidatura;
     }
   
@@ -83,7 +114,7 @@ public class Classificacao {
      * Devolve o id do Anúncio
      * @return idAnuncio
      */
-    public String getIdAnuncio(){
+    public int getIdAnuncio(){
         return idAnuncio;
     }
     
@@ -91,7 +122,7 @@ public class Classificacao {
      * Devolve o id da Candidatura
      * @return idCandidatura
      */
-    public String getIdCandidatura(){
+    public int getIdCandidatura(){
         return idCandidatura;
     }
     
@@ -104,9 +135,9 @@ public class Classificacao {
     }
      
     /**
-     * Representação textual da classe ColocacaoSeriacao em formato de apresentação
-     * @return o id do Anúncio, o id da Candidatura, o email do Freelancer, a 
-     * colocação ordinal do Freelancer na seriação e a data da realização da seriação
+     * Representação textual da classe Classificação em formato de apresentação
+     * @return o id do Anúncio, o id da Candidatura e a  olocação ordinal desta
+     * Candidatura do Freelancer na seriação
      */
     @Override
     public String toString(){
