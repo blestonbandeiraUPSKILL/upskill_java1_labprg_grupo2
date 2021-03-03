@@ -21,14 +21,14 @@ class Candidatura {
 
 class UC11_UI{
     --
-    -getAllCandidaturasElegiveis(emailFreelancer)
+    -getAllCandidaturasEditáveis(emailFreelancer)
     -getCandidatura(idCandidatura)
     -updateCandidatura(idCandidatura, valorPretendido, \nnumeroDias, txtApresentacao, txtMotivacao)    
 }
 
 class UC11_CTRL{
     --
-    -getAllCandidaturasElegiveis(emailFreelancer)
+    -getAllCandidaturasEditáveis(emailFreelancer)
     -getCandidatura(idCandidatura)
     -updateCandidatura(idCandidatura, valorPretendido, \nnumeroDias, txtApresentacao, txtMotivacao)   
 }
