@@ -18,7 +18,7 @@ public class Mapper {
         return new Utilizador(utilizadorDTO.getNome(), utilizadorDTO.getEmail(), utilizadorDTO.getPassword());
     }
 
-    public static ListaUtilizadorDTO listaUtilizador2ListaUtilizadorDTO(ArrayList<Utilizador> utilizadores) throws NullPointerException {
+    public static ListaUtilizadoresDTO listaUtilizadores2ListaUtilizadoresDTO(ArrayList<Utilizador> utilizadores) throws NullPointerException {
         ArrayList<UtilizadorDTO> utilizadoresDTO = new ArrayList<>();
 
         for (Utilizador utilizador : utilizadores) {
@@ -32,14 +32,14 @@ public class Mapper {
             }
         }
 
-        ListaUtilizadorDTO listaUtilizadorDTO = new ListaUtilizadorDTO();
-        listaUtilizadorDTO.setUtilizadores(utilizadoresDTO);
-        return listaUtilizadorDTO;
+        ListaUtilizadoresDTO listaUtilizadoresDTO = new ListaUtilizadoresDTO();
+        listaUtilizadoresDTO.setUtilizadores(utilizadoresDTO);
+        return listaUtilizadoresDTO;
     }
 
-    public static ArrayList<Utilizador> listaUtilizadorDTO2ListaUtilizador(ListaUtilizadorDTO listaUtilizadorDTO) throws NullPointerException{
+    public static ArrayList<Utilizador> listaUtilizadoresDTO2ListaUtilizadores(ListaUtilizadoresDTO listaUtilizadoresDTO) throws NullPointerException{
         ArrayList<Utilizador> utilizadores = new ArrayList<>();
-        ArrayList<UtilizadorDTO> utilizadoresDTO = listaUtilizadorDTO.getUtilizadores();
+        ArrayList<UtilizadorDTO> utilizadoresDTO = listaUtilizadoresDTO.getUtilizadores();
 
         for (UtilizadorDTO utilizadorDTO : utilizadoresDTO) {
             try {
