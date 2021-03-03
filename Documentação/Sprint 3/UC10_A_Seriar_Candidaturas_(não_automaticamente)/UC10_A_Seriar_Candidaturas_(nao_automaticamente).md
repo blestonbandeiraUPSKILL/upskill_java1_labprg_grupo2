@@ -71,7 +71,7 @@ que estejam com o período de seriação aberto e ainda não estejam seriadas.
 ![UC10_A_Seriar_Candidaturas_(nao_automaticamente)_Modelo_Dominio.png](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Documenta%C3%A7%C3%A3o/Sprint%203/UC10_A_Seriar_Candidaturas_(n%C3%A3o_automaticamente)/UC10_A_Seriar_Candidaturas_(nao_automaticamente)_Modelo_Dominio.png)
 
 ## Diagrama de sequência <br/>
-![UC10_Seriação_(Não_Automática)_Candidaturas_DS](UC10_Seriação_(Não_Automática)_Candidaturas_DS.png)
+![UC10_A_Seriar_Candidaturas_(nao_automaticamente)_Diagrama_Sequencia.png](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Documenta%C3%A7%C3%A3o/Sprint%203/UC10_A_Seriar_Candidaturas_(n%C3%A3o_automaticamente)/UC10_A_Seriar_Candidaturas_(nao_automaticamente)_Diagrama_Sequencia.png)
 
 ## Diagrama de Classes <br/>
 ![UC10_Seriação_(Não_Automática)_Candidaturas_DC](UC10_Seriação_(Não_Automática)_Candidaturas_DC.png)

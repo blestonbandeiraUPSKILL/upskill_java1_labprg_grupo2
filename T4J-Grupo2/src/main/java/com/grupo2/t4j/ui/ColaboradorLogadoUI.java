@@ -20,6 +20,7 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.ResourceBundle;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 /**
  * FXML Controller class
@@ -56,6 +57,12 @@ public class ColaboradorLogadoUI implements Initializable {
     @FXML Button btnConsultarCandidatura;
     @FXML Button btnSeriacao;
     @FXML TextField txtDataSeriacao;
+    @FXML TableColumn<Object, Object> colunaReferencia;
+    @FXML TableColumn<Object, Object> colunaDesignacao;
+    @FXML TableColumn<Object, Object> colunaDuracao;
+    @FXML TableColumn<Object, Object> colunaCusto;
+
+    @FXML TableView<Tarefa> tabelaTarefas;
 
     public void associarParentUI(StartingPageUI startingPageUI) {
         this.startingPageUI = startingPageUI;
@@ -95,7 +102,8 @@ public class ColaboradorLogadoUI implements Initializable {
            });
 
         try {
-            listViewTarefas.getItems().setAll(registarTarefaController.getAllOrganizacao(getNifOrganizacao()));
+            tabelaTarefas.getItems().setAll(registarTarefaController.getAllOrganizacao(getNifOrganizacao()));
+            preencherTabela();
         } catch (SQLException exception) {
             exception.printStackTrace();
         }
@@ -112,8 +120,8 @@ public class ColaboradorLogadoUI implements Initializable {
         cmbFiltroTarefas.getSelectionModel().clearSelection();
         String email = gestaoUtilizadoresController.getEmail();
         String nifOrganizacao = registarColaboradorController.getNifOrganizacao(email);
-        listViewTarefas.getItems().setAll(registarTarefaController.findByColaboradorENif(email, nifOrganizacao));
-        
+        tabelaTarefas.getItems().setAll(registarTarefaController.findByColaboradorENif(email, nifOrganizacao));
+        preencherTabela();
     }
     
     public void updateListViewTarefasPublicadas() throws SQLException {
@@ -121,8 +129,8 @@ public class ColaboradorLogadoUI implements Initializable {
         String email = gestaoUtilizadoresController.getEmail();
         String nifOrganizacao = registarColaboradorController.getNifOrganizacao(email);
         List<String> referenciasTarefa = registarTarefaController.findRefenciaTarefa(nifOrganizacao);
-        listViewTarefas.getItems().setAll(registarTarefaController.findTarefasPublicadas(referenciasTarefa, nifOrganizacao, email));
-        
+        tabelaTarefas.getItems().setAll(registarTarefaController.findTarefasPublicadas(referenciasTarefa, nifOrganizacao, email));
+        preencherTabela();
     }
     
     public void updateListViewTarefasNaoPublicadas() throws SQLException {
@@ -130,8 +138,8 @@ public class ColaboradorLogadoUI implements Initializable {
         String email = gestaoUtilizadoresController.getEmail();
         String nifOrganizacao = registarColaboradorController.getNifOrganizacao(email);
         List<String> referenciasTarefa = registarTarefaController.findRefenciaTarefa(nifOrganizacao);
-        listViewTarefas.getItems().setAll(registarTarefaController.findTarefasNaoPublicadas(referenciasTarefa, email, nifOrganizacao));
-        
+        tabelaTarefas.getItems().setAll(registarTarefaController.findTarefasNaoPublicadas(referenciasTarefa, email, nifOrganizacao));
+        preencherTabela();
     }
 
     public void logout(ActionEvent actionEvent) {
@@ -242,6 +250,13 @@ public class ColaboradorLogadoUI implements Initializable {
                     exception.getMessage());
         }
 
+    }
+    
+    public void preencherTabela () {
+        colunaDesignacao.setCellValueFactory( new PropertyValueFactory<>("designacao"));
+        colunaReferencia.setCellValueFactory( new PropertyValueFactory<>("referencia"));
+        colunaDuracao.setCellValueFactory( new PropertyValueFactory<>("duracaoEst"));
+        colunaCusto.setCellValueFactory( new PropertyValueFactory<>("custoEst"));
     }
 
 

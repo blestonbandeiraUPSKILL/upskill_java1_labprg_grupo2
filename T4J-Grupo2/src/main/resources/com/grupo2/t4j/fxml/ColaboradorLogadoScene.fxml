@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" styleClass="BorderPane" stylesheets="@../style/app.css" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.ColaboradorLogadoUI">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" styleClass="BorderPane" stylesheets="@../style/app.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.ColaboradorLogadoUI">
    <top>
       <Label alignment="CENTER_RIGHT" styleClass="lblUser" text="Bem-vindo à Área do Colaborador" textFill="WHITE" BorderPane.alignment="CENTER_RIGHT">
          <font>
@@ -26,7 +27,6 @@
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="AnchorPane">
                            <children>
                               <VBox alignment="CENTER" layoutX="560.0" layoutY="201.0" AnchorPane.bottomAnchor="100.0" AnchorPane.rightAnchor="32.0" />
-                              <ListView fx:id="listViewTarefas" layoutX="55.0" layoutY="100.0" prefHeight="188.0" prefWidth="668.0" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="55.0" AnchorPane.rightAnchor="55.0" AnchorPane.topAnchor="100.0" />
                               <Label layoutX="173.0" layoutY="53.0" prefHeight="40.0" prefWidth="215.0" text="Tarefas Registadas" AnchorPane.bottomAnchor="307.0" AnchorPane.leftAnchor="173.0" AnchorPane.rightAnchor="297.0" AnchorPane.topAnchor="53.0">
                                  <font>
                                     <Font name="Calibri" size="15.0" />
@@ -58,6 +58,14 @@
                                 </Tooltip>
                             </tooltip>
                               </Button>
+                              <TableView fx:id="tabelaTarefas" layoutX="38.0" layoutY="92.0" prefHeight="197.0" prefWidth="627.0">
+                                 <columns>
+                                    <TableColumn fx:id="colunaReferencia" prefWidth="83.0" text="Referencia" />
+                                    <TableColumn fx:id="colunaDesignacao" prefWidth="204.0" text="Designação" />
+                                    <TableColumn fx:id="colunaDuracao" prefWidth="163.0" text="Duração Estimada (dias)" />
+                                    <TableColumn fx:id="colunaCusto" prefWidth="176.0" text="Custo Estimado (€)" />
+                                 </columns>
+                              </TableView>
                            </children>
                         </AnchorPane>
                      </content>
