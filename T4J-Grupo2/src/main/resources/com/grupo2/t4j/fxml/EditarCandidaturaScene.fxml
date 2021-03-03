@@ -90,7 +90,7 @@
       </AnchorPane>
    </center>
    <top>
-      <Label styleClass="lblUser" text="Área do Freelancer :::&gt; Editar Candidatura" textFill="WHITE" BorderPane.alignment="CENTER_RIGHT">
+      <Label styleClass="lblUser" text="Área do Freelancer :::&gt; Consultar Candidatura" textFill="WHITE" BorderPane.alignment="CENTER_RIGHT">
          <font>
             <Font name="Calibri" size="18.0" />
          </font>
