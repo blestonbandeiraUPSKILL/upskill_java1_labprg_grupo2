@@ -25,31 +25,26 @@ activate Sistema
 
 end
 
-Sistema --> Colaborador: 6. Mostra a lista classificada de \ncandidaturas e solicita confirmação.
+Sistema --> Colaborador: 6. Mostra a lista classificada de \ncandidaturas e solicita informar \nse há colaboradores adicionais \nparticipantes no processo 
 deactivate Sistema
 
-Colaborador -> Sistema: 7. Confirma a classificação das candidaturas
+alt não há colaboradores adicionais
+Colaborador -> Sistema: 7. Informa que não há colaboradores adicionais
 activate Sistema
 
+Sistema --> Colaborador: 8. Informa a conclusão e o sucesso da seriação
+deactivate Sistema
+
+else há colaboradores adicionais
+Colaborador -> Sistema: 7. Informa que há colaboradores adicionais
+activate Sistema
 Sistema --> Colaborador: 8. Mostra a lista de colaboradores da organização \ne pede para selecionar outros participantes
 deactivate Sistema
-
-loop
-
 Colaborador -> Sistema: 9. Seleciona outros colaboradores participantes
 activate Sistema
-
-end
-
-Sistema --> Colaborador: 10. Apresenta a lista de colaboradores adicionais \ne solicita confirmação.
-deactivate Sistema
-
-Colaborador -> Sistema: 11. Confirma
-activate Sistema
-
-Sistema --> Colaborador: 12. Informa o sucesso da operação
+Sistema --> Colaborador: 10. Informa a conclusão e o sucesso da seriação
 deactivate Sistema
 
 deactivate Colaborador
-
+end alt
 @enduml
