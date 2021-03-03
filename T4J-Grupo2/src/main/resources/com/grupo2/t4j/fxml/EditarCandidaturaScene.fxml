@@ -102,7 +102,7 @@
    <bottom>
       <FlowPane alignment="CENTER_RIGHT" prefHeight="56.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="btnAddCandidatura" mnemonicParsing="false" onAction="#addCandidatura" styleClass="btnConfirmar" text="Confirmar Candidatura">
+            <Button fx:id="btnAddCandidatura" mnemonicParsing="false" onAction="#addCandidatura" styleClass="btnConfirmar" text="Apagar Candidatura">
                <font>
                   <Font name="Calibri" size="14.0" />
                </font>
