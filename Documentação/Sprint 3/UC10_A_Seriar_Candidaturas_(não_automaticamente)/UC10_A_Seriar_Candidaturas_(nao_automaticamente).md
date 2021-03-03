@@ -5,7 +5,7 @@
 
 ## Formato Breve
 
-O colaborador de organização inicia o processo de seriação dos candidatos a um anúncio por si publicado que tenha como tipo de regimento atribuído a 'Seriação não automática'. O sistema informa os candidatos habilitados para seriação e solicita a inserção da ordenação a ser atribuída a cada candidato no processo de seriação deste anúncio. O colaborador introduz os dados solicitados. O sistema valida e apresenta os dados, pedindo que os confirme. O colaborador confirma. O sistema mostra a lista de colaboradores da organização e solicita informar se houve outros colaboradores envolvidos no processo de seriação. O colaborador seleciona os colaboradores adicionais envolvidos (caso haja) no processo de seriação. O sistema apresenta a lista de colaboradores adicionais participantes no processo de seriação, pedindo confirmação. O colaborador confirma. O sistema regista todos dados juntamente com a data/hora atual e informa o colaborador do sucesso da operação.
+O colaborador de organização inicia o processo de seriação dos candidatos a um anúncio por si publicado que tenha como tipo de regimento atribuído a 'Seriação não automática'. O sistema informa os candidatos habilitados para seriação e solicita a inserção da ordenação a ser atribuída a cada candidato no processo de seriação deste anúncio. O colaborador introduz os dados solicitados. O sistema valida e apresenta os dados para visualização e solicita informar se houve outros colaboradores envolvidos no processo de seriação. O colaborador informa se houve colaboradores adicionais (ou não). O sistema apresenta a lista de colaboradores da mesma organização para seleção. O colaborador seleciona os colaboradores adicionais envolvidos (caso haja) no processo de seriação. O O sistema regista todos dados juntamente com a data/hora atual e informa o colaborador do sucesso da operação.
 
 ## Formato Completo
 
@@ -40,13 +40,11 @@ que estejam com o período de seriação aberto e ainda não estejam seriadas.
 2.  O colaborador seleciona uma tarefa desta lista e solicita ao sistema a lista de candidaturas válidas para este anúncio.
 3.  O sistema informa as candidaturas válidas recebidas para este anúncio e solicita ao colaborador a seriação dessas candidaturas.
 4.  O colaborador informa, para cada candidatura válida recebida, o valor de colocação ordenada para o processo de seriação deste anúncio.
-5.  O sistema mostra a lista ordenada das candidaturas e pede confirmação.
-6.  O colaborador confirma a ordenação das candidaturas ao sistema.
-7.  O sistema mostra a lista de colaboradores da organização e solicita informar se houve colabores adicionais envolvidos no processo de seriação.
+5.  O sistema mostra a lista ordenada das candidaturas e pede informar se há colaboradores adicionais participantes na seriação.
+6.  O colaborador indica que há (ou não há) colaboradores adicionais.
+7.  O sistema mostra a lista de colaboradores da organização e solicita selecionar os colaboradores adicionais envolvidos no processo de seriação.
 8.  O colaborador informa os colaboradores adicionais envolvidos no processo de seriação (caso haja). 
-9. O sistema mostra a lista dos colaboradores adicionais envolvidos e solicita confirmação. 
-10.  O colaborador confirma.
-11.  O sistema regista todos dados juntamente com a data/hora atual e informa o colaborador do sucesso da operação
+9.  O sistema regista todos dados juntamente com a data/hora atual e informa o colaborador do sucesso da operação9
 
 
 ### Fluxos alternativos
