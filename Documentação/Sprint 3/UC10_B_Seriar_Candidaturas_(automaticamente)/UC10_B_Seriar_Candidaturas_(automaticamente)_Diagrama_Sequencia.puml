@@ -14,13 +14,13 @@ participant RepositorioSeriacao
 activate Colaborador
 Colaborador -> SeriarCandidaturasUI: Consulta anúncios com regime \nde seriação automática, em periodo \nde seriação, ainda não seriados
 activate SeriarCandidaturasUI
-SeriarCandidaturasUI -> SeriarCandidaturasCtrl: getAllAnunciosASeriar\n(idRegimentoAutomatico)
+SeriarCandidaturasUI -> SeriarCandidaturasCtrl: getAllAnunciosASeriar\n(emailColaborador, idRegimentoAutomatico)
 activate SeriarCandidaturasCtrl
-SeriarCandidaturasCtrl -> RepositorioAnuncio: getAllAnunciosASeriar\n(idRegimentoAutomatico)
+SeriarCandidaturasCtrl -> RepositorioAnuncio: getAllAnunciosASeriar\n(emailColaborador, idRegimentoAutomatico)
 activate RepositorioAnuncio
-RepositorioAnuncio --> SeriarCandidaturasCtrl: listaAnunciosASeriar\n(idRegimentoAutomatico)
+RepositorioAnuncio --> SeriarCandidaturasCtrl: listaAnunciosASeriar\n(emailColaborador, idRegimentoAutomatico)
 deactivate RepositorioAnuncio
-SeriarCandidaturasCtrl --> SeriarCandidaturasUI: listaAnunciosASeriar\n(idRegimentoAutomatico)
+SeriarCandidaturasCtrl --> SeriarCandidaturasUI: listaAnunciosASeriar\n(emailColaborador, idRegimentoAutomatico)
 deactivate SeriarCandidaturasCtrl
 alt (Não existem anúncios a seriar manualmente)
 SeriarCandidaturasUI --> Colaborador: Não existem anúncios \ndisponiveis

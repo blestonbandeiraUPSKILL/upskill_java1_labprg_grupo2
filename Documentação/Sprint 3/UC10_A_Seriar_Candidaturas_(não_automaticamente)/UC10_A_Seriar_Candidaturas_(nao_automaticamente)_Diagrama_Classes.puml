@@ -1,0 +1,75 @@
+@startuml
+
+title UC10-A - Seriar Candidaturas de Anúncios (não automaticamente)
+
+left to right direction
+
+class Colaborador {
+    -String nome 
+    -Email email
+    -String funcao
+    -String telefone
+}
+
+class RepositorioAnuncio{
+    
+}
+
+class RepositorioCandidatura {
+
+}
+
+class RepositorioClassificacao{
+    --
+    -saveClassificacao(idAnuncio, idCandidatura, posicao)
+}
+
+class RepositorioColaborador{
+
+}
+
+class RepositorioSeriacao{
+    --
+    -saveSeriacao(idAnuncio, dataSeriacao, listaCandidaturasSeriadas(idAnuncio))
+    -saveSeriacao(idAnuncio, dataSeriacao, listaCandidaturasSeriadas(idAnuncio), listaColaboradoresParticipantes())
+}
+
+class UC10_UI{
+    --
+    -getAllAnunciosASeriar(emailColaborador, idRegimentoManual)
+    -listaAnunciosASeriar(emailColaborador, idRegimentoManual)
+    -getAllCandidaturas(idAnuncio)
+    -listaCandidaturas(idAnuncio)
+    -saveClassificacao(idAnuncio, idCandidatura, posicao)
+    -getAllColaboradores(nifOrganizacao)
+    -listaColaboradores(nifOrganizacao)
+    -listaCandidaturasSeriadas(idAnuncio)
+    -saveSeriacao(idAnuncio, dataSeriacao, listaCandidaturasSeriadas(idAnuncio))
+    -saveSeriacao(idAnuncio, dataSeriacao, listaCandidaturasSeriadas(idAnuncio), listaColaboradoresParticipantes())
+}
+
+class UC10_CTRL{
+    --
+    -getAllAnunciosASeriar(emailColaborador, idRegimentoManual)
+    -listaAnunciosASeriar(emailColaborador, idRegimentoManual)
+    -getAllCandidaturas(idAnuncio)
+    -listaCandidaturas(idAnuncio)
+    -saveClassificacao(idAnuncio, idCandidatura, posicao)
+    -getAllColaboradores(nifOrganizacao)
+    -listaColaboradores(nifOrganizacao)
+    -listaCandidaturasSeriadas(idAnuncio)
+    -saveSeriacao(idAnuncio, dataSeriacao, listaCandidaturasSeriadas(idAnuncio))
+    -saveSeriacao(idAnuncio, dataSeriacao, listaCandidaturasSeriadas(idAnuncio), listaColaboradoresParticipantes())
+}
+
+
+Colaborador ..> UC10_UI
+UC10_UI ..> UC10_CTRL
+UC10_CTRL ..> RepositorioAnuncio
+UC10_CTRL ..> RepositorioCandidatura
+UC10_CTRL ..> RepositorioClassificacao
+UC10_CTRL ..> RepositorioColaborador
+UC10_CTRL ..> RepositorioSeriacao
+RepositorioColaborador -> Colaborador
+
+@enduml
