@@ -5,6 +5,8 @@
  */
 package com.t4jws.model;
 
+import com.t4jws.exception.PasswordInvalidaException;
+
 /**
  *
  * @author CAD

@@ -1,8 +1,10 @@
 package com.t4jws.repository;
 
 
+import com.t4jws.exception.UtilizadorDuplicadoException;
 import com.t4jws.model.Email;
 import com.t4jws.model.Password;
+import com.t4jws.model.Utilizador;
 
 import java.util.ArrayList;
 
