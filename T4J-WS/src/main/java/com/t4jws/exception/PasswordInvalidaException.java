@@ -3,12 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.grupo2.t4j.controller;
+package com.t4jws.exception;
 
 /**
  *
- * @author marta
+ * @author CAD
  */
-public class EliminarCandidaturaController {
+public class PasswordInvalidaException extends IllegalArgumentException {
     
+    public PasswordInvalidaException(String s) {
+        super(s);
+    }
 }
