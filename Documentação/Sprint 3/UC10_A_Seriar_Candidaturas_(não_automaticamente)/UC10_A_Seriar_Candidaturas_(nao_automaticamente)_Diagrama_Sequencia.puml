@@ -15,13 +15,13 @@ participant RepositorioSeriacao
 activate Colaborador
 Colaborador -> SeriarCandidaturasUI: Consulta anúncios com regime \nde seriação manual, em periodo \nde seriação, ainda não seriados
 activate SeriarCandidaturasUI
-SeriarCandidaturasUI -> SeriarCandidaturasCtrl: getAllAnunciosASeriar\n(idRegimentoManual)
+SeriarCandidaturasUI -> SeriarCandidaturasCtrl: getAllAnunciosASeriar\n(emailColaborador, idRegimentoManual)
 activate SeriarCandidaturasCtrl
-SeriarCandidaturasCtrl -> RepositorioAnuncio: getAllAnunciosASeriar\n(idRegimentoManual)
+SeriarCandidaturasCtrl -> RepositorioAnuncio: getAllAnunciosASeriar\n(emailColaborador, idRegimentoManual)
 activate RepositorioAnuncio
-RepositorioAnuncio --> SeriarCandidaturasCtrl: listaAnunciosASeriar\n(idRegimentoManual)
+RepositorioAnuncio --> SeriarCandidaturasCtrl: listaAnunciosASeriar\n(emailColaborador, idRegimentoManual)
 deactivate RepositorioAnuncio
-SeriarCandidaturasCtrl --> SeriarCandidaturasUI: listaAnunciosASeriar\n(idRegimentoManual)
+SeriarCandidaturasCtrl --> SeriarCandidaturasUI: listaAnunciosASeriar\n(emailColaborador, idRegimentoManual)
 deactivate SeriarCandidaturasCtrl
 alt (Não existem anúncios a seriar manualmente)
 SeriarCandidaturasUI --> Colaborador: Não existem anúncios \ndisponiveis
@@ -50,6 +50,7 @@ SeriarCandidaturasUI -> SeriarCandidaturasCtrl: saveClassificacao\n(idAnuncio, i
 activate SeriarCandidaturasCtrl
 SeriarCandidaturasCtrl -> RepositorioClassificacao: saveClassificacao(idAnuncio, idCandidatura, posicao)
 activate RepositorioClassificacao
+RepositorioClassificacao -> RepositorioClassificacao: saveClassificacao(idAnuncio, \nidCandidatura, posicao)
 end loop
 RepositorioClassificacao --> SeriarCandidaturasCtrl: listaCandidaturasSeriada(idAnuncio)
 deactivate RepositorioClassificacao
