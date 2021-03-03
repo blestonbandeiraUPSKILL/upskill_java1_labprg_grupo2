@@ -46,7 +46,7 @@ deactivate SeriarCandidaturasUI
 loop
 Colaborador -> SeriarCandidaturasUI: Atribui uma classificação a uma \ndada candidatura
 activate SeriarCandidaturasUI
-SeriarCandidaturasUI -> SeriarCandidaturasCtrl: saveClassificacao\n(idAnuncio, idCandidatura, posicao, )
+SeriarCandidaturasUI -> SeriarCandidaturasCtrl: saveClassificacao\n(idAnuncio, idCandidatura, posicao)
 activate SeriarCandidaturasCtrl
 SeriarCandidaturasCtrl -> RepositorioClassificacao: saveClassificacao(idAnuncio, idCandidatura, posicao)
 activate RepositorioClassificacao
