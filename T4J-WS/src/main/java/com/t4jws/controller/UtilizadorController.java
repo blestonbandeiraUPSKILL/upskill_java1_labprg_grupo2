@@ -75,6 +75,7 @@ public class UtilizadorController {
             produces = MediaType.APPLICATION_XML_VALUE)
     public ResponseEntity<Object> updateUtilizador(@PathVariable("email") String email, @RequestBody UtilizadorDTO utilizadorDTO
     ) {
+        
         try {
             UtilizadoresService.updateFreguesia(email, utilizadorDTO);
             return new ResponseEntity<>(HttpStatus.OK);
