@@ -1,4 +1,4 @@
-package com.company;
+package com.t4jws;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
