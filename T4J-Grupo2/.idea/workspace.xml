@@ -5,12 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8ca9f66f-f143-4134-afe5-eb7245bd0a9c" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../T4J-WS/src/main/java/com/t4jws/exception/NomeInvalidoException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../T4J-WS/src/main/java/com/t4jws/model/Email.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../T4J-WS/src/main/java/com/t4jws/model/Password.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../T4J-WS/src/main/java/com/t4jws/model/Utilizador.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../T4J-WS/src/main/java/com/t4jws/repository/RepositorioUtilizadorDatabase.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../T4J-WS/src/main/java/com/t4jws/service/UtilizadoresService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../BaseDados/Alter.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../BaseDados/Alter.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Documentação/Sprint 3/UC07b_Adicionar_Competencias_Tecnicas/UC07b.md" beforeDir="false" afterPath="$PROJECT_DIR$/../Documentação/Sprint 3/UC07b_Adicionar_Competencias_Tecnicas/UC07b.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../T4J-WS/src/main/java/com/company/T4JWsApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/../T4J-WS/src/main/java/com/t4jws/T4JWsApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/controller/AdicionarCompetenciaFreelancerController.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../T4J-WS/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../T4J-WS/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../T4J-WS/src/test/java/com/company/T4JWsApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/../T4J-WS/src/test/java/com/t4jws/T4JWsApplicationTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
