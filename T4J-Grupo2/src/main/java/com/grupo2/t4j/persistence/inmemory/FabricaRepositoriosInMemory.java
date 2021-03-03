@@ -34,6 +34,11 @@ public class FabricaRepositoriosInMemory implements FabricaRepositorios {
     public RepositorioCategoriaTarefa getRepositorioCategoriaTarefa() {
         return RepositorioCategoriaTarefaInMemory.getInstance();
     }
+    
+    @Override
+    public RepositorioClassificacao getRepositorioClassificacao() {
+        return null;
+    }
 
     @Override
     public RepositorioColaborador getRepositorioColaborador() {

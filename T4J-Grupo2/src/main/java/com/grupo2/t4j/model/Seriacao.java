@@ -36,6 +36,13 @@ public class Seriacao {
     private ArrayList<Classificacao> listaCandidaturasSeriadas;
     
     /**
+     * O construtor vazio da classe Seriação
+     */
+    public Seriacao(){
+        
+    }
+    
+    /**
      * O construtor completo da classe Seriação
      * @param idSeriacao - o id da Seriação.
      * @param idAnuncio - o id do Anúncio.
