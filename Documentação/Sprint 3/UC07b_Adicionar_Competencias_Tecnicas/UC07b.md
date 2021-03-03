@@ -59,7 +59,7 @@ O administrativo inicia o processo de inserção dos reconhecimentos de competê
 ![UC07b_Adicionar_Competencias_Tecnicas_Diagrama_Sequencia](UC07b_Adicionar_Competencias_Tecnicas_Diagrama_Sequencia.png)
 
 ## Diagrama de Classes <br/>
-![]()
+![UC07b_Adicionar_Competencias_Tecnicas_Diagrama_Classes](UC07b_Adicionar_Competencias_Tecnicas_Diagrama_Classes)
 
 ## Plano de Testes <br/>
 []()

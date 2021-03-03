@@ -125,14 +125,19 @@ ALTER TABLE CompetenciaTecnica
         REFERENCES AreaActividade(codigoAreaActividade);
 
 ALTER TABLE ProcessoSeriacao
-    ADD CONSTRAINT fk_ProcessoSeriacao_idTipoRegimento
-        FOREIGN KEY (idTipoRegimento)
-        REFERENCES TipoRegimento(idTipoRegimento);
+    ADD CONSTRAINT fk_ProcessoSeriacao_idAnuncio
+        FOREIGN KEY (idAnuncio)
+        REFERENCES Anuncio(idAnuncio);
 
 ALTER TABLE Classificacao
     ADD CONSTRAINT fk_Classificacao_idProcessoSeriacao
         FOREIGN KEY (idProcessoSeriacao)
         REFERENCES ProcessoSeriacao(idProcessoSeriacao);
+
+ALTER TABLE Classificacao
+    ADD CONSTRAINT fk_Classificacao_idCandidatura
+        FOREIGN KEY (idCandidatura)
+        REFERENCES Candidatura(idCandidatura);
 
 ALTER TABLE CaracterCT
     ADD CONSTRAINT fk_CaracterCT_GRAUPROFMINIMO
@@ -225,7 +230,16 @@ ALTER TABLE Anuncio
 --ALTER TABLE Candidatura
 --    ADD dataCandidatura date;
 
-
-ALTER TABLE GrauProficiencia
-    MODIFY grau int;
-commit;
+ALTER TABLE ColaboradorClassificacao
+    ADD CONSTRAINT pk_ColaboradorClassificacao
+        PRIMARY KEY (emailColaborador, idClassificacao);
+        
+ALTER TABLE ColaboradorClassificacao
+    ADD CONSTRAINT fk_ColaboradorClassificacao_idClassificacao
+        FOREIGN KEY (idClassificacao)
+        REFERENCES Classificacao(idClassificacao);
+        
+    ALTER TABLE ColaboradorClassificacao
+    ADD CONSTRAINT fk_ColaboradorClassificacao_emailColaborador
+        FOREIGN KEY (emailColaborador)
+        REFERENCES Colaborador(email);
