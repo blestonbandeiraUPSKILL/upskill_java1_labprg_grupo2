@@ -6,6 +6,8 @@
 package com.grupo2.t4j.ui;
 
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 
 /**
  *
@@ -14,5 +16,8 @@ import javafx.event.ActionEvent;
 public class EliminarCandidaturaUI {
 
     public void eliminarCandidatura(ActionEvent actionEvent) {
+        
+   // @FXML Button btnEliminar;
+   // @FXML  Button btnSair;
     }
 }
