@@ -87,7 +87,7 @@ public class UtilizadoresService {
     public static void getRoles(Email email) {
 
     }
-    
+
     public static void createUserRoles(String appContext, Email email, String rolename) {
 
     }

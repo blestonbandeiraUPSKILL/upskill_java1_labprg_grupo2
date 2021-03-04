@@ -164,9 +164,11 @@ public class WSController {
                 return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
             }
 
-            EmailDTO emailDTO = new EmailDTO(email);
+            EmailDTO emailDTO = new EmailDTO();
+            emailDTO.setEmailDTO(email);
 
-            RoleDTO roleDTO = new RoleDTO(rolename);
+            RolenameDTO rolenameDTO = new RolenameDTO();
+            rolenameDTO.setRolenameDTO(rolename);
 
             UtilizadoresService.createUserRoles(app_context, emailDTO, roleDTO );
 
