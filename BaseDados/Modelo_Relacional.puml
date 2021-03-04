@@ -26,9 +26,9 @@ entity "Colaborador" {
 
 }
 
-entity "ColaboradorClassificacao" {
+entity "ColaboradorSeriacao" {
     emailColaborador: text {PK, FK}
-    idClassificacao: int {PK, FK}
+    idProcessoSeriacao: int {PK, FK}
 }
 
 entity "Utilizador" {
@@ -36,11 +36,18 @@ entity "Utilizador" {
     --
     nome: text {NN}
     password: text {NN}
+    idRolename: number {FK}
 }
 
 entity "Administrativo" {
     email: text {PK, FK}
     --
+}
+
+entity "Rolename" {
+    idRolename: number {PK}
+    --
+    designacao: text {NN}
 }
 
 entity "Categoria" {
@@ -208,8 +215,8 @@ Freelancer ||--|{ ReconhecimentoGP
 ReconhecimentoGP }|--|| GrauProficiencia
 CaracterCT }|--|| Categoria
 CaracterCT }|--|| GrauProficiencia
-Classificacao ||--|{ ColaboradorClassificacao
-Colaborador ||--|{ ColaboradorClassificacao
-
+Classificacao ||--|{ ColaboradorSeriacao
+Colaborador ||--|{ ColaboradorSeriacao
+Utilizador }|--|| Rolename
 
 @enduml

@@ -1,17 +1,29 @@
-CREATE TABLE Organizacao (
-    nif varchar(9) 
-        CONSTRAINT pk_Organizacao_nif PRIMARY KEY,
-    nome varchar(20) 
-        CONSTRAINT nn_Organizacao_nome NOT NULL,
-    website varchar(50),
-    telefone varchar (9)
-        CONSTRAINT nn_Organizacao_telefone NOT NULL,
+CREATE TABLE EnderecoPostal(
+    idEnderecoPostal integer GENERATED AS IDENTITY
+        CONSTRAINT pk_EnderecoPostal_idEnderecoPostal PRIMARY KEY,
+    arruamento varchar(50),
+    numeroPorta varchar(20),
+    localidade varchar(20),
+    codPostal varchar(8)
+        CONSTRAINT nn_EnderecoPostal_codigoPostal NOT NULL
+);
+
+CREATE TABLE Utilizador(
     email varchar(50)
-        CONSTRAINT nn_Organizacao_email NOT NULL
-        CONSTRAINT uk_Organizacao_email UNIQUE,
-    emailGestor varchar(50)
-        CONSTRAINT nn_Organizacao_emailGestor NOT NULL,
-    idEnderecoPostal integer    
+        CONSTRAINT pk_Utilizador_email PRIMARY KEY,
+    nome varchar(100)
+        CONSTRAINT nn_Utilizador_username NOT NULL,
+    password varchar(10)
+        CONSTRAINT nn_Utilizador_password NOT NULL,
+    idRolename int
+);
+
+CREATE TABLE Rolename (
+    idRolename integer GENERATED AS IDENTITY
+        CONSTRAINT pk_Rolename_idRolename PRIMARY KEY,
+    designacao varchar(75) 
+        CONSTRAINT nn_Rolename_designacao NOT NULL
+        CONSTRAINT uk_Rolename_designacao UNIQUE
 );
 
 CREATE TABLE Colaborador(
@@ -33,27 +45,22 @@ CREATE TABLE Freelancer(
     telefone varchar(9),
     nif varchar(9),
     idEnderecoPostal integer
-);
+); 
 
-CREATE TABLE EnderecoPostal(
-    idEnderecoPostal integer GENERATED AS IDENTITY
-        CONSTRAINT pk_EnderecoPostal_idEnderecoPostal PRIMARY KEY,
-    arruamento varchar(50),
-    numeroPorta varchar(20),
-    localidade varchar(20),
-    codPostal varchar(8)
-        CONSTRAINT nn_EnderecoPostal_codigoPostal NOT NULL
-);
-
-CREATE TABLE Utilizador(
+CREATE TABLE Organizacao (
+    nif varchar(9) 
+        CONSTRAINT pk_Organizacao_nif PRIMARY KEY,
+    nome varchar(20) 
+        CONSTRAINT nn_Organizacao_nome NOT NULL,
+    website varchar(50),
+    telefone varchar (9)
+        CONSTRAINT nn_Organizacao_telefone NOT NULL,
     email varchar(50)
-        CONSTRAINT pk_Utilizador_email PRIMARY KEY,
-    nome varchar(100)
-        CONSTRAINT nn_Utilizador_nome NOT NULL,
-    password varchar(10)
-        CONSTRAINT nn_Utilizador_password NOT NULL,
-    rolename varchar(15)
-        CONSTRAINT nn_Utilizador_rolename NOT NULL
+        CONSTRAINT nn_Organizacao_email NOT NULL
+        CONSTRAINT uk_Organizacao_email UNIQUE,
+    emailGestor varchar(50)
+        CONSTRAINT nn_Organizacao_emailGestor NOT NULL,
+    idEnderecoPostal integer    
 );
 
 CREATE TABLE Tarefa(   
@@ -65,7 +72,7 @@ CREATE TABLE Tarefa(
     descTecnica varchar(250),
     duracaoEstimada integer
         CONSTRAINT nn_Tarefa_duracaoEstimada NOT NULL,
-    custoEstimado float(2)
+    custoEstimado numeric
         CONSTRAINT nn_Tarefa_custoEstimado NOT NULL,
     codigoCategoria varchar(15),
     emailColaborador varchar(50)    
@@ -131,13 +138,13 @@ CREATE TABLE FreelancerHabAcademica(
 CREATE TABLE HabilitacaoAcademica(
     idHabilitacaoAcademica integer GENERATED AS IDENTITY
         CONSTRAINT pk_HabilitacaoAcademica_idHabilitacaoAcademica PRIMARY KEY,
-    grau varchar(10)
+    grau varchar(100)
         CONSTRAINT nn_HabilitacaoAcademica_grau NOT NULL,
     designacaoCurso varchar(50)
         CONSTRAINT nn_HabilitacaoAcademica_designacaoCurso NOT NULL,
     nomeInstituicao varchar (50)
         CONSTRAINT nn_HabilitacaoAcademica_nomeInstituicao NOT NULL,
-    mediaCurso float(1)
+    mediaCurso numeric
         CONSTRAINT nn_HabilitacaoAcademica_mediaCurso NOT NULL
 );
 
@@ -208,9 +215,9 @@ CREATE TABLE Classificacao(
     idCandidatura integer
 );
 
-CREATE TABLE ColaboradorClassificacao(
+CREATE TABLE ColaboradorSeriacao(
     emailColaborador varchar(50),
-    idClassificacao integer
+    idProcessoSeriacao integer
 );
 
 
