@@ -16,7 +16,7 @@ public class UtilizadoresService {
     private static RepositorioUtilizadorDatabase repositorioUtilizadorDatabase = RepositorioUtilizadorDatabase.getInstance();
 
 
-    public static UtilizadorDTO getUtilizador(Email email) {
+    public static UtilizadorDTO getUser(Email email) {
         Utilizador utilizador = repositorioUtilizadorDatabase.getUtilizadorByEmail(email);
 
         if(utilizador == null) {
@@ -33,7 +33,7 @@ public class UtilizadoresService {
         }
     }
 
-    public static List<UtilizadorDTO> getUtilizadores() {
+    public static List<UtilizadorDTO> getUsers() {
         List<Utilizador> utilizadores = repositorioUtilizadorDatabase.getAll();
 
         if(utilizadores == null) {
@@ -84,6 +84,10 @@ public class UtilizadoresService {
         return false;
     }
 
+    public static void getRoles(Email email) {
+
+    }
+    
     public static void createUserRoles(String appContext, Email email, String rolename) {
 
     }
@@ -96,6 +100,8 @@ public class UtilizadoresService {
 
     }
 
+
+
     public static void createRoles(String appContext, String rolename, String description) {
 
     }
@@ -104,7 +110,7 @@ public class UtilizadoresService {
 
     }
 
-    public static void deleteRoles(String appContext, String rolename, String description) {
+    public static void deleteRoles(String appContext, String rolename) {
 
     }
 

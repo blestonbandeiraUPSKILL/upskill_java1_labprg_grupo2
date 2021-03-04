@@ -5,10 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8ca9f66f-f143-4134-afe5-eb7245bd0a9c" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../BaseDados/colaboradores.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../BaseDados/colaboradores.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../T4J-WS/src/main/java/com/t4jws/dto/ContextDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../T4J-WS/src/main/java/com/t4jws/dto/ListaRolenamesDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../T4J-WS/src/main/java/com/t4jws/dto/LoginDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../T4J-WS/src/main/java/com/t4jws/dto/RolenameDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../T4J-WS/src/main/java/com/t4jws/dto/SessionDTO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/ColaboradorLogadoUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/ColaboradorLogadoUI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../T4J-WS/src/main/java/com/t4jws/controller/WSController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../T4J-WS/src/main/java/com/t4jws/controller/WSController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../T4J-WS/src/main/java/com/t4jws/dto/ErroDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../T4J-WS/src/main/java/com/t4jws/dto/ErroDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../T4J-WS/src/main/java/com/t4jws/dto/Mapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/../T4J-WS/src/main/java/com/t4jws/dto/Mapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../T4J-WS/src/main/java/com/t4jws/dto/UtilizadorDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../T4J-WS/src/main/java/com/t4jws/dto/UtilizadorDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../T4J-WS/src/main/java/com/t4jws/service/UtilizadoresService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../T4J-WS/src/main/java/com/t4jws/service/UtilizadoresService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -372,21 +379,6 @@
           <url>file://$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/ColaboradorLogadoUI.java</url>
           <line>218</line>
           <option name="timeStamp" value="379" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/ColaboradorLogadoUI.java</url>
-          <line>222</line>
-          <option name="timeStamp" value="380" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/ColaboradorLogadoUI.java</url>
-          <line>226</line>
-          <option name="timeStamp" value="381" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/ColaboradorLogadoUI.java</url>
-          <line>230</line>
-          <option name="timeStamp" value="383" />
         </line-breakpoint>
         <breakpoint type="java-exception">
           <properties class="java.lang.IllegalArgumentException" package="java.lang" />
