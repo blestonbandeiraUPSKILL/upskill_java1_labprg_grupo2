@@ -1,11 +1,9 @@
 package com.grupo2.t4j.ui;
 
 import com.grupo2.t4j.controller.*;
-import com.grupo2.t4j.files.FicheiroRepositorioColaborador;
 import com.grupo2.t4j.model.Colaborador;
 import com.grupo2.t4j.model.FiltroTarefas;
 import com.grupo2.t4j.model.Tarefa;
-import com.grupo2.t4j.persistence.inmemory.RepositorioColaboradorInMemory;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -38,15 +36,10 @@ public class GestorLogadoUI implements Initializable {
     private Scene sceneAddTarefa;
     private Scene scenePublicarTarefa;
     private RegistarColaboradorController registarColaboradorController;
-    private RegistarCategoriaController registarCategoriaController;
-    private RegistarAreaActividadeController registarAreaActividadeController;
     private RegistarTarefaController registarTarefaController;
-    private RegistarCompetenciaTecnicaController registarCompetenciaTecnicaController;
     private GestaoUtilizadoresController gestaoUtilizadoresController;
     
-    private FicheiroRepositorioColaborador ficheiroC;
-    private RepositorioColaboradorInMemory repositorioColaboradorInMemory;
-
+    
     
     @FXML ComboBox<FiltroTarefas> cmbFiltroTarefas;
     @FXML Button btnLogout;
@@ -81,13 +74,11 @@ public class GestorLogadoUI implements Initializable {
         adicionarStage.initModality(Modality.APPLICATION_MODAL);;
         adicionarStage.setResizable(false);
 
-        registarAreaActividadeController = new RegistarAreaActividadeController();
         try {
             registarTarefaController = new RegistarTarefaController();
         } catch (SQLException exception) {
             exception.printStackTrace();
         }
-        registarCategoriaController = new RegistarCategoriaController();
         registarColaboradorController = new RegistarColaboradorController();
         gestaoUtilizadoresController = new GestaoUtilizadoresController();
 
@@ -117,12 +108,7 @@ public class GestorLogadoUI implements Initializable {
             exception.printStackTrace();
         }
 
-        /*try {
-            updateTableViewTarefas();
-        } catch (SQLException exception) {
-            exception.printStackTrace();
-        }*/
-
+        
     }
     
     public void aplicarFiltroTarefas(ActionEvent actionEvent)throws SQLException {
@@ -146,12 +132,7 @@ public class GestorLogadoUI implements Initializable {
         }
     }
 
-    /*public void updateListViewTarefasComFiltro() throws SQLException {
-        String codigoCategoria = cmbCategoriaTarefa.getSelectionModel().getSelectedItem().getCodigoCategoria();
-        listViewTarefas.getItems().setAll(
-                registarTarefaController.findByCategoria(codigoCategoria)
-        );
-    }*/
+    
 
     public void updateTableViewTarefas() throws SQLException {
         tabelaTarefas.getItems().setAll(registarTarefaController.getAllOrganizacao(
@@ -163,11 +144,7 @@ public class GestorLogadoUI implements Initializable {
         colunaCusto.setCellValueFactory( new PropertyValueFactory<>("custoEst"));
     }
 
-   /* private void updateCmbCategoriaTarefa(ActionEvent event) throws SQLException {
-        String codigoAreaActividade = cmbAreaActividade.getSelectionModel().getSelectedItem().getCodigo();
-        cmbCategoriaTarefa.getItems().setAll(
-                registarCategoriaController.findByCodigo(codigoAreaActividade));
-    }*/
+   
 
     public void updateListViewColaboradores() throws SQLException {
         listViewColaboradores.getItems().setAll(registarColaboradorController.getAll());
@@ -179,13 +156,7 @@ public class GestorLogadoUI implements Initializable {
             
     }
     
-   /* public void updateTableViewTarefas() throws SQLException {
-        cmbFiltroTarefas.getSelectionModel().clearSelection();
-        listViewTarefas.getItems().setAll(registarTarefaController.getAllOrganizacao(
-                getNifOrganizacao() ));
-
-    }
-    */
+  
     public void updateTableViewTarefasColaborador() throws SQLException {
         cmbFiltroTarefas.getSelectionModel().clearSelection();
         String email = gestaoUtilizadoresController.getEmail();
@@ -333,4 +304,7 @@ public class GestorLogadoUI implements Initializable {
         }
 
     }
+    
+    
+    
 }
