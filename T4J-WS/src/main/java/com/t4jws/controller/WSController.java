@@ -34,7 +34,8 @@ public class WSController {
     @RequestMapping(value = "/roles", method = RequestMethod.GET , params = {"app_context"})
     public ResponseEntity<?> userRoles(@RequestParam("app_context") String app_context) {
         try {
-            ListRolesDTO listRolesDTO = UtilizadoresService.getRoles();
+
+            ContextDTO
 
             if (listRolesDTO != null) {
                 return new ResponseEntity<>(listRolesDTO, HttpStatus.OK);
