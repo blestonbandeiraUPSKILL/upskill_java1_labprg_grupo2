@@ -16,16 +16,15 @@ import java.util.ArrayList;
 import java.util.List;
 public interface RepositorioSeriacao {
     
-    boolean save(int idSeriacao, int idAnuncio, String dataSeriacao, ArrayList<Classificacao> 
-            listaCandidaturasSeriadas) throws SQLException;
+    boolean save(int idSeriacao, int idAnuncio, String dataSeriacao) throws SQLException;
 
-    boolean save(Seriacao seriacao) throws SQLException;
+    boolean save(ProcessoSeriacao seriacao) throws SQLException;
 
-    Seriacao findById(int idSeriacao) throws SQLException;
+    ProcessoSeriacao findById(int idSeriacao) throws SQLException;
     
-    Seriacao findByAnuncio(int idAnuncio) throws SQLException;    
+    ProcessoSeriacao findByAnuncio(int idAnuncio) throws SQLException;    
     
-    ArrayList<Seriacao> getAll()throws SQLException;
+    List<ProcessoSeriacao> getAll()throws SQLException;
     
     
 }
