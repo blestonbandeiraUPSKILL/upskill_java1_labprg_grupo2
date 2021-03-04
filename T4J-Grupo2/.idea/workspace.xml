@@ -5,30 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8ca9f66f-f143-4134-afe5-eb7245bd0a9c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../T4J-WS/src/main/java/com/t4jws/controller/RolesController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../BaseDados/Alter.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../BaseDados/Alter.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../BaseDados/CREATE.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../BaseDados/CREATE.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../BaseDados/DROP.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../BaseDados/DROP.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../BaseDados/Fixed/CreateAnuncio.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../BaseDados/Fixed/CreateAnuncio.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../BaseDados/Fixed/CreateUtilizadorColaborador.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../BaseDados/Fixed/CreateUtilizadorColaborador.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../BaseDados/Fixed/CreateUtilizadorFreelancer.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../BaseDados/Fixed/CreateUtilizadorFreelancer.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../BaseDados/Fixed/CreateUtilizadorGestor.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../BaseDados/Fixed/CreateUtilizadorGestor.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../BaseDados/Fixed/INSERT_INTO_CaracterCT.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../BaseDados/Fixed/INSERT_INTO_CaracterCT.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../BaseDados/Fixed/INSERT_INTO_EnderecoPostal.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../BaseDados/Fixed/INSERT_INTO_EnderecoPostal.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../BaseDados/Fixed/INSERT_INTO_Freelancer.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../BaseDados/Fixed/INSERT_INTO_Freelancer.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../BaseDados/Fixed/INSERT_INTO_FreelancerHabAcademica.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../BaseDados/Fixed/INSERT_INTO_FreelancerHabAcademica.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../BaseDados/Fixed/INSERT_INTO_Organizacao.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../BaseDados/Fixed/INSERT_INTO_Organizacao.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../BaseDados/Fixed/INSERT_INTO_ReconhecimentoGP.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../BaseDados/Fixed/INSERT_INTO_ReconhecimentoGP.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../BaseDados/Fixed/INSERT_INTO_Utilizador.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../BaseDados/Fixed/INSERT_INTO_Utilizador.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../BaseDados/Modelo_Relacional.png" beforeDir="false" afterPath="$PROJECT_DIR$/../BaseDados/Modelo_Relacional.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../BaseDados/Modelo_Relacional.puml" beforeDir="false" afterPath="$PROJECT_DIR$/../BaseDados/Modelo_Relacional.puml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Documentação/Sprint 4/Dashboard Sprint4.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/../Documentação/Sprint 4/Dashboard Sprint4.xlsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/ColaboradorLogadoUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/ColaboradorLogadoUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/EspecificarTarefaColaboradorUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/EspecificarTarefaColaboradorUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/PublicarTarefaUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/PublicarTarefaUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../T4J-WS/src/main/java/com/t4jws/controller/UtilizadorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../T4J-WS/src/main/java/com/t4jws/controller/UtilizadoresController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../T4J-WS/src/main/java/com/t4jws/service/UtilizadoresService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../T4J-WS/src/main/java/com/t4jws/service/UtilizadoresService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
