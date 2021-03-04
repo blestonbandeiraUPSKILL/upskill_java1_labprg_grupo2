@@ -217,12 +217,15 @@ public class ColaboradorLogadoUI implements Initializable {
         switch (cmbFiltroTarefas.getSelectionModel().getSelectedItem()) {
             case TAREFAS_DA_ORGANIZACAO:
                 updateTableViewTarefas();
+                btnPublicarTarefa.setDisable(true);
                 break;
             case AS_MINHAS_TAREFAS:
                 updateTableViewTarefasColaborador();
+                btnPublicarTarefa.setDisable(true);
                 break;
             case TAREFAS_PUBLICADAS:
                 updateTableViewTarefasPublicadas();
+                btnPublicarTarefa.setDisable(true);
                 break;
             case TAREFAS_PARA_PUBLICAR:
                 updateTableViewTarefasNaoPublicadas();

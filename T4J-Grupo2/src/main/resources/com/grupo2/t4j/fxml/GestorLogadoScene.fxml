@@ -39,26 +39,7 @@
                             <content>
                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="AnchorPane">
                                     <children>
-                                        <VBox layoutX="235.0" layoutY="26.0" prefHeight="81.0" prefWidth="200.0">
-                                            <children>
-                                                <ComboBox fx:id="cmbAreaActividade" prefHeight="25.0" prefWidth="200.0" promptText="Escolha a Área de Actividade" VBox.vgrow="NEVER">
-                                                    <VBox.margin>
-                                                        <Insets bottom="10.0" />
-                                                    </VBox.margin>
-                                                </ComboBox>
-                                                <ComboBox fx:id="cmbCategoriaTarefa" prefWidth="200.0" promptText="Escolha a Categoria de Tarefa" VBox.vgrow="NEVER">
-                                                    <VBox.margin>
-                                                        <Insets top="10.0" />
-                                                    </VBox.margin>
-                                                </ComboBox>
-                                            </children>
-                                        </VBox>
-                                        <Label alignment="CENTER" layoutX="47.0" layoutY="75.0" text="Seleccionar Categoria de Tarefa">
-                                            <font>
-                                                <Font name="Calibri" size="14.0" />
-                                            </font>
-                                        </Label>
-                                        <Button fx:id="btnAddTarefa" layoutX="580.0" layoutY="389.0" mnemonicParsing="false" onAction="#navigateAddTarefa" styleClass="btnNovaTarefa" text="Adicionar" textFill="WHITE">
+                                        <Button fx:id="btnAddTarefa" layoutX="581.0" layoutY="376.0" mnemonicParsing="false" onAction="#navigateAddTarefa" styleClass="btnNovaTarefa" text="Adicionar" textFill="WHITE">
                                             <font>
                                                 <Font name="Calibri" size="14.0" />
                                             </font>
@@ -70,11 +51,6 @@
                                                 </Tooltip>
                                             </tooltip>
                                         </Button>
-                                        <Label alignment="CENTER" layoutX="49.0" layoutY="33.0" text="Seleccionar Área de Actividade">
-                                            <font>
-                                                <Font name="Calibri" size="14.0" />
-                                            </font>
-                                        </Label>
                               <Label layoutX="30.0" layoutY="130.0" prefHeight="17.0" prefWidth="49.0" text="Tarefas" />
                               <TableView fx:id="tabelaTarefas" layoutX="30.0" layoutY="149.0" prefHeight="254.0" prefWidth="526.0">
                                  <columns>
@@ -84,6 +60,24 @@
                                     <TableColumn fx:id="colunaCusto" prefWidth="117.0" text="Custo Estimado (€)" />
                                  </columns>
                               </TableView>
+                              <Button fx:id="btnPublicarTarefa" layoutX="566.0" layoutY="334.0" mnemonicParsing="false" onAction="#navigatePublicarTarefa" styleClass="btnConfirmar" text="Publicar Tarefa" textFill="WHITE">
+                                 <font>
+                                    <Font name="Calibri" size="14.0" />
+                                 </font>
+                                 <tooltip>
+                                    <Tooltip text="Publicar Tarefa">
+                                       <font>
+                                          <Font name="Calibri Italic" size="12.0" />
+                                       </font>
+                                    </Tooltip>
+                                 </tooltip>
+                              </Button>
+                              <ComboBox fx:id="cmbFiltroTarefas" layoutX="205.0" layoutY="71.0" prefHeight="24.0" prefWidth="218.0" promptText="Escolha as Tarefas a Apresentar" />
+                              <Label layoutX="30.0" layoutY="63.0" prefHeight="40.0" prefWidth="215.0" text="Tarefas Registadas">
+                                 <font>
+                                    <Font name="Calibri" size="15.0" />
+                                 </font>
+                              </Label>
                                     </children>
                                 </AnchorPane>
                             </content>
