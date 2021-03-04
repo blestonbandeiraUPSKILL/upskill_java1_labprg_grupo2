@@ -35,7 +35,12 @@ public class FabricaRepositoriosDatabase implements FabricaRepositorios {
     public RepositorioCategoriaTarefa getRepositorioCategoriaTarefa() {
         return RepositorioCategoriaTarefaDatabase.getInstance();
     }
-
+    
+    @Override
+    public RepositorioClassificacao getRepositorioClassificacao() {
+        return RepositorioClassificacaoDatabase.getInstance();
+    }
+    
     @Override
     public RepositorioColaborador getRepositorioColaborador() {
         return RepositorioColaboradorDatabase.getInstance();
