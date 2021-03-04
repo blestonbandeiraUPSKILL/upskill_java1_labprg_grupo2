@@ -5,6 +5,7 @@
  */
 package com.grupo2.t4j.ui;
 
+import com.grupo2.t4j.controller.EfectuarCandidaturaController;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -13,6 +14,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -28,13 +31,24 @@ public class ConsultarCandidaturaUI implements Initializable {
     @FXML TextArea txtMotivacao;
     @FXML TextField txtValor;
     @FXML TextField txtDias;
+    
+    private Stage adicionarStage;
+    private FreelancerLogadoUI freelancerLogadoUI;
+    private EfectuarCandidaturaController efectuarCandidaturaController;
+    
+    public void associarParentUI(FreelancerLogadoUI freelancerLogadoUI) {
+        this.freelancerLogadoUI = freelancerLogadoUI;
+    }
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        
+        adicionarStage = new Stage();
+        adicionarStage.initModality(Modality.APPLICATION_MODAL);
+        adicionarStage.setResizable(false);
     }    
 
     @FXML
@@ -48,11 +62,11 @@ public class ConsultarCandidaturaUI implements Initializable {
     }
 
     @FXML
-    private void apagarCandidatura(ActionEvent event) {
-    }
-
-    @FXML
     private void cancelarAction(ActionEvent event) {
+    }
+    
+    private void guardarAction(ActionEvent event) {
+        
     }
     
 }
