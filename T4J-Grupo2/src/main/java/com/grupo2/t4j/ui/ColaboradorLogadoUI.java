@@ -111,7 +111,7 @@ public class ColaboradorLogadoUI implements Initializable {
 
     public void updateTableViewTarefas() throws SQLException {
         cmbFiltroTarefas.getSelectionModel().clearSelection();
-        listViewTarefas.getItems().setAll(registarTarefaController.getAllOrganizacao(
+        tabelaTarefas.getItems().setAll(registarTarefaController.getAllOrganizacao(
                 getNifOrganizacao() ));
 
     }

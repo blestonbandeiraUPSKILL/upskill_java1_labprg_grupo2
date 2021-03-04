@@ -6,21 +6,14 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 
 
 
-@JsonPropertyOrder({"nome", "email", "password", "rolename"})
-@JsonRootName("utilizador")
-
 public class UtilizadorDTO {
 
-    @JsonProperty("nome")
     private String nome;
 
-    @JsonProperty("email")
     private EmailDTO email;
 
-    @JsonProperty("password")
     private PasswordDTO passwordDTO;
 
-    @JsonProperty("rolename")
     private String rolename;
 
     public UtilizadorDTO() {

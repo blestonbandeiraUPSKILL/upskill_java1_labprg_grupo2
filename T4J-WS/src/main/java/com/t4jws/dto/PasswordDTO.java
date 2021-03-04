@@ -5,11 +5,8 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.t4jws.exception.PasswordInvalidaException;
 
 
-@JsonPropertyOrder({"password"})
-
 public class PasswordDTO {
 
-    @JsonProperty("password")
     private String password;
 
     public PasswordDTO (String password){

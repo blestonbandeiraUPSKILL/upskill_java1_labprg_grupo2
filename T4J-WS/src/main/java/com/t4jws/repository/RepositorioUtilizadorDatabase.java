@@ -52,4 +52,7 @@ public class RepositorioUtilizadorDatabase {
     public ArrayList<Utilizador> getAll() {
         return null;
     }
+
+    public Utilizador getUtilizadorByEmail(Email email) {
+    }
 }
