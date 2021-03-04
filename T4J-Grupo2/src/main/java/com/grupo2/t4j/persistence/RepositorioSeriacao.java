@@ -16,8 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 public interface RepositorioSeriacao {
     
-    boolean save(int idSeriacao, int idAnuncio, String dataSeriacao, ArrayList<Classificacao> 
-            listaCandidaturasSeriadas) throws SQLException;
+    boolean save(int idSeriacao, int idAnuncio, String dataSeriacao) throws SQLException;
 
     boolean save(ProcessoSeriacao seriacao) throws SQLException;
 
@@ -25,7 +24,7 @@ public interface RepositorioSeriacao {
     
     ProcessoSeriacao findByAnuncio(int idAnuncio) throws SQLException;    
     
-    ArrayList<ProcessoSeriacao> getAll()throws SQLException;
+    List<ProcessoSeriacao> getAll()throws SQLException;
     
     
 }

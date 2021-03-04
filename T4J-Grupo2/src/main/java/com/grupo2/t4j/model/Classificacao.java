@@ -122,13 +122,20 @@ public class Classificacao {
     }
     
     /**
-     *  Define o id da Seriação
+     * Define o id da Seriação
      * @param idSeriacao 
      */
     public void setIdSeriacao(int idSeriacao){
         this.idSeriacao = idSeriacao;
     }
     
+    /**
+     * Devolve o id da Classificação
+     * @return idClassificacao
+     */
+    public int getIdClassificacao(){
+        return idClassificacao;
+    }
     /**
      * Devolve o id do Anúncio
      * @return idAnuncio
@@ -163,8 +170,8 @@ public class Classificacao {
      
     /**
      * Representação textual da classe Classificação em formato de apresentação
-     * @return o id do Anúncio, o id da Candidatura e a  olocação ordinal desta
-     * Candidatura do Freelancer na seriação
+     * @return o id da Seriação, o id do Anúncio, o id da Candidatura e a  colocação 
+     * ordinal desta Candidatura do Freelancer na seriação
      */
     @Override
     public String toString(){

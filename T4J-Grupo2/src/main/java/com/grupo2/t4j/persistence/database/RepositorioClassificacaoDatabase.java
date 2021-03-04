@@ -49,15 +49,17 @@ public class RepositorioClassificacaoDatabase implements RepositorioClassificaca
 
         try {
             CallableStatement callableStatement = connection.prepareCall(
-                "{CALL createClassificacao(?, ?, ?) } ");
+                "{CALL createClassificacao(?, ?, ?, ?, ?) } ");
 
             if (findById(idClassificacao) == null){
 
                 connection.setAutoCommit(false);
 
-                callableStatement.setString(1, Integer.toString(idAnuncio));
-                callableStatement.setString(2, Integer.toString(idCandidatura));
-                callableStatement.setString(3, Integer.toString(posicao));
+                callableStatement.setInt(1, idClassificacao);
+                callableStatement.setInt(2, idAnuncio);
+                callableStatement.setInt(3, idCandidatura);
+                callableStatement.setInt(4, posicao);
+                callableStatement.setInt(5, idSeriacao);                
                 callableStatement.executeQuery();
 
                 connection.commit();
@@ -89,16 +91,20 @@ public class RepositorioClassificacaoDatabase implements RepositorioClassificaca
 
         try {
             CallableStatement callableStatement = connection.prepareCall(
-                    "{CALL createClassificacao(?, ?, ?) } ");
-            connection.setAutoCommit(false);
+                    "{CALL createClassificacao(?, ?, ?, ?) } ");
+            if (findById(classificacao.getIdClassificacao()) == null){
 
-            callableStatement.setString(1, Integer.toString(classificacao.getIdAnuncio()));
-            callableStatement.setString(2, Integer.toString(classificacao.getIdCandidatura()));
-            callableStatement.setString(3, Integer.toString(classificacao.getPosicaoFreelancer()));
-            callableStatement.executeQuery();
+                connection.setAutoCommit(false);
 
-            connection.commit();
-            return true;
+                callableStatement.setInt(1, classificacao.getIdAnuncio());
+                callableStatement.setInt(2, classificacao.getIdCandidatura());
+                callableStatement.setInt(3, classificacao.getPosicaoFreelancer());
+                callableStatement.setInt(4, classificacao.getIdSeriacao());                
+                callableStatement.executeQuery();
+
+                connection.commit();
+                return true;
+            }
         }
         catch (SQLException exception) {
             exception.printStackTrace();
@@ -115,9 +121,7 @@ public class RepositorioClassificacaoDatabase implements RepositorioClassificaca
         finally {
             DBConnectionHandler.getInstance().closeAll();
         }
-
         return false;
-
     }
 
     @Override
@@ -131,7 +135,7 @@ public class RepositorioClassificacaoDatabase implements RepositorioClassificaca
 
             connection.setAutoCommit(false);
 
-            callableStatementOrg.setString(1, Integer.toString(idClassificacao));
+            callableStatementOrg.setInt(1, idClassificacao);
             callableStatementOrg.executeQuery();
 
             return null;
@@ -143,37 +147,24 @@ public class RepositorioClassificacaoDatabase implements RepositorioClassificaca
         finally {
             DBConnectionHandler.getInstance().closeAll();
         }
-
-        return new Classificacao();        
-        
+        return new Classificacao();                
     }
     
     @Override
     public Classificacao findByAnuncio (int idAnuncio) throws SQLException{
-        Classificacao classificacao = new Classificacao();
-
+        
         Connection connection = DBConnectionHandler.getInstance().openConnection();
 
         try {
             CallableStatement callableStatementOrg = connection.prepareCall(
-                    "SELECT idClassificacao, idCandidatura, posicao " +
-                            "FROM Classificacao " +
-                            "WHERE idAnuncio LIKE ?"
-            );
+                    "{CALL findClassificacaoByAnuncio(?)}");
 
             connection.setAutoCommit(false);
 
-            callableStatementOrg.setString(1, Integer.toString(idAnuncio));
+            callableStatementOrg.setInt(1, idAnuncio);
             callableStatementOrg.executeQuery();
 
-            ResultSet resultSet = callableStatementOrg.getResultSet();
-
-            while(resultSet.next()) {
-                classificacao.setIdClassificacao(resultSet.getInt(1));
-                classificacao.setIdAnuncio(resultSet.getInt(2));
-                classificacao.setIdCandidatura(resultSet.getInt(3));
-                classificacao.setPosicaoFreelancer(resultSet.getInt(4));
-            }
+            return null;
 
         } catch (SQLException exceptionOrg) {
             exceptionOrg.printStackTrace();
@@ -182,36 +173,23 @@ public class RepositorioClassificacaoDatabase implements RepositorioClassificaca
         finally {
             DBConnectionHandler.getInstance().closeAll();
         }
-
-        return classificacao;
+        return new Classificacao(); 
     }
     
     @Override
     public Classificacao findByCandidatura (int idCandidatura) throws SQLException{
-        Classificacao classificacao = new Classificacao();
-
-        Connection connection = DBConnectionHandler.getInstance().openConnection();
+         Connection connection = DBConnectionHandler.getInstance().openConnection();
 
         try {
             CallableStatement callableStatementOrg = connection.prepareCall(
-                    "SELECT idClassificacao, idAnuncio, posicao " +
-                            "FROM Classificacao " +
-                            "WHERE idCandidatura LIKE ?"
-            );
+                    "{CALL findClassificacaoByCandidatura(?)}");
 
             connection.setAutoCommit(false);
 
-            callableStatementOrg.setString(1, Integer.toString(idCandidatura));
+            callableStatementOrg.setInt(1, idCandidatura);
             callableStatementOrg.executeQuery();
 
-            ResultSet resultSet = callableStatementOrg.getResultSet();
-
-            while(resultSet.next()) {
-                classificacao.setIdClassificacao(resultSet.getInt(1));
-                classificacao.setIdAnuncio(resultSet.getInt(2));
-                classificacao.setIdCandidatura(resultSet.getInt(3));
-                classificacao.setPosicaoFreelancer(resultSet.getInt(4));
-            }
+            return null;
 
         } catch (SQLException exceptionOrg) {
             exceptionOrg.printStackTrace();
@@ -220,8 +198,32 @@ public class RepositorioClassificacaoDatabase implements RepositorioClassificaca
         finally {
             DBConnectionHandler.getInstance().closeAll();
         }
+        return new Classificacao();
+    }
+    
+    @Override
+    public Classificacao findBySeriacao (int idSeriacao) throws SQLException{
+         Connection connection = DBConnectionHandler.getInstance().openConnection();
 
-        return classificacao;
+        try {
+            CallableStatement callableStatementOrg = connection.prepareCall(
+                    "{CALL findClassificacaoBySeriacao(?)}");
+
+            connection.setAutoCommit(false);
+
+            callableStatementOrg.setInt(1, idSeriacao);
+            callableStatementOrg.executeQuery();
+
+            return null;
+
+        } catch (SQLException exceptionOrg) {
+            exceptionOrg.printStackTrace();
+            exceptionOrg.getSQLState();
+        }
+        finally {
+            DBConnectionHandler.getInstance().closeAll();
+        }
+        return new Classificacao();
     }
     
     @Override
