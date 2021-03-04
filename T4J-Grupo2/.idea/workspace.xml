@@ -5,17 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8ca9f66f-f143-4134-afe5-eb7245bd0a9c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../T4J-WS/src/main/java/com/t4jws/exception/NomeInvalidoException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../T4J-WS/src/main/java/com/t4jws/model/Email.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../T4J-WS/src/main/java/com/t4jws/model/Password.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../T4J-WS/src/main/java/com/t4jws/model/Utilizador.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../T4J-WS/src/main/java/com/t4jws/repository/RepositorioUtilizadorDatabase.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../T4J-WS/src/main/java/com/t4jws/service/UtilizadoresService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../BaseDados/Alter.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../BaseDados/Alter.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Documentação/Sprint 3/UC07b_Adicionar_Competencias_Tecnicas/UC07b.md" beforeDir="false" afterPath="$PROJECT_DIR$/../Documentação/Sprint 3/UC07b_Adicionar_Competencias_Tecnicas/UC07b.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/controller/AdicionarCompetenciaFreelancerController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../T4J-WS/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../T4J-WS/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,7 +54,7 @@
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
     <property name="extract.method.default.visibility" value="private" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../T4J-WS" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -334,6 +324,11 @@
           <url>file://$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/ConsultarAreaActividadeUI.java</url>
           <line>50</line>
           <option name="timeStamp" value="361" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/PublicarTarefaUI.java</url>
+          <line>65</line>
+          <option name="timeStamp" value="362" />
         </line-breakpoint>
         <breakpoint type="java-exception">
           <properties class="java.lang.IllegalArgumentException" package="java.lang" />

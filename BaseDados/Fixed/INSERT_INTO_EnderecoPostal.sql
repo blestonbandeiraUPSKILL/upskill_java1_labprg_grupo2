@@ -8,7 +8,7 @@ INSERT INTO EnderecoPostal
 VALUES
     ('Rua dos Catetos', '6', 'Lisboa', '1234-234');
     
--- Frrelancers
+-- Freelancers
 
 INSERT INTO EnderecoPostal
     (arruamento, numeroPorta, localidade, codPostal)

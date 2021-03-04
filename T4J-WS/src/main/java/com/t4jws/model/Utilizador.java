@@ -51,7 +51,7 @@ public class Utilizador implements Serializable{
      *
      */
     public Utilizador(Email emailUt, String nome, Password password){
-        this.email = emailUt;
+        setEmail(emailUt);
         setNome(nome);
         setPassword(password);
     }

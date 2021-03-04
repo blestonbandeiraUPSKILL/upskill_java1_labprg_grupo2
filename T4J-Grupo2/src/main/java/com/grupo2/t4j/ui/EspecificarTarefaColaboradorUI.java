@@ -115,7 +115,7 @@ public class EspecificarTarefaColaboradorUI implements Initializable {
                     gestaoUtilizadoresController.getEmail());
 
             if (adicionou){
-                colaboradorLogadoUI.updateListViewTarefas();
+                colaboradorLogadoUI.updateTableViewTarefas();
 
                 AlertsUI.criarAlerta(Alert.AlertType.INFORMATION,
                     MainApp.TITULO_APLICACAO,
