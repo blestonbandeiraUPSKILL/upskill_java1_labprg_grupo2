@@ -12,6 +12,7 @@ package com.grupo2.t4j.persistence;
 
 import com.grupo2.t4j.exception.AnuncioDuplicadoException;
 import com.grupo2.t4j.model.Anuncio;
+import com.grupo2.t4j.model.Data;
 import com.grupo2.t4j.model.TipoRegimento;
 import com.grupo2.t4j.model.TipoStatusAnuncio;
 
@@ -41,6 +42,8 @@ public interface RepositorioAnuncio {
     List<String> getAllRefTarefasTipoRegimento(List<String> referenciasTarefa, String emailColaborador, int idTipoRegimento) throws SQLException;
     
     List<String> getAllRefTarefasNaoSeriadas(List<String> referenciasTarefa, String nifOrganizacao) throws SQLException;
+    
+    List<String> getAllRefTarefasASeriar(List<String> referenciasTarefa, String nifOrganizacao, Data dataAtual) throws SQLException;
 
     Anuncio getAnuncio(int idAnuncio) throws SQLException;
 }
