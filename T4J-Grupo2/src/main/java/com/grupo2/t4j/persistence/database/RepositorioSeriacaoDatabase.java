@@ -41,8 +41,7 @@ public class RepositorioSeriacaoDatabase implements RepositorioSeriacao{
     }
     
     @Override
-    public boolean save(int idSeriacao, int idAnuncio, String dataSeriacao, ArrayList<Classificacao> 
-            listaCandidaturasSeriadas) throws SQLException{
+    public boolean save(int idSeriacao, int idAnuncio, String dataSeriacao) throws SQLException{
 
         Connection connection = DBConnectionHandler.getInstance().openConnection();
 
@@ -54,9 +53,9 @@ public class RepositorioSeriacaoDatabase implements RepositorioSeriacao{
 
                 connection.setAutoCommit(false);
 
-                callableStatement.setString(1, Integer.toString(idAnuncio));
-                callableStatement.setString(2, dataSeriacao);
-                //callableStatement.setString(3, Integer.toString(posicao));
+                callableStatement.setInt(1, idSeriacao);
+                callableStatement.setInt(2, idAnuncio);
+                callableStatement.setString(3, dataSeriacao);
                 callableStatement.executeQuery();
 
                 connection.commit();
@@ -82,22 +81,25 @@ public class RepositorioSeriacaoDatabase implements RepositorioSeriacao{
     }
     
     @Override
-    public boolean save(Seriacao seriacao) throws SQLException{
+    public boolean save(ProcessoSeriacao seriacao) throws SQLException{
 
-        Connection connection = DBConnectionHandler.getInstance().openConnection();
+         Connection connection = DBConnectionHandler.getInstance().openConnection();
 
         try {
             CallableStatement callableStatement = connection.prepareCall(
-                    "{CALL createSeriacao(?, ?, ?) } ");
-            connection.setAutoCommit(false);
+                "{CALL createSeriacao(?, ?) } ");
 
-            /*callableStatement.setString(1, Integer.toString(classificacao.getIdAnuncio()));
-            callableStatement.setString(2, Integer.toString(classificacao.getIdCandidatura()));
-            callableStatement.setString(3, Integer.toString(classificacao.getColocacaoFreelancer()));*/
-            callableStatement.executeQuery();
+            if (findById(seriacao.getIdSeriacao()) == null){
 
-            connection.commit();
-            return true;
+                connection.setAutoCommit(false);
+
+                callableStatement.setInt(1, seriacao.getIdAnuncio());
+                callableStatement.setString(2, seriacao.getDataSeriacao());
+                callableStatement.executeQuery();
+
+                connection.commit();
+                return true;
+            }
         }
         catch (SQLException exception) {
             exception.printStackTrace();
@@ -114,13 +116,11 @@ public class RepositorioSeriacaoDatabase implements RepositorioSeriacao{
         finally {
             DBConnectionHandler.getInstance().closeAll();
         }
-
         return false;
-
     }
 
     @Override
-    public Seriacao findById(int idSeriacao) throws SQLException{
+    public ProcessoSeriacao findById(int idSeriacao) throws SQLException{
 
         Connection connection = DBConnectionHandler.getInstance().openConnection();
 
@@ -130,7 +130,7 @@ public class RepositorioSeriacaoDatabase implements RepositorioSeriacao{
 
             connection.setAutoCommit(false);
 
-            //callableStatementOrg.setString(1, Integer.toString(idClassificacao));
+            callableStatementOrg.setInt(1, idSeriacao);
             callableStatementOrg.executeQuery();
 
             return null;
@@ -142,37 +142,24 @@ public class RepositorioSeriacaoDatabase implements RepositorioSeriacao{
         finally {
             DBConnectionHandler.getInstance().closeAll();
         }
-
-        return new Seriacao();        
-        
+        return new ProcessoSeriacao();      
     }
     
     @Override
-    public Seriacao findByAnuncio (int idAnuncio) throws SQLException{
-        Seriacao seriacao = new Seriacao();
+    public ProcessoSeriacao findByAnuncio(int idAnuncio) throws SQLException{
 
         Connection connection = DBConnectionHandler.getInstance().openConnection();
 
         try {
             CallableStatement callableStatementOrg = connection.prepareCall(
-                    "SELECT idClassificacao, idCandidatura, posicao " +
-                            "FROM Classificacao " +
-                            "WHERE idAnuncio LIKE ?"
-            );
+                    "{CALL findSeriacaoByAnuncio(?)}");
 
             connection.setAutoCommit(false);
 
-            callableStatementOrg.setString(1, Integer.toString(idAnuncio));
+            callableStatementOrg.setInt(1, idAnuncio);
             callableStatementOrg.executeQuery();
 
-            ResultSet resultSet = callableStatementOrg.getResultSet();
-
-            while(resultSet.next()) {
-                /*classificacao.setIdClassificacao(resultSet.getInt(1));
-                classificacao.setIdAnuncio(resultSet.getInt(2));
-                classificacao.setIdCandidatura(resultSet.getInt(3));
-                classificacao.setColocacaoFreelancer(resultSet.getInt(4));*/
-            }
+            return null;
 
         } catch (SQLException exceptionOrg) {
             exceptionOrg.printStackTrace();
@@ -181,34 +168,29 @@ public class RepositorioSeriacaoDatabase implements RepositorioSeriacao{
         finally {
             DBConnectionHandler.getInstance().closeAll();
         }
-
-        return seriacao;
-    }
-    
+        return new ProcessoSeriacao();      
+    } 
         
     @Override
-    public ArrayList<Seriacao> getAll() throws SQLException{
+    public List<ProcessoSeriacao> getAll() throws SQLException{
         
-        ArrayList<Seriacao> seriacoes = new ArrayList<>();
+        ArrayList<ProcessoSeriacao> seriacoes = new ArrayList<>();
 
         Connection connection = DBConnectionHandler.getInstance().openConnection();
 
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(
-                    "SELECT * FROM Classificacao"
+                    "SELECT * FROM Seriacao"
             );
 
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
-                /*int idClassificacao = resultSet.getInt(1);
-                int idCandidatura = resultSet.getInt(3);
-                int posicao = resultSet.getInt(4);              
-               
-                classificacoes.add(new Classificacao(idClassificacao, idAnuncio, 
-                        idCandidatura, posicao));*/
+                int idSeriacao = resultSet.getInt(1);
+                int idAnuncio = resultSet.getInt(2);
+                String dataSeriacao = resultSet.getString(3);
+                seriacoes.add(new ProcessoSeriacao(idSeriacao, idAnuncio, dataSeriacao));
             }
-
         }
         catch (SQLException exception) {
             exception.printStackTrace();

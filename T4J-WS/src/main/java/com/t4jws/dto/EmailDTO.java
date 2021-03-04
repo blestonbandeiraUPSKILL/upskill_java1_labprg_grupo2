@@ -7,20 +7,16 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-@JsonPropertyOrder({"email", "to", "subject", "text"})
+
 
 public class EmailDTO {
 
-    @JsonProperty("email")
     private String email;
 
-    @JsonProperty("to")
     private String to;
 
-    @JsonProperty("subject")
     private String subject;
 
-    @JsonProperty("text")
     private String text;
 
     public EmailDTO() {

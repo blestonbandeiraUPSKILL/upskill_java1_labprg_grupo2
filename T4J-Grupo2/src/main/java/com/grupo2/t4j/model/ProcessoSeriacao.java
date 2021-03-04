@@ -13,7 +13,7 @@ package com.grupo2.t4j.model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Seriacao {
+public class ProcessoSeriacao {
 
     /**
      * O id da Seriação.
@@ -29,16 +29,11 @@ public class Seriacao {
      * A data da realização da seriação
      */
     private String dataSeriacao;
-    
-    /**
-     * A lista de candidaturas ao anúncio já seriadas.
-     */
-    private ArrayList<Classificacao> listaCandidaturasSeriadas;
-    
+           
     /**
      * O construtor vazio da classe Seriação
      */
-    public Seriacao(){
+    public ProcessoSeriacao(){
         
     }
     
@@ -46,28 +41,22 @@ public class Seriacao {
      * O construtor completo da classe Seriação
      * @param idSeriacao - o id da Seriação.
      * @param idAnuncio - o id do Anúncio.
-     * @param dataSeriacao - a data da realização da seriação
-     * @param listaCandidaturasSeriadas - a lista de candidaturas ao anúncio já seriadas.
+     * @param dataSeriacao - a data da realização da seriação     
      */
-    public Seriacao(int idSeriacao, int idAnuncio, String dataSeriacao, ArrayList<Classificacao> 
-            listaCandidaturasSeriadas){
+    public ProcessoSeriacao(int idSeriacao, int idAnuncio, String dataSeriacao){
         setIdSeriacao(idSeriacao);
         setIdAnuncio(idAnuncio);
-        setData(dataSeriacao);
-        setListaSeriada(listaCandidaturasSeriadas);        
+        setData(dataSeriacao);              
     }
     
     /**
      *  O construtor da classe Seriação com id ainda a ser atribuído na BD
      * @param idAnuncio - o id do Anúncio.
      * @param dataSeriacao - a data da realização da seriação
-     * @param listaCandidaturasSeriadas - a lista de candidaturas ao anúncio já seriadas.
      */
-    public Seriacao(int idAnuncio, String dataSeriacao, ArrayList<Classificacao> 
-            listaCandidaturasSeriadas){
+    public ProcessoSeriacao(int idAnuncio, String dataSeriacao){
         setIdAnuncio(idAnuncio);
-        setData(dataSeriacao);
-        setListaSeriada(listaCandidaturasSeriadas);        
+        setData(dataSeriacao);               
     }
     
     /**
@@ -75,11 +64,10 @@ public class Seriacao {
      * parâmetro um tipo da mesma classe
      * @param seriacao 
      */
-    public Seriacao(Seriacao seriacao){
+    public ProcessoSeriacao(ProcessoSeriacao seriacao){
         setIdSeriacao(seriacao.idSeriacao);
         setIdAnuncio(seriacao.idAnuncio);
-        setData(seriacao.dataSeriacao);
-        setListaSeriada(seriacao.listaCandidaturasSeriadas);        
+        setData(seriacao.dataSeriacao);                
     }    
     
     /**
@@ -105,15 +93,7 @@ public class Seriacao {
     public void setData(String dataSeriacao){
         this.dataSeriacao = dataSeriacao;
     }
-    
-    /**
-     * Define a lista de candidaturas ao anúncio já seriadas.
-     * @param listaCandidaturasSeriada 
-     */
-    public void setListaSeriada(ArrayList<Classificacao> listaCandidaturasSeriada){
-        this.listaCandidaturasSeriadas = listaCandidaturasSeriadas;
-    }
-    
+      
     /**
      * Devolve o id da Seriação.
      * @return 
@@ -134,17 +114,18 @@ public class Seriacao {
      * Devolve a data da realização da seriação
      * @return 
      */
-    public String dataSeriacao(){
+    public String getDataSeriacao(){
         return dataSeriacao;
     }
     
-    /**
-     * Devolve a lista de candidaturas ao anúncio já seriadas.
-     * @return 
+      /**
+     * Representação textual da classe Classificação em formato de apresentação
+     * @return o id da Seriação, o id do Anúncio, o id da Candidatura e a  colocação 
+     * ordinal desta Candidatura do Freelancer na seriação
      */
-    public ArrayList<Classificacao> getListaSeriada(){
-        return listaCandidaturasSeriadas;
+    @Override
+    public String toString(){
+        return String.format("ID Seriação: %-12s |ID Anúncio: %-12s |Data da Seriação:"
+                + " %-12s", idSeriacao, idAnuncio, dataSeriacao);                
     }
- 
-    
-}
+   }

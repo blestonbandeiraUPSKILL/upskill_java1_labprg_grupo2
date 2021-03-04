@@ -5,31 +5,34 @@ title UC10-A - Seriar Candidaturas de Anúncio (não automaticamente)
 participant Colaborador
 participant SeriarCandidaturasUI
 participant SeriarCandidaturasCtrl
-participant RepositorioAnuncio
-participant RepositorioCandidatura
-participant RepositorioClassificacao
-participant RepositorioColaborador
-participant RepositorioSeriacao
+participant RepoAnuncio as RepositorioAnuncio
+participant RepoCand as RepositorioCandidatura
+participant RepoClas as RepositorioClassificacao
+participant RepoCol as RepositorioColaborador
+participant RepoSer as RepositorioSeriacao
+participant RepoColSer as RepositorioColaboradorSeriacao
+
 
 
 activate Colaborador
 Colaborador -> SeriarCandidaturasUI: Consulta anúncios com regime \nde seriação manual, em periodo \nde seriação, ainda não seriados
 activate SeriarCandidaturasUI
-SeriarCandidaturasUI -> SeriarCandidaturasCtrl: getAllAnunciosASeriar\n(emailColaborador, idRegimentoManual)
+SeriarCandidaturasUI -> SeriarCandidaturasCtrl: getAllAnunciosASeriar\n(emailColaborador, \nidRegimentoManual)
 activate SeriarCandidaturasCtrl
-SeriarCandidaturasCtrl -> RepositorioAnuncio: getAllAnunciosASeriar\n(emailColaborador, idRegimentoManual)
+SeriarCandidaturasCtrl -> RepositorioAnuncio: getAllAnunciosASeriar\n(emailColaborador, \nidRegimentoManual)
 activate RepositorioAnuncio
-RepositorioAnuncio --> SeriarCandidaturasCtrl: listaAnunciosASeriar\n(emailColaborador, idRegimentoManual)
-deactivate RepositorioAnuncio
-SeriarCandidaturasCtrl --> SeriarCandidaturasUI: listaAnunciosASeriar\n(emailColaborador, idRegimentoManual)
-deactivate SeriarCandidaturasCtrl
-alt (Não existem anúncios a seriar manualmente)
+alt Não existem anúncios a seriar manualmente
+RepositorioAnuncio --> SeriarCandidaturasCtrl: listaAnunciosASeriar\n(emailColaborador, \nidRegimentoManual) = null
+SeriarCandidaturasCtrl --> SeriarCandidaturasUI: listaAnunciosASeriar\n(emailColaborador, \nidRegimentoManual) = null
 SeriarCandidaturasUI --> Colaborador: Não existem anúncios \ndisponiveis
 
 else Existem anúncios a seriar manualmente 
+RepositorioAnuncio --> SeriarCandidaturasCtrl: listaAnunciosASeriar\n(emailColaborador, \nidRegimentoManual)
+deactivate RepositorioAnuncio
+SeriarCandidaturasCtrl --> SeriarCandidaturasUI: listaAnunciosASeriar\n(emailColaborador, \nidRegimentoManual)
+deactivate SeriarCandidaturasCtrl
 SeriarCandidaturasUI --> Colaborador: Mostra a lista dos Anúncios a \nseriar manualmente
 deactivate SeriarCandidaturasUI
-
 
 Colaborador -> SeriarCandidaturasUI: Seleciona um anúncio a seriar 
 activate SeriarCandidaturasUI
@@ -37,20 +40,44 @@ SeriarCandidaturasUI -> SeriarCandidaturasCtrl: getAllCandidaturas(idAnuncio)
 activate SeriarCandidaturasCtrl
 SeriarCandidaturasCtrl -> RepositorioCandidatura: getAllCandidaturas(idAnuncio)
 activate RepositorioCandidatura
+
+alt Não existem candidaturas ao anúncio selecionado
+RepositorioCandidatura --> SeriarCandidaturasCtrl: listaCandidaturas(idAnuncio) = null
+SeriarCandidaturasCtrl --> SeriarCandidaturasUI: listaCandidaturas(idAnuncio) = null
+SeriarCandidaturasUI --> Colaborador: Não existem candidaturas disponíveis
+
+
+else Existem candidaturas ao anúncio selecionado
 RepositorioCandidatura --> SeriarCandidaturasCtrl: listaCandidaturas(idAnuncio)
 deactivate RepositorioCandidatura
 SeriarCandidaturasCtrl --> SeriarCandidaturasUI: listaCandidaturas(idAnuncio)
 deactivate SeriarCandidaturasCtrl
-SeriarCandidaturasUI --> Colaborador: Mostra a lista de candidaturas \nao anúncio e solicita a classificação \nde cada candidatura
+SeriarCandidaturasUI --> Colaborador: Mostra a lista de candidaturas \nao anúncio e solicita confirmar \ninicio do processo de seriação
 deactivate SeriarCandidaturasUI
+
+
+Colaborador -> SeriarCandidaturasUI: Confirma o início do processo de seriação
+activate SeriarCandidaturasUI
+SeriarCandidaturasUI -> SeriarCandidaturasCtrl: saveSeriacao(idAnuncio, \ndataSeriacao)
+activate SeriarCandidaturasCtrl
+SeriarCandidaturasCtrl -> RepositorioSeriacao: saveSeriacao(idAnuncio, dataSeriacao)
+activate RepositorioSeriacao
+RepositorioSeriacao -> RepositorioSeriacao: save(idAnuncio, \ndataSeriacao)
+RepositorioSeriacao --> SeriarCandidaturasCtrl: Seriação do anúncio criada com sucesso
+deactivate RepositorioSeriacao
+SeriarCandidaturasCtrl --> SeriarCandidaturasUI: Seriação do anúncio criada \ncom sucesso
+deactivate SeriarCandidaturasCtrl
+SeriarCandidaturasUI --> Colaborador: Indica o início do processo de seriação \ne solicita a atribuição da classificação \na cada candidatura recebida.
+deactivate SeriarCandidaturasUI
+
 loop
 Colaborador -> SeriarCandidaturasUI: Atribui uma classificação a uma \ndada candidatura
 activate SeriarCandidaturasUI
-SeriarCandidaturasUI -> SeriarCandidaturasCtrl: saveClassificacao\n(idAnuncio, idCandidatura, posicao)
+SeriarCandidaturasUI -> SeriarCandidaturasCtrl: saveClassificacao\n(idAnuncio, idCandidatura, \nposicao, idSeriacao)
 activate SeriarCandidaturasCtrl
-SeriarCandidaturasCtrl -> RepositorioClassificacao: saveClassificacao(idAnuncio, idCandidatura, posicao)
+SeriarCandidaturasCtrl -> RepositorioClassificacao: saveClassificacao\n(idAnuncio, idCandidatura, \nposicao, idSeriacao)
 activate RepositorioClassificacao
-RepositorioClassificacao -> RepositorioClassificacao: saveClassificacao(idAnuncio, \nidCandidatura, posicao)
+RepositorioClassificacao -> RepositorioClassificacao: saveClassificacao\n(idAnuncio, \nidCandidatura, \nposicao, \nidSeriacao)
 end loop
 RepositorioClassificacao --> SeriarCandidaturasCtrl: listaCandidaturasSeriada(idAnuncio)
 deactivate RepositorioClassificacao
@@ -59,17 +86,17 @@ deactivate SeriarCandidaturasCtrl
 SeriarCandidaturasUI --> Colaborador: Mostra a lista seriada \nde candidatura e solicita \ninformar se há colaboradores \nadicionais que participaram do \nprocesso
 deactivate SeriarCandidaturasUI
 
-alt (Não existem colaboradores participantes adicionais)
+alt Não existem colaboradores participantes adicionais
 Colaborador -> SeriarCandidaturasUI: Indica que não há colaboradores \nparticipantes adicionais
 activate SeriarCandidaturasUI
-SeriarCandidaturasUI -> SeriarCandidaturasCtrl: saveSeriacao(idAnuncio, \ndataSeriacao, \nlistaCandidaturasSeriada(idAnuncio)
+SeriarCandidaturasUI -> SeriarCandidaturasCtrl: updateColaboradorSeriacao\n(idSeriacao, emailColaborador)
 activate SeriarCandidaturasCtrl
-SeriarCandidaturasCtrl -> RepositorioSeriacao: saveSeriacao(idAnuncio, \ndataSeriacao, \nlistaCandidaturasSeriada(idAnuncio))
-activate RepositorioSeriacao
-RepositorioSeriacao -> RepositorioSeriacao: saveSeriacao(idAnuncio, \ndataSeriacao, \nlistaCandidaturasSeriada(idAnuncio)
-RepositorioSeriacao --> SeriarCandidaturasCtrl: Seriação salva com sucesso
-deactivate RepositorioSeriacao
-SeriarCandidaturasCtrl --> SeriarCandidaturasUI: Seriação salva com sucesso
+SeriarCandidaturasCtrl -> RepositorioColaboradorSeriacao: updateColaboradorSeriacao\n(idSeriacao, emailColaborador)
+activate RepositorioColaboradorSeriacao
+RepositorioColaboradorSeriacao -> RepositorioColaboradorSeriacao: updateColaboradorSeriacao\n(idSeriacao, emailColaborador)
+RepositorioColaboradorSeriacao --> SeriarCandidaturasCtrl: Seriação concluída com sucesso
+deactivate RepositorioColaboradorSeriacao
+SeriarCandidaturasCtrl --> SeriarCandidaturasUI: Seriação concluída com sucesso
 deactivate SeriarCandidaturasCtrl
 SeriarCandidaturasUI --> Colaborador: Informa o sucesso da operação
 deactivate SeriarCandidaturasUI
@@ -88,19 +115,24 @@ deactivate SeriarCandidaturasCtrl
 SeriarCandidaturasUI --> Colaborador: Mostra os colaboradores da organização \ne solicita selecionar os demais envolvidos \nna seriação
 deactivate SeriarCandidaturasUI
 
+loop
 Colaborador -> SeriarCandidaturasUI: Seleciona os colaboradores adicionais \nparticipantes na Seriação
 activate SeriarCandidaturasUI
-SeriarCandidaturasUI -> SeriarCandidaturasCtrl: saveSeriacao(idAnuncio, \ndataSeriacao, \nlistaCandidaturasSeriada(idAnuncio), \nlistaColaboradoresParticipantes())
+SeriarCandidaturasUI -> SeriarCandidaturasCtrl: updateColaboradorSeriacao\n(idSeriacao, \nemailColaboradorAdicional)
 activate SeriarCandidaturasCtrl
-SeriarCandidaturasCtrl -> RepositorioSeriacao: saveSeriacao(idAnuncio, \ndataSeriacao, \nlistaCandidaturasSeriada(idAnuncio), \nlistaColaboradoresParticipantes())
-activate RepositorioSeriacao
-RepositorioSeriacao -> RepositorioSeriacao: saveSeriacao(idAnuncio, \ndataSeriacao, \nlistaCandidaturasSeriada(idAnuncio), \nlistaColaboradoresParticipantes())
-RepositorioSeriacao --> SeriarCandidaturasCtrl: Seriação salva com sucesso
-deactivate RepositorioSeriacao
-SeriarCandidaturasCtrl --> SeriarCandidaturasUI: Seriação salva com sucesso
+SeriarCandidaturasCtrl -> RepositorioColaboradorSeriacao: updateColaboradorSeriacao\n(idSeriacao, emailColaboradorAdicional)
+activate RepositorioColaboradorSeriacao
+RepositorioColaboradorSeriacao -> RepositorioColaboradorSeriacao: updateColaboradorSeriacao\n(idSeriacao, \nemailColaboradorAdicional)
+end loop 
+
+RepositorioColaboradorSeriacao --> SeriarCandidaturasCtrl: Seriação concluída com sucesso
+deactivate RepositorioColaboradorSeriacao
+SeriarCandidaturasCtrl --> SeriarCandidaturasUI: Seriação concluída com sucesso
 deactivate SeriarCandidaturasCtrl
 SeriarCandidaturasUI --> Colaborador: Informa o sucesso da operação
 deactivate SeriarCandidaturasUI
+
+end alt 
 end alt
 end alt
 deactivate Colaborador

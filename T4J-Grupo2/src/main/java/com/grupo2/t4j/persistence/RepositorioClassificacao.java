@@ -13,9 +13,11 @@ package com.grupo2.t4j.persistence;
 import com.grupo2.t4j.model.*;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 public interface RepositorioClassificacao {
 
-    boolean save(int idClassificacao, int idAnuncio, int idCandidatura, int posicao) throws SQLException;
+    boolean save(int idClassificacao, int idAnuncio, int idCandidatura, int posicao, 
+            int idSeriacao) throws SQLException;
 
     boolean save(Classificacao classificacao) throws SQLException;
 
@@ -25,5 +27,7 @@ public interface RepositorioClassificacao {
     
     Classificacao findByCandidatura(int idCandidatura) throws SQLException;
     
-    ArrayList<Classificacao> getAllByAnuncio(int idAnuncio)throws SQLException;
+    Classificacao findBySeriacao(int idSeriacao) throws SQLException;
+    
+    List<Classificacao> getAllByAnuncio(int idAnuncio)throws SQLException;
 }
