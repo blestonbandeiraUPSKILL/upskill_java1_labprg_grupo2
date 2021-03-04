@@ -12,6 +12,7 @@ package com.grupo2.t4j.persistence.database;
 import com.grupo2.t4j.exception.AnuncioDuplicadoException;
 import com.grupo2.t4j.model.Anuncio;
 import com.grupo2.t4j.model.Data;
+import com.grupo2.t4j.model.Tarefa;
 import com.grupo2.t4j.model.TipoRegimento;
 import com.grupo2.t4j.model.TipoStatusAnuncio;
 import com.grupo2.t4j.persistence.RepositorioAnuncio;
@@ -310,4 +311,81 @@ public class RepositorioAnuncioDataBase implements RepositorioAnuncio {
         }
         return anuncio;
     }
+    
+    @Override
+    public List<String> getAllRefTarefasTipoRegimento(List<String> referenciasTarefa, String emailColaborador, int idTipoRegimento) throws SQLException{
+        
+        List<String> refTarefasSeriacaoManual = new ArrayList<>();
+        
+        Connection connection = DBConnectionHandler.getInstance().openConnection();
+
+        try {
+           for (String referencia : referenciasTarefa) {
+                CallableStatement callableStatement = connection.prepareCall(
+                        "SELECT * FROM Anuncio " +
+                                "INNER JOIN Tarefa " +
+                                "ON Anuncio.referenciaTarefa LIKE Tarefa.referencia " +
+                                "WHERE Tarefa.referencia LIKE ? " +
+                                "AND Tarefa.emailColaborador LIKE ? " +
+                                "AND Anuncio.idTipoRegimento LIKE ?"
+                );
+              
+                callableStatement.executeUpdate();
+
+                ResultSet resultSet = callableStatement.getResultSet();
+            
+            while (resultSet.next()) {
+                   
+                    refTarefasSeriacaoManual.add(referencia);                 
+                }
+            }
+        }
+        catch (SQLException exception) {
+            exception.printStackTrace();
+            exception.getSQLState();
+
+        }
+        finally {
+            DBConnectionHandler.getInstance().closeAll();
+        }
+        return refTarefasSeriacaoManual;
+      
+        }
+            
+    public List<String> getAllRefTarefasNaoSeriadas(List<String> referenciasTarefa, String nifOrganizacao) throws SQLException{
+        
+        List<String> refTarefasNaoSeriadas = new ArrayList<>();
+        
+        Connection connection = DBConnectionHandler.getInstance().openConnection();
+
+        try {
+            for (String referencia : referenciasTarefa) {
+                String refTarefaNS = findAnuncioByIdTarefa(referencia, nifOrganizacao).getReferenciaTarefa();
+                int idAnuncio = findAnuncioByIdTarefa(referencia, nifOrganizacao).getIdAnuncio();
+               CallableStatement callableStatement = connection.prepareCall(
+                        "SELECT * FROM Seriacao WHERE idAnuncio LIKE ?"
+                );
+              
+                callableStatement.executeUpdate();
+
+                ResultSet resultSet = callableStatement.getResultSet();
+            
+            while (resultSet.next()) {
+                    
+                    refTarefasNaoSeriadas.add(refTarefaNS);                 
+                }
+            }
+        }
+        catch (SQLException exception) {
+            exception.printStackTrace();
+            exception.getSQLState();
+
+        }
+        finally {
+            DBConnectionHandler.getInstance().closeAll();
+        }
+        return refTarefasNaoSeriadas;
+      
+        }   
+     
 }

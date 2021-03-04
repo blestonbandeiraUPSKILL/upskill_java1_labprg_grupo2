@@ -716,5 +716,5 @@ public class RepositorioTarefaDatabase implements RepositorioTarefa {
             DBConnectionHandler.getInstance().closeAll();
         }
         return tarefasElegíveis;
-    }
+    }    
 }

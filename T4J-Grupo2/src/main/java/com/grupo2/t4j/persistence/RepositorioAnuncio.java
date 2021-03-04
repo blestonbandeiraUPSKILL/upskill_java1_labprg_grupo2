@@ -25,7 +25,7 @@ public interface RepositorioAnuncio {
                String dtFimSeriacao, int idTipoRegimento) throws AnuncioDuplicadoException, SQLException;
 
 
-     boolean save(Anuncio anuncio) throws SQLException;
+    boolean save(Anuncio anuncio) throws SQLException;
 
 
     Anuncio findById(String idAnuncio);
@@ -37,6 +37,10 @@ public interface RepositorioAnuncio {
     ArrayList<TipoRegimento> getAllRegimento()throws SQLException;
 
     List<Anuncio> findAnunciosElegiveis(String email) throws SQLException;
+    
+    List<String> getAllRefTarefasTipoRegimento(List<String> referenciasTarefa, String emailColaborador, int idTipoRegimento) throws SQLException;
+    
+    List<String> getAllRefTarefasNaoSeriadas(List<String> referenciasTarefa, String nifOrganizacao) throws SQLException;
 
     Anuncio getAnuncio(int idAnuncio) throws SQLException;
 }
