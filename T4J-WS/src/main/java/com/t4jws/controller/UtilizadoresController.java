@@ -8,6 +8,8 @@ package com.t4jws.controller;
 import com.t4jws.dto.ErroDTO;
 import com.t4jws.dto.ListaUtilizadoresDTO;
 import com.t4jws.dto.UtilizadorDTO;
+import com.t4jws.model.Email;
+import com.t4jws.service.UtilizadoresService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -23,7 +25,8 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/api")
-public class UtilizadorController {
+
+public class UtilizadoresController {
     
     @RequestMapping(value = "/utilizadores",
             method = RequestMethod.GET,
@@ -31,6 +34,7 @@ public class UtilizadorController {
     public ResponseEntity<Object> getUtilizadores() {
         try {
             ListaUtilizadoresDTO listaUtilizadoresDTO = UtilizadoresService.getUtilizadores();
+
             if (listaUtilizadoresDTO.getUtilizadores().size() > 0) {
                 return new ResponseEntity<>(listaUtilizadoresDTO, HttpStatus.OK);
             } else {
@@ -43,9 +47,11 @@ public class UtilizadorController {
     @RequestMapping(value = "/utilizadores/{email}",
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_XML_VALUE)
-    public ResponseEntity<Object> getUtilizadores(@PathVariable("email") String email) {
+
+    public ResponseEntity<Object> getUtilizadores(@PathVariable("email") Email email) {
         try {
             UtilizadorDTO utilizadorDTO = UtilizadoresService.getUtilizador(email);
+
             if (utilizadorDTO != null) {
                 return new ResponseEntity<>(utilizadorDTO, HttpStatus.OK);
             } else {
