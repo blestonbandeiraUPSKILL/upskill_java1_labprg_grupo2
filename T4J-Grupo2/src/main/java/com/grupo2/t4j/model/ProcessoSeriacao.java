@@ -13,7 +13,7 @@ package com.grupo2.t4j.model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Seriacao {
+public class ProcessoSeriacao {
 
     /**
      * O id da Seriação.
@@ -38,7 +38,7 @@ public class Seriacao {
     /**
      * O construtor vazio da classe Seriação
      */
-    public Seriacao(){
+    public ProcessoSeriacao(){
         
     }
     
@@ -49,7 +49,7 @@ public class Seriacao {
      * @param dataSeriacao - a data da realização da seriação
      * @param listaCandidaturasSeriadas - a lista de candidaturas ao anúncio já seriadas.
      */
-    public Seriacao(int idSeriacao, int idAnuncio, String dataSeriacao, ArrayList<Classificacao> 
+    public ProcessoSeriacao(int idSeriacao, int idAnuncio, String dataSeriacao, ArrayList<Classificacao> 
             listaCandidaturasSeriadas){
         setIdSeriacao(idSeriacao);
         setIdAnuncio(idAnuncio);
@@ -63,7 +63,7 @@ public class Seriacao {
      * @param dataSeriacao - a data da realização da seriação
      * @param listaCandidaturasSeriadas - a lista de candidaturas ao anúncio já seriadas.
      */
-    public Seriacao(int idAnuncio, String dataSeriacao, ArrayList<Classificacao> 
+    public ProcessoSeriacao(int idAnuncio, String dataSeriacao, ArrayList<Classificacao> 
             listaCandidaturasSeriadas){
         setIdAnuncio(idAnuncio);
         setData(dataSeriacao);
@@ -75,7 +75,7 @@ public class Seriacao {
      * parâmetro um tipo da mesma classe
      * @param seriacao 
      */
-    public Seriacao(Seriacao seriacao){
+    public ProcessoSeriacao(ProcessoSeriacao seriacao){
         setIdSeriacao(seriacao.idSeriacao);
         setIdAnuncio(seriacao.idAnuncio);
         setData(seriacao.dataSeriacao);

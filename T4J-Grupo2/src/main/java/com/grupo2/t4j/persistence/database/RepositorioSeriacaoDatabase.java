@@ -82,7 +82,7 @@ public class RepositorioSeriacaoDatabase implements RepositorioSeriacao{
     }
     
     @Override
-    public boolean save(Seriacao seriacao) throws SQLException{
+    public boolean save(ProcessoSeriacao seriacao) throws SQLException{
 
         Connection connection = DBConnectionHandler.getInstance().openConnection();
 
@@ -120,7 +120,7 @@ public class RepositorioSeriacaoDatabase implements RepositorioSeriacao{
     }
 
     @Override
-    public Seriacao findById(int idSeriacao) throws SQLException{
+    public ProcessoSeriacao findById(int idSeriacao) throws SQLException{
 
         Connection connection = DBConnectionHandler.getInstance().openConnection();
 
@@ -143,13 +143,13 @@ public class RepositorioSeriacaoDatabase implements RepositorioSeriacao{
             DBConnectionHandler.getInstance().closeAll();
         }
 
-        return new Seriacao();        
+        return new ProcessoSeriacao();        
         
     }
     
     @Override
-    public Seriacao findByAnuncio (int idAnuncio) throws SQLException{
-        Seriacao seriacao = new Seriacao();
+    public ProcessoSeriacao findByAnuncio (int idAnuncio) throws SQLException{
+        ProcessoSeriacao seriacao = new ProcessoSeriacao();
 
         Connection connection = DBConnectionHandler.getInstance().openConnection();
 
@@ -187,9 +187,9 @@ public class RepositorioSeriacaoDatabase implements RepositorioSeriacao{
     
         
     @Override
-    public ArrayList<Seriacao> getAll() throws SQLException{
+    public ArrayList<ProcessoSeriacao> getAll() throws SQLException{
         
-        ArrayList<Seriacao> seriacoes = new ArrayList<>();
+        ArrayList<ProcessoSeriacao> seriacoes = new ArrayList<>();
 
         Connection connection = DBConnectionHandler.getInstance().openConnection();
 

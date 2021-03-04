@@ -43,7 +43,7 @@ public class RepositorioClassificacaoDatabase implements RepositorioClassificaca
     
     @Override
     public boolean save(int idClassificacao, int idAnuncio, int idCandidatura, 
-            int posicao) throws SQLException{
+            int posicao, int idSeriacao) throws SQLException{
 
         Connection connection = DBConnectionHandler.getInstance().openConnection();
 
@@ -94,7 +94,7 @@ public class RepositorioClassificacaoDatabase implements RepositorioClassificaca
 
             callableStatement.setString(1, Integer.toString(classificacao.getIdAnuncio()));
             callableStatement.setString(2, Integer.toString(classificacao.getIdCandidatura()));
-            callableStatement.setString(3, Integer.toString(classificacao.getColocacaoFreelancer()));
+            callableStatement.setString(3, Integer.toString(classificacao.getPosicaoFreelancer()));
             callableStatement.executeQuery();
 
             connection.commit();
@@ -172,7 +172,7 @@ public class RepositorioClassificacaoDatabase implements RepositorioClassificaca
                 classificacao.setIdClassificacao(resultSet.getInt(1));
                 classificacao.setIdAnuncio(resultSet.getInt(2));
                 classificacao.setIdCandidatura(resultSet.getInt(3));
-                classificacao.setColocacaoFreelancer(resultSet.getInt(4));
+                classificacao.setPosicaoFreelancer(resultSet.getInt(4));
             }
 
         } catch (SQLException exceptionOrg) {
@@ -210,7 +210,7 @@ public class RepositorioClassificacaoDatabase implements RepositorioClassificaca
                 classificacao.setIdClassificacao(resultSet.getInt(1));
                 classificacao.setIdAnuncio(resultSet.getInt(2));
                 classificacao.setIdCandidatura(resultSet.getInt(3));
-                classificacao.setColocacaoFreelancer(resultSet.getInt(4));
+                classificacao.setPosicaoFreelancer(resultSet.getInt(4));
             }
 
         } catch (SQLException exceptionOrg) {
@@ -243,8 +243,8 @@ public class RepositorioClassificacaoDatabase implements RepositorioClassificaca
                 int idCandidatura = resultSet.getInt(3);
                 int posicao = resultSet.getInt(4);              
                
-                classificacoes.add(new Classificacao(idClassificacao, idAnuncio, 
-                        idCandidatura, posicao));
+                /*classificacoes.add(new Classificacao(idClassificacao, idAnuncio, 
+                        idCandidatura, posicao));*/
             }
 
         }

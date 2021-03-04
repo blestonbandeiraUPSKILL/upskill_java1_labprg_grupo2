@@ -32,6 +32,11 @@ public class Classificacao {
     private int posicao;
     
     /**
+     * O id do processo de seriação realizado.
+     */
+    private int idSeriacao;
+    
+    /**
      * Construtor vazio da classe Classificacao
      */
     public Classificacao(){
@@ -43,27 +48,31 @@ public class Classificacao {
      * @param idClassificacao - o id da Classificação
      * @param idAnuncio - o id do Anúncio
      * @param idCandidatura - o id da Candidatura
-     * @param posicao - a colocação ordinal do Freelancer     
+     * @param posicao - a colocação ordinal do Freelancer  
+     * @param idSeriacao - o id do processo de seriação realizado.
      */
     public Classificacao(int idClassificacao, int idAnuncio, int idCandidatura, 
-            int posicao){
+            int posicao, int idSeriacao){
         setIdClassificacao(idClassificacao);
         setIdAnuncio(idAnuncio);
         setIdCandidatura(idCandidatura);
-        setColocacaoFreelancer(posicao);        
+        setPosicaoFreelancer(posicao);
+        setIdSeriacao(idSeriacao);
     }
     
      /**
      * Construtor da classe Classificacao com id ainda a ser atribuído na BD
      * @param idAnuncio - o id do Anúncio
      * @param idCandidatura - o id da Candidatura
-     * @param posicao - a colocação ordinal do Freelancer     
+     * @param posicao - a colocação ordinal do Freelancer 
+     * @param idSeriacao - o id do processo de seriação realizado.
      */
     public Classificacao(int idAnuncio, int idCandidatura, 
             int posicao){
         setIdAnuncio(idAnuncio);
         setIdCandidatura(idCandidatura);
-        setColocacaoFreelancer(posicao);        
+        setPosicaoFreelancer(posicao);
+        setIdSeriacao(idSeriacao);       
     }
     
     
@@ -76,11 +85,13 @@ public class Classificacao {
         setIdClassificacao(classificacao.idClassificacao);
         setIdAnuncio(classificacao.idAnuncio);
         setIdCandidatura(classificacao.idCandidatura);
-        setColocacaoFreelancer(classificacao.posicao);        
+        setPosicaoFreelancer(classificacao.posicao);
+        setIdSeriacao(classificacao.idSeriacao);        
     }
     
     /**
-     * 
+     * Define o id da Classificação
+     * @param idClassificacao 
      */
     public void setIdClassificacao(int idClassificacao){
         this.idClassificacao = idClassificacao;
@@ -104,10 +115,18 @@ public class Classificacao {
   
     /**
      * Define a colocação ordinal do Freelancer
-     * @param colocacaoFreelancer
+     * @param posicao
      */
-    public void setColocacaoFreelancer(int posicao){
+    public void setPosicaoFreelancer(int posicao){
         this.posicao = posicao;
+    }
+    
+    /**
+     *  Define o id da Seriação
+     * @param idSeriacao 
+     */
+    public void setIdSeriacao(int idSeriacao){
+        this.idSeriacao = idSeriacao;
     }
     
     /**
@@ -128,10 +147,18 @@ public class Classificacao {
     
     /**
      * Devolve a colocação ordinal do Freelancer
-     * @return colocacaoFreelancer
+     * @return posicao
      */
-    public int getColocacaoFreelancer(){
+    public int getPosicaoFreelancer(){
         return posicao;
+    }
+    
+    /**
+     * Devolve o id da Seriação realizada.
+     * @return idSeriacao
+     */
+    public int getIdSeriacao(){
+        return idSeriacao;
     }
      
     /**
@@ -141,7 +168,7 @@ public class Classificacao {
      */
     @Override
     public String toString(){
-        return String.format("ID Anúncio: %-12s |ID Candidatura: %-12s"
-                + "|Colocação: %-4d º lugar", idAnuncio, idCandidatura, posicao);                
+        return String.format("ID Seriação: %-12s |ID Anúncio: %-12s |ID Candidatura: %-12s"
+                + "|Colocação: %-4d º lugar", idSeriacao, idAnuncio, idCandidatura, posicao);                
     }
 }
