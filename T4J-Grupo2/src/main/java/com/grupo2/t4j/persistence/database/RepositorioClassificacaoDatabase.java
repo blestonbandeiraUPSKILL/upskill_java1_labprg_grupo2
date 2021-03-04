@@ -151,32 +151,6 @@ public class RepositorioClassificacaoDatabase implements RepositorioClassificaca
     }
     
     @Override
-    public Classificacao findByAnuncio (int idAnuncio) throws SQLException{
-        
-        Connection connection = DBConnectionHandler.getInstance().openConnection();
-
-        try {
-            CallableStatement callableStatementOrg = connection.prepareCall(
-                    "{CALL findClassificacaoByAnuncio(?)}");
-
-            connection.setAutoCommit(false);
-
-            callableStatementOrg.setInt(1, idAnuncio);
-            callableStatementOrg.executeQuery();
-
-            return null;
-
-        } catch (SQLException exceptionOrg) {
-            exceptionOrg.printStackTrace();
-            exceptionOrg.getSQLState();
-        }
-        finally {
-            DBConnectionHandler.getInstance().closeAll();
-        }
-        return new Classificacao(); 
-    }
-    
-    @Override
     public Classificacao findByCandidatura (int idCandidatura) throws SQLException{
          Connection connection = DBConnectionHandler.getInstance().openConnection();
 
@@ -202,8 +176,35 @@ public class RepositorioClassificacaoDatabase implements RepositorioClassificaca
     }
     
     @Override
+    public Classificacao findByAnuncio (int idAnuncio) throws SQLException{
+        
+        Connection connection = DBConnectionHandler.getInstance().openConnection();
+
+        try {
+            CallableStatement callableStatementOrg = connection.prepareCall(
+                    "{CALL findClassificacaoByAnuncio(?)}");
+
+            connection.setAutoCommit(false);
+
+            callableStatementOrg.setInt(1, idAnuncio);
+            callableStatementOrg.executeQuery();
+
+            return null;
+
+        } catch (SQLException exceptionOrg) {
+            exceptionOrg.printStackTrace();
+            exceptionOrg.getSQLState();
+        }
+        finally {
+            DBConnectionHandler.getInstance().closeAll();
+        }
+        return new Classificacao(); 
+    }       
+    
+    @Override
     public Classificacao findBySeriacao (int idSeriacao) throws SQLException{
-         Connection connection = DBConnectionHandler.getInstance().openConnection();
+        
+        Connection connection = DBConnectionHandler.getInstance().openConnection();
 
         try {
             CallableStatement callableStatementOrg = connection.prepareCall(
@@ -242,11 +243,15 @@ public class RepositorioClassificacaoDatabase implements RepositorioClassificaca
 
             while (resultSet.next()) {
                 int idClassificacao = resultSet.getInt(1);
+                int idAnuncioNew = resultSet.getInt(2);
                 int idCandidatura = resultSet.getInt(3);
-                int posicao = resultSet.getInt(4);              
-               
-                /*classificacoes.add(new Classificacao(idClassificacao, idAnuncio, 
-                        idCandidatura, posicao));*/
+                int posicao = resultSet.getInt(4);
+                int idSeriacao = resultSet.getInt(5);
+                
+                if (idAnuncioNew == idAnuncio){
+                    classificacoes.add(new Classificacao(idClassificacao, idAnuncioNew, 
+                        idCandidatura, posicao, idSeriacao));
+                }
             }
 
         }
