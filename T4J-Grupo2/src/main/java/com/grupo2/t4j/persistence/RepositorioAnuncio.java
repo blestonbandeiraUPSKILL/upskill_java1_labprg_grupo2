@@ -25,7 +25,7 @@ public interface RepositorioAnuncio {
                String dtFimSeriacao, int idTipoRegimento) throws AnuncioDuplicadoException, SQLException;
 
 
-     boolean save(Anuncio anuncio) throws SQLException;
+    boolean save(Anuncio anuncio) throws SQLException;
 
 
     Anuncio findById(String idAnuncio);

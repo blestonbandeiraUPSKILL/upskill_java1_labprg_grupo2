@@ -5,10 +5,44 @@
  */
 package com.grupo2.t4j.controller;
 
+import com.grupo2.t4j.model.*;
+import com.grupo2.t4j.persistence.*;
+import com.grupo2.t4j.persistence.database.*;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author CAD
  */
 public class SeriarAnuncioController {
+
+    private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosDatabase();
+    private RepositorioTarefa repositorioTarefa = fabricaRepositorios.getRepositorioTarefa();
+    private RepositorioAnuncio repositorioAnuncio = fabricaRepositorios.getRepositorioAnuncio();
+    private RepositorioCandidatura repositorioCandidatura = fabricaRepositorios.getRepositorioCandidatura();
+    private RepositorioColaborador repositorioColaborador = fabricaRepositorios.getRepositorioColaborador();
+    private RepositorioClassificacao repositorioClassificacao = fabricaRepositorios.getRepositorioClassificacao();
+    private RepositorioSeriacao repositorioSeriacao = fabricaRepositorios.getRepositorioSeriacao();
+    
+    public SeriarAnuncioController() throws SQLException{
+        
+    }
+    
+    public List<String> getReferenciasTarefas(String nifOrganizacao) throws SQLException{
+        
+        return repositorioTarefa.findReferenciaTarefa(nifOrganizacao);
+    }
+    
+    public List<Tarefa> findTarefasPublicadas(List<String> referenciasTarefa, 
+            String nifOrganizacao, String emailColaborador)throws SQLException{
+        
+        return repositorioTarefa.findTarefasPublicadas(referenciasTarefa, nifOrganizacao, emailColaborador);
+    }
+    
+    
+    
+    
     
 }

@@ -47,7 +47,6 @@ public interface RepositorioTarefa {
 
     List<Tarefa> findTarefasPublicadas(List<String> referenciasTarefa, String nifOrganizacao, String emailColaborador)throws SQLException;
 
-
     List<String> findReferenciaTarefa(String nifOrganizacao) throws SQLException;
 
     List<Tarefa> findTarefasNaoPublicadas(List<String> referenciasTarefa, String email, String nifOrganizacao) throws SQLException;
@@ -57,7 +56,6 @@ public interface RepositorioTarefa {
     ArrayList<Tarefa> getAll() throws SQLException;
 
     public List<Tarefa> getAllTarefasPublicadas() throws SQLException;
-
 
     List<Tarefa> getAllTarefasElegíveis(String emailFreelancer) throws SQLException;
 }
