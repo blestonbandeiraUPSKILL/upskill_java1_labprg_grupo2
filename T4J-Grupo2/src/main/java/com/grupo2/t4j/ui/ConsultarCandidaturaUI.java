@@ -24,18 +24,27 @@ import javafx.stage.Stage;
  */
 public class ConsultarCandidaturaUI implements Initializable {
 
+
+    private FreelancerLogadoUI freelancerLogadoUI;
+    private EfectuarCandidaturaController efectuarCandidaturaController;
+
+    private Stage adicionarStage;
+
     @FXML Button btnEditarDados;
-    @FXML Button btnCancelar1;
+    @FXML Button btnApagar;
+    @FXML Button btnVoltar;
+
     @FXML TextArea txtAnuncio;
     @FXML TextArea txtApresentacao;
     @FXML TextArea txtMotivacao;
     @FXML TextField txtValor;
     @FXML TextField txtDias;
+
     
     private Stage adicionarStage;
     private FreelancerLogadoUI freelancerLogadoUI;
     private EfectuarCandidaturaController efectuarCandidaturaController;
-    
+
     public void associarParentUI(FreelancerLogadoUI freelancerLogadoUI) {
         this.freelancerLogadoUI = freelancerLogadoUI;
     }
@@ -44,12 +53,14 @@ public class ConsultarCandidaturaUI implements Initializable {
      * Initializes the controller class.
      */
     @Override
+
     public void initialize(URL url, ResourceBundle rb) {
         
         adicionarStage = new Stage();
         adicionarStage.initModality(Modality.APPLICATION_MODAL);
         adicionarStage.setResizable(false);
     }    
+
 
     @FXML
     private void editarDados(ActionEvent event) {
@@ -62,11 +73,14 @@ public class ConsultarCandidaturaUI implements Initializable {
     }
 
     @FXML
-    private void cancelarAction(ActionEvent event) {
+    public void voltarAtras(ActionEvent actionEvent) {
+        btnVoltar.getScene().getWindow().hide();
     }
+
     
     private void guardarAction(ActionEvent event) {
         
     }
     
+
 }
