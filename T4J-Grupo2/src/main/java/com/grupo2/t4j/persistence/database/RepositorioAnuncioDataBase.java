@@ -351,7 +351,8 @@ public class RepositorioAnuncioDataBase implements RepositorioAnuncio {
         return refTarefasSeriacaoManual;
       
         }
-            
+    
+    @Override
     public List<String> getAllRefTarefasNaoSeriadas(List<String> referenciasTarefa, String nifOrganizacao) throws SQLException{
         
         List<String> refTarefasNaoSeriadas = new ArrayList<>();
@@ -362,7 +363,7 @@ public class RepositorioAnuncioDataBase implements RepositorioAnuncio {
             for (String referencia : referenciasTarefa) {
                 String refTarefaNS = findAnuncioByIdTarefa(referencia, nifOrganizacao).getReferenciaTarefa();
                 int idAnuncio = findAnuncioByIdTarefa(referencia, nifOrganizacao).getIdAnuncio();
-               CallableStatement callableStatement = connection.prepareCall(
+                CallableStatement callableStatement = connection.prepareCall(
                         "SELECT * FROM Seriacao WHERE idAnuncio LIKE ?"
                 );
               
@@ -372,7 +373,7 @@ public class RepositorioAnuncioDataBase implements RepositorioAnuncio {
             
             while (resultSet.next()) {
                     
-                    refTarefasNaoSeriadas.add(refTarefaNS);                 
+                refTarefasNaoSeriadas.add(refTarefaNS);                 
                 }
             }
         }
@@ -386,6 +387,49 @@ public class RepositorioAnuncioDataBase implements RepositorioAnuncio {
         }
         return refTarefasNaoSeriadas;
       
-        }   
+    }  
+    
+    @Override
+    public List<String> getAllRefTarefasASeriar(List<String> referenciasTarefa, String nifOrganizacao, Data dataAtual) throws SQLException{
+        
+        List<String> refTarefasASeriar = new ArrayList<>();
+        
+        Connection connection = DBConnectionHandler.getInstance().openConnection();
+
+        try {
+            for (String referencia : referenciasTarefa) {
+                String refTarefaNS = findAnuncioByIdTarefa(referencia, nifOrganizacao).getReferenciaTarefa();
+                int idAnuncio = findAnuncioByIdTarefa(referencia, nifOrganizacao).getIdAnuncio();
+                Data dtInSeriacao = new Data(findAnuncioByIdTarefa(referencia, nifOrganizacao).getDtInicioSeriacao());
+                Data dtFimSeriacao = new Data(findAnuncioByIdTarefa(referencia, nifOrganizacao).getDtFimSeriacao());
+                CallableStatement callableStatement = connection.prepareCall(
+                        "SELECT * FROM Seriacao WHERE idAnuncio LIKE ?"
+                );
+              
+                callableStatement.executeUpdate();
+
+                ResultSet resultSet = callableStatement.getResultSet();
+            
+            while (resultSet.next()) {
+                
+                if(dataAtual.compareTo(dtInSeriacao)>=0 && dataAtual.compareTo(dtFimSeriacao)<=0){
+                    refTarefasASeriar.add(refTarefaNS);
+                }
+                                 
+                }
+            }
+        }
+        catch (SQLException exception) {
+            exception.printStackTrace();
+            exception.getSQLState();
+
+        }
+        finally {
+            DBConnectionHandler.getInstance().closeAll();
+        }
+        return refTarefasASeriar;
+      
+    } 
+    
      
 }

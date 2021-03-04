@@ -716,5 +716,14 @@ public class RepositorioTarefaDatabase implements RepositorioTarefa {
             DBConnectionHandler.getInstance().closeAll();
         }
         return tarefasElegíveis;
-    }    
+    }
+    
+    @Override
+    public List<String> getReferenciasTarefas(List<Tarefa> listaTarefas)  throws SQLException{
+        List<String> referenciaTarefas = new ArrayList<>();
+        for(int i = 0; i < listaTarefas.size();i++){
+            referenciaTarefas.add(listaTarefas.get(i).getReferencia());
+        }
+        return referenciaTarefas;
+    }
 }

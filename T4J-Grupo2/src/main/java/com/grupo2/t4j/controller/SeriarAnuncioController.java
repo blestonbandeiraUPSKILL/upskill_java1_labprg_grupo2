@@ -31,22 +31,24 @@ public class SeriarAnuncioController {
     }
     
     public List<String> getReferenciasTarefas(String nifOrganizacao) throws SQLException{
-        
         return repositorioTarefa.findReferenciaTarefa(nifOrganizacao);
     }
     
     public List<Tarefa> findTarefasPublicadas(List<String> referenciasTarefa, 
             String nifOrganizacao, String emailColaborador)throws SQLException{
-        
         return repositorioTarefa.findTarefasPublicadas(referenciasTarefa, nifOrganizacao, emailColaborador);
+    }
+    
+    public List<String> getReferenciasTarefas(List<Tarefa> listaTarefas)  throws SQLException{
+        return repositorioTarefa.getReferenciasTarefas(listaTarefas);
     }
     
     public List<String> getAllRefTarefasTipoRegimento(List<String> referenciasTarefa, String emailColaborador, int idTipoRegimento) throws SQLException{
         return repositorioAnuncio.getAllRefTarefasTipoRegimento(referenciasTarefa, emailColaborador, idTipoRegimento);
     }
     
-    public List<String> getAllRefTarefasNaoSeriadas(List<String> referenciasTarefa, String nifOrganizacao) throws SQLException{
-        return repositorioAnuncio.getAllRefTarefasNaoSeriadas(referenciasTarefa, nifOrganizacao);
+    public List<String> getAllRefTarefasASeriar(List<String> referenciasTarefa, String nifOrganizacao, Data dataAtual) throws SQLException{
+        return repositorioAnuncio.getAllRefTarefasASeriar(referenciasTarefa, nifOrganizacao, dataAtual);
     }
     
     

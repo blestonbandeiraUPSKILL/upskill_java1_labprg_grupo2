@@ -41,7 +41,7 @@ public interface RepositorioTarefa {
      */
     ArrayList<Tarefa> getAllOrganizacao(String nifOrganizacao) throws SQLException;
 
-    public int findIdAnuncio(String nifOrganizacao, String referenciaTarefa) throws SQLException;
+    int findIdAnuncio(String nifOrganizacao, String referenciaTarefa) throws SQLException;
 
     List<Tarefa> findByColaboradorENif(String email, String nifOrganizacao) throws SQLException;
 
@@ -55,7 +55,9 @@ public interface RepositorioTarefa {
 
     ArrayList<Tarefa> getAll() throws SQLException;
 
-    public List<Tarefa> getAllTarefasPublicadas() throws SQLException;
+    List<Tarefa> getAllTarefasPublicadas() throws SQLException;
+    
+    List<String> getReferenciasTarefas(List<Tarefa> listaTarefas) throws SQLException;
 
     List<Tarefa> getAllTarefasElegíveis(String emailFreelancer) throws SQLException;
 }
