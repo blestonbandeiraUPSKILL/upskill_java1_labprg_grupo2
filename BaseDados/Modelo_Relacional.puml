@@ -191,6 +191,8 @@ entity "CaracterCT" {
     codigoCategoria: text {FK}
 }
 
+
+
 AreaActividade ||--|{ Categoria
 Freelancer |o--|| Utilizador
 Administrativo |o--|| Utilizador
