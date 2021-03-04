@@ -12,6 +12,7 @@ package com.grupo2.t4j.persistence.database;
 import com.grupo2.t4j.exception.AnuncioDuplicadoException;
 import com.grupo2.t4j.model.Anuncio;
 import com.grupo2.t4j.model.Data;
+import com.grupo2.t4j.model.Tarefa;
 import com.grupo2.t4j.model.TipoRegimento;
 import com.grupo2.t4j.model.TipoStatusAnuncio;
 import com.grupo2.t4j.persistence.RepositorioAnuncio;
@@ -310,4 +311,53 @@ public class RepositorioAnuncioDataBase implements RepositorioAnuncio {
         }
         return anuncio;
     }
+    
+    public List<Anuncio> getAllAnunciosASeriar(String emailColaborador, int idTipoRegimento) throws SQLException{
+        
+        List<Anuncio> anunciosASeriar = new ArrayList<>();
+        
+        Connection connection = DBConnectionHandler.getInstance().openConnection();
+
+        try {
+            CallableStatement callableStatement = connection.prepareCall(
+                    "SELECT * FROM Tarefa " +
+                                "INNER JOIN Anuncio " +
+                                "ON Tarefa.referencia LIKE Anuncio.referenciaTarefa " +
+                                "WHERE Tarefa.emailColaborador LIKE ? " +
+                                "AND Anuncio.idRegimento LIKE ?");
+            
+            callableStatement.setString(1, emailColaborador);
+            callableStatement.setInt(2, idTipoRegimento);
+            
+            callableStatement.executeUpdate();
+
+            ResultSet resultSet = callableStatement.getResultSet();
+            
+            /*while (resultSet.next()) {
+
+                    String designacao = resultSet.getString(3);
+                    String descInformal = resultSet.getString(4);
+                    String descTecnica = resultSet.getString(5);
+                    int duracaoEstimada = resultSet.getInt(6);
+                    double custoEstimado = resultSet.getDouble(7);
+                    String codigoCategoria = resultSet.getString(8);
+                    anunciosASeriar.add(new Tarefa(nifOrganizacao, referencia,
+                            designacao, descInformal, descTecnica, duracaoEstimada, custoEstimado, codigoCategoria, emailColaborador));
+
+                }*/
+            }
+        
+        catch (SQLException exception) {
+            exception.printStackTrace();
+            exception.getSQLState();
+
+        }
+        finally {
+            DBConnectionHandler.getInstance().closeAll();
+        }
+        return anunciosASeriar;
+        }
+        
+       
+     
 }
