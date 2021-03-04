@@ -107,15 +107,7 @@
                   <Font name="Calibri" size="14.0" />
                </font>
             </Button>
-            <Button fx:id="btnApagar" mnemonicParsing="false" onAction="#apagarCandidatura" styleClass="btnConfirmar" text="Apagar Candidatura">
-               <FlowPane.margin>
-                  <Insets left="10.0" right="10.0" />
-               </FlowPane.margin>
-               <font>
-                  <Font name="Calibri" size="14.0" />
-               </font>
-            </Button>
-            <Button fx:id="btnVoltar" layoutX="630.0" layoutY="25.0" mnemonicParsing="false" onAction="#voltarAction" styleClass="btnSair" text="Voltar">
+            <Button fx:id="btnCancelar1" layoutX="630.0" layoutY="25.0" mnemonicParsing="false" onAction="#cancelarAction" styleClass="btnSair" text="Cancelar">
                <font>
                   <Font name="Calibri" size="14.0" />
                </font>
