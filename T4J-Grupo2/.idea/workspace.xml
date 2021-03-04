@@ -5,7 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8ca9f66f-f143-4134-afe5-eb7245bd0a9c" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../T4J-WS/src/main/java/com/t4jws/controller/ContextController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../T4J-WS/src/main/java/com/t4jws/controller/WSController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../T4J-WS/src/main/java/com/t4jws/dto/Mapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../T4J-WS/src/main/java/com/t4jws/service/ContextService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../T4J-WS/src/main/java/com/t4jws/controller/UtilizadoresController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../T4J-WS/src/main/java/com/t4jws/dto/EmailDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../T4J-WS/src/main/java/com/t4jws/dto/EmailDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../T4J-WS/src/main/java/com/t4jws/dto/ErroDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../T4J-WS/src/main/java/com/t4jws/dto/ErroDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../T4J-WS/src/main/java/com/t4jws/dto/ListaUtilizadoresDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../T4J-WS/src/main/java/com/t4jws/dto/ListaUtilizadoresDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../T4J-WS/src/main/java/com/t4jws/dto/PasswordDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../T4J-WS/src/main/java/com/t4jws/dto/PasswordDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../T4J-WS/src/main/java/com/t4jws/dto/UtilizadorDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../T4J-WS/src/main/java/com/t4jws/dto/UtilizadorDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../T4J-WS/src/main/java/com/t4jws/repository/RepositorioUtilizadorDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/../T4J-WS/src/main/java/com/t4jws/repository/RepositorioUtilizadorDatabase.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

@@ -7,13 +7,10 @@ import com.fasterxml.jackson.annotation.JsonUnwrapped;
 
 import java.util.ArrayList;
 
-@JsonRootName("utilizadores")
+
 
 public class ListaUtilizadoresDTO {
 
-    @JsonUnwrapped(enabled = false)
-
-    @JsonProperty("utilizador")
     private ArrayList<UtilizadorDTO> utilizadores;
 
     public ListaUtilizadoresDTO() {
