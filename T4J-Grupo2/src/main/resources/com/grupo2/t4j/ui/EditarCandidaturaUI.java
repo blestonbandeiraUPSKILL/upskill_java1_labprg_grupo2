@@ -22,10 +22,6 @@ import javafx.scene.control.TextField;
 public class EditarCandidaturaUI implements Initializable {
 
     @FXML
-    private Button btnAddCandidatura;
-    @FXML
-    private Button btnCancelar;
-    @FXML
     private Button btnCancelar1;
     @FXML
     private TextArea txtAnuncio;
@@ -37,6 +33,10 @@ public class EditarCandidaturaUI implements Initializable {
     private TextField txtValor;
     @FXML
     private TextField txtDias;
+    @FXML
+    private Button btnEditarDados;
+    @FXML
+    private Button btnApagar;
 
     /**
      * Initializes the controller class.
@@ -46,12 +46,17 @@ public class EditarCandidaturaUI implements Initializable {
         // TODO
     }    
 
-    @FXML
-    private void addCandidatura(ActionEvent event) {
-    }
 
     @FXML
     private void cancelarAction(ActionEvent event) {
+    }
+
+    @FXML
+    private void editarDados(ActionEvent event) {
+    }
+
+    @FXML
+    private void apagarCandidatura(ActionEvent event) {
     }
     
 }
