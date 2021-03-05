@@ -205,4 +205,8 @@ public class FreelancerLogadoUI implements Initializable {
         String emailFreelancer = gestaoUtilizadoresController.getEmail();
         listViewCandidaturas.getItems().setAll(efectuarCandidaturaController.findByEmail(emailFreelancer));
     }
+    
+    public void apagarCandidatura(){
+        
+    }
 }

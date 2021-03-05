@@ -25,11 +25,6 @@ import javafx.stage.Stage;
 public class ConsultarCandidaturaUI implements Initializable {
 
 
-    private FreelancerLogadoUI freelancerLogadoUI;
-    private EfectuarCandidaturaController efectuarCandidaturaController;
-
-    private Stage adicionarStage;
-
     @FXML Button btnEditarDados;
     @FXML Button btnApagar;
     @FXML Button btnVoltar;
@@ -68,6 +63,8 @@ public class ConsultarCandidaturaUI implements Initializable {
         txtMotivacao.setEditable(true);
         txtValor.setEditable(true);
         txtDias.setEditable(true);
+        
+        btnVoltar.setText("Cancelar");
         
         
     }
