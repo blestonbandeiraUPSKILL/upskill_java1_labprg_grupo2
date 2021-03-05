@@ -112,7 +112,7 @@
                   <Font name="Calibri" size="14.0" />
                </font>
             </Button>
-            <Button fx:id="btnCancelar1" layoutX="630.0" layoutY="25.0" mnemonicParsing="false" onAction="#cancelarAction" styleClass="btnSair" text="Cancelar">
+            <Button fx:id="btnCancelar" layoutX="630.0" layoutY="25.0" mnemonicParsing="false" onAction="#cancelarAction" styleClass="btnSair" text="Cancelar">
                <font>
                   <Font name="Calibri" size="14.0" />
                </font>

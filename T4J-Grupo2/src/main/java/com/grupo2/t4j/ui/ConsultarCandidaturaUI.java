@@ -9,8 +9,6 @@ import com.grupo2.t4j.controller.EfectuarCandidaturaController;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -30,7 +28,7 @@ public class ConsultarCandidaturaUI implements Initializable {
 
     @FXML Button btnEditarDados;
     @FXML Button btnApagar;
-    @FXML Button btnVoltar;
+    @FXML Button btnCancelar;
     @FXML Button btnGuardar;
     @FXML TextArea txtAnuncio;
     @FXML TextArea txtApresentacao;
@@ -68,21 +66,22 @@ public class ConsultarCandidaturaUI implements Initializable {
 
     @FXML
     private void editarDados(ActionEvent event) {
-        txtApresentacao.setEditable(true);
-        txtMotivacao.setEditable(true);
-        txtValor.setEditable(true);
-        txtDias.setEditable(true);
-        
-        btnVoltar.setText("Cancelar");
+        //txtApresentacao.setEditable(true);
+        //txtMotivacao.setEditable(true);
+        //txtValor.setEditable(true);
+        //txtDias.setEditable(true);
+        txtApresentacao.setDisable(false);
+        txtMotivacao.setDisable(false);
+        txtValor.setDisable(false);
+        txtDias.setDisable(false);
+        btnCancelar.setText("Cancelar");
         btnGuardar.setVisible(true);
+        btnEditarDados.setVisible(false);
         
         
     }
 
-    @FXML
-    public void voltarAtras(ActionEvent actionEvent) {
-        btnVoltar.getScene().getWindow().hide();
-    }
+    
 
     
     public void guardarAction(ActionEvent actionEvent) {
@@ -90,7 +89,7 @@ public class ConsultarCandidaturaUI implements Initializable {
     }
     
     public void cancelarAction(ActionEvent actionEvent) {
-        
+        btnCancelar.getScene().getWindow().hide();
     }
     
 
