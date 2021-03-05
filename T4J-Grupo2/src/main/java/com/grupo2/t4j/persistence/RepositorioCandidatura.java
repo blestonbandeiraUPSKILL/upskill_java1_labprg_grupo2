@@ -27,6 +27,8 @@ public interface RepositorioCandidatura {
     
     Candidatura findByEmail (String emailFreelancer) throws SQLException;
 
-    ArrayList<Candidatura> getAll()throws SQLException;   
-
+    ArrayList<Candidatura> getAll()throws SQLException;  
+    
+    ArrayList<Candidatura> getAllByIdAnuncio(int idAnuncio) throws SQLException;  
+    
 }

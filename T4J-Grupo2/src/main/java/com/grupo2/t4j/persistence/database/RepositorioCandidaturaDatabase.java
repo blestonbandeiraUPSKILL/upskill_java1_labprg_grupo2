@@ -250,4 +250,54 @@ public class RepositorioCandidaturaDatabase implements RepositorioCandidatura{
         }    
         return candidaturas;
     }
+    
+    @Override
+    public ArrayList<Candidatura> getAllByIdAnuncio(int idAnuncio) throws SQLException{
+        
+        ArrayList<Candidatura> candidaturasAnuncio = new ArrayList<>();
+
+        Connection connection = DBConnectionHandler.getInstance().openConnection();
+
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(
+                    "SELECT * FROM Candidatura " +
+                              "WHERE idAnuncio =  ?"                   
+                    
+            );
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                int idCandidatura = resultSet.getInt(1);
+                double valorPretendido = resultSet.getDouble(2);
+                int numeroDias = resultSet.getInt(3);
+                String txtApresentacao = resultSet.getString(4);
+                String txtMotivacao = resultSet.getString(5);                
+                String emailFreelancer = resultSet.getString(7);
+                String dataCandidatura = resultSet.getDate(8).toString();
+                String dataEdicaoCandidatura = resultSet.getDate(9).toString();
+
+                candidaturasAnuncio.add(new Candidatura(idCandidatura, valorPretendido,
+                numeroDias, txtApresentacao, txtMotivacao, idAnuncio, emailFreelancer,
+                dataCandidatura, dataEdicaoCandidatura));
+            }
+
+        }
+        catch (SQLException exception) {
+            exception.printStackTrace();
+            exception.getSQLState();
+            try {
+                System.err.print("Transaction is being rolled back");
+                connection.rollback();
+            }
+            catch (SQLException sqlException) {
+                sqlException.getErrorCode();
+            }
+
+        }
+        finally {
+            DBConnectionHandler.getInstance().closeAll();
+        }    
+        return candidaturasAnuncio;
+    }
 }

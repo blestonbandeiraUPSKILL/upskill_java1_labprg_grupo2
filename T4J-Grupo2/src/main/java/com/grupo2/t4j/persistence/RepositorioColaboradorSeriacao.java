@@ -10,7 +10,7 @@ package com.grupo2.t4j.persistence;
  * @author CAD
  */
 
-public class RepositorioColaboradorSeriacao {
+public interface RepositorioColaboradorSeriacao {
 
     
 }

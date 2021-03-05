@@ -17,11 +17,6 @@ public class Classificacao {
     private int idClassificacao;
     
     /**
-     * O id do Anúncio
-     */
-    private int idAnuncio;
-    
-    /**
      * O id da Candidatura
      */
     private int idCandidatura;
@@ -46,33 +41,30 @@ public class Classificacao {
     /**
      * Construtor completo da classe Classificacao
      * @param idClassificacao - o id da Classificação
-     * @param idAnuncio - o id do Anúncio
-     * @param idCandidatura - o id da Candidatura
      * @param posicao - a colocação ordinal do Freelancer  
-     * @param idSeriacao - o id do processo de seriação realizado.
+     * @param idSeriacao - o id do processo de seriação realizado. 
+     * @param idCandidatura - o id da Candidatura
+    
      */
-    public Classificacao(int idClassificacao, int idAnuncio, int idCandidatura, 
-            int posicao, int idSeriacao){
+    public Classificacao(int idClassificacao,  int posicao, int idSeriacao,
+            int idCandidatura){
         setIdClassificacao(idClassificacao);
-        setIdAnuncio(idAnuncio);
-        setIdCandidatura(idCandidatura);
         setPosicaoFreelancer(posicao);
         setIdSeriacao(idSeriacao);
+        setIdCandidatura(idCandidatura);        
     }
     
      /**
      * Construtor da classe Classificacao com id ainda a ser atribuído na BD
-     * @param idAnuncio - o id do Anúncio
+     * @param posicao - a colocação ordinal do Freelancer  
+     * @param idSeriacao - o id do processo de seriação realizado. 
      * @param idCandidatura - o id da Candidatura
-     * @param posicao - a colocação ordinal do Freelancer 
-     * @param idSeriacao - o id do processo de seriação realizado.
      */
-    public Classificacao(int idAnuncio, int idCandidatura, 
-            int posicao){
-        setIdAnuncio(idAnuncio);
-        setIdCandidatura(idCandidatura);
+    public Classificacao(int posicao, int idSeriacao,
+            int idCandidatura){
         setPosicaoFreelancer(posicao);
-        setIdSeriacao(idSeriacao);       
+        setIdSeriacao(idSeriacao);
+        setIdCandidatura(idCandidatura);         
     }
     
     
@@ -83,10 +75,9 @@ public class Classificacao {
      */
     public Classificacao(Classificacao classificacao){
         setIdClassificacao(classificacao.idClassificacao);
-        setIdAnuncio(classificacao.idAnuncio);
-        setIdCandidatura(classificacao.idCandidatura);
         setPosicaoFreelancer(classificacao.posicao);
-        setIdSeriacao(classificacao.idSeriacao);        
+        setIdSeriacao(classificacao.idSeriacao);
+        setIdCandidatura(classificacao.idCandidatura);      
     }
     
     /**
@@ -97,22 +88,6 @@ public class Classificacao {
         this.idClassificacao = idClassificacao;
     }
     
-    /**
-     * Define o id do Anúncio
-     * @param idAnuncio
-     */
-    public void setIdAnuncio(int idAnuncio){
-        this.idAnuncio = idAnuncio;
-    }
-    
-    /**
-     * Define o id da Candidatura
-     * @param idCandidatura
-     */
-    public void setIdCandidatura(int idCandidatura){
-        this.idCandidatura = idCandidatura;
-    }
-  
     /**
      * Define a colocação ordinal do Freelancer
      * @param posicao
@@ -130,29 +105,22 @@ public class Classificacao {
     }
     
     /**
+     * Define o id da Candidatura
+     * @param idCandidatura
+     */
+    public void setIdCandidatura(int idCandidatura){
+        this.idCandidatura = idCandidatura;
+    } 
+        
+    /**
      * Devolve o id da Classificação
      * @return idClassificacao
      */
     public int getIdClassificacao(){
         return idClassificacao;
     }
-    /**
-     * Devolve o id do Anúncio
-     * @return idAnuncio
-     */
-    public int getIdAnuncio(){
-        return idAnuncio;
-    }
     
-    /**
-     * Devolve o id da Candidatura
-     * @return idCandidatura
-     */
-    public int getIdCandidatura(){
-        return idCandidatura;
-    }
-    
-    /**
+/**
      * Devolve a colocação ordinal do Freelancer
      * @return posicao
      */
@@ -167,15 +135,23 @@ public class Classificacao {
     public int getIdSeriacao(){
         return idSeriacao;
     }
+    
+    /**
+     * Devolve o id da Candidatura
+     * @return idCandidatura
+     */
+    public int getIdCandidatura(){
+        return idCandidatura;
+    }
      
     /**
      * Representação textual da classe Classificação em formato de apresentação
-     * @return o id da Seriação, o id do Anúncio, o id da Candidatura e a  colocação 
+     * @return o id da Seriação, o id da Candidatura e a  colocação 
      * ordinal desta Candidatura do Freelancer na seriação
      */
     @Override
     public String toString(){
-        return String.format("ID Seriação: %-12s |ID Anúncio: %-12s |ID Candidatura: %-12s"
-                + "|Colocação: %-4d º lugar", idSeriacao, idAnuncio, idCandidatura, posicao);                
+        return String.format("ID Seriação: %-10s |ID Candidatura: %-10s"
+                + "|Colocação: %-4d º lugar", idSeriacao, idCandidatura, posicao);                
     }
 }

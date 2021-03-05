@@ -156,6 +156,13 @@ public class RepositorioColaboradorDatabase implements RepositorioColaborador {
         }
         return colaboradores;
     }
+    
+    @Override
+    public ArrayList<Colaborador> getAllByOrganizacao(String nifOrganizacao) throws SQLException{
+        
+        
+        return null;
+    }
 
     @Override
     public String getNifOrganizacao(String email) throws SQLException {

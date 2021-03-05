@@ -41,7 +41,7 @@ public class RepositorioSeriacaoDatabase implements RepositorioSeriacao{
     }
     
     @Override
-    public boolean save(int idSeriacao, int idAnuncio, String dataSeriacao) throws SQLException{
+    public boolean save(int idAnuncio) throws SQLException{
 
         Connection connection = DBConnectionHandler.getInstance().openConnection();
 
@@ -49,13 +49,11 @@ public class RepositorioSeriacaoDatabase implements RepositorioSeriacao{
             CallableStatement callableStatement = connection.prepareCall(
                 "{CALL createSeriacao(?, ?, ?) } ");
 
-            if (findById(idSeriacao) == null){
+            if (findByAnuncio(idAnuncio) == null){
 
                 connection.setAutoCommit(false);
 
-                callableStatement.setInt(1, idSeriacao);
-                callableStatement.setInt(2, idAnuncio);
-                callableStatement.setString(3, dataSeriacao);
+                callableStatement.setInt(1, idAnuncio);
                 callableStatement.executeQuery();
 
                 connection.commit();
@@ -87,14 +85,15 @@ public class RepositorioSeriacaoDatabase implements RepositorioSeriacao{
 
         try {
             CallableStatement callableStatement = connection.prepareCall(
-                "{CALL createSeriacao(?, ?) } ");
+                "{CALL createSeriacao(?, ?, ?) } ");
 
-            if (findById(seriacao.getIdSeriacao()) == null){
+            if (findByAnuncio(seriacao.getIdAnuncio()) == null){
 
                 connection.setAutoCommit(false);
 
-                callableStatement.setInt(1, seriacao.getIdAnuncio());
-                callableStatement.setString(2, seriacao.getDataSeriacao());
+                callableStatement.setInt(1, seriacao.getIdSeriacao());
+                callableStatement.setInt(2, seriacao.getIdAnuncio());
+                callableStatement.setString(3, seriacao.getDataSeriacao());
                 callableStatement.executeQuery();
 
                 connection.commit();

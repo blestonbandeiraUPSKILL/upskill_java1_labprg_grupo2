@@ -42,24 +42,22 @@ public class RepositorioClassificacaoDatabase implements RepositorioClassificaca
     }
     
     @Override
-    public boolean save(int idClassificacao, int idAnuncio, int idCandidatura, 
-            int posicao, int idSeriacao) throws SQLException{
+    public boolean save(int posicao, int idSeriacao, int idCandidatura) throws SQLException{
 
         Connection connection = DBConnectionHandler.getInstance().openConnection();
 
         try {
             CallableStatement callableStatement = connection.prepareCall(
-                "{CALL createClassificacao(?, ?, ?, ?, ?) } ");
+                "{CALL createClassificacao(?, ?, ?) } ");
 
-            if (findById(idClassificacao) == null){
+            if (findByCandidatura(idCandidatura) == null){
 
                 connection.setAutoCommit(false);
-
-                callableStatement.setInt(1, idClassificacao);
-                callableStatement.setInt(2, idAnuncio);
+                
+                callableStatement.setInt(1, posicao);
+                callableStatement.setInt(2, idSeriacao); 
                 callableStatement.setInt(3, idCandidatura);
-                callableStatement.setInt(4, posicao);
-                callableStatement.setInt(5, idSeriacao);                
+                               
                 callableStatement.executeQuery();
 
                 connection.commit();
@@ -92,14 +90,15 @@ public class RepositorioClassificacaoDatabase implements RepositorioClassificaca
         try {
             CallableStatement callableStatement = connection.prepareCall(
                     "{CALL createClassificacao(?, ?, ?, ?) } ");
-            if (findById(classificacao.getIdClassificacao()) == null){
+            if (findByCandidatura(classificacao.getIdCandidatura()) == null){
 
                 connection.setAutoCommit(false);
 
-                callableStatement.setInt(1, classificacao.getIdAnuncio());
-                callableStatement.setInt(2, classificacao.getIdCandidatura());
-                callableStatement.setInt(3, classificacao.getPosicaoFreelancer());
-                callableStatement.setInt(4, classificacao.getIdSeriacao());                
+                callableStatement.setInt(1, classificacao.getIdClassificacao());
+                callableStatement.setInt(2, classificacao.getPosicaoFreelancer());
+                callableStatement.setInt(3, classificacao.getIdSeriacao()); 
+                callableStatement.setInt(4, classificacao.getIdCandidatura());
+                               
                 callableStatement.executeQuery();
 
                 connection.commit();
@@ -174,33 +173,7 @@ public class RepositorioClassificacaoDatabase implements RepositorioClassificaca
         }
         return new Classificacao();
     }
-    
-    @Override
-    public Classificacao findByAnuncio (int idAnuncio) throws SQLException{
-        
-        Connection connection = DBConnectionHandler.getInstance().openConnection();
-
-        try {
-            CallableStatement callableStatementOrg = connection.prepareCall(
-                    "{CALL findClassificacaoByAnuncio(?)}");
-
-            connection.setAutoCommit(false);
-
-            callableStatementOrg.setInt(1, idAnuncio);
-            callableStatementOrg.executeQuery();
-
-            return null;
-
-        } catch (SQLException exceptionOrg) {
-            exceptionOrg.printStackTrace();
-            exceptionOrg.getSQLState();
-        }
-        finally {
-            DBConnectionHandler.getInstance().closeAll();
-        }
-        return new Classificacao(); 
-    }       
-    
+          
     @Override
     public Classificacao findBySeriacao (int idSeriacao) throws SQLException{
         
@@ -228,7 +201,7 @@ public class RepositorioClassificacaoDatabase implements RepositorioClassificaca
     }
     
     @Override
-    public ArrayList<Classificacao> getAllByAnuncio(int idAnuncio) throws SQLException{
+    public ArrayList<Classificacao> getAllBySeriacao(int idSeriacao) throws SQLException{
         
         ArrayList<Classificacao> classificacoes = new ArrayList<>();
 
@@ -236,24 +209,22 @@ public class RepositorioClassificacaoDatabase implements RepositorioClassificaca
 
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(
-                    "SELECT * FROM Classificacao"
+                   "SELECT * FROM Classificacao " +
+                            "WHERE idSeriacao =  ?"
             );
+
+            preparedStatement.setInt(1, idSeriacao);
 
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
                 int idClassificacao = resultSet.getInt(1);
-                int idAnuncioNew = resultSet.getInt(2);
+                int posicao = resultSet.getInt(2);
                 int idCandidatura = resultSet.getInt(3);
-                int posicao = resultSet.getInt(4);
-                int idSeriacao = resultSet.getInt(5);
-                
-                if (idAnuncioNew == idAnuncio){
-                    classificacoes.add(new Classificacao(idClassificacao, idAnuncioNew, 
-                        idCandidatura, posicao, idSeriacao));
+                        
+                classificacoes.add(new Classificacao(idClassificacao,  
+                        posicao, idSeriacao, idCandidatura));
                 }
-            }
-
         }
         catch (SQLException exception) {
             exception.printStackTrace();
