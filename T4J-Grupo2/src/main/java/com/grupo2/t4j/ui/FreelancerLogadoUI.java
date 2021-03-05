@@ -210,7 +210,7 @@ public class FreelancerLogadoUI implements Initializable {
     
     public void apagarCandidatura(ActionEvent actionEvent){
         
-        boolean apagar = eliminarCandidaturaController.deleteCandidatura(idCandidatura);
+        boolean apaga = eliminarCandidaturaController.deleteCandidatura(idCandidatura);
     }
     
      public void consultarCandidatura(ActionEvent actionEvent) throws SQLException {
