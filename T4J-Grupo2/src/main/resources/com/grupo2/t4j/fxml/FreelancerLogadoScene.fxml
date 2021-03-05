@@ -76,7 +76,7 @@
                                     </ListView>
                                  </children>
                               </VBox>
-                              <Button layoutX="534.0" layoutY="225.0" mnemonicParsing="false" styleClass="btnConfirmar" text="Consultar">
+                              <Button fx:id="btnConsultar" layoutX="534.0" layoutY="225.0" mnemonicParsing="false" onAction="#consultarCandidatura" styleClass="btnConfirmar" text="Consultar">
                                  <padding>
                                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                  </padding>

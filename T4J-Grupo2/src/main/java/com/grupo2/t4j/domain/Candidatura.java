@@ -63,25 +63,26 @@ public class Candidatura implements Serializable {
     /**
      * O construtor completo da classe Candidatura
      * @param idCandidatura - o id da Candidatura
-     * @param emailFreelancer - o email do Freelancer em formato String
      * @param valorPretendido - o valor pretendido pelo Freelancer na sua candidatura a uma dada Tarefa
      * @param numeroDias - número de dias que o Freelancer indica para a realização de uma dada Tarefa
      * a que se candidatou
      * @param txtApresentacao - o texto de apresentação do Freelancer para sua candidatura a uma dada Tarefa
      * @param txtMotivacao - o texto de motivação do Freelancer para sua candidatura a uma dada Tarefa
+     * @param idAnuncio - o id do Anúncio a que se refere a candidatura
+     * @param emailFreelancer - o email do Freelancer em formato String
      * @param dataCandidatura - a data de Candidatura (sempre a data atual do calendário)
      * @param dataEdicaoCandidatura -  a data da edição da Candidatura (sempre a data atual do calendário)
      */
-    public Candidatura(int idCandidatura, int idAnuncio, String emailFreelancer, double valorPretendido,
-            int numeroDias, String txtApresentacao, String txtMotivacao, String dataCandidatura,
-            String dataEdicaoCandidatura){
+    public Candidatura(int idCandidatura, double valorPretendido, int numeroDias, 
+            String txtApresentacao, String txtMotivacao, int idAnuncio, String emailFreelancer,
+             String dataCandidatura, String dataEdicaoCandidatura){
         setIdCandidatura(idCandidatura);
-        setIdAnuncio(idAnuncio);
-        setEmailFreelancer(emailFreelancer);
         setValor(valorPretendido);
         setDias(numeroDias);
         setApresentacao(txtApresentacao);
         setMotivacao(txtMotivacao);
+        setIdAnuncio(idAnuncio);
+        setEmailFreelancer(emailFreelancer);
         setData(dataCandidatura);
         setDataEdicao(dataEdicaoCandidatura);
     }
@@ -90,44 +91,48 @@ public class Candidatura implements Serializable {
      * O construtor da classe Candidatura sem data de edição da candidatura
      * (a data de edição da candidatura assume a mesma data da criação da candidatura)
      * @param idCandidatura - o id da Candidatura
-     * @param emailFreelancer - o email do Freelancer em formato String
      * @param valorPretendido - o valor pretendido pelo Freelancer na sua candidatura a uma dada Tarefa
      * @param numeroDias - número de dias que o Freelancer indica para a realização de uma dada Tarefa
      * a que se candidatou
      * @param txtApresentacao - o texto de apresentação do Freelancer para sua candidatura a uma dada Tarefa
      * @param txtMotivacao - o texto de motivação do Freelancer para sua candidatura a uma dada Tarefa
+     * @param idAnuncio - o id do Anúncio a que se refere a candidatura
+     * @param emailFreelancer - o email do Freelancer em formato String
      * @param dataCandidatura - a data de Candidatura (sempre a data atual do calendário)
      */
-    public Candidatura(int idCandidatura, int idAnuncio, String emailFreelancer, double valorPretendido,
-            int numeroDias, String txtApresentacao, String txtMotivacao, String dataCandidatura){
+    public Candidatura(int idCandidatura, double valorPretendido, int numeroDias, 
+            String txtApresentacao, String txtMotivacao, int idAnuncio, String emailFreelancer,
+             String dataCandidatura){
         setIdCandidatura(idCandidatura);
-        setIdAnuncio(idAnuncio);
-        setEmailFreelancer(emailFreelancer);
         setValor(valorPretendido);
         setDias(numeroDias);
         setApresentacao(txtApresentacao);
         setMotivacao(txtMotivacao);
+        setIdAnuncio(idAnuncio);
+        setEmailFreelancer(emailFreelancer);
         setData(dataCandidatura);
         setDataEdicao(dataCandidatura);
     }
     
     /**
      * Construtor da classe Candidatura com texto de Apresentação e de Motivação 
-     * com valores por omissão
+     * com valores por omissão e sem a atribuição de datas (que é automática na BD)
      * @param idCandidatura - o id da Candidatura
-     * @param emailFreelancer - o email do Freelancer em formato String
      * @param valorPretendido - o valor pretendido pelo Freelancer na sua candidatura a uma dada Tarefa
      * @param numeroDias - número de dias que o Freelancer indica para a realização de uma dada Tarefa
      * a que se candidatou
+     * @param idAnuncio - o id do Anúncio a que se refere a candidatura
+     * @param emailFreelancer - o email do Freelancer em formato String     
      */
-    public Candidatura(int idCandidatura, String emailFreelancer, double valorPretendido,
-            int numeroDias){
+    public Candidatura(int idCandidatura, double valorPretendido, int numeroDias, 
+            int idAnuncio, String emailFreelancer){
         setIdCandidatura(idCandidatura);
-        setEmailFreelancer(emailFreelancer);
         setValor(valorPretendido);
         setDias(numeroDias);
-        setApresentacao("");
-        setMotivacao("");
+        setApresentacao(" ");
+        setMotivacao(" ");
+        setIdAnuncio(idAnuncio);
+        setEmailFreelancer(emailFreelancer);      
     }
     
     /**
@@ -136,24 +141,35 @@ public class Candidatura implements Serializable {
      */
     public Candidatura(Candidatura candidatura){
         setIdCandidatura(candidatura.idCandidatura);
-        setEmailFreelancer(candidatura.emailFreelancer);
-        setData(candidatura.dataCandidatura);
         setValor(candidatura.valorPretendido);
         setDias(candidatura.numeroDias);
         setApresentacao(candidatura.txtApresentacao);
         setMotivacao(candidatura.txtMotivacao);
+        setIdAnuncio(candidatura.idAnuncio);
+        setEmailFreelancer(candidatura.emailFreelancer);
         setData(candidatura.dataCandidatura);
         setDataEdicao(candidatura.dataEdicaoCandidatura);
         
     }
-
-    public Candidatura(int idAnuncio, String emailFreelancer, double valor, int dias, String apresentacao, String motivacao) {
+    
+    /**
+     * Construtor da classe Candidatura sem a atribuição de datas (que é automática 
+     * na BD) e sem o idCandidatura que é criado automaticamente na BD
+     * @param valorPretendido
+     * @param numeroDias
+     * @param txtApresentacao
+     * @param txtMotivacao
+     * @param idAnuncio
+     * @param emailFreelanceR 
+     */
+    public Candidatura(Double valorPretendido, int numeroDias, String 
+            txtApresentacao, String txtMotivacao, int idAnuncio, String emailFreelanceR){
+        setValor(valorPretendido);
+        setDias(numeroDias);
+        setApresentacao(txtApresentacao);
+        setMotivacao(txtMotivacao);
         setIdAnuncio(idAnuncio);
-        setEmailFreelancer(emailFreelancer);
-        setValor(valor);
-        setDias(dias);
-        setApresentacao(apresentacao);
-        setMotivacao(motivacao);
+        setEmailFreelancer(emailFreelancer);        
     }
     
     /**
