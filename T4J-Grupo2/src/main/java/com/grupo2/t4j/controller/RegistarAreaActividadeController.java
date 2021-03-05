@@ -6,7 +6,7 @@
 package com.grupo2.t4j.controller;
 
 import com.grupo2.t4j.files.FicheiroRepositorioAreaActividade;
-import com.grupo2.t4j.model.AreaActividade;
+import com.grupo2.t4j.domain.AreaActividade;
 import com.grupo2.t4j.persistence.FabricaRepositorios;
 import com.grupo2.t4j.persistence.RepositorioAreaActividade;
 import com.grupo2.t4j.persistence.database.FabricaRepositoriosDatabase;

@@ -11,7 +11,7 @@ package com.grupo2.t4j.persistence;
  */
 
 import com.grupo2.t4j.exception.CandidaturaDuplicadaException;
-import com.grupo2.t4j.model.Candidatura;
+import com.grupo2.t4j.domain.Candidatura;
 
 import java.sql.SQLException;
 import java.util.ArrayList;

@@ -1,6 +1,6 @@
 package com.grupo2.t4j.persistence;
 
-import com.grupo2.t4j.model.Organizacao;
+import com.grupo2.t4j.domain.Organizacao;
 
 import java.sql.SQLException;
 import java.util.ArrayList;

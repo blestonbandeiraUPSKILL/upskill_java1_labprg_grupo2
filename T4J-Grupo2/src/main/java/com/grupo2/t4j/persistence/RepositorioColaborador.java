@@ -11,8 +11,8 @@ package com.grupo2.t4j.persistence;
  */
 
 import com.grupo2.t4j.exception.ColaboradorDuplicadoException;
-import com.grupo2.t4j.model.Colaborador;
-import com.grupo2.t4j.model.Password;
+import com.grupo2.t4j.domain.Colaborador;
+import com.grupo2.t4j.domain.Password;
 
 import java.sql.SQLException;
 import java.util.ArrayList;

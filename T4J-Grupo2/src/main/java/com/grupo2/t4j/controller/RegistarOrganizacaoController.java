@@ -1,10 +1,10 @@
 package com.grupo2.t4j.controller;
 
 import com.grupo2.t4j.api.UsersAPI;
-import com.grupo2.t4j.model.AlgoritmoGeradorPasswords;
-import com.grupo2.t4j.model.Colaborador;
-import com.grupo2.t4j.model.Organizacao;
-import com.grupo2.t4j.model.Password;
+import com.grupo2.t4j.domain.AlgoritmoGeradorPasswords;
+import com.grupo2.t4j.domain.Colaborador;
+import com.grupo2.t4j.domain.Organizacao;
+import com.grupo2.t4j.domain.Password;
 import com.grupo2.t4j.persistence.FabricaRepositorios;
 import com.grupo2.t4j.persistence.RepositorioColaborador;
 import com.grupo2.t4j.persistence.RepositorioEnderecoPostal;

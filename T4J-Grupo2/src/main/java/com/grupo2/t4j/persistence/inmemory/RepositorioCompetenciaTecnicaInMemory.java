@@ -6,7 +6,7 @@
 package com.grupo2.t4j.persistence.inmemory;
 
 import com.grupo2.t4j.exception.CompetenciaTecnicaDuplicadaException;
-import com.grupo2.t4j.model.CompetenciaTecnica;
+import com.grupo2.t4j.domain.CompetenciaTecnica;
 import com.grupo2.t4j.persistence.RepositorioCompetenciaTecnica;
 
 import java.io.Serializable;

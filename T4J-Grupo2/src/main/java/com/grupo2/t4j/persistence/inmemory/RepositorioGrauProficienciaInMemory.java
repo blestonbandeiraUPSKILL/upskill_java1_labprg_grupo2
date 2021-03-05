@@ -5,8 +5,8 @@
  */
 package com.grupo2.t4j.persistence.inmemory;
 
-import com.grupo2.t4j.model.GrauProficiencia;
-import com.grupo2.t4j.model.Tarefa;
+import com.grupo2.t4j.domain.GrauProficiencia;
+import com.grupo2.t4j.domain.Tarefa;
 import com.grupo2.t4j.persistence.RepositorioGrauProficiencia;
 
 import java.io.Serializable;

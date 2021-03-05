@@ -1,8 +1,8 @@
 package com.grupo2.t4j.persistence.database;
 
 import com.grupo2.t4j.exception.ColaboradorDuplicadoException;
-import com.grupo2.t4j.model.Colaborador;
-import com.grupo2.t4j.model.Password;
+import com.grupo2.t4j.domain.Colaborador;
+import com.grupo2.t4j.domain.Password;
 import com.grupo2.t4j.persistence.RepositorioColaborador;
 import com.grupo2.t4j.utils.DBConnectionHandler;
 

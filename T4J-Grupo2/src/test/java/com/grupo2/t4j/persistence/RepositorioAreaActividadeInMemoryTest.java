@@ -10,13 +10,6 @@ package com.grupo2.t4j.persistence;
  * @author CAD
  */
 
-import java.util.List;
-
-import com.grupo2.t4j.persistence.inmemory.RepositorioAreaActividadeInMemory;
-import org.junit.Test;
-import static org.junit.jupiter.api.Assertions.*;
-import com.grupo2.t4j.model.*;
-import com.grupo2.t4j.exception.*;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
