@@ -192,6 +192,7 @@ entity "Session" {
     appKey: text {NN}
     appContext: text {NN, UK}
     timestamp: date {NN}
+    emailUtilizador: text {FK}
 }
 
 entity "Rolename" {
@@ -229,5 +230,6 @@ CaracterCT }|--|| GrauProficiencia
 ProcessoSeriacao ||--|{ ColaboradorSeriacao
 Colaborador ||--|{ ColaboradorSeriacao
 Utilizador }|--|| Rolename
+Utilizador ||--|| Session
 
 @enduml

@@ -5,13 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3bba2c4a-b637-44ac-9db7-677bd232f142" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Documentação/Sprint 2/UC03_Definir_Categoria_Tarefa/UC03_Definir_Categoria_Tarefa_Diagrama_Sequencia.puml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documentação/Sprint 2/UC03_Definir_Categoria_Tarefa/UC03_Definir_Categoria_Tarefa.md" beforeDir="false" afterPath="$PROJECT_DIR$/Documentação/Sprint 2/UC03_Definir_Categoria_Tarefa/UC03_Definir_Categoria_Tarefa.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documentação/Sprint 2/UC03_Definir_Categoria_Tarefa/UC03_Definir_Categoria_Tarefa_Diagrama_Sequencia.wsd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documentação/Sprint 2/UC03_Definir_Categoria_Tarefa/UC03_Definir_Categoria_Tarefa_Diagrama_Sequencia_Sistema.png" beforeDir="false" afterPath="$PROJECT_DIR$/Documentação/Sprint 2/UC03_Definir_Categoria_Tarefa/UC03_Definir_Categoria_Tarefa_Diagrama_Sequencia_Sistema.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documentação/Sprint 2/UC03_Definir_Categoria_Tarefa/UC03_Definir_Categoria_Tarefa_Modelo_Dominio.png" beforeDir="false" afterPath="$PROJECT_DIR$/Documentação/Sprint 2/UC03_Definir_Categoria_Tarefa/UC03_Definir_Categoria_Tarefa_Modelo_Dominio.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documentação/Sprint 2/UC03_Definir_Categoria_Tarefa/UC03_Definir_Categoria_Tarefa_Modelo_Dominio.wsd" beforeDir="false" afterPath="$PROJECT_DIR$/Documentação/Sprint 2/UC03_Definir_Categoria_Tarefa/UC03_Definir_Categoria_Tarefa_Modelo_Dominio.wsd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documentação/Sprint 2/UC03_Definir_Categoria_Tarefa/UC03_Definir_Categoria_Tarefa_SSD.wsd" beforeDir="false" afterPath="$PROJECT_DIR$/Documentação/Sprint 2/UC03_Definir_Categoria_Tarefa/UC03_Definir_Categoria_Tarefa_SSD.wsd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/T4J-Grupo2/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/T4J-Grupo2/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -37,6 +32,7 @@
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
   </component>
   <component name="RunManager">
     <configuration name="MainApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
