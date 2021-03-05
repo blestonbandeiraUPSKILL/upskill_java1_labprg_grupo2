@@ -10,9 +10,9 @@ public class ErroDTO {
 
     private String mensagemErro;
 
-    public ErroDTO(Exception e) {
-        mensagemErro = e.getMessage();
-        e.printStackTrace();
+    public ErroDTO(Exception exception) {
+        mensagemErro = exception.getMessage();
+        exception.printStackTrace();
     }
 
     public ErroDTO() {

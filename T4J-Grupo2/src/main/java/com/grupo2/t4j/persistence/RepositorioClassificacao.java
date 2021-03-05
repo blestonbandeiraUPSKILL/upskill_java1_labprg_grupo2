@@ -10,9 +10,8 @@ package com.grupo2.t4j.persistence;
  * @author CAD
  */
 
-import com.grupo2.t4j.model.*;
+import com.grupo2.t4j.domain.*;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 public interface RepositorioClassificacao {
 

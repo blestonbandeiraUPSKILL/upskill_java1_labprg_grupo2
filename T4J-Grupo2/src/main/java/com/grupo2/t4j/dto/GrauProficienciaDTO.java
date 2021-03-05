@@ -6,7 +6,6 @@ import com.grupo2.t4j.exception.CompetenciaTecnicaInexistenteException;
 import com.grupo2.t4j.exception.DescricaoInvalidaException;
 import com.grupo2.t4j.exception.GrauInvalidoException;
 import com.grupo2.t4j.exception.IdInvalidoException;
-import com.grupo2.t4j.model.GrauProficiencia;
 
 @JsonPropertyOrder({"idGrauProficiencia", "grau", "designacao", "codigoCompetenciaTecnica"})
 

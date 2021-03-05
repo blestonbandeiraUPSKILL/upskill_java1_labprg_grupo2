@@ -30,7 +30,7 @@ public class Mapper {
     }
 
     public static Utilizador utilizadorDTO2Utilizador(UtilizadorDTO utilizadorDTO) throws NullPointerException {
-        return new Utilizador(emailDTO2Email(utilizadorDTO.getEmail()), utilizadorDTO.getNome(), passwordDTO2Password(utilizadorDTO.getPassword()));
+        return new Utilizador(emailDTO2Email(utilizadorDTO.getEmailDTO()), utilizadorDTO.getNome(), passwordDTO2Password(utilizadorDTO.getPasswordDTO()));
     }
 
     public static ListaUtilizadoresDTO listaUtilizadores2ListaUtilizadoresDTO(List<Utilizador> utilizadores) throws NullPointerException {

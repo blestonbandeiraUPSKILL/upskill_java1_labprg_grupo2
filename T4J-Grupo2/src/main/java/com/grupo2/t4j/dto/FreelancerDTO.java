@@ -3,10 +3,6 @@ package com.grupo2.t4j.dto;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import com.grupo2.t4j.exception.NifInvalidoException;
-import com.grupo2.t4j.model.Email;
-import com.grupo2.t4j.model.EnderecoPostal;
-import com.grupo2.t4j.model.Freelancer;
-import com.grupo2.t4j.model.Password;
 
 @JsonPropertyOrder ({"nif", "telefone", "idEnderecoPostal", "enderecoPostal"})
 

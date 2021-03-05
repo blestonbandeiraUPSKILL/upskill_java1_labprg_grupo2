@@ -110,7 +110,8 @@ CREATE TABLE Candidatura(
     txtMotivacao varchar(250),
     idAnuncio integer,
     emailFreelancer  varchar(20), 
-    dataCandidatura date
+    dataCandidatura date,
+    dataEdicaoCandidatura date
 );
 
 CREATE TABLE ReconhecimentoGP(

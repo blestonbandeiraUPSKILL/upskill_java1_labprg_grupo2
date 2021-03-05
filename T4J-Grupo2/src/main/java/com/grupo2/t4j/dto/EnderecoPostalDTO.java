@@ -3,7 +3,6 @@ package com.grupo2.t4j.dto;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import com.grupo2.t4j.exception.NomeInvalidoException;
-import com.grupo2.t4j.model.EnderecoPostal;
 
 @JsonPropertyOrder({"idEnderecoPostal", "arruamento", "numeroPorta", "localidade", "codigoPostal"})
 

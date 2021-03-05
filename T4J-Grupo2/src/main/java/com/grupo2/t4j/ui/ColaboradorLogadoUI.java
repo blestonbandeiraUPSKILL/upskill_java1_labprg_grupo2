@@ -1,7 +1,7 @@
 package com.grupo2.t4j.ui;
 
 import com.grupo2.t4j.controller.*;
-import com.grupo2.t4j.model.*;
+import com.grupo2.t4j.domain.*;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;

@@ -1,8 +1,7 @@
 package com.grupo2.t4j.persistence.database;
 
-import com.grupo2.t4j.exception.GrauProficienciaDuplicadoException;
-import com.grupo2.t4j.model.GrauProficiencia;
-import com.grupo2.t4j.model.Tarefa;
+import com.grupo2.t4j.domain.GrauProficiencia;
+import com.grupo2.t4j.domain.Tarefa;
 import com.grupo2.t4j.persistence.RepositorioGrauProficiencia;
 import com.grupo2.t4j.utils.DBConnectionHandler;
 

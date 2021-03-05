@@ -1,9 +1,9 @@
 package com.grupo2.t4j.ui;
 
 import com.grupo2.t4j.controller.*;
-import com.grupo2.t4j.model.Colaborador;
-import com.grupo2.t4j.model.FiltroTarefas;
-import com.grupo2.t4j.model.Tarefa;
+import com.grupo2.t4j.domain.Colaborador;
+import com.grupo2.t4j.domain.FiltroTarefas;
+import com.grupo2.t4j.domain.Tarefa;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;

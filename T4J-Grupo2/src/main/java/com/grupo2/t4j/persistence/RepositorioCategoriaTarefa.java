@@ -1,8 +1,8 @@
 package com.grupo2.t4j.persistence;
 
 
-import com.grupo2.t4j.model.Categoria;
-import com.grupo2.t4j.model.Obrigatoriedade;
+import com.grupo2.t4j.domain.Categoria;
+import com.grupo2.t4j.domain.Obrigatoriedade;
 
 import java.sql.SQLException;
 import java.util.ArrayList;

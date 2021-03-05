@@ -1,6 +1,6 @@
 package com.grupo2.t4j.persistence.database;
 
-import com.grupo2.t4j.model.EnderecoPostal;
+import com.grupo2.t4j.domain.EnderecoPostal;
 import com.grupo2.t4j.persistence.RepositorioEnderecoPostal;
 import com.grupo2.t4j.utils.DBConnectionHandler;
 

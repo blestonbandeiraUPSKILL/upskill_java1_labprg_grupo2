@@ -1,7 +1,7 @@
 package com.grupo2.t4j.api;
 
-import com.grupo2.t4j.model.Email;
-import com.grupo2.t4j.model.Password;
+import com.grupo2.t4j.domain.Email;
+import com.grupo2.t4j.domain.Password;
 import com.grupo2.t4j.network.*;
 import org.json.JSONObject;
 

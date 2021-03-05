@@ -7,7 +7,7 @@ package com.grupo2.t4j.ui;
 
 import com.grupo2.t4j.controller.RegistarAreaActividadeController;
 import com.grupo2.t4j.controller.RegistarCaracterizacaoCTController;
-import com.grupo2.t4j.model.CaracterizacaoCT;
+import com.grupo2.t4j.domain.CaracterizacaoCT;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
