@@ -25,6 +25,7 @@ public class SeriarAnuncioController {
     private RepositorioColaborador repositorioColaborador = fabricaRepositorios.getRepositorioColaborador();
     private RepositorioClassificacao repositorioClassificacao = fabricaRepositorios.getRepositorioClassificacao();
     private RepositorioSeriacao repositorioSeriacao = fabricaRepositorios.getRepositorioSeriacao();
+    private RepositorioColaboradorSeriacao repositorioColaboradorSeriacao = fabricaRepositorios.getRepositorioColaboradorSeriacao();
     
     public SeriarAnuncioController() throws SQLException{
         
@@ -39,7 +40,7 @@ public class SeriarAnuncioController {
         return repositorioTarefa.findTarefasPublicadas(referenciasTarefa, nifOrganizacao, emailColaborador);
     }
     
-    public List<String> getReferenciasTarefas(List<Tarefa> listaTarefas)  throws SQLException{
+    public List<String> getReferenciasTarefas(List<Tarefa> listaTarefas) throws SQLException{
         return repositorioTarefa.getReferenciasTarefas(listaTarefas);
     }
     
@@ -85,6 +86,10 @@ public class SeriarAnuncioController {
     
     public ArrayList<String> getAllEmailsByOrganizacao(String nifOrganizacao) throws SQLException{
         return repositorioColaborador.getAllEmailsByOrganizacao(nifOrganizacao);
+    }
+    
+    public boolean update(String emailColaborador, int idSeriacao) throws SQLException{
+        return repositorioColaboradorSeriacao.update(emailColaborador, idSeriacao);
     }
     
     
