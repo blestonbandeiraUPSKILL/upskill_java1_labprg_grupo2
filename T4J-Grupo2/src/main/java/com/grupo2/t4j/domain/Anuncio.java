@@ -65,18 +65,24 @@ public class Anuncio implements Serializable {
             cal.get(Calendar.DAY_OF_MONTH));
 
 
-    
+    /**
+     * O construtor vazio da Classe Anúncio
+     */
     public Anuncio(){
     }
     
     /**
      * Construtor completo da classe Anuncio
+     * @param idAnuncio - o id do Anúncio 
+     * @param referenciaTarefa - referência da tarefa a que se relaciona o anúncio
+     * @param nifOrganizacao - o nif da organização que requer a tarefa
      * @param dtInicioPublicitacao - data de início da publicitação do anúncio
      * @param dtFimPublicitacao - data do fim da publicitação do anúncio
      * @param dtInicioCandidatura - data de início da candidatura do anúncio
      * @param dtFimCandidatura - data do fim da candidatura do anúncio
      * @param dtInicioSeriacao - data de início do processo de seriação do anúncio
      * @param dtFimSeriacao - data do fim do processo de seriação do anúncio
+     * @param idTipoRegimento - O id do tipo de regimento aplicável ao anúncio
      */
     public Anuncio(int idAnuncio, String referenciaTarefa, String nifOrganizacao, String dtInicioPublicitacao, String dtFimPublicitacao, String
             dtInicioCandidatura, String dtFimCandidatura, String dtInicioSeriacao,
@@ -92,7 +98,33 @@ public class Anuncio implements Serializable {
         setDtFimSeriacao(dtFimSeriacao); 
         setIdTipoRegimento(idTipoRegimento);
     }
-           
+              
+    /**
+     * Construtor completo da classe Anuncio sem o id do Anúncio que será atribuiído na BD
+     * @param referenciaTarefa - referência da tarefa a que se relaciona o anúncio
+     * @param nifOrganizacao - o nif da organização que requer a tarefa
+     * @param dtInicioPublicitacao - data de início da publicitação do anúncio
+     * @param dtFimPublicitacao - data do fim da publicitação do anúncio
+     * @param dtInicioCandidatura - data de início da candidatura do anúncio
+     * @param dtFimCandidatura - data do fim da candidatura do anúncio
+     * @param dtInicioSeriacao - data de início do processo de seriação do anúncio
+     * @param dtFimSeriacao - data do fim do processo de seriação do anúncio
+     * @param idTipoRegimento - O id do tipo de regimento aplicável ao anúncio
+     */
+    public Anuncio(String referenciaTarefa, String nifOrganizacao, String dtInicioPublicitacao, String dtFimPublicitacao, String
+            dtInicioCandidatura, String dtFimCandidatura, String dtInicioSeriacao,
+                   String dtFimSeriacao, int idTipoRegimento) {
+        setReferenciaTarefa(referenciaTarefa);
+        setNifOrganizacao(nifOrganizacao);
+        setDtInicioPub(dtInicioPublicitacao);
+        setDtFimPub(dtFimPublicitacao);
+        setDtInicioCand(dtInicioCandidatura);
+        setDtFimCand(dtFimCandidatura);
+        setDtInicioSeriacao(dtInicioSeriacao);
+        setDtFimSeriacao(dtFimSeriacao); 
+        setIdTipoRegimento(idTipoRegimento);
+    }
+    
     /**
      * Construtor da classe Anuncio
      * @param anuncio é do tipo da classe Anúncio
@@ -106,33 +138,8 @@ public class Anuncio implements Serializable {
         setDtInicioCand(anuncio.dtInicioCandidatura);
         setDtFimCand(anuncio.dtFimCandidatura);
         setDtInicioSeriacao(anuncio.dtInicioSeriacao);
-        setDtFimSeriacao(anuncio.dtFimSeriacao);  
-    }
-
-    public Anuncio(int idAnuncio, String referenciaTarefa, String nifOrganizacao, String dataInicioPublicitacao,
-                   String dataFimPublicitacao, String dataInicioCandidatura, String dataFimCandidatura, String dataInicioSeriacao, String dataFimSeriacao) {
-        setIdAnuncio(idAnuncio);
-        setReferenciaTarefa(referenciaTarefa);
-        setNifOrganizacao(nifOrganizacao);
-        setDtInicioPub(dataInicioPublicitacao);
-        setDtFimPub(dataFimPublicitacao);
-        setDtInicioCand(dataInicioCandidatura);
-        setDtFimCand(dataFimCandidatura);
-        setDtInicioSeriacao(dataInicioSeriacao);
-        setDtFimSeriacao(dataFimSeriacao);
-    }
-
-    public Anuncio(String referencia, String nifOrganizacao, String dataInicioPublicitacao, String dataFimPublicitacao, String dataInicioCandidatura,
-                   String dataFimCandidatura, String dataInicioSeriacao, String dataFimSeriacao, int idTipoRegimento) {
-        setReferenciaTarefa(referencia);
-        setNifOrganizacao(nifOrganizacao);
-        setDtInicioPub(dataInicioPublicitacao);
-        setDtFimPub(dataFimPublicitacao);
-        setDtInicioCand(dataInicioCandidatura);
-        setDtFimCand(dataFimCandidatura);
-        setDtInicioSeriacao(dataInicioSeriacao);
-        setDtFimSeriacao(dataFimSeriacao);
-        setIdTipoRegimento(idTipoRegimento);
+        setDtFimSeriacao(anuncio.dtFimSeriacao);
+        setIdTipoRegimento(anuncio.idTipoRegimento);
     }
 
     /**
@@ -145,7 +152,23 @@ public class Anuncio implements Serializable {
         }
         this.idAnuncio = idAnuncio;
     }
-
+    
+    /**
+     * Define a referência da tarefa a qual se relaciona o anúncio
+     * @param referenciaTarefa 
+     */
+    public void setReferenciaTarefa(String referenciaTarefa) {
+        this.referenciaTarefa = referenciaTarefa;
+    }
+    
+    /**
+     * Define o nif da organização que requer a tarefa
+     * @param nifOrganizacao 
+     */
+    public void setNifOrganizacao(String nifOrganizacao) {
+        this.nifOrganizacao = nifOrganizacao;
+    }
+    
     /**
      * Define a data de início da publicitação do anúncio
      * @param dtInicioPublicitacao
@@ -213,6 +236,11 @@ public class Anuncio implements Serializable {
         
     }
     
+   
+    public void setIdTipoRegimento(int idTipoRegimento) {
+        this.idTipoRegimento = idTipoRegimento;
+    }
+    
     /**
      * Devolve o id do Anuncio 
      * @return idAnuncio
@@ -221,6 +249,22 @@ public class Anuncio implements Serializable {
         return idAnuncio;
     }
 
+     /**
+     * Devolve a referência da tarefa a qual se relaciona o anúncio
+     * @return referenciaTarefa
+     */
+    public String getReferenciaTarefa() {
+        return referenciaTarefa;
+    }
+
+    /**
+     * Devolve o nif da organização que requer a tarefa
+     * @param nifOrganizacao 
+     */
+    public String getNifOrganizacao() {
+        return nifOrganizacao;
+    }
+    
     /**
      * Devolve a data de início da publicitação do anúncio
      * @return
@@ -268,29 +312,13 @@ public class Anuncio implements Serializable {
     public String getDtFimSeriacao() {
        return dtFimSeriacao; 
     }
-
-    public String getReferenciaTarefa() {
-        return referenciaTarefa;
-    }
-
-    public void setReferenciaTarefa(String referenciaTarefa) {
-        this.referenciaTarefa = referenciaTarefa;
-    }
-
-    public String getNifOrganizacao() {
-        return nifOrganizacao;
-    }
-
-    public void setNifOrganizacao(String nifOrganizacao) {
-        this.nifOrganizacao = nifOrganizacao;
-    }
-
+ 
+    /**
+     * Devolve o id do tipo de regimento aplicável ao anúncio
+     * @param idTipoRegimento 
+     */
     public int getIdTipoRegimento() {
         return idTipoRegimento;
-    }
-
-    public void setIdTipoRegimento(int idTipoRegimento) {
-        this.idTipoRegimento = idTipoRegimento;
     }
     
     /**
