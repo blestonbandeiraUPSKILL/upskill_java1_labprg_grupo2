@@ -315,5 +315,5 @@ public class RepositorioCandidaturaDatabase implements RepositorioCandidatura {
             DBConnectionHandler.getInstance().closeAll();
         }
         return false;
-
+    }
 }

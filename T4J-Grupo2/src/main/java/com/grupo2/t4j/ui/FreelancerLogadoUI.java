@@ -1,9 +1,6 @@
 package com.grupo2.t4j.ui;
 
-import com.grupo2.t4j.controller.EfectuarCandidaturaController;
-import com.grupo2.t4j.controller.GestaoUtilizadoresController;
-import com.grupo2.t4j.controller.RegistarAnuncioController;
-import com.grupo2.t4j.controller.RegistarTarefaController;
+import com.grupo2.t4j.controller.*;
 import com.grupo2.t4j.domain.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -39,7 +36,8 @@ public class FreelancerLogadoUI implements Initializable {
     private RegistarAnuncioController registarAnuncioController;
     private EfectuarCandidaturaController efectuarCandidaturaController;
     private RegistarTarefaController registarTarefaController;
-    private ConsultarCandidaturaUI consultarCandidaturaUI;     
+    private ConsultarCandidaturaUI consultarCandidaturaUI;
+    private EliminarCandidaturaController eliminarCandidaturaController;
     private Scene sceneConsultarCandidatura;
     
     @FXML ListView<Tarefa> listViewAnuncios;
@@ -81,6 +79,7 @@ public class FreelancerLogadoUI implements Initializable {
         } catch (SQLException exception) {
             exception.printStackTrace();
         }
+        eliminarCandidaturaController = new EliminarCandidaturaController();
 
         adicionarStage = new Stage();
         adicionarStage.initModality(Modality.APPLICATION_MODAL);;
