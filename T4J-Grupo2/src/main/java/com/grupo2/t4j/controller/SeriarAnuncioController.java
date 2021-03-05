@@ -51,6 +51,37 @@ public class SeriarAnuncioController {
         return repositorioAnuncio.getAllRefTarefasASeriar(referenciasTarefa, nifOrganizacao, dataAtual);
     }
     
+    public int getIdAnuncioByIdTarefa(String referenciaTarefa, String nifOrganizacao) throws SQLException{
+        return repositorioAnuncio.findAnuncioByIdTarefa(referenciaTarefa, nifOrganizacao).getIdAnuncio();
+    }
+    
+    public ArrayList<Candidatura> getAllByIdAnuncio(int idAnuncio) throws SQLException{
+        return repositorioCandidatura.getAllByIdAnuncio(idAnuncio);
+    }
+    
+    public boolean saveSeriacao(int idAnuncio)throws SQLException{
+        return repositorioSeriacao.save(idAnuncio);
+    }
+    
+    public int getIdSeriacao(int idAnuncio)throws SQLException{
+        return repositorioSeriacao.findByAnuncio(idAnuncio).getIdSeriacao();
+    }
+    
+    public boolean saveClassificacao(int posicao, int idSeriacao, int idCandidatura) throws SQLException{
+        return repositorioClassificacao.save(posicao, idSeriacao, idCandidatura);
+    }
+    
+    public List<Classificacao> getAllBySeriacao(int idSeriacao)throws SQLException{
+        return repositorioClassificacao.getAllBySeriacao(idSeriacao);
+    }
+    
+    public Candidatura findCandidaturaById(int idCandidatura) throws SQLException{
+        return repositorioCandidatura.findById(idCandidatura);
+    }
+    
+    public Classificacao findClassificacaoById(int idClassificacao) throws SQLException{
+        return repositorioClassificacao.findById(idClassificacao);
+    }
     
     
     

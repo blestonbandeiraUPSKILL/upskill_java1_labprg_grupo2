@@ -27,6 +27,8 @@ public interface RepositorioColaborador {
     Colaborador findByEmail(String emailCol) throws SQLException;
 
     ArrayList<Colaborador> getAll() throws SQLException;
+    
+    ArrayList<Colaborador> getAllByOrganizacao(String nifOrganizacao) throws SQLException;
 
     String getNifOrganizacao(String email) throws SQLException;
 

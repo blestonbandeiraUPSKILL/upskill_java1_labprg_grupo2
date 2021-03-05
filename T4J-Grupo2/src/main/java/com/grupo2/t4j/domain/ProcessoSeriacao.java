@@ -5,6 +5,8 @@
  */
 package com.grupo2.t4j.domain;
 
+import java.util.Calendar;
+
 /**
  *
  * @author CAD
@@ -26,7 +28,14 @@ public class ProcessoSeriacao {
      * A data da realização da seriação
      */
     private String dataSeriacao;
-           
+
+    /**
+     * A data atual no formato da classe Data
+     */
+    private Calendar cal = Calendar.getInstance();
+    private Data hoje = new Data(cal.get(Calendar.YEAR),cal.get(Calendar.MONTH),
+            cal.get(Calendar.DAY_OF_MONTH));
+    
     /**
      * O construtor vazio da classe Seriação
      */
@@ -47,13 +56,22 @@ public class ProcessoSeriacao {
     }
     
     /**
-     *  O construtor da classe Seriação com id ainda a ser atribuído na BD
+     * O construtor da classe Seriação com id ainda a ser atribuído na BD
      * @param idAnuncio - o id do Anúncio.
      * @param dataSeriacao - a data da realização da seriação
      */
     public ProcessoSeriacao(int idAnuncio, String dataSeriacao){
         setIdAnuncio(idAnuncio);
         setData(dataSeriacao);               
+    }
+    
+    /**
+     * O construtor da classe Seriação com id ainda a ser atribuído na BD
+     * e com a data de Seriação a ser gravada automaticamente na BD
+     * @param idAnuncio - o id do Anúncio.
+     */
+    public ProcessoSeriacao(int idAnuncio){
+        setIdAnuncio(idAnuncio);                      
     }
     
     /**

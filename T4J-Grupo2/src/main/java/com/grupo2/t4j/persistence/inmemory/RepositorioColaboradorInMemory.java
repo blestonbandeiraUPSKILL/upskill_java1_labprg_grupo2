@@ -110,6 +110,11 @@ public class RepositorioColaboradorInMemory implements Serializable, Repositorio
     public ArrayList<Colaborador> getAll() {
         return new ArrayList<Colaborador>(listaColaboradores);
     }
+    
+    @Override
+    public ArrayList<Colaborador> getAllByOrganizacao(String nifOrganizacao){
+        return null;
+    }
 
     @Override
     public String getNifOrganizacao(String email) throws SQLException {
