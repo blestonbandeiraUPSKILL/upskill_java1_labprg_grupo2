@@ -209,4 +209,8 @@ public class FreelancerLogadoUI implements Initializable {
     public void apagarCandidatura(){
         
     }
+    
+     public void consultarCandidatura(){
+        
+    }
 }

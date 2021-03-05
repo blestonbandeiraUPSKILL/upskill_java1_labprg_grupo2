@@ -7,7 +7,10 @@ package com.grupo2.t4j.ui;
 
 import com.grupo2.t4j.controller.EfectuarCandidaturaController;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -28,7 +31,7 @@ public class ConsultarCandidaturaUI implements Initializable {
     @FXML Button btnEditarDados;
     @FXML Button btnApagar;
     @FXML Button btnVoltar;
-
+    @FXML Button btnGuardar;
     @FXML TextArea txtAnuncio;
     @FXML TextArea txtApresentacao;
     @FXML TextArea txtMotivacao;
@@ -54,6 +57,12 @@ public class ConsultarCandidaturaUI implements Initializable {
         adicionarStage = new Stage();
         adicionarStage.initModality(Modality.APPLICATION_MODAL);
         adicionarStage.setResizable(false);
+        
+        try { 
+            efectuarCandidaturaController = new EfectuarCandidaturaController();
+        } catch (SQLException exception) {
+            exception.printStackTrace();       
+        }
     }    
 
 
@@ -65,6 +74,7 @@ public class ConsultarCandidaturaUI implements Initializable {
         txtDias.setEditable(true);
         
         btnVoltar.setText("Cancelar");
+        btnGuardar.setVisible(true);
         
         
     }
