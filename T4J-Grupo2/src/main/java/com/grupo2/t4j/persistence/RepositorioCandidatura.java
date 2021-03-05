@@ -29,8 +29,14 @@ public interface RepositorioCandidatura {
 
     ArrayList<Candidatura> getAll()throws SQLException;  
     
+<<<<<<< HEAD
     ArrayList<Candidatura> getAllByIdAnuncio(int idAnuncio) throws SQLException;
     
     boolean deleteCandidatura(int idCandidatura);
+=======
+    ArrayList<Candidatura> getAllByIdAnuncio(int idAnuncio) throws SQLException;  
+
+    public void updateCandidatura();
+>>>>>>> main
     
 }
