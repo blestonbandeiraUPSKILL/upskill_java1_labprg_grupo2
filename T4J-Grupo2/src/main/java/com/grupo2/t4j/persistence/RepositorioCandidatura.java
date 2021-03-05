@@ -15,6 +15,7 @@ import com.grupo2.t4j.domain.Candidatura;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 public interface RepositorioCandidatura {
     
     boolean save(int idCandidatura, double valorPretendido, int numeroDias, 
@@ -32,6 +33,9 @@ public interface RepositorioCandidatura {
     ArrayList<Candidatura> getAllByIdAnuncio(int idAnuncio) throws SQLException;  
 
     public void updateCandidatura();
+
+
+    public List<Candidatura> getAllCandidaturasElegiveis(String emailFreelancer);
 
     
 }
