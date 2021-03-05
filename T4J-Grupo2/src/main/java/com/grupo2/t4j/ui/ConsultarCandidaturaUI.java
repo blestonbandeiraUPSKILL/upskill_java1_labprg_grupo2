@@ -5,7 +5,7 @@
  */
 package com.grupo2.t4j.ui;
 
-import com.grupo2.t4j.controller.EfectuarCandidaturaController;
+import com.grupo2.t4j.controller.EditarCandidaturaController;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
@@ -39,7 +39,7 @@ public class ConsultarCandidaturaUI implements Initializable {
     
     private Stage adicionarStage;
     private FreelancerLogadoUI freelancerLogadoUI;
-    private EfectuarCandidaturaController efectuarCandidaturaController;
+    private EditarCandidaturaController editarCandidaturaController;
 
     public void associarParentUI(FreelancerLogadoUI freelancerLogadoUI) {
         this.freelancerLogadoUI = freelancerLogadoUI;
@@ -56,12 +56,8 @@ public class ConsultarCandidaturaUI implements Initializable {
         adicionarStage.initModality(Modality.APPLICATION_MODAL);
         adicionarStage.setResizable(false);
         
-        try { 
-            efectuarCandidaturaController = new EfectuarCandidaturaController();
-        } catch (SQLException exception) {
-            exception.printStackTrace();       
-        }
-    }    
+        editarCandidaturaController = new EditarCandidaturaController();
+    }   
 
 
     @FXML
@@ -74,7 +70,7 @@ public class ConsultarCandidaturaUI implements Initializable {
         txtMotivacao.setDisable(false);
         txtValor.setDisable(false);
         txtDias.setDisable(false);
-        btnCancelar.setText("Cancelar");
+        //btnCancelar.setText("Cancelar");
         btnGuardar.setVisible(true);
         btnEditarDados.setVisible(false);
         
@@ -85,6 +81,7 @@ public class ConsultarCandidaturaUI implements Initializable {
 
     
     public void guardarAction(ActionEvent actionEvent) {
+        editarCandidaturaController.updateCandidatura();
         
     }
     
