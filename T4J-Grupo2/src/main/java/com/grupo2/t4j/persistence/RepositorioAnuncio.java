@@ -29,8 +29,6 @@ public interface RepositorioAnuncio {
     boolean save(Anuncio anuncio) throws SQLException;
 
 
-    Anuncio findById(String idAnuncio);
-
     ArrayList<Anuncio> getAll() throws SQLException;
     
     Anuncio findAnuncioByIdTarefa(String referenciaTarefa, String nifOrganizacao)throws SQLException;

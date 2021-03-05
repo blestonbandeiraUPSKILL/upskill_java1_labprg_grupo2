@@ -136,11 +136,6 @@ public class RepositorioAnuncioDataBase implements RepositorioAnuncio {
     }
 
     @Override
-    public Anuncio findById(String idAnuncio) {
-        return null;
-    }
-
-    @Override
     public ArrayList<Anuncio> getAll() throws SQLException {
         return null;
     }
