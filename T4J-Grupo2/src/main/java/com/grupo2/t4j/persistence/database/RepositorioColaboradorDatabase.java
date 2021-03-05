@@ -158,10 +158,19 @@ public class RepositorioColaboradorDatabase implements RepositorioColaborador {
     }
     
     @Override
-    public ArrayList<Colaborador> getAllByOrganizacao(String nifOrganizacao) throws SQLException{
+    public ArrayList<String> getAllEmailsByOrganizacao(String nifOrganizacao) throws SQLException{
         
+        ArrayList<Colaborador> colaboradores = getAll();
         
-        return null;
+        ArrayList<String> colaboradoresOrganizacao = new ArrayList<>();
+        
+        for(int i= 0; i < colaboradores.size(); i++){
+            Colaborador colaborador = colaboradores.get(i);
+            if(colaborador.getNifOrganizacao().equals(nifOrganizacao)){
+                colaboradoresOrganizacao.add(colaborador.getEmail().getEmailText());
+            }            
+        }   
+        return colaboradoresOrganizacao;
     }
 
     @Override
