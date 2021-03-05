@@ -15,7 +15,7 @@ import java.sql.SQLException;
 import java.util.List;
 public interface RepositorioSeriacao {
     
-    boolean save(int idSeriacao, int idAnuncio, String dataSeriacao) throws SQLException;
+    boolean save(int idAnuncio) throws SQLException;
 
     boolean save(ProcessoSeriacao seriacao) throws SQLException;
 

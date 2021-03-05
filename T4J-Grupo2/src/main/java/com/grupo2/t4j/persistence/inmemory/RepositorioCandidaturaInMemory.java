@@ -78,4 +78,9 @@ class RepositorioCandidaturaInMemory implements Serializable, RepositorioCandida
     public ArrayList<Candidatura> getAll() throws SQLException{
         return null;
     }
+    
+    @Override
+    public ArrayList<Candidatura> getAllByIdAnuncio(int idAnuncio) throws SQLException{
+        return null;
+    }
 }

@@ -364,6 +364,15 @@ public class Candidatura implements Serializable {
     }
     
     /**
+     * Representação textual da classe Candidatura em formato de exibição simplificado
+     * @return o id do Anúncio, o id da Candidatura e o email do Freelancer
+     */
+    public String toStringIdEmail(){
+        return String.format("IDAnuncio: %-10s |IDCand: %-10s |Freelancer: %-20s ", 
+                idAnuncio, idCandidatura, emailFreelancer);
+    }
+    
+    /**
      * Representação textual da classe Candidatura Completa
      * @return o id da candidatura, o email do Freelancer candidato, a data da 
      * candidatura em formato texto, o valor pretendido pelo Freelancer para a 
