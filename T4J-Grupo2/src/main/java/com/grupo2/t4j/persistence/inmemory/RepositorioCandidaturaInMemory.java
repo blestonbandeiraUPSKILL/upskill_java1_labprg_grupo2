@@ -83,4 +83,9 @@ class RepositorioCandidaturaInMemory implements Serializable, RepositorioCandida
     public ArrayList<Candidatura> getAllByIdAnuncio(int idAnuncio) throws SQLException{
         return null;
     }
+
+    @Override
+    public void updateCandidatura() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

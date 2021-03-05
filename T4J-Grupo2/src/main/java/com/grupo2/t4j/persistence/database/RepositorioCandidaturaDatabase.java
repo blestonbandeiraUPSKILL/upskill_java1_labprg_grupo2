@@ -300,4 +300,9 @@ public class RepositorioCandidaturaDatabase implements RepositorioCandidatura{
         }    
         return candidaturasAnuncio;
     }
+
+    @Override
+    public void updateCandidatura() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
