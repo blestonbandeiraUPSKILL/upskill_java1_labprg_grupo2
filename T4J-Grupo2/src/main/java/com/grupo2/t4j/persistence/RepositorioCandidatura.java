@@ -32,6 +32,8 @@ public interface RepositorioCandidatura {
     ArrayList<Candidatura> getAllByIdAnuncio(int idAnuncio) throws SQLException;  
 
     public void updateCandidatura();
+    
+    boolean deleteCandidatura(int idCandidatura);
 
     
 }
