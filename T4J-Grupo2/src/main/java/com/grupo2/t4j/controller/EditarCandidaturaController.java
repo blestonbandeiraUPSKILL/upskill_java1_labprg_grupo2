@@ -25,8 +25,8 @@ public class EditarCandidaturaController {
         repositorioCandidatura.updateCandidatura();
     }
 
-    public List<Candidatura> getAllCandidaturasElegiveis(String emailFreelancer) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public List<Candidatura> getAllCandidaturasEditaveis(String emailFreelancer) {
+        return repositorioCandidatura.getAllCandidaturasElegiveis(emailFreelancer);
     }
     
 }
