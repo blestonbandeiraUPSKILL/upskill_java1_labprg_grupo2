@@ -1,11 +1,17 @@
 package t4j.ws.service;
 
 import t4j.ws.domain.Email;
+import t4j.ws.domain.Rolename;
 import t4j.ws.domain.Utilizador;
+import t4j.ws.dto.ListaRolenamesDTO;
 import t4j.ws.dto.Mapper;
 import t4j.ws.dto.UtilizadorDTO;
 import t4j.ws.exception.ConversaoException;
+import t4j.ws.persistence.RepositorioRolename;
 import t4j.ws.persistence.RepositorioUtilizador;
+
+import java.sql.SQLException;
+import java.util.List;
 
 public class UtilizadoresService {
 
@@ -54,9 +60,16 @@ public class UtilizadoresService {
         }
     }
 
-    /*public static ListaRolesDTO getRoles() {
+    public static ListaRolenamesDTO getRoles() throws SQLException {
+        ListaRolenamesDTO listaRolenamesDTO = null;
 
-    }*/
+        RepositorioRolename repositorioRolename = RepositorioRolename.getInstance();
+        List<Rolename> rolenames = repositorioRolename.getAll();
+
+        listaRolenamesDTO = Mapper.listaRolenames2ListaRolenamesDTO(rolenames);
+
+        return listaRolenamesDTO;
+    }
 
 
 }

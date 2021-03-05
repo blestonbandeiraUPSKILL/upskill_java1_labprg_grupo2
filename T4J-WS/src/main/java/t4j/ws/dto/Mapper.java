@@ -1,7 +1,11 @@
 package t4j.ws.dto;
 
+import t4j.ws.domain.Rolename;
 import t4j.ws.domain.Sessao;
 import t4j.ws.domain.Utilizador;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Mapper {
 
@@ -40,6 +44,20 @@ public class Mapper {
         sessaoDTO.setTimeStamp(sessaoDTO.getTimeStamp());
 
         return sessaoDTO;
+    }
 
+    public static ListaRolenamesDTO listaRolenames2ListaRolenamesDTO(List<Rolename> rolenames) {
+        List<RolenameDTO> listaRolenamesDTO = new ArrayList<RolenameDTO>();
+
+        for(Rolename rolename : rolenames) {
+            try {
+                RolenameDTO rolenameDTO = rolename2RolenameDTO(rolename);
+                listaRolenamesDTO.add(rolenameDTO);
+            }
+            catch (NullPointerException exception) {
+                exception.printStackTrace();
+                exception.getMessage();
+            }
+        }
     }
 }

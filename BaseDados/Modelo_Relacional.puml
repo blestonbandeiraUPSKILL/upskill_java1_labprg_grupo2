@@ -230,6 +230,6 @@ CaracterCT }|--|| GrauProficiencia
 ProcessoSeriacao ||--|{ ColaboradorSeriacao
 Colaborador ||--|{ ColaboradorSeriacao
 Utilizador }|--|| Rolename
-Utilizador ||--|| Session
+Utilizador ||--o| Session
 
 @enduml
