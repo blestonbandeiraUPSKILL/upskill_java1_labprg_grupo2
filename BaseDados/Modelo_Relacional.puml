@@ -26,9 +26,9 @@ entity "Colaborador" {
 
 }
 
-entity "ColaboradorClassificacao" {
+entity "ColaboradorSeriacao" {
     emailColaborador: text {PK, FK}
-    idClassificacao: int {PK, FK}
+    idProcessoSeriacao: int {PK, FK}
 }
 
 entity "Utilizador" {
@@ -36,6 +36,7 @@ entity "Utilizador" {
     --
     nome: text {NN}
     password: text {NN}
+    idRolename: number {FK}
 }
 
 entity "Administrativo" {
@@ -153,6 +154,7 @@ entity "Candidatura" {
     idAnuncio: number {FK}
     emailFreelancer: text {FK}
     dataCandidatura: date
+    dataEdicaoCandidatura: date
 }
 
 entity "HabilitacaoAcademica" {
@@ -184,6 +186,22 @@ entity "CaracterCT" {
     codigoCategoria: text {FK}
 }
 
+entity "Session" {
+    idSession: number {PK}
+    --
+    appKey: text {NN}
+    appContext: text {NN, UK}
+    timestamp: date {NN}
+}
+
+entity "Rolename" {
+    idRolename: number {PK}
+    --
+    designacao: text {NN, UK}
+}
+
+
+
 AreaActividade ||--|{ Categoria
 Freelancer |o--|| Utilizador
 Administrativo |o--|| Utilizador
@@ -208,8 +226,8 @@ Freelancer ||--|{ ReconhecimentoGP
 ReconhecimentoGP }|--|| GrauProficiencia
 CaracterCT }|--|| Categoria
 CaracterCT }|--|| GrauProficiencia
-Classificacao ||--|{ ColaboradorClassificacao
-Colaborador ||--|{ ColaboradorClassificacao
-
+ProcessoSeriacao ||--|{ ColaboradorSeriacao
+Colaborador ||--|{ ColaboradorSeriacao
+Utilizador }|--|| Rolename
 
 @enduml

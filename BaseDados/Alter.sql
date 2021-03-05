@@ -1,11 +1,8 @@
---ALTER TABLE Organizacao
---    ADD CONSTRAINT fk_Organizacao_emailGestor
---        FOREIGN KEY (emailGestor)
---        REFERENCES Utilizador (email);
-
---ALTER TABLE Organizacao
---    DROP CONSTRAINT fk_Organizacao_emailGestor;
-
+ALTER TABLE Utilizador
+    ADD CONSTRAINT fk_Utilizador_idRolename
+        FOREIGN KEY (idRolename)
+        REFERENCES Rolename(idRolename);
+        
 ALTER TABLE Organizacao
     ADD CONSTRAINT fk_Organizacao_idEnderecoPostal
         FOREIGN KEY (idEnderecoPostal)
@@ -38,7 +35,7 @@ ALTER TABLE Freelancer
 
 ALTER TABLE Tarefa
     ADD CONSTRAINT pk_Tarefa
-        PRIMARY KEY (referencia, nifOrganizacao);
+        PRIMARY KEY (nifOrganizacao, referencia);
         
 ALTER TABLE Tarefa
     ADD CONSTRAINT fk_Tarefa_nifOrganizacao
@@ -114,70 +111,39 @@ ALTER TABLE Categoria
         FOREIGN KEY (codigoAreaActividade)
         REFERENCES AreaActividade(codigoAreaActividade);
 
---ALTER TABLE CompetenciaTecnica
---    ADD CONSTRAINT fk_CompetenciaTecnica_idCaracterCT
---        FOREIGN KEY (idCaracterCT)
---        REFERENCES CaracterCT(idCaracterCT);
-
 ALTER TABLE CompetenciaTecnica
     ADD CONSTRAINT fk_CompetenciaTecnica_codigoAreaActividade
         FOREIGN KEY (codigoAreaActividade)
         REFERENCES AreaActividade(codigoAreaActividade);
 
 ALTER TABLE ProcessoSeriacao
-    ADD CONSTRAINT fk_ProcessoSeriacao_idTipoRegimento
-        FOREIGN KEY (idTipoRegimento)
-        REFERENCES TipoRegimento(idTipoRegimento);
+    ADD CONSTRAINT fk_ProcessoSeriacao_idAnuncio
+        FOREIGN KEY (idAnuncio)
+        REFERENCES Anuncio(idAnuncio);
 
 ALTER TABLE Classificacao
     ADD CONSTRAINT fk_Classificacao_idProcessoSeriacao
         FOREIGN KEY (idProcessoSeriacao)
         REFERENCES ProcessoSeriacao(idProcessoSeriacao);
 
+ALTER TABLE Classificacao
+    ADD CONSTRAINT fk_Classificacao_idCandidatura
+        FOREIGN KEY (idCandidatura)
+        REFERENCES Candidatura(idCandidatura);
+
 ALTER TABLE CaracterCT
     ADD CONSTRAINT fk_CaracterCT_GRAUPROFMINIMO
         FOREIGN KEY (GRAUPROFMINIMO)
         REFERENCES GrauProficiencia(idGrauProficiencia);
 
---ALTER TABLE CompetenciaTecnica
---    DROP COLUMN idCaracterCT;
-
---ALTER TABLE GrauProficiencia
---    drop column valor;
-
---ALTER TABLE GrauProficiencia
---    ADD grau varchar(10);
-
-ALTER TABLE GrauProficiencia
-    drop constraint uk_GrauProficiencia_grau;
-
-ALTER TABLE Categoria
-    drop constraint fk_Categoria_idCaracterCT;
-    
 ALTER TABLE GrauProficiencia
     ADD CONSTRAINT uk_GrauProficiencia_grau_codigoCompetenciaTecnica 
         UNIQUE (grau, codigoCompetenciaTecnica);
-
---ALTER TABLE CaracterCT
---    ADD codigoCategoria varchar(15);
 
 ALTER TABLE CaracterCT
     ADD CONSTRAINT fk_CaracterCT_codigoCategoria
         FOREIGN KEY (codigoCategoria)
         REFERENCES Categoria(codigoCategoria);
-
-
-ALTER TABLE Tarefa
-    MODIFY emailColaborador varchar(50);
-
-ALTER TABLE HabilitacaoAcademica
-    MODIFY grau varchar(50);
-
-ALTER TABLE HabilitacaoAcademica
-    MODIFY mediaCurso numeric;
-
-ALTER TABLE Tarefa
-    MODIFY custoEstimado numeric;
 
 ALTER TABLE Anuncio
     ADD CONSTRAINT ck_Anuncio_dataInicioCandidatura
@@ -208,24 +174,23 @@ ALTER TABLE Anuncio
     ADD CONSTRAINT ck_Anuncio_dataInicioCandidatura_dataFimCandidatura
     CHECK (dataInicioCandidatura < dataFimCandidatura);
     
---ALTER TABLE Anuncio
---  ADD idTipoRegimento integer;
 
 ALTER TABLE Anuncio
     ADD CONSTRAINT fk_Anuncio_idTipoRegimento
     FOREIGN KEY (idTipoRegimento)
     REFERENCES TipoRegimento(idTipoRegimento);
 
---ALTER TABLE Candidatura
---    MODIFY valorPretendido numeric;
-
---ALTER TABLE Candidatura
---    DROP COLUMN dataFimCandidatura;
-    
---ALTER TABLE Candidatura
---    ADD dataCandidatura date;
-
-
-ALTER TABLE GrauProficiencia
-    MODIFY grau int;
-commit;
+ALTER TABLE ColaboradorSeriacao
+    ADD CONSTRAINT pk_ColaboradorSeriacao
+        PRIMARY KEY (emailColaborador, idProcessoSeriacao);
+        
+ALTER TABLE ColaboradorSeriacao
+    ADD CONSTRAINT fk_ColaboradorSeriacao_idProcessoSeriacao
+        FOREIGN KEY (idProcessoSeriacao)
+        REFERENCES ProcessoSeriacao(idProcessoSeriacao);
+        
+ALTER TABLE ColaboradorSeriacao
+    ADD CONSTRAINT fk_ColaboradorSeriacao_emailColaborador
+        FOREIGN KEY (emailColaborador)
+        REFERENCES Colaborador(email);
+        

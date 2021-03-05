@@ -8,8 +8,7 @@ package com.grupo2.t4j.ui;
 
 import com.grupo2.t4j.controller.RegistarAreaActividadeController;
 import com.grupo2.t4j.controller.RegistarGrauProficienciaController;
-import com.grupo2.t4j.model.CaracterizacaoCT;
-import com.grupo2.t4j.model.GrauProficiencia;
+import com.grupo2.t4j.domain.GrauProficiencia;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;

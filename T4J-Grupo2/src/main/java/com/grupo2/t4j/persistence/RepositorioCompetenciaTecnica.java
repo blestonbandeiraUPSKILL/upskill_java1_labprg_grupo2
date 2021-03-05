@@ -5,7 +5,7 @@
  */
 package com.grupo2.t4j.persistence;
 
-import com.grupo2.t4j.model.CompetenciaTecnica;
+import com.grupo2.t4j.domain.CompetenciaTecnica;
 
 import java.sql.SQLException;
 import java.util.List;

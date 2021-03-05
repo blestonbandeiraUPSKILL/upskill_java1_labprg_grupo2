@@ -10,16 +10,16 @@ package com.grupo2.t4j.persistence.database;
  * @author CAD
  */
 import com.grupo2.t4j.exception.AnuncioDuplicadoException;
-import com.grupo2.t4j.model.Anuncio;
-import com.grupo2.t4j.model.Data;
-import com.grupo2.t4j.model.TipoRegimento;
-import com.grupo2.t4j.model.TipoStatusAnuncio;
+import com.grupo2.t4j.domain.Anuncio;
+import com.grupo2.t4j.domain.Data;
+import com.grupo2.t4j.domain.Tarefa;
+import com.grupo2.t4j.domain.TipoRegimento;
+import com.grupo2.t4j.domain.TipoStatusAnuncio;
 import com.grupo2.t4j.persistence.RepositorioAnuncio;
 import com.grupo2.t4j.utils.DBConnectionHandler;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 public class RepositorioAnuncioDataBase implements RepositorioAnuncio {
@@ -132,11 +132,6 @@ public class RepositorioAnuncioDataBase implements RepositorioAnuncio {
         }
 
         return false;
-    }
-
-    @Override
-    public Anuncio findById(String idAnuncio) {
-        return null;
     }
 
     @Override
@@ -310,4 +305,125 @@ public class RepositorioAnuncioDataBase implements RepositorioAnuncio {
         }
         return anuncio;
     }
+    
+    @Override
+    public List<String> getAllRefTarefasTipoRegimento(List<String> referenciasTarefa, String emailColaborador, int idTipoRegimento) throws SQLException{
+        
+        List<String> refTarefasSeriacaoManual = new ArrayList<>();
+        
+        Connection connection = DBConnectionHandler.getInstance().openConnection();
+
+        try {
+           for (String referencia : referenciasTarefa) {
+                CallableStatement callableStatement = connection.prepareCall(
+                        "SELECT * FROM Anuncio " +
+                                "INNER JOIN Tarefa " +
+                                "ON Anuncio.referenciaTarefa LIKE Tarefa.referencia " +
+                                "WHERE Tarefa.referencia LIKE ? " +
+                                "AND Tarefa.emailColaborador LIKE ? " +
+                                "AND Anuncio.idTipoRegimento LIKE ?"
+                );
+              
+                callableStatement.executeUpdate();
+
+                ResultSet resultSet = callableStatement.getResultSet();
+            
+            while (resultSet.next()) {
+                   
+                    refTarefasSeriacaoManual.add(referencia);                 
+                }
+            }
+        }
+        catch (SQLException exception) {
+            exception.printStackTrace();
+            exception.getSQLState();
+
+        }
+        finally {
+            DBConnectionHandler.getInstance().closeAll();
+        }
+        return refTarefasSeriacaoManual;
+      
+        }
+    
+    @Override
+    public List<String> getAllRefTarefasNaoSeriadas(List<String> referenciasTarefa, String nifOrganizacao) throws SQLException{
+        
+        List<String> refTarefasNaoSeriadas = new ArrayList<>();
+        
+        Connection connection = DBConnectionHandler.getInstance().openConnection();
+
+        try {
+            for (String referencia : referenciasTarefa) {
+                String refTarefaNS = findAnuncioByIdTarefa(referencia, nifOrganizacao).getReferenciaTarefa();
+                int idAnuncio = findAnuncioByIdTarefa(referencia, nifOrganizacao).getIdAnuncio();
+                CallableStatement callableStatement = connection.prepareCall(
+                        "SELECT * FROM Seriacao WHERE idAnuncio LIKE ?"
+                );
+              
+                callableStatement.executeUpdate();
+
+                ResultSet resultSet = callableStatement.getResultSet();
+            
+            while (resultSet.next()) {
+                    
+                refTarefasNaoSeriadas.add(refTarefaNS);                 
+                }
+            }
+        }
+        catch (SQLException exception) {
+            exception.printStackTrace();
+            exception.getSQLState();
+
+        }
+        finally {
+            DBConnectionHandler.getInstance().closeAll();
+        }
+        return refTarefasNaoSeriadas;
+      
+    }  
+    
+    @Override
+    public List<String> getAllRefTarefasASeriar(List<String> referenciasTarefa, String nifOrganizacao, Data dataAtual) throws SQLException{
+        
+        List<String> refTarefasASeriar = new ArrayList<>();
+        
+        Connection connection = DBConnectionHandler.getInstance().openConnection();
+
+        try {
+            for (String referencia : referenciasTarefa) {
+                String refTarefaNS = findAnuncioByIdTarefa(referencia, nifOrganizacao).getReferenciaTarefa();
+                int idAnuncio = findAnuncioByIdTarefa(referencia, nifOrganizacao).getIdAnuncio();
+                Data dtInSeriacao = new Data(findAnuncioByIdTarefa(referencia, nifOrganizacao).getDtInicioSeriacao());
+                Data dtFimSeriacao = new Data(findAnuncioByIdTarefa(referencia, nifOrganizacao).getDtFimSeriacao());
+                CallableStatement callableStatement = connection.prepareCall(
+                        "SELECT * FROM Seriacao WHERE idAnuncio LIKE ?"
+                );
+              
+                callableStatement.executeUpdate();
+
+                ResultSet resultSet = callableStatement.getResultSet();
+            
+            while (resultSet.next()) {
+                
+                if(dataAtual.compareTo(dtInSeriacao)>=0 && dataAtual.compareTo(dtFimSeriacao)<=0){
+                    refTarefasASeriar.add(refTarefaNS);
+                }
+                                 
+                }
+            }
+        }
+        catch (SQLException exception) {
+            exception.printStackTrace();
+            exception.getSQLState();
+
+        }
+        finally {
+            DBConnectionHandler.getInstance().closeAll();
+        }
+        return refTarefasASeriar;
+      
+    } 
+    
+     
 }

@@ -1,6 +1,6 @@
 package com.grupo2.t4j.controller;
 
-import com.grupo2.t4j.model.*;
+import com.grupo2.t4j.domain.*;
 import com.grupo2.t4j.persistence.*;
 import com.grupo2.t4j.persistence.database.FabricaRepositoriosDatabase;
 
@@ -78,10 +78,11 @@ public class EfectuarCandidaturaController {
 
     }
 
-    public boolean registarCandidatura(int idAnuncio, double valor, int dias,
-                                       String apresentacao, String motivacao,
-                                       String emailFreelancer) throws SQLException {
-        Candidatura candidatura = new Candidatura(idAnuncio, emailFreelancer, valor, dias, apresentacao, motivacao);
+    public boolean registarCandidatura(double valorPretendido, int numeroDias, 
+            String txtApresentacao, String txtMotivacao, int idAnuncio, String 
+            emailFreelancer) throws SQLException {
+        Candidatura candidatura = new Candidatura(valorPretendido, numeroDias, 
+            txtApresentacao, txtMotivacao,idAnuncio, emailFreelancer);
 
         return repositorioCandidatura.save(candidatura);
     }

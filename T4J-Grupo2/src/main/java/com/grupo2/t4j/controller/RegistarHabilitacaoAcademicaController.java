@@ -1,8 +1,7 @@
 package com.grupo2.t4j.controller;
 
 import com.grupo2.t4j.files.FicheiroRepositorioHabilitacaoAcademica;
-import com.grupo2.t4j.model.HabilitacaoAcademica;
-import com.grupo2.t4j.model.ReconhecimentoGP;
+import com.grupo2.t4j.domain.HabilitacaoAcademica;
 import com.grupo2.t4j.persistence.FabricaRepositorios;
 import com.grupo2.t4j.persistence.RepositorioHabilitacaoAcademica;
 import com.grupo2.t4j.persistence.database.FabricaRepositoriosDatabase;

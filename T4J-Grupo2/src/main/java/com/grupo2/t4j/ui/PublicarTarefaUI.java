@@ -1,7 +1,7 @@
 package com.grupo2.t4j.ui;
 
 import com.grupo2.t4j.controller.PublicarTarefaController;
-import com.grupo2.t4j.model.TipoRegimento;
+import com.grupo2.t4j.domain.TipoRegimento;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -63,8 +63,8 @@ public class PublicarTarefaUI implements Initializable {
     void publicarTarefaAction(ActionEvent actionEvent) throws SQLException{
         try {
             boolean adicionou = publicarTarefaController.publicarTarefa(
-                    colaboradorLogadoUI.listViewTarefas.getSelectionModel().getSelectedItem().getReferencia(),
-                    colaboradorLogadoUI.listViewTarefas.getSelectionModel().getSelectedItem().getNifOrganizacao(),
+                    colaboradorLogadoUI.tabelaTarefas.getSelectionModel().getSelectedItem().getReferencia(),
+                    colaboradorLogadoUI.tabelaTarefas.getSelectionModel().getSelectedItem().getNifOrganizacao(),
                     dtInicioPublicitacao.getText(),
                     dtFimPublicitacao.getText(),
                     dtInicioCandidaturas.getText(),
@@ -74,7 +74,7 @@ public class PublicarTarefaUI implements Initializable {
                     cmbTipoSeriacao.getSelectionModel().getSelectedItem().getIdTipoRegimento());
 
             if (adicionou){
-                colaboradorLogadoUI.updateListViewTarefas();
+                colaboradorLogadoUI.updateTableViewTarefas();
 
             AlertsUI.criarAlerta(Alert.AlertType.INFORMATION,
                     MainApp.TITULO_APLICACAO,

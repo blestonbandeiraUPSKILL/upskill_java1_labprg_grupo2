@@ -11,19 +11,19 @@ package com.grupo2.t4j.persistence;
  */
 
 import com.grupo2.t4j.exception.CandidaturaDuplicadaException;
-import com.grupo2.t4j.model.Candidatura;
+import com.grupo2.t4j.domain.Candidatura;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
 public interface RepositorioCandidatura {
     
-    boolean save(String idCandidatura, String emailFreelancer, double valorPretendido, 
-            int numeroDias, String txtApresentacao,String txtMotivacao) throws CandidaturaDuplicadaException,
-            SQLException;
+    boolean save(int idCandidatura, double valorPretendido, int numeroDias, 
+            String txtApresentacao, String txtMotivacao, int idAnuncio, String 
+            emailFreelancer) throws CandidaturaDuplicadaException, SQLException;
 
     boolean save(Candidatura candidatura) throws SQLException;
 
-    Candidatura findById(String idCandidatura) throws SQLException;
+    Candidatura findById(int idCandidatura) throws SQLException;
     
     Candidatura findByEmail (String emailFreelancer) throws SQLException;
 

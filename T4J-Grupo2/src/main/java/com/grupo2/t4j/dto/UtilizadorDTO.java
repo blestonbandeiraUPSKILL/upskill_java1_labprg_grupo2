@@ -3,8 +3,6 @@ package com.grupo2.t4j.dto;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
-import com.grupo2.t4j.model.Email;
-import com.grupo2.t4j.model.Password;
 
 @JsonPropertyOrder({"nome", "email", "password", "rolename"})
 @JacksonXmlRootElement(localName = "utilizador")

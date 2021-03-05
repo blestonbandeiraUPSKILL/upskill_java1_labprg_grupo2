@@ -4,7 +4,7 @@ import com.grupo2.t4j.controller.EfectuarCandidaturaController;
 import com.grupo2.t4j.controller.GestaoUtilizadoresController;
 import com.grupo2.t4j.controller.RegistarAnuncioController;
 import com.grupo2.t4j.controller.RegistarTarefaController;
-import com.grupo2.t4j.model.*;
+import com.grupo2.t4j.domain.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -39,7 +39,9 @@ public class FreelancerLogadoUI implements Initializable {
     private RegistarAnuncioController registarAnuncioController;
     private EfectuarCandidaturaController efectuarCandidaturaController;
     private RegistarTarefaController registarTarefaController;
-         
+    private ConsultarCandidaturaUI consultarCandidaturaUI;     
+    private Scene sceneConsultarCandidatura;
+    
     @FXML ListView<Tarefa> listViewAnuncios;
     @FXML ListView<Candidatura> listViewCandidaturas;
     @FXML ComboBox<Anuncio> cmbAnuncio;
@@ -204,5 +206,32 @@ public class FreelancerLogadoUI implements Initializable {
         
         String emailFreelancer = gestaoUtilizadoresController.getEmail();
         listViewCandidaturas.getItems().setAll(efectuarCandidaturaController.findByEmail(emailFreelancer));
+    }
+    
+    public void apagarCandidatura(){
+        
+    }
+    
+     public void consultarCandidatura(ActionEvent actionEvent) throws SQLException {
+        try {
+
+            FXMLLoader loaderConsultarCandidatura = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/ConsultarCandidaturaScene.fxml"));
+            Parent rootConsultarCandidatura = loaderConsultarCandidatura.load();
+            ConsultarCandidaturaUI consultarCandidaturaUI = loaderConsultarCandidatura.getController();
+            consultarCandidaturaUI.associarParentUI(this);
+            //consultarCandidaturaUI.transferData();
+            sceneConsultarCandidatura = new Scene(rootConsultarCandidatura);
+
+            adicionarStage.setScene(sceneConsultarCandidatura);
+            adicionarStage.setTitle("Consultar Competência Técnica");
+            adicionarStage.show();
+
+        } catch (IOException /*| SQLException*/ exception) {
+            exception.printStackTrace();
+            AlertsUI.criarAlerta(Alert.AlertType.ERROR,
+                    MainApp.TITULO_APLICACAO,
+                    "Erro",
+                    exception.getMessage());
+        }
     }
 }

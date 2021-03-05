@@ -6,7 +6,7 @@
 package com.grupo2.t4j.persistence.database;
 
 import com.grupo2.t4j.exception.CandidaturaDuplicadaException;
-import com.grupo2.t4j.model.Candidatura;
+import com.grupo2.t4j.domain.Candidatura;
 import com.grupo2.t4j.persistence.RepositorioCandidatura;
 import com.grupo2.t4j.utils.DBConnectionHandler;
 
@@ -43,25 +43,28 @@ public class RepositorioCandidaturaDatabase implements RepositorioCandidatura{
     }
     
     @Override
-    public boolean save(String idCandidatura, String emailFreelancer, double valorPretendido, 
-            int numeroDias, String txtApresentacao,String txtMotivacao) throws CandidaturaDuplicadaException, SQLException{
+    public boolean save(int idCandidatura, double valorPretendido, int numeroDias, 
+            String txtApresentacao, String txtMotivacao, int idAnuncio, String 
+            emailFreelancer) throws CandidaturaDuplicadaException, SQLException{
 
         Connection connection = DBConnectionHandler.getInstance().openConnection();
 
         try {
             CallableStatement callableStatement = connection.prepareCall(
-                "{CALL createCandidatura(?, ?, ?, ?, ?, ?) } ");
+                "{CALL createCandidatura(?, ?, ?, ?, ?, ?, ?) } ");
 
             if (findById(idCandidatura) == null && findByEmail(emailFreelancer) == null){
 
                 connection.setAutoCommit(false);
 
-                callableStatement.setString(1, idCandidatura);
-                callableStatement.setString(2, emailFreelancer);
-                callableStatement.setString(3, Double.toString(valorPretendido));
-                callableStatement.setString(4, Integer.toString(numeroDias));
-                callableStatement.setString(5, txtApresentacao);
-                callableStatement.setString(6, txtMotivacao);
+                callableStatement.setInt(1, idCandidatura);
+                callableStatement.setDouble(2, valorPretendido);
+                callableStatement.setInt(3, numeroDias);
+                callableStatement.setString(4, txtApresentacao);
+                callableStatement.setString(5, txtMotivacao);
+                callableStatement.setInt(6, idAnuncio);
+                callableStatement.setString(7, emailFreelancer);
+                              
                 callableStatement.executeQuery();
 
                 connection.commit();
@@ -95,7 +98,7 @@ public class RepositorioCandidaturaDatabase implements RepositorioCandidatura{
             CallableStatement callableStatement = connection.prepareCall(
                     "{CALL createCandidatura(?, ?, ?, ?, ?, ?) } ");
             connection.setAutoCommit(false);
-
+                   
             callableStatement.setDouble(1, candidatura.getValorPretendido());
             callableStatement.setInt(2, candidatura.getNumeroDias());
             callableStatement.setString(3, candidatura.getApresentacao());
@@ -129,7 +132,7 @@ public class RepositorioCandidaturaDatabase implements RepositorioCandidatura{
     }
 
     @Override
-    public Candidatura findById(String idCandidatura) throws SQLException{
+    public Candidatura findById(int idCandidatura) throws SQLException{
 
         Connection connection = DBConnectionHandler.getInstance().openConnection();
 
@@ -139,7 +142,7 @@ public class RepositorioCandidaturaDatabase implements RepositorioCandidatura{
 
             connection.setAutoCommit(false);
 
-            callableStatementOrg.setString(1, idCandidatura);
+            callableStatementOrg.setInt(1, idCandidatura);
             callableStatementOrg.executeQuery();
 
             return null;
@@ -215,17 +218,18 @@ public class RepositorioCandidaturaDatabase implements RepositorioCandidatura{
 
             while (resultSet.next()) {
                 int idCandidatura = resultSet.getInt(1);
-                String valorPretendido = resultSet.getString(2);
-                String numeroDias = resultSet.getString(3);
+                double valorPretendido = resultSet.getDouble(2);
+                int numeroDias = resultSet.getInt(3);
                 String txtApresentacao = resultSet.getString(4);
                 String txtMotivacao = resultSet.getString(5);
                 int idAnuncio = resultSet.getInt(6);
                 String emailFreelancer = resultSet.getString(7);
                 String dataCandidatura = resultSet.getDate(8).toString();
+                String dataEdicaoCandidatura = resultSet.getDate(9).toString();
 
-                candidaturas.add(new Candidatura(idCandidatura, idAnuncio, emailFreelancer,
-                        Double.parseDouble(valorPretendido),Integer.parseInt(numeroDias),
-                txtApresentacao, txtMotivacao, dataCandidatura));
+                candidaturas.add(new Candidatura(idCandidatura, valorPretendido,
+                numeroDias, txtApresentacao, txtMotivacao, idAnuncio, emailFreelancer,
+                dataCandidatura, dataEdicaoCandidatura));
             }
 
         }

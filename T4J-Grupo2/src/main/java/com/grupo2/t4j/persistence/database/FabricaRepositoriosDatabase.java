@@ -35,7 +35,12 @@ public class FabricaRepositoriosDatabase implements FabricaRepositorios {
     public RepositorioCategoriaTarefa getRepositorioCategoriaTarefa() {
         return RepositorioCategoriaTarefaDatabase.getInstance();
     }
-
+    
+    @Override
+    public RepositorioClassificacao getRepositorioClassificacao() {
+        return RepositorioClassificacaoDatabase.getInstance();
+    }
+    
     @Override
     public RepositorioColaborador getRepositorioColaborador() {
         return RepositorioColaboradorDatabase.getInstance();
@@ -70,7 +75,12 @@ public class FabricaRepositoriosDatabase implements FabricaRepositorios {
     public RepositorioUtilizador getRepositorioUtilizador() {
         return RepositorioUtilizadorDatabase.getInstance();
     }
-
+    
+    @Override
+    public RepositorioSeriacao getRepositorioSeriacao() {
+        return RepositorioSeriacaoDatabase.getInstance();
+    }
+    
     @Override
     public RepositorioOrganizacao getRepositorioOrganizacao() throws SQLException {
         return RepositorioOrganizacaoDatabase.getInstance();

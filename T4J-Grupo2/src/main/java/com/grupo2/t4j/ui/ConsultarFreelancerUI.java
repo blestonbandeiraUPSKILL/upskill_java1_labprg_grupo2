@@ -6,8 +6,8 @@
 package com.grupo2.t4j.ui;
 
 import com.grupo2.t4j.controller.RegistarFreelancerController;
-import com.grupo2.t4j.model.HabilitacaoAcademica;
-import com.grupo2.t4j.model.ReconhecimentoGP;
+import com.grupo2.t4j.domain.HabilitacaoAcademica;
+import com.grupo2.t4j.domain.ReconhecimentoGP;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;

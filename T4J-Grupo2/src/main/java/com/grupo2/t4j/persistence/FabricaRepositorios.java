@@ -11,12 +11,14 @@ public interface FabricaRepositorios {
     RepositorioCandidatura getRepositorioCandidatura();
     RepositorioCaracterizacaoCT getRepositorioCaracterizacaoCT();
     RepositorioCategoriaTarefa getRepositorioCategoriaTarefa();
+    RepositorioClassificacao getRepositorioClassificacao();
     RepositorioColaborador getRepositorioColaborador();
     RepositorioCompetenciaTecnica getRepositorioCompetenciaTecnica();
     RepositorioEnderecoPostal getRepositorioEnderecoPostal() throws SQLException;
     RepositorioFreelancer getRepositorioFreelancer();
     RepositorioHabilitacaoAcademica getRepositorioHabilitacaoAcademica();
     RepositorioOrganizacao getRepositorioOrganizacao() throws SQLException;
+    RepositorioSeriacao getRepositorioSeriacao();
     RepositorioTarefa getRepositorioTarefa();
     RepositorioGrauProficiencia getRepositorioGrauProficiencia() throws SQLException;
     RepositorioUtilizador getRepositorioUtilizador();

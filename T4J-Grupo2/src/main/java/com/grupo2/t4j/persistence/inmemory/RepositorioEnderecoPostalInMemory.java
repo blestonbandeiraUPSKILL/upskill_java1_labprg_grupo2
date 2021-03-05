@@ -1,7 +1,7 @@
 package com.grupo2.t4j.persistence.inmemory;
 
 import com.grupo2.t4j.exception.EnderecoPostalDuplicadoException;
-import com.grupo2.t4j.model.EnderecoPostal;
+import com.grupo2.t4j.domain.EnderecoPostal;
 import com.grupo2.t4j.persistence.RepositorioEnderecoPostal;
 
 import java.io.Serializable;

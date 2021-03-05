@@ -1,9 +1,9 @@
 package com.grupo2.t4j.ui;
 
 import com.grupo2.t4j.controller.*;
-import com.grupo2.t4j.model.AreaActividade;
-import com.grupo2.t4j.model.CaracterizacaoCT;
-import com.grupo2.t4j.model.Categoria;
+import com.grupo2.t4j.domain.AreaActividade;
+import com.grupo2.t4j.domain.CaracterizacaoCT;
+import com.grupo2.t4j.domain.Categoria;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -115,7 +115,7 @@ public class EspecificarTarefaColaboradorUI implements Initializable {
                     gestaoUtilizadoresController.getEmail());
 
             if (adicionou){
-                colaboradorLogadoUI.updateListViewTarefas();
+                colaboradorLogadoUI.updateTableViewTarefas();
 
                 AlertsUI.criarAlerta(Alert.AlertType.INFORMATION,
                     MainApp.TITULO_APLICACAO,

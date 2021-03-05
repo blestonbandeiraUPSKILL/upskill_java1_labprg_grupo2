@@ -1,7 +1,7 @@
 package com.grupo2.t4j.ui;
 
 import com.grupo2.t4j.controller.*;
-import com.grupo2.t4j.model.*;
+import com.grupo2.t4j.domain.*;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -109,14 +109,14 @@ public class ColaboradorLogadoUI implements Initializable {
         }
     }
 
-    public void updateListViewTarefas() throws SQLException {
+    public void updateTableViewTarefas() throws SQLException {
         cmbFiltroTarefas.getSelectionModel().clearSelection();
-        listViewTarefas.getItems().setAll(registarTarefaController.getAllOrganizacao(
+        tabelaTarefas.getItems().setAll(registarTarefaController.getAllOrganizacao(
                 getNifOrganizacao() ));
 
     }
     
-    public void updateListViewTarefasColaborador() throws SQLException {
+    public void updateTableViewTarefasColaborador() throws SQLException {
         cmbFiltroTarefas.getSelectionModel().clearSelection();
         String email = gestaoUtilizadoresController.getEmail();
         String nifOrganizacao = registarColaboradorController.getNifOrganizacao(email);
@@ -124,7 +124,7 @@ public class ColaboradorLogadoUI implements Initializable {
         preencherTabela();
     }
     
-    public void updateListViewTarefasPublicadas() throws SQLException {
+    public void updateTableViewTarefasPublicadas() throws SQLException {
         cmbFiltroTarefas.getSelectionModel().clearSelection();
         String email = gestaoUtilizadoresController.getEmail();
         String nifOrganizacao = registarColaboradorController.getNifOrganizacao(email);
@@ -133,7 +133,7 @@ public class ColaboradorLogadoUI implements Initializable {
         preencherTabela();
     }
     
-    public void updateListViewTarefasNaoPublicadas() throws SQLException {
+    public void updateTableViewTarefasNaoPublicadas() throws SQLException {
         cmbFiltroTarefas.getSelectionModel().clearSelection();
         String email = gestaoUtilizadoresController.getEmail();
         String nifOrganizacao = registarColaboradorController.getNifOrganizacao(email);
@@ -216,16 +216,19 @@ public class ColaboradorLogadoUI implements Initializable {
         
         switch (cmbFiltroTarefas.getSelectionModel().getSelectedItem()) {
             case TAREFAS_DA_ORGANIZACAO:
-                updateListViewTarefas();
+                updateTableViewTarefas();
+                btnPublicarTarefa.setDisable(true);
                 break;
             case AS_MINHAS_TAREFAS:
-                updateListViewTarefasColaborador();
+                updateTableViewTarefasColaborador();
+                btnPublicarTarefa.setDisable(true);
                 break;
             case TAREFAS_PUBLICADAS:
-                updateListViewTarefasPublicadas();
+                updateTableViewTarefasPublicadas();
+                btnPublicarTarefa.setDisable(true);
                 break;
             case TAREFAS_PARA_PUBLICAR:
-                updateListViewTarefasNaoPublicadas();
+                updateTableViewTarefasNaoPublicadas();
                 btnPublicarTarefa.setDisable(false);
         }
     }

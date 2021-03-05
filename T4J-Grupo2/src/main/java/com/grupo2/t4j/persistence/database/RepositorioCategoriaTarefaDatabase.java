@@ -1,7 +1,7 @@
 package com.grupo2.t4j.persistence.database;
 
-import com.grupo2.t4j.model.Categoria;
-import com.grupo2.t4j.model.Obrigatoriedade;
+import com.grupo2.t4j.domain.Categoria;
+import com.grupo2.t4j.domain.Obrigatoriedade;
 import com.grupo2.t4j.persistence.RepositorioCategoriaTarefa;
 import com.grupo2.t4j.utils.DBConnectionHandler;
 

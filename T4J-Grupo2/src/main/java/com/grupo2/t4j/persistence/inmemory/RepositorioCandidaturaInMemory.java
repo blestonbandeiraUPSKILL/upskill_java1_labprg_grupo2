@@ -6,7 +6,7 @@
 package com.grupo2.t4j.persistence.inmemory;
 
 import com.grupo2.t4j.exception.CandidaturaDuplicadaException;
-import com.grupo2.t4j.model.Candidatura;
+import com.grupo2.t4j.domain.Candidatura;
 import com.grupo2.t4j.persistence.RepositorioCandidatura;
 
 import java.io.Serializable;
@@ -52,8 +52,9 @@ class RepositorioCandidaturaInMemory implements Serializable, RepositorioCandida
     }
     
     @Override
-    public boolean save(String idCandidatura, String emailFreelancer, double valorPretendido, 
-            int numeroDias, String txtApresentacao,String txtMotivacao) throws CandidaturaDuplicadaException,
+    public boolean save(int idCandidatura, double valorPretendido, int numeroDias, 
+            String txtApresentacao, String txtMotivacao, int idAnuncio, String 
+            emailFreelancer) throws CandidaturaDuplicadaException,
             SQLException{
         return false;
     }
@@ -64,7 +65,7 @@ class RepositorioCandidaturaInMemory implements Serializable, RepositorioCandida
     }
     
     @Override
-    public Candidatura findById(String idCandidatura) throws SQLException{
+    public Candidatura findById(int idCandidatura) throws SQLException{
         return null;
     }
     

@@ -10,13 +10,13 @@ title UC11 - Editar Candidatura
 activate Freelancer
 Freelancer -> EditarCandidataturaUI : Consulta candidaturas editáveis
 activate EditarCandidataturaUI
-EditarCandidataturaUI -> EditarCandidaturaCTRL : getAllCandidaturasElegiveis \n(emailFreelancer)
+EditarCandidataturaUI -> EditarCandidaturaCTRL : getAllCandidaturasEditáveis \n(emailFreelancer)
 activate EditarCandidaturaCTRL
-EditarCandidaturaCTRL -> RepositorioCandidatura : getAllCandidaturasElegiveis()
+EditarCandidaturaCTRL -> RepositorioCandidatura : getAllCandidaturasEditáveis()
 activate RepositorioCandidatura
-RepositorioCandidatura --> EditarCandidaturaCTRL : candidaturasElegiveis
+RepositorioCandidatura --> EditarCandidaturaCTRL : candidaturasEditáveis
 deactivate RepositorioCandidatura
-EditarCandidaturaCTRL --> EditarCandidataturaUI : candidaturasElegiveis
+EditarCandidaturaCTRL --> EditarCandidataturaUI : candidaturasEditáveis
 deactivate EditarCandidaturaCTRL
 alt Não existem candidaturas editáveis
 EditarCandidataturaUI --> Freelancer : Não existem candidaturas disponíveis

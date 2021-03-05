@@ -6,8 +6,7 @@
 package com.grupo2.t4j.persistence;
 
 import com.grupo2.t4j.exception.ReconhecimentoDuplicadoException;
-import com.grupo2.t4j.model.Email;
-import com.grupo2.t4j.model.ReconhecimentoGP;
+import com.grupo2.t4j.domain.ReconhecimentoGP;
 
 import java.sql.SQLException;
 import java.util.List;

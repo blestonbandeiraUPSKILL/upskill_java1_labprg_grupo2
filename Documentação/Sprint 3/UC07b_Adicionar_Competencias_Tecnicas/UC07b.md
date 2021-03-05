@@ -50,16 +50,16 @@ O administrativo inicia o processo de inserção dos reconhecimentos de competê
 
 
 ## Diagrama de Sequência do Sistema
-![UC07b_Adicionar_Competencias_Tecnicas_Diagrama_Sequencia_Sistema](UC07b_Adicionar_Competencias_Tecnicas_Diagrama_Sequencia_Sistema.png)
+![UC07b_Adicionar_Competencias_Tecnicas_Diagrama_Sequencia_Sistema](UC07b_Adicionar_Competencias_Tecnicas_SSD.png)
 
 ## Excerto do Modelo de Domínio
-![UC07b_Adicionar_Competencias_Tecnicas_Modelo_Dominio](UC07b_Adicionar_Competencias_Tecnicas_Modelo_Dominio)
+![UC07b_Adicionar_Competencias_Tecnicas_Modelo_Dominio](UC07b_Adicionar_Competencias_Tecnicas_Modelo_Dominio.png)
 
 ## Diagrama de Sequência <br/>
 ![UC07b_Adicionar_Competencias_Tecnicas_Diagrama_Sequencia](UC07b_Adicionar_Competencias_Tecnicas_Diagrama_Sequencia.png)
 
 ## Diagrama de Classes <br/>
-![]()
+![UC07b_Adicionar_Competencias_Tecnicas_Diagrama_Classes](UC07b_Adicionar_Competencias_Tecnicas_Diagrama_Classes.png)
 
 ## Plano de Testes <br/>
 []()

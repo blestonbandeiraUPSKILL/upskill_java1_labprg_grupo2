@@ -2,8 +2,8 @@ package com.grupo2.t4j.persistence.inmemory;
 
 
 import com.grupo2.t4j.exception.CategoriaDuplicadaException;
-import com.grupo2.t4j.model.Categoria;
-import com.grupo2.t4j.model.Obrigatoriedade;
+import com.grupo2.t4j.domain.Categoria;
+import com.grupo2.t4j.domain.Obrigatoriedade;
 import com.grupo2.t4j.persistence.RepositorioCategoriaTarefa;
 
 import java.io.Serializable;
