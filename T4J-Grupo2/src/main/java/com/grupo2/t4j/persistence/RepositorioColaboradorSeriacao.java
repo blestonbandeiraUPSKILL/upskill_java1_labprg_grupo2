@@ -10,7 +10,16 @@ package com.grupo2.t4j.persistence;
  * @author CAD
  */
 
+import com.grupo2.t4j.domain.Colaborador;
+import com.grupo2.t4j.domain.Password;
+
+import java.sql.SQLException;
+import java.util.ArrayList;
 public interface RepositorioColaboradorSeriacao {
 
+    boolean update(String email, int idSeriacao) throws SQLException;
+    
+    
+        
     
 }

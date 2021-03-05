@@ -346,6 +346,13 @@ public class RepositorioAnuncioDataBase implements RepositorioAnuncio {
       
         }
     
+    /**
+     * Devolve uma lista de referências de tarefas anunciadas mas não seriadas
+     * @param referenciasTarefa
+     * @param nifOrganizacao
+     * @return
+     * @throws SQLException 
+     */
     @Override
     public List<String> getAllRefTarefasNaoSeriadas(List<String> referenciasTarefa, String nifOrganizacao) throws SQLException{
         
@@ -355,7 +362,6 @@ public class RepositorioAnuncioDataBase implements RepositorioAnuncio {
 
         try {
             for (String referencia : referenciasTarefa) {
-                String refTarefaNS = findAnuncioByIdTarefa(referencia, nifOrganizacao).getReferenciaTarefa();
                 int idAnuncio = findAnuncioByIdTarefa(referencia, nifOrganizacao).getIdAnuncio();
                 CallableStatement callableStatement = connection.prepareCall(
                         "SELECT * FROM Seriacao WHERE idAnuncio LIKE ?"
@@ -367,7 +373,7 @@ public class RepositorioAnuncioDataBase implements RepositorioAnuncio {
             
             while (resultSet.next()) {
                     
-                refTarefasNaoSeriadas.add(refTarefaNS);                 
+                //refTarefasNaoSeriadas.add(refTarefaNS);                 
                 }
             }
         }
@@ -383,6 +389,14 @@ public class RepositorioAnuncioDataBase implements RepositorioAnuncio {
       
     }  
     
+    /**
+     * Devolve uma lista de referências de tarefas anunciadas, em período de seriação, mas não seriadas
+     * @param referenciasTarefa
+     * @param nifOrganizacao
+     * @param dataAtual
+     * @return
+     * @throws SQLException 
+     */
     @Override
     public List<String> getAllRefTarefasASeriar(List<String> referenciasTarefa, String nifOrganizacao, Data dataAtual) throws SQLException{
         
@@ -392,12 +406,15 @@ public class RepositorioAnuncioDataBase implements RepositorioAnuncio {
 
         try {
             for (String referencia : referenciasTarefa) {
-                String refTarefaNS = findAnuncioByIdTarefa(referencia, nifOrganizacao).getReferenciaTarefa();
                 int idAnuncio = findAnuncioByIdTarefa(referencia, nifOrganizacao).getIdAnuncio();
                 Data dtInSeriacao = new Data(findAnuncioByIdTarefa(referencia, nifOrganizacao).getDtInicioSeriacao());
                 Data dtFimSeriacao = new Data(findAnuncioByIdTarefa(referencia, nifOrganizacao).getDtFimSeriacao());
                 CallableStatement callableStatement = connection.prepareCall(
-                        "SELECT * FROM Seriacao WHERE idAnuncio LIKE ?"
+                         "SELECT * FROM Anuncio " +
+                                "INNER JOIN Tarefa " +
+                                "ON Anuncio.referenciaTarefa LIKE Tarefa.referencia " +
+                        
+                        "SELECT * FROM Seriacao WHERE Seriacao.idAnuncio LIKE idAnuncio"
                 );
               
                 callableStatement.executeUpdate();
@@ -407,7 +424,7 @@ public class RepositorioAnuncioDataBase implements RepositorioAnuncio {
             while (resultSet.next()) {
                 
                 if(dataAtual.compareTo(dtInSeriacao)>=0 && dataAtual.compareTo(dtFimSeriacao)<=0){
-                    refTarefasASeriar.add(refTarefaNS);
+                    refTarefasASeriar.add(referencia);
                 }
                                  
                 }

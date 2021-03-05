@@ -112,7 +112,7 @@ public class RepositorioColaboradorInMemory implements Serializable, Repositorio
     }
     
     @Override
-    public ArrayList<Colaborador> getAllByOrganizacao(String nifOrganizacao){
+    public ArrayList<String> getAllEmailsByOrganizacao(String nifOrganizacao){
         return null;
     }
 

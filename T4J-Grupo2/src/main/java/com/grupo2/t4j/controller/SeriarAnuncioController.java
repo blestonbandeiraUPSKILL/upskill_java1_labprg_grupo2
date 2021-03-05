@@ -83,6 +83,10 @@ public class SeriarAnuncioController {
         return repositorioClassificacao.findById(idClassificacao);
     }
     
+    public ArrayList<String> getAllEmailsByOrganizacao(String nifOrganizacao) throws SQLException{
+        return repositorioColaborador.getAllEmailsByOrganizacao(nifOrganizacao);
+    }
+    
     
     
 }
