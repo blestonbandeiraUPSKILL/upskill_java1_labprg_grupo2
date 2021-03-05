@@ -6,8 +6,11 @@
 package com.grupo2.t4j.ui;
 
 import com.grupo2.t4j.controller.EditarCandidaturaController;
+import com.grupo2.t4j.domain.Candidatura;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -77,16 +80,30 @@ public class ConsultarCandidaturaUI implements Initializable {
         
     }
 
-    
+    public void transferData() throws SQLException {
+        
+        txtApresentacao.setText(freelancerLogadoUI.listViewCandidaturas.getSelectionModel().getSelectedItem().getApresentacao());
+        txtMotivacao.setText(freelancerLogadoUI.listViewCandidaturas.getSelectionModel().getSelectedItem().getMotivacao());
+        txtValor.setText(String.valueOf(freelancerLogadoUI.listViewCandidaturas.getSelectionModel().getSelectedItem().getValorPretendido()));
+        txtDias.setText(String.valueOf(freelancerLogadoUI.listViewCandidaturas.getSelectionModel().getSelectedItem().getNumeroDias()));
+
+    }
 
     
     public void guardarAction(ActionEvent actionEvent) {
-        editarCandidaturaController.updateCandidatura();
+        /*editarCandidaturaController.updateCandidatura(idCandidatura, txtApresentacao.getText(),
+                txtMotivacao.getText(), Double.parseDouble(txtValor.getText()), 
+                Integer.parseInt(txtDias.getText()));*/
         
     }
     
     public void cancelarAction(ActionEvent actionEvent) {
         btnCancelar.getScene().getWindow().hide();
+    }
+    
+    public boolean isCandidaturaEditavel (String emailFreelancer){
+        List<Candidatura> listaCandidaturasEditaveis = editarCandidaturaController.getAllCandidaturasElegiveis(emailFreelancer);
+        return false;
     }
     
 
