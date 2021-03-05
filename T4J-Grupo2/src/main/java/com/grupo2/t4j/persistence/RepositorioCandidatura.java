@@ -34,6 +34,8 @@ public interface RepositorioCandidatura {
 
     public void updateCandidatura();
 
+
     public List<Candidatura> getAllCandidaturasElegiveis(String emailFreelancer);
+
     
 }
