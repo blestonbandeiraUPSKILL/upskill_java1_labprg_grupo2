@@ -17,9 +17,12 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 public interface RepositorioColaboradorSeriacao {
 
-    boolean update(String email, int idSeriacao) throws SQLException;
+    boolean update(String emailColaborador, int idSeriacao) throws SQLException;
     
+    boolean findByEmailId(String emaiColaborador, int idSeriacao) throws SQLException;
     
-        
+    ArrayList<String> getAllColaboresBySeriacao(int idSeriacao) throws SQLException;
+    
+    ArrayList getAllIdsSeriacaoByColaborador(String emailColaborador) throws SQLException;
     
 }

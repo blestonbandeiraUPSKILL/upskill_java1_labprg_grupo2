@@ -364,16 +364,17 @@ public class RepositorioAnuncioDataBase implements RepositorioAnuncio {
             for (String referencia : referenciasTarefa) {
                 int idAnuncio = findAnuncioByIdTarefa(referencia, nifOrganizacao).getIdAnuncio();
                 CallableStatement callableStatement = connection.prepareCall(
-                        "SELECT * FROM Seriacao WHERE idAnuncio LIKE ?"
+                    "SELECT * FROM Anuncio LEFT JOIN ProcessoSeriacao ON "
+                            + "ProcessoSeriacao.idAnuncio IS NULL"
                 );
-              
+                              
                 callableStatement.executeUpdate();
 
                 ResultSet resultSet = callableStatement.getResultSet();
             
             while (resultSet.next()) {
                     
-                //refTarefasNaoSeriadas.add(refTarefaNS);                 
+                refTarefasNaoSeriadas.add(referencia);                 
                 }
             }
         }
@@ -410,11 +411,8 @@ public class RepositorioAnuncioDataBase implements RepositorioAnuncio {
                 Data dtInSeriacao = new Data(findAnuncioByIdTarefa(referencia, nifOrganizacao).getDtInicioSeriacao());
                 Data dtFimSeriacao = new Data(findAnuncioByIdTarefa(referencia, nifOrganizacao).getDtFimSeriacao());
                 CallableStatement callableStatement = connection.prepareCall(
-                         "SELECT * FROM Anuncio " +
-                                "INNER JOIN Tarefa " +
-                                "ON Anuncio.referenciaTarefa LIKE Tarefa.referencia " +
-                        
-                        "SELECT * FROM Seriacao WHERE Seriacao.idAnuncio LIKE idAnuncio"
+                         "SELECT * FROM Anuncio LEFT JOIN ProcessoSeriacao ON "
+                            + "ProcessoSeriacao.idAnuncio IS NULL"
                 );
               
                 callableStatement.executeUpdate();
@@ -426,7 +424,7 @@ public class RepositorioAnuncioDataBase implements RepositorioAnuncio {
                 if(dataAtual.compareTo(dtInSeriacao)>=0 && dataAtual.compareTo(dtFimSeriacao)<=0){
                     refTarefasASeriar.add(referencia);
                 }
-                                 
+                       refTarefasASeriar.add(referencia);
                 }
             }
         }

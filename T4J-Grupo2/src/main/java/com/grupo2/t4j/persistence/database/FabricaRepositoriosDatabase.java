@@ -45,6 +45,11 @@ public class FabricaRepositoriosDatabase implements FabricaRepositorios {
     public RepositorioColaborador getRepositorioColaborador() {
         return RepositorioColaboradorDatabase.getInstance();
     }
+    
+    @Override
+    public RepositorioColaboradorSeriacao getRepositorioColaboradorSeriacao() {
+        return RepositorioColaboradorSeriacaoDatabase.getInstance();
+    }
 
     @Override
     public RepositorioCompetenciaTecnica getRepositorioCompetenciaTecnica() {
