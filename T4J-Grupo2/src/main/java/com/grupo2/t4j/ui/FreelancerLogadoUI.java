@@ -208,8 +208,9 @@ public class FreelancerLogadoUI implements Initializable {
         listViewCandidaturas.getItems().setAll(efectuarCandidaturaController.findByEmail(emailFreelancer));
     }
     
-    public void apagarCandidatura(){
+    public void apagarCandidatura(ActionEvent actionEvent){
         
+        boolean apagar = eliminarCandidaturaController.deleteCandidatura(idCandidatura);
     }
     
      public void consultarCandidatura(ActionEvent actionEvent) throws SQLException {
