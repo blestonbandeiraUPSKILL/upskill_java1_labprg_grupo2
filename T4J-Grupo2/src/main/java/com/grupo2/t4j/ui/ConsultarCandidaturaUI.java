@@ -6,6 +6,7 @@
 package com.grupo2.t4j.ui;
 
 import com.grupo2.t4j.controller.EditarCandidaturaController;
+import com.grupo2.t4j.controller.GestaoUtilizadoresController;
 import com.grupo2.t4j.domain.Candidatura;
 import java.net.URL;
 import java.sql.SQLException;
@@ -31,7 +32,7 @@ public class ConsultarCandidaturaUI implements Initializable {
 
     @FXML Button btnEditarDados;
     @FXML Button btnApagar;
-    @FXML Button btnCancelar;
+    @FXML Button btnVoltar;
     @FXML Button btnGuardar;
     @FXML TextArea txtAnuncio;
     @FXML TextArea txtApresentacao;
@@ -43,6 +44,7 @@ public class ConsultarCandidaturaUI implements Initializable {
     private Stage adicionarStage;
     private FreelancerLogadoUI freelancerLogadoUI;
     private EditarCandidaturaController editarCandidaturaController;
+    private GestaoUtilizadoresController gestaoUtilizadoresController;
 
     public void associarParentUI(FreelancerLogadoUI freelancerLogadoUI) {
         this.freelancerLogadoUI = freelancerLogadoUI;
@@ -60,6 +62,8 @@ public class ConsultarCandidaturaUI implements Initializable {
         adicionarStage.setResizable(false);
         
         editarCandidaturaController = new EditarCandidaturaController();
+        gestaoUtilizadoresController = new GestaoUtilizadoresController();
+        //isCandidaturaEditavel();
     }   
 
 
@@ -97,13 +101,17 @@ public class ConsultarCandidaturaUI implements Initializable {
         
     }
     
-    public void cancelarAction(ActionEvent actionEvent) {
-        btnCancelar.getScene().getWindow().hide();
+    public void voltarAction(ActionEvent actionEvent) {
+        btnVoltar.getScene().getWindow().hide();
     }
     
-    public boolean isCandidaturaEditavel (String emailFreelancer){
-        List<Candidatura> listaCandidaturasEditaveis = editarCandidaturaController.getAllCandidaturasElegiveis(emailFreelancer);
-        return false;
+    public boolean isCandidaturaEditavel (){
+        String emailFreelancer = gestaoUtilizadoresController.getEmail();
+        List<Candidatura> listaCandidaturasEditaveis = editarCandidaturaController.getAllCandidaturasEditaveis(emailFreelancer);
+        if (listaCandidaturasEditaveis.contains(freelancerLogadoUI.listViewCandidaturas.getSelectionModel().getSelectedItem())){
+            btnEditarDados.setDisable(true);
+        }
+       return false;
     }
     
 
