@@ -44,6 +44,7 @@ public class ConsultarAreaActividadeUI implements Initializable {
             adicionarStage.setResizable(false);
             
             registarAreaActividadeController = new RegistarAreaActividadeController();
+            
 
     }    
     public void transferData() throws SQLException {
