@@ -47,17 +47,46 @@ public class Mapper {
     }
 
     public static ListaRolenamesDTO listaRolenames2ListaRolenamesDTO(List<Rolename> rolenames) {
-        List<RolenameDTO> listaRolenamesDTO = new ArrayList<RolenameDTO>();
+        List<RolenameDTO> rolenamesDTO = new ArrayList<RolenameDTO>();
 
         for(Rolename rolename : rolenames) {
             try {
                 RolenameDTO rolenameDTO = rolename2RolenameDTO(rolename);
-                listaRolenamesDTO.add(rolenameDTO);
+                rolenamesDTO.add(rolenameDTO);
             }
             catch (NullPointerException exception) {
                 exception.printStackTrace();
                 exception.getMessage();
             }
         }
+
+        ListaRolenamesDTO listaRolenamesDTO = new ListaRolenamesDTO();
+        listaRolenamesDTO.setRolenamesDTO(rolenamesDTO);
+
+        return listaRolenamesDTO;
+    }
+
+    public static RolenameDTO rolename2RolenameDTO(Rolename rolename) {
+        RolenameDTO rolenameDTO = new RolenameDTO();
+
+        if(rolename.getIdRolename() != 0) {
+            rolenameDTO.setIdRolename(rolename.getIdRolename());
+        }
+        rolenameDTO.setDesignacao(rolename.getDesignacao());
+        rolenameDTO.setDescricao(rolename.getDescricao());
+
+        return rolenameDTO;
+    }
+
+    public static Rolename rolenameDTO2Rolename(RolenameDTO rolenameDTO) {
+        Rolename rolename = new Rolename();
+
+        if(rolenameDTO.getIdRolename() != 0) {
+            rolename.setIdRolename(rolenameDTO.getIdRolename());
+        }
+        rolename.setDesignacao(rolenameDTO.getDesignacao());
+        rolename.setDescricao(rolenameDTO.getDescricao());
+
+        return rolename;
     }
 }

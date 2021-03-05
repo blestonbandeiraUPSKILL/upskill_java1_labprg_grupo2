@@ -1,7 +1,5 @@
 package t4j.ws.domain;
 
-import java.util.Objects;
-
 public class Rolename {
 
     private int idRolename;
@@ -10,6 +8,12 @@ public class Rolename {
 
     public Rolename() {
 
+    }
+
+    public Rolename(Rolename rolename) {
+        this.idRolename = rolename.getIdRolename();
+        this.designacao = rolename.getDesignacao();
+        this.descricao = rolename.getDescricao();
     }
 
     public Rolename(int idRolename, String designacao, String descricao){

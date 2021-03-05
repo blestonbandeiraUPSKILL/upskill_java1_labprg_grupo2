@@ -3,10 +3,7 @@ package t4j.ws.persistence;
 import t4j.ws.domain.Rolename;
 import t4j.ws.utils.DBConnectionHandler;
 
-import java.sql.CallableStatement;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,6 +17,40 @@ public class RepositorioRolename {
             repositorioRolename = new RepositorioRolename();
         }
         return repositorioRolename;
+    }
+
+    public boolean save(Rolename rolename) throws SQLException {
+        Connection connection = DBConnectionHandler.getInstance().openConnection();
+
+        try {
+            CallableStatement callableStatement = connection.prepareCall(
+                    "{CALL createRolename(?, ?)}"
+            );
+
+            connection.setAutoCommit(false);
+
+            callableStatement.setString(1, rolename.getDesignacao());
+            callableStatement.setString(2, rolename.getDescricao());
+
+            callableStatement.executeQuery();
+            connection.commit();
+            return true;
+        }
+        catch (SQLException exception) {
+            exception.getSQLState();
+            exception.printStackTrace();
+            try {
+                System.err.print("Transaction is being rolled back");
+                connection.rollback();
+            }
+            catch (SQLException sqlException) {
+                sqlException.getErrorCode();
+            }
+        }
+        finally {
+            DBConnectionHandler.getInstance().closeAll();
+        }
+        return false;
     }
 
     public List<Rolename> getAll() throws SQLException {
@@ -57,5 +88,45 @@ public class RepositorioRolename {
             DBConnectionHandler.getInstance().closeAll();
         }
         return rolenames;
+    }
+
+    public Rolename getByName(String rolename) throws SQLException {
+        Rolename rn = null;
+
+        Connection connection = DBConnectionHandler.getInstance().openConnection();
+
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(
+                    "SELECT * FROM Rolename WHERE designacao LIKE ?"
+            );
+
+            preparedStatement.setString(1, rolename);
+            preparedStatement.executeQuery();
+
+            ResultSet resultSet = preparedStatement.getResultSet();
+
+            while(resultSet.next()) {
+                rn.setIdRolename(resultSet.getInt(1));
+                rn.setDesignacao(rolename);
+                rn.setDescricao(resultSet.getString(3));
+            }
+
+        }
+        catch (SQLException exception) {
+            exception.getSQLState();
+            exception.printStackTrace();
+            try {
+                System.err.print("Transaction is being rolled back");
+                connection.rollback();
+            }
+            catch (SQLException sqlException) {
+                sqlException.getErrorCode();
+            }
+        }
+        finally {
+            DBConnectionHandler.getInstance().closeAll();
+        }
+
+        return rn;
     }
 }
