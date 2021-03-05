@@ -17,43 +17,43 @@ import java.util.ArrayList;
  *
  * @author CAD
  */
-public class RepositorioCandidaturaDatabase implements RepositorioCandidatura{
-    
+public class RepositorioCandidaturaDatabase implements RepositorioCandidatura {
+
     /**
-     * Define uma instância estática do Repositório em que estão
-     * registados todas as Candidaturas
+     * Define uma instância estática do Repositório em que estão registados
+     * todas as Candidaturas
      */
     private static RepositorioCandidaturaDatabase repositorioCandidaturaDatabase;
-    
+
     /**
      * Inicializa o Repositório de Candidaturas
      */
-    private RepositorioCandidaturaDatabase(){    }
+    private RepositorioCandidaturaDatabase() {
+    }
 
     /**
      * Devolve uma instância estática do Repositório dos Candidaturas
      *
      * @return RepositorioCandidaturaDatabase
      */
-    public static RepositorioCandidaturaDatabase getInstance(){
-        if(repositorioCandidaturaDatabase == null) {
+    public static RepositorioCandidaturaDatabase getInstance() {
+        if (repositorioCandidaturaDatabase == null) {
             repositorioCandidaturaDatabase = new RepositorioCandidaturaDatabase();
         }
         return repositorioCandidaturaDatabase;
     }
-    
+
     @Override
-    public boolean save(int idCandidatura, double valorPretendido, int numeroDias, 
-            String txtApresentacao, String txtMotivacao, int idAnuncio, String 
-            emailFreelancer) throws CandidaturaDuplicadaException, SQLException{
+    public boolean save(int idCandidatura, double valorPretendido, int numeroDias,
+            String txtApresentacao, String txtMotivacao, int idAnuncio, String emailFreelancer) throws CandidaturaDuplicadaException, SQLException {
 
         Connection connection = DBConnectionHandler.getInstance().openConnection();
 
         try {
             CallableStatement callableStatement = connection.prepareCall(
-                "{CALL createCandidatura(?, ?, ?, ?, ?, ?, ?) } ");
+                    "{CALL createCandidatura(?, ?, ?, ?, ?, ?, ?) } ");
 
-            if (findById(idCandidatura) == null && findByEmail(emailFreelancer) == null){
+            if (findById(idCandidatura) == null && findByEmail(emailFreelancer) == null) {
 
                 connection.setAutoCommit(false);
 
@@ -64,33 +64,29 @@ public class RepositorioCandidaturaDatabase implements RepositorioCandidatura{
                 callableStatement.setString(5, txtMotivacao);
                 callableStatement.setInt(6, idAnuncio);
                 callableStatement.setString(7, emailFreelancer);
-                              
+
                 callableStatement.executeQuery();
 
                 connection.commit();
                 return true;
             }
-        }
-        catch (SQLException exception) {
+        } catch (SQLException exception) {
             exception.printStackTrace();
             exception.getSQLState();
             try {
                 System.err.print("Transaction is being rolled back");
                 connection.rollback();
-            }
-            catch (SQLException sqlException) {
+            } catch (SQLException sqlException) {
                 sqlException.getErrorCode();
             }
-        }
-
-        finally {
+        } finally {
             DBConnectionHandler.getInstance().closeAll();
         }
         return false;
     }
-    
+
     @Override
-    public boolean save(Candidatura candidatura) throws SQLException{
+    public boolean save(Candidatura candidatura) throws SQLException {
 
         Connection connection = DBConnectionHandler.getInstance().openConnection();
 
@@ -98,7 +94,7 @@ public class RepositorioCandidaturaDatabase implements RepositorioCandidatura{
             CallableStatement callableStatement = connection.prepareCall(
                     "{CALL createCandidatura(?, ?, ?, ?, ?, ?) } ");
             connection.setAutoCommit(false);
-                   
+
             callableStatement.setDouble(1, candidatura.getValorPretendido());
             callableStatement.setInt(2, candidatura.getNumeroDias());
             callableStatement.setString(3, candidatura.getApresentacao());
@@ -110,20 +106,16 @@ public class RepositorioCandidaturaDatabase implements RepositorioCandidatura{
 
             connection.commit();
             return true;
-        }
-        catch (SQLException exception) {
+        } catch (SQLException exception) {
             exception.printStackTrace();
             exception.getSQLState();
             try {
                 System.err.print("Transaction is being rolled back");
                 connection.rollback();
-            }
-            catch (SQLException sqlException) {
+            } catch (SQLException sqlException) {
                 sqlException.getErrorCode();
             }
-        }
-
-        finally {
+        } finally {
             DBConnectionHandler.getInstance().closeAll();
         }
 
@@ -132,7 +124,7 @@ public class RepositorioCandidaturaDatabase implements RepositorioCandidatura{
     }
 
     @Override
-    public Candidatura findById(int idCandidatura) throws SQLException{
+    public Candidatura findById(int idCandidatura) throws SQLException {
 
         Connection connection = DBConnectionHandler.getInstance().openConnection();
 
@@ -150,27 +142,26 @@ public class RepositorioCandidaturaDatabase implements RepositorioCandidatura{
         } catch (SQLException exceptionOrg) {
             exceptionOrg.printStackTrace();
             exceptionOrg.getSQLState();
-        }
-        finally {
+        } finally {
             DBConnectionHandler.getInstance().closeAll();
         }
 
-        return new Candidatura();        
-        
+        return new Candidatura();
+
     }
-    
+
     @Override
-    public Candidatura findByEmail (String emailFreelancer) throws SQLException{
+    public Candidatura findByEmail(String emailFreelancer) throws SQLException {
         Candidatura candidatura = new Candidatura();
 
         Connection connection = DBConnectionHandler.getInstance().openConnection();
 
         try {
             CallableStatement callableStatementOrg = connection.prepareCall(
-                    "SELECT idCandidatura, valorPretendido, numeroDias, txtApresentacao, " +
-                            "txtMotivacao, idAnuncio, TO_CHAR(dataCandidatura, 'yyyy-mm-dd') " +
-                            "FROM Candidatura " +
-                            "WHERE emailFreelancer LIKE ?"
+                    "SELECT idCandidatura, valorPretendido, numeroDias, txtApresentacao, "
+                    + "txtMotivacao, idAnuncio, TO_CHAR(dataCandidatura, 'yyyy-mm-dd') "
+                    + "FROM Candidatura "
+                    + "WHERE emailFreelancer LIKE ?"
             );
 
             connection.setAutoCommit(false);
@@ -180,7 +171,7 @@ public class RepositorioCandidaturaDatabase implements RepositorioCandidatura{
 
             ResultSet resultSet = callableStatementOrg.getResultSet();
 
-            while(resultSet.next()) {
+            while (resultSet.next()) {
                 candidatura.setIdCandidatura(resultSet.getInt(1));
                 candidatura.setValor(resultSet.getDouble(2));
                 candidatura.setDias(resultSet.getInt(3));
@@ -194,17 +185,16 @@ public class RepositorioCandidaturaDatabase implements RepositorioCandidatura{
         } catch (SQLException exceptionOrg) {
             exceptionOrg.printStackTrace();
             exceptionOrg.getSQLState();
-        }
-        finally {
+        } finally {
             DBConnectionHandler.getInstance().closeAll();
         }
 
         return candidatura;
     }
-    
+
     @Override
-    public ArrayList<Candidatura> getAll() throws SQLException{
-        
+    public ArrayList<Candidatura> getAll() throws SQLException {
+
         ArrayList<Candidatura> candidaturas = new ArrayList<>();
 
         Connection connection = DBConnectionHandler.getInstance().openConnection();
@@ -228,41 +218,37 @@ public class RepositorioCandidaturaDatabase implements RepositorioCandidatura{
                 String dataEdicaoCandidatura = resultSet.getDate(9).toString();
 
                 candidaturas.add(new Candidatura(idCandidatura, valorPretendido,
-                numeroDias, txtApresentacao, txtMotivacao, idAnuncio, emailFreelancer,
-                dataCandidatura, dataEdicaoCandidatura));
+                        numeroDias, txtApresentacao, txtMotivacao, idAnuncio, emailFreelancer,
+                        dataCandidatura, dataEdicaoCandidatura));
             }
 
-        }
-        catch (SQLException exception) {
+        } catch (SQLException exception) {
             exception.printStackTrace();
             exception.getSQLState();
             try {
                 System.err.print("Transaction is being rolled back");
                 connection.rollback();
-            }
-            catch (SQLException sqlException) {
+            } catch (SQLException sqlException) {
                 sqlException.getErrorCode();
             }
 
-        }
-        finally {
+        } finally {
             DBConnectionHandler.getInstance().closeAll();
-        }    
+        }
         return candidaturas;
     }
-    
+
     @Override
-    public ArrayList<Candidatura> getAllByIdAnuncio(int idAnuncio) throws SQLException{
-        
+    public ArrayList<Candidatura> getAllByIdAnuncio(int idAnuncio) throws SQLException {
+
         ArrayList<Candidatura> candidaturasAnuncio = new ArrayList<>();
 
         Connection connection = DBConnectionHandler.getInstance().openConnection();
 
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(
-                    "SELECT * FROM Candidatura " +
-                              "WHERE idAnuncio =  ?"                   
-                    
+                    "SELECT * FROM Candidatura "
+                    + "WHERE idAnuncio =  ?"
             );
 
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -272,37 +258,62 @@ public class RepositorioCandidaturaDatabase implements RepositorioCandidatura{
                 double valorPretendido = resultSet.getDouble(2);
                 int numeroDias = resultSet.getInt(3);
                 String txtApresentacao = resultSet.getString(4);
-                String txtMotivacao = resultSet.getString(5);                
+                String txtMotivacao = resultSet.getString(5);
                 String emailFreelancer = resultSet.getString(7);
                 String dataCandidatura = resultSet.getDate(8).toString();
                 String dataEdicaoCandidatura = resultSet.getDate(9).toString();
 
                 candidaturasAnuncio.add(new Candidatura(idCandidatura, valorPretendido,
-                numeroDias, txtApresentacao, txtMotivacao, idAnuncio, emailFreelancer,
-                dataCandidatura, dataEdicaoCandidatura));
+                        numeroDias, txtApresentacao, txtMotivacao, idAnuncio, emailFreelancer,
+                        dataCandidatura, dataEdicaoCandidatura));
             }
 
-        }
-        catch (SQLException exception) {
+        } catch (SQLException exception) {
             exception.printStackTrace();
             exception.getSQLState();
             try {
                 System.err.print("Transaction is being rolled back");
                 connection.rollback();
-            }
-            catch (SQLException sqlException) {
+            } catch (SQLException sqlException) {
                 sqlException.getErrorCode();
             }
 
-        }
-        finally {
+        } finally {
             DBConnectionHandler.getInstance().closeAll();
-        }    
+        }
         return candidaturasAnuncio;
     }
 
     @Override
     public void updateCandidatura() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean deleteCandidatura(int idCandidatura) throws SQLException {
+
+        Connection connection = DBConnectionHandler.getInstance().openConnection();
+
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(
+                    "DELETE FROM Candidatura WHERE idCandidatura = ?"
+            );
+            preparedStatement.executeQuery();
+            return true;
+
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+            exception.getSQLState();
+            try {
+                System.err.print("Transaction is being rolled back");
+                connection.rollback();
+            } catch (SQLException sqlException) {
+                sqlException.getErrorCode();
+            }
+
+        } finally {
+            DBConnectionHandler.getInstance().closeAll();
+        }
+        return false;
     }
 }
