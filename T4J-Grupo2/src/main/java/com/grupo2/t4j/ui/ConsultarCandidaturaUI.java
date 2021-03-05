@@ -85,7 +85,11 @@ public class ConsultarCandidaturaUI implements Initializable {
     }
 
     
-    private void guardarAction(ActionEvent event) {
+    public void guardarAction(ActionEvent actionEvent) {
+        
+    }
+    
+    public void cancelarAction(ActionEvent actionEvent) {
         
     }
     
