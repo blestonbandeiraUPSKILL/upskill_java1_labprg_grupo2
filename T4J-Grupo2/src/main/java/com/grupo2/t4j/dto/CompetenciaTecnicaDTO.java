@@ -5,7 +5,6 @@ import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import com.grupo2.t4j.exception.AreaActividadeInexistenteException;
 import com.grupo2.t4j.exception.CodigoInvalidoException;
 import com.grupo2.t4j.exception.DescricaoInvalidaException;
-import com.grupo2.t4j.model.CompetenciaTecnica;
 
 @JsonPropertyOrder({"codigo", "descricaoBreve", "descricaoDetalhada", "codigoAreaActividade"})
 

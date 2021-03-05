@@ -5,14 +5,12 @@
  */
 package com.grupo2.t4j.controller;
 
-import com.grupo2.t4j.model.CaracterizacaoCT;
-import com.grupo2.t4j.model.GrauProficiencia;
-import com.grupo2.t4j.model.Tarefa;
+import com.grupo2.t4j.domain.GrauProficiencia;
+import com.grupo2.t4j.domain.Tarefa;
 import com.grupo2.t4j.persistence.*;
 import com.grupo2.t4j.persistence.database.FabricaRepositoriosDatabase;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class RegistarTarefaController {

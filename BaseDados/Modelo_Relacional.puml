@@ -44,12 +44,6 @@ entity "Administrativo" {
     --
 }
 
-entity "Rolename" {
-    idRolename: number {PK}
-    --
-    designacao: text {NN}
-}
-
 entity "Categoria" {
     codigoCategoria: text {PK}
     --
@@ -160,6 +154,7 @@ entity "Candidatura" {
     idAnuncio: number {FK}
     emailFreelancer: text {FK}
     dataCandidatura: date
+    dataEdicaoCandidatura: date
 }
 
 entity "HabilitacaoAcademica" {
@@ -191,6 +186,20 @@ entity "CaracterCT" {
     codigoCategoria: text {FK}
 }
 
+entity "Session" {
+    idSession: number {PK}
+    --
+    appKey: text {NN}
+    appContext: text {NN, UK}
+    timestamp: date {NN}
+}
+
+entity "Rolename" {
+    idRolename: number {PK}
+    --
+    designacao: text {NN, UK}
+}
+
 
 
 AreaActividade ||--|{ Categoria
@@ -217,7 +226,7 @@ Freelancer ||--|{ ReconhecimentoGP
 ReconhecimentoGP }|--|| GrauProficiencia
 CaracterCT }|--|| Categoria
 CaracterCT }|--|| GrauProficiencia
-Classificacao ||--|{ ColaboradorSeriacao
+ProcessoSeriacao ||--|{ ColaboradorSeriacao
 Colaborador ||--|{ ColaboradorSeriacao
 Utilizador }|--|| Rolename
 

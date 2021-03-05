@@ -4,7 +4,7 @@ import com.grupo2.t4j.controller.EfectuarCandidaturaController;
 import com.grupo2.t4j.controller.GestaoUtilizadoresController;
 import com.grupo2.t4j.controller.RegistarAnuncioController;
 import com.grupo2.t4j.controller.RegistarTarefaController;
-import com.grupo2.t4j.model.*;
+import com.grupo2.t4j.domain.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;

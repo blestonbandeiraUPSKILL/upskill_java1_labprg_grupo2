@@ -1,9 +1,9 @@
 package com.grupo2.t4j.persistence.database;
 
 import com.grupo2.t4j.exception.UtilizadorDuplicadoException;
-import com.grupo2.t4j.model.Email;
-import com.grupo2.t4j.model.Password;
-import com.grupo2.t4j.model.Utilizador;
+import com.grupo2.t4j.domain.Email;
+import com.grupo2.t4j.domain.Password;
+import com.grupo2.t4j.domain.Utilizador;
 import com.grupo2.t4j.persistence.RepositorioUtilizador;
 
 import java.util.ArrayList;

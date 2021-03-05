@@ -10,7 +10,7 @@ package com.grupo2.t4j.persistence;
  * @author CAD
  */
 
-import com.grupo2.t4j.model.AreaActividade;
+import com.grupo2.t4j.domain.AreaActividade;
 
 import java.sql.SQLException;
 import java.util.List;

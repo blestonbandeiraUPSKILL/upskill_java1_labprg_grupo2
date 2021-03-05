@@ -11,9 +11,8 @@ package com.grupo2.t4j.persistence;
  */
 
 import com.grupo2.t4j.exception.AnuncioDuplicadoException;
-import com.grupo2.t4j.model.Anuncio;
-import com.grupo2.t4j.model.TipoRegimento;
-import com.grupo2.t4j.model.TipoStatusAnuncio;
+import com.grupo2.t4j.domain.Anuncio;
+import com.grupo2.t4j.domain.TipoRegimento;
 
 import java.sql.SQLException;
 import java.util.ArrayList;

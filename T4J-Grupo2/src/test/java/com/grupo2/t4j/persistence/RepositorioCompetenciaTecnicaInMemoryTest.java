@@ -9,12 +9,10 @@ import com.grupo2.t4j.persistence.inmemory.RepositorioCompetenciaTecnicaInMemory
 import org.junit.Test;
 import com.grupo2.t4j.exception.CompetenciaTecnicaDuplicadaException;
 import com.grupo2.t4j.exception.DescricaoInvalidaException;
-import com.grupo2.t4j.model.AreaActividade;
-import com.grupo2.t4j.model.CompetenciaTecnica;
-import java.util.ArrayList;
+import com.grupo2.t4j.domain.CompetenciaTecnica;
 import org.junit.jupiter.api.BeforeEach;
 //import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+
 
 /**
  *

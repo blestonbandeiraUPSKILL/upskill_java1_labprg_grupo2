@@ -2,12 +2,10 @@ package com.grupo2.t4j.ui;
 
 import com.grupo2.t4j.controller.*;
 import com.grupo2.t4j.files.FicheiroRepositorioAreaActividade;
-import com.grupo2.t4j.files.FileChooserT4J;
-import com.grupo2.t4j.model.AreaActividade;
-import com.grupo2.t4j.model.Categoria;
-import com.grupo2.t4j.model.CompetenciaTecnica;
-import com.grupo2.t4j.model.Email;
-import com.grupo2.t4j.model.Freelancer;
+import com.grupo2.t4j.domain.AreaActividade;
+import com.grupo2.t4j.domain.Categoria;
+import com.grupo2.t4j.domain.CompetenciaTecnica;
+import com.grupo2.t4j.domain.Freelancer;
 import com.grupo2.t4j.persistence.inmemory.RepositorioAreaActividadeInMemory;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -22,14 +20,12 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.ListView;
 import javafx.stage.*;
 
-import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
-import javafx.beans.value.ObservableValue;
+
 import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 

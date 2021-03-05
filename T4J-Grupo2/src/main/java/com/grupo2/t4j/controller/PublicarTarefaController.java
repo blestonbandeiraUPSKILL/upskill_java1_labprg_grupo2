@@ -1,8 +1,8 @@
 package com.grupo2.t4j.controller;
 
-import com.grupo2.t4j.model.Anuncio;
-import com.grupo2.t4j.model.Data;
-import com.grupo2.t4j.model.TipoRegimento;
+import com.grupo2.t4j.domain.Anuncio;
+import com.grupo2.t4j.domain.Data;
+import com.grupo2.t4j.domain.TipoRegimento;
 import com.grupo2.t4j.persistence.FabricaRepositorios;
 import com.grupo2.t4j.persistence.RepositorioAnuncio;
 import com.grupo2.t4j.persistence.database.FabricaRepositoriosDatabase;

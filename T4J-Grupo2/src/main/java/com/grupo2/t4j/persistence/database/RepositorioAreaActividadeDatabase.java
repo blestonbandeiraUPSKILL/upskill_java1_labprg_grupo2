@@ -11,11 +11,10 @@ package com.grupo2.t4j.persistence.database;
  */
 
 import com.grupo2.t4j.exception.AreaActividadeDuplicadaException;
-import com.grupo2.t4j.model.AreaActividade;
+import com.grupo2.t4j.domain.AreaActividade;
 import com.grupo2.t4j.persistence.RepositorioAreaActividade;
 import com.grupo2.t4j.utils.DBConnectionHandler;
 
-import java.awt.geom.Area;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;

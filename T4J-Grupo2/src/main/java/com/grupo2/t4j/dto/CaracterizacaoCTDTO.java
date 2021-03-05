@@ -2,7 +2,6 @@ package com.grupo2.t4j.dto;
 
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
-import com.grupo2.t4j.model.Obrigatoriedade;
 
 @JsonPropertyOrder({"idCaracterizacao", "codigoCategoria", "codigoGP", "obrigatoriedade"})
 

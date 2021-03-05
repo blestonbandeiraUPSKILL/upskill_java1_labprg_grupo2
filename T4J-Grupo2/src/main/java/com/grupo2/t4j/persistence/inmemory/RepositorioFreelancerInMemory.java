@@ -11,7 +11,7 @@ package com.grupo2.t4j.persistence.inmemory;
  */
 
 import com.grupo2.t4j.exception.FreelancerDuplicadoException;
-import com.grupo2.t4j.model.*;
+import com.grupo2.t4j.domain.*;
 import com.grupo2.t4j.persistence.RepositorioFreelancer;
 
 import java.io.Serializable;

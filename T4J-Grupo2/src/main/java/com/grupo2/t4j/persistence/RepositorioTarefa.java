@@ -10,8 +10,7 @@ package com.grupo2.t4j.persistence;
  * @author CAD
  */
 
-import com.grupo2.t4j.model.Anuncio;
-import com.grupo2.t4j.model.Tarefa;
+import com.grupo2.t4j.domain.Tarefa;
 
 import java.sql.SQLException;
 import java.util.ArrayList;

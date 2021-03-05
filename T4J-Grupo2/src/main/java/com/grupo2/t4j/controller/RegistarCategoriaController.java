@@ -1,7 +1,7 @@
 package com.grupo2.t4j.controller;
 
 import com.grupo2.t4j.files.FicheiroRepositorioCategoria;
-import com.grupo2.t4j.model.Categoria;
+import com.grupo2.t4j.domain.Categoria;
 import com.grupo2.t4j.persistence.FabricaRepositorios;
 import com.grupo2.t4j.persistence.RepositorioAreaActividade;
 import com.grupo2.t4j.persistence.RepositorioCategoriaTarefa;

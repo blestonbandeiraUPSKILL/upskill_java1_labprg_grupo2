@@ -1,6 +1,6 @@
 package com.grupo2.t4j.controller;
 
-import com.grupo2.t4j.model.*;
+import com.grupo2.t4j.domain.*;
 import com.grupo2.t4j.persistence.*;
 import com.grupo2.t4j.persistence.database.FabricaRepositoriosDatabase;
 
