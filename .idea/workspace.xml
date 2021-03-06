@@ -5,15 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3bba2c4a-b637-44ac-9db7-677bd232f142" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/T4J-WS/src/main/java/t4j/ws/dto/ErroDTO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/T4J-WS/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/T4J-WS/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/T4J-WS/src/main/java/t4j/ws/controller/GestaoUtilizadoresController.java" beforeDir="false" afterPath="$PROJECT_DIR$/T4J-WS/src/main/java/t4j/ws/controller/GestaoUtilizadoresController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/T4J-WS/src/main/java/t4j/ws/persistence/RepositorioUtilizador.java" beforeDir="false" afterPath="$PROJECT_DIR$/T4J-WS/src/main/java/t4j/ws/persistence/RepositorioUtilizador.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/T4J-WS/src/main/java/t4j/ws/service/UtilizadoresService.java" beforeDir="false" afterPath="$PROJECT_DIR$/T4J-WS/src/main/java/t4j/ws/service/UtilizadoresService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/T4J-WS/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/T4J-WS/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/T4J-WS/src/test/java/com/t4jws/T4JWsApplicationTests.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/T4J-WS/src/test/java/t4j/ws/T4JWsApplicationTests.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

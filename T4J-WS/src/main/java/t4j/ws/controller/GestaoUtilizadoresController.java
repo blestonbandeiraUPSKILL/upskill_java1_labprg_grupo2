@@ -45,6 +45,24 @@ public class GestaoUtilizadoresController {
         }
     }
 
+    @RequestMapping(value = "/context",
+            method = RequestMethod.GET,
+            params = { "app_key"},
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> getContext(@RequestParam("app_key") String appKey) {
+        try {
+
+            ContextoDTO contextoDTO = GestaoUtilizadoresService.generateContext(appKey);
+            if (contextoDTO != null) {
+                return new ResponseEntity<>(contextoDTO, HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+            }
+        } catch (Exception e) {
+            return new ResponseEntity<>(new ErroDTO(e), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
     @RequestMapping(value = "/roles",
             method = RequestMethod.GET,
             params = {"app_context"},
