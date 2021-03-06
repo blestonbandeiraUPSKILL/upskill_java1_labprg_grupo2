@@ -1,9 +1,6 @@
 package t4j.ws.persistence;
 
-import t4j.ws.domain.Email;
-import t4j.ws.domain.Password;
 import t4j.ws.domain.Utilizador;
-import t4j.ws.exception.UtilizadorDuplicadoException;
 import t4j.ws.utils.DBConnectionHandler;
 
 import java.sql.*;
@@ -112,5 +109,8 @@ public class RepositorioUtilizador {
             DBConnectionHandler.getInstance().closeAll();
         }
         return false;
+    }
+
+    public void saveWithRole(Utilizador utilizador) {
     }
 }

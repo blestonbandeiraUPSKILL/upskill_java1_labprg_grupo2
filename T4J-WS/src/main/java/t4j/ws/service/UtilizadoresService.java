@@ -7,7 +7,6 @@ import t4j.ws.dto.ListaRolenamesDTO;
 import t4j.ws.dto.Mapper;
 import t4j.ws.dto.RolenameDTO;
 import t4j.ws.dto.UtilizadorDTO;
-import t4j.ws.exception.ConversaoException;
 import t4j.ws.exception.RolenameAssociationException;
 import t4j.ws.exception.UtilizadorInvalidoException;
 import t4j.ws.persistence.RepositorioRolename;
@@ -30,46 +29,30 @@ public class UtilizadoresService {
         }
 
         UtilizadorDTO utilizadorDTO = Mapper.utilizador2UtilizadorDTO(utilizador);
-        if(utilizadorDTO != null) {
-            return utilizadorDTO;
-        }
-        else {
-            throw new ConversaoException("UtilizadorDTO");
-        }
+        return utilizadorDTO;
     }
 
     public static void registerUser(UtilizadorDTO utilizadorDTO) {
 
         Utilizador utilizador = Mapper.utilizadorDTO2Utilizador(utilizadorDTO);
 
-        if(utilizador != null) {
-            RepositorioUtilizador repositorioUtilizador = RepositorioUtilizador.getInstance();
-            repositorioUtilizador.save(utilizador);
-        }
-        else {
-            throw new ConversaoException("UtilizadorDTO");
-        }
+        RepositorioUtilizador repositorioUtilizador = RepositorioUtilizador.getInstance();
+        repositorioUtilizador.save(utilizador);
     }
 
-    public static void registerUserWithRoles(UtilizadorDTO utilizadorDTO) {
+    public static void registerUserWithRoles(UtilizadorDTO utilizadorDTO, Rolename rolename) throws SQLException {
 
         Utilizador utilizador = Mapper.utilizadorDTO2Utilizador(utilizadorDTO);
+        Rolename rn = repositorioRolename.getByName(rolename.getDesignacao());
+        utilizador.setRolename(rn);
+        repositorioUtilizador.saveWithRole(utilizador);
 
-        if (utilizador != null) {
-            RepositorioUtilizador repositorioUtilizador = RepositorioUtilizador.getInstance();
-            repositorioUtilizador.save(utilizador);
-        }
-        else {
-            throw new ConversaoException("UtilizadorDTO");
-        }
     }
 
     public static ListaRolenamesDTO getRoles() throws SQLException {
         List<Rolename> rolenames = repositorioRolename.getAll();
 
-        ListaRolenamesDTO listaRolenamesDTO = Mapper.listaRolenames2ListaRolenamesDTO(rolenames);
-
-        return listaRolenamesDTO;
+        return Mapper.listaRolenames2ListaRolenamesDTO(rolenames);
     }
 
     public static RolenameDTO getUserRolenames(String email) {
@@ -79,12 +62,7 @@ public class UtilizadoresService {
 
         RolenameDTO rolenameDTO = Mapper.rolename2RolenameDTO(rolename);
 
-        if(rolenameDTO != null) {
-            return rolenameDTO;
-        }
-        else{
-            throw new ConversaoException("RolenameDTO");
-        }
+        return rolenameDTO;
     }
 
     public static boolean addRolenameToUser(String email, String rolename) throws SQLException {
