@@ -5,20 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3bba2c4a-b637-44ac-9db7-677bd232f142" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/T4J-WS/src/main/java/t4j/ws/controller/GestaoUtilizadoresController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/T4J-Grupo2/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/T4J-Grupo2/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/T4J-Grupo2/src/main/java/com/grupo2/t4j/controller/EliminarCandidaturaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/T4J-Grupo2/src/main/java/com/grupo2/t4j/controller/EliminarCandidaturaController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/T4J-Grupo2/src/main/java/com/grupo2/t4j/controller/RegistarTarefaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/T4J-Grupo2/src/main/java/com/grupo2/t4j/controller/RegistarTarefaController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/T4J-Grupo2/src/main/java/com/grupo2/t4j/controller/SeriarAnuncioController.java" beforeDir="false" afterPath="$PROJECT_DIR$/T4J-Grupo2/src/main/java/com/grupo2/t4j/controller/SeriarAnuncioController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/T4J-Grupo2/src/main/java/com/grupo2/t4j/persistence/RepositorioAnuncio.java" beforeDir="false" afterPath="$PROJECT_DIR$/T4J-Grupo2/src/main/java/com/grupo2/t4j/persistence/RepositorioAnuncio.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/T4J-Grupo2/src/main/java/com/grupo2/t4j/persistence/RepositorioCandidatura.java" beforeDir="false" afterPath="$PROJECT_DIR$/T4J-Grupo2/src/main/java/com/grupo2/t4j/persistence/RepositorioCandidatura.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/T4J-Grupo2/src/main/java/com/grupo2/t4j/persistence/database/RepositorioAnuncioDataBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/T4J-Grupo2/src/main/java/com/grupo2/t4j/persistence/database/RepositorioAnuncioDataBase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/T4J-Grupo2/src/main/java/com/grupo2/t4j/persistence/database/RepositorioCandidaturaDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/T4J-Grupo2/src/main/java/com/grupo2/t4j/persistence/database/RepositorioCandidaturaDatabase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/T4J-Grupo2/src/main/java/com/grupo2/t4j/persistence/database/RepositorioTarefaDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/T4J-Grupo2/src/main/java/com/grupo2/t4j/persistence/database/RepositorioTarefaDatabase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/T4J-Grupo2/src/main/java/com/grupo2/t4j/persistence/inmemory/RepositorioCandidaturaInMemory.java" beforeDir="false" afterPath="$PROJECT_DIR$/T4J-Grupo2/src/main/java/com/grupo2/t4j/persistence/inmemory/RepositorioCandidaturaInMemory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/T4J-Grupo2/src/main/java/com/grupo2/t4j/ui/ColaboradorLogadoUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/T4J-Grupo2/src/main/java/com/grupo2/t4j/ui/ColaboradorLogadoUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/T4J-Grupo2/src/main/java/com/grupo2/t4j/ui/FreelancerLogadoUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/T4J-Grupo2/src/main/java/com/grupo2/t4j/ui/FreelancerLogadoUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/T4J-Grupo2/src/main/resources/com/grupo2/t4j/fxml/PublicarTarefaScene.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/T4J-Grupo2/src/main/resources/com/grupo2/t4j/fxml/PublicarTarefaScene.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/T4J-Grupo2/src/main/java/com/grupo2/t4j/ui/EfectuarCandidaturaUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/T4J-Grupo2/src/main/java/com/grupo2/t4j/ui/EfectuarCandidaturaUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/T4J-WS/src/main/java/t4j/ws/persistence/RepositorioRolename.java" beforeDir="false" afterPath="$PROJECT_DIR$/T4J-WS/src/main/java/t4j/ws/persistence/RepositorioRolename.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/T4J-WS/src/main/java/t4j/ws/persistence/RepositorioUtilizador.java" beforeDir="false" afterPath="$PROJECT_DIR$/T4J-WS/src/main/java/t4j/ws/persistence/RepositorioUtilizador.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/T4J-WS/src/main/java/t4j/ws/service/GestaoUtilizadoresService.java" beforeDir="false" afterPath="$PROJECT_DIR$/T4J-WS/src/main/java/t4j/ws/service/GestaoUtilizadoresService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/T4J-WS/src/main/java/t4j/ws/service/UtilizadoresService.java" beforeDir="false" afterPath="$PROJECT_DIR$/T4J-WS/src/main/java/t4j/ws/service/UtilizadoresService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,7 +33,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/T4J-WS" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />

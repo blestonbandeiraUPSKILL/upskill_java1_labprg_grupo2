@@ -12,6 +12,9 @@ import java.sql.SQLException;
 
 public class GestaoUtilizadoresService {
 
+    private static RepositorioSessao repositorioSessao = RepositorioSessao.getInstance();
+    private static RepositorioUtilizador repositorioUtilizador = RepositorioUtilizador.getInstance();
+
     public static ContextoDTO generateContext(String appKey) {
         Contexto contexto = null;
 
@@ -26,7 +29,6 @@ public class GestaoUtilizadoresService {
         ContextoDTO contextoDTO = Mapper.contexto2ContextoDTO(contexto);
 
         if(contextoDTO != null) {
-            RepositorioSessao repositorioSessao = RepositorioSessao.getInstance();
             repositorioSessao.saveContext(contexto);
             return contextoDTO;
         }
@@ -36,19 +38,19 @@ public class GestaoUtilizadoresService {
     }
 
     public static boolean validateContexto(ContextoDTO contextoDTO) {
-        Contexto contexto = RepositorioSessao.getInstance().findContextByString(contextoDTO.getAppContext());
+        Contexto contexto = repositorioSessao.findContextByString(contextoDTO.getAppContext());
 
         return contexto.isValido();
     }
 
     public static boolean login(LoginDTO loginDTO, ContextoDTO contextoDTO) throws SQLException {
-        Utilizador utilizador = RepositorioUtilizador.getInstance().findByEmail(loginDTO.getEmail().toString());
+        Utilizador utilizador = repositorioUtilizador.findByEmail(loginDTO.getEmail().toString());
 
         if(utilizador == null || !(utilizador.getPassword().equals(loginDTO.getPassword()))) {
             return false;
         }
 
-        Contexto contexto = RepositorioSessao.getInstance().findContextByString(contextoDTO.getAppContext());
+        Contexto contexto = repositorioSessao.findContextByString(contextoDTO.getAppContext());
         Sessao sessao = new Sessao(utilizador, contexto);
         SessaoDTO sessaoDTO = Mapper.sessao2SessaoDTO(sessao);
 
@@ -61,11 +63,11 @@ public class GestaoUtilizadoresService {
     }
 
     public static boolean logout(ContextoDTO contextoDTO) throws SQLException {
-        return RepositorioSessao.getInstance().contextInvalid(contextoDTO.getAppContext());
+        return repositorioSessao.contextInvalid(contextoDTO.getAppContext());
     }
 
     public static SessaoDTO getSession(ContextoDTO contextoDTO) throws SQLException {
-        Sessao sessao = RepositorioSessao.getInstance().findByContext(contextoDTO.getAppContext());
+        Sessao sessao = repositorioSessao.findByContext(contextoDTO.getAppContext());
 
         if(sessao == null) {
             return null;

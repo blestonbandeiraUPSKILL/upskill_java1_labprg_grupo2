@@ -65,14 +65,15 @@ public class EfectuarCandidaturaUI implements Initializable {
     public void addCandidatura(ActionEvent actionEvent) throws SQLException {
 
         String emailFreelancer = freelancerLogadoUI.getEmail();
-        
+        int idAnuncio = getIdAnuncio();
+
         try {
             boolean adicionou = efectuarCandidaturaController.registarCandidatura(
                     Double.parseDouble(txtValor.getText()),
                     Integer.parseInt(txtDias.getText()),
                     txtApresentacao.getText(),
-                    txtMotivacao.getText(), 
-                    getIdAnuncio(),
+                    txtMotivacao.getText(),
+                    idAnuncio,
                     emailFreelancer);
 
             if(adicionou) {
