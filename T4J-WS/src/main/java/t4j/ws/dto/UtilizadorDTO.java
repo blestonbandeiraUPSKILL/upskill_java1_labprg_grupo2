@@ -1,13 +1,14 @@
 package t4j.ws.dto;
 
 import t4j.ws.domain.Password;
+import t4j.ws.domain.Rolename;
 
 public class UtilizadorDTO {
 
     private String username;
     private String email;
     private Password password;
-    private String rolename;
+    private Rolename rolename;
 
     public void setUsername(String username) {
         this.username = username;
@@ -21,7 +22,7 @@ public class UtilizadorDTO {
         this.password = password;
     }
 
-    public void setRolename(String rolename) {
+    public void setRolename(Rolename rolename) {
         this.rolename = rolename;
     }
 
@@ -37,7 +38,7 @@ public class UtilizadorDTO {
         return password;
     }
 
-    public String getRolename() {
+    public Rolename getRolename() {
         return rolename;
     }
 }

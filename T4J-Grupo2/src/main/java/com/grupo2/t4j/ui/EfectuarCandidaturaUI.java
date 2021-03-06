@@ -107,7 +107,7 @@ public class EfectuarCandidaturaUI implements Initializable {
                 Alert alerta = AlertsUI.criarAlerta(Alert.AlertType.CONFIRMATION,
                         MainApp.TITULO_APLICACAO,
                         "Confirmação da acção",
-                        "Tem a certeza que quer voltar à página anterior, cancelando o actual registo?");
+                        "Tem a certeza que quer voltar à página anterior, cancelando a candidatura?");
 
                 if (alerta.showAndWait().get() == ButtonType.CANCEL) {
                     windowEvent.consume();

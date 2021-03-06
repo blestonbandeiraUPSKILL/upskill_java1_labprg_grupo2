@@ -315,5 +315,10 @@ public class RepositorioCandidaturaDatabase implements RepositorioCandidatura {
             DBConnectionHandler.getInstance().closeAll();
         }
         return false;
+    }
 
+    @Override
+    public List<Candidatura> getAllCandidaturasElegiveis(String emailFreelancer) {
+        return null;
+    }
 }

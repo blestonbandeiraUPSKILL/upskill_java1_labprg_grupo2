@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="BorderPane" stylesheets="@../style/app.css" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.PublicarTarefaUI">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="BorderPane" stylesheets="@../style/app.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.PublicarTarefaUI">
     <top>
         <Label styleClass="lblUser" text="Área do Colaborador :::&gt; Publicar Tarefa" BorderPane.alignment="CENTER_RIGHT">
             <font>
@@ -58,13 +59,13 @@
                 <AnchorPane layoutX="39.0" layoutY="51.0" styleClass="AnchorPane">
                     <children>
                         <Label layoutX="15.0" layoutY="80.0" text="Fim" />
-                  <TextField fx:id="dtInicioPublicitacao" layoutY="42.0" text="2021-03-01" />
+                  <TextField fx:id="dtInicioPublicitacao" layoutY="42.0" text="2021-03-06" />
                         <Label text="Período de Publicitação">
                             <font>
                                 <Font size="14.0" />
                             </font>
                         </Label>
-                  <TextField fx:id="dtFimPublicitacao" layoutY="96.0" text="2021-03-16" />
+                  <TextField fx:id="dtFimPublicitacao" layoutY="96.0" text="2021-03-30" />
                         <Label layoutX="15.0" layoutY="23.0" text="Início" />
                     </children>
                 </AnchorPane>
@@ -77,8 +78,8 @@
                             </font>
                         </Label>
                         <Label layoutX="15.0" layoutY="23.0" text="Início" />
-                  <TextField fx:id="dtInicioCandidaturas" layoutX="2.0" layoutY="42.0" text="2021-03-02" />
-                  <TextField fx:id="dtFimCandidaturas" layoutX="2.0" layoutY="96.0" text="2021-03-15" />
+                  <TextField fx:id="dtInicioCandidaturas" layoutX="2.0" layoutY="42.0" text="2021-03-06" />
+                  <TextField fx:id="dtFimCandidaturas" layoutX="2.0" layoutY="96.0" text="2021-03-20" />
                     </children>
                 </AnchorPane>
                 <AnchorPane layoutX="415.0" layoutY="51.0" styleClass="AnchorPane">
@@ -90,7 +91,7 @@
                             </font>
                         </Label>
                         <Label layoutX="15.0" layoutY="23.0" text="Início" />
-                  <TextField fx:id="dtInicioSeriacao" layoutX="-12.0" layoutY="42.0" text="2021-03-17" />
+                  <TextField fx:id="dtInicioSeriacao" layoutX="-12.0" layoutY="42.0" text="2021-03-21" />
                   <TextField fx:id="dtFimSeriacao" layoutX="-12.0" layoutY="96.0" text="2021-03-30" />
                     </children>
                 </AnchorPane>

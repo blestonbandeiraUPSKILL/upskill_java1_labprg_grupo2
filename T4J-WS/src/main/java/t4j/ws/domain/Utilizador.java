@@ -21,7 +21,7 @@ public class Utilizador implements Serializable{
     private String username;
     private Email email;
     private Password password;
-    private String rolename;
+    private Rolename rolename;
 
     public Utilizador(){
     }
@@ -39,11 +39,11 @@ public class Utilizador implements Serializable{
         this.rolename = utilizador.getRolename();
     }
 
-    public Utilizador(String emailUtilizador, String username, String password, String rolename) {
+    public Utilizador(String emailUtilizador, String username, String password, Rolename rolename) {
         setEmail(new Email(emailUtilizador));
         setUsername(username);
         setPassword(new Password(password));
-        this.rolename = rolename;
+        setRolename(new Rolename(rolename));
 
     }
 
@@ -71,7 +71,7 @@ public class Utilizador implements Serializable{
         this.password = password;
     }
 
-    public void setRolename(String rolename){
+    public void setRolename(Rolename rolename){
         this.rolename = rolename;
     }
 
@@ -87,7 +87,7 @@ public class Utilizador implements Serializable{
         return password;
     } 
 
-    public String getRolename(){
+    public Rolename getRolename(){
         return rolename;
     }
 
