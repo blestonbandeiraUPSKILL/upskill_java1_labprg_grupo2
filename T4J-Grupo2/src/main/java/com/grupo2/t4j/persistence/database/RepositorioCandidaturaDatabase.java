@@ -316,4 +316,9 @@ public class RepositorioCandidaturaDatabase implements RepositorioCandidatura {
         }
         return false;
     }
+
+    @Override
+    public List<Candidatura> getAllCandidaturasElegiveis(String emailFreelancer) {
+        return null;
+    }
 }

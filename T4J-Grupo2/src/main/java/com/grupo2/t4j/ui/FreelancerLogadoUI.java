@@ -33,21 +33,13 @@ public class FreelancerLogadoUI implements Initializable {
     private Scene sceneStartingPage;
 
     private GestaoUtilizadoresController gestaoUtilizadoresController;
-    private RegistarAnuncioController registarAnuncioController;
     private EfectuarCandidaturaController efectuarCandidaturaController;
     private RegistarTarefaController registarTarefaController;
     private ConsultarCandidaturaUI consultarCandidaturaUI;
     private EliminarCandidaturaController eliminarCandidaturaController;
     private Scene sceneConsultarCandidatura;
-    
-    @FXML ListView<Tarefa> listViewAnuncios;
+
     @FXML ListView<Candidatura> listViewCandidaturas;
-    @FXML ComboBox<Anuncio> cmbAnuncio;
-    @FXML TextField txtValor;
-    @FXML TextField txtDias;
-    @FXML TextField txtApresentacao;
-    @FXML TextField txtMotivacao;
-    @FXML Button btnAddCandidatura;
     @FXML Button btnSair;
     
     @FXML TableColumn<Object, Object> colunaReferencia;
@@ -86,7 +78,6 @@ public class FreelancerLogadoUI implements Initializable {
         adicionarStage.setResizable(false);
         
         try {
-            //updateListViewAnuncio();
             updateTableViewAnuncio();
         } catch (SQLException exception) {
             exception.printStackTrace();
@@ -121,14 +112,6 @@ public class FreelancerLogadoUI implements Initializable {
         colunaDuracao.setCellValueFactory( new PropertyValueFactory<>("duracaoEst"));
         colunaCusto.setCellValueFactory( new PropertyValueFactory<>("custoEst"));
         
-    }
-        
-    public void updateListViewAnuncio() throws SQLException {
-        cmbAnuncio.getSelectionModel().clearSelection();
-
-
-        String emailFreelancer = gestaoUtilizadoresController.getEmail();
-        listViewAnuncios.getItems().setAll(registarTarefaController.getAllTarefasElegíveis(emailFreelancer));
     }
 
     public void logout(ActionEvent actionEvent) {
@@ -209,7 +192,7 @@ public class FreelancerLogadoUI implements Initializable {
     
     public void apagarCandidatura(ActionEvent actionEvent){
         
-        boolean apaga = eliminarCandidaturaController.deleteCandidatura(idCandidatura);
+        //boolean apaga = eliminarCandidaturaController.deleteCandidatura(idCandidatura);
     }
     
      public void consultarCandidatura(ActionEvent actionEvent) throws SQLException {

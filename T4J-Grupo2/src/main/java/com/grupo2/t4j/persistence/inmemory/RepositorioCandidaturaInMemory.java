@@ -90,6 +90,11 @@ class RepositorioCandidaturaInMemory implements Serializable, RepositorioCandida
     }
 
     @Override
+    public boolean deleteCandidatura(int idCandidatura) throws SQLException {
+        return false;
+    }
+
+    @Override
     public List<Candidatura> getAllCandidaturasElegiveis(String emailFreelancer) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }

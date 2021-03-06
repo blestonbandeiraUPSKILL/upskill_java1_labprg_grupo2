@@ -218,7 +218,7 @@ public class RepositorioTarefaDatabase implements RepositorioTarefa {
 
         return tarefas;
     }
-    
+
     @Override
     public ArrayList<Tarefa> getAll() throws SQLException {
         ArrayList<Tarefa> tarefas = new ArrayList<>();
@@ -398,6 +398,8 @@ public class RepositorioTarefaDatabase implements RepositorioTarefa {
                 idAnuncio = resultSet.getInt(1);
 
             }
+
+
         }
         catch (SQLException exception) {
             exception.printStackTrace();
@@ -657,6 +659,9 @@ public class RepositorioTarefaDatabase implements RepositorioTarefa {
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(
                     "SELECT * FROM Tarefa " +
+                            "INNER JOIN Anuncio " +
+                            "ON Tarefa.referencia LIKE Anuncio.referenciaTarefa " +
+                            "AND Tarefa.nifOrganizacao LIKE Anuncio.nifOrganizacao "+
                             "INNER JOIN Categoria " +
                             "ON Categoria.codigoCategoria LIKE Tarefa.codigoCategoria " +
                             "INNER JOIN CaracterCT " +

@@ -5,9 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3bba2c4a-b637-44ac-9db7-677bd232f142" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/T4J-Grupo2/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/T4J-Grupo2/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/T4J-Grupo2/src/main/java/com/grupo2/t4j/controller/EliminarCandidaturaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/T4J-Grupo2/src/main/java/com/grupo2/t4j/controller/EliminarCandidaturaController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/T4J-Grupo2/src/main/java/com/grupo2/t4j/controller/RegistarTarefaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/T4J-Grupo2/src/main/java/com/grupo2/t4j/controller/RegistarTarefaController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/T4J-Grupo2/src/main/java/com/grupo2/t4j/controller/SeriarAnuncioController.java" beforeDir="false" afterPath="$PROJECT_DIR$/T4J-Grupo2/src/main/java/com/grupo2/t4j/controller/SeriarAnuncioController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/T4J-Grupo2/src/main/java/com/grupo2/t4j/persistence/RepositorioAnuncio.java" beforeDir="false" afterPath="$PROJECT_DIR$/T4J-Grupo2/src/main/java/com/grupo2/t4j/persistence/RepositorioAnuncio.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/T4J-Grupo2/src/main/java/com/grupo2/t4j/persistence/RepositorioCandidatura.java" beforeDir="false" afterPath="$PROJECT_DIR$/T4J-Grupo2/src/main/java/com/grupo2/t4j/persistence/RepositorioCandidatura.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/T4J-Grupo2/src/main/java/com/grupo2/t4j/persistence/database/RepositorioAnuncioDataBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/T4J-Grupo2/src/main/java/com/grupo2/t4j/persistence/database/RepositorioAnuncioDataBase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/T4J-Grupo2/src/main/java/com/grupo2/t4j/persistence/database/RepositorioCandidaturaDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/T4J-Grupo2/src/main/java/com/grupo2/t4j/persistence/database/RepositorioCandidaturaDatabase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/T4J-Grupo2/src/main/java/com/grupo2/t4j/persistence/database/RepositorioTarefaDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/T4J-Grupo2/src/main/java/com/grupo2/t4j/persistence/database/RepositorioTarefaDatabase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/T4J-Grupo2/src/main/java/com/grupo2/t4j/persistence/inmemory/RepositorioCandidaturaInMemory.java" beforeDir="false" afterPath="$PROJECT_DIR$/T4J-Grupo2/src/main/java/com/grupo2/t4j/persistence/inmemory/RepositorioCandidaturaInMemory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/T4J-Grupo2/src/main/java/com/grupo2/t4j/ui/ColaboradorLogadoUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/T4J-Grupo2/src/main/java/com/grupo2/t4j/ui/ColaboradorLogadoUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/T4J-Grupo2/src/main/java/com/grupo2/t4j/ui/FreelancerLogadoUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/T4J-Grupo2/src/main/java/com/grupo2/t4j/ui/FreelancerLogadoUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/T4J-Grupo2/src/main/resources/com/grupo2/t4j/fxml/PublicarTarefaScene.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/T4J-Grupo2/src/main/resources/com/grupo2/t4j/fxml/PublicarTarefaScene.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,6 +43,7 @@
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
+    <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
   </component>
   <component name="RunManager">
@@ -80,5 +92,16 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/T4J-Grupo2/src/main/java/com/grupo2/t4j/ui/EfectuarCandidaturaUI.java</url>
+          <line>59</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

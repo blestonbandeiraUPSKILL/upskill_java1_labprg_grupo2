@@ -41,7 +41,7 @@ public interface RepositorioAnuncio {
     
     List<String> getAllRefTarefasNaoSeriadas(List<String> referenciasTarefa, String nifOrganizacao) throws SQLException;
     
-    List<String> getAllRefTarefasASeriar(List<String> referenciasTarefa, String nifOrganizacao, Data dataAtual) throws SQLException;
+    List<String> getAllRefTarefasASeriar(List<String> referenciasTarefa, String nifOrganizacao) throws SQLException;
 
     Anuncio getAnuncio(int idAnuncio) throws SQLException;
 }

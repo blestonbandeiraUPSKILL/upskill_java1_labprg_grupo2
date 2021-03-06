@@ -37,5 +37,7 @@ public interface RepositorioCandidatura {
     boolean deleteCandidatura(int idCandidatura) throws SQLException;
 
 
+    public List<Candidatura> getAllCandidaturasElegiveis(String emailFreelancer);
+
     
 }

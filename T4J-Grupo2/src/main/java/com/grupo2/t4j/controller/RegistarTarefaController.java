@@ -79,9 +79,6 @@ public class RegistarTarefaController {
         return repositorioTarefa.findTarefa(idAnuncio);
     }
 
-    public List<GrauProficiencia> getAllGrausTarefa(Tarefa tarefa) throws SQLException {
-        return repositorioGrauProficiencia.getAllGrausTarefa(tarefa);
-    }
 
     public List<Tarefa> getAllTarefasElegíveis(String emailFreelancer) throws SQLException {
        return repositorioTarefa.getAllTarefasElegíveis(emailFreelancer);
