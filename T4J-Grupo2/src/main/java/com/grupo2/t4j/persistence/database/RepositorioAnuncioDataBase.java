@@ -388,31 +388,45 @@ public class RepositorioAnuncioDataBase implements RepositorioAnuncio {
         }
         return refTarefasNaoSeriadas;
       
-    }  
+    }
 
+    /**
+     * Devolve uma lista de referências de tarefas anunciadas, em período de seriação, mas não seriadas
+     * @param referenciasTarefa
+     * @param nifOrganizacao
+
+     * @return
+     * @throws SQLException
+     */
     @Override
     public List<String> getAllRefTarefasASeriar(List<String> referenciasTarefa, String nifOrganizacao) throws SQLException{
-        
-       List<String> refTarefasASeriar = new ArrayList<>();
-        /*
-        Connection connection = DBConnectionHandler.getInstance().openConnection();
+        //a data não pode ir por parâmetro, porque é controlada na DB. Para isto que queres fazer, fazemos um procedure em que ele compara
+        // a data de hoje (do sistema) com as datas to período de seriação. vou deixar este método comentado, para te chamar a atenção.
+
+        List<String> refTarefasASeriar = new ArrayList<>();
+
+        /*Connection connection = DBConnectionHandler.getInstance().openConnection();
 
         try {
             for (String referencia : referenciasTarefa) {
                 int idAnuncio = findAnuncioByIdTarefa(referencia, nifOrganizacao).getIdAnuncio();
-                String dtInSeriacao = new Data(findAnuncioByIdTarefa(referencia, nifOrganizacao).getDtInicioSeriacao());
-                String dtFimSeriacao = new Data(findAnuncioByIdTarefa(referencia, nifOrganizacao).getDtFimSeriacao());
+                Data dtInSeriacao = new Data(findAnuncioByIdTarefa(referencia, nifOrganizacao).getDtInicioSeriacao());
+                Data dtFimSeriacao = new Data(findAnuncioByIdTarefa(referencia, nifOrganizacao).getDtFimSeriacao());
                 CallableStatement callableStatement = connection.prepareCall(
-                        "SELECT * FROM Anuncio LEFT JOIN ProcessoSeriacao ON "
-                                + "ProcessoSeriacao.idAnuncio IS NULL"
+                         "SELECT * FROM Anuncio LEFT JOIN ProcessoSeriacao ON "
+                            + "ProcessoSeriacao.idAnuncio IS NULL"
                 );
 
                 callableStatement.executeUpdate();
 
                 ResultSet resultSet = callableStatement.getResultSet();
 
-                while (resultSet.next()) {
+            while (resultSet.next()) {
+
+                if(dataAtual.compareTo(dtInSeriacao)>=0 && dataAtual.compareTo(dtFimSeriacao)<=0){
                     refTarefasASeriar.add(referencia);
+                }
+                       refTarefasASeriar.add(referencia);
                 }
             }
         }
