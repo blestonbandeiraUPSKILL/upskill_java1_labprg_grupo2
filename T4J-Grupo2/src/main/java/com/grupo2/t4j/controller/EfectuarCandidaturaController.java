@@ -87,7 +87,7 @@ public class EfectuarCandidaturaController {
         return repositorioCandidatura.save(candidatura);
     }
 
-    public Candidatura findByEmail(String emailFreelancer) throws SQLException {
+    public ArrayList<Candidatura> findByEmail(String emailFreelancer) throws SQLException {
         return repositorioCandidatura.findByEmail(emailFreelancer);
     }
 }
