@@ -1,9 +1,6 @@
 package t4j.ws.persistence;
 
-import t4j.ws.domain.Email;
-import t4j.ws.domain.Password;
 import t4j.ws.domain.Utilizador;
-import t4j.ws.exception.UtilizadorDuplicadoException;
 import t4j.ws.utils.DBConnectionHandler;
 
 import java.sql.*;
@@ -83,5 +80,37 @@ public class RepositorioUtilizador {
             DBConnectionHandler.getInstance().closeAll();
         }
         return false;
+    }
+
+    public boolean deleteRoleFromUser(Utilizador utilizador) throws SQLException {
+        Connection connection = DBConnectionHandler.getInstance().openConnection();
+
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(
+                    "DELETE rolename FROM Utilizador WHERE email LIKE ?"
+            );
+
+            preparedStatement.setString(1, utilizador.getEmail().toString());
+            preparedStatement.executeQuery();
+            return true;
+        }
+        catch (SQLException exception) {
+            exception.getSQLState();
+            exception.printStackTrace();
+            try {
+                System.err.print("Transaction is being rolled back");
+                connection.rollback();
+            }
+            catch (SQLException sqlException) {
+                sqlException.getErrorCode();
+            }
+        }
+        finally {
+            DBConnectionHandler.getInstance().closeAll();
+        }
+        return false;
+    }
+
+    public void saveWithRole(Utilizador utilizador) {
     }
 }

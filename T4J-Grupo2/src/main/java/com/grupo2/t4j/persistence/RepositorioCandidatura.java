@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 public interface RepositorioCandidatura {
     
-    boolean save(int idCandidatura, double valorPretendido, int numeroDias, 
+    boolean save(double valorPretendido, int numeroDias,
             String txtApresentacao, String txtMotivacao, int idAnuncio, String 
             emailFreelancer) throws CandidaturaDuplicadaException, SQLException;
 

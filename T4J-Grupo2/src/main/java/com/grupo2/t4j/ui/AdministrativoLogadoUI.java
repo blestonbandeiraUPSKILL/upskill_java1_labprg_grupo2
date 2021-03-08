@@ -1,12 +1,10 @@
 package com.grupo2.t4j.ui;
 
 import com.grupo2.t4j.controller.*;
-import com.grupo2.t4j.files.FicheiroRepositorioAreaActividade;
 import com.grupo2.t4j.domain.AreaActividade;
 import com.grupo2.t4j.domain.Categoria;
 import com.grupo2.t4j.domain.CompetenciaTecnica;
 import com.grupo2.t4j.domain.Freelancer;
-import com.grupo2.t4j.persistence.inmemory.RepositorioAreaActividadeInMemory;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -54,9 +52,7 @@ public class AdministrativoLogadoUI implements Initializable {
     private RegistarFreelancerController registarFreelancerController;
     private RegistarHabilitacaoAcademicaController registarHabilitacaoAcademicaController;
     private RegistarReconhecimentoGPController registarReconhecimentoGPController;
-    
-    private FicheiroRepositorioAreaActividade ficheiroAt;
-    private RepositorioAreaActividadeInMemory repositorioAreaActividadeInMemory;
+
 
     private static final String CABECALHO_IMPORTAR = "Importar Lista.";
     private static final String CABECALHO_EXPORTAR = "Exportar Lista.";

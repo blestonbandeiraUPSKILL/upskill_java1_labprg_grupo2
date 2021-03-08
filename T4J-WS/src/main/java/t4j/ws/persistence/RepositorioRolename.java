@@ -129,4 +129,33 @@ public class RepositorioRolename {
 
         return rn;
     }
+
+    public boolean deleteRolename(String rolename) throws SQLException {
+        Connection connection = DBConnectionHandler.getInstance().openConnection();
+
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(
+                    "DELETE FROM Rolename WHERE designacao LIKE ?"
+            );
+
+            preparedStatement.setString(1, rolename);
+            preparedStatement.executeQuery();
+            return true;
+        }
+        catch (SQLException exception) {
+            exception.getSQLState();
+            exception.printStackTrace();
+            try {
+                System.err.print("Transaction is being rolled back");
+                connection.rollback();
+            }
+            catch (SQLException sqlException) {
+                sqlException.getErrorCode();
+            }
+        }
+        finally {
+            DBConnectionHandler.getInstance().closeAll();
+        }
+        return false;
+    }
 }
