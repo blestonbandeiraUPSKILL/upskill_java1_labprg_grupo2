@@ -337,15 +337,15 @@ public class RepositorioCandidaturaDatabase implements RepositorioCandidatura {
     }
 
     @Override
-    public List<Candidatura> getAllCandidaturasEditaveis(String emailFreelancer) throws SQLException{
-        ArrayList<Candidatura> candidaturasEditaveis = new ArrayList<>();
+    public List<Integer> getAllCandidaturasEditaveis(String emailFreelancer) throws SQLException{
+        ArrayList<Integer> candidaturasEditaveis = new ArrayList<>();
 
         Connection connection = DBConnectionHandler.getInstance().openConnection();
 
         try {
             
             PreparedStatement preparedStatement = connection.prepareStatement(
-                    "SELECT * FROM Candidatura " +
+                    "SELECT idCandidatura FROM Candidatura " +
                               "INNER JOIN Anuncio " +
                               "ON Candidatura.idAnuncio = Anuncio.idAnuncio " +
                               "WHERE sysdate BETWEEN Anuncio.dataInicioCandidatura AND anuncio.datafimcandidatura " +
@@ -358,17 +358,9 @@ public class RepositorioCandidaturaDatabase implements RepositorioCandidatura {
             while (resultSet.next()) {
                
                 int idCandidatura = resultSet.getInt(1);
-                double valorPretendido = resultSet.getDouble(2);
-                int numeroDias = resultSet.getInt(3);
-                String txtApresentacao = resultSet.getString(4);
-                String txtMotivacao = resultSet.getString(5);
-                int idAnuncio = resultSet.getInt(6);
-                String dataCandidatura = resultSet.getDate(8).toString();
-                //String dataEdicaoCandidatura = resultSet.getDate(9).toString();
+               
 
-                candidaturasEditaveis.add(new Candidatura(idCandidatura, valorPretendido,
-                        numeroDias, txtApresentacao, txtMotivacao, idAnuncio, emailFreelancer,
-                        dataCandidatura));
+                candidaturasEditaveis.add(idCandidatura);
                
             }
 

@@ -26,7 +26,7 @@ public class EditarCandidaturaController {
         repositorioCandidatura.updateCandidatura();
     }
 
-    public List<Candidatura> getAllCandidaturasEditaveis(String emailFreelancer) throws SQLException {
+    public List<Integer> getAllCandidaturasEditaveis(String emailFreelancer) throws SQLException {
         return repositorioCandidatura.getAllCandidaturasEditaveis(emailFreelancer);
     }
     
