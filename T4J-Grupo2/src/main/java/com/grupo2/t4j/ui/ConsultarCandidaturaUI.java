@@ -97,7 +97,6 @@ public class ConsultarCandidaturaUI implements Initializable {
     }
 
     public void transferData() throws SQLException {
-
         txtApresentacao.setText(freelancerLogadoUI.listViewCandidaturas.getSelectionModel().getSelectedItem().getApresentacao());
         txtMotivacao.setText(freelancerLogadoUI.listViewCandidaturas.getSelectionModel().getSelectedItem().getMotivacao());
         txtValor.setText(String.valueOf(freelancerLogadoUI.listViewCandidaturas.getSelectionModel().getSelectedItem().getValorPretendido()));
@@ -105,9 +104,8 @@ public class ConsultarCandidaturaUI implements Initializable {
         txtAnuncio.setText(registarTarefaController.findTarefa(getIdAnuncio()).toStringCompleto());
     }
 
-
     public void guardarAction(ActionEvent actionEvent) throws SQLException {
-        
+
         int idCandidatura = freelancerLogadoUI.listViewCandidaturas.getSelectionModel().getSelectedItem().getIdCandidatura();
         
         try {
@@ -144,19 +142,16 @@ public class ConsultarCandidaturaUI implements Initializable {
         btnVoltar.getScene().getWindow().hide();
     }
 
-    
-    public void isCandidaturaEditavel () throws SQLException {
+    public void isCandidaturaEditavel() throws SQLException {
         String emailFreelancer = gestaoUtilizadoresController.getEmail();
         int idCandidatura = freelancerLogadoUI.listViewCandidaturas.getSelectionModel().getSelectedItem().getIdCandidatura();
         List<Integer> listaCandidaturasEditaveis = editarCandidaturaController.getAllCandidaturasEditaveis(emailFreelancer);
-                
-        for (int id : listaCandidaturasEditaveis){
-            if (id == idCandidatura){
+
+        for (int id : listaCandidaturasEditaveis) {
+            if (id == idCandidatura) {
                 btnEditarDados.setDisable(false);
             }
         }
-       
-
     }
 
     public int getIdAnuncio() throws SQLException {
@@ -164,7 +159,4 @@ public class ConsultarCandidaturaUI implements Initializable {
 
         return idAnuncio;
     }
-    
-
-
 }

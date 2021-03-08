@@ -150,7 +150,7 @@ public class RepositorioCandidaturaDatabase implements RepositorioCandidatura {
         Connection connection = DBConnectionHandler.getInstance().openConnection();
 
         try {
-            
+
             PreparedStatement preparedStatement = connection.prepareStatement(
                     "SELECT * FROM Candidatura "
                     + "WHERE emailFreelancer LIKE ?"
@@ -280,11 +280,12 @@ public class RepositorioCandidaturaDatabase implements RepositorioCandidatura {
     @Override
     public boolean updateCandidatura(int idCandidatura, double valorPretendido,
             int numeroDias, String txtApresentacao, String txtMotivacao) throws SQLException {
-        
+
         Connection connection = DBConnectionHandler.getInstance().openConnection();
 
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(
+
                     "UPDATE Candidatura "
                             + "SET valorPretendido = ?, "
                             + "numeroDias = ?, "
@@ -297,11 +298,13 @@ public class RepositorioCandidaturaDatabase implements RepositorioCandidatura {
             preparedStatement.setInt(2, numeroDias);
             preparedStatement.setString(3, txtApresentacao);
             preparedStatement.setString(4, txtMotivacao);
+
             preparedStatement.setInt(5, idCandidatura);
             
             ResultSet resultSet = preparedStatement.executeQuery();
 
             return true;
+
 
         } catch (SQLException exception) {
             exception.printStackTrace();
@@ -316,8 +319,7 @@ public class RepositorioCandidaturaDatabase implements RepositorioCandidatura {
         } finally {
             DBConnectionHandler.getInstance().closeAll();
         }
-        
-        
+
         return false;
     }
 
@@ -351,31 +353,29 @@ public class RepositorioCandidaturaDatabase implements RepositorioCandidatura {
     }
 
     @Override
-    public List<Integer> getAllCandidaturasEditaveis(String emailFreelancer) throws SQLException{
+    public List<Integer> getAllCandidaturasEditaveis(String emailFreelancer) throws SQLException {
         ArrayList<Integer> candidaturasEditaveis = new ArrayList<>();
 
         Connection connection = DBConnectionHandler.getInstance().openConnection();
 
         try {
-            
+
             PreparedStatement preparedStatement = connection.prepareStatement(
-                    "SELECT idCandidatura FROM Candidatura " +
-                              "INNER JOIN Anuncio " +
-                              "ON Candidatura.idAnuncio = Anuncio.idAnuncio " +
-                              "WHERE sysdate BETWEEN Anuncio.dataInicioCandidatura AND anuncio.datafimcandidatura " +
-                              "AND Candidatura.emailFreelancer LIKE ? "
+                    "SELECT idCandidatura FROM Candidatura "
+                    + "INNER JOIN Anuncio "
+                    + "ON Candidatura.idAnuncio = Anuncio.idAnuncio "
+                    + "WHERE sysdate BETWEEN Anuncio.dataInicioCandidatura AND anuncio.datafimcandidatura "
+                    + "AND Candidatura.emailFreelancer LIKE ? "
             );
 
             preparedStatement.setString(1, emailFreelancer);
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
-               
+
                 int idCandidatura = resultSet.getInt(1);
-               
 
                 candidaturasEditaveis.add(idCandidatura);
-               
             }
 
         } catch (SQLException exceptionOrg) {
