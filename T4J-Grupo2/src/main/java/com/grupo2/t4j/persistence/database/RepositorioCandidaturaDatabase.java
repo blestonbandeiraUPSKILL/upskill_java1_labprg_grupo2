@@ -152,13 +152,14 @@ public class RepositorioCandidaturaDatabase implements RepositorioCandidatura {
     }
 
     @Override
-    public Candidatura findByEmail(String emailFreelancer) throws SQLException {
-        Candidatura candidatura = new Candidatura();
+    public ArrayList<Candidatura> findByEmail(String emailFreelancer) throws SQLException {
+        //Candidatura candidatura = new Candidatura();
+        ArrayList<Candidatura> candidaturasFreelancer = new ArrayList<>();
 
         Connection connection = DBConnectionHandler.getInstance().openConnection();
 
         try {
-            CallableStatement callableStatementOrg = connection.prepareCall(
+            /*CallableStatement callableStatementOrg = connection.prepareCall(
                     "SELECT idCandidatura, valorPretendido, numeroDias, txtApresentacao, "
                     + "txtMotivacao, idAnuncio, TO_CHAR(dataCandidatura, 'yyyy-mm-dd') "
                     + "FROM Candidatura "
@@ -170,17 +171,38 @@ public class RepositorioCandidaturaDatabase implements RepositorioCandidatura {
             callableStatementOrg.setString(1, emailFreelancer);
             callableStatementOrg.executeQuery();
 
-            ResultSet resultSet = callableStatementOrg.getResultSet();
+            ResultSet resultSet = callableStatementOrg.getResultSet();*/
+            PreparedStatement preparedStatement = connection.prepareStatement(
+                    "SELECT * FROM Candidatura "
+                            + "WHERE emailFreelancer LIKE ?"
+            );
+
+            preparedStatement.setString(1, emailFreelancer);
+            ResultSet resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
-                candidatura.setIdCandidatura(resultSet.getInt(1));
+               /* candidatura.setIdCandidatura(resultSet.getInt(1));
                 candidatura.setValor(resultSet.getDouble(2));
                 candidatura.setDias(resultSet.getInt(3));
                 candidatura.setApresentacao(resultSet.getString(4));
                 candidatura.setMotivacao(resultSet.getString(5));
                 candidatura.setIdAnuncio(resultSet.getInt(6));
                 candidatura.setEmailFreelancer(emailFreelancer);
-                candidatura.setData(resultSet.getString(7));
+                candidatura.setData(resultSet.getString(7));*/
+                int idCandidatura = resultSet.getInt(1);
+                double valorPretendido = resultSet.getDouble(2);
+                int numeroDias = resultSet.getInt(3);
+                String txtApresentacao = resultSet.getString(4);
+                String txtMotivacao = resultSet.getString(5);
+                int idAnuncio = resultSet.getInt(6);
+                //emailFreelancer = resultSet.getString(7);
+                String dataCandidatura = resultSet.getDate(8).toString();
+                String dataEdicaoCandidatura = resultSet.getDate(9).toString();
+
+                candidaturasFreelancer.add(new Candidatura(idCandidatura, valorPretendido,
+                        numeroDias, txtApresentacao, txtMotivacao, idAnuncio, emailFreelancer,
+                        dataCandidatura, dataEdicaoCandidatura));
+               
             }
 
         } catch (SQLException exceptionOrg) {
@@ -190,7 +212,7 @@ public class RepositorioCandidaturaDatabase implements RepositorioCandidatura {
             DBConnectionHandler.getInstance().closeAll();
         }
 
-        return candidatura;
+        return candidaturasFreelancer;
     }
 
     @Override
