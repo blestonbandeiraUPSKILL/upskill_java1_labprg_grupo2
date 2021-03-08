@@ -309,32 +309,7 @@ public class RepositorioCandidaturaDatabase implements RepositorioCandidatura {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public boolean deleteCandidatura(int idCandidatura) throws SQLException {
-
-        Connection connection = DBConnectionHandler.getInstance().openConnection();
-
-        try {
-            PreparedStatement preparedStatement = connection.prepareStatement(
-                    "DELETE FROM Candidatura WHERE idCandidatura = ?"
-            );
-            preparedStatement.executeQuery();
-            return true;
-
-        } catch (SQLException exception) {
-            exception.printStackTrace();
-            exception.getSQLState();
-            try {
-                System.err.print("Transaction is being rolled back");
-                connection.rollback();
-            } catch (SQLException sqlException) {
-                sqlException.getErrorCode();
-            }
-
-        } finally {
-            DBConnectionHandler.getInstance().closeAll();
-        }
-        return false;
-    }
+    
 
     @Override
     public List<Candidatura> getAllCandidaturasEditaveis(String emailFreelancer) {
