@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 public interface RepositorioCandidatura {
     
-    boolean save(int idCandidatura, double valorPretendido, int numeroDias, 
+    boolean save(double valorPretendido, int numeroDias,
             String txtApresentacao, String txtMotivacao, int idAnuncio, String 
             emailFreelancer) throws CandidaturaDuplicadaException, SQLException;
 
@@ -26,7 +26,7 @@ public interface RepositorioCandidatura {
 
     Candidatura findById(int idCandidatura) throws SQLException;
     
-    Candidatura findByEmail (String emailFreelancer) throws SQLException;
+    ArrayList<Candidatura> findByEmail (String emailFreelancer) throws SQLException;
 
     ArrayList<Candidatura> getAll()throws SQLException;  
     
@@ -34,7 +34,7 @@ public interface RepositorioCandidatura {
 
     public void updateCandidatura();
     
-    boolean deleteCandidatura(int idCandidatura);
+    boolean deleteCandidatura(int idCandidatura) throws SQLException;
 
 
     public List<Candidatura> getAllCandidaturasElegiveis(String emailFreelancer);

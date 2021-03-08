@@ -65,14 +65,15 @@ public class EfectuarCandidaturaUI implements Initializable {
     public void addCandidatura(ActionEvent actionEvent) throws SQLException {
 
         String emailFreelancer = freelancerLogadoUI.getEmail();
-        
+        int idAnuncio = getIdAnuncio();
+
         try {
             boolean adicionou = efectuarCandidaturaController.registarCandidatura(
                     Double.parseDouble(txtValor.getText()),
                     Integer.parseInt(txtDias.getText()),
                     txtApresentacao.getText(),
-                    txtMotivacao.getText(), 
-                    getIdAnuncio(),
+                    txtMotivacao.getText(),
+                    idAnuncio,
                     emailFreelancer);
 
             if(adicionou) {
@@ -107,7 +108,7 @@ public class EfectuarCandidaturaUI implements Initializable {
                 Alert alerta = AlertsUI.criarAlerta(Alert.AlertType.CONFIRMATION,
                         MainApp.TITULO_APLICACAO,
                         "Confirmação da acção",
-                        "Tem a certeza que quer voltar à página anterior, cancelando o actual registo?");
+                        "Tem a certeza que quer voltar à página anterior, cancelando a candidatura?");
 
                 if (alerta.showAndWait().get() == ButtonType.CANCEL) {
                     windowEvent.consume();

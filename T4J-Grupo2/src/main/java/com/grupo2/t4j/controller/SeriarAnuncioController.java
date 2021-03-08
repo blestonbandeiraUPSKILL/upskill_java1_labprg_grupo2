@@ -25,6 +25,7 @@ public class SeriarAnuncioController {
     private RepositorioColaborador repositorioColaborador = fabricaRepositorios.getRepositorioColaborador();
     private RepositorioClassificacao repositorioClassificacao = fabricaRepositorios.getRepositorioClassificacao();
     private RepositorioSeriacao repositorioSeriacao = fabricaRepositorios.getRepositorioSeriacao();
+    private RepositorioColaboradorSeriacao repositorioColaboradorSeriacao = fabricaRepositorios.getRepositorioColaboradorSeriacao();
     
     public SeriarAnuncioController() throws SQLException{
         
@@ -39,7 +40,7 @@ public class SeriarAnuncioController {
         return repositorioTarefa.findTarefasPublicadas(referenciasTarefa, nifOrganizacao, emailColaborador);
     }
     
-    public List<String> getReferenciasTarefas(List<Tarefa> listaTarefas)  throws SQLException{
+    public List<String> getReferenciasTarefas(List<Tarefa> listaTarefas) throws SQLException{
         return repositorioTarefa.getReferenciasTarefas(listaTarefas);
     }
     
@@ -47,8 +48,8 @@ public class SeriarAnuncioController {
         return repositorioAnuncio.getAllRefTarefasTipoRegimento(referenciasTarefa, emailColaborador, idTipoRegimento);
     }
     
-    public List<String> getAllRefTarefasASeriar(List<String> referenciasTarefa, String nifOrganizacao, Data dataAtual) throws SQLException{
-        return repositorioAnuncio.getAllRefTarefasASeriar(referenciasTarefa, nifOrganizacao, dataAtual);
+    public List<String> getAllRefTarefasASeriar(List<String> referenciasTarefa, String nifOrganizacao) throws SQLException{
+        return repositorioAnuncio.getAllRefTarefasASeriar(referenciasTarefa, nifOrganizacao);
     }
     
     public int getIdAnuncioByIdTarefa(String referenciaTarefa, String nifOrganizacao) throws SQLException{
@@ -81,6 +82,14 @@ public class SeriarAnuncioController {
     
     public Classificacao findClassificacaoById(int idClassificacao) throws SQLException{
         return repositorioClassificacao.findById(idClassificacao);
+    }
+    
+    public ArrayList<String> getAllEmailsByOrganizacao(String nifOrganizacao) throws SQLException{
+        return repositorioColaborador.getAllEmailsByOrganizacao(nifOrganizacao);
+    }
+    
+    public boolean update(String emailColaborador, int idSeriacao) throws SQLException{
+        return repositorioColaboradorSeriacao.update(emailColaborador, idSeriacao);
     }
     
     

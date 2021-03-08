@@ -193,4 +193,13 @@ ALTER TABLE ColaboradorSeriacao
     ADD CONSTRAINT fk_ColaboradorSeriacao_emailColaborador
         FOREIGN KEY (emailColaborador)
         REFERENCES Colaborador(email);
-        
+
+ALTER TABLE UserSession
+    ADD CONSTRAINT fk_UserSession_idAppContext
+    FOREIGN KEY (idAppContext)
+    REFERENCES AppContext(idAppContext);
+
+ALTER TABLE UserSession     
+    ADD CONSTRAINT fk_UserSession_emailUtilizador
+    FOREIGN KEY (emailUtilizador)
+    REFERENCES Utilizador(email);

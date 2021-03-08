@@ -19,7 +19,38 @@ public class RepositorioSessao {
         return repositorioSessao;
     }
 
-    public void saveContext(Contexto contextoDTO) {
+    public void saveContext(Contexto contextoDTO) throws SQLException {
+        Connection connection = DBConnectionHandler.getInstance().openConnection();
+
+        try {
+            CallableStatement callableStatement = connection.prepareCall(
+                    "{CALL createContext(?)}"
+            );
+
+            connection.setAutoCommit(false);
+
+            callableStatement.setString(1, contextoDTO.toString());
+
+            callableStatement.executeQuery();
+
+            connection.commit();
+
+        }
+
+        catch (SQLException exception) {
+            exception.getSQLState();
+            exception.printStackTrace();
+            try {
+                System.err.print("Transaction is being rolled back");
+                connection.rollback();
+            }
+            catch (SQLException sqlException) {
+                sqlException.getErrorCode();
+            }
+        }
+        finally {
+            DBConnectionHandler.getInstance().closeAll();
+        }
 
     }
 

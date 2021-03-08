@@ -1,9 +1,6 @@
 package com.grupo2.t4j.ui;
 
-import com.grupo2.t4j.controller.EfectuarCandidaturaController;
-import com.grupo2.t4j.controller.GestaoUtilizadoresController;
-import com.grupo2.t4j.controller.RegistarAnuncioController;
-import com.grupo2.t4j.controller.RegistarTarefaController;
+import com.grupo2.t4j.controller.*;
 import com.grupo2.t4j.domain.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -36,20 +33,13 @@ public class FreelancerLogadoUI implements Initializable {
     private Scene sceneStartingPage;
 
     private GestaoUtilizadoresController gestaoUtilizadoresController;
-    private RegistarAnuncioController registarAnuncioController;
     private EfectuarCandidaturaController efectuarCandidaturaController;
     private RegistarTarefaController registarTarefaController;
-    private ConsultarCandidaturaUI consultarCandidaturaUI;     
+    private ConsultarCandidaturaUI consultarCandidaturaUI;
+    private EliminarCandidaturaController eliminarCandidaturaController;
     private Scene sceneConsultarCandidatura;
-    
-    @FXML ListView<Tarefa> listViewAnuncios;
+
     @FXML ListView<Candidatura> listViewCandidaturas;
-    @FXML ComboBox<Anuncio> cmbAnuncio;
-    @FXML TextField txtValor;
-    @FXML TextField txtDias;
-    @FXML TextField txtApresentacao;
-    @FXML TextField txtMotivacao;
-    @FXML Button btnAddCandidatura;
     @FXML Button btnSair;
     
     @FXML TableColumn<Object, Object> colunaReferencia;
@@ -81,13 +71,13 @@ public class FreelancerLogadoUI implements Initializable {
         } catch (SQLException exception) {
             exception.printStackTrace();
         }
+        eliminarCandidaturaController = new EliminarCandidaturaController();
 
         adicionarStage = new Stage();
         adicionarStage.initModality(Modality.APPLICATION_MODAL);;
         adicionarStage.setResizable(false);
         
         try {
-            //updateListViewAnuncio();
             updateTableViewAnuncio();
         } catch (SQLException exception) {
             exception.printStackTrace();
@@ -122,14 +112,6 @@ public class FreelancerLogadoUI implements Initializable {
         colunaDuracao.setCellValueFactory( new PropertyValueFactory<>("duracaoEst"));
         colunaCusto.setCellValueFactory( new PropertyValueFactory<>("custoEst"));
         
-    }
-        
-    public void updateListViewAnuncio() throws SQLException {
-        cmbAnuncio.getSelectionModel().clearSelection();
-
-
-        String emailFreelancer = gestaoUtilizadoresController.getEmail();
-        listViewAnuncios.getItems().setAll(registarTarefaController.getAllTarefasElegíveis(emailFreelancer));
     }
 
     public void logout(ActionEvent actionEvent) {
@@ -210,7 +192,7 @@ public class FreelancerLogadoUI implements Initializable {
     
     public void apagarCandidatura(ActionEvent actionEvent){
         
-        boolean apaga = eliminarCandidaturaController.deleteCandidatura(idCandidatura);
+        //boolean apaga = eliminarCandidaturaController.deleteCandidatura(idCandidatura);
     }
     
      public void consultarCandidatura(ActionEvent actionEvent) throws SQLException {

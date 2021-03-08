@@ -23,7 +23,8 @@ CREATE TABLE Rolename (
         CONSTRAINT pk_Rolename_idRolename PRIMARY KEY,
     designacao varchar(75) 
         CONSTRAINT nn_Rolename_designacao NOT NULL
-        CONSTRAINT uk_Rolename_designacao UNIQUE
+        CONSTRAINT uk_Rolename_designacao UNIQUE,
+    descricao varchar(100)
 );
 
 CREATE TABLE Colaborador(
@@ -221,4 +222,21 @@ CREATE TABLE ColaboradorSeriacao(
     idProcessoSeriacao integer
 );
 
+CREATE TABLE UserSession(
+    idSession integer GENERATED AS IDENTITY
+        CONSTRAINT pk_UserSession_idUserSession PRIMARY KEY,
+    idAppContext integer,
+    timestamp timestamp,
+    emailUtilizador varchar(50)
+);
+
+CREATE TABLE AppContext(
+    idAppContext integer GENERATED AS IDENTITY
+        CONSTRAINT pk_AppContext_idAppContext PRIMARY KEY,
+    value varchar(50)
+        CONSTRAINT nn_AppContext_value NOT NULL
+        CONSTRAINT uk_AppContext_value UNIQUE,
+    estado varchar(15) DEFAULT 'valido'
+        CONSTRAINT nn_AppContext_estado NOT NULL
+);
 

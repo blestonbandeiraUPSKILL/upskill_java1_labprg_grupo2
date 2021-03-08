@@ -18,6 +18,7 @@ import javafx.stage.WindowEvent;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.Calendar;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -32,6 +33,7 @@ public class ColaboradorLogadoUI implements Initializable {
     private RegistarColaboradorController registarColaboradorController;
     private RegistarAreaActividadeController registarAreaActividadeController;
     private RegistarTarefaController registarTarefaController;
+    private SeriarAnuncioController seriarAnuncioController;
     private GestaoUtilizadoresController gestaoUtilizadoresController;
     private StartingPageUI startingPageUI;
     private Scene sceneStartingPage;
@@ -39,14 +41,7 @@ public class ColaboradorLogadoUI implements Initializable {
     private Scene sceneAddTarefa;
     private Scene scenePublicarTarefa;
 
-    private static final String CABECALHO_IMPORTAR = "Importar Lista.";
-
     @FXML Button btnLogout;
-    @FXML Button btnImportAreaActividade;
-    @FXML ComboBox<AreaActividade> cmbAreaActividade;
-    @FXML ComboBox<AreaActividade> cmbAreaActividadeEspecificarTarefa;
-    @FXML ComboBox<Categoria> cmbCategoriaTarefa;
-    @FXML ListView<Tarefa> listViewTarefas;
     @FXML ListView<Freelancer> listViewFreelancersCandidaturas;
     @FXML ListView<Freelancer> listViewSeriacao;
     @FXML ComboBox<FiltroTarefas> cmbFiltroTarefas;
@@ -72,12 +67,13 @@ public class ColaboradorLogadoUI implements Initializable {
     * Initializes the controller (UI) class.
     */
     @Override
-    public void initialize(URL location, ResourceBundle resources) {
+    public void initialize(URL location, ResourceBundle resources){
 
         registarAreaActividadeController = new RegistarAreaActividadeController();
         registarCategoriaController = new RegistarCategoriaController();
         try {
             registarTarefaController = new RegistarTarefaController();
+            // cmbAnuncio.getItems().setAll(updateAnunciosASeriar());
         } catch (SQLException exception) {
             exception.printStackTrace();
         }
@@ -87,7 +83,7 @@ public class ColaboradorLogadoUI implements Initializable {
         adicionarStage = new Stage();
         adicionarStage.initModality(Modality.APPLICATION_MODAL);
         adicionarStage.setResizable(false);
-        
+             
         cmbFiltroTarefas.getItems().setAll(FiltroTarefas.values());
 
         cmbFiltroTarefas.setOnAction(new EventHandler<ActionEvent>() {
@@ -261,9 +257,23 @@ public class ColaboradorLogadoUI implements Initializable {
         colunaDuracao.setCellValueFactory( new PropertyValueFactory<>("duracaoEst"));
         colunaCusto.setCellValueFactory( new PropertyValueFactory<>("custoEst"));
     }
-
+    
+    public List<String> updateAnunciosASeriar() throws SQLException{
+        String nifOrganizacao = getNifOrganizacao();
+        List<String> tarefasOrg = seriarAnuncioController.getReferenciasTarefas(nifOrganizacao);
+        String emailColaborador = gestaoUtilizadoresController.getEmail();
+        List<Tarefa> anunciosColaborador = seriarAnuncioController.findTarefasPublicadas(
+                tarefasOrg, nifOrganizacao, emailColaborador);
+        List<String> anunciosColaboradorRefTarefas = seriarAnuncioController.getReferenciasTarefas(anunciosColaborador);
+        List<String> refTarefasASeriar = seriarAnuncioController.getAllRefTarefasASeriar(
+                        anunciosColaboradorRefTarefas, nifOrganizacao);
+        
+        return refTarefasASeriar;        
+    }
 
     public void consultarAnuncioAction(ActionEvent event){
+        String refTarefa = cmbAnuncio.getSelectionModel().getSelectedItem();
+        
         
     }
     

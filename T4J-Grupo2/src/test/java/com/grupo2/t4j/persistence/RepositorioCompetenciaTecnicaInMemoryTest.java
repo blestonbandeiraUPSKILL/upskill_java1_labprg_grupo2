@@ -5,7 +5,6 @@
  */
 package com.grupo2.t4j.persistence;
 
-import com.grupo2.t4j.persistence.inmemory.RepositorioCompetenciaTecnicaInMemory;
 import org.junit.Test;
 import com.grupo2.t4j.exception.CompetenciaTecnicaDuplicadaException;
 import com.grupo2.t4j.exception.DescricaoInvalidaException;
@@ -29,7 +28,7 @@ public class RepositorioCompetenciaTecnicaInMemoryTest {
 
     
 
-    @Test(expected = CompetenciaTecnicaDuplicadaException.class)
+   /* @Test(expected = CompetenciaTecnicaDuplicadaException.class)
     public void testAddCompetenciaTecnicaDuplicada() {
         //Arrange
         RepositorioCompetenciaTecnicaInMemory rc1= RepositorioCompetenciaTecnicaInMemory.getInstance();
@@ -41,16 +40,16 @@ public class RepositorioCompetenciaTecnicaInMemoryTest {
         rc1.addCompetenciaTecnica(ct2);
 
 
-    }
+    }*/
 
-    @Test(expected = DescricaoInvalidaException.class)
+    /*@Test(expected = DescricaoInvalidaException.class)
     public void testAddCompetenciaDescricaoInvalida() {
         //Arrange
         RepositorioCompetenciaTecnicaInMemory rc1= RepositorioCompetenciaTecnicaInMemory.getInstance();;
         CompetenciaTecnica ct1= new CompetenciaTecnica("1235", "", "Jogo para duas pessoas");
         //Act
         rc1.addCompetenciaTecnica(ct1);    
-    }
+    }*/
 
 /*    @Test
     public void testAddCompetenciaTecnica() {

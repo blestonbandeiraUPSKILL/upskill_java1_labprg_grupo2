@@ -86,8 +86,8 @@
                                     <Font name="Calibri" size="14.0" />
                                  </font>
                               </Label>
-                              <ComboBox fx:id="cmbAnuncio" prefHeight="27.0" prefWidth="265.0" promptText="Escolha Anúncio a Seriar" AnchorPane.bottomAnchor="328.0" AnchorPane.leftAnchor="80.0" AnchorPane.topAnchor="23.0" />
-                              <Button fx:id="btnConsultarAnuncio" layoutX="319.0" layoutY="31.0" mnemonicParsing="false" onAction="#consultarAnuncioAction" prefHeight="27.0" prefWidth="201.0" text="Consultar Anúncio Selecionado" AnchorPane.bottomAnchor="328.0" AnchorPane.leftAnchor="400.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="23.0" />
+                              <ComboBox fx:id="cmbAnuncio" prefHeight="27.0" prefWidth="265.0" promptText="Escolha referência do Anúncio a Seriar" AnchorPane.bottomAnchor="328.0" AnchorPane.leftAnchor="80.0" AnchorPane.topAnchor="23.0" />
+                              <Button fx:id="btnConsultarAnuncio" layoutX="319.0" layoutY="31.0" mnemonicParsing="false" onAction="#consultarAnuncioAction" prefHeight="26.0" prefWidth="255.0" text="Consultar Tarefa do Anúncio Selecionado" AnchorPane.bottomAnchor="328.0" AnchorPane.leftAnchor="400.0" AnchorPane.rightAnchor="45.0" AnchorPane.topAnchor="23.0" />
                               <Button fx:id="btnConsultarFreelancer" layoutX="10.0" layoutY="295.0" mnemonicParsing="false" onAction="#navigateConsultarFreelancer" prefHeight="27.0" prefWidth="125.0" text="Consultar Freelancer" AnchorPane.topAnchor="295.0">
                                  <tooltip>
                                     <Tooltip text="Consultar Frelancer" />
@@ -105,7 +105,6 @@
                                     <Tooltip text="Seriar Anúncio" />
                                  </tooltip>
                               </Button>
-                              <Label layoutX="10.0" layoutY="346.0" text="Data de Conclusão da Seriação" />
                            </children>
                         </AnchorPane>
                      </content>

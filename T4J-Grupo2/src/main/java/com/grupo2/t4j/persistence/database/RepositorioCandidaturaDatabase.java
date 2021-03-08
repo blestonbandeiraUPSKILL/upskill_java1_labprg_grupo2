@@ -44,32 +44,29 @@ public class RepositorioCandidaturaDatabase implements RepositorioCandidatura {
     }
 
     @Override
-    public boolean save(int idCandidatura, double valorPretendido, int numeroDias,
+    public boolean save(double valorPretendido, int numeroDias,
             String txtApresentacao, String txtMotivacao, int idAnuncio, String emailFreelancer) throws CandidaturaDuplicadaException, SQLException {
 
         Connection connection = DBConnectionHandler.getInstance().openConnection();
 
         try {
             CallableStatement callableStatement = connection.prepareCall(
-                    "{CALL createCandidatura(?, ?, ?, ?, ?, ?, ?) } ");
-
-            if (findById(idCandidatura) == null && findByEmail(emailFreelancer) == null) {
+                    "{CALL createCandidatura(?, ?, ?, ?, ?, ?) } ");
 
                 connection.setAutoCommit(false);
 
-                callableStatement.setInt(1, idCandidatura);
-                callableStatement.setDouble(2, valorPretendido);
-                callableStatement.setInt(3, numeroDias);
-                callableStatement.setString(4, txtApresentacao);
-                callableStatement.setString(5, txtMotivacao);
-                callableStatement.setInt(6, idAnuncio);
-                callableStatement.setString(7, emailFreelancer);
+                callableStatement.setDouble(1, valorPretendido);
+                callableStatement.setInt(2, numeroDias);
+                callableStatement.setString(3, txtApresentacao);
+                callableStatement.setString(4, txtMotivacao);
+                callableStatement.setInt(5, idAnuncio);
+                callableStatement.setString(6, emailFreelancer);
 
                 callableStatement.executeQuery();
 
                 connection.commit();
                 return true;
-            }
+
         } catch (SQLException exception) {
             exception.printStackTrace();
             exception.getSQLState();
@@ -151,13 +148,14 @@ public class RepositorioCandidaturaDatabase implements RepositorioCandidatura {
     }
 
     @Override
-    public Candidatura findByEmail(String emailFreelancer) throws SQLException {
-        Candidatura candidatura = new Candidatura();
+    public ArrayList<Candidatura> findByEmail(String emailFreelancer) throws SQLException {
+        //Candidatura candidatura = new Candidatura();
+        ArrayList<Candidatura> candidaturasFreelancer = new ArrayList<>();
 
         Connection connection = DBConnectionHandler.getInstance().openConnection();
 
         try {
-            CallableStatement callableStatementOrg = connection.prepareCall(
+            /*CallableStatement callableStatementOrg = connection.prepareCall(
                     "SELECT idCandidatura, valorPretendido, numeroDias, txtApresentacao, "
                     + "txtMotivacao, idAnuncio, TO_CHAR(dataCandidatura, 'yyyy-mm-dd') "
                     + "FROM Candidatura "
@@ -169,17 +167,38 @@ public class RepositorioCandidaturaDatabase implements RepositorioCandidatura {
             callableStatementOrg.setString(1, emailFreelancer);
             callableStatementOrg.executeQuery();
 
-            ResultSet resultSet = callableStatementOrg.getResultSet();
+            ResultSet resultSet = callableStatementOrg.getResultSet();*/
+            PreparedStatement preparedStatement = connection.prepareStatement(
+                    "SELECT * FROM Candidatura "
+                            + "WHERE emailFreelancer LIKE ?"
+            );
+
+            preparedStatement.setString(1, emailFreelancer);
+            ResultSet resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
-                candidatura.setIdCandidatura(resultSet.getInt(1));
+               /* candidatura.setIdCandidatura(resultSet.getInt(1));
                 candidatura.setValor(resultSet.getDouble(2));
                 candidatura.setDias(resultSet.getInt(3));
                 candidatura.setApresentacao(resultSet.getString(4));
                 candidatura.setMotivacao(resultSet.getString(5));
                 candidatura.setIdAnuncio(resultSet.getInt(6));
                 candidatura.setEmailFreelancer(emailFreelancer);
-                candidatura.setData(resultSet.getString(7));
+                candidatura.setData(resultSet.getString(7));*/
+                int idCandidatura = resultSet.getInt(1);
+                double valorPretendido = resultSet.getDouble(2);
+                int numeroDias = resultSet.getInt(3);
+                String txtApresentacao = resultSet.getString(4);
+                String txtMotivacao = resultSet.getString(5);
+                int idAnuncio = resultSet.getInt(6);
+                //emailFreelancer = resultSet.getString(7);
+                String dataCandidatura = resultSet.getDate(8).toString();
+                String dataEdicaoCandidatura = resultSet.getDate(9).toString();
+
+                candidaturasFreelancer.add(new Candidatura(idCandidatura, valorPretendido,
+                        numeroDias, txtApresentacao, txtMotivacao, idAnuncio, emailFreelancer,
+                        dataCandidatura, dataEdicaoCandidatura));
+               
             }
 
         } catch (SQLException exceptionOrg) {
@@ -189,7 +208,7 @@ public class RepositorioCandidaturaDatabase implements RepositorioCandidatura {
             DBConnectionHandler.getInstance().closeAll();
         }
 
-        return candidatura;
+        return candidaturasFreelancer;
     }
 
     @Override
@@ -314,5 +333,10 @@ public class RepositorioCandidaturaDatabase implements RepositorioCandidatura {
             DBConnectionHandler.getInstance().closeAll();
         }
         return false;
+    }
 
+    @Override
+    public List<Candidatura> getAllCandidaturasElegiveis(String emailFreelancer) {
+        return null;
+    }
 }
