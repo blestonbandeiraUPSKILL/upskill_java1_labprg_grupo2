@@ -138,5 +138,7 @@ public class ConsultarCandidaturaUI implements Initializable {
 
         return idAnuncio;
     }
+    
+
 
 }
