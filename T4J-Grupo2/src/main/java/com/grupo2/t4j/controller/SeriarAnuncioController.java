@@ -23,11 +23,13 @@ public class SeriarAnuncioController {
     private RepositorioAnuncio repositorioAnuncio = fabricaRepositorios.getRepositorioAnuncio();
     private RepositorioCandidatura repositorioCandidatura = fabricaRepositorios.getRepositorioCandidatura();
     private RepositorioColaborador repositorioColaborador = fabricaRepositorios.getRepositorioColaborador();
+    private RepositorioColaboradorSeriacao repositorioColaboradorSeriacao = fabricaRepositorios.getRepositorioColaboradorSeriacao();
     private RepositorioClassificacao repositorioClassificacao = fabricaRepositorios.getRepositorioClassificacao();
     private RepositorioSeriacao repositorioSeriacao = fabricaRepositorios.getRepositorioSeriacao();
-    private RepositorioColaboradorSeriacao repositorioColaboradorSeriacao = fabricaRepositorios.getRepositorioColaboradorSeriacao();
+    private RepositorioTipoRegimento repositorioTipoRegimento = fabricaRepositorios.getRepositorioTipoRegimento();
     
-    public SeriarAnuncioController() throws SQLException{
+    
+    public SeriarAnuncioController(){
         
     }
     
@@ -56,7 +58,19 @@ public class SeriarAnuncioController {
         return repositorioAnuncio.findAnuncioByIdTarefa(referenciaTarefa, nifOrganizacao).getIdAnuncio();
     }
     
-    public ArrayList<Candidatura> getAllByIdAnuncio(int idAnuncio) throws SQLException{
+    public Anuncio getAnuncio(int idAnuncio) throws SQLException {
+        return repositorioAnuncio.getAnuncio(idAnuncio);
+    }
+    
+    public List<TipoRegimento> getAllRegimento()throws SQLException {
+        return repositorioAnuncio.getAllRegimento();
+    }
+    
+    public TipoRegimento findRegimentoById(int idTipoRegimento) throws SQLException{
+        return repositorioTipoRegimento.findById(idTipoRegimento);
+    }
+    
+    public List<Candidatura> getAllByIdAnuncio(int idAnuncio) throws SQLException{
         return repositorioCandidatura.getAllByIdAnuncio(idAnuncio);
     }
     

@@ -18,6 +18,7 @@ import javafx.stage.WindowEvent;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -40,24 +41,33 @@ public class ColaboradorLogadoUI implements Initializable {
     private Stage adicionarStage;
     private Scene sceneAddTarefa;
     private Scene scenePublicarTarefa;
+    private Scene sceneConsultarAnuncio;
+    private Scene sceneConsultarCandidatura;
 
     @FXML Button btnLogout;
-    @FXML ListView<Freelancer> listViewFreelancersCandidaturas;
-    @FXML ListView<Freelancer> listViewSeriacao;
+    
     @FXML ComboBox<FiltroTarefas> cmbFiltroTarefas;
     @FXML ComboBox<String> cmbAnuncio;
     @FXML Button btnPublicarTarefa;
     @FXML Button btnConsultarAnuncio;
-    @FXML Button btnConsultarFreelancer;
-    @FXML Button btnConsultarCandidatura;
+    @FXML Button btnConsultarCandidaturaFreelancer;    
     @FXML Button btnSeriacao;
     @FXML TextField txtDataSeriacao;
+    
+    @FXML TableView<Tarefa> tabelaTarefas;
     @FXML TableColumn<Object, Object> colunaReferencia;
     @FXML TableColumn<Object, Object> colunaDesignacao;
     @FXML TableColumn<Object, Object> colunaDuracao;
     @FXML TableColumn<Object, Object> colunaCusto;
 
-    @FXML TableView<Tarefa> tabelaTarefas;
+    @FXML TableView<Candidatura> tabelaFreelancers;
+    @FXML TableColumn<Object, Object> colunaNome;
+    @FXML TableColumn<Object, Object> colunaEmail;
+    @FXML TableColumn<Object, Object> colunaDuracaoFree;
+    @FXML TableColumn<Object, Object> colunaCustoFree;
+    
+    @FXML TableView<Classificacao> tabelaClassificacao;
+    @FXML TableColumn<Object, Object> colunaClassificacao;
 
     public void associarParentUI(StartingPageUI startingPageUI) {
         this.startingPageUI = startingPageUI;
@@ -103,6 +113,13 @@ public class ColaboradorLogadoUI implements Initializable {
         } catch (SQLException exception) {
             exception.printStackTrace();
         }
+        
+        try{
+            tabelaFreelancers.getItems().setAll(seriarAnuncioController.getAllByIdAnuncio(getIdAnuncio()));
+            preencherTabelaFreelancer ();
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }
     }
 
     public void updateTableViewTarefas() throws SQLException {
@@ -136,6 +153,13 @@ public class ColaboradorLogadoUI implements Initializable {
         List<String> referenciasTarefa = registarTarefaController.findRefenciaTarefa(nifOrganizacao);
         tabelaTarefas.getItems().setAll(registarTarefaController.findTarefasNaoPublicadas(referenciasTarefa, email, nifOrganizacao));
         preencherTabela();
+    }
+    
+    public int getIdAnuncio()throws SQLException{
+        
+        String referenciaTarefa = cmbAnuncio.getSelectionModel().getSelectedItem();
+        String nifOrganizacao = getNifOrganizacao();
+        return registarTarefaController.findIdAnuncio(nifOrganizacao, referenciaTarefa);
     }
 
     public void logout(ActionEvent actionEvent) {
@@ -234,8 +258,8 @@ public class ColaboradorLogadoUI implements Initializable {
             FXMLLoader loaderPublicarTarefa = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/PublicarTarefaScene.fxml"));
             Parent rootPublicarTarefa = loaderPublicarTarefa.load();
             scenePublicarTarefa = new Scene(rootPublicarTarefa);
-            PublicarTarefaUI PublicarTarefaUI = loaderPublicarTarefa.getController();
-            PublicarTarefaUI.associarParentUI(this);
+            PublicarTarefaUI publicarTarefaUI = loaderPublicarTarefa.getController();
+            publicarTarefaUI.associarParentUI(this);
 
             adicionarStage.setScene(scenePublicarTarefa);
             adicionarStage.setTitle("Publicar Tarefa");
@@ -258,6 +282,17 @@ public class ColaboradorLogadoUI implements Initializable {
         colunaCusto.setCellValueFactory( new PropertyValueFactory<>("custoEst"));
     }
     
+    public void preencherTabelaFreelancer () {
+        colunaNome.setCellValueFactory( new PropertyValueFactory<>("nome"));
+        colunaEmail.setCellValueFactory( new PropertyValueFactory<>("email"));
+        colunaDuracaoFree.setCellValueFactory( new PropertyValueFactory<>("duracaoFree"));
+        colunaCustoFree.setCellValueFactory( new PropertyValueFactory<>("custoFree"));
+    }
+    
+    public void preencherTabelaClassificacao () {
+        colunaClassificacao.setCellValueFactory( new PropertyValueFactory<>("classificacao"));        
+    }
+    
     public List<String> updateAnunciosASeriar() throws SQLException{
         String nifOrganizacao = getNifOrganizacao();
         List<String> tarefasOrg = seriarAnuncioController.getReferenciasTarefas(nifOrganizacao);
@@ -272,18 +307,49 @@ public class ColaboradorLogadoUI implements Initializable {
     }
 
     public void consultarAnuncioAction(ActionEvent event){
-        String refTarefa = cmbAnuncio.getSelectionModel().getSelectedItem();
-        
-        
+                
+        try {
+            FXMLLoader loaderConsultarAnuncio = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/ConsultarAnuncioScene.fxml"));
+            Parent rootConsultarAnuncio = loaderConsultarAnuncio.load();
+            sceneConsultarAnuncio = new Scene(rootConsultarAnuncio);
+            ConsultarAnuncioUI consultarAnuncioUI = loaderConsultarAnuncio.getController();
+            consultarAnuncioUI.associarParentUI(this);
+
+            adicionarStage.setScene(sceneConsultarAnuncio);
+            adicionarStage.setTitle("Consultar Anúncio");
+            adicionarStage.show();
+
+        } catch (IOException exception) {
+            exception.printStackTrace();
+            AlertsUI.criarAlerta(Alert.AlertType.ERROR,
+                    MainApp.TITULO_APLICACAO,
+                    "Erro",
+                    exception.getMessage());
+        }       
     }
     
-    public void navigateConsultarFreelancer(ActionEvent event){
-        
+    public void consultarCandidaturaFreelancer(ActionEvent event){
+        try {
+            FXMLLoader loaderConsultarCandidaturaFreelancer = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/ConsultarCandidaturaFreelancerScene.fxml"));
+            Parent rootConsultarCandidaturaFreelancer = loaderConsultarCandidaturaFreelancer.load();
+            sceneConsultarCandidatura = new Scene(rootConsultarCandidaturaFreelancer);
+            ConsultarCandidaturaFreelancerUI consultarCandidaturaFreelancerUI = loaderConsultarCandidaturaFreelancer.getController();
+            consultarCandidaturaFreelancerUI.associarParentUI(this);
+
+            adicionarStage.setScene(sceneConsultarCandidatura);
+            adicionarStage.setTitle("Consultar Candidatura do Freelancer");
+            adicionarStage.show();
+
+        } catch (IOException exception) {
+            exception.printStackTrace();
+            AlertsUI.criarAlerta(Alert.AlertType.ERROR,
+                    MainApp.TITULO_APLICACAO,
+                    "Erro",
+                    exception.getMessage());
+        } 
     }
     
-    public void navigateConsultarCandidatura(ActionEvent event){
-        
-    }
+   
     
     public void navigateSeriacao(ActionEvent event){
         

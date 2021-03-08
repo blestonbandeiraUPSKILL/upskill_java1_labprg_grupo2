@@ -22,6 +22,7 @@ public interface FabricaRepositorios {
     RepositorioSeriacao getRepositorioSeriacao();
     RepositorioTarefa getRepositorioTarefa();
     RepositorioGrauProficiencia getRepositorioGrauProficiencia() throws SQLException;
+    RepositorioTipoRegimento getRepositorioTipoRegimento();
     RepositorioUtilizador getRepositorioUtilizador();
     RepositorioReconhecimentoGP getRepositorioReconhecimentoGP();
 }
