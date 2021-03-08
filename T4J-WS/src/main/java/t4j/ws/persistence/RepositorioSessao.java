@@ -1,7 +1,7 @@
 package t4j.ws.persistence;
 
 import t4j.ws.domain.Sessao;
-import t4j.ws.dto.Contexto;
+import t4j.ws.domain.Contexto;
 import t4j.ws.utils.DBConnectionHandler;
 
 import java.sql.*;

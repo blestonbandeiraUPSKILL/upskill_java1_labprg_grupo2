@@ -1,6 +1,5 @@
 CREATE OR REPLACE PROCEDURE createContext(
-    p_value appcontext.value%type, 
-    p_emailUtilizador userSession.emailUtilizador%type
+    p_value appcontext.value%type
     )
 
 IS 
@@ -16,9 +15,9 @@ BEGIN
     INTO v_idAppContext;
     
     INSERT INTO UserSession
-    (idAppContext, timestamp, emailUtilizador)
+    (idAppContext, timestamp)
     VALUES
-    (v_idAppContext, trunc(LOCALTIMESTAMP), p_emailUtilizador);
+    (v_idAppContext, trunc(LOCALTIMESTAMP));
     
 
 END;

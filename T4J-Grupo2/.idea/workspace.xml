@@ -5,7 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8ca9f66f-f143-4134-afe5-eb7245bd0a9c" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../BaseDados/Fixed/CreateContext.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../BaseDados/Fixed/CreateContext.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../T4J-WS/src/main/java/t4j/ws/controller/GestaoUtilizadoresController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../T4J-WS/src/main/java/t4j/ws/controller/GestaoUtilizadoresController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../T4J-WS/src/main/java/t4j/ws/domain/Sessao.java" beforeDir="false" afterPath="$PROJECT_DIR$/../T4J-WS/src/main/java/t4j/ws/domain/Sessao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../T4J-WS/src/main/java/t4j/ws/dto/Contexto.java" beforeDir="false" afterPath="$PROJECT_DIR$/../T4J-WS/src/main/java/t4j/ws/domain/Contexto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../T4J-WS/src/main/java/t4j/ws/dto/Mapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/../T4J-WS/src/main/java/t4j/ws/dto/Mapper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../T4J-WS/src/main/java/t4j/ws/persistence/RepositorioSessao.java" beforeDir="false" afterPath="$PROJECT_DIR$/../T4J-WS/src/main/java/t4j/ws/persistence/RepositorioSessao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../T4J-WS/src/main/java/t4j/ws/service/GestaoUtilizadoresService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../T4J-WS/src/main/java/t4j/ws/service/GestaoUtilizadoresService.java" afterDir="false" />
     </list>

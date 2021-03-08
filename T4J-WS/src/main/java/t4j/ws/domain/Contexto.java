@@ -1,4 +1,4 @@
-package t4j.ws.dto;
+package t4j.ws.domain;
 
 import t4j.ws.exception.KeyInvalidaException;
 
@@ -65,5 +65,10 @@ public class Contexto {
                 .limit(targetStringLength)
                 .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
                 .toString();
+    }
+
+    @Override
+    public String toString() {
+        return contexto;
     }
 }

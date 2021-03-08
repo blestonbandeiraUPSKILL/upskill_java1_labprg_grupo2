@@ -51,13 +51,9 @@ public class GestaoUtilizadoresController {
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> getContext(@RequestParam("app_key") String appKey) {
         try {
-
             ContextoDTO contextoDTO = GestaoUtilizadoresService.generateContext(appKey);
-            if (contextoDTO != null) {
-                return new ResponseEntity<>(contextoDTO, HttpStatus.OK);
-            } else {
-                return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
-            }
+            return new ResponseEntity<>(contextoDTO, HttpStatus.OK);
+
         } catch (Exception e) {
             return new ResponseEntity<>(new ErroDTO(e), HttpStatus.INTERNAL_SERVER_ERROR);
         }

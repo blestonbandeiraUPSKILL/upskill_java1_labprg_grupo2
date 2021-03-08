@@ -1,5 +1,6 @@
 package t4j.ws.service;
 
+import t4j.ws.domain.Contexto;
 import t4j.ws.domain.Sessao;
 import t4j.ws.domain.Utilizador;
 import t4j.ws.dto.*;
