@@ -42,6 +42,7 @@ public class ColaboradorLogadoUI implements Initializable {
     private Scene sceneAddTarefa;
     private Scene scenePublicarTarefa;
     private Scene sceneConsultarAnuncio;
+    private Scene sceneConsultarCandidatura;
 
     @FXML Button btnLogout;
     
@@ -306,8 +307,7 @@ public class ColaboradorLogadoUI implements Initializable {
     }
 
     public void consultarAnuncioAction(ActionEvent event){
-        //String refTarefa = cmbAnuncio.getSelectionModel().getSelectedItem();
-        
+                
         try {
             FXMLLoader loaderConsultarAnuncio = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/ConsultarAnuncioScene.fxml"));
             Parent rootConsultarAnuncio = loaderConsultarAnuncio.load();
@@ -329,7 +329,24 @@ public class ColaboradorLogadoUI implements Initializable {
     }
     
     public void consultarCandidaturaFreelancer(ActionEvent event){
-        
+        try {
+            FXMLLoader loaderConsultarCandidaturaFreelancer = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/ConsultarCandidaturaFreelancerScene.fxml"));
+            Parent rootConsultarCandidaturaFreelancer = loaderConsultarCandidaturaFreelancer.load();
+            sceneConsultarCandidatura = new Scene(rootConsultarCandidaturaFreelancer);
+            ConsultarCandidaturaFreelancerUI consultarCandidaturaFreelancerUI = loaderConsultarCandidaturaFreelancer.getController();
+            consultarCandidaturaFreelancerUI.associarParentUI(this);
+
+            adicionarStage.setScene(sceneConsultarCandidatura);
+            adicionarStage.setTitle("Consultar Candidatura do Freelancer");
+            adicionarStage.show();
+
+        } catch (IOException exception) {
+            exception.printStackTrace();
+            AlertsUI.criarAlerta(Alert.AlertType.ERROR,
+                    MainApp.TITULO_APLICACAO,
+                    "Erro",
+                    exception.getMessage());
+        } 
     }
     
    
