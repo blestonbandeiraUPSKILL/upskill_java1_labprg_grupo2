@@ -193,11 +193,11 @@ public class RepositorioCandidaturaDatabase implements RepositorioCandidatura {
                 int idAnuncio = resultSet.getInt(6);
                 //emailFreelancer = resultSet.getString(7);
                 String dataCandidatura = resultSet.getDate(8).toString();
-                String dataEdicaoCandidatura = resultSet.getDate(9).toString();
+                //String dataEdicaoCandidatura = resultSet.getDate(9).toString();
 
                 candidaturasFreelancer.add(new Candidatura(idCandidatura, valorPretendido,
                         numeroDias, txtApresentacao, txtMotivacao, idAnuncio, emailFreelancer,
-                        dataCandidatura, dataEdicaoCandidatura));
+                        dataCandidatura));
                
             }
 
