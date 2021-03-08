@@ -70,7 +70,7 @@ class RepositorioCandidaturaInMemory implements Serializable, RepositorioCandida
     }
     
     @Override
-    public Candidatura findByEmail (String emailFreelancer) throws SQLException{
+    public ArrayList<Candidatura> findByEmail (String emailFreelancer) throws SQLException{
         return null;
     }
     
