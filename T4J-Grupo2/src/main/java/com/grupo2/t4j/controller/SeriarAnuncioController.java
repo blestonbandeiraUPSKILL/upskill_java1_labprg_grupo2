@@ -70,7 +70,7 @@ public class SeriarAnuncioController {
         return repositorioTipoRegimento.findById(idTipoRegimento);
     }
     
-    public ArrayList<Candidatura> getAllByIdAnuncio(int idAnuncio) throws SQLException{
+    public List<Candidatura> getAllByIdAnuncio(int idAnuncio) throws SQLException{
         return repositorioCandidatura.getAllByIdAnuncio(idAnuncio);
     }
     

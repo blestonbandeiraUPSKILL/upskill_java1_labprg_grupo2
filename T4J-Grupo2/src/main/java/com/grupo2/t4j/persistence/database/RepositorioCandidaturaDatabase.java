@@ -259,9 +259,9 @@ public class RepositorioCandidaturaDatabase implements RepositorioCandidatura {
     }
 
     @Override
-    public ArrayList<Candidatura> getAllByIdAnuncio(int idAnuncio) throws SQLException {
+    public List<Candidatura> getAllByIdAnuncio(int idAnuncio) throws SQLException {
 
-        ArrayList<Candidatura> candidaturasAnuncio = new ArrayList<>();
+        List<Candidatura> candidaturasAnuncio = new ArrayList<>();
 
         Connection connection = DBConnectionHandler.getInstance().openConnection();
 

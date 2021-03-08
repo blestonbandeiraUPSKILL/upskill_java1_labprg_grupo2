@@ -75,7 +75,6 @@
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="AnchorPane">
                            <children>
                               <VBox alignment="CENTER" layoutX="560.0" layoutY="201.0" AnchorPane.bottomAnchor="100.0" AnchorPane.rightAnchor="32.0" />
-                              <ListView fx:id="listViewFreelancersCandidaturas" layoutX="14.0" layoutY="140.0" prefHeight="188.0" prefWidth="668.0" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="350.0" AnchorPane.topAnchor="95.0" />
                               <Label layoutX="25.0" layoutY="107.0" prefHeight="18.0" prefWidth="337.0" text="Freelancers com Candidatura ao Anúncio Selecionado" AnchorPane.bottomAnchor="285.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="353.0" AnchorPane.topAnchor="65.0">
                                  <font>
                                     <Font name="Calibri" size="15.0" />
@@ -88,18 +87,29 @@
                               </Label>
                               <ComboBox fx:id="cmbAnuncio" prefHeight="27.0" prefWidth="265.0" promptText="Escolha referência do Anúncio a Seriar" AnchorPane.bottomAnchor="328.0" AnchorPane.leftAnchor="80.0" AnchorPane.topAnchor="23.0" />
                               <Button fx:id="btnConsultarAnuncio" layoutX="319.0" layoutY="31.0" mnemonicParsing="false" onAction="#consultarAnuncioAction" prefHeight="26.0" prefWidth="255.0" text="Consultar Tarefa do Anúncio Selecionado" AnchorPane.bottomAnchor="328.0" AnchorPane.leftAnchor="400.0" AnchorPane.rightAnchor="45.0" AnchorPane.topAnchor="23.0" />
-                              <Button fx:id="btnConsultarCandidaturaFreelancer" layoutX="10.0" layoutY="295.0" mnemonicParsing="false" onAction="#consultarCandidaturaFreelancer" prefHeight="27.0" prefWidth="213.0" text="Consultar Candidatura do Freelancer" AnchorPane.topAnchor="295.0">
+                              <Button fx:id="btnConsultarCandidaturaFreelancer" layoutX="20.0" layoutY="321.0" mnemonicParsing="false" onAction="#consultarCandidaturaFreelancer" prefHeight="27.0" prefWidth="213.0" text="Consultar Candidatura do Freelancer" AnchorPane.topAnchor="321.0">
                                  <tooltip>
                                     <Tooltip text="Consultar Frelancer" />
                                  </tooltip>
                               </Button>
-                              <Label layoutX="425.0" layoutY="71.0" text="Resultado da Seriação do Anúncio Selecionado" AnchorPane.leftAnchor="400.0" />
-                              <ListView fx:id="listViewSeriacao" layoutX="428.0" layoutY="89.0" prefHeight="189.0" prefWidth="260.0" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="400.0" AnchorPane.topAnchor="95.0" />
-                              <Button fx:id="btnSeriacao" layoutX="400.0" layoutY="296.0" mnemonicParsing="false" onAction="#navigateSeriacao" text="Seriar Anúncio">
+                              <Button fx:id="btnSeriacao" layoutX="400.0" layoutY="322.0" mnemonicParsing="false" onAction="#navigateSeriacao" text="Seriar Anúncio">
                                  <tooltip>
                                     <Tooltip text="Seriar Anúncio" />
                                  </tooltip>
                               </Button>
+                              <TableView fx:id="tabelaFreelancers" layoutX="108.0" layoutY="107.0" prefHeight="197.0" prefWidth="572.0" AnchorPane.leftAnchor="108.0" AnchorPane.rightAnchor="20.0">
+                                 <columns>
+                                    <TableColumn fx:id="colunaNome" prefWidth="204.0" text="Nome" />
+                                    <TableColumn fx:id="colunaEmail" prefWidth="184.0" text="Email" />
+                                    <TableColumn fx:id="colunaDuracaoFree" prefWidth="94.0" text="Duração (dias)" />
+                                    <TableColumn fx:id="colunaCustoFree" prefWidth="107.0" text="Custo (€)" />
+                                 </columns>
+                              </TableView>
+                              <TableView fx:id="tabelaClassificacao" layoutX="34.0" layoutY="107.0" prefHeight="200.0" prefWidth="88.0" AnchorPane.leftAnchor="20.0">
+                                <columns>
+                                  <TableColumn fx:id="colunaClassificacao" prefWidth="89.0" text="Classificação" />
+                                </columns>
+                              </TableView>
                            </children>
                         </AnchorPane>
                      </content>

@@ -30,7 +30,7 @@ public interface RepositorioCandidatura {
 
     ArrayList<Candidatura> getAll()throws SQLException;  
     
-    ArrayList<Candidatura> getAllByIdAnuncio(int idAnuncio) throws SQLException;  
+    List<Candidatura> getAllByIdAnuncio(int idAnuncio) throws SQLException;  
 
     public void updateCandidatura();
     

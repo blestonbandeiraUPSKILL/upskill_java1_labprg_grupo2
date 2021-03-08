@@ -63,8 +63,6 @@ public class ConsultarAnuncioUI implements Initializable{
     private RegistarTarefaController registarTarefaController;
     private Stage adicionarStage;
     
-    
-    
     public void associarParentUI(ColaboradorLogadoUI colaboradorLogadoUI) {
         this.colaboradorLogadoUI = colaboradorLogadoUI;
     }
