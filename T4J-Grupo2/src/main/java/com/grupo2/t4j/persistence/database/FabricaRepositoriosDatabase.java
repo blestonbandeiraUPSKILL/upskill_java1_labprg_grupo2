@@ -75,7 +75,12 @@ public class FabricaRepositoriosDatabase implements FabricaRepositorios {
     public RepositorioGrauProficiencia getRepositorioGrauProficiencia() throws SQLException {
         return RepositorioGrauProficienciaDatabase.getInstance();
     }
-
+    
+    @Override
+    public RepositorioTipoRegimento getRepositorioTipoRegimento() {
+        return RepositorioTipoRegimentoDatabase.getInstance();
+    }
+    
     @Override
     public RepositorioUtilizador getRepositorioUtilizador() {
         return RepositorioUtilizadorDatabase.getInstance();

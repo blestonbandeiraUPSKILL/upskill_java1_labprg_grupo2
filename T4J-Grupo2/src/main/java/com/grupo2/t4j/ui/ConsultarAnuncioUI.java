@@ -90,31 +90,27 @@ public class ConsultarAnuncioUI implements Initializable{
         adicionarStage.setResizable(false);
     } 
     
-     public void transferData() throws SQLException {
+    public void transferData() throws SQLException {
         String referenciaTarefa = colaboradorLogadoUI.cmbAnuncio.getSelectionModel().getSelectedItem();
         String nifOrganizacao = colaboradorLogadoUI.getNifOrganizacao();
-        //Tarefa tarefa = colaboradorLogadoUI.
+        int idAnuncio = registarTarefaController.findIdAnuncio(nifOrganizacao, referenciaTarefa);
+        int idRegimento = seriarAnuncioController.getAnuncio(idAnuncio).getIdTipoRegimento();
         
-        txtIdAnuncio.setText(Integer.toString(registarTarefaController.findIdAnuncio(nifOrganizacao, referenciaTarefa)));
-        /*txtDtInPublicitacao.setText();
-        txtDtFimPublicitacao.setText();
-        txtDtInCandidatura.setText();
-        txtDtFimCandidatura.setText();
-        txtDtInSeriacao.setText();
-        txtDtFimSeriacao.setText();
-        txtTipoRegDesignacao.setText();
-        txtRegras.setText();*/
+        txtIdAnuncio.setText(Integer.toString(idAnuncio));
+        txtDtInPublicitacao.setText(seriarAnuncioController.getAnuncio(idAnuncio).getDtInicioPub());
+        txtDtFimPublicitacao.setText(seriarAnuncioController.getAnuncio(idAnuncio).getDtFimPub());
+        txtDtInCandidatura.setText(seriarAnuncioController.getAnuncio(idAnuncio).getDtInicioCand());
+        txtDtFimCandidatura.setText(seriarAnuncioController.getAnuncio(idAnuncio).getDtFimCand());
+        txtDtInSeriacao.setText(seriarAnuncioController.getAnuncio(idAnuncio).getDtInicioSeriacao());
+        txtDtFimSeriacao.setText(seriarAnuncioController.getAnuncio(idAnuncio).getDtFimSeriacao());
+        txtTipoRegDesignacao.setText(seriarAnuncioController.findRegimentoById(idRegimento).getDesignacao());
+        txtRegras.setText(seriarAnuncioController.findRegimentoById(idRegimento).getDescricaoRegras());
         txtReferencia.setText(referenciaTarefa);
         txtDesignacao.setText(registarTarefaController.findTarefa(registarTarefaController.findIdAnuncio(nifOrganizacao, referenciaTarefa)).getDesignacao());
         txtDuracao.setText(Integer.toString(registarTarefaController.findTarefa(registarTarefaController.findIdAnuncio(nifOrganizacao, referenciaTarefa)).getDuracaoEst()));
         txtCusto.setText(Double.toString(registarTarefaController.findTarefa(registarTarefaController.findIdAnuncio(nifOrganizacao, referenciaTarefa)).getCustoEst()));
         txtDescInformal.setText(registarTarefaController.findTarefa(registarTarefaController.findIdAnuncio(nifOrganizacao, referenciaTarefa)).getDescInformal());
-        txDescTecnica.setText(registarTarefaController.findTarefa(registarTarefaController.findIdAnuncio(nifOrganizacao, referenciaTarefa)).getDescTecnica());
-
-        
-
-        
-        
+        txDescTecnica.setText(registarTarefaController.findTarefa(registarTarefaController.findIdAnuncio(nifOrganizacao, referenciaTarefa)).getDescTecnica());     
     }
     
     
