@@ -103,10 +103,14 @@ public class ConsultarCandidaturaUI implements Initializable {
         txtAnuncio.setText(registarTarefaController.findTarefa(getIdAnuncio()).toStringCompleto());
     }
 
-    public void guardarAction(ActionEvent actionEvent) {
-        /*editarCandidaturaController.updateCandidatura(idCandidatura, txtApresentacao.getText(),
-                txtMotivacao.getText(), Double.parseDouble(txtValor.getText()), 
-                Integer.parseInt(txtDias.getText()));*/
+
+    public void guardarAction(ActionEvent actionEvent) throws SQLException {
+        
+        int idCandidatura = freelancerLogadoUI.listViewCandidaturas.getSelectionModel().getSelectedItem().getIdCandidatura();
+        
+        editarCandidaturaController.updateCandidatura(idCandidatura, Double.parseDouble(txtValor.getText()),
+                Integer.parseInt(txtDias.getText()), txtApresentacao.getText(),
+                txtMotivacao.getText());
 
     }
 
@@ -114,14 +118,19 @@ public class ConsultarCandidaturaUI implements Initializable {
         btnVoltar.getScene().getWindow().hide();
     }
 
-    public boolean isCandidaturaEditavel() throws SQLException {
+    
+    public void isCandidaturaEditavel () throws SQLException {
         String emailFreelancer = gestaoUtilizadoresController.getEmail();
-        Candidatura candidatura = freelancerLogadoUI.listViewCandidaturas.getSelectionModel().getSelectedItem();
-        List<Candidatura> listaCandidaturasEditaveis = editarCandidaturaController.getAllCandidaturasEditaveis(emailFreelancer);
-        if (listaCandidaturasEditaveis.contains(candidatura)) {
-            btnEditarDados.setDisable(false);
+        int idCandidatura = freelancerLogadoUI.listViewCandidaturas.getSelectionModel().getSelectedItem().getIdCandidatura();
+        List<Integer> listaCandidaturasEditaveis = editarCandidaturaController.getAllCandidaturasEditaveis(emailFreelancer);
+                
+        for (int id : listaCandidaturasEditaveis){
+            if (id == idCandidatura){
+                btnEditarDados.setDisable(false);
+            }
         }
-        return false;
+       
+
     }
 
     public int getIdAnuncio() throws SQLException {
