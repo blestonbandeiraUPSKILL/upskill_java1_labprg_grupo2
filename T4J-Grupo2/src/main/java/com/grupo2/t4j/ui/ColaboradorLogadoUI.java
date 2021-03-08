@@ -49,8 +49,7 @@ public class ColaboradorLogadoUI implements Initializable {
     @FXML ComboBox<String> cmbAnuncio;
     @FXML Button btnPublicarTarefa;
     @FXML Button btnConsultarAnuncio;
-    @FXML Button btnConsultarFreelancer;
-    @FXML Button btnConsultarCandidatura;
+    @FXML Button btnConsultarCandidaturaFreelancer;    
     @FXML Button btnSeriacao;
     @FXML TextField txtDataSeriacao;
     @FXML TableColumn<Object, Object> colunaReferencia;
@@ -295,13 +294,11 @@ public class ColaboradorLogadoUI implements Initializable {
         }       
     }
     
-    public void navigateConsultarFreelancer(ActionEvent event){
+    public void consultarCandidaturaFreelancer(ActionEvent event){
         
     }
     
-    public void navigateConsultarCandidatura(ActionEvent event){
-        
-    }
+   
     
     public void navigateSeriacao(ActionEvent event){
         
