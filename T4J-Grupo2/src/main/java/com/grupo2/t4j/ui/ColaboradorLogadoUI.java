@@ -40,6 +40,7 @@ public class ColaboradorLogadoUI implements Initializable {
     private Stage adicionarStage;
     private Scene sceneAddTarefa;
     private Scene scenePublicarTarefa;
+    private Scene sceneConsultarAnuncio;
 
     @FXML Button btnLogout;
     @FXML ListView<Freelancer> listViewFreelancersCandidaturas;
@@ -234,8 +235,8 @@ public class ColaboradorLogadoUI implements Initializable {
             FXMLLoader loaderPublicarTarefa = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/PublicarTarefaScene.fxml"));
             Parent rootPublicarTarefa = loaderPublicarTarefa.load();
             scenePublicarTarefa = new Scene(rootPublicarTarefa);
-            PublicarTarefaUI PublicarTarefaUI = loaderPublicarTarefa.getController();
-            PublicarTarefaUI.associarParentUI(this);
+            PublicarTarefaUI publicarTarefaUI = loaderPublicarTarefa.getController();
+            publicarTarefaUI.associarParentUI(this);
 
             adicionarStage.setScene(scenePublicarTarefa);
             adicionarStage.setTitle("Publicar Tarefa");
@@ -272,9 +273,26 @@ public class ColaboradorLogadoUI implements Initializable {
     }
 
     public void consultarAnuncioAction(ActionEvent event){
-        String refTarefa = cmbAnuncio.getSelectionModel().getSelectedItem();
+        //String refTarefa = cmbAnuncio.getSelectionModel().getSelectedItem();
         
-        
+        try {
+            FXMLLoader loaderConsultarAnuncio = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/ConsultarAnuncioScene.fxml"));
+            Parent rootConsultarAnuncio = loaderConsultarAnuncio.load();
+            sceneConsultarAnuncio = new Scene(rootConsultarAnuncio);
+            ConsultarAnuncioUI consultarAnuncioUI = loaderConsultarAnuncio.getController();
+            consultarAnuncioUI.associarParentUI(this);
+
+            adicionarStage.setScene(sceneConsultarAnuncio);
+            adicionarStage.setTitle("Consultar Anúncio");
+            adicionarStage.show();
+
+        } catch (IOException exception) {
+            exception.printStackTrace();
+            AlertsUI.criarAlerta(Alert.AlertType.ERROR,
+                    MainApp.TITULO_APLICACAO,
+                    "Erro",
+                    exception.getMessage());
+        }       
     }
     
     public void navigateConsultarFreelancer(ActionEvent event){

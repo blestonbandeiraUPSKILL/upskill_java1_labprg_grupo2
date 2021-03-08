@@ -27,7 +27,7 @@ public class SeriarAnuncioController {
     private RepositorioSeriacao repositorioSeriacao = fabricaRepositorios.getRepositorioSeriacao();
     private RepositorioColaboradorSeriacao repositorioColaboradorSeriacao = fabricaRepositorios.getRepositorioColaboradorSeriacao();
     
-    public SeriarAnuncioController() throws SQLException{
+    public SeriarAnuncioController(){
         
     }
     
