@@ -290,10 +290,10 @@ public class RepositorioCandidaturaDatabase implements RepositorioCandidatura {
 
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(
-                    "UPDATE Candidatura"
+                    "UPDATE Candidatura "
                             + "SET valorPretendido = ?, "
                             + "numeroDias = ?, "
-                            + "txtApresenctacao = ?,"
+                            + "txtApresentacao = ?, "
                             + "txtMotivacao = ? "
                     + "WHERE idCandidatura = ? "
             );
@@ -302,11 +302,11 @@ public class RepositorioCandidaturaDatabase implements RepositorioCandidatura {
             preparedStatement.setInt(2, numeroDias);
             preparedStatement.setString(3, txtApresentacao);
             preparedStatement.setString(4, txtMotivacao);
-            preparedStatement.setInt(1, idCandidatura);
+            preparedStatement.setInt(5, idCandidatura);
             
             ResultSet resultSet = preparedStatement.executeQuery();
 
-            
+            return true;
 
         } catch (SQLException exception) {
             exception.printStackTrace();
