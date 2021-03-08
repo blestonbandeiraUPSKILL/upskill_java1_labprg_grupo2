@@ -1,14 +1,12 @@
 package com.grupo2.t4j.controller;
 
 import com.grupo2.t4j.api.UsersAPI;
-import com.grupo2.t4j.files.FicheiroRepositorioFreelancer;
 import com.grupo2.t4j.domain.ReconhecimentoGP;
 import com.grupo2.t4j.domain.*;
 import com.grupo2.t4j.persistence.FabricaRepositorios;
 import com.grupo2.t4j.persistence.RepositorioFreelancer;
 import com.grupo2.t4j.persistence.RepositorioUtilizador;
 import com.grupo2.t4j.persistence.database.FabricaRepositoriosDatabase;
-import com.grupo2.t4j.persistence.inmemory.RepositorioFreelancerInMemory;
 
 import java.io.File;
 import java.sql.SQLException;
@@ -19,9 +17,6 @@ public class RegistarFreelancerController {
     private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosDatabase();
     private RepositorioFreelancer repositorioFreelancer = fabricaRepositorios.getRepositorioFreelancer();
     private RepositorioUtilizador repositorioUtilizador = fabricaRepositorios.getRepositorioUtilizador();
-
-    private RepositorioFreelancerInMemory repositorioFreelancerInMemory;
-    private FicheiroRepositorioFreelancer ficheiroF;
 
    /**
      * Publicar tarefa boolean
@@ -65,39 +60,6 @@ public class RegistarFreelancerController {
         return repositorioFreelancer.findByEmail(emailFree);
     }
 
-    ///////API
-    public boolean registarFreelancerComoUtilizador(Freelancer freelancer) throws SQLException {
-        String nome = freelancer.getNome();
-        Email email = freelancer.getEmail();
-        Password password = freelancer.getPassword();
-
-        return UsersAPI.getInstance().registerUserWithRoles(email, nome, password, "freelancer");
-    }
-    
-     //////FICHEIROS////////
-    public RegistarFreelancerController() {
-        ficheiroF = new FicheiroRepositorioFreelancer();
-        
-        desserializar();
-    }
-    public boolean serializar() {
-        return ficheiroF.serializar(repositorioFreelancerInMemory);
-    }
-
-    public boolean serializar(File ficheiroExportar) {
-        return ficheiroF.serializar(ficheiroExportar, repositorioFreelancerInMemory);
-    }
-
-    public void desserializar() {
-        repositorioFreelancerInMemory = ficheiroF.desserializar();
-    }
-
-    public int desserializar(File ficheiroImportar) {
-        RepositorioFreelancerInMemory listaFreelancerImportada = ficheiroF.desserializar(ficheiroImportar);
-
-        return repositorioFreelancerInMemory.adicionarListaFreelancer(listaFreelancerImportada);
-    }
-
     public Password findPassword(String email) throws SQLException {
         return  repositorioFreelancer.findPassword(email);
     }
@@ -113,4 +75,15 @@ public class RegistarFreelancerController {
     public EnderecoPostal getEnderecoPostal(String emailFreelancer) throws SQLException {
         return repositorioFreelancer.getEnderecoPostal(emailFreelancer);
     }
+
+    ///////API
+    public boolean registarFreelancerComoUtilizador(Freelancer freelancer) throws SQLException {
+        String nome = freelancer.getNome();
+        Email email = freelancer.getEmail();
+        Password password = freelancer.getPassword();
+
+        return UsersAPI.getInstance().registerUserWithRoles(email, nome, password, "freelancer");
+    }
+
+
 }

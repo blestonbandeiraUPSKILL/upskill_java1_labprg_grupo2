@@ -45,32 +45,29 @@ public class RepositorioCandidaturaDatabase implements RepositorioCandidatura {
     }
 
     @Override
-    public boolean save(int idCandidatura, double valorPretendido, int numeroDias,
+    public boolean save(double valorPretendido, int numeroDias,
             String txtApresentacao, String txtMotivacao, int idAnuncio, String emailFreelancer) throws CandidaturaDuplicadaException, SQLException {
 
         Connection connection = DBConnectionHandler.getInstance().openConnection();
 
         try {
             CallableStatement callableStatement = connection.prepareCall(
-                    "{CALL createCandidatura(?, ?, ?, ?, ?, ?, ?) } ");
-
-            if (findById(idCandidatura) == null && findByEmail(emailFreelancer) == null) {
+                    "{CALL createCandidatura(?, ?, ?, ?, ?, ?) } ");
 
                 connection.setAutoCommit(false);
 
-                callableStatement.setInt(1, idCandidatura);
-                callableStatement.setDouble(2, valorPretendido);
-                callableStatement.setInt(3, numeroDias);
-                callableStatement.setString(4, txtApresentacao);
-                callableStatement.setString(5, txtMotivacao);
-                callableStatement.setInt(6, idAnuncio);
-                callableStatement.setString(7, emailFreelancer);
+                callableStatement.setDouble(1, valorPretendido);
+                callableStatement.setInt(2, numeroDias);
+                callableStatement.setString(3, txtApresentacao);
+                callableStatement.setString(4, txtMotivacao);
+                callableStatement.setInt(5, idAnuncio);
+                callableStatement.setString(6, emailFreelancer);
 
                 callableStatement.executeQuery();
 
                 connection.commit();
                 return true;
-            }
+
         } catch (SQLException exception) {
             exception.printStackTrace();
             exception.getSQLState();

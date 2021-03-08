@@ -1,12 +1,11 @@
 package com.grupo2.t4j.controller;
 
-import com.grupo2.t4j.files.FicheiroRepositorioCategoria;
+
 import com.grupo2.t4j.domain.Categoria;
 import com.grupo2.t4j.persistence.FabricaRepositorios;
 import com.grupo2.t4j.persistence.RepositorioAreaActividade;
 import com.grupo2.t4j.persistence.RepositorioCategoriaTarefa;
 import com.grupo2.t4j.persistence.database.FabricaRepositoriosDatabase;
-import com.grupo2.t4j.persistence.inmemory.RepositorioCategoriaTarefaInMemory;
 
 import java.io.File;
 import java.sql.SQLException;
@@ -19,8 +18,6 @@ public class RegistarCategoriaController {
     private RepositorioCategoriaTarefa repositorioCategoriaTarefa = fabricaRepositorios.getRepositorioCategoriaTarefa();
     private RepositorioAreaActividade repositorioAreaActividade = fabricaRepositorios.getRepositorioAreaActividade();
 
-    private FicheiroRepositorioCategoria ficheiroCat;
-    private RepositorioCategoriaTarefaInMemory repositorioCategoriaTarefaInMemory;
 
     /**
     * Registar categoria boolean
@@ -51,32 +48,7 @@ public class RegistarCategoriaController {
     public Categoria findByCodigo(String codigoCategoria) throws SQLException {
         return repositorioCategoriaTarefa.findByCodigo(codigoCategoria);
     }
-    
-    ////FICHEIROS//////
 
-    public RegistarCategoriaController() {
-        ficheiroCat = new FicheiroRepositorioCategoria();
-        
-        desserializar();
-    }
-
-    public boolean serializar() {
-        return ficheiroCat.serializar(repositorioCategoriaTarefaInMemory);
-    }
-
-    public boolean serializar(File ficheiroExportar) {
-        return ficheiroCat.serializar(ficheiroExportar, repositorioCategoriaTarefaInMemory);
-    }
-
-    public void desserializar() {
-        repositorioCategoriaTarefaInMemory = ficheiroCat.desserializar();
-    }
-
-    public int desserializar(File ficheiroImportar) {
-        RepositorioCategoriaTarefaInMemory listaCategoriasImportada = ficheiroCat.desserializar(ficheiroImportar);
-
-        return RepositorioCategoriaTarefaInMemory.getInstance().adicionarListaCategorias(listaCategoriasImportada);
-    }
 
 
 
