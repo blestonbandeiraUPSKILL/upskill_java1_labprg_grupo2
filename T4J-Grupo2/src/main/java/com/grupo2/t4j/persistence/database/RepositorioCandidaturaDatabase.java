@@ -290,7 +290,8 @@ public class RepositorioCandidaturaDatabase implements RepositorioCandidatura {
                             + "SET valorPretendido = ?, "
                             + "numeroDias = ?, "
                             + "txtApresentacao = ?, "
-                            + "txtMotivacao = ? "
+                            + "txtMotivacao = ?, "
+                            + "dataEdicaoCandidatura = trunc(sysdate) "
                     + "WHERE idCandidatura = ? "
             );
 
