@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.grupo2.t4j.persistence.database;
 
 import com.grupo2.t4j.exception.CandidaturaDuplicadaException;
@@ -54,19 +49,19 @@ public class RepositorioCandidaturaDatabase implements RepositorioCandidatura {
             CallableStatement callableStatement = connection.prepareCall(
                     "{CALL createCandidatura(?, ?, ?, ?, ?, ?) } ");
 
-                connection.setAutoCommit(false);
+            connection.setAutoCommit(false);
 
-                callableStatement.setDouble(1, valorPretendido);
-                callableStatement.setInt(2, numeroDias);
-                callableStatement.setString(3, txtApresentacao);
-                callableStatement.setString(4, txtMotivacao);
-                callableStatement.setInt(5, idAnuncio);
-                callableStatement.setString(6, emailFreelancer);
+            callableStatement.setDouble(1, valorPretendido);
+            callableStatement.setInt(2, numeroDias);
+            callableStatement.setString(3, txtApresentacao);
+            callableStatement.setString(4, txtMotivacao);
+            callableStatement.setInt(5, idAnuncio);
+            callableStatement.setString(6, emailFreelancer);
 
-                callableStatement.executeQuery();
+            callableStatement.executeQuery();
 
-                connection.commit();
-                return true;
+            connection.commit();
+            return true;
 
         } catch (SQLException exception) {
             exception.printStackTrace();
@@ -158,14 +153,14 @@ public class RepositorioCandidaturaDatabase implements RepositorioCandidatura {
             
             PreparedStatement preparedStatement = connection.prepareStatement(
                     "SELECT * FROM Candidatura "
-                            + "WHERE emailFreelancer LIKE ?"
+                    + "WHERE emailFreelancer LIKE ?"
             );
 
             preparedStatement.setString(1, emailFreelancer);
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
-             
+
                 int idCandidatura = resultSet.getInt(1);
                 double valorPretendido = resultSet.getDouble(2);
                 int numeroDias = resultSet.getInt(3);
@@ -177,7 +172,7 @@ public class RepositorioCandidaturaDatabase implements RepositorioCandidatura {
                 candidaturasFreelancer.add(new Candidatura(idCandidatura, valorPretendido,
                         numeroDias, txtApresentacao, txtMotivacao, idAnuncio, emailFreelancer,
                         dataCandidatura));
-               
+
             }
 
         } catch (SQLException exceptionOrg) {

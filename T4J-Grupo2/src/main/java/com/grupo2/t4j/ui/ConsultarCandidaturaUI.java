@@ -35,18 +35,25 @@ import javafx.stage.Stage;
  */
 public class ConsultarCandidaturaUI implements Initializable {
 
+    @FXML
+    Button btnEditarDados;
+    @FXML
+    Button btnApagar;
+    @FXML
+    Button btnVoltar;
+    @FXML
+    Button btnGuardar;
+    @FXML
+    TextArea txtAnuncio;
+    @FXML
+    TextArea txtApresentacao;
+    @FXML
+    TextArea txtMotivacao;
+    @FXML
+    TextField txtValor;
+    @FXML
+    TextField txtDias;
 
-    @FXML Button btnEditarDados;
-    @FXML Button btnApagar;
-    @FXML Button btnVoltar;
-    @FXML Button btnGuardar;
-    @FXML TextArea txtAnuncio;
-    @FXML TextArea txtApresentacao;
-    @FXML TextArea txtMotivacao;
-    @FXML TextField txtValor;
-    @FXML TextField txtDias;
-
-    
     private Stage adicionarStage;
     private FreelancerLogadoUI freelancerLogadoUI;
     private EditarCandidaturaController editarCandidaturaController;
@@ -61,15 +68,13 @@ public class ConsultarCandidaturaUI implements Initializable {
      * Initializes the controller class.
      */
     @Override
-
     public void initialize(URL url, ResourceBundle rb) {
-        
+
         adicionarStage = new Stage();
         adicionarStage.initModality(Modality.APPLICATION_MODAL);
         adicionarStage.setResizable(false);
-        
+
         //btnEditarDados.setDisable(true);
-        
         editarCandidaturaController = new EditarCandidaturaController();
         gestaoUtilizadoresController = new GestaoUtilizadoresController();
         try {
@@ -79,10 +84,7 @@ public class ConsultarCandidaturaUI implements Initializable {
         }
         txtAnuncio.setDisable(false);
         txtAnuncio.setEditable(false);
-        
-        
-    }   
-
+    }
 
     @FXML
     private void editarDados(ActionEvent event) {
@@ -92,22 +94,19 @@ public class ConsultarCandidaturaUI implements Initializable {
         txtDias.setDisable(false);
         btnGuardar.setVisible(true);
         btnEditarDados.setVisible(false);
-        
-        
     }
 
     public void transferData() throws SQLException {
-        
+
         txtApresentacao.setText(freelancerLogadoUI.listViewCandidaturas.getSelectionModel().getSelectedItem().getApresentacao());
         txtMotivacao.setText(freelancerLogadoUI.listViewCandidaturas.getSelectionModel().getSelectedItem().getMotivacao());
         txtValor.setText(String.valueOf(freelancerLogadoUI.listViewCandidaturas.getSelectionModel().getSelectedItem().getValorPretendido()));
         txtDias.setText(String.valueOf(freelancerLogadoUI.listViewCandidaturas.getSelectionModel().getSelectedItem().getNumeroDias()));
         txtAnuncio.setText(registarTarefaController.findTarefa(getIdAnuncio()).toStringCompleto());
-
     }
 
-    
-    public void guardarAction(ActionEvent actionEvent) throws SQLException{
+
+    public void guardarAction(ActionEvent actionEvent) throws SQLException {
         
         int idCandidatura = freelancerLogadoUI.listViewCandidaturas.getSelectionModel().getSelectedItem().getIdCandidatura();
         
@@ -140,10 +139,11 @@ public class ConsultarCandidaturaUI implements Initializable {
         
         
     }
-    
+
     public void voltarAction(ActionEvent actionEvent) {
         btnVoltar.getScene().getWindow().hide();
     }
+
     
     public void isCandidaturaEditavel () throws SQLException {
         String emailFreelancer = gestaoUtilizadoresController.getEmail();
@@ -156,12 +156,15 @@ public class ConsultarCandidaturaUI implements Initializable {
             }
         }
        
-    }
-    public int getIdAnuncio() throws SQLException {
 
+    }
+
+    public int getIdAnuncio() throws SQLException {
         int idAnuncio = freelancerLogadoUI.listViewCandidaturas.getSelectionModel().getSelectedItem().getIdAnuncio();
 
-        return idAnuncio ;
+        return idAnuncio;
     }
+    
+
 
 }
