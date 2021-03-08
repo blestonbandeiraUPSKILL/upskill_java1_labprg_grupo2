@@ -3,7 +3,6 @@ package t4j.ws.service;
 import t4j.ws.domain.Sessao;
 import t4j.ws.domain.Utilizador;
 import t4j.ws.dto.*;
-import t4j.ws.exception.ConversaoException;
 import t4j.ws.exception.KeyInvalidaException;
 import t4j.ws.persistence.RepositorioSessao;
 import t4j.ws.persistence.RepositorioUtilizador;
@@ -15,7 +14,7 @@ public class GestaoUtilizadoresService {
     private static RepositorioSessao repositorioSessao = RepositorioSessao.getInstance();
     private static RepositorioUtilizador repositorioUtilizador = RepositorioUtilizador.getInstance();
 
-    public static ContextoDTO generateContext(String appKey) {
+    public static ContextoDTO generateContext(String appKey) throws SQLException {
         Contexto contexto = null;
 
         try {
@@ -28,16 +27,11 @@ public class GestaoUtilizadoresService {
 
         ContextoDTO contextoDTO = Mapper.contexto2ContextoDTO(contexto);
 
-        if(contextoDTO != null) {
-            repositorioSessao.saveContext(contexto);
-            return contextoDTO;
-        }
-        else {
-            throw new ConversaoException("ContextoDTO");
-        }
+        repositorioSessao.saveContext(contexto);
+        return contextoDTO;
     }
 
-    public static boolean validateContexto(ContextoDTO contextoDTO) {
+    public static boolean validateContexto(ContextoDTO contextoDTO) throws SQLException {
         Contexto contexto = repositorioSessao.findContextByString(contextoDTO.getAppContext());
 
         return contexto.isValido();
@@ -54,12 +48,7 @@ public class GestaoUtilizadoresService {
         Sessao sessao = new Sessao(utilizador, contexto);
         SessaoDTO sessaoDTO = Mapper.sessao2SessaoDTO(sessao);
 
-        if(sessao != null) {
-            return RepositorioSessao.getInstance().saveSessao(sessao);
-        }
-        else {
-            throw new ConversaoException("SessaoDTO");
-        }
+        return RepositorioSessao.getInstance().saveSessao(sessao);
     }
 
     public static boolean logout(ContextoDTO contextoDTO) throws SQLException {
@@ -74,11 +63,6 @@ public class GestaoUtilizadoresService {
         }
 
         SessaoDTO sessaoDTO = Mapper.sessao2SessaoDTO(sessao);
-        if(sessaoDTO != null) {
-            return sessaoDTO;
-        }
-        else {
-            throw new ConversaoException("SessaoDTO");
-        }
+        return sessaoDTO;
     }
 }

@@ -9,6 +9,7 @@ public class Contexto {
     private static final String APP_KEY = "IBD0DEHBDID62EB1EAZBEoA95E3cB5BD5135d01F0FqE6eDDoD4yDEX05RFEF19q9BY04KBE03A919hAFM06";
     private boolean valido;
     private String contexto;
+    private int idContexto;
 
     public Contexto(String appKey) {
         if(appKey.equals(APP_KEY)) {
@@ -25,6 +26,10 @@ public class Contexto {
         this.valido = valido;
     }
 
+    public Contexto() {
+
+    }
+
     public void setContexto(String contexto) {
         this.contexto = contexto;
     }
@@ -33,8 +38,16 @@ public class Contexto {
         this.valido = valido;
     }
 
+    public void setIdContexto(int idContexto) {
+        this.idContexto = idContexto;
+    }
+
     public String getContexto() {
         return contexto;
+    }
+
+    public int getIdContexto() {
+        return idContexto;
     }
 
     public boolean isValido() {
