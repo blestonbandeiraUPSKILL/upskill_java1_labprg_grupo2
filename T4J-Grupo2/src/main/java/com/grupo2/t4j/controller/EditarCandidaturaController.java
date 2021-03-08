@@ -22,11 +22,13 @@ public class EditarCandidaturaController {
     private RepositorioCandidatura repositorioCandidatura = fabricaRepositorios.getRepositorioCandidatura();
 
 
-    public void updateCandidatura() {
-        repositorioCandidatura.updateCandidatura();
+    public void updateCandidatura(int idCandidatura, double valorPretendido,
+            int numeroDias, String txtApresentacao, String txtMotivacao) throws SQLException {
+        repositorioCandidatura.updateCandidatura(idCandidatura, valorPretendido,
+                numeroDias, txtApresentacao, txtMotivacao);
     }
 
-    public List<Candidatura> getAllCandidaturasEditaveis(String emailFreelancer) throws SQLException {
+    public List<Integer> getAllCandidaturasEditaveis(String emailFreelancer) throws SQLException {
         return repositorioCandidatura.getAllCandidaturasEditaveis(emailFreelancer);
     }
     
