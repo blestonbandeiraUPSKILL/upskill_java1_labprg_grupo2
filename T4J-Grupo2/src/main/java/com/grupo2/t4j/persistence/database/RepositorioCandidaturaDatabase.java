@@ -289,7 +289,6 @@ public class RepositorioCandidaturaDatabase implements RepositorioCandidatura {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
     public boolean deleteCandidatura(int idCandidatura) throws SQLException {
 
         Connection connection = DBConnectionHandler.getInstance().openConnection();
@@ -315,5 +314,5 @@ public class RepositorioCandidaturaDatabase implements RepositorioCandidatura {
             DBConnectionHandler.getInstance().closeAll();
         }
         return false;
-    }
+
 }
