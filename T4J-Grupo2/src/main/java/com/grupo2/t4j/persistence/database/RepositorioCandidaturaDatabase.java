@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.grupo2.t4j.persistence.database;
 
 import com.grupo2.t4j.exception.CandidaturaDuplicadaException;
@@ -54,19 +49,19 @@ public class RepositorioCandidaturaDatabase implements RepositorioCandidatura {
             CallableStatement callableStatement = connection.prepareCall(
                     "{CALL createCandidatura(?, ?, ?, ?, ?, ?) } ");
 
-                connection.setAutoCommit(false);
+            connection.setAutoCommit(false);
 
-                callableStatement.setDouble(1, valorPretendido);
-                callableStatement.setInt(2, numeroDias);
-                callableStatement.setString(3, txtApresentacao);
-                callableStatement.setString(4, txtMotivacao);
-                callableStatement.setInt(5, idAnuncio);
-                callableStatement.setString(6, emailFreelancer);
+            callableStatement.setDouble(1, valorPretendido);
+            callableStatement.setInt(2, numeroDias);
+            callableStatement.setString(3, txtApresentacao);
+            callableStatement.setString(4, txtMotivacao);
+            callableStatement.setInt(5, idAnuncio);
+            callableStatement.setString(6, emailFreelancer);
 
-                callableStatement.executeQuery();
+            callableStatement.executeQuery();
 
-                connection.commit();
-                return true;
+            connection.commit();
+            return true;
 
         } catch (SQLException exception) {
             exception.printStackTrace();
@@ -171,14 +166,14 @@ public class RepositorioCandidaturaDatabase implements RepositorioCandidatura {
             ResultSet resultSet = callableStatementOrg.getResultSet();*/
             PreparedStatement preparedStatement = connection.prepareStatement(
                     "SELECT * FROM Candidatura "
-                            + "WHERE emailFreelancer LIKE ?"
+                    + "WHERE emailFreelancer LIKE ?"
             );
 
             preparedStatement.setString(1, emailFreelancer);
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
-               /* candidatura.setIdCandidatura(resultSet.getInt(1));
+                /* candidatura.setIdCandidatura(resultSet.getInt(1));
                 candidatura.setValor(resultSet.getDouble(2));
                 candidatura.setDias(resultSet.getInt(3));
                 candidatura.setApresentacao(resultSet.getString(4));
@@ -199,7 +194,7 @@ public class RepositorioCandidaturaDatabase implements RepositorioCandidatura {
                 candidaturasFreelancer.add(new Candidatura(idCandidatura, valorPretendido,
                         numeroDias, txtApresentacao, txtMotivacao, idAnuncio, emailFreelancer,
                         dataCandidatura));
-               
+
             }
 
         } catch (SQLException exceptionOrg) {
@@ -309,7 +304,32 @@ public class RepositorioCandidaturaDatabase implements RepositorioCandidatura {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    
+    public boolean deleteCandidatura(int idCandidatura) throws SQLException {
+
+        Connection connection = DBConnectionHandler.getInstance().openConnection();
+
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(
+                    "DELETE FROM Candidatura WHERE idCandidatura = ?"
+            );
+            preparedStatement.executeQuery();
+            return true;
+
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+            exception.getSQLState();
+            try {
+                System.err.print("Transaction is being rolled back");
+                connection.rollback();
+            } catch (SQLException sqlException) {
+                sqlException.getErrorCode();
+            }
+
+        } finally {
+            DBConnectionHandler.getInstance().closeAll();
+        }
+        return false;
+    }
 
     @Override
     public List<Candidatura> getAllCandidaturasEditaveis(String emailFreelancer) {
