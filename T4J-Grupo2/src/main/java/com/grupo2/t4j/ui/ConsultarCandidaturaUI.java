@@ -20,6 +20,8 @@ import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -108,10 +110,34 @@ public class ConsultarCandidaturaUI implements Initializable {
         
         int idCandidatura = freelancerLogadoUI.listViewCandidaturas.getSelectionModel().getSelectedItem().getIdCandidatura();
         
-        editarCandidaturaController.updateCandidatura(idCandidatura, Double.parseDouble(txtValor.getText()),
+        try {
+            boolean editou = editarCandidaturaController.updateCandidatura(idCandidatura, Double.parseDouble(txtValor.getText()),
                 Integer.parseInt(txtDias.getText()), txtApresentacao.getText(),
                 txtMotivacao.getText());
 
+            if(editou) {
+
+                freelancerLogadoUI.updateListViewCandidaturas();
+                //btnAddCandidatura.setDisable(true);
+
+                AlertsUI.criarAlerta(Alert.AlertType.INFORMATION,
+                        MainApp.TITULO_APLICACAO,
+                        "Editar Candidatura.",
+                        "Candidatura editada com sucesso.").show();
+
+                //((Node) actionEvent.getSource()).getScene().getWindow().hide();
+
+            }
+
+        }
+        catch (IllegalArgumentException | SQLException exception) {
+            AlertsUI.criarAlerta(Alert.AlertType.ERROR,
+                    MainApp.TITULO_APLICACAO,
+                    "Editar Candidatura - Erro nos dados.",
+                    "Não foi possível Editar a candidatura: " + exception.getMessage()).show();
+        }
+        
+        
     }
 
     public void voltarAction(ActionEvent actionEvent) {
