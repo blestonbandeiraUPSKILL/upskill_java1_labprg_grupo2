@@ -21,8 +21,6 @@ public class EliminarCandidaturaController {
     private RepositorioCandidatura repositorioCandidatura = fabricaRepositorios.getRepositorioCandidatura();
    
     
-    public boolean deleteCandidatura(int idCandidatura) throws SQLException {
-        return repositorioCandidatura.deleteCandidatura(idCandidatura);
-    }
+
     
 }
