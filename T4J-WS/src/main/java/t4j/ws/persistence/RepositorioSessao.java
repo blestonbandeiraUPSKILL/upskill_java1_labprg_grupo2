@@ -97,7 +97,7 @@ public class RepositorioSessao {
 
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(
-                    "SELECT * From Context WHERE designacao LIKE ?"
+                    "SELECT * From AppContext WHERE value LIKE ?"
             );
 
             preparedStatement.setString(1, context);

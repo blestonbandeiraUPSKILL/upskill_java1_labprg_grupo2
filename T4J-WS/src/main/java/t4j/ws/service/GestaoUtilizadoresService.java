@@ -48,7 +48,7 @@ public class GestaoUtilizadoresService {
         Sessao sessao = new Sessao(utilizador, contexto);
         SessaoDTO sessaoDTO = Mapper.sessao2SessaoDTO(sessao);
 
-        return RepositorioSessao.getInstance().saveSessao(sessao);
+        return repositorioSessao.saveSessao(sessao);
     }
 
     public static boolean logout(ContextoDTO contextoDTO) throws SQLException {
