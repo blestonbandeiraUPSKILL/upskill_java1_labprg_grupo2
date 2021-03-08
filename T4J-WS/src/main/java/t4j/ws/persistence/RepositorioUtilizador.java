@@ -1,5 +1,7 @@
 package t4j.ws.persistence;
 
+import t4j.ws.domain.Password;
+import t4j.ws.domain.Rolename;
 import t4j.ws.domain.Utilizador;
 import t4j.ws.utils.DBConnectionHandler;
 
@@ -23,8 +25,50 @@ public class RepositorioUtilizador {
         return false;
     }
 
-    public Utilizador findByEmail(String email) {
-        return null;
+    public Utilizador findByEmail(String email) throws SQLException {
+        Utilizador utilizador = new Utilizador();
+        Rolename rolename = new Rolename();
+
+        Connection connection = DBConnectionHandler.getInstance().openConnection();
+
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(
+                    "SELECT * FROM Utilizador " +
+                        "INNER JOIN Rolename " +
+                        "ON Utilizador.idRolename = Rolename.idRolename " +
+                            "WHERE email LIKE ?"
+            );
+
+            preparedStatement.setString(1, email);
+
+            preparedStatement.executeQuery();
+
+            ResultSet resultSet = preparedStatement.getResultSet();
+
+            while (resultSet.next()) {
+                utilizador.setEmail(resultSet.getString(1));
+                utilizador.setUsername(resultSet.getString(2));
+                utilizador.setPassword(new Password(resultSet.getString(3)));
+                rolename.setDesignacao(resultSet.getString(6));
+                utilizador.setRolename(rolename);
+            }
+        }
+
+        catch (SQLException exception) {
+            exception.getSQLState();
+            exception.printStackTrace();
+            try {
+                System.err.print("Transaction is being rolled back");
+                connection.rollback();
+            }
+            catch (SQLException sqlException) {
+                sqlException.getErrorCode();
+            }
+        }
+        finally {
+            DBConnectionHandler.getInstance().closeAll();
+        }
+        return  utilizador;
     }
 
     public List<Utilizador> getAll() {

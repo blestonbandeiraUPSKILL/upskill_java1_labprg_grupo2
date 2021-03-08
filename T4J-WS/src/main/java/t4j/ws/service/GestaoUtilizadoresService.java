@@ -41,13 +41,12 @@ public class GestaoUtilizadoresService {
     public static boolean login(LoginDTO loginDTO, ContextoDTO contextoDTO) throws SQLException {
         Utilizador utilizador = repositorioUtilizador.findByEmail(loginDTO.getEmail().toString());
 
-        if(utilizador == null || !(utilizador.getPassword().equals(loginDTO.getPassword()))) {
+        if(!(utilizador != null && (utilizador.getPassword().toString().equals(loginDTO.getPassword().toString())))) {
             return false;
         }
 
         Contexto contexto = repositorioSessao.findContextByString(contextoDTO.getAppContext());
         Sessao sessao = new Sessao(utilizador, contexto);
-        SessaoDTO sessaoDTO = Mapper.sessao2SessaoDTO(sessao);
 
         return repositorioSessao.saveSessao(sessao);
     }

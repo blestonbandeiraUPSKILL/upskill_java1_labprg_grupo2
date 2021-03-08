@@ -55,7 +55,7 @@ public class UtilizadoresService {
         return Mapper.listaRolenames2ListaRolenamesDTO(rolenames);
     }
 
-    public static RolenameDTO getUserRolenames(String email) {
+    public static RolenameDTO getUserRolenames(String email) throws SQLException {
         Utilizador utilizador = repositorioUtilizador.findByEmail(email);
 
         Rolename rolename = utilizador.getRolename();

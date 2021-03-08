@@ -7,17 +7,14 @@ IS
     
 BEGIN
 
-    INSERT INTO AppContext
-        (value)
-    VALUES
-        (p_value)
-    RETURNING idAppContext
-    INTO v_idAppContext;
+    SELECT idAppContext INTO v_idAppContext
+    FROM AppContext 
+    WHERE AppContext.value LIKE p_value;
     
     INSERT INTO UserSession
         (idAppContext, timestamp)
     VALUES
-        (v_idAppContext, trunc(LOCALTIMESTAMP));
+        (v_idAppContext, CURRENT_TIMESTAMP);
 
 END;
 /

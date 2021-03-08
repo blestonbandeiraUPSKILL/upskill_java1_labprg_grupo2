@@ -24,13 +24,12 @@ public class RepositorioRolename {
 
         try {
             CallableStatement callableStatement = connection.prepareCall(
-                    "{CALL createRolename(?, ?)}"
+                    "{CALL createRolename(?)}"
             );
 
             connection.setAutoCommit(false);
 
             callableStatement.setString(1, rolename.getDesignacao());
-            callableStatement.setString(2, rolename.getDescricao());
 
             callableStatement.executeQuery();
             connection.commit();
@@ -69,8 +68,7 @@ public class RepositorioRolename {
             while(resultSet.next()) {
                 int idRolename = resultSet.getInt(1);
                 String designacao = resultSet.getString(2);
-                String descricao = resultSet.getString(3);
-                rolenames.add(new Rolename(idRolename, designacao, descricao));
+                rolenames.add(new Rolename(idRolename, designacao));
             }
         }
         catch (SQLException exception) {
@@ -108,7 +106,6 @@ public class RepositorioRolename {
             while(resultSet.next()) {
                 rn.setIdRolename(resultSet.getInt(1));
                 rn.setDesignacao(rolename);
-                rn.setDescricao(resultSet.getString(3));
             }
 
         }

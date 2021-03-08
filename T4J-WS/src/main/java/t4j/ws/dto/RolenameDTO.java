@@ -4,7 +4,7 @@ public class RolenameDTO {
 
     private int idRolename;
     private String designacao;
-    private String descricao;
+
 
     public RolenameDTO(){
 
@@ -18,10 +18,6 @@ public class RolenameDTO {
         this.designacao = designacao;
     }
 
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
-
     public int getIdRolename() {
         return idRolename;
     }
@@ -30,7 +26,4 @@ public class RolenameDTO {
         return designacao;
     }
 
-    public String getDescricao() {
-        return descricao;
-    }
 }
