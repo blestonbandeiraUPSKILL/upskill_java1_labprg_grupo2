@@ -202,7 +202,7 @@ public class FreelancerLogadoUI implements Initializable {
             Parent rootConsultarCandidatura = loaderConsultarCandidatura.load();
             ConsultarCandidaturaUI consultarCandidaturaUI = loaderConsultarCandidatura.getController();
             consultarCandidaturaUI.associarParentUI(this);
-            //consultarCandidaturaUI.transferData();
+            consultarCandidaturaUI.transferData();
             sceneConsultarCandidatura = new Scene(rootConsultarCandidatura);
 
             adicionarStage.setScene(sceneConsultarCandidatura);

@@ -7,12 +7,16 @@ package com.grupo2.t4j.ui;
 
 import com.grupo2.t4j.controller.EditarCandidaturaController;
 import com.grupo2.t4j.controller.GestaoUtilizadoresController;
+import com.grupo2.t4j.controller.RegistarTarefaController;
 import com.grupo2.t4j.domain.Candidatura;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -45,6 +49,7 @@ public class ConsultarCandidaturaUI implements Initializable {
     private FreelancerLogadoUI freelancerLogadoUI;
     private EditarCandidaturaController editarCandidaturaController;
     private GestaoUtilizadoresController gestaoUtilizadoresController;
+    private RegistarTarefaController registarTarefaController;
 
     public void associarParentUI(FreelancerLogadoUI freelancerLogadoUI) {
         this.freelancerLogadoUI = freelancerLogadoUI;
@@ -61,9 +66,20 @@ public class ConsultarCandidaturaUI implements Initializable {
         adicionarStage.initModality(Modality.APPLICATION_MODAL);
         adicionarStage.setResizable(false);
         
+        btnEditarDados.setDisable(true);
+        
         editarCandidaturaController = new EditarCandidaturaController();
         gestaoUtilizadoresController = new GestaoUtilizadoresController();
-        //isCandidaturaEditavel();
+        try {
+            registarTarefaController = new RegistarTarefaController();
+            isCandidaturaEditavel();
+        } catch (SQLException ex) {
+            Logger.getLogger(ConsultarCandidaturaUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        txtAnuncio.setDisable(false);
+        txtAnuncio.setEditable(false);
+        
+        
     }   
 
 
@@ -90,6 +106,7 @@ public class ConsultarCandidaturaUI implements Initializable {
         txtMotivacao.setText(freelancerLogadoUI.listViewCandidaturas.getSelectionModel().getSelectedItem().getMotivacao());
         txtValor.setText(String.valueOf(freelancerLogadoUI.listViewCandidaturas.getSelectionModel().getSelectedItem().getValorPretendido()));
         txtDias.setText(String.valueOf(freelancerLogadoUI.listViewCandidaturas.getSelectionModel().getSelectedItem().getNumeroDias()));
+        txtAnuncio.setText(registarTarefaController.findTarefa(getIdAnuncio()).toStringCompleto());
 
     }
 
@@ -109,10 +126,15 @@ public class ConsultarCandidaturaUI implements Initializable {
         String emailFreelancer = gestaoUtilizadoresController.getEmail();
         List<Candidatura> listaCandidaturasEditaveis = editarCandidaturaController.getAllCandidaturasEditaveis(emailFreelancer);
         if (listaCandidaturasEditaveis.contains(freelancerLogadoUI.listViewCandidaturas.getSelectionModel().getSelectedItem())){
-            btnEditarDados.setDisable(true);
+            btnEditarDados.setDisable(false);
         }
        return false;
     }
-    
+    public int getIdAnuncio() throws SQLException {
+
+        int idAnuncio = freelancerLogadoUI.listViewCandidaturas.getSelectionModel().getSelectedItem().getIdAnuncio();
+
+        return idAnuncio ;
+    }
 
 }
