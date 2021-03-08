@@ -12,6 +12,7 @@ import com.grupo2.t4j.utils.DBConnectionHandler;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
