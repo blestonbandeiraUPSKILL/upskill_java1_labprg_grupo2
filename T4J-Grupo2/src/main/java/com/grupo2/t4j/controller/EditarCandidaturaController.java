@@ -26,7 +26,7 @@ public class EditarCandidaturaController {
     }
 
     public List<Candidatura> getAllCandidaturasEditaveis(String emailFreelancer) {
-        return repositorioCandidatura.getAllCandidaturasElegiveis(emailFreelancer);
+        return repositorioCandidatura.getAllCandidaturasEditaveis(emailFreelancer);
     }
     
 }
