@@ -329,6 +329,8 @@ public class RepositorioCandidaturaDatabase implements RepositorioCandidatura {
             PreparedStatement preparedStatement = connection.prepareStatement(
                     "DELETE FROM Candidatura WHERE idCandidatura = ?"
             );
+
+            preparedStatement.setInt(1, idCandidatura);
             preparedStatement.executeQuery();
             return true;
 

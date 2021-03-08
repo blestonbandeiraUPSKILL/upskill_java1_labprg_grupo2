@@ -196,6 +196,9 @@ public class FreelancerLogadoUI implements Initializable {
         int idCandidatura= getIdCandidatura();
 
         boolean apaga = eliminarCandidaturaController.deleteCandidatura(idCandidatura);
+        if(apaga) {
+            updateListViewCandidaturas();
+        }
     }
 
     public void consultarCandidatura(ActionEvent actionEvent) throws SQLException {
