@@ -1,7 +1,7 @@
 package t4j.ws.persistence;
 
 import t4j.ws.domain.Sessao;
-import t4j.ws.dto.Contexto;
+import t4j.ws.domain.Contexto;
 import t4j.ws.utils.DBConnectionHandler;
 
 import java.sql.*;
@@ -24,7 +24,7 @@ public class RepositorioSessao {
 
         try {
             CallableStatement callableStatement = connection.prepareCall(
-                    "{CALL createContext(?)}"
+                    "{ CALL createContext(?) }"
             );
 
             connection.setAutoCommit(false);
@@ -89,8 +89,43 @@ public class RepositorioSessao {
         return false;
     }
 
-    public Contexto findContextByString(String context) {
-        return null;
+    public Contexto findContextByString(String context) throws SQLException {
+
+        Contexto contexto = new Contexto();
+
+        Connection connection = DBConnectionHandler.getInstance().openConnection();
+
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(
+                    "SELECT * From AppContext WHERE value LIKE ?"
+            );
+
+            preparedStatement.setString(1, context);
+            preparedStatement.executeQuery();
+
+            ResultSet resultSet = preparedStatement.getResultSet();
+
+            while(resultSet.next()) {
+                contexto.setIdContexto(resultSet.getInt(1));
+                contexto.setContexto(resultSet.getString(2));
+                contexto.setValido(resultSet.getBoolean(3));
+            }
+        }
+        catch (SQLException exception) {
+            exception.getSQLState();
+            exception.printStackTrace();
+            try {
+                System.err.print("Transaction is being rolled back");
+                connection.rollback();
+            }
+            catch (SQLException sqlException) {
+                sqlException.getErrorCode();
+            }
+        }
+        finally {
+            DBConnectionHandler.getInstance().closeAll();
+        }
+        return contexto;
     }
 
     public boolean contextInvalid(String context) throws SQLException {

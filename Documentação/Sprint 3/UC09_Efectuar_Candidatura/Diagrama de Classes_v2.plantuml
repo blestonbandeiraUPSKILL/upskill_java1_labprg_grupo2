@@ -37,23 +37,24 @@ class Candidatura {
 
 class UC9_UI{
     --
-    showListaTarefasPublicadas(categoria)
-    getAnuncioTarefa(tarefa)
-    verificarCompetencias(freelancer, tarefa)
+    getAllTarefasElegiveis (emailFreelancer)
+    registarCandidatura(idAnuncio, custo,\n  duracao, txtApresentacao, txtMotivacao, emailFreelancer )
+
 }
 class UC9_CTRL{
     --
-    showListaTarefasPublicadas(categoria)
-    getAnuncioTarefa(tarefa)
-    verificarCompetencias(freelancer, tarefa)
+    getAllTarefasElegiveis (emailFreelancer)
+    registarCandidatura (idAnuncio, custo,\n  duracao, txtApresentacao, txtMotivacao, emailFreelancer )
 }
 
 class RepositorioTarefa{
-
+--
+getAllTarefasElegiveis (emailFreelancer)
 }
 
 class RepositorioCandidatura {
-
+    --
+    save (idAnuncio, custo,\n  duracao, txtApresentacao, txtMotivacao,\n emailFreelancer )
 }
 
 UC9_UI - UC9_CTRL

@@ -22,9 +22,9 @@ public class EditarCandidaturaController {
     private RepositorioCandidatura repositorioCandidatura = fabricaRepositorios.getRepositorioCandidatura();
 
 
-    public void updateCandidatura(int idCandidatura, double valorPretendido,
+    public boolean updateCandidatura(int idCandidatura, double valorPretendido,
             int numeroDias, String txtApresentacao, String txtMotivacao) throws SQLException {
-        repositorioCandidatura.updateCandidatura(idCandidatura, valorPretendido,
+        return repositorioCandidatura.updateCandidatura(idCandidatura, valorPretendido,
                 numeroDias, txtApresentacao, txtMotivacao);
     }
 
