@@ -105,10 +105,13 @@ public class ConsultarCandidaturaUI implements Initializable {
     }
 
     
-    public void guardarAction(ActionEvent actionEvent) {
-        /*editarCandidaturaController.updateCandidatura(idCandidatura, txtApresentacao.getText(),
-                txtMotivacao.getText(), Double.parseDouble(txtValor.getText()), 
-                Integer.parseInt(txtDias.getText()));*/
+    public void guardarAction(ActionEvent actionEvent) throws SQLException {
+        
+        int idCandidatura = freelancerLogadoUI.listViewCandidaturas.getSelectionModel().getSelectedItem().getIdCandidatura();
+        
+        editarCandidaturaController.updateCandidatura(idCandidatura, Double.parseDouble(txtValor.getText()),
+                Integer.parseInt(txtDias.getText()), txtApresentacao.getText(),
+                txtMotivacao.getText());
         
     }
     
