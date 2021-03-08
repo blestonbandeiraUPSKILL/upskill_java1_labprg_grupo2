@@ -203,6 +203,7 @@ public class FreelancerLogadoUI implements Initializable {
             ConsultarCandidaturaUI consultarCandidaturaUI = loaderConsultarCandidatura.getController();
             consultarCandidaturaUI.associarParentUI(this);
             consultarCandidaturaUI.transferData();
+            consultarCandidaturaUI.isCandidaturaEditavel();
             sceneConsultarCandidatura = new Scene(rootConsultarCandidatura);
 
             adicionarStage.setScene(sceneConsultarCandidatura);

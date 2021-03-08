@@ -107,7 +107,7 @@
                   <Font name="Calibri" size="14.0" />
                </font>
             </Button>
-            <Button fx:id="btnEditarDados" mnemonicParsing="false" onAction="#editarDados" styleClass="btnConfirmar" text="Editar dados">
+            <Button fx:id="btnEditarDados" disable="true" mnemonicParsing="false" onAction="#editarDados" styleClass="btnConfirmar" text="Editar dados">
                <font>
                   <Font name="Calibri" size="14.0" />
                </font>

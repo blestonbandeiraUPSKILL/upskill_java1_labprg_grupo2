@@ -9,6 +9,7 @@ import com.grupo2.t4j.domain.Candidatura;
 import com.grupo2.t4j.persistence.FabricaRepositorios;
 import com.grupo2.t4j.persistence.RepositorioCandidatura;
 import com.grupo2.t4j.persistence.database.FabricaRepositoriosDatabase;
+import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -25,7 +26,7 @@ public class EditarCandidaturaController {
         repositorioCandidatura.updateCandidatura();
     }
 
-    public List<Candidatura> getAllCandidaturasEditaveis(String emailFreelancer) {
+    public List<Candidatura> getAllCandidaturasEditaveis(String emailFreelancer) throws SQLException {
         return repositorioCandidatura.getAllCandidaturasEditaveis(emailFreelancer);
     }
     

@@ -66,13 +66,12 @@ public class ConsultarCandidaturaUI implements Initializable {
         adicionarStage.initModality(Modality.APPLICATION_MODAL);
         adicionarStage.setResizable(false);
         
-        btnEditarDados.setDisable(true);
+        //btnEditarDados.setDisable(true);
         
         editarCandidaturaController = new EditarCandidaturaController();
         gestaoUtilizadoresController = new GestaoUtilizadoresController();
         try {
             registarTarefaController = new RegistarTarefaController();
-            isCandidaturaEditavel();
         } catch (SQLException ex) {
             Logger.getLogger(ConsultarCandidaturaUI.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -85,15 +84,10 @@ public class ConsultarCandidaturaUI implements Initializable {
 
     @FXML
     private void editarDados(ActionEvent event) {
-        //txtApresentacao.setEditable(true);
-        //txtMotivacao.setEditable(true);
-        //txtValor.setEditable(true);
-        //txtDias.setEditable(true);
         txtApresentacao.setDisable(false);
         txtMotivacao.setDisable(false);
         txtValor.setDisable(false);
         txtDias.setDisable(false);
-        //btnCancelar.setText("Cancelar");
         btnGuardar.setVisible(true);
         btnEditarDados.setVisible(false);
         
@@ -122,10 +116,11 @@ public class ConsultarCandidaturaUI implements Initializable {
         btnVoltar.getScene().getWindow().hide();
     }
     
-    public boolean isCandidaturaEditavel (){
+    public boolean isCandidaturaEditavel () throws SQLException {
         String emailFreelancer = gestaoUtilizadoresController.getEmail();
+        Candidatura candidatura = freelancerLogadoUI.listViewCandidaturas.getSelectionModel().getSelectedItem();
         List<Candidatura> listaCandidaturasEditaveis = editarCandidaturaController.getAllCandidaturasEditaveis(emailFreelancer);
-        if (listaCandidaturasEditaveis.contains(freelancerLogadoUI.listViewCandidaturas.getSelectionModel().getSelectedItem())){
+        if (listaCandidaturasEditaveis.contains(candidatura)){
             btnEditarDados.setDisable(false);
         }
        return false;
