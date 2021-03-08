@@ -75,24 +75,24 @@
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="AnchorPane">
                            <children>
                               <VBox alignment="CENTER" layoutX="560.0" layoutY="201.0" AnchorPane.bottomAnchor="100.0" AnchorPane.rightAnchor="32.0" />
-                              <Label layoutX="25.0" layoutY="107.0" prefHeight="18.0" prefWidth="337.0" text="Freelancers com Candidatura ao Anúncio Selecionado" AnchorPane.bottomAnchor="285.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="353.0" AnchorPane.topAnchor="65.0">
+                              <Label layoutX="25.0" layoutY="107.0" prefHeight="27.0" prefWidth="460.0" text="Candidaturas ao Anúncio Selecionado (Freelancers e dados principais)" AnchorPane.bottomAnchor="285.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="220.0" AnchorPane.topAnchor="65.0">
                                  <font>
                                     <Font name="Calibri" size="15.0" />
                                  </font>
                               </Label>
-                              <Label alignment="CENTER" layoutX="24.0" layoutY="27.0" text="Anúncio" AnchorPane.bottomAnchor="335.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="25.0">
+                              <Label alignment="CENTER" layoutX="24.0" layoutY="27.0" text="Anúncio" AnchorPane.bottomAnchor="335.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="25.0">
                                  <font>
                                     <Font name="Calibri" size="14.0" />
                                  </font>
                               </Label>
-                              <ComboBox fx:id="cmbAnuncio" prefHeight="27.0" prefWidth="265.0" promptText="Escolha referência do Anúncio a Seriar" AnchorPane.bottomAnchor="328.0" AnchorPane.leftAnchor="80.0" AnchorPane.topAnchor="23.0" />
-                              <Button fx:id="btnConsultarAnuncio" layoutX="319.0" layoutY="31.0" mnemonicParsing="false" onAction="#consultarAnuncioAction" prefHeight="26.0" prefWidth="255.0" text="Consultar Tarefa do Anúncio Selecionado" AnchorPane.bottomAnchor="328.0" AnchorPane.leftAnchor="400.0" AnchorPane.rightAnchor="45.0" AnchorPane.topAnchor="23.0" />
+                              <ComboBox fx:id="cmbAnuncio" prefHeight="25.0" prefWidth="265.0" promptText="Escolha referência do Anúncio a Seriar" AnchorPane.bottomAnchor="329.0" AnchorPane.leftAnchor="90.0" AnchorPane.topAnchor="23.0" />
+                              <Button fx:id="btnConsultarAnuncio" layoutX="319.0" layoutY="31.0" mnemonicParsing="false" onAction="#consultarAnuncioAction" prefHeight="25.0" prefWidth="255.0" text="Consultar Tarefa do Anúncio Selecionado" AnchorPane.bottomAnchor="329.0" AnchorPane.leftAnchor="400.0" AnchorPane.rightAnchor="45.0" AnchorPane.topAnchor="23.0" />
                               <Button fx:id="btnConsultarCandidaturaFreelancer" layoutX="20.0" layoutY="321.0" mnemonicParsing="false" onAction="#consultarCandidaturaFreelancer" prefHeight="27.0" prefWidth="213.0" text="Consultar Candidatura do Freelancer" AnchorPane.topAnchor="321.0">
                                  <tooltip>
                                     <Tooltip text="Consultar Frelancer" />
                                  </tooltip>
                               </Button>
-                              <Button fx:id="btnSeriacao" layoutX="400.0" layoutY="322.0" mnemonicParsing="false" onAction="#navigateSeriacao" text="Seriar Anúncio">
+                              <Button fx:id="btnSeriacao" layoutX="269.0" layoutY="322.0" mnemonicParsing="false" onAction="#navigateSeriacao" text="Seriar Anúncio">
                                  <tooltip>
                                     <Tooltip text="Seriar Anúncio" />
                                  </tooltip>
