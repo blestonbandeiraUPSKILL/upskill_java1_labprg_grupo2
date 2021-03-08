@@ -145,7 +145,6 @@ public class GestaoUtilizadoresController {
 
             RolenameDTO rolenameDTO = new RolenameDTO();
             rolenameDTO.setDesignacao(designacao);
-            rolenameDTO.setDescricao(descricao);
 
             UtilizadoresService.createUserRole(rolenameDTO);
 
@@ -270,7 +269,7 @@ public class GestaoUtilizadoresController {
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> login(@RequestParam("app_context") String appContext,
                                    @RequestParam("user_id") String email,
-                                   @RequestParam("password") String password) {
+                                   @RequestParam("password") Password password) {
         try {
             ContextoDTO contextoDTO = new ContextoDTO();
             contextoDTO.setAppContext(appContext);
@@ -280,11 +279,11 @@ public class GestaoUtilizadoresController {
             }
 
             LoginDTO loginDTO = new LoginDTO();
-            loginDTO.setEmail(new Email(email));
-            loginDTO.setPassword(new Password(password));
+            loginDTO.setEmail(new Email(email.replace("!", " ")));
+            loginDTO.setPassword(password);
 
             if(GestaoUtilizadoresService.login(loginDTO, contextoDTO)) {
-                return new ResponseEntity<>(HttpStatus.OK);
+                return new ResponseEntity<>("Login bem sucedido.", HttpStatus.OK);
             }
             else {
                 return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -309,7 +308,7 @@ public class GestaoUtilizadoresController {
             }
 
             if(GestaoUtilizadoresService.logout(contextoDTO)) {
-                return new ResponseEntity<>(HttpStatus.OK);
+                return new ResponseEntity<>("Logout bem sucedido.", HttpStatus.OK);
             }
             else {
                 return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);

@@ -12,13 +12,7 @@ BEGIN
     VALUES
     (p_value)
     RETURNING idAppContext
-    INTO v_idAppContext;
-    
-    INSERT INTO UserSession
-    (idAppContext, timestamp)
-    VALUES
-    (v_idAppContext, trunc(LOCALTIMESTAMP));
-    
+    INTO v_idAppContext;   
 
 END;
 /

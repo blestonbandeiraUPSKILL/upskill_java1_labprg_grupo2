@@ -4,7 +4,6 @@ public class Rolename {
 
     private int idRolename;
     private String designacao;
-    private String descricao;
 
     public Rolename() {
 
@@ -13,13 +12,12 @@ public class Rolename {
     public Rolename(Rolename rolename) {
         this.idRolename = rolename.getIdRolename();
         this.designacao = rolename.getDesignacao();
-        this.descricao = rolename.getDescricao();
     }
 
-    public Rolename(int idRolename, String designacao, String descricao){
+    public Rolename(int idRolename, String designacao){
         setIdRolename(idRolename);
         setDesignacao(designacao);
-        setDescricao(descricao);
+
     }
 
     public void setIdRolename(int idRolename) {
@@ -30,9 +28,7 @@ public class Rolename {
         this.designacao = designacao;
     }
 
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
+
 
     public int getIdRolename() {
         return idRolename;
@@ -42,24 +38,18 @@ public class Rolename {
         return designacao;
     }
 
-    public String getDescricao() {
-        return descricao;
-    }
+
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Rolename)) return false;
         Rolename rolename = (Rolename) o;
-        return getDesignacao().equals(rolename.getDesignacao())
-                && getDescricao().equals(rolename.getDescricao());
+        return getDesignacao().equals(rolename.getDesignacao());
     }
 
     @Override
     public String toString() {
-        return "Rolename{" +
-                "designacao='" + designacao + '\'' +
-                ", descricao='" + descricao + '\'' +
-                '}';
+        return designacao;
     }
 }

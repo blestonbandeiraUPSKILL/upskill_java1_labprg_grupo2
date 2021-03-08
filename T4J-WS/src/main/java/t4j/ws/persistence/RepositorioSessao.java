@@ -64,7 +64,7 @@ public class RepositorioSessao {
 
             connection.setAutoCommit(false);
 
-            callableStatement.setString(2, sessao.getContexto().toString());
+            callableStatement.setString(1, sessao.getContexto().toString());
 
             callableStatement.executeQuery();
 
@@ -129,34 +129,19 @@ public class RepositorioSessao {
     }
 
     public boolean contextInvalid(String context) throws SQLException {
+
         Connection connection = DBConnectionHandler.getInstance().openConnection();
-        int idAppContext = 0;
 
         try {
             connection.setAutoCommit(false);
 
-            PreparedStatement preparedStatement = connection.prepareCall(
-                    "SELECT idAppContext " +
-                            "FROM AppContext " +
+            CallableStatement callableStatement = connection.prepareCall(
+                    "UPDATE AppContext " +
+                            "SET estado = 'false' " +
                             "WHERE value LIKE ?"
             );
 
-            preparedStatement.setString(1, context);
-
-            ResultSet resultSet = preparedStatement.getResultSet();
-
-            while (resultSet.next()) {
-                idAppContext = resultSet.getInt(1);
-            }
-
-            CallableStatement callableStatement = connection.prepareCall(
-                    "UPDATE UserSession " +
-                            "SET estado LIKE 'invalido' " +
-                            "WHERE idAppContext LIKE ?"
-            );
-
-
-            callableStatement.setInt(1, idAppContext);
+            callableStatement.setString(1, context);
             callableStatement.executeQuery();
 
             connection.commit();

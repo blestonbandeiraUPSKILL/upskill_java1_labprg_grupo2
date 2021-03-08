@@ -74,7 +74,6 @@ public class Mapper {
             rolenameDTO.setIdRolename(rolename.getIdRolename());
         }
         rolenameDTO.setDesignacao(rolename.getDesignacao());
-        rolenameDTO.setDescricao(rolename.getDescricao());
 
         return rolenameDTO;
     }
@@ -86,7 +85,6 @@ public class Mapper {
             rolename.setIdRolename(rolenameDTO.getIdRolename());
         }
         rolename.setDesignacao(rolenameDTO.getDesignacao());
-        rolename.setDescricao(rolenameDTO.getDescricao());
 
         return rolename;
     }

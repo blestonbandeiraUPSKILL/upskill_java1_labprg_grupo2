@@ -9,6 +9,7 @@ package t4j.ws.domain;
 import t4j.ws.exception.NomeInvalidoException;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 /**
  *
@@ -92,9 +93,10 @@ public class Utilizador implements Serializable{
     }
 
     @Override
-    public String toString(){
-        return String.format("username: %-20s |Email:%-20s",
-                username, email.toString());
+    public String toString() {
+        return "Utilizador{" +
+                "email=" + email +
+                '}';
     }
 
     public String toStringComPass(){
@@ -108,5 +110,12 @@ public class Utilizador implements Serializable{
                 username, email.toString(), rolename);
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Utilizador)) return false;
+        Utilizador that = (Utilizador) o;
+        return Objects.equals(password, that.password);
+    }
 
 }
