@@ -32,12 +32,13 @@ public interface RepositorioCandidatura {
     
     ArrayList<Candidatura> getAllByIdAnuncio(int idAnuncio) throws SQLException;  
 
-    public void updateCandidatura();
+    public boolean updateCandidatura(int idCandidatura, double valorPretendido,
+            int numeroDias, String txtApresentacao, String txtMotivacao) throws SQLException;
     
     boolean deleteCandidatura(int idCandidatura) throws SQLException;
 
 
-    public List<Candidatura> getAllCandidaturasEditaveis(String emailFreelancer);
+    public List<Integer> getAllCandidaturasEditaveis(String emailFreelancer)throws SQLException;
 
     
 }

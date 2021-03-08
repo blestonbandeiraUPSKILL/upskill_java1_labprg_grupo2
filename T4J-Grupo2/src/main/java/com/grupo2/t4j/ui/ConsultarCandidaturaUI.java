@@ -33,18 +33,25 @@ import javafx.stage.Stage;
  */
 public class ConsultarCandidaturaUI implements Initializable {
 
+    @FXML
+    Button btnEditarDados;
+    @FXML
+    Button btnApagar;
+    @FXML
+    Button btnVoltar;
+    @FXML
+    Button btnGuardar;
+    @FXML
+    TextArea txtAnuncio;
+    @FXML
+    TextArea txtApresentacao;
+    @FXML
+    TextArea txtMotivacao;
+    @FXML
+    TextField txtValor;
+    @FXML
+    TextField txtDias;
 
-    @FXML Button btnEditarDados;
-    @FXML Button btnApagar;
-    @FXML Button btnVoltar;
-    @FXML Button btnGuardar;
-    @FXML TextArea txtAnuncio;
-    @FXML TextArea txtApresentacao;
-    @FXML TextArea txtMotivacao;
-    @FXML TextField txtValor;
-    @FXML TextField txtDias;
-
-    
     private Stage adicionarStage;
     private FreelancerLogadoUI freelancerLogadoUI;
     private EditarCandidaturaController editarCandidaturaController;
@@ -59,82 +66,79 @@ public class ConsultarCandidaturaUI implements Initializable {
      * Initializes the controller class.
      */
     @Override
-
     public void initialize(URL url, ResourceBundle rb) {
-        
+
         adicionarStage = new Stage();
         adicionarStage.initModality(Modality.APPLICATION_MODAL);
         adicionarStage.setResizable(false);
-        
-        btnEditarDados.setDisable(true);
-        
+
+        //btnEditarDados.setDisable(true);
         editarCandidaturaController = new EditarCandidaturaController();
         gestaoUtilizadoresController = new GestaoUtilizadoresController();
         try {
             registarTarefaController = new RegistarTarefaController();
-            isCandidaturaEditavel();
         } catch (SQLException ex) {
             Logger.getLogger(ConsultarCandidaturaUI.class.getName()).log(Level.SEVERE, null, ex);
         }
         txtAnuncio.setDisable(false);
         txtAnuncio.setEditable(false);
-        
-        
-    }   
-
+    }
 
     @FXML
     private void editarDados(ActionEvent event) {
-        //txtApresentacao.setEditable(true);
-        //txtMotivacao.setEditable(true);
-        //txtValor.setEditable(true);
-        //txtDias.setEditable(true);
         txtApresentacao.setDisable(false);
         txtMotivacao.setDisable(false);
         txtValor.setDisable(false);
         txtDias.setDisable(false);
-        //btnCancelar.setText("Cancelar");
         btnGuardar.setVisible(true);
         btnEditarDados.setVisible(false);
-        
-        
     }
 
     public void transferData() throws SQLException {
-        
+
         txtApresentacao.setText(freelancerLogadoUI.listViewCandidaturas.getSelectionModel().getSelectedItem().getApresentacao());
         txtMotivacao.setText(freelancerLogadoUI.listViewCandidaturas.getSelectionModel().getSelectedItem().getMotivacao());
         txtValor.setText(String.valueOf(freelancerLogadoUI.listViewCandidaturas.getSelectionModel().getSelectedItem().getValorPretendido()));
         txtDias.setText(String.valueOf(freelancerLogadoUI.listViewCandidaturas.getSelectionModel().getSelectedItem().getNumeroDias()));
         txtAnuncio.setText(registarTarefaController.findTarefa(getIdAnuncio()).toStringCompleto());
-
     }
 
-    
-    public void guardarAction(ActionEvent actionEvent) {
-        /*editarCandidaturaController.updateCandidatura(idCandidatura, txtApresentacao.getText(),
-                txtMotivacao.getText(), Double.parseDouble(txtValor.getText()), 
-                Integer.parseInt(txtDias.getText()));*/
+
+    public void guardarAction(ActionEvent actionEvent) throws SQLException {
         
+        int idCandidatura = freelancerLogadoUI.listViewCandidaturas.getSelectionModel().getSelectedItem().getIdCandidatura();
+        
+        editarCandidaturaController.updateCandidatura(idCandidatura, Double.parseDouble(txtValor.getText()),
+                Integer.parseInt(txtDias.getText()), txtApresentacao.getText(),
+                txtMotivacao.getText());
+
     }
-    
+
     public void voltarAction(ActionEvent actionEvent) {
         btnVoltar.getScene().getWindow().hide();
     }
-    
-    public boolean isCandidaturaEditavel (){
-        String emailFreelancer = gestaoUtilizadoresController.getEmail();
-        List<Candidatura> listaCandidaturasEditaveis = editarCandidaturaController.getAllCandidaturasEditaveis(emailFreelancer);
-        if (listaCandidaturasEditaveis.contains(freelancerLogadoUI.listViewCandidaturas.getSelectionModel().getSelectedItem())){
-            btnEditarDados.setDisable(false);
-        }
-       return false;
-    }
-    public int getIdAnuncio() throws SQLException {
 
+    
+    public void isCandidaturaEditavel () throws SQLException {
+        String emailFreelancer = gestaoUtilizadoresController.getEmail();
+        int idCandidatura = freelancerLogadoUI.listViewCandidaturas.getSelectionModel().getSelectedItem().getIdCandidatura();
+        List<Integer> listaCandidaturasEditaveis = editarCandidaturaController.getAllCandidaturasEditaveis(emailFreelancer);
+                
+        for (int id : listaCandidaturasEditaveis){
+            if (id == idCandidatura){
+                btnEditarDados.setDisable(false);
+            }
+        }
+       
+
+    }
+
+    public int getIdAnuncio() throws SQLException {
         int idAnuncio = freelancerLogadoUI.listViewCandidaturas.getSelectionModel().getSelectedItem().getIdAnuncio();
 
-        return idAnuncio ;
+        return idAnuncio;
     }
+    
+
 
 }

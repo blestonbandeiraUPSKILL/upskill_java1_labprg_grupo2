@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.grupo2.t4j.persistence.database;
 
 import com.grupo2.t4j.exception.CandidaturaDuplicadaException;
@@ -54,19 +49,19 @@ public class RepositorioCandidaturaDatabase implements RepositorioCandidatura {
             CallableStatement callableStatement = connection.prepareCall(
                     "{CALL createCandidatura(?, ?, ?, ?, ?, ?) } ");
 
-                connection.setAutoCommit(false);
+            connection.setAutoCommit(false);
 
-                callableStatement.setDouble(1, valorPretendido);
-                callableStatement.setInt(2, numeroDias);
-                callableStatement.setString(3, txtApresentacao);
-                callableStatement.setString(4, txtMotivacao);
-                callableStatement.setInt(5, idAnuncio);
-                callableStatement.setString(6, emailFreelancer);
+            callableStatement.setDouble(1, valorPretendido);
+            callableStatement.setInt(2, numeroDias);
+            callableStatement.setString(3, txtApresentacao);
+            callableStatement.setString(4, txtMotivacao);
+            callableStatement.setInt(5, idAnuncio);
+            callableStatement.setString(6, emailFreelancer);
 
-                callableStatement.executeQuery();
+            callableStatement.executeQuery();
 
-                connection.commit();
-                return true;
+            connection.commit();
+            return true;
 
         } catch (SQLException exception) {
             exception.printStackTrace();
@@ -150,56 +145,34 @@ public class RepositorioCandidaturaDatabase implements RepositorioCandidatura {
 
     @Override
     public ArrayList<Candidatura> findByEmail(String emailFreelancer) throws SQLException {
-        //Candidatura candidatura = new Candidatura();
         ArrayList<Candidatura> candidaturasFreelancer = new ArrayList<>();
 
         Connection connection = DBConnectionHandler.getInstance().openConnection();
 
         try {
-            /*CallableStatement callableStatementOrg = connection.prepareCall(
-                    "SELECT idCandidatura, valorPretendido, numeroDias, txtApresentacao, "
-                    + "txtMotivacao, idAnuncio, TO_CHAR(dataCandidatura, 'yyyy-mm-dd') "
-                    + "FROM Candidatura "
-                    + "WHERE emailFreelancer LIKE ?"
-            );
-
-            connection.setAutoCommit(false);
-
-            callableStatementOrg.setString(1, emailFreelancer);
-            callableStatementOrg.executeQuery();
-
-            ResultSet resultSet = callableStatementOrg.getResultSet();*/
+            
             PreparedStatement preparedStatement = connection.prepareStatement(
                     "SELECT * FROM Candidatura "
-                            + "WHERE emailFreelancer LIKE ?"
+                    + "WHERE emailFreelancer LIKE ?"
             );
 
             preparedStatement.setString(1, emailFreelancer);
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
-               /* candidatura.setIdCandidatura(resultSet.getInt(1));
-                candidatura.setValor(resultSet.getDouble(2));
-                candidatura.setDias(resultSet.getInt(3));
-                candidatura.setApresentacao(resultSet.getString(4));
-                candidatura.setMotivacao(resultSet.getString(5));
-                candidatura.setIdAnuncio(resultSet.getInt(6));
-                candidatura.setEmailFreelancer(emailFreelancer);
-                candidatura.setData(resultSet.getString(7));*/
+
                 int idCandidatura = resultSet.getInt(1);
                 double valorPretendido = resultSet.getDouble(2);
                 int numeroDias = resultSet.getInt(3);
                 String txtApresentacao = resultSet.getString(4);
                 String txtMotivacao = resultSet.getString(5);
                 int idAnuncio = resultSet.getInt(6);
-                //emailFreelancer = resultSet.getString(7);
                 String dataCandidatura = resultSet.getDate(8).toString();
-                //String dataEdicaoCandidatura = resultSet.getDate(9).toString();
 
                 candidaturasFreelancer.add(new Candidatura(idCandidatura, valorPretendido,
                         numeroDias, txtApresentacao, txtMotivacao, idAnuncio, emailFreelancer,
                         dataCandidatura));
-               
+
             }
 
         } catch (SQLException exceptionOrg) {
@@ -305,8 +278,47 @@ public class RepositorioCandidaturaDatabase implements RepositorioCandidatura {
     }
 
     @Override
-    public void updateCandidatura() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean updateCandidatura(int idCandidatura, double valorPretendido,
+            int numeroDias, String txtApresentacao, String txtMotivacao) throws SQLException {
+        
+        Connection connection = DBConnectionHandler.getInstance().openConnection();
+
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(
+                    "UPDATE Candidatura"
+                            + "SET valorPretendido = ?, "
+                            + "numeroDias = ?, "
+                            + "txtApresenctacao = ?,"
+                            + "txtMotivacao = ? "
+                    + "WHERE idCandidatura = ? "
+            );
+
+            preparedStatement.setDouble(1, valorPretendido);
+            preparedStatement.setInt(2, numeroDias);
+            preparedStatement.setString(3, txtApresentacao);
+            preparedStatement.setString(4, txtMotivacao);
+            preparedStatement.setInt(1, idCandidatura);
+            
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            
+
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+            exception.getSQLState();
+            try {
+                System.err.print("Transaction is being rolled back");
+                connection.rollback();
+            } catch (SQLException sqlException) {
+                sqlException.getErrorCode();
+            }
+
+        } finally {
+            DBConnectionHandler.getInstance().closeAll();
+        }
+        
+        
+        return false;
     }
 
     public boolean deleteCandidatura(int idCandidatura) throws SQLException {
@@ -337,7 +349,40 @@ public class RepositorioCandidaturaDatabase implements RepositorioCandidatura {
     }
 
     @Override
-    public List<Candidatura> getAllCandidaturasEditaveis(String emailFreelancer) {
-        return null;
+    public List<Integer> getAllCandidaturasEditaveis(String emailFreelancer) throws SQLException{
+        ArrayList<Integer> candidaturasEditaveis = new ArrayList<>();
+
+        Connection connection = DBConnectionHandler.getInstance().openConnection();
+
+        try {
+            
+            PreparedStatement preparedStatement = connection.prepareStatement(
+                    "SELECT idCandidatura FROM Candidatura " +
+                              "INNER JOIN Anuncio " +
+                              "ON Candidatura.idAnuncio = Anuncio.idAnuncio " +
+                              "WHERE sysdate BETWEEN Anuncio.dataInicioCandidatura AND anuncio.datafimcandidatura " +
+                              "AND Candidatura.emailFreelancer LIKE ? "
+            );
+
+            preparedStatement.setString(1, emailFreelancer);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+               
+                int idCandidatura = resultSet.getInt(1);
+               
+
+                candidaturasEditaveis.add(idCandidatura);
+               
+            }
+
+        } catch (SQLException exceptionOrg) {
+            exceptionOrg.printStackTrace();
+            exceptionOrg.getSQLState();
+        } finally {
+            DBConnectionHandler.getInstance().closeAll();
+        }
+
+        return candidaturasEditaveis;
     }
 }

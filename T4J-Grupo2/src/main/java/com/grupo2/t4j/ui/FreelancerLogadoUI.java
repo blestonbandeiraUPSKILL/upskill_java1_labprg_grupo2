@@ -39,24 +39,30 @@ public class FreelancerLogadoUI implements Initializable {
     private EliminarCandidaturaController eliminarCandidaturaController;
     private Scene sceneConsultarCandidatura;
 
-    @FXML ListView<Candidatura> listViewCandidaturas;
-    @FXML Button btnSair;
-    
-    @FXML TableColumn<Object, Object> colunaReferencia;
-    @FXML TableColumn<Object, Object> colunaDesignacao;
-    @FXML TableColumn<Object, Object> colunaDuracao;
-    @FXML TableColumn<Object, Object> colunaCusto;
+    @FXML
+    ListView<Candidatura> listViewCandidaturas;
+    @FXML
+    Button btnSair;
 
-    @FXML TableView<Tarefa> tabelaAnuncios;
+    @FXML
+    TableColumn<Object, Object> colunaReferencia;
+    @FXML
+    TableColumn<Object, Object> colunaDesignacao;
+    @FXML
+    TableColumn<Object, Object> colunaDuracao;
+    @FXML
+    TableColumn<Object, Object> colunaCusto;
 
+    @FXML
+    TableView<Tarefa> tabelaAnuncios;
 
     public void associarParentUI(StartingPageUI startingPageUI) {
         this.startingPageUI = startingPageUI;
     }
 
     /**
-    * Initializes the controller (UI) class.
-    */
+     * Initializes the controller (UI) class.
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
@@ -76,7 +82,7 @@ public class FreelancerLogadoUI implements Initializable {
         adicionarStage = new Stage();
         adicionarStage.initModality(Modality.APPLICATION_MODAL);;
         adicionarStage.setResizable(false);
-        
+
         try {
             updateTableViewAnuncio();
         } catch (SQLException exception) {
@@ -99,19 +105,19 @@ public class FreelancerLogadoUI implements Initializable {
     void verAnuncioAction(ActionEvent event) {
 
     }
-    
+
     private ObservableList<Tarefa> listaAnuncios() throws SQLException {
         return FXCollections.observableArrayList(registarTarefaController.getAllTarefasElegíveis(gestaoUtilizadoresController.getEmail()));
     }
-    
+
     public void updateTableViewAnuncio() throws SQLException {
         tabelaAnuncios.setItems(listaAnuncios());
 
-        colunaDesignacao.setCellValueFactory( new PropertyValueFactory<>("designacao"));
-        colunaReferencia.setCellValueFactory( new PropertyValueFactory<>("referencia"));
-        colunaDuracao.setCellValueFactory( new PropertyValueFactory<>("duracaoEst"));
-        colunaCusto.setCellValueFactory( new PropertyValueFactory<>("custoEst"));
-        
+        colunaDesignacao.setCellValueFactory(new PropertyValueFactory<>("designacao"));
+        colunaReferencia.setCellValueFactory(new PropertyValueFactory<>("referencia"));
+        colunaDuracao.setCellValueFactory(new PropertyValueFactory<>("duracaoEst"));
+        colunaCusto.setCellValueFactory(new PropertyValueFactory<>("custoEst"));
+
     }
 
     public void logout(ActionEvent actionEvent) {
@@ -126,8 +132,7 @@ public class FreelancerLogadoUI implements Initializable {
 
                 if (alerta.showAndWait().get() == ButtonType.CANCEL) {
                     windowEvent.consume();
-                }
-                else {
+                } else {
                     boolean logout = gestaoUtilizadoresController.logout();
                     if (logout) {
                         gestaoUtilizadoresController.resetUsersAPI();
@@ -141,7 +146,7 @@ public class FreelancerLogadoUI implements Initializable {
                         }
                         assert rootStartingPage != null;
                         sceneStartingPage = new Scene(rootStartingPage);
-                        
+
                         sceneStartingPage.getStylesheets().add(startingPageUI.estilo);
                         adicionarStage.setScene(sceneStartingPage);
                         adicionarStage.setTitle(MainApp.TITULO_APLICACAO);
@@ -156,7 +161,6 @@ public class FreelancerLogadoUI implements Initializable {
             }
         });
         window.fireEvent(new WindowEvent(window, WindowEvent.WINDOW_CLOSE_REQUEST));
-
 
     }
 
@@ -173,9 +177,7 @@ public class FreelancerLogadoUI implements Initializable {
             adicionarStage.setScene(sceneEfectuarCandidatura);
             adicionarStage.setTitle("Efectuar Candidatura");
             adicionarStage.show();
-        }
-
-        catch (IOException | SQLException exception) {
+        } catch (IOException | SQLException exception) {
             exception.printStackTrace();
             AlertsUI.criarAlerta(Alert.AlertType.ERROR,
                     MainApp.TITULO_APLICACAO,
@@ -185,17 +187,18 @@ public class FreelancerLogadoUI implements Initializable {
     }
 
     public void updateListViewCandidaturas() throws SQLException {
-        
+
         String emailFreelancer = gestaoUtilizadoresController.getEmail();
         listViewCandidaturas.getItems().setAll(efectuarCandidaturaController.findByEmail(emailFreelancer));
     }
-    
-    public void apagarCandidatura(ActionEvent actionEvent){
-        
-        //boolean apaga = eliminarCandidaturaController.deleteCandidatura(idCandidatura);
+
+    public void apagarCandidatura(ActionEvent actionEvent) throws SQLException {
+        int idCandidatura= getIdCandidatura();
+
+        boolean apaga = eliminarCandidaturaController.deleteCandidatura(idCandidatura);
     }
-    
-     public void consultarCandidatura(ActionEvent actionEvent) throws SQLException {
+
+    public void consultarCandidatura(ActionEvent actionEvent) throws SQLException {
         try {
 
             FXMLLoader loaderConsultarCandidatura = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/ConsultarCandidaturaScene.fxml"));
@@ -203,6 +206,7 @@ public class FreelancerLogadoUI implements Initializable {
             ConsultarCandidaturaUI consultarCandidaturaUI = loaderConsultarCandidatura.getController();
             consultarCandidaturaUI.associarParentUI(this);
             consultarCandidaturaUI.transferData();
+            consultarCandidaturaUI.isCandidaturaEditavel();
             sceneConsultarCandidatura = new Scene(rootConsultarCandidatura);
 
             adicionarStage.setScene(sceneConsultarCandidatura);
@@ -216,5 +220,11 @@ public class FreelancerLogadoUI implements Initializable {
                     "Erro",
                     exception.getMessage());
         }
+    }
+
+    public int getIdCandidatura() throws SQLException {
+        int idCandidatura = listViewCandidaturas.getSelectionModel().getSelectedItem().getIdCandidatura();
+
+        return idCandidatura;
     }
 }
