@@ -1,7 +1,5 @@
 package t4j.ws.domain;
 
-import t4j.ws.dto.Contexto;
-
 public class Sessao {
 
     private Utilizador utilizador;
