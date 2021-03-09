@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.grupo2.t4j.ui;
 
 import com.grupo2.t4j.controller.RegistarFreelancerController;
@@ -27,23 +22,35 @@ import java.util.ResourceBundle;
  * FXML Controller class
  */
 public class AdicionarFreelancerUI implements Initializable {
-    
+
     private AdministrativoLogadoUI administrativoLogadoUI;
     private RegistarFreelancerController registarFreelancerController;
     private Stage adicionarStage;
-    
-    @FXML TextField txtNomeFreelancer;
-    @FXML TextField txtEmailFreelancer;
-    @FXML TextField txtNIFFreelancer;
-    @FXML TextField txtTelefoneFreelancer;
-    @FXML TextField txtArruamentoFreelancer;
-    @FXML TextField txtPortaFreelancer;
-    @FXML TextField txtLocalidadeFreelancer;
-    @FXML TextField txtCodPostalFreelancer;
-    @FXML TextField txtPassFreelancer;
-    @FXML Button btnAddFreelancer;
-    @FXML Button btnCancelar;
-    @FXML  Button btnSair;
+
+    @FXML
+    TextField txtNomeFreelancer;
+    @FXML
+    TextField txtEmailFreelancer;
+    @FXML
+    TextField txtNIFFreelancer;
+    @FXML
+    TextField txtTelefoneFreelancer;
+    @FXML
+    TextField txtArruamentoFreelancer;
+    @FXML
+    TextField txtPortaFreelancer;
+    @FXML
+    TextField txtLocalidadeFreelancer;
+    @FXML
+    TextField txtCodPostalFreelancer;
+    @FXML
+    TextField txtPassFreelancer;
+    @FXML
+    Button btnAddFreelancer;
+    @FXML
+    Button btnCancelar;
+    @FXML
+    Button btnSair;
 
     public void associarParentUI(AdministrativoLogadoUI administrativoLogadoUI) {
         this.administrativoLogadoUI = administrativoLogadoUI;
@@ -61,12 +68,12 @@ public class AdicionarFreelancerUI implements Initializable {
 
         registarFreelancerController = new RegistarFreelancerController();
 
-    }   
-   
+    }
+
     @FXML
     public void addFreelancer(ActionEvent event) throws SQLException {
 
-        try{
+        try {
             boolean adicionou = registarFreelancerController.registarFreelancer(
                     txtEmailFreelancer.getText().trim(),
                     txtNomeFreelancer.getText().trim(),
@@ -77,7 +84,7 @@ public class AdicionarFreelancerUI implements Initializable {
                     txtLocalidadeFreelancer.getText().trim(),
                     txtCodPostalFreelancer.getText().trim());
 
-            if(adicionou) {
+            if (adicionou) {
                 txtPassFreelancer.setText(
                         registarFreelancerController.findPassword(
                                 txtEmailFreelancer.getText()).getPasswordText());
@@ -87,21 +94,20 @@ public class AdicionarFreelancerUI implements Initializable {
                 btnSair.setText("Voltar");
 
                 administrativoLogadoUI.updateTableViewFreelancer();
-            
+
                 AlertsUI.criarAlerta(Alert.AlertType.INFORMATION,
-                    MainApp.TITULO_APLICACAO, "Registar Freelancer.",
+                        MainApp.TITULO_APLICACAO, "Registar Freelancer.",
                         "Freelancer registado com sucesso.").show();
             }
-        }
-        catch (IllegalArgumentException | SQLException exception) {
+        } catch (IllegalArgumentException | SQLException exception) {
             AlertsUI.criarAlerta(Alert.AlertType.ERROR,
                     MainApp.TITULO_APLICACAO,
                     "Registar Freelancer - Erro nos dados.",
                     "Não foi possível registar o Freelancer." + exception.getMessage()).show();
-        
+
         }
     }
-  
+
     @FXML
     public void cancelarAction(ActionEvent event) {
         this.txtNomeFreelancer.clear();
@@ -114,7 +120,7 @@ public class AdicionarFreelancerUI implements Initializable {
         this.txtCodPostalFreelancer.clear();
         this.txtPassFreelancer.clear();
     }
-    
+
     @FXML
     public void sairAction(ActionEvent event) {
         Window window = btnSair.getScene().getWindow();
