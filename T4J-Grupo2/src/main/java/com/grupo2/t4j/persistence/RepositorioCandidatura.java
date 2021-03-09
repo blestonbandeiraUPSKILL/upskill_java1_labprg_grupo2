@@ -33,6 +33,8 @@ public interface RepositorioCandidatura {
     List<Candidatura> getAllByIdAnuncio(int idAnuncio) throws SQLException;
     
     List<Candidatura> ordenarByValor(List<Candidatura> candidaturas) throws SQLException;
+    
+    List<Candidatura> ordenarByIdCandidatura(List<Candidatura> candidaturas) throws SQLException;
 
     public boolean updateCandidatura(int idCandidatura, double valorPretendido,
             int numeroDias, String txtApresentacao, String txtMotivacao) throws SQLException;
