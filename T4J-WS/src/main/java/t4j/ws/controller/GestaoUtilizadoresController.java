@@ -164,9 +164,9 @@ public class GestaoUtilizadoresController {
                 return  new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
             }
 
-            UtilizadoresService.getUserRolenames(email);
+            RolenameDTO rolenameDTO = UtilizadoresService.getUserRolenames(email);
 
-            return new ResponseEntity<>(HttpStatus.OK);
+            return new ResponseEntity<>(rolenameDTO, HttpStatus.OK);
         }
         catch (Exception exception) {
             return new ResponseEntity<>(new ErroDTO(exception), HttpStatus.INTERNAL_SERVER_ERROR);
