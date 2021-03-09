@@ -8,9 +8,9 @@ IS
 BEGIN
 
     INSERT INTO AppContext
-    (value)
+    (value, timestamp)
     VALUES
-    (p_value)
+    (p_value, sysdate)
     RETURNING idAppContext
     INTO v_idAppContext;   
 

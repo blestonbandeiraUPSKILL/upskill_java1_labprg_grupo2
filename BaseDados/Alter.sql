@@ -203,3 +203,6 @@ ALTER TABLE UserSession
     ADD CONSTRAINT fk_UserSession_emailUtilizador
     FOREIGN KEY (emailUtilizador)
     REFERENCES Utilizador(email);
+    
+ALTER TABLE AppContext
+    MODIFY timestamp date;
