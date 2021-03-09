@@ -99,10 +99,9 @@ public class UtilizadoresService {
 
     public static boolean deleteUserRole(String rolename) throws Exception {
         List<Rolename> rolenames = repositorioRolename.getAll();
+        Rolename rn = repositorioRolename.getRolenameByName(rolename);
 
-        int idRolename = repositorioRolename.getByName(rolename);
-
-        if(rolenames.contains(rolename)) {
+        if(rolenames.contains(rn)) {
             repositorioRolename.deleteRolename(rolename);
             return true;
         }

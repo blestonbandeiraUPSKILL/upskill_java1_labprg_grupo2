@@ -192,4 +192,42 @@ public class RepositorioRolename {
 
         return rolename;
     }
+
+    public Rolename getRolenameByName(String rolename) throws SQLException {
+        Rolename rn = new Rolename();
+
+        Connection connection = DBConnectionHandler.getInstance().openConnection();
+
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(
+                    "SELECT * FROM Rolename WHERE designacao LIKE ?"
+            );
+
+            preparedStatement.setString(1, rolename);
+            preparedStatement.executeQuery();
+
+            ResultSet resultSet = preparedStatement.getResultSet();
+
+            while(resultSet.next()){
+                rn.setIdRolename(resultSet.getInt(1));
+                rn.setDesignacao(rolename);
+            }
+        }
+        catch (SQLException exception) {
+            exception.getSQLState();
+            exception.printStackTrace();
+            try {
+                System.err.print("Transaction is being rolled back");
+                connection.rollback();
+            }
+            catch (SQLException sqlException) {
+                sqlException.getErrorCode();
+            }
+        }
+        finally {
+            DBConnectionHandler.getInstance().closeAll();
+        }
+
+        return rn;
+    }
 }
