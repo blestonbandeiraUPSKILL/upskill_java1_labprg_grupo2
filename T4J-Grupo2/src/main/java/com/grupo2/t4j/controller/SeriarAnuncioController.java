@@ -86,6 +86,10 @@ public class SeriarAnuncioController {
         return repositorioSeriacao.findByAnuncio(idAnuncio).getIdSeriacao();
     }
     
+    public ProcessoSeriacao findSeriacaoByAnuncio(int idAnuncio) throws SQLException{
+        return repositorioSeriacao.findByAnuncio(idAnuncio);
+    }
+    
     public boolean saveClassificacao(int posicao, int idSeriacao, int idCandidatura) throws SQLException{
         return repositorioClassificacao.save(posicao, idSeriacao, idCandidatura);
     }
