@@ -14,7 +14,7 @@ BEGIN
     INSERT INTO UserSession
         (idAppContext, timestamp)
     VALUES
-        (v_idAppContext, CURRENT_TIMESTAMP);
+        (v_idAppContext, current_date);
 
 END;
 /

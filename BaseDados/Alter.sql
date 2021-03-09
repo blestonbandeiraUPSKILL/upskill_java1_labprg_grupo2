@@ -173,7 +173,6 @@ ALTER TABLE Anuncio
 ALTER TABLE Anuncio
     ADD CONSTRAINT ck_Anuncio_dataInicioCandidatura_dataFimCandidatura
     CHECK (dataInicioCandidatura < dataFimCandidatura);
-    
 
 ALTER TABLE Anuncio
     ADD CONSTRAINT fk_Anuncio_idTipoRegimento
@@ -203,3 +202,9 @@ ALTER TABLE UserSession
     ADD CONSTRAINT fk_UserSession_emailUtilizador
     FOREIGN KEY (emailUtilizador)
     REFERENCES Utilizador(email);
+
+ALTER TABLE AppContext
+    ADD CONSTRAINT fk_AppContext_idEstadoContext
+    FOREIGN KEY (idEstadoContext)
+    REFERENCES EstadoContext(idEstadoContext);
+    
