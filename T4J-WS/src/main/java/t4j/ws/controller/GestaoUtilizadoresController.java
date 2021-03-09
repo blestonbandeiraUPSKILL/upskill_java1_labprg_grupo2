@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import t4j.ws.domain.Email;
 import t4j.ws.domain.Password;
-import t4j.ws.domain.Rolename;
 import t4j.ws.dto.*;
 import t4j.ws.service.GestaoUtilizadoresService;
 import t4j.ws.service.UtilizadoresService;
@@ -76,7 +75,7 @@ public class GestaoUtilizadoresController {
             contextoDTO.setAppContext(appContext);
 
             if (!GestaoUtilizadoresService.validateSetUsableContexto(contextoDTO)) {
-                return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+                return new ResponseEntity<>(contextoDTO + ": contexto inválido", HttpStatus.UNAUTHORIZED);
             }
 
             UtilizadorDTO utilizadorDTO = new UtilizadorDTO();

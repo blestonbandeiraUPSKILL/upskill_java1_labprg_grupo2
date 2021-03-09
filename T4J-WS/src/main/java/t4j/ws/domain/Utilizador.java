@@ -99,17 +99,6 @@ public class Utilizador implements Serializable{
                 '}';
     }
 
-    public String toStringComPass(){
-        return String.format("username: %s %nEmail:%s %nPassword: %s "
-                + "%nRolename: %s", username, email.toString(),
-                password.getPasswordText(), rolename.toString());
-    }
-
-    public String toStringSemPass(){
-        return String.format("username: %s %nEmail:%s %nRolename: %s",
-                username, email.toString(), rolename);
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

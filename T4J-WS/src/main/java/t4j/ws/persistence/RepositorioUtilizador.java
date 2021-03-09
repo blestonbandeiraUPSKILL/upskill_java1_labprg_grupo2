@@ -1,7 +1,6 @@
 package t4j.ws.persistence;
 
 import t4j.ws.domain.Password;
-import t4j.ws.domain.Rolename;
 import t4j.ws.domain.Utilizador;
 import t4j.ws.utils.DBConnectionHandler;
 
@@ -61,17 +60,55 @@ public class RepositorioUtilizador {
         return false;
     }
 
+    public boolean saveWithRole(Utilizador utilizador) throws SQLException {
+        Connection connection = DBConnectionHandler.getInstance().openConnection();
+
+        try {
+
+            CallableStatement callableStatement = connection.prepareCall(
+                    "{ CALL createUtilizadorWithRole(?, ?, ?, ?) }"
+            );
+
+            connection.setAutoCommit(false);
+
+            callableStatement.setString(1, utilizador.getEmail().toString());
+            callableStatement.setString(2, utilizador.getUsername());
+            callableStatement.setString(3, utilizador.getPassword().toString());
+            callableStatement.setInt(4, utilizador.getRolename());
+
+            callableStatement.executeQuery();
+
+            connection.commit();
+            return true;
+
+        }
+
+        catch (SQLException exception) {
+            exception.getSQLState();
+            exception.printStackTrace();
+            try {
+                System.err.print("Transaction is being rolled back");
+                connection.rollback();
+            }
+            catch (SQLException sqlException) {
+                sqlException.getErrorCode();
+            }
+        }
+        finally {
+            DBConnectionHandler.getInstance().closeAll();
+        }
+        return false;
+    }
+
     public Utilizador findByEmail(String email) throws SQLException {
         Utilizador utilizador = new Utilizador();
-        Rolename rolename = new Rolename();
+
 
         Connection connection = DBConnectionHandler.getInstance().openConnection();
 
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(
                     "SELECT * FROM Utilizador " +
-                        "INNER JOIN Rolename " +
-                        "ON Utilizador.idRolename = Rolename.idRolename " +
                             "WHERE email LIKE ?"
             );
 
@@ -85,8 +122,7 @@ public class RepositorioUtilizador {
                 utilizador.setEmail(resultSet.getString(1));
                 utilizador.setUsername(resultSet.getString(2));
                 utilizador.setPassword(new Password(resultSet.getString(3)));
-                utilizador.setRolename(resultSet.getInt(6));
-                rolename.setDesignacao(resultSet.getString(7));
+                utilizador.setRolename(resultSet.getInt(4));
             }
         }
 
@@ -116,6 +152,7 @@ public class RepositorioUtilizador {
     }
 
     public boolean addRoleToUser(Utilizador utilizador, String rolename) throws SQLException {
+
         int idRolename = 0;
         Connection connection = DBConnectionHandler.getInstance().openConnection();
 
@@ -191,6 +228,5 @@ public class RepositorioUtilizador {
         return false;
     }
 
-    public void saveWithRole(Utilizador utilizador) {
-    }
+
 }
