@@ -16,36 +16,32 @@
                   <Font name="Calibri" size="14.0" />
                </font>
             </Label>
-            <VBox alignment="CENTER" layoutX="445.0" layoutY="42.0" prefHeight="228.0" prefWidth="216.0">
-               <children>
-                  <Label text="Apresentação">
-                     <VBox.margin>
-                        <Insets bottom="10.0" />
-                     </VBox.margin>
-                     <font>
-                        <Font name="Calibri" size="14.0" />
-                     </font>
-                  </Label>
-                  <TextArea fx:id="txtApresentacao" disable="true" prefHeight="93.0" prefWidth="175.0">
-                     <font>
-                        <Font name="Calibri" size="14.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets bottom="10.0" />
-                     </VBox.margin>
-                  </TextArea>
-                  <Label text="Motivação">
-                     <VBox.margin>
-                        <Insets bottom="10.0" />
-                     </VBox.margin>
-                     <font>
-                        <Font name="Calibri" size="14.0" />
-                     </font>
-                  </Label>
-                  <TextArea fx:id="txtMotivacao" disable="true" prefHeight="134.0" prefWidth="175.0" />
-               </children>
-            </VBox>
-            <VBox alignment="CENTER" layoutX="250.0" layoutY="81.0" prefHeight="150.0" prefWidth="181.0">
+            <Label layoutX="300.0" layoutY="192.0" text="Apresentação">
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+               <font>
+                  <Font name="Calibri" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="514.0" layoutY="42.0" text="Motivação">
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+               <font>
+                  <Font name="Calibri" size="14.0" />
+               </font>
+            </Label>
+            <TextArea fx:id="txtMotivacao" disable="true" layoutX="457.0" layoutY="67.0" prefHeight="134.0" prefWidth="175.0" />
+            <TextArea fx:id="txtApresentacao" disable="true" layoutX="252.0" layoutY="214.0" prefHeight="76.0" prefWidth="175.0">
+               <font>
+                  <Font name="Calibri" size="14.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+            </TextArea>
+            <VBox alignment="CENTER" layoutX="249.0" layoutY="42.0" prefHeight="150.0" prefWidth="181.0">
                <children>
                   <Label text="Valor Pretendido">
                      <VBox.margin>
@@ -86,6 +82,12 @@
                   </TextField>
                </children>
             </VBox>
+            <Label layoutX="505.0" layoutY="214.0" text="Data de Edição">
+               <font>
+                  <Font name="Calibri" size="14.0" />
+               </font>
+            </Label>
+            <TextField fx:id="txtDataEdicao" disable="true" editable="false" layoutX="457.0" layoutY="240.0" prefHeight="25.0" prefWidth="176.0" />
          </children>
       </AnchorPane>
    </center>
