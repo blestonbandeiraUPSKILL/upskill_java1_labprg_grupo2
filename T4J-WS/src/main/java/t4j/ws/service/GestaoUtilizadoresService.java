@@ -38,6 +38,17 @@ public class GestaoUtilizadoresService {
         return contexto.isValido();
     }
 
+    public static boolean validateSetUsableContexto(ContextoDTO contextoDTO) throws SQLException {
+        Contexto contexto = repositorioSessao.findContextByString(contextoDTO.getAppContext());
+
+        if (contexto == null) {
+            return false;
+        }
+        repositorioSessao.setUsableOrDiscarded(contexto);
+        return contexto.isValido();
+
+    }
+
     public static boolean login(LoginDTO loginDTO, ContextoDTO contextoDTO) throws SQLException {
         Utilizador utilizador = repositorioUtilizador.findByEmail(loginDTO.getEmail().toString());
 
@@ -52,7 +63,9 @@ public class GestaoUtilizadoresService {
     }
 
     public static boolean logout(ContextoDTO contextoDTO) throws SQLException {
-        return repositorioSessao.contextInvalid(contextoDTO.getAppContext());
+        Contexto contexto = repositorioSessao.findContextByString(contextoDTO.getAppContext());
+
+        return repositorioSessao.contextInvalid(contexto) ;
     }
 
     public static SessaoDTO getSession(ContextoDTO contextoDTO) throws SQLException {

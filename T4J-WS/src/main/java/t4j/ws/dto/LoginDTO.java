@@ -27,4 +27,9 @@ public class LoginDTO {
     public Password getPassword() {
         return password;
     }
+
+    @Override
+    public String toString() {
+        return "Email:" + email;
+    }
 }
