@@ -179,7 +179,7 @@ public class GestaoUtilizadoresController {
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> addRoleToUser(@RequestParam("app_context") String appContext,
                                            @RequestParam("user_id") String email,
-                                           @RequestParam("rolenames") String designacao) {
+                                           @RequestParam("rolenames") int idRolename) {
         try {
             ContextoDTO contextoDTO = new ContextoDTO();
             contextoDTO.setAppContext(appContext);
@@ -188,7 +188,7 @@ public class GestaoUtilizadoresController {
                 return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
             }
 
-            UtilizadoresService.addRolenameToUser(email, designacao);
+            UtilizadoresService.addRolenameToUser(email, idRolename);
 
             return new ResponseEntity<>(HttpStatus.OK);
         }

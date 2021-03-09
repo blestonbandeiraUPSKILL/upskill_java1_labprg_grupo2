@@ -151,23 +151,11 @@ public class RepositorioUtilizador {
         return null;
     }
 
-    public boolean addRoleToUser(Utilizador utilizador, String rolename) throws SQLException {
+    public boolean addRoleToUser(Utilizador utilizador, int idRolename) throws SQLException {
 
-        int idRolename = 0;
         Connection connection = DBConnectionHandler.getInstance().openConnection();
 
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement(
-                    "SELECT idRolename FROM Rolename WHERE designacao LIKE ?"
-            );
-
-            preparedStatement.setString(1, rolename);
-            preparedStatement.executeQuery();
-
-            ResultSet rs = preparedStatement.getResultSet();
-            while (rs.next()) {
-                idRolename = rs.getInt(1);
-            }
 
             CallableStatement callableStatement = connection.prepareCall(
                     "UPDATE Utilizador " +

@@ -67,21 +67,20 @@ public class UtilizadoresService {
         return rolenameDTO;
     }
 
-    public static boolean addRolenameToUser(String email, String rolename) throws SQLException {
+    public static boolean addRolenameToUser(String email, int idRolename) throws SQLException {
         Utilizador utilizador = repositorioUtilizador.findByEmail(email);
 
         if (utilizador == null) {
             throw new UtilizadorInvalidoException("Utilizador não encontrado");
         }
 
-        int idRolename = repositorioRolename.getByName(rolename);
         utilizador.setRolename(idRolename);
 
         if(idRolename == 0) {
             throw new RolenameAssociationException("Ocorreu um erro ao adicionar o rolename ao utilizador: " + email);
         }
 
-        return repositorioUtilizador.addRoleToUser(utilizador, rolename);
+        return repositorioUtilizador.addRoleToUser(utilizador, idRolename);
     }
 
     public static void createUserRole(RolenameDTO rolenameDTO) throws SQLException {
