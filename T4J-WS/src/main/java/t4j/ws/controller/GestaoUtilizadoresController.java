@@ -189,8 +189,9 @@ public class GestaoUtilizadoresController {
             }
 
             UtilizadoresService.addRolenameToUser(email, idRolename);
+            RolenameDTO rolenameDTO = UtilizadoresService.getUserRolenames(email);
 
-            return new ResponseEntity<>(HttpStatus.OK);
+            return new ResponseEntity<>(rolenameDTO.toString() + " foi atribuído a " + email, HttpStatus.OK);
         }
         catch (Exception exception) {
             return new ResponseEntity<>(new ErroDTO(exception), HttpStatus.INTERNAL_SERVER_ERROR);
@@ -203,7 +204,7 @@ public class GestaoUtilizadoresController {
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> deleteRoleFromUser(@RequestParam("app_context") String appContext,
                                                 @RequestParam("user_id") String email,
-                                                @RequestParam("rolenames") String designacao) {
+                                                @RequestParam("rolenames") int idRolename) {
         try {
             ContextoDTO contextoDTO = new ContextoDTO();
             contextoDTO.setAppContext(appContext);
@@ -212,9 +213,9 @@ public class GestaoUtilizadoresController {
                 return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
             }
 
-            UtilizadoresService.deleteRoleFromUser(email, designacao);
+            UtilizadoresService.deleteRoleFromUser(email, idRolename);
 
-            return new ResponseEntity<>(HttpStatus.OK);
+            return new ResponseEntity<>("Rolename removido com sucesso.", HttpStatus.OK);
         }
         catch (Exception exception) {
             return new ResponseEntity<>(new ErroDTO(exception), HttpStatus.INTERNAL_SERVER_ERROR);

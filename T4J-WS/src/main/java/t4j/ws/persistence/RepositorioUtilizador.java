@@ -147,8 +147,46 @@ public class RepositorioUtilizador {
         return null;
     }
 
-    public Utilizador getByEmail(String email) {
-        return null;
+    public Utilizador getByEmail(String email) throws SQLException {
+       Utilizador utilizador = new Utilizador();
+
+        Connection connection = DBConnectionHandler.getInstance().openConnection();
+
+        try {
+
+            CallableStatement callableStatement = connection.prepareCall(
+                    "SELECT * FROM Utilizador " +
+                            "WHERE email LIKE ?"
+            );
+
+            callableStatement.setString(1, email);
+
+            callableStatement.executeQuery();
+
+            ResultSet resultSet = callableStatement.getResultSet();
+
+            while(resultSet.next()) {
+                utilizador.setEmail(email);
+                utilizador.setUsername(resultSet.getString(2));
+                utilizador.setPassword(new Password(resultSet.getString(3)));
+                utilizador.setRolename(resultSet.getInt(4));
+            }
+        }
+        catch (SQLException exception) {
+            exception.getSQLState();
+            exception.printStackTrace();
+            try {
+                System.err.print("Transaction is being rolled back");
+                connection.rollback();
+            }
+            catch (SQLException sqlException) {
+                sqlException.getErrorCode();
+            }
+        }
+        finally {
+            DBConnectionHandler.getInstance().closeAll();
+        }
+       return utilizador;
     }
 
     public boolean addRoleToUser(Utilizador utilizador, int idRolename) throws SQLException {
@@ -192,7 +230,8 @@ public class RepositorioUtilizador {
 
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(
-                    "DELETE rolename FROM Utilizador WHERE email LIKE ?"
+                    "UPDATE Utilizador " +
+                            "SET idRolename = null WHERE email LIKE ?"
             );
 
             preparedStatement.setString(1, utilizador.getEmail().toString());

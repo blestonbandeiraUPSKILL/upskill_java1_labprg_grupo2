@@ -20,7 +20,7 @@ public class UtilizadoresService {
     private static RepositorioRolename repositorioRolename = RepositorioRolename.getInstance();
     private static RepositorioUtilizador repositorioUtilizador = RepositorioUtilizador.getInstance();
 
-    public static UtilizadorDTO getUtilizador(Email email) {
+    public static UtilizadorDTO getUtilizador(Email email) throws SQLException {
 
         Utilizador utilizador = repositorioUtilizador.getByEmail(email.toString());
 
@@ -111,10 +111,8 @@ public class UtilizadoresService {
         }
     }
 
-    public static boolean deleteRoleFromUser(String email, String rolename) throws Exception {
+    public static boolean deleteRoleFromUser(String email, int idRolename) throws Exception {
         Utilizador utilizador = repositorioUtilizador.getByEmail(email);
-
-        int idRolename = repositorioRolename.getByName(rolename);
 
         if(utilizador.getRolename() == idRolename) {
             repositorioUtilizador.deleteRoleFromUser(utilizador);
