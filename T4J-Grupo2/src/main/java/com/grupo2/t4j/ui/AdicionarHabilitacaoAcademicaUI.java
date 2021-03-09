@@ -27,17 +27,27 @@ public class AdicionarHabilitacaoAcademicaUI implements Initializable {
     private RegistarHabilitacaoAcademicaController registarHabilitacaoAcademicaController;
     private RegistarFreelancerController registarFreelancerController;
     private Stage adicionarStage;
-    
-    @FXML TextField txtNomeFreelancer;
-    @FXML TextField txtGrau;
-    @FXML TextField txtDesignacao;
-    @FXML TextField txtInstituicao;
-    @FXML TextField txtMedia;
-    @FXML ComboBox<Freelancer> cmbEmailFreelancer;
-    @FXML ListView<HabilitacaoAcademica> listaHabilitacaoFreelancer;
-    @FXML Button btnAddHabilitacao;
-    @FXML Button btnCancelar;
-    @FXML Button btnSair;
+
+    @FXML
+    TextField txtNomeFreelancer;
+    @FXML
+    TextField txtGrau;
+    @FXML
+    TextField txtDesignacao;
+    @FXML
+    TextField txtInstituicao;
+    @FXML
+    TextField txtMedia;
+    @FXML
+    ComboBox<Freelancer> cmbEmailFreelancer;
+    @FXML
+    ListView<HabilitacaoAcademica> listaHabilitacaoFreelancer;
+    @FXML
+    Button btnAddHabilitacao;
+    @FXML
+    Button btnCancelar;
+    @FXML
+    Button btnSair;
 
     public void associarParentUI(AdministrativoLogadoUI administrativoLogadoUI) {
         this.administrativoLogadoUI = administrativoLogadoUI;
@@ -48,13 +58,12 @@ public class AdicionarHabilitacaoAcademicaUI implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-                 
+
         adicionarStage = new Stage();
         adicionarStage.initModality(Modality.APPLICATION_MODAL);;
         adicionarStage.setResizable(false);
         registarHabilitacaoAcademicaController = new RegistarHabilitacaoAcademicaController();
         registarFreelancerController = new RegistarFreelancerController();
-
 
         cmbEmailFreelancer.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -74,8 +83,8 @@ public class AdicionarHabilitacaoAcademicaUI implements Initializable {
         } catch (SQLException exception) {
             exception.printStackTrace();
         }
-        
-        cmbEmailFreelancer.setOnAction(new EventHandler<ActionEvent>(){
+
+        cmbEmailFreelancer.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 try {
@@ -87,11 +96,11 @@ public class AdicionarHabilitacaoAcademicaUI implements Initializable {
                 }
             }
         });
-    }  
-   
+    }
+
     @FXML
     void addHabilitacao(ActionEvent event) {
-        try{                      
+        try {
             boolean adicionou = registarHabilitacaoAcademicaController.registarHabilitacaoAcademica(
                     txtGrau.getText(),
                     txtDesignacao.getText(),
@@ -99,7 +108,7 @@ public class AdicionarHabilitacaoAcademicaUI implements Initializable {
                     Double.parseDouble(txtMedia.getText()),
                     cmbEmailFreelancer.getSelectionModel().getSelectedItem().getEmail().getEmailText());
 
-            if(adicionou) {
+            if (adicionou) {
                 updateListViewHabilitacaoFreelancer(
                         cmbEmailFreelancer.getSelectionModel().getSelectedItem().getEmail().getEmailText());
                 this.txtGrau.clear();
@@ -109,17 +118,16 @@ public class AdicionarHabilitacaoAcademicaUI implements Initializable {
                 btnAddHabilitacao.setDisable(true);
 
                 AlertsUI.criarAlerta(Alert.AlertType.INFORMATION,
-                    MainApp.TITULO_APLICACAO, "Registar Habilitação Académica.",
+                        MainApp.TITULO_APLICACAO, "Registar Habilitação Académica.",
                         "Habilitação Académica registada com sucesso.").show();
             }
-        }
-        catch (IllegalArgumentException | SQLException exception) {
+        } catch (IllegalArgumentException | SQLException exception) {
             AlertsUI.criarAlerta(Alert.AlertType.ERROR,
                     MainApp.TITULO_APLICACAO,
                     "Registar Habilitação Académica - Erro nos dados.",
                     "Não foi possível registar a Habilitação Académica." + exception.getMessage()).show();
-        
-        } 
+
+        }
     }
 
     @FXML
@@ -127,12 +135,12 @@ public class AdicionarHabilitacaoAcademicaUI implements Initializable {
         this.txtGrau.clear();
         this.txtDesignacao.clear();
         this.txtInstituicao.clear();
-        this.txtMedia.clear();  
+        this.txtMedia.clear();
     }
 
     @FXML
     public void sairAction(ActionEvent event) {
-         Window window = btnSair.getScene().getWindow();
+        Window window = btnSair.getScene().getWindow();
         window.setOnCloseRequest(new EventHandler<WindowEvent>() {
             @Override
             public void handle(WindowEvent windowEvent) {
@@ -148,16 +156,15 @@ public class AdicionarHabilitacaoAcademicaUI implements Initializable {
         });
         window.fireEvent(new WindowEvent(window, WindowEvent.WINDOW_CLOSE_REQUEST));
     }
-    
-    
+
     public void updateListViewHabilitacaoFreelancer(String emailFreelancer) throws SQLException {
-         listaHabilitacaoFreelancer.getItems().setAll(
-                 registarHabilitacaoAcademicaController.getAll(emailFreelancer));
+        listaHabilitacaoFreelancer.getItems().setAll(
+                registarHabilitacaoAcademicaController.getAll(emailFreelancer));
     }
-    
+
     public void updateTxtNomeFreelancer(ActionEvent actionEvent) throws SQLException {
         String emailFreelancer = cmbEmailFreelancer.getSelectionModel().getSelectedItem().getEmail().getEmailText();
         txtNomeFreelancer.setText(registarFreelancerController.findByEmail(emailFreelancer).getNome());
     }
-     
+
 }

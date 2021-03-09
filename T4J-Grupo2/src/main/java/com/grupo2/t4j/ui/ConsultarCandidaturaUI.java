@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.grupo2.t4j.ui;
 
 import com.grupo2.t4j.controller.EditarCandidaturaController;
@@ -107,10 +102,10 @@ public class ConsultarCandidaturaUI implements Initializable {
         
         try {
             boolean editou = editarCandidaturaController.updateCandidatura(idCandidatura, Double.parseDouble(txtValor.getText()),
-                Integer.parseInt(txtDias.getText()), txtApresentacao.getText(),
-                txtMotivacao.getText());
+                    Integer.parseInt(txtDias.getText()), txtApresentacao.getText(),
+                    txtMotivacao.getText());
 
-            if(editou) {
+            if (editou) {
 
                 freelancerLogadoUI.updateTableViewCandidaturas();
                 btnVoltar.setText("Voltar");
@@ -124,15 +119,13 @@ public class ConsultarCandidaturaUI implements Initializable {
 
             }
 
-        }
-        catch (IllegalArgumentException | SQLException exception) {
+        } catch (IllegalArgumentException | SQLException exception) {
             AlertsUI.criarAlerta(Alert.AlertType.ERROR,
                     MainApp.TITULO_APLICACAO,
                     "Editar Candidatura - Erro nos dados.",
                     "Não foi possível Editar a candidatura: " + exception.getMessage()).show();
         }
-        
-        
+
     }
 
     public void voltarAction(ActionEvent actionEvent) {
