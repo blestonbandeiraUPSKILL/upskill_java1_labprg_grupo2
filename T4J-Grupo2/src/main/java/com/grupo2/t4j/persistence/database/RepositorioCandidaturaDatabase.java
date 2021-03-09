@@ -159,6 +159,7 @@ public class RepositorioCandidaturaDatabase implements RepositorioCandidatura {
             preparedStatement.setString(1, emailFreelancer);
             ResultSet resultSet = preparedStatement.executeQuery();
 
+            String dataEdicaoCandidatura="";
             while (resultSet.next()) {
 
                 int idCandidatura = resultSet.getInt(1);
@@ -172,7 +173,6 @@ public class RepositorioCandidaturaDatabase implements RepositorioCandidatura {
                 candidaturasFreelancer.add(new Candidatura(idCandidatura, valorPretendido,
                         numeroDias, txtApresentacao, txtMotivacao, idAnuncio, emailFreelancer,
                         dataCandidatura));
-
             }
 
         } catch (SQLException exceptionOrg) {

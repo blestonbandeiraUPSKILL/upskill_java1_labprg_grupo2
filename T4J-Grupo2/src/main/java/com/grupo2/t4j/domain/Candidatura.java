@@ -111,7 +111,7 @@ public class Candidatura implements Serializable {
         setIdAnuncio(idAnuncio);
         setEmailFreelancer(emailFreelancer);
         setData(dataCandidatura);
-        setDataEdicao(dataCandidatura);
+
     }
     
     /**

@@ -6,14 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="8ca9f66f-f143-4134-afe5-eb7245bd0a9c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../T4J-WS/src/main/java/t4j/ws/controller/GestaoUtilizadoresController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../T4J-WS/src/main/java/t4j/ws/controller/GestaoUtilizadoresController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../T4J-WS/src/main/java/t4j/ws/domain/Rolename.java" beforeDir="false" afterPath="$PROJECT_DIR$/../T4J-WS/src/main/java/t4j/ws/domain/Rolename.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../T4J-WS/src/main/java/t4j/ws/domain/Utilizador.java" beforeDir="false" afterPath="$PROJECT_DIR$/../T4J-WS/src/main/java/t4j/ws/domain/Utilizador.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../T4J-WS/src/main/java/t4j/ws/dto/Mapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/../T4J-WS/src/main/java/t4j/ws/dto/Mapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../T4J-WS/src/main/java/t4j/ws/persistence/RepositorioRolename.java" beforeDir="false" afterPath="$PROJECT_DIR$/../T4J-WS/src/main/java/t4j/ws/persistence/RepositorioRolename.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../T4J-WS/src/main/java/t4j/ws/persistence/RepositorioUtilizador.java" beforeDir="false" afterPath="$PROJECT_DIR$/../T4J-WS/src/main/java/t4j/ws/persistence/RepositorioUtilizador.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../T4J-WS/src/main/java/t4j/ws/service/GestaoUtilizadoresService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../T4J-WS/src/main/java/t4j/ws/service/GestaoUtilizadoresService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../T4J-WS/src/main/java/t4j/ws/service/UtilizadoresService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../T4J-WS/src/main/java/t4j/ws/service/UtilizadoresService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/domain/Candidatura.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/domain/Candidatura.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/persistence/database/RepositorioCandidaturaDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/persistence/database/RepositorioCandidaturaDatabase.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -340,16 +334,6 @@
           <url>file://$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/PublicarTarefaUI.java</url>
           <line>65</line>
           <option name="timeStamp" value="362" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/FreelancerLogadoUI.java</url>
-          <line>121</line>
-          <option name="timeStamp" value="382" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/FreelancerLogadoUI.java</url>
-          <line>195</line>
-          <option name="timeStamp" value="386" />
         </line-breakpoint>
         <breakpoint type="java-exception">
           <properties class="java.lang.IllegalArgumentException" package="java.lang" />
