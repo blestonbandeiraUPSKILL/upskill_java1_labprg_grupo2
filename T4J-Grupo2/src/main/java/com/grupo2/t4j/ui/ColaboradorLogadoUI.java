@@ -51,8 +51,9 @@ public class ColaboradorLogadoUI implements Initializable {
     @FXML Button btnPublicarTarefa;
     @FXML Button btnConsultarAnuncio;
     @FXML Button btnConsultarCandidaturaFreelancer;    
-    @FXML Button btnSeriacao;
-    @FXML TextField txtDataSeriacao;
+    @FXML Button btnSeriacaoAutomatica;
+    @FXML Button btnSeriacaoManual;
+    //@FXML TextField txtDataSeriacao;
     
     @FXML TableView<Tarefa> tabelaTarefas;
     @FXML TableColumn<Object, Object> colunaReferencia;
@@ -114,12 +115,12 @@ public class ColaboradorLogadoUI implements Initializable {
             exception.printStackTrace();
         }
         
-        try{
+        /*try{
             tabelaFreelancers.getItems().setAll(seriarAnuncioController.getAllByIdAnuncio(getIdAnuncio()));
             preencherTabelaFreelancer ();
         } catch (SQLException exception) {
             exception.printStackTrace();
-        }
+        }*/
     }
 
     public void updateTableViewTarefas() throws SQLException {
@@ -351,11 +352,23 @@ public class ColaboradorLogadoUI implements Initializable {
     
    
     
-    public void navigateSeriacao(ActionEvent event){
+    public void seriacaoAutomaticaAction(ActionEvent event) throws SQLException{
+        try{
+            String referenciaTarefa = cmbAnuncio.getSelectionModel().getSelectedItem();
+            String nifOrganizacao = getNifOrganizacao();
+            int idAnuncio = registarTarefaController.findIdAnuncio(nifOrganizacao, referenciaTarefa);
+            List<Candidatura> candidaturas = seriarAnuncioController.getAllByIdAnuncio(idAnuncio);
+            List<Candidatura> candidaturasOrdenadas = seriarAnuncioController.ordenarByValor(candidaturas);
+        } catch(SQLException exception){
+             exception.printStackTrace();
+        }
+        
         
     }
     
-    
+     public void seriacaoManualAction(ActionEvent event){
+        
+    }
     
     
   
