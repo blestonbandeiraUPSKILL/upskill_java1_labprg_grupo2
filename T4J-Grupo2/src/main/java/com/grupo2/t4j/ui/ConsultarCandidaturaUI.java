@@ -35,24 +35,16 @@ import javafx.stage.Stage;
  */
 public class ConsultarCandidaturaUI implements Initializable {
 
-    @FXML
-    Button btnEditarDados;
-    @FXML
-    Button btnApagar;
-    @FXML
-    Button btnVoltar;
-    @FXML
-    Button btnGuardar;
-    @FXML
-    TextArea txtAnuncio;
-    @FXML
-    TextArea txtApresentacao;
-    @FXML
-    TextArea txtMotivacao;
-    @FXML
-    TextField txtValor;
-    @FXML
-    TextField txtDias;
+    @FXML Button btnEditarDados;
+    @FXML Button btnApagar;
+    @FXML Button btnVoltar;
+    @FXML Button btnGuardar;
+    @FXML TextArea txtAnuncio;
+    @FXML TextArea txtApresentacao;
+    @FXML TextArea txtMotivacao;
+    @FXML TextField txtValor;
+    @FXML TextField txtDias;
+    @FXML TextField txtDataEdicao;
 
     private Stage adicionarStage;
     private FreelancerLogadoUI freelancerLogadoUI;
@@ -102,6 +94,7 @@ public class ConsultarCandidaturaUI implements Initializable {
         txtValor.setText(String.valueOf(freelancerLogadoUI.listViewCandidaturas.getSelectionModel().getSelectedItem().getValorPretendido()));
         txtDias.setText(String.valueOf(freelancerLogadoUI.listViewCandidaturas.getSelectionModel().getSelectedItem().getNumeroDias()));
         txtAnuncio.setText(registarTarefaController.findTarefa(getIdAnuncio()).toStringCompleto());
+        txtDataEdicao.setText(freelancerLogadoUI.listViewCandidaturas.getSelectionModel().getSelectedItem().getDataEdicaoCandidatura());
     }
 
     public void guardarAction(ActionEvent actionEvent) throws SQLException {
@@ -123,7 +116,7 @@ public class ConsultarCandidaturaUI implements Initializable {
                         "Editar Candidatura.",
                         "Candidatura editada com sucesso.").show();
 
-                //((Node) actionEvent.getSource()).getScene().getWindow().hide();
+                ((Node) actionEvent.getSource()).getScene().getWindow().hide();
 
             }
 

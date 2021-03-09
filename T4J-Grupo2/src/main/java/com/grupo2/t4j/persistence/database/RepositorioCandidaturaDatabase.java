@@ -160,6 +160,7 @@ public class RepositorioCandidaturaDatabase implements RepositorioCandidatura{
             preparedStatement.setString(1, emailFreelancer);
             ResultSet resultSet = preparedStatement.executeQuery();
 
+            
             while (resultSet.next()) {
 
                 int idCandidatura = resultSet.getInt(1);
@@ -169,11 +170,11 @@ public class RepositorioCandidaturaDatabase implements RepositorioCandidatura{
                 String txtMotivacao = resultSet.getString(5);
                 int idAnuncio = resultSet.getInt(6);
                 String dataCandidatura = resultSet.getDate(8).toString();
+                String dataEdicaoCandidatura = resultSet.getDate(9).toString();
 
                 candidaturasFreelancer.add(new Candidatura(idCandidatura, valorPretendido,
                         numeroDias, txtApresentacao, txtMotivacao, idAnuncio, emailFreelancer,
-                        dataCandidatura));
-
+                        dataCandidatura, dataEdicaoCandidatura));
             }
 
         } catch (SQLException exceptionOrg) {
@@ -292,7 +293,7 @@ public class RepositorioCandidaturaDatabase implements RepositorioCandidatura{
                             + "numeroDias = ?, "
                             + "txtApresentacao = ?, "
                             + "txtMotivacao = ?, "
-                            + "dataEdicaoCandidatura = trunc(sysdate) "
+                            + "dataEdicaoCandidatura = sysdate "
                     + "WHERE idCandidatura = ? "
             );
 
