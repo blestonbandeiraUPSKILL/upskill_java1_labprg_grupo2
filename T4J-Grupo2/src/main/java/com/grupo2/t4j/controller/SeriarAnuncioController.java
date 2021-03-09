@@ -74,6 +74,10 @@ public class SeriarAnuncioController {
         return repositorioCandidatura.getAllByIdAnuncio(idAnuncio);
     }
     
+    public List<Candidatura> ordenarByValor(List<Candidatura> candidaturas) throws SQLException{
+        return repositorioCandidatura.ordenarByValor(candidaturas);
+    }
+    
     public boolean saveSeriacao(int idAnuncio)throws SQLException{
         return repositorioSeriacao.save(idAnuncio);
     }
@@ -84,6 +88,16 @@ public class SeriarAnuncioController {
     
     public boolean saveClassificacao(int posicao, int idSeriacao, int idCandidatura) throws SQLException{
         return repositorioClassificacao.save(posicao, idSeriacao, idCandidatura);
+    }
+    
+    public boolean saveClassificacaoAutomatica(List<Candidatura> candidaturasOrdenadas, int idSeriacao) throws SQLException{
+        int posicao = 1;
+        boolean adicionou = false;
+        for(Candidatura c : candidaturasOrdenadas){
+            adicionou = repositorioClassificacao.save(posicao, idSeriacao, c.getIdCandidatura());
+            posicao++;
+        }
+        return adicionou;
     }
     
     public List<Classificacao> getAllBySeriacao(int idSeriacao)throws SQLException{
@@ -104,6 +118,14 @@ public class SeriarAnuncioController {
     
     public boolean update(String emailColaborador, int idSeriacao) throws SQLException{
         return repositorioColaboradorSeriacao.update(emailColaborador, idSeriacao);
+    }
+    
+    public boolean saveListaColaboradores(List<String> emailColaboradores, int idSeriacao) throws SQLException{
+        boolean adicionou = false;
+        for(String email : emailColaboradores){
+            adicionou = repositorioColaboradorSeriacao.update(email, idSeriacao);
+        }
+        return adicionou;
     }
     
     

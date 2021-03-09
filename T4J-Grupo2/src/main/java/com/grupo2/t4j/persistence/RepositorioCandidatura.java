@@ -30,7 +30,9 @@ public interface RepositorioCandidatura {
 
     ArrayList<Candidatura> getAll()throws SQLException;  
     
-    List<Candidatura> getAllByIdAnuncio(int idAnuncio) throws SQLException;  
+    List<Candidatura> getAllByIdAnuncio(int idAnuncio) throws SQLException;
+    
+    List<Candidatura> ordenarByValor(List<Candidatura> candidaturas) throws SQLException;
 
     public boolean updateCandidatura(int idCandidatura, double valorPretendido,
             int numeroDias, String txtApresentacao, String txtMotivacao) throws SQLException;
@@ -38,7 +40,7 @@ public interface RepositorioCandidatura {
     boolean deleteCandidatura(int idCandidatura) throws SQLException;
 
 
-    public List<Integer> getAllCandidaturasEditaveis(String emailFreelancer)throws SQLException;
+    List<Integer> getAllCandidaturasEditaveis(String emailFreelancer)throws SQLException;
 
     
 }

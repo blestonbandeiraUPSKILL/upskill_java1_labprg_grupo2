@@ -37,7 +37,9 @@ public class ConsultarCandidaturaFreelancerUI implements Initializable{
     
     @FXML private TextField txtEmail;
     
-    @FXML private TextField txtLocalidade;
+    @FXML private TextField txtApresentacao;
+    
+    @FXML private TextField txtMotivacao;
    
     @FXML ListView<HabilitacaoAcademica>listaHabilitacoes;
     
@@ -71,7 +73,7 @@ public class ConsultarCandidaturaFreelancerUI implements Initializable{
     @Override
     public void initialize(URL url, ResourceBundle rb){
 
-        
+        registarFreelancerController = new RegistarFreelancerController();
         try {
             registarTarefaController = new RegistarTarefaController();
             
@@ -96,7 +98,8 @@ public class ConsultarCandidaturaFreelancerUI implements Initializable{
         txtNome.setText(registarFreelancerController.findByEmail(email).getNome());
         txtNIF.setText(registarFreelancerController.findByEmail(email).getNif());
         txtEmail.setText(email);
-        txtLocalidade.setText(registarFreelancerController.getEnderecoPostal(email).getLocalidade());
+        txtApresentacao.setText(colaboradorLogadoUI.tabelaFreelancers.getSelectionModel().getSelectedItem().getApresentacao());
+        txtMotivacao.setText(colaboradorLogadoUI.tabelaFreelancers.getSelectionModel().getSelectedItem().getMotivacao());
         listaHabilitacoes.getItems().setAll(registarFreelancerController.getAllHabsAcademicas(email));
         listaCompetencias.getItems().setAll(registarFreelancerController.getAllReconhecimentoGP(email));
         txtCustoAnuncio.setText(Double.toString(registarTarefaController.findTarefa(idAnuncio).getCustoEst()));

@@ -7,7 +7,7 @@ package com.grupo2.t4j.ui;
 
 /**
  *
- * @author carol
+ * @author CAD
  */
 import com.grupo2.t4j.controller.*;
 import javafx.fxml.FXML;

@@ -86,8 +86,9 @@ public class GestaoUtilizadoresController {
             utilizadorDTO.setRolename(rolename);
 
             UtilizadoresService.registerUserWithRoles(utilizadorDTO, rolename);
+            RolenameDTO rolenameDTO = UtilizadoresService.getUserRolenames(email);
 
-            return new ResponseEntity<>(HttpStatus.OK);
+            return new ResponseEntity<>(rolenameDTO, HttpStatus.OK);
         }
         catch (Exception exception) {
             return new ResponseEntity<>(new ErroDTO(exception), HttpStatus.INTERNAL_SERVER_ERROR);
@@ -281,7 +282,7 @@ public class GestaoUtilizadoresController {
             contextoDTO.setAppContext(appContext);
 
             if (!GestaoUtilizadoresService.validateContexto(contextoDTO)) {
-                return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+                return new ResponseEntity<>(contextoDTO.toString() + " inválido", HttpStatus.UNAUTHORIZED);
             }
 
             UtilizadoresService.deleteUserRole(designacao);
