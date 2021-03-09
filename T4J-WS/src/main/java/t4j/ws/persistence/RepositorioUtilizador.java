@@ -21,38 +21,14 @@ public class RepositorioUtilizador {
         return repositorioUtilizador;
     }
 
-    public boolean save(Utilizador utilizador) throws SQLException {
+    public boolean saveWithoutRole(Utilizador utilizador) throws SQLException {
 
         Connection connection = DBConnectionHandler.getInstance().openConnection();
 
         try {
 
-            int idRolename = 0;
-            String rolename = "";
-            if (utilizador.getRolename().toString() != null) {
-                rolename = utilizador.getRolename().toString();
-            }
-            else {
-                rolename = "";
-            }
-
-            PreparedStatement preparedStatement = connection.prepareStatement(
-                    "Select idRolename INNER JOIN Rolename " +
-                            "ON Rolename.idRolename = Utilizador.idRolename " +
-                            "WHERE Rolename.designacao LIKE ?"
-            );
-
-            preparedStatement.setString(1, rolename);
-            preparedStatement.executeQuery();
-
-            ResultSet resultSet = preparedStatement.getResultSet();
-
-            while(resultSet.next()) {
-                idRolename = resultSet.getInt(1);
-            }
-
             CallableStatement callableStatement = connection.prepareCall(
-                    "{ CALL createUtilizador(?, ?, ?, ?) }"
+                    "{ CALL createUtilizadorWithoutRole(?, ?, ?) }"
             );
 
             connection.setAutoCommit(false);
@@ -60,7 +36,6 @@ public class RepositorioUtilizador {
             callableStatement.setString(1, utilizador.getEmail().toString());
             callableStatement.setString(2, utilizador.getUsername());
             callableStatement.setString(3, utilizador.getPassword().toString());
-            callableStatement.setInt(4, idRolename);
 
             callableStatement.executeQuery();
 

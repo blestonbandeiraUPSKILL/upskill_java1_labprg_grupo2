@@ -37,7 +37,7 @@ public class UtilizadoresService {
         Utilizador utilizador = Mapper.utilizadorDTO2Utilizador(utilizadorDTO);
 
         RepositorioUtilizador repositorioUtilizador = RepositorioUtilizador.getInstance();
-        repositorioUtilizador.save(utilizador);
+        repositorioUtilizador.saveWithoutRole(utilizador);
     }
 
     public static void registerUserWithRoles(UtilizadorDTO utilizadorDTO, Rolename rolename) throws SQLException {
