@@ -11,7 +11,7 @@
       <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
             <TextArea fx:id="txtAnuncio" disable="true" layoutX="33.0" layoutY="67.0" prefHeight="224.0" prefWidth="200.0" />
-            <Label layoutX="33.0" layoutY="42.0" text="Detalhes :">
+            <Label layoutX="33.0" layoutY="42.0" text="Detalhes da Tarefa :">
                <font>
                   <Font name="Calibri" size="14.0" />
                </font>
@@ -32,8 +32,8 @@
                   <Font name="Calibri" size="14.0" />
                </font>
             </Label>
-            <TextArea fx:id="txtMotivacao" disable="true" layoutX="457.0" layoutY="67.0" prefHeight="134.0" prefWidth="175.0" />
-            <TextArea fx:id="txtApresentacao" disable="true" layoutX="252.0" layoutY="214.0" prefHeight="76.0" prefWidth="175.0">
+            <TextArea fx:id="txtMotivacao" editable="false" layoutX="457.0" layoutY="67.0" prefHeight="134.0" prefWidth="175.0" />
+            <TextArea fx:id="txtApresentacao" editable="false" layoutX="252.0" layoutY="214.0" prefHeight="76.0" prefWidth="175.0">
                <font>
                   <Font name="Calibri" size="14.0" />
                </font>
@@ -51,7 +51,7 @@
                         <Font name="Calibri" size="14.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="txtValor" disable="true" promptText="€">
+                  <TextField fx:id="txtValor" editable="false" promptText="€">
                      <VBox.margin>
                         <Insets bottom="10.0" left="20.0" right="20.0" />
                      </VBox.margin>
@@ -72,7 +72,7 @@
                         <Font name="Calibri" size="14.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="txtDias" alignment="CENTER" disable="true" promptText="(número de dias)">
+                  <TextField fx:id="txtDias" alignment="CENTER" editable="false" promptText="(número de dias)">
                      <VBox.margin>
                         <Insets bottom="10.0" left="20.0" right="20.0" />
                      </VBox.margin>
@@ -82,12 +82,12 @@
                   </TextField>
                </children>
             </VBox>
-            <Label layoutX="505.0" layoutY="214.0" text="Data de Edição">
+            <Label layoutX="482.0" layoutY="214.0" text="Data da Última Edição">
                <font>
                   <Font name="Calibri" size="14.0" />
                </font>
             </Label>
-            <TextField fx:id="txtDataEdicao" disable="true" editable="false" layoutX="457.0" layoutY="240.0" prefHeight="25.0" prefWidth="176.0" />
+            <TextField fx:id="txtDataEdicao" editable="false" layoutX="457.0" layoutY="240.0" prefHeight="25.0" prefWidth="176.0" />
          </children>
       </AnchorPane>
    </center>
@@ -109,15 +109,29 @@
                   <Font name="Calibri" size="14.0" />
                </font>
             </Button>
+            <Button fx:id="btnCancelar" mnemonicParsing="false" onAction="#cancelarAction" styleClass="btnSair" text="Cancelar" visible="false">
+               <font>
+                  <Font name="Calibri" size="14.0" />
+               </font>
+               <FlowPane.margin>
+                  <Insets left="30.0" right="50.0" />
+               </FlowPane.margin>
+            </Button>
             <Button fx:id="btnEditarDados" disable="true" mnemonicParsing="false" onAction="#editarDados" styleClass="btnConfirmar" text="Editar dados">
                <font>
                   <Font name="Calibri" size="14.0" />
                </font>
+               <FlowPane.margin>
+                  <Insets right="5.0" />
+               </FlowPane.margin>
             </Button>
             <Button fx:id="btnVoltar" layoutX="630.0" layoutY="25.0" mnemonicParsing="false" onAction="#voltarAction" styleClass="btnSair" text="Voltar">
                <font>
                   <Font name="Calibri" size="14.0" />
                </font>
+               <FlowPane.margin>
+                  <Insets right="10.0" />
+               </FlowPane.margin>
             </Button>
          </children>
       </FlowPane>

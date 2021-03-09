@@ -39,7 +39,7 @@ public class FreelancerLogadoUI implements Initializable {
     private EliminarCandidaturaController eliminarCandidaturaController;
     private Scene sceneConsultarCandidatura;
 
-    @FXML ListView<Candidatura> listViewCandidaturas;
+
     @FXML Button btnSair;
  ///// Tabela Anuncios //////////////
     @FXML TableColumn<Object, Object> colunaReferencia;
@@ -93,7 +93,7 @@ public class FreelancerLogadoUI implements Initializable {
         }
 
         try {
-            updateListViewCandidaturas();
+            updateTableViewCandidaturas();
         } catch (SQLException exception) {
             exception.printStackTrace();
         }
@@ -189,12 +189,16 @@ public class FreelancerLogadoUI implements Initializable {
         }
     }
 
-    public void updateListViewCandidaturas() throws SQLException {
+    public void updateTableViewCandidaturas() throws SQLException {
 
         String emailFreelancer = gestaoUtilizadoresController.getEmail();
-        //listViewCandidaturas.getItems().setAll(efectuarCandidaturaController.findByEmail(emailFreelancer));
         tabelaCandidaturas.getItems().setAll(efectuarCandidaturaController.findByEmail(emailFreelancer));
         
+        txtIdCandidatura.setCellValueFactory(new PropertyValueFactory<>("idCandidatura"));
+        txtValorPretendido.setCellValueFactory(new PropertyValueFactory<>("valorPretendido"));
+        txtDuracaoEstimada.setCellValueFactory(new PropertyValueFactory<>("numeroDias"));
+        txtDataCandidatura.setCellValueFactory(new PropertyValueFactory<>("dataCandidatura"));
+        txtDataEdicao.setCellValueFactory(new PropertyValueFactory<>("dataEdicaoCandidatura"));
         
     }
 
@@ -206,7 +210,7 @@ public class FreelancerLogadoUI implements Initializable {
             boolean apaga = eliminarCandidaturaController.deleteCandidatura(idCandidatura);
 
             if (apaga) {
-                updateListViewCandidaturas();
+                updateTableViewCandidaturas();
 
                 AlertsUI.criarAlerta(Alert.AlertType.INFORMATION,
                         MainApp.TITULO_APLICACAO,
@@ -233,7 +237,7 @@ public class FreelancerLogadoUI implements Initializable {
             sceneConsultarCandidatura = new Scene(rootConsultarCandidatura);
 
             adicionarStage.setScene(sceneConsultarCandidatura);
-            adicionarStage.setTitle("Consultar Competência Técnica");
+            adicionarStage.setTitle("Consultar Candidatura");
             adicionarStage.show();
 
         } catch (IOException /*| SQLException*/ exception) {
@@ -246,7 +250,7 @@ public class FreelancerLogadoUI implements Initializable {
     }
 
     public int getIdCandidatura() throws SQLException {
-        int idCandidatura = listViewCandidaturas.getSelectionModel().getSelectedItem().getIdCandidatura();
+        int idCandidatura = tabelaCandidaturas.getSelectionModel().getSelectedItem().getIdCandidatura();
 
         return idCandidatura;
     }
