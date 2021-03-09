@@ -109,7 +109,13 @@ public class RepositorioSessao {
             while(resultSet.next()) {
                 contexto.setIdContexto(resultSet.getInt(1));
                 contexto.setContexto(resultSet.getString(2));
-                contexto.setValido(resultSet.getBoolean(3));
+                int idEstadoContext = resultSet.getInt(3);
+                if(idEstadoContext == 2) {
+                    contexto.setValido(true);
+                }
+                else if(idEstadoContext == 3) {
+                    contexto.setValido(false);
+                }
             }
         }
         catch (SQLException exception) {

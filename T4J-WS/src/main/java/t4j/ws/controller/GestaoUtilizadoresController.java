@@ -46,7 +46,7 @@ public class GestaoUtilizadoresController {
             contextoDTO.setAppContext(appContext);
 
             if (!GestaoUtilizadoresService.validateSetUsableContexto(contextoDTO)) {
-                return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+                return new ResponseEntity<>(contextoDTO.toString() + ": contexto inválido.", HttpStatus.UNAUTHORIZED);
             }
 
             UtilizadorDTO utilizadorDTO = new UtilizadorDTO();

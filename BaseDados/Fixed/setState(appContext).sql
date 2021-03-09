@@ -19,7 +19,7 @@ BEGIN
     FROM AppContext
     WHERE value LIKE p_context;
 
-    IF (((sysdate - (v_timestamp + (10/(24*60*60))))*(24*60*60)) <= 10) THEN 
+    IF (v_timestamp +(20/(24*60)) > sysdate ) THEN 
         v_idEstadoContext := 2;
     ELSE
        v_idEstadoContext := 3;
