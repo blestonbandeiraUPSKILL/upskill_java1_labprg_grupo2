@@ -85,8 +85,8 @@ public class RepositorioUtilizador {
                 utilizador.setEmail(resultSet.getString(1));
                 utilizador.setUsername(resultSet.getString(2));
                 utilizador.setPassword(new Password(resultSet.getString(3)));
-                rolename.setDesignacao(resultSet.getString(6));
-                utilizador.setRolename(rolename);
+                utilizador.setRolename(resultSet.getInt(6));
+                rolename.setDesignacao(resultSet.getString(7));
             }
         }
 

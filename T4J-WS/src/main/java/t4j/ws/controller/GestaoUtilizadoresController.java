@@ -70,7 +70,7 @@ public class GestaoUtilizadoresController {
                                                    @RequestParam("username") String username,
                                                    @RequestParam("user_id") String email,
                                                    @RequestParam("password") String password,
-                                                   @RequestParam("rolenames") Rolename rolename) {
+                                                   @RequestParam("rolenames") int idRolename) {
         try {
             ContextoDTO contextoDTO = new ContextoDTO();
             contextoDTO.setAppContext(appContext);
@@ -83,9 +83,9 @@ public class GestaoUtilizadoresController {
             utilizadorDTO.setEmail(email);
             utilizadorDTO.setUsername(username);
             utilizadorDTO.setPassword(new Password(password));
-            utilizadorDTO.setRolename(rolename);
+            utilizadorDTO.setRolename(idRolename);
 
-            UtilizadoresService.registerUserWithRoles(utilizadorDTO, rolename);
+            UtilizadoresService.registerUserWithRoles(utilizadorDTO, idRolename);
             RolenameDTO rolenameDTO = UtilizadoresService.getUserRolenames(email);
 
             return new ResponseEntity<>(rolenameDTO, HttpStatus.OK);

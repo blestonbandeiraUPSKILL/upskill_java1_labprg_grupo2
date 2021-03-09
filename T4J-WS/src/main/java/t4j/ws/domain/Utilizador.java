@@ -22,7 +22,7 @@ public class Utilizador implements Serializable{
     private String username;
     private Email email;
     private Password password;
-    private Rolename rolename;
+    private int idRolename;
 
     public Utilizador(){
     }
@@ -37,14 +37,14 @@ public class Utilizador implements Serializable{
         this.email = utilizador.getEmail();
         this.username = utilizador.getUsername();
         this.password = utilizador.getPassword();
-        this.rolename = utilizador.getRolename();
+        this.idRolename = utilizador.getRolename();
     }
 
-    public Utilizador(String emailUtilizador, String username, String password, Rolename rolename) {
+    public Utilizador(String emailUtilizador, String username, String password, int idRolename) {
         setEmail(new Email(emailUtilizador));
         setUsername(username);
         setPassword(new Password(password));
-        setRolename(new Rolename(rolename));
+        setRolename(idRolename);
 
     }
 
@@ -72,8 +72,8 @@ public class Utilizador implements Serializable{
         this.password = password;
     }
 
-    public void setRolename(Rolename rolename){
-        this.rolename = rolename;
+    public void setRolename(int idRolename){
+        this.idRolename = idRolename;
     }
 
     public String getUsername(){
@@ -88,8 +88,8 @@ public class Utilizador implements Serializable{
         return password;
     } 
 
-    public Rolename getRolename(){
-        return rolename;
+    public int getRolename(){
+        return idRolename;
     }
 
     @Override
