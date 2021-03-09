@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.grupo2.t4j.ui;
 
 import com.grupo2.t4j.controller.EditarCandidaturaController;
@@ -35,16 +30,26 @@ import javafx.stage.Stage;
  */
 public class ConsultarCandidaturaUI implements Initializable {
 
-    @FXML Button btnEditarDados;
-    @FXML Button btnApagar;
-    @FXML Button btnVoltar;
-    @FXML Button btnGuardar;
-    @FXML TextArea txtAnuncio;
-    @FXML TextArea txtApresentacao;
-    @FXML TextArea txtMotivacao;
-    @FXML TextField txtValor;
-    @FXML TextField txtDias;
-    @FXML TextField txtDataEdicao;
+    @FXML
+    Button btnEditarDados;
+    @FXML
+    Button btnApagar;
+    @FXML
+    Button btnVoltar;
+    @FXML
+    Button btnGuardar;
+    @FXML
+    TextArea txtAnuncio;
+    @FXML
+    TextArea txtApresentacao;
+    @FXML
+    TextArea txtMotivacao;
+    @FXML
+    TextField txtValor;
+    @FXML
+    TextField txtDias;
+    @FXML
+    TextField txtDataEdicao;
 
     private Stage adicionarStage;
     private FreelancerLogadoUI freelancerLogadoUI;
@@ -100,13 +105,13 @@ public class ConsultarCandidaturaUI implements Initializable {
     public void guardarAction(ActionEvent actionEvent) throws SQLException {
 
         int idCandidatura = freelancerLogadoUI.listViewCandidaturas.getSelectionModel().getSelectedItem().getIdCandidatura();
-        
+
         try {
             boolean editou = editarCandidaturaController.updateCandidatura(idCandidatura, Double.parseDouble(txtValor.getText()),
-                Integer.parseInt(txtDias.getText()), txtApresentacao.getText(),
-                txtMotivacao.getText());
+                    Integer.parseInt(txtDias.getText()), txtApresentacao.getText(),
+                    txtMotivacao.getText());
 
-            if(editou) {
+            if (editou) {
 
                 freelancerLogadoUI.updateListViewCandidaturas();
                 //btnAddCandidatura.setDisable(true);
@@ -120,15 +125,13 @@ public class ConsultarCandidaturaUI implements Initializable {
 
             }
 
-        }
-        catch (IllegalArgumentException | SQLException exception) {
+        } catch (IllegalArgumentException | SQLException exception) {
             AlertsUI.criarAlerta(Alert.AlertType.ERROR,
                     MainApp.TITULO_APLICACAO,
                     "Editar Candidatura - Erro nos dados.",
                     "Não foi possível Editar a candidatura: " + exception.getMessage()).show();
         }
-        
-        
+
     }
 
     public void voltarAction(ActionEvent actionEvent) {
