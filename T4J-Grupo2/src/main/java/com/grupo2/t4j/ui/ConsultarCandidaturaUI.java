@@ -30,26 +30,17 @@ import javafx.stage.Stage;
  */
 public class ConsultarCandidaturaUI implements Initializable {
 
-    @FXML
-    Button btnEditarDados;
-    @FXML
-    Button btnApagar;
-    @FXML
-    Button btnVoltar;
-    @FXML
-    Button btnGuardar;
-    @FXML
-    TextArea txtAnuncio;
-    @FXML
-    TextArea txtApresentacao;
-    @FXML
-    TextArea txtMotivacao;
-    @FXML
-    TextField txtValor;
-    @FXML
-    TextField txtDias;
-    @FXML
-    TextField txtDataEdicao;
+    @FXML Button btnEditarDados;
+    @FXML Button btnApagar;
+    @FXML Button btnCancelar;
+    @FXML Button btnVoltar;
+    @FXML Button btnGuardar;
+    @FXML TextArea txtAnuncio;
+    @FXML TextArea txtApresentacao;
+    @FXML TextArea txtMotivacao;
+    @FXML TextField txtValor;
+    @FXML TextField txtDias;
+    @FXML TextField txtDataEdicao;
 
     private Stage adicionarStage;
     private FreelancerLogadoUI freelancerLogadoUI;
@@ -85,27 +76,30 @@ public class ConsultarCandidaturaUI implements Initializable {
 
     @FXML
     private void editarDados(ActionEvent event) {
-        txtApresentacao.setDisable(false);
-        txtMotivacao.setDisable(false);
-        txtValor.setDisable(false);
-        txtDias.setDisable(false);
-        btnGuardar.setVisible(true);
+        txtApresentacao.setEditable(true);
+        txtMotivacao.setEditable(false);
+        txtValor.setEditable(false);
+        txtDias.setEditable(false);
         btnEditarDados.setVisible(false);
+        btnVoltar.setVisible(false);
+        btnGuardar.setVisible(true);
+        btnCancelar.setVisible(true);
+        
     }
 
     public void transferData() throws SQLException {
-        txtApresentacao.setText(freelancerLogadoUI.listViewCandidaturas.getSelectionModel().getSelectedItem().getApresentacao());
-        txtMotivacao.setText(freelancerLogadoUI.listViewCandidaturas.getSelectionModel().getSelectedItem().getMotivacao());
-        txtValor.setText(String.valueOf(freelancerLogadoUI.listViewCandidaturas.getSelectionModel().getSelectedItem().getValorPretendido()));
-        txtDias.setText(String.valueOf(freelancerLogadoUI.listViewCandidaturas.getSelectionModel().getSelectedItem().getNumeroDias()));
+        txtApresentacao.setText(freelancerLogadoUI.tabelaCandidaturas.getSelectionModel().getSelectedItem().getApresentacao());
+        txtMotivacao.setText(freelancerLogadoUI.tabelaCandidaturas.getSelectionModel().getSelectedItem().getMotivacao());
+        txtValor.setText(String.valueOf(freelancerLogadoUI.tabelaCandidaturas.getSelectionModel().getSelectedItem().getValorPretendido()));
+        txtDias.setText(String.valueOf(freelancerLogadoUI.tabelaCandidaturas.getSelectionModel().getSelectedItem().getNumeroDias()));
         txtAnuncio.setText(registarTarefaController.findTarefa(getIdAnuncio()).toStringCompleto());
-        txtDataEdicao.setText(freelancerLogadoUI.listViewCandidaturas.getSelectionModel().getSelectedItem().getDataEdicaoCandidatura());
+        txtDataEdicao.setText(freelancerLogadoUI.tabelaCandidaturas.getSelectionModel().getSelectedItem().getDataEdicaoCandidatura());
     }
 
     public void guardarAction(ActionEvent actionEvent) throws SQLException {
 
-        int idCandidatura = freelancerLogadoUI.listViewCandidaturas.getSelectionModel().getSelectedItem().getIdCandidatura();
-
+        int idCandidatura = freelancerLogadoUI.tabelaCandidaturas.getSelectionModel().getSelectedItem().getIdCandidatura();
+        
         try {
             boolean editou = editarCandidaturaController.updateCandidatura(idCandidatura, Double.parseDouble(txtValor.getText()),
                     Integer.parseInt(txtDias.getText()), txtApresentacao.getText(),
@@ -113,8 +107,8 @@ public class ConsultarCandidaturaUI implements Initializable {
 
             if (editou) {
 
-                freelancerLogadoUI.updateListViewCandidaturas();
-                //btnAddCandidatura.setDisable(true);
+                freelancerLogadoUI.updateTableViewCandidaturas();
+                btnVoltar.setText("Voltar");
 
                 AlertsUI.criarAlerta(Alert.AlertType.INFORMATION,
                         MainApp.TITULO_APLICACAO,
@@ -137,10 +131,22 @@ public class ConsultarCandidaturaUI implements Initializable {
     public void voltarAction(ActionEvent actionEvent) {
         btnVoltar.getScene().getWindow().hide();
     }
+    
+    public void cancelarAction(ActionEvent actionEvent) {
+        btnVoltar.setVisible(true);
+        btnEditarDados.setVisible(true);
+        btnCancelar.setVisible(false);
+        btnGuardar.setVisible(false);
+        
+        txtApresentacao.setDisable(true);
+        txtMotivacao.setDisable(true);
+        txtValor.setDisable(true);
+        txtDias.setDisable(true);
+    }
 
     public void isCandidaturaEditavel() throws SQLException {
         String emailFreelancer = gestaoUtilizadoresController.getEmail();
-        int idCandidatura = freelancerLogadoUI.listViewCandidaturas.getSelectionModel().getSelectedItem().getIdCandidatura();
+        int idCandidatura = freelancerLogadoUI.tabelaCandidaturas.getSelectionModel().getSelectedItem().getIdCandidatura();
         List<Integer> listaCandidaturasEditaveis = editarCandidaturaController.getAllCandidaturasEditaveis(emailFreelancer);
 
         for (int id : listaCandidaturasEditaveis) {
@@ -151,7 +157,7 @@ public class ConsultarCandidaturaUI implements Initializable {
     }
 
     public int getIdAnuncio() throws SQLException {
-        int idAnuncio = freelancerLogadoUI.listViewCandidaturas.getSelectionModel().getSelectedItem().getIdAnuncio();
+        int idAnuncio = freelancerLogadoUI.tabelaCandidaturas.getSelectionModel().getSelectedItem().getIdAnuncio();
 
         return idAnuncio;
     }
