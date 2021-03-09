@@ -4,7 +4,7 @@ import com.grupo2.t4j.exception.IdInvalidoException;
 
 import java.io.Serializable;
 
-public class Candidatura implements Serializable {
+public class Candidatura implements Serializable, Comparable<Candidatura> {
     
     /**
      * O id da Candidatura
@@ -384,5 +384,23 @@ public class Candidatura implements Serializable {
                 + "%nApresentação: %s %nMotivação: %s", idCandidatura, emailFreelancer, 
                 dataCandidatura, valorPretendido,
                 numeroDias, txtApresentacao, txtMotivacao);
-    }    
+    }  
+    
+    /**
+     * Compara uma candidatura com outra através do parâmetro de valor pretendido
+     * pelo Freelancer para realização da tarefa a que se candidatou
+     * @param outraCandidatura
+     * @return 0 para valores iguais, 1 para valor > valor da outraCandidatura e
+     * -1 para valor < valor da outraCandidatura
+     */ 
+    @Override
+    public int compareTo(Candidatura outraCandidatura){
+        if(this.valorPretendido > outraCandidatura.getValorPretendido()){
+            return 1;
+        }
+        if(this.valorPretendido < outraCandidatura.getValorPretendido()){
+            return -1;
+        }
+        return 0;
+    }
 }

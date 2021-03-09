@@ -7,13 +7,14 @@ import com.grupo2.t4j.utils.DBConnectionHandler;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
  *
  * @author CAD
  */
-public class RepositorioCandidaturaDatabase implements RepositorioCandidatura {
+public class RepositorioCandidaturaDatabase implements RepositorioCandidatura{
 
     /**
      * Define uma instância estática do Repositório em que estão registados
@@ -388,4 +389,14 @@ public class RepositorioCandidaturaDatabase implements RepositorioCandidatura {
 
         return candidaturasEditaveis;
     }
+    
+    @Override
+    public List<Candidatura> ordenarByValor(List<Candidatura> candidaturas) throws SQLException{
+               
+        Collections.sort(candidaturas);
+        
+        return candidaturas;
+    }
+  
+    
 }
