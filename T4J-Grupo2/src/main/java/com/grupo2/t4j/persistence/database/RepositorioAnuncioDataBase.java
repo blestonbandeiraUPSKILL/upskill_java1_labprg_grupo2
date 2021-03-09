@@ -391,15 +391,14 @@ public class RepositorioAnuncioDataBase implements RepositorioAnuncio {
     }
 
     /**
-     * Devolve uma lista de referências de tarefas anunciadas, em período de seriação, mas não seriadas
+     * Devolve uma lista de referências de tarefas anunciadas, em período de seriação,
+     * independente de terem sido seriadas ou não
      * @param referenciasTarefa
-     * @param nifOrganizacao
-
      * @return
      * @throws SQLException
      */
     @Override
-    public List<String> getAllRefTarefasASeriar(List<String> referenciasTarefa, String nifOrganizacao) throws SQLException{
+    public List<String> getAllRefTarefasASeriar(List<String> referenciasTarefa) throws SQLException{
       
         List<String> refTarefasASeriar = new ArrayList<>();
 
@@ -407,11 +406,11 @@ public class RepositorioAnuncioDataBase implements RepositorioAnuncio {
 
         try {
             for (String referencia : referenciasTarefa) {
-                int idAnuncio = findAnuncioByIdTarefa(referencia, nifOrganizacao).getIdAnuncio();
                 PreparedStatement preparedStatement = connection.prepareStatement(
-                    "SELECT Anuncio LEFT JOIN ProcessoSeriacao ON " 
-                     + "ProcessoSeriacao.idAnuncio IS NULL"
-                     + "WHERE sysdate BETWEEN Anuncio.dataInicioSeriacao AND Anuncio.dataFimSeriacao "
+                    "SELECT * FROM Anuncio "
+                    + "INNER JOIN Tarefa "
+                    +"ON Anuncio.referencia LIKE Tarefa.referencia "
+                    + "WHERE sysdate BETWEEN Anuncio.dataInicioSeriacao AND Anuncio.dataFimSeriacao "
                     );
             
                 ResultSet resultSet = preparedStatement.executeQuery();

@@ -119,11 +119,11 @@ public class ColaboradorLogadoUI implements Initializable {
             exception.printStackTrace();
         }
         
-        try{
-            cmbAnuncio.getItems().setAll(listaAnunciosASeriar());
+        /*try{
+            listaAnunciosASeriar();
         }catch(SQLException exception) {
                    exception.printStackTrace();
-        }
+        }*/
         
         
         cmbAnuncio.setOnAction(new EventHandler<ActionEvent>() {
@@ -187,28 +187,38 @@ public class ColaboradorLogadoUI implements Initializable {
         preencherTabela();
     }
     
-    public List<String> listaAnunciosASeriar() throws SQLException{
-        String nifOrganizacao = getNifOrganizacao();
-        List<String> tarefasOrg = seriarAnuncioController.getReferenciasTarefas(nifOrganizacao);
-        String emailColaborador = gestaoUtilizadoresController.getEmail();
-        List<Tarefa> anunciosColaborador = seriarAnuncioController.findTarefasPublicadas(
+    public void listaAnunciosASeriar() throws SQLException{
+        try{
+            String emailColaborador = gestaoUtilizadoresController.getEmail();
+            String nifOrganizacao = getNifOrganizacao();
+            List<String> tarefasOrg = seriarAnuncioController.getReferenciasTarefas(nifOrganizacao);
+            
+            List<Tarefa> anunciosColaborador = seriarAnuncioController.findTarefasPublicadas(
                 tarefasOrg, nifOrganizacao, emailColaborador);
-        List<String> anunciosColaboradorRefTarefas = seriarAnuncioController.getReferenciasTarefas(anunciosColaborador);
-        List<String> refAnunciosASeriar = seriarAnuncioController.getAllRefTarefasASeriar(
-                        anunciosColaboradorRefTarefas, nifOrganizacao);
+            
+            List<String> anunciosColaboradorRefTarefas = seriarAnuncioController.getReferenciasTarefas(anunciosColaborador);
+            
+            List<String> refAnunciosASeriar = seriarAnuncioController.getAllRefTarefasASeriar(
+                        anunciosColaboradorRefTarefas);
         
-        if(refAnunciosASeriar.size()>0){
-            return refAnunciosASeriar;
+            if(refAnunciosASeriar.size()>0){
+                cmbAnuncio.getItems().setAll(refAnunciosASeriar);
+            }
+            else{
+                List<String> listaVazia = new ArrayList<>();
+                listaVazia.add("Sem Anúncios a seriar"); 
+                cmbAnuncio.getItems().setAll(listaVazia);;
+            }       
+        }catch(SQLException exception) {
+                   exception.printStackTrace();
         }
-        else{
-            List<String> listaVazia = new ArrayList<>();
-            listaVazia.add("Sem Anúncios a seriar"); 
-            return listaVazia;
-        }       
     }
     
     public void updateDataSeriacao() throws SQLException{
+        txtDataSeriacao.clear();
         txtDataSeriacao.setText(seriarAnuncioController.findSeriacaoByAnuncio(getIdAnuncio()).getDataSeriacao());
+        btnSeriacaoAutomatica.setDisable(true);
+        btnSeriacaoManual.setDisable(true);
     }
     
     public void preencherTabela () {
@@ -250,11 +260,12 @@ public class ColaboradorLogadoUI implements Initializable {
     }
     
     public void tipoSeriacao(ActionEvent actionEvent) throws SQLException{
+        
         int idAnuncio = getIdAnuncio();
-        List<Candidatura> candidaturas = seriarAnuncioController.getAllByIdAnuncio(idAnuncio);
-        int idSeriacao = seriarAnuncioController.getIdSeriacao(idAnuncio);
+        List<Candidatura> candidaturas = seriarAnuncioController.getAllByIdAnuncio(idAnuncio);        
         int idRegimento = seriarAnuncioController.getAnuncio(idAnuncio).getIdTipoRegimento();
-        if(idSeriacao !=0 && candidaturas.size()> 0){
+        int idSeriacao = seriarAnuncioController.getIdSeriacao(idAnuncio);
+        if(idSeriacao ==0 && candidaturas.size()> 0){
             if(idRegimento == 1){
                  btnSeriacaoAutomatica.setDisable(false);
             }
@@ -262,7 +273,7 @@ public class ColaboradorLogadoUI implements Initializable {
                  btnSeriacaoManual.setDisable(false);
             }
         }
-        if(idSeriacao==0){
+        if(idSeriacao!=0){
             updateDataSeriacao();
         }
     }
@@ -273,11 +284,13 @@ public class ColaboradorLogadoUI implements Initializable {
             List<Candidatura> candidaturas = seriarAnuncioController.getAllByIdAnuncio(idAnuncio);
             List<Candidatura> candidaturasOrdenadas = seriarAnuncioController.ordenarByValor(candidaturas);
             boolean seriacaoCriada = seriarAnuncioController.saveSeriacao(idAnuncio);
-            int idSeriacao = seriarAnuncioController.getIdSeriacao(idAnuncio);
-            boolean sucesso = seriarAnuncioController.saveClassificacaoAutomatica(candidaturasOrdenadas, idSeriacao);
-            if(sucesso){
-                listaAnunciosASeriar();
-            }
+            if(seriacaoCriada){
+                int idSeriacao = seriarAnuncioController.getIdSeriacao(idAnuncio);
+                boolean sucesso = seriarAnuncioController.saveClassificacaoAutomatica(candidaturasOrdenadas, idSeriacao);
+                if(sucesso){
+                    updateDataSeriacao();
+                }
+            }                                   
         } catch(SQLException exception){
              exception.printStackTrace();
         }      
