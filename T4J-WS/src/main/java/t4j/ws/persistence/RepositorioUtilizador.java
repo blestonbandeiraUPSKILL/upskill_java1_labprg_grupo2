@@ -32,7 +32,10 @@ public class RepositorioUtilizador {
             if (utilizador.getRolename().toString() != null) {
                 rolename = utilizador.getRolename().toString();
             }
-            
+            else {
+                rolename = "";
+            }
+
             PreparedStatement preparedStatement = connection.prepareStatement(
                     "Select idRolename INNER JOIN Rolename " +
                             "ON Rolename.idRolename = Utilizador.idRolename " +
