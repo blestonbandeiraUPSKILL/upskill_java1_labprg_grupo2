@@ -203,3 +203,4 @@ ALTER TABLE UserSession
     ADD CONSTRAINT fk_UserSession_emailUtilizador
     FOREIGN KEY (emailUtilizador)
     REFERENCES Utilizador(email);
+    

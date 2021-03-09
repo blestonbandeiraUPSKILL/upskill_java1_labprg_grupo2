@@ -95,9 +95,9 @@ public class GestaoUtilizadoresController {
                 return  new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
             }
 
-            UtilizadoresService.getUserRolenames(email);
+            RolenameDTO rolenameDTO = UtilizadoresService.getUserRolenames(email);
 
-            return new ResponseEntity<>(HttpStatus.OK);
+            return new ResponseEntity<>(rolenameDTO, HttpStatus.OK);
         }
         catch (Exception exception) {
             return new ResponseEntity<>(new ErroDTO(exception), HttpStatus.INTERNAL_SERVER_ERROR);
@@ -275,7 +275,7 @@ public class GestaoUtilizadoresController {
             contextoDTO.setAppContext(appContext);
 
             if (!GestaoUtilizadoresService.validateContexto(contextoDTO)) {
-                return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+                return new ResponseEntity<>(contextoDTO.toString() + " inválido", HttpStatus.UNAUTHORIZED);
             }
 
             LoginDTO loginDTO = new LoginDTO();
@@ -283,7 +283,7 @@ public class GestaoUtilizadoresController {
             loginDTO.setPassword(password);
 
             if(GestaoUtilizadoresService.login(loginDTO, contextoDTO)) {
-                return new ResponseEntity<>("Login bem sucedido.", HttpStatus.OK);
+                return new ResponseEntity<>(loginDTO.toString(), HttpStatus.OK);
             }
             else {
                 return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
