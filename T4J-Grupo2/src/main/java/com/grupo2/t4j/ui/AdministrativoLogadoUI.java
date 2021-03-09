@@ -53,61 +53,85 @@ public class AdministrativoLogadoUI implements Initializable {
     private RegistarHabilitacaoAcademicaController registarHabilitacaoAcademicaController;
     private RegistarReconhecimentoGPController registarReconhecimentoGPController;
 
-
     private static final String CABECALHO_IMPORTAR = "Importar Lista.";
     private static final String CABECALHO_EXPORTAR = "Exportar Lista.";
 
-    @FXML Button btnAddAreaAtividade;
-    @FXML Button btnAddcompetenciaTecnica;
-    @FXML Button btnAddCategoriaTarefa;
-    @FXML Button btnAdicionarFreelancer;
-    @FXML Button btnAdicionarHabilitacao;
-    @FXML Button btnAdicionarReconGP;
-    @FXML Button btnSair;
-    @FXML ListView<AreaActividade> listaAreasActividade;
-    @FXML ListView<Categoria> listaCategorias;
-    @FXML ListView<CompetenciaTecnica> listViewCompetenciasTecnicas;
-    @FXML ListView<Freelancer> listaFreelancer;
-    
+    @FXML
+    Button btnAddAreaAtividade;
+    @FXML
+    Button btnAddcompetenciaTecnica;
+    @FXML
+    Button btnAddCategoriaTarefa;
+    @FXML
+    Button btnAdicionarFreelancer;
+    @FXML
+    Button btnAdicionarHabilitacao;
+    @FXML
+    Button btnAdicionarReconGP;
+    @FXML
+    Button btnSair;
+    @FXML
+    ListView<AreaActividade> listaAreasActividade;
+    @FXML
+    ListView<Categoria> listaCategorias;
+    @FXML
+    ListView<CompetenciaTecnica> listViewCompetenciasTecnicas;
+    @FXML
+    ListView<Freelancer> listaFreelancer;
+
     //TableView AreaActividade
-    
-    @FXML TableColumn<Object, Object> colunaDescBreve;
-    @FXML TableColumn<Object, Object> colunaDescDetalhada;
-    @FXML TableColumn<Object, Object> colunaCodigo;
-    @FXML TableView<AreaActividade> tableViewAreaActividade;
-    
+    @FXML
+    TableColumn<Object, Object> colunaDescBreve;
+    @FXML
+    TableColumn<Object, Object> colunaDescDetalhada;
+    @FXML
+    TableColumn<Object, Object> colunaCodigo;
+    @FXML
+    TableView<AreaActividade> tableViewAreaActividade;
+
     //TableView CompetenciaTecnica
-    
-    @FXML TableColumn<Object, Object> colunaDescBreveCT;
-    @FXML TableColumn<Object, Object> colunaDescDetalhadaCT;
-    @FXML TableColumn<Object, Object> colunaCodigoCT;
-    @FXML TableColumn<Object, Object> colunaCodigoATCT;
-    @FXML TableView<CompetenciaTecnica> tableViewCompetenciaTecnica;
-    
+    @FXML
+    TableColumn<Object, Object> colunaDescBreveCT;
+    @FXML
+    TableColumn<Object, Object> colunaDescDetalhadaCT;
+    @FXML
+    TableColumn<Object, Object> colunaCodigoCT;
+    @FXML
+    TableColumn<Object, Object> colunaCodigoATCT;
+    @FXML
+    TableView<CompetenciaTecnica> tableViewCompetenciaTecnica;
+
     //TableView Categoria
-    
-    @FXML TableColumn<Object, Object> colunaDescBreveCat;
-    @FXML TableColumn<Object, Object> colunaDescDetalhadaCat;
-    @FXML TableColumn<Object, Object> colunaCodigoCat;
-    @FXML TableColumn<Object, Object> colunaCodigoATCat;
-    @FXML TableView<Categoria> tableViewCategoria;
-    
+    @FXML
+    TableColumn<Object, Object> colunaDescBreveCat;
+    @FXML
+    TableColumn<Object, Object> colunaDescDetalhadaCat;
+    @FXML
+    TableColumn<Object, Object> colunaCodigoCat;
+    @FXML
+    TableColumn<Object, Object> colunaCodigoATCat;
+    @FXML
+    TableView<Categoria> tableViewCategoria;
+
     //TableView Freelancer
-    
-    @FXML TableColumn<Object, Object> colunaNome;
-    @FXML TableColumn<Object, Object> colunaNif;
-    @FXML TableColumn<Object, Object> colunaTelefone;
-    @FXML TableColumn<Object, Object> colunaEmail;
-    @FXML TableView<Freelancer> tableViewFreelancer;
-    
+    @FXML
+    TableColumn<Object, Object> colunaNome;
+    @FXML
+    TableColumn<Object, Object> colunaNif;
+    @FXML
+    TableColumn<Object, Object> colunaTelefone;
+    @FXML
+    TableColumn<Object, Object> colunaEmail;
+    @FXML
+    TableView<Freelancer> tableViewFreelancer;
 
     public void associarParentUI(StartingPageUI startingPageUI) {
         this.startingPageUI = startingPageUI;
     }
 
     /**
-    * Initializes the controller (UI) class.
-    */
+     * Initializes the controller (UI) class.
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
@@ -119,10 +143,10 @@ public class AdministrativoLogadoUI implements Initializable {
         registarCategoriaController = new RegistarCategoriaController();
         registarCompetenciaTecnicaController = new RegistarCompetenciaTecnicaController();
         registarFreelancerController = new RegistarFreelancerController();
-        registarHabilitacaoAcademicaController = new  RegistarHabilitacaoAcademicaController();
-        registarReconhecimentoGPController = new  RegistarReconhecimentoGPController();
+        registarHabilitacaoAcademicaController = new RegistarHabilitacaoAcademicaController();
+        registarReconhecimentoGPController = new RegistarReconhecimentoGPController();
         gestaoUtilizadoresController = new GestaoUtilizadoresController();
-                     
+
         try {
             updateTableViewAreasActividade();
         } catch (SQLException exception) {
@@ -159,9 +183,7 @@ public class AdministrativoLogadoUI implements Initializable {
             adicionarStage.setScene(sceneAddAreaActividade);
             adicionarStage.setTitle("Adicionar Área de Actividade");
             adicionarStage.show();
-        }
-
-        catch (IOException exception) {
+        } catch (IOException exception) {
             exception.printStackTrace();
             AlertsUI.criarAlerta(Alert.AlertType.ERROR,
                     MainApp.TITULO_APLICACAO,
@@ -177,8 +199,7 @@ public class AdministrativoLogadoUI implements Initializable {
             sceneAddCategoriaTarefa = new Scene(rootAddCategoriaTarefa);
             AdicionarCategoriaTarefaUI adicionarCategoriaTarefaUI = loaderAddCategoriaTarefa.getController();
             adicionarCategoriaTarefaUI.associarParentUI(this);
-        }
-        catch (IOException exception) {
+        } catch (IOException exception) {
             exception.printStackTrace();
             AlertsUI.criarAlerta(Alert.AlertType.ERROR,
                     MainApp.TITULO_APLICACAO,
@@ -252,11 +273,11 @@ public class AdministrativoLogadoUI implements Initializable {
         adicionarStage.setScene(sceneAddHabilitacaoFreelancer);
         adicionarStage.setTitle("Adicionar Habilitação Académica");
         adicionarStage.show();
-        
+
     }
 
     public void addReconhecimentoGP(ActionEvent actionEvent) {
-         try {
+        try {
             FXMLLoader loaderAddReconhecimentoGP = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/AdicionarReconhecimentoGPScene.fxml"));
             Parent rootAddReconhecimentoGP = loaderAddReconhecimentoGP.load();
             sceneAddReconhecimentoGP = new Scene(rootAddReconhecimentoGP);
@@ -274,44 +295,43 @@ public class AdministrativoLogadoUI implements Initializable {
         adicionarStage.setScene(sceneAddReconhecimentoGP);
         adicionarStage.setTitle("Adicionar Competência Técnica de Freelancer");
         adicionarStage.show();
-        
+
     }
 
     public void updateTableViewFreelancer() throws SQLException {
         tableViewFreelancer.getItems().setAll(registarFreelancerController.getAll());
-                 
-        colunaNome.setCellValueFactory( new PropertyValueFactory<>("nome"));
-        colunaNif.setCellValueFactory( new PropertyValueFactory<>("nif"));
-        colunaTelefone.setCellValueFactory( new PropertyValueFactory<>("telefone"));
-        colunaEmail.setCellValueFactory( new PropertyValueFactory<>("email"));
-        
+
+        colunaNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
+        colunaNif.setCellValueFactory(new PropertyValueFactory<>("nif"));
+        colunaTelefone.setCellValueFactory(new PropertyValueFactory<>("telefone"));
+        colunaEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
+
     }
-    
+
     public void updateTableViewAreasActividade() throws SQLException {
         tableViewAreaActividade.getItems().setAll(registarAreaActividadeController.getAll());
-        colunaCodigo.setCellValueFactory( new PropertyValueFactory<>("codigo"));
-        colunaDescBreve.setCellValueFactory( new PropertyValueFactory<>("descBreve"));
-        colunaDescDetalhada.setCellValueFactory( new PropertyValueFactory<>("descDetalhada"));
+        colunaCodigo.setCellValueFactory(new PropertyValueFactory<>("codigo"));
+        colunaDescBreve.setCellValueFactory(new PropertyValueFactory<>("descBreve"));
+        colunaDescDetalhada.setCellValueFactory(new PropertyValueFactory<>("descDetalhada"));
     }
 
-
-      public void updateTableViewCategoriasTarefa() throws SQLException {
+    public void updateTableViewCategoriasTarefa() throws SQLException {
         tableViewCategoria.getItems().setAll(registarCategoriaController.getAll());
-        
-        colunaCodigoCat.setCellValueFactory( new PropertyValueFactory<>("codigoCategoria"));
-        colunaDescBreveCat.setCellValueFactory( new PropertyValueFactory<>("descBreve"));
-        colunaDescDetalhadaCat.setCellValueFactory( new PropertyValueFactory<>("descDetalhada"));
-        colunaCodigoATCat.setCellValueFactory( new PropertyValueFactory<>("codigoAreaActividade"));
+
+        colunaCodigoCat.setCellValueFactory(new PropertyValueFactory<>("codigoCategoria"));
+        colunaDescBreveCat.setCellValueFactory(new PropertyValueFactory<>("descBreve"));
+        colunaDescDetalhadaCat.setCellValueFactory(new PropertyValueFactory<>("descDetalhada"));
+        colunaCodigoATCat.setCellValueFactory(new PropertyValueFactory<>("codigoAreaActividade"));
 
     }
 
     public void updateTableViewCompetenciasTecnicas() throws SQLException {
         tableViewCompetenciaTecnica.getItems().setAll(registarCompetenciaTecnicaController.getAll());
 
-        colunaCodigoCT.setCellValueFactory( new PropertyValueFactory<>("codigo"));
-        colunaDescBreveCT.setCellValueFactory( new PropertyValueFactory<>("descricaoBreve"));
-        colunaDescDetalhadaCT.setCellValueFactory( new PropertyValueFactory<>("descricaoDetalhada"));
-        colunaCodigoATCT.setCellValueFactory( new PropertyValueFactory<>("codigoAreaActividade"));
+        colunaCodigoCT.setCellValueFactory(new PropertyValueFactory<>("codigo"));
+        colunaDescBreveCT.setCellValueFactory(new PropertyValueFactory<>("descricaoBreve"));
+        colunaDescDetalhadaCT.setCellValueFactory(new PropertyValueFactory<>("descricaoDetalhada"));
+        colunaCodigoATCT.setCellValueFactory(new PropertyValueFactory<>("codigoAreaActividade"));
     }
 
     public String getCodigoCompetenciaTecnica() {
@@ -319,7 +339,7 @@ public class AdministrativoLogadoUI implements Initializable {
     }
 
     public void consultarCompetenciaTecnicaAction(ActionEvent event) {
-        
+
         try {
 
             FXMLLoader loaderConsultarCompetenciaTecnica = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/ConsultarCompetenciaTecnicaScene.fxml"));
@@ -344,7 +364,7 @@ public class AdministrativoLogadoUI implements Initializable {
     }
 
     public void consultarAreaActividadeAction(ActionEvent event) {
-        
+
         try {
             FXMLLoader loaderConsultarAreaActividade = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/ConsultarAreaActividadeScene.fxml"));
             Parent rootConsultarAreaActividade = loaderConsultarAreaActividade.load();
@@ -368,16 +388,16 @@ public class AdministrativoLogadoUI implements Initializable {
     }
 
     public void consultarCategoriaAction(ActionEvent event) throws SQLException {
-        
+
         try {
-                
-        FXMLLoader loaderConsultarCategoria = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/ConsultarCategoriaScene.fxml"));
+
+            FXMLLoader loaderConsultarCategoria = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/ConsultarCategoriaScene.fxml"));
             Parent rootConsultarCategoria = loaderConsultarCategoria.load();
             ConsultarCategoriaUI consultarCategoriaUI = loaderConsultarCategoria.getController();
             consultarCategoriaUI.associarParentUI(this);
             consultarCategoriaUI.transferData();
             sceneConsultarCategoria = new Scene(rootConsultarCategoria);
-            
+
             adicionarStage.setScene(sceneConsultarCategoria);
             adicionarStage.setTitle("Consultar Categoria");
             adicionarStage.show();
@@ -394,13 +414,13 @@ public class AdministrativoLogadoUI implements Initializable {
 
     public void consultarFreelancer(ActionEvent actionEvent) {
         try {
-        FXMLLoader loaderConsultarFreelancer = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/ConsultarFreelancerScene.fxml"));
+            FXMLLoader loaderConsultarFreelancer = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/ConsultarFreelancerScene.fxml"));
             Parent rootConsultarFreelancer = loaderConsultarFreelancer.load();
             ConsultarFreelancerUI consultarFreelancerUI = loaderConsultarFreelancer.getController();
             consultarFreelancerUI.associarParentUI(this);
             consultarFreelancerUI.transferData();
             sceneConsultarFreelancer = new Scene(rootConsultarFreelancer);
-            
+
             adicionarStage.setScene(sceneConsultarFreelancer);
             adicionarStage.setTitle("Consultar Freelancer");
             adicionarStage.show();
@@ -426,8 +446,7 @@ public class AdministrativoLogadoUI implements Initializable {
 
                 if (alerta.showAndWait().get() == ButtonType.CANCEL) {
                     windowEvent.consume();
-                }
-                else {
+                } else {
                     boolean logout = gestaoUtilizadoresController.logout();
                     if (logout) {
                         gestaoUtilizadoresController.resetUsersAPI();
@@ -456,6 +475,5 @@ public class AdministrativoLogadoUI implements Initializable {
         window.fireEvent(new WindowEvent(window, WindowEvent.WINDOW_CLOSE_REQUEST));
 
     }
-
 
 }

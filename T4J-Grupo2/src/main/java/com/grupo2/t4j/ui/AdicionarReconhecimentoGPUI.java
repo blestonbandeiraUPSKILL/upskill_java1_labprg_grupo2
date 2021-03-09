@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.grupo2.t4j.ui;
 
 import com.grupo2.t4j.controller.RegistarCompetenciaTecnicaController;
@@ -27,35 +22,43 @@ import java.util.ResourceBundle;
 /**
  * FXML Controller class
  */
-public class AdicionarReconhecimentoGPUI  implements Initializable {
-    
+public class AdicionarReconhecimentoGPUI implements Initializable {
+
     private AdministrativoLogadoUI administrativoLogadoUI;
-    
+
     private RegistarReconhecimentoGPController registarReconhecimentoGPController;
     private RegistarFreelancerController registarFreelancerController;
     private RegistarCompetenciaTecnicaController registarCompetenciaTecnicaController;
     private RegistarGrauProficienciaController registarGrauProficienciaController;
-    
+
     private Stage adicionarStage;
-    
-    @FXML TextField txtNomeFreelancer;
-    @FXML TextField txtIDataValidacao;
-    @FXML ComboBox<Freelancer> cmbEmailFreelancer;
-    @FXML ComboBox<CompetenciaTecnica> cmbCompetencia;
-    @FXML ComboBox<GrauProficiencia> cmbProficiencia;
-    @FXML ListView<ReconhecimentoGP> listReconhecimentoGP;
-    @FXML Button btnAddCompetencia;
-    @FXML Button btnCancelar;
-    @FXML Button btnSair;
-    
-    
+
+    @FXML
+    TextField txtNomeFreelancer;
+    @FXML
+    TextField txtIDataValidacao;
+    @FXML
+    ComboBox<Freelancer> cmbEmailFreelancer;
+    @FXML
+    ComboBox<CompetenciaTecnica> cmbCompetencia;
+    @FXML
+    ComboBox<GrauProficiencia> cmbProficiencia;
+    @FXML
+    ListView<ReconhecimentoGP> listReconhecimentoGP;
+    @FXML
+    Button btnAddCompetencia;
+    @FXML
+    Button btnCancelar;
+    @FXML
+    Button btnSair;
+
     public void associarParentUI(AdministrativoLogadoUI administrativoLogadoUI) {
         this.administrativoLogadoUI = administrativoLogadoUI;
     }
-    
+
     /**
-    * Initializes the controller (UI) class.
-    */
+     * Initializes the controller (UI) class.
+     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
@@ -84,7 +87,7 @@ public class AdicionarReconhecimentoGPUI  implements Initializable {
             exception.printStackTrace();
         }
 
-        cmbCompetencia.setOnAction(new EventHandler<ActionEvent>(){
+        cmbCompetencia.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 try {
@@ -96,7 +99,7 @@ public class AdicionarReconhecimentoGPUI  implements Initializable {
             }
         });
 
-        cmbEmailFreelancer.setOnAction(new EventHandler<ActionEvent>(){
+        cmbEmailFreelancer.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 try {
@@ -126,31 +129,29 @@ public class AdicionarReconhecimentoGPUI  implements Initializable {
         String emailFreelancer = cmbEmailFreelancer.getSelectionModel().getSelectedItem().getEmail().getEmailText();
         txtNomeFreelancer.setText(registarFreelancerController.findByEmail(emailFreelancer).getNome());
     }
-    
+
     @FXML
     void addCompetencia(ActionEvent event) {
-        try{                      
-            
+        try {
+
             boolean adicionou = registarReconhecimentoGPController.registarReconhecimentoGP(
                     cmbProficiencia.getSelectionModel().getSelectedItem().getIdGrauProficiencia(),
                     cmbEmailFreelancer.getSelectionModel().getSelectedItem().getEmail().getEmailText(),
                     txtIDataValidacao.getText());
 
-            if(adicionou) {
+            if (adicionou) {
                 updateListViewReconhecimentoGP();
-            
+
                 AlertsUI.criarAlerta(Alert.AlertType.INFORMATION,
-                    MainApp.TITULO_APLICACAO, "Registar Validação de Competência Técnica.",
-                     "Competência Técnica de Freelancer validada com sucesso.").show();
+                        MainApp.TITULO_APLICACAO, "Registar Validação de Competência Técnica.",
+                        "Competência Técnica de Freelancer validada com sucesso.").show();
             }
-        }
-        catch (IllegalArgumentException | SQLException exception) {
+        } catch (IllegalArgumentException | SQLException exception) {
             AlertsUI.criarAlerta(Alert.AlertType.ERROR,
                     MainApp.TITULO_APLICACAO,
                     "Registar Validação de Competência Técnica - Erro nos dados.",
                     "Não foi possível validar a Competência Técnica." + exception.getMessage()).show();
-        
-     
+
         }
     }
 
@@ -161,7 +162,7 @@ public class AdicionarReconhecimentoGPUI  implements Initializable {
 
     @FXML
     public void sairAction(ActionEvent event) {
-         Window window = btnSair.getScene().getWindow();
+        Window window = btnSair.getScene().getWindow();
         window.setOnCloseRequest(new EventHandler<WindowEvent>() {
             @Override
             public void handle(WindowEvent windowEvent) {
@@ -177,6 +178,4 @@ public class AdicionarReconhecimentoGPUI  implements Initializable {
         });
         window.fireEvent(new WindowEvent(window, WindowEvent.WINDOW_CLOSE_REQUEST));
     }
-
-
 }
