@@ -50,7 +50,7 @@ public class ConsultarCategoriaUI implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         
         adicionarStage = new Stage();
-            adicionarStage.initModality(Modality.APPLICATION_MODAL);;
+            adicionarStage.initModality(Modality.APPLICATION_MODAL);
             adicionarStage.setResizable(false);
             
         registarAreaActividadeController = new RegistarAreaActividadeController();
