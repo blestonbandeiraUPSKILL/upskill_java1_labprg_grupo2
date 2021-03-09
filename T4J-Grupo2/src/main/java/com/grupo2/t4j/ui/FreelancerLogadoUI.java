@@ -193,11 +193,25 @@ public class FreelancerLogadoUI implements Initializable {
     }
 
     public void apagarCandidatura(ActionEvent actionEvent) throws SQLException {
-        int idCandidatura= getIdCandidatura();
+        int idCandidatura = getIdCandidatura();
 
-        boolean apaga = eliminarCandidaturaController.deleteCandidatura(idCandidatura);
-        if(apaga) {
-            updateListViewCandidaturas();
+        try {
+
+            boolean apaga = eliminarCandidaturaController.deleteCandidatura(idCandidatura);
+
+            if (apaga) {
+                updateListViewCandidaturas();
+
+                AlertsUI.criarAlerta(Alert.AlertType.INFORMATION,
+                        MainApp.TITULO_APLICACAO,
+                        "Eliminar Candidatura.",
+                        "Candidatura eliminada com sucesso.").show();
+            }
+        } catch (IllegalArgumentException | SQLException exception) {
+            AlertsUI.criarAlerta(Alert.AlertType.ERROR,
+                    MainApp.TITULO_APLICACAO,
+                    "Eliminar Candidatura - Erro nos dados.",
+                    "Não foi possível eliminar a candidatura: " + exception.getMessage()).show();
         }
     }
 
