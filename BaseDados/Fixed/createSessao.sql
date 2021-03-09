@@ -12,9 +12,9 @@ BEGIN
     WHERE AppContext.value LIKE p_value;
     
     INSERT INTO UserSession
-        (idAppContext, timestamp)
+        (idAppContext)
     VALUES
-        (v_idAppContext, current_date);
+        (v_idAppContext);
 
 END;
 /

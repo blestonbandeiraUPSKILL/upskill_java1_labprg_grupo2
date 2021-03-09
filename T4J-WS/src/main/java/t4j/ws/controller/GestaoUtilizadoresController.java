@@ -19,32 +19,6 @@ import java.sql.SQLException;
 @RestController
 public class GestaoUtilizadoresController {
 
-    @RequestMapping(value = "/session",
-            method = RequestMethod.GET,
-            params = {"app_context"},
-            produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> getSession(@RequestParam("app_context") String appContext) {
-        try {
-            ContextoDTO contextoDTO = new ContextoDTO();
-            contextoDTO.setAppContext(appContext);
-
-            if(!GestaoUtilizadoresService.validateContexto(contextoDTO)) {
-                return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
-            }
-
-            SessaoDTO sessaoDTO = GestaoUtilizadoresService.getSession(contextoDTO);
-
-            if(sessaoDTO != null) {
-                return new ResponseEntity<>(sessaoDTO, HttpStatus.OK);
-            }
-            else {
-                return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
-            }
-        } catch (SQLException exception) {
-            return new ResponseEntity<>(new ErroDTO(exception), HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
-
     @RequestMapping(value = "/context",
             method = RequestMethod.GET,
             params = { "app_key"},
@@ -59,24 +33,120 @@ public class GestaoUtilizadoresController {
         }
     }
 
-    @RequestMapping(value = "/roles",
-            method = RequestMethod.GET,
-            params = {"app_context"},
+    @RequestMapping(value = "/registerUser",
+            method = RequestMethod.POST,
+            params = {"app_context", "username", "user_id", "password"},
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> userRoles(@RequestParam("app_context") String appContext) {
+    public ResponseEntity<?> registerUser(@RequestParam("app_context") String appContext,
+                                          @RequestParam("username") String username,
+                                          @RequestParam("user_id") String email,
+                                          @RequestParam("password") String password) {
         try {
             ContextoDTO contextoDTO = new ContextoDTO();
             contextoDTO.setAppContext(appContext);
 
-            if(!GestaoUtilizadoresService.validateContexto(contextoDTO)) {
+            if (!GestaoUtilizadoresService.validateSetUsableContexto(contextoDTO)) {
+                return new ResponseEntity<>(contextoDTO.toString() + ": contexto inválido.", HttpStatus.UNAUTHORIZED);
+            }
+
+            UtilizadorDTO utilizadorDTO = new UtilizadorDTO();
+            utilizadorDTO.setUsername(username);
+            utilizadorDTO.setEmail(email);
+            utilizadorDTO.setPassword(new Password(password));
+
+            UtilizadoresService.registerUser(utilizadorDTO);
+            return new ResponseEntity<>(HttpStatus.OK);
+        }
+        catch (Exception exception) {
+            return new ResponseEntity<>(new ErroDTO(exception), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @RequestMapping(value = "/registerUserWithRoles",
+            method = RequestMethod.POST,
+            params = {"app_context", "username", "user_id", "password", "rolenames"},
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> registerUserWithRoles(@RequestParam("app_context") String appContext,
+                                                   @RequestParam("username") String username,
+                                                   @RequestParam("user_id") String email,
+                                                   @RequestParam("password") String password,
+                                                   @RequestParam("rolenames") Rolename rolename) {
+        try {
+            ContextoDTO contextoDTO = new ContextoDTO();
+            contextoDTO.setAppContext(appContext);
+
+            if (!GestaoUtilizadoresService.validateSetUsableContexto(contextoDTO)) {
                 return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
             }
 
-            ListaRolenamesDTO listaRolenamesDTO = UtilizadoresService.getRoles();
+            UtilizadorDTO utilizadorDTO = new UtilizadorDTO();
+            utilizadorDTO.setEmail(email);
+            utilizadorDTO.setUsername(username);
+            utilizadorDTO.setPassword(new Password(password));
+            utilizadorDTO.setRolename(rolename);
 
-            return new ResponseEntity<>(listaRolenamesDTO, HttpStatus.OK);
+            UtilizadoresService.registerUserWithRoles(utilizadorDTO, rolename);
+            RolenameDTO rolenameDTO = UtilizadoresService.getUserRolenames(email);
+
+            return new ResponseEntity<>(rolenameDTO, HttpStatus.OK);
         }
-        catch (SQLException exception) {
+        catch (Exception exception) {
+            return new ResponseEntity<>(new ErroDTO(exception), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @RequestMapping(value = "/login",
+            method = RequestMethod.POST,
+            params = {"app_context", "user_id", "password"},
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> login(@RequestParam("app_context") String appContext,
+                                   @RequestParam("user_id") String email,
+                                   @RequestParam("password") Password password) {
+        try {
+            ContextoDTO contextoDTO = new ContextoDTO();
+            contextoDTO.setAppContext(appContext);
+
+            if (!GestaoUtilizadoresService.validateSetUsableContexto(contextoDTO)) {
+                return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+            }
+
+            LoginDTO loginDTO = new LoginDTO();
+            loginDTO.setEmail(new Email(email.replace("!", " ")));
+            loginDTO.setPassword(password);
+
+            if(GestaoUtilizadoresService.login(loginDTO, contextoDTO)) {
+                return new ResponseEntity<>("Login bem sucedido.", HttpStatus.OK);
+            }
+            else {
+                return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+            }
+        }
+        catch (Exception exception) {
+            return new ResponseEntity<>(new ErroDTO(exception), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @RequestMapping(value = "/logout",
+            method = RequestMethod.POST,
+            params = {"app_context"},
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> logout(@RequestParam("app_context") String appContext) {
+        try {
+            ContextoDTO contextoDTO = new ContextoDTO();
+            contextoDTO.setAppContext(appContext);
+
+            if (!GestaoUtilizadoresService.validateContexto(contextoDTO)) {
+                return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+            }
+
+            if(GestaoUtilizadoresService.logout(contextoDTO)) {
+                return new ResponseEntity<>("Logout bem sucedido.", HttpStatus.OK);
+            }
+            else {
+                return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+            }
+        }
+        catch (Exception exception) {
             return new ResponseEntity<>(new ErroDTO(exception), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -95,9 +165,9 @@ public class GestaoUtilizadoresController {
                 return  new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
             }
 
-            RolenameDTO rolenameDTO = UtilizadoresService.getUserRolenames(email);
+            UtilizadoresService.getUserRolenames(email);
 
-            return new ResponseEntity<>(rolenameDTO, HttpStatus.OK);
+            return new ResponseEntity<>(HttpStatus.OK);
         }
         catch (Exception exception) {
             return new ResponseEntity<>(new ErroDTO(exception), HttpStatus.INTERNAL_SERVER_ERROR);
@@ -124,6 +194,52 @@ public class GestaoUtilizadoresController {
             return new ResponseEntity<>(HttpStatus.OK);
         }
         catch (Exception exception) {
+            return new ResponseEntity<>(new ErroDTO(exception), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @RequestMapping(value = "/userRoles",
+            method = RequestMethod.DELETE,
+            params = {"app_context", "user_id", "rolenames"},
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> deleteRoleFromUser(@RequestParam("app_context") String appContext,
+                                                @RequestParam("user_id") String email,
+                                                @RequestParam("rolenames") String designacao) {
+        try {
+            ContextoDTO contextoDTO = new ContextoDTO();
+            contextoDTO.setAppContext(appContext);
+
+            if (!GestaoUtilizadoresService.validateContexto(contextoDTO)) {
+                return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+            }
+
+            UtilizadoresService.deleteRoleFromUser(email, designacao);
+
+            return new ResponseEntity<>(HttpStatus.OK);
+        }
+        catch (Exception exception) {
+            return new ResponseEntity<>(new ErroDTO(exception), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @RequestMapping(value = "/roles",
+            method = RequestMethod.GET,
+            params = {"app_context"},
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> userRoles(@RequestParam("app_context") String appContext) {
+        try {
+            ContextoDTO contextoDTO = new ContextoDTO();
+            contextoDTO.setAppContext(appContext);
+
+            if(!GestaoUtilizadoresService.validateContexto(contextoDTO)) {
+                return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+            }
+
+            ListaRolenamesDTO listaRolenamesDTO = UtilizadoresService.getRoles();
+
+            return new ResponseEntity<>(listaRolenamesDTO, HttpStatus.OK);
+        }
+        catch (SQLException exception) {
             return new ResponseEntity<>(new ErroDTO(exception), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -166,7 +282,7 @@ public class GestaoUtilizadoresController {
             contextoDTO.setAppContext(appContext);
 
             if (!GestaoUtilizadoresService.validateContexto(contextoDTO)) {
-                return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+                return new ResponseEntity<>(contextoDTO.toString() + " inválido", HttpStatus.UNAUTHORIZED);
             }
 
             UtilizadoresService.deleteUserRole(designacao);
@@ -178,145 +294,42 @@ public class GestaoUtilizadoresController {
         }
     }
 
-    @RequestMapping(value = "/userRoles",
-            method = RequestMethod.DELETE,
-            params = {"app_context", "user_id", "rolenames"},
-            produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> deleteRoleFromUser(@RequestParam("app_context") String appContext,
-                                                @RequestParam("user_id") String email,
-                                                @RequestParam("rolenames") String designacao) {
-        try {
-            ContextoDTO contextoDTO = new ContextoDTO();
-            contextoDTO.setAppContext(appContext);
-
-            if (!GestaoUtilizadoresService.validateContexto(contextoDTO)) {
-                return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
-            }
-
-            UtilizadoresService.deleteRoleFromUser(email, designacao);
-
-            return new ResponseEntity<>(HttpStatus.OK);
-        }
-        catch (Exception exception) {
-            return new ResponseEntity<>(new ErroDTO(exception), HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
-
-    @RequestMapping(value = "/registerUser",
-            method = RequestMethod.POST,
-            params = {"app_context", "username", "user_id", "password"},
-            produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> registerUser(@RequestParam("app_context") String appContext,
-                                          @RequestParam("username") String username,
-                                          @RequestParam("user_id") String email,
-                                          @RequestParam("password") String password) {
-        try {
-            ContextoDTO contextoDTO = new ContextoDTO();
-            contextoDTO.setAppContext(appContext);
-
-            if (!GestaoUtilizadoresService.validateContexto(contextoDTO)) {
-                return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
-            }
-
-            UtilizadorDTO utilizadorDTO = new UtilizadorDTO();
-            utilizadorDTO.setUsername(username);
-            utilizadorDTO.setEmail(email);
-            utilizadorDTO.setPassword(new Password(password));
-
-            UtilizadoresService.registerUser(utilizadorDTO);
-            return new ResponseEntity<>(HttpStatus.OK);
-        }
-        catch (Exception exception) {
-            return new ResponseEntity<>(new ErroDTO(exception), HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
-
-    @RequestMapping(value = "/registerUserWithRoles",
-            method = RequestMethod.POST,
-            params = {"app_context", "username", "user_id", "password", "rolenames"},
-            produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> registerUserWithRoles(@RequestParam("app_context") String appContext,
-                                                   @RequestParam("username") String username,
-                                                   @RequestParam("user_id") String email,
-                                                   @RequestParam("password") String password,
-                                                   @RequestParam("rolenames") Rolename rolename) {
-        try {
-            ContextoDTO contextoDTO = new ContextoDTO();
-            contextoDTO.setAppContext(appContext);
-
-            if (!GestaoUtilizadoresService.validateContexto(contextoDTO)) {
-                return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
-            }
-
-            UtilizadorDTO utilizadorDTO = new UtilizadorDTO();
-            utilizadorDTO.setEmail(email);
-            utilizadorDTO.setUsername(username);
-            utilizadorDTO.setPassword(new Password(password));
-            utilizadorDTO.setRolename(rolename);
-
-            UtilizadoresService.registerUserWithRoles(utilizadorDTO, rolename);
-
-            return new ResponseEntity<>(HttpStatus.OK);
-        }
-        catch (Exception exception) {
-            return new ResponseEntity<>(new ErroDTO(exception), HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
-
-    @RequestMapping(value = "/login",
-            method = RequestMethod.POST,
-            params = {"app_context", "user_id", "password"},
-            produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> login(@RequestParam("app_context") String appContext,
-                                   @RequestParam("user_id") String email,
-                                   @RequestParam("password") Password password) {
-        try {
-            ContextoDTO contextoDTO = new ContextoDTO();
-            contextoDTO.setAppContext(appContext);
-
-            if (!GestaoUtilizadoresService.validateContexto(contextoDTO)) {
-                return new ResponseEntity<>(contextoDTO.toString() + " inválido", HttpStatus.UNAUTHORIZED);
-            }
-
-            LoginDTO loginDTO = new LoginDTO();
-            loginDTO.setEmail(new Email(email.replace("!", " ")));
-            loginDTO.setPassword(password);
-
-            if(GestaoUtilizadoresService.login(loginDTO, contextoDTO)) {
-                return new ResponseEntity<>(loginDTO.toString(), HttpStatus.OK);
-            }
-            else {
-                return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-            }
-        }
-        catch (Exception exception) {
-            return new ResponseEntity<>(new ErroDTO(exception), HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
-
-    @RequestMapping(value = "/logout",
-            method = RequestMethod.POST,
+    @RequestMapping(value = "/session",
+            method = RequestMethod.GET,
             params = {"app_context"},
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> logout(@RequestParam("app_context") String appContext) {
+    public ResponseEntity<?> getSession(@RequestParam("app_context") String appContext) {
         try {
             ContextoDTO contextoDTO = new ContextoDTO();
             contextoDTO.setAppContext(appContext);
 
-            if (!GestaoUtilizadoresService.validateContexto(contextoDTO)) {
+            if(!GestaoUtilizadoresService.validateContexto(contextoDTO)) {
                 return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
             }
 
-            if(GestaoUtilizadoresService.logout(contextoDTO)) {
-                return new ResponseEntity<>("Logout bem sucedido.", HttpStatus.OK);
+            SessaoDTO sessaoDTO = GestaoUtilizadoresService.getSession(contextoDTO);
+
+            if(sessaoDTO != null) {
+                return new ResponseEntity<>(sessaoDTO, HttpStatus.OK);
             }
             else {
-                return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+                return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
             }
-        }
-        catch (Exception exception) {
+        } catch (SQLException exception) {
             return new ResponseEntity<>(new ErroDTO(exception), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+
+
+
+
+
+
+
+
+
+
+
 
 }

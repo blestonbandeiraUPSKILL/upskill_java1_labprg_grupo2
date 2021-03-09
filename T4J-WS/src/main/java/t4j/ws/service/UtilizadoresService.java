@@ -32,7 +32,7 @@ public class UtilizadoresService {
         return utilizadorDTO;
     }
 
-    public static void registerUser(UtilizadorDTO utilizadorDTO) {
+    public static void registerUser(UtilizadorDTO utilizadorDTO) throws SQLException {
 
         Utilizador utilizador = Mapper.utilizadorDTO2Utilizador(utilizadorDTO);
 
