@@ -43,6 +43,7 @@ public class ColaboradorLogadoUI implements Initializable {
     private Scene scenePublicarTarefa;
     private Scene sceneConsultarAnuncio;
     private Scene sceneConsultarCandidatura;
+    private Scene sceneSeriacaoManual;
 
     @FXML Button btnLogout;
     
@@ -297,7 +298,24 @@ public class ColaboradorLogadoUI implements Initializable {
     }
     
     public void seriacaoManualAction(ActionEvent event){
-        
+        try {
+            FXMLLoader loaderSeriacaoManual = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/SeriacaoManualScene.fxml"));
+            Parent rootSeriacaoManual = loaderSeriacaoManual.load();
+            sceneSeriacaoManual = new Scene(rootSeriacaoManual);
+            SeriacaoManualUI seriacaoManualUI = loaderSeriacaoManual.getController();
+            seriacaoManualUI.associarParentUI(this);
+
+            adicionarStage.setScene(sceneSeriacaoManual);
+            adicionarStage.setTitle("Seriação Manual do Anúncio");
+            adicionarStage.show();
+
+        } catch (IOException exception) {
+            exception.printStackTrace();
+            AlertsUI.criarAlerta(Alert.AlertType.ERROR,
+                    MainApp.TITULO_APLICACAO,
+                    "Erro",
+                    exception.getMessage());
+        }
     }   
         
     public void navigateEspecificarTarefa(ActionEvent actionEvent) {
