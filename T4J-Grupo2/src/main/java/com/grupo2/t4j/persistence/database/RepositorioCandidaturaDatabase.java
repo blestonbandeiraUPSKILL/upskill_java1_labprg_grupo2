@@ -399,8 +399,22 @@ public class RepositorioCandidaturaDatabase implements RepositorioCandidatura{
     @Override
     public List<Candidatura> ordenarByValor(List<Candidatura> candidaturas) throws SQLException{
                
-        Collections.sort(candidaturas);
+        Collections.sort(candidaturas, Candidatura.CandidaturaComparator.VALOR);
         
+        return candidaturas;
+    }
+    
+    /**
+     * Ordena as candidaturas pelo Id da Candidatura
+     * @param candidaturas
+     * @return
+     * @throws SQLException 
+     */
+    @Override
+    public List<Candidatura> ordenarByIdCandidatura(List<Candidatura> candidaturas) throws SQLException{
+               
+        Collections.sort(candidaturas, Candidatura.CandidaturaComparator.IDCANDIDATURA);
+            
         return candidaturas;
     }
   

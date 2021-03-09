@@ -3,8 +3,9 @@ package com.grupo2.t4j.domain;
 import com.grupo2.t4j.exception.IdInvalidoException;
 
 import java.io.Serializable;
+import java.util.Comparator;
 
-public class Candidatura implements Serializable, Comparable<Candidatura> {
+public class Candidatura implements Serializable, Comparable<Candidatura>{
     
     /**
      * O id da Candidatura
@@ -384,23 +385,40 @@ public class Candidatura implements Serializable, Comparable<Candidatura> {
                 + "%nApresentação: %s %nMotivação: %s", idCandidatura, emailFreelancer, 
                 dataCandidatura, valorPretendido,
                 numeroDias, txtApresentacao, txtMotivacao);
-    }  
+    }
     
-    /**
-     * Compara uma candidatura com outra através do parâmetro de valor pretendido
-     * pelo Freelancer para realização da tarefa a que se candidatou
-     * @param outraCandidatura
-     * @return 0 para valores iguais, 1 para valor > valor da outraCandidatura e
-     * -1 para valor < valor da outraCandidatura
-     */ 
     @Override
     public int compareTo(Candidatura outraCandidatura){
-        if(this.valorPretendido > outraCandidatura.getValorPretendido()){
-            return 1;
-        }
-        if(this.valorPretendido < outraCandidatura.getValorPretendido()){
-            return -1;
-        }
-        return 0;
+        return CandidaturaComparator.VALOR.compare(this, outraCandidatura);
     }
+    
+    public static class CandidaturaComparator {
+
+        public static Comparator<Candidatura> VALOR = new Comparator<Candidatura>(){
+            @Override
+            public int compare(Candidatura c1, Candidatura c2) {
+                if(c1.getValorPretendido() > c2.getValorPretendido()){
+                    return 1;
+                }
+                if(c1.getValorPretendido() < c2.getValorPretendido()){
+                    return -1;
+                }
+                return 0; 
+            }
+        };
+    
+        public static Comparator<Candidatura> IDCANDIDATURA = new Comparator<Candidatura>(){
+            @Override
+            public int compare(Candidatura c1, Candidatura c2) {
+                if(c1.getIdCandidatura() > c2.getIdCandidatura()){
+                    return 1;
+                }
+                if(c1.getIdCandidatura() < c2.getIdCandidatura()){
+                    return -1;
+                }
+                return 0; 
+            }
+        };
+    }
+
 }

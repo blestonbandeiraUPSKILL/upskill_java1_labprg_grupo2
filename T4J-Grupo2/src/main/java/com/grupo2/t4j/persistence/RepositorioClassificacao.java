@@ -26,4 +26,6 @@ public interface RepositorioClassificacao {
     Classificacao findBySeriacao(int idSeriacao) throws SQLException;
     
     List<Classificacao> getAllBySeriacao(int idSeriacao)throws SQLException;
+    
+    List<Classificacao> ordenarByIdCandidatura(List<Classificacao> classificacoes) throws SQLException;
 }
