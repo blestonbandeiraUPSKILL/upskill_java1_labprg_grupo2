@@ -1,6 +1,5 @@
 package com.grupo2.t4j.controller;
 
-import com.grupo2.t4j.domain.Candidatura;
 import com.grupo2.t4j.persistence.FabricaRepositorios;
 import com.grupo2.t4j.persistence.RepositorioCandidatura;
 import com.grupo2.t4j.persistence.database.FabricaRepositoriosDatabase;
