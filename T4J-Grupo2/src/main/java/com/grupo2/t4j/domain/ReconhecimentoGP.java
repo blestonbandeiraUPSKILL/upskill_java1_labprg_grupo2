@@ -120,6 +120,8 @@ public class ReconhecimentoGP {
 
     @Override
     public String toString(){
-        return String.format("Competência Técnica: %s%nGrau: %s%n Data Reconhecimento",descBreveCompetencia, idGrauProficiencia, dataReconhecimento);
+        return String.format("Competência Técnica: %s%n" +
+                "Grau: %s%n " +
+                "Data Reconhecimento: %s", descBreveCompetencia, designacaoGrau, dataReconhecimento);
     }    
 }

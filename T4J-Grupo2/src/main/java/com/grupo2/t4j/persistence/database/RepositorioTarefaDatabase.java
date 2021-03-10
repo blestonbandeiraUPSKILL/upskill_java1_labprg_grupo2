@@ -677,13 +677,15 @@ public class RepositorioTarefaDatabase implements RepositorioTarefa {
                             "AND " +
                                 "(SELECT GrauProficiencia.grau " +
                                 "INNER JOIN ReconhecimentoGP " +
-                                "ON ReconhecimentoGP.idGrauProficiencia = GrauProficiencia.idGrauProficiencia) < " +
+                                "ON ReconhecimentoGP.idGrauProficiencia = GrauProficiencia.idGrauProficiencia)
+                                < " +
                                 "(SELECT GrauProficiencia.grau, GrauProficiencia.designacao " +
                                 "INNER JOIN CaracterCT.grauProfMinimo = GrauProficiencia.idGrauProficiencia) " +
 
                                 "(SELECT GrauProficiencia.designacao " +
                                 "INNER JOIN ReconhecimentoGP " +
-                                "ON ReconhecimentoGP.idGrauProficiencia = GrauProficiencia.idGrauProficiencia) = " +
+                                "ON ReconhecimentoGP.idGrauProficiencia = GrauProficiencia.idGrauProficiencia)
+                                 = " +
                                 "(SELECT GrauProficiencia.grau, GrauProficiencia.designacao " +
                                 "INNER JOIN CaracterCT.grauProfMinimo = GrauProficiencia.idGrauProficiencia) "*/
             );
