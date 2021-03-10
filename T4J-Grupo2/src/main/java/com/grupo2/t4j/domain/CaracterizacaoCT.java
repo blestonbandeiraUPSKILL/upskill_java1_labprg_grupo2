@@ -107,8 +107,8 @@ public class CaracterizacaoCT implements Serializable{
      */
     @Override
     public String toString() {
-        return String.format("Categoria: %-30s %nGrau de Proficiencia: %-20s "
-                + "%nCarácter: %-15s", codigoCategoria, codigoGP, obrigatoriedade.toString());
+        return String.format("Competencia Téncina: %-30s %nGrau de Proficiencia: %-20s "
+                + "%nCarácter: %-15s", descBreveCompetencia, designacaoGrau, obrigatoriedade.toString());
 
     }
     

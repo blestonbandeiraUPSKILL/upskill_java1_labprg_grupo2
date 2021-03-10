@@ -187,10 +187,7 @@ public class AdicionarCategoriaTarefaUI implements Initializable {
     }
 
     public void updateListViewCompTecCat(ActionEvent actionEvent) throws SQLException {
-        /*listViewCompTecCat.getItems().add(
-                registarCaracterizacaoCTController.findByCategoriaEGrau(
-                        txtCodigoCategoria.getText(),
-                        cmbGrauProficiencia.getValue().getIdGrauProficiencia()));*/
+        
         listViewCompTecCat.getItems().setAll(
                 registarCaracterizacaoCTController.getAllByCategoria(txtCodigoCategoria.getText()));
 
