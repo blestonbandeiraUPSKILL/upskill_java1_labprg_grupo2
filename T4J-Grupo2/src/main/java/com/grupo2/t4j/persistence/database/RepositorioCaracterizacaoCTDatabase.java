@@ -179,7 +179,13 @@ public class RepositorioCaracterizacaoCTDatabase implements RepositorioCaracteri
 
         try {
             CallableStatement callableStatement = connection.prepareCall(
-                    "SELECT * FROM CaracterCT WHERE codigoCategoria LIKE ? "
+                    "SELECT * FROM CaracterCT " +
+                            "INNER JOIN GrauProficiencia " +
+                            "ON GrauProficiencia.idGrauProficiencia = CaracterCT.grauProfMinimo " +
+                            "INNER JOIN " +
+                            "CompetenciaTecnica ON " +
+                            "GrauProficiencia.codigoCompetenciaTecnica LIKE CompetenciaTecnica.codigoCompetenciaTecnica " +
+                            "WHERE codigoCategoria LIKE ? "
             );
 
             callableStatement.setString(1, codigoCategoria);
@@ -188,10 +194,10 @@ public class RepositorioCaracterizacaoCTDatabase implements RepositorioCaracteri
             ResultSet resultSet = callableStatement.getResultSet();
 
             while(resultSet.next()) {
-                int idCaracterCT = resultSet.getInt(1);
                 String obrigatoria = resultSet.getString(2);
-                int grauProfMinimo = resultSet.getInt(3);
-                caracterizacoesCT.add(new CaracterizacaoCT(idCaracterCT, obrigatoria, grauProfMinimo, codigoCategoria));
+                String designacao = resultSet.getString(7);
+                String descBreve = resultSet.getString(10);
+                caracterizacoesCT.add(new CaracterizacaoCT(obrigatoria, designacao, descBreve));
             }
 
         }

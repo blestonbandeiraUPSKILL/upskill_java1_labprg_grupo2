@@ -16,6 +16,8 @@ public class CaracterizacaoCT implements Serializable{
     private int idCaracterizacao;
 
     private String codigoCategoria;
+    private String descBreveCompetencia;
+    private String designacaoGrau;
     /**
      * O grau de proficiencia da competencia tecnica
      */
@@ -59,6 +61,12 @@ public class CaracterizacaoCT implements Serializable{
         setObrigatoriedade(Obrigatoriedade.valueOf(obrigatoria.toUpperCase()));
         setCodigoGP(grauProfMinimo);
         setCodigoCategoria(codigoCategoria);
+    }
+
+    public CaracterizacaoCT(String obrigatoria, String designacaoGrau, String descBreveCompetencia) {
+        setObrigatoriedade(Obrigatoriedade.valueOf(obrigatoria.toUpperCase()));
+        this.designacaoGrau = designacaoGrau;
+        this.descBreveCompetencia = descBreveCompetencia;
     }
 
     public int getCodigoGP() {
