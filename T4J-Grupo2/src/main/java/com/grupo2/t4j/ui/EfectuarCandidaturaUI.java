@@ -78,7 +78,7 @@ public class EfectuarCandidaturaUI implements Initializable {
 
             if(adicionou) {
 
-                freelancerLogadoUI.updateListViewCandidaturas();
+                freelancerLogadoUI.updateTableViewCandidaturas();
                 btnAddCandidatura.setDisable(true);
 
                 AlertsUI.criarAlerta(Alert.AlertType.INFORMATION,

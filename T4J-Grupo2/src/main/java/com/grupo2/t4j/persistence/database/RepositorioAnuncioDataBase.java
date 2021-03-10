@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.grupo2.t4j.persistence.database;
 
 /**
@@ -391,44 +386,34 @@ public class RepositorioAnuncioDataBase implements RepositorioAnuncio {
     }
 
     /**
-     * Devolve uma lista de referências de tarefas anunciadas, em período de seriação, mas não seriadas
+     * Devolve uma lista de referências de tarefas anunciadas, em período de seriação,
+     * independente de terem sido seriadas ou não
      * @param referenciasTarefa
-     * @param nifOrganizacao
-
      * @return
      * @throws SQLException
      */
     @Override
-    public List<String> getAllRefTarefasASeriar(List<String> referenciasTarefa, String nifOrganizacao) throws SQLException{
-        //a data não pode ir por parâmetro, porque é controlada na DB. Para isto que queres fazer, fazemos um procedure em que ele compara
-        // a data de hoje (do sistema) com as datas to período de seriação. vou deixar este método comentado, para te chamar a atenção.
-
+    public List<String> getAllRefTarefasASeriar(List<String> referenciasTarefa) throws SQLException{
+      
         List<String> refTarefasASeriar = new ArrayList<>();
 
-        /*Connection connection = DBConnectionHandler.getInstance().openConnection();
+        Connection connection = DBConnectionHandler.getInstance().openConnection();
 
         try {
             for (String referencia : referenciasTarefa) {
-                int idAnuncio = findAnuncioByIdTarefa(referencia, nifOrganizacao).getIdAnuncio();
-                Data dtInSeriacao = new Data(findAnuncioByIdTarefa(referencia, nifOrganizacao).getDtInicioSeriacao());
-                Data dtFimSeriacao = new Data(findAnuncioByIdTarefa(referencia, nifOrganizacao).getDtFimSeriacao());
-                CallableStatement callableStatement = connection.prepareCall(
-                         "SELECT * FROM Anuncio LEFT JOIN ProcessoSeriacao ON "
-                            + "ProcessoSeriacao.idAnuncio IS NULL"
-                );
+                PreparedStatement preparedStatement = connection.prepareStatement(
+                    "SELECT * FROM Anuncio "
+                    + "INNER JOIN Tarefa "
+                    +"ON Anuncio.referencia LIKE Tarefa.referencia "
+                    + "WHERE sysdate BETWEEN Anuncio.dataInicioSeriacao AND Anuncio.dataFimSeriacao "
+                    );
+            
+                ResultSet resultSet = preparedStatement.executeQuery();
 
-                callableStatement.executeUpdate();
-
-                ResultSet resultSet = callableStatement.getResultSet();
-
-            while (resultSet.next()) {
-
-                if(dataAtual.compareTo(dtInSeriacao)>=0 && dataAtual.compareTo(dtFimSeriacao)<=0){
+                while (resultSet.next()) {
                     refTarefasASeriar.add(referencia);
                 }
-                       refTarefasASeriar.add(referencia);
                 }
-            }
         }
         catch (SQLException exception) {
             exception.printStackTrace();
@@ -437,7 +422,7 @@ public class RepositorioAnuncioDataBase implements RepositorioAnuncio {
         }
         finally {
             DBConnectionHandler.getInstance().closeAll();
-        }*/
+        }
         return refTarefasASeriar;
       
     } 

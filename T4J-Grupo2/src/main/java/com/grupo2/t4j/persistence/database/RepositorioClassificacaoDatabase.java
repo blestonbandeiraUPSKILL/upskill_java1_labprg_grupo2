@@ -15,6 +15,8 @@ import com.grupo2.t4j.persistence.RepositorioClassificacao;
 import com.grupo2.t4j.utils.DBConnectionHandler;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Collections;
 
 public class RepositorioClassificacaoDatabase implements RepositorioClassificacao{
     
@@ -241,6 +243,14 @@ public class RepositorioClassificacaoDatabase implements RepositorioClassificaca
         finally {
             DBConnectionHandler.getInstance().closeAll();
         }    
+        return classificacoes;
+    }
+    
+    @Override
+    public List<Classificacao> ordenarByIdCandidatura(List<Classificacao> classificacoes) throws SQLException{
+        
+        Collections.sort(classificacoes);
+        
         return classificacoes;
     }
 }

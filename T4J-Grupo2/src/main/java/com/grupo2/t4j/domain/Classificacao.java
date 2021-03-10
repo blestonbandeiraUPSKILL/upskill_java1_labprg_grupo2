@@ -9,7 +9,7 @@ package com.grupo2.t4j.domain;
  *
  * @author CAD
  */
-public class Classificacao {
+public class Classificacao implements Comparable<Classificacao>{
     
     /**
      * O id da Classificação
@@ -153,5 +153,21 @@ public class Classificacao {
     public String toString(){
         return String.format("ID Seriação: %-10s |ID Candidatura: %-10s"
                 + "|Colocação: %-4d º lugar", idSeriacao, idCandidatura, posicao);                
+    }
+    
+    /**
+     * Compara uma classificação com outra tendo como parâmetro o Id da Candidatura
+     * @param outraClassificacao
+     * @return 
+     */
+    @Override
+    public int compareTo(Classificacao outraClassificacao) {
+        if(this.idCandidatura > outraClassificacao.getIdCandidatura()){
+            return 1;
+        }
+        if(this.idCandidatura < outraClassificacao.getIdCandidatura()){
+            return -1;
+        }
+        return 0; 
     }
 }

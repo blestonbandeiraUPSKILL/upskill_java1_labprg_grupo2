@@ -10,10 +10,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-/**
- *
- * @author CAD
- */
 public class RepositorioCandidaturaDatabase implements RepositorioCandidatura{
 
     /**
@@ -391,11 +387,31 @@ public class RepositorioCandidaturaDatabase implements RepositorioCandidatura{
         return candidaturasEditaveis;
     }
     
+    /**
+     * Ordena as candidaturas por Valor pretendido
+     * @param candidaturas
+     * @return
+     * @throws SQLException 
+     */
     @Override
     public List<Candidatura> ordenarByValor(List<Candidatura> candidaturas) throws SQLException{
                
-        Collections.sort(candidaturas);
+        Collections.sort(candidaturas, Candidatura.CandidaturaComparator.VALOR);
         
+        return candidaturas;
+    }
+    
+    /**
+     * Ordena as candidaturas pelo Id da Candidatura
+     * @param candidaturas
+     * @return
+     * @throws SQLException 
+     */
+    @Override
+    public List<Candidatura> ordenarByIdCandidatura(List<Candidatura> candidaturas) throws SQLException{
+               
+        Collections.sort(candidaturas, Candidatura.CandidaturaComparator.IDCANDIDATURA);
+            
         return candidaturas;
     }
   

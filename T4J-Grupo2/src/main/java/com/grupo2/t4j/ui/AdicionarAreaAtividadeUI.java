@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.grupo2.t4j.ui;
 
 import com.grupo2.t4j.controller.RegistarAreaActividadeController;
@@ -29,12 +24,17 @@ public class AdicionarAreaAtividadeUI implements Initializable {
     private AdministrativoLogadoUI administrativoLogadoUI;
     private RegistarAreaActividadeController registarAreaActividadeController;
     private Stage adicionarStage;
-    
-    @FXML Button btnCancelar;
-    @FXML Button btnAddAreaAtividade;
-    @FXML TextField txtCodigo;
-    @FXML TextField txtDescricaoBreve;
-    @FXML TextArea areaDescricaoDetalhada;
+
+    @FXML
+    Button btnCancelar;
+    @FXML
+    Button btnAddAreaAtividade;
+    @FXML
+    TextField txtCodigo;
+    @FXML
+    TextField txtDescricaoBreve;
+    @FXML
+    TextArea areaDescricaoDetalhada;
 
     public void associarParentUI(AdministrativoLogadoUI administrativoLogadoUI) {
         this.administrativoLogadoUI = administrativoLogadoUI;
@@ -51,7 +51,7 @@ public class AdicionarAreaAtividadeUI implements Initializable {
         adicionarStage = new Stage();
         adicionarStage.initModality(Modality.APPLICATION_MODAL);;
         adicionarStage.setResizable(false);
-    }   
+    }
 
     @FXML
     void cancelarAction(ActionEvent event) {
@@ -82,13 +82,13 @@ public class AdicionarAreaAtividadeUI implements Initializable {
     @FXML
     public void registarAreaAction(ActionEvent event) {
 
-        try{
+        try {
             boolean adicionou = registarAreaActividadeController.registarAreaActividade(
                     txtCodigo.getText(),
                     txtDescricaoBreve.getText(),
                     areaDescricaoDetalhada.getText());
 
-            if(adicionou) {
+            if (adicionou) {
                 administrativoLogadoUI.updateTableViewAreasActividade();
 
                 AlertsUI.criarAlerta(Alert.AlertType.INFORMATION,
@@ -100,14 +100,13 @@ public class AdicionarAreaAtividadeUI implements Initializable {
 
             closeAddAreaActividade(event);
 
-        }
-        catch (IllegalArgumentException | SQLException exception) {
+        } catch (IllegalArgumentException | SQLException exception) {
             AlertsUI.criarAlerta(Alert.AlertType.ERROR,
                     MainApp.TITULO_APLICACAO,
                     "Registar Área de Actividade - Erro nos dados.",
                     "Não foi possível registar a Área de Actividade. " + exception.getMessage()
             ).show();
-        
+
         }
 
     }
@@ -118,6 +117,5 @@ public class AdicionarAreaAtividadeUI implements Initializable {
         this.areaDescricaoDetalhada.clear();
         ((Node) event.getSource()).getScene().getWindow().hide();
     }
-
 
 }
