@@ -1,9 +1,5 @@
 package com.grupo2.t4j.ui;
 
-/**
- *
- * @author CAD
- */
 import com.grupo2.t4j.controller.*;
 import com.grupo2.t4j.domain.HabilitacaoAcademica;
 import com.grupo2.t4j.domain.ReconhecimentoGP;
