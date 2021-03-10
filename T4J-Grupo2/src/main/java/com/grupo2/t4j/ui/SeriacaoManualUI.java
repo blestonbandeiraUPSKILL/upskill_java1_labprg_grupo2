@@ -54,9 +54,11 @@ public class SeriacaoManualUI implements Initializable{
     private ColaboradorLogadoUI colaboradorLogadoUI;
     private SeriarAnuncioController seriarAnuncioController;
     private Stage adicionarStage;
-    
-    private List<Integer> classificacoes = new ArrayList<>();
+        
+    private int idAnuncio;
+    private int idSeriacao;
     private int tamanho;
+    private List<Integer> classificacoes = new ArrayList<>();
     private ArrayList<String> colaboradoresParticipantes = new ArrayList<>();
     
     
@@ -92,14 +94,14 @@ public class SeriacaoManualUI implements Initializable{
         
         String emailColaborador = colaboradorLogadoUI.getEmailColaborador();
         String nifOrganizacao = colaboradorLogadoUI.getNifOrganizacao();
-        int idAnuncio = colaboradorLogadoUI.getIdAnuncio();
+        idAnuncio = colaboradorLogadoUI.getIdAnuncio();
         
         List<Candidatura> candidaturas = seriarAnuncioController.getAllByIdAnuncio(idAnuncio);
         tamanho = candidaturas.size();
         criarOpcoesClassificacao();
         boolean seriacaoCriada = seriarAnuncioController.saveSeriacao(idAnuncio);
         if(seriacaoCriada){
-            int idSeriacao = seriarAnuncioController.getIdSeriacao(idAnuncio);
+            idSeriacao = seriarAnuncioController.getIdSeriacao(idAnuncio);
         }
         
         ArrayList<String> colaboradoresOrganizacao = seriarAnuncioController.getAllEmailsAlfByOrganizacao(nifOrganizacao);
@@ -141,8 +143,9 @@ public class SeriacaoManualUI implements Initializable{
     }
     
     @FXML
-    public void registarColaborador (ActionEvent event){
-        
+    public void registarColaborador (ActionEvent event) throws SQLException{
+        String emailColaborador = tabelaColaboradores.getSelectionModel().getSelectedItem();
+        boolean adicionouColab = seriarAnuncioController.update(emailColaborador, idSeriacao);
     }
     
     @FXML
