@@ -11,7 +11,7 @@ package com.grupo2.t4j.ui;
  */
 import com.grupo2.t4j.controller.RegistarTarefaController;
 import com.grupo2.t4j.controller.SeriarAnuncioController;
-import com.grupo2.t4j.domain.Candidatura;
+import com.grupo2.t4j.domain.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -24,12 +24,15 @@ import javafx.stage.Stage;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 public class SeriacaoManualUI implements Initializable{
 
     @FXML private TextField txtIdAnuncio;
     
-    @FXML private TableView<?> tabelaClassificacao;
+    @FXML private TableView<TabelaFreelancerClassificacao> tabelaClassificacao;
+    
+    private List<TabelaFreelancerClassificacao> listaCandidaturas = new ArrayList<>();
     
     @FXML private TableColumn<Object, Object> colunaEmail;
      
@@ -39,7 +42,9 @@ public class SeriacaoManualUI implements Initializable{
     
     @FXML private Button btnConfirmarClassificacao;
     
-    @FXML private TableView<String> tabelaColaboradores;
+    @FXML private TableView<TabelaColaboradorAdicional> tabelaColaboradores;
+    
+    private List<TabelaColaboradorAdicional> colaboradoresOpcionais = new ArrayList<>();
     
     @FXML private TableColumn<Object, Object> colunaColaborador;
     
@@ -57,7 +62,9 @@ public class SeriacaoManualUI implements Initializable{
         
     private int idAnuncio;
     private int idSeriacao;
-    private int tamanho;
+    private int qtdCand;
+    private String emailColaborador;
+    private String nifOrganizacao;
     private List<Integer> classificacoes = new ArrayList<>();
     private ArrayList<String> colaboradoresParticipantes = new ArrayList<>();
     
@@ -87,34 +94,84 @@ public class SeriacaoManualUI implements Initializable{
             exception.printStackTrace();
         }
         
-        cmbClassificacao.getItems().setAll(classificacoes);
+        
     }
     
     public void transferData() throws SQLException {
         
-        String emailColaborador = colaboradorLogadoUI.getEmailColaborador();
-        String nifOrganizacao = colaboradorLogadoUI.getNifOrganizacao();
+        emailColaborador = colaboradorLogadoUI.getEmailColaborador();
+        nifOrganizacao = colaboradorLogadoUI.getNifOrganizacao();
         idAnuncio = colaboradorLogadoUI.getIdAnuncio();
         
-        List<Candidatura> candidaturas = seriarAnuncioController.getAllByIdAnuncio(idAnuncio);
-        tamanho = candidaturas.size();
-        criarOpcoesClassificacao();
         boolean seriacaoCriada = seriarAnuncioController.saveSeriacao(idAnuncio);
         if(seriacaoCriada){
             idSeriacao = seriarAnuncioController.getIdSeriacao(idAnuncio);
         }
         
-        ArrayList<String> colaboradoresOrganizacao = seriarAnuncioController.getAllEmailsAlfByOrganizacao(nifOrganizacao);
-        
-        
         txtIdAnuncio.setText(Integer.toString(idAnuncio));
+        criaTabelaCandidaturas();
+        criaTabelaColaboradoresOpcionais();
+        criarOpcoesClassificacao();
+        
+        
+        
+        
+        
+        
+        
     }
     
-    public List<Integer> criarOpcoesClassificacao(){
-        for(int i = 1; i < tamanho + 1; i++){
+    public void criaTabelaCandidaturas() throws SQLException{
+        List<Candidatura> candidaturas = seriarAnuncioController.getAllByIdAnuncio(idAnuncio);
+        List<Candidatura> candidaturasOrd = seriarAnuncioController.ordenarByIdCandidatura(candidaturas);
+        qtdCand = candidaturas.size();
+        for(int i = 0; i < qtdCand; i++){
+            TabelaFreelancerClassificacao cellCandidatura = new TabelaFreelancerClassificacao(candidaturasOrd.get(i).getEmailFreelancer());
+            listaCandidaturas.add(cellCandidatura);
+        }
+        tabelaClassificacao.getItems().setAll(listaCandidaturas);
+        preencherTabelaCandidaturas();
+    }
+    
+    public void preencherTabelaCandidaturas () {
+        colunaEmail.setCellValueFactory( new PropertyValueFactory<>("emailFreelancer"));
+        colunaClassificacao.setCellValueFactory( new PropertyValueFactory<>("classificacao"));       
+    }
+    
+    public void updateTabelaCandidaturas(int classificacao){
+        
+    }
+    
+    public void criaTabelaColaboradoresOpcionais() throws SQLException{
+        List<String> colaboradores = seriarAnuncioController.getAllEmailsAlfByOrganizacao(nifOrganizacao);
+        for(int i = 0; i < colaboradores.size(); i++){
+            if(!colaboradores.get(i).equals(emailColaborador)){
+                TabelaColaboradorAdicional cellColaborador = new TabelaColaboradorAdicional(colaboradores.get(i), "N");
+                colaboradoresOpcionais.add(cellColaborador);
+            }
+        }
+        tabelaColaboradores.getItems().setAll(colaboradoresOpcionais);
+        preencherTabelaColaboradores ();
+    }
+    
+    public void preencherTabelaColaboradores () {
+        colunaColaborador.setCellValueFactory( new PropertyValueFactory<>("emailColaboradorAdd"));
+        colunaParticipante.setCellValueFactory( new PropertyValueFactory<>("selecao"));       
+    }
+    
+    public void updateTabelaColaboradores(String emailColabAdd){
+        for(int i = 0; i < colaboradoresOpcionais.size(); i++){
+            if(colaboradoresOpcionais.get(i).getEmail().equals(emailColabAdd)){
+                colaboradoresOpcionais.get(i).setSelecao("S");
+            }
+        }
+    }
+    
+    public void criarOpcoesClassificacao(){
+        for(int i = 1; i < listaCandidaturas.size() + 1; i++){
             classificacoes.add(i);
         }
-        return classificacoes;
+        cmbClassificacao.getItems().setAll(classificacoes);
     }
     
     public List<Integer> updateOpcoesClassificacao(int tam){
@@ -144,8 +201,11 @@ public class SeriacaoManualUI implements Initializable{
     
     @FXML
     public void registarColaborador (ActionEvent event) throws SQLException{
-        String emailColaborador = tabelaColaboradores.getSelectionModel().getSelectedItem();
-        boolean adicionouColab = seriarAnuncioController.update(emailColaborador, idSeriacao);
+        String emailColabAdd = tabelaColaboradores.getSelectionModel().getSelectedItem().getEmail();
+        boolean adicionouColab = seriarAnuncioController.update(emailColabAdd, idSeriacao);
+        if(adicionouColab){
+            updateTabelaColaboradores(emailColabAdd);
+        }
     }
     
     @FXML
