@@ -74,7 +74,7 @@ public class RepositorioUtilizador {
             callableStatement.setString(1, utilizador.getEmail().toString());
             callableStatement.setString(2, utilizador.getUsername());
             callableStatement.setString(3, utilizador.getPassword().toString());
-            callableStatement.setInt(4, utilizador.getRolename());
+            callableStatement.setInt(4, utilizador.getIdRolename());
 
             callableStatement.executeQuery();
 
@@ -122,7 +122,7 @@ public class RepositorioUtilizador {
                 utilizador.setEmail(resultSet.getString(1));
                 utilizador.setUsername(resultSet.getString(2));
                 utilizador.setPassword(new Password(resultSet.getString(3)));
-                utilizador.setRolename(resultSet.getInt(4));
+                utilizador.setIdRolename(resultSet.getInt(4));
             }
         }
 
@@ -169,7 +169,7 @@ public class RepositorioUtilizador {
                 utilizador.setEmail(email);
                 utilizador.setUsername(resultSet.getString(2));
                 utilizador.setPassword(new Password(resultSet.getString(3)));
-                utilizador.setRolename(resultSet.getInt(4));
+                utilizador.setIdRolename(resultSet.getInt(4));
             }
         }
         catch (SQLException exception) {

@@ -15,7 +15,7 @@ public class Mapper {
         utilizadorDTO.setUsername(utilizador.getUsername());
         utilizadorDTO.setEmail(utilizador.getEmail().toString());
         utilizadorDTO.setPassword(utilizador.getPassword());
-        utilizadorDTO.setRolename(utilizador.getRolename());
+        utilizadorDTO.setIdRolename(utilizador.getIdRolename());
 
         return utilizadorDTO;
     }
@@ -25,7 +25,7 @@ public class Mapper {
         utilizador.setUsername(utilizadorDTO.getUsername());
         utilizador.setEmail(utilizadorDTO.getEmail());
         utilizador.setPassword(utilizadorDTO.getPassword());
-        utilizador.setRolename(utilizadorDTO.getRolename());
+        utilizador.setIdRolename(utilizadorDTO.getIdRolename());
 
         return utilizador;
     }

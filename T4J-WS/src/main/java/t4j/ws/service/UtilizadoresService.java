@@ -40,11 +40,13 @@ public class UtilizadoresService {
         repositorioUtilizador.saveWithoutRole(utilizador);
     }
 
-    public static void registerUserWithRoles(UtilizadorDTO utilizadorDTO, int idRolename) throws SQLException {
+    public static void registerUserWithRoles(UtilizadorDTO utilizadorDTO, String rolename) throws SQLException {
 
         Utilizador utilizador = Mapper.utilizadorDTO2Utilizador(utilizadorDTO);
 
-        utilizador.setRolename(idRolename);
+        Rolename rn = repositorioRolename.getRolenameByName(rolename);
+
+        utilizador.setIdRolename(rn.getIdRolename());
         repositorioUtilizador.saveWithRole(utilizador);
 
     }
@@ -58,7 +60,7 @@ public class UtilizadoresService {
     public static RolenameDTO getUserRolenames(String email) throws SQLException {
         Utilizador utilizador = repositorioUtilizador.findByEmail(email);
 
-        int idRolename = utilizador.getRolename();
+        int idRolename = utilizador.getIdRolename();
 
         Rolename rolename = repositorioRolename.getById(idRolename);
 
@@ -74,7 +76,7 @@ public class UtilizadoresService {
             throw new UtilizadorInvalidoException("Utilizador não encontrado");
         }
 
-        utilizador.setRolename(idRolename);
+        utilizador.setIdRolename(idRolename);
 
         if(idRolename == 0) {
             throw new RolenameAssociationException("Ocorreu um erro ao adicionar o rolename ao utilizador: " + email);
@@ -113,7 +115,7 @@ public class UtilizadoresService {
     public static boolean deleteRoleFromUser(String email, int idRolename) throws Exception {
         Utilizador utilizador = repositorioUtilizador.getByEmail(email);
 
-        if(utilizador.getRolename() == idRolename) {
+        if(utilizador.getIdRolename() == idRolename) {
             repositorioUtilizador.deleteRoleFromUser(utilizador);
             return true;
         }
