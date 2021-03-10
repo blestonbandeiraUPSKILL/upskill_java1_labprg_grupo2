@@ -95,7 +95,7 @@ public class AdicionarCompetenciaTecnicaUI implements Initializable {
                 AlertsUI.criarAlerta(Alert.AlertType.INFORMATION,
                         MainApp.TITULO_APLICACAO,
                         "Registar Competência Técnica.",
-                        "Competência Técnica registada com sucesso. Pode adicionar os graus de proficiência."
+                        "Competência Técnica registada com sucesso. Pode adicionar os Graus de Proficiência."
                 ).show();
             }
 
@@ -114,7 +114,7 @@ public class AdicionarCompetenciaTecnicaUI implements Initializable {
             public void handle(WindowEvent windowEvent) {
                 Alert alerta = AlertsUI.criarAlerta(Alert.AlertType.CONFIRMATION,
                         MainApp.TITULO_APLICACAO,
-                        "Confirmação da acção",
+                        "Confirmação da acção.",
                         "Tem a certeza que quer voltar à página anterior, cancelando o actual registo?");
 
                 if (alerta.showAndWait().get() == ButtonType.CANCEL) {
