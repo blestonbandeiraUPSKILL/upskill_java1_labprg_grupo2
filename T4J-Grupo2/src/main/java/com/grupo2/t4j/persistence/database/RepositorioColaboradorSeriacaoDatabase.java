@@ -17,6 +17,8 @@ import com.grupo2.t4j.utils.DBConnectionHandler;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 public class RepositorioColaboradorSeriacaoDatabase implements RepositorioColaboradorSeriacao{
     
     /**
@@ -181,7 +183,7 @@ public class RepositorioColaboradorSeriacaoDatabase implements RepositorioColabo
      * @throws SQLException 
      */
     @Override
-    public ArrayList getAllIdsSeriacaoByColaborador(String emailColaborador) throws SQLException{
+    public ArrayList<Integer> getAllIdsSeriacaoByColaborador(String emailColaborador) throws SQLException{
         
         ArrayList seriacoesColaborador = new ArrayList();
 
@@ -220,5 +222,6 @@ public class RepositorioColaboradorSeriacaoDatabase implements RepositorioColabo
         }
 
         return seriacoesColaborador;
-    }
+    }  
+    
 }

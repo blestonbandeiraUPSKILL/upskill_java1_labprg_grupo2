@@ -142,6 +142,10 @@ public class ColaboradorLogadoUI implements Initializable {
            });
      }
     
+    public String getEmailColaborador() throws SQLException {
+        return gestaoUtilizadoresController.getEmail();
+    }
+        
     public String getNifOrganizacao() throws SQLException {
         return registarColaboradorController.getNifOrganizacao(
                 gestaoUtilizadoresController.getEmail());
@@ -164,7 +168,7 @@ public class ColaboradorLogadoUI implements Initializable {
     
     public void updateTableViewTarefasColaborador() throws SQLException {
         cmbFiltroTarefas.getSelectionModel().clearSelection();
-        String email = gestaoUtilizadoresController.getEmail();
+        String email = getEmailColaborador();
         String nifOrganizacao = registarColaboradorController.getNifOrganizacao(email);
         tabelaTarefas.getItems().setAll(registarTarefaController.findByColaboradorENif(email, nifOrganizacao));
         preencherTabela();
@@ -172,8 +176,8 @@ public class ColaboradorLogadoUI implements Initializable {
     
     public void updateTableViewTarefasPublicadas() throws SQLException {
         cmbFiltroTarefas.getSelectionModel().clearSelection();
-        String email = gestaoUtilizadoresController.getEmail();
-        String nifOrganizacao = registarColaboradorController.getNifOrganizacao(email);
+        String email = getEmailColaborador();
+        String nifOrganizacao = getNifOrganizacao();
         List<String> referenciasTarefa = registarTarefaController.findRefenciaTarefa(nifOrganizacao);
         tabelaTarefas.getItems().setAll(registarTarefaController.findTarefasPublicadas(referenciasTarefa, nifOrganizacao, email));
         preencherTabela();
@@ -181,8 +185,8 @@ public class ColaboradorLogadoUI implements Initializable {
     
     public void updateTableViewTarefasNaoPublicadas() throws SQLException {
         cmbFiltroTarefas.getSelectionModel().clearSelection();
-        String email = gestaoUtilizadoresController.getEmail();
-        String nifOrganizacao = registarColaboradorController.getNifOrganizacao(email);
+        String email = getEmailColaborador();
+        String nifOrganizacao = getNifOrganizacao();
         List<String> referenciasTarefa = registarTarefaController.findRefenciaTarefa(nifOrganizacao);
         tabelaTarefas.getItems().setAll(registarTarefaController.findTarefasNaoPublicadas(referenciasTarefa, email, nifOrganizacao));
         preencherTabela();
@@ -190,7 +194,7 @@ public class ColaboradorLogadoUI implements Initializable {
     
     public void listaAnunciosASeriar() throws SQLException{
         try{
-            String emailColaborador = gestaoUtilizadoresController.getEmail();
+            String emailColaborador = getEmailColaborador();
             String nifOrganizacao = getNifOrganizacao();
             List<String> tarefasOrg = seriarAnuncioController.getReferenciasTarefas(nifOrganizacao);
             

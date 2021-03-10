@@ -120,8 +120,8 @@ public class SeriarAnuncioController {
         return repositorioClassificacao.findById(idClassificacao);
     }
     
-    public ArrayList<String> getAllEmailsByOrganizacao(String nifOrganizacao) throws SQLException{
-        return repositorioColaborador.getAllEmailsByOrganizacao(nifOrganizacao);
+    public ArrayList<String> getAllEmailsAlfByOrganizacao(String nifOrganizacao) throws SQLException{
+        return repositorioColaborador.getAllEmailsAlfByOrganizacao(nifOrganizacao);
     }
     
     public boolean update(String emailColaborador, int idSeriacao) throws SQLException{

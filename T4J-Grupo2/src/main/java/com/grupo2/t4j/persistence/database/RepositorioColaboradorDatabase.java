@@ -8,6 +8,8 @@ import com.grupo2.t4j.utils.DBConnectionHandler;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class RepositorioColaboradorDatabase implements RepositorioColaborador {
 
@@ -157,8 +159,14 @@ public class RepositorioColaboradorDatabase implements RepositorioColaborador {
         return colaboradores;
     }
     
+    /**
+     * Retorna todos os emails dos colaboradores de uma organização em ordem alfabética
+     * @param nifOrganizacao
+     * @return
+     * @throws SQLException 
+     */
     @Override
-    public ArrayList<String> getAllEmailsByOrganizacao(String nifOrganizacao) throws SQLException{
+    public ArrayList<String> getAllEmailsAlfByOrganizacao(String nifOrganizacao) throws SQLException{
         
         ArrayList<Colaborador> colaboradores = getAll();
         
@@ -169,10 +177,12 @@ public class RepositorioColaboradorDatabase implements RepositorioColaborador {
             if(colaborador.getNifOrganizacao().equals(nifOrganizacao)){
                 colaboradoresOrganizacao.add(colaborador.getEmail().getEmailText());
             }            
-        }   
+        }
+        
+        Collections.sort(colaboradoresOrganizacao);
         return colaboradoresOrganizacao;
     }
-
+  
     @Override
     public String getNifOrganizacao(String email) throws SQLException {
 

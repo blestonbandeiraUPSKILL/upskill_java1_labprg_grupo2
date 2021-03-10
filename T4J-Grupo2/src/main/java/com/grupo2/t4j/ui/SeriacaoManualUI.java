@@ -47,16 +47,18 @@ public class SeriacaoManualUI implements Initializable{
     
     @FXML private Button btnAdicionarColaborador;
 
-  
     @FXML private Button btnConcluirSeriacao;
 
     @FXML private Button btnVoltar;
     
-    private List<Integer> classificacoes = new ArrayList<>();
-    private int tamanho;
     private ColaboradorLogadoUI colaboradorLogadoUI;
     private SeriarAnuncioController seriarAnuncioController;
     private Stage adicionarStage;
+    
+    private List<Integer> classificacoes = new ArrayList<>();
+    private int tamanho;
+    private ArrayList<String> colaboradoresParticipantes = new ArrayList<>();
+    
     
     public void associarParentUI(ColaboradorLogadoUI colaboradorLogadoUI) {
         this.colaboradorLogadoUI = colaboradorLogadoUI;
@@ -87,7 +89,11 @@ public class SeriacaoManualUI implements Initializable{
     }
     
     public void transferData() throws SQLException {
+        
+        String emailColaborador = colaboradorLogadoUI.getEmailColaborador();
+        String nifOrganizacao = colaboradorLogadoUI.getNifOrganizacao();
         int idAnuncio = colaboradorLogadoUI.getIdAnuncio();
+        
         List<Candidatura> candidaturas = seriarAnuncioController.getAllByIdAnuncio(idAnuncio);
         tamanho = candidaturas.size();
         criarOpcoesClassificacao();
@@ -95,6 +101,10 @@ public class SeriacaoManualUI implements Initializable{
         if(seriacaoCriada){
             int idSeriacao = seriarAnuncioController.getIdSeriacao(idAnuncio);
         }
+        
+        ArrayList<String> colaboradoresOrganizacao = seriarAnuncioController.getAllEmailsAlfByOrganizacao(nifOrganizacao);
+        
+        
         txtIdAnuncio.setText(Integer.toString(idAnuncio));
     }
     
@@ -128,6 +138,11 @@ public class SeriacaoManualUI implements Initializable{
     @FXML
     public void registarClassificacao(ActionEvent event) {
 
+    }
+    
+    @FXML
+    public void registarColaborador (ActionEvent event){
+        
     }
     
     @FXML

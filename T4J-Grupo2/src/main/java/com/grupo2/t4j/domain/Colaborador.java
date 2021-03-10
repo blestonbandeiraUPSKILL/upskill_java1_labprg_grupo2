@@ -6,12 +6,13 @@
 package com.grupo2.t4j.domain;
 
 import java.io.Serializable;
+import java.util.Comparator;
 
 /**
  *
  * @author CAD
  */
-public class Colaborador extends Utilizador implements Serializable{
+public class Colaborador extends Utilizador implements Serializable, Comparable<Colaborador>{
     
     /**
      * A função do Colaborador da organização
@@ -139,6 +140,25 @@ public class Colaborador extends Utilizador implements Serializable{
                 + "%nFuncao: %s %nTelefone: %s %nRolename: %s",
                 super.getNome(), super.getEmail().getEmailText(), funcao, telefone,
                 super.getRolename().toString());
+    }
+    
+    public static class ColaboradorComparator {
+        public static Comparator<Colaborador> EMAIL = new Comparator<Colaborador>(){
+            @Override
+            public int compare(Colaborador c1, Colaborador c2) {
+                return c1.getEmail().getEmailText().compareTo(c2.getEmail().getEmailText());
+            }
+        };
+    }
+    
+    /**
+     * Compara um colaborador com outro com base na ordem alfabética de seus emails
+     * @param outroColaborador
+     * @return 
+     */
+    @Override
+    public int compareTo(Colaborador outroColaborador){
+        return ColaboradorComparator.EMAIL.compare(this, outroColaborador);
     }
 
 }
