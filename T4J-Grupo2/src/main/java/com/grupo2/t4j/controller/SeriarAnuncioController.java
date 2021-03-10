@@ -70,6 +70,10 @@ public class SeriarAnuncioController {
         return repositorioTipoRegimento.findById(idTipoRegimento);
     }
     
+    public Candidatura findById(int idCandidatura) throws SQLException {
+        return repositorioCandidatura.findById(idCandidatura);
+    }
+    
     public List<Candidatura> getAllByIdAnuncio(int idAnuncio) throws SQLException{
         return repositorioCandidatura.getAllByIdAnuncio(idAnuncio);
     }

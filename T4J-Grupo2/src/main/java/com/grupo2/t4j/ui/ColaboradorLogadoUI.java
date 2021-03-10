@@ -62,14 +62,14 @@ public class ColaboradorLogadoUI implements Initializable {
     @FXML TableColumn<Object, Object> colunaDuracao;
     @FXML TableColumn<Object, Object> colunaCusto;
 
-    @FXML TableView<Candidatura> tabelaCandidaturasFreelancers;
+    @FXML TableView<TabelaCandidaturasAnuncio> tabelaCandidaturasFreelancers;
+    private List<TabelaCandidaturasAnuncio> listaCandidaturasAnuncio = new ArrayList<>();
+    @FXML TableColumn<Object, Object> colunaClassificacao;
+    @FXML TableColumn<Object, Object> colunaIdCandidatura;
     @FXML TableColumn<Object, Object> colunaEmail;
     @FXML TableColumn<Object, Object> colunaDuracaoFree;
     @FXML TableColumn<Object, Object> colunaCustoFree;
     
-    @FXML TableView<Classificacao> tabelaClassificacao;
-    @FXML TableColumn<Object, Object> colunaClassificacao;
-
     public void associarParentUI(StartingPageUI startingPageUI) {
         this.startingPageUI = startingPageUI;
     }
@@ -84,7 +84,6 @@ public class ColaboradorLogadoUI implements Initializable {
         registarCategoriaController = new RegistarCategoriaController();
         try {
             registarTarefaController = new RegistarTarefaController();
-            // cmbAnuncio.getItems().setAll(updateAnunciosASeriar());
         } catch (SQLException exception) {
             exception.printStackTrace();
         }
@@ -132,8 +131,7 @@ public class ColaboradorLogadoUI implements Initializable {
            public void handle(ActionEvent event) {
                try {
                    btnConsultarAnuncio.setDisable(false);
-                   tabelaCandidaturasFreelancers.getItems().setAll(seriarAnuncioController.getAllByIdAnuncio(getIdAnuncio()));
-                   preencherTabelaCandidaturas ();
+                   criarTabelaClassificacao();
                    tipoSeriacao(event);                   
                } catch (SQLException exception) {
                    exception.printStackTrace();
@@ -157,8 +155,7 @@ public class ColaboradorLogadoUI implements Initializable {
         String nifOrganizacao = getNifOrganizacao();
         return registarTarefaController.findIdAnuncio(nifOrganizacao, referenciaTarefa);
     }
-    
-        
+            
     public void updateTableViewTarefas() throws SQLException {
         cmbFiltroTarefas.getSelectionModel().clearSelection();
         tabelaTarefas.getItems().setAll(registarTarefaController.getAllOrganizacao(
@@ -219,6 +216,20 @@ public class ColaboradorLogadoUI implements Initializable {
         }
     }
     
+    public void criarTabelaClassificacao() throws SQLException{
+        List<Candidatura> candidaturas = seriarAnuncioController.getAllByIdAnuncio(getIdAnuncio());
+        for(int i = 0; i < candidaturas.size(); i++){
+            TabelaCandidaturasAnuncio cellCandidatura = new TabelaCandidaturasAnuncio(
+            candidaturas.get(i).getIdCandidatura(), candidaturas.get(i).getEmailFreelancer(), 
+                    candidaturas.get(i).getNumeroDias(), candidaturas.get(i).getValorPretendido());
+            listaCandidaturasAnuncio.add(cellCandidatura);
+        }
+        tabelaCandidaturasFreelancers.getItems().setAll(listaCandidaturasAnuncio);
+        preencherTabelaCandidaturas ();
+    }
+    
+    
+    
     public void updateDataSeriacao() throws SQLException{
         txtDataSeriacao.clear();
         txtDataSeriacao.setText(seriarAnuncioController.findSeriacaoByAnuncio(getIdAnuncio()).getDataSeriacao());
@@ -234,15 +245,13 @@ public class ColaboradorLogadoUI implements Initializable {
     }
     
     public void preencherTabelaCandidaturas () {
-        colunaEmail.setCellValueFactory( new PropertyValueFactory<>("emailFreelancer"));
-        colunaDuracaoFree.setCellValueFactory( new PropertyValueFactory<>("numeroDias"));
-        colunaCustoFree.setCellValueFactory( new PropertyValueFactory<>("valorPretendido"));
-    }
-    
-    public void preencherTabelaClassificacao () {
         colunaClassificacao.setCellValueFactory( new PropertyValueFactory<>("classificacao"));        
+        colunaIdCandidatura.setCellValueFactory( new PropertyValueFactory<>("idCandidatura"));        
+        colunaEmail.setCellValueFactory( new PropertyValueFactory<>("email"));
+        colunaDuracaoFree.setCellValueFactory( new PropertyValueFactory<>("duracao"));
+        colunaCustoFree.setCellValueFactory( new PropertyValueFactory<>("custo"));
     }
-    
+       
     public void aplicarFiltroTarefas(ActionEvent actionEvent)throws SQLException {
         
         switch (cmbFiltroTarefas.getSelectionModel().getSelectedItem()) {
