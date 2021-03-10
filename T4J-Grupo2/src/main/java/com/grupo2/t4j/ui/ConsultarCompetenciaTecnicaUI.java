@@ -1,11 +1,5 @@
 package com.grupo2.t4j.ui;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 import com.grupo2.t4j.controller.RegistarAreaActividadeController;
 import com.grupo2.t4j.controller.RegistarGrauProficienciaController;
 import com.grupo2.t4j.domain.GrauProficiencia;
