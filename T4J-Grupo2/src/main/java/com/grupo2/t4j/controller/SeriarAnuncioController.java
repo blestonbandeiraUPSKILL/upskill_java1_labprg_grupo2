@@ -78,6 +78,10 @@ public class SeriarAnuncioController {
         return repositorioCandidatura.ordenarByValor(candidaturas);
     }
     
+    public List<Candidatura> ordenarByIdCandidatura(List<Candidatura> candidaturas) throws SQLException{
+        return repositorioCandidatura.ordenarByIdCandidatura(candidaturas);
+    }
+    
     public boolean saveSeriacao(int idAnuncio)throws SQLException{
         return repositorioSeriacao.save(idAnuncio);
     }

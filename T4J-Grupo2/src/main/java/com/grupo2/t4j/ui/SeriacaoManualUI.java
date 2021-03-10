@@ -13,8 +13,6 @@ import com.grupo2.t4j.controller.RegistarTarefaController;
 import com.grupo2.t4j.controller.SeriarAnuncioController;
 import com.grupo2.t4j.domain.Candidatura;
 import java.net.URL;
-import java.sql.SQLException;
-import java.util.List;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.event.ActionEvent;
@@ -23,6 +21,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class SeriacaoManualUI implements Initializable{
 
@@ -51,6 +52,8 @@ public class SeriacaoManualUI implements Initializable{
 
     @FXML private Button btnVoltar;
     
+    private List<Integer> classificacoes = new ArrayList<>();
+    private int tamanho;
     private ColaboradorLogadoUI colaboradorLogadoUI;
     private SeriarAnuncioController seriarAnuncioController;
     private Stage adicionarStage;
@@ -72,14 +75,42 @@ public class SeriacaoManualUI implements Initializable{
         adicionarStage = new Stage();
         adicionarStage.initModality(Modality.APPLICATION_MODAL);;
         adicionarStage.setResizable(false);
+        
+        try{
+            transferData();
+        }        
+        catch (SQLException exception) {
+            exception.printStackTrace();
+        }
+        
+        cmbClassificacao.getItems().setAll(classificacoes);
     }
     
     public void transferData() throws SQLException {
         int idAnuncio = colaboradorLogadoUI.getIdAnuncio();
         List<Candidatura> candidaturas = seriarAnuncioController.getAllByIdAnuncio(idAnuncio);
-        int tam = candidaturas.size();
-        
+        tamanho = candidaturas.size();
+        criarOpcoesClassificacao();
+        boolean seriacaoCriada = seriarAnuncioController.saveSeriacao(idAnuncio);
+        if(seriacaoCriada){
+            int idSeriacao = seriarAnuncioController.getIdSeriacao(idAnuncio);
+        }
         txtIdAnuncio.setText(Integer.toString(idAnuncio));
+    }
+    
+    public List<Integer> criarOpcoesClassificacao(){
+        for(int i = 1; i < tamanho + 1; i++){
+            classificacoes.add(i);
+        }
+        return classificacoes;
+    }
+    
+    public List<Integer> updateOpcoesClassificacao(int tam){
+        List<Integer> lista = new ArrayList<>();
+        for(int i = 1; i < tam + 1; i++){
+            lista.add(i);
+        }
+        return lista;
     }
     
     @FXML 
@@ -89,7 +120,9 @@ public class SeriacaoManualUI implements Initializable{
 
     @FXML
     public void atribuirClassificacao(ActionEvent event) {
-
+        int classUsada = cmbClassificacao.getSelectionModel().getSelectedItem();
+        classificacoes.remove(classUsada-1);
+        cmbClassificacao.getItems().setAll(classificacoes);
     }
 
     @FXML
