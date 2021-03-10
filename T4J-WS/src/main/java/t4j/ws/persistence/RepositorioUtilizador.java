@@ -1,7 +1,6 @@
 package t4j.ws.persistence;
 
 import t4j.ws.domain.Password;
-import t4j.ws.domain.Rolename;
 import t4j.ws.domain.Utilizador;
 import t4j.ws.utils.DBConnectionHandler;
 
@@ -21,38 +20,14 @@ public class RepositorioUtilizador {
         return repositorioUtilizador;
     }
 
-    public boolean save(Utilizador utilizador) throws SQLException {
+    public boolean saveWithoutRole(Utilizador utilizador) throws SQLException {
 
         Connection connection = DBConnectionHandler.getInstance().openConnection();
 
         try {
 
-            int idRolename = 0;
-            String rolename = "";
-            if (utilizador.getRolename().toString() != null) {
-                rolename = utilizador.getRolename().toString();
-            }
-            else {
-                rolename = "";
-            }
-
-            PreparedStatement preparedStatement = connection.prepareStatement(
-                    "Select idRolename INNER JOIN Rolename " +
-                            "ON Rolename.idRolename = Utilizador.idRolename " +
-                            "WHERE Rolename.designacao LIKE ?"
-            );
-
-            preparedStatement.setString(1, rolename);
-            preparedStatement.executeQuery();
-
-            ResultSet resultSet = preparedStatement.getResultSet();
-
-            while(resultSet.next()) {
-                idRolename = resultSet.getInt(1);
-            }
-
             CallableStatement callableStatement = connection.prepareCall(
-                    "{ CALL createUtilizador(?, ?, ?, ?) }"
+                    "{ CALL createUtilizadorWithoutRole(?, ?, ?) }"
             );
 
             connection.setAutoCommit(false);
@@ -60,7 +35,46 @@ public class RepositorioUtilizador {
             callableStatement.setString(1, utilizador.getEmail().toString());
             callableStatement.setString(2, utilizador.getUsername());
             callableStatement.setString(3, utilizador.getPassword().toString());
-            callableStatement.setInt(4, idRolename);
+
+            callableStatement.executeQuery();
+
+            connection.commit();
+            return true;
+
+        }
+
+        catch (SQLException exception) {
+            exception.getSQLState();
+            exception.printStackTrace();
+            try {
+                System.err.print("Transaction is being rolled back");
+                connection.rollback();
+            }
+            catch (SQLException sqlException) {
+                sqlException.getErrorCode();
+            }
+        }
+        finally {
+            DBConnectionHandler.getInstance().closeAll();
+        }
+        return false;
+    }
+
+    public boolean saveWithRole(Utilizador utilizador) throws SQLException {
+        Connection connection = DBConnectionHandler.getInstance().openConnection();
+
+        try {
+
+            CallableStatement callableStatement = connection.prepareCall(
+                    "{ CALL createUtilizadorWithRole(?, ?, ?, ?) }"
+            );
+
+            connection.setAutoCommit(false);
+
+            callableStatement.setString(1, utilizador.getEmail().toString());
+            callableStatement.setString(2, utilizador.getUsername());
+            callableStatement.setString(3, utilizador.getPassword().toString());
+            callableStatement.setInt(4, utilizador.getRolename());
 
             callableStatement.executeQuery();
 
@@ -88,15 +102,13 @@ public class RepositorioUtilizador {
 
     public Utilizador findByEmail(String email) throws SQLException {
         Utilizador utilizador = new Utilizador();
-        Rolename rolename = new Rolename();
+
 
         Connection connection = DBConnectionHandler.getInstance().openConnection();
 
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(
                     "SELECT * FROM Utilizador " +
-                        "INNER JOIN Rolename " +
-                        "ON Utilizador.idRolename = Rolename.idRolename " +
                             "WHERE email LIKE ?"
             );
 
@@ -110,8 +122,7 @@ public class RepositorioUtilizador {
                 utilizador.setEmail(resultSet.getString(1));
                 utilizador.setUsername(resultSet.getString(2));
                 utilizador.setPassword(new Password(resultSet.getString(3)));
-                rolename.setDesignacao(resultSet.getString(6));
-                utilizador.setRolename(rolename);
+                utilizador.setRolename(resultSet.getInt(4));
             }
         }
 
@@ -136,26 +147,53 @@ public class RepositorioUtilizador {
         return null;
     }
 
-    public Utilizador getByEmail(String email) {
-        return null;
-    }
+    public Utilizador getByEmail(String email) throws SQLException {
+       Utilizador utilizador = new Utilizador();
 
-    public boolean addRoleToUser(Utilizador utilizador, String rolename) throws SQLException {
-        int idRolename = 0;
         Connection connection = DBConnectionHandler.getInstance().openConnection();
 
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement(
-                    "SELECT idRolename FROM Rolename WHERE designacao LIKE ?"
+
+            CallableStatement callableStatement = connection.prepareCall(
+                    "SELECT * FROM Utilizador " +
+                            "WHERE email LIKE ?"
             );
 
-            preparedStatement.setString(1, rolename);
-            preparedStatement.executeQuery();
+            callableStatement.setString(1, email);
 
-            ResultSet rs = preparedStatement.getResultSet();
-            while (rs.next()) {
-                idRolename = rs.getInt(1);
+            callableStatement.executeQuery();
+
+            ResultSet resultSet = callableStatement.getResultSet();
+
+            while(resultSet.next()) {
+                utilizador.setEmail(email);
+                utilizador.setUsername(resultSet.getString(2));
+                utilizador.setPassword(new Password(resultSet.getString(3)));
+                utilizador.setRolename(resultSet.getInt(4));
             }
+        }
+        catch (SQLException exception) {
+            exception.getSQLState();
+            exception.printStackTrace();
+            try {
+                System.err.print("Transaction is being rolled back");
+                connection.rollback();
+            }
+            catch (SQLException sqlException) {
+                sqlException.getErrorCode();
+            }
+        }
+        finally {
+            DBConnectionHandler.getInstance().closeAll();
+        }
+       return utilizador;
+    }
+
+    public boolean addRoleToUser(Utilizador utilizador, int idRolename) throws SQLException {
+
+        Connection connection = DBConnectionHandler.getInstance().openConnection();
+
+        try {
 
             CallableStatement callableStatement = connection.prepareCall(
                     "UPDATE Utilizador " +
@@ -192,7 +230,8 @@ public class RepositorioUtilizador {
 
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(
-                    "DELETE rolename FROM Utilizador WHERE email LIKE ?"
+                    "UPDATE Utilizador " +
+                            "SET idRolename = null WHERE email LIKE ?"
             );
 
             preparedStatement.setString(1, utilizador.getEmail().toString());
@@ -216,6 +255,5 @@ public class RepositorioUtilizador {
         return false;
     }
 
-    public void saveWithRole(Utilizador utilizador) {
-    }
+
 }

@@ -39,10 +39,11 @@ public class Mapper {
 
     public static SessaoDTO sessao2SessaoDTO(Sessao sessao) {
         SessaoDTO sessaoDTO = new SessaoDTO();
-        UtilizadorDTO utilizadorDTO = Mapper.utilizador2UtilizadorDTO(sessao.getUtilizador());
 
-        sessaoDTO.setUtilizadorDTO(utilizadorDTO);
-        sessaoDTO.setTimeStamp(sessaoDTO.getTimeStamp());
+        sessaoDTO.setIdSessaoDTO(sessao.getIdSessao());
+        sessaoDTO.setRolenameDTO(sessao.getRolename());
+        sessaoDTO.setIdAppContextDTO(sessao.getContexto());
+        sessaoDTO.setEmailUtilizadorDTO(sessao.getEmailUtilizador());
 
         return sessaoDTO;
     }

@@ -11,8 +11,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class RegistarGrauProficienciaController {
-    
-    //private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosInMemory();
+
     private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosDatabase();
     private RepositorioGrauProficiencia repositorioGrauProficiencia = fabricaRepositorios.getRepositorioGrauProficiencia();
     private RepositorioCompetenciaTecnica repositorioCompetenciaTecnica = fabricaRepositorios.getRepositorioCompetenciaTecnica();

@@ -1,6 +1,5 @@
 CREATE OR REPLACE PROCEDURE createRolename(
-    p_designacao Rolename.designacao%type,
-    p_descricao Rolename.descricao%type
+    p_designacao Rolename.designacao%type
     )
 
 IS
@@ -8,8 +7,8 @@ IS
 BEGIN
 
     INSERT INTO Rolename
-        (designacao, descricao)
+        (designacao)
     VALUES
-        (p_designacao, p_descricao);
+        (p_designacao);
 
 END;

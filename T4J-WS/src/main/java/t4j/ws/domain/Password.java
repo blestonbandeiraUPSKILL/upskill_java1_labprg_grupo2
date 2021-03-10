@@ -50,8 +50,6 @@ public class Password {
 
     @Override
     public String toString() {
-        return "Password{" +
-                "password='" + password + '\'' +
-                '}';
+        return password;
     }
 }

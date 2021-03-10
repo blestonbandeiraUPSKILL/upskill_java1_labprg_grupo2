@@ -3,8 +3,12 @@ package t4j.ws.service;
 import t4j.ws.domain.Contexto;
 import t4j.ws.domain.Sessao;
 import t4j.ws.domain.Utilizador;
-import t4j.ws.dto.*;
+import t4j.ws.dto.ContextoDTO;
+import t4j.ws.dto.LoginDTO;
+import t4j.ws.dto.Mapper;
+import t4j.ws.dto.SessaoDTO;
 import t4j.ws.exception.KeyInvalidaException;
+import t4j.ws.persistence.RepositorioRolename;
 import t4j.ws.persistence.RepositorioSessao;
 import t4j.ws.persistence.RepositorioUtilizador;
 
@@ -14,6 +18,7 @@ public class GestaoUtilizadoresService {
 
     private static RepositorioSessao repositorioSessao = RepositorioSessao.getInstance();
     private static RepositorioUtilizador repositorioUtilizador = RepositorioUtilizador.getInstance();
+    private static RepositorioRolename repositorioRolename = RepositorioRolename.getInstance();
 
     public static ContextoDTO generateContext(String appKey) throws SQLException {
         Contexto contexto = null;
@@ -57,7 +62,10 @@ public class GestaoUtilizadoresService {
         }
 
         Contexto contexto = repositorioSessao.findContextByString(contextoDTO.getAppContext());
-        Sessao sessao = new Sessao(utilizador, contexto);
+
+        int idRolename = repositorioRolename.getIdByEmail(utilizador.getEmail().toString());
+
+        Sessao sessao = new Sessao(idRolename, contexto.getIdContexto(), utilizador.getEmail().toString());
 
         return repositorioSessao.saveSessao(sessao);
     }
