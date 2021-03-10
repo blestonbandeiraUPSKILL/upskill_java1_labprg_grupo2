@@ -230,4 +230,44 @@ public class RepositorioRolename {
 
         return rn;
     }
+
+    public int getIdByEmail(String email) throws SQLException {
+        int idRolename = 0;
+
+        Connection connection = DBConnectionHandler.getInstance().openConnection();
+
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(
+                    "SELECT Rolename.idRolename FROM Rolename " +
+                            "INNER JOIN Utilizador " +
+                            "ON Rolename.idRolename = Utilizador.idRolename " +
+                            "WHERE Utilizador.email LIKE ?"
+            );
+
+            preparedStatement.setString(1, email);
+            preparedStatement.executeQuery();
+
+            ResultSet resultSet = preparedStatement.getResultSet();
+
+            while(resultSet.next()){
+               idRolename = resultSet.getInt(1);
+            }
+        }
+        catch (SQLException exception) {
+            exception.getSQLState();
+            exception.printStackTrace();
+            try {
+                System.err.print("Transaction is being rolled back");
+                connection.rollback();
+            }
+            catch (SQLException sqlException) {
+                sqlException.getErrorCode();
+            }
+        }
+        finally {
+            DBConnectionHandler.getInstance().closeAll();
+        }
+
+        return idRolename;
+    }
 }

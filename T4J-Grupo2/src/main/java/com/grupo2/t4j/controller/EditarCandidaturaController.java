@@ -24,6 +24,7 @@ public class EditarCandidaturaController {
 
     public boolean updateCandidatura(int idCandidatura, double valorPretendido,
             int numeroDias, String txtApresentacao, String txtMotivacao) throws SQLException {
+
         return repositorioCandidatura.updateCandidatura(idCandidatura, valorPretendido,
                 numeroDias, txtApresentacao, txtMotivacao);
     }

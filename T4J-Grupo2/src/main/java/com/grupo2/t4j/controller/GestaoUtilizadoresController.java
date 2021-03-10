@@ -1,12 +1,14 @@
 package com.grupo2.t4j.controller;
 
 import com.grupo2.t4j.api.UsersAPI;
+import com.grupo2.t4j.persistence.FabricaRepositorios;
+import com.grupo2.t4j.persistence.RepositorioUtilizador;
+import com.grupo2.t4j.persistence.database.FabricaRepositoriosDatabase;
 
 public class GestaoUtilizadoresController {
 
-    /*private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosInMemory();
-    //private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosDatabase();
-    private RepositorioUtilizador repositorioUtilizador = fabricaRepositorios.getRepositorioUtilizador();*/
+    private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosDatabase();
+    private RepositorioUtilizador repositorioUtilizador = fabricaRepositorios.getRepositorioUtilizador();
 
 
     public boolean login(String email, String password) {
@@ -21,7 +23,7 @@ public class GestaoUtilizadoresController {
         UsersAPI.getInstance().resetContext();
     }
 
-    public String getRole() {
+    public int getRole() {
         return UsersAPI.getInstance().getRole();
     }
 

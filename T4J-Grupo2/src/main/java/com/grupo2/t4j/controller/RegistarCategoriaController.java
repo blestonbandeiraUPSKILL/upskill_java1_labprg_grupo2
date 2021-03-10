@@ -13,7 +13,6 @@ import java.util.List;
 
 public class RegistarCategoriaController {
 
-    //private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosInMemory();
     private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosDatabase();
     private RepositorioCategoriaTarefa repositorioCategoriaTarefa = fabricaRepositorios.getRepositorioCategoriaTarefa();
     private RepositorioAreaActividade repositorioAreaActividade = fabricaRepositorios.getRepositorioAreaActividade();

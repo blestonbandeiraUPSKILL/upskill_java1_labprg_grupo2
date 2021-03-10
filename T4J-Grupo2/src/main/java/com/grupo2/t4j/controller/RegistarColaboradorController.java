@@ -10,13 +10,11 @@ import com.grupo2.t4j.persistence.RepositorioColaborador;
 import com.grupo2.t4j.persistence.RepositorioUtilizador;
 import com.grupo2.t4j.persistence.database.FabricaRepositoriosDatabase;
 
-import java.io.File;
 import java.sql.SQLException;
 import java.util.List;
 
 public class RegistarColaboradorController {
 
-    //private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosInMemory();
     private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosDatabase();
     private RepositorioColaborador repositorioColaborador = fabricaRepositorios.getRepositorioColaborador();
     private RepositorioUtilizador repositorioUtilizador = fabricaRepositorios.getRepositorioUtilizador();
