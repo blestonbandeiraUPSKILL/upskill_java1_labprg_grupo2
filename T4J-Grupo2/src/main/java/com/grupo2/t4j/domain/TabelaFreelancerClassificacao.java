@@ -11,16 +11,23 @@ package com.grupo2.t4j.domain;
  */
 public class TabelaFreelancerClassificacao {
     
+    private int idCandidatura;
     private String emailFreelancer;
     private int classificacao;
     
-    public TabelaFreelancerClassificacao(String emailFreelancer, int classificacao){
+    public TabelaFreelancerClassificacao(int idCandidatura, String emailFreelancer, int classificacao){
+        setIdCandidatura(idCandidatura);
         setEmail(emailFreelancer);
         setClassificacao(classificacao);
     }
     
-    public TabelaFreelancerClassificacao(String emailFreelancer){
+    public TabelaFreelancerClassificacao(int idCandidatura, String emailFreelancer){
+        setIdCandidatura(idCandidatura);
         setEmail(emailFreelancer);       
+    }
+    
+    public void setIdCandidatura(int idCandidatura){
+        this.idCandidatura = idCandidatura;
     }
     
     public void setEmail(String emailFreelancer){
@@ -37,5 +44,9 @@ public class TabelaFreelancerClassificacao {
     
     public int getClassificacao(){
         return classificacao;
+    }
+    
+    public int getIdCandidatura(){
+        return idCandidatura;
     }
 }

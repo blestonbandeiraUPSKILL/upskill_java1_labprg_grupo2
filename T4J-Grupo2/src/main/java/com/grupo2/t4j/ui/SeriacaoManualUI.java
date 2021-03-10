@@ -25,6 +25,8 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Window;
+import javafx.stage.WindowEvent;
 
 public class SeriacaoManualUI implements Initializable{
 
@@ -33,6 +35,8 @@ public class SeriacaoManualUI implements Initializable{
     @FXML private TableView<TabelaFreelancerClassificacao> tabelaClassificacao;
     
     private List<TabelaFreelancerClassificacao> listaCandidaturas = new ArrayList<>();
+   
+    @FXML private TableColumn<Object, Object> colunaIdCand;
     
     @FXML private TableColumn<Object, Object> colunaEmail;
      
@@ -51,8 +55,6 @@ public class SeriacaoManualUI implements Initializable{
     @FXML private TableColumn<Object, Object> colunaParticipante;
     
     @FXML private Button btnAdicionarColaborador;
-
-    @FXML private Button btnConcluirSeriacao;
 
     @FXML private Button btnVoltar;
     
@@ -92,9 +94,7 @@ public class SeriacaoManualUI implements Initializable{
         }        
         catch (SQLException exception) {
             exception.printStackTrace();
-        }
-        
-        
+        }        
     }
     
     public void transferData() throws SQLException {
@@ -112,13 +112,6 @@ public class SeriacaoManualUI implements Initializable{
         criaTabelaCandidaturas();
         criaTabelaColaboradoresOpcionais();
         criarOpcoesClassificacao();
-        
-        
-        
-        
-        
-        
-        
     }
     
     public void criaTabelaCandidaturas() throws SQLException{
@@ -126,7 +119,7 @@ public class SeriacaoManualUI implements Initializable{
         List<Candidatura> candidaturasOrd = seriarAnuncioController.ordenarByIdCandidatura(candidaturas);
         qtdCand = candidaturas.size();
         for(int i = 0; i < qtdCand; i++){
-            TabelaFreelancerClassificacao cellCandidatura = new TabelaFreelancerClassificacao(candidaturasOrd.get(i).getEmailFreelancer());
+            TabelaFreelancerClassificacao cellCandidatura = new TabelaFreelancerClassificacao(candidaturasOrd.get(i).getIdCandidatura(),candidaturasOrd.get(i).getEmailFreelancer());
             listaCandidaturas.add(cellCandidatura);
         }
         tabelaClassificacao.getItems().setAll(listaCandidaturas);
@@ -134,12 +127,19 @@ public class SeriacaoManualUI implements Initializable{
     }
     
     public void preencherTabelaCandidaturas () {
+        colunaIdCand.setCellValueFactory( new PropertyValueFactory<>("idCandidatura"));
         colunaEmail.setCellValueFactory( new PropertyValueFactory<>("emailFreelancer"));
         colunaClassificacao.setCellValueFactory( new PropertyValueFactory<>("classificacao"));       
     }
     
-    public void updateTabelaCandidaturas(int classificacao){
-        
+    public void updateTabelaCandidaturas(int idCandidatura, int posicao){
+        for(int i = 0; i < listaCandidaturas.size(); i++){
+            if(listaCandidaturas.get(i).getIdCandidatura() == idCandidatura){
+                listaCandidaturas.get(i).setClassificacao(posicao);
+            }
+        }
+        tabelaClassificacao.getItems().setAll(listaCandidaturas);
+        preencherTabelaCandidaturas();
     }
     
     public void criaTabelaColaboradoresOpcionais() throws SQLException{
@@ -165,6 +165,8 @@ public class SeriacaoManualUI implements Initializable{
                 colaboradoresOpcionais.get(i).setSelecao("S");
             }
         }
+        tabelaColaboradores.getItems().setAll(colaboradoresOpcionais);
+        preencherTabelaColaboradores ();
     }
     
     public void criarOpcoesClassificacao(){
@@ -174,29 +176,26 @@ public class SeriacaoManualUI implements Initializable{
         cmbClassificacao.getItems().setAll(classificacoes);
     }
     
-    public List<Integer> updateOpcoesClassificacao(int tam){
-        List<Integer> lista = new ArrayList<>();
-        for(int i = 1; i < tam + 1; i++){
-            lista.add(i);
-        }
-        return lista;
-    }
-    
-    @FXML 
-    public void registarSeriacaoManual(ActionEvent event) {
-
-    }
-
-    @FXML
-    public void atribuirClassificacao(ActionEvent event) {
-        int classUsada = cmbClassificacao.getSelectionModel().getSelectedItem();
+    public void updateOpcoesClassificacao(int classUsada){
         classificacoes.remove(classUsada-1);
         cmbClassificacao.getItems().setAll(classificacoes);
     }
+  
+    @FXML
+    public void atribuirClassificacao(ActionEvent event) {
+        btnConfirmarClassificacao.requestFocus();
+    }
 
     @FXML
-    public void registarClassificacao(ActionEvent event) {
-
+    public void registarClassificacao(ActionEvent event) throws SQLException{
+        int posicao = cmbClassificacao.getSelectionModel().getSelectedItem();
+        int idCandidatura = tabelaClassificacao.getSelectionModel().getSelectedItem().getIdCandidatura();
+        boolean registou = seriarAnuncioController.saveClassificacao(posicao, idSeriacao, idCandidatura);
+        if(registou){
+            updateOpcoesClassificacao(posicao);
+            updateTabelaCandidaturas(idCandidatura, posicao);
+        }
+        tabelaClassificacao.requestFocus();
     }
     
     @FXML
@@ -206,10 +205,27 @@ public class SeriacaoManualUI implements Initializable{
         if(adicionouColab){
             updateTabelaColaboradores(emailColabAdd);
         }
+        tabelaColaboradores.requestFocus();
     }
     
     @FXML
     public void voltar(ActionEvent event) {
-         btnVoltar.getScene().getWindow().hide();
+        if(classificacoes.size() == 0){
+            Window window = btnVoltar.getScene().getWindow();
+            window.setOnCloseRequest(new EventHandler<WindowEvent>() {
+                @Override
+                public void handle(WindowEvent windowEvent) {
+                    Alert alerta = AlertsUI.criarAlerta(Alert.AlertType.CONFIRMATION,
+                        MainApp.TITULO_APLICACAO,
+                        "A seriação ainda não está concluída.",
+                        "Por favor, termine de classificar as candidaturas!");
+                    windowEvent.consume();
+                }
+            });
+        }
+        else{
+            btnVoltar.getScene().getWindow().hide();
+        }
+        
     }
 }
