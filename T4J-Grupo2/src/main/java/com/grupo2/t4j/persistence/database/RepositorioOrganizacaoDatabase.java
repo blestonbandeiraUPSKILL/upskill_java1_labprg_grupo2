@@ -56,7 +56,7 @@ public class RepositorioOrganizacaoDatabase implements RepositorioOrganizacao {
 
         try {
             CallableStatement callableStatement = connection.prepareCall(
-                "{CALL createOrganizacao(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) } ");
+                "{CALL createOrganizacao(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) } ");
 
 
 
