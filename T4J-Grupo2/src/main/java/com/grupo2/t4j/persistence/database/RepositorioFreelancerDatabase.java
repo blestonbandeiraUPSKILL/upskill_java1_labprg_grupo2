@@ -161,15 +161,6 @@ public class RepositorioFreelancerDatabase implements RepositorioFreelancer{
         Connection connection = DBConnectionHandler.getInstance().openConnection();
 
         try {
-            CallableStatement callableStatement = connection.prepareCall(
-                    "{CALL findFreelancerByEmail(?)}"
-            );
-
-            connection.setAutoCommit(false);
-
-            callableStatement.setString(1, emailFree);
-            callableStatement.executeQuery();
-
             PreparedStatement preparedStatement = connection.prepareStatement(
                     "SELECT Freelancer.telefone, " +
                             "Freelancer.nif, " +

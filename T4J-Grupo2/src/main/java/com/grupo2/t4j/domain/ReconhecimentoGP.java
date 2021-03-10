@@ -24,6 +24,8 @@ public class ReconhecimentoGP {
      * O email do freelancer a quem se refere o reconhecimento
      */
     private Email emailFreelancer;
+    private String designacaoGrau;
+    private String descBreveCompetencia;
     
     /**
      * Construtor vazio da classe ReconhecimentoGP
@@ -59,6 +61,12 @@ public class ReconhecimentoGP {
         setIdGrauProficiencia(idGrauProficiencia);
         setEmailFreelancer(new Email(emailFreelancer));
         setDataReconhecimento(dataReconhecimento);
+    }
+
+    public ReconhecimentoGP(String dataReconhecimento, String designacaoGrau, String descBreve) {
+        setDataReconhecimento(dataReconhecimento);
+        this.designacaoGrau = designacaoGrau;
+        this.descBreveCompetencia = descBreve;
     }
 
     /**
