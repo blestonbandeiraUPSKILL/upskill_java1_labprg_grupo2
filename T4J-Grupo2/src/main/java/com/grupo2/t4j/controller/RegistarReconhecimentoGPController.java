@@ -8,8 +8,7 @@ import com.grupo2.t4j.persistence.database.FabricaRepositoriosDatabase;
 import java.sql.SQLException;
 import java.util.List;
 public class RegistarReconhecimentoGPController {
-    
-    //private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosInMemory();
+
     private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosDatabase();
     private RepositorioReconhecimentoGP repositorioReconhecimentoGP = fabricaRepositorios.getRepositorioReconhecimentoGP();
 

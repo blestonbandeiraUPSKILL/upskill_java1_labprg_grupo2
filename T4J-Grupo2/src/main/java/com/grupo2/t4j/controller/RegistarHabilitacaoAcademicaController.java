@@ -5,12 +5,10 @@ import com.grupo2.t4j.persistence.FabricaRepositorios;
 import com.grupo2.t4j.persistence.RepositorioHabilitacaoAcademica;
 import com.grupo2.t4j.persistence.database.FabricaRepositoriosDatabase;
 
-import java.io.File;
 import java.sql.SQLException;
 import java.util.List;
 public class RegistarHabilitacaoAcademicaController {
-    
-    //private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosInMemory();
+
     private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosDatabase();
     private RepositorioHabilitacaoAcademica repositorioHabilitacaoAcademica = fabricaRepositorios.getRepositorioHabilitacaoAcademica();
 

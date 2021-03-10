@@ -88,14 +88,14 @@ public class RepositorioRolename {
         return rolenames;
     }
 
-    public Rolename getByName(String rolename) throws SQLException {
-        Rolename rn = null;
+    public int getByName(String rolename) throws SQLException {
+        int idRolename = 0;
 
         Connection connection = DBConnectionHandler.getInstance().openConnection();
 
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(
-                    "SELECT * FROM Rolename WHERE designacao LIKE ?"
+                    "SELECT idRolename FROM Rolename WHERE designacao LIKE ?"
             );
 
             preparedStatement.setString(1, rolename);
@@ -104,8 +104,7 @@ public class RepositorioRolename {
             ResultSet resultSet = preparedStatement.getResultSet();
 
             while(resultSet.next()) {
-                rn.setIdRolename(resultSet.getInt(1));
-                rn.setDesignacao(rolename);
+               idRolename = resultSet.getInt(1);
             }
 
         }
@@ -124,7 +123,7 @@ public class RepositorioRolename {
             DBConnectionHandler.getInstance().closeAll();
         }
 
-        return rn;
+        return idRolename;
     }
 
     public boolean deleteRolename(String rolename) throws SQLException {
@@ -154,5 +153,121 @@ public class RepositorioRolename {
             DBConnectionHandler.getInstance().closeAll();
         }
         return false;
+    }
+
+    public Rolename getById(int idRolename) throws SQLException {
+        Rolename rolename = new Rolename();
+
+        Connection connection = DBConnectionHandler.getInstance().openConnection();
+
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(
+                    "SELECT * FROM Rolename WHERE idRolename = ?"
+            );
+
+            preparedStatement.setInt(1, idRolename);
+            preparedStatement.executeQuery();
+
+            ResultSet resultSet = preparedStatement.getResultSet();
+
+            while(resultSet.next()){
+                rolename.setIdRolename(idRolename);
+                rolename.setDesignacao(resultSet.getString(2));
+            }
+        }
+        catch (SQLException exception) {
+            exception.getSQLState();
+            exception.printStackTrace();
+            try {
+                System.err.print("Transaction is being rolled back");
+                connection.rollback();
+            }
+            catch (SQLException sqlException) {
+                sqlException.getErrorCode();
+            }
+        }
+        finally {
+            DBConnectionHandler.getInstance().closeAll();
+        }
+
+        return rolename;
+    }
+
+    public Rolename getRolenameByName(String rolename) throws SQLException {
+        Rolename rn = new Rolename();
+
+        Connection connection = DBConnectionHandler.getInstance().openConnection();
+
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(
+                    "SELECT * FROM Rolename WHERE designacao LIKE ?"
+            );
+
+            preparedStatement.setString(1, rolename);
+            preparedStatement.executeQuery();
+
+            ResultSet resultSet = preparedStatement.getResultSet();
+
+            while(resultSet.next()){
+                rn.setIdRolename(resultSet.getInt(1));
+                rn.setDesignacao(rolename);
+            }
+        }
+        catch (SQLException exception) {
+            exception.getSQLState();
+            exception.printStackTrace();
+            try {
+                System.err.print("Transaction is being rolled back");
+                connection.rollback();
+            }
+            catch (SQLException sqlException) {
+                sqlException.getErrorCode();
+            }
+        }
+        finally {
+            DBConnectionHandler.getInstance().closeAll();
+        }
+
+        return rn;
+    }
+
+    public int getIdByEmail(String email) throws SQLException {
+        int idRolename = 0;
+
+        Connection connection = DBConnectionHandler.getInstance().openConnection();
+
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(
+                    "SELECT Rolename.idRolename FROM Rolename " +
+                            "INNER JOIN Utilizador " +
+                            "ON Rolename.idRolename = Utilizador.idRolename " +
+                            "WHERE Utilizador.email LIKE ?"
+            );
+
+            preparedStatement.setString(1, email);
+            preparedStatement.executeQuery();
+
+            ResultSet resultSet = preparedStatement.getResultSet();
+
+            while(resultSet.next()){
+               idRolename = resultSet.getInt(1);
+            }
+        }
+        catch (SQLException exception) {
+            exception.getSQLState();
+            exception.printStackTrace();
+            try {
+                System.err.print("Transaction is being rolled back");
+                connection.rollback();
+            }
+            catch (SQLException sqlException) {
+                sqlException.getErrorCode();
+            }
+        }
+        finally {
+            DBConnectionHandler.getInstance().closeAll();
+        }
+
+        return idRolename;
     }
 }

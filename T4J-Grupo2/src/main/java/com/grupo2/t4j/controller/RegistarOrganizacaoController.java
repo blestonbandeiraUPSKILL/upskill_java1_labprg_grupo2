@@ -16,7 +16,6 @@ import java.util.List;
 
 public class RegistarOrganizacaoController {
 
-    //private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosInMemory();
     private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosDatabase();
     private RepositorioOrganizacao repositorioOrganizacao = fabricaRepositorios.getRepositorioOrganizacao();
     private RepositorioColaborador repositorioColaborador = fabricaRepositorios.getRepositorioColaborador();

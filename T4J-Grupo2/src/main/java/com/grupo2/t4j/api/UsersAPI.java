@@ -55,7 +55,7 @@ public class UsersAPI implements Serializable {
                     break;
             }
             JSONObject bodyJSON = new JSONObject(httpResponse.getBody().replaceAll( "\\[|\\]", ""));
-            app_context = bodyJSON.getString("app_context");
+            app_context = bodyJSON.getString("appContext");
         }
         return app_context;
     }
@@ -144,11 +144,11 @@ public class UsersAPI implements Serializable {
 
     public String getEmail() {
         JSONObject bodyJSON = new JSONObject(getSession());
-        return bodyJSON.getString("email");
+        return bodyJSON.getString("emailUtilizadorDTO");
     }
 
-    public String getRole() {
+    public int getRole() {
         JSONObject bodyJSON = new JSONObject(getSession());
-        return bodyJSON.getString("rolenames");
+        return bodyJSON.getInt("rolenameDTO");
     }
 }
