@@ -53,9 +53,9 @@ public class RepositorioCaracterizacaoCTDatabase implements RepositorioCaracteri
 
                 connection.setAutoCommit(false);
 
-                callableStatement.setString(1, caracterizacaoCT.getCodigoCategoria());
+                callableStatement.setString(3, caracterizacaoCT.getCodigoCategoria());
                 callableStatement.setInt(2, caracterizacaoCT.getCodigoGP());
-                callableStatement.setString(3, caracterizacaoCT.getObrigatoriedade().toString());
+                callableStatement.setString(1, caracterizacaoCT.getObrigatoriedade().toString());
 
                 callableStatement.executeQuery();
 
