@@ -4,11 +4,11 @@ public enum Obrigatoriedade {
     OBRIGATORIA {
         @Override
         public String toString() {
-            return "Obrigatória";
+            return "obrigatoria";
         }},
     OPCIONAL {
         @Override
         public String toString() {
-            return "Opcional";
+            return "opcional";
         }};
 }

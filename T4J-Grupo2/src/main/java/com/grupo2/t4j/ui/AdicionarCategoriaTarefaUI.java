@@ -147,13 +147,14 @@ public class AdicionarCategoriaTarefaUI implements Initializable {
         window.fireEvent(new WindowEvent(window, WindowEvent.WINDOW_CLOSE_REQUEST));
     }
 
-    private void closeAddCatgoriaTarefa(ActionEvent actionEvent) {
+    public void confirmarAction(ActionEvent actionEvent) {
         this.txtDescricaoBreve.clear();
         this.txtDescricaoDetalhada.clear();
         this.listViewCompTecCat.getItems().removeAll();
 
         ((Node) actionEvent.getSource()).getScene().getWindow().hide();
     }
+    
 
     @FXML
     public void addCompetenciaTecnica2CCTS(ActionEvent actionEvent) throws SQLException {
@@ -186,10 +187,12 @@ public class AdicionarCategoriaTarefaUI implements Initializable {
     }
 
     public void updateListViewCompTecCat(ActionEvent actionEvent) throws SQLException {
-        listViewCompTecCat.getItems().add(
+        /*listViewCompTecCat.getItems().add(
                 registarCaracterizacaoCTController.findByCategoriaEGrau(
                         txtCodigoCategoria.getText(),
-                        cmbGrauProficiencia.getValue().getIdGrauProficiencia()));
+                        cmbGrauProficiencia.getValue().getIdGrauProficiencia()));*/
+        listViewCompTecCat.getItems().setAll(
+                registarCaracterizacaoCTController.getAllByCategoria(txtCodigoCategoria.getText()));
 
     }
 
