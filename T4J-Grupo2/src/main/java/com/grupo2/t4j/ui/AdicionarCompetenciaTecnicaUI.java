@@ -103,7 +103,7 @@ public class AdicionarCompetenciaTecnicaUI implements Initializable {
             AlertsUI.criarAlerta(Alert.AlertType.ERROR,
                     MainApp.TITULO_APLICACAO,
                     "Erro nos dados.",
-                    "Não foi possível registar a Competência Técncia." + exception.getMessage()).show();
+                    "Não foi possível registar a Competência Técnica." + exception.getMessage()).show();
         }
     }
 
