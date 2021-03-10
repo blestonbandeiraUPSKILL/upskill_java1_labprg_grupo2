@@ -126,16 +126,17 @@ public class RepositorioCategoriaTarefaDatabase implements RepositorioCategoriaT
         Connection connection = DBConnectionHandler.getInstance().openConnection();
 
         try {
-           /* CallableStatement callableStatement = connection.prepareCall(
+            CallableStatement callableStatement = connection.prepareCall(
                     "{CALL findByCodigoCategoria(?) }"
             );
 
             connection.setAutoCommit(false);
 
             callableStatement.setString(1, codigoCategoria);
-            callableStatement.executeQuery();*/
+            callableStatement.executeQuery();
+            return null;
 
-            PreparedStatement preparedStatement = connection.prepareStatement(
+            /*PreparedStatement preparedStatement = connection.prepareStatement(
                     "SELECT * FROM Categoria WHERE codigoCategoria LIKE ?"
             );
 
@@ -149,7 +150,7 @@ public class RepositorioCategoriaTarefaDatabase implements RepositorioCategoriaT
                 categoria.setDescDetalhada(resultSet.getString(3));
                 categoria.setCodigoAreaActividade(resultSet.getString(4));
 
-            }
+            }*/
         }
         catch (SQLException exception) {
             exception.printStackTrace();
