@@ -66,6 +66,10 @@ public class SeriarAnuncioController {
         return repositorioAnuncio.getAllRegimento();
     }
     
+    public List<String> getAllRefTarefasNaoSeriadas(List<String> referenciasTarefa, String nifOrganizacao) throws SQLException{
+        return repositorioAnuncio.getAllRefTarefasNaoSeriadas(referenciasTarefa, nifOrganizacao);
+    }
+    
     public TipoRegimento findRegimentoById(int idTipoRegimento) throws SQLException{
         return repositorioTipoRegimento.findById(idTipoRegimento);
     }
