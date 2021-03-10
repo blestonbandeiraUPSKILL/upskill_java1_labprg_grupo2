@@ -39,8 +39,6 @@ public class GestorLogadoUI implements Initializable {
     private RegistarTarefaController registarTarefaController;
     private GestaoUtilizadoresController gestaoUtilizadoresController;
     
-    
-    
     @FXML ComboBox<FiltroTarefas> cmbFiltroTarefas;
     @FXML Button btnLogout;
     @FXML Button btnPublicarTarefa;
@@ -108,7 +106,6 @@ public class GestorLogadoUI implements Initializable {
             exception.printStackTrace();
         }
 
-        
     }
     
     public void aplicarFiltroTarefas(ActionEvent actionEvent)throws SQLException {
@@ -132,8 +129,6 @@ public class GestorLogadoUI implements Initializable {
         }
     }
 
-    
-
     public void updateTableViewTarefas() throws SQLException {
         tabelaTarefas.getItems().setAll(registarTarefaController.getAllOrganizacao(
                 getNifOrganizacao()));
@@ -144,8 +139,6 @@ public class GestorLogadoUI implements Initializable {
         colunaCusto.setCellValueFactory( new PropertyValueFactory<>("custoEst"));
     }
 
-   
-
     public void updateListViewColaboradores() throws SQLException {
         listViewColaboradores.getItems().setAll(registarColaboradorController.getAll());
         
@@ -153,9 +146,7 @@ public class GestorLogadoUI implements Initializable {
         colunaFuncao.setCellValueFactory( new PropertyValueFactory<>("funcao"));
         colunaTelefone.setCellValueFactory( new PropertyValueFactory<>("telefone"));
         colunaEmail.setCellValueFactory( new PropertyValueFactory<>("email"));
-            
     }
-    
   
     public void updateTableViewTarefasColaborador() throws SQLException {
         cmbFiltroTarefas.getSelectionModel().clearSelection();

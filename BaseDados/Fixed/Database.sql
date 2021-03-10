@@ -21,18 +21,19 @@ select sysdate from dual;
 select sysdate+(10/(24*60)) from dual;
 
 select * from utilizador;
-INSERT INTO Utilizador 
-    (email, nome, password, idRolename) 
-VALUES 
-    ('admingrp2@upskill.pt', 'admin', 'teste123', 1);
-    commit;
-    
-delete from utilizador where email LIKE 'admingrp2@upskill.pt'
 
+select * from caracterct;
+
+update caracterct
+set obrigatoria = 'obrigatoria' where idCaracterct = 29
+commit;
+
+select * from colaborador;
+delete from utilizador where email like 'mariaines@marceloadvogados.pt'
 SELECT * FROM Utilizador 
 INNER JOIN Rolename 
 ON Utilizador.idRolename = Rolename.idRolename 
-WHERE email LIKE 'chica@gmails.com'
+WHERE email LIKE 'antonio@t4j.com'
 
 SELECT * FROM UserSession 
 INNER JOIN AppContext 

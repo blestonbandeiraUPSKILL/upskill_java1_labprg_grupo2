@@ -12,8 +12,7 @@ CREATE OR REPLACE PROCEDURE createOrganizacao(
     
     p_emailGestor organizacao.emailGestor%type,
     p_funcao colaborador.funcao%type,
-    p_telefoneGestor colaborador.telefone%type,
-    p_rolename rolename.designacao%type
+    p_telefoneGestor colaborador.telefone%type
     )
 is
     v_idEnderecoPostal enderecoPostal.idEnderecoPostal%type;
@@ -38,7 +37,7 @@ BEGIN
         p_emailGestor, v_idEnderecoPostal);
    
     createUtilizadorGestor(p_emailGestor, p_funcao, 
-    p_telefoneGestor, p_nif, p_rolename);
+    p_telefoneGestor, p_nif);
     
     
 END;
