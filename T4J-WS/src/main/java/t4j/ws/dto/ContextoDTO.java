@@ -15,4 +15,9 @@ public class ContextoDTO {
     public String getAppContext() {
         return appContext;
     }
+
+    @Override
+    public String toString() {
+        return appContext;
+    }
 }

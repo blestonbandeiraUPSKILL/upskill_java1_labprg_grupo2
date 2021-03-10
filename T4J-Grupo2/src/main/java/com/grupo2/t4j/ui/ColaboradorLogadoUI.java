@@ -29,7 +29,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
  */
 public class ColaboradorLogadoUI implements Initializable {
 
-
     private RegistarCategoriaController registarCategoriaController;
     private RegistarColaboradorController registarColaboradorController;
     private RegistarAreaActividadeController registarAreaActividadeController;
@@ -73,12 +72,12 @@ public class ColaboradorLogadoUI implements Initializable {
     public void associarParentUI(StartingPageUI startingPageUI) {
         this.startingPageUI = startingPageUI;
     }
-    
+
     /**
-    * Initializes the controller (UI) class.
-    */
+     * Initializes the controller (UI) class.
+     */
     @Override
-    public void initialize(URL location, ResourceBundle resources){
+    public void initialize(URL location, ResourceBundle resources) {
 
         registarAreaActividadeController = new RegistarAreaActividadeController();
         registarCategoriaController = new RegistarCategoriaController();
@@ -93,24 +92,25 @@ public class ColaboradorLogadoUI implements Initializable {
         adicionarStage = new Stage();
         adicionarStage.initModality(Modality.APPLICATION_MODAL);
         adicionarStage.setResizable(false);
+
         
         btnConsultarAnuncio.setDisable(true);
         btnConsultarCandidaturaFreelancer.setDisable(true);
         btnSeriacaoAutomatica.setDisable(true);
         btnSeriacaoManual.setDisable(true);
-                
+
         cmbFiltroTarefas.getItems().setAll(FiltroTarefas.values());
 
         cmbFiltroTarefas.setOnAction(new EventHandler<ActionEvent>() {
-           @Override
-           public void handle(ActionEvent event) {
-               try {
-                   aplicarFiltroTarefas(event);
-               } catch (SQLException exception) {
-                   exception.printStackTrace();
-               }
-           }
-           });
+            @Override
+            public void handle(ActionEvent event) {
+                try {
+                    aplicarFiltroTarefas(event);
+                } catch (SQLException exception) {
+                    exception.printStackTrace();
+                }
+            }
+        });
 
         try {
             tabelaTarefas.getItems().setAll(registarTarefaController.getAllOrganizacao(getNifOrganizacao()));
@@ -118,7 +118,7 @@ public class ColaboradorLogadoUI implements Initializable {
         } catch (SQLException exception) {
             exception.printStackTrace();
         }
-        
+
         /*try{
             listaAnunciosASeriar();
         }catch(SQLException exception) {
@@ -159,10 +159,10 @@ public class ColaboradorLogadoUI implements Initializable {
     public void updateTableViewTarefas() throws SQLException {
         cmbFiltroTarefas.getSelectionModel().clearSelection();
         tabelaTarefas.getItems().setAll(registarTarefaController.getAllOrganizacao(
-                getNifOrganizacao() ));
+                getNifOrganizacao()));
 
     }
-    
+
     public void updateTableViewTarefasColaborador() throws SQLException {
         cmbFiltroTarefas.getSelectionModel().clearSelection();
         String email = getEmailColaborador();
@@ -170,7 +170,7 @@ public class ColaboradorLogadoUI implements Initializable {
         tabelaTarefas.getItems().setAll(registarTarefaController.findByColaboradorENif(email, nifOrganizacao));
         preencherTabela();
     }
-    
+
     public void updateTableViewTarefasPublicadas() throws SQLException {
         cmbFiltroTarefas.getSelectionModel().clearSelection();
         String email = getEmailColaborador();
@@ -179,7 +179,7 @@ public class ColaboradorLogadoUI implements Initializable {
         tabelaTarefas.getItems().setAll(registarTarefaController.findTarefasPublicadas(referenciasTarefa, nifOrganizacao, email));
         preencherTabela();
     }
-    
+
     public void updateTableViewTarefasNaoPublicadas() throws SQLException {
         cmbFiltroTarefas.getSelectionModel().clearSelection();
         String email = getEmailColaborador();
@@ -214,6 +214,7 @@ public class ColaboradorLogadoUI implements Initializable {
         }catch(SQLException exception) {
                    exception.printStackTrace();
         }
+
     }
     
     public void criarTabelaClassificacao() throws SQLException{
@@ -251,9 +252,10 @@ public class ColaboradorLogadoUI implements Initializable {
         colunaDuracaoFree.setCellValueFactory( new PropertyValueFactory<>("duracao"));
         colunaCustoFree.setCellValueFactory( new PropertyValueFactory<>("custo"));
     }
-       
-    public void aplicarFiltroTarefas(ActionEvent actionEvent)throws SQLException {
-        
+      
+    public void aplicarFiltroTarefas(ActionEvent actionEvent) throws SQLException {
+
+
         switch (cmbFiltroTarefas.getSelectionModel().getSelectedItem()) {
             case TAREFAS_DA_ORGANIZACAO:
                 updateTableViewTarefas();
@@ -376,6 +378,7 @@ public class ColaboradorLogadoUI implements Initializable {
     
     public void consultarAnuncioAction(ActionEvent event){
                 
+
         try {
             FXMLLoader loaderConsultarAnuncio = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/ConsultarAnuncioScene.fxml"));
             Parent rootConsultarAnuncio = loaderConsultarAnuncio.load();
@@ -393,10 +396,10 @@ public class ColaboradorLogadoUI implements Initializable {
                     MainApp.TITULO_APLICACAO,
                     "Erro",
                     exception.getMessage());
-        }       
+        }
     }
-    
-    public void consultarCandidaturaFreelancer(ActionEvent event){
+
+    public void consultarCandidaturaFreelancer(ActionEvent event) {
         try {
             FXMLLoader loaderConsultarCandidaturaFreelancer = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/ConsultarCandidaturaFreelancerScene.fxml"));
             Parent rootConsultarCandidaturaFreelancer = loaderConsultarCandidaturaFreelancer.load();
@@ -414,8 +417,9 @@ public class ColaboradorLogadoUI implements Initializable {
                     MainApp.TITULO_APLICACAO,
                     "Erro",
                     exception.getMessage());
-        } 
+        }
     }
+
     
     public void logout(ActionEvent actionEvent) {
         Window window = btnLogout.getScene().getWindow();

@@ -8,7 +8,6 @@ import com.grupo2.t4j.persistence.RepositorioFreelancer;
 import com.grupo2.t4j.persistence.RepositorioUtilizador;
 import com.grupo2.t4j.persistence.database.FabricaRepositoriosDatabase;
 
-import java.io.File;
 import java.sql.SQLException;
 import java.util.List;
 public class RegistarFreelancerController {

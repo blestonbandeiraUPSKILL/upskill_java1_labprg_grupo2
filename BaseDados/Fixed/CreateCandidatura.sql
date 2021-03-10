@@ -13,9 +13,9 @@ IS
 BEGIN
 
     INSERT INTO Candidatura
-        (valorPretendido, numeroDias, txtApresentacao, txtMotivacao, idAnuncio, emailFreelancer, dataCandidatura)
+        (valorPretendido, numeroDias, txtApresentacao, txtMotivacao, idAnuncio, emailFreelancer, dataCandidatura, dataEdicaoCandidatura)
     VALUES
-        (p_valorPretendido, p_numeroDias, p_txtApresentacao, p_txtMotivacao, p_idAnuncio, p_emailFreelancer, trunc(sysdate));
+        (p_valorPretendido, p_numeroDias, p_txtApresentacao, p_txtMotivacao, p_idAnuncio, p_emailFreelancer, trunc(sysdate), sysdate);
     
 
 END;
