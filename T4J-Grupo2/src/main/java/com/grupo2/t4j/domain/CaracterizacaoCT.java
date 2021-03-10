@@ -56,7 +56,7 @@ public class CaracterizacaoCT implements Serializable{
 
     public CaracterizacaoCT(int idCaracterCT, String obrigatoria, int grauProfMinimo, String codigoCategoria) {
         setIdCaracterizacao(idCaracterCT);
-        setObrigatoriedade(Obrigatoriedade.valueOf(obrigatoria));
+        setObrigatoriedade(Obrigatoriedade.valueOf(obrigatoria.toUpperCase()));
         setCodigoGP(grauProfMinimo);
         setCodigoCategoria(codigoCategoria);
     }
@@ -99,8 +99,8 @@ public class CaracterizacaoCT implements Serializable{
      */
     @Override
     public String toString() {
-        return String.format("Categoria: %-30s |Grau de Proficiencia: %-20s "
-                + "|Carácter: %-15s", codigoCategoria, codigoGP, obrigatoriedade.toString());
+        return String.format("Categoria: %-30s %nGrau de Proficiencia: %-20s "
+                + "%nCarácter: %-15s", codigoCategoria, codigoGP, obrigatoriedade.toString());
 
     }
     
