@@ -48,41 +48,38 @@ public class RepositorioOrganizacaoDatabase implements RepositorioOrganizacao {
 
 
     @Override
-    public boolean save(String nif, String nome, String website, String telefone,
-                        String emailOrganizacao, String emailGestor, String arruamento, String numeroPorta,
-                        String localidade, String codPostal,
-                     String nomeGestor, String telefoneGestor, String funcao, String pass) throws SQLException {
+    public boolean save(String arruamento, String numeroPorta, String localidade, String codigoPostal,
+                        String nif, String nome, String website, String telefone, String emailOrganizacao,
+                        String emailGestor, String funcaoGestor, String telefoneGestor) throws SQLException {
 
         Connection connection = DBConnectionHandler.getInstance().openConnection();
 
         try {
             CallableStatement callableStatement = connection.prepareCall(
-                "{CALL createOrganizacao(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) } ");
+                "{CALL createOrganizacao(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) } ");
 
-            if (findByNif(nif) == null) {
 
-                connection.setAutoCommit(false);
 
-                callableStatement.setString(1, nif);
-                callableStatement.setString(2, nome);
-                callableStatement.setString(3, website);
-                callableStatement.setString(4, telefone);
-                callableStatement.setString(5, emailOrganizacao);
-                callableStatement.setString(6, emailGestor);
-                callableStatement.setString(7, arruamento);
-                callableStatement.setString(8, numeroPorta);
-                callableStatement.setString(9, localidade);
-                callableStatement.setString(10, codPostal);
-                callableStatement.setString(11, nomeGestor);
-                callableStatement.setString(12, pass);
-                callableStatement.setString(13, telefone);
-                callableStatement.setString(14, funcao);
+            connection.setAutoCommit(false);
 
-                callableStatement.executeQuery();
+            callableStatement.setString(1, arruamento);
+            callableStatement.setString(2, numeroPorta);
+            callableStatement.setString(3, localidade);
+            callableStatement.setString(4, codigoPostal);
+            callableStatement.setString(5, nif);
+            callableStatement.setString(6, nome);
+            callableStatement.setString(7, website);
+            callableStatement.setString(8, telefone);
+            callableStatement.setString(9, emailOrganizacao);
+            callableStatement.setString(10, emailGestor);
+            callableStatement.setString(11, funcaoGestor);
+            callableStatement.setString(12, telefoneGestor);
 
-                connection.commit();
-                return true;
-            }
+            callableStatement.executeQuery();
+
+            connection.commit();
+            return true;
+
         }
         catch (SQLException exception) {
             exception.printStackTrace();

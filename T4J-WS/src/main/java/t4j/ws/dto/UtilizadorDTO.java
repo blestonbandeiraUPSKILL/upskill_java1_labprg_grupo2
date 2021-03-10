@@ -7,7 +7,8 @@ public class UtilizadorDTO {
     private String username;
     private String email;
     private Password password;
-    private int rolename;
+    private int idRolename;
+    private String rolename;
 
     public void setUsername(String username) {
         this.username = username;
@@ -21,7 +22,11 @@ public class UtilizadorDTO {
         this.password = password;
     }
 
-    public void setRolename(int rolename) {
+    public void setIdRolename(int idRolename) {
+        this.idRolename = idRolename;
+    }
+
+    public void setRolename(String rolename) {
         this.rolename = rolename;
     }
 
@@ -37,7 +42,7 @@ public class UtilizadorDTO {
         return password;
     }
 
-    public int getRolename() {
-        return rolename;
+    public int getIdRolename() {
+        return idRolename;
     }
 }

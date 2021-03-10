@@ -109,7 +109,7 @@ public class UsersAPI implements Serializable {
 
     public boolean registerUserWithRoles(Email email, String username, Password password, String rolenames) {
 
-        String url = "registerUserWithRoles?app_context=" + getContext() + "&email=" + email.getEmailText() + "&username=" + username +
+        String url = "registerUserWithRoles?app_context=" + getContext() + "&username=" + username + "&user_id=" + email.getEmailText() +
                  "&password=" + password.getPasswordText() + "&rolenames=" + rolenames;
         HttpRequest httpRequest = new HttpRequest(HttpRequestType.POST, url);
         HttpResponse httpResponse = HttpConnection.makeRequest(httpRequest);

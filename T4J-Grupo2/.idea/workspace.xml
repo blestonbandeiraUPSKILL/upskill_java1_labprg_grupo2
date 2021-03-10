@@ -6,6 +6,17 @@
   <component name="ChangeListManager">
     <list default="true" id="8ca9f66f-f143-4134-afe5-eb7245bd0a9c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/api/UsersAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/api/UsersAPI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/controller/RegistarOrganizacaoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/controller/RegistarOrganizacaoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/domain/Colaborador.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/domain/Colaborador.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/persistence/RepositorioOrganizacao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/persistence/RepositorioOrganizacao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/persistence/database/RepositorioOrganizacaoDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/persistence/database/RepositorioOrganizacaoDatabase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../T4J-WS/src/main/java/t4j/ws/controller/GestaoUtilizadoresController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../T4J-WS/src/main/java/t4j/ws/controller/GestaoUtilizadoresController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../T4J-WS/src/main/java/t4j/ws/domain/Utilizador.java" beforeDir="false" afterPath="$PROJECT_DIR$/../T4J-WS/src/main/java/t4j/ws/domain/Utilizador.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../T4J-WS/src/main/java/t4j/ws/dto/Mapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/../T4J-WS/src/main/java/t4j/ws/dto/Mapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../T4J-WS/src/main/java/t4j/ws/dto/UtilizadorDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../T4J-WS/src/main/java/t4j/ws/dto/UtilizadorDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../T4J-WS/src/main/java/t4j/ws/persistence/RepositorioUtilizador.java" beforeDir="false" afterPath="$PROJECT_DIR$/../T4J-WS/src/main/java/t4j/ws/persistence/RepositorioUtilizador.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../T4J-WS/src/main/java/t4j/ws/service/UtilizadoresService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../T4J-WS/src/main/java/t4j/ws/service/UtilizadoresService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -300,7 +311,7 @@
         </line-breakpoint>
         <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/grupo2/t4j/persistence/database/RepositorioOrganizacaoDatabase.java</url>
-          <line>81</line>
+          <line>78</line>
           <option name="timeStamp" value="263" />
         </line-breakpoint>
         <line-breakpoint type="java-line">
@@ -342,6 +353,16 @@
           <url>file://$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/StartingPageUI.java</url>
           <line>111</line>
           <option name="timeStamp" value="389" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/grupo2/t4j/controller/RegistarOrganizacaoController.java</url>
+          <line>56</line>
+          <option name="timeStamp" value="391" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/grupo2/t4j/controller/RegistarOrganizacaoController.java</url>
+          <line>58</line>
+          <option name="timeStamp" value="392" />
         </line-breakpoint>
         <breakpoint type="java-exception">
           <properties class="java.lang.IllegalArgumentException" package="java.lang" />
