@@ -226,7 +226,8 @@ CREATE TABLE UserSession(
     idSession integer GENERATED AS IDENTITY
         CONSTRAINT pk_UserSession_idUserSession PRIMARY KEY,
     idAppContext integer,
-    emailUtilizador varchar(50)
+    idRolename integer,
+    emailUtilizador varchar(50);
 );
 
 CREATE TABLE AppContext(
