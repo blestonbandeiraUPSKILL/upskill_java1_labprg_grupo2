@@ -45,6 +45,10 @@ public class ConsultarCandidaturaUI implements Initializable {
     private GestaoUtilizadoresController gestaoUtilizadoresController;
     private RegistarTarefaController registarTarefaController;
 
+    /**
+     * Associa a scene FreelancerLogadoUI como parent desta Scene 
+     * @param FreelancerLogadoUI 
+     */
     public void associarParentUI(FreelancerLogadoUI freelancerLogadoUI) {
         this.freelancerLogadoUI = freelancerLogadoUI;
     }
@@ -71,6 +75,10 @@ public class ConsultarCandidaturaUI implements Initializable {
         txtAnuncio.setEditable(false);
     }
 
+    /**
+     * Prepara a scene para a edicao da candidatura
+     * @param event 
+     */
     @FXML
     private void editarDados(ActionEvent event) {
         txtApresentacao.setEditable(true);
@@ -84,6 +92,10 @@ public class ConsultarCandidaturaUI implements Initializable {
         
     }
 
+    /**
+     * Preenche a scene com os dados da candidatura
+     * @throws SQLException 
+     */
     public void transferData() throws SQLException {
         txtApresentacao.setText(freelancerLogadoUI.tabelaCandidaturas.getSelectionModel().getSelectedItem().getApresentacao());
         txtMotivacao.setText(freelancerLogadoUI.tabelaCandidaturas.getSelectionModel().getSelectedItem().getMotivacao());
@@ -93,6 +105,11 @@ public class ConsultarCandidaturaUI implements Initializable {
         txtDataEdicao.setText(freelancerLogadoUI.tabelaCandidaturas.getSelectionModel().getSelectedItem().getDataEdicaoCandidatura());
     }
 
+    /**
+     * Guarda as alteracoes feitas a candidatura
+     * @param actionEvent
+     * @throws SQLException 
+     */
     public void guardarAction(ActionEvent actionEvent) throws SQLException {
 
         int idCandidatura = freelancerLogadoUI.tabelaCandidaturas.getSelectionModel().getSelectedItem().getIdCandidatura();
@@ -125,10 +142,18 @@ public class ConsultarCandidaturaUI implements Initializable {
 
     }
 
+    /**
+     * Volta para a scene anterior
+     * @param actionEvent 
+     */
     public void voltarAction(ActionEvent actionEvent) {
         btnVoltar.getScene().getWindow().hide();
     }
     
+    /**
+     * Cancela a edicao da candidatura
+     * @param actionEvent 
+     */
     public void cancelarAction(ActionEvent actionEvent) {
         btnVoltar.setVisible(true);
         btnEditarDados.setVisible(true);
@@ -141,6 +166,10 @@ public class ConsultarCandidaturaUI implements Initializable {
         txtDias.setDisable(true);
     }
 
+    /**
+     * Verifica se a candidatura selecionada e editavel
+     * @throws SQLException 
+     */
     public void isCandidaturaEditavel() throws SQLException {
         String emailFreelancer = gestaoUtilizadoresController.getEmail();
         int idCandidatura = freelancerLogadoUI.tabelaCandidaturas.getSelectionModel().getSelectedItem().getIdCandidatura();
@@ -153,6 +182,11 @@ public class ConsultarCandidaturaUI implements Initializable {
         }
     }
 
+    /**
+     * Devolve o id do anuncio selecionado
+     * @return
+     * @throws SQLException 
+     */
     public int getIdAnuncio() throws SQLException {
         int idAnuncio = freelancerLogadoUI.tabelaCandidaturas.getSelectionModel().getSelectedItem().getIdAnuncio();
 

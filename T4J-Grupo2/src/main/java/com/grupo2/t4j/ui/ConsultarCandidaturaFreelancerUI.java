@@ -64,6 +64,11 @@ public class ConsultarCandidaturaFreelancerUI implements Initializable {
     @FXML TableColumn<Object, Object> txtInstituicao;
     @FXML TableView<HabilitacaoAcademica> tabelaHabilitacao;
 
+    
+    /**
+     * Associa a scene ColaboradorLogadoUI como parent desta Scene 
+     * @param ColaboradorLogadoUI 
+     */
     public void associarParentUI(ColaboradorLogadoUI colaboradorLogadoUI) {
         this.colaboradorLogadoUI = colaboradorLogadoUI;
     }
