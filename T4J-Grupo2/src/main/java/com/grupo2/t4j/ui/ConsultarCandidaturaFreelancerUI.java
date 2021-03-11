@@ -12,7 +12,10 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 public class ConsultarCandidaturaFreelancerUI implements Initializable {
 
@@ -39,10 +42,6 @@ public class ConsultarCandidaturaFreelancerUI implements Initializable {
     @FXML
     TextField txtMotivacao;
     @FXML
-    ListView<HabilitacaoAcademica> listaHabilitacoes;
-    @FXML
-    ListView<ReconhecimentoGP> listaCompetencias;
-    @FXML
     TextField txtCustoAnuncio;
     @FXML
     TextField txtCustoFreelancer;
@@ -52,6 +51,18 @@ public class ConsultarCandidaturaFreelancerUI implements Initializable {
     TextField txtDuracaoFreelancer;
     @FXML
     Button btnVoltar;
+    ////Tabela Reconhecimento///////////////////////
+    @FXML TableColumn<Object, Object> txtCompTec;
+    @FXML TableColumn<Object, Object> txtDataReconhecimento;
+    @FXML TableColumn<Object, Object> txtGrau;
+    @FXML TableView<ReconhecimentoGP> tabelaReconhecimento;
+    
+    ////Tabela Habilitacoes Academicas//////////////
+    @FXML TableColumn<Object, Object> txtGrauHabilitacao;
+    @FXML TableColumn<Object, Object> txtDesignacaoCurso;
+    @FXML TableColumn<Object, Object> txtMedia;
+    @FXML TableColumn<Object, Object> txtInstituicao;
+    @FXML TableView<HabilitacaoAcademica> tabelaHabilitacao;
 
     public void associarParentUI(ColaboradorLogadoUI colaboradorLogadoUI) {
         this.colaboradorLogadoUI = colaboradorLogadoUI;
@@ -80,6 +91,10 @@ public class ConsultarCandidaturaFreelancerUI implements Initializable {
         adicionarStage.setResizable(false);
     }
 
+    /**
+     * Preenche a Scene com os dados da candidatura do Freelancer
+     * @throws SQLException 
+     */
     public void transferData() throws SQLException {
 
         String email = colaboradorLogadoUI.tabelaCandidaturasFreelancers.getSelectionModel().getSelectedItem().getEmail();
@@ -97,14 +112,45 @@ public class ConsultarCandidaturaFreelancerUI implements Initializable {
         txtEmail.setText(email);
         txtApresentacao.setText(candidatura.getApresentacao());
         txtMotivacao.setText(candidatura.getMotivacao());
-        listaHabilitacoes.getItems().setAll(registarFreelancerController.getAllHabsAcademicas(email));
-        listaCompetencias.getItems().setAll(registarReconhecimentoGPController.getAll(email));
+        mostrarCompetencias(email);
+        mostrarHabilitacao(email);
         txtCustoAnuncio.setText(Double.toString(registarTarefaController.findTarefa(idAnuncio).getCustoEst()));
         txtCustoFreelancer.setText(Double.toString(colaboradorLogadoUI.tabelaCandidaturasFreelancers.getSelectionModel().getSelectedItem().getCusto()));
         txtDuracaoFreelancer.setText(Integer.toString(colaboradorLogadoUI.tabelaCandidaturasFreelancers.getSelectionModel().getSelectedItem().getDuracao()));
         txtDuracaoAnuncio.setText(Integer.toString(tarefa.getDuracaoEst()));
     }
+    
+    /**
+     * Preenche a tabela de Competencias do Freelancer
+     * @param emailFreelancer
+     * @throws SQLException 
+     */
+    public void mostrarCompetencias (String emailFreelancer) throws SQLException {
+        tabelaReconhecimento.getItems().setAll(registarReconhecimentoGPController.getAll(emailFreelancer));
+        
+        txtCompTec.setCellValueFactory(new PropertyValueFactory<>("descBreveCompetencia"));
+        txtGrau.setCellValueFactory(new PropertyValueFactory<>("designacaoGrau"));
+        txtDataReconhecimento.setCellValueFactory(new PropertyValueFactory<>("dataReconhecimento"));
+    }
 
+    /**
+     * Preenche a tabela de habilitações do Freelancer
+     * @param emailFreelancer
+     * @throws SQLException 
+     */
+    public void mostrarHabilitacao (String emailFreelancer) throws SQLException {
+        tabelaHabilitacao.getItems().setAll(registarFreelancerController.getAllHabsAcademicas(emailFreelancer));
+        
+        txtGrauHabilitacao.setCellValueFactory(new PropertyValueFactory<>("grau"));
+        txtMedia.setCellValueFactory(new PropertyValueFactory<>("mediaCurso"));
+        txtInstituicao.setCellValueFactory(new PropertyValueFactory<>("nomeInstituicao"));
+        txtDesignacaoCurso.setCellValueFactory(new PropertyValueFactory<>("designacaoCurso"));
+    }
+    
+    /**
+     * Volta para a Scene anterior
+     * @param event 
+     */
     @FXML
     public void voltarAtras(ActionEvent event) {
         btnVoltar.getScene().getWindow().hide();

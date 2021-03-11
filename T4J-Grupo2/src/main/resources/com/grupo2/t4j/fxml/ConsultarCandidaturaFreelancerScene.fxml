@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" styleClass="BorderPane" stylesheets="@../style/app.css" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.ConsultarCandidaturaFreelancerUI">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" styleClass="BorderPane" stylesheets="@../style/app.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.ConsultarCandidaturaFreelancerUI">
     <top>
         <Label styleClass="lblUser" text="Área do Colaborador :::&gt; Consultar Candidatura do Freelancer" textFill="WHITE" BorderPane.alignment="CENTER_RIGHT">
             <font>
@@ -170,16 +171,6 @@
                         <Insets left="10.0" />
                      </GridPane.margin>
                   </Label>
-                  <ListView fx:id="listaHabilitacoes" prefHeight="70.0" prefWidth="330.0" GridPane.rowIndex="7">
-                     <GridPane.margin>
-                        <Insets left="10.0" right="10.0" />
-                     </GridPane.margin>
-                  </ListView>
-                  <ListView fx:id="listaCompetencias" prefHeight="70.0" prefWidth="330.0" GridPane.columnIndex="1" GridPane.rowIndex="7">
-                     <GridPane.margin>
-                        <Insets left="10.0" right="10.0" />
-                     </GridPane.margin>
-                  </ListView>
                   <Label text="Motivação para a Apresentação" GridPane.rowIndex="4">
                      <GridPane.margin>
                         <Insets left="10.0" />
@@ -190,6 +181,27 @@
                         <Insets left="10.0" right="10.0" />
                      </GridPane.margin>
                   </TextField>
+                  <TableView fx:id="tabelaReconhecimento" prefHeight="125.0" prefWidth="334.0" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                     <columns>
+                        <TableColumn fx:id="txtCompTec" prefWidth="88.0" text="Comp. Técnica" />
+                        <TableColumn fx:id="txtGrau" minWidth="4.0" prefWidth="107.0" text="Grau Proficiência" />
+                        <TableColumn fx:id="txtDataReconhecimento" prefWidth="154.0" text="Data Reconhecimento" />
+                     </columns>
+                     <GridPane.margin>
+                        <Insets left="5.0" right="5.0" />
+                     </GridPane.margin>
+                  </TableView>
+                  <TableView fx:id="tabelaHabilitacao" prefHeight="60.0" prefWidth="331.0" GridPane.rowIndex="7">
+                     <columns>
+                        <TableColumn fx:id="txtGrauHabilitacao" prefWidth="61.0" text="Grau" />
+                        <TableColumn fx:id="txtDesignacaoCurso" prefWidth="126.0" text="Designação Curso" />
+                        <TableColumn fx:id="txtMedia" prefWidth="63.0" text="Média" />
+                        <TableColumn fx:id="txtInstituicao" prefWidth="99.0" text="Instituição" />
+                     </columns>
+                     <GridPane.margin>
+                        <Insets left="5.0" right="5.0" />
+                     </GridPane.margin>
+                  </TableView>
                </children>
             </GridPane>
          </top>
