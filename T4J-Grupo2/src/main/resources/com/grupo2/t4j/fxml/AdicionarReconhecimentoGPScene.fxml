@@ -24,7 +24,7 @@
          <left>
             <AnchorPane maxHeight="500.0" maxWidth="700.0">
                <children>
-                  <VBox layoutX="25.0" layoutY="18.0" prefHeight="324.0" prefWidth="324.0" BorderPane.alignment="CENTER">
+                  <VBox layoutX="25.0" layoutY="18.0" prefHeight="324.0" prefWidth="336.0" BorderPane.alignment="CENTER">
                      <children>
                         <Label layoutX="21.0" layoutY="10.0" text="Nome do Freelancer">
                            <VBox.margin>
@@ -51,11 +51,13 @@
                               <Insets bottom="10.0" />
                            </VBox.margin>
                         </Label>
-                        <ListView fx:id="listReconhecimentoGP" layoutX="21.0" layoutY="126.0" prefHeight="142.0" prefWidth="327.0">
-                           <VBox.margin>
-                              <Insets bottom="5.0" top="5.0" />
-                           </VBox.margin>
-                        </ListView>
+                        <TableView fx:id="tabelaReconhecimento" prefHeight="146.0" prefWidth="339.0">
+                           <columns>
+                              <TableColumn fx:id="txtCompTec" prefWidth="89.0" text="Comp. Técnica" />
+                              <TableColumn fx:id="txtGrau" minWidth="4.0" prefWidth="109.0" text="Grau Proficiência" />
+                              <TableColumn fx:id="txtDataReconhecimento" prefWidth="137.0" text="Data Reconhecimento" />
+                           </columns>
+                        </TableView>
                      </children>
                   </VBox>
                </children>

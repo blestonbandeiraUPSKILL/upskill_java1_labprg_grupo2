@@ -18,6 +18,7 @@ import javafx.stage.WindowEvent;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 /**
  * FXML Controller class
@@ -44,13 +45,17 @@ public class AdicionarReconhecimentoGPUI implements Initializable {
     @FXML
     ComboBox<GrauProficiencia> cmbProficiencia;
     @FXML
-    ListView<ReconhecimentoGP> listReconhecimentoGP;
-    @FXML
     Button btnAddCompetencia;
     @FXML
     Button btnCancelar;
     @FXML
     Button btnSair;
+    
+    ////Tabela Reconhecimento///////////////////////
+    @FXML TableColumn<Object, Object> txtCompTec;
+    @FXML TableColumn<Object, Object> txtDataReconhecimento;
+    @FXML TableColumn<Object, Object> txtGrau;
+    @FXML TableView<ReconhecimentoGP> tabelaReconhecimento;
 
     public void associarParentUI(AdministrativoLogadoUI administrativoLogadoUI) {
         this.administrativoLogadoUI = administrativoLogadoUI;
@@ -104,7 +109,7 @@ public class AdicionarReconhecimentoGPUI implements Initializable {
             public void handle(ActionEvent event) {
                 try {
                     updateTxtNomeFreelancer(event);
-                    updateListViewReconhecimentoGP();
+                    mostrarCompetencias();
                 } catch (SQLException exception) {
                     exception.printStackTrace();
                 }
@@ -119,10 +124,14 @@ public class AdicionarReconhecimentoGPUI implements Initializable {
                 registarGrauProficienciaController.findByCompetenciaTecnica(codigoCompetenciaTecnica));
     }
 
-    public void updateListViewReconhecimentoGP() throws SQLException {
+    
+    public void mostrarCompetencias () throws SQLException {
         String emailFreelancer = cmbEmailFreelancer.getSelectionModel().getSelectedItem().getEmail().getEmailText();
-        listReconhecimentoGP.getItems().setAll(
-                registarReconhecimentoGPController.getAll(emailFreelancer));
+        tabelaReconhecimento.getItems().setAll(registarReconhecimentoGPController.getAll(emailFreelancer));
+        
+        txtCompTec.setCellValueFactory(new PropertyValueFactory<>("descBreveCompetencia"));
+        txtGrau.setCellValueFactory(new PropertyValueFactory<>("designacaoGrau"));
+        txtDataReconhecimento.setCellValueFactory(new PropertyValueFactory<>("dataReconhecimento"));
     }
 
     public void updateTxtNomeFreelancer(ActionEvent actionEvent) throws SQLException {
@@ -140,7 +149,7 @@ public class AdicionarReconhecimentoGPUI implements Initializable {
                     txtIDataValidacao.getText());
 
             if (adicionou) {
-                updateListViewReconhecimentoGP();
+                mostrarCompetencias();
 
                 AlertsUI.criarAlerta(Alert.AlertType.INFORMATION,
                         MainApp.TITULO_APLICACAO, "Registar Validação de Competência Técnica.",
