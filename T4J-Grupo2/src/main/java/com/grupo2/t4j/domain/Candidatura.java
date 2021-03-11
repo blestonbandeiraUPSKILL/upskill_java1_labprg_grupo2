@@ -387,11 +387,22 @@ public class Candidatura implements Serializable, Comparable<Candidatura>{
                 numeroDias, txtApresentacao, txtMotivacao);
     }
     
+    /**
+     * Compara uma candidatura com outra com base no valor pretendido para a 
+     * execução da tarefa
+     * @param outraCandidatura
+     * @return 
+     */
     @Override
     public int compareTo(Candidatura outraCandidatura){
         return CandidaturaComparator.VALOR.compare(this, outraCandidatura);
     }
     
+    /**
+     * Estabelece dois tipos de comparativos entre duas candidaturas. Uma com
+     * base no valor pretendido para a execução da tarefa e outro com base no 
+     * id da Candidatura
+     */
     public static class CandidaturaComparator {
 
         public static Comparator<Candidatura> VALOR = new Comparator<Candidatura>(){

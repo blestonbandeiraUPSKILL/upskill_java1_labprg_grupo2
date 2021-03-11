@@ -355,19 +355,20 @@ public class ColaboradorLogadoUI implements Initializable {
         }      
     }
     
-    public void seriacaoManualAction(ActionEvent event){
+    public void seriacaoManualAction(ActionEvent event) throws SQLException{
         try {
             FXMLLoader loaderSeriacaoManual = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/SeriacaoManualScene.fxml"));
             Parent rootSeriacaoManual = loaderSeriacaoManual.load();
             sceneSeriacaoManual = new Scene(rootSeriacaoManual);
             SeriacaoManualUI seriacaoManualUI = loaderSeriacaoManual.getController();
             seriacaoManualUI.associarParentUI(this);
-
+            seriacaoManualUI.transferData();
+            
             adicionarStage.setScene(sceneSeriacaoManual);
             adicionarStage.setTitle("Seriação Manual do Anúncio");
             adicionarStage.show();
 
-        } catch (IOException exception) {
+        } catch (IOException|SQLException exception) {
             exception.printStackTrace();
             AlertsUI.criarAlerta(Alert.AlertType.ERROR,
                     MainApp.TITULO_APLICACAO,

@@ -27,9 +27,17 @@ public class CaracterizacaoCT implements Serializable{
      */
     private Obrigatoriedade obrigatoriedade;
     
+    /**
+     * Construtor vazio da classe caracterizacao de uma competencia tecnica
+     */
     public CaracterizacaoCT (){
     }
     
+    /**
+     * Construtor da classe caracterizacao de uma competencia tecnica que recebe
+     * como parâmetro um tipo desta mesma classe
+     * @param cct 
+     */
     public CaracterizacaoCT(CaracterizacaoCT cct){
         setCodigoGP(cct.codigoGP);
         setObrigatoriedade(cct.obrigatoriedade);
