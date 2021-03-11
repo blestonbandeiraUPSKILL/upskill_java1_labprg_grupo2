@@ -230,12 +230,7 @@ public class ColaboradorLogadoUI implements Initializable {
             String emailColaborador = getEmailColaborador();
             String nifOrganizacao = getNifOrganizacao();
             List<String> tarefasOrg = seriarAnuncioController.getReferenciasTarefas(nifOrganizacao);
-         /*
-            List<Tarefa> anunciosColaborador = seriarAnuncioController.findTarefasPublicadas(
-                tarefasOrg, nifOrganizacao, emailColaborador);
-            
-            List<String> anunciosColaboradorRefTarefas = seriarAnuncioController.getReferenciasTarefas(anunciosColaborador);
-            */
+       
             List<Tarefa> refAnunciosASeriar = new ArrayList<>();
                     
             refAnunciosASeriar = seriarAnuncioController.getAllRefTarefasASeriar(
@@ -446,19 +441,21 @@ public class ColaboradorLogadoUI implements Initializable {
         }
     }
 
-    public void consultarCandidaturaFreelancer(ActionEvent event) {
+    public void consultarCandidaturaFreelancer(ActionEvent event) throws SQLException {
         try {
             FXMLLoader loaderConsultarCandidaturaFreelancer = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/ConsultarCandidaturaFreelancerScene.fxml"));
             Parent rootConsultarCandidaturaFreelancer = loaderConsultarCandidaturaFreelancer.load();
             sceneConsultarCandidatura = new Scene(rootConsultarCandidaturaFreelancer);
             ConsultarCandidaturaFreelancerUI consultarCandidaturaFreelancerUI = loaderConsultarCandidaturaFreelancer.getController();
             consultarCandidaturaFreelancerUI.associarParentUI(this);
+            
+            consultarCandidaturaFreelancerUI.transferData();
 
             adicionarStage.setScene(sceneConsultarCandidatura);
             adicionarStage.setTitle("Consultar Candidatura do Freelancer");
             adicionarStage.show();
 
-        } catch (IOException exception) {
+        } catch (IOException|SQLException exception) {
             exception.printStackTrace();
             AlertsUI.criarAlerta(Alert.AlertType.ERROR,
                     MainApp.TITULO_APLICACAO,
