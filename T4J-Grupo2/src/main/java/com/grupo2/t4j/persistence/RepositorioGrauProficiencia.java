@@ -34,4 +34,8 @@ public interface RepositorioGrauProficiencia {
     List<GrauProficiencia> getAllGrausTarefa(Tarefa tarefa) throws SQLException;
 
     List<GrauProficiencia> getAllByCompetenciaTecnica(String codigoCompetenciaTecnica) throws SQLException;
+
+    List<GrauProficiencia> getAllGrausFreelancer(String emailFreelancer) throws SQLException;
+
+    List<GrauProficiencia> getAllGrausTarefas() throws SQLException;
 }

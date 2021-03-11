@@ -42,8 +42,8 @@ public class RegistarColaboradorController {
         return repositorioColaborador.save(colaborador);
     }
 
-    public List<Colaborador> getAll() throws SQLException {
-        return repositorioColaborador.getAll();
+    public List<Colaborador> getAll(String nifOrganizacacao) throws SQLException {
+        return repositorioColaborador.getAll(nifOrganizacacao);
     }
 
     public String getNifOrganizacao(String email) throws SQLException {
