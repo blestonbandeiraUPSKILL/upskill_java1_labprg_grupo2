@@ -119,13 +119,12 @@ public class ColaboradorLogadoUI implements Initializable {
             exception.printStackTrace();
         }
 
-        /*try{
+
+        try {
             listaAnunciosASeriar();
-        }catch(SQLException exception) {
-                   exception.printStackTrace();
-        }*/
-        
-        
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }
         cmbAnuncio.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {

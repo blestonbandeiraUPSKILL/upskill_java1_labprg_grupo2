@@ -393,27 +393,45 @@ public class RepositorioAnuncioDataBase implements RepositorioAnuncio {
      * @throws SQLException
      */
     @Override
-    public List<String> getAllRefTarefasASeriar(List<String> referenciasTarefa) throws SQLException{
-      
-        List<String> refTarefasASeriar = new ArrayList<>();
+    public List<Tarefa> getAllRefTarefasASeriar(List<String> referenciasTarefa, String nifOrganizacao, String emailColaborador) throws SQLException{
+
+        List<Tarefa> refTarefasASeriar = new ArrayList<>();
 
         Connection connection = DBConnectionHandler.getInstance().openConnection();
 
         try {
             for (String referencia : referenciasTarefa) {
                 PreparedStatement preparedStatement = connection.prepareStatement(
-                    "SELECT * FROM Anuncio "
-                    + "INNER JOIN Tarefa "
-                    +"ON Anuncio.referencia LIKE Tarefa.referencia "
-                    + "WHERE sysdate BETWEEN Anuncio.dataInicioSeriacao AND Anuncio.dataFimSeriacao "
+                    "SELECT * FROM Anuncio " +
+                            "INNER JOIN Tarefa " +
+                            "ON Anuncio.referenciaTarefa LIKE Tarefa.referencia " +
+                            "AND Anuncio.nifOrganizacao LIKE Tarefa.nifOrganizacao " +
+                            "WHERE Tarefa.referencia LIKE ? " +
+                            "AND Tarefa.nifOrganizacao LIKE ?" +
+                            "AND sysdate BETWEEN Anuncio.dataInicioSeriacao AND Anuncio.dataFimSeriacao " +
+                            "AND Tarefa.emailColaborador LIKE ? "
                     );
-            
-                ResultSet resultSet = preparedStatement.executeQuery();
+
+                preparedStatement.setString(1, referencia);
+                preparedStatement.setString(2, nifOrganizacao);
+                preparedStatement.setString(3, emailColaborador);
+
+                preparedStatement.executeQuery();
+
+                ResultSet resultSet = preparedStatement.getResultSet();
 
                 while (resultSet.next()) {
-                    refTarefasASeriar.add(referencia);
+                    String designacao = resultSet.getString(3);
+                    String descInformal = resultSet.getString(4);
+                    String descTecnica = resultSet.getString(5);
+                    int duracaoEstimada = resultSet.getInt(6);
+                    double custoEstimado = resultSet.getDouble(7);
+                    String codigoCategoria = resultSet.getString(8);
+                    refTarefasASeriar.add(new Tarefa(nifOrganizacao, referencia,
+                            designacao, descInformal, descTecnica, duracaoEstimada, custoEstimado, codigoCategoria, emailColaborador));
+
                 }
-                }
+            }
         }
         catch (SQLException exception) {
             exception.printStackTrace();
