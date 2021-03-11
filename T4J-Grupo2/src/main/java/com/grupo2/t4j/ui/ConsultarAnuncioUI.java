@@ -5,6 +5,8 @@ package com.grupo2.t4j.ui;
  * @author CAD
  */
 import com.grupo2.t4j.controller.*;
+import com.grupo2.t4j.domain.Anuncio;
+import com.grupo2.t4j.domain.Tarefa;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
@@ -21,38 +23,23 @@ import java.util.ResourceBundle;
 public class ConsultarAnuncioUI implements Initializable{
 
     
-    @FXML private TextField txtIdAnuncio;
-    
-    @FXML private TextField txtDtInPublicitacao; 
-    
-    @FXML private TextField txtDtFimPublicitacao;
-    
-    @FXML private TextField txtDtInCandidatura;
-    
-    @FXML private TextField txtDtFimCandidatura;
-    
-    @FXML private TextField txtDtInSeriacao;
-    
-    @FXML private TextField txtDtFimSeriacao;
-    
-    @FXML private TextField txtTipoRegDesignacao;
-    
-    @FXML private TextField txtRegras;
-    
-    @FXML private TextField txtReferencia;
+    @FXML TextField txtIdAnuncio;
+    @FXML TextField txtDtInPublicitacao;
+    @FXML TextField txtDtFimPublicitacao;
+    @FXML TextField txtDtInCandidatura;
+    @FXML TextField txtDtFimCandidatura;
+    @FXML TextField txtDtInSeriacao;
+    @FXML TextField txtDtFimSeriacao;
+    @FXML TextField txtTipoRegDesignacao;
+    @FXML TextField txtRegras;
+    @FXML TextField txtReferencia;
+    @FXML TextField txtDesignacao;
+    @FXML TextField txtDuracao;
+    @FXML TextField txtCusto;
+    @FXML TextField txtDescInformal;
+    @FXML TextField txDescTecnica;
+    @FXML Button btnVoltar;
 
-    @FXML private TextField txtDesignacao;
-    
-    @FXML private TextField txtDuracao;
-    
-    @FXML private TextField txtCusto;
-
-    @FXML private TextField txtDescInformal;    
-
-    @FXML private TextField txDescTecnica;
-    
-    @FXML private Button btnVoltar;
-    
     private ColaboradorLogadoUI colaboradorLogadoUI;
     private SeriarAnuncioController seriarAnuncioController;
     private RegistarTarefaController registarTarefaController;
@@ -87,23 +74,26 @@ public class ConsultarAnuncioUI implements Initializable{
         String referenciaTarefa = colaboradorLogadoUI.cmbAnuncio.getSelectionModel().getSelectedItem();
         String nifOrganizacao = colaboradorLogadoUI.getNifOrganizacao();
         int idAnuncio = registarTarefaController.findIdAnuncio(nifOrganizacao, referenciaTarefa);
-        int idRegimento = seriarAnuncioController.getAnuncio(idAnuncio).getIdTipoRegimento();
+        Anuncio anuncio = seriarAnuncioController.getAnuncio(idAnuncio);
+        int idRegimento = anuncio.getIdTipoRegimento();
         
         txtIdAnuncio.setText(Integer.toString(idAnuncio));
-        txtDtInPublicitacao.setText(seriarAnuncioController.getAnuncio(idAnuncio).getDtInicioPub());
-        txtDtFimPublicitacao.setText(seriarAnuncioController.getAnuncio(idAnuncio).getDtFimPub());
-        txtDtInCandidatura.setText(seriarAnuncioController.getAnuncio(idAnuncio).getDtInicioCand());
-        txtDtFimCandidatura.setText(seriarAnuncioController.getAnuncio(idAnuncio).getDtFimCand());
-        txtDtInSeriacao.setText(seriarAnuncioController.getAnuncio(idAnuncio).getDtInicioSeriacao());
-        txtDtFimSeriacao.setText(seriarAnuncioController.getAnuncio(idAnuncio).getDtFimSeriacao());
+        txtDtInPublicitacao.setText(anuncio.getDtInicioPub());
+        txtDtFimPublicitacao.setText(anuncio.getDtFimPub());
+        txtDtInCandidatura.setText(anuncio.getDtInicioCand());
+        txtDtFimCandidatura.setText(anuncio.getDtFimCand());
+        txtDtInSeriacao.setText(anuncio.getDtInicioSeriacao());
+        txtDtFimSeriacao.setText(anuncio.getDtFimSeriacao());
+
         txtTipoRegDesignacao.setText(seriarAnuncioController.findRegimentoById(idRegimento).getDesignacao());
         txtRegras.setText(seriarAnuncioController.findRegimentoById(idRegimento).getDescricaoRegras());
         txtReferencia.setText(referenciaTarefa);
-        txtDesignacao.setText(registarTarefaController.findTarefa(registarTarefaController.findIdAnuncio(nifOrganizacao, referenciaTarefa)).getDesignacao());
-        txtDuracao.setText(Integer.toString(registarTarefaController.findTarefa(registarTarefaController.findIdAnuncio(nifOrganizacao, referenciaTarefa)).getDuracaoEst()));
-        txtCusto.setText(Double.toString(registarTarefaController.findTarefa(registarTarefaController.findIdAnuncio(nifOrganizacao, referenciaTarefa)).getCustoEst()));
-        txtDescInformal.setText(registarTarefaController.findTarefa(registarTarefaController.findIdAnuncio(nifOrganizacao, referenciaTarefa)).getDescInformal());
-        txDescTecnica.setText(registarTarefaController.findTarefa(registarTarefaController.findIdAnuncio(nifOrganizacao, referenciaTarefa)).getDescTecnica());     
+        Tarefa tarefa = registarTarefaController.findTarefa(idAnuncio);
+        txtDesignacao.setText(tarefa.getDesignacao());
+        txtDuracao.setText(Integer.toString(tarefa.getDuracaoEst()));
+        txtCusto.setText(Double.toString(tarefa.getCustoEst()));
+        txtDescInformal.setText(tarefa.getDescInformal());
+        txDescTecnica.setText(tarefa.getDescTecnica());
     }
     
     

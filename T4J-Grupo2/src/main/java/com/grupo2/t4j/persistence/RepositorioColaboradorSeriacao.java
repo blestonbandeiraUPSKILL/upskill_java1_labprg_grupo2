@@ -23,6 +23,6 @@ public interface RepositorioColaboradorSeriacao {
     
     ArrayList<String> getAllColaboresBySeriacao(int idSeriacao) throws SQLException;
     
-    ArrayList getAllIdsSeriacaoByColaborador(String emailColaborador) throws SQLException;
+    ArrayList <Integer> getAllIdsSeriacaoByColaborador(String emailColaborador) throws SQLException;
     
 }
