@@ -92,4 +92,17 @@ public class RegistarTarefaController {
     public int findIdAnuncio(String nifOrganizacao, String referenciaTarefa) throws SQLException {
         return repositorioTarefa.findIdAnuncio(nifOrganizacao, referenciaTarefa);
     }
+
+    //lista graus Freelancer
+    public List<GrauProficiencia> getAllGrausFreelancer(String emailFreelancer) throws SQLException {
+        return repositorioGrauProficiencia.getAllGrausFreelancer(emailFreelancer);
+    }
+
+    //lista graus Tarefas todas
+    public List<GrauProficiencia> getAllGrausTarefas() throws SQLException {
+        return repositorioGrauProficiencia.getAllGrausTarefas();
+    }
+
+    //comparar graus
+
 }

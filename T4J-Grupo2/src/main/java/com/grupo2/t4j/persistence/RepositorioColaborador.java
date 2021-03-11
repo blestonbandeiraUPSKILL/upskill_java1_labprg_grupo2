@@ -16,7 +16,6 @@ import com.grupo2.t4j.domain.Password;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 
 public interface RepositorioColaborador {
 
@@ -27,7 +26,7 @@ public interface RepositorioColaborador {
 
     Colaborador findByEmail(String emailCol) throws SQLException;
 
-    ArrayList<Colaborador> getAll() throws SQLException;
+    ArrayList<Colaborador> getAll(String nifOrganizacacao) throws SQLException;
     
     ArrayList<String> getAllEmailsAlfByOrganizacao(String nifOrganizacao) throws SQLException;
         
