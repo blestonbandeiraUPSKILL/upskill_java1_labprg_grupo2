@@ -119,15 +119,15 @@ public class RepositorioCandidaturaDatabase implements RepositorioCandidatura{
         Connection connection = DBConnectionHandler.getInstance().openConnection();
 
         try {
-            CallableStatement callableStatementOrg = connection.prepareCall(
+            CallableStatement callableStatement = connection.prepareCall(
                     "{CALL findCandidaturaById(?)}");
 
             connection.setAutoCommit(false);
 
-            callableStatementOrg.setInt(1, idCandidatura);
-            callableStatementOrg.executeQuery();
+            callableStatement.setInt(1, idCandidatura);
+            callableStatement.executeQuery();
 
-            return null;
+            return new Candidatura();
 
         } catch (SQLException exceptionOrg) {
             exceptionOrg.printStackTrace();
@@ -136,7 +136,8 @@ public class RepositorioCandidaturaDatabase implements RepositorioCandidatura{
             DBConnectionHandler.getInstance().closeAll();
         }
 
-        return new Candidatura();
+        return null;
+
 
     }
 

@@ -455,12 +455,13 @@ public class ColaboradorLogadoUI implements Initializable {
             sceneConsultarCandidatura = new Scene(rootConsultarCandidaturaFreelancer);
             ConsultarCandidaturaFreelancerUI consultarCandidaturaFreelancerUI = loaderConsultarCandidaturaFreelancer.getController();
             consultarCandidaturaFreelancerUI.associarParentUI(this);
+            consultarCandidaturaFreelancerUI.transferData();
 
             adicionarStage.setScene(sceneConsultarCandidatura);
             adicionarStage.setTitle("Consultar Candidatura do Freelancer");
             adicionarStage.show();
 
-        } catch (IOException exception) {
+        } catch (IOException | SQLException exception) {
             exception.printStackTrace();
             AlertsUI.criarAlerta(Alert.AlertType.ERROR,
                     MainApp.TITULO_APLICACAO,
