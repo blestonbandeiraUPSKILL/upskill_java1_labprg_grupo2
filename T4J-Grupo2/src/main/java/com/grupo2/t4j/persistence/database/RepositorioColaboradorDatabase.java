@@ -48,7 +48,7 @@ public class RepositorioColaboradorDatabase implements RepositorioColaborador {
 
         try {
             CallableStatement callableStatement = connection.prepareCall(
-                "{CALL createUtilizadorColaborador(?, ?, ?, ?, ?, ?)}"
+                "{CALL createUtilizadorColaborador(?, ?, ?, ?)}"
             );
 
             if(findByEmail(colaborador.getEmail().getEmailText()) == null) {
@@ -56,11 +56,9 @@ public class RepositorioColaboradorDatabase implements RepositorioColaborador {
                 connection.setAutoCommit(false);
 
                 callableStatement.setString(1, colaborador.getEmail().getEmailText());
-                callableStatement.setString(2, colaborador.getNome());
-                callableStatement.setString(3, colaborador.getPassword().getPasswordText());
-                callableStatement.setString(4, colaborador.getTelefone());
-                callableStatement.setString(5, colaborador.getFuncao());
-                callableStatement.setString(6, colaborador.getNifOrganizacao());
+                callableStatement.setString(2, colaborador.getTelefone());
+                callableStatement.setString(3, colaborador.getFuncao());
+                callableStatement.setString(4, colaborador.getNifOrganizacao());
                 callableStatement.executeQuery();
 
                 connection.commit();

@@ -207,4 +207,9 @@ ALTER TABLE AppContext
     ADD CONSTRAINT fk_AppContext_idEstadoContext
     FOREIGN KEY (idEstadoContext)
     REFERENCES EstadoContext(idEstadoContext);
-    
+
+ALTER TABLE UserSession
+    ADD CONSTRAINT fk_UserSession_idRolename
+        FOREIGN KEY(idRolename)
+        REFERENCES Rolename(idRolename);
+

@@ -6,13 +6,11 @@ import com.grupo2.t4j.persistence.RepositorioAreaActividade;
 import com.grupo2.t4j.persistence.RepositorioCompetenciaTecnica;
 import com.grupo2.t4j.persistence.database.FabricaRepositoriosDatabase;
 
-import java.io.File;
 import java.sql.SQLException;
 import java.util.List;
 
 public class RegistarCompetenciaTecnicaController {
 
-    //private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosInMemory();
     private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosDatabase();
     private RepositorioCompetenciaTecnica repositorioCompetenciaTecnica = fabricaRepositorios.getRepositorioCompetenciaTecnica();
     private RepositorioAreaActividade repositorioAreaActividade = fabricaRepositorios.getRepositorioAreaActividade();
@@ -32,10 +30,6 @@ public class RegistarCompetenciaTecnicaController {
 
         return repositorioCompetenciaTecnica.save(competenciaTecnica);
     }
-
-    /*public static List<GrauProficiencia> getGrausAplicaveis() {
-        return CompetenciaTecnica.getGrausAplicaveis();
-    }*/
 
     public List<CompetenciaTecnica> getAll() throws SQLException {
         return repositorioCompetenciaTecnica.getAll();

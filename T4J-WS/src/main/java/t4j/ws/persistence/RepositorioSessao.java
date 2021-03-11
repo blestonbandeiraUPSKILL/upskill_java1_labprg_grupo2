@@ -59,12 +59,14 @@ public class RepositorioSessao {
 
         try {
             CallableStatement callableStatement = connection.prepareCall(
-                    "{CALL createSessao(?)}"
+                    "{CALL createSessao(?, ?, ?)}"
             );
 
             connection.setAutoCommit(false);
 
-            callableStatement.setString(1, sessao.getContexto().toString());
+            callableStatement.setInt(1, sessao.getContexto());
+            callableStatement.setInt(2, sessao.getRolename());
+            callableStatement.setString(3, sessao.getEmailUtilizador());
 
             callableStatement.executeQuery();
 
@@ -176,7 +178,7 @@ public class RepositorioSessao {
 
 
     public Sessao findByContext(String appContext) throws SQLException {
-        int idAppContext = 0;
+        Sessao sessao = new Sessao();
 
         Connection connection = DBConnectionHandler.getInstance().openConnection();
 
@@ -184,30 +186,26 @@ public class RepositorioSessao {
             connection.setAutoCommit(false);
 
             PreparedStatement preparedStatement = connection.prepareCall(
-                    "SELECT idAppContext " +
-                            "FROM AppContext " +
-                            "WHERE value LIKE ?"
+                    "SELECT * " +
+                            "FROM UserSession " +
+                            "INNER JOIN AppContext " +
+                            "ON UserSession.idAppContext = AppContext.idAppContext " +
+                            "WHERE AppContext.value LIKE ?"
             );
 
             preparedStatement.setString(1, appContext);
+            preparedStatement.executeQuery();
 
             ResultSet resultSet = preparedStatement.getResultSet();
 
             while (resultSet.next()) {
-                idAppContext = resultSet.getInt(1);
+               sessao.setIdSessao(resultSet.getInt(1));
+               sessao.setContexto(resultSet.getInt(2));
+               sessao.setRolename(resultSet.getInt(3));
+               sessao.setEmailUtilizador(resultSet.getString(4));
             }
 
-            CallableStatement callableStatement = connection.prepareCall(
-                    "UPDATE UserSession " +
-                            "SET estado LIKE 'invalido' " +
-                            "WHERE idAppContext LIKE ?"
-            );
-
-            callableStatement.setInt(1, idAppContext);
-            callableStatement.executeQuery();
-
             connection.commit();
-            return new Sessao();
 
         }
         catch (SQLException exception) {
@@ -224,7 +222,7 @@ public class RepositorioSessao {
         finally {
             DBConnectionHandler.getInstance().closeAll();
         }
-        return null;
+        return sessao;
     }
 
     public void setUsableOrDiscarded(Contexto contexto) throws SQLException {

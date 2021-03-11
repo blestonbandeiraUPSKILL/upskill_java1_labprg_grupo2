@@ -12,7 +12,7 @@ import java.util.ArrayList;
 public class RepositorioAdministrativoDatabase implements RepositorioAdministrativo {
 
     /**
-     * Define uma instância estática do Repositório em que estão registadas todas
+     * Define uma instância estática do Repositório em que estão registadas todos
      * os Administrativos da plataforma
      */
     private static RepositorioAdministrativoDatabase repositorioAdministrativoDatabase;
