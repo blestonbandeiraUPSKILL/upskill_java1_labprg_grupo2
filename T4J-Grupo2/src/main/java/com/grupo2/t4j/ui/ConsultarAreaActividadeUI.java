@@ -19,19 +19,19 @@ import java.util.ResourceBundle;
  */
 public class ConsultarAreaActividadeUI implements Initializable {
 
-    @FXML
-    TextField txtDescBreve;
-    @FXML
-    Button btnVoltar;
-    @FXML
-    TextField txtCodigo;
-    @FXML
-    TextArea txtDescDetalhada;
+    @FXML TextField txtDescBreve;
+    @FXML Button btnVoltar;
+    @FXML TextField txtCodigo;
+    @FXML TextArea txtDescDetalhada;
 
     private AdministrativoLogadoUI administrativoLogadoUI;
     private RegistarAreaActividadeController registarAreaActividadeController;
     private Stage adicionarStage;
 
+    /**
+     * Associa a scene AdministrativoLogadoUI como parent desta Scene 
+     * @param AdministrativoLogadoUI 
+     */
     public void associarParentUI(AdministrativoLogadoUI administrativoLogadoUI) {
         this.administrativoLogadoUI = administrativoLogadoUI;
     }
@@ -50,6 +50,10 @@ public class ConsultarAreaActividadeUI implements Initializable {
 
     }
 
+    /**
+     * Preenche a scene com a informacao da area de actividade
+     * @throws SQLException 
+     */
     public void transferData() throws SQLException {
 
         txtCodigo.setText(administrativoLogadoUI.tableViewAreaActividade.getSelectionModel().getSelectedItem().getCodigo());
@@ -58,6 +62,10 @@ public class ConsultarAreaActividadeUI implements Initializable {
 
     }
 
+    /**
+     * Volta para a scene anterior
+     * @param event 
+     */
     @FXML
     void voltarAtras(ActionEvent event) {
         btnVoltar.getScene().getWindow().hide();

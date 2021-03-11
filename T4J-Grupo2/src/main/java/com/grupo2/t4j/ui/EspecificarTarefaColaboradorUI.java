@@ -51,6 +51,10 @@ public class EspecificarTarefaColaboradorUI implements Initializable {
     @FXML
     Button btnCancelar;
 
+    /**
+     * Associa a scene ColaboradorLogadoUI como parent desta Scene 
+     * @param ColaboradorLogadoUI 
+     */
     public void associarParentUI(ColaboradorLogadoUI colaboradorLogadoUI) {
         this.colaboradorLogadoUI = colaboradorLogadoUI;
     }
@@ -97,6 +101,11 @@ public class EspecificarTarefaColaboradorUI implements Initializable {
 
     }
 
+    /**
+     * Atualiza a combobox de categorias de acordo com a area de atividade selecionada
+     * @param actionEvent
+     * @throws SQLException 
+     */
     public void updateCmbCategoriasTarefaRegisto(ActionEvent actionEvent) throws SQLException {
         List<Categoria> listaCategoriasTarefa
                 = registarCategoriaController.findByAreaActividade(
@@ -105,12 +114,21 @@ public class EspecificarTarefaColaboradorUI implements Initializable {
         cmbCategoriaTarefa.getItems().setAll(listaCategoriasTarefa);
     }
 
+    /**
+     * Atualiza a lista de competencias tecnicas 
+     * @param actionEvent 
+     */
     public void updateListViewCaracterizacaoCTS(ActionEvent actionEvent) {
 
         listViewCaracterizacaoCT.getItems().setAll(
                 cmbCategoriaTarefa.getSelectionModel().getSelectedItem().getCompTecnicasCaracter());
     }
 
+    /**
+     * Regista uma nova tarefa
+     * @param actionEvent
+     * @throws SQLException 
+     */
     public void registarTarefa(ActionEvent actionEvent) throws SQLException {
         try {
             boolean adicionou = registarTarefaController.registarTarefa(
@@ -143,6 +161,10 @@ public class EspecificarTarefaColaboradorUI implements Initializable {
         closeAddTarefa(actionEvent);
     }
 
+    /**
+     * Cancela a operacao
+     * @param actionEvent 
+     */
     public void cancelarAction(ActionEvent actionEvent) {
         Window window = btnCancelar.getScene().getWindow();
         window.setOnCloseRequest(new EventHandler<WindowEvent>() {
@@ -161,6 +183,10 @@ public class EspecificarTarefaColaboradorUI implements Initializable {
         window.fireEvent(new WindowEvent(window, WindowEvent.WINDOW_CLOSE_REQUEST));
     }
 
+    /**
+     * Termina o registo da tarefa
+     * @param actionEvent 
+     */
     private void closeAddTarefa(ActionEvent actionEvent) {
         this.cmbAreaActividade.setItems(null);
         this.cmbCategoriaTarefa.setItems(null);

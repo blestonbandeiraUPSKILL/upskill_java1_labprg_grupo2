@@ -70,7 +70,7 @@ public class ConsultarFreelancerUI implements Initializable {
         registarReconhecimentoGPController = new RegistarReconhecimentoGPController() ;
 
         adicionarStage = new Stage();
-        adicionarStage.initModality(Modality.APPLICATION_MODAL);;
+        adicionarStage.initModality(Modality.APPLICATION_MODAL);
         adicionarStage.setResizable(false);
     }
 

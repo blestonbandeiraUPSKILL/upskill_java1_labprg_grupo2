@@ -54,6 +54,10 @@ public class ConsultarAnuncioUI implements Initializable {
     private RegistarTarefaController registarTarefaController;
     private Stage adicionarStage;
 
+    /**
+     * Associa a scene ColaboradorLogadoUI como parent desta Scene 
+     * @param ColaboradorLogadoUI 
+     */
     public void associarParentUI(ColaboradorLogadoUI colaboradorLogadoUI) {
         this.colaboradorLogadoUI = colaboradorLogadoUI;
     }
@@ -79,6 +83,10 @@ public class ConsultarAnuncioUI implements Initializable {
         adicionarStage.setResizable(false);
     }
 
+    /**
+     * Preenche a scene com a informacao do anuncio
+     * @throws SQLException 
+     */
     public void transferData() throws SQLException {
         String referenciaTarefa = colaboradorLogadoUI.cmbAnuncio.getSelectionModel().getSelectedItem();
         String nifOrganizacao = colaboradorLogadoUI.getNifOrganizacao();
@@ -105,6 +113,10 @@ public class ConsultarAnuncioUI implements Initializable {
         txDescTecnica.setText(tarefa.getDescTecnica());
     }
 
+    /**
+     * Volta para a scene anterior
+     * @param event 
+     */
     @FXML
     public void voltar(ActionEvent event) {
         btnVoltar.getScene().getWindow().hide();
