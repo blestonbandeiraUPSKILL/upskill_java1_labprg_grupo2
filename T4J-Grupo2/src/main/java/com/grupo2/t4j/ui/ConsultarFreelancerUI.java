@@ -1,6 +1,7 @@
 package com.grupo2.t4j.ui;
 
 import com.grupo2.t4j.controller.RegistarFreelancerController;
+import com.grupo2.t4j.controller.RegistarReconhecimentoGPController;
 import com.grupo2.t4j.domain.HabilitacaoAcademica;
 import com.grupo2.t4j.domain.ReconhecimentoGP;
 import javafx.event.ActionEvent;
@@ -15,6 +16,9 @@ import javafx.stage.Stage;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 /**
  * FXML Controller class
@@ -24,6 +28,7 @@ public class ConsultarFreelancerUI implements Initializable {
     private AdministrativoLogadoUI administrativoLogadoUI;
     private Stage adicionarStage;
     private RegistarFreelancerController registarFreelancerController;
+    private RegistarReconhecimentoGPController registarReconhecimentoGPController;
 
     @FXML TextField txtPorta;
     @FXML TextField txtNif;
@@ -35,6 +40,10 @@ public class ConsultarFreelancerUI implements Initializable {
     @FXML ListView<ReconhecimentoGP> listViewCompTec;
     @FXML ListView<HabilitacaoAcademica> listViewHabAcad;
     @FXML Button btnVoltar;
+    @FXML TableColumn<Object, Object> txtCompTec;
+    @FXML TableColumn<Object, Object> txtDataReconhecimento;
+    @FXML TableColumn<Object, Object> txtGrau;
+    @FXML TableView<ReconhecimentoGP> tabelaReconhecimento;
 
     public void associarParentUI(AdministrativoLogadoUI administrativoLogadoUI) {
         this.administrativoLogadoUI = administrativoLogadoUI;
@@ -47,6 +56,7 @@ public class ConsultarFreelancerUI implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
 
         registarFreelancerController = new RegistarFreelancerController();
+        registarReconhecimentoGPController = new RegistarReconhecimentoGPController() ;
 
         adicionarStage = new Stage();
         adicionarStage.initModality(Modality.APPLICATION_MODAL);;
@@ -68,9 +78,17 @@ public class ConsultarFreelancerUI implements Initializable {
         txtPorta.setText(numeroPorta);
         txtLocalidade.setText(localidade);
         txtCodigoPostal.setText(codPostal);
-        listViewCompTec.getItems().setAll(registarFreelancerController.getAllReconhecimentoGP(emailFreelancer));
+        mostrarCompetencias(emailFreelancer);
         listViewHabAcad.getItems().setAll(registarFreelancerController.getAllHabsAcademicas(emailFreelancer));
         
+    }
+    
+    public void mostrarCompetencias (String emailFreelancer) throws SQLException {
+        tabelaReconhecimento.getItems().setAll(registarReconhecimentoGPController.getAll(emailFreelancer));
+        
+        txtCompTec.setCellValueFactory(new PropertyValueFactory<>("descBreveCompetencia"));
+        txtGrau.setCellValueFactory(new PropertyValueFactory<>("designacaoGrau"));
+        txtDataReconhecimento.setCellValueFactory(new PropertyValueFactory<>("dataReconhecimento"));
     }
     
     @FXML
