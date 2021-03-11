@@ -50,8 +50,8 @@ public class SeriarAnuncioController {
         return repositorioAnuncio.getAllRefTarefasTipoRegimento(referenciasTarefa, emailColaborador, idTipoRegimento);
     }
     
-    public List<String> getAllRefTarefasASeriar(List<String> referenciasTarefa) throws SQLException{
-        return repositorioAnuncio.getAllRefTarefasASeriar(referenciasTarefa);
+    public List<Tarefa> getAllRefTarefasASeriar(List<String> referenciasTarefa, String nifOrganizacao, String emailColaborador) throws SQLException{
+        return repositorioAnuncio.getAllRefTarefasASeriar(referenciasTarefa, nifOrganizacao, emailColaborador);
     }
     
     public int getIdAnuncioByIdTarefa(String referenciaTarefa, String nifOrganizacao) throws SQLException{
@@ -66,8 +66,16 @@ public class SeriarAnuncioController {
         return repositorioAnuncio.getAllRegimento();
     }
     
+    public List<String> getAllRefTarefasNaoSeriadas(List<String> referenciasTarefa, String nifOrganizacao) throws SQLException{
+        return repositorioAnuncio.getAllRefTarefasNaoSeriadas(referenciasTarefa, nifOrganizacao);
+    }
+    
     public TipoRegimento findRegimentoById(int idTipoRegimento) throws SQLException{
         return repositorioTipoRegimento.findById(idTipoRegimento);
+    }
+    
+    public Candidatura findById(int idCandidatura) throws SQLException {
+        return repositorioCandidatura.findById(idCandidatura);
     }
     
     public List<Candidatura> getAllByIdAnuncio(int idAnuncio) throws SQLException{
@@ -76,6 +84,10 @@ public class SeriarAnuncioController {
     
     public List<Candidatura> ordenarByValor(List<Candidatura> candidaturas) throws SQLException{
         return repositorioCandidatura.ordenarByValor(candidaturas);
+    }
+    
+    public List<Candidatura> ordenarByIdCandidatura(List<Candidatura> candidaturas) throws SQLException{
+        return repositorioCandidatura.ordenarByIdCandidatura(candidaturas);
     }
     
     public boolean saveSeriacao(int idAnuncio)throws SQLException{
@@ -116,8 +128,8 @@ public class SeriarAnuncioController {
         return repositorioClassificacao.findById(idClassificacao);
     }
     
-    public ArrayList<String> getAllEmailsByOrganizacao(String nifOrganizacao) throws SQLException{
-        return repositorioColaborador.getAllEmailsByOrganizacao(nifOrganizacao);
+    public ArrayList<String> getAllEmailsAlfByOrganizacao(String nifOrganizacao) throws SQLException{
+        return repositorioColaborador.getAllEmailsAlfByOrganizacao(nifOrganizacao);
     }
     
     public boolean update(String emailColaborador, int idSeriacao) throws SQLException{

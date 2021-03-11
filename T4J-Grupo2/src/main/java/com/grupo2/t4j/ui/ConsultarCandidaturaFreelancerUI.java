@@ -63,6 +63,7 @@ public class ConsultarCandidaturaFreelancerUI implements Initializable {
     private ColaboradorLogadoUI colaboradorLogadoUI;
 
     private RegistarFreelancerController registarFreelancerController;
+    private SeriarAnuncioController seriarAnuncioController;
     private RegistarTarefaController registarTarefaController;
     private Stage adicionarStage;
 
@@ -79,6 +80,7 @@ public class ConsultarCandidaturaFreelancerUI implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
 
         registarFreelancerController = new RegistarFreelancerController();
+        seriarAnuncioController = new SeriarAnuncioController();
         try {
             registarTarefaController = new RegistarTarefaController();
 
@@ -95,22 +97,23 @@ public class ConsultarCandidaturaFreelancerUI implements Initializable {
 
         String referenciaTarefa = colaboradorLogadoUI.cmbAnuncio.getSelectionModel().getSelectedItem();
         String nifOrganizacao = colaboradorLogadoUI.getNifOrganizacao();
-        String email = colaboradorLogadoUI.tabelaCandidaturasFreelancers.getSelectionModel().getSelectedItem().getEmailFreelancer();
-        int idAnuncio = colaboradorLogadoUI.tabelaCandidaturasFreelancers.getSelectionModel().getSelectedItem().getIdAnuncio();
+        String email = colaboradorLogadoUI.tabelaCandidaturasFreelancers.getSelectionModel().getSelectedItem().getEmail();
+        int idAnuncio = colaboradorLogadoUI.getIdAnuncio();
+        int idCandidatura = colaboradorLogadoUI.tabelaCandidaturasFreelancers.getSelectionModel().getSelectedItem().getIdCandidatura();
         
 
         txtIdAnuncio.setText(Integer.toString(idAnuncio));
-        txtIdCandidatura.setText(Integer.toString(colaboradorLogadoUI.tabelaCandidaturasFreelancers.getSelectionModel().getSelectedItem().getIdCandidatura()));
+        txtIdCandidatura.setText(Integer.toString(idCandidatura));
         txtNome.setText(registarFreelancerController.findByEmail(email).getNome());
         txtNIF.setText(registarFreelancerController.findByEmail(email).getNif());
         txtEmail.setText(email);
-        txtApresentacao.setText(colaboradorLogadoUI.tabelaCandidaturasFreelancers.getSelectionModel().getSelectedItem().getApresentacao());
-        txtMotivacao.setText(colaboradorLogadoUI.tabelaCandidaturasFreelancers.getSelectionModel().getSelectedItem().getMotivacao());
+        txtApresentacao.setText(seriarAnuncioController.findById(idCandidatura).getApresentacao());
+        txtMotivacao.setText(seriarAnuncioController.findById(idCandidatura).getMotivacao());
         listaHabilitacoes.getItems().setAll(registarFreelancerController.getAllHabsAcademicas(email));
         listaCompetencias.getItems().setAll(registarFreelancerController.getAllReconhecimentoGP(email));
         txtCustoAnuncio.setText(Double.toString(registarTarefaController.findTarefa(idAnuncio).getCustoEst()));
-        txtCustoFreelancer.setText(Double.toString(colaboradorLogadoUI.tabelaCandidaturasFreelancers.getSelectionModel().getSelectedItem().getValorPretendido()));
-        txtDuracaoFreelancer.setText(Integer.toString(colaboradorLogadoUI.tabelaCandidaturasFreelancers.getSelectionModel().getSelectedItem().getNumeroDias()));
+        txtCustoFreelancer.setText(Double.toString(colaboradorLogadoUI.tabelaCandidaturasFreelancers.getSelectionModel().getSelectedItem().getCusto()));
+        txtDuracaoFreelancer.setText(Integer.toString(colaboradorLogadoUI.tabelaCandidaturasFreelancers.getSelectionModel().getSelectedItem().getDuracao()));
         txtDuracaoAnuncio.setText(Integer.toString(registarTarefaController.findTarefa(idAnuncio).getDuracaoEst()));
     }
 

@@ -61,15 +61,14 @@ public class ColaboradorLogadoUI implements Initializable {
     @FXML TableColumn<Object, Object> colunaDuracao;
     @FXML TableColumn<Object, Object> colunaCusto;
 
-    @FXML TableView<Candidatura> tabelaCandidaturasFreelancers;
+    @FXML TableView<TabelaCandidaturasAnuncio> tabelaCandidaturasFreelancers;
+    private List<TabelaCandidaturasAnuncio> listaCandidaturasAnuncio = new ArrayList<>();
+    @FXML TableColumn<Object, Object> colunaClassificacao;
+    @FXML TableColumn<Object, Object> colunaIdCandidatura;
     @FXML TableColumn<Object, Object> colunaEmail;
     @FXML TableColumn<Object, Object> colunaDuracaoFree;
     @FXML TableColumn<Object, Object> colunaCustoFree;
     
-    @FXML TableView<Classificacao> tabelaClassificacao;
-    @FXML TableColumn<Object, Object> colunaClassificacao;
-
-
     public void associarParentUI(StartingPageUI startingPageUI) {
         this.startingPageUI = startingPageUI;
     }
@@ -84,12 +83,12 @@ public class ColaboradorLogadoUI implements Initializable {
         registarCategoriaController = new RegistarCategoriaController();
         try {
             registarTarefaController = new RegistarTarefaController();
-            // cmbAnuncio.getItems().setAll(updateAnunciosASeriar());
         } catch (SQLException exception) {
             exception.printStackTrace();
         }
         gestaoUtilizadoresController = new GestaoUtilizadoresController();
         registarColaboradorController = new RegistarColaboradorController();
+        seriarAnuncioController = new SeriarAnuncioController();
 
         adicionarStage = new Stage();
         adicionarStage.initModality(Modality.APPLICATION_MODAL);
@@ -121,28 +120,44 @@ public class ColaboradorLogadoUI implements Initializable {
             exception.printStackTrace();
         }
 
-        /*try{
+
+        try {
             listaAnunciosASeriar();
-        }catch(SQLException exception) {
-                   exception.printStackTrace();
-        }*/
-        
-        
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }
         cmbAnuncio.setOnAction(new EventHandler<ActionEvent>() {
-           @Override
-           public void handle(ActionEvent event) {
-               try {
-                   btnConsultarAnuncio.setDisable(false);
-                   tabelaCandidaturasFreelancers.getItems().setAll(seriarAnuncioController.getAllByIdAnuncio(getIdAnuncio()));
-                   preencherTabelaCandidaturas ();
-                   tipoSeriacao(event);                   
-               } catch (SQLException exception) {
+            @Override
+            public void handle(ActionEvent event) {
+                try {
+                    btnConsultarAnuncio.setDisable(false);
+                    if(existeSeriacao()){
+                       criarTabelaClassificacao();
+                       updateDataSeriacao();
+                    }
+                    else{
+                        if(existeCandidatura()){
+                            criarTabelaClassificacao();
+                            tipoSeriacao();
+                        }
+                        else{
+                            AlertsUI.criarAlerta(Alert.AlertType.ERROR,
+                            MainApp.TITULO_APLICACAO, "Não existem candidaturas ao anúncio selecionado",
+                        "Por favor, escolha outro anúncio para seriar!");
+                        }
+                    }                   
+                                          
+                } catch (SQLException exception) {
                    exception.printStackTrace();
-               }
-           }
-           });
+                }
+            }
+        });
      }
     
+    public String getEmailColaborador() throws SQLException {
+        return gestaoUtilizadoresController.getEmail();
+    }
+        
     public String getNifOrganizacao() throws SQLException {
         return registarColaboradorController.getNifOrganizacao(
                 gestaoUtilizadoresController.getEmail());
@@ -155,7 +170,28 @@ public class ColaboradorLogadoUI implements Initializable {
         return registarTarefaController.findIdAnuncio(nifOrganizacao, referenciaTarefa);
     }
     
-        
+    public boolean existeSeriacao() throws SQLException{
+        String referenciaTarefa = cmbAnuncio.getSelectionModel().getSelectedItem();
+        String nifOrganizacao = getNifOrganizacao();
+        List<String> tarefasOrg = seriarAnuncioController.getReferenciasTarefas(nifOrganizacao);
+        List<String> tarefasNaoSeriadas = seriarAnuncioController.getAllRefTarefasNaoSeriadas(tarefasOrg, nifOrganizacao);
+        for(int i = 0; i < tarefasNaoSeriadas.size(); i++){
+            if(tarefasNaoSeriadas.get(i).equals(referenciaTarefa)){
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    public boolean existeCandidatura() throws SQLException{
+        List<Candidatura> candidaturas = new ArrayList<>();
+        candidaturas = seriarAnuncioController.getAllByIdAnuncio(getIdAnuncio());
+        if(candidaturas.size() > 0){
+            return true;
+        }
+        return false;
+    }
+            
     public void updateTableViewTarefas() throws SQLException {
         cmbFiltroTarefas.getSelectionModel().clearSelection();
         tabelaTarefas.getItems().setAll(registarTarefaController.getAllOrganizacao(
@@ -165,7 +201,7 @@ public class ColaboradorLogadoUI implements Initializable {
 
     public void updateTableViewTarefasColaborador() throws SQLException {
         cmbFiltroTarefas.getSelectionModel().clearSelection();
-        String email = gestaoUtilizadoresController.getEmail();
+        String email = getEmailColaborador();
         String nifOrganizacao = registarColaboradorController.getNifOrganizacao(email);
         tabelaTarefas.getItems().setAll(registarTarefaController.findByColaboradorENif(email, nifOrganizacao));
         preencherTabela();
@@ -173,8 +209,8 @@ public class ColaboradorLogadoUI implements Initializable {
 
     public void updateTableViewTarefasPublicadas() throws SQLException {
         cmbFiltroTarefas.getSelectionModel().clearSelection();
-        String email = gestaoUtilizadoresController.getEmail();
-        String nifOrganizacao = registarColaboradorController.getNifOrganizacao(email);
+        String email = getEmailColaborador();
+        String nifOrganizacao = getNifOrganizacao();
         List<String> referenciasTarefa = registarTarefaController.findRefenciaTarefa(nifOrganizacao);
         tabelaTarefas.getItems().setAll(registarTarefaController.findTarefasPublicadas(referenciasTarefa, nifOrganizacao, email));
         preencherTabela();
@@ -182,8 +218,8 @@ public class ColaboradorLogadoUI implements Initializable {
 
     public void updateTableViewTarefasNaoPublicadas() throws SQLException {
         cmbFiltroTarefas.getSelectionModel().clearSelection();
-        String email = gestaoUtilizadoresController.getEmail();
-        String nifOrganizacao = registarColaboradorController.getNifOrganizacao(email);
+        String email = getEmailColaborador();
+        String nifOrganizacao = getNifOrganizacao();
         List<String> referenciasTarefa = registarTarefaController.findRefenciaTarefa(nifOrganizacao);
         tabelaTarefas.getItems().setAll(registarTarefaController.findTarefasNaoPublicadas(referenciasTarefa, email, nifOrganizacao));
         preencherTabela();
@@ -191,20 +227,23 @@ public class ColaboradorLogadoUI implements Initializable {
     
     public void listaAnunciosASeriar() throws SQLException{
         try{
-            String emailColaborador = gestaoUtilizadoresController.getEmail();
+            String emailColaborador = getEmailColaborador();
             String nifOrganizacao = getNifOrganizacao();
             List<String> tarefasOrg = seriarAnuncioController.getReferenciasTarefas(nifOrganizacao);
-            
+         /*
             List<Tarefa> anunciosColaborador = seriarAnuncioController.findTarefasPublicadas(
                 tarefasOrg, nifOrganizacao, emailColaborador);
             
             List<String> anunciosColaboradorRefTarefas = seriarAnuncioController.getReferenciasTarefas(anunciosColaborador);
-            
-            List<String> refAnunciosASeriar = seriarAnuncioController.getAllRefTarefasASeriar(
-                        anunciosColaboradorRefTarefas);
-        
+            */
+            List<Tarefa> refAnunciosASeriar = new ArrayList<>();
+                    
+            refAnunciosASeriar = seriarAnuncioController.getAllRefTarefasASeriar(
+                        tarefasOrg, nifOrganizacao, emailColaborador);
+
+
             if(refAnunciosASeriar.size()>0){
-                cmbAnuncio.getItems().setAll(refAnunciosASeriar);
+                cmbAnuncio.getItems().setAll(seriarAnuncioController.getReferenciasTarefas(refAnunciosASeriar));
             }
             else{
                 List<String> listaVazia = new ArrayList<>();
@@ -217,11 +256,38 @@ public class ColaboradorLogadoUI implements Initializable {
 
     }
     
+    public void criarTabelaClassificacao() throws SQLException{
+        List<Candidatura> candidaturas = seriarAnuncioController.getAllByIdAnuncio(getIdAnuncio());
+        for(int i = 0; i < candidaturas.size(); i++){
+            TabelaCandidaturasAnuncio cellCandidatura = new TabelaCandidaturasAnuncio(
+            candidaturas.get(i).getIdCandidatura(), candidaturas.get(i).getEmailFreelancer(), 
+                    candidaturas.get(i).getNumeroDias(), candidaturas.get(i).getValorPretendido());
+            listaCandidaturasAnuncio.add(cellCandidatura);
+        }
+        tabelaCandidaturasFreelancers.getItems().setAll(listaCandidaturasAnuncio);
+        preencherTabelaCandidaturas ();
+        btnConsultarCandidaturaFreelancer.setDisable(false);
+    }
+    
+    public void updateTabelaClassificacao(int idSeriacao)throws SQLException{
+        List<Classificacao> listaClassificada = seriarAnuncioController.getAllBySeriacao(idSeriacao);
+        for(int i = 0; i < listaCandidaturasAnuncio.size(); i++){
+            for(int j = 0; j < listaClassificada.size(); j++){
+                if(listaCandidaturasAnuncio.get(i).getIdCandidatura() == listaClassificada.get(j).getIdCandidatura()){
+                    listaCandidaturasAnuncio.get(i).setClassificacao(listaClassificada.get(j).getPosicaoFreelancer());
+                }
+            }
+        }
+        tabelaCandidaturasFreelancers.getItems().setAll(listaCandidaturasAnuncio);
+        preencherTabelaCandidaturas ();
+    }
+    
     public void updateDataSeriacao() throws SQLException{
         txtDataSeriacao.clear();
         txtDataSeriacao.setText(seriarAnuncioController.findSeriacaoByAnuncio(getIdAnuncio()).getDataSeriacao());
         btnSeriacaoAutomatica.setDisable(true);
         btnSeriacaoManual.setDisable(true);
+        updateTabelaClassificacao(seriarAnuncioController.findSeriacaoByAnuncio(getIdAnuncio()).getIdSeriacao());
     }
     
     public void preencherTabela () {
@@ -232,16 +298,15 @@ public class ColaboradorLogadoUI implements Initializable {
     }
     
     public void preencherTabelaCandidaturas () {
-        colunaEmail.setCellValueFactory( new PropertyValueFactory<>("emailFreelancer"));
-        colunaDuracaoFree.setCellValueFactory( new PropertyValueFactory<>("numeroDias"));
-        colunaCustoFree.setCellValueFactory( new PropertyValueFactory<>("valorPretendido"));
-    }
-    
-    public void preencherTabelaClassificacao () {
         colunaClassificacao.setCellValueFactory( new PropertyValueFactory<>("classificacao"));        
+        colunaIdCandidatura.setCellValueFactory( new PropertyValueFactory<>("idCandidatura"));        
+        colunaEmail.setCellValueFactory( new PropertyValueFactory<>("email"));
+        colunaDuracaoFree.setCellValueFactory( new PropertyValueFactory<>("duracao"));
+        colunaCustoFree.setCellValueFactory( new PropertyValueFactory<>("custo"));
     }
-
+      
     public void aplicarFiltroTarefas(ActionEvent actionEvent) throws SQLException {
+
 
         switch (cmbFiltroTarefas.getSelectionModel().getSelectedItem()) {
             case TAREFAS_DA_ORGANIZACAO:
@@ -262,22 +327,16 @@ public class ColaboradorLogadoUI implements Initializable {
         }
     }
     
-    public void tipoSeriacao(ActionEvent actionEvent) throws SQLException{
+    public void tipoSeriacao() throws SQLException{
         
         int idAnuncio = getIdAnuncio();
         List<Candidatura> candidaturas = seriarAnuncioController.getAllByIdAnuncio(idAnuncio);        
         int idRegimento = seriarAnuncioController.getAnuncio(idAnuncio).getIdTipoRegimento();
-        int idSeriacao = seriarAnuncioController.getIdSeriacao(idAnuncio);
-        if(idSeriacao ==0 && candidaturas.size()> 0){
-            if(idRegimento == 1){
-                 btnSeriacaoAutomatica.setDisable(false);
-            }
-            else{
-                 btnSeriacaoManual.setDisable(false);
-            }
+        if(idRegimento == 1){
+            btnSeriacaoAutomatica.setDisable(false);
         }
-        if(idSeriacao!=0){
-            updateDataSeriacao();
+        else{
+            btnSeriacaoManual.setDisable(false);
         }
     }
     
@@ -291,7 +350,7 @@ public class ColaboradorLogadoUI implements Initializable {
                 int idSeriacao = seriarAnuncioController.getIdSeriacao(idAnuncio);
                 boolean sucesso = seriarAnuncioController.saveClassificacaoAutomatica(candidaturasOrdenadas, idSeriacao);
                 if(sucesso){
-                    updateDataSeriacao();
+                    updateDataSeriacao();                    
                 }
             }                                   
         } catch(SQLException exception){
