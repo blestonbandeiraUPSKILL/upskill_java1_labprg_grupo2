@@ -131,21 +131,20 @@ public class ColaboradorLogadoUI implements Initializable {
             public void handle(ActionEvent event) {
                 try {
                     btnConsultarAnuncio.setDisable(false);
-                    if(existeSeriacao()){
+                    if(existeCandidatura()){
                        criarTabelaClassificacao();
-                       updateDataSeriacao();
-                    }
-                    else{
-                        if(existeCandidatura()){
-                            criarTabelaClassificacao();
+                        if(existeSeriacao()){
+                            updateDataSeriacao();
+                        }
+                        else {
                             tipoSeriacao();
                         }
-                        else{
-                            AlertsUI.criarAlerta(Alert.AlertType.ERROR,
-                            MainApp.TITULO_APLICACAO, "Não existem candidaturas ao anúncio selecionado",
-                        "Por favor, escolha outro anúncio para seriar!");
-                        }
-                    }                   
+                    }
+                    else{
+                        AlertsUI.criarAlerta(Alert.AlertType.ERROR,
+                                MainApp.TITULO_APLICACAO, "Não existem candidaturas ao anúncio selecionado",
+                                "Por favor, escolha outro anúncio para seriar!").show();
+                    }
                                           
                 } catch (SQLException exception) {
                    exception.printStackTrace();
@@ -186,7 +185,8 @@ public class ColaboradorLogadoUI implements Initializable {
     
     public boolean existeCandidatura() throws SQLException{
         List<Candidatura> candidaturas = new ArrayList<>();
-        candidaturas = seriarAnuncioController.getAllByIdAnuncio(getIdAnuncio());
+        int idAnuncio = getIdAnuncio();
+        candidaturas = seriarAnuncioController.getAllByIdAnuncio(idAnuncio);
         if(candidaturas.size() > 0){
             return true;
         }
@@ -231,12 +231,6 @@ public class ColaboradorLogadoUI implements Initializable {
             String emailColaborador = getEmailColaborador();
             String nifOrganizacao = getNifOrganizacao();
             List<String> tarefasOrg = seriarAnuncioController.getReferenciasTarefas(nifOrganizacao);
-         /*
-            List<Tarefa> anunciosColaborador = seriarAnuncioController.findTarefasPublicadas(
-                tarefasOrg, nifOrganizacao, emailColaborador);
-            
-            List<String> anunciosColaboradorRefTarefas = seriarAnuncioController.getReferenciasTarefas(anunciosColaborador);
-            */
             List<Tarefa> refAnunciosASeriar = new ArrayList<>();
                     
             refAnunciosASeriar = seriarAnuncioController.getAllRefTarefasASeriar(
@@ -332,7 +326,6 @@ public class ColaboradorLogadoUI implements Initializable {
     public void tipoSeriacao() throws SQLException{
         
         int idAnuncio = getIdAnuncio();
-        List<Candidatura> candidaturas = seriarAnuncioController.getAllByIdAnuncio(idAnuncio);        
         int idRegimento = seriarAnuncioController.getAnuncio(idAnuncio).getIdTipoRegimento();
         if(idRegimento == 1){
             btnSeriacaoAutomatica.setDisable(false);

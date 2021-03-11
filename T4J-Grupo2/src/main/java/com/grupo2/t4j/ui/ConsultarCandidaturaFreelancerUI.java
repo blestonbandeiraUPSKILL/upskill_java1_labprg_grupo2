@@ -23,6 +23,7 @@ public class ConsultarCandidaturaFreelancerUI implements Initializable {
     private RegistarFreelancerController registarFreelancerController;
     private SeriarAnuncioController seriarAnuncioController;
     private RegistarTarefaController registarTarefaController;
+    private RegistarReconhecimentoGPController registarReconhecimentoGPController;
     private Stage adicionarStage;
 
     @FXML TextField txtIdAnuncio;
@@ -54,6 +55,7 @@ public class ConsultarCandidaturaFreelancerUI implements Initializable {
 
         registarFreelancerController = new RegistarFreelancerController();
         seriarAnuncioController = new SeriarAnuncioController();
+        registarReconhecimentoGPController = new RegistarReconhecimentoGPController();
         try {
             registarTarefaController = new RegistarTarefaController();
 
@@ -81,7 +83,7 @@ public class ConsultarCandidaturaFreelancerUI implements Initializable {
         txtApresentacao.setText(seriarAnuncioController.findById(idCandidatura).getApresentacao());
         txtMotivacao.setText(seriarAnuncioController.findById(idCandidatura).getMotivacao());
         listaHabilitacoes.getItems().setAll(registarFreelancerController.getAllHabsAcademicas(email));
-        listaCompetencias.getItems().setAll(registarFreelancerController.getAllReconhecimentoGP(email));
+        listaCompetencias.getItems().setAll(registarReconhecimentoGPController.getAll(email));
         txtCustoAnuncio.setText(Double.toString(registarTarefaController.findTarefa(idAnuncio).getCustoEst()));
         txtCustoFreelancer.setText(Double.toString(colaboradorLogadoUI.tabelaCandidaturasFreelancers.getSelectionModel().getSelectedItem().getCusto()));
         txtDuracaoFreelancer.setText(Integer.toString(colaboradorLogadoUI.tabelaCandidaturasFreelancers.getSelectionModel().getSelectedItem().getDuracao()));
