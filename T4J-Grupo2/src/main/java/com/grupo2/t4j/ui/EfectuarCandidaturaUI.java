@@ -23,14 +23,20 @@ public class EfectuarCandidaturaUI implements Initializable {
     private RegistarAnuncioController registarAnuncioController;
     private RegistarTarefaController registarTarefaController;
 
-    @FXML TextArea txtAnuncio;
-    @FXML TextArea txtApresentacao;
-    @FXML TextArea txtMotivacao;
-    @FXML TextField txtValor;
-    @FXML TextField txtDias;
-    @FXML Button btnCancelar;
-    @FXML Button btnAddCandidatura;
-
+    @FXML
+    TextArea txtAnuncio;
+    @FXML
+    TextArea txtApresentacao;
+    @FXML
+    TextArea txtMotivacao;
+    @FXML
+    TextField txtValor;
+    @FXML
+    TextField txtDias;
+    @FXML
+    Button btnCancelar;
+    @FXML
+    Button btnAddCandidatura;
 
     public void associarParentUI(FreelancerLogadoUI freelancerLogadoUI) {
         this.freelancerLogadoUI = freelancerLogadoUI;
@@ -52,14 +58,14 @@ public class EfectuarCandidaturaUI implements Initializable {
         }
 
     }
-    
+
     public int getIdAnuncio() throws SQLException {
 
         String nifOrganizacao = freelancerLogadoUI.tabelaAnuncios.getSelectionModel().getSelectedItem().getNifOrganizacao();
         String referenciaTarefa = freelancerLogadoUI.tabelaAnuncios.getSelectionModel().getSelectedItem().getReferencia();
         int idAnuncio = registarTarefaController.findIdAnuncio(nifOrganizacao, referenciaTarefa);
 
-        return idAnuncio ;
+        return idAnuncio;
     }
 
     public void addCandidatura(ActionEvent actionEvent) throws SQLException {
@@ -76,7 +82,7 @@ public class EfectuarCandidaturaUI implements Initializable {
                     idAnuncio,
                     emailFreelancer);
 
-            if(adicionou) {
+            if (adicionou) {
 
                 freelancerLogadoUI.updateTableViewCandidaturas();
                 btnAddCandidatura.setDisable(true);
@@ -90,8 +96,7 @@ public class EfectuarCandidaturaUI implements Initializable {
 
             }
 
-        }
-        catch (IllegalArgumentException | SQLException exception) {
+        } catch (IllegalArgumentException | SQLException exception) {
             AlertsUI.criarAlerta(Alert.AlertType.ERROR,
                     MainApp.TITULO_APLICACAO,
                     "Efecutar Candidatura - Erro nos dados.",
