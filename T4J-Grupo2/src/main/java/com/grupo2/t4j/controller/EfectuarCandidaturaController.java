@@ -27,7 +27,7 @@ public class EfectuarCandidaturaController {
     public EfectuarCandidaturaController() throws SQLException {
     }
 
-    public List<ReconhecimentoGP> findReconhecimentoFreelancer(String email)throws SQLException {
+    public List<ReconhecimentoGP> findReconhecimentoFreelancer(String email) throws SQLException {
         return repositorioReconhecimentoGP.findByEmail(email);
     }
 
@@ -56,7 +56,7 @@ public class EfectuarCandidaturaController {
     }
 
     public List<ReconhecimentoGP> competenciasTecnicasDoFreelancer(String email) throws SQLException {
-       return repositorioReconhecimentoGP.getAll(email);
+        return repositorioReconhecimentoGP.getAll(email);
 
     }
 
@@ -77,11 +77,10 @@ public class EfectuarCandidaturaController {
 
     }
 
-    public boolean registarCandidatura(double valorPretendido, int numeroDias, 
-            String txtApresentacao, String txtMotivacao, int idAnuncio, String 
-            emailFreelancer) throws SQLException {
-        Candidatura candidatura = new Candidatura(valorPretendido, numeroDias, 
-            txtApresentacao, txtMotivacao,idAnuncio, emailFreelancer);
+    public boolean registarCandidatura(double valorPretendido, int numeroDias,
+            String txtApresentacao, String txtMotivacao, int idAnuncio, String emailFreelancer) throws SQLException {
+        Candidatura candidatura = new Candidatura(valorPretendido, numeroDias,
+                txtApresentacao, txtMotivacao, idAnuncio, emailFreelancer);
 
         return repositorioCandidatura.save(candidatura);
     }
