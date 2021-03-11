@@ -120,7 +120,8 @@ public class FreelancerLogadoUI implements Initializable {
     }
 
     private ObservableList<Tarefa> listaAnuncios() throws SQLException {
-        return FXCollections.observableArrayList(registarTarefaController.getAllTarefasElegíveis(gestaoUtilizadoresController.getEmail()));
+        return FXCollections.observableArrayList(registarTarefaController.tarefasElegiveis(
+                gestaoUtilizadoresController.getEmail()));
     }
 
     public void updateTableViewAnuncio() throws SQLException {

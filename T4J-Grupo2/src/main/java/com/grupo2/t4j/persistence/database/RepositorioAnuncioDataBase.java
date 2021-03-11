@@ -44,7 +44,8 @@ public class RepositorioAnuncioDataBase implements RepositorioAnuncio {
     }
 
     @Override
-    public boolean save(String referenciaTarefa, String nifOrganizacao, String dtInicioPublicitacao, String dtFimPublicitacao, String dtInicioCandidatura, String dtFimCandidatura, String dtInicioSeriacao,
+    public boolean save(String referenciaTarefa, String nifOrganizacao, String dtInicioPublicitacao,
+                        String dtFimPublicitacao, String dtInicioCandidatura, String dtFimCandidatura, String dtInicioSeriacao,
             String dtFimSeriacao, int idTipoRegimento) throws AnuncioDuplicadoException, SQLException {
 
         Connection connection = DBConnectionHandler.getInstance().openConnection();

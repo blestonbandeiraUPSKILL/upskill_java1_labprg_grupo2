@@ -59,4 +59,6 @@ public interface RepositorioTarefa {
     List<String> getReferenciasTarefas(List<Tarefa> listaTarefas) throws SQLException;
 
     List<Tarefa> getAllTarefasElegíveis(String emailFreelancer) throws SQLException;
+
+    Tarefa getTarefaByRefENif(String referencia, String nifOrganizacao) throws SQLException;
 }

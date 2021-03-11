@@ -286,7 +286,7 @@ public class RepositorioGrauProficienciaDatabase implements RepositorioGrauProfi
 
     @Override
     public List<GrauProficiencia> getAllGrausFreelancer(String emailFreelancer) throws SQLException {
-        List<GrauProficiencia> grausProficiencia = new ArrayList<>();
+        List<GrauProficiencia> grausFreelancer = new ArrayList<>();
 
         Connection connection = DBConnectionHandler.getInstance().openConnection();
 
@@ -303,6 +303,7 @@ public class RepositorioGrauProficienciaDatabase implements RepositorioGrauProfi
             connection.setAutoCommit(false);
 
             callableStatement.setString(1, emailFreelancer);
+
             callableStatement.executeQuery();
 
             ResultSet resultSet = callableStatement.getResultSet();
@@ -312,9 +313,8 @@ public class RepositorioGrauProficienciaDatabase implements RepositorioGrauProfi
                 int grau = resultSet.getInt(2);
                 String designacao = resultSet.getString(3);
                 String codigoCompetenciaTecnica = resultSet.getString(4);
-                grausProficiencia.add(new GrauProficiencia(idGrauProficiencia, grau, designacao, codigoCompetenciaTecnica));
+                grausFreelancer.add(new GrauProficiencia(idGrauProficiencia, grau, designacao, codigoCompetenciaTecnica));
             }
-
         } catch (SQLException exception) {
             exception.printStackTrace();
             exception.getSQLState();
@@ -323,38 +323,53 @@ public class RepositorioGrauProficienciaDatabase implements RepositorioGrauProfi
         finally {
             DBConnectionHandler.getInstance().closeAll();
         }
-        return grausProficiencia;
+        return grausFreelancer;
     }
 
     @Override
-    public List<GrauProficiencia> getAllGrausTarefas() throws SQLException {
-        List<GrauProficiencia> grausProficiencia = new ArrayList<>();
+    public List<Tarefa> getAllGrausTarefasPublicadas(List<Tarefa> tarefasPublicadas) throws SQLException {
+        List<Tarefa> tarefasComGraus = new ArrayList<>();
 
         Connection connection = DBConnectionHandler.getInstance().openConnection();
 
         try {
-            CallableStatement callableStatement = connection.prepareCall(
-                    "SELECT * FROM GrauProficiencia " +
-                            "INNER JOIN CaracterCT " +
-                            "ON CaracterCT.grauProfMinimo = GrauProficiencia.idGrauProficiencia "  +
-                            "INNER JOIN Categoria " +
-                            "ON Categoria.codigoCategoria LIKE CaracterCT.codigoCategoria " +
-                            "INNER JOIN Tarefa " +
-                            "ON Categoria.codigoCategoria LIKE Tarefa.codigoCategoria "
-            );
+            for (Tarefa tarefa : tarefasPublicadas) {
+                String referencia = tarefa.getReferencia();
+                String nifOrganizacao = tarefa.getNifOrganizacao();
+                List<GrauProficiencia> grausProficiencia = new ArrayList<>();
 
-            connection.setAutoCommit(false);
+                CallableStatement callableStatement = connection.prepareCall(
+                        "SELECT * FROM GrauProficiencia " +
+                                "INNER JOIN CaracterCT " +
+                                "ON CaracterCT.grauProfMinimo = GrauProficiencia.idGrauProficiencia " +
+                                "INNER JOIN Categoria " +
+                                "ON Categoria.codigoCategoria LIKE CaracterCT.codigoCategoria " +
+                                "INNER JOIN Tarefa " +
+                                "ON Categoria.codigoCategoria LIKE Tarefa.codigoCategoria " +
+                                "INNER JOIN Anuncio " +
+                                "ON Tarefa.referencia LIKE Anuncio.referenciaTarefa " +
+                                "AND Tarefa.nifOrganizacao LIKE Tarefa.nifOrganizacao " +
+                                "WHERE Tarefa.referencia LIKE ? " +
+                                "AND Tarefa.nifOrganizacao LIKE ?"
+                );
 
-            callableStatement.executeQuery();
+                connection.setAutoCommit(false);
 
-            ResultSet resultSet = callableStatement.getResultSet();
+                callableStatement.setString(1, referencia);
+                callableStatement.setString(2, nifOrganizacao);
 
-            while (resultSet.next()) {
-                int idGrauProficiencia = resultSet.getInt(1);
-                int grau = resultSet.getInt(2);
-                String designacao = resultSet.getString(3);
-                String codigoCompetenciaTecnica = resultSet.getString(4);
-                grausProficiencia.add(new GrauProficiencia(idGrauProficiencia, grau, designacao, codigoCompetenciaTecnica));
+                callableStatement.executeQuery();
+
+                ResultSet resultSet = callableStatement.getResultSet();
+
+                while (resultSet.next()) {
+                    int idGrauProficiencia = resultSet.getInt(1);
+                    int grau = resultSet.getInt(2);
+                    String designacao = resultSet.getString(3);
+                    String codigoCompetenciaTecnica = resultSet.getString(4);
+                    grausProficiencia.add(new GrauProficiencia(idGrauProficiencia, grau, designacao, codigoCompetenciaTecnica));
+                }
+                tarefasComGraus.add(new Tarefa(referencia, nifOrganizacao, grausProficiencia));
             }
 
         } catch (SQLException exception) {
@@ -365,7 +380,7 @@ public class RepositorioGrauProficienciaDatabase implements RepositorioGrauProfi
         finally {
             DBConnectionHandler.getInstance().closeAll();
         }
-        return grausProficiencia;
+        return tarefasComGraus;
     }
 
 
