@@ -37,12 +37,19 @@
             <Label layoutX="27.0" layoutY="321.0" prefHeight="17.0" prefWidth="82.0" text="Código Postal" />
             <Label layoutX="38.0" layoutY="224.0" text="Arruamento" />
             <TextField fx:id="txtArruamento" editable="false" layoutX="108.0" layoutY="220.0" />
-            <ListView fx:id="listViewHabAcad" layoutX="329.0" layoutY="243.0" prefHeight="93.0" prefWidth="311.0" />
             <TableView fx:id="tabelaReconhecimento" layoutX="329.0" layoutY="73.0" prefHeight="125.0" prefWidth="334.0">
               <columns>
                 <TableColumn fx:id="txtCompTec" prefWidth="89.0" text="Comp. Técnica" />
                 <TableColumn fx:id="txtGrau" minWidth="4.0" prefWidth="109.0" text="Grau Proficiência" />
                   <TableColumn fx:id="txtDataReconhecimento" prefWidth="135.0" text="Data Reconhecimento" />
+              </columns>
+            </TableView>
+            <TableView fx:id="tabelaHabilitacao" layoutX="329.0" layoutY="247.0" prefHeight="119.0" prefWidth="335.0">
+              <columns>
+                <TableColumn fx:id="txtGrauHabilitacao" prefWidth="45.0" text="Grau" />
+                <TableColumn fx:id="txtDesignacaoCurso" prefWidth="131.0" text="Designação Curso" />
+                  <TableColumn fx:id="txtMedia" prefWidth="64.0" text="Média" />
+                  <TableColumn fx:id="txtInstituicao" prefWidth="94.0" text="Instituição" />
               </columns>
             </TableView>
             </children>

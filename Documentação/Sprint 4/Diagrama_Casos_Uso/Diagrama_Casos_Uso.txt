@@ -1,0 +1,29 @@
+@startuml
+
+left to right direction 
+actor Freelancer
+actor ColaboradorOrganização
+actor GestorOrganização
+actor Administrativo
+actor UtilizadorNaoRegistado
+
+
+
+Freelancer --> (UC11 - Editar Candidatura)
+Freelancer --> (UC12 - Eliminar Candidatura)
+Freelancer --> (UC9 - Candidatura a Tarefa)
+ColaboradorOrganização --> (UC6 - Especificar Tarefa)
+ColaboradorOrganização --> (UC8 - Publicar Tarefa)
+ColaboradorOrganização --> (UC10_Seriar Candidaturas)
+(UC10_Seriar Candidaturas) --> (UC10a - Seriação Não Automática)
+(UC10_Seriar Candidaturas) --> (UC10b - Seriação Automática)
+GestorOrganização --> (UC5 - Especificar Colaborador da Organizaçao)
+Administrativo --> (UC2 - Definir Area de Atividade)
+Administrativo --> (UC3 - Definir Categoria)
+Administrativo --> (UC4 - Especificar Competencia Técnica)
+Administrativo --> (UC7 - Registo de Freelancer)
+UtilizadorNaoRegistado --> (UC1 - Registar Organização)
+(UC7 - Registo de Freelancer) --> (UC7a - Adicionar Habilitações Académicas)
+(UC7 - Registo de Freelancer) --> (UC7b - Adicionar Competências Técnicas)
+
+@enduml
