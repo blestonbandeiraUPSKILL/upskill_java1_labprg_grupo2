@@ -158,7 +158,7 @@ public class RepositorioSeriacaoDatabase implements RepositorioSeriacao{
             callableStatementOrg.setInt(1, idAnuncio);
             callableStatementOrg.executeQuery();
 
-            return null;
+            return new ProcessoSeriacao();
 
         } catch (SQLException exceptionOrg) {
             exceptionOrg.printStackTrace();
@@ -167,7 +167,8 @@ public class RepositorioSeriacaoDatabase implements RepositorioSeriacao{
         finally {
             DBConnectionHandler.getInstance().closeAll();
         }
-        return new ProcessoSeriacao();      
+
+        return null;
     } 
         
     @Override
@@ -207,5 +208,46 @@ public class RepositorioSeriacaoDatabase implements RepositorioSeriacao{
             DBConnectionHandler.getInstance().closeAll();
         }    
         return seriacoes;
+    }
+
+    @Override
+    public ProcessoSeriacao getProcessoSeriacaoByAnuncio(int idAnuncio) throws SQLException {
+        ProcessoSeriacao processoSeriacao = new ProcessoSeriacao();
+
+        Connection connection = DBConnectionHandler.getInstance().openConnection();
+
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(
+                    "SELECT * FROM ProcessoSeriacao WHERE idAnuncio = ?"
+            );
+
+            preparedStatement.setInt(1, idAnuncio);
+            preparedStatement.executeQuery();
+
+            ResultSet resultSet = preparedStatement.getResultSet();
+
+            while (resultSet.next()) {
+                processoSeriacao.setIdSeriacao(resultSet.getInt(1));
+                processoSeriacao.setIdAnuncio(idAnuncio);
+                processoSeriacao.setData(resultSet.getString(3));
+            }
+        }
+        catch (SQLException exception) {
+            exception.printStackTrace();
+            exception.getSQLState();
+            try {
+                System.err.print("Transaction is being rolled back");
+                connection.rollback();
+            }
+            catch (SQLException sqlException) {
+                sqlException.getErrorCode();
+            }
+
+        }
+        finally {
+            DBConnectionHandler.getInstance().closeAll();
+        }
+
+        return processoSeriacao;
     }
 }

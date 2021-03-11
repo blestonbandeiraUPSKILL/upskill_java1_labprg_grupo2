@@ -143,7 +143,9 @@ public class SeriarAnuncioController {
         }
         return adicionou;
     }
-    
-    
-    
+
+
+    public ProcessoSeriacao getProcesoSeriacaoByAnuncio(int idAnuncio) throws SQLException {
+        return repositorioSeriacao.getProcessoSeriacaoByAnuncio(idAnuncio);
+    }
 }
