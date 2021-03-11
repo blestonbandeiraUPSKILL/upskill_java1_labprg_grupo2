@@ -17,6 +17,7 @@ import javafx.stage.WindowEvent;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 /**
  * FXML Controller class
@@ -48,6 +49,13 @@ public class AdicionarHabilitacaoAcademicaUI implements Initializable {
     Button btnCancelar;
     @FXML
     Button btnSair;
+    
+    ////Tabela Habilitacoes Academicas//////////////
+    @FXML TableColumn<Object, Object> txtGrauHabilitacao;
+    @FXML TableColumn<Object, Object> txtDesignacaoCurso;
+    @FXML TableColumn<Object, Object> txtMediaCurso;
+    @FXML TableColumn<Object, Object> txtInstituicaoEnsino;
+    @FXML TableView<HabilitacaoAcademica> tabelaHabilitacao;
 
     public void associarParentUI(AdministrativoLogadoUI administrativoLogadoUI) {
         this.administrativoLogadoUI = administrativoLogadoUI;
@@ -69,8 +77,7 @@ public class AdicionarHabilitacaoAcademicaUI implements Initializable {
             @Override
             public void handle(ActionEvent event) {
                 try {
-                    updateListViewHabilitacaoFreelancer(
-                            cmbEmailFreelancer.getSelectionModel().getSelectedItem().getEmail().getEmailText());
+                    mostrarHabilitacao();
                 } catch (SQLException exception) {
                     exception.printStackTrace();
                 }
@@ -89,8 +96,7 @@ public class AdicionarHabilitacaoAcademicaUI implements Initializable {
             public void handle(ActionEvent event) {
                 try {
                     updateTxtNomeFreelancer(event);
-                    updateListViewHabilitacaoFreelancer(
-                            cmbEmailFreelancer.getSelectionModel().getSelectedItem().getEmail().getEmailText());
+                    mostrarHabilitacao();
                 } catch (SQLException exception) {
                     exception.printStackTrace();
                 }
@@ -109,8 +115,7 @@ public class AdicionarHabilitacaoAcademicaUI implements Initializable {
                     cmbEmailFreelancer.getSelectionModel().getSelectedItem().getEmail().getEmailText());
 
             if (adicionou) {
-                updateListViewHabilitacaoFreelancer(
-                        cmbEmailFreelancer.getSelectionModel().getSelectedItem().getEmail().getEmailText());
+                mostrarHabilitacao();
                 this.txtGrau.clear();
                 this.txtDesignacao.clear();
                 this.txtInstituicao.clear();
@@ -157,9 +162,19 @@ public class AdicionarHabilitacaoAcademicaUI implements Initializable {
         window.fireEvent(new WindowEvent(window, WindowEvent.WINDOW_CLOSE_REQUEST));
     }
 
-    public void updateListViewHabilitacaoFreelancer(String emailFreelancer) throws SQLException {
+    /*public void updateListViewHabilitacaoFreelancer(String emailFreelancer) throws SQLException {
         listaHabilitacaoFreelancer.getItems().setAll(
                 registarHabilitacaoAcademicaController.getAll(emailFreelancer));
+    }*/
+    
+    public void mostrarHabilitacao () throws SQLException {
+        String emailFreelancer = cmbEmailFreelancer.getSelectionModel().getSelectedItem().getEmail().getEmailText();
+        tabelaHabilitacao.getItems().setAll(registarFreelancerController.getAllHabsAcademicas(emailFreelancer));
+        
+        txtGrauHabilitacao.setCellValueFactory(new PropertyValueFactory<>("grau"));
+        txtMediaCurso.setCellValueFactory(new PropertyValueFactory<>("mediaCurso"));
+        txtInstituicaoEnsino.setCellValueFactory(new PropertyValueFactory<>("nomeInstituicao"));
+        txtDesignacaoCurso.setCellValueFactory(new PropertyValueFactory<>("designacaoCurso"));
     }
 
     public void updateTxtNomeFreelancer(ActionEvent actionEvent) throws SQLException {

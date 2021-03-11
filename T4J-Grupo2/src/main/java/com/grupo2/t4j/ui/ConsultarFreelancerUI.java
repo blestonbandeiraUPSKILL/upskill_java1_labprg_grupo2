@@ -37,13 +37,20 @@ public class ConsultarFreelancerUI implements Initializable {
     @FXML TextField txtCodigoPostal;
     @FXML TextField txtLocalidade;
     @FXML TextField txtArruamento;
-    @FXML ListView<ReconhecimentoGP> listViewCompTec;
-    @FXML ListView<HabilitacaoAcademica> listViewHabAcad;
     @FXML Button btnVoltar;
+    
+    ////Tabela Reconhecimento///////////////////////
     @FXML TableColumn<Object, Object> txtCompTec;
     @FXML TableColumn<Object, Object> txtDataReconhecimento;
     @FXML TableColumn<Object, Object> txtGrau;
     @FXML TableView<ReconhecimentoGP> tabelaReconhecimento;
+    
+    ////Tabela Habilitacoes Academicas//////////////
+    @FXML TableColumn<Object, Object> txtGrauHabilitacao;
+    @FXML TableColumn<Object, Object> txtDesignacaoCurso;
+    @FXML TableColumn<Object, Object> txtMedia;
+    @FXML TableColumn<Object, Object> txtInstituicao;
+    @FXML TableView<HabilitacaoAcademica> tabelaHabilitacao;
 
     public void associarParentUI(AdministrativoLogadoUI administrativoLogadoUI) {
         this.administrativoLogadoUI = administrativoLogadoUI;
@@ -79,7 +86,7 @@ public class ConsultarFreelancerUI implements Initializable {
         txtLocalidade.setText(localidade);
         txtCodigoPostal.setText(codPostal);
         mostrarCompetencias(emailFreelancer);
-        listViewHabAcad.getItems().setAll(registarFreelancerController.getAllHabsAcademicas(emailFreelancer));
+        mostrarHabilitacao(emailFreelancer);
         
     }
     
@@ -89,6 +96,15 @@ public class ConsultarFreelancerUI implements Initializable {
         txtCompTec.setCellValueFactory(new PropertyValueFactory<>("descBreveCompetencia"));
         txtGrau.setCellValueFactory(new PropertyValueFactory<>("designacaoGrau"));
         txtDataReconhecimento.setCellValueFactory(new PropertyValueFactory<>("dataReconhecimento"));
+    }
+    
+    public void mostrarHabilitacao (String emailFreelancer) throws SQLException {
+        tabelaHabilitacao.getItems().setAll(registarFreelancerController.getAllHabsAcademicas(emailFreelancer));
+        
+        txtGrauHabilitacao.setCellValueFactory(new PropertyValueFactory<>("grau"));
+        txtMedia.setCellValueFactory(new PropertyValueFactory<>("mediaCurso"));
+        txtInstituicao.setCellValueFactory(new PropertyValueFactory<>("nomeInstituicao"));
+        txtDesignacaoCurso.setCellValueFactory(new PropertyValueFactory<>("designacaoCurso"));
     }
     
     @FXML
