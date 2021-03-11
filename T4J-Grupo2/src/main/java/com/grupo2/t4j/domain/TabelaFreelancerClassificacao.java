@@ -17,20 +17,20 @@ public class TabelaFreelancerClassificacao {
     
     public TabelaFreelancerClassificacao(int idCandidatura, String emailFreelancer, int classificacao){
         setIdCandidatura(idCandidatura);
-        setEmail(emailFreelancer);
+        setEmailFreelancer(emailFreelancer);
         setClassificacao(classificacao);
     }
     
     public TabelaFreelancerClassificacao(int idCandidatura, String emailFreelancer){
         setIdCandidatura(idCandidatura);
-        setEmail(emailFreelancer);       
+        setEmailFreelancer(emailFreelancer);       
     }
     
     public void setIdCandidatura(int idCandidatura){
         this.idCandidatura = idCandidatura;
     }
     
-    public void setEmail(String emailFreelancer){
+    public void setEmailFreelancer(String emailFreelancer){
         this.emailFreelancer = emailFreelancer;
     }
     
@@ -38,7 +38,7 @@ public class TabelaFreelancerClassificacao {
         this.classificacao = classificacao;
     }
     
-    public String getEmail(){
+    public String getEmailFreelancer(){
         return emailFreelancer;
     }
     
