@@ -50,6 +50,10 @@ public class AdicionarCompetenciaTecnicaUI implements Initializable {
     @FXML
     ListView<GrauProficiencia> listViewGrausAdicionados;
 
+    /**
+     * Associa a scene AdministrativoLogadoUI como parent desta Scene 
+     * @param administrativoLogadoUI 
+     */
     public void associarParentUI(AdministrativoLogadoUI administrativoLogadoUI) {
         this.administrativoLogadoUI = administrativoLogadoUI;
     }
@@ -80,6 +84,10 @@ public class AdicionarCompetenciaTecnicaUI implements Initializable {
         }
     }
 
+    /**
+     * Regista uma nova competencia tecnica
+     * @param event 
+     */
     @FXML
     public void registarCompetenciaTecnicaAction(ActionEvent event) {
         try {
@@ -107,6 +115,10 @@ public class AdicionarCompetenciaTecnicaUI implements Initializable {
         }
     }
 
+    /**
+     * Cancela a operacao
+     * @param actionEvent 
+     */
     public void cancelarRegisto(ActionEvent actionEvent) {
         Window window = btnCancelar.getScene().getWindow();
         window.setOnCloseRequest(new EventHandler<WindowEvent>() {
@@ -125,6 +137,10 @@ public class AdicionarCompetenciaTecnicaUI implements Initializable {
         window.fireEvent(new WindowEvent(window, WindowEvent.WINDOW_CLOSE_REQUEST));
     }
 
+    /**
+     * Adiciona um grau de proficiencia aplicavel a competencia tecnica
+     * @param actionEvent 
+     */
     public void adicionarGrauAction(ActionEvent actionEvent) {
         try {
             boolean adicionou = registarGrauProficienciaController.registarGrauProficiencia(
@@ -152,6 +168,11 @@ public class AdicionarCompetenciaTecnicaUI implements Initializable {
 
     }
 
+    /**
+     * Atualiza a lista de graus de proficiencia aplicaveis
+     * @param actionEvent
+     * @throws SQLException 
+     */
     public void updateListViewGrausProficiencia(ActionEvent actionEvent) throws SQLException {
         listViewGrausAdicionados.getItems().add(
                 registarGrauProficienciaController.findByGrauECompetenciaTecnica(
@@ -159,6 +180,10 @@ public class AdicionarCompetenciaTecnicaUI implements Initializable {
         );
     }
 
+    /**
+     * Volta a scene anterior
+     * @param actionEvent 
+     */
     public void voltarAtras(ActionEvent actionEvent) {
         btnVoltar.getScene().getWindow().hide();
     }

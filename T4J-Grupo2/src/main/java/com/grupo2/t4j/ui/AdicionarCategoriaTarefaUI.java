@@ -35,31 +35,23 @@ public class AdicionarCategoriaTarefaUI implements Initializable {
     private RegistarCaracterizacaoCTController registarCaracterizacaoCTController;
     private List<CaracterizacaoCT> caracterizacaoCTS;
 
-    @FXML
-    TextField txtDescricaoBreve;
-    @FXML
-    TextField txtCodigoCategoria;
-    @FXML
-    TextField txtCodigoCCT;
-    @FXML
-    TextArea txtDescricaoDetalhada;
-    @FXML
-    Button btnConfirmar;
-    @FXML
-    Button btnCancelar;
-    @FXML
-    Button btnAddCompTecCat;
-    @FXML
-    ComboBox<AreaActividade> cmbAreaActividade;
-    @FXML
-    ComboBox<GrauProficiencia> cmbGrauProficiencia;
-    @FXML
-    ComboBox<Obrigatoriedade> cmbObrigatoriedade;
-    @FXML
-    ComboBox<CompetenciaTecnica> cmbCompetenciaTecnica;
-    @FXML
-    ListView<CaracterizacaoCT> listViewCompTecCat;
+    @FXML TextField txtDescricaoBreve;
+    @FXML TextField txtCodigoCategoria;
+    @FXML TextField txtCodigoCCT;
+    @FXML TextArea txtDescricaoDetalhada;
+    @FXML Button btnConfirmar;
+    @FXML Button btnCancelar;
+    @FXML Button btnAddCompTecCat;
+    @FXML ComboBox<AreaActividade> cmbAreaActividade;
+    @FXML ComboBox<GrauProficiencia> cmbGrauProficiencia;
+    @FXML ComboBox<Obrigatoriedade> cmbObrigatoriedade;
+    @FXML ComboBox<CompetenciaTecnica> cmbCompetenciaTecnica;
+    @FXML ListView<CaracterizacaoCT> listViewCompTecCat;
 
+    /**
+     * Associa a scene AdministrativoLogadoUI como parent desta Scene 
+     * @param administrativoLogadoUI 
+     */
     public void associarParentUI(AdministrativoLogadoUI administrativoLogadoUI) {
         this.administrativoLogadoUI = administrativoLogadoUI;
     }
@@ -117,18 +109,32 @@ public class AdicionarCategoriaTarefaUI implements Initializable {
 
     }
 
+    /**
+     * Atualiza a combobox de competencias tecnicas de acordo com a area de atividade escolhida
+     * @param actionEvent
+     * @throws SQLException 
+     */
     public void updateCmbCompetenciasTecnicas(ActionEvent actionEvent) throws SQLException {
         String codigoAreaActividade = cmbAreaActividade.getSelectionModel().getSelectedItem().getCodigo();
         cmbCompetenciaTecnica.getItems().setAll(
                 registarCompetenciaTecnicaController.findByAreaActividade(codigoAreaActividade));
     }
 
+    /**
+     * Atualiza a combobox de graus de proficiencia de acordo com a competencia tecnica escolhida
+     * @param actionEvent
+     * @throws SQLException 
+     */
     public void updateCmbGrauProficiencia(ActionEvent actionEvent) throws SQLException {
         String codigoCompetenciaTecnica = cmbCompetenciaTecnica.getSelectionModel().getSelectedItem().getCodigo();
         cmbGrauProficiencia.getItems().setAll(
                 registarGrauProficienciaController.findByCompetenciaTecnica(codigoCompetenciaTecnica));
     }
 
+    /**
+     * Cancela a operacao
+     * @param event 
+     */
     public void cancelarAction(ActionEvent event) {
         Window window = btnCancelar.getScene().getWindow();
         window.setOnCloseRequest(new EventHandler<WindowEvent>() {
@@ -147,6 +153,10 @@ public class AdicionarCategoriaTarefaUI implements Initializable {
         window.fireEvent(new WindowEvent(window, WindowEvent.WINDOW_CLOSE_REQUEST));
     }
 
+    /**
+     * Confirma a operacao
+     * @param actionEvent 
+     */
     public void confirmarAction(ActionEvent actionEvent) {
         this.txtDescricaoBreve.clear();
         this.txtDescricaoDetalhada.clear();
@@ -155,7 +165,11 @@ public class AdicionarCategoriaTarefaUI implements Initializable {
         ((Node) actionEvent.getSource()).getScene().getWindow().hide();
     }
     
-
+    /**
+     * Adiciona uma competencia tecnica a caracterizacao da categoria
+     * @param actionEvent
+     * @throws SQLException 
+     */
     @FXML
     public void addCompetenciaTecnica2CCTS(ActionEvent actionEvent) throws SQLException {
 
@@ -186,6 +200,11 @@ public class AdicionarCategoriaTarefaUI implements Initializable {
 
     }
 
+    /**
+     * Atualiza a lista de competencias tecnicas da categoria
+     * @param actionEvent
+     * @throws SQLException 
+     */
     public void updateListViewCompTecCat(ActionEvent actionEvent) throws SQLException {
         
         listViewCompTecCat.getItems().setAll(
@@ -193,6 +212,10 @@ public class AdicionarCategoriaTarefaUI implements Initializable {
 
     }
 
+    /**
+     * Adiciona uma nova categoria
+     * @param actionEvent 
+     */
     public void addCategoria(ActionEvent actionEvent) {
         try {
             boolean adicionou = registarCategoriaController.registarCategoria(

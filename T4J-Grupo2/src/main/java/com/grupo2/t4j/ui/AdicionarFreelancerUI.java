@@ -40,6 +40,10 @@ public class AdicionarFreelancerUI implements Initializable {
     @FXML Button btnCancelar;
     @FXML Button btnSair;
 
+    /**
+     * Associa a scene AdministrativoLogadoUI como parent desta Scene 
+     * @param administrativoLogadoUI 
+     */
     public void associarParentUI(AdministrativoLogadoUI administrativoLogadoUI) {
         this.administrativoLogadoUI = administrativoLogadoUI;
     }
@@ -58,6 +62,11 @@ public class AdicionarFreelancerUI implements Initializable {
 
     }
 
+    /**
+     * Adiciona um novo Freelancer
+     * @param event
+     * @throws SQLException 
+     */
     @FXML
     public void addFreelancer(ActionEvent event) throws SQLException {
 
@@ -96,6 +105,10 @@ public class AdicionarFreelancerUI implements Initializable {
         }
     }
 
+    /**
+     * Cancela a operacao
+     * @param event 
+     */
     @FXML
     public void cancelarAction(ActionEvent event) {
         this.txtNomeFreelancer.clear();
@@ -109,6 +122,10 @@ public class AdicionarFreelancerUI implements Initializable {
         this.txtPassFreelancer.clear();
     }
 
+    /**
+     * Volta a scene anterior
+     * @param event 
+     */
     @FXML
     public void sairAction(ActionEvent event) {
         Window window = btnSair.getScene().getWindow();
