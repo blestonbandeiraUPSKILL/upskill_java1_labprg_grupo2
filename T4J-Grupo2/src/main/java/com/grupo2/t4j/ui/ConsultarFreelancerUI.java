@@ -55,10 +55,10 @@ public class ConsultarFreelancerUI implements Initializable {
     public void associarParentUI(AdministrativoLogadoUI administrativoLogadoUI) {
         this.administrativoLogadoUI = administrativoLogadoUI;
     }
-    
+
     /**
-    * Initializes the controller (UI) class.
-    */
+     * Initializes the controller (UI) class.
+     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
@@ -68,7 +68,7 @@ public class ConsultarFreelancerUI implements Initializable {
         adicionarStage = new Stage();
         adicionarStage.initModality(Modality.APPLICATION_MODAL);;
         adicionarStage.setResizable(false);
-    }   
+    }
 
     public void transferData() throws SQLException {
         String emailFreelancer = administrativoLogadoUI.tableViewFreelancer.getSelectionModel().getSelectedItem().getEmail().getEmailText();
@@ -89,6 +89,7 @@ public class ConsultarFreelancerUI implements Initializable {
         mostrarHabilitacao(emailFreelancer);
         
     }
+
     
     public void mostrarCompetencias (String emailFreelancer) throws SQLException {
         tabelaReconhecimento.getItems().setAll(registarReconhecimentoGPController.getAll(emailFreelancer));
@@ -97,6 +98,7 @@ public class ConsultarFreelancerUI implements Initializable {
         txtGrau.setCellValueFactory(new PropertyValueFactory<>("designacaoGrau"));
         txtDataReconhecimento.setCellValueFactory(new PropertyValueFactory<>("dataReconhecimento"));
     }
+
     
     public void mostrarHabilitacao (String emailFreelancer) throws SQLException {
         tabelaHabilitacao.getItems().setAll(registarFreelancerController.getAllHabsAcademicas(emailFreelancer));
@@ -106,10 +108,10 @@ public class ConsultarFreelancerUI implements Initializable {
         txtInstituicao.setCellValueFactory(new PropertyValueFactory<>("nomeInstituicao"));
         txtDesignacaoCurso.setCellValueFactory(new PropertyValueFactory<>("designacaoCurso"));
     }
-    
+
     @FXML
     void voltarAtras(ActionEvent event) {
         btnVoltar.getScene().getWindow().hide();
     }
-    
+
 }

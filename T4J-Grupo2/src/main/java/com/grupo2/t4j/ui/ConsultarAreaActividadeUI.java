@@ -18,17 +18,20 @@ import java.util.ResourceBundle;
  * FXML Controller class
  */
 public class ConsultarAreaActividadeUI implements Initializable {
-    
-    @FXML TextField txtDescBreve;
-    @FXML Button btnVoltar;
-    @FXML TextField txtCodigo;
-    @FXML TextArea txtDescDetalhada;
-    
-    
+
+    @FXML
+    TextField txtDescBreve;
+    @FXML
+    Button btnVoltar;
+    @FXML
+    TextField txtCodigo;
+    @FXML
+    TextArea txtDescDetalhada;
+
     private AdministrativoLogadoUI administrativoLogadoUI;
     private RegistarAreaActividadeController registarAreaActividadeController;
     private Stage adicionarStage;
-    
+
     public void associarParentUI(AdministrativoLogadoUI administrativoLogadoUI) {
         this.administrativoLogadoUI = administrativoLogadoUI;
     }
@@ -39,20 +42,20 @@ public class ConsultarAreaActividadeUI implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
-            adicionarStage = new Stage();
-            adicionarStage.initModality(Modality.APPLICATION_MODAL);;
-            adicionarStage.setResizable(false);
-            
-            registarAreaActividadeController = new RegistarAreaActividadeController();
-            
+        adicionarStage = new Stage();
+        adicionarStage.initModality(Modality.APPLICATION_MODAL);;
+        adicionarStage.setResizable(false);
 
-    }    
+        registarAreaActividadeController = new RegistarAreaActividadeController();
+
+    }
+
     public void transferData() throws SQLException {
 
         txtCodigo.setText(administrativoLogadoUI.tableViewAreaActividade.getSelectionModel().getSelectedItem().getCodigo());
         txtDescBreve.setText(administrativoLogadoUI.tableViewAreaActividade.getSelectionModel().getSelectedItem().getDescBreve());
         txtDescDetalhada.setText(administrativoLogadoUI.tableViewAreaActividade.getSelectionModel().getSelectedItem().getDescDetalhada());
-        
+
     }
 
     @FXML
