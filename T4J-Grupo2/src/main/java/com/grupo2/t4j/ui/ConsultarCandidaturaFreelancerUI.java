@@ -4,7 +4,6 @@ import com.grupo2.t4j.controller.*;
 import com.grupo2.t4j.domain.*;
 import javafx.fxml.FXML;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.Initializable;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -24,20 +23,34 @@ public class ConsultarCandidaturaFreelancerUI implements Initializable {
     private RegistarTarefaController registarTarefaController;
     private Stage adicionarStage;
 
-    @FXML TextField txtIdAnuncio;
-    @FXML TextField txtIdCandidatura;
-    @FXML TextField txtNome;
-    @FXML TextField txtNIF;
-    @FXML TextField txtEmail;
-    @FXML TextField txtApresentacao;
-    @FXML TextField txtMotivacao;
-    @FXML ListView<HabilitacaoAcademica> listaHabilitacoes;
-    @FXML ListView<ReconhecimentoGP> listaCompetencias;
-    @FXML TextField txtCustoAnuncio;
-    @FXML TextField txtCustoFreelancer;
-    @FXML TextField txtDuracaoAnuncio;
-    @FXML TextField txtDuracaoFreelancer;
-    @FXML Button btnVoltar;
+    @FXML
+    TextField txtIdAnuncio;
+    @FXML
+    TextField txtIdCandidatura;
+    @FXML
+    TextField txtNome;
+    @FXML
+    TextField txtNIF;
+    @FXML
+    TextField txtEmail;
+    @FXML
+    TextField txtApresentacao;
+    @FXML
+    TextField txtMotivacao;
+    @FXML
+    ListView<HabilitacaoAcademica> listaHabilitacoes;
+    @FXML
+    ListView<ReconhecimentoGP> listaCompetencias;
+    @FXML
+    TextField txtCustoAnuncio;
+    @FXML
+    TextField txtCustoFreelancer;
+    @FXML
+    TextField txtDuracaoAnuncio;
+    @FXML
+    TextField txtDuracaoFreelancer;
+    @FXML
+    Button btnVoltar;
 
     public void associarParentUI(ColaboradorLogadoUI colaboradorLogadoUI) {
         this.colaboradorLogadoUI = colaboradorLogadoUI;
@@ -70,11 +83,11 @@ public class ConsultarCandidaturaFreelancerUI implements Initializable {
         String email = colaboradorLogadoUI.tabelaCandidaturasFreelancers.getSelectionModel().getSelectedItem().getEmail();
         int idAnuncio = colaboradorLogadoUI.getIdAnuncio();
         int idCandidatura = colaboradorLogadoUI.tabelaCandidaturasFreelancers.getSelectionModel().getSelectedItem().getIdCandidatura();
-        
+
         Freelancer freelancer = registarFreelancerController.findByEmail(email);
         Candidatura candidatura = seriarAnuncioController.findById(idCandidatura);
         Tarefa tarefa = registarTarefaController.findTarefa(idAnuncio);
-        
+
         txtIdAnuncio.setText(Integer.toString(idAnuncio));
         txtIdCandidatura.setText(Integer.toString(idCandidatura));
         txtNome.setText(freelancer.getNome());
