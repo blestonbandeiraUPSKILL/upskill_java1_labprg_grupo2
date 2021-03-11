@@ -212,7 +212,7 @@ public class RepositorioClassificacaoDatabase implements RepositorioClassificaca
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(
                    "SELECT * FROM Classificacao " +
-                            "WHERE idSeriacao =  ?"
+                            "WHERE idProcessoSeriacao =  ?"
             );
 
             preparedStatement.setInt(1, idSeriacao);
@@ -222,7 +222,7 @@ public class RepositorioClassificacaoDatabase implements RepositorioClassificaca
             while (resultSet.next()) {
                 int idClassificacao = resultSet.getInt(1);
                 int posicao = resultSet.getInt(2);
-                int idCandidatura = resultSet.getInt(3);
+                int idCandidatura = resultSet.getInt(4);
                         
                 classificacoes.add(new Classificacao(idClassificacao,  
                         posicao, idSeriacao, idCandidatura));

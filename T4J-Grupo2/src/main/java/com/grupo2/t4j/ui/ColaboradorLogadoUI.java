@@ -174,6 +174,7 @@ public class ColaboradorLogadoUI implements Initializable {
         String referenciaTarefa = cmbAnuncio.getSelectionModel().getSelectedItem();
         String nifOrganizacao = getNifOrganizacao();
         List<String> tarefasOrg = seriarAnuncioController.getReferenciasTarefas(nifOrganizacao);
+
         List<String> tarefasNaoSeriadas = seriarAnuncioController.getAllRefTarefasNaoSeriadas(tarefasOrg, nifOrganizacao);
         for(int i = 0; i < tarefasNaoSeriadas.size(); i++){
             if(tarefasNaoSeriadas.get(i).equals(referenciaTarefa)){
@@ -284,10 +285,11 @@ public class ColaboradorLogadoUI implements Initializable {
     
     public void updateDataSeriacao() throws SQLException{
         txtDataSeriacao.clear();
-        txtDataSeriacao.setText(seriarAnuncioController.findSeriacaoByAnuncio(getIdAnuncio()).getDataSeriacao());
+        int idAnuncio = getIdAnuncio();
+        txtDataSeriacao.setText(seriarAnuncioController.getProcesoSeriacaoByAnuncio(idAnuncio).getDataSeriacao());
         btnSeriacaoAutomatica.setDisable(true);
         btnSeriacaoManual.setDisable(true);
-        updateTabelaClassificacao(seriarAnuncioController.findSeriacaoByAnuncio(getIdAnuncio()).getIdSeriacao());
+        updateTabelaClassificacao(seriarAnuncioController.getProcesoSeriacaoByAnuncio(idAnuncio).getIdSeriacao());
     }
     
     public void preencherTabela () {

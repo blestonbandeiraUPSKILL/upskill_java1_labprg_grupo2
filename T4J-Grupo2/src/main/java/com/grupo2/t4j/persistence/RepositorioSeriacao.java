@@ -24,6 +24,7 @@ public interface RepositorioSeriacao {
     ProcessoSeriacao findByAnuncio(int idAnuncio) throws SQLException;    
     
     List<ProcessoSeriacao> getAll()throws SQLException;
-    
-    
+
+
+    ProcessoSeriacao getProcessoSeriacaoByAnuncio(int idAnuncio) throws SQLException;
 }

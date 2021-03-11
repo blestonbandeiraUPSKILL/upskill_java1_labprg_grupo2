@@ -242,7 +242,11 @@ public class RepositorioCandidaturaDatabase implements RepositorioCandidatura{
                     + "WHERE idAnuncio =  ?"
             );
 
-            ResultSet resultSet = preparedStatement.executeQuery();
+            preparedStatement.setInt(1, idAnuncio);
+
+            preparedStatement.executeQuery();
+
+            ResultSet resultSet = preparedStatement.getResultSet();
 
             while (resultSet.next()) {
                 int idCandidatura = resultSet.getInt(1);

@@ -352,15 +352,15 @@ public class RepositorioAnuncioDataBase implements RepositorioAnuncio {
     public List<String> getAllRefTarefasNaoSeriadas(List<String> referenciasTarefa, String nifOrganizacao) throws SQLException{
         
         List<String> refTarefasNaoSeriadas = new ArrayList<>();
-        
+
         Connection connection = DBConnectionHandler.getInstance().openConnection();
 
         try {
             for (String referencia : referenciasTarefa) {
-                int idAnuncio = findAnuncioByIdTarefa(referencia, nifOrganizacao).getIdAnuncio();
                 CallableStatement callableStatement = connection.prepareCall(
-                    "SELECT * FROM Anuncio LEFT JOIN ProcessoSeriacao ON "
-                            + "ProcessoSeriacao.idAnuncio IS NULL"
+                    "SELECT * FROM Anuncio LEFT JOIN ProcessoSeriacao " +
+                            "ON ProcessoSeriacao.idAnuncio = Anuncio.idAnuncio " +
+                            "WHERE ProcessoSeriacao.idAnuncio IS NULL"
                 );
                               
                 callableStatement.executeUpdate();
