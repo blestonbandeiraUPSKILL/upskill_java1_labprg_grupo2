@@ -724,7 +724,56 @@ public class RepositorioTarefaDatabase implements RepositorioTarefa {
         }
         return tarefasElegíveis;
     }
-    
+
+    @Override
+    public Tarefa getTarefaByRefENif(String referencia, String nifOrganizacao) throws SQLException {
+        Tarefa tarefa = new Tarefa();
+
+        Connection connection = DBConnectionHandler.getInstance().openConnection();
+
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(
+                    "SELECT * FROM Tarefa " +
+                            "WHERE referencia LIKE ? AND nifOrganizacao LIKE  ?"
+
+            );
+
+            preparedStatement.setString(1, referencia);
+            preparedStatement.setString(2, nifOrganizacao);
+
+            preparedStatement.executeQuery();
+
+            ResultSet resultSet = preparedStatement.getResultSet();
+
+            while (resultSet.next()) {
+
+                tarefa.setNifOrganizacao(resultSet.getString(1));
+                tarefa.setReferencia(resultSet.getString(2));
+                tarefa.setDesignacao(resultSet.getString(3));
+                tarefa.setDescInformal(resultSet.getString(4));
+                tarefa.setDescTecnica(resultSet.getString(5));
+                tarefa.setDuracaoEst(resultSet.getInt(6));
+                tarefa.setCustoEst(resultSet.getDouble(7));
+                tarefa.setCodigoCategoriaTarefa(resultSet.getString(8));
+                tarefa.setEmailColaborador(resultSet.getString(9));
+            }
+
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+            exception.getSQLState();
+            try {
+                System.err.print("Transaction is being rolled back");
+                connection.rollback();
+            } catch (SQLException sqlException) {
+                sqlException.getErrorCode();
+            }
+
+        } finally {
+            DBConnectionHandler.getInstance().closeAll();
+        }
+        return tarefa;
+    }
+
     @Override
     public List<String> getReferenciasTarefas(List<Tarefa> listaTarefas)  throws SQLException{
         List<String> referenciaTarefas = new ArrayList<>();

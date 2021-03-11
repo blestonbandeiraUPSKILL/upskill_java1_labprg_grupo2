@@ -10,6 +10,7 @@ import com.grupo2.t4j.exception.NomeInvalidoException;
 import com.grupo2.t4j.exception.QuantidadeInvalidaException;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  *
@@ -64,12 +65,20 @@ public class Tarefa implements Serializable{
      */
     private String emailColaborador;
 
+    private List<GrauProficiencia> grausProficiencia;
+
     
     /**
      * Construtor vazio da classe Tarefa.
      */
     public Tarefa(){
         
+    }
+
+    public Tarefa(String referencia, String nifOrganizacao, List<GrauProficiencia> grausProficiencia) {
+        setReferencia(referencia);
+        setNifOrganizacao(nifOrganizacao);
+        this.grausProficiencia = grausProficiencia;
     }
 
     public Tarefa(String referencia, String designacao,
@@ -266,9 +275,11 @@ public class Tarefa implements Serializable{
     public void setEmailColaborador(String emailColaborador) {
         this.emailColaborador = emailColaborador;
     }
-    
-    
-    
+
+    public List<GrauProficiencia> getGrauProficiencia() {
+        return grausProficiencia;
+    }
+
     /**
      * Representação textual da classe Tarefa em formato de exibição
      * @return referencia, designacao, duracaoEst, custoEst

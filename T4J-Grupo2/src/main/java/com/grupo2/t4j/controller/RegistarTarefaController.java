@@ -11,6 +11,7 @@ import com.grupo2.t4j.persistence.*;
 import com.grupo2.t4j.persistence.database.FabricaRepositoriosDatabase;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class RegistarTarefaController {
@@ -88,7 +89,6 @@ public class RegistarTarefaController {
         return repositorioTarefa.getAllTarefasPublicadas();
     }
 
-    //findListGPsTarefasPublicadas(List<Tarefa>)
     public int findIdAnuncio(String nifOrganizacao, String referenciaTarefa) throws SQLException {
         return repositorioTarefa.findIdAnuncio(nifOrganizacao, referenciaTarefa);
     }
@@ -98,11 +98,39 @@ public class RegistarTarefaController {
         return repositorioGrauProficiencia.getAllGrausFreelancer(emailFreelancer);
     }
 
-    //lista graus Tarefas todas
-    public List<GrauProficiencia> getAllGrausTarefas() throws SQLException {
-        return repositorioGrauProficiencia.getAllGrausTarefas();
+    //lista Tarefas publicadas com Lista de Graus
+    public List<Tarefa> getAllGrausTarefasPublicadas() throws SQLException {
+        List<Tarefa> tarefasPublicadas = getAllTarefasPublicadas();
+        return repositorioGrauProficiencia.getAllGrausTarefasPublicadas(tarefasPublicadas);
     }
 
     //comparar graus
+    public List<Tarefa> tarefasElegiveis(String emailFreelancer) throws SQLException {
+        List<Tarefa> tarefasElegiveis = new ArrayList<>();
+        List<Tarefa> tarefasCompativeis = new ArrayList<>();
+        List<Tarefa> tarefasComGraus = getAllGrausTarefasPublicadas();
+        List<GrauProficiencia> grausFreelancer = getAllGrausFreelancer(emailFreelancer);
+
+       for (Tarefa tarefa : tarefasComGraus) {
+           for (GrauProficiencia grauTarefa : tarefa.getGrauProficiencia()) {
+               for (GrauProficiencia grauFreelancer : grausFreelancer) {
+                   if(grauFreelancer.getGrau() >= grauTarefa.getGrau() && grauFreelancer.getDesignacao().equals(grauTarefa.getDesignacao())) {
+                       tarefasCompativeis.add(tarefa);
+                   }
+               }
+           }
+       }
+
+       for(Tarefa tarefa : tarefasCompativeis) {
+           Tarefa tarefaCompleta = getTarefaByRefENif( tarefa.getReferencia(), tarefa.getNifOrganizacao());
+           tarefasElegiveis.add(tarefaCompleta);
+       }
+
+        return tarefasElegiveis;
+    }
+
+    private Tarefa getTarefaByRefENif(String referencia, String nifOrganizacao) throws SQLException {
+        return repositorioTarefa.getTarefaByRefENif(referencia, nifOrganizacao);
+    }
 
 }
