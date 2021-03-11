@@ -1,7 +1,7 @@
 package t4j.ws.persistence;
 
+import t4j.ws.domain.Contexto;
 import t4j.ws.domain.Sessao;
-import t4j.ws.dto.Contexto;
 import t4j.ws.utils.DBConnectionHandler;
 
 import java.sql.*;
@@ -19,7 +19,38 @@ public class RepositorioSessao {
         return repositorioSessao;
     }
 
-    public void saveContext(Contexto contextoDTO) {
+    public void saveContext(Contexto contexto) throws SQLException {
+        Connection connection = DBConnectionHandler.getInstance().openConnection();
+
+        try {
+            CallableStatement callableStatement = connection.prepareCall(
+                    "{ CALL createContext(?) }"
+            );
+
+            connection.setAutoCommit(false);
+
+            callableStatement.setString(1, contexto.toString());
+
+            callableStatement.executeQuery();
+
+            connection.commit();
+
+        }
+
+        catch (SQLException exception) {
+            exception.getSQLState();
+            exception.printStackTrace();
+            try {
+                System.err.print("Transaction is being rolled back");
+                connection.rollback();
+            }
+            catch (SQLException sqlException) {
+                sqlException.getErrorCode();
+            }
+        }
+        finally {
+            DBConnectionHandler.getInstance().closeAll();
+        }
 
     }
 
@@ -28,12 +59,14 @@ public class RepositorioSessao {
 
         try {
             CallableStatement callableStatement = connection.prepareCall(
-                    "{CALL createSessao(?)}"
+                    "{CALL createSessao(?, ?, ?)}"
             );
 
             connection.setAutoCommit(false);
 
-            callableStatement.setString(2, sessao.getContexto().toString());
+            callableStatement.setInt(1, sessao.getContexto());
+            callableStatement.setInt(2, sessao.getRolename());
+            callableStatement.setString(3, sessao.getEmailUtilizador());
 
             callableStatement.executeQuery();
 
@@ -58,42 +91,71 @@ public class RepositorioSessao {
         return false;
     }
 
-    public Contexto findContextByString(String context) {
-        return null;
+    public Contexto findContextByString(String context) throws SQLException {
+
+        Contexto contexto = new Contexto();
+
+        Connection connection = DBConnectionHandler.getInstance().openConnection();
+
+        try {
+
+            PreparedStatement preparedStatement = connection.prepareStatement(
+                    "SELECT * From AppContext WHERE value LIKE ?"
+            );
+
+            preparedStatement.setString(1, context);
+            preparedStatement.executeQuery();
+
+            ResultSet resultSet = preparedStatement.getResultSet();
+
+            while(resultSet.next()) {
+                contexto.setIdContexto(resultSet.getInt(1));
+                contexto.setContexto(resultSet.getString(2));
+                int idEstadoContext = resultSet.getInt(3);
+                if(idEstadoContext == 2) {
+                    contexto.setValido(true);
+                }
+                else if(idEstadoContext == 3) {
+                    contexto.setValido(false);
+                }
+            }
+        }
+        catch (SQLException exception) {
+            exception.getSQLState();
+            exception.printStackTrace();
+            try {
+                System.err.print("Transaction is being rolled back");
+                connection.rollback();
+            }
+            catch (SQLException sqlException) {
+                sqlException.getErrorCode();
+            }
+        }
+        finally {
+            DBConnectionHandler.getInstance().closeAll();
+        }
+        return contexto;
     }
 
-    public boolean contextInvalid(String context) throws SQLException {
+    public boolean contextInvalid(Contexto contexto) throws SQLException {
+
         Connection connection = DBConnectionHandler.getInstance().openConnection();
-        int idAppContext = 0;
 
         try {
             connection.setAutoCommit(false);
 
-            PreparedStatement preparedStatement = connection.prepareCall(
-                    "SELECT idAppContext " +
-                            "FROM AppContext " +
+            CallableStatement callableStatement = connection.prepareCall(
+                    "UPDATE AppContext " +
+                            "SET idEstadoContext = 3 " +
                             "WHERE value LIKE ?"
             );
 
-            preparedStatement.setString(1, context);
-
-            ResultSet resultSet = preparedStatement.getResultSet();
-
-            while (resultSet.next()) {
-                idAppContext = resultSet.getInt(1);
-            }
-
-            CallableStatement callableStatement = connection.prepareCall(
-                    "UPDATE UserSession " +
-                            "SET estado LIKE 'invalido' " +
-                            "WHERE idAppContext LIKE ?"
-            );
-
-
-            callableStatement.setInt(1, idAppContext);
+            callableStatement.setString(1, contexto.getContexto());
             callableStatement.executeQuery();
 
             connection.commit();
+            contexto.setValido(false);
+
             return true;
 
         }
@@ -116,7 +178,7 @@ public class RepositorioSessao {
 
 
     public Sessao findByContext(String appContext) throws SQLException {
-        int idAppContext = 0;
+        Sessao sessao = new Sessao();
 
         Connection connection = DBConnectionHandler.getInstance().openConnection();
 
@@ -124,30 +186,26 @@ public class RepositorioSessao {
             connection.setAutoCommit(false);
 
             PreparedStatement preparedStatement = connection.prepareCall(
-                    "SELECT idAppContext " +
-                            "FROM AppContext " +
-                            "WHERE value LIKE ?"
+                    "SELECT * " +
+                            "FROM UserSession " +
+                            "INNER JOIN AppContext " +
+                            "ON UserSession.idAppContext = AppContext.idAppContext " +
+                            "WHERE AppContext.value LIKE ?"
             );
 
             preparedStatement.setString(1, appContext);
+            preparedStatement.executeQuery();
 
             ResultSet resultSet = preparedStatement.getResultSet();
 
             while (resultSet.next()) {
-                idAppContext = resultSet.getInt(1);
+               sessao.setIdSessao(resultSet.getInt(1));
+               sessao.setContexto(resultSet.getInt(2));
+               sessao.setRolename(resultSet.getInt(3));
+               sessao.setEmailUtilizador(resultSet.getString(4));
             }
 
-            CallableStatement callableStatement = connection.prepareCall(
-                    "UPDATE UserSession " +
-                            "SET estado LIKE 'invalido' " +
-                            "WHERE idAppContext LIKE ?"
-            );
-
-            callableStatement.setInt(1, idAppContext);
-            callableStatement.executeQuery();
-
             connection.commit();
-            return new Sessao();
 
         }
         catch (SQLException exception) {
@@ -164,6 +222,57 @@ public class RepositorioSessao {
         finally {
             DBConnectionHandler.getInstance().closeAll();
         }
-        return null;
+        return sessao;
+    }
+
+    public void setUsableOrDiscarded(Contexto contexto) throws SQLException {
+
+        Connection connection = DBConnectionHandler.getInstance().openConnection();
+        try {
+            connection.setAutoCommit(false);
+
+            CallableStatement callableStatement = connection.prepareCall(
+                    "{ ? = call setState(?) }"
+            );
+
+            callableStatement.registerOutParameter(1, Types.INTEGER);
+            callableStatement.setString(2, contexto.getContexto());
+            callableStatement.executeQuery();
+
+            int estado = callableStatement.getInt(1);
+
+            if (estado == 2) {
+                contexto.setValido(true);
+            }
+            else if (estado == 3) {
+                contexto.setValido(false);
+            }
+
+            PreparedStatement preparedStatement = connection.prepareStatement(
+                    "UPDATE AppContext SET idEstadoContext = ? WHERE value = ? "
+            );
+
+            preparedStatement.setInt(1, estado);
+            preparedStatement.setString(2, contexto.getContexto());
+
+            preparedStatement.executeQuery();
+
+            connection.commit();
+        }
+        catch (SQLException exception) {
+            exception.getSQLState();
+            exception.printStackTrace();
+            try {
+                System.err.print("Transaction is being rolled back");
+                connection.rollback();
+            }
+            catch (SQLException sqlException) {
+                sqlException.getErrorCode();
+            }
+        }
+        finally {
+            DBConnectionHandler.getInstance().closeAll();
+        }
+
     }
 }

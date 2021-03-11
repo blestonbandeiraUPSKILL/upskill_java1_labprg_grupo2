@@ -3,8 +3,9 @@ package com.grupo2.t4j.domain;
 import com.grupo2.t4j.exception.IdInvalidoException;
 
 import java.io.Serializable;
+import java.util.Comparator;
 
-public class Candidatura implements Serializable {
+public class Candidatura implements Serializable, Comparable<Candidatura>{
     
     /**
      * O id da Candidatura
@@ -111,7 +112,7 @@ public class Candidatura implements Serializable {
         setIdAnuncio(idAnuncio);
         setEmailFreelancer(emailFreelancer);
         setData(dataCandidatura);
-        setDataEdicao(dataCandidatura);
+
     }
     
     /**
@@ -160,16 +161,16 @@ public class Candidatura implements Serializable {
      * @param txtApresentacao
      * @param txtMotivacao
      * @param idAnuncio
-     * @param emailFreelanceR 
+     * @param email
      */
     public Candidatura(Double valorPretendido, int numeroDias, String 
-            txtApresentacao, String txtMotivacao, int idAnuncio, String emailFreelanceR){
+            txtApresentacao, String txtMotivacao, int idAnuncio, String email){
         setValor(valorPretendido);
         setDias(numeroDias);
         setApresentacao(txtApresentacao);
         setMotivacao(txtMotivacao);
         setIdAnuncio(idAnuncio);
-        setEmailFreelancer(emailFreelancer);        
+        setEmailFreelancer(email);
     }
     
     /**
@@ -344,25 +345,23 @@ public class Candidatura implements Serializable {
      * realização da Tarefa, o número de dias para a realização da Tarefa,
      * o texto de apresentação da Candidatura e o texto de Motivação para a 
      * Candidatura
-     */   
+     */
+
     @Override
-    public String toString(){
-        return String.format("ID2: %-12s " +
-                        "|Freelancer: %-20s " +
-                        "|Data Candidatura: %-12s" +
-                        "|Valor pretendido: %.2f euros " +
-                        "|Número de dias: %-8d" +
-                        "|Apresentação: %-50s " +
-                        "|Motivação: %-50s",
-                idCandidatura,
-                emailFreelancer,
-                dataCandidatura,
-                valorPretendido,
-                numeroDias,
-                txtApresentacao,
-                txtMotivacao);
+    public String toString() {
+        return "Candidatura{" +
+                "idCandidatura=" + idCandidatura +
+                ", idAnuncio=" + idAnuncio +
+                ", emailFreelancer='" + emailFreelancer + '\'' +
+                ", dataCandidatura='" + dataCandidatura + '\'' +
+                ", dataEdicaoCandidatura='" + dataEdicaoCandidatura + '\'' +
+                ", valorPretendido=" + valorPretendido +
+                ", numeroDias=" + numeroDias +
+                ", txtApresentacao='" + txtApresentacao + '\'' +
+                ", txtMotivacao='" + txtMotivacao + '\'' +
+                '}';
     }
-    
+
     /**
      * Representação textual da classe Candidatura em formato de exibição simplificado
      * @return o id do Anúncio, o id da Candidatura e o email do Freelancer
@@ -386,5 +385,40 @@ public class Candidatura implements Serializable {
                 + "%nApresentação: %s %nMotivação: %s", idCandidatura, emailFreelancer, 
                 dataCandidatura, valorPretendido,
                 numeroDias, txtApresentacao, txtMotivacao);
-    }    
+    }
+    
+    @Override
+    public int compareTo(Candidatura outraCandidatura){
+        return CandidaturaComparator.VALOR.compare(this, outraCandidatura);
+    }
+    
+    public static class CandidaturaComparator {
+
+        public static Comparator<Candidatura> VALOR = new Comparator<Candidatura>(){
+            @Override
+            public int compare(Candidatura c1, Candidatura c2) {
+                if(c1.getValorPretendido() > c2.getValorPretendido()){
+                    return 1;
+                }
+                if(c1.getValorPretendido() < c2.getValorPretendido()){
+                    return -1;
+                }
+                return 0; 
+            }
+        };
+    
+        public static Comparator<Candidatura> IDCANDIDATURA = new Comparator<Candidatura>(){
+            @Override
+            public int compare(Candidatura c1, Candidatura c2) {
+                if(c1.getIdCandidatura() > c2.getIdCandidatura()){
+                    return 1;
+                }
+                if(c1.getIdCandidatura() < c2.getIdCandidatura()){
+                    return -1;
+                }
+                return 0; 
+            }
+        };
+    }
+
 }

@@ -5,14 +5,11 @@
  */
 package com.grupo2.t4j.controller;
 
-import com.grupo2.t4j.files.FicheiroRepositorioAreaActividade;
 import com.grupo2.t4j.domain.AreaActividade;
 import com.grupo2.t4j.persistence.FabricaRepositorios;
 import com.grupo2.t4j.persistence.RepositorioAreaActividade;
 import com.grupo2.t4j.persistence.database.FabricaRepositoriosDatabase;
-import com.grupo2.t4j.persistence.inmemory.RepositorioAreaActividadeInMemory;
 
-import java.io.File;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -22,12 +19,8 @@ import java.util.List;
  */
 public class RegistarAreaActividadeController /*implements Serializable*/{
 
-    //private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosInMemory();
     private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosDatabase();
     private RepositorioAreaActividade repositorioAreaActividade = fabricaRepositorios.getRepositorioAreaActividade();
-
-    private FicheiroRepositorioAreaActividade ficheiroAt;
-    private RepositorioAreaActividadeInMemory repositorioAreaActividadeInMemory;
 
     public List<AreaActividade> getAll() throws SQLException {
         return repositorioAreaActividade.getAll();
@@ -54,30 +47,6 @@ public class RegistarAreaActividadeController /*implements Serializable*/{
 
     public AreaActividade getAreaActividade(String codigoAreaActividade) throws SQLException {
         return repositorioAreaActividade.getAreaActividade(codigoAreaActividade);
-    }
-
-    //////FICHEIROS////////
-    public RegistarAreaActividadeController() {
-        ficheiroAt = new FicheiroRepositorioAreaActividade();
-        
-        desserializar();
-    }
-    public boolean serializar() {
-        return ficheiroAt.serializar(repositorioAreaActividadeInMemory);
-    }
-
-    public boolean serializar(File ficheiroExportar) {
-        return ficheiroAt.serializar(ficheiroExportar, repositorioAreaActividadeInMemory);
-    }
-
-    public void desserializar() {
-        repositorioAreaActividadeInMemory = ficheiroAt.desserializar();
-    }
-
-    public int desserializar(File ficheiroImportar) {
-        RepositorioAreaActividadeInMemory listaAreaActividadeImportada = ficheiroAt.desserializar(ficheiroImportar);
-
-        return repositorioAreaActividadeInMemory.adicionarListaAreasActividade(listaAreaActividadeImportada);
     }
 
 

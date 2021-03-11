@@ -1,10 +1,14 @@
 package t4j.ws.service;
 
+import t4j.ws.domain.Contexto;
 import t4j.ws.domain.Sessao;
 import t4j.ws.domain.Utilizador;
-import t4j.ws.dto.*;
-import t4j.ws.exception.ConversaoException;
+import t4j.ws.dto.ContextoDTO;
+import t4j.ws.dto.LoginDTO;
+import t4j.ws.dto.Mapper;
+import t4j.ws.dto.SessaoDTO;
 import t4j.ws.exception.KeyInvalidaException;
+import t4j.ws.persistence.RepositorioRolename;
 import t4j.ws.persistence.RepositorioSessao;
 import t4j.ws.persistence.RepositorioUtilizador;
 
@@ -14,8 +18,9 @@ public class GestaoUtilizadoresService {
 
     private static RepositorioSessao repositorioSessao = RepositorioSessao.getInstance();
     private static RepositorioUtilizador repositorioUtilizador = RepositorioUtilizador.getInstance();
+    private static RepositorioRolename repositorioRolename = RepositorioRolename.getInstance();
 
-    public static ContextoDTO generateContext(String appKey) {
+    public static ContextoDTO generateContext(String appKey) throws SQLException {
         Contexto contexto = null;
 
         try {
@@ -28,42 +33,47 @@ public class GestaoUtilizadoresService {
 
         ContextoDTO contextoDTO = Mapper.contexto2ContextoDTO(contexto);
 
-        if(contextoDTO != null) {
-            repositorioSessao.saveContext(contexto);
-            return contextoDTO;
-        }
-        else {
-            throw new ConversaoException("ContextoDTO");
-        }
+        repositorioSessao.saveContext(contexto);
+        return contextoDTO;
     }
 
-    public static boolean validateContexto(ContextoDTO contextoDTO) {
+    public static boolean validateContexto(ContextoDTO contextoDTO) throws SQLException {
         Contexto contexto = repositorioSessao.findContextByString(contextoDTO.getAppContext());
 
         return contexto.isValido();
     }
 
+    public static boolean validateSetUsableContexto(ContextoDTO contextoDTO) throws SQLException {
+        Contexto contexto = repositorioSessao.findContextByString(contextoDTO.getAppContext());
+
+        if (contexto == null) {
+            return false;
+        }
+        repositorioSessao.setUsableOrDiscarded(contexto);
+        return contexto.isValido();
+
+    }
+
     public static boolean login(LoginDTO loginDTO, ContextoDTO contextoDTO) throws SQLException {
         Utilizador utilizador = repositorioUtilizador.findByEmail(loginDTO.getEmail().toString());
 
-        if(utilizador == null || !(utilizador.getPassword().equals(loginDTO.getPassword()))) {
+        if(!(utilizador != null && (utilizador.getPassword().toString().equals(loginDTO.getPassword().toString())))) {
             return false;
         }
 
         Contexto contexto = repositorioSessao.findContextByString(contextoDTO.getAppContext());
-        Sessao sessao = new Sessao(utilizador, contexto);
-        SessaoDTO sessaoDTO = Mapper.sessao2SessaoDTO(sessao);
 
-        if(sessao != null) {
-            return RepositorioSessao.getInstance().saveSessao(sessao);
-        }
-        else {
-            throw new ConversaoException("SessaoDTO");
-        }
+        int idRolename = repositorioRolename.getIdByEmail(utilizador.getEmail().toString());
+
+        Sessao sessao = new Sessao(idRolename, contexto.getIdContexto(), utilizador.getEmail().toString());
+
+        return repositorioSessao.saveSessao(sessao);
     }
 
     public static boolean logout(ContextoDTO contextoDTO) throws SQLException {
-        return repositorioSessao.contextInvalid(contextoDTO.getAppContext());
+        Contexto contexto = repositorioSessao.findContextByString(contextoDTO.getAppContext());
+
+        return repositorioSessao.contextInvalid(contexto) ;
     }
 
     public static SessaoDTO getSession(ContextoDTO contextoDTO) throws SQLException {
@@ -74,11 +84,6 @@ public class GestaoUtilizadoresService {
         }
 
         SessaoDTO sessaoDTO = Mapper.sessao2SessaoDTO(sessao);
-        if(sessaoDTO != null) {
-            return sessaoDTO;
-        }
-        else {
-            throw new ConversaoException("SessaoDTO");
-        }
+        return sessaoDTO;
     }
 }

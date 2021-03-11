@@ -9,6 +9,7 @@ package t4j.ws.domain;
 import t4j.ws.exception.NomeInvalidoException;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 /**
  *
@@ -21,7 +22,8 @@ public class Utilizador implements Serializable{
     private String username;
     private Email email;
     private Password password;
-    private Rolename rolename;
+    private int idRolename;
+    private String rolename;
 
     public Utilizador(){
     }
@@ -36,14 +38,14 @@ public class Utilizador implements Serializable{
         this.email = utilizador.getEmail();
         this.username = utilizador.getUsername();
         this.password = utilizador.getPassword();
-        this.rolename = utilizador.getRolename();
+        this.idRolename = utilizador.getIdRolename();
     }
 
-    public Utilizador(String emailUtilizador, String username, String password, Rolename rolename) {
+    public Utilizador(String emailUtilizador, String username, String password, int idRolename) {
         setEmail(new Email(emailUtilizador));
         setUsername(username);
         setPassword(new Password(password));
-        setRolename(new Rolename(rolename));
+        setIdRolename(idRolename);
 
     }
 
@@ -71,7 +73,11 @@ public class Utilizador implements Serializable{
         this.password = password;
     }
 
-    public void setRolename(Rolename rolename){
+    public void setIdRolename(int idRolename){
+        this.idRolename = idRolename;
+    }
+
+    public void setRolename(String rolename) {
         this.rolename = rolename;
     }
 
@@ -87,26 +93,27 @@ public class Utilizador implements Serializable{
         return password;
     } 
 
-    public Rolename getRolename(){
+    public int getIdRolename(){
+        return idRolename;
+    }
+
+    public String getRolename() {
         return rolename;
     }
 
     @Override
-    public String toString(){
-        return String.format("username: %-20s |Email:%-20s",
-                username, email.toString());
+    public String toString() {
+        return "Utilizador{" +
+                "email=" + email +
+                '}';
     }
 
-    public String toStringComPass(){
-        return String.format("username: %s %nEmail:%s %nPassword: %s "
-                + "%nRolename: %s", username, email.toString(),
-                password.getPasswordText(), rolename.toString());
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Utilizador)) return false;
+        Utilizador that = (Utilizador) o;
+        return Objects.equals(password, that.password);
     }
-
-    public String toStringSemPass(){
-        return String.format("username: %s %nEmail:%s %nRolename: %s",
-                username, email.toString(), rolename);
-    }
-
 
 }

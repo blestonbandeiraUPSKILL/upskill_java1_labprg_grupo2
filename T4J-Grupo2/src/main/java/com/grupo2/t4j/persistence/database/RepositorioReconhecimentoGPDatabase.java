@@ -134,12 +134,14 @@ public class RepositorioReconhecimentoGPDatabase implements RepositorioReconheci
 
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(
-                    "SELECT * FROM ReconhecimentoGP " +
+                    "SELECT * FROM  ReconhecimentoGP " +
                             "INNER JOIN Freelancer " +
-                            "ON ReconhecimentoGP.emailFreelancer = Freelancer.email " +
+                            "ON ReconhecimentoGP.emailFreelancer LIKE Freelancer.email " +
                             "INNER JOIN GrauProficiencia " +
-                            "ON GrauProficiencia.idGrauProficiencia = ReconhecimentoGP.idGrauProficiencia " +
-                            "WHERE Freelancer.email = ? "
+                            "ON grauproficiencia.idgrauproficiencia = reconhecimentogp.idgrauproficiencia " +
+                            "INNER JOIN CompetenciaTecnica " +
+                            "ON CompetenciaTecnica.codigoCompetenciaTecnica LIKE GrauProficiencia.codigoCompetenciaTecnica " +
+                            "WHERE email LIKE ? "
             );
 
             preparedStatement.setString(1, email);
@@ -147,10 +149,11 @@ public class RepositorioReconhecimentoGPDatabase implements RepositorioReconheci
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while(resultSet.next()) {
-                int idGrauProficiencia = resultSet.getInt(1);
                 String dataReconhecimento = resultSet.getString(3);
+                String designacaoGrau = resultSet.getString(10);
+                String descBreve = resultSet.getString(13);
 
-                reconhecimentosGP.add(new ReconhecimentoGP(idGrauProficiencia, new Email(email), dataReconhecimento));
+                reconhecimentosGP.add(new ReconhecimentoGP(dataReconhecimento, designacaoGrau, descBreve));
 
             }
         }
@@ -168,8 +171,6 @@ public class RepositorioReconhecimentoGPDatabase implements RepositorioReconheci
             DBConnectionHandler.getInstance().closeAll();
         }
         return reconhecimentosGP;
-
-
 
     }
     

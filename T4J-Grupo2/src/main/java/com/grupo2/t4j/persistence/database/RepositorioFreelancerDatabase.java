@@ -1,14 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.grupo2.t4j.persistence.database;
-
-/**
- *
- * @author CAD
- */
 
 import com.grupo2.t4j.exception.FreelancerDuplicadoException;
 import com.grupo2.t4j.domain.ReconhecimentoGP;
@@ -54,21 +44,19 @@ public class RepositorioFreelancerDatabase implements RepositorioFreelancer{
         Connection connection = DBConnectionHandler.getInstance().openConnection();
         try {
             CallableStatement callableStatement = connection.prepareCall(
-                "{CALL createFreelancer(?, ?, ?, ?, ?, ?, ?, ?, ?) } ");
+                "{CALL createFreelancer(?, ?, ?, ?, ?, ?, ?) } ");
 
             if (findByNif(nif) == null){
 
                 connection.setAutoCommit(false);
 
                 callableStatement.setString(1, emailFree);
-                callableStatement.setString(2, nome);
-                callableStatement.setString(3, password);
-                callableStatement.setString(4, telefone);
-                callableStatement.setString(5, nif);
-                callableStatement.setString(6, arruamento);
-                callableStatement.setString(7, numeroPorta);
-                callableStatement.setString(8, localidade);
-                callableStatement.setString(9, codPostal);
+                callableStatement.setString(2, telefone);
+                callableStatement.setString(3, nif);
+                callableStatement.setString(4, arruamento);
+                callableStatement.setString(5, numeroPorta);
+                callableStatement.setString(6, localidade);
+                callableStatement.setString(7, codPostal);
                 
                 callableStatement.executeQuery();
 
@@ -173,15 +161,6 @@ public class RepositorioFreelancerDatabase implements RepositorioFreelancer{
         Connection connection = DBConnectionHandler.getInstance().openConnection();
 
         try {
-            CallableStatement callableStatement = connection.prepareCall(
-                    "{CALL findFreelancerByEmail(?)}"
-            );
-
-            connection.setAutoCommit(false);
-
-            callableStatement.setString(1, emailFree);
-            callableStatement.executeQuery();
-
             PreparedStatement preparedStatement = connection.prepareStatement(
                     "SELECT Freelancer.telefone, " +
                             "Freelancer.nif, " +

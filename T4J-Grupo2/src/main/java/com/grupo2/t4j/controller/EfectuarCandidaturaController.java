@@ -14,7 +14,6 @@ import java.util.List;
  */
 public class EfectuarCandidaturaController {
 
-    //private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosInMemory();
     private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosDatabase();
     private RepositorioAnuncio repositorioAnuncio = fabricaRepositorios.getRepositorioAnuncio();
     private RepositorioReconhecimentoGP repositorioReconhecimentoGP = fabricaRepositorios.getRepositorioReconhecimentoGP();
@@ -87,7 +86,7 @@ public class EfectuarCandidaturaController {
         return repositorioCandidatura.save(candidatura);
     }
 
-    public Candidatura findByEmail(String emailFreelancer) throws SQLException {
+    public ArrayList<Candidatura> findByEmail(String emailFreelancer) throws SQLException {
         return repositorioCandidatura.findByEmail(emailFreelancer);
     }
 }

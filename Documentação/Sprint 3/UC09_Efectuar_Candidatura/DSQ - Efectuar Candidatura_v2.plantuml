@@ -12,7 +12,7 @@ Freelancer -> UC9_UI : consulta anúncios elegíveis
 activate UC9_UI
 UC9_UI -> UC9_Ctrl : getAllTarefasElegiveis (emailFreelancer)
 activate UC9_Ctrl
-UC9_Ctrl -> RepositorioTarefas : getAllTarefasElegiveis
+UC9_Ctrl -> RepositorioTarefas : getAllTarefasElegiveis (emailFreelancer)
 activate RepositorioTarefas
 RepositorioTarefas --> UC9_Ctrl : listaTarefasElegiveis
 deactivate RepositorioTarefas

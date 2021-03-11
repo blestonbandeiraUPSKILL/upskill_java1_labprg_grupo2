@@ -1,22 +1,16 @@
 package com.grupo2.t4j.controller;
 
-import com.grupo2.t4j.files.FicheiroRepositorioReconhecimentoGP;
 import com.grupo2.t4j.domain.ReconhecimentoGP;
 import com.grupo2.t4j.persistence.FabricaRepositorios;
 import com.grupo2.t4j.persistence.RepositorioReconhecimentoGP;
 import com.grupo2.t4j.persistence.database.FabricaRepositoriosDatabase;
-import com.grupo2.t4j.persistence.inmemory.RepositorioReconhecimentoGPInMemory;
 
 import java.sql.SQLException;
 import java.util.List;
 public class RegistarReconhecimentoGPController {
-    
-    //private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosInMemory();
+
     private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosDatabase();
     private RepositorioReconhecimentoGP repositorioReconhecimentoGP = fabricaRepositorios.getRepositorioReconhecimentoGP();
-    
-    private RepositorioReconhecimentoGPInMemory repositorioReconhecimentoGPInMemory;
-    private FicheiroRepositorioReconhecimentoGP ficheiroRGP;
 
    /**
     * Reconhecer o grau de proficiência boolean

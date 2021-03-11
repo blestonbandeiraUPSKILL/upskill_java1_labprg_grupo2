@@ -1,6 +1,6 @@
 package com.grupo2.t4j.controller;
 
-import com.grupo2.t4j.files.FicheiroRepositorioAnuncio;
+
 import com.grupo2.t4j.domain.Anuncio;
 import com.grupo2.t4j.persistence.FabricaRepositorios;
 import com.grupo2.t4j.persistence.RepositorioAnuncio;
@@ -9,12 +9,9 @@ import com.grupo2.t4j.persistence.database.FabricaRepositoriosDatabase;
 import java.sql.SQLException;
 import java.util.List;
 public class RegistarAnuncioController {
-    
-    //private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosInMemory();
+
     private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosDatabase();
     private RepositorioAnuncio repositorioAnuncio = fabricaRepositorios.getRepositorioAnuncio();
-    
-    private FicheiroRepositorioAnuncio ficheiroAnuncio;
 
 
    /**

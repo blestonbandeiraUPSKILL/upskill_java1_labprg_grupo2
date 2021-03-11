@@ -1,5 +1,6 @@
 package t4j.ws.dto;
 
+import t4j.ws.domain.Contexto;
 import t4j.ws.domain.Rolename;
 import t4j.ws.domain.Sessao;
 import t4j.ws.domain.Utilizador;
@@ -14,7 +15,7 @@ public class Mapper {
         utilizadorDTO.setUsername(utilizador.getUsername());
         utilizadorDTO.setEmail(utilizador.getEmail().toString());
         utilizadorDTO.setPassword(utilizador.getPassword());
-        utilizadorDTO.setRolename(utilizador.getRolename());
+        utilizadorDTO.setIdRolename(utilizador.getIdRolename());
 
         return utilizadorDTO;
     }
@@ -24,7 +25,7 @@ public class Mapper {
         utilizador.setUsername(utilizadorDTO.getUsername());
         utilizador.setEmail(utilizadorDTO.getEmail());
         utilizador.setPassword(utilizadorDTO.getPassword());
-        utilizador.setRolename(utilizadorDTO.getRolename());
+        utilizador.setIdRolename(utilizadorDTO.getIdRolename());
 
         return utilizador;
     }
@@ -38,10 +39,11 @@ public class Mapper {
 
     public static SessaoDTO sessao2SessaoDTO(Sessao sessao) {
         SessaoDTO sessaoDTO = new SessaoDTO();
-        UtilizadorDTO utilizadorDTO = Mapper.utilizador2UtilizadorDTO(sessao.getUtilizador());
 
-        sessaoDTO.setUtilizadorDTO(utilizadorDTO);
-        sessaoDTO.setTimeStamp(sessaoDTO.getTimeStamp());
+        sessaoDTO.setIdSessaoDTO(sessao.getIdSessao());
+        sessaoDTO.setRolenameDTO(sessao.getRolename());
+        sessaoDTO.setIdAppContextDTO(sessao.getContexto());
+        sessaoDTO.setEmailUtilizadorDTO(sessao.getEmailUtilizador());
 
         return sessaoDTO;
     }
@@ -73,7 +75,6 @@ public class Mapper {
             rolenameDTO.setIdRolename(rolename.getIdRolename());
         }
         rolenameDTO.setDesignacao(rolename.getDesignacao());
-        rolenameDTO.setDescricao(rolename.getDescricao());
 
         return rolenameDTO;
     }
@@ -85,7 +86,6 @@ public class Mapper {
             rolename.setIdRolename(rolenameDTO.getIdRolename());
         }
         rolename.setDesignacao(rolenameDTO.getDesignacao());
-        rolename.setDescricao(rolenameDTO.getDescricao());
 
         return rolename;
     }

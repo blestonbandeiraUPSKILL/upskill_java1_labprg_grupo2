@@ -1,23 +1,17 @@
 package com.grupo2.t4j.controller;
 
-import com.grupo2.t4j.files.FicheiroRepositorioHabilitacaoAcademica;
 import com.grupo2.t4j.domain.HabilitacaoAcademica;
 import com.grupo2.t4j.persistence.FabricaRepositorios;
 import com.grupo2.t4j.persistence.RepositorioHabilitacaoAcademica;
 import com.grupo2.t4j.persistence.database.FabricaRepositoriosDatabase;
-import com.grupo2.t4j.persistence.inmemory.RepositorioHabilitacaoAcademicaInMemory;
 
-import java.io.File;
 import java.sql.SQLException;
 import java.util.List;
 public class RegistarHabilitacaoAcademicaController {
-    
-    //private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosInMemory();
+
     private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosDatabase();
     private RepositorioHabilitacaoAcademica repositorioHabilitacaoAcademica = fabricaRepositorios.getRepositorioHabilitacaoAcademica();
-   
-    private RepositorioHabilitacaoAcademicaInMemory repositorioHabilitacaoAcademicaInMemory;
-    private FicheiroRepositorioHabilitacaoAcademica ficheiroHA;
+
 
    /**
      * Registar habilitação académica boolean
@@ -55,28 +49,4 @@ public class RegistarHabilitacaoAcademicaController {
     }
 
 
-    
-     //////FICHEIROS////////
-    public RegistarHabilitacaoAcademicaController() {
-        ficheiroHA = new FicheiroRepositorioHabilitacaoAcademica();
-        
-        desserializar();
-    }
-    public boolean serializar() {
-        return ficheiroHA.serializar(repositorioHabilitacaoAcademicaInMemory);
-    }
-
-    public boolean serializar(File ficheiroExportar) {
-        return ficheiroHA.serializar(ficheiroExportar, repositorioHabilitacaoAcademicaInMemory);
-    }
-
-    public void desserializar() {
-        repositorioHabilitacaoAcademicaInMemory = ficheiroHA.desserializar();
-    }
-
-    public int desserializar(File ficheiroImportar) {
-        RepositorioHabilitacaoAcademicaInMemory listaHabilitacaoImportada = ficheiroHA.desserializar(ficheiroImportar);
-
-        return repositorioHabilitacaoAcademicaInMemory.adicionarListaHabilitacao(listaHabilitacaoImportada);
-    }
 }

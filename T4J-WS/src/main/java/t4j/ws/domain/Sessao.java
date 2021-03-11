@@ -1,49 +1,60 @@
 package t4j.ws.domain;
 
-import t4j.ws.dto.Contexto;
-
 public class Sessao {
 
-    private Utilizador utilizador;
-    private Contexto contexto;
-    private String timeStamp;
+    private int idAppContext;
+    private int idSessao;
+    private int idRolename;
+    private String emailUtilizador;
 
-    public Sessao(Utilizador utilizador, Contexto contexto, String timeStamp) {
-        setUtilizador(utilizador);
-        setContexto(contexto);
-        setTimeStamp(timeStamp);
+
+    public Sessao(int idAppContext, int idSessao, int rolename, String emailUtilizador) {
+        setContexto(idAppContext);
+        setIdSessao(idSessao);
+        setRolename(rolename);
+        setEmailUtilizador(emailUtilizador);
+
     }
 
-    public Sessao(Utilizador utilizador, Contexto contexto) {
-        setUtilizador(utilizador);
-        setContexto(contexto);
+    public Sessao(int idRolename, int idAppContext, String emailUtilizador) {
+        setRolename(idRolename);
+        setContexto(idAppContext);
+        setEmailUtilizador(emailUtilizador);
     }
 
     public Sessao() {
 
     }
 
-    public void setUtilizador(Utilizador utilizador) {
-        this.utilizador = utilizador;
+    public void setContexto(int idAppContext) {
+        this.idAppContext = idAppContext;
     }
 
-    public void setContexto(Contexto contexto) {
-        this.contexto = contexto;
+    public void setIdSessao(int idSessao) {
+        this.idSessao = idSessao;
     }
 
-    public void setTimeStamp(String timeStamp) {
-        this.timeStamp = timeStamp;
+    public void setRolename(int idRolename) {
+        this.idRolename = idRolename;
     }
 
-    public Utilizador getUtilizador() {
-        return utilizador;
+    public void setEmailUtilizador(String emailUtilizador) {
+        this.emailUtilizador = emailUtilizador;
     }
 
-    public Contexto getContexto() {
-        return contexto;
+    public int getContexto() {
+        return idAppContext;
     }
 
-    public String getTimeStamp() {
-        return timeStamp;
+    public int getIdSessao() {
+        return idSessao;
+    }
+
+    public int getRolename() {
+        return idRolename;
+    }
+
+    public String getEmailUtilizador() {
+        return emailUtilizador;
     }
 }

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.grupo2.t4j.ui;
 
 import com.grupo2.t4j.controller.RegistarAreaActividadeController;
@@ -50,7 +45,7 @@ public class ConsultarCategoriaUI implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         
         adicionarStage = new Stage();
-            adicionarStage.initModality(Modality.APPLICATION_MODAL);;
+            adicionarStage.initModality(Modality.APPLICATION_MODAL);
             adicionarStage.setResizable(false);
             
         registarAreaActividadeController = new RegistarAreaActividadeController();

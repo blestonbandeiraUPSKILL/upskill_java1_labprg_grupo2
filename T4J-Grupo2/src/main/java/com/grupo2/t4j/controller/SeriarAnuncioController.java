@@ -23,11 +23,13 @@ public class SeriarAnuncioController {
     private RepositorioAnuncio repositorioAnuncio = fabricaRepositorios.getRepositorioAnuncio();
     private RepositorioCandidatura repositorioCandidatura = fabricaRepositorios.getRepositorioCandidatura();
     private RepositorioColaborador repositorioColaborador = fabricaRepositorios.getRepositorioColaborador();
+    private RepositorioColaboradorSeriacao repositorioColaboradorSeriacao = fabricaRepositorios.getRepositorioColaboradorSeriacao();
     private RepositorioClassificacao repositorioClassificacao = fabricaRepositorios.getRepositorioClassificacao();
     private RepositorioSeriacao repositorioSeriacao = fabricaRepositorios.getRepositorioSeriacao();
-    private RepositorioColaboradorSeriacao repositorioColaboradorSeriacao = fabricaRepositorios.getRepositorioColaboradorSeriacao();
+    private RepositorioTipoRegimento repositorioTipoRegimento = fabricaRepositorios.getRepositorioTipoRegimento();
     
-    public SeriarAnuncioController() throws SQLException{
+    
+    public SeriarAnuncioController(){
         
     }
     
@@ -48,16 +50,32 @@ public class SeriarAnuncioController {
         return repositorioAnuncio.getAllRefTarefasTipoRegimento(referenciasTarefa, emailColaborador, idTipoRegimento);
     }
     
-    public List<String> getAllRefTarefasASeriar(List<String> referenciasTarefa, String nifOrganizacao) throws SQLException{
-        return repositorioAnuncio.getAllRefTarefasASeriar(referenciasTarefa, nifOrganizacao);
+    public List<String> getAllRefTarefasASeriar(List<String> referenciasTarefa) throws SQLException{
+        return repositorioAnuncio.getAllRefTarefasASeriar(referenciasTarefa);
     }
     
     public int getIdAnuncioByIdTarefa(String referenciaTarefa, String nifOrganizacao) throws SQLException{
         return repositorioAnuncio.findAnuncioByIdTarefa(referenciaTarefa, nifOrganizacao).getIdAnuncio();
     }
     
-    public ArrayList<Candidatura> getAllByIdAnuncio(int idAnuncio) throws SQLException{
+    public Anuncio getAnuncio(int idAnuncio) throws SQLException {
+        return repositorioAnuncio.getAnuncio(idAnuncio);
+    }
+    
+    public List<TipoRegimento> getAllRegimento()throws SQLException {
+        return repositorioAnuncio.getAllRegimento();
+    }
+    
+    public TipoRegimento findRegimentoById(int idTipoRegimento) throws SQLException{
+        return repositorioTipoRegimento.findById(idTipoRegimento);
+    }
+    
+    public List<Candidatura> getAllByIdAnuncio(int idAnuncio) throws SQLException{
         return repositorioCandidatura.getAllByIdAnuncio(idAnuncio);
+    }
+    
+    public List<Candidatura> ordenarByValor(List<Candidatura> candidaturas) throws SQLException{
+        return repositorioCandidatura.ordenarByValor(candidaturas);
     }
     
     public boolean saveSeriacao(int idAnuncio)throws SQLException{
@@ -68,8 +86,22 @@ public class SeriarAnuncioController {
         return repositorioSeriacao.findByAnuncio(idAnuncio).getIdSeriacao();
     }
     
+    public ProcessoSeriacao findSeriacaoByAnuncio(int idAnuncio) throws SQLException{
+        return repositorioSeriacao.findByAnuncio(idAnuncio);
+    }
+    
     public boolean saveClassificacao(int posicao, int idSeriacao, int idCandidatura) throws SQLException{
         return repositorioClassificacao.save(posicao, idSeriacao, idCandidatura);
+    }
+    
+    public boolean saveClassificacaoAutomatica(List<Candidatura> candidaturasOrdenadas, int idSeriacao) throws SQLException{
+        int posicao = 1;
+        boolean adicionou = false;
+        for(Candidatura c : candidaturasOrdenadas){
+            adicionou = repositorioClassificacao.save(posicao, idSeriacao, c.getIdCandidatura());
+            posicao++;
+        }
+        return adicionou;
     }
     
     public List<Classificacao> getAllBySeriacao(int idSeriacao)throws SQLException{
@@ -90,6 +122,14 @@ public class SeriarAnuncioController {
     
     public boolean update(String emailColaborador, int idSeriacao) throws SQLException{
         return repositorioColaboradorSeriacao.update(emailColaborador, idSeriacao);
+    }
+    
+    public boolean saveListaColaboradores(List<String> emailColaboradores, int idSeriacao) throws SQLException{
+        boolean adicionou = false;
+        for(String email : emailColaboradores){
+            adicionou = repositorioColaboradorSeriacao.update(email, idSeriacao);
+        }
+        return adicionou;
     }
     
     

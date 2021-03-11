@@ -13,7 +13,7 @@ BEGIN
     INSERT INTO ReconhecimentoGP
         (idGrauProficiencia, emailFreelancer, dataReconhecimento)
     VALUES
-        (p_idGrauProficiencia, p_email, p_dataReconhecimento);
+        (p_idGrauProficiencia, p_email, trunc(p_dataReconhecimento));
         
     
 END;

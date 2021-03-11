@@ -226,8 +226,8 @@ CREATE TABLE UserSession(
     idSession integer GENERATED AS IDENTITY
         CONSTRAINT pk_UserSession_idUserSession PRIMARY KEY,
     idAppContext integer,
-    timestamp timestamp,
-    emailUtilizador varchar(50)
+    idRolename integer,
+    emailUtilizador varchar(50);
 );
 
 CREATE TABLE AppContext(
@@ -237,6 +237,7 @@ CREATE TABLE AppContext(
         CONSTRAINT nn_AppContext_value NOT NULL
         CONSTRAINT uk_AppContext_value UNIQUE,
     estado varchar(15) DEFAULT 'valido'
-        CONSTRAINT nn_AppContext_estado NOT NULL
+        CONSTRAINT nn_AppContext_estado NOT NULL,
+    timestamp timestamp,
 );
 
