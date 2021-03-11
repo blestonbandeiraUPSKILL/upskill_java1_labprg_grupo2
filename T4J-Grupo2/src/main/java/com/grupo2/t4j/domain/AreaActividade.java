@@ -130,7 +130,12 @@ public class AreaActividade implements Serializable{
     public String toStringCompleto(){
         return String.format("ID: %-10s |Descrição breve: %-20s |Descrição detalhada: %-120s", codigo, descBreve, descDetalhada );
     }
-
+    
+    /**
+     * Verifica se uma Área de atividade é igual à outra.
+     * @param areaActividade
+     * @return 
+     */
     @Override
     public boolean equals(Object areaActividade) {
         if (this == areaActividade)
