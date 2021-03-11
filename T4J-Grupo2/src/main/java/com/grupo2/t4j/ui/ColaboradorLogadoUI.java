@@ -422,7 +422,7 @@ public class ColaboradorLogadoUI implements Initializable {
 
     }
     
-    public void consultarAnuncioAction(ActionEvent event){
+    public void consultarAnuncioAction(ActionEvent event) throws SQLException{
                 
 
         try {
@@ -431,12 +431,13 @@ public class ColaboradorLogadoUI implements Initializable {
             sceneConsultarAnuncio = new Scene(rootConsultarAnuncio);
             ConsultarAnuncioUI consultarAnuncioUI = loaderConsultarAnuncio.getController();
             consultarAnuncioUI.associarParentUI(this);
-
+            consultarAnuncioUI.transferData();
+            
             adicionarStage.setScene(sceneConsultarAnuncio);
             adicionarStage.setTitle("Consultar Anúncio");
             adicionarStage.show();
 
-        } catch (IOException exception) {
+        } catch (IOException|SQLException exception) {
             exception.printStackTrace();
             AlertsUI.criarAlerta(Alert.AlertType.ERROR,
                     MainApp.TITULO_APLICACAO,
