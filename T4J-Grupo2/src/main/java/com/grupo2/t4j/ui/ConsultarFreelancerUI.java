@@ -25,24 +25,34 @@ public class ConsultarFreelancerUI implements Initializable {
     private Stage adicionarStage;
     private RegistarFreelancerController registarFreelancerController;
 
-    @FXML TextField txtPorta;
-    @FXML TextField txtNif;
-    @FXML TextField txtNome;
-    @FXML TextField txtEmail;
-    @FXML TextField txtCodigoPostal;
-    @FXML TextField txtLocalidade;
-    @FXML TextField txtArruamento;
-    @FXML ListView<ReconhecimentoGP> listViewCompTec;
-    @FXML ListView<HabilitacaoAcademica> listViewHabAcad;
-    @FXML Button btnVoltar;
+    @FXML
+    TextField txtPorta;
+    @FXML
+    TextField txtNif;
+    @FXML
+    TextField txtNome;
+    @FXML
+    TextField txtEmail;
+    @FXML
+    TextField txtCodigoPostal;
+    @FXML
+    TextField txtLocalidade;
+    @FXML
+    TextField txtArruamento;
+    @FXML
+    ListView<ReconhecimentoGP> listViewCompTec;
+    @FXML
+    ListView<HabilitacaoAcademica> listViewHabAcad;
+    @FXML
+    Button btnVoltar;
 
     public void associarParentUI(AdministrativoLogadoUI administrativoLogadoUI) {
         this.administrativoLogadoUI = administrativoLogadoUI;
     }
-    
+
     /**
-    * Initializes the controller (UI) class.
-    */
+     * Initializes the controller (UI) class.
+     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
@@ -51,7 +61,7 @@ public class ConsultarFreelancerUI implements Initializable {
         adicionarStage = new Stage();
         adicionarStage.initModality(Modality.APPLICATION_MODAL);;
         adicionarStage.setResizable(false);
-    }   
+    }
 
     public void transferData() throws SQLException {
         String emailFreelancer = administrativoLogadoUI.tableViewFreelancer.getSelectionModel().getSelectedItem().getEmail().getEmailText();
@@ -70,12 +80,12 @@ public class ConsultarFreelancerUI implements Initializable {
         txtCodigoPostal.setText(codPostal);
         listViewCompTec.getItems().setAll(registarFreelancerController.getAllReconhecimentoGP(emailFreelancer));
         listViewHabAcad.getItems().setAll(registarFreelancerController.getAllHabsAcademicas(emailFreelancer));
-        
+
     }
-    
+
     @FXML
     void voltarAtras(ActionEvent event) {
         btnVoltar.getScene().getWindow().hide();
     }
-    
+
 }
