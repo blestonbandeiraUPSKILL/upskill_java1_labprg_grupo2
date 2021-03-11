@@ -144,12 +144,13 @@ public class SeriacaoManualUI implements Initializable{
     }
     
     public void criaTabelaColaboradoresOpcionais() throws SQLException{
-        List<String> colaboradores = seriarAnuncioController.getAllEmailsAlfByOrganizacao(nifOrganizacao);
+        ArrayList<Colaborador> colaboradores = seriarAnuncioController.getAll(nifOrganizacao);
+        
         for(int i = 0; i < colaboradores.size(); i++){
-            if(!colaboradores.get(i).equals(emailColaborador)){
-                TabelaColaboradorAdicional cellColaborador = new TabelaColaboradorAdicional(colaboradores.get(i).toString(), "N");
+           // if(colaboradores.get(i).getEmail().getEmailText().equals(emailColaborador)){
+                TabelaColaboradorAdicional cellColaborador = new TabelaColaboradorAdicional(colaboradores.get(i).getEmail().getEmailText(), "N");
                 colaboradoresOpcionais.add(cellColaborador);
-            }
+           // }
         }
         tabelaColaboradores.getItems().setAll(colaboradoresOpcionais);
         preencherTabelaColaboradores ();
