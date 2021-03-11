@@ -402,8 +402,8 @@ public class RepositorioAnuncioDataBase implements RepositorioAnuncio {
         try {
             for (String referencia : referenciasTarefa) {
                 PreparedStatement preparedStatement = connection.prepareStatement(
-                    "SELECT * FROM Anuncio " +
-                            "INNER JOIN Tarefa " +
+                    "SELECT * FROM Tarefa " +
+                            "INNER JOIN Anuncio  " +
                             "ON Anuncio.referenciaTarefa LIKE Tarefa.referencia " +
                             "AND Anuncio.nifOrganizacao LIKE Tarefa.nifOrganizacao " +
                             "WHERE Tarefa.referencia LIKE ? " +
@@ -441,8 +441,9 @@ public class RepositorioAnuncioDataBase implements RepositorioAnuncio {
         finally {
             DBConnectionHandler.getInstance().closeAll();
         }
+
         return refTarefasASeriar;
-      
+
     } 
     
      

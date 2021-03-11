@@ -50,8 +50,8 @@ public class SeriarAnuncioController {
         return repositorioAnuncio.getAllRefTarefasTipoRegimento(referenciasTarefa, emailColaborador, idTipoRegimento);
     }
     
-    public List<String> getAllRefTarefasASeriar(List<String> referenciasTarefa) throws SQLException{
-        return repositorioAnuncio.getAllRefTarefasASeriar(referenciasTarefa);
+    public List<Tarefa> getAllRefTarefasASeriar(List<String> referenciasTarefa, String nifOrganizacao, String emailColaborador) throws SQLException{
+        return repositorioAnuncio.getAllRefTarefasASeriar(referenciasTarefa, nifOrganizacao, emailColaborador);
     }
     
     public int getIdAnuncioByIdTarefa(String referenciaTarefa, String nifOrganizacao) throws SQLException{

@@ -88,6 +88,7 @@ public class ColaboradorLogadoUI implements Initializable {
         }
         gestaoUtilizadoresController = new GestaoUtilizadoresController();
         registarColaboradorController = new RegistarColaboradorController();
+        seriarAnuncioController = new SeriarAnuncioController();
 
         adicionarStage = new Stage();
         adicionarStage.initModality(Modality.APPLICATION_MODAL);
@@ -229,19 +230,20 @@ public class ColaboradorLogadoUI implements Initializable {
             String emailColaborador = getEmailColaborador();
             String nifOrganizacao = getNifOrganizacao();
             List<String> tarefasOrg = seriarAnuncioController.getReferenciasTarefas(nifOrganizacao);
-            
+         /*
             List<Tarefa> anunciosColaborador = seriarAnuncioController.findTarefasPublicadas(
                 tarefasOrg, nifOrganizacao, emailColaborador);
             
             List<String> anunciosColaboradorRefTarefas = seriarAnuncioController.getReferenciasTarefas(anunciosColaborador);
-            
-            List<String> refAnunciosASeriar = new ArrayList<>();
+            */
+            List<Tarefa> refAnunciosASeriar = new ArrayList<>();
                     
             refAnunciosASeriar = seriarAnuncioController.getAllRefTarefasASeriar(
-                        anunciosColaboradorRefTarefas);
-        
+                        tarefasOrg, nifOrganizacao, emailColaborador);
+
+
             if(refAnunciosASeriar.size()>0){
-                cmbAnuncio.getItems().setAll(refAnunciosASeriar);
+                cmbAnuncio.getItems().setAll(seriarAnuncioController.getReferenciasTarefas(refAnunciosASeriar));
             }
             else{
                 List<String> listaVazia = new ArrayList<>();
