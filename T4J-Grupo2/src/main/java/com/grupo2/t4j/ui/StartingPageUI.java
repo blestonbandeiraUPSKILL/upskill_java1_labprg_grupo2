@@ -119,17 +119,18 @@ public class StartingPageUI implements Initializable {
                 txtPasswordLogin.clear();
 
                 switch (gestaoUtilizadoresController.getRole()) {
-                    case "gestor":
-                        navigateGestorLogado(actionEvent);
-                        break;
-                    case "administrativo":
+                    case 1:
                         navigateAdministrativoLogado(actionEvent);
                         break;
-                    case "colaborador":
+                    case 2:
                         navigateColaboradorLogado(actionEvent);
                         break;
-                    case "freelancer":
+                    case 3:
                         navigateFreelancerLogado(actionEvent);
+                        break;
+                    case 4:
+                        navigateGestorLogado(actionEvent);
+                        break;
                 }
             }
         } catch (IOException exception) {

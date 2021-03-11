@@ -24,6 +24,8 @@ public class ReconhecimentoGP {
      * O email do freelancer a quem se refere o reconhecimento
      */
     private Email emailFreelancer;
+    private String designacaoGrau;
+    private String descBreveCompetencia;
     
     /**
      * Construtor vazio da classe ReconhecimentoGP
@@ -59,6 +61,12 @@ public class ReconhecimentoGP {
         setIdGrauProficiencia(idGrauProficiencia);
         setEmailFreelancer(new Email(emailFreelancer));
         setDataReconhecimento(dataReconhecimento);
+    }
+
+    public ReconhecimentoGP(String dataReconhecimento, String designacaoGrau, String descBreve) {
+        setDataReconhecimento(dataReconhecimento);
+        this.designacaoGrau = designacaoGrau;
+        this.descBreveCompetencia = descBreve;
     }
 
     /**
@@ -112,8 +120,6 @@ public class ReconhecimentoGP {
 
     @Override
     public String toString(){
-        return String.format("ID GP: %-10d |Data Reconhecimento: %-12s "
-                + "|Email Freelancer: %-20s",idGrauProficiencia,
-                dataReconhecimento, emailFreelancer.getEmailText());
+        return String.format("Competência Técnica: %s%nGrau: %s%n Data Reconhecimento",descBreveCompetencia, idGrauProficiencia, dataReconhecimento);
     }    
 }

@@ -27,30 +27,18 @@ public class AdicionarFreelancerUI implements Initializable {
     private RegistarFreelancerController registarFreelancerController;
     private Stage adicionarStage;
 
-    @FXML
-    TextField txtNomeFreelancer;
-    @FXML
-    TextField txtEmailFreelancer;
-    @FXML
-    TextField txtNIFFreelancer;
-    @FXML
-    TextField txtTelefoneFreelancer;
-    @FXML
-    TextField txtArruamentoFreelancer;
-    @FXML
-    TextField txtPortaFreelancer;
-    @FXML
-    TextField txtLocalidadeFreelancer;
-    @FXML
-    TextField txtCodPostalFreelancer;
-    @FXML
-    TextField txtPassFreelancer;
-    @FXML
-    Button btnAddFreelancer;
-    @FXML
-    Button btnCancelar;
-    @FXML
-    Button btnSair;
+    @FXML TextField txtNomeFreelancer;
+    @FXML TextField txtEmailFreelancer;
+    @FXML TextField txtNIFFreelancer;
+    @FXML TextField txtTelefoneFreelancer;
+    @FXML TextField txtArruamentoFreelancer;
+    @FXML TextField txtPortaFreelancer;
+    @FXML TextField txtLocalidadeFreelancer;
+    @FXML TextField txtCodPostalFreelancer;
+    @FXML TextField txtPassFreelancer;
+    @FXML Button btnAddFreelancer;
+    @FXML Button btnCancelar;
+    @FXML Button btnSair;
 
     public void associarParentUI(AdministrativoLogadoUI administrativoLogadoUI) {
         this.administrativoLogadoUI = administrativoLogadoUI;

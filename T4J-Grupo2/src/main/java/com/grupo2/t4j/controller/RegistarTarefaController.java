@@ -15,7 +15,6 @@ import java.util.List;
 
 public class RegistarTarefaController {
 
-    //private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosInMemory();
     private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosDatabase();
     private RepositorioTarefa repositorioTarefa = fabricaRepositorios.getRepositorioTarefa();
     private RepositorioGrauProficiencia repositorioGrauProficiencia = fabricaRepositorios.getRepositorioGrauProficiencia();

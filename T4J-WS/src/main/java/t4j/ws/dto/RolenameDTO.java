@@ -26,4 +26,8 @@ public class RolenameDTO {
         return designacao;
     }
 
+    @Override
+    public String toString() {
+        return designacao;
+    }
 }

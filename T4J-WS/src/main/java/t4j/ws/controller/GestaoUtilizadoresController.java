@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import t4j.ws.domain.Email;
 import t4j.ws.domain.Password;
-import t4j.ws.domain.Rolename;
 import t4j.ws.dto.*;
 import t4j.ws.service.GestaoUtilizadoresService;
 import t4j.ws.service.UtilizadoresService;
@@ -70,13 +69,13 @@ public class GestaoUtilizadoresController {
                                                    @RequestParam("username") String username,
                                                    @RequestParam("user_id") String email,
                                                    @RequestParam("password") String password,
-                                                   @RequestParam("rolenames") Rolename rolename) {
+                                                   @RequestParam("rolenames") String rolename) {
         try {
             ContextoDTO contextoDTO = new ContextoDTO();
             contextoDTO.setAppContext(appContext);
 
             if (!GestaoUtilizadoresService.validateSetUsableContexto(contextoDTO)) {
-                return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+                return new ResponseEntity<>(contextoDTO + ": contexto inválido", HttpStatus.UNAUTHORIZED);
             }
 
             UtilizadorDTO utilizadorDTO = new UtilizadorDTO();
@@ -165,9 +164,9 @@ public class GestaoUtilizadoresController {
                 return  new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
             }
 
-            UtilizadoresService.getUserRolenames(email);
+            RolenameDTO rolenameDTO = UtilizadoresService.getUserRolenames(email);
 
-            return new ResponseEntity<>(HttpStatus.OK);
+            return new ResponseEntity<>(rolenameDTO, HttpStatus.OK);
         }
         catch (Exception exception) {
             return new ResponseEntity<>(new ErroDTO(exception), HttpStatus.INTERNAL_SERVER_ERROR);
@@ -180,7 +179,7 @@ public class GestaoUtilizadoresController {
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> addRoleToUser(@RequestParam("app_context") String appContext,
                                            @RequestParam("user_id") String email,
-                                           @RequestParam("rolenames") String designacao) {
+                                           @RequestParam("rolenames") int idRolename) {
         try {
             ContextoDTO contextoDTO = new ContextoDTO();
             contextoDTO.setAppContext(appContext);
@@ -189,9 +188,10 @@ public class GestaoUtilizadoresController {
                 return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
             }
 
-            UtilizadoresService.addRolenameToUser(email, designacao);
+            UtilizadoresService.addRolenameToUser(email, idRolename);
+            RolenameDTO rolenameDTO = UtilizadoresService.getUserRolenames(email);
 
-            return new ResponseEntity<>(HttpStatus.OK);
+            return new ResponseEntity<>(rolenameDTO.toString() + " foi atribuído a " + email, HttpStatus.OK);
         }
         catch (Exception exception) {
             return new ResponseEntity<>(new ErroDTO(exception), HttpStatus.INTERNAL_SERVER_ERROR);
@@ -204,7 +204,7 @@ public class GestaoUtilizadoresController {
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> deleteRoleFromUser(@RequestParam("app_context") String appContext,
                                                 @RequestParam("user_id") String email,
-                                                @RequestParam("rolenames") String designacao) {
+                                                @RequestParam("rolenames") int idRolename) {
         try {
             ContextoDTO contextoDTO = new ContextoDTO();
             contextoDTO.setAppContext(appContext);
@@ -213,9 +213,9 @@ public class GestaoUtilizadoresController {
                 return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
             }
 
-            UtilizadoresService.deleteRoleFromUser(email, designacao);
+            UtilizadoresService.deleteRoleFromUser(email, idRolename);
 
-            return new ResponseEntity<>(HttpStatus.OK);
+            return new ResponseEntity<>("Rolename removido com sucesso.", HttpStatus.OK);
         }
         catch (Exception exception) {
             return new ResponseEntity<>(new ErroDTO(exception), HttpStatus.INTERNAL_SERVER_ERROR);

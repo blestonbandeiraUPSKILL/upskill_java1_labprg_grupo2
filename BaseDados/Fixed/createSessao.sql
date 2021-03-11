@@ -1,20 +1,17 @@
 CREATE OR REPLACE PROCEDURE createSessao(
-    p_value appContext.value%type
+    p_idAppContext UserSession.idAppContext%type,
+    p_idRolename UserSession.idRolename%type,
+    p_emailUtilizador UserSession.emailUtilizador%type
     )
 
 IS
-    v_idAppContext appcontext.idappcontext%type;
-    
+   
 BEGIN
 
-    SELECT idAppContext INTO v_idAppContext
-    FROM AppContext 
-    WHERE AppContext.value LIKE p_value;
-    
     INSERT INTO UserSession
-        (idAppContext)
+        (idAppContext, idRolename, emailUtilizador)
     VALUES
-        (v_idAppContext);
+        (p_idAppContext, p_idRolename, p_emailUtilizador);
 
 END;
 /
