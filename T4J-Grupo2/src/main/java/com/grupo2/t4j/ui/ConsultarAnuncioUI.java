@@ -68,8 +68,8 @@ public class ConsultarAnuncioUI implements Initializable{
             
         } catch (SQLException exception) {
             exception.printStackTrace();
-        }        
-
+        } 
+       
         adicionarStage = new Stage();
         adicionarStage.initModality(Modality.APPLICATION_MODAL);;
         adicionarStage.setResizable(false);
