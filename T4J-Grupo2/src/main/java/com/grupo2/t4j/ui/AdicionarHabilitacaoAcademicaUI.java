@@ -37,18 +37,12 @@ public class AdicionarHabilitacaoAcademicaUI implements Initializable {
     TextField txtDesignacao;
     @FXML
     TextField txtInstituicao;
-    @FXML
-    TextField txtMedia;
-    @FXML
-    ComboBox<Freelancer> cmbEmailFreelancer;
-    @FXML
-    ListView<HabilitacaoAcademica> listaHabilitacaoFreelancer;
-    @FXML
-    Button btnAddHabilitacao;
-    @FXML
-    Button btnCancelar;
-    @FXML
-    Button btnSair;
+    @FXML TextField txtMedia;
+    @FXML ComboBox<Freelancer> cmbEmailFreelancer;
+    @FXML ListView<HabilitacaoAcademica> listaHabilitacaoFreelancer;
+    @FXML Button btnAddHabilitacao;
+    @FXML Button btnCancelar;
+    @FXML Button btnSair;
     
     ////Tabela Habilitacoes Academicas//////////////
     @FXML TableColumn<Object, Object> txtGrauHabilitacao;
@@ -161,12 +155,7 @@ public class AdicionarHabilitacaoAcademicaUI implements Initializable {
         });
         window.fireEvent(new WindowEvent(window, WindowEvent.WINDOW_CLOSE_REQUEST));
     }
-
-    /*public void updateListViewHabilitacaoFreelancer(String emailFreelancer) throws SQLException {
-        listaHabilitacaoFreelancer.getItems().setAll(
-                registarHabilitacaoAcademicaController.getAll(emailFreelancer));
-    }*/
-    
+  
     public void mostrarHabilitacao () throws SQLException {
         String emailFreelancer = cmbEmailFreelancer.getSelectionModel().getSelectedItem().getEmail().getEmailText();
         tabelaHabilitacao.getItems().setAll(registarFreelancerController.getAllHabsAcademicas(emailFreelancer));
