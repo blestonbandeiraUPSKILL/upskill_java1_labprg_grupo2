@@ -117,11 +117,29 @@ public class ReconhecimentoGP {
         this.emailFreelancer = emailFreelancer;
     }
 
+    public String getDesignacaoGrau() {
+        return designacaoGrau;
+    }
+
+    public void setDesignacaoGrau(String designacaoGrau) {
+        this.designacaoGrau = designacaoGrau;
+    }
+
+    public String getDescBreveCompetencia() {
+        return descBreveCompetencia;
+    }
+
+    public void setDescBreveCompetencia(String descBreveCompetencia) {
+        this.descBreveCompetencia = descBreveCompetencia;
+    }
+    
+    
+
 
     @Override
     public String toString(){
         return String.format("Competência Técnica: %s%n" +
-                "Grau: %s%n " +
+                "Grau: %s%n" +
                 "Data Reconhecimento: %s", descBreveCompetencia, designacaoGrau, dataReconhecimento);
     }    
 }
