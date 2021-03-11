@@ -140,7 +140,8 @@ public class GestorLogadoUI implements Initializable {
     }
 
     public void updateListViewColaboradores() throws SQLException {
-        listViewColaboradores.getItems().setAll(registarColaboradorController.getAll());
+        String nifOrganizacacao = getNifOrganizacao();
+        listViewColaboradores.getItems().setAll(registarColaboradorController.getAll(nifOrganizacacao));
         
         colunaNome.setCellValueFactory( new PropertyValueFactory<>("nome"));
         colunaFuncao.setCellValueFactory( new PropertyValueFactory<>("funcao"));
