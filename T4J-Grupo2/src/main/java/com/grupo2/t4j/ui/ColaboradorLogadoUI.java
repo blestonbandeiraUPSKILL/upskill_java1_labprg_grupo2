@@ -235,7 +235,9 @@ public class ColaboradorLogadoUI implements Initializable {
             
             List<String> anunciosColaboradorRefTarefas = seriarAnuncioController.getReferenciasTarefas(anunciosColaborador);
             
-            List<String> refAnunciosASeriar = seriarAnuncioController.getAllRefTarefasASeriar(
+            List<String> refAnunciosASeriar = new ArrayList<>();
+                    
+            refAnunciosASeriar = seriarAnuncioController.getAllRefTarefasASeriar(
                         anunciosColaboradorRefTarefas);
         
             if(refAnunciosASeriar.size()>0){
