@@ -1,8 +1,7 @@
 package com.grupo2.t4j.ui;
 
 import com.grupo2.t4j.controller.*;
-import com.grupo2.t4j.domain.HabilitacaoAcademica;
-import com.grupo2.t4j.domain.ReconhecimentoGP;
+import com.grupo2.t4j.domain.*;
 import javafx.fxml.FXML;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -74,20 +73,23 @@ public class ConsultarCandidaturaFreelancerUI implements Initializable {
         int idAnuncio = colaboradorLogadoUI.getIdAnuncio();
         int idCandidatura = colaboradorLogadoUI.tabelaCandidaturasFreelancers.getSelectionModel().getSelectedItem().getIdCandidatura();
         
-
+        Freelancer freelancer = registarFreelancerController.findByEmail(email);
+        Candidatura candidatura = seriarAnuncioController.findById(idCandidatura);
+        Tarefa tarefa = registarTarefaController.findTarefa(idAnuncio);
+        
         txtIdAnuncio.setText(Integer.toString(idAnuncio));
         txtIdCandidatura.setText(Integer.toString(idCandidatura));
-        txtNome.setText(registarFreelancerController.findByEmail(email).getNome());
-        txtNIF.setText(registarFreelancerController.findByEmail(email).getNif());
+        txtNome.setText(freelancer.getNome());
+        txtNIF.setText(freelancer.getNif());
         txtEmail.setText(email);
-        txtApresentacao.setText(seriarAnuncioController.findById(idCandidatura).getApresentacao());
-        txtMotivacao.setText(seriarAnuncioController.findById(idCandidatura).getMotivacao());
+        txtApresentacao.setText(candidatura.getApresentacao());
+        txtMotivacao.setText(candidatura.getMotivacao());
         listaHabilitacoes.getItems().setAll(registarFreelancerController.getAllHabsAcademicas(email));
         listaCompetencias.getItems().setAll(registarReconhecimentoGPController.getAll(email));
         txtCustoAnuncio.setText(Double.toString(registarTarefaController.findTarefa(idAnuncio).getCustoEst()));
         txtCustoFreelancer.setText(Double.toString(colaboradorLogadoUI.tabelaCandidaturasFreelancers.getSelectionModel().getSelectedItem().getCusto()));
         txtDuracaoFreelancer.setText(Integer.toString(colaboradorLogadoUI.tabelaCandidaturasFreelancers.getSelectionModel().getSelectedItem().getDuracao()));
-        txtDuracaoAnuncio.setText(Integer.toString(registarTarefaController.findTarefa(idAnuncio).getDuracaoEst()));
+        txtDuracaoAnuncio.setText(Integer.toString(tarefa.getDuracaoEst()));
     }
 
     @FXML
