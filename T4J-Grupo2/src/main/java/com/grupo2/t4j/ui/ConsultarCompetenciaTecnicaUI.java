@@ -21,19 +21,24 @@ import java.util.ResourceBundle;
  * FXML Controller class
  */
 public class ConsultarCompetenciaTecnicaUI implements Initializable {
-    
+
     private AdministrativoLogadoUI administrativoLogadoUI;
     private RegistarGrauProficienciaController registarGrauProficienciaController;
     private RegistarAreaActividadeController registarAreaActividadeController;
     private Stage adicionarStage;
-    
-    @FXML TextArea txtDescricaoDetalhada;
-    @FXML TextField txtAreaActividade;
-    @FXML ListView<GrauProficiencia> listViewGrausAplicaveis;
-    @FXML TextField txtDescricaoBreve;
-    @FXML TextField txtCodigoCompetenciaTecnica;
-    @FXML Button btnVoltar;
 
+    @FXML
+    TextArea txtDescricaoDetalhada;
+    @FXML
+    TextField txtAreaActividade;
+    @FXML
+    ListView<GrauProficiencia> listViewGrausAplicaveis;
+    @FXML
+    TextField txtDescricaoBreve;
+    @FXML
+    TextField txtCodigoCompetenciaTecnica;
+    @FXML
+    Button btnVoltar;
 
     public void associarParentUI(AdministrativoLogadoUI administrativoLogadoUI) {
         this.administrativoLogadoUI = administrativoLogadoUI;
@@ -44,20 +49,20 @@ public class ConsultarCompetenciaTecnicaUI implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+
         try {
 
             adicionarStage = new Stage();
             adicionarStage.initModality(Modality.APPLICATION_MODAL);;
             adicionarStage.setResizable(false);
-            
+
             registarAreaActividadeController = new RegistarAreaActividadeController();
             registarGrauProficienciaController = new RegistarGrauProficienciaController();
-            
+
         } catch (SQLException exception) {
             exception.printStackTrace();
         }
-        
+
     }
 
     public void transferData() throws SQLException {
@@ -70,7 +75,6 @@ public class ConsultarCompetenciaTecnicaUI implements Initializable {
         listViewGrausAplicaveis.getItems().setAll(registarGrauProficienciaController.getAllByCompetenciaTecnica(txtCodigoCompetenciaTecnica.getText()));
         txtAreaActividade.setText(registarAreaActividadeController.getAreaActividade(codigoAreaActividade).getDescBreve());
     }
-
 
     public void voltarAtras(ActionEvent actionEvent) {
         btnVoltar.getScene().getWindow().hide();
