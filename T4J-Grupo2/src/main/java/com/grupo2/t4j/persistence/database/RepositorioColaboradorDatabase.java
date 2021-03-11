@@ -9,7 +9,6 @@ import com.grupo2.t4j.utils.DBConnectionHandler;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
 
 public class RepositorioColaboradorDatabase implements RepositorioColaborador {
 
@@ -56,8 +55,8 @@ public class RepositorioColaboradorDatabase implements RepositorioColaborador {
                 connection.setAutoCommit(false);
 
                 callableStatement.setString(1, colaborador.getEmail().getEmailText());
-                callableStatement.setString(2, colaborador.getTelefone());
-                callableStatement.setString(3, colaborador.getFuncao());
+                callableStatement.setString(2, colaborador.getFuncao());
+                callableStatement.setString(3, colaborador.getTelefone());
                 callableStatement.setString(4, colaborador.getNifOrganizacao());
                 callableStatement.executeQuery();
 
@@ -113,7 +112,7 @@ public class RepositorioColaboradorDatabase implements RepositorioColaborador {
     }
 
     @Override
-    public ArrayList<Colaborador> getAll() throws SQLException {
+    public ArrayList<Colaborador> getAll(String nifOrganizacacao) throws SQLException {
 
         ArrayList<Colaborador> colaboradores = new ArrayList<>();
 
@@ -121,14 +120,19 @@ public class RepositorioColaboradorDatabase implements RepositorioColaborador {
 
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(
-                    "SELECT Colaborador.email, Colaborador.funcao, Colaborador.telefone, Colaborador.nifOrganizacao, Utilizador.nome FROM COLABORADOR " +
+                    "SELECT Colaborador.email, Colaborador.funcao, " +
+                            "Colaborador.telefone, Colaborador.nifOrganizacao, " +
+                            "Utilizador.nome FROM COLABORADOR " +
                             "INNER JOIN Utilizador " +
                             "ON colaborador.email LIKE utilizador.email " +
                             "INNER JOIN Organizacao " +
-                            "ON colaborador.nifOrganizacao LIKE organizacao.nif"
+                            "ON colaborador.nifOrganizacao LIKE organizacao.nif " +
+                            "WHERE organizacao.nif LIKE ?"
             );
 
-            ResultSet resultSet = preparedStatement.executeQuery();
+            preparedStatement.setString(1, nifOrganizacacao);
+            preparedStatement.executeQuery();
+            ResultSet resultSet = preparedStatement.getResultSet();
 
             while(resultSet.next()) {
                 String email = resultSet.getString(1);
@@ -180,7 +184,11 @@ public class RepositorioColaboradorDatabase implements RepositorioColaborador {
         Collections.sort(colaboradoresOrganizacao);
         return colaboradoresOrganizacao;
     }
-  
+
+    private ArrayList<Colaborador> getAll() {
+        return null;
+    }
+
     @Override
     public String getNifOrganizacao(String email) throws SQLException {
 

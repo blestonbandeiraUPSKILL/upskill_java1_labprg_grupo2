@@ -104,5 +104,5 @@ public class RegistarTarefaController {
     }
 
     //comparar graus
-    
+
 }
