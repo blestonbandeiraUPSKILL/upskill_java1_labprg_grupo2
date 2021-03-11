@@ -43,6 +43,7 @@ public class ColaboradorLogadoUI implements Initializable {
     private Scene sceneConsultarAnuncio;
     private Scene sceneConsultarCandidatura;
     private Scene sceneSeriacaoManual;
+    private int idAnuncio;
 
     @FXML Button btnLogout;
     
@@ -131,21 +132,20 @@ public class ColaboradorLogadoUI implements Initializable {
             public void handle(ActionEvent event) {
                 try {
                     btnConsultarAnuncio.setDisable(false);
-                    if(existeSeriacao()){
+                    if(existeCandidatura()){
                        criarTabelaClassificacao();
-                       updateDataSeriacao();
-                    }
-                    else{
-                        if(existeCandidatura()){
-                            criarTabelaClassificacao();
+                        if(existeSeriacao()){
+                            updateDataSeriacao();
+                        }
+                        else {
                             tipoSeriacao();
                         }
-                        else{
-                            AlertsUI.criarAlerta(Alert.AlertType.ERROR,
-                            MainApp.TITULO_APLICACAO, "Não existem candidaturas ao anúncio selecionado",
-                        "Por favor, escolha outro anúncio para seriar!");
-                        }
-                    }                   
+                    }
+                    else{
+                        AlertsUI.criarAlerta(Alert.AlertType.ERROR,
+                                MainApp.TITULO_APLICACAO, "Não existem candidaturas ao anúncio selecionado",
+                                "Por favor, escolha outro anúncio para seriar!").show();
+                    }
                                           
                 } catch (SQLException exception) {
                    exception.printStackTrace();
@@ -171,22 +171,20 @@ public class ColaboradorLogadoUI implements Initializable {
     }
     
     public boolean existeSeriacao() throws SQLException{
-        String referenciaTarefa = cmbAnuncio.getSelectionModel().getSelectedItem();
-        String nifOrganizacao = getNifOrganizacao();
-        List<String> tarefasOrg = seriarAnuncioController.getReferenciasTarefas(nifOrganizacao);
+        idAnuncio = getIdAnuncio();
 
-        List<String> tarefasNaoSeriadas = seriarAnuncioController.getAllRefTarefasNaoSeriadas(tarefasOrg, nifOrganizacao);
-        for(int i = 0; i < tarefasNaoSeriadas.size(); i++){
-            if(tarefasNaoSeriadas.get(i).equals(referenciaTarefa)){
-                return true;
-            }
+        List<ProcessoSeriacao> processos = new ArrayList<>();
+        processos = seriarAnuncioController.getAllPSByIdAnuncio(idAnuncio);
+        if(processos.size() > 0){
+            return true;
         }
         return false;
     }
     
     public boolean existeCandidatura() throws SQLException{
         List<Candidatura> candidaturas = new ArrayList<>();
-        candidaturas = seriarAnuncioController.getAllByIdAnuncio(getIdAnuncio());
+        idAnuncio = getIdAnuncio();
+        candidaturas = seriarAnuncioController.getAllByIdAnuncio(idAnuncio);
         if(candidaturas.size() > 0){
             return true;
         }
@@ -231,7 +229,6 @@ public class ColaboradorLogadoUI implements Initializable {
             String emailColaborador = getEmailColaborador();
             String nifOrganizacao = getNifOrganizacao();
             List<String> tarefasOrg = seriarAnuncioController.getReferenciasTarefas(nifOrganizacao);
-       
             List<Tarefa> refAnunciosASeriar = new ArrayList<>();
                     
             refAnunciosASeriar = seriarAnuncioController.getAllRefTarefasASeriar(
@@ -253,7 +250,8 @@ public class ColaboradorLogadoUI implements Initializable {
     }
     
     public void criarTabelaClassificacao() throws SQLException{
-        List<Candidatura> candidaturas = seriarAnuncioController.getAllByIdAnuncio(getIdAnuncio());
+        idAnuncio = getIdAnuncio();
+        List<Candidatura> candidaturas = seriarAnuncioController.getAllByIdAnuncio(idAnuncio);
         for(int i = 0; i < candidaturas.size(); i++){
             TabelaCandidaturasAnuncio cellCandidatura = new TabelaCandidaturasAnuncio(
             candidaturas.get(i).getIdCandidatura(), candidaturas.get(i).getEmailFreelancer(), 
@@ -280,7 +278,7 @@ public class ColaboradorLogadoUI implements Initializable {
     
     public void updateDataSeriacao() throws SQLException{
         txtDataSeriacao.clear();
-        int idAnuncio = getIdAnuncio();
+        idAnuncio = getIdAnuncio();
         txtDataSeriacao.setText(seriarAnuncioController.getProcesoSeriacaoByAnuncio(idAnuncio).getDataSeriacao());
         btnSeriacaoAutomatica.setDisable(true);
         btnSeriacaoManual.setDisable(true);
@@ -326,8 +324,7 @@ public class ColaboradorLogadoUI implements Initializable {
     
     public void tipoSeriacao() throws SQLException{
         
-        int idAnuncio = getIdAnuncio();
-        List<Candidatura> candidaturas = seriarAnuncioController.getAllByIdAnuncio(idAnuncio);        
+        idAnuncio = getIdAnuncio();
         int idRegimento = seriarAnuncioController.getAnuncio(idAnuncio).getIdTipoRegimento();
         if(idRegimento == 1){
             btnSeriacaoAutomatica.setDisable(false);
@@ -339,7 +336,7 @@ public class ColaboradorLogadoUI implements Initializable {
     
     public void seriacaoAutomaticaAction(ActionEvent event) throws SQLException{
         try{
-            int idAnuncio = getIdAnuncio();
+            idAnuncio = getIdAnuncio();
             List<Candidatura> candidaturas = seriarAnuncioController.getAllByIdAnuncio(idAnuncio);
             List<Candidatura> candidaturasOrdenadas = seriarAnuncioController.ordenarByValor(candidaturas);
             boolean seriacaoCriada = seriarAnuncioController.saveSeriacao(idAnuncio);
@@ -421,8 +418,6 @@ public class ColaboradorLogadoUI implements Initializable {
     }
     
     public void consultarAnuncioAction(ActionEvent event) throws SQLException{
-                
-
         try {
             FXMLLoader loaderConsultarAnuncio = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/ConsultarAnuncioScene.fxml"));
             Parent rootConsultarAnuncio = loaderConsultarAnuncio.load();

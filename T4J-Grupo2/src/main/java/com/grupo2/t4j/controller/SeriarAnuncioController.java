@@ -148,4 +148,11 @@ public class SeriarAnuncioController {
     public ProcessoSeriacao getProcesoSeriacaoByAnuncio(int idAnuncio) throws SQLException {
         return repositorioSeriacao.getProcessoSeriacaoByAnuncio(idAnuncio);
     }
+
+    public ProcessoSeriacao findProcessoSeriacaoByIdAnuncio(int idAnuncio) throws SQLException {
+        return repositorioSeriacao.findProcessoSeriacaoByIdAnuncio(idAnuncio);
+    }
+    public List<ProcessoSeriacao> getAllPSByIdAnuncio(int idAnuncio) throws SQLException {
+        return repositorioSeriacao.getAllByIdAnuncio(idAnuncio);
+    }
 }
