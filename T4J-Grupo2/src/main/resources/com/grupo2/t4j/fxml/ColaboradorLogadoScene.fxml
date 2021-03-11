@@ -75,7 +75,7 @@
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="AnchorPane">
                            <children>
                               <VBox alignment="CENTER" layoutX="560.0" layoutY="201.0" AnchorPane.bottomAnchor="100.0" AnchorPane.rightAnchor="32.0" />
-                              <Label layoutX="25.0" layoutY="107.0" prefHeight="27.0" prefWidth="460.0" text="Candidaturas ao Anúncio Selecionado (Freelancers e dados principais da proposta)" AnchorPane.bottomAnchor="285.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="220.0" AnchorPane.topAnchor="65.0">
+                              <Label layoutX="25.0" layoutY="107.0" prefHeight="27.0" prefWidth="551.0" text="Candidaturas ao Anúncio Selecionado (Freelancers e dados principais da proposta)" AnchorPane.bottomAnchor="285.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="129.0" AnchorPane.topAnchor="65.0">
                                  <font>
                                     <Font name="Calibri" size="15.0" />
                                  </font>
