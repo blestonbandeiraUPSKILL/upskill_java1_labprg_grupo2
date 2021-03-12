@@ -163,7 +163,7 @@ public class RepositorioClassificacaoDatabase implements RepositorioClassificaca
             callableStatementOrg.setInt(1, idCandidatura);
             callableStatementOrg.executeQuery();
 
-            return null;
+            return new Classificacao();
 
         } catch (SQLException exceptionOrg) {
             exceptionOrg.printStackTrace();
@@ -172,7 +172,7 @@ public class RepositorioClassificacaoDatabase implements RepositorioClassificaca
         finally {
             DBConnectionHandler.getInstance().closeAll();
         }
-        return new Classificacao();
+        return null;
     }
           
     @Override
