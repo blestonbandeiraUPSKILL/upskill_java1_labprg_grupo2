@@ -9,10 +9,14 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyCode;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 import javafx.stage.WindowEvent;
+//import java.awt.event.KeyEvent;
+import javafx.scene.input.KeyEvent;
+
 
 import java.io.IOException;
 import java.net.URL;
@@ -159,6 +163,27 @@ public class StartingPageUI implements Initializable {
 
         }
     }
+    /*
+    public void loginEnter() throws IOException, SQLException{
+        txtPasswordLogin.setOnKeyPressed(new EventHandler<KeyEvent>()
+        {
+            @Override
+            public void handle(KeyEvent ke)
+            {
+                if (ke.getCode() == (KeyCode.ENTER))
+                {
+                    ActionEvent actionEv = new ActionEvent();
+                    try{
+                        login(actionEv);
+                    }catch (IOException|SQLException exception){
+                        exception.printStackTrace();
+                    }
+
+                }
+            }
+        });
+
+   }*/
 
     /**
      * Sai da aplicacao

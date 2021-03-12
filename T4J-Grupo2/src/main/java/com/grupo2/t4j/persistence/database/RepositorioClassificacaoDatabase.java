@@ -91,15 +91,14 @@ public class RepositorioClassificacaoDatabase implements RepositorioClassificaca
 
         try {
             CallableStatement callableStatement = connection.prepareCall(
-                    "{CALL createClassificacao(?, ?, ?, ?) } ");
+                    "{CALL createClassificacao(?, ?, ?) } ");
             if (findByCandidatura(classificacao.getIdCandidatura()) == null){
 
                 connection.setAutoCommit(false);
 
-                callableStatement.setInt(1, classificacao.getIdClassificacao());
-                callableStatement.setInt(2, classificacao.getPosicaoFreelancer());
-                callableStatement.setInt(3, classificacao.getIdSeriacao()); 
-                callableStatement.setInt(4, classificacao.getIdCandidatura());
+                callableStatement.setInt(1, classificacao.getPosicaoFreelancer());
+                callableStatement.setInt(2, classificacao.getIdSeriacao());
+                callableStatement.setInt(3, classificacao.getIdCandidatura());
                                
                 callableStatement.executeQuery();
 
