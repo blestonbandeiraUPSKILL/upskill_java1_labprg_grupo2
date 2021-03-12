@@ -147,10 +147,10 @@ public class SeriacaoManualUI implements Initializable{
         ArrayList<Colaborador> colaboradores = seriarAnuncioController.getAll(nifOrganizacao);
         
         for(int i = 0; i < colaboradores.size(); i++){
-           // if(colaboradores.get(i).getEmail().getEmailText().equals(emailColaborador)){
+            if(!colaboradores.get(i).getEmail().getEmailText().equals(emailColaborador)){
                 TabelaColaboradorAdicional cellColaborador = new TabelaColaboradorAdicional(colaboradores.get(i).getEmail().getEmailText(), "N");
                 colaboradoresOpcionais.add(cellColaborador);
-           // }
+            }
         }
         tabelaColaboradores.getItems().setAll(colaboradoresOpcionais);
         preencherTabelaColaboradores ();
