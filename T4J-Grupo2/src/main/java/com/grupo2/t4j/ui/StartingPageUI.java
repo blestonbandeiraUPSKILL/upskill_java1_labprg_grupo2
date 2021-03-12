@@ -9,10 +9,14 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyCode;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 import javafx.stage.WindowEvent;
+//import java.awt.event.KeyEvent;
+import javafx.scene.input.KeyEvent;
+
 
 import java.io.IOException;
 import java.net.URL;
@@ -121,11 +125,11 @@ public class StartingPageUI implements Initializable {
 
     /**
      * Faz o login do utilizador e navega para a pagina indicada de acordo com o papel do utilizador
-     * @param actionEvent
+     * @param event
      * @throws IOException
      * @throws SQLException 
      */
-    public void login(ActionEvent actionEvent) throws IOException, SQLException {
+    public void login(ActionEvent event) throws IOException, SQLException {
 
         boolean login = gestaoUtilizadoresController.login(
                 txtEmailLogin.getText(),
@@ -138,16 +142,16 @@ public class StartingPageUI implements Initializable {
 
                 switch (gestaoUtilizadoresController.getRole()) {
                     case 1:
-                        navigateAdministrativoLogado(actionEvent);
+                        navigateAdministrativoLogado(event);
                         break;
                     case 2:
-                        navigateColaboradorLogado(actionEvent);
+                        navigateColaboradorLogado(event);
                         break;
                     case 3:
-                        navigateFreelancerLogado(actionEvent);
+                        navigateFreelancerLogado(event);
                         break;
                     case 4:
-                        navigateGestorLogado(actionEvent);
+                        navigateGestorLogado(event);
                         break;
                 }
             }
@@ -159,6 +163,27 @@ public class StartingPageUI implements Initializable {
 
         }
     }
+
+    public void loginEnter(KeyEvent event) throws IOException, SQLException{
+        txtPasswordLogin.setOnKeyPressed(new EventHandler<KeyEvent>()
+        {
+            @Override
+            public void handle(KeyEvent ke)
+            {
+                /*if (ke.getCode() == (KeyCode.ENTER))
+                {
+                    //ActionEvent actionEv = new ActionEvent();
+                    try{
+                        login(ke);
+                    }catch (IOException|SQLException exception){
+                        exception.printStackTrace();
+                    }
+
+                }*/
+            }
+        });
+
+   }
 
     /**
      * Sai da aplicacao
@@ -185,7 +210,7 @@ public class StartingPageUI implements Initializable {
     /**
      * Navega para a pagina AdministrativoLogadoUI
      * @param actionEvent
-     * @throws IOException 
+     * @throws IOException
      */
     public void navigateAdministrativoLogado(ActionEvent actionEvent) throws IOException {
         try {
@@ -210,7 +235,7 @@ public class StartingPageUI implements Initializable {
 
     /** 
      * Navega para a pagina GestorLogadoUI
-     * @param actionEvent 
+     * @param actionEvent
      */
     public void navigateGestorLogado(ActionEvent actionEvent) {
         try {
@@ -236,7 +261,7 @@ public class StartingPageUI implements Initializable {
 
     /**
      * Navega para a pagina ColaboradorLogadoUI
-     * @param actionEvent 
+     * @param actionEvent
      */
     public void navigateColaboradorLogado(ActionEvent actionEvent) {
         try {
@@ -263,7 +288,7 @@ public class StartingPageUI implements Initializable {
     /**
      * Navega para a pagina FreelancerLogadoUI
      * @param actionEvent
-     * @throws IOException 
+     * @throws IOException
      */
     public void navigateFreelancerLogado(ActionEvent actionEvent) throws IOException {
         try {
