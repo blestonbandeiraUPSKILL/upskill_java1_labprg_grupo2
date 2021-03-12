@@ -184,6 +184,11 @@ public class CompetenciaTecnica implements Serializable {
         return String.format("ID: %s; Descrição breve: %s; Descrição detalhada: %s.", codigo, descricaoBreve, descricaoDetalhada);
     }
 
+    /**
+     * Reescrita do metodo equals para competencias tecnicas
+     * @param competenciaTecnica
+     * @return 
+     */
     @Override
     public boolean equals(Object competenciaTecnica) {
         if (this == competenciaTecnica)

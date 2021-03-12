@@ -39,14 +39,33 @@ public class RegistarGrauProficienciaController {
         return repositorioGrauProficiencia.save(grauProficiencia);
     }
 
+    /**
+     * Devolve uma lista de graus de proficiencia aplicaveis para uma competencia tecnica
+     * @param codigoCompetenciaTecnica
+     * @return
+     * @throws SQLException 
+     */
     public List<GrauProficiencia> findByCompetenciaTecnica(String codigoCompetenciaTecnica) throws SQLException {
         return repositorioGrauProficiencia.findByCompetenciaTecnica(codigoCompetenciaTecnica);
     }
 
+    /**
+     * Devolve todos os graus de proficiencia aplicaveis para uma competencia tecnica
+     * @param codigoCompetenciaTecnica
+     * @return
+     * @throws SQLException 
+     */
     public List<GrauProficiencia> getAllByCompetenciaTecnica(String codigoCompetenciaTecnica) throws SQLException {
         return repositorioGrauProficiencia.getAllByCompetenciaTecnica(codigoCompetenciaTecnica);
     }
 
+    /**
+     * Devolve um grau de proficiencia de acordo com o seu grau e o codigo da competencia tecnica
+     * @param grau
+     * @param codigoCompetenciaTecnica
+     * @return
+     * @throws SQLException 
+     */
     public GrauProficiencia findByGrauECompetenciaTecnica(int grau, String codigoCompetenciaTecnica) throws SQLException {
         return repositorioGrauProficiencia.findByGrauECompetencia(grau, codigoCompetenciaTecnica);
     }

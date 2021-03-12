@@ -14,10 +14,20 @@ public class RegistarCaracterizacaoCTController {
     private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosDatabase();
     private RepositorioCaracterizacaoCT repositorioCaracterizacaoCT = fabricaRepositorios.getRepositorioCaracterizacaoCT();
 
+    /**
+     * Regista uma nova caracterizacaoCT
+     * @param caracterizacaoCT
+     * @return
+     * @throws SQLException 
+     */
     public boolean save(CaracterizacaoCT caracterizacaoCT) throws SQLException {
         return repositorioCaracterizacaoCT.save(caracterizacaoCT);
     }
 
+    /**
+     * Devolve uma lista de todas as caracterizacoesCT
+     * @return 
+     */
     public List<CaracterizacaoCT> getAll() {
         return repositorioCaracterizacaoCT.getAll();
     }
@@ -37,10 +47,21 @@ public class RegistarCaracterizacaoCTController {
         return repositorioCaracterizacaoCT.save(caracterizacaoCT);
     }
 
+    /**
+     * Devolve uma caracterizacaoCT a partir do seu codigo
+     * @param codigoCCT
+     * @return 
+     */
     public CaracterizacaoCT findByCodigo(int codigoCCT) {
         return repositorioCaracterizacaoCT.findByCodigo(codigoCCT);
     }
 
+    /**
+     * Devolve uma lista de Caracterizacoes de uma categoria
+     * @param codigoCategoria
+     * @return
+     * @throws SQLException 
+     */
     public List<CaracterizacaoCT> getAllByCategoria(String codigoCategoria) throws SQLException {
         return repositorioCaracterizacaoCT.getAllByCategoria(codigoCategoria);
     }

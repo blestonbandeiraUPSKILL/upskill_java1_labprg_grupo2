@@ -31,14 +31,31 @@ public class RegistarCompetenciaTecnicaController {
         return repositorioCompetenciaTecnica.save(competenciaTecnica);
     }
 
+    /**
+     * Devolve uma lista de todas as competencias tecnicas
+     * @return
+     * @throws SQLException 
+     */
     public List<CompetenciaTecnica> getAll() throws SQLException {
         return repositorioCompetenciaTecnica.getAll();
     }
 
+    /**
+     * Devolve uma lista de todas as competencias tecnicas de uma area de atividade
+     * @param codigoAreaActividade
+     * @return
+     * @throws SQLException 
+     */
     public List<CompetenciaTecnica> findByAreaActividade(String codigoAreaActividade) throws SQLException {
         return repositorioCompetenciaTecnica.findByAreaActividade(codigoAreaActividade);
     }
 
+    /**
+     * Devolve uma competencia tecnica a partir do seu codigo
+     * @param codigo
+     * @return
+     * @throws SQLException 
+     */
     public CompetenciaTecnica findByCodigo(String codigo) throws SQLException {
         return repositorioCompetenciaTecnica.findByCodigo(codigo);
     }
