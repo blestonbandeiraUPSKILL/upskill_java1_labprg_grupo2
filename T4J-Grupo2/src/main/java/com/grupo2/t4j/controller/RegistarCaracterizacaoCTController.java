@@ -40,15 +40,6 @@ public class RegistarCaracterizacaoCTController {
     public CaracterizacaoCT findByCodigo(int codigoCCT) {
         return repositorioCaracterizacaoCT.findByCodigo(codigoCCT);
     }
-    
-    public List<CaracterizacaoCT> findByCategoria(String codigoCategoria) throws SQLException{
-        return repositorioCaracterizacaoCT.findByCategoria(codigoCategoria);
-    }
-    
-    public CaracterizacaoCT findByCategoriaEGrau (String codigoCategoria, 
-            int codigoGP) throws SQLException {
-        return repositorioCaracterizacaoCT.findByCategoriaEGrau(codigoCategoria,codigoGP);
-    }
 
     public List<CaracterizacaoCT> getAllByCategoria(String codigoCategoria) throws SQLException {
         return repositorioCaracterizacaoCT.getAllByCategoria(codigoCategoria);

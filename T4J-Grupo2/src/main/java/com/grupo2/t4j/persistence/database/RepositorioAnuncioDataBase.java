@@ -236,64 +236,6 @@ public class RepositorioAnuncioDataBase implements RepositorioAnuncio {
         return tiposRegimento;
     }
 
-    /**
-     * Devolve uma lista de anuncios elegiveis para um Freelancer
-     * @param email
-     * @return
-     * @throws SQLException 
-     */
-    @Override
-    public List<Anuncio> findAnunciosElegiveis(String email) throws SQLException {
-        ArrayList<Anuncio> anunciosElegiveis = new ArrayList<>();
-
-        Connection connection = DBConnectionHandler.getInstance().openConnection();
-
-        try {
-            PreparedStatement preparedStatement = connection.prepareStatement(
-                    "SELECT * FROM Anuncio "
-            );
-
-            ResultSet resultSet = preparedStatement.executeQuery();
-
-            while (resultSet.next()) {
-                int idAnuncio = resultSet.getInt(1);
-                String referenciaTarefa = resultSet.getString(2);
-                String nifOrganizacao = resultSet.getString(3);
-                String dtInicioPublicitacao = resultSet.getString(4);
-                String dtFimPublicitacao = resultSet.getString(5);
-                String dtInicioCandidatura = resultSet.getString(6);
-                String dtFimCandidatura = resultSet.getString(7);
-                String dtInicioSeriacao = resultSet.getString(8);
-                String dtFimSeriacao = resultSet.getString(9);
-                int idTipoRegimento = resultSet.getInt(10);
-                anunciosElegiveis.add(new Anuncio(idAnuncio,referenciaTarefa, nifOrganizacao,
-                        dtInicioPublicitacao, dtFimPublicitacao, dtInicioCandidatura,
-                dtFimCandidatura, dtInicioSeriacao, dtFimSeriacao, idTipoRegimento));
-            }
-
-        } catch (SQLException exception) {
-            exception.printStackTrace();
-            exception.getSQLState();
-            try {
-                System.err.print("Transaction is being rolled back");
-                connection.rollback();
-            } catch (SQLException sqlException) {
-                sqlException.getErrorCode();
-            }
-
-        } finally {
-            DBConnectionHandler.getInstance().closeAll();
-        }
-        return anunciosElegiveis;
-    }
-
-    /**
-     * Devolve um anuncio a partir do seu id
-     * @param idAnuncio
-     * @return
-     * @throws SQLException 
-     */
-    @Override
     public Anuncio getAnuncio(int idAnuncio) throws SQLException {
         Anuncio anuncio = new Anuncio();
 

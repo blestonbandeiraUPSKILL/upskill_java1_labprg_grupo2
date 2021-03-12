@@ -55,10 +55,6 @@ public class RegistarTarefaController {
         return repositorioTarefa.save(tarefa);
     }
 
-    public List<Tarefa> findByCategoria(String codigoCategoria) throws SQLException {
-        return repositorioTarefa.findByCategoria(codigoCategoria);
-    }
-
     public List<Tarefa> findByColaboradorENif(String email, String nifOrganizacao) throws SQLException{
         return repositorioTarefa.findByColaboradorENif(email, nifOrganizacao);
     }
@@ -78,12 +74,6 @@ public class RegistarTarefaController {
     public Tarefa findTarefa(int idAnuncio) throws SQLException {
         return repositorioTarefa.findTarefa(idAnuncio);
     }
-
-
-    public List<Tarefa> getAllTarefasElegíveis(String emailFreelancer) throws SQLException {
-       return repositorioTarefa.getAllTarefasElegíveis(emailFreelancer);
-    }
-
 
     public List<Tarefa> getAllTarefasPublicadas() throws SQLException {
         return repositorioTarefa.getAllTarefasPublicadas();
