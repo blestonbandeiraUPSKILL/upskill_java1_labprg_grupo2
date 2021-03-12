@@ -22,6 +22,5 @@ public interface FabricaRepositorios {
     RepositorioTarefa getRepositorioTarefa();
     RepositorioGrauProficiencia getRepositorioGrauProficiencia() throws SQLException;
     RepositorioTipoRegimento getRepositorioTipoRegimento();
-    RepositorioUtilizador getRepositorioUtilizador();
     RepositorioReconhecimentoGP getRepositorioReconhecimentoGP();
 }
