@@ -6,7 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="3bba2c4a-b637-44ac-9db7-677bd232f142" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/T4J-WS/src/main/java/t4j/ws/persistence/RepositorioSessao.java" beforeDir="false" afterPath="$PROJECT_DIR$/T4J-WS/src/main/java/t4j/ws/persistence/RepositorioSessao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Documentação/Sprint 4/Dashboard Sprint4.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/Documentação/Sprint 4/Dashboard Sprint4.xlsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,7 +27,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/T4J-WS" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
@@ -86,7 +86,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/T4J-Grupo2/src/main/java/com/grupo2/t4j/ui/EfectuarCandidaturaUI.java</url>
-          <line>59</line>
+          <line>63</line>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>
