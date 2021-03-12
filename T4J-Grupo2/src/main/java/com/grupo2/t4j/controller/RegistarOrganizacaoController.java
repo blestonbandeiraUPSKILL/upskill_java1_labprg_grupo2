@@ -62,13 +62,6 @@ public class RegistarOrganizacaoController {
     }
 
 
-    /**
-     * Devolve uma lista de todas as organizacoes
-     * @return 
-     */
-    public List<Organizacao> getAll() {
-        return repositorioOrganizacao.getAll();
-    }
 
 
 
