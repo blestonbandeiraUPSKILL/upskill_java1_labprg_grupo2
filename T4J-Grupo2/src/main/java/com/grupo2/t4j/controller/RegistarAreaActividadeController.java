@@ -22,12 +22,17 @@ public class RegistarAreaActividadeController /*implements Serializable*/{
     private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosDatabase();
     private RepositorioAreaActividade repositorioAreaActividade = fabricaRepositorios.getRepositorioAreaActividade();
 
+    /**
+     * Devolve uma lista com todas as areas de actividade
+     * @return
+     * @throws SQLException 
+     */
     public List<AreaActividade> getAll() throws SQLException {
         return repositorioAreaActividade.getAll();
     }
 
     /**
-    * Sets new area of activity boolean.
+    * Regista uma area de actividade
     *
     * @param codigo as unique code
     * @param descBreve as description
@@ -41,10 +46,22 @@ public class RegistarAreaActividadeController /*implements Serializable*/{
         return repositorioAreaActividade.save(areaActividade);
     }
 
+    /**
+     * Devolve uma area de actividade a partir do seu codigo
+     * @param codigo
+     * @return
+     * @throws SQLException 
+     */
     public AreaActividade findByCodigo(String codigo) throws SQLException {
         return repositorioAreaActividade.findByCodigo(codigo);
     }
 
+    /**
+     * Devolve uma area de actividade a partir do seu codigo
+     * @param codigoAreaActividade
+     * @return
+     * @throws SQLException 
+     */
     public AreaActividade getAreaActividade(String codigoAreaActividade) throws SQLException {
         return repositorioAreaActividade.getAreaActividade(codigoAreaActividade);
     }

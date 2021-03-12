@@ -30,7 +30,7 @@ public class Colaborador extends Utilizador implements Serializable, Comparable<
     }
 
     /**
-     * Construtor completo da classe Colaborador
+     * Construtor da classe Colaborador
      * @param email o email do Utilizador em formato da classe Email
      * @param nome o nome do Colaborador
      * @param funcao a função do Colaborador da organização
@@ -44,12 +44,23 @@ public class Colaborador extends Utilizador implements Serializable, Comparable<
         setNifOrganizacao(nifOrganizacao);
     }
 
+    /**
+     * Construtor da classe Colaborador
+     * @param colaborador 
+     */
     public Colaborador(Colaborador colaborador) {
        super(colaborador.getEmail(), colaborador.getNome(), colaborador.getPassword());
        this.funcao = colaborador.getFuncao();
        this.telefone = colaborador.getTelefone();
     }
 
+    /**
+     * Construtor da classe Colaborador
+     * @param email
+     * @param funcao
+     * @param telefone
+     * @param nifOrganizacao 
+     */
     public Colaborador(Email email, String funcao, String telefone, String nifOrganizacao) {
         setEmail(email);
         setFuncao(funcao);
@@ -57,12 +68,27 @@ public class Colaborador extends Utilizador implements Serializable, Comparable<
         this.nifOrganizacao = nifOrganizacao;
     }
 
+    /**
+     * Construtor da classe Colaborador
+     * @param utilizador
+     * @param funcao
+     * @param telefone 
+     */
     public Colaborador(Utilizador utilizador, String funcao, String telefone) {
         super(utilizador);
         setFuncao(funcao);
         setTelefone(telefone);
     }
 
+    /**
+     * Construtor da classe Colaborador
+     * @param email
+     * @param nome
+     * @param pass
+     * @param funcao
+     * @param telefone
+     * @param nifOrganizacao 
+     */
     public Colaborador(String email, String nome, String pass, String funcao, String telefone, String nifOrganizacao) {
         super(email, nome);
         setPassword(new Password(pass));
@@ -71,6 +97,14 @@ public class Colaborador extends Utilizador implements Serializable, Comparable<
         setNifOrganizacao(nifOrganizacao);
     }
 
+    /**
+     * Construtor da classe Colaborador
+     * @param nome
+     * @param email
+     * @param funcao
+     * @param telefone
+     * @param nifOrganizacao 
+     */
     public Colaborador(String nome, String email, String funcao, String telefone, String nifOrganizacao) {
         super(email, nome);
         setFuncao(funcao);
@@ -118,10 +152,18 @@ public class Colaborador extends Utilizador implements Serializable, Comparable<
         return telefone;
     }
 
+    /**
+     * Deevolve o nif da organizacao a que pertence o colaborador
+     * @return 
+     */
     public String getNifOrganizacao() {
         return nifOrganizacao;
     }
 
+    /**
+     * Atualiza o nif da organizacao a que pertence o colaborador
+     * @param nifOrganizacao 
+     */
     public void setNifOrganizacao(String nifOrganizacao) {
         this.nifOrganizacao = nifOrganizacao;
     }
@@ -150,6 +192,9 @@ public class Colaborador extends Utilizador implements Serializable, Comparable<
                 super.getRolename().toString());
     }
     
+    /**
+     * Compara o email de dois colaboradores
+     */
     public static class ColaboradorComparator {
         public static Comparator<Colaborador> EMAIL = new Comparator<Colaborador>(){
             @Override

@@ -17,12 +17,15 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * FXML Controller class
  */
 public class EspecificarTarefaColaboradorUI implements Initializable {
 
+    private RegistarCaracterizacaoCTController registarCaracterizacaoCTController;
     private RegistarTarefaController registarTarefaController;
     private RegistarAreaActividadeController registarAreaActividadeController;
     private RegistarCategoriaController registarCategoriaController;
@@ -30,30 +33,20 @@ public class EspecificarTarefaColaboradorUI implements Initializable {
     private GestaoUtilizadoresController gestaoUtilizadoresController;
     private ColaboradorLogadoUI colaboradorLogadoUI;
 
-    @FXML
-    TextField txtReferencia;
-    @FXML
-    TextField txtDesignacao;
-    @FXML
-    TextField txtEstimativaDuracao;
-    @FXML
-    TextField txtEstimativaCusto;
-    @FXML
-    TextArea txtDescInformal;
-    @FXML
-    TextArea txtDescTecnica;
-    @FXML
-    ListView<CaracterizacaoCT> listViewCaracterizacaoCT;
-    @FXML
-    ComboBox<Categoria> cmbCategoriaTarefa;
-    @FXML
-    ComboBox<AreaActividade> cmbAreaActividade;
-    @FXML
-    Button btnCancelar;
+    @FXML TextField txtReferencia;
+    @FXML TextField txtDesignacao;
+    @FXML TextField txtEstimativaDuracao;
+    @FXML TextField txtEstimativaCusto;
+    @FXML TextArea txtDescInformal;
+    @FXML TextArea txtDescTecnica;
+    @FXML ListView<CaracterizacaoCT> listViewCaracterizacaoCT;
+    @FXML ComboBox<Categoria> cmbCategoriaTarefa;
+    @FXML ComboBox<AreaActividade> cmbAreaActividade;
+    @FXML Button btnCancelar;
 
     /**
      * Associa a scene ColaboradorLogadoUI como parent desta Scene 
-     * @param ColaboradorLogadoUI 
+     * @param colaboradorLogadoUI
      */
     public void associarParentUI(ColaboradorLogadoUI colaboradorLogadoUI) {
         this.colaboradorLogadoUI = colaboradorLogadoUI;
@@ -73,6 +66,7 @@ public class EspecificarTarefaColaboradorUI implements Initializable {
         registarCategoriaController = new RegistarCategoriaController();
         gestaoUtilizadoresController = new GestaoUtilizadoresController();
         registarColaboradorController = new RegistarColaboradorController();
+        registarCaracterizacaoCTController = new RegistarCaracterizacaoCTController();
 
         try {
             cmbAreaActividade.getItems().setAll(registarAreaActividadeController.getAll());
@@ -91,11 +85,14 @@ public class EspecificarTarefaColaboradorUI implements Initializable {
             }
         });
 
-        ListView<CaracterizacaoCT> listViewCaracterizacaoCT = new ListView<>();
         cmbCategoriaTarefa.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                updateListViewCaracterizacaoCTS(event);
+                try {
+                    updateListViewCaracterizacaoCTS(event);
+                } catch (SQLException exception) {
+                    exception.printStackTrace();
+                }
             }
         });
 
@@ -107,21 +104,22 @@ public class EspecificarTarefaColaboradorUI implements Initializable {
      * @throws SQLException 
      */
     public void updateCmbCategoriasTarefaRegisto(ActionEvent actionEvent) throws SQLException {
-        List<Categoria> listaCategoriasTarefa
-                = registarCategoriaController.findByAreaActividade(
-                        cmbAreaActividade.getSelectionModel().getSelectedItem().getCodigo());
 
-        cmbCategoriaTarefa.getItems().setAll(listaCategoriasTarefa);
+        cmbCategoriaTarefa.getItems().setAll(registarCategoriaController.findByAreaActividade(
+                cmbAreaActividade.getSelectionModel().getSelectedItem().getCodigo()));
     }
 
     /**
      * Atualiza a lista de competencias tecnicas 
      * @param actionEvent 
      */
-    public void updateListViewCaracterizacaoCTS(ActionEvent actionEvent) {
-
-        listViewCaracterizacaoCT.getItems().setAll(
-                cmbCategoriaTarefa.getSelectionModel().getSelectedItem().getCompTecnicasCaracter());
+    public void updateListViewCaracterizacaoCTS(ActionEvent actionEvent) throws SQLException{
+        String codigoCategoria = cmbCategoriaTarefa.getSelectionModel().getSelectedItem().getCodigoCategoria();
+        if (codigoCategoria != null) {
+            listViewCaracterizacaoCT.getItems().setAll(
+                    registarCaracterizacaoCTController.getAllByCategoria(codigoCategoria));
+        }
+        
     }
 
     /**
@@ -145,6 +143,7 @@ public class EspecificarTarefaColaboradorUI implements Initializable {
             if (adicionou) {
                 colaboradorLogadoUI.updateTableViewTarefas();
 
+                closeAddTarefa(actionEvent);
                 AlertsUI.criarAlerta(Alert.AlertType.INFORMATION,
                         MainApp.TITULO_APLICACAO,
                         "Registar Tarefa.",
@@ -188,8 +187,8 @@ public class EspecificarTarefaColaboradorUI implements Initializable {
      * @param actionEvent 
      */
     private void closeAddTarefa(ActionEvent actionEvent) {
-        this.cmbAreaActividade.setItems(null);
-        this.cmbCategoriaTarefa.setItems(null);
+        //cmbAreaActividade.getSelectionModel().clearSelection();
+        //cmbCategoriaTarefa.getSelectionModel().clearSelection();
         this.txtReferencia.clear();
         this.txtDesignacao.clear();
         this.txtDescInformal.clear();

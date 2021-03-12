@@ -99,7 +99,6 @@ public class ColaboradorLogadoUI implements Initializable {
         adicionarStage.initModality(Modality.APPLICATION_MODAL);
         adicionarStage.setResizable(false);
 
-        
         btnConsultarAnuncio.setDisable(true);
         btnConsultarCandidaturaFreelancer.setDisable(true);
         btnSeriacaoAutomatica.setDisable(true);
@@ -236,7 +235,6 @@ public class ColaboradorLogadoUI implements Initializable {
      * @throws SQLException 
      */
     public void updateTableViewTarefasColaborador() throws SQLException {
-        cmbFiltroTarefas.getSelectionModel().clearSelection();
         String email = getEmailColaborador();
         String nifOrganizacao = registarColaboradorController.getNifOrganizacao(email);
         tabelaTarefas.getItems().setAll(registarTarefaController.findByColaboradorENif(email, nifOrganizacao));
@@ -248,7 +246,7 @@ public class ColaboradorLogadoUI implements Initializable {
      * @throws SQLException 
      */
     public void updateTableViewTarefasPublicadas() throws SQLException {
-        cmbFiltroTarefas.getSelectionModel().clearSelection();
+
         String email = getEmailColaborador();
         String nifOrganizacao = getNifOrganizacao();
         List<String> referenciasTarefa = registarTarefaController.findRefenciaTarefa(nifOrganizacao);
@@ -261,7 +259,7 @@ public class ColaboradorLogadoUI implements Initializable {
      * @throws SQLException 
      */
     public void updateTableViewTarefasNaoPublicadas() throws SQLException {
-        cmbFiltroTarefas.getSelectionModel().clearSelection();
+
         String email = getEmailColaborador();
         String nifOrganizacao = getNifOrganizacao();
         List<String> referenciasTarefa = registarTarefaController.findRefenciaTarefa(nifOrganizacao);
@@ -398,6 +396,9 @@ public class ColaboradorLogadoUI implements Initializable {
             case TAREFAS_PARA_PUBLICAR:
                 updateTableViewTarefasNaoPublicadas();
                 btnPublicarTarefa.setDisable(false);
+            default:
+                updateTableViewTarefas();
+                btnPublicarTarefa.setDisable(true);
         }
     }
     

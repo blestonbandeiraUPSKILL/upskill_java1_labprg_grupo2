@@ -236,7 +236,10 @@ public class Anuncio implements Serializable {
         
     }
     
-   
+   /**
+    * Atualiza o id do Tipo de Regimento
+    * @param idTipoRegimento 
+    */
     public void setIdTipoRegimento(int idTipoRegimento) {
         this.idTipoRegimento = idTipoRegimento;
     }
