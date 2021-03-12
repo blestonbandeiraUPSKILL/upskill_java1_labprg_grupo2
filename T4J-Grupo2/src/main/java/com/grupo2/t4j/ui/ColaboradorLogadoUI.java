@@ -63,7 +63,7 @@ public class ColaboradorLogadoUI implements Initializable {
     @FXML TableColumn<Object, Object> colunaCusto;
 
     @FXML TableView<TabelaCandidaturasAnuncio> tabelaCandidaturasFreelancers;
-    private List<TabelaCandidaturasAnuncio> listaCandidaturasAnuncio = new ArrayList<>();
+    List<TabelaCandidaturasAnuncio> listaCandidaturasAnuncio = new ArrayList<>();
     @FXML TableColumn<Object, Object> colunaClassificacao;
     @FXML TableColumn<Object, Object> colunaIdCandidatura;
     @FXML TableColumn<Object, Object> colunaEmail;
@@ -224,7 +224,7 @@ public class ColaboradorLogadoUI implements Initializable {
      * @throws SQLException 
      */
     public void updateTableViewTarefas() throws SQLException {
-        cmbFiltroTarefas.getSelectionModel().clearSelection();
+        //cmbFiltroTarefas.getSelectionModel().clearSelection();
         tabelaTarefas.getItems().setAll(registarTarefaController.getAllOrganizacao(
                 getNifOrganizacao()));
 

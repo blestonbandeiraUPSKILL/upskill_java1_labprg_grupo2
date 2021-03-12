@@ -95,7 +95,7 @@ public class SeriarAnuncioController {
     }
     
     public int getIdSeriacao(int idAnuncio)throws SQLException{
-        return repositorioSeriacao.findByAnuncio(idAnuncio).getIdSeriacao();
+        return repositorioSeriacao.getProcessoSeriacaoByAnuncio(idAnuncio).getIdSeriacao();
     }
     
     public ProcessoSeriacao findSeriacaoByAnuncio(int idAnuncio) throws SQLException{

@@ -157,7 +157,7 @@ public class RepositorioClassificacaoDatabase implements RepositorioClassificaca
 
         try {
             CallableStatement callableStatementOrg = connection.prepareCall(
-                    "{CALL findClassificacaoByCandidatura(?)}");
+                    "{ CALL findClassificacaoByCandidatura(?) }");
 
             connection.setAutoCommit(false);
 

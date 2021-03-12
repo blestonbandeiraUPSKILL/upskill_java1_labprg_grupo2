@@ -149,7 +149,7 @@ public class RepositorioSeriacaoDatabase implements RepositorioSeriacao{
 
         try {
             CallableStatement callableStatementOrg = connection.prepareCall(
-                    "{CALL findSeriacaoByAnuncio(?)}");
+                    "{ CALL findSeriacaoByAnuncio(?) }");
 
             connection.setAutoCommit(false);
 

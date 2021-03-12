@@ -25,16 +25,11 @@ public class AdicionarAreaAtividadeUI implements Initializable {
     private RegistarAreaActividadeController registarAreaActividadeController;
     private Stage adicionarStage;
 
-    @FXML
-    Button btnCancelar;
-    @FXML
-    Button btnAddAreaAtividade;
-    @FXML
-    TextField txtCodigo;
-    @FXML
-    TextField txtDescricaoBreve;
-    @FXML
-    TextArea areaDescricaoDetalhada;
+    @FXML Button btnCancelar;
+    @FXML Button btnAddAreaAtividade;
+    @FXML TextField txtCodigo;
+    @FXML TextField txtDescricaoBreve;
+    @FXML TextArea areaDescricaoDetalhada;
 
     /**
      * Associa a scene AdministrativoLogadoUI como parent desta Scene 

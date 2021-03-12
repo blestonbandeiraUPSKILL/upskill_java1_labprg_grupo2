@@ -34,22 +34,14 @@ public class AdicionarReconhecimentoGPUI implements Initializable {
 
     private Stage adicionarStage;
 
-    @FXML
-    TextField txtNomeFreelancer;
-    @FXML
-    TextField txtIDataValidacao;
-    @FXML
-    ComboBox<Freelancer> cmbEmailFreelancer;
-    @FXML
-    ComboBox<CompetenciaTecnica> cmbCompetencia;
-    @FXML
-    ComboBox<GrauProficiencia> cmbProficiencia;
-    @FXML
-    Button btnAddCompetencia;
-    @FXML
-    Button btnCancelar;
-    @FXML
-    Button btnSair;
+    @FXML TextField txtNomeFreelancer;
+    @FXML TextField txtIDataValidacao;
+    @FXML ComboBox<Freelancer> cmbEmailFreelancer;
+    @FXML ComboBox<CompetenciaTecnica> cmbCompetencia;
+    @FXML ComboBox<GrauProficiencia> cmbProficiencia;
+    @FXML Button btnAddCompetencia;
+    @FXML Button btnCancelar;
+    @FXML Button btnSair;
     
     ////Tabela Reconhecimento///////////////////////
     @FXML TableColumn<Object, Object> txtCompTec;
@@ -119,7 +111,6 @@ public class AdicionarReconhecimentoGPUI implements Initializable {
                 }
             }
         });
-
     }
 
     /**
@@ -163,7 +154,6 @@ public class AdicionarReconhecimentoGPUI implements Initializable {
     @FXML
     void addCompetencia(ActionEvent event) {
         try {
-
             boolean adicionou = registarReconhecimentoGPController.registarReconhecimentoGP(
                     cmbProficiencia.getSelectionModel().getSelectedItem().getIdGrauProficiencia(),
                     cmbEmailFreelancer.getSelectionModel().getSelectedItem().getEmail().getEmailText(),
@@ -181,7 +171,6 @@ public class AdicionarReconhecimentoGPUI implements Initializable {
                     MainApp.TITULO_APLICACAO,
                     "Registar Validação de Competência Técnica - Erro nos dados.",
                     "Não foi possível validar a Competência Técnica." + exception.getMessage()).show();
-
         }
     }
 

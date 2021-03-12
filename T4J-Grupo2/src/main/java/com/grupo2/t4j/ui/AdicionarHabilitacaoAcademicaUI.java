@@ -29,17 +29,12 @@ public class AdicionarHabilitacaoAcademicaUI implements Initializable {
     private RegistarFreelancerController registarFreelancerController;
     private Stage adicionarStage;
 
-    @FXML
-    TextField txtNomeFreelancer;
-    @FXML
-    TextField txtGrau;
-    @FXML
-    TextField txtDesignacao;
-    @FXML
-    TextField txtInstituicao;
+    @FXML TextField txtNomeFreelancer;
+    @FXML TextField txtGrau;
+    @FXML TextField txtDesignacao;
+    @FXML TextField txtInstituicao;
     @FXML TextField txtMedia;
     @FXML ComboBox<Freelancer> cmbEmailFreelancer;
-    @FXML ListView<HabilitacaoAcademica> listaHabilitacaoFreelancer;
     @FXML Button btnAddHabilitacao;
     @FXML Button btnCancelar;
     @FXML Button btnSair;
