@@ -74,6 +74,13 @@ public class EnderecoPostal {
         setCodigoPostal(endereco.codigoPostal);
     }
 
+    /**
+     * Construtor de um endereço postal
+     * @param arruamento
+     * @param numeroPorta
+     * @param localidade
+     * @param codigoPostal 
+     */
     public EnderecoPostal(String arruamento, String numeroPorta, String localidade, String codigoPostal) {
         setArruamento(arruamento);
         setPorta(numeroPorta);
@@ -122,6 +129,10 @@ public class EnderecoPostal {
         return codigoPostal;
     }
 
+    /**
+     * Atualiza o id do endereco postal
+     * @param idEnderecoPostal 
+     */
     public void setIdEnderecoPostal(int idEnderecoPostal) {
         if (idEnderecoPostal < 0 ) {
             throw new NomeInvalidoException("O código do Endereço Postal é invalido");
