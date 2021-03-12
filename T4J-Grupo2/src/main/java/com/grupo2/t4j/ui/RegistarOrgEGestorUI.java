@@ -45,6 +45,10 @@ public class RegistarOrgEGestorUI implements Initializable {
     @FXML Button btnAvancarRegisto;
     @FXML Button btnCancelarRegisto;
 
+    /**
+     * Associa a scene StartingPageUI como parent desta Scene 
+     * @param StartinPageUI 
+     */
     public void associarParentUI(StartingPageUI startingPageUI) {
         this.startingPageUI = startingPageUI;       
     }
@@ -63,6 +67,10 @@ public class RegistarOrgEGestorUI implements Initializable {
         registarColaboradorController = new RegistarColaboradorController();
     }
 
+    /**
+     * Cancela o registo de uma organizacao e seu gestor
+     * @param actionEvent 
+     */
     public void cancelarRegisto(ActionEvent actionEvent) {
         Window window = btnCancelarRegisto.getScene().getWindow();
         window.setOnCloseRequest(new EventHandler<WindowEvent>() {
@@ -82,6 +90,12 @@ public class RegistarOrgEGestorUI implements Initializable {
         window.fireEvent(new WindowEvent(window, WindowEvent.WINDOW_CLOSE_REQUEST));
     }
 
+    /**
+     * Regista uma organizacao e o seu gestor
+     * @param actionEvent
+     * @throws IOException
+     * @throws SQLException 
+     */
     public void avancarRegistoComDados(ActionEvent actionEvent) throws IOException, SQLException {
         registarOrganizacaoController = new RegistarOrganizacaoController();
 
