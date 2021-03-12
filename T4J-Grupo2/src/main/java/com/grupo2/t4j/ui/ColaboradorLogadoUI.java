@@ -341,10 +341,14 @@ public class ColaboradorLogadoUI implements Initializable {
     public void updateDataSeriacao() throws SQLException{
         txtDataSeriacao.clear();
         idAnuncio = getIdAnuncio();
-        txtDataSeriacao.setText(seriarAnuncioController.getProcesoSeriacaoByAnuncio(idAnuncio).getDataSeriacao());
+        
+        List<ProcessoSeriacao> processos = new ArrayList<>();
+        processos = seriarAnuncioController.getAllPSByIdAnuncio(idAnuncio);
+        
+        txtDataSeriacao.setText(processos.get(0).getDataSeriacao());
         btnSeriacaoAutomatica.setDisable(true);
         btnSeriacaoManual.setDisable(true);
-        updateTabelaClassificacao(seriarAnuncioController.getProcesoSeriacaoByAnuncio(idAnuncio).getIdSeriacao());
+        updateTabelaClassificacao(processos.get(0).getIdSeriacao());
     }
     
     /**
