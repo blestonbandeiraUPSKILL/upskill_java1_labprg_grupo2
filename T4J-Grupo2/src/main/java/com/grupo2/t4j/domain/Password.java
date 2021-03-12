@@ -14,16 +14,31 @@ import com.grupo2.t4j.exception.PasswordInvalidaException;
 
 public class  Password {
 
+    /**
+     * A password
+     */
     private String password;
     
+    /**
+     * Construtor Password
+     * @param password 
+     */
     public Password (String password){
         setPassword(password);
     }
     
+    /**
+     * Construtor password
+     * @param password 
+     */
     public Password (Password password){
         setPassword(password.password);
     }
     
+    /**
+     * Atualiza a password 
+     * @param password 
+     */
     public void setPassword(String password){
         if(eSenhaValida(password)){
             this.password = password;
@@ -33,10 +48,19 @@ public class  Password {
         }
     }
     
+    /**
+     * Devolve a password
+     * @return 
+     */
     public String getPasswordText(){
         return password;
     }
         
+    /**
+     * Verifica se a password e valida
+     * @param password
+     * @return 
+     */
     private static boolean eSenhaValida(String password){
         if(password == null){
             return false;
@@ -47,6 +71,10 @@ public class  Password {
         return true;
     }
 
+    /**
+     * Representacao textual da password
+     * @return 
+     */
     @Override
     public String toString() {
         return "Password{" +
