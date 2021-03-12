@@ -77,11 +77,6 @@ public class FabricaRepositoriosDatabase implements FabricaRepositorios {
     }
     
     @Override
-    public RepositorioUtilizador getRepositorioUtilizador() {
-        return RepositorioUtilizadorDatabase.getInstance();
-    }
-    
-    @Override
     public RepositorioSeriacao getRepositorioSeriacao() {
         return RepositorioSeriacaoDatabase.getInstance();
     }

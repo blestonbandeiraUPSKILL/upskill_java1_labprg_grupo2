@@ -7,7 +7,6 @@ import com.grupo2.t4j.domain.Email;
 import com.grupo2.t4j.domain.Password;
 import com.grupo2.t4j.persistence.FabricaRepositorios;
 import com.grupo2.t4j.persistence.RepositorioColaborador;
-import com.grupo2.t4j.persistence.RepositorioUtilizador;
 import com.grupo2.t4j.persistence.database.FabricaRepositoriosDatabase;
 
 import java.sql.SQLException;
@@ -17,7 +16,6 @@ public class RegistarColaboradorController {
 
     private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosDatabase();
     private RepositorioColaborador repositorioColaborador = fabricaRepositorios.getRepositorioColaborador();
-    private RepositorioUtilizador repositorioUtilizador = fabricaRepositorios.getRepositorioUtilizador();
 
     private AlgoritmoGeradorPasswords algoritmoGeradorPasswords;
 

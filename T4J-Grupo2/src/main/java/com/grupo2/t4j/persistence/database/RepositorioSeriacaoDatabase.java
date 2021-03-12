@@ -47,7 +47,7 @@ public class RepositorioSeriacaoDatabase implements RepositorioSeriacao{
 
         try {
             CallableStatement callableStatement = connection.prepareCall(
-                "{CALL createSeriacao(?, ?, ?) } ");
+                "{CALL createSeriacao(?) } ");
 
             if (findByAnuncio(idAnuncio) == null){
 
@@ -85,15 +85,13 @@ public class RepositorioSeriacaoDatabase implements RepositorioSeriacao{
 
         try {
             CallableStatement callableStatement = connection.prepareCall(
-                "{CALL createSeriacao(?, ?, ?) } ");
+                "{CALL createSeriacao(?) } ");
 
             if (findByAnuncio(seriacao.getIdAnuncio()) == null){
 
                 connection.setAutoCommit(false);
 
-                callableStatement.setInt(1, seriacao.getIdSeriacao());
-                callableStatement.setInt(2, seriacao.getIdAnuncio());
-                callableStatement.setString(3, seriacao.getDataSeriacao());
+                callableStatement.setInt(1, seriacao.getIdAnuncio());
                 callableStatement.executeQuery();
 
                 connection.commit();

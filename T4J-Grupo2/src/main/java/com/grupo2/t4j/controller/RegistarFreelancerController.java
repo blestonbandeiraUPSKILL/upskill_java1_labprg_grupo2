@@ -5,7 +5,6 @@ import com.grupo2.t4j.domain.ReconhecimentoGP;
 import com.grupo2.t4j.domain.*;
 import com.grupo2.t4j.persistence.FabricaRepositorios;
 import com.grupo2.t4j.persistence.RepositorioFreelancer;
-import com.grupo2.t4j.persistence.RepositorioUtilizador;
 import com.grupo2.t4j.persistence.database.FabricaRepositoriosDatabase;
 
 import java.sql.SQLException;
@@ -14,7 +13,6 @@ public class RegistarFreelancerController {
 
     private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosDatabase();
     private RepositorioFreelancer repositorioFreelancer = fabricaRepositorios.getRepositorioFreelancer();
-    private RepositorioUtilizador repositorioUtilizador = fabricaRepositorios.getRepositorioUtilizador();
 
    /**
      * Regista um novo Freelancer
