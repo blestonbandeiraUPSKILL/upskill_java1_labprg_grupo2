@@ -180,8 +180,7 @@ public class RepositorioColaboradorDatabase implements RepositorioColaborador {
                 colaboradoresOrganizacao.add(colaborador.getEmail().getEmailText());
             }            
         }
-        
-        Collections.sort(colaboradoresOrganizacao);
+               
         return colaboradoresOrganizacao;
     }
 

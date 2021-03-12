@@ -70,6 +70,10 @@ public class ColaboradorLogadoUI implements Initializable {
     @FXML TableColumn<Object, Object> colunaDuracaoFree;
     @FXML TableColumn<Object, Object> colunaCustoFree;
     
+    /**
+     * Associa a scene StartingPageUI como parent desta Scene 
+     * @param StartinPageUI 
+     */
     public void associarParentUI(StartingPageUI startingPageUI) {
         this.startingPageUI = startingPageUI;
     }
@@ -154,15 +158,30 @@ public class ColaboradorLogadoUI implements Initializable {
         });
      }
     
+    /**
+     * Devolve o email do colaborador logado
+     * @return
+     * @throws SQLException 
+     */
     public String getEmailColaborador() throws SQLException {
         return gestaoUtilizadoresController.getEmail();
     }
         
+    /**
+     * Devolve o nif da organizacao a que pertence o colaborador logado
+     * @return
+     * @throws SQLException 
+     */
     public String getNifOrganizacao() throws SQLException {
         return registarColaboradorController.getNifOrganizacao(
                 gestaoUtilizadoresController.getEmail());
     }
     
+    /**
+     * Devolve o id do Anuncio selecionado
+     * @return
+     * @throws SQLException 
+     */
     public int getIdAnuncio()throws SQLException{
         
         String referenciaTarefa = cmbAnuncio.getSelectionModel().getSelectedItem();
@@ -170,6 +189,11 @@ public class ColaboradorLogadoUI implements Initializable {
         return registarTarefaController.findIdAnuncio(nifOrganizacao, referenciaTarefa);
     }
     
+    /**
+     * Verifica se existe seriacao para o anuncio selecionado
+     * @return
+     * @throws SQLException 
+     */
     public boolean existeSeriacao() throws SQLException{
         idAnuncio = getIdAnuncio();
 
@@ -181,6 +205,11 @@ public class ColaboradorLogadoUI implements Initializable {
         return false;
     }
     
+    /**
+     * Verifica se existe candidaturas para o anuncio selecionado
+     * @return
+     * @throws SQLException 
+     */
     public boolean existeCandidatura() throws SQLException{
         List<Candidatura> candidaturas = new ArrayList<>();
         idAnuncio = getIdAnuncio();
@@ -191,6 +220,10 @@ public class ColaboradorLogadoUI implements Initializable {
         return false;
     }
             
+    /**
+     * Preenche a tabela de tarefas com todas as tarefas da organizacao
+     * @throws SQLException 
+     */
     public void updateTableViewTarefas() throws SQLException {
         cmbFiltroTarefas.getSelectionModel().clearSelection();
         tabelaTarefas.getItems().setAll(registarTarefaController.getAllOrganizacao(
@@ -198,6 +231,10 @@ public class ColaboradorLogadoUI implements Initializable {
 
     }
 
+    /**
+     * Preenche a tabela de tarefas com tarefas adicionadas pelo colaborador logado
+     * @throws SQLException 
+     */
     public void updateTableViewTarefasColaborador() throws SQLException {
         cmbFiltroTarefas.getSelectionModel().clearSelection();
         String email = getEmailColaborador();
@@ -206,6 +243,10 @@ public class ColaboradorLogadoUI implements Initializable {
         preencherTabela();
     }
 
+    /**
+     * Preenche a tabela de tarefas com Tarefas publicadas
+     * @throws SQLException 
+     */
     public void updateTableViewTarefasPublicadas() throws SQLException {
         cmbFiltroTarefas.getSelectionModel().clearSelection();
         String email = getEmailColaborador();
@@ -215,6 +256,10 @@ public class ColaboradorLogadoUI implements Initializable {
         preencherTabela();
     }
 
+    /**
+     * Preenche a tabela de tarefas com tarefas nao publicadas
+     * @throws SQLException 
+     */
     public void updateTableViewTarefasNaoPublicadas() throws SQLException {
         cmbFiltroTarefas.getSelectionModel().clearSelection();
         String email = getEmailColaborador();
@@ -224,6 +269,10 @@ public class ColaboradorLogadoUI implements Initializable {
         preencherTabela();
     }
     
+    /**
+     * Devolve uma lista de anuncios que ainda nao foram seriados
+     * @throws SQLException 
+     */
     public void listaAnunciosASeriar() throws SQLException{
         try{
             String emailColaborador = getEmailColaborador();
@@ -249,6 +298,10 @@ public class ColaboradorLogadoUI implements Initializable {
 
     }
     
+    /**
+     * Cria uma tabela de classificacao de freelancers no anuncio selecionado
+     * @throws SQLException 
+     */
     public void criarTabelaClassificacao() throws SQLException{
         idAnuncio = getIdAnuncio();
         List<Candidatura> candidaturas = seriarAnuncioController.getAllByIdAnuncio(idAnuncio);
@@ -263,6 +316,11 @@ public class ColaboradorLogadoUI implements Initializable {
         btnConsultarCandidaturaFreelancer.setDisable(false);
     }
     
+    /**
+     * Preenche a tabela de classificacao
+     * @param idSeriacao
+     * @throws SQLException 
+     */
     public void updateTabelaClassificacao(int idSeriacao)throws SQLException{
         List<Classificacao> listaClassificada = seriarAnuncioController.getAllBySeriacao(idSeriacao);
         for(int i = 0; i < listaCandidaturasAnuncio.size(); i++){
@@ -276,15 +334,26 @@ public class ColaboradorLogadoUI implements Initializable {
         preencherTabelaCandidaturas ();
     }
     
+    /**
+     * Atualiza a data de seriacao das candidaturas do anuncio selecionado
+     * @throws SQLException 
+     */
     public void updateDataSeriacao() throws SQLException{
         txtDataSeriacao.clear();
         idAnuncio = getIdAnuncio();
-        txtDataSeriacao.setText(seriarAnuncioController.getProcesoSeriacaoByAnuncio(idAnuncio).getDataSeriacao());
+        
+        List<ProcessoSeriacao> processos = new ArrayList<>();
+        processos = seriarAnuncioController.getAllPSByIdAnuncio(idAnuncio);
+        
+        txtDataSeriacao.setText(processos.get(0).getDataSeriacao());
         btnSeriacaoAutomatica.setDisable(true);
         btnSeriacaoManual.setDisable(true);
-        updateTabelaClassificacao(seriarAnuncioController.getProcesoSeriacaoByAnuncio(idAnuncio).getIdSeriacao());
+        updateTabelaClassificacao(processos.get(0).getIdSeriacao());
     }
     
+    /**
+     * Preenche a tabela de tarefas com as tarefas pretendidas
+     */
     public void preencherTabela () {
         colunaDesignacao.setCellValueFactory( new PropertyValueFactory<>("designacao"));
         colunaReferencia.setCellValueFactory( new PropertyValueFactory<>("referencia"));
@@ -292,6 +361,9 @@ public class ColaboradorLogadoUI implements Initializable {
         colunaCusto.setCellValueFactory( new PropertyValueFactory<>("custoEst"));
     }
     
+    /**
+     * Preenche a tabela de Candidaturas
+     */
     public void preencherTabelaCandidaturas () {
         colunaClassificacao.setCellValueFactory( new PropertyValueFactory<>("classificacao"));        
         colunaIdCandidatura.setCellValueFactory( new PropertyValueFactory<>("idCandidatura"));        
@@ -300,6 +372,11 @@ public class ColaboradorLogadoUI implements Initializable {
         colunaCustoFree.setCellValueFactory( new PropertyValueFactory<>("custo"));
     }
       
+    /**
+     * Aplica um filtro de tarefas de acordo com o tipo de tarefas pretendido
+     * @param actionEvent
+     * @throws SQLException 
+     */
     public void aplicarFiltroTarefas(ActionEvent actionEvent) throws SQLException {
 
 
@@ -322,6 +399,10 @@ public class ColaboradorLogadoUI implements Initializable {
         }
     }
     
+    /**
+     * Altera os botoes de seriacao de acordo com i tipo de regimento do anuncio
+     * @throws SQLException 
+     */
     public void tipoSeriacao() throws SQLException{
         
         idAnuncio = getIdAnuncio();
@@ -334,6 +415,11 @@ public class ColaboradorLogadoUI implements Initializable {
         }
     }
     
+    /**
+     * Seria automaticamente as candidaturas a um anuncio
+     * @param event
+     * @throws SQLException 
+     */
     public void seriacaoAutomaticaAction(ActionEvent event) throws SQLException{
         try{
             idAnuncio = getIdAnuncio();
@@ -352,19 +438,25 @@ public class ColaboradorLogadoUI implements Initializable {
         }      
     }
     
-    public void seriacaoManualAction(ActionEvent event){
+    /**
+     * Seria manualmente as candidaturas a um anuncio
+     * @param event
+     * @throws SQLException 
+     */
+    public void seriacaoManualAction(ActionEvent event) throws SQLException{
         try {
             FXMLLoader loaderSeriacaoManual = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/SeriacaoManualScene.fxml"));
             Parent rootSeriacaoManual = loaderSeriacaoManual.load();
             sceneSeriacaoManual = new Scene(rootSeriacaoManual);
             SeriacaoManualUI seriacaoManualUI = loaderSeriacaoManual.getController();
             seriacaoManualUI.associarParentUI(this);
-
+            seriacaoManualUI.transferData();
+            
             adicionarStage.setScene(sceneSeriacaoManual);
             adicionarStage.setTitle("Seriação Manual do Anúncio");
             adicionarStage.show();
 
-        } catch (IOException exception) {
+        } catch (IOException|SQLException exception) {
             exception.printStackTrace();
             AlertsUI.criarAlerta(Alert.AlertType.ERROR,
                     MainApp.TITULO_APLICACAO,
@@ -373,6 +465,10 @@ public class ColaboradorLogadoUI implements Initializable {
         }
     }   
         
+    /**
+     * Navega para a pagina EspecificarTarefaUI
+     * @param actionEvent 
+     */
     public void navigateEspecificarTarefa(ActionEvent actionEvent) {
         try {
             FXMLLoader loaderAddTarefa = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/EspecificarTarefaColaboradorScene.fxml"));
@@ -394,6 +490,10 @@ public class ColaboradorLogadoUI implements Initializable {
         }
     }
     
+    /**
+     * Navega para a pagina PublicarTarefaUI
+     * @param event 
+     */
     public void navigatePublicarTarefa(ActionEvent event) {
         try {
             FXMLLoader loaderPublicarTarefa = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/PublicarTarefaScene.fxml"));
@@ -416,6 +516,11 @@ public class ColaboradorLogadoUI implements Initializable {
 
     }
     
+    /**
+     * Navega para a pagina ConsultarAnuncioUI
+     * @param event
+     * @throws SQLException 
+     */
     public void consultarAnuncioAction(ActionEvent event) throws SQLException{
         try {
             FXMLLoader loaderConsultarAnuncio = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/ConsultarAnuncioScene.fxml"));
@@ -438,6 +543,11 @@ public class ColaboradorLogadoUI implements Initializable {
         }
     }
 
+    /**
+     * Navega para a pagina ConsultarCandidaturaFreelancerUI
+     * @param event
+     * @throws SQLException 
+     */
     public void consultarCandidaturaFreelancer(ActionEvent event) throws SQLException {
         try {
             FXMLLoader loaderConsultarCandidaturaFreelancer = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/ConsultarCandidaturaFreelancerScene.fxml"));
@@ -461,7 +571,10 @@ public class ColaboradorLogadoUI implements Initializable {
         }
     }
 
-    
+    /**
+     * Faz logout da sessao
+     * @param actionEvent 
+     */
     public void logout(ActionEvent actionEvent) {
         Window window = btnLogout.getScene().getWindow();
         window.setOnCloseRequest(new EventHandler<WindowEvent>() {

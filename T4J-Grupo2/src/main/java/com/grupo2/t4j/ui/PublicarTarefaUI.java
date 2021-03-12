@@ -33,6 +33,10 @@ public class PublicarTarefaUI implements Initializable {
     @FXML ComboBox<TipoRegimento> cmbTipoSeriacao;
 
     
+    /**
+     * Associa a scene ColaboradorLogadoUI como parent desta Scene 
+     * @param ColaboradorLogadoUI 
+     */
     public void associarParentUI(ColaboradorLogadoUI colaboradorLogadoUI) {
         this.colaboradorLogadoUI = colaboradorLogadoUI;
     }
@@ -59,6 +63,12 @@ public class PublicarTarefaUI implements Initializable {
            }
            });
     }    
+    
+    /**
+     * Publica uma tarefa
+     * @param actionEvent
+     * @throws SQLException 
+     */
     @FXML
     void publicarTarefaAction(ActionEvent actionEvent) throws SQLException{
         try {
@@ -95,11 +105,19 @@ public class PublicarTarefaUI implements Initializable {
 
     }
     
+    /**
+     * Volta para a scene anterior
+     * @param event 
+     */
     @FXML
     void voltarAtras(ActionEvent event) {
         btnVoltar.getScene().getWindow().hide();
     }
     
+    /**
+     * Termina o registo de uma tarefa
+     * @param actionEvent 
+     */
     private void closePublicarTarefa(ActionEvent actionEvent) {
 
         ((Node) actionEvent.getSource()).getScene().getWindow().hide();

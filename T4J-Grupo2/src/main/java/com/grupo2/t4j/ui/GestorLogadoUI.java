@@ -58,6 +58,10 @@ public class GestorLogadoUI implements Initializable {
 
     @FXML TableView<Tarefa> tabelaTarefas;
      
+    /**
+     * Associa a scene StartingPageUI como parent desta Scene 
+     * @param StartinPageUI 
+     */
     public void associarParentUI(StartingPageUI startingPageUI) {
         this.startingPageUI = startingPageUI;
     }
@@ -108,6 +112,11 @@ public class GestorLogadoUI implements Initializable {
 
     }
     
+    /**
+     * Aplica um filtro de tarefas de acordo com o tipo de tarefas pretendido
+     * @param actionEvent
+     * @throws SQLException 
+     */
     public void aplicarFiltroTarefas(ActionEvent actionEvent)throws SQLException {
         
         switch (cmbFiltroTarefas.getSelectionModel().getSelectedItem()) {
@@ -129,6 +138,10 @@ public class GestorLogadoUI implements Initializable {
         }
     }
 
+    /**
+     * Preenche a tabela de tarefas
+     * @throws SQLException 
+     */
     public void updateTableViewTarefas() throws SQLException {
         tabelaTarefas.getItems().setAll(registarTarefaController.getAllOrganizacao(
                 getNifOrganizacao()));
@@ -139,6 +152,10 @@ public class GestorLogadoUI implements Initializable {
         colunaCusto.setCellValueFactory( new PropertyValueFactory<>("custoEst"));
     }
 
+    /**
+     * Preenche a tabela de colaboradores registados pelo gestor logado
+     * @throws SQLException 
+     */
     public void updateListViewColaboradores() throws SQLException {
         String nifOrganizacacao = getNifOrganizacao();
         listViewColaboradores.getItems().setAll(registarColaboradorController.getAll(nifOrganizacacao));
@@ -149,6 +166,10 @@ public class GestorLogadoUI implements Initializable {
         colunaEmail.setCellValueFactory( new PropertyValueFactory<>("email"));
     }
   
+    /**
+     * Preenche a tabela de tarefas registadas pelo colaborador logado
+     * @throws SQLException 
+     */
     public void updateTableViewTarefasColaborador() throws SQLException {
         cmbFiltroTarefas.getSelectionModel().clearSelection();
         String email = gestaoUtilizadoresController.getEmail();
@@ -157,6 +178,10 @@ public class GestorLogadoUI implements Initializable {
         preencherTabela();
     }
     
+     /**
+     * Preenche a tabela de tarefas publicadas pelo colaborador logado
+     * @throws SQLException 
+     */
     public void updateTableViewTarefasPublicadas() throws SQLException {
         cmbFiltroTarefas.getSelectionModel().clearSelection();
         String email = gestaoUtilizadoresController.getEmail();
@@ -166,6 +191,10 @@ public class GestorLogadoUI implements Initializable {
         preencherTabela();
     }
     
+    /**
+     * Preenche a tabela com as tarefas do colaborador que ainda nao foram publicadas
+     * @throws SQLException 
+     */
     public void updateTableViewTarefasNaoPublicadas() throws SQLException {
         cmbFiltroTarefas.getSelectionModel().clearSelection();
         String email = gestaoUtilizadoresController.getEmail();
@@ -175,6 +204,9 @@ public class GestorLogadoUI implements Initializable {
         preencherTabela();
     }
     
+    /**
+     * Preenche a tabela com tarefas
+     */
     public void preencherTabela () {
         colunaDesignacao.setCellValueFactory( new PropertyValueFactory<>("designacao"));
         colunaReferencia.setCellValueFactory( new PropertyValueFactory<>("referencia"));
@@ -182,6 +214,10 @@ public class GestorLogadoUI implements Initializable {
         colunaCusto.setCellValueFactory( new PropertyValueFactory<>("custoEst"));
     }
 
+    /**
+     * Faz logout da sessao
+     * @param actionEvent 
+     */
     public void logout(ActionEvent actionEvent) {
         Window window = btnLogout.getScene().getWindow();
         window.setOnCloseRequest(new EventHandler<WindowEvent>() {
@@ -225,11 +261,20 @@ public class GestorLogadoUI implements Initializable {
 
     }
 
+    /**
+     * Devolve o nif da organizacao a que pertence o gestor logado
+     * @return
+     * @throws SQLException 
+     */
     public String getNifOrganizacao() throws SQLException {
         return registarColaboradorController.getNifOrganizacao(
                 gestaoUtilizadoresController.getEmail());
     }
 
+    /**
+     * Navega para a pagina RegistarColaboradorUI
+     * @param actionEvent 
+     */
     public void navigateAddColaborador(ActionEvent actionEvent) {
         try {
             FXMLLoader loaderAddColaborador = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/RegistarColaboradorScene.fxml"));
@@ -253,6 +298,10 @@ public class GestorLogadoUI implements Initializable {
         }
     }
 
+    /**
+     * Navega para a pagina EspecificarTarefaGestorUI
+     * @param actionEvent 
+     */
     public void navigateAddTarefa(ActionEvent actionEvent) {
         try {
             FXMLLoader loaderAddTarefa = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/EspecificarTarefaGestorScene.fxml"));
@@ -275,6 +324,10 @@ public class GestorLogadoUI implements Initializable {
         }
     }
     
+    /**
+     * Navega para a pagina PublicarTarefaGestor
+     * @param event 
+     */
     public void navigatePublicarTarefa(ActionEvent event) {
         try {
             FXMLLoader loaderPublicarTarefa = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/PublicarTarefaGestorScene.fxml"));

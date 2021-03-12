@@ -6,6 +6,14 @@ import javafx.scene.control.ButtonType;
 
 public class AlertsUI {
 
+    /**
+     * Cria um Alerta
+     * @param tipoAlerta
+     * @param titulo
+     * @param cabecalho
+     * @param mensagem
+     * @return 
+     */
     public static Alert criarAlerta(Alert.AlertType tipoAlerta,
                                     String titulo,
                                     String cabecalho,

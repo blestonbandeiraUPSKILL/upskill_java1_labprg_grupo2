@@ -51,11 +51,14 @@
                               <Insets bottom="10.0" />
                            </VBox.margin>
                         </Label>
-                        <ListView fx:id="listaHabilitacaoFreelancer" layoutX="21.0" layoutY="126.0" prefHeight="142.0" prefWidth="327.0">
-                           <VBox.margin>
-                              <Insets bottom="5.0" top="5.0" />
-                           </VBox.margin>
-                        </ListView>
+                        <TableView fx:id="tabelaHabilitacao" prefHeight="102.0" prefWidth="324.0">
+                           <columns>
+                              <TableColumn fx:id="txtGrauHabilitacao" prefWidth="45.0" text="Grau" />
+                              <TableColumn fx:id="txtDesignacaoCurso" prefWidth="131.0" text="Designação Curso" />
+                              <TableColumn fx:id="txtMediaCurso" prefWidth="64.0" text="Média" />
+                              <TableColumn fx:id="txtInstituicaoEnsino" prefWidth="94.0" text="Instituição" />
+                           </columns>
+                        </TableView>
                      </children>
                   </VBox>
                </children>
