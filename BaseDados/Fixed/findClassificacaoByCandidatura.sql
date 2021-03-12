@@ -9,7 +9,7 @@ IS
 BEGIN
 
     SELECT count(*) INTO v_count
-    FROM Candidatura
+    FROM Classificacao
     WHERE 
         idCandidatura = p_idCandidatura;
 
