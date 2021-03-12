@@ -61,6 +61,10 @@ public class StartingPageUI implements Initializable {
 
     }
 
+    /**
+     * Altera as cores da aplicacao para tema escuro
+     * @param event 
+     */
     @FXML
     void cssGoDark(ActionEvent event) {
 
@@ -72,6 +76,10 @@ public class StartingPageUI implements Initializable {
         scene.getStylesheets().add(getClass().getResource(estilo).toExternalForm());
     }
 
+    /**
+     * Altera as cores da aplicacao para tema claro
+     * @param event 
+     */
     @FXML
     void cssGoLight(ActionEvent event) {
 
@@ -84,6 +92,10 @@ public class StartingPageUI implements Initializable {
 
     }
        
+    /**
+     * Navega para a pagina RegistarOrgEGestorUI
+     * @param actionEvent 
+     */
     public void registarOrganizacao(ActionEvent actionEvent) {
 
         try {
@@ -107,6 +119,12 @@ public class StartingPageUI implements Initializable {
 
     }
 
+    /**
+     * Faz o login do utilizador e navega para a pagina indicada de acordo com o papel do utilizador
+     * @param actionEvent
+     * @throws IOException
+     * @throws SQLException 
+     */
     public void login(ActionEvent actionEvent) throws IOException, SQLException {
 
         boolean login = gestaoUtilizadoresController.login(
@@ -142,6 +160,10 @@ public class StartingPageUI implements Initializable {
         }
     }
 
+    /**
+     * Sai da aplicacao
+     * @param actionEvent 
+     */
     public void sairApp(ActionEvent actionEvent) {
         Window window = btnSair.getScene().getWindow();
         window.setOnCloseRequest(new EventHandler<WindowEvent>() {
@@ -160,6 +182,11 @@ public class StartingPageUI implements Initializable {
         window.fireEvent(new WindowEvent(window, WindowEvent.WINDOW_CLOSE_REQUEST));
     }
 
+    /**
+     * Navega para a pagina AdministrativoLogadoUI
+     * @param actionEvent
+     * @throws IOException 
+     */
     public void navigateAdministrativoLogado(ActionEvent actionEvent) throws IOException {
         try {
             FXMLLoader loaderAdministrativo = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/AdministrativoLogadoScene.fxml"));
@@ -181,6 +208,10 @@ public class StartingPageUI implements Initializable {
         }
     }
 
+    /** 
+     * Navega para a pagina GestorLogadoUI
+     * @param actionEvent 
+     */
     public void navigateGestorLogado(ActionEvent actionEvent) {
         try {
             FXMLLoader loaderGestor = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/GestorLogadoScene.fxml"));
@@ -203,6 +234,10 @@ public class StartingPageUI implements Initializable {
         }
     }
 
+    /**
+     * Navega para a pagina ColaboradorLogadoUI
+     * @param actionEvent 
+     */
     public void navigateColaboradorLogado(ActionEvent actionEvent) {
         try {
             FXMLLoader loaderColaborador = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/ColaboradorLogadoScene.fxml"));
@@ -225,6 +260,11 @@ public class StartingPageUI implements Initializable {
         }
     }
 
+    /**
+     * Navega para a pagina FreelancerLogadoUI
+     * @param actionEvent
+     * @throws IOException 
+     */
     public void navigateFreelancerLogado(ActionEvent actionEvent) throws IOException {
         try {
             FXMLLoader loaderFreelancer = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/FreelancerLogadoScene.fxml"));

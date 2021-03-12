@@ -43,6 +43,21 @@ public class RepositorioAnuncioDataBase implements RepositorioAnuncio {
         return repositorioAnuncioDataBase;
     }
 
+    /**
+     * Guarda um anuncio na base de dados
+     * @param referenciaTarefa
+     * @param nifOrganizacao
+     * @param dtInicioPublicitacao
+     * @param dtFimPublicitacao
+     * @param dtInicioCandidatura
+     * @param dtFimCandidatura
+     * @param dtInicioSeriacao
+     * @param dtFimSeriacao
+     * @param idTipoRegimento
+     * @return
+     * @throws AnuncioDuplicadoException
+     * @throws SQLException 
+     */
     @Override
     public boolean save(String referenciaTarefa, String nifOrganizacao, String dtInicioPublicitacao,
                         String dtFimPublicitacao, String dtInicioCandidatura, String dtFimCandidatura, String dtInicioSeriacao,
@@ -88,6 +103,12 @@ public class RepositorioAnuncioDataBase implements RepositorioAnuncio {
 
     }
 
+    /**
+     * Guarda um anuncio na base de dados
+     * @param anuncio
+     * @return
+     * @throws SQLException 
+     */
     @Override
     public boolean save(Anuncio anuncio) throws SQLException {
 
@@ -136,6 +157,13 @@ public class RepositorioAnuncioDataBase implements RepositorioAnuncio {
     }
 
 
+    /**
+     * Devolve o anuncio que corresponde a uma tarefa 
+     * @param referenciaTarefa
+     * @param nifOrganizacao
+     * @return
+     * @throws SQLException 
+     */
     @Override
     public Anuncio findAnuncioByIdTarefa(String referenciaTarefa, String nifOrganizacao) throws SQLException {
 
@@ -165,6 +193,11 @@ public class RepositorioAnuncioDataBase implements RepositorioAnuncio {
         return new Anuncio();
     }
 
+    /**
+     * Devolve todos os tipos de regimento registados na base de dados
+     * @return
+     * @throws SQLException 
+     */
     @Override
     public ArrayList<TipoRegimento> getAllRegimento() throws SQLException {
 
@@ -203,6 +236,12 @@ public class RepositorioAnuncioDataBase implements RepositorioAnuncio {
         return tiposRegimento;
     }
 
+    /**
+     * Devolve uma lista de anuncios elegiveis para um Freelancer
+     * @param email
+     * @return
+     * @throws SQLException 
+     */
     @Override
     public List<Anuncio> findAnunciosElegiveis(String email) throws SQLException {
         ArrayList<Anuncio> anunciosElegiveis = new ArrayList<>();
@@ -248,6 +287,12 @@ public class RepositorioAnuncioDataBase implements RepositorioAnuncio {
         return anunciosElegiveis;
     }
 
+    /**
+     * Devolve um anuncio a partir do seu id
+     * @param idAnuncio
+     * @return
+     * @throws SQLException 
+     */
     @Override
     public Anuncio getAnuncio(int idAnuncio) throws SQLException {
         Anuncio anuncio = new Anuncio();
@@ -302,6 +347,14 @@ public class RepositorioAnuncioDataBase implements RepositorioAnuncio {
         return anuncio;
     }
     
+    /**
+     * Devolve todas as tarefas de um colaborador e de um dado tipo de regimento
+     * @param referenciasTarefa
+     * @param emailColaborador
+     * @param idTipoRegimento
+     * @return
+     * @throws SQLException 
+     */
     @Override
     public List<String> getAllRefTarefasTipoRegimento(List<String> referenciasTarefa, String emailColaborador, int idTipoRegimento) throws SQLException{
         
