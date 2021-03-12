@@ -5,7 +5,6 @@ import java.sql.SQLException;
 
 public interface FabricaRepositorios {
 
-    RepositorioAdministrativo getRepositorioAdministrativo();
     RepositorioAnuncio getRepositorioAnuncio();
     RepositorioAreaActividade getRepositorioAreaActividade();
     RepositorioCandidatura getRepositorioCandidatura();

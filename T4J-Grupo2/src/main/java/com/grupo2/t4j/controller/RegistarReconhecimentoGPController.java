@@ -29,10 +29,6 @@ public class RegistarReconhecimentoGPController {
     public List<ReconhecimentoGP> getAll(String email) throws SQLException{
         return repositorioReconhecimentoGP.getAll(email);
     }
-   
-    public ReconhecimentoGP findByEmailCompetencia(String email, String idCompetenciaTecnica) throws SQLException{
-        return repositorioReconhecimentoGP.findByEmailCompetencia(email, idCompetenciaTecnica);
-    }
 
 
 }

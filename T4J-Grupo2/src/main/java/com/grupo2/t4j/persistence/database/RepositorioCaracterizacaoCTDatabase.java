@@ -88,53 +88,6 @@ public class RepositorioCaracterizacaoCTDatabase implements RepositorioCaracteri
     }
 
     @Override
-    public List<CaracterizacaoCT> findByCategoria(String codigoCategoria) throws SQLException{
-        ArrayList<CaracterizacaoCT> listaCaracterizacaoCT = new ArrayList<>();
-
-        Connection connection = DBConnectionHandler.getInstance().openConnection();
-
-        try {
-            PreparedStatement preparedStatement = connection.prepareStatement(
-                    "SELECT * FROM CaracterCT WHERE codigoCategoria LIKE ?"
-            );
-
-            preparedStatement.setString(1, codigoCategoria);
-
-            ResultSet resultSet = preparedStatement.executeQuery();
-
-            while (resultSet.next()) {
-                int idCaracterizacaoCT = resultSet.getInt(1);
-                String codigoCategoriaTarefa = resultSet.getString(2);
-                int codigoGP = resultSet.getInt(3);
-                String obrigatoriedade = resultSet.getString(4);
-                listaCaracterizacaoCT.add(new CaracterizacaoCT(idCaracterizacaoCT,
-                        codigoCategoriaTarefa,
-                        codigoGP,
-                        Obrigatoriedade.valueOf(obrigatoriedade)));
-
-            }
-        }
-
-        catch (SQLException exception) {
-            exception.printStackTrace();
-            exception.getSQLState();
-            try {
-                System.err.print("Transaction is being rolled back");
-                connection.rollback();
-            }
-            catch (SQLException sqlException) {
-                sqlException.getErrorCode();
-            }
-
-        }
-        finally {
-            DBConnectionHandler.getInstance().closeAll();
-        }
-
-        return listaCaracterizacaoCT;
-    }
-
-    @Override
     public CaracterizacaoCT findByCodigo(int codigoCCT) {
         return null;
     }

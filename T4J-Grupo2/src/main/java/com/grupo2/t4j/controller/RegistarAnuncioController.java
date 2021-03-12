@@ -42,8 +42,4 @@ public class RegistarAnuncioController {
         return repositorioAnuncio.getAll();
     }
 
-
-    public Anuncio getAnuncio(int idAnuncio) throws SQLException {
-        return repositorioAnuncio.getAnuncio(idAnuncio);
-    }
 }
