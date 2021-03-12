@@ -135,7 +135,7 @@ public class ColaboradorLogadoUI implements Initializable {
             public void handle(ActionEvent event) {
                 try {
                     btnConsultarAnuncio.setDisable(false);
-                    if(existeCandidatura()){
+                     if(existeCandidatura()){
                         criarTabelaClassificacao();
                         if(existeSeriacao()){
                             updateDataSeriacao();
@@ -145,9 +145,9 @@ public class ColaboradorLogadoUI implements Initializable {
                         }
                     }
                     else{
-                        AlertsUI.criarAlerta(Alert.AlertType.ERROR,
-                                MainApp.TITULO_APLICACAO, "Não existem candidaturas ao anúncio selecionado",
-                                "Por favor, escolha outro anúncio para seriar!").show();
+                         AlertsUI.criarAlerta(Alert.AlertType.ERROR,
+                         MainApp.TITULO_APLICACAO, "Não existem candidaturas ao anúncio selecionado",
+                         "Por favor, escolha outro anúncio para seriar!").show();
                     }
                                           
                 } catch (SQLException exception) {
@@ -199,7 +199,7 @@ public class ColaboradorLogadoUI implements Initializable {
         List<ProcessoSeriacao> processos = new ArrayList<>();
         processos = seriarAnuncioController.getAllPSByIdAnuncio(idAnuncio);
         if(processos.size() > 0){
-            return true;
+           return true;
         }
         return false;
     }
@@ -213,9 +213,12 @@ public class ColaboradorLogadoUI implements Initializable {
         List<Candidatura> candidaturas = new ArrayList<>();
         idAnuncio = getIdAnuncio();
         candidaturas = seriarAnuncioController.getAllByIdAnuncio(idAnuncio);
+        limpaTabelaCandidaturas();
         if(candidaturas.size() > 0){
+            btnConsultarCandidaturaFreelancer.setDisable(false);
             return true;
         }
+        btnConsultarCandidaturaFreelancer.setDisable(true);
         return false;
     }
             
@@ -295,13 +298,17 @@ public class ColaboradorLogadoUI implements Initializable {
         }
 
     }
-    
+
+    public void limpaTabelaCandidaturas(){
+        listaCandidaturasAnuncio.clear();
+        preencherTabelaCandidaturas ();
+    }
+
     /**
      * Cria uma tabela de classificacao de freelancers no anuncio selecionado
      * @throws SQLException 
      */
     public void criarTabelaClassificacao() throws SQLException{
-        listaCandidaturasAnuncio.clear();
         idAnuncio = getIdAnuncio();
         List<Candidatura> candidaturas = seriarAnuncioController.getAllByIdAnuncio(idAnuncio);
         for(int i = 0; i < candidaturas.size(); i++){
@@ -312,7 +319,6 @@ public class ColaboradorLogadoUI implements Initializable {
         }
 
         preencherTabelaCandidaturas ();
-        btnConsultarCandidaturaFreelancer.setDisable(false);
     }
     
     /**
