@@ -36,6 +36,18 @@ public class RepositorioCandidaturaDatabase implements RepositorioCandidatura{
         return repositorioCandidaturaDatabase;
     }
 
+    /**
+     * Guarda uma candidatura na base de dados
+     * @param valorPretendido
+     * @param numeroDias
+     * @param txtApresentacao
+     * @param txtMotivacao
+     * @param idAnuncio
+     * @param emailFreelancer
+     * @return
+     * @throws CandidaturaDuplicadaException
+     * @throws SQLException 
+     */
     @Override
     public boolean save(double valorPretendido, int numeroDias,
             String txtApresentacao, String txtMotivacao, int idAnuncio, String emailFreelancer) throws CandidaturaDuplicadaException, SQLException {
@@ -75,6 +87,12 @@ public class RepositorioCandidaturaDatabase implements RepositorioCandidatura{
         return false;
     }
 
+    /**
+     * Guarda uma candidatura na base de dados
+     * @param candidatura
+     * @return
+     * @throws SQLException 
+     */
     @Override
     public boolean save(Candidatura candidatura) throws SQLException {
 
@@ -113,6 +131,12 @@ public class RepositorioCandidaturaDatabase implements RepositorioCandidatura{
 
     }
 
+    /**
+     * Devolve uma candidatura a partir do seu id
+     * @param idCandidatura
+     * @return
+     * @throws SQLException 
+     */
     @Override
     public Candidatura findById(int idCandidatura) throws SQLException {
 
@@ -141,6 +165,12 @@ public class RepositorioCandidaturaDatabase implements RepositorioCandidatura{
 
     }
 
+    /**
+     * Devolve a lista de candidaturas de um freelancer
+     * @param emailFreelancer
+     * @return
+     * @throws SQLException 
+     */
     @Override
     public ArrayList<Candidatura> findByEmail(String emailFreelancer) throws SQLException {
         ArrayList<Candidatura> candidaturasFreelancer = new ArrayList<>();
@@ -184,6 +214,11 @@ public class RepositorioCandidaturaDatabase implements RepositorioCandidatura{
         return candidaturasFreelancer;
     }
 
+    /**
+     * Devolve todas as candidaturas registadas na base de dados
+     * @return
+     * @throws SQLException 
+     */
     @Override
     public ArrayList<Candidatura> getAll() throws SQLException {
 
@@ -230,6 +265,12 @@ public class RepositorioCandidaturaDatabase implements RepositorioCandidatura{
         return candidaturas;
     }
 
+    /**
+     * Devolve uma lista de candidaturas a um anuncio
+     * @param idAnuncio
+     * @return
+     * @throws SQLException 
+     */
     @Override
     public List<Candidatura> getAllByIdAnuncio(int idAnuncio) throws SQLException {
 
@@ -280,6 +321,16 @@ public class RepositorioCandidaturaDatabase implements RepositorioCandidatura{
         return candidaturasAnuncio;
     }
 
+    /**
+     * Atualiza os dados de uma candidatura
+     * @param idCandidatura
+     * @param valorPretendido
+     * @param numeroDias
+     * @param txtApresentacao
+     * @param txtMotivacao
+     * @return
+     * @throws SQLException 
+     */
     @Override
     public boolean updateCandidatura(int idCandidatura, double valorPretendido,
             int numeroDias, String txtApresentacao, String txtMotivacao) throws SQLException {
@@ -327,6 +378,12 @@ public class RepositorioCandidaturaDatabase implements RepositorioCandidatura{
         return false;
     }
 
+    /**
+     * Apaga uma candidatura
+     * @param idCandidatura
+     * @return
+     * @throws SQLException 
+     */
     public boolean deleteCandidatura(int idCandidatura) throws SQLException {
 
         Connection connection = DBConnectionHandler.getInstance().openConnection();
@@ -356,6 +413,12 @@ public class RepositorioCandidaturaDatabase implements RepositorioCandidatura{
         return false;
     }
 
+    /**
+     * Devolve uma lista de todas as candidaturas editaveis
+     * @param emailFreelancer
+     * @return
+     * @throws SQLException 
+     */
     @Override
     public List<Integer> getAllCandidaturasEditaveis(String emailFreelancer) throws SQLException {
         ArrayList<Integer> candidaturasEditaveis = new ArrayList<>();
