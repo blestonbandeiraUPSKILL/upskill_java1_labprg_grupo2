@@ -11,13 +11,4 @@ public interface RepositorioOrganizacao {
                   String nif, String nome, String website, String telefone, String emailOrganizacao,
                   String emailGestor, String funcaoGestor, String telefoneGestor) throws SQLException;
 
-    boolean save(Organizacao organizacao);
-
-    Organizacao findByNif(String nif) throws SQLException;
-
-    public ArrayList<Organizacao> getAll();
-
-    //update, delete
-
-
 }

@@ -101,11 +101,6 @@ public class RepositorioOrganizacaoDatabase implements RepositorioOrganizacao {
     }
 
 
-    @Override
-    public boolean save(Organizacao organizacao) {
-
-        return false;
-    }
 
     /**
      *
@@ -143,10 +138,6 @@ public class RepositorioOrganizacaoDatabase implements RepositorioOrganizacao {
         return new Organizacao();
     }
 
-    @Override
-    public ArrayList<Organizacao> getAll() {
-        return null;
-    }
 
 
 }
