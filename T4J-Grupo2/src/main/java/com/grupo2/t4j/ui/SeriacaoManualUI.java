@@ -157,7 +157,7 @@ public class SeriacaoManualUI implements Initializable{
     }
     
     public void preencherTabelaColaboradores () {
-        colunaColaborador.setCellValueFactory( new PropertyValueFactory<>("emailColaboradorAdd"));
+        colunaColaborador.setCellValueFactory( new PropertyValueFactory<>("email"));
         colunaParticipante.setCellValueFactory( new PropertyValueFactory<>("selecao"));       
     }
     
@@ -180,6 +180,7 @@ public class SeriacaoManualUI implements Initializable{
     
     public void updateOpcoesClassificacao(int classUsada){
         classificacoes.remove(classUsada-1);
+        cmbClassificacao.getItems().clear();
         cmbClassificacao.getItems().setAll(classificacoes);
     }
   
