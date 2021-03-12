@@ -188,8 +188,8 @@ public class EspecificarTarefaColaboradorUI implements Initializable {
      * @param actionEvent 
      */
     private void closeAddTarefa(ActionEvent actionEvent) {
-        this.cmbAreaActividade.setItems(null);
-        this.cmbCategoriaTarefa.setItems(null);
+        cmbAreaActividade.getSelectionModel().clearSelection();
+        cmbCategoriaTarefa.getSelectionModel().clearSelection();;
         this.txtReferencia.clear();
         this.txtDesignacao.clear();
         this.txtDescInformal.clear();

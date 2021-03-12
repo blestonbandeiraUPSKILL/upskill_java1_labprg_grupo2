@@ -72,7 +72,7 @@ public class ColaboradorLogadoUI implements Initializable {
     
     /**
      * Associa a scene StartingPageUI como parent desta Scene 
-     * @param StartinPageUI 
+     * @param startingPageUI
      */
     public void associarParentUI(StartingPageUI startingPageUI) {
         this.startingPageUI = startingPageUI;
@@ -225,7 +225,6 @@ public class ColaboradorLogadoUI implements Initializable {
      * @throws SQLException 
      */
     public void updateTableViewTarefas() throws SQLException {
-        //cmbFiltroTarefas.getSelectionModel().clearSelection();
         tabelaTarefas.getItems().setAll(registarTarefaController.getAllOrganizacao(
                 getNifOrganizacao()));
 
@@ -236,7 +235,6 @@ public class ColaboradorLogadoUI implements Initializable {
      * @throws SQLException 
      */
     public void updateTableViewTarefasColaborador() throws SQLException {
-        //cmbFiltroTarefas.getSelectionModel().clearSelection();
         String email = getEmailColaborador();
         String nifOrganizacao = registarColaboradorController.getNifOrganizacao(email);
         tabelaTarefas.getItems().setAll(registarTarefaController.findByColaboradorENif(email, nifOrganizacao));
@@ -254,7 +252,6 @@ public class ColaboradorLogadoUI implements Initializable {
         List<String> referenciasTarefa = registarTarefaController.findRefenciaTarefa(nifOrganizacao);
         tabelaTarefas.getItems().setAll(registarTarefaController.findTarefasPublicadas(referenciasTarefa, nifOrganizacao, email));
         preencherTabela();
-        //cmbFiltroTarefas.getSelectionModel().clearSelection();
     }
 
     /**
@@ -262,7 +259,7 @@ public class ColaboradorLogadoUI implements Initializable {
      * @throws SQLException 
      */
     public void updateTableViewTarefasNaoPublicadas() throws SQLException {
-        cmbFiltroTarefas.getSelectionModel().clearSelection();
+
         String email = getEmailColaborador();
         String nifOrganizacao = getNifOrganizacao();
         List<String> referenciasTarefa = registarTarefaController.findRefenciaTarefa(nifOrganizacao);
@@ -397,6 +394,9 @@ public class ColaboradorLogadoUI implements Initializable {
             case TAREFAS_PARA_PUBLICAR:
                 updateTableViewTarefasNaoPublicadas();
                 btnPublicarTarefa.setDisable(false);
+            default:
+                updateTableViewTarefas();
+                btnPublicarTarefa.setDisable(true);
         }
     }
     

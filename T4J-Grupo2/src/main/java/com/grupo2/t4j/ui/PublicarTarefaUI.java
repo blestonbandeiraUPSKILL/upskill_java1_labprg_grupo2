@@ -35,7 +35,7 @@ public class PublicarTarefaUI implements Initializable {
     
     /**
      * Associa a scene ColaboradorLogadoUI como parent desta Scene 
-     * @param ColaboradorLogadoUI 
+     * @param colaboradorLogadoUI
      */
     public void associarParentUI(ColaboradorLogadoUI colaboradorLogadoUI) {
         this.colaboradorLogadoUI = colaboradorLogadoUI;
@@ -85,6 +85,7 @@ public class PublicarTarefaUI implements Initializable {
 
             if (adicionou){
                 colaboradorLogadoUI.updateTableViewTarefas();
+                colaboradorLogadoUI.cmbFiltroTarefas.getSelectionModel().clearSelection();
 
             AlertsUI.criarAlerta(Alert.AlertType.INFORMATION,
                     MainApp.TITULO_APLICACAO,
