@@ -38,6 +38,11 @@ public class RegistarAnuncioController {
         return repositorioAnuncio.save(anuncio);
     }
 
+    /**
+     * Devolve uma lista de todos os anuncios
+     * @return
+     * @throws SQLException 
+     */
     public List<Anuncio> getAll() throws SQLException {
         return repositorioAnuncio.getAll();
     }
