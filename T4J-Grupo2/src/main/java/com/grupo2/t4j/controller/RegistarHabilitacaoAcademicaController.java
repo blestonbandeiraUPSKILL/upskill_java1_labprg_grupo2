@@ -28,11 +28,8 @@ public class RegistarHabilitacaoAcademicaController {
 
         HabilitacaoAcademica habilitacao = new HabilitacaoAcademica(grau, designacaoCurso, nomeInstituicao, mediaCurso);
 
-
         return repositorioHabilitacaoAcademica.save(habilitacao, emailFreelancer);
     }
-
-
 
     public List<HabilitacaoAcademica> getAll(String emailFreelancer) throws SQLException{
         return repositorioHabilitacaoAcademica.getAll(emailFreelancer);
@@ -41,12 +38,7 @@ public class RegistarHabilitacaoAcademicaController {
     public HabilitacaoAcademica findById(int idHabilitacao) throws SQLException{
         return repositorioHabilitacaoAcademica.findById(idHabilitacao);
     }
-    
-    public HabilitacaoAcademica findByGrauDesigInst(String grau, String designacaoCurso,
-                                                String nomeInstituicao, String emailFreelancer) throws SQLException{
-        return repositorioHabilitacaoAcademica.findByGrauDesigInst(grau, designacaoCurso,
-           nomeInstituicao, emailFreelancer);
-    }
+
 
 
 }

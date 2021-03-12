@@ -16,8 +16,6 @@ public interface RepositorioCaracterizacaoCT {
 
     List<CaracterizacaoCT> getAll();
 
-    List<CaracterizacaoCT> findByCategoria(String codigoCategoria) throws SQLException;
-
     CaracterizacaoCT findByCodigo(int codigoCCT);
     
     CaracterizacaoCT findByCategoriaEGrau (String codigoCategoria,
