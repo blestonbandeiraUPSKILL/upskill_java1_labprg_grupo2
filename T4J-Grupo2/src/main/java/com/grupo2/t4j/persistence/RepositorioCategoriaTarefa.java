@@ -18,7 +18,6 @@ public interface RepositorioCategoriaTarefa {
 
     Categoria findByCodigo(String codigoCategoria) throws SQLException;
 
-
     ArrayList<Categoria> findByAreaActividade(String codigoAreaActividade)throws SQLException;
 
     ArrayList<Categoria> getAll() throws SQLException;

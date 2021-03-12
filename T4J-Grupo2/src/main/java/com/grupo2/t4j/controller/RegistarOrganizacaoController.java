@@ -61,9 +61,6 @@ public class RegistarOrganizacaoController {
                 emailGestor, funcaoGestor, telefoneGestor);
     }
 
-    public List<Organizacao> getAll() {
-        return repositorioOrganizacao.getAll();
-    }
 
 
 
