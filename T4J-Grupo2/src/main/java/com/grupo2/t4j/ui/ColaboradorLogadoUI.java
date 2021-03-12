@@ -225,7 +225,7 @@ public class ColaboradorLogadoUI implements Initializable {
      * @throws SQLException 
      */
     public void updateTableViewTarefas() throws SQLException {
-        cmbFiltroTarefas.getSelectionModel().clearSelection();
+        //cmbFiltroTarefas.getSelectionModel().clearSelection();
         tabelaTarefas.getItems().setAll(registarTarefaController.getAllOrganizacao(
                 getNifOrganizacao()));
 
@@ -236,7 +236,7 @@ public class ColaboradorLogadoUI implements Initializable {
      * @throws SQLException 
      */
     public void updateTableViewTarefasColaborador() throws SQLException {
-        cmbFiltroTarefas.getSelectionModel().clearSelection();
+        //cmbFiltroTarefas.getSelectionModel().clearSelection();
         String email = getEmailColaborador();
         String nifOrganizacao = registarColaboradorController.getNifOrganizacao(email);
         tabelaTarefas.getItems().setAll(registarTarefaController.findByColaboradorENif(email, nifOrganizacao));
@@ -248,12 +248,13 @@ public class ColaboradorLogadoUI implements Initializable {
      * @throws SQLException 
      */
     public void updateTableViewTarefasPublicadas() throws SQLException {
-        cmbFiltroTarefas.getSelectionModel().clearSelection();
+
         String email = getEmailColaborador();
         String nifOrganizacao = getNifOrganizacao();
         List<String> referenciasTarefa = registarTarefaController.findRefenciaTarefa(nifOrganizacao);
         tabelaTarefas.getItems().setAll(registarTarefaController.findTarefasPublicadas(referenciasTarefa, nifOrganizacao, email));
         preencherTabela();
+        //cmbFiltroTarefas.getSelectionModel().clearSelection();
     }
 
     /**
