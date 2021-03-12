@@ -190,62 +190,6 @@ public class RepositorioGrauProficienciaDatabase implements RepositorioGrauProfi
         return grausProficiencia;
     }
 
-    @Override
-    public GrauProficiencia findByGrau(int grau) throws SQLException {
-        return null;
-    }
-
-    public List<GrauProficiencia> getAllGrausTarefa(Tarefa tarefa) throws SQLException {
-
-        List<GrauProficiencia> graus = new ArrayList<>();
-
-        Connection connection = DBConnectionHandler.getInstance().openConnection();
-
-        try {
-
-            PreparedStatement preparedStatement = connection.prepareStatement(
-                    "SELECT * FROM GrauProficiencia " +
-                            "INNER JOIN CaracterCT " +
-                            "ON GrauProficiencia.idGrauProficiencia = CaracterCT.grauProfMinimo " +
-                            "INNER JOIN Categoria " +
-                            "ON CaracterCT.codigoCategoria LIKE Categoria.codigoCategoria " +
-                            "INNER JOIN Tarefa " +
-                            "ON Categoria.codigoCategoria LIKE Tarefa.codigoCategoria " +
-                            "WHERE Tarefa.codigoCategoria LIKE ?  "
-            );
-
-            preparedStatement.setString(1, tarefa.getCodigoCategoriaTarefa());
-
-            preparedStatement.executeQuery();
-
-            ResultSet resultSet = preparedStatement.getResultSet();
-
-            while(resultSet.next()) {
-                int idGrauProficiencia = resultSet.getInt(1);
-                int grau = resultSet.getInt(2);
-                String designacao = resultSet.getString(3);
-
-                graus.add(new GrauProficiencia(idGrauProficiencia, grau, designacao, tarefa.getCodigoCategoriaTarefa()));
-            }
-
-        }
-
-        catch (SQLException exception) {
-            exception.printStackTrace();
-            exception.getSQLState();
-            try {
-                System.err.print("Transaction is being rolled back");
-                connection.rollback();
-            }
-            catch (SQLException sqlException) {
-                sqlException.getErrorCode();
-            }
-        }
-        finally {
-            DBConnectionHandler.getInstance().closeAll();
-        }
-        return graus;
-    }
 
     @Override
     public List<GrauProficiencia> getAllByCompetenciaTecnica(String codigoCompetenciaTecnica) throws SQLException {
