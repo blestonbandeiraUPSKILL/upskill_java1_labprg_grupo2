@@ -136,7 +136,7 @@ public class ColaboradorLogadoUI implements Initializable {
                 try {
                     btnConsultarAnuncio.setDisable(false);
                     if(existeCandidatura()){
-                       criarTabelaClassificacao();
+                        criarTabelaClassificacao();
                         if(existeSeriacao()){
                             updateDataSeriacao();
                         }
@@ -301,6 +301,7 @@ public class ColaboradorLogadoUI implements Initializable {
      * @throws SQLException 
      */
     public void criarTabelaClassificacao() throws SQLException{
+        listaCandidaturasAnuncio.clear();
         idAnuncio = getIdAnuncio();
         List<Candidatura> candidaturas = seriarAnuncioController.getAllByIdAnuncio(idAnuncio);
         for(int i = 0; i < candidaturas.size(); i++){
@@ -309,17 +310,18 @@ public class ColaboradorLogadoUI implements Initializable {
                     candidaturas.get(i).getNumeroDias(), candidaturas.get(i).getValorPretendido());
             listaCandidaturasAnuncio.add(cellCandidatura);
         }
-        tabelaCandidaturasFreelancers.getItems().setAll(listaCandidaturasAnuncio);
+
         preencherTabelaCandidaturas ();
         btnConsultarCandidaturaFreelancer.setDisable(false);
     }
     
     /**
-     * Preenche a tabela de classificacao
+     * Atualiza a tabela de classificacao após candidaturas seriadas
      * @param idSeriacao
      * @throws SQLException 
      */
     public void updateTabelaClassificacao(int idSeriacao)throws SQLException{
+        tabelaCandidaturasFreelancers.getItems().clear();
         List<Classificacao> listaClassificada = seriarAnuncioController.getAllBySeriacao(idSeriacao);
         for(int i = 0; i < listaCandidaturasAnuncio.size(); i++){
             for(int j = 0; j < listaClassificada.size(); j++){
@@ -328,7 +330,6 @@ public class ColaboradorLogadoUI implements Initializable {
                 }
             }
         }
-        tabelaCandidaturasFreelancers.getItems().setAll(listaCandidaturasAnuncio);
         preencherTabelaCandidaturas ();
     }
     
@@ -363,6 +364,7 @@ public class ColaboradorLogadoUI implements Initializable {
      * Preenche a tabela de Candidaturas
      */
     public void preencherTabelaCandidaturas () {
+        tabelaCandidaturasFreelancers.getItems().setAll(listaCandidaturasAnuncio);
         colunaClassificacao.setCellValueFactory( new PropertyValueFactory<>("classificacao"));        
         colunaIdCandidatura.setCellValueFactory( new PropertyValueFactory<>("idCandidatura"));        
         colunaEmail.setCellValueFactory( new PropertyValueFactory<>("email"));
