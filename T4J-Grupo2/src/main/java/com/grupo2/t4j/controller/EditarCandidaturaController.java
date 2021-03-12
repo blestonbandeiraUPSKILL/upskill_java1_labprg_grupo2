@@ -11,10 +11,9 @@ import java.util.List;
  * @author acris
  */
 public class EditarCandidaturaController {
-    
+
     private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosDatabase();
     private RepositorioCandidatura repositorioCandidatura = fabricaRepositorios.getRepositorioCandidatura();
-
 
     public boolean updateCandidatura(int idCandidatura, double valorPretendido,
             int numeroDias, String txtApresentacao, String txtMotivacao) throws SQLException {
@@ -26,5 +25,5 @@ public class EditarCandidaturaController {
     public List<Integer> getAllCandidaturasEditaveis(String emailFreelancer) throws SQLException {
         return repositorioCandidatura.getAllCandidaturasEditaveis(emailFreelancer);
     }
-    
+
 }

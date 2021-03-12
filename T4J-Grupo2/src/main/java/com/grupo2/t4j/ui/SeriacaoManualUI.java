@@ -87,14 +87,8 @@ public class SeriacaoManualUI implements Initializable{
           
         adicionarStage = new Stage();
         adicionarStage.initModality(Modality.APPLICATION_MODAL);;
-        adicionarStage.setResizable(false);
+        adicionarStage.setResizable(false);  
         
-        try{
-            transferData();
-        }        
-        catch (SQLException exception) {
-            exception.printStackTrace();
-        }        
     }
     
     public void transferData() throws SQLException {
@@ -108,18 +102,25 @@ public class SeriacaoManualUI implements Initializable{
             idSeriacao = seriarAnuncioController.getIdSeriacao(idAnuncio);
         }
         
-        txtIdAnuncio.setText(Integer.toString(idAnuncio));
-        criaTabelaCandidaturas();
-        criaTabelaColaboradoresOpcionais();
-        criarOpcoesClassificacao();
+        txtIdAnuncio.setText(Integer.toString(idAnuncio));  
+        
+        try{
+            criaTabelaCandidaturas();
+            criaTabelaColaboradoresOpcionais();
+            criarOpcoesClassificacao();    
+        }catch (SQLException exception) {
+            exception.printStackTrace();
+        }
     }
     
     public void criaTabelaCandidaturas() throws SQLException{
         List<Candidatura> candidaturas = seriarAnuncioController.getAllByIdAnuncio(idAnuncio);
-        List<Candidatura> candidaturasOrd = seriarAnuncioController.ordenarByIdCandidatura(candidaturas);
+        
         qtdCand = candidaturas.size();
         for(int i = 0; i < qtdCand; i++){
-            TabelaFreelancerClassificacao cellCandidatura = new TabelaFreelancerClassificacao(candidaturasOrd.get(i).getIdCandidatura(),candidaturasOrd.get(i).getEmailFreelancer());
+            TabelaFreelancerClassificacao cellCandidatura = new TabelaFreelancerClassificacao(
+                    candidaturas.get(i).getIdCandidatura(),
+                    candidaturas.get(i).getEmailFreelancer());
             listaCandidaturas.add(cellCandidatura);
         }
         tabelaClassificacao.getItems().setAll(listaCandidaturas);
@@ -143,12 +144,13 @@ public class SeriacaoManualUI implements Initializable{
     }
     
     public void criaTabelaColaboradoresOpcionais() throws SQLException{
-        List<String> colaboradores = seriarAnuncioController.getAllEmailsAlfByOrganizacao(nifOrganizacao);
+        ArrayList<Colaborador> colaboradores = seriarAnuncioController.getAll(nifOrganizacao);
+        
         for(int i = 0; i < colaboradores.size(); i++){
-            if(!colaboradores.get(i).equals(emailColaborador)){
-                TabelaColaboradorAdicional cellColaborador = new TabelaColaboradorAdicional(colaboradores.get(i), "N");
+           // if(colaboradores.get(i).getEmail().getEmailText().equals(emailColaborador)){
+                TabelaColaboradorAdicional cellColaborador = new TabelaColaboradorAdicional(colaboradores.get(i).getEmail().getEmailText(), "N");
                 colaboradoresOpcionais.add(cellColaborador);
-            }
+           // }
         }
         tabelaColaboradores.getItems().setAll(colaboradoresOpcionais);
         preencherTabelaColaboradores ();

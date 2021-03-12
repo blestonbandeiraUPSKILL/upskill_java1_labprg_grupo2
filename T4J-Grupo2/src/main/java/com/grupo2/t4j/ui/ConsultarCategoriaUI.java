@@ -21,19 +21,23 @@ import java.util.ResourceBundle;
  * FXML Controller class
  */
 public class ConsultarCategoriaUI implements Initializable {
-    
+
     private AdministrativoLogadoUI administrativoLogadoUI;
     private Stage adicionarStage;
     private RegistarAreaActividadeController registarAreaActividadeController;
     private RegistarCaracterizacaoCTController registarCaracterizacaoCTController;
-    
+
     @FXML TextField txtDescBreve;
     @FXML TextField txtCodigo;
     @FXML TextField txtAreaActividade;
     @FXML TextArea txtDescDetalhada;
     @FXML Button btnVoltar;
     @FXML ListView<CaracterizacaoCT> listViewCaracterizacao;
-    
+
+    /**
+     * Associa a scene AdministrativoLogadoUI como parent desta Scene 
+     * @param AdministrativoLogadoUI 
+     */
     public void associarParentUI(AdministrativoLogadoUI administrativoLogadoUI) {
         this.administrativoLogadoUI = administrativoLogadoUI;
     }
@@ -43,17 +47,22 @@ public class ConsultarCategoriaUI implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+
         adicionarStage = new Stage();
-            adicionarStage.initModality(Modality.APPLICATION_MODAL);
-            adicionarStage.setResizable(false);
-            
+        adicionarStage.initModality(Modality.APPLICATION_MODAL);
+        adicionarStage.setResizable(false);
+
         registarAreaActividadeController = new RegistarAreaActividadeController();
         registarCaracterizacaoCTController = new RegistarCaracterizacaoCTController();
-        
-    }    
+
+    }
+
+    /**
+     * Preenche a scene com os dados da categoria selecionada
+     * @throws SQLException 
+     */
     public void transferData() throws SQLException {
-        
+
         String codigoAreaActividade = administrativoLogadoUI.tableViewCategoria.getSelectionModel().getSelectedItem().getCodigoAreaActividade();
         String codigoCategoria = administrativoLogadoUI.tableViewCategoria.getSelectionModel().getSelectedItem().getCodigoCategoria();
         txtCodigo.setText(administrativoLogadoUI.tableViewCategoria.getSelectionModel().getSelectedItem().getCodigoCategoria());
@@ -63,10 +72,14 @@ public class ConsultarCategoriaUI implements Initializable {
         listViewCaracterizacao.getItems().setAll(
                 registarCaracterizacaoCTController.getAllByCategoria(codigoCategoria));
     }
-    
+
+    /**
+     * Volta para a scene anterior
+     * @param event 
+     */
     @FXML
     void voltarAtras(ActionEvent event) {
         btnVoltar.getScene().getWindow().hide();
     }
-    
+
 }

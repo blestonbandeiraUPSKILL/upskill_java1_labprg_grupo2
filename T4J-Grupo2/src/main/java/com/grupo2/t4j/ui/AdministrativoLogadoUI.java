@@ -125,6 +125,10 @@ public class AdministrativoLogadoUI implements Initializable {
     @FXML
     TableView<Freelancer> tableViewFreelancer;
 
+    /**
+     * Associa a scene StartingPageUI como parent desta Scene 
+     * @param StartinPageUI 
+     */
     public void associarParentUI(StartingPageUI startingPageUI) {
         this.startingPageUI = startingPageUI;
     }
@@ -172,6 +176,11 @@ public class AdministrativoLogadoUI implements Initializable {
         }
     }
 
+    /**
+     * Navega para a pagina AdicionarAreaActividadeUI
+     * @param actionEvent
+     * @throws IOException 
+     */
     public void addAreaActividade(ActionEvent actionEvent) throws IOException {
         try {
             FXMLLoader loaderAddAreaActividade = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/AdicionarAreaAtividadeScene.fxml"));
@@ -192,6 +201,10 @@ public class AdministrativoLogadoUI implements Initializable {
         }
     }
 
+    /**
+     * Navega para a pagina CategoriaTarefaUI
+     * @param actionEvent 
+     */
     public void addCategoriaTarefa(ActionEvent actionEvent) {
         try {
             FXMLLoader loaderAddCategoriaTarefa = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/AdicionarCategoriaTarefa.fxml"));
@@ -212,6 +225,10 @@ public class AdministrativoLogadoUI implements Initializable {
         adicionarStage.show();
     }
 
+    /**
+     * Navega para a pagina AdicionarCompetenciaTecnicaUI
+     * @param actionEvent 
+     */
     public void addCompetenciaTecnica(ActionEvent actionEvent) {
         try {
             FXMLLoader loaderAddCompetenciaTecnica = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/AdicionarCompetenciaTecnicaScene.fxml"));
@@ -233,6 +250,10 @@ public class AdministrativoLogadoUI implements Initializable {
         adicionarStage.show();
     }
 
+    /**
+     * Navega para a pagina AdicionarFreelancerUI
+     * @param actionEvent 
+     */
     public void addFreelancer(ActionEvent actionEvent) {
         try {
             FXMLLoader loaderAddFreelancer = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/AdicionarFreelancerScene.fxml"));
@@ -254,6 +275,10 @@ public class AdministrativoLogadoUI implements Initializable {
         adicionarStage.show();
     }
 
+    /**
+     * Navega para a pagina AdicionarHabilitacaoAcademicaUI
+     * @param actionEvent 
+     */
     public void addHabilitacaoFreelancer(ActionEvent actionEvent) {
         try {
             FXMLLoader loaderAddHabilitacaoFreelancer = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/AdicionarHabilitacaoAcademicaScene.fxml"));
@@ -276,6 +301,10 @@ public class AdministrativoLogadoUI implements Initializable {
 
     }
 
+    /**
+     * Navega para a pagina AdicionarReconhecimentoGPUI
+     * @param actionEvent 
+     */
     public void addReconhecimentoGP(ActionEvent actionEvent) {
         try {
             FXMLLoader loaderAddReconhecimentoGP = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/AdicionarReconhecimentoGPScene.fxml"));
@@ -298,6 +327,10 @@ public class AdministrativoLogadoUI implements Initializable {
 
     }
 
+    /**
+     * Preenche a tabela de Freelancers
+     * @throws SQLException 
+     */
     public void updateTableViewFreelancer() throws SQLException {
         tableViewFreelancer.getItems().setAll(registarFreelancerController.getAll());
 
@@ -308,6 +341,10 @@ public class AdministrativoLogadoUI implements Initializable {
 
     }
 
+    /**
+     * Preenche a tabela de Areas de Atividade
+     * @throws SQLException 
+     */
     public void updateTableViewAreasActividade() throws SQLException {
         tableViewAreaActividade.getItems().setAll(registarAreaActividadeController.getAll());
         colunaCodigo.setCellValueFactory(new PropertyValueFactory<>("codigo"));
@@ -315,6 +352,10 @@ public class AdministrativoLogadoUI implements Initializable {
         colunaDescDetalhada.setCellValueFactory(new PropertyValueFactory<>("descDetalhada"));
     }
 
+    /**
+     * Preenche a tabela de Categorias de Tarefa
+     * @throws SQLException 
+     */
     public void updateTableViewCategoriasTarefa() throws SQLException {
         tableViewCategoria.getItems().setAll(registarCategoriaController.getAll());
 
@@ -325,6 +366,10 @@ public class AdministrativoLogadoUI implements Initializable {
 
     }
 
+    /**
+     * Preenche a tabela de Competencias Tecnicas
+     * @throws SQLException 
+     */
     public void updateTableViewCompetenciasTecnicas() throws SQLException {
         tableViewCompetenciaTecnica.getItems().setAll(registarCompetenciaTecnicaController.getAll());
 
@@ -334,10 +379,18 @@ public class AdministrativoLogadoUI implements Initializable {
         colunaCodigoATCT.setCellValueFactory(new PropertyValueFactory<>("codigoAreaActividade"));
     }
 
+    /**
+     * Devolve o codigo da competencia tecnica selecionada
+     * @return 
+     */
     public String getCodigoCompetenciaTecnica() {
         return listViewCompetenciasTecnicas.getSelectionModel().getSelectedItem().getCodigo();
     }
 
+    /**
+     * Navega para a pagina ConsultarCompetenciaTecnicaUI
+     * @param event 
+     */
     public void consultarCompetenciaTecnicaAction(ActionEvent event) {
 
         try {
@@ -362,7 +415,11 @@ public class AdministrativoLogadoUI implements Initializable {
         }
 
     }
-
+    
+    /**
+     * Navega para a pagina ConsultarAreaActividadeUI
+     * @param event 
+     */
     public void consultarAreaActividadeAction(ActionEvent event) {
 
         try {
@@ -387,6 +444,11 @@ public class AdministrativoLogadoUI implements Initializable {
 
     }
 
+    /**
+     * Navega para a pagina ConsultarCategoriaUI
+     * @param event
+     * @throws SQLException 
+     */
     public void consultarCategoriaAction(ActionEvent event) throws SQLException {
 
         try {
@@ -412,6 +474,10 @@ public class AdministrativoLogadoUI implements Initializable {
 
     }
 
+    /**
+     * Navega para a pagina ConsultarFreelancerUI
+     * @param actionEvent 
+     */
     public void consultarFreelancer(ActionEvent actionEvent) {
         try {
             FXMLLoader loaderConsultarFreelancer = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/ConsultarFreelancerScene.fxml"));
@@ -434,6 +500,10 @@ public class AdministrativoLogadoUI implements Initializable {
         }
     }
 
+    /**
+     * Faz logout da sessao
+     * @param actionEvent 
+     */
     public void logout(ActionEvent actionEvent) {
         Window window = btnSair.getScene().getWindow();
         window.setOnCloseRequest(new EventHandler<WindowEvent>() {

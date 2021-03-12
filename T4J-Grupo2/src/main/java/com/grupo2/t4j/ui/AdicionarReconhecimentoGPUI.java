@@ -18,6 +18,7 @@ import javafx.stage.WindowEvent;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 /**
  * FXML Controller class
@@ -44,14 +45,22 @@ public class AdicionarReconhecimentoGPUI implements Initializable {
     @FXML
     ComboBox<GrauProficiencia> cmbProficiencia;
     @FXML
-    ListView<ReconhecimentoGP> listReconhecimentoGP;
-    @FXML
     Button btnAddCompetencia;
     @FXML
     Button btnCancelar;
     @FXML
     Button btnSair;
+    
+    ////Tabela Reconhecimento///////////////////////
+    @FXML TableColumn<Object, Object> txtCompTec;
+    @FXML TableColumn<Object, Object> txtDataReconhecimento;
+    @FXML TableColumn<Object, Object> txtGrau;
+    @FXML TableView<ReconhecimentoGP> tabelaReconhecimento;
 
+    /**
+     * Associa a scene AdministrativoLogadoUI como parent desta Scene 
+     * @param administrativoLogadoUI 
+     */
     public void associarParentUI(AdministrativoLogadoUI administrativoLogadoUI) {
         this.administrativoLogadoUI = administrativoLogadoUI;
     }
@@ -104,7 +113,7 @@ public class AdicionarReconhecimentoGPUI implements Initializable {
             public void handle(ActionEvent event) {
                 try {
                     updateTxtNomeFreelancer(event);
-                    updateListViewReconhecimentoGP();
+                    mostrarCompetencias();
                 } catch (SQLException exception) {
                     exception.printStackTrace();
                 }
@@ -113,23 +122,44 @@ public class AdicionarReconhecimentoGPUI implements Initializable {
 
     }
 
+    /**
+     * Atualiza a combobox de grau de proficiencia de acordo com a competencia tecnica escolhida
+     * @param actionEvent
+     * @throws SQLException 
+     */
     public void updateCmbGrauProficiencia(ActionEvent actionEvent) throws SQLException {
         String codigoCompetenciaTecnica = cmbCompetencia.getSelectionModel().getSelectedItem().getCodigo();
         cmbProficiencia.getItems().setAll(
                 registarGrauProficienciaController.findByCompetenciaTecnica(codigoCompetenciaTecnica));
     }
 
-    public void updateListViewReconhecimentoGP() throws SQLException {
+    /**
+     * Preenche a tabela de competencias do Freelancer
+     * @throws SQLException 
+     */
+    public void mostrarCompetencias () throws SQLException {
         String emailFreelancer = cmbEmailFreelancer.getSelectionModel().getSelectedItem().getEmail().getEmailText();
-        listReconhecimentoGP.getItems().setAll(
-                registarReconhecimentoGPController.getAll(emailFreelancer));
+        tabelaReconhecimento.getItems().setAll(registarReconhecimentoGPController.getAll(emailFreelancer));
+        
+        txtCompTec.setCellValueFactory(new PropertyValueFactory<>("descBreveCompetencia"));
+        txtGrau.setCellValueFactory(new PropertyValueFactory<>("designacaoGrau"));
+        txtDataReconhecimento.setCellValueFactory(new PropertyValueFactory<>("dataReconhecimento"));
     }
 
+    /**
+     * Atualiza o nome do Freelancer de acordo com o escolhido na combobox
+     * @param actionEvent
+     * @throws SQLException 
+     */
     public void updateTxtNomeFreelancer(ActionEvent actionEvent) throws SQLException {
         String emailFreelancer = cmbEmailFreelancer.getSelectionModel().getSelectedItem().getEmail().getEmailText();
         txtNomeFreelancer.setText(registarFreelancerController.findByEmail(emailFreelancer).getNome());
     }
 
+    /**
+     * Adiciona um reconhecimento de competencia tecnica ao Freelancer
+     * @param event 
+     */
     @FXML
     void addCompetencia(ActionEvent event) {
         try {
@@ -140,7 +170,7 @@ public class AdicionarReconhecimentoGPUI implements Initializable {
                     txtIDataValidacao.getText());
 
             if (adicionou) {
-                updateListViewReconhecimentoGP();
+                mostrarCompetencias();
 
                 AlertsUI.criarAlerta(Alert.AlertType.INFORMATION,
                         MainApp.TITULO_APLICACAO, "Registar Validação de Competência Técnica.",
@@ -155,11 +185,19 @@ public class AdicionarReconhecimentoGPUI implements Initializable {
         }
     }
 
+    /**
+     * Cancela a operacao
+     * @param event 
+     */
     @FXML
     public void cancelarAction(ActionEvent event) {
         txtIDataValidacao.clear();
     }
 
+    /**
+     * Volta para a scene anterior
+     * @param event 
+     */
     @FXML
     public void sairAction(ActionEvent event) {
         Window window = btnSair.getScene().getWindow();
