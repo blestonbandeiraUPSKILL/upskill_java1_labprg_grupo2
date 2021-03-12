@@ -30,25 +30,15 @@ public class AdicionarCompetenciaTecnicaUI implements Initializable {
     private RegistarGrauProficienciaController registarGrauProficienciaController;
     private Stage adicionarStage;
 
-    @FXML
-    Button btnVoltar;
-    @FXML
-    Button btnCancelar;
-    @FXML
-    TextArea txtDescDetalhada;
-    @FXML
-    TextField txtDescBreve;
-    @FXML
-    TextField txtCodigo;
-    @FXML
-    TextField txtDesignacao;
-    @FXML
-    TextField txtValor;
-
-    @FXML
-    ComboBox<AreaActividade> cmbAreaActividade;
-    @FXML
-    ListView<GrauProficiencia> listViewGrausAdicionados;
+    @FXML Button btnVoltar;
+    @FXML Button btnCancelar;
+    @FXML TextArea txtDescDetalhada;
+    @FXML TextField txtDescBreve;
+    @FXML TextField txtCodigo;
+    @FXML TextField txtDesignacao;
+    @FXML TextField txtValor;
+    @FXML ComboBox<AreaActividade> cmbAreaActividade;
+    @FXML ListView<GrauProficiencia> listViewGrausAdicionados;
 
     /**
      * Associa a scene AdministrativoLogadoUI como parent desta Scene 
