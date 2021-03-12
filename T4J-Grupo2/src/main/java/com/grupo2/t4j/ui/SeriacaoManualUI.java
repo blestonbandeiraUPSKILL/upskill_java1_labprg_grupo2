@@ -123,11 +123,11 @@ public class SeriacaoManualUI implements Initializable{
                     candidaturas.get(i).getEmailFreelancer());
             listaCandidaturas.add(cellCandidatura);
         }
-        tabelaClassificacao.getItems().setAll(listaCandidaturas);
         preencherTabelaCandidaturas();
     }
     
     public void preencherTabelaCandidaturas () {
+        tabelaClassificacao.getItems().setAll(listaCandidaturas);
         colunaIdCand.setCellValueFactory( new PropertyValueFactory<>("idCandidatura"));
         colunaEmail.setCellValueFactory( new PropertyValueFactory<>("emailFreelancer"));
         colunaClassificacao.setCellValueFactory( new PropertyValueFactory<>("classificacao"));       
@@ -139,12 +139,11 @@ public class SeriacaoManualUI implements Initializable{
                 listaCandidaturas.get(i).setClassificacao(posicao);
             }
         }
-        tabelaClassificacao.getItems().setAll(listaCandidaturas);
         preencherTabelaCandidaturas();
     }
     
     public void criaTabelaColaboradoresOpcionais() throws SQLException{
-        ArrayList<Colaborador> colaboradores = seriarAnuncioController.getAll(nifOrganizacao);
+        List<Colaborador> colaboradores = seriarAnuncioController.getAll(nifOrganizacao);
         
         for(int i = 0; i < colaboradores.size(); i++){
             if(!colaboradores.get(i).getEmail().getEmailText().equals(emailColaborador)){
@@ -152,11 +151,11 @@ public class SeriacaoManualUI implements Initializable{
                 colaboradoresOpcionais.add(cellColaborador);
             }
         }
-        tabelaColaboradores.getItems().setAll(colaboradoresOpcionais);
         preencherTabelaColaboradores ();
     }
     
     public void preencherTabelaColaboradores () {
+        tabelaColaboradores.getItems().setAll(colaboradoresOpcionais);
         colunaColaborador.setCellValueFactory( new PropertyValueFactory<>("email"));
         colunaParticipante.setCellValueFactory( new PropertyValueFactory<>("selecao"));       
     }
@@ -167,7 +166,6 @@ public class SeriacaoManualUI implements Initializable{
                 colaboradoresOpcionais.get(i).setSelecao("S");
             }
         }
-        tabelaColaboradores.getItems().setAll(colaboradoresOpcionais);
         preencherTabelaColaboradores ();
     }
     
