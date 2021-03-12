@@ -17,12 +17,15 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * FXML Controller class
  */
 public class EspecificarTarefaGestorUI implements Initializable {
 
+    private RegistarCaracterizacaoCTController registarCaracterizacaoCTController;
     private RegistarTarefaController registarTarefaController;
     private RegistarAreaActividadeController registarAreaActividadeController;
     private RegistarCategoriaController registarCategoriaController;
@@ -73,7 +76,8 @@ public class EspecificarTarefaGestorUI implements Initializable {
         registarCategoriaController = new RegistarCategoriaController();
         gestaoUtilizadoresController = new GestaoUtilizadoresController();
         registarColaboradorController = new RegistarColaboradorController();
-
+        registarCaracterizacaoCTController = new RegistarCaracterizacaoCTController();
+        
         try {
             cmbAreaActividade.getItems().setAll(registarAreaActividadeController.getAll());
         } catch (SQLException exception) {
@@ -95,7 +99,11 @@ public class EspecificarTarefaGestorUI implements Initializable {
         cmbCategoriaTarefa.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                updateListViewCaracterizacaoCTS(event);
+                try {
+                    updateListViewCaracterizacaoCTS(event);
+                } catch (SQLException exception) {
+                    exception.printStackTrace();
+                }
             }
         });
 
@@ -118,10 +126,11 @@ public class EspecificarTarefaGestorUI implements Initializable {
      * Atualiza a lista de competencias tecnicas 
      * @param actionEvent 
      */
-    public void updateListViewCaracterizacaoCTS(ActionEvent actionEvent) {
+    public void updateListViewCaracterizacaoCTS(ActionEvent actionEvent) throws SQLException{
 
         listViewCaracterizacaoCT.getItems().setAll(
-                cmbCategoriaTarefa.getSelectionModel().getSelectedItem().getCompTecnicasCaracter());
+                registarCaracterizacaoCTController.getAllByCategoria(
+                        cmbCategoriaTarefa.getSelectionModel().getSelectedItem().getCodigoCategoria()));
     }
 
     /**
