@@ -25,6 +25,12 @@ public class RegistarTarefaController {
     public RegistarTarefaController() throws SQLException {
     }
 
+    /**
+     * Devolve uma lista de todas as organizacoes
+     * @param nifOrganizacao
+     * @return
+     * @throws SQLException 
+     */
     public List<Tarefa> getAllOrganizacao(String nifOrganizacao) throws SQLException {
         return repositorioTarefa.getAllOrganizacao(nifOrganizacao);
     }
@@ -55,46 +61,108 @@ public class RegistarTarefaController {
         return repositorioTarefa.save(tarefa);
     }
 
+    /**
+     * Devolve uma lista de tarefas a partir do email do colaborador e do nif da sua organizacao
+     * @param email
+     * @param nifOrganizacao
+     * @return
+     * @throws SQLException 
+     */
     public List<Tarefa> findByColaboradorENif(String email, String nifOrganizacao) throws SQLException{
         return repositorioTarefa.findByColaboradorENif(email, nifOrganizacao);
     }
     
+    /**
+     * Devolve uma lista de tarefas publicadas
+     * @param referenciasTarefa
+     * @param nifOrganizacao
+     * @param emailColaborador
+     * @return
+     * @throws SQLException 
+     */
     public List<Tarefa> findTarefasPublicadas(List<String> referenciasTarefa, String nifOrganizacao, String emailColaborador) throws SQLException{
         return repositorioTarefa.findTarefasPublicadas(referenciasTarefa, nifOrganizacao, emailColaborador);
     }
     
+    /**
+     * Devolve uma lista de tarefas nao publicadas
+     * @param referenciasTarefa
+     * @param email
+     * @param nifOrganizacao
+     * @return
+     * @throws SQLException 
+     */
     public List<Tarefa> findTarefasNaoPublicadas(List<String> referenciasTarefa, String email, String nifOrganizacao) throws SQLException{
         return repositorioTarefa.findTarefasNaoPublicadas(referenciasTarefa, email, nifOrganizacao);
     }
 
+    /**
+     * Devolve uma lista de referencias de tarefas da organizacao
+     * @param nifOrganizacao
+     * @return
+     * @throws SQLException 
+     */
     public List<String> findRefenciaTarefa(String nifOrganizacao) throws SQLException {
         return repositorioTarefa.findReferenciaTarefa(nifOrganizacao);
     }
 
+    /**
+     * Devolve uma tarefa a partir do id do seu anuncio
+     * @param idAnuncio
+     * @return
+     * @throws SQLException 
+     */
     public Tarefa findTarefa(int idAnuncio) throws SQLException {
         return repositorioTarefa.findTarefa(idAnuncio);
     }
 
+    /**
+     * Devolve todas as tarefas publicadas
+     * @return
+     * @throws SQLException 
+     */
     public List<Tarefa> getAllTarefasPublicadas() throws SQLException {
         return repositorioTarefa.getAllTarefasPublicadas();
     }
 
+    /**
+     * Devolve o id do anuncio de uma tarefa
+     * @param nifOrganizacao
+     * @param referenciaTarefa
+     * @return
+     * @throws SQLException 
+     */
     public int findIdAnuncio(String nifOrganizacao, String referenciaTarefa) throws SQLException {
         return repositorioTarefa.findIdAnuncio(nifOrganizacao, referenciaTarefa);
     }
 
-    //lista graus Freelancer
+    /**
+     * Devolve os graus de proficiencia de um freelancer
+     * @param emailFreelancer
+     * @return
+     * @throws SQLException 
+     */
     public List<GrauProficiencia> getAllGrausFreelancer(String emailFreelancer) throws SQLException {
         return repositorioGrauProficiencia.getAllGrausFreelancer(emailFreelancer);
     }
 
-    //lista Tarefas publicadas com Lista de Graus
+    /**
+     * Devolve uma lista de tarefas com os respetivos graus de proficiencia necessarios
+     * @return
+     * @throws SQLException 
+     */
     public List<Tarefa> getAllGrausTarefasPublicadas() throws SQLException {
         List<Tarefa> tarefasPublicadas = getAllTarefasPublicadas();
         return repositorioGrauProficiencia.getAllGrausTarefasPublicadas(tarefasPublicadas);
     }
 
-    //comparar graus
+    /**
+     * Compara os graus de proficiencia de uma lista de tarefas com os graus de proficiencia
+     * dos freelancers e devolve uma lista de tarefas compativeis
+     * @param emailFreelancer
+     * @return
+     * @throws SQLException 
+     */
     public List<Tarefa> tarefasElegiveis(String emailFreelancer) throws SQLException {
         List<Tarefa> tarefasElegiveis = new ArrayList<>();
         List<Tarefa> tarefasCompativeis = new ArrayList<>();
@@ -119,6 +187,13 @@ public class RegistarTarefaController {
         return tarefasElegiveis;
     }
 
+    /**
+     * Devolve uma tarefa a partir da sua referencia e do nif da organizacao que a criou
+     * @param referencia
+     * @param nifOrganizacao
+     * @return
+     * @throws SQLException 
+     */
     private Tarefa getTarefaByRefENif(String referencia, String nifOrganizacao) throws SQLException {
         return repositorioTarefa.getTarefaByRefENif(referencia, nifOrganizacao);
     }

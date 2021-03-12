@@ -27,6 +27,17 @@ public class EfectuarCandidaturaController {
     public EfectuarCandidaturaController() throws SQLException {
     }
 
+    /**
+     * Regista uma nova candidatura
+     * @param valorPretendido
+     * @param numeroDias
+     * @param txtApresentacao
+     * @param txtMotivacao
+     * @param idAnuncio
+     * @param emailFreelancer
+     * @return
+     * @throws SQLException 
+     */
     public boolean registarCandidatura(double valorPretendido, int numeroDias, 
             String txtApresentacao, String txtMotivacao, int idAnuncio, String 
             emailFreelancer) throws SQLException {
@@ -36,6 +47,12 @@ public class EfectuarCandidaturaController {
         return repositorioCandidatura.save(candidatura);
     }
 
+    /**
+     * Devolve a lista de candidaturas de um freelancer
+     * @param emailFreelancer
+     * @return
+     * @throws SQLException 
+     */
     public ArrayList<Candidatura> findByEmail(String emailFreelancer) throws SQLException {
         return repositorioCandidatura.findByEmail(emailFreelancer);
     }

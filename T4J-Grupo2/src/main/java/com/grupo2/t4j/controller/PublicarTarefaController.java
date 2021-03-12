@@ -52,10 +52,20 @@ public class PublicarTarefaController {
         return data;
     }
     
+    /**
+     * Devolve uma lista de todos os anuncios
+     * @return
+     * @throws SQLException 
+     */
     public List<Anuncio> getAll() throws SQLException {
         return repositorioAnuncio.getAll();
     }
     
+    /**
+     * Devolve uma lista com todos os tipos de regimento
+     * @return
+     * @throws SQLException 
+     */
     public List<TipoRegimento> getAllRegimento()throws SQLException {
         return repositorioAnuncio.getAllRegimento();
     }
