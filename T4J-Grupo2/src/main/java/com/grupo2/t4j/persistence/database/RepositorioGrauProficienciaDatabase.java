@@ -294,7 +294,7 @@ public class RepositorioGrauProficienciaDatabase implements RepositorioGrauProfi
                                 "ON Tarefa.referencia LIKE Anuncio.referenciaTarefa " +
                                 "AND Tarefa.nifOrganizacao LIKE Tarefa.nifOrganizacao " +
                                 "WHERE Tarefa.referencia LIKE ? " +
-                                "AND Tarefa.nifOrganizacao LIKE ?"
+                                "AND Tarefa.nifOrganizacao LIKE ? "
                 );
 
                 connection.setAutoCommit(false);
