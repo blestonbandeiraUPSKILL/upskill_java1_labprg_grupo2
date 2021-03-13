@@ -1,6 +1,7 @@
 package com.grupo2.t4j.ui;
 
 import com.grupo2.t4j.controller.PublicarTarefaController;
+import com.grupo2.t4j.domain.FiltroTarefas;
 import com.grupo2.t4j.domain.TipoRegimento;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -34,7 +35,7 @@ public class PublicarTarefaGestorUI implements Initializable {
 
      /**
      * Associa a scene GestorLogadoUI como parent desta Scene 
-     * @param GestorLogadoUI 
+     * @param gestorLogadoUI
      */
     public void associarParentUI(GestorLogadoUI gestorLogadoUI) {
         this.gestorLogadoUI = gestorLogadoUI;
@@ -92,6 +93,7 @@ public class PublicarTarefaGestorUI implements Initializable {
             }
 
             closePublicarTarefa(actionEvent);
+            gestorLogadoUI.cmbFiltroTarefas.getSelectionModel().select(FiltroTarefas.TAREFAS_DA_ORGANIZACAO);
 
         }
         catch (IllegalArgumentException exception) {

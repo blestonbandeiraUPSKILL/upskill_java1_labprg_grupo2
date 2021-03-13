@@ -77,12 +77,11 @@ public class RegistarTarefaController {
     /**
      * Devolve uma lista de tarefas publicadas
      * @param nifOrganizacao
-     * @param emailColaborador
      * @return
      * @throws SQLException 
      */
-    public List<Tarefa> findTarefasPublicadas(String nifOrganizacao, String emailColaborador) throws SQLException{
-        return repositorioTarefa.findTarefasPublicadas(nifOrganizacao, emailColaborador);
+    public List<Tarefa> findTarefasPublicadas(String nifOrganizacao) throws SQLException{
+        return repositorioTarefa.findTarefasPublicadas(nifOrganizacao);
     }
     
     /**

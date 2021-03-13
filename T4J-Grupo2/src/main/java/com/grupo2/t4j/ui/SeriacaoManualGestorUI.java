@@ -34,6 +34,18 @@ import java.util.ResourceBundle;
 
 public class SeriacaoManualGestorUI implements Initializable{
 
+    private GestorLogadoUI gestorLogadoUI;
+    private SeriarAnuncioController seriarAnuncioController;
+    private Stage adicionarStage;
+
+    private int idAnuncio;
+    private int idSeriacao;
+    private int qtdCand;
+    private String emailColaborador;
+    private String nifOrganizacao;
+    private List<Integer> classificacoes = new ArrayList<>();
+    private ArrayList<String> colaboradoresParticipantes = new ArrayList<>();
+
     @FXML TextField txtIdAnuncio;
     @FXML Button btnAdicionarColaborador;
     @FXML Button btnVoltar;
@@ -51,19 +63,6 @@ public class SeriacaoManualGestorUI implements Initializable{
     @FXML TableColumn<Object, Object> colunaColaborador;
     @FXML TableColumn<Object, Object> colunaParticipante;
 
-
-    private GestorLogadoUI gestorLogadoUI;
-    private SeriarAnuncioController seriarAnuncioController;
-    private Stage adicionarStage;
-        
-    private int idAnuncio;
-    private int idSeriacao;
-    private int qtdCand;
-    private String emailColaborador;
-    private String nifOrganizacao;
-    private List<Integer> classificacoes = new ArrayList<>();
-    private ArrayList<String> colaboradoresParticipantes = new ArrayList<>();
-    
     
     public void associarParentUI(GestorLogadoUI gestorLogadoUI) {
         this.gestorLogadoUI = gestorLogadoUI;

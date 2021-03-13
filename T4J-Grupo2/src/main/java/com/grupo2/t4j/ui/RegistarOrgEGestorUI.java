@@ -47,7 +47,7 @@ public class RegistarOrgEGestorUI implements Initializable {
 
     /**
      * Associa a scene StartingPageUI como parent desta Scene 
-     * @param StartinPageUI 
+     * @param startingPageUI
      */
     public void associarParentUI(StartingPageUI startingPageUI) {
         this.startingPageUI = startingPageUI;       
