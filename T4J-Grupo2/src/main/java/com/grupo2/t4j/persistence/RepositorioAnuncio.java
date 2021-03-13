@@ -40,5 +40,5 @@ public interface RepositorioAnuncio {
 
     Anuncio getAnuncio(int idAnuncio) throws SQLException;
 
-    boolean findAnuncioByEmailFreelancer(String emailFreelancer) throws SQLException;
+    boolean findAnuncioByEmailFreelancer(String freelancer, String emailFreelancer) throws SQLException;
 }

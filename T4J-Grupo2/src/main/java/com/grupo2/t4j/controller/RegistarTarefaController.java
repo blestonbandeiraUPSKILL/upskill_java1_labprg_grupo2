@@ -170,13 +170,13 @@ public class RegistarTarefaController {
         List<GrauProficiencia> grausFreelancer = getAllGrausFreelancer(emailFreelancer);
 
        for (Tarefa tarefa : tarefasComGraus) {
-           for (GrauProficiencia grauTarefa : tarefa.getGrauProficiencia()) {
-               for (GrauProficiencia grauFreelancer : grausFreelancer) {
-                   if(grauFreelancer.getGrau() >= grauTarefa.getGrau() && grauFreelancer.getCodigoCompetenciaTecnica().equals(grauTarefa.getCodigoCompetenciaTecnica())) {
-                       if (!tarefasCompativeis.contains(tarefa)) {
-                           if(!isAnuncioNaoValido(emailFreelancer)) {
-                                tarefasCompativeis.add(tarefa);
-                            }
+           if (isAnuncioValido(emailFreelancer, tarefa.getReferencia())) {
+               for (GrauProficiencia grauTarefa : tarefa.getGrauProficiencia()) {
+                   for (GrauProficiencia grauFreelancer : grausFreelancer) {
+                       if(grauFreelancer.getGrau() >= grauTarefa.getGrau() && grauFreelancer.getCodigoCompetenciaTecnica().equals(grauTarefa.getCodigoCompetenciaTecnica())) {
+                           if (!tarefasCompativeis.contains(tarefa)) {
+                               tarefasCompativeis.add(tarefa);
+                           }
                        }
                    }
                }
@@ -191,8 +191,8 @@ public class RegistarTarefaController {
         return tarefasElegiveis;
     }
 
-    public boolean isAnuncioNaoValido(String emailFreelancer) throws SQLException {
-        return repositorioAnuncio.findAnuncioByEmailFreelancer(emailFreelancer);
+    public boolean isAnuncioValido(String emailFreelancer, String referenciaTarefa) throws SQLException {
+        return repositorioAnuncio.findAnuncioByEmailFreelancer(emailFreelancer, referenciaTarefa);
     }
 
     /**
