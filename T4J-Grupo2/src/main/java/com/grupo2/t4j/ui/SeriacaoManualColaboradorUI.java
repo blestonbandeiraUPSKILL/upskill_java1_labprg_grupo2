@@ -210,7 +210,7 @@ public class SeriacaoManualColaboradorUI implements Initializable{
     }
     
     @FXML
-    public void voltar(ActionEvent event) {
+    public void voltar(ActionEvent event) throws SQLException{
         if(classificacoes.size() == 0){
             Window window = btnVoltar.getScene().getWindow();
             window.setOnCloseRequest(new EventHandler<WindowEvent>() {
@@ -225,6 +225,7 @@ public class SeriacaoManualColaboradorUI implements Initializable{
             });
         }
         else{
+            colaboradorLogadoUI.updateDataSeriacao();
             btnVoltar.getScene().getWindow().hide();
         }
         

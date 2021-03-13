@@ -133,6 +133,7 @@ public class ColaboradorLogadoUI implements Initializable {
             @Override
             public void handle(ActionEvent event) {
                 try {
+                    txtDataSeriacao.clear();
                     btnConsultarAnuncio.setDisable(false);
                      if(existeCandidatura()){
                         criarTabelaClassificacao();
@@ -198,6 +199,8 @@ public class ColaboradorLogadoUI implements Initializable {
         List<ProcessoSeriacao> processos = new ArrayList<>();
         processos = seriarAnuncioController.getAllPSByIdAnuncio(idAnuncio);
         if(processos.size() > 0){
+            btnSeriacaoAutomatica.setDisable(true);
+            btnSeriacaoManual.setDisable(true);
            return true;
         }
         return false;
@@ -212,12 +215,12 @@ public class ColaboradorLogadoUI implements Initializable {
         List<Candidatura> candidaturas = new ArrayList<>();
         idAnuncio = getIdAnuncio();
         candidaturas = seriarAnuncioController.getAllByIdAnuncio(idAnuncio);
-        tabelaCandidaturasFreelancers.getItems().clear();
-        //limpaTabelaCandidaturas();
+        limpaTabelaCandidaturas();
         if(candidaturas.size() > 0){
             btnConsultarCandidaturaFreelancer.setDisable(false);
             return true;
         }
+
         btnConsultarCandidaturaFreelancer.setDisable(true);
         return false;
     }
@@ -327,12 +330,18 @@ public class ColaboradorLogadoUI implements Initializable {
      * @throws SQLException 
      */
     public void updateTabelaClassificacao(int idSeriacao)throws SQLException{
-        tabelaCandidaturasFreelancers.getItems().clear();
+        limpaTabelaCandidaturas();
+        idAnuncio = getIdAnuncio();
+        List<Candidatura> candidaturas = seriarAnuncioController.getAllByIdAnuncio(idAnuncio);
         List<Classificacao> listaClassificada = seriarAnuncioController.getAllBySeriacao(idSeriacao);
-        for(int i = 0; i < listaCandidaturasAnuncio.size(); i++){
+        for(int i = 0; i <candidaturas.size(); i++){
             for(int j = 0; j < listaClassificada.size(); j++){
-                if(listaCandidaturasAnuncio.get(i).getIdCandidatura() == listaClassificada.get(j).getIdCandidatura()){
-                    listaCandidaturasAnuncio.get(i).setClassificacao(listaClassificada.get(j).getPosicaoFreelancer());
+                if(candidaturas.get(i).getIdCandidatura() == listaClassificada.get(j).getIdCandidatura()){
+                    TabelaCandidaturasAnuncio cellCandidatura = new TabelaCandidaturasAnuncio(
+                    listaClassificada.get(j).getPosicaoFreelancer(), candidaturas.get(i).getIdCandidatura(),
+                    candidaturas.get(i).getEmailFreelancer(), candidaturas.get(i).getNumeroDias(),
+                    candidaturas.get(i).getValorPretendido());
+                    listaCandidaturasAnuncio.add(cellCandidatura);
                 }
             }
         }
