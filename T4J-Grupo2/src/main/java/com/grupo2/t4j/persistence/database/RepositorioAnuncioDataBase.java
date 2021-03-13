@@ -288,7 +288,7 @@ public class RepositorioAnuncioDataBase implements RepositorioAnuncio {
     }
 
     @Override
-    public boolean findAnuncioByEmailFreelancer(String emailFreelancer) throws SQLException {
+    public boolean findAnuncioByEmailFreelancer(String emailFreelancer, String referenciaTarefa ) throws SQLException {
 
         Connection connection = DBConnectionHandler.getInstance().openConnection();
 
@@ -298,14 +298,15 @@ public class RepositorioAnuncioDataBase implements RepositorioAnuncio {
                             "LEFT JOIN Candidatura " +
                             "ON Anuncio.idAnuncio = Candidatura.idAnuncio " +
                             "WHERE Candidatura.emailFreelancer LIKE ? " +
-                            "AND candidatura.idCandidatura IS NULL"
+                            "AND Anuncio.referenciaTarefa LIKE ?"
             );
 
             preparedStatement.setString(1, emailFreelancer);
+            preparedStatement.setString(2, referenciaTarefa);
 
             ResultSet resultSet = preparedStatement.executeQuery();
 
-            if (resultSet != null) {
+            if (resultSet.next()) {
 
                 return false;
             }
