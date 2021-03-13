@@ -47,6 +47,23 @@ public class RepositorioOrganizacaoDatabase implements RepositorioOrganizacao {
     }
 
 
+    /**
+     * Regista uma organizacao
+     * @param arruamento
+     * @param numeroPorta
+     * @param localidade
+     * @param codigoPostal
+     * @param nif
+     * @param nome
+     * @param website
+     * @param telefone
+     * @param emailOrganizacao
+     * @param emailGestor
+     * @param funcaoGestor
+     * @param telefoneGestor
+     * @return
+     * @throws SQLException 
+     */
     @Override
     public boolean save(String arruamento, String numeroPorta, String localidade, String codigoPostal,
                         String nif, String nome, String website, String telefone, String emailOrganizacao,

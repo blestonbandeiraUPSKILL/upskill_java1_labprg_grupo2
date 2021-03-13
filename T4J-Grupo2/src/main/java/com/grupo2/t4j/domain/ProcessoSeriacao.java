@@ -33,6 +33,10 @@ public class ProcessoSeriacao {
      * A data atual no formato da classe Data
      */
     private Calendar cal = Calendar.getInstance();
+    
+    /**
+     * O dia de hoje
+     */
     private Data hoje = new Data(cal.get(Calendar.YEAR),cal.get(Calendar.MONTH),
             cal.get(Calendar.DAY_OF_MONTH));
     
