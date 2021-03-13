@@ -273,45 +273,42 @@ public class RepositorioTarefaDatabase implements RepositorioTarefa {
     }
 
     @Override
-    public List<Tarefa> findTarefasPublicadas(List<String> referenciasTarefa, String nifOrganizacao, String emailColaborador) throws SQLException {
+    public List<Tarefa> findTarefasPublicadas(String nifOrganizacao, String emailColaborador) throws SQLException {
         List<Tarefa> tarefasComAnuncio = new ArrayList<>();
 
         Connection connection = DBConnectionHandler.getInstance().openConnection();
 
         try {
-            for (String referencia : referenciasTarefa) {
-                CallableStatement callableStatement = connection.prepareCall(
-                        "SELECT * FROM Tarefa " +
-                                "INNER JOIN Anuncio " +
-                                "ON Tarefa.referencia LIKE Anuncio.referenciaTarefa " +
-                                "AND Tarefa.nifOrganizacao LIKE Anuncio.nifOrganizacao " +
-                                "WHERE tarefa.referencia LIKE ? " +
-                                "AND tarefa.nifOrganizacao LIKE ?" +
-                                "AND Tarefa.emailColaborador LIKE ? "
-                );
+            CallableStatement callableStatement = connection.prepareCall(
+                    "SELECT * FROM Tarefa " +
+                            "INNER JOIN Anuncio " +
+                            "ON Tarefa.referencia LIKE Anuncio.referenciaTarefa " +
+                            "AND Tarefa.nifOrganizacao LIKE Anuncio.nifOrganizacao " +
+                            "AND tarefa.nifOrganizacao LIKE ?" +
+                            "AND Tarefa.emailColaborador LIKE ? "
+            );
 
+            callableStatement.setString(1, nifOrganizacao);
+            callableStatement.setString(2, emailColaborador);
 
-                callableStatement.setString(1, referencia);
-                callableStatement.setString(2, nifOrganizacao);
-                callableStatement.setString(3, emailColaborador);
+            callableStatement.executeUpdate();
 
-                callableStatement.executeUpdate();
+            ResultSet resultSet = callableStatement.getResultSet();
 
-                ResultSet resultSet = callableStatement.getResultSet();
+            while (resultSet.next()) {
 
-                while (resultSet.next()) {
+                String referencia = resultSet.getString(2);
+                String designacao = resultSet.getString(3);
+                String descInformal = resultSet.getString(4);
+                String descTecnica = resultSet.getString(5);
+                int duracaoEstimada = resultSet.getInt(6);
+                double custoEstimado = resultSet.getDouble(7);
+                String codigoCategoria = resultSet.getString(8);
+                tarefasComAnuncio.add(new Tarefa(nifOrganizacao, referencia,
+                        designacao, descInformal, descTecnica, duracaoEstimada, custoEstimado, codigoCategoria, emailColaborador));
 
-                    String designacao = resultSet.getString(3);
-                    String descInformal = resultSet.getString(4);
-                    String descTecnica = resultSet.getString(5);
-                    int duracaoEstimada = resultSet.getInt(6);
-                    double custoEstimado = resultSet.getDouble(7);
-                    String codigoCategoria = resultSet.getString(8);
-                    tarefasComAnuncio.add(new Tarefa(nifOrganizacao, referencia,
-                            designacao, descInformal, descTecnica, duracaoEstimada, custoEstimado, codigoCategoria, emailColaborador));
-
-                }
             }
+
         }
         catch (SQLException exception) {
             exception.printStackTrace();
@@ -404,45 +401,44 @@ public class RepositorioTarefaDatabase implements RepositorioTarefa {
     }
 
     @Override
-    public List<Tarefa> findTarefasNaoPublicadas(List<String> referenciasTarefa, String email, String nifOrganizacao) throws SQLException {
+    public List<Tarefa> findTarefasNaoPublicadas(String nifOrganizacao, String email) throws SQLException {
 
         List<Tarefa> tarefasSemAnuncio = new ArrayList<>();
 
         Connection connection = DBConnectionHandler.getInstance().openConnection();
 
         try {
-            for (String referenciaTarefa : referenciasTarefa) {
-                CallableStatement callableStatement = connection.prepareCall(
-                        "SELECT * FROM Tarefa " +
-                                "LEFT JOIN Anuncio " +
-                                "ON Tarefa.referencia LIKE Anuncio.referenciaTarefa " +
-                                "AND Tarefa.nifOrganizacao LIKE Anuncio.nifOrganizacao " +
-                                "WHERE Anuncio.referenciaTAREFA IS NULL AND Anuncio.nifOrganizacao IS NULL " +
-                                "AND Tarefa.referencia LIKE ? AND Tarefa.nifOrganizacao LIKE ? " +
-                                "AND Tarefa.emailColaborador LIKE ?"
-                );
+            CallableStatement callableStatement = connection.prepareCall(
+                    "SELECT * FROM Tarefa " +
+                            "LEFT JOIN Anuncio " +
+                            "ON Tarefa.referencia LIKE Anuncio.referenciaTarefa " +
+                            "AND Tarefa.nifOrganizacao LIKE Anuncio.nifOrganizacao " +
+                            "WHERE Anuncio.referenciaTAREFA IS NULL AND Anuncio.nifOrganizacao IS NULL " +
+                            "AND Tarefa.nifOrganizacao LIKE ? " +
+                            "AND Tarefa.emailColaborador LIKE ?"
+            );
 
-                callableStatement.setString(1, referenciaTarefa);
-                callableStatement.setString(2, nifOrganizacao);
-                callableStatement.setString(3, email);
+            callableStatement.setString(1, nifOrganizacao);
+            callableStatement.setString(2, email);
 
-                callableStatement.executeUpdate();
+            callableStatement.executeUpdate();
 
-                ResultSet resultSet = callableStatement.getResultSet();
+            ResultSet resultSet = callableStatement.getResultSet();
 
-                while (resultSet.next()) {
+            while (resultSet.next()) {
 
-                    String designacao = resultSet.getString(3);
-                    String descInformal = resultSet.getString(4);
-                    String descTecnica = resultSet.getString(5);
-                    int duracaoEstimada = resultSet.getInt(6);
-                    double custoEstimado = resultSet.getDouble(7);
-                    String codigoCategoria = resultSet.getString(8);
-                    tarefasSemAnuncio.add(new Tarefa(nifOrganizacao, referenciaTarefa,
-                            designacao, descInformal, descTecnica, duracaoEstimada, custoEstimado, codigoCategoria, email));
+                String referenciaTarefa = resultSet.getString(2);
+                String designacao = resultSet.getString(3);
+                String descInformal = resultSet.getString(4);
+                String descTecnica = resultSet.getString(5);
+                int duracaoEstimada = resultSet.getInt(6);
+                double custoEstimado = resultSet.getDouble(7);
+                String codigoCategoria = resultSet.getString(8);
+                tarefasSemAnuncio.add(new Tarefa(nifOrganizacao, referenciaTarefa,
+                        designacao, descInformal, descTecnica, duracaoEstimada, custoEstimado, codigoCategoria, email));
 
-                }
             }
+
         }
         catch (SQLException exception) {
             exception.printStackTrace();

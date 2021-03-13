@@ -43,11 +43,8 @@ public class StartingPageUI implements Initializable {
     @FXML Button btnLogin;
     @FXML Button btnGoDark;
     @FXML Button btnGoLight;
-    
     @FXML Button btnRegistarOrganizacao;
-    
-    
-    
+
     public String estilo = "/com/grupo2/t4j/style/app.css";
 
     /**

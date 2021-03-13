@@ -1,25 +1,28 @@
 package com.grupo2.t4j.ui;
 
-import com.grupo2.t4j.controller.*;
+import com.grupo2.t4j.controller.RegistarFreelancerController;
+import com.grupo2.t4j.controller.RegistarReconhecimentoGPController;
+import com.grupo2.t4j.controller.RegistarTarefaController;
+import com.grupo2.t4j.controller.SeriarAnuncioController;
 import com.grupo2.t4j.domain.*;
-import javafx.fxml.FXML;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
-import java.net.URL;
-import java.sql.SQLException;
-import java.util.ResourceBundle;
 import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
-public class ConsultarCandidaturaFreelancerUI implements Initializable {
+import java.net.URL;
+import java.sql.SQLException;
+import java.util.ResourceBundle;
 
-    private ColaboradorLogadoUI colaboradorLogadoUI;
+public class ConsultarCandidaturaFreelancerGestorUI implements Initializable {
+
+    private GestorLogadoUI gestorLogadoUI;
 
     private RegistarFreelancerController registarFreelancerController;
     private SeriarAnuncioController seriarAnuncioController;
@@ -27,30 +30,19 @@ public class ConsultarCandidaturaFreelancerUI implements Initializable {
     private RegistarReconhecimentoGPController registarReconhecimentoGPController;
     private Stage adicionarStage;
 
-    @FXML
-    TextField txtIdAnuncio;
-    @FXML
-    TextField txtIdCandidatura;
-    @FXML
-    TextField txtNome;
-    @FXML
-    TextField txtNIF;
-    @FXML
-    TextField txtEmail;
-    @FXML
-    TextField txtApresentacao;
-    @FXML
-    TextField txtMotivacao;
-    @FXML
-    TextField txtCustoAnuncio;
-    @FXML
-    TextField txtCustoFreelancer;
-    @FXML
-    TextField txtDuracaoAnuncio;
-    @FXML
-    TextField txtDuracaoFreelancer;
-    @FXML
-    Button btnVoltar;
+    @FXML TextField txtIdAnuncio;
+    @FXML TextField txtIdCandidatura;
+    @FXML TextField txtNome;
+    @FXML TextField txtNIF;
+    @FXML TextField txtEmail;
+    @FXML TextField txtApresentacao;
+    @FXML TextField txtMotivacao;
+    @FXML TextField txtCustoAnuncio;
+    @FXML TextField txtCustoFreelancer;
+    @FXML TextField txtDuracaoAnuncio;
+    @FXML TextField txtDuracaoFreelancer;
+    @FXML Button btnVoltar;
+
     ////Tabela Reconhecimento///////////////////////
     @FXML TableColumn<Object, Object> txtCompTec;
     @FXML TableColumn<Object, Object> txtDataReconhecimento;
@@ -67,10 +59,10 @@ public class ConsultarCandidaturaFreelancerUI implements Initializable {
     
     /**
      * Associa a scene ColaboradorLogadoUI como parent desta Scene 
-     * @param ColaboradorLogadoUI 
+     * @param gestorLogadoUI
      */
-    public void associarParentUI(ColaboradorLogadoUI colaboradorLogadoUI) {
-        this.colaboradorLogadoUI = colaboradorLogadoUI;
+    public void associarParentUI(GestorLogadoUI gestorLogadoUI) {
+        this.gestorLogadoUI = gestorLogadoUI;
     }
 
     /**
@@ -102,27 +94,30 @@ public class ConsultarCandidaturaFreelancerUI implements Initializable {
      */
     public void transferData() throws SQLException {
 
-        String email = colaboradorLogadoUI.tabelaCandidaturasFreelancers.getSelectionModel().getSelectedItem().getEmail();
-        int idAnuncio = colaboradorLogadoUI.getIdAnuncio();
-        int idCandidatura = colaboradorLogadoUI.tabelaCandidaturasFreelancers.getSelectionModel().getSelectedItem().getIdCandidatura();
+        String email = gestorLogadoUI.tabelaCandidaturasFreelancers.getSelectionModel().getSelectedItem().getEmail();
+        int idAnuncio = gestorLogadoUI.getIdAnuncio();
+        int idCandidatura = gestorLogadoUI.tabelaCandidaturasFreelancers.getSelectionModel().getSelectedItem().getIdCandidatura();
 
-        Freelancer freelancer = registarFreelancerController.findByEmail(email);
-        Candidatura candidatura = seriarAnuncioController.findById(idCandidatura);
-        Tarefa tarefa = registarTarefaController.findTarefa(idAnuncio);
+        String nome = registarFreelancerController.findByEmail(email).getNome();
+        String nif = registarFreelancerController.findByEmail(email).getNif();
+        String apresentacao = seriarAnuncioController.findById(idCandidatura).getApresentacao();
+        String motivacao = seriarAnuncioController.findById(idCandidatura).getMotivacao();
+        double custoAnuncio = registarTarefaController.findTarefa(idAnuncio).getCustoEst();
+        int duracaoAnuncio = registarTarefaController.findTarefa(idAnuncio).getDuracaoEst();int duracaoFreelancer = seriarAnuncioController.findById(idCandidatura).getNumeroDias();
 
         txtIdAnuncio.setText(Integer.toString(idAnuncio));
         txtIdCandidatura.setText(Integer.toString(idCandidatura));
-        txtNome.setText(freelancer.getNome());
-        txtNIF.setText(freelancer.getNif());
+        txtNome.setText(nome);
+        txtNIF.setText(nif);
         txtEmail.setText(email);
-        txtApresentacao.setText(candidatura.getApresentacao());
-        txtMotivacao.setText(candidatura.getMotivacao());
+        txtApresentacao.setText(apresentacao);
+        txtMotivacao.setText(motivacao);
         mostrarCompetencias(email);
         mostrarHabilitacao(email);
-        txtCustoAnuncio.setText(Double.toString(registarTarefaController.findTarefa(idAnuncio).getCustoEst()));
-        txtCustoFreelancer.setText(Double.toString(colaboradorLogadoUI.tabelaCandidaturasFreelancers.getSelectionModel().getSelectedItem().getCusto()));
-        txtDuracaoFreelancer.setText(Integer.toString(colaboradorLogadoUI.tabelaCandidaturasFreelancers.getSelectionModel().getSelectedItem().getDuracao()));
-        txtDuracaoAnuncio.setText(Integer.toString(tarefa.getDuracaoEst()));
+        txtCustoAnuncio.setText(Double.toString(custoAnuncio));
+        txtCustoFreelancer.setText(Double.toString(gestorLogadoUI.tabelaCandidaturasFreelancers.getSelectionModel().getSelectedItem().getCusto()));
+        txtDuracaoFreelancer.setText(Integer.toString(gestorLogadoUI.tabelaCandidaturasFreelancers.getSelectionModel().getSelectedItem().getDuracao()));
+        txtDuracaoAnuncio.setText(Integer.toString(duracaoAnuncio));
     }
     
     /**

@@ -41,11 +41,11 @@ public interface RepositorioTarefa {
 
     List<Tarefa> findByColaboradorENif(String email, String nifOrganizacao) throws SQLException;
 
-    List<Tarefa> findTarefasPublicadas(List<String> referenciasTarefa, String nifOrganizacao, String emailColaborador)throws SQLException;
+    List<Tarefa> findTarefasPublicadas(String nifOrganizacao, String emailColaborador)throws SQLException;
 
     List<String> findReferenciaTarefa(String nifOrganizacao) throws SQLException;
 
-    List<Tarefa> findTarefasNaoPublicadas(List<String> referenciasTarefa, String email, String nifOrganizacao) throws SQLException;
+    List<Tarefa> findTarefasNaoPublicadas(String nifOrganizacao, String email) throws SQLException;
 
     Tarefa findTarefa(int idAnuncio) throws SQLException;
 

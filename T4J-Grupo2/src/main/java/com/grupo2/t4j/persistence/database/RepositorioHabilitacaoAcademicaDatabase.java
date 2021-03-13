@@ -200,7 +200,12 @@ public class RepositorioHabilitacaoAcademicaDatabase implements RepositorioHabil
         return habilitacaoAcademica;
 
     }
-   
+
+    @Override
+    public HabilitacaoAcademica findById(int idHabilitacao) throws SQLException {
+        return null;
+    }
+
     /**
      * Devolve todas as habilitacoes academicas do freelancer
      * @param email
