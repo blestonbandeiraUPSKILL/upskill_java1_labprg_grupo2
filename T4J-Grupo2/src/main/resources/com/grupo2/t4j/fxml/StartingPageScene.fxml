@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane fx:id="BorderPane" focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="600.0" styleClass="BorderPane" stylesheets="@../style/app.css" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.StartingPageUI">
+<BorderPane fx:id="BorderPane" focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="600.0" styleClass="BorderPane" stylesheets="@../style/app.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.StartingPageUI">
    <center>
       <GridPane alignment="CENTER" prefHeight="133.0" prefWidth="600.0" BorderPane.alignment="CENTER">
         <columnConstraints>
@@ -34,7 +35,7 @@
                <GridPane.margin>
                   <Insets left="100.0" right="100.0" />
                </GridPane.margin></TextField>
-            <PasswordField fx:id="txtPasswordLogin" alignment="CENTER" promptText="password" GridPane.columnIndex="1" GridPane.rowIndex="3">
+            <PasswordField fx:id="txtPasswordLogin" alignment="CENTER" onKeyPressed="#loginEnter" promptText="password" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <font>
                   <Font name="Calibri" size="14.0" />
                </font>
