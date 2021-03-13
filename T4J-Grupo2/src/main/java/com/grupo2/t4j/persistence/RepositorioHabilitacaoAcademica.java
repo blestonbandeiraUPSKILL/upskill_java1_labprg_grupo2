@@ -23,10 +23,10 @@ public interface RepositorioHabilitacaoAcademica {
 
     boolean save(HabilitacaoAcademica habilitacaoAcademica, String emailFreelancer) throws HabilitacaoAcademicaDuplicadaException, SQLException;
 
-    HabilitacaoAcademica findById(int idHabilitacao) throws SQLException;
-           
     HabilitacaoAcademica findByGrauDesigInst(String grau, String designacaoCurso,
                                              String nomeInstituicao, String emailFreelancer) throws SQLException;
+
+    HabilitacaoAcademica findById(int idHabilitacao) throws SQLException;
     
     ArrayList<HabilitacaoAcademica> getAll(String emailFreelancer) throws SQLException;
 

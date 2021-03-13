@@ -37,9 +37,8 @@ public class SeriarAnuncioController {
         return repositorioTarefa.findReferenciaTarefa(nifOrganizacao);
     }
     
-    public List<Tarefa> findTarefasPublicadas(List<String> referenciasTarefa, 
-            String nifOrganizacao, String emailColaborador)throws SQLException{
-        return repositorioTarefa.findTarefasPublicadas(referenciasTarefa, nifOrganizacao, emailColaborador);
+    public List<Tarefa> findTarefasPublicadas(String nifOrganizacao, String emailColaborador)throws SQLException{
+        return repositorioTarefa.findTarefasPublicadas(nifOrganizacao, emailColaborador);
     }
     
     public List<String> getReferenciasTarefas(List<Tarefa> listaTarefas) throws SQLException{
@@ -95,7 +94,7 @@ public class SeriarAnuncioController {
     }
     
     public int getIdSeriacao(int idAnuncio)throws SQLException{
-        return repositorioSeriacao.findByAnuncio(idAnuncio).getIdSeriacao();
+        return repositorioSeriacao.getProcessoSeriacaoByAnuncio(idAnuncio).getIdSeriacao();
     }
     
     public ProcessoSeriacao findSeriacaoByAnuncio(int idAnuncio) throws SQLException{
@@ -128,8 +127,8 @@ public class SeriarAnuncioController {
         return repositorioClassificacao.findById(idClassificacao);
     }
     
-    public ArrayList<String> getAllEmailsAlfByOrganizacao(String nifOrganizacao) throws SQLException{
-        return repositorioColaborador.getAllEmailsAlfByOrganizacao(nifOrganizacao);
+    public ArrayList<Colaborador> getAll(String nifOrganizacacao) throws SQLException{
+        return repositorioColaborador.getAll(nifOrganizacacao);
     }
     
     public boolean update(String emailColaborador, int idSeriacao) throws SQLException{

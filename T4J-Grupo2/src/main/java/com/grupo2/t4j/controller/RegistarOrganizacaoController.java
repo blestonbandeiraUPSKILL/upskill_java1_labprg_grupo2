@@ -61,17 +61,9 @@ public class RegistarOrganizacaoController {
                 emailGestor, funcaoGestor, telefoneGestor);
     }
 
-    public List<Organizacao> getAll() {
-        return repositorioOrganizacao.getAll();
-    }
 
-    public Organizacao findByNif(String nif) throws SQLException {
-        return repositorioOrganizacao.findByNif(nif);
-    }
 
-    public Colaborador findColaboradorByEmail(String email) throws SQLException {
-        return repositorioColaborador.findByEmail(email);
-    }
+
 
 
 

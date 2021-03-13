@@ -26,12 +26,14 @@ public class RegistarReconhecimentoGPController {
         return repositorioReconhecimentoGP.save(idGrauProficiencia, emailFreelancer, dataReconhecimento);
     }
 
+     /**
+      * Devolve uma lista de todos os reconhecimentos conferidos a um freelancer
+      * @param email
+      * @return
+      * @throws SQLException 
+      */
     public List<ReconhecimentoGP> getAll(String email) throws SQLException{
         return repositorioReconhecimentoGP.getAll(email);
-    }
-   
-    public ReconhecimentoGP findByEmailCompetencia(String email, String idCompetenciaTecnica) throws SQLException{
-        return repositorioReconhecimentoGP.findByEmailCompetencia(email, idCompetenciaTecnica);
     }
 
 

@@ -34,22 +34,14 @@ public class AdicionarReconhecimentoGPUI implements Initializable {
 
     private Stage adicionarStage;
 
-    @FXML
-    TextField txtNomeFreelancer;
-    @FXML
-    TextField txtIDataValidacao;
-    @FXML
-    ComboBox<Freelancer> cmbEmailFreelancer;
-    @FXML
-    ComboBox<CompetenciaTecnica> cmbCompetencia;
-    @FXML
-    ComboBox<GrauProficiencia> cmbProficiencia;
-    @FXML
-    Button btnAddCompetencia;
-    @FXML
-    Button btnCancelar;
-    @FXML
-    Button btnSair;
+    @FXML TextField txtNomeFreelancer;
+    @FXML TextField txtIDataValidacao;
+    @FXML ComboBox<Freelancer> cmbEmailFreelancer;
+    @FXML ComboBox<CompetenciaTecnica> cmbCompetencia;
+    @FXML ComboBox<GrauProficiencia> cmbProficiencia;
+    @FXML Button btnAddCompetencia;
+    @FXML Button btnCancelar;
+    @FXML Button btnSair;
     
     ////Tabela Reconhecimento///////////////////////
     @FXML TableColumn<Object, Object> txtCompTec;
@@ -57,6 +49,10 @@ public class AdicionarReconhecimentoGPUI implements Initializable {
     @FXML TableColumn<Object, Object> txtGrau;
     @FXML TableView<ReconhecimentoGP> tabelaReconhecimento;
 
+    /**
+     * Associa a scene AdministrativoLogadoUI como parent desta Scene 
+     * @param administrativoLogadoUI 
+     */
     public void associarParentUI(AdministrativoLogadoUI administrativoLogadoUI) {
         this.administrativoLogadoUI = administrativoLogadoUI;
     }
@@ -115,16 +111,23 @@ public class AdicionarReconhecimentoGPUI implements Initializable {
                 }
             }
         });
-
     }
 
+    /**
+     * Atualiza a combobox de grau de proficiencia de acordo com a competencia tecnica escolhida
+     * @param actionEvent
+     * @throws SQLException 
+     */
     public void updateCmbGrauProficiencia(ActionEvent actionEvent) throws SQLException {
         String codigoCompetenciaTecnica = cmbCompetencia.getSelectionModel().getSelectedItem().getCodigo();
         cmbProficiencia.getItems().setAll(
                 registarGrauProficienciaController.findByCompetenciaTecnica(codigoCompetenciaTecnica));
     }
 
-    
+    /**
+     * Preenche a tabela de competencias do Freelancer
+     * @throws SQLException 
+     */
     public void mostrarCompetencias () throws SQLException {
         String emailFreelancer = cmbEmailFreelancer.getSelectionModel().getSelectedItem().getEmail().getEmailText();
         tabelaReconhecimento.getItems().setAll(registarReconhecimentoGPController.getAll(emailFreelancer));
@@ -134,15 +137,23 @@ public class AdicionarReconhecimentoGPUI implements Initializable {
         txtDataReconhecimento.setCellValueFactory(new PropertyValueFactory<>("dataReconhecimento"));
     }
 
+    /**
+     * Atualiza o nome do Freelancer de acordo com o escolhido na combobox
+     * @param actionEvent
+     * @throws SQLException 
+     */
     public void updateTxtNomeFreelancer(ActionEvent actionEvent) throws SQLException {
         String emailFreelancer = cmbEmailFreelancer.getSelectionModel().getSelectedItem().getEmail().getEmailText();
         txtNomeFreelancer.setText(registarFreelancerController.findByEmail(emailFreelancer).getNome());
     }
 
+    /**
+     * Adiciona um reconhecimento de competencia tecnica ao Freelancer
+     * @param event 
+     */
     @FXML
     void addCompetencia(ActionEvent event) {
         try {
-
             boolean adicionou = registarReconhecimentoGPController.registarReconhecimentoGP(
                     cmbProficiencia.getSelectionModel().getSelectedItem().getIdGrauProficiencia(),
                     cmbEmailFreelancer.getSelectionModel().getSelectedItem().getEmail().getEmailText(),
@@ -160,15 +171,22 @@ public class AdicionarReconhecimentoGPUI implements Initializable {
                     MainApp.TITULO_APLICACAO,
                     "Registar Validação de Competência Técnica - Erro nos dados.",
                     "Não foi possível validar a Competência Técnica." + exception.getMessage()).show();
-
         }
     }
 
+    /**
+     * Cancela a operacao
+     * @param event 
+     */
     @FXML
     public void cancelarAction(ActionEvent event) {
         txtIDataValidacao.clear();
     }
 
+    /**
+     * Volta para a scene anterior
+     * @param event 
+     */
     @FXML
     public void sairAction(ActionEvent event) {
         Window window = btnSair.getScene().getWindow();

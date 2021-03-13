@@ -39,36 +39,30 @@ public class FreelancerLogadoUI implements Initializable {
     private EliminarCandidaturaController eliminarCandidaturaController;
     private Scene sceneConsultarCandidatura;
 
-    @FXML
-    Button btnSair;
-    ///// Tabela Anuncios //////////////
-    @FXML
-    TableColumn<Object, Object> colunaReferencia;
-    @FXML
-    TableColumn<Object, Object> colunaDesignacao;
-    @FXML
-    TableColumn<Object, Object> colunaDuracao;
-    @FXML
-    TableColumn<Object, Object> colunaCusto;
+    @FXML Button btnSair;
 
-    @FXML
-    TableView<Tarefa> tabelaAnuncios;
+    ///// Tabela Anuncios //////////////
+    @FXML TableView<Tarefa> tabelaAnuncios;
+
+    @FXML TableColumn<Object, Object> colunaReferencia;
+    @FXML TableColumn<Object, Object> colunaDesignacao;
+    @FXML TableColumn<Object, Object> colunaDuracao;
+    @FXML TableColumn<Object, Object> colunaCusto;
 
     /////Tabela Candidaturas ////////////
-    @FXML
-    TableColumn<Object, Object> txtIdCandidatura;
-    @FXML
-    TableColumn<Object, Object> txtValorPretendido;
-    @FXML
-    TableColumn<Object, Object> txtDuracaoEstimada;
-    @FXML
-    TableColumn<Object, Object> txtDataCandidatura;
-    @FXML
-    TableColumn<Object, Object> txtDataEdicao;
+    @FXML TableView<Candidatura> tabelaCandidaturas;
 
-    @FXML
-    TableView<Candidatura> tabelaCandidaturas;
+    @FXML TableColumn<Object, Object> txtIdCandidatura;
+    @FXML TableColumn<Object, Object> txtValorPretendido;
+    @FXML TableColumn<Object, Object> txtDuracaoEstimada;
+    @FXML TableColumn<Object, Object> txtDataCandidatura;
+    @FXML TableColumn<Object, Object> txtDataEdicao;
 
+
+    /**
+     * Associa a scene StartingPageUI como parent desta Scene 
+     * @param startingPageUI
+     */
     public void associarParentUI(StartingPageUI startingPageUI) {
         this.startingPageUI = startingPageUI;
     }
@@ -110,6 +104,10 @@ public class FreelancerLogadoUI implements Initializable {
 
     }
 
+    /**
+     * Devolve o email do Freelancer logado
+     * @return 
+     */
     public String getEmail() {
         return gestaoUtilizadoresController.getEmail();
     }
@@ -120,9 +118,14 @@ public class FreelancerLogadoUI implements Initializable {
     }
 
     private ObservableList<Tarefa> listaAnuncios() throws SQLException {
-        return FXCollections.observableArrayList(registarTarefaController.getAllTarefasElegíveis(gestaoUtilizadoresController.getEmail()));
+        return FXCollections.observableArrayList(registarTarefaController.tarefasElegiveis(
+                gestaoUtilizadoresController.getEmail()));
     }
 
+    /**
+     * Preenche a tabela de anuncios
+     * @throws SQLException 
+     */
     public void updateTableViewAnuncio() throws SQLException {
         tabelaAnuncios.setItems(listaAnuncios());
 
@@ -133,6 +136,10 @@ public class FreelancerLogadoUI implements Initializable {
 
     }
 
+    /**
+     * Faz logout da sessao
+     * @param actionEvent 
+     */
     public void logout(ActionEvent actionEvent) {
         Window window = btnSair.getScene().getWindow();
         window.setOnCloseRequest(new EventHandler<WindowEvent>() {
@@ -177,6 +184,11 @@ public class FreelancerLogadoUI implements Initializable {
 
     }
 
+    
+    /**
+     * Navega para a pagina EfectuarCandidaturaUI
+     * @param actionEvent 
+     */
     public void navigateEfectuarCandidatura(ActionEvent actionEvent) {
 
         try {
@@ -199,6 +211,10 @@ public class FreelancerLogadoUI implements Initializable {
         }
     }
 
+    /**
+     * Preenche a tabela de candidaturas do freelancer
+     * @throws SQLException 
+     */
     public void updateTableViewCandidaturas() throws SQLException {
 
         String emailFreelancer = gestaoUtilizadoresController.getEmail();
@@ -212,6 +228,11 @@ public class FreelancerLogadoUI implements Initializable {
 
     }
 
+    /**
+     * Apaga uma candidatura do freelancer
+     * @param actionEvent
+     * @throws SQLException 
+     */
     public void apagarCandidatura(ActionEvent actionEvent) throws SQLException {
         int idCandidatura = getIdCandidatura();
 
@@ -235,6 +256,11 @@ public class FreelancerLogadoUI implements Initializable {
         }
     }
 
+    /**
+     * Navega para a pagina ConsultarCandidaturaUI
+     * @param actionEvent
+     * @throws SQLException 
+     */
     public void consultarCandidatura(ActionEvent actionEvent) throws SQLException {
         try {
 
@@ -259,6 +285,11 @@ public class FreelancerLogadoUI implements Initializable {
         }
     }
 
+    /**
+     * Devolve o id da candidatura selecionada
+     * @return
+     * @throws SQLException 
+     */
     public int getIdCandidatura() throws SQLException {
         int idCandidatura = tabelaCandidaturas.getSelectionModel().getSelectedItem().getIdCandidatura();
 

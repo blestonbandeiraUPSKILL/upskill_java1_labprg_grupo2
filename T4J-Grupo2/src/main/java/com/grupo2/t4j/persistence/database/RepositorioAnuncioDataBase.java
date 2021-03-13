@@ -6,10 +6,8 @@ package com.grupo2.t4j.persistence.database;
  */
 import com.grupo2.t4j.exception.AnuncioDuplicadoException;
 import com.grupo2.t4j.domain.Anuncio;
-import com.grupo2.t4j.domain.Data;
 import com.grupo2.t4j.domain.Tarefa;
 import com.grupo2.t4j.domain.TipoRegimento;
-import com.grupo2.t4j.domain.TipoStatusAnuncio;
 import com.grupo2.t4j.persistence.RepositorioAnuncio;
 import com.grupo2.t4j.utils.DBConnectionHandler;
 
@@ -43,8 +41,24 @@ public class RepositorioAnuncioDataBase implements RepositorioAnuncio {
         return repositorioAnuncioDataBase;
     }
 
+    /**
+     * Guarda um anuncio na base de dados
+     * @param referenciaTarefa
+     * @param nifOrganizacao
+     * @param dtInicioPublicitacao
+     * @param dtFimPublicitacao
+     * @param dtInicioCandidatura
+     * @param dtFimCandidatura
+     * @param dtInicioSeriacao
+     * @param dtFimSeriacao
+     * @param idTipoRegimento
+     * @return
+     * @throws AnuncioDuplicadoException
+     * @throws SQLException 
+     */
     @Override
-    public boolean save(String referenciaTarefa, String nifOrganizacao, String dtInicioPublicitacao, String dtFimPublicitacao, String dtInicioCandidatura, String dtFimCandidatura, String dtInicioSeriacao,
+    public boolean save(String referenciaTarefa, String nifOrganizacao, String dtInicioPublicitacao,
+                        String dtFimPublicitacao, String dtInicioCandidatura, String dtFimCandidatura, String dtInicioSeriacao,
             String dtFimSeriacao, int idTipoRegimento) throws AnuncioDuplicadoException, SQLException {
 
         Connection connection = DBConnectionHandler.getInstance().openConnection();
@@ -87,6 +101,12 @@ public class RepositorioAnuncioDataBase implements RepositorioAnuncio {
 
     }
 
+    /**
+     * Guarda um anuncio na base de dados
+     * @param anuncio
+     * @return
+     * @throws SQLException 
+     */
     @Override
     public boolean save(Anuncio anuncio) throws SQLException {
 
@@ -135,6 +155,13 @@ public class RepositorioAnuncioDataBase implements RepositorioAnuncio {
     }
 
 
+    /**
+     * Devolve o anuncio que corresponde a uma tarefa 
+     * @param referenciaTarefa
+     * @param nifOrganizacao
+     * @return
+     * @throws SQLException 
+     */
     @Override
     public Anuncio findAnuncioByIdTarefa(String referenciaTarefa, String nifOrganizacao) throws SQLException {
 
@@ -164,6 +191,11 @@ public class RepositorioAnuncioDataBase implements RepositorioAnuncio {
         return new Anuncio();
     }
 
+    /**
+     * Devolve todos os tipos de regimento registados na base de dados
+     * @return
+     * @throws SQLException 
+     */
     @Override
     public ArrayList<TipoRegimento> getAllRegimento() throws SQLException {
 
@@ -202,52 +234,6 @@ public class RepositorioAnuncioDataBase implements RepositorioAnuncio {
         return tiposRegimento;
     }
 
-    @Override
-    public List<Anuncio> findAnunciosElegiveis(String email) throws SQLException {
-        ArrayList<Anuncio> anunciosElegiveis = new ArrayList<>();
-
-        Connection connection = DBConnectionHandler.getInstance().openConnection();
-
-        try {
-            PreparedStatement preparedStatement = connection.prepareStatement(
-                    "SELECT * FROM Anuncio "
-            );
-
-            ResultSet resultSet = preparedStatement.executeQuery();
-
-            while (resultSet.next()) {
-                int idAnuncio = resultSet.getInt(1);
-                String referenciaTarefa = resultSet.getString(2);
-                String nifOrganizacao = resultSet.getString(3);
-                String dtInicioPublicitacao = resultSet.getString(4);
-                String dtFimPublicitacao = resultSet.getString(5);
-                String dtInicioCandidatura = resultSet.getString(6);
-                String dtFimCandidatura = resultSet.getString(7);
-                String dtInicioSeriacao = resultSet.getString(8);
-                String dtFimSeriacao = resultSet.getString(9);
-                int idTipoRegimento = resultSet.getInt(10);
-                anunciosElegiveis.add(new Anuncio(idAnuncio,referenciaTarefa, nifOrganizacao,
-                        dtInicioPublicitacao, dtFimPublicitacao, dtInicioCandidatura,
-                dtFimCandidatura, dtInicioSeriacao, dtFimSeriacao, idTipoRegimento));
-            }
-
-        } catch (SQLException exception) {
-            exception.printStackTrace();
-            exception.getSQLState();
-            try {
-                System.err.print("Transaction is being rolled back");
-                connection.rollback();
-            } catch (SQLException sqlException) {
-                sqlException.getErrorCode();
-            }
-
-        } finally {
-            DBConnectionHandler.getInstance().closeAll();
-        }
-        return anunciosElegiveis;
-    }
-
-    @Override
     public Anuncio getAnuncio(int idAnuncio) throws SQLException {
         Anuncio anuncio = new Anuncio();
 
@@ -300,7 +286,54 @@ public class RepositorioAnuncioDataBase implements RepositorioAnuncio {
         }
         return anuncio;
     }
-    
+
+    @Override
+    public boolean findAnuncioByEmailFreelancer(String emailFreelancer) throws SQLException {
+
+        Connection connection = DBConnectionHandler.getInstance().openConnection();
+
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(
+                    "SELECT * FROM Anuncio " +
+                            "LEFT JOIN Candidatura " +
+                            "ON Anuncio.idAnuncio = Candidatura.idAnuncio " +
+                            "WHERE Candidatura.emailFreelancer LIKE ? " +
+                            "AND candidatura.idCandidatura IS NULL"
+            );
+
+            preparedStatement.setString(1, emailFreelancer);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet != null) {
+
+                return false;
+            }
+
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+            exception.getSQLState();
+            try {
+                System.err.print("Transaction is being rolled back");
+                connection.rollback();
+            } catch (SQLException sqlException) {
+                sqlException.getErrorCode();
+            }
+
+        } finally {
+            DBConnectionHandler.getInstance().closeAll();
+        }
+        return true;
+    }
+
+    /**
+     * Devolve todas as tarefas de um colaborador e de um dado tipo de regimento
+     * @param referenciasTarefa
+     * @param emailColaborador
+     * @param idTipoRegimento
+     * @return
+     * @throws SQLException 
+     */
     @Override
     public List<String> getAllRefTarefasTipoRegimento(List<String> referenciasTarefa, String emailColaborador, int idTipoRegimento) throws SQLException{
         

@@ -72,6 +72,18 @@ public class Freelancer extends Utilizador implements Serializable{
         this.idEnderecoPostal = freelancer.idEnderecoPostal;
     }
 
+    /**
+     * Construtor de um Freelancer
+     * @param email
+     * @param nome
+     * @param nif
+     * @param telefone
+     * @param password
+     * @param arruamento
+     * @param numeroPorta
+     * @param localidade
+     * @param codigoPostal 
+     */
     public Freelancer(String email, String nome, String nif, String telefone, String password, String arruamento, String numeroPorta, String localidade, String codigoPostal) {
         setEmail(new Email(email));
         setTelefone(telefone);
@@ -81,6 +93,17 @@ public class Freelancer extends Utilizador implements Serializable{
         setPassword(new Password(password));
     }
 
+    /**
+     * Construtor de um Freelancer
+     * @param email
+     * @param nome
+     * @param telefone
+     * @param nif
+     * @param arruamento
+     * @param numeroPorta
+     * @param localidade
+     * @param codigoPostal 
+     */
     public Freelancer(String email, String nome, String telefone, String nif, String arruamento, String numeroPorta, String localidade, String codigoPostal) {
         setEmail(new Email(email));
         setNome(nome);
@@ -89,6 +112,14 @@ public class Freelancer extends Utilizador implements Serializable{
         setEnderecoPostal(new EnderecoPostal(arruamento, numeroPorta, localidade, codigoPostal));
     }
 
+    /**
+     * Construtor de um Freelancer
+     * @param email
+     * @param nome
+     * @param telefone
+     * @param nif
+     * @param idEnderecoPostal 
+     */
     public Freelancer(String email, String nome, String telefone, String nif, int idEnderecoPostal) {
         setEmail(email);
         setNome(nome);
@@ -98,10 +129,18 @@ public class Freelancer extends Utilizador implements Serializable{
     }
 
 
+    /**
+     * Atualiza o id do endereco postal
+     * @param idEnderecoPostal 
+     */
     public void setIdEnderecoPostal(int idEnderecoPostal) {
         this.idEnderecoPostal = idEnderecoPostal;
     }
 
+    /**
+     * Atualiza o endereco postal
+     * @param enderecoPostal 
+     */
     private void setEnderecoPostal(EnderecoPostal enderecoPostal) {
         if(enderecoPostal != null) {
             this.EnderecoPostal = enderecoPostal;

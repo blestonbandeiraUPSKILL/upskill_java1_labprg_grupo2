@@ -24,9 +24,7 @@ public interface RepositorioReconhecimentoGP {
             SQLException;
     
     List<ReconhecimentoGP> getAll(String email) throws SQLException;
-    
-    List<ReconhecimentoGP> findByEmail(String email) throws SQLException;
-    
-    ReconhecimentoGP findByEmailCompetencia(String email, String idCompetenciaTecnica) throws SQLException;
+
+
     
 }

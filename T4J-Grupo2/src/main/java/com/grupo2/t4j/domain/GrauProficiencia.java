@@ -16,24 +16,56 @@ import com.grupo2.t4j.exception.GrauInvalidoException;
 
 public class GrauProficiencia {
 
+    /**
+     * O id do Grau de Proficiencia
+     */
     private int idGrauProficiencia;
+    
+    /**
+     * O grau de proficiencia
+     */
     private int grau;
+    
+    /**
+     * A designacao do grau de competencia
+     */
     private String designacao;
+    
+    /**
+     * O codigo da competencia tecnica
+     */
     private String codigoCompetenciaTecnica;
 
     public GrauProficiencia() {
     }
 
+    /**
+     * Contrutor do Grau de Proficiencia
+     * @param gp 
+     */
     public GrauProficiencia(GrauProficiencia gp) {
         setGrau(gp.grau);
         setDesignacao(gp.designacao);
     }
     
+    /**
+     * Contrutor do Grau de Proficiencia
+     * @param grau
+     * @param designacao 
+     */
     public GrauProficiencia(int grau, String designacao) {
         setGrau(grau);
         setDesignacao(designacao);
         
     }
+    
+    /**
+     * Contrutor do Grau de Proficiencia
+     * @param idGrauProficiencia
+     * @param grau
+     * @param designacao
+     * @param codigoCompetenciaTecnica 
+     */
     public GrauProficiencia(int idGrauProficiencia, int grau, String designacao, String codigoCompetenciaTecnica){
         this.idGrauProficiencia = idGrauProficiencia;
         setGrau(grau);
@@ -41,20 +73,38 @@ public class GrauProficiencia {
         setCodigoCompetenciaTecnica(codigoCompetenciaTecnica);
     }
 
+    /**
+     * Contrutor do Grau de Proficiencia
+     * @param grau
+     * @param designacao
+     * @param codigoCompetenciaTecnica 
+     */
     public GrauProficiencia(int grau, String designacao, String codigoCompetenciaTecnica) {
         setGrau(grau);
         setDesignacao(designacao);
         setCodigoCompetenciaTecnica(codigoCompetenciaTecnica);
     }
 
+    /**
+     * Devolve o id do grau de proficiencia
+     * @return 
+     */
     public int getIdGrauProficiencia() {
         return idGrauProficiencia;
     }
 
+    /**
+     * Devolve o grau de proficiencia
+     * @return 
+     */
     public int getGrau() {
         return grau;
     }
 
+    /**
+     * Atualiza o grau de proficiencia
+     * @param grau 
+     */
     public void setGrau(int grau) {
         if (grau < 0) {
             throw new GrauInvalidoException("O valor do grau é inválido.");
@@ -62,10 +112,18 @@ public class GrauProficiencia {
         this.grau = grau;
     }
 
+    /**
+     * Devolve a designacao do grau de proficiencia
+     * @return 
+     */
     public String getDesignacao() {
         return designacao;
     }
 
+    /**
+     * Atualiza a designacao do grau de proficiencia
+     * @param designacao 
+     */
     public void setDesignacao(String designacao) {
         if (designacao == null || designacao.trim().isEmpty()) {
             throw new DescricaoInvalidaException("A descrição é inválida.");
@@ -73,10 +131,18 @@ public class GrauProficiencia {
         this.designacao = designacao;
     }
     
+    /**
+     * Devolve o codigo de uma competencia tecnica
+     * @return 
+     */
     public String getCodigoCompetenciaTecnica(){
         return codigoCompetenciaTecnica;
     }
-
+    
+    /**
+     * Atualiza o codigo da competencia tecnica
+     * @param codigoCompetenciaTecnica 
+     */
     private void setCodigoCompetenciaTecnica(String codigoCompetenciaTecnica) {
         if(codigoCompetenciaTecnica != null) {
             this.codigoCompetenciaTecnica = codigoCompetenciaTecnica;
@@ -95,7 +161,10 @@ public class GrauProficiencia {
         return String.format("%s - %s", designacao, grau);
     }
     
-    
+    /**
+     * Representação textual completa do Grau de Proficiência no formato de exibição
+     * @return 
+     */
     public String toStringCompleta() {
         return "GrauProficiencia{" +
                 "grau='" + grau + '\'' +

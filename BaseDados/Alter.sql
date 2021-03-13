@@ -213,3 +213,6 @@ ALTER TABLE UserSession
         FOREIGN KEY(idRolename)
         REFERENCES Rolename(idRolename);
 
+ALTER TABLE Candidatura
+    ADD CONSTRAINT uk_Candidatura_emailFreelancer_idAnuncio
+    UNIQUE (emailFreelancer, idAnuncio);

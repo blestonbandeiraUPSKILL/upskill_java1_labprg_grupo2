@@ -218,6 +218,11 @@ public class Categoria implements Serializable{
                 '}';            
     }
 
+    /**
+     * Reescreve o metodo equals
+     * @param categoria
+     * @return 
+     */
     @Override
     public boolean equals(Object categoria) {
         if (this == categoria)

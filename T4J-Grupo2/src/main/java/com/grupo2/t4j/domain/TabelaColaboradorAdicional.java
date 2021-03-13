@@ -11,16 +11,16 @@ package com.grupo2.t4j.domain;
  */
 public class TabelaColaboradorAdicional {
     
-    private String emailColaboradorAdd;
+    private String email;
     private String selecao;
     
-    public TabelaColaboradorAdicional(String emailColaboradorAdd,String selecao){
-        setEmail(emailColaboradorAdd);
+    public TabelaColaboradorAdicional(String email,String selecao){
+        setEmail(email);
         setSelecao(selecao);
     }
     
-    public void setEmail(String emailColaboradorAdd){
-        this.emailColaboradorAdd = emailColaboradorAdd;
+    public void setEmail(String email){
+        this.email = email;
     }
     
     public void setSelecao(String selecao){
@@ -28,7 +28,7 @@ public class TabelaColaboradorAdicional {
     }
     
     public String getEmail(){
-        return emailColaboradorAdd;
+        return email;
     }
     
     public String getSelecao(){

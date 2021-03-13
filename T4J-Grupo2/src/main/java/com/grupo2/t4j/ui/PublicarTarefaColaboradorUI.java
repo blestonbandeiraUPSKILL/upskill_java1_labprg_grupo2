@@ -16,7 +16,7 @@ import java.util.ResourceBundle;
 /**
  * FXML Controller class
  */
-public class PublicarTarefaUI implements Initializable {
+public class PublicarTarefaColaboradorUI implements Initializable {
 
     private ColaboradorLogadoUI colaboradorLogadoUI;
     private PublicarTarefaController publicarTarefaController;
@@ -33,6 +33,10 @@ public class PublicarTarefaUI implements Initializable {
     @FXML ComboBox<TipoRegimento> cmbTipoSeriacao;
 
     
+    /**
+     * Associa a scene ColaboradorLogadoUI como parent desta Scene 
+     * @param colaboradorLogadoUI
+     */
     public void associarParentUI(ColaboradorLogadoUI colaboradorLogadoUI) {
         this.colaboradorLogadoUI = colaboradorLogadoUI;
     }
@@ -59,6 +63,12 @@ public class PublicarTarefaUI implements Initializable {
            }
            });
     }    
+    
+    /**
+     * Publica uma tarefa
+     * @param actionEvent
+     * @throws SQLException 
+     */
     @FXML
     void publicarTarefaAction(ActionEvent actionEvent) throws SQLException{
         try {
@@ -74,8 +84,6 @@ public class PublicarTarefaUI implements Initializable {
                     cmbTipoSeriacao.getSelectionModel().getSelectedItem().getIdTipoRegimento());
 
             if (adicionou){
-                colaboradorLogadoUI.updateTableViewTarefas();
-
             AlertsUI.criarAlerta(Alert.AlertType.INFORMATION,
                     MainApp.TITULO_APLICACAO,
                     "Publicar Tarefa.",
@@ -83,9 +91,11 @@ public class PublicarTarefaUI implements Initializable {
             }
 
             closePublicarTarefa(actionEvent);
+            colaboradorLogadoUI.updateTableViewTarefas();
 
         }
         catch (IllegalArgumentException exception) {
+            exception.printStackTrace();
             AlertsUI.criarAlerta(Alert.AlertType.ERROR,
                     MainApp.TITULO_APLICACAO,
                     "Publicar Tarefa - Erro nos dados.",
@@ -95,11 +105,19 @@ public class PublicarTarefaUI implements Initializable {
 
     }
     
+    /**
+     * Volta para a scene anterior
+     * @param event 
+     */
     @FXML
     void voltarAtras(ActionEvent event) {
         btnVoltar.getScene().getWindow().hide();
     }
     
+    /**
+     * Termina o registo de uma tarefa
+     * @param actionEvent 
+     */
     private void closePublicarTarefa(ActionEvent actionEvent) {
 
         ((Node) actionEvent.getSource()).getScene().getWindow().hide();

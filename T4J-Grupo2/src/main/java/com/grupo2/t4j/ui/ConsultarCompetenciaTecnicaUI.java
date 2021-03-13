@@ -40,6 +40,10 @@ public class ConsultarCompetenciaTecnicaUI implements Initializable {
     @FXML
     Button btnVoltar;
 
+    /**
+     * Associa a scene AdministrativoLogadoUI como parent desta Scene 
+     * @param AdministrativoLogadoUI 
+     */
     public void associarParentUI(AdministrativoLogadoUI administrativoLogadoUI) {
         this.administrativoLogadoUI = administrativoLogadoUI;
     }
@@ -65,6 +69,10 @@ public class ConsultarCompetenciaTecnicaUI implements Initializable {
 
     }
 
+    /**
+     * Preenche a scene com os dados da competencia tecnica
+     * @throws SQLException 
+     */
     public void transferData() throws SQLException {
 
         String codigoCompetenciaTecnica = administrativoLogadoUI.tableViewCompetenciaTecnica.getSelectionModel().getSelectedItem().getCodigo();
@@ -75,6 +83,13 @@ public class ConsultarCompetenciaTecnicaUI implements Initializable {
         listViewGrausAplicaveis.getItems().setAll(registarGrauProficienciaController.getAllByCompetenciaTecnica(txtCodigoCompetenciaTecnica.getText()));
         txtAreaActividade.setText(registarAreaActividadeController.getAreaActividade(codigoAreaActividade).getDescBreve());
     }
+
+
+
+    /**
+     * Volta para a scene anterior
+     * @param actionEvent 
+     */
 
     public void voltarAtras(ActionEvent actionEvent) {
         btnVoltar.getScene().getWindow().hide();

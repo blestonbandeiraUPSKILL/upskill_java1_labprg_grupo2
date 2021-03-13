@@ -28,25 +28,29 @@ public class RegistarHabilitacaoAcademicaController {
 
         HabilitacaoAcademica habilitacao = new HabilitacaoAcademica(grau, designacaoCurso, nomeInstituicao, mediaCurso);
 
-
         return repositorioHabilitacaoAcademica.save(habilitacao, emailFreelancer);
     }
 
-
-
+    /**
+     * Devolve a lista de todas as habilitacoes academicas de um freelancer
+     * @param emailFreelancer
+     * @return
+     * @throws SQLException 
+     */
     public List<HabilitacaoAcademica> getAll(String emailFreelancer) throws SQLException{
         return repositorioHabilitacaoAcademica.getAll(emailFreelancer);
     }
-        
+       
+    /**
+     * Devolve uma habilitacao academica a partir do seu id
+     * @param idHabilitacao
+     * @return
+     * @throws SQLException 
+     */
     public HabilitacaoAcademica findById(int idHabilitacao) throws SQLException{
         return repositorioHabilitacaoAcademica.findById(idHabilitacao);
     }
-    
-    public HabilitacaoAcademica findByGrauDesigInst(String grau, String designacaoCurso,
-                                                String nomeInstituicao, String emailFreelancer) throws SQLException{
-        return repositorioHabilitacaoAcademica.findByGrauDesigInst(grau, designacaoCurso,
-           nomeInstituicao, emailFreelancer);
-    }
+
 
 
 }

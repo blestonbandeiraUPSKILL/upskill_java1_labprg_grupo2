@@ -23,21 +23,18 @@ public class EfectuarCandidaturaUI implements Initializable {
     private RegistarAnuncioController registarAnuncioController;
     private RegistarTarefaController registarTarefaController;
 
-    @FXML
-    TextArea txtAnuncio;
-    @FXML
-    TextArea txtApresentacao;
-    @FXML
-    TextArea txtMotivacao;
-    @FXML
-    TextField txtValor;
-    @FXML
-    TextField txtDias;
-    @FXML
-    Button btnCancelar;
-    @FXML
-    Button btnAddCandidatura;
+    @FXML TextArea txtAnuncio;
+    @FXML TextArea txtApresentacao;
+    @FXML TextArea txtMotivacao;
+    @FXML TextField txtValor;
+    @FXML TextField txtDias;
+    @FXML Button btnCancelar;
+    @FXML Button btnAddCandidatura;
 
+    /**
+     * Associa a scene FreelancerLogadoUI como parent desta Scene 
+     * @param freelancerLogadoUI
+     */
     public void associarParentUI(FreelancerLogadoUI freelancerLogadoUI) {
         this.freelancerLogadoUI = freelancerLogadoUI;
     }
@@ -59,6 +56,13 @@ public class EfectuarCandidaturaUI implements Initializable {
 
     }
 
+    
+    /**
+     * Devolve o id do anuncio selecionado
+     * @return
+     * @throws SQLException 
+     */
+
     public int getIdAnuncio() throws SQLException {
 
         String nifOrganizacao = freelancerLogadoUI.tabelaAnuncios.getSelectionModel().getSelectedItem().getNifOrganizacao();
@@ -68,6 +72,11 @@ public class EfectuarCandidaturaUI implements Initializable {
         return idAnuncio;
     }
 
+    /**
+     * Adiciona uma nova candidatura
+     * @param actionEvent
+     * @throws SQLException 
+     */
     public void addCandidatura(ActionEvent actionEvent) throws SQLException {
 
         String emailFreelancer = freelancerLogadoUI.getEmail();
@@ -85,6 +94,7 @@ public class EfectuarCandidaturaUI implements Initializable {
             if (adicionou) {
 
                 freelancerLogadoUI.updateTableViewCandidaturas();
+                freelancerLogadoUI.updateTableViewAnuncio();
                 btnAddCandidatura.setDisable(true);
 
                 AlertsUI.criarAlerta(Alert.AlertType.INFORMATION,
@@ -105,6 +115,10 @@ public class EfectuarCandidaturaUI implements Initializable {
 
     }
 
+    /**
+     * Cancela a operacao
+     * @param actionEvent 
+     */
     public void cancelarAction(ActionEvent actionEvent) {
         Window window = btnCancelar.getScene().getWindow();
         window.setOnCloseRequest(new EventHandler<WindowEvent>() {
@@ -123,11 +137,19 @@ public class EfectuarCandidaturaUI implements Initializable {
         window.fireEvent(new WindowEvent(window, WindowEvent.WINDOW_CLOSE_REQUEST));
     }
 
+    /**
+     * Preenche os dados do anuncio
+     * @throws SQLException 
+     */
     public void transferData() throws SQLException {
         txtAnuncio.setText(registarTarefaController.findTarefa(getIdAnuncio()).toStringCompleto());
 
     }
 
+    /**
+     * Fecha a candidatura
+     * @param event 
+     */
     private void closeEfectuarCandidatura(ActionEvent event) {
         this.txtAnuncio.clear();
         this.txtApresentacao.clear();

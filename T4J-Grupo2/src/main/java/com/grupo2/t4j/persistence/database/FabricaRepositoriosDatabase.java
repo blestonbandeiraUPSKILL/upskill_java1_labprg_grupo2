@@ -7,11 +7,6 @@ import java.sql.SQLException;
 public class FabricaRepositoriosDatabase implements FabricaRepositorios {
 
     @Override
-    public RepositorioAdministrativo getRepositorioAdministrativo() {
-        return RepositorioAdministrativoDatabase.getInstance();
-    }
-
-    @Override
     public RepositorioAnuncio getRepositorioAnuncio() {
         return RepositorioAnuncioDataBase.getInstance();
     }
@@ -79,11 +74,6 @@ public class FabricaRepositoriosDatabase implements FabricaRepositorios {
     @Override
     public RepositorioTipoRegimento getRepositorioTipoRegimento() {
         return RepositorioTipoRegimentoDatabase.getInstance();
-    }
-    
-    @Override
-    public RepositorioUtilizador getRepositorioUtilizador() {
-        return RepositorioUtilizadorDatabase.getInstance();
     }
     
     @Override

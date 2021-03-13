@@ -40,6 +40,17 @@ public class RepositorioHabilitacaoAcademicaDatabase implements RepositorioHabil
     }
 
 
+    /**
+     * Regista uma Habilitacao Academica
+     * @param grau
+     * @param designacaoCurso
+     * @param nomeInstituicao
+     * @param mediaCurso
+     * @param emailFreelancer
+     * @return
+     * @throws HabilitacaoAcademicaDuplicadaException
+     * @throws SQLException 
+     */
     @Override
     public boolean save(String grau, String designacaoCurso,
            String nomeInstituicao, double mediaCurso, String emailFreelancer) throws HabilitacaoAcademicaDuplicadaException,
@@ -88,6 +99,14 @@ public class RepositorioHabilitacaoAcademicaDatabase implements RepositorioHabil
         return false;
     }
 
+    /**
+     * Regista uma habilitacao academica
+     * @param habilitacaoAcademica
+     * @param emailFreelancer
+     * @return
+     * @throws HabilitacaoAcademicaDuplicadaException
+     * @throws SQLException 
+     */
     @Override
     public boolean save(HabilitacaoAcademica habilitacaoAcademica, String emailFreelancer) throws HabilitacaoAcademicaDuplicadaException,
             SQLException {
@@ -135,6 +154,16 @@ public class RepositorioHabilitacaoAcademicaDatabase implements RepositorioHabil
         return false;
     }
 
+    /**
+     * Devolve uma habilitacao academica a partir do grau, da instituicao,
+     * da designacao do curso e do email do freelancer
+     * @param grau
+     * @param designacaoCurso
+     * @param nomeInstituicao
+     * @param emailFreelancer
+     * @return
+     * @throws SQLException 
+     */
     @Override
     public HabilitacaoAcademica findByGrauDesigInst(String grau, String designacaoCurso,
                                                 String nomeInstituicao, String emailFreelancer) throws SQLException{
@@ -171,64 +200,18 @@ public class RepositorioHabilitacaoAcademicaDatabase implements RepositorioHabil
         return habilitacaoAcademica;
 
     }
-    
+
     @Override
-    public HabilitacaoAcademica findById(int idHabilitacao) throws SQLException{
-         
-        /*DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
-        Connection connection = dbConnectionHandler.openConnection();
-
-        CallableStatement callableStatementOrg = connection.prepareCall(
-                 "{CALL findById(?)}");
-
-        try {
-            connection.setAutoCommit(false);
-
-            callableStatementOrg.setInt(6, idHabilitacao);
-            callableStatementOrg.executeQuery();
-
-            return null;
-
-        } catch (SQLException exceptionOrg) {
-            exceptionOrg.printStackTrace();
-            exceptionOrg.getSQLState();
-
-
-        }
-
-        return new HabilitacaoAcademica();*/
-        
+    public HabilitacaoAcademica findById(int idHabilitacao) throws SQLException {
         return null;
     }
-    
-    public ReconhecimentoGP findByEmail(String emailFreelancer) throws SQLException{
-         
-        /*DBConnectionHandler dbConnectionHandler = new DBConnectionHandler(jdbcUrl, username, password);
-        Connection connection = dbConnectionHandler.openConnection();
 
-        CallableStatement callableStatementOrg = connection.prepareCall(
-                 "{CALL findByEmail(?)}");
-
-        try {
-            connection.setAutoCommit(false);
-
-            callableStatementOrg.setInt(5,  emailFreelancer);
-            callableStatementOrg.executeQuery();
-
-            return null;
-
-        } catch (SQLException exceptionOrg) {
-            exceptionOrg.printStackTrace();
-            exceptionOrg.getSQLState();
-
-
-        }
-
-        return new HabilitacaoAcademica();*/
-        
-        return null;
-    }
-    
+    /**
+     * Devolve todas as habilitacoes academicas do freelancer
+     * @param email
+     * @return
+     * @throws SQLException 
+     */
     @Override
     public ArrayList<HabilitacaoAcademica> getAll(String email) throws SQLException {
         

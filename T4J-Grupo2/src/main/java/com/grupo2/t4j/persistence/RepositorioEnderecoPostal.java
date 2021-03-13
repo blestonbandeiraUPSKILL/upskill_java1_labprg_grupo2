@@ -16,6 +16,4 @@ public interface RepositorioEnderecoPostal {
 
     EnderecoPostal findById(int codigo) throws SQLException;
 
-
-    //update, delete
 }

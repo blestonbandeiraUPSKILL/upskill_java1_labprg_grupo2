@@ -27,19 +27,17 @@ public class ConsultarCategoriaUI implements Initializable {
     private RegistarAreaActividadeController registarAreaActividadeController;
     private RegistarCaracterizacaoCTController registarCaracterizacaoCTController;
 
-    @FXML
-    TextField txtDescBreve;
-    @FXML
-    TextField txtCodigo;
-    @FXML
-    TextField txtAreaActividade;
-    @FXML
-    TextArea txtDescDetalhada;
-    @FXML
-    Button btnVoltar;
-    @FXML
-    ListView<CaracterizacaoCT> listViewCaracterizacao;
+    @FXML TextField txtDescBreve;
+    @FXML TextField txtCodigo;
+    @FXML TextField txtAreaActividade;
+    @FXML TextArea txtDescDetalhada;
+    @FXML Button btnVoltar;
+    @FXML ListView<CaracterizacaoCT> listViewCaracterizacao;
 
+    /**
+     * Associa a scene AdministrativoLogadoUI como parent desta Scene 
+     * @param AdministrativoLogadoUI 
+     */
     public void associarParentUI(AdministrativoLogadoUI administrativoLogadoUI) {
         this.administrativoLogadoUI = administrativoLogadoUI;
     }
@@ -59,6 +57,10 @@ public class ConsultarCategoriaUI implements Initializable {
 
     }
 
+    /**
+     * Preenche a scene com os dados da categoria selecionada
+     * @throws SQLException 
+     */
     public void transferData() throws SQLException {
 
         String codigoAreaActividade = administrativoLogadoUI.tableViewCategoria.getSelectionModel().getSelectedItem().getCodigoAreaActividade();
@@ -71,6 +73,10 @@ public class ConsultarCategoriaUI implements Initializable {
                 registarCaracterizacaoCTController.getAllByCategoria(codigoCategoria));
     }
 
+    /**
+     * Volta para a scene anterior
+     * @param event 
+     */
     @FXML
     void voltarAtras(ActionEvent event) {
         btnVoltar.getScene().getWindow().hide();
