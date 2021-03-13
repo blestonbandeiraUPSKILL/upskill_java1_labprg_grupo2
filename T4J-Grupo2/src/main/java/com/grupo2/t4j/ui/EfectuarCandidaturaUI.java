@@ -23,24 +23,17 @@ public class EfectuarCandidaturaUI implements Initializable {
     private RegistarAnuncioController registarAnuncioController;
     private RegistarTarefaController registarTarefaController;
 
-    @FXML
-    TextArea txtAnuncio;
-    @FXML
-    TextArea txtApresentacao;
-    @FXML
-    TextArea txtMotivacao;
-    @FXML
-    TextField txtValor;
-    @FXML
-    TextField txtDias;
-    @FXML
-    Button btnCancelar;
-    @FXML
-    Button btnAddCandidatura;
+    @FXML TextArea txtAnuncio;
+    @FXML TextArea txtApresentacao;
+    @FXML TextArea txtMotivacao;
+    @FXML TextField txtValor;
+    @FXML TextField txtDias;
+    @FXML Button btnCancelar;
+    @FXML Button btnAddCandidatura;
 
     /**
      * Associa a scene FreelancerLogadoUI como parent desta Scene 
-     * @param FreelancerLogadoUI 
+     * @param freelancerLogadoUI
      */
     public void associarParentUI(FreelancerLogadoUI freelancerLogadoUI) {
         this.freelancerLogadoUI = freelancerLogadoUI;

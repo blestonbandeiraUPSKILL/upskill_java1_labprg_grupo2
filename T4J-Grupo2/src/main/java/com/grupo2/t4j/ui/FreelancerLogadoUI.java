@@ -39,39 +39,29 @@ public class FreelancerLogadoUI implements Initializable {
     private EliminarCandidaturaController eliminarCandidaturaController;
     private Scene sceneConsultarCandidatura;
 
-    @FXML
-    Button btnSair;
-    ///// Tabela Anuncios //////////////
-    @FXML
-    TableColumn<Object, Object> colunaReferencia;
-    @FXML
-    TableColumn<Object, Object> colunaDesignacao;
-    @FXML
-    TableColumn<Object, Object> colunaDuracao;
-    @FXML
-    TableColumn<Object, Object> colunaCusto;
+    @FXML Button btnSair;
 
-    @FXML
-    TableView<Tarefa> tabelaAnuncios;
+    ///// Tabela Anuncios //////////////
+    @FXML TableView<Tarefa> tabelaAnuncios;
+
+    @FXML TableColumn<Object, Object> colunaReferencia;
+    @FXML TableColumn<Object, Object> colunaDesignacao;
+    @FXML TableColumn<Object, Object> colunaDuracao;
+    @FXML TableColumn<Object, Object> colunaCusto;
 
     /////Tabela Candidaturas ////////////
-    @FXML
-    TableColumn<Object, Object> txtIdCandidatura;
-    @FXML
-    TableColumn<Object, Object> txtValorPretendido;
-    @FXML
-    TableColumn<Object, Object> txtDuracaoEstimada;
-    @FXML
-    TableColumn<Object, Object> txtDataCandidatura;
-    @FXML
-    TableColumn<Object, Object> txtDataEdicao;
+    @FXML TableView<Candidatura> tabelaCandidaturas;
 
-    @FXML
-    TableView<Candidatura> tabelaCandidaturas;
+    @FXML TableColumn<Object, Object> txtIdCandidatura;
+    @FXML TableColumn<Object, Object> txtValorPretendido;
+    @FXML TableColumn<Object, Object> txtDuracaoEstimada;
+    @FXML TableColumn<Object, Object> txtDataCandidatura;
+    @FXML TableColumn<Object, Object> txtDataEdicao;
+
 
     /**
      * Associa a scene StartingPageUI como parent desta Scene 
-     * @param StartinPageUI 
+     * @param startingPageUI
      */
     public void associarParentUI(StartingPageUI startingPageUI) {
         this.startingPageUI = startingPageUI;
