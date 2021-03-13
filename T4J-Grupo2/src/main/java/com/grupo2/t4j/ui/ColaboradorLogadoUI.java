@@ -215,7 +215,6 @@ public class ColaboradorLogadoUI implements Initializable {
         List<Candidatura> candidaturas = new ArrayList<>();
         idAnuncio = getIdAnuncio();
         candidaturas = seriarAnuncioController.getAllByIdAnuncio(idAnuncio);
-        tabelaCandidaturasFreelancers.getItems().clear();
         limpaTabelaCandidaturas();
         if(candidaturas.size() > 0){
             btnConsultarCandidaturaFreelancer.setDisable(false);
