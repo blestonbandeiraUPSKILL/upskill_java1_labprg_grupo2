@@ -623,5 +623,6 @@ public class ColaboradorLogadoUI implements Initializable {
             }
         });
         window.fireEvent(new WindowEvent(window, WindowEvent.WINDOW_CLOSE_REQUEST));
-    }  
+    }
+
 }

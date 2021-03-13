@@ -49,6 +49,7 @@ public class GestorLogadoUI implements Initializable {
 
     @FXML ComboBox<FiltroTarefas> cmbFiltroTarefas;
     @FXML ComboBox<String> cmbAnuncio;
+    @FXML Button btnAddColaborador;
     @FXML Button btnPublicarTarefa;
     @FXML Button btnConsultarAnuncio;
     @FXML Button btnConsultarCandidaturaFreelancer;
@@ -66,7 +67,7 @@ public class GestorLogadoUI implements Initializable {
     List<TabelaCandidaturasAnuncio> listaCandidaturasAnuncio = new ArrayList<>();
     @FXML TableColumn<Object, Object> colunaClassificacao;
     @FXML TableColumn<Object, Object> colunaIdCandidatura;
-    @FXML TableColumn<Object, Object> colunaEmail;
+    @FXML TableColumn<Object, Object> colunaEmailFreelancer;
     @FXML TableColumn<Object, Object> colunaDuracaoFree;
     @FXML TableColumn<Object, Object> colunaCustoFree;
     
@@ -389,7 +390,7 @@ public class GestorLogadoUI implements Initializable {
         tabelaCandidaturasFreelancers.getItems().setAll(listaCandidaturasAnuncio);
         colunaClassificacao.setCellValueFactory( new PropertyValueFactory<>("classificacao"));
         colunaIdCandidatura.setCellValueFactory( new PropertyValueFactory<>("idCandidatura"));
-        colunaEmail.setCellValueFactory( new PropertyValueFactory<>("email"));
+        colunaEmailFreelancer.setCellValueFactory( new PropertyValueFactory<>("email"));
         colunaDuracaoFree.setCellValueFactory( new PropertyValueFactory<>("duracao"));
         colunaCustoFree.setCellValueFactory( new PropertyValueFactory<>("custo"));
     }
@@ -681,5 +682,25 @@ public class GestorLogadoUI implements Initializable {
                     exception.getMessage());
         }
     }
-    
+
+    public void navigateAddTarefa(ActionEvent actionEvent) {
+        try {
+            FXMLLoader loaderAddTarefa = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/EspecificarTarefaColaboradorScene.fxml"));
+            Parent rootAddTarefa = loaderAddTarefa.load();
+            sceneAddTarefa = new Scene(rootAddTarefa);
+            EspecificarTarefaGestorUI especificarTarefaGestorUI = loaderAddTarefa.getController();
+            especificarTarefaGestorUI.associarParentUI(this);
+
+            adicionarStage.setScene(sceneAddTarefa);
+            adicionarStage.setTitle("Especificar Tarefa");
+            adicionarStage.show();
+
+        } catch (IOException exception) {
+            exception.printStackTrace();
+            AlertsUI.criarAlerta(Alert.AlertType.ERROR,
+                    MainApp.TITULO_APLICACAO,
+                    "Erro",
+                    exception.getMessage());
+        }
+    }
 }
