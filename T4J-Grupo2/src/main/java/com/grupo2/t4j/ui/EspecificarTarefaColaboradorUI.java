@@ -141,14 +141,16 @@ public class EspecificarTarefaColaboradorUI implements Initializable {
                     gestaoUtilizadoresController.getEmail());
 
             if (adicionou) {
-                colaboradorLogadoUI.updateTableViewTarefas();
 
-                closeAddTarefa(actionEvent);
                 AlertsUI.criarAlerta(Alert.AlertType.INFORMATION,
                         MainApp.TITULO_APLICACAO,
                         "Registar Tarefa.",
                         "Tarefa registada com sucesso.").show();
             }
+
+            closeAddTarefa(actionEvent);
+            colaboradorLogadoUI.updateTableViewTarefas();
+
         } catch (IllegalArgumentException exception) {
             AlertsUI.criarAlerta(Alert.AlertType.ERROR,
                     MainApp.TITULO_APLICACAO,
@@ -157,7 +159,6 @@ public class EspecificarTarefaColaboradorUI implements Initializable {
 
         }
 
-        closeAddTarefa(actionEvent);
     }
 
     /**
@@ -187,8 +188,6 @@ public class EspecificarTarefaColaboradorUI implements Initializable {
      * @param actionEvent 
      */
     private void closeAddTarefa(ActionEvent actionEvent) {
-        //cmbAreaActividade.getSelectionModel().clearSelection();
-        //cmbCategoriaTarefa.getSelectionModel().clearSelection();
         this.txtReferencia.clear();
         this.txtDesignacao.clear();
         this.txtDescInformal.clear();

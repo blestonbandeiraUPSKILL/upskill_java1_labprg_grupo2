@@ -28,7 +28,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Window;
 import javafx.stage.WindowEvent;
 
-public class SeriacaoManualUI implements Initializable{
+public class SeriacaoManualColaboradorUI implements Initializable{
 
     @FXML private TextField txtIdAnuncio;
     

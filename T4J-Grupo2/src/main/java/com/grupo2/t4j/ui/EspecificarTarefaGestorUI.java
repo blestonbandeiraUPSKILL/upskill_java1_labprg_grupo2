@@ -33,30 +33,20 @@ public class EspecificarTarefaGestorUI implements Initializable {
     private GestaoUtilizadoresController gestaoUtilizadoresController;
     private GestorLogadoUI gestorLogadoUI;
 
-    @FXML
-    TextField txtReferencia;
-    @FXML
-    TextField txtDesignacao;
-    @FXML
-    TextField txtEstimativaDuracao;
-    @FXML
-    TextField txtEstimativaCusto;
-    @FXML
-    TextArea txtDescInformal;
-    @FXML
-    TextArea txtDescTecnica;
-    @FXML
-    ListView<CaracterizacaoCT> listViewCaracterizacaoCT;
-    @FXML
-    ComboBox<Categoria> cmbCategoriaTarefa;
-    @FXML
-    ComboBox<AreaActividade> cmbAreaActividade;
-    @FXML
-    Button btnCancelar;
+    @FXML TextField txtReferencia;
+    @FXML TextField txtDesignacao;
+    @FXML TextField txtEstimativaDuracao;
+    @FXML TextField txtEstimativaCusto;
+    @FXML TextArea txtDescInformal;
+    @FXML TextArea txtDescTecnica;
+    @FXML ListView<CaracterizacaoCT> listViewCaracterizacaoCT;
+    @FXML ComboBox<Categoria> cmbCategoriaTarefa;
+    @FXML ComboBox<AreaActividade> cmbAreaActividade;
+    @FXML Button btnCancelar;
 
      /**
      * Associa a scene GestorLogadoUI como parent desta Scene 
-     * @param GestorLogadoUI 
+     * @param gestorLogadoUI
      */
     public void associarParentUI(GestorLogadoUI gestorLogadoUI) {
         this.gestorLogadoUI = gestorLogadoUI;
@@ -95,7 +85,7 @@ public class EspecificarTarefaGestorUI implements Initializable {
             }
         });
 
-        ListView<CaracterizacaoCT> listViewCaracterizacaoCT = new javafx.scene.control.ListView<>();
+
         cmbCategoriaTarefa.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -115,11 +105,8 @@ public class EspecificarTarefaGestorUI implements Initializable {
      * @throws SQLException 
      */
     public void updateCmbCategoriasTarefaRegisto(ActionEvent actionEvent) throws SQLException {
-        List<Categoria> listaCategoriasTarefa
-                = registarCategoriaController.findByAreaActividade(
-                        cmbAreaActividade.getSelectionModel().getSelectedItem().getCodigo());
-
-        cmbCategoriaTarefa.getItems().setAll(listaCategoriasTarefa);
+        cmbCategoriaTarefa.getItems().setAll(registarCategoriaController.findByAreaActividade(
+                cmbAreaActividade.getSelectionModel().getSelectedItem().getCodigo()));
     }
 
     /**
@@ -127,10 +114,11 @@ public class EspecificarTarefaGestorUI implements Initializable {
      * @param actionEvent 
      */
     public void updateListViewCaracterizacaoCTS(ActionEvent actionEvent) throws SQLException{
-
-        listViewCaracterizacaoCT.getItems().setAll(
-                registarCaracterizacaoCTController.getAllByCategoria(
-                        cmbCategoriaTarefa.getSelectionModel().getSelectedItem().getCodigoCategoria()));
+        String codigoCategoria = cmbCategoriaTarefa.getSelectionModel().getSelectedItem().getCodigoCategoria();
+        if (codigoCategoria != null) {
+            listViewCaracterizacaoCT.getItems().setAll(
+                    registarCaracterizacaoCTController.getAllByCategoria(codigoCategoria));
+        }
     }
 
     /**
@@ -152,13 +140,17 @@ public class EspecificarTarefaGestorUI implements Initializable {
                     gestaoUtilizadoresController.getEmail());
 
             if (adicionou) {
-                gestorLogadoUI.updateTableViewTarefas();
+
 
                 AlertsUI.criarAlerta(Alert.AlertType.INFORMATION,
                         MainApp.TITULO_APLICACAO,
                         "Registar Tarefa.",
                         "Tarefa registada com sucesso.").show();
             }
+
+            closeAddTarefa(actionEvent);
+            gestorLogadoUI.updateTableViewTarefas();
+
         } catch (IllegalArgumentException exception) {
             AlertsUI.criarAlerta(Alert.AlertType.ERROR,
                     MainApp.TITULO_APLICACAO,
@@ -167,7 +159,6 @@ public class EspecificarTarefaGestorUI implements Initializable {
 
         }
 
-        closeAddTarefa(actionEvent);
     }
 
      /**
@@ -175,8 +166,6 @@ public class EspecificarTarefaGestorUI implements Initializable {
      * @param actionEvent 
      */
     private void closeAddTarefa(ActionEvent actionEvent) {
-        this.cmbAreaActividade.setItems(null);
-        this.cmbCategoriaTarefa.setItems(null);
         this.txtReferencia.clear();
         this.txtDesignacao.clear();
         this.txtDescInformal.clear();

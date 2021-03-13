@@ -74,26 +74,24 @@ public class RegistarTarefaController {
     
     /**
      * Devolve uma lista de tarefas publicadas
-     * @param referenciasTarefa
      * @param nifOrganizacao
      * @param emailColaborador
      * @return
      * @throws SQLException 
      */
-    public List<Tarefa> findTarefasPublicadas(List<String> referenciasTarefa, String nifOrganizacao, String emailColaborador) throws SQLException{
-        return repositorioTarefa.findTarefasPublicadas(referenciasTarefa, nifOrganizacao, emailColaborador);
+    public List<Tarefa> findTarefasPublicadas(String nifOrganizacao, String emailColaborador) throws SQLException{
+        return repositorioTarefa.findTarefasPublicadas(nifOrganizacao, emailColaborador);
     }
     
     /**
      * Devolve uma lista de tarefas nao publicadas
-     * @param referenciasTarefa
      * @param email
      * @param nifOrganizacao
      * @return
      * @throws SQLException 
      */
-    public List<Tarefa> findTarefasNaoPublicadas(List<String> referenciasTarefa, String email, String nifOrganizacao) throws SQLException{
-        return repositorioTarefa.findTarefasNaoPublicadas(referenciasTarefa, email, nifOrganizacao);
+    public List<Tarefa> findTarefasNaoPublicadas(String email, String nifOrganizacao) throws SQLException{
+        return repositorioTarefa.findTarefasNaoPublicadas(email, nifOrganizacao);
     }
 
     /**

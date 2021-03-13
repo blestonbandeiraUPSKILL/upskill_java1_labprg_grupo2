@@ -19,7 +19,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -213,7 +212,8 @@ public class ColaboradorLogadoUI implements Initializable {
         List<Candidatura> candidaturas = new ArrayList<>();
         idAnuncio = getIdAnuncio();
         candidaturas = seriarAnuncioController.getAllByIdAnuncio(idAnuncio);
-        limpaTabelaCandidaturas();
+        tabelaCandidaturasFreelancers.getItems().clear();
+        //limpaTabelaCandidaturas();
         if(candidaturas.size() > 0){
             btnConsultarCandidaturaFreelancer.setDisable(false);
             return true;
@@ -227,6 +227,7 @@ public class ColaboradorLogadoUI implements Initializable {
      * @throws SQLException 
      */
     public void updateTableViewTarefas() throws SQLException {
+        tabelaTarefas.getItems().clear();
         //cmbFiltroTarefas.getSelectionModel().clearSelection();
         tabelaTarefas.getItems().setAll(registarTarefaController.getAllOrganizacao(
                 getNifOrganizacao()));
@@ -238,6 +239,7 @@ public class ColaboradorLogadoUI implements Initializable {
      * @throws SQLException 
      */
     public void updateTableViewTarefasColaborador() throws SQLException {
+        tabelaTarefas.getItems().clear();
         String email = getEmailColaborador();
         String nifOrganizacao = registarColaboradorController.getNifOrganizacao(email);
         tabelaTarefas.getItems().setAll(registarTarefaController.findByColaboradorENif(email, nifOrganizacao));
@@ -249,11 +251,11 @@ public class ColaboradorLogadoUI implements Initializable {
      * @throws SQLException 
      */
     public void updateTableViewTarefasPublicadas() throws SQLException {
-
+        tabelaTarefas.getItems().clear();
         String email = getEmailColaborador();
         String nifOrganizacao = getNifOrganizacao();
-        List<String> referenciasTarefa = registarTarefaController.findRefenciaTarefa(nifOrganizacao);
-        tabelaTarefas.getItems().setAll(registarTarefaController.findTarefasPublicadas(referenciasTarefa, nifOrganizacao, email));
+        //List<String> referenciasTarefa = registarTarefaController.findRefenciaTarefa(nifOrganizacao);
+        tabelaTarefas.getItems().setAll(registarTarefaController.findTarefasPublicadas(nifOrganizacao, email));
         preencherTabela();
     }
 
@@ -262,11 +264,11 @@ public class ColaboradorLogadoUI implements Initializable {
      * @throws SQLException 
      */
     public void updateTableViewTarefasNaoPublicadas() throws SQLException {
-
+        tabelaTarefas.getItems().clear();
         String email = getEmailColaborador();
         String nifOrganizacao = getNifOrganizacao();
-        List<String> referenciasTarefa = registarTarefaController.findRefenciaTarefa(nifOrganizacao);
-        tabelaTarefas.getItems().setAll(registarTarefaController.findTarefasNaoPublicadas(referenciasTarefa, email, nifOrganizacao));
+        //List<String> referenciasTarefa = registarTarefaController.findRefenciaTarefa(nifOrganizacao);
+        tabelaTarefas.getItems().setAll(registarTarefaController.findTarefasNaoPublicadas(nifOrganizacao, email));
         preencherTabela();
     }
     
@@ -279,11 +281,9 @@ public class ColaboradorLogadoUI implements Initializable {
             String emailColaborador = getEmailColaborador();
             String nifOrganizacao = getNifOrganizacao();
             List<String> tarefasOrg = seriarAnuncioController.getReferenciasTarefas(nifOrganizacao);
-            List<Tarefa> refAnunciosASeriar = new ArrayList<>();
-                    
-            refAnunciosASeriar = seriarAnuncioController.getAllRefTarefasASeriar(
-                        tarefasOrg, nifOrganizacao, emailColaborador);
 
+            List<Tarefa> refAnunciosASeriar = seriarAnuncioController.getAllRefTarefasASeriar(
+                        tarefasOrg, nifOrganizacao, emailColaborador);
 
             if(refAnunciosASeriar.size()>0){
                 cmbAnuncio.getItems().setAll(seriarAnuncioController.getReferenciasTarefas(refAnunciosASeriar));
@@ -301,7 +301,7 @@ public class ColaboradorLogadoUI implements Initializable {
 
     public void limpaTabelaCandidaturas(){
         listaCandidaturasAnuncio.clear();
-        preencherTabelaCandidaturas ();
+        preencherTabelaCandidaturas();
     }
 
     /**
@@ -318,7 +318,7 @@ public class ColaboradorLogadoUI implements Initializable {
             listaCandidaturasAnuncio.add(cellCandidatura);
         }
 
-        preencherTabelaCandidaturas ();
+        preencherTabelaCandidaturas();
     }
     
     /**
@@ -385,7 +385,6 @@ public class ColaboradorLogadoUI implements Initializable {
      */
     public void aplicarFiltroTarefas(ActionEvent actionEvent) throws SQLException {
 
-
         switch (cmbFiltroTarefas.getSelectionModel().getSelectedItem()) {
             case TAREFAS_DA_ORGANIZACAO:
                 updateTableViewTarefas();
@@ -403,8 +402,8 @@ public class ColaboradorLogadoUI implements Initializable {
                 updateTableViewTarefasNaoPublicadas();
                 btnPublicarTarefa.setDisable(false);
             default:
-                updateTableViewTarefas();
-                btnPublicarTarefa.setDisable(true);
+                //updateTableViewTarefas();
+
         }
     }
     
@@ -454,10 +453,10 @@ public class ColaboradorLogadoUI implements Initializable {
      */
     public void seriacaoManualAction(ActionEvent event) throws SQLException{
         try {
-            FXMLLoader loaderSeriacaoManual = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/SeriacaoManualScene.fxml"));
+            FXMLLoader loaderSeriacaoManual = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/SeriacaoManualColaboradorScene.fxml"));
             Parent rootSeriacaoManual = loaderSeriacaoManual.load();
             sceneSeriacaoManual = new Scene(rootSeriacaoManual);
-            SeriacaoManualUI seriacaoManualUI = loaderSeriacaoManual.getController();
+            SeriacaoManualColaboradorUI seriacaoManualUI = loaderSeriacaoManual.getController();
             seriacaoManualUI.associarParentUI(this);
             seriacaoManualUI.transferData();
             
@@ -505,10 +504,10 @@ public class ColaboradorLogadoUI implements Initializable {
      */
     public void navigatePublicarTarefa(ActionEvent event) {
         try {
-            FXMLLoader loaderPublicarTarefa = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/PublicarTarefaScene.fxml"));
+            FXMLLoader loaderPublicarTarefa = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/PublicarTarefaColaboradorScene.fxml"));
             Parent rootPublicarTarefa = loaderPublicarTarefa.load();
             scenePublicarTarefa = new Scene(rootPublicarTarefa);
-            PublicarTarefaUI publicarTarefaUI = loaderPublicarTarefa.getController();
+            PublicarTarefaColaboradorUI publicarTarefaUI = loaderPublicarTarefa.getController();
             publicarTarefaUI.associarParentUI(this);
 
             adicionarStage.setScene(scenePublicarTarefa);
@@ -532,10 +531,10 @@ public class ColaboradorLogadoUI implements Initializable {
      */
     public void consultarAnuncioAction(ActionEvent event) throws SQLException{
         try {
-            FXMLLoader loaderConsultarAnuncio = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/ConsultarAnuncioScene.fxml"));
+            FXMLLoader loaderConsultarAnuncio = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/ConsultarAnuncioColaboradorScene.fxml"));
             Parent rootConsultarAnuncio = loaderConsultarAnuncio.load();
             sceneConsultarAnuncio = new Scene(rootConsultarAnuncio);
-            ConsultarAnuncioUI consultarAnuncioUI = loaderConsultarAnuncio.getController();
+            ConsultarAnuncioColaboradorUI consultarAnuncioUI = loaderConsultarAnuncio.getController();
             consultarAnuncioUI.associarParentUI(this);
             consultarAnuncioUI.transferData();
             
@@ -562,7 +561,7 @@ public class ColaboradorLogadoUI implements Initializable {
             FXMLLoader loaderConsultarCandidaturaFreelancer = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/ConsultarCandidaturaFreelancerScene.fxml"));
             Parent rootConsultarCandidaturaFreelancer = loaderConsultarCandidaturaFreelancer.load();
             sceneConsultarCandidatura = new Scene(rootConsultarCandidaturaFreelancer);
-            ConsultarCandidaturaFreelancerUI consultarCandidaturaFreelancerUI = loaderConsultarCandidaturaFreelancer.getController();
+            ConsultarCandidaturaFreelancerColaboradorUI consultarCandidaturaFreelancerUI = loaderConsultarCandidaturaFreelancer.getController();
             consultarCandidaturaFreelancerUI.associarParentUI(this);
             consultarCandidaturaFreelancerUI.transferData();
 
@@ -624,5 +623,6 @@ public class ColaboradorLogadoUI implements Initializable {
             }
         });
         window.fireEvent(new WindowEvent(window, WindowEvent.WINDOW_CLOSE_REQUEST));
-    }  
+    }
+
 }

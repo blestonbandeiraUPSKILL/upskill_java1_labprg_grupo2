@@ -16,7 +16,7 @@ import java.util.ResourceBundle;
 /**
  * FXML Controller class
  */
-public class PublicarTarefaUI implements Initializable {
+public class PublicarTarefaColaboradorUI implements Initializable {
 
     private ColaboradorLogadoUI colaboradorLogadoUI;
     private PublicarTarefaController publicarTarefaController;
@@ -84,9 +84,6 @@ public class PublicarTarefaUI implements Initializable {
                     cmbTipoSeriacao.getSelectionModel().getSelectedItem().getIdTipoRegimento());
 
             if (adicionou){
-                colaboradorLogadoUI.updateTableViewTarefas();
-                colaboradorLogadoUI.cmbFiltroTarefas.getSelectionModel().clearSelection();
-
             AlertsUI.criarAlerta(Alert.AlertType.INFORMATION,
                     MainApp.TITULO_APLICACAO,
                     "Publicar Tarefa.",
@@ -94,9 +91,11 @@ public class PublicarTarefaUI implements Initializable {
             }
 
             closePublicarTarefa(actionEvent);
+            colaboradorLogadoUI.updateTableViewTarefas();
 
         }
         catch (IllegalArgumentException exception) {
+            exception.printStackTrace();
             AlertsUI.criarAlerta(Alert.AlertType.ERROR,
                     MainApp.TITULO_APLICACAO,
                     "Publicar Tarefa - Erro nos dados.",
