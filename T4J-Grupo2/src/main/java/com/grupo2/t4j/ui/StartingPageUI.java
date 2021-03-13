@@ -135,55 +135,60 @@ public class StartingPageUI implements Initializable {
                 txtEmailLogin.getText(),
                 txtPasswordLogin.getText());
 
-        try {
-            if (login) {
-                txtEmailLogin.clear();
-                txtPasswordLogin.clear();
+        if (login) {
+            txtEmailLogin.clear();
+            txtPasswordLogin.clear();
 
-                switch (gestaoUtilizadoresController.getRole()) {
-                    case 1:
-                        navigateAdministrativoLogado(event);
-                        break;
-                    case 2:
-                        navigateColaboradorLogado(event);
-                        break;
-                    case 3:
-                        navigateFreelancerLogado(event);
-                        break;
-                    case 4:
-                        navigateGestorLogado(event);
-                        break;
+            filtroRole();
+        }
+    }
+
+    public void loginEnter(KeyEvent keyEvent) {
+        if (keyEvent.getCode().equals(KeyCode.ENTER)) {
+            txtPasswordLogin.setOnKeyPressed(new EventHandler<KeyEvent>() {
+
+            @Override
+            public void handle(KeyEvent event) {
+
+                    boolean login = gestaoUtilizadoresController.login(
+                            txtEmailLogin.getText(),
+                            txtPasswordLogin.getText());
+
+                    if (login) {
+                        txtEmailLogin.clear();
+                        txtPasswordLogin.clear();
+
+                        filtroRole();
+                    }
                 }
+            });
+        }
+    }
+
+    private void filtroRole() {
+        try {
+            switch (gestaoUtilizadoresController.getRole()) {
+                case 1:
+                    navigateAdministrativoLogado();
+                    break;
+                case 2:
+                    navigateColaboradorLogado();
+                    break;
+                case 3:
+                    navigateFreelancerLogado();
+                    break;
+                case 4:
+                    navigateGestorLogado();
+                    break;
             }
-        } catch (IOException exception) {
+        }
+        catch (IOException exception) {
             AlertsUI.criarAlerta(Alert.AlertType.ERROR,
                     MainApp.TITULO_APLICACAO,
                     "Erro ao validar os dados",
                     exception.getMessage());
-
         }
     }
-
-    public void loginEnter(KeyEvent event) throws IOException, SQLException{
-        txtPasswordLogin.setOnKeyPressed(new EventHandler<KeyEvent>()
-        {
-            @Override
-            public void handle(KeyEvent ke)
-            {
-                /*if (ke.getCode() == (KeyCode.ENTER))
-                {
-                    //ActionEvent actionEv = new ActionEvent();
-                    try{
-                        login(ke);
-                    }catch (IOException|SQLException exception){
-                        exception.printStackTrace();
-                    }
-
-                }*/
-            }
-        });
-
-   }
 
     /**
      * Sai da aplicacao
@@ -209,10 +214,10 @@ public class StartingPageUI implements Initializable {
 
     /**
      * Navega para a pagina AdministrativoLogadoUI
-     * @param actionEvent
+
      * @throws IOException
      */
-    public void navigateAdministrativoLogado(ActionEvent actionEvent) throws IOException {
+    public void navigateAdministrativoLogado() throws IOException {
         try {
             FXMLLoader loaderAdministrativo = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/AdministrativoLogadoScene.fxml"));
             Parent rootAdministrativo = loaderAdministrativo.load();
@@ -235,9 +240,9 @@ public class StartingPageUI implements Initializable {
 
     /** 
      * Navega para a pagina GestorLogadoUI
-     * @param actionEvent
+
      */
-    public void navigateGestorLogado(ActionEvent actionEvent) {
+    public void navigateGestorLogado() {
         try {
             FXMLLoader loaderGestor = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/GestorLogadoScene.fxml"));
             Parent rootGestor = loaderGestor.load();
@@ -261,9 +266,8 @@ public class StartingPageUI implements Initializable {
 
     /**
      * Navega para a pagina ColaboradorLogadoUI
-     * @param actionEvent
      */
-    public void navigateColaboradorLogado(ActionEvent actionEvent) {
+    public void navigateColaboradorLogado() {
         try {
             FXMLLoader loaderColaborador = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/ColaboradorLogadoScene.fxml"));
             Parent rootColaborador = loaderColaborador.load();
@@ -287,10 +291,9 @@ public class StartingPageUI implements Initializable {
 
     /**
      * Navega para a pagina FreelancerLogadoUI
-     * @param actionEvent
      * @throws IOException
      */
-    public void navigateFreelancerLogado(ActionEvent actionEvent) throws IOException {
+    public void navigateFreelancerLogado() throws IOException {
         try {
             FXMLLoader loaderFreelancer = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/FreelancerLogadoScene.fxml"));
             Parent rootFreelancer = loaderFreelancer.load();
@@ -310,4 +313,6 @@ public class StartingPageUI implements Initializable {
                     exception.getMessage());
         }
     }
+
+
 }
