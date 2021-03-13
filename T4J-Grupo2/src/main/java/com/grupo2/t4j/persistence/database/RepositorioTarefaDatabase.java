@@ -559,7 +559,8 @@ public class RepositorioTarefaDatabase implements RepositorioTarefa {
             PreparedStatement preparedStatement = connection.prepareStatement(
                     "SELECT * FROM Tarefa INNER JOIN Anuncio " +
                             "ON Tarefa.referencia LIKE Anuncio.referenciaTarefa " +
-                            "AND Tarefa.nifOrganizacao LIKE Anuncio.nifOrganizacao"
+                            "AND Tarefa.nifOrganizacao LIKE Anuncio.nifOrganizacao " +
+                            "WHERE sysdate BETWEEN Anuncio.dataInicioCandidatura AND Anuncio.dataFimCandidatura"
             );
 
 

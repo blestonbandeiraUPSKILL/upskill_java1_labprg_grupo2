@@ -171,7 +171,10 @@ public class RegistarTarefaController {
            for (GrauProficiencia grauTarefa : tarefa.getGrauProficiencia()) {
                for (GrauProficiencia grauFreelancer : grausFreelancer) {
                    if(grauFreelancer.getGrau() >= grauTarefa.getGrau() && grauFreelancer.getDesignacao().equals(grauTarefa.getDesignacao())) {
-                       tarefasCompativeis.add(tarefa);
+                       if (!tarefasCompativeis.contains(tarefa)) {
+                           tarefasCompativeis.add(tarefa);
+                       }
+
                    }
                }
            }
