@@ -27,22 +27,16 @@ public class ConsultarCompetenciaTecnicaUI implements Initializable {
     private RegistarAreaActividadeController registarAreaActividadeController;
     private Stage adicionarStage;
 
-    @FXML
-    TextArea txtDescricaoDetalhada;
-    @FXML
-    TextField txtAreaActividade;
-    @FXML
-    ListView<GrauProficiencia> listViewGrausAplicaveis;
-    @FXML
-    TextField txtDescricaoBreve;
-    @FXML
-    TextField txtCodigoCompetenciaTecnica;
-    @FXML
-    Button btnVoltar;
+    @FXML TextArea txtDescricaoDetalhada;
+    @FXML TextField txtAreaActividade;
+    @FXML ListView<GrauProficiencia> listViewGrausAplicaveis;
+    @FXML TextField txtDescricaoBreve;
+    @FXML TextField txtCodigoCompetenciaTecnica;
+    @FXML Button btnVoltar;
 
     /**
      * Associa a scene AdministrativoLogadoUI como parent desta Scene 
-     * @param AdministrativoLogadoUI 
+     * @param administrativoLogadoUI
      */
     public void associarParentUI(AdministrativoLogadoUI administrativoLogadoUI) {
         this.administrativoLogadoUI = administrativoLogadoUI;

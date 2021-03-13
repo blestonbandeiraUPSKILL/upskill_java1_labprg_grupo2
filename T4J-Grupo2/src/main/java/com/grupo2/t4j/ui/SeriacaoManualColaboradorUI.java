@@ -30,38 +30,10 @@ import javafx.stage.WindowEvent;
 
 public class SeriacaoManualColaboradorUI implements Initializable{
 
-    @FXML private TextField txtIdAnuncio;
-    
-    @FXML private TableView<TabelaFreelancerClassificacao> tabelaClassificacao;
-    
-    private List<TabelaFreelancerClassificacao> listaCandidaturas = new ArrayList<>();
-   
-    @FXML private TableColumn<Object, Object> colunaIdCand;
-    
-    @FXML private TableColumn<Object, Object> colunaEmail;
-     
-    @FXML private TableColumn<Object, Object> colunaClassificacao;
-
-    @FXML private ComboBox<Integer> cmbClassificacao;
-    
-    @FXML private Button btnConfirmarClassificacao;
-    
-    @FXML private TableView<TabelaColaboradorAdicional> tabelaColaboradores;
-    
-    private List<TabelaColaboradorAdicional> colaboradoresOpcionais = new ArrayList<>();
-    
-    @FXML private TableColumn<Object, Object> colunaColaborador;
-    
-    @FXML private TableColumn<Object, Object> colunaParticipante;
-    
-    @FXML private Button btnAdicionarColaborador;
-
-    @FXML private Button btnVoltar;
-    
     private ColaboradorLogadoUI colaboradorLogadoUI;
     private SeriarAnuncioController seriarAnuncioController;
     private Stage adicionarStage;
-        
+
     private int idAnuncio;
     private int idSeriacao;
     private int qtdCand;
@@ -69,8 +41,26 @@ public class SeriacaoManualColaboradorUI implements Initializable{
     private String nifOrganizacao;
     private List<Integer> classificacoes = new ArrayList<>();
     private ArrayList<String> colaboradoresParticipantes = new ArrayList<>();
-    
-    
+
+    @FXML TextField txtIdAnuncio;
+    @FXML Button btnAdicionarColaborador;
+    @FXML Button btnConfirmarClassificacao;
+    @FXML Button btnVoltar;
+
+
+    @FXML TableView<TabelaFreelancerClassificacao> tabelaClassificacao;
+    private List<TabelaFreelancerClassificacao> listaCandidaturas = new ArrayList<>();
+    @FXML TableColumn<Object, Object> colunaIdCand;
+    @FXML TableColumn<Object, Object> colunaEmail;
+    @FXML TableColumn<Object, Object> colunaClassificacao;
+    @FXML ComboBox<Integer> cmbClassificacao;
+
+
+    @FXML TableView<TabelaColaboradorAdicional> tabelaColaboradores;
+    private List<TabelaColaboradorAdicional> colaboradoresOpcionais = new ArrayList<>();
+    @FXML TableColumn<Object, Object> colunaColaborador;
+    @FXML TableColumn<Object, Object> colunaParticipante;
+
     public void associarParentUI(ColaboradorLogadoUI colaboradorLogadoUI) {
         this.colaboradorLogadoUI = colaboradorLogadoUI;
     }

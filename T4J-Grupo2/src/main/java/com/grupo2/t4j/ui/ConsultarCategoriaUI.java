@@ -36,7 +36,7 @@ public class ConsultarCategoriaUI implements Initializable {
 
     /**
      * Associa a scene AdministrativoLogadoUI como parent desta Scene 
-     * @param AdministrativoLogadoUI 
+     * @param administrativoLogadoUI
      */
     public void associarParentUI(AdministrativoLogadoUI administrativoLogadoUI) {
         this.administrativoLogadoUI = administrativoLogadoUI;

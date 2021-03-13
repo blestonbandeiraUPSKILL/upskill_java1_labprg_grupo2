@@ -5,6 +5,7 @@ import com.grupo2.t4j.domain.Tarefa;
 import com.grupo2.t4j.persistence.RepositorioTarefa;
 import com.grupo2.t4j.utils.DBConnectionHandler;
 
+import java.nio.charset.StandardCharsets;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -273,7 +274,7 @@ public class RepositorioTarefaDatabase implements RepositorioTarefa {
     }
 
     @Override
-    public List<Tarefa> findTarefasPublicadas(String nifOrganizacao, String emailColaborador) throws SQLException {
+    public List<Tarefa> findTarefasPublicadas(String nifOrganizacao) throws SQLException {
         List<Tarefa> tarefasComAnuncio = new ArrayList<>();
 
         Connection connection = DBConnectionHandler.getInstance().openConnection();
@@ -284,12 +285,10 @@ public class RepositorioTarefaDatabase implements RepositorioTarefa {
                             "INNER JOIN Anuncio " +
                             "ON Tarefa.referencia LIKE Anuncio.referenciaTarefa " +
                             "AND Tarefa.nifOrganizacao LIKE Anuncio.nifOrganizacao " +
-                            "AND tarefa.nifOrganizacao LIKE ?" +
-                            "AND Tarefa.emailColaborador LIKE ? "
+                            "AND tarefa.nifOrganizacao LIKE ?"
             );
 
             callableStatement.setString(1, nifOrganizacao);
-            callableStatement.setString(2, emailColaborador);
 
             callableStatement.executeUpdate();
 
@@ -304,6 +303,8 @@ public class RepositorioTarefaDatabase implements RepositorioTarefa {
                 int duracaoEstimada = resultSet.getInt(6);
                 double custoEstimado = resultSet.getDouble(7);
                 String codigoCategoria = resultSet.getString(8);
+                String emailColaborador = resultSet.getString(9);
+
                 tarefasComAnuncio.add(new Tarefa(nifOrganizacao, referencia,
                         designacao, descInformal, descTecnica, duracaoEstimada, custoEstimado, codigoCategoria, emailColaborador));
 

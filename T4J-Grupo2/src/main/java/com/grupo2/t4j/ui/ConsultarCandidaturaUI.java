@@ -47,7 +47,7 @@ public class ConsultarCandidaturaUI implements Initializable {
 
     /**
      * Associa a scene FreelancerLogadoUI como parent desta Scene 
-     * @param FreelancerLogadoUI 
+     * @param freelancerLogadoUI
      */
     public void associarParentUI(FreelancerLogadoUI freelancerLogadoUI) {
         this.freelancerLogadoUI = freelancerLogadoUI;

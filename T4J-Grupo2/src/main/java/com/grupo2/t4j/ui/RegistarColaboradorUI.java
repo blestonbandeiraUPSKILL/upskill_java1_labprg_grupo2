@@ -37,7 +37,7 @@ public class RegistarColaboradorUI implements Initializable {
 
      /**
      * Associa a scene GestorLogadoUI como parent desta Scene 
-     * @param GestorLogadoUI 
+     * @param gestorLogadoUI
      */
     public void associarParentUI(GestorLogadoUI gestorLogadoUI) {
         this.gestorLogadoUI = gestorLogadoUI;

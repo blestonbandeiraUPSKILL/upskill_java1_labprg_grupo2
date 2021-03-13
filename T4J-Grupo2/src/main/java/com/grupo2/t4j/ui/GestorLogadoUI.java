@@ -269,10 +269,9 @@ public class GestorLogadoUI implements Initializable {
      */
     public void updateTableViewTarefasPublicadas() throws SQLException {
         tabelaTarefas.getItems().clear();
-        String email = getEmailColaborador();
+
         String nifOrganizacao = getNifOrganizacao();
-        //List<String> referenciasTarefa = registarTarefaController.findRefenciaTarefa(nifOrganizacao);
-        tabelaTarefas.getItems().setAll(registarTarefaController.findTarefasPublicadas(nifOrganizacao, email));
+        tabelaTarefas.getItems().setAll(registarTarefaController.findTarefasPublicadas(nifOrganizacao));
         preencherTabela();
     }
 
@@ -407,10 +406,10 @@ public class GestorLogadoUI implements Initializable {
                 updateTableViewTarefas();
                 btnPublicarTarefa.setDisable(true);
                 break;
-            case AS_MINHAS_TAREFAS:
+        /*    case AS_MINHAS_TAREFAS:
                 updateTableViewTarefasGestor();
                 btnPublicarTarefa.setDisable(true);
-                break;
+                break;*/
             case TAREFAS_PUBLICADAS:
                 updateTableViewTarefasPublicadas();
                 btnPublicarTarefa.setDisable(true);

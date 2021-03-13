@@ -16,11 +16,11 @@ public enum FiltroTarefas {
             return "Tarefas da Organização";
         }
     },
-    AS_MINHAS_TAREFAS {
+   /* AS_MINHAS_TAREFAS {
         public String toString() {
             return "As minhas tarefas";
         }
-    },
+    },*/
     TAREFAS_PUBLICADAS{
         public String toString() {
             return "Tarefas Publicadas";
