@@ -57,6 +57,10 @@ public class Utilizador implements Serializable{
         setPassword(password);
     }
 
+    /**
+     * Construtor da classe utilizador
+     * @param utilizador 
+     */
     public Utilizador(Utilizador utilizador) {
         this.email = utilizador.getEmail();
         this.nome = utilizador.getNome();
@@ -64,6 +68,13 @@ public class Utilizador implements Serializable{
         this.rolename = utilizador.getRolename();
     }
 
+    /**
+     * Cosntrutor da classe utilizador
+     * @param emailUtilizador
+     * @param nome
+     * @param password
+     * @param rolename 
+     */
     public Utilizador(String emailUtilizador, String nome, String password, String rolename) {
         setEmail(new Email(emailUtilizador));
         setNome(nome);
@@ -72,6 +83,11 @@ public class Utilizador implements Serializable{
 
     }
 
+    /**
+     * Construtor da classe Utilizador
+     * @param email
+     * @param nome 
+     */
     public Utilizador(String email, String nome) {
         setNome(nome);
         setEmail(new Email(email));
@@ -97,6 +113,10 @@ public class Utilizador implements Serializable{
         this.email = new Email(email);
     }
 
+    /**
+     * Atualiza o email do utilizador
+     * @param email 
+     */
     public void setEmail(String email) {
         this.email = new Email(email);
     }
