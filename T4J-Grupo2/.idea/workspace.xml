@@ -7,8 +7,6 @@
     <list default="true" id="8ca9f66f-f143-4134-afe5-eb7245bd0a9c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/ColaboradorLogadoUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/ColaboradorLogadoUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/GestorLogadoUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/GestorLogadoUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/grupo2/t4j/fxml/GestorLogadoScene.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/grupo2/t4j/fxml/GestorLogadoScene.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -288,7 +286,7 @@
       <breakpoints>
         <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/grupo2/t4j/domain/Utilizador.java</url>
-          <line>181</line>
+          <line>201</line>
           <option name="timeStamp" value="43" />
         </line-breakpoint>
         <line-breakpoint type="java-line">
@@ -303,7 +301,7 @@
         </line-breakpoint>
         <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/grupo2/t4j/persistence/database/RepositorioOrganizacaoDatabase.java</url>
-          <line>84</line>
+          <line>101</line>
           <option name="timeStamp" value="263" />
         </line-breakpoint>
         <line-breakpoint type="java-line">
@@ -338,7 +336,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/ColaboradorLogadoUI.java</url>
-          <line>434</line>
+          <line>444</line>
           <option name="timeStamp" value="431" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
