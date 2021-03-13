@@ -39,4 +39,6 @@ public interface RepositorioAnuncio {
     List<Tarefa> getAllRefTarefasASeriar(List<String> referenciasTarefa, String nifOrganizacao, String emailColaborador) throws SQLException;
 
     Anuncio getAnuncio(int idAnuncio) throws SQLException;
+
+    boolean findAnuncioByEmailFreelancer(String emailFreelancer) throws SQLException;
 }

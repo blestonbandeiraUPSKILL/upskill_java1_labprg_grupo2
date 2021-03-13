@@ -5,6 +5,7 @@
  */
 package com.grupo2.t4j.controller;
 
+import com.grupo2.t4j.domain.Anuncio;
 import com.grupo2.t4j.domain.GrauProficiencia;
 import com.grupo2.t4j.domain.Tarefa;
 import com.grupo2.t4j.persistence.*;
@@ -21,6 +22,7 @@ public class RegistarTarefaController {
     private RepositorioGrauProficiencia repositorioGrauProficiencia = fabricaRepositorios.getRepositorioGrauProficiencia();
     private RepositorioFreelancer repositorioFreelancer = fabricaRepositorios.getRepositorioFreelancer();
     private RepositorioCaracterizacaoCT repositorioCaracterizacaoCT = fabricaRepositorios.getRepositorioCaracterizacaoCT();
+    private RepositorioAnuncio repositorioAnuncio = fabricaRepositorios.getRepositorioAnuncio();
 
     public RegistarTarefaController() throws SQLException {
     }
@@ -170,11 +172,12 @@ public class RegistarTarefaController {
        for (Tarefa tarefa : tarefasComGraus) {
            for (GrauProficiencia grauTarefa : tarefa.getGrauProficiencia()) {
                for (GrauProficiencia grauFreelancer : grausFreelancer) {
-                   if(grauFreelancer.getGrau() >= grauTarefa.getGrau() && grauFreelancer.getDesignacao().equals(grauTarefa.getDesignacao())) {
+                   if(grauFreelancer.getGrau() >= grauTarefa.getGrau() && grauFreelancer.getCodigoCompetenciaTecnica().equals(grauTarefa.getCodigoCompetenciaTecnica())) {
                        if (!tarefasCompativeis.contains(tarefa)) {
-                           tarefasCompativeis.add(tarefa);
+                           if(!isAnuncioNaoValido(emailFreelancer)) {
+                                tarefasCompativeis.add(tarefa);
+                            }
                        }
-
                    }
                }
            }
@@ -186,6 +189,10 @@ public class RegistarTarefaController {
        }
 
         return tarefasElegiveis;
+    }
+
+    public boolean isAnuncioNaoValido(String emailFreelancer) throws SQLException {
+        return repositorioAnuncio.findAnuncioByEmailFreelancer(emailFreelancer);
     }
 
     /**

@@ -286,7 +286,46 @@ public class RepositorioAnuncioDataBase implements RepositorioAnuncio {
         }
         return anuncio;
     }
-    
+
+    @Override
+    public boolean findAnuncioByEmailFreelancer(String emailFreelancer) throws SQLException {
+
+        Connection connection = DBConnectionHandler.getInstance().openConnection();
+
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(
+                    "SELECT * FROM Anuncio " +
+                            "LEFT JOIN Candidatura " +
+                            "ON Anuncio.idAnuncio = Candidatura.idAnuncio " +
+                            "WHERE Candidatura.emailFreelancer LIKE ? " +
+                            "AND candidatura.idCandidatura IS NULL"
+            );
+
+            preparedStatement.setString(1, emailFreelancer);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet != null) {
+
+                return false;
+            }
+
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+            exception.getSQLState();
+            try {
+                System.err.print("Transaction is being rolled back");
+                connection.rollback();
+            } catch (SQLException sqlException) {
+                sqlException.getErrorCode();
+            }
+
+        } finally {
+            DBConnectionHandler.getInstance().closeAll();
+        }
+        return true;
+    }
+
     /**
      * Devolve todas as tarefas de um colaborador e de um dado tipo de regimento
      * @param referenciasTarefa
