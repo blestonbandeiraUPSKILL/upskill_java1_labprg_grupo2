@@ -123,10 +123,8 @@ public class StartingPageUI implements Initializable {
     /**
      * Faz o login do utilizador e navega para a pagina indicada de acordo com o papel do utilizador
      * @param event
-     * @throws IOException
-     * @throws SQLException 
      */
-    public void login(ActionEvent event) throws IOException, SQLException {
+    public void login(ActionEvent event) {
 
         boolean login = gestaoUtilizadoresController.login(
                 txtEmailLogin.getText(),
@@ -146,6 +144,10 @@ public class StartingPageUI implements Initializable {
         }
     }
 
+    /**
+     * Faz o login do utilizador e navega para a pagina indicada de acordo com o papel do utilizador
+     * @param keyEvent
+     */
     public void loginEnter(KeyEvent keyEvent) {
         if (keyEvent.getCode().equals(KeyCode.ENTER)) {
             txtPasswordLogin.setOnKeyPressed(new EventHandler<KeyEvent>() {
@@ -223,7 +225,6 @@ public class StartingPageUI implements Initializable {
 
     /**
      * Navega para a pagina AdministrativoLogadoUI
-
      * @throws IOException
      */
     public void navigateAdministrativoLogado() throws IOException {
@@ -249,9 +250,9 @@ public class StartingPageUI implements Initializable {
 
     /** 
      * Navega para a pagina GestorLogadoUI
-
+     * @throws IOException
      */
-    public void navigateGestorLogado() {
+    public void navigateGestorLogado() throws IOException {
         try {
             FXMLLoader loaderGestor = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/GestorLogadoScene.fxml"));
             Parent rootGestor = loaderGestor.load();
@@ -275,8 +276,9 @@ public class StartingPageUI implements Initializable {
 
     /**
      * Navega para a pagina ColaboradorLogadoUI
+     * @throws IOException
      */
-    public void navigateColaboradorLogado() {
+    public void navigateColaboradorLogado() throws IOException {
         try {
             FXMLLoader loaderColaborador = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/ColaboradorLogadoScene.fxml"));
             Parent rootColaborador = loaderColaborador.load();
