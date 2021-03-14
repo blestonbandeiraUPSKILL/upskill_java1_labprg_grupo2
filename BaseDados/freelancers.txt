@@ -12,9 +12,6 @@ arnaldo@gmails.com                                 999111247 333444580          
 alexandre@gmails.com                               999111248 333444581               55
 paulo@gmails.com                                   999111249 333444582               56
 ana@gmails.com                                     999111232 333444565               57
-
-EMAIL                                              TELEFONE  NIF       IDENDERECOPOSTAL
--------------------------------------------------- --------- --------- ----------------
 bruno@gmails.com                                   999111233 333444566               58
 joao@gmails.com                                    999111234 333444567               59
 catarina@gmails.com                                999111235 333444568               60
