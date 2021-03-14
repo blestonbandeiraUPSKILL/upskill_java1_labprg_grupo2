@@ -45,7 +45,7 @@
 ## Links úteis
 
 - [Plataforma TRELLO usada para a gestão Agile do projeto usando a framework Scrum (Sprints 2 e 3)](https://trello.com/b/atvb02FQ)
-- [Dashboard para a gestão Agile do projeto usando a framework Scrum (Sprint 4)](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Documenta%C3%A7%C3%A3o/Sprint%204/Dashboard%20Sprint4.xlsx)
+- [Dashboard para a gestão Agile do projeto usando a framework Scrum (Sprint 4)](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Documenta%C3%A7%C3%A3o/Sprint%204/Dashboard%20-%20Scrum%20-%20Sprint%204.xlsx)
 
 ## Dados de login
 

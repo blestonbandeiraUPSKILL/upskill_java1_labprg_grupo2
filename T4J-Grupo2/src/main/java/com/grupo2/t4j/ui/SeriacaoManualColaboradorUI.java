@@ -32,6 +32,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
+/**
+ *
+ * @author CAD
+ */
 public class SeriacaoManualColaboradorUI implements Initializable{
 
     private ColaboradorLogadoUI colaboradorLogadoUI;
@@ -65,12 +69,16 @@ public class SeriacaoManualColaboradorUI implements Initializable{
     @FXML TableColumn<Object, Object> colunaColaborador;
     @FXML TableColumn<Object, Object> colunaParticipante;
 
+    /**
+     * Associa a interface raiz desta nova janela
+     * @param colaboradorLogadoUI
+     */
     public void associarParentUI(ColaboradorLogadoUI colaboradorLogadoUI) {
         this.colaboradorLogadoUI = colaboradorLogadoUI;
     }
     
     /**
-     * 
+     * Inicializa a interface
      * @param url
      * @param rb
      */
@@ -85,6 +93,11 @@ public class SeriacaoManualColaboradorUI implements Initializable{
         
     }
     
+    /**
+     * Tranfere as informações da janela anterior necessárias para a inicialização
+     * desta janela
+     * @throws SQLException
+     */
     public void transferData() throws SQLException {
         
         emailColaborador = colaboradorLogadoUI.getEmailColaborador();
@@ -107,6 +120,10 @@ public class SeriacaoManualColaboradorUI implements Initializable{
         }
     }
     
+    /**
+     *  Cria a tabela de candidaturas
+     * @throws SQLException
+     */
     public void criaTabelaCandidaturas() throws SQLException{
         List<Candidatura> candidaturas = seriarAnuncioController.getAllByIdAnuncio(idAnuncio);
         
@@ -120,6 +137,9 @@ public class SeriacaoManualColaboradorUI implements Initializable{
         preencherTabelaCandidaturas();
     }
     
+    /**
+     * Preenche a tabela de candidaturas
+     */
     public void preencherTabelaCandidaturas () {
         tabelaClassificacao.getItems().setAll(listaCandidaturas);
         colunaIdCand.setCellValueFactory( new PropertyValueFactory<>("idCandidatura"));
@@ -127,6 +147,11 @@ public class SeriacaoManualColaboradorUI implements Initializable{
         colunaClassificacao.setCellValueFactory( new PropertyValueFactory<>("classificacao"));       
     }
     
+    /**
+     * Faz a atualização da tabela de candidaturas após a atribuição de uma classificação
+     * @param idCandidatura
+     * @param posicao
+     */
     public void updateTabelaCandidaturas(int idCandidatura, int posicao){
         for(int i = 0; i < listaCandidaturas.size(); i++){
             if(listaCandidaturas.get(i).getIdCandidatura() == idCandidatura){
@@ -136,6 +161,10 @@ public class SeriacaoManualColaboradorUI implements Initializable{
         preencherTabelaCandidaturas();
     }
     
+    /**
+     * Cria a tabela de colaboradores da organização, excero pelo colaborador que está logado
+     * @throws SQLException
+     */
     public void criaTabelaColaboradoresOpcionais() throws SQLException{
         List<Colaborador> colaboradores = seriarAnuncioController.getAll(nifOrganizacao);
         
@@ -148,12 +177,20 @@ public class SeriacaoManualColaboradorUI implements Initializable{
         preencherTabelaColaboradores ();
     }
     
+    /**
+     * Preenche a tabela de colaboradores
+     */
     public void preencherTabelaColaboradores () {
         tabelaColaboradores.getItems().setAll(colaboradoresOpcionais);
         colunaColaborador.setCellValueFactory( new PropertyValueFactory<>("email"));
         colunaParticipante.setCellValueFactory( new PropertyValueFactory<>("selecao"));       
     }
     
+    /**
+     * Faz a atualização da tabela de colaboradores após a seleção de um deles como
+     * participante
+     * @param emailColabAdd
+     */
     public void updateTabelaColaboradores(String emailColabAdd){
         for(int i = 0; i < colaboradoresOpcionais.size(); i++){
             if(colaboradoresOpcionais.get(i).getEmail().equals(emailColabAdd)){
@@ -163,6 +200,9 @@ public class SeriacaoManualColaboradorUI implements Initializable{
         preencherTabelaColaboradores ();
     }
     
+    /**
+     * Cria as opções de classificação consoantes a quantidade de candidaturas
+     */
     public void criarOpcoesClassificacao(){
         for(int i = 1; i < listaCandidaturas.size() + 1; i++){
             classificacoes.add(i);
@@ -170,17 +210,32 @@ public class SeriacaoManualColaboradorUI implements Initializable{
         cmbClassificacao.getItems().setAll(classificacoes);
     }
     
+    /**
+     * Elimina uma opção de classificação de candidatura considerando uma posição
+     * que já tenha sido atribuída a uma candidatura
+     * @param classUsada
+     */
     public void updateOpcoesClassificacao(int classUsada){
         classificacoes.remove(classUsada-1);
         cmbClassificacao.getItems().clear();
         cmbClassificacao.getItems().setAll(classificacoes);
     }
   
+    /**
+     * Pede ao usuário confirmar se a classificação dada a uma candidatura pode ser
+     * registada
+     * @param event
+     */
     @FXML
     public void atribuirClassificacao(ActionEvent event) {
         btnConfirmarClassificacao.requestFocus();
     }
 
+    /**
+     * Regista a classificação de uma candidatura na BD
+     * @param event
+     * @throws SQLException
+     */
     @FXML
     public void registarClassificacao(ActionEvent event) throws SQLException{
         int posicao = cmbClassificacao.getSelectionModel().getSelectedItem();
@@ -193,6 +248,11 @@ public class SeriacaoManualColaboradorUI implements Initializable{
         tabelaClassificacao.requestFocus();
     }
     
+    /**
+     * Regista um colaborador adicional como participante na seriação
+     * @param event
+     * @throws SQLException
+     */
     @FXML
     public void registarColaborador (ActionEvent event) throws SQLException{
         String emailColabAdd = tabelaColaboradores.getSelectionModel().getSelectedItem().getEmail();
@@ -203,6 +263,12 @@ public class SeriacaoManualColaboradorUI implements Initializable{
         tabelaColaboradores.requestFocus();
     }
     
+    /**
+     * Volta para a página anterior desde que todas as candidaturas tenham sido
+     * já classificadas
+     * @param event
+     * @throws SQLException
+     */
     @FXML
     public void voltar(ActionEvent event) throws SQLException{
         if(classificacoes.size() == 0){

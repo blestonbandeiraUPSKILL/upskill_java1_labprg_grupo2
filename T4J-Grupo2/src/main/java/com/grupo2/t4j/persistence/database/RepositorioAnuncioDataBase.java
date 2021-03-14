@@ -238,6 +238,12 @@ public class RepositorioAnuncioDataBase implements RepositorioAnuncio {
         return tiposRegimento;
     }
 
+    /**
+     * Devolve um anuncio a partir do seu id
+     * @param idAnuncio
+     * @return
+     * @throws SQLException 
+     */
     public Anuncio getAnuncio(int idAnuncio) throws SQLException {
         Anuncio anuncio = new Anuncio();
 
@@ -291,6 +297,13 @@ public class RepositorioAnuncioDataBase implements RepositorioAnuncio {
         return anuncio;
     }
 
+    /**
+     * Devolve o anuncio relativo a uma tarefa a que o freelancer se candidatou
+     * @param emailFreelancer
+     * @param referenciaTarefa
+     * @return
+     * @throws SQLException 
+     */
     @Override
     public boolean findAnuncioByEmailFreelancer(String emailFreelancer, String referenciaTarefa ) throws SQLException {
 

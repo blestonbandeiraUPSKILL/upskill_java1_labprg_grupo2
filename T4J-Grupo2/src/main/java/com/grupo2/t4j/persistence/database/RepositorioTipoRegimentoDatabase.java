@@ -55,6 +55,12 @@ public class RepositorioTipoRegimentoDatabase implements RepositorioTipoRegiment
         return false;
     }
 
+    /**
+     * Devolve o tipo de regimento a partir do seu id
+     * @param idTipoRegimento
+     * @return
+     * @throws SQLException 
+     */
     @Override
     public TipoRegimento findById(int idTipoRegimento) throws SQLException{
         
@@ -94,6 +100,11 @@ public class RepositorioTipoRegimentoDatabase implements RepositorioTipoRegiment
         return tipoRegimento;
     }
 
+    /**
+     * Devolve todos os tipos de regimento aplicaveis
+     * @return
+     * @throws SQLException 
+     */
     @Override
     public List<TipoRegimento> getAll()throws SQLException{
         return null;

@@ -89,6 +89,8 @@ public class GestorLogadoUI implements Initializable {
     
     /**
     * Initializes the controller (UI) class.
+     * @param location
+     * @param resources
     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -305,6 +307,9 @@ public class GestorLogadoUI implements Initializable {
 
     }
 
+    /**
+     * Limpa a tabela de candidauras
+     */
     public void limpaTabelaCandidaturas(){
         listaCandidaturasAnuncio.clear();
         preencherTabelaCandidaturas();
@@ -670,6 +675,10 @@ public class GestorLogadoUI implements Initializable {
         }
     }
 
+    /**
+     * Navega para a página de adicionar tarefa
+     * @param actionEvent
+     */
     public void navigateAddTarefa(ActionEvent actionEvent) {
         try {
             FXMLLoader loaderAddTarefa = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/EspecificarTarefaColaboradorScene.fxml"));

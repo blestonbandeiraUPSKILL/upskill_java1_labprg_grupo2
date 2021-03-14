@@ -46,6 +46,15 @@ public class RepositorioReconhecimentoGPDatabase implements RepositorioReconheci
     }
 
 
+    /**
+     * Regista o reconhecimento de um freelancer
+     * @param idGrauProficiencia
+     * @param emailFreelancer
+     * @param dataReconhecimento
+     * @return
+     * @throws ReconhecimentoDuplicadoException
+     * @throws SQLException 
+     */
     @Override
     public boolean save(int idGrauProficiencia, String emailFreelancer, String dataReconhecimento) throws  ReconhecimentoDuplicadoException,
             SQLException{
@@ -86,6 +95,13 @@ public class RepositorioReconhecimentoGPDatabase implements RepositorioReconheci
 
     }
 
+    /**
+     * Regista o reconhecimento de um freelancer
+     * @param reconhecimentoGP
+     * @return
+     * @throws ReconhecimentoDuplicadoException
+     * @throws SQLException 
+     */
     @Override
     public boolean save(ReconhecimentoGP reconhecimentoGP) throws ReconhecimentoDuplicadoException,
             SQLException {
@@ -125,6 +141,12 @@ public class RepositorioReconhecimentoGPDatabase implements RepositorioReconheci
         return false;
     }
     
+    /**
+     * Devolve todos os reconhecimentos de um freelancer
+     * @param email
+     * @return
+     * @throws SQLException 
+     */
     @Override
     public ArrayList<ReconhecimentoGP> getAll(String email) throws SQLException {
         ArrayList<ReconhecimentoGP> reconhecimentosGP = new ArrayList<>();
