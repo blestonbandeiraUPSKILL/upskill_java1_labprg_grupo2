@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RepositorioUtilizadorInMemory.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">T4J-Grupo2</a> &gt; <a href="index.source.html" class="el_package">com.grupo2.t4j.persistence.inmemory</a> &gt; <span class="el_source">RepositorioUtilizadorInMemory.java</span></div><h1>RepositorioUtilizadorInMemory.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+package com.grupo2.t4j.persistence.inmemory;
+/**
+ *
+ * @author CAD
+ */
+
+import com.grupo2.t4j.exception.UtilizadorDuplicadoException;
+import com.grupo2.t4j.model.Email;
+import com.grupo2.t4j.model.Password;
+import com.grupo2.t4j.model.Utilizador;
+import com.grupo2.t4j.persistence.RepositorioUtilizador;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
+public class RepositorioUtilizadorInMemory implements Serializable, RepositorioUtilizador {
+
+     /**
+     * Define uma instância estática do Repositório em que estão registados todos
+     * os Utilizadores da plataforma
+     */
+    public static RepositorioUtilizadorInMemory repositorioUtilizadorInMemory;
+    
+    /**
+     * Define o atributo da classe RepositorioUtilizador como uma lista de
+     * tipos da classe Utilizador
+     */
+    private List&lt;Utilizador&gt; listaUtilizadores;
+    
+    /**
+     * Inicializa o Repositório de Utilizadores
+     */
+<span class="nc" id="L40">    RepositorioUtilizadorInMemory(){</span>
+<span class="nc" id="L41">        listaUtilizadores = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L42">    }</span>
+
+    /**
+     * Devolve uma instância estática do Repositório de Utilizadores
+     * @return RepositorioUtilizador
+     */
+    public static RepositorioUtilizadorInMemory getInstance() {
+<span class="nc bnc" id="L49" title="All 2 branches missed.">        if(repositorioUtilizadorInMemory == null) {</span>
+<span class="nc" id="L50">            repositorioUtilizadorInMemory = new RepositorioUtilizadorInMemory();</span>
+        }
+<span class="nc" id="L52">        return repositorioUtilizadorInMemory;</span>
+    }
+
+    @Override
+    public void save(Email email, String nome, Password password) throws UtilizadorDuplicadoException {
+<span class="nc" id="L57">        Utilizador u = findByEmail(email.getEmailText());</span>
+<span class="nc bnc" id="L58" title="All 2 branches missed.">        if (u == null) {</span>
+<span class="nc" id="L59">            Utilizador utilizador = new Utilizador(email, nome, password);</span>
+<span class="nc" id="L60">            this.listaUtilizadores.add(utilizador);</span>
+
+<span class="nc" id="L62">        } else {</span>
+<span class="nc" id="L63">            throw new UtilizadorDuplicadoException(u.getEmail().getEmailText()</span>
+                    + &quot;: Utilizador já registado!&quot;);
+        }
+<span class="nc" id="L66">    }</span>
+
+    @Override
+    public boolean save(Utilizador utilizador) {
+<span class="nc" id="L70">        Utilizador u = findByEmail(utilizador.getEmail().getEmailText());</span>
+<span class="nc bnc" id="L71" title="All 2 branches missed.">        if (u == null) {</span>
+<span class="nc" id="L72">            Utilizador user = new Utilizador(utilizador);</span>
+<span class="nc" id="L73">            return this.listaUtilizadores.add(user);</span>
+
+        } else {
+<span class="nc" id="L76">            throw new UtilizadorDuplicadoException(u.getEmail().getEmailText()</span>
+                    + &quot;: Utilizador já registado!&quot;);
+        }
+    }
+
+    @Override
+    public Utilizador findByEmail(String emailUt) {
+<span class="nc bnc" id="L83" title="All 2 branches missed.">        for (int i = 0; i &lt; this.listaUtilizadores.size(); i++) {</span>
+<span class="nc" id="L84">            Utilizador utilizador = this.listaUtilizadores.get(i);</span>
+<span class="nc bnc" id="L85" title="All 2 branches missed.">            if (utilizador.getEmail().getEmailText().equals(emailUt)) {</span>
+<span class="nc" id="L86">                return utilizador;</span>
+            }
+        }
+<span class="nc" id="L89">        return null;</span>
+    }
+
+    @Override
+    public ArrayList&lt;Utilizador&gt; getAll() {
+<span class="nc" id="L94">        return new ArrayList&lt;Utilizador&gt;(listaUtilizadores);</span>
+    }
+
+}
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>

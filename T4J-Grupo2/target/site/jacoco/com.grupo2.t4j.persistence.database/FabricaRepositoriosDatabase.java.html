@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>FabricaRepositoriosDatabase.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">T4J-Grupo2</a> &gt; <a href="index.source.html" class="el_package">com.grupo2.t4j.persistence.database</a> &gt; <span class="el_source">FabricaRepositoriosDatabase.java</span></div><h1>FabricaRepositoriosDatabase.java</h1><pre class="source lang-java linenums">package com.grupo2.t4j.persistence.database;
+
+import com.grupo2.t4j.persistence.*;
+
+import java.sql.SQLException;
+
+<span class="nc" id="L7">public class FabricaRepositoriosDatabase implements FabricaRepositorios {</span>
+
+    @Override
+    public RepositorioAdministrativo getRepositorioAdministrativo() {
+<span class="nc" id="L11">        return RepositorioAdministrativoDatabase.getInstance();</span>
+    }
+
+    @Override
+    public RepositorioAnuncio getRepositorioAnuncio() {
+<span class="nc" id="L16">        return RepositorioAnuncioDataBase.getInstance();</span>
+    }
+
+    @Override
+    public RepositorioAreaActividade getRepositorioAreaActividade() {
+<span class="nc" id="L21">        return RepositorioAreaActividadeDatabase.getInstance();</span>
+    }
+    
+    @Override
+    public RepositorioCandidatura getRepositorioCandidatura() {
+<span class="nc" id="L26">        return RepositorioCandidaturaDatabase.getInstance();</span>
+    }
+
+    @Override
+    public RepositorioCaracterizacaoCT getRepositorioCaracterizacaoCT() {
+<span class="nc" id="L31">        return RepositorioCaracterizacaoCTDatabase.getInstance();</span>
+    }
+
+    @Override
+    public RepositorioCategoriaTarefa getRepositorioCategoriaTarefa() {
+<span class="nc" id="L36">        return RepositorioCategoriaTarefaDatabase.getInstance();</span>
+    }
+    
+    @Override
+    public RepositorioClassificacao getRepositorioClassificacao() {
+<span class="nc" id="L41">        return RepositorioClassificacaoDatabase.getInstance();</span>
+    }
+    
+    @Override
+    public RepositorioColaborador getRepositorioColaborador() {
+<span class="nc" id="L46">        return RepositorioColaboradorDatabase.getInstance();</span>
+    }
+
+    @Override
+    public RepositorioCompetenciaTecnica getRepositorioCompetenciaTecnica() {
+<span class="nc" id="L51">        return RepositorioCompetenciaTecnicaDatabase.getInstance();</span>
+    }
+
+    @Override
+    public RepositorioEnderecoPostal getRepositorioEnderecoPostal() throws SQLException {
+<span class="nc" id="L56">        return RepositorioEnderecoPostalDatabase.getInstance();</span>
+    }
+
+    @Override
+    public RepositorioFreelancer getRepositorioFreelancer() {
+<span class="nc" id="L61">        return RepositorioFreelancerDatabase.getInstance();</span>
+    }
+    
+    @Override
+    public RepositorioHabilitacaoAcademica getRepositorioHabilitacaoAcademica() {
+<span class="nc" id="L66">        return RepositorioHabilitacaoAcademicaDatabase.getInstance();</span>
+    }
+
+    @Override
+    public RepositorioGrauProficiencia getRepositorioGrauProficiencia() throws SQLException {
+<span class="nc" id="L71">        return RepositorioGrauProficienciaDatabase.getInstance();</span>
+    }
+
+    @Override
+    public RepositorioUtilizador getRepositorioUtilizador() {
+<span class="nc" id="L76">        return RepositorioUtilizadorDatabase.getInstance();</span>
+    }
+
+    @Override
+    public RepositorioOrganizacao getRepositorioOrganizacao() throws SQLException {
+<span class="nc" id="L81">        return RepositorioOrganizacaoDatabase.getInstance();</span>
+    }
+    
+    @Override
+    public RepositorioReconhecimentoGP getRepositorioReconhecimentoGP() {
+<span class="nc" id="L86">        return  RepositorioReconhecimentoGPDatabase.getInstance();</span>
+    }
+    @Override
+    public RepositorioTarefa getRepositorioTarefa() {
+<span class="nc" id="L90">        return RepositorioTarefaDatabase.getInstance();</span>
+    }    
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>

@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RepositorioGrauProficienciaInMemory.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">T4J-Grupo2</a> &gt; <a href="index.source.html" class="el_package">com.grupo2.t4j.persistence.inmemory</a> &gt; <span class="el_source">RepositorioGrauProficienciaInMemory.java</span></div><h1>RepositorioGrauProficienciaInMemory.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.grupo2.t4j.persistence.inmemory;
+
+import com.grupo2.t4j.model.GrauProficiencia;
+import com.grupo2.t4j.model.Tarefa;
+import com.grupo2.t4j.persistence.RepositorioGrauProficiencia;
+
+import java.io.Serializable;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ *
+ * @author acris
+ */
+public class RepositorioGrauProficienciaInMemory implements Serializable, RepositorioGrauProficiencia{
+    
+    /**
+     * Atributos da classe Singletone RepositorioGrauProficiencia
+     */
+    public static RepositorioGrauProficienciaInMemory instance;
+    List&lt;GrauProficiencia&gt; listaGrausProficiencia;
+    
+    /**
+     * Construtor da classe Singleton RepositorioGrauProficiencia
+     */
+<span class="nc" id="L32">    RepositorioGrauProficienciaInMemory() {</span>
+<span class="nc" id="L33">        listaGrausProficiencia = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L34">    }</span>
+
+    /**
+     * Devolve ou cria uma instância estática de RepositorioGrauProficiencia
+     *
+     * @return a instance existente ou criada
+     */
+    public static RepositorioGrauProficienciaInMemory getInstance() {
+<span class="nc bnc" id="L42" title="All 2 branches missed.">        if (instance == null) {</span>
+<span class="nc" id="L43">            instance = new RepositorioGrauProficienciaInMemory();</span>
+        }
+<span class="nc" id="L45">        return instance;</span>
+    }
+    @Override
+    public void save(int valor, String designacao, String codigoCompetenciaTecnica) {
+        
+<span class="nc" id="L50">    }</span>
+
+    @Override
+    public boolean save(GrauProficiencia grauProficiencia) throws SQLException {
+<span class="nc" id="L54">        return false;</span>
+    }
+
+ /*   @Override
+    public boolean save(GrauProficiencia grauProficiencia) {
+        GrauProficiencia gp = findByGrau(grauProficiencia.getGrau(),grauProficiencia.getCodigoCompetenciaTecnica());
+        if(gp == null) {
+            this.listaGrausProficiencia.add(grauProficiencia);
+            return true;
+        } else {
+            throw new GrauProficienciaDuplicadoException(gp.getGrau()+&quot;: Grau já especificado&quot;);
+        }
+    }*/
+
+    @Override
+    public List&lt;GrauProficiencia&gt; getAll() {
+<span class="nc" id="L70">        return new ArrayList&lt;GrauProficiencia&gt;(listaGrausProficiencia);</span>
+    }
+
+    @Override
+    public ArrayList&lt;GrauProficiencia&gt; findByCompetenciaTecnica(String codigoCompetenciaTecnica) {
+<span class="nc" id="L75">        ArrayList&lt;GrauProficiencia&gt; grauProficienciaPorCT = new ArrayList&lt;&gt;();</span>
+<span class="nc bnc" id="L76" title="All 2 branches missed.">        for (GrauProficiencia gp: listaGrausProficiencia) {</span>
+<span class="nc bnc" id="L77" title="All 2 branches missed.">            if(gp.getCodigoCompetenciaTecnica().equals(codigoCompetenciaTecnica)) {</span>
+<span class="nc" id="L78">                grauProficienciaPorCT.add(gp);</span>
+            }
+<span class="nc" id="L80">        }</span>
+<span class="nc" id="L81">        return grauProficienciaPorCT;</span>
+    }
+
+    @Override
+    public GrauProficiencia findByGrau(int grau) throws SQLException {
+<span class="nc" id="L86">        return null;</span>
+    }
+
+    @Override
+    public GrauProficiencia findByGrauECompetencia(int grau, String codigoCompetenciaTecnica) throws SQLException {
+<span class="nc" id="L91">        return null;</span>
+    }
+
+    @Override
+    public List&lt;GrauProficiencia&gt; getAllGrausTarefa(Tarefa tarefa) throws SQLException {
+<span class="nc" id="L96">        return null;</span>
+    }
+
+    @Override
+    public List&lt;GrauProficiencia&gt; getAllByCompetenciaTecnica(String codigoCompetenciaTecnica) throws SQLException {
+<span class="nc" id="L101">        return null;</span>
+    }
+
+
+/*
+    @Override
+    public GrauProficiencia findByGrau(String grau, String codigoCompetenciaTecnica) {
+
+        for(int i = 0; i &lt; this.findByCompetenciaTecnica(codigoCompetenciaTecnica).size(); i++){
+            GrauProficiencia gp = this.findByCompetenciaTecnica(codigoCompetenciaTecnica).get(i);
+            if (gp.getGrau().equals(grau)){
+                return gp;
+            }
+        }
+        return null;
+    }*/
+/*
+    @Override
+    public boolean findByValorECompetenciaTecnica(String grau, String codigoCompetenciaTecnica) throws SQLException {
+
+        for (int i = 0; i &lt; this.findByCompetenciaTecnica(codigoCompetenciaTecnica).size(); i++) {
+            GrauProficiencia gp = this.findByCompetenciaTecnica(codigoCompetenciaTecnica).get(i);
+            if (gp.getGrau().equals(grau)) {
+                return true;
+            }
+        }
+        return false;
+    }*/
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>

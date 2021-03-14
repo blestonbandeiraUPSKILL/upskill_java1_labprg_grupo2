@@ -1,0 +1,253 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+T4J-Grupo2,com.grupo2.t4j.persistence.inmemory,RepositorioUtilizadorInMemory,114,0,10,0,24,0,11,0,6,0
+T4J-Grupo2,com.grupo2.t4j.persistence.inmemory,RepositorioAreaActividadeInMemory,118,0,14,0,29,0,15,0,8,0
+T4J-Grupo2,com.grupo2.t4j.persistence.inmemory,RepositorioCandidaturaInMemory,26,0,2,0,11,0,8,0,7,0
+T4J-Grupo2,com.grupo2.t4j.persistence.inmemory,RepositorioColaboradorInMemory,174,0,16,0,40,0,18,0,10,0
+T4J-Grupo2,com.grupo2.t4j.persistence.inmemory,RepositorioCaracterizacaoCTInMemory,79,0,8,0,22,0,13,0,9,0
+T4J-Grupo2,com.grupo2.t4j.persistence.inmemory,RepositorioGrauProficienciaInMemory,60,0,6,0,19,0,13,0,10,0
+T4J-Grupo2,com.grupo2.t4j.persistence.inmemory,RepositorioEnderecoPostalInMemory,92,0,10,0,21,0,11,0,6,0
+T4J-Grupo2,com.grupo2.t4j.persistence.inmemory,RepositorioAdministrativoInMemory,119,0,10,0,27,0,11,0,6,0
+T4J-Grupo2,com.grupo2.t4j.persistence.inmemory,RepositorioFreelancerInMemory,212,0,24,0,49,0,26,0,14,0
+T4J-Grupo2,com.grupo2.t4j.persistence.inmemory,FabricaRepositoriosInMemory,37,0,0,0,18,0,18,0,18,0
+T4J-Grupo2,com.grupo2.t4j.persistence.inmemory,RepositorioReconhecimentoGPInMemory,109,0,14,0,31,0,17,0,10,0
+T4J-Grupo2,com.grupo2.t4j.persistence.inmemory,RepositorioOrganizacaoInMemory,113,0,10,0,25,0,12,0,7,0
+T4J-Grupo2,com.grupo2.t4j.persistence.inmemory,RepositorioCompetenciaTecnicaInMemory,121,65,13,7,27,16,13,7,6,4
+T4J-Grupo2,com.grupo2.t4j.persistence.inmemory,RepositorioCategoriaTarefaInMemory,125,0,16,0,31,0,16,0,8,0
+T4J-Grupo2,com.grupo2.t4j.persistence.inmemory,RepositorioHabilitacaoAcademicaInMemory,177,0,18,0,45,0,20,0,11,0
+T4J-Grupo2,com.grupo2.t4j.utils,Constants,3,0,0,0,1,0,1,0,1,0
+T4J-Grupo2,com.grupo2.t4j.utils,DBConnectionHandler,154,0,12,0,54,0,10,0,4,0
+T4J-Grupo2,com.grupo2.t4j.utils,Response,15,0,0,0,6,0,3,0,3,0
+T4J-Grupo2,com.grupo2.t4j.network,HttpConnection.new Object() {...},33,0,0,0,1,0,1,0,1,0
+T4J-Grupo2,com.grupo2.t4j.network,HttpStatusCode,3,0,0,0,1,0,1,0,1,0
+T4J-Grupo2,com.grupo2.t4j.network,HttpRequest,37,0,0,0,13,0,7,0,7,0
+T4J-Grupo2,com.grupo2.t4j.network,HttpConnection,143,0,9,0,52,0,10,0,4,0
+T4J-Grupo2,com.grupo2.t4j.network,HttpResponse,23,0,0,0,10,0,5,0,5,0
+T4J-Grupo2,com.grupo2.t4j.network,HttpRequestType,58,0,0,0,5,0,4,0,4,0
+T4J-Grupo2,com.grupo2.t4j.dto,CaracterizacaoCTDTO,77,0,0,0,31,0,12,0,12,0
+T4J-Grupo2,com.grupo2.t4j.dto,ObrigatoriedadeDTO,38,0,0,0,3,0,4,0,4,0
+T4J-Grupo2,com.grupo2.t4j.dto,ReconhecimentoGPDTO,66,0,0,0,26,0,10,0,10,0
+T4J-Grupo2,com.grupo2.t4j.dto,HabilitacaoAcademicaDTO,156,0,14,0,52,0,22,0,15,0
+T4J-Grupo2,com.grupo2.t4j.dto,AnuncioDTO,283,0,26,0,92,0,39,0,26,0
+T4J-Grupo2,com.grupo2.t4j.dto,CompetenciaTecnicaDTO,118,0,14,0,39,0,19,0,12,0
+T4J-Grupo2,com.grupo2.t4j.dto,EnderecoPostalDTO,195,0,32,0,58,0,31,0,15,0
+T4J-Grupo2,com.grupo2.t4j.dto,ListaUtilizadorDTO,10,0,0,0,5,0,3,0,3,0
+T4J-Grupo2,com.grupo2.t4j.dto,PasswordDTO,41,0,6,0,16,0,8,0,5,0
+T4J-Grupo2,com.grupo2.t4j.dto,EmailDTO,77,0,8,0,30,0,16,0,12,0
+T4J-Grupo2,com.grupo2.t4j.dto,ErroDTO,17,0,0,0,8,0,4,0,4,0
+T4J-Grupo2,com.grupo2.t4j.dto,ColaboradorDTO,132,0,8,0,44,0,17,0,13,0
+T4J-Grupo2,com.grupo2.t4j.dto,TipoRegimentoDTO,81,0,10,0,26,0,14,0,9,0
+T4J-Grupo2,com.grupo2.t4j.dto,OrganizacaoDTO,133,0,14,0,40,0,22,0,15,0
+T4J-Grupo2,com.grupo2.t4j.dto,TarefaDTO,247,0,28,0,79,0,38,0,24,0
+T4J-Grupo2,com.grupo2.t4j.dto,AreaActividadeDTO,102,0,16,0,30,0,17,0,9,0
+T4J-Grupo2,com.grupo2.t4j.dto,UtilizadorDTO,106,0,4,0,37,0,15,0,13,0
+T4J-Grupo2,com.grupo2.t4j.dto,GrauProficienciaDTO,112,0,10,0,41,0,18,0,13,0
+T4J-Grupo2,com.grupo2.t4j.dto,ListaColaboradorDTO,10,0,0,0,5,0,3,0,3,0
+T4J-Grupo2,com.grupo2.t4j.dto,Mapper,3,0,0,0,1,0,1,0,1,0
+T4J-Grupo2,com.grupo2.t4j.dto,FreelancerDTO,188,0,10,0,53,0,19,0,14,0
+T4J-Grupo2,com.grupo2.t4j.dto,CategoriaDTO,109,0,14,0,35,0,18,0,11,0
+T4J-Grupo2,com.grupo2.t4j.dto,DataDTO,24,0,0,0,10,0,5,0,5,0
+T4J-Grupo2,com.grupo2.t4j.dto,WebsiteDTO,39,0,2,0,13,0,6,0,5,0
+T4J-Grupo2,com.grupo2.t4j.dto,CandidaturaDTO,192,0,8,0,69,0,25,0,21,0
+T4J-Grupo2,com.grupo2.t4j.files,FicheiroRepositorioReconhecimentoGP,78,0,0,0,20,0,7,0,7,0
+T4J-Grupo2,com.grupo2.t4j.files,FicheiroRepositorioHabilitacaoAcademica,78,0,0,0,20,0,7,0,7,0
+T4J-Grupo2,com.grupo2.t4j.files,FicheiroRepositorioCategoria,78,0,0,0,20,0,7,0,7,0
+T4J-Grupo2,com.grupo2.t4j.files,FicheiroRepositorioAreaActividade,78,0,0,0,20,0,7,0,7,0
+T4J-Grupo2,com.grupo2.t4j.files,FileChooserT4J,39,0,0,0,9,0,3,0,3,0
+T4J-Grupo2,com.grupo2.t4j.files,FicheiroRepositorioCompetenciaTecnica,78,0,0,0,20,0,7,0,7,0
+T4J-Grupo2,com.grupo2.t4j.files,FicheiroRepositorioTarefa,3,0,0,0,1,0,1,0,1,0
+T4J-Grupo2,com.grupo2.t4j.files,FicheiroRepositorioColaborador,78,0,0,0,20,0,7,0,7,0
+T4J-Grupo2,com.grupo2.t4j.files,FicheiroRepositorioAnuncio,3,0,0,0,1,0,1,0,1,0
+T4J-Grupo2,com.grupo2.t4j.files,FicheiroRepositorioOrganizacao,78,0,0,0,20,0,7,0,7,0
+T4J-Grupo2,com.grupo2.t4j.files,FicheiroRepositorioUtilizador,78,0,0,0,20,0,7,0,7,0
+T4J-Grupo2,com.grupo2.t4j.files,FicheiroRepositorioAdministrativo,78,0,0,0,20,0,7,0,7,0
+T4J-Grupo2,com.grupo2.t4j.files,FicheiroRepositorioFreelancer,78,0,0,0,20,0,7,0,7,0
+T4J-Grupo2,com.grupo2.t4j.persistence.database,RepositorioCompetenciaTecnicaDatabase,331,0,8,0,95,0,12,0,8,0
+T4J-Grupo2,com.grupo2.t4j.persistence.database,FabricaRepositoriosDatabase,37,0,0,0,18,0,18,0,18,0
+T4J-Grupo2,com.grupo2.t4j.persistence.database,RepositorioSeriacaoDatabase,309,0,8,0,90,0,11,0,7,0
+T4J-Grupo2,com.grupo2.t4j.persistence.database,RepositorioEnderecoPostalDatabase,216,0,6,0,62,0,9,0,6,0
+T4J-Grupo2,com.grupo2.t4j.persistence.database,RepositorioReconhecimentoGPDatabase,290,0,6,0,88,0,10,0,7,0
+T4J-Grupo2,com.grupo2.t4j.persistence.database,RepositorioCategoriaTarefaDatabase,401,0,12,0,114,0,13,0,7,0
+T4J-Grupo2,com.grupo2.t4j.persistence.database,RepositorioHabilitacaoAcademicaDatabase,328,0,8,0,94,0,12,0,8,0
+T4J-Grupo2,com.grupo2.t4j.persistence.database,RepositorioCandidaturaDatabase,410,0,10,0,112,0,12,0,7,0
+T4J-Grupo2,com.grupo2.t4j.persistence.database,RepositorioFreelancerDatabase,762,0,20,0,215,0,23,0,13,0
+T4J-Grupo2,com.grupo2.t4j.persistence.database,RepositorioColaboradorDatabase,344,0,10,0,97,0,13,0,8,0
+T4J-Grupo2,com.grupo2.t4j.persistence.database,RepositorioAdministrativoDatabase,17,0,2,0,8,0,7,0,6,0
+T4J-Grupo2,com.grupo2.t4j.persistence.database,RepositorioTarefaDatabase,1309,0,32,0,342,0,33,0,17,0
+T4J-Grupo2,com.grupo2.t4j.persistence.database,RepositorioAnuncioDataBase,532,0,8,0,147,0,14,0,10,0
+T4J-Grupo2,com.grupo2.t4j.persistence.database,RepositorioAreaActividadeDatabase,325,0,10,0,96,0,12,0,7,0
+T4J-Grupo2,com.grupo2.t4j.persistence.database,RepositorioClassificacaoDatabase,428,0,10,0,121,0,14,0,9,0
+T4J-Grupo2,com.grupo2.t4j.persistence.database,RepositorioGrauProficienciaDatabase,445,0,12,0,128,0,17,0,11,0
+T4J-Grupo2,com.grupo2.t4j.persistence.database,RepositorioOrganizacaoDatabase,173,0,4,0,51,0,8,0,6,0
+T4J-Grupo2,com.grupo2.t4j.persistence.database,RepositorioCaracterizacaoCTDatabase,291,0,8,0,83,0,13,0,9,0
+T4J-Grupo2,com.grupo2.t4j.persistence.database,RepositorioUtilizadorDatabase,18,0,2,0,8,0,7,0,6,0
+T4J-Grupo2,com.grupo2.t4j.ui,AdicionarCompetenciaTecnicaUI,191,0,4,0,57,0,10,0,8,0
+T4J-Grupo2,com.grupo2.t4j.ui,ConsultarCategoriaUI,101,0,0,0,20,0,5,0,5,0
+T4J-Grupo2,com.grupo2.t4j.ui,ConsultarAnuncioUI,4,0,0,0,2,0,2,0,2,0
+T4J-Grupo2,com.grupo2.t4j.ui,PublicarTarefaGestorUI.new EventHandler() {...},18,0,0,0,3,0,2,0,2,0
+T4J-Grupo2,com.grupo2.t4j.ui,PublicarTarefaGestorUI,118,0,2,0,34,0,7,0,6,0
+T4J-Grupo2,com.grupo2.t4j.ui,AdicionarFreelancerUI.new EventHandler() {...},20,0,2,0,5,0,3,0,2,0
+T4J-Grupo2,com.grupo2.t4j.ui,AdicionarCategoriaTarefaUI,286,0,4,0,76,0,12,0,10,0
+T4J-Grupo2,com.grupo2.t4j.ui,AdministrativoLogadoUI.new EventHandler() {...},81,0,4,0,20,0,4,0,2,0
+T4J-Grupo2,com.grupo2.t4j.ui,RegistarOrgEGestorUI.new EventHandler() {...},20,0,2,0,5,0,3,0,2,0
+T4J-Grupo2,com.grupo2.t4j.ui,ConsultarCandidaturaUI,23,0,0,0,9,0,5,0,5,0
+T4J-Grupo2,com.grupo2.t4j.ui,RegistarColaboradorUI,119,0,2,0,37,0,7,0,6,0
+T4J-Grupo2,com.grupo2.t4j.ui,AlertsUI,36,0,2,0,9,0,3,0,2,0
+T4J-Grupo2,com.grupo2.t4j.ui,StartingPageUI,432,0,20,0,114,0,24,0,11,0
+T4J-Grupo2,com.grupo2.t4j.ui,AdicionarCategoriaTarefaUI.new EventHandler() {...},15,0,0,0,6,0,2,0,2,0
+T4J-Grupo2,com.grupo2.t4j.ui,AdicionarCategoriaTarefaUI.new EventHandler() {...},20,0,2,0,5,0,3,0,2,0
+T4J-Grupo2,com.grupo2.t4j.ui,AdicionarCategoriaTarefaUI.new EventHandler() {...},15,0,0,0,6,0,2,0,2,0
+T4J-Grupo2,com.grupo2.t4j.ui,AdicionarHabilitacaoAcademicaUI,190,0,2,0,51,0,9,0,8,0
+T4J-Grupo2,com.grupo2.t4j.ui,FreelancerLogadoUI.new EventHandler() {...},107,0,10,0,22,0,8,0,3,0
+T4J-Grupo2,com.grupo2.t4j.ui,EspecificarTarefaGestorUI.new EventHandler() {...},15,0,0,0,6,0,2,0,2,0
+T4J-Grupo2,com.grupo2.t4j.ui,EspecificarTarefaGestorUI.new EventHandler() {...},11,0,0,0,3,0,2,0,2,0
+T4J-Grupo2,com.grupo2.t4j.ui,EspecificarTarefaGestorUI.new EventHandler() {...},20,0,2,0,5,0,3,0,2,0
+T4J-Grupo2,com.grupo2.t4j.ui,AdicionarReconhecimentoGPUI.new EventHandler() {...},15,0,0,0,6,0,2,0,2,0
+T4J-Grupo2,com.grupo2.t4j.ui,AdicionarAreaAtividadeUI,114,0,2,0,35,0,7,0,6,0
+T4J-Grupo2,com.grupo2.t4j.ui,AdicionarReconhecimentoGPUI.new EventHandler() {...},18,0,0,0,7,0,2,0,2,0
+T4J-Grupo2,com.grupo2.t4j.ui,StartingPageUI.new EventHandler() {...},20,0,2,0,5,0,3,0,2,0
+T4J-Grupo2,com.grupo2.t4j.ui,AdicionarReconhecimentoGPUI.new EventHandler() {...},20,0,2,0,5,0,3,0,2,0
+T4J-Grupo2,com.grupo2.t4j.ui,PublicarTarefaUI,118,0,2,0,34,0,7,0,6,0
+T4J-Grupo2,com.grupo2.t4j.ui,PublicarTarefaUI.new EventHandler() {...},18,0,0,0,3,0,2,0,2,0
+T4J-Grupo2,com.grupo2.t4j.ui,ConsultarAreaActividadeUI,63,0,0,0,14,0,5,0,5,0
+T4J-Grupo2,com.grupo2.t4j.ui,EfectuarCandidaturaUI,166,0,2,0,48,0,9,0,8,0
+T4J-Grupo2,com.grupo2.t4j.ui,RegistarOrgEGestorUI,138,0,2,0,43,0,6,0,5,0
+T4J-Grupo2,com.grupo2.t4j.ui,EspecificarTarefaColaboradorUI.new EventHandler() {...},20,0,2,0,5,0,3,0,2,0
+T4J-Grupo2,com.grupo2.t4j.ui,EspecificarTarefaColaboradorUI.new EventHandler() {...},15,0,0,0,6,0,2,0,2,0
+T4J-Grupo2,com.grupo2.t4j.ui,EspecificarTarefaColaboradorUI.new EventHandler() {...},11,0,0,0,3,0,2,0,2,0
+T4J-Grupo2,com.grupo2.t4j.ui,ColaboradorLogadoUI.new EventHandler() {...},81,0,4,0,20,0,4,0,2,0
+T4J-Grupo2,com.grupo2.t4j.ui,ColaboradorLogadoUI.new Object() {...},33,0,0,0,1,0,1,0,1,0
+T4J-Grupo2,com.grupo2.t4j.ui,ColaboradorLogadoUI.new EventHandler() {...},15,0,0,0,6,0,2,0,2,0
+T4J-Grupo2,com.grupo2.t4j.ui,EspecificarTarefaColaboradorUI,215,0,2,0,61,0,9,0,8,0
+T4J-Grupo2,com.grupo2.t4j.ui,AdicionarFreelancerUI,159,0,2,0,46,0,7,0,6,0
+T4J-Grupo2,com.grupo2.t4j.ui,AdicionarAreaAtividadeUI.new EventHandler() {...},20,0,2,0,5,0,3,0,2,0
+T4J-Grupo2,com.grupo2.t4j.ui,GestorLogadoUI.new EventHandler() {...},81,0,4,0,20,0,4,0,2,0
+T4J-Grupo2,com.grupo2.t4j.ui,GestorLogadoUI.new Object() {...},33,0,0,0,1,0,1,0,1,0
+T4J-Grupo2,com.grupo2.t4j.ui,GestorLogadoUI.new EventHandler() {...},15,0,0,0,6,0,2,0,2,0
+T4J-Grupo2,com.grupo2.t4j.ui,EspecificarTarefaGestorUI,215,0,2,0,61,0,9,0,8,0
+T4J-Grupo2,com.grupo2.t4j.ui,FreelancerLogadoUI,208,0,0,0,59,0,11,0,11,0
+T4J-Grupo2,com.grupo2.t4j.ui,AdicionarCompetenciaTecnicaUI.new EventHandler() {...},20,0,2,0,5,0,3,0,2,0
+T4J-Grupo2,com.grupo2.t4j.ui,GestorLogadoUI,482,0,5,0,124,0,19,0,15,0
+T4J-Grupo2,com.grupo2.t4j.ui,ConsultarCompetenciaTecnicaUI,101,0,0,0,22,0,5,0,5,0
+T4J-Grupo2,com.grupo2.t4j.ui,AdministrativoLogadoUI,745,0,0,0,202,0,19,0,19,0
+T4J-Grupo2,com.grupo2.t4j.ui,AdicionarHabilitacaoAcademicaUI.new EventHandler() {...},20,0,2,0,5,0,3,0,2,0
+T4J-Grupo2,com.grupo2.t4j.ui,AdicionarHabilitacaoAcademicaUI.new EventHandler() {...},22,0,0,0,7,0,2,0,2,0
+T4J-Grupo2,com.grupo2.t4j.ui,AdicionarHabilitacaoAcademicaUI.new EventHandler() {...},26,0,0,0,8,0,2,0,2,0
+T4J-Grupo2,com.grupo2.t4j.ui,ColaboradorLogadoUI,378,0,5,0,102,0,21,0,17,0
+T4J-Grupo2,com.grupo2.t4j.ui,MainApp,63,0,0,0,18,0,3,0,3,0
+T4J-Grupo2,com.grupo2.t4j.ui,AdicionarReconhecimentoGPUI,205,0,2,0,54,0,10,0,9,0
+T4J-Grupo2,com.grupo2.t4j.ui,ConsultarFreelancerUI,131,0,0,0,25,0,5,0,5,0
+T4J-Grupo2,com.grupo2.t4j.ui,MainApp.new EventHandler() {...},20,0,2,0,5,0,3,0,2,0
+T4J-Grupo2,com.grupo2.t4j.ui,EfectuarCandidaturaUI.new EventHandler() {...},20,0,2,0,5,0,3,0,2,0
+T4J-Grupo2,com.grupo2.t4j.api,UsersAPI,257,0,22,0,56,0,24,0,11,0
+T4J-Grupo2,com.grupo2.t4j.model,CompetenciaTecnica,143,50,21,7,34,16,23,6,10,5
+T4J-Grupo2,com.grupo2.t4j.model,Obrigatoriedade,38,0,0,0,3,0,4,0,4,0
+T4J-Grupo2,com.grupo2.t4j.model,EnderecoPostal,245,0,32,0,60,0,33,0,17,0
+T4J-Grupo2,com.grupo2.t4j.model,Tarefa,316,0,28,0,83,0,40,0,26,0
+T4J-Grupo2,com.grupo2.t4j.model,Anuncio,482,0,26,0,100,0,40,0,27,0
+T4J-Grupo2,com.grupo2.t4j.model,HabilitacaoAcademica,219,0,14,0,61,0,26,0,19,0
+T4J-Grupo2,com.grupo2.t4j.model,DiaDaSemana,93,0,0,0,9,0,5,0,5,0
+T4J-Grupo2,com.grupo2.t4j.model,TipoRegimento,119,0,10,0,30,0,16,0,11,0
+T4J-Grupo2,com.grupo2.t4j.model,Colaborador,164,0,4,0,42,0,16,0,14,0
+T4J-Grupo2,com.grupo2.t4j.model,StatusAnuncio,3,0,0,0,1,0,1,0,1,0
+T4J-Grupo2,com.grupo2.t4j.model,DiaDaSemana.new DiaDaSemana() {...},8,0,0,0,2,0,2,0,2,0
+T4J-Grupo2,com.grupo2.t4j.model,DiaDaSemana.new DiaDaSemana() {...},8,0,0,0,2,0,2,0,2,0
+T4J-Grupo2,com.grupo2.t4j.model,DiaDaSemana.new DiaDaSemana() {...},8,0,0,0,2,0,2,0,2,0
+T4J-Grupo2,com.grupo2.t4j.model,Rolename,58,0,0,0,5,0,4,0,4,0
+T4J-Grupo2,com.grupo2.t4j.model,ProcessoSeriacao,82,0,0,0,27,0,11,0,11,0
+T4J-Grupo2,com.grupo2.t4j.model,Mes.new Mes() {...},9,0,0,0,2,0,2,0,2,0
+T4J-Grupo2,com.grupo2.t4j.model,Mes.new Mes() {...},9,0,0,0,2,0,2,0,2,0
+T4J-Grupo2,com.grupo2.t4j.model,Mes.new Mes() {...},9,0,0,0,2,0,2,0,2,0
+T4J-Grupo2,com.grupo2.t4j.model,Mes.new Mes() {...},9,0,0,0,2,0,2,0,2,0
+T4J-Grupo2,com.grupo2.t4j.model,Mes.new Mes() {...},9,0,0,0,2,0,2,0,2,0
+T4J-Grupo2,com.grupo2.t4j.model,Mes.new Mes() {...},9,0,0,0,2,0,2,0,2,0
+T4J-Grupo2,com.grupo2.t4j.model,Mes.new Mes() {...},9,0,0,0,2,0,2,0,2,0
+T4J-Grupo2,com.grupo2.t4j.model,Mes.new Mes() {...},9,0,0,0,2,0,2,0,2,0
+T4J-Grupo2,com.grupo2.t4j.model,Mes.new Mes() {...},9,0,0,0,2,0,2,0,2,0
+T4J-Grupo2,com.grupo2.t4j.model,DiaDaSemana.new DiaDaSemana() {...},8,0,0,0,2,0,2,0,2,0
+T4J-Grupo2,com.grupo2.t4j.model,DiaDaSemana.new DiaDaSemana() {...},8,0,0,0,2,0,2,0,2,0
+T4J-Grupo2,com.grupo2.t4j.model,DiaDaSemana.new DiaDaSemana() {...},8,0,0,0,2,0,2,0,2,0
+T4J-Grupo2,com.grupo2.t4j.model,Classificacao,124,0,0,0,39,0,15,0,15,0
+T4J-Grupo2,com.grupo2.t4j.model,DiaDaSemana.new DiaDaSemana() {...},8,0,0,0,2,0,2,0,2,0
+T4J-Grupo2,com.grupo2.t4j.model,Organizacao,160,0,14,0,41,0,23,0,16,0
+T4J-Grupo2,com.grupo2.t4j.model,DesignacaoSeriacao.new DesignacaoSeriacao() {...},8,0,0,0,2,0,2,0,2,0
+T4J-Grupo2,com.grupo2.t4j.model,DesignacaoSeriacao.new DesignacaoSeriacao() {...},8,0,0,0,2,0,2,0,2,0
+T4J-Grupo2,com.grupo2.t4j.model,DesignacaoSeriacao.new DesignacaoSeriacao() {...},8,0,0,0,2,0,2,0,2,0
+T4J-Grupo2,com.grupo2.t4j.model,CaracterizacaoCT,126,0,0,0,38,0,14,0,14,0
+T4J-Grupo2,com.grupo2.t4j.model,Email,70,13,6,0,25,6,14,3,11,3
+T4J-Grupo2,com.grupo2.t4j.model,FiltroTarefas,58,0,0,0,5,0,4,0,4,0
+T4J-Grupo2,com.grupo2.t4j.model,AlgoritmoGeradorPasswords,34,0,2,0,8,0,3,0,2,0
+T4J-Grupo2,com.grupo2.t4j.model,Categoria,286,0,32,0,59,0,33,0,17,0
+T4J-Grupo2,com.grupo2.t4j.model,Mes.new Mes() {...},9,0,0,0,2,0,2,0,2,0
+T4J-Grupo2,com.grupo2.t4j.model,Mes.new Mes() {...},9,0,0,0,2,0,2,0,2,0
+T4J-Grupo2,com.grupo2.t4j.model,Mes.new Mes() {...},9,0,0,0,2,0,2,0,2,0
+T4J-Grupo2,com.grupo2.t4j.model,Candidatura,326,0,8,0,94,0,30,0,26,0
+T4J-Grupo2,com.grupo2.t4j.model,Freelancer,235,0,10,0,57,0,20,0,15,0
+T4J-Grupo2,com.grupo2.t4j.model,GrauProficiencia,144,0,8,0,39,0,18,0,14,0
+T4J-Grupo2,com.grupo2.t4j.model,TipoStatusAnuncio,58,0,0,0,5,0,4,0,4,0
+T4J-Grupo2,com.grupo2.t4j.model,Utilizador,182,0,4,0,46,0,19,0,17,0
+T4J-Grupo2,com.grupo2.t4j.model,Website,39,0,2,0,13,0,6,0,5,0
+T4J-Grupo2,com.grupo2.t4j.model,DesignacaoSeriacao,48,0,0,0,4,0,4,0,4,0
+T4J-Grupo2,com.grupo2.t4j.model,Password,23,32,1,5,5,12,3,6,2,4
+T4J-Grupo2,com.grupo2.t4j.model,ReconhecimentoGP,88,0,0,0,29,0,11,0,11,0
+T4J-Grupo2,com.grupo2.t4j.model,Administrativo,185,0,4,0,47,0,18,0,16,0
+T4J-Grupo2,com.grupo2.t4j.model,Data,396,0,44,0,79,0,45,0,23,0
+T4J-Grupo2,com.grupo2.t4j.model,AreaActividade,111,79,16,12,19,23,16,11,6,7
+T4J-Grupo2,com.grupo2.t4j.model,FiltroTarefas.new FiltroTarefas() {...},8,0,0,0,2,0,2,0,2,0
+T4J-Grupo2,com.grupo2.t4j.model,FiltroTarefas.new FiltroTarefas() {...},8,0,0,0,2,0,2,0,2,0
+T4J-Grupo2,com.grupo2.t4j.model,FiltroTarefas.new FiltroTarefas() {...},8,0,0,0,2,0,2,0,2,0
+T4J-Grupo2,com.grupo2.t4j.model,FiltroTarefas.new FiltroTarefas() {...},8,0,0,0,2,0,2,0,2,0
+T4J-Grupo2,com.grupo2.t4j.model,Mes,174,0,4,0,20,0,8,0,6,0
+T4J-Grupo2,com.grupo2.t4j.exception,AdministrativoInexistenteException,4,0,0,0,2,0,1,0,1,0
+T4J-Grupo2,com.grupo2.t4j.exception,NifInvalidoException,4,0,0,0,2,0,1,0,1,0
+T4J-Grupo2,com.grupo2.t4j.exception,FreelancerDuplicadoException,4,0,0,0,2,0,1,0,1,0
+T4J-Grupo2,com.grupo2.t4j.exception,PasswordInvalidaException,0,4,0,0,0,2,0,1,0,1
+T4J-Grupo2,com.grupo2.t4j.exception,IdInvalidoException,4,0,0,0,2,0,1,0,1,0
+T4J-Grupo2,com.grupo2.t4j.exception,OrganizacaoInvalidaException,4,0,0,0,2,0,1,0,1,0
+T4J-Grupo2,com.grupo2.t4j.exception,AreaActividadeDuplicadaException,4,0,0,0,2,0,1,0,1,0
+T4J-Grupo2,com.grupo2.t4j.exception,TarefaInexistenteException,4,0,0,0,2,0,1,0,1,0
+T4J-Grupo2,com.grupo2.t4j.exception,DescricaoInvalidaException,0,4,0,0,0,2,0,1,0,1
+T4J-Grupo2,com.grupo2.t4j.exception,ConversaoException,11,0,0,0,2,0,1,0,1,0
+T4J-Grupo2,com.grupo2.t4j.exception,WebsiteInvalidoException,4,0,0,0,2,0,1,0,1,0
+T4J-Grupo2,com.grupo2.t4j.exception,AnuncioInvalidoException,4,0,0,0,2,0,1,0,1,0
+T4J-Grupo2,com.grupo2.t4j.exception,AreaActividadeInexistenteException,4,0,0,0,2,0,1,0,1,0
+T4J-Grupo2,com.grupo2.t4j.exception,CompetenciaTecnicaInexistenteException,4,0,0,0,2,0,1,0,1,0
+T4J-Grupo2,com.grupo2.t4j.exception,GrauProficienciaDuplicadoException,4,0,0,0,2,0,1,0,1,0
+T4J-Grupo2,com.grupo2.t4j.exception,GrauInvalidoException,4,0,0,0,2,0,1,0,1,0
+T4J-Grupo2,com.grupo2.t4j.exception,CategoriaInexistenteException,4,0,0,0,2,0,1,0,1,0
+T4J-Grupo2,com.grupo2.t4j.exception,AdministrativoDuplicadoException,4,0,0,0,2,0,1,0,1,0
+T4J-Grupo2,com.grupo2.t4j.exception,AnuncioDuplicadoException,4,0,0,0,2,0,1,0,1,0
+T4J-Grupo2,com.grupo2.t4j.exception,OrganizacaoDuplicadaException,4,0,0,0,2,0,1,0,1,0
+T4J-Grupo2,com.grupo2.t4j.exception,DiaInvalidoException,8,0,0,0,4,0,2,0,2,0
+T4J-Grupo2,com.grupo2.t4j.exception,TarefaDuplicadaException,4,0,0,0,2,0,1,0,1,0
+T4J-Grupo2,com.grupo2.t4j.exception,MesInvalidoException,8,0,0,0,4,0,2,0,2,0
+T4J-Grupo2,com.grupo2.t4j.exception,UtilizadorDuplicadoException,4,0,0,0,2,0,1,0,1,0
+T4J-Grupo2,com.grupo2.t4j.exception,HabilitacaoAcademicaDuplicadaException,4,0,0,0,2,0,1,0,1,0
+T4J-Grupo2,com.grupo2.t4j.exception,NomeInvalidoException,4,0,0,0,2,0,1,0,1,0
+T4J-Grupo2,com.grupo2.t4j.exception,CategoriaDuplicadaException,4,0,0,0,2,0,1,0,1,0
+T4J-Grupo2,com.grupo2.t4j.exception,CaracterizacaoCTInexistenteException,4,0,0,0,2,0,1,0,1,0
+T4J-Grupo2,com.grupo2.t4j.exception,ReconhecimentoDuplicadoException,4,0,0,0,2,0,1,0,1,0
+T4J-Grupo2,com.grupo2.t4j.exception,CodigoInvalidoException,4,0,0,0,2,0,1,0,1,0
+T4J-Grupo2,com.grupo2.t4j.exception,EmailInvalidoException,4,0,0,0,2,0,1,0,1,0
+T4J-Grupo2,com.grupo2.t4j.exception,CaracterizacaoCTDuplicadaException,4,0,0,0,2,0,1,0,1,0
+T4J-Grupo2,com.grupo2.t4j.exception,QuantidadeInvalidaException,4,0,0,0,2,0,1,0,1,0
+T4J-Grupo2,com.grupo2.t4j.exception,CompetenciaTecnicaDuplicadaException,0,4,0,0,0,2,0,1,0,1
+T4J-Grupo2,com.grupo2.t4j.exception,CandidaturaDuplicadaException,4,0,0,0,2,0,1,0,1,0
+T4J-Grupo2,com.grupo2.t4j.exception,EnderecoPostalDuplicadoException,4,0,0,0,2,0,1,0,1,0
+T4J-Grupo2,com.grupo2.t4j.exception,ColaboradorDuplicadoException,4,0,0,0,2,0,1,0,1,0
+T4J-Grupo2,com.grupo2.t4j.exception,DataInvalidaException,4,0,0,0,2,0,1,0,1,0
+T4J-Grupo2,com.grupo2.t4j.controller,RegistarReconhecimentoGPController,31,0,0,0,6,0,4,0,4,0
+T4J-Grupo2,com.grupo2.t4j.controller,RegistarCompetenciaTecnicaController,80,0,0,0,18,0,9,0,9,0
+T4J-Grupo2,com.grupo2.t4j.controller,RegistarOrganizacaoController,85,0,0,0,15,0,5,0,5,0
+T4J-Grupo2,com.grupo2.t4j.controller,PublicarTarefaController,41,0,0,0,8,0,5,0,5,0
+T4J-Grupo2,com.grupo2.t4j.controller,RegistarCaracterizacaoCTController,55,0,0,0,11,0,8,0,8,0
+T4J-Grupo2,com.grupo2.t4j.controller,GestaoUtilizadoresController,20,0,0,0,7,0,6,0,6,0
+T4J-Grupo2,com.grupo2.t4j.controller,EfectuarCandidaturaController,177,0,14,0,39,0,16,0,9,0
+T4J-Grupo2,com.grupo2.t4j.controller,RegistarTarefaController,106,0,0,0,20,0,13,0,13,0
+T4J-Grupo2,com.grupo2.t4j.controller,RegistarHabilitacaoAcademicaController,81,0,0,0,17,0,9,0,9,0
+T4J-Grupo2,com.grupo2.t4j.controller,RegistarFreelancerController,145,0,0,0,30,0,15,0,15,0
+T4J-Grupo2,com.grupo2.t4j.controller,RegistarAnuncioController,40,0,0,0,7,0,4,0,4,0
+T4J-Grupo2,com.grupo2.t4j.controller,SeriarAnuncioController,3,0,0,0,1,0,1,0,1,0
+T4J-Grupo2,com.grupo2.t4j.controller,RegistarColaboradorController,137,0,0,0,30,0,12,0,12,0
+T4J-Grupo2,com.grupo2.t4j.controller,RegistarGrauProficienciaController,60,0,0,0,13,0,7,0,7,0
+T4J-Grupo2,com.grupo2.t4j.controller,RegistarAreaActividadeController,75,0,0,0,17,0,9,0,9,0
+T4J-Grupo2,com.grupo2.t4j.controller,RegistarCategoriaController,80,0,0,0,18,0,9,0,9,0
