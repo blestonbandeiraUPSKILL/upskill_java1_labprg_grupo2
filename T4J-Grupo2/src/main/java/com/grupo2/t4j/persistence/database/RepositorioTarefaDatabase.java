@@ -42,6 +42,12 @@ public class RepositorioTarefaDatabase implements RepositorioTarefa {
 
     }
 
+    /**
+     * Regista uma tarefa
+     * @param tarefa
+     * @return
+     * @throws SQLException 
+     */
     @Override
     public boolean save(Tarefa tarefa) throws SQLException {
 
@@ -89,6 +95,13 @@ public class RepositorioTarefaDatabase implements RepositorioTarefa {
         return false;
     }
 
+    /**
+     * Devolve uma tarefa a partir da sua referencia e do nif da organizacao que a criou
+     * @param referencia
+     * @param nif
+     * @return
+     * @throws SQLException 
+     */
     @Override
     public Tarefa findByReferenciaENIF(String referencia, String nif) throws SQLException {
 
@@ -121,6 +134,12 @@ public class RepositorioTarefaDatabase implements RepositorioTarefa {
 
 
 
+    /**
+     * Devolve todas as tarefas de uma organizacao
+     * @param nifOrganizacao
+     * @return
+     * @throws SQLException 
+     */
     @Override
     public ArrayList<Tarefa> getAllOrganizacao(String nifOrganizacao) throws SQLException {
         ArrayList<Tarefa> tarefas = new ArrayList<>();
@@ -171,6 +190,11 @@ public class RepositorioTarefaDatabase implements RepositorioTarefa {
         return tarefas;
     }
 
+    /**
+     * Devolve todas as tarefas
+     * @return
+     * @throws SQLException 
+     */
     @Override
     public ArrayList<Tarefa> getAll() throws SQLException {
         ArrayList<Tarefa> tarefas = new ArrayList<>();
@@ -222,6 +246,13 @@ public class RepositorioTarefaDatabase implements RepositorioTarefa {
     }
     
 
+    /**
+     * Devolve todas as tarefas criadas por um colaborador
+     * @param email
+     * @param nifOrganizacao
+     * @return
+     * @throws SQLException 
+     */
     @Override
     public List<Tarefa> findByColaboradorENif(String email, String nifOrganizacao) throws SQLException {
         ArrayList<Tarefa> tarefas = new ArrayList<>();
@@ -272,6 +303,12 @@ public class RepositorioTarefaDatabase implements RepositorioTarefa {
         return tarefas;
     }
 
+    /**
+     * Devolve todas as tarefas de uma organizacao que estao publicadas
+     * @param nifOrganizacao
+     * @return
+     * @throws SQLException 
+     */
     @Override
     public List<Tarefa> findTarefasPublicadas(String nifOrganizacao) throws SQLException {
         List<Tarefa> tarefasComAnuncio = new ArrayList<>();
@@ -321,6 +358,13 @@ public class RepositorioTarefaDatabase implements RepositorioTarefa {
         return tarefasComAnuncio;
     }
 
+    /**
+     * Devolve o id do anuncio de uma tarefa
+     * @param nifOrganizacao
+     * @param referenciaTarefa
+     * @return
+     * @throws SQLException 
+     */
     public int findIdAnuncio(String nifOrganizacao, String referenciaTarefa) throws SQLException {
         int idAnuncio = 0;
 
@@ -363,6 +407,12 @@ public class RepositorioTarefaDatabase implements RepositorioTarefa {
 
     }
 
+    /**
+     * Devolve as referencias de todas as tarefas de uma organizacao
+     * @param nifOrganizacao
+     * @return
+     * @throws SQLException 
+     */
     @Override
     public List<String> findReferenciaTarefa(String nifOrganizacao) throws SQLException {
         List<String> referenciasTarefa = new ArrayList<>();
@@ -400,6 +450,13 @@ public class RepositorioTarefaDatabase implements RepositorioTarefa {
         return referenciasTarefa;
     }
 
+    /**
+     * Devolve todas as tarefas de uma organizacao que ainda nao foram publicadas
+     * @param nifOrganizacao
+     * @param email
+     * @return
+     * @throws SQLException 
+     */
     @Override
     public List<Tarefa> findTarefasNaoPublicadas(String nifOrganizacao, String email) throws SQLException {
 
@@ -452,6 +509,13 @@ public class RepositorioTarefaDatabase implements RepositorioTarefa {
 
     }
 
+    /**
+     * Devolve o anuncio de uma tarefa
+     * @param referencia
+     * @param nif
+     * @return
+     * @throws SQLException 
+     */
     public List<Anuncio> findAnuncioByTarefa(String referencia, String nif) throws SQLException {
 
         List<Anuncio> tarefasComAnuncio = new ArrayList<>();
@@ -501,6 +565,12 @@ public class RepositorioTarefaDatabase implements RepositorioTarefa {
         return tarefasComAnuncio;
     }
 
+    /**
+     * Devolve uma tarefa
+     * @param idAnuncio
+     * @return
+     * @throws SQLException 
+     */
     @Override
     public Tarefa findTarefa(int idAnuncio) throws SQLException {
         Tarefa tarefa = new Tarefa();
@@ -550,6 +620,11 @@ public class RepositorioTarefaDatabase implements RepositorioTarefa {
         return tarefa;
     }
 
+    /**
+     * Devolve todas as tarefas publicadas
+     * @return
+     * @throws SQLException 
+     */
     public List<Tarefa> getAllTarefasPublicadas() throws SQLException {
         List<Tarefa> tarefas = new ArrayList<>();
 
@@ -598,6 +673,13 @@ public class RepositorioTarefaDatabase implements RepositorioTarefa {
     }
 
 
+    /**
+     * Devolve uma tarefa a partir da sua referenca e do nif da organizacao que a criou
+     * @param referencia
+     * @param nifOrganizacao
+     * @return
+     * @throws SQLException 
+     */
     @Override
     public Tarefa getTarefaByRefENif(String referencia, String nifOrganizacao) throws SQLException {
         Tarefa tarefa = new Tarefa();
@@ -647,6 +729,12 @@ public class RepositorioTarefaDatabase implements RepositorioTarefa {
         return tarefa;
     }
 
+    /**
+     * Devolve todas as referencias de tarefas
+     * @param listaTarefas
+     * @return
+     * @throws SQLException 
+     */
     @Override
     public List<String> getReferenciasTarefas(List<Tarefa> listaTarefas)  throws SQLException{
         List<String> referenciaTarefas = new ArrayList<>();

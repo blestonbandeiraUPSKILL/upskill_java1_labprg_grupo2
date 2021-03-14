@@ -41,6 +41,12 @@ public class RepositorioSeriacaoDatabase implements RepositorioSeriacao{
         return repositorioSeriacaoDatabase;
     }
     
+    /**
+     * Regista a seriacao de um anuncio
+     * @param idAnuncio
+     * @return
+     * @throws SQLException 
+     */
     @Override
     public boolean save(int idAnuncio) throws SQLException{
 
@@ -79,6 +85,12 @@ public class RepositorioSeriacaoDatabase implements RepositorioSeriacao{
         return false;
     }
     
+    /**
+     * Regista o processo de seriacao de um anuncio
+     * @param seriacao
+     * @return
+     * @throws SQLException 
+     */
     @Override
     public boolean save(ProcessoSeriacao seriacao) throws SQLException{
 
@@ -117,6 +129,12 @@ public class RepositorioSeriacaoDatabase implements RepositorioSeriacao{
         return false;
     }
 
+    /**
+     * Devolve um processo de seriacao a partir do seu id
+     * @param idSeriacao
+     * @return
+     * @throws SQLException 
+     */
     @Override
     public ProcessoSeriacao findById(int idSeriacao) throws SQLException{
 
@@ -143,6 +161,12 @@ public class RepositorioSeriacaoDatabase implements RepositorioSeriacao{
         return new ProcessoSeriacao();      
     }
     
+    /**
+     * Devolve o processo de seriacao de um anuncio
+     * @param idAnuncio
+     * @return
+     * @throws SQLException 
+     */
     @Override
     public ProcessoSeriacao findByAnuncio(int idAnuncio) throws SQLException{
 
@@ -170,6 +194,11 @@ public class RepositorioSeriacaoDatabase implements RepositorioSeriacao{
         return null;
     } 
         
+    /**
+     * Devolve todos os processos de seriacao
+     * @return
+     * @throws SQLException 
+     */
     @Override
     public List<ProcessoSeriacao> getAll() throws SQLException{
         
@@ -209,6 +238,12 @@ public class RepositorioSeriacaoDatabase implements RepositorioSeriacao{
         return seriacoes;
     }
 
+    /**
+     * Devolve todos os processos de seriacao de um anuncio
+     * @param idAnuncio
+     * @return
+     * @throws SQLException 
+     */
     @Override
     public List<ProcessoSeriacao> getAllByIdAnuncio(int idAnuncio) throws SQLException {
         List<ProcessoSeriacao> processosSeriacao = new ArrayList<>();
@@ -250,6 +285,12 @@ public class RepositorioSeriacaoDatabase implements RepositorioSeriacao{
         return processosSeriacao;
     }
 
+    /**
+     * Devolve o processo de seriacao de um anuncio
+     * @param idAnuncio
+     * @return
+     * @throws SQLException 
+     */
     @Override
     public ProcessoSeriacao getProcessoSeriacaoByAnuncio(int idAnuncio) throws SQLException {
         ProcessoSeriacao processoSeriacao = new ProcessoSeriacao();
@@ -291,6 +332,12 @@ public class RepositorioSeriacaoDatabase implements RepositorioSeriacao{
         return processoSeriacao;
     }
 
+    /**
+     * Devolve o processo de seriacao de um anuncio
+     * @param idAnuncio
+     * @return
+     * @throws SQLException 
+     */
     @Override
     public ProcessoSeriacao findProcessoSeriacaoByIdAnuncio(int idAnuncio) throws SQLException {
         ProcessoSeriacao processoSeriacao = new ProcessoSeriacao();

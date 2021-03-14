@@ -43,6 +43,12 @@ public class RepositorioCaracterizacaoCTDatabase implements RepositorioCaracteri
 
     }
 
+    /**
+     * Regista a caracterizacao de uma competencia tecnica
+     * @param caracterizacaoCT
+     * @return
+     * @throws SQLException 
+     */
     @Override
     public boolean save(CaracterizacaoCT caracterizacaoCT) throws SQLException {
 
@@ -95,6 +101,14 @@ public class RepositorioCaracterizacaoCTDatabase implements RepositorioCaracteri
         return null;
     }
 
+    /**
+     * Devolve a caracteizacao de uma competencia tecnica a partir do codigo de categoria 
+     * e do codigo do grau de proficiencia
+     * @param codigoCategoria
+     * @param codigoGP
+     * @return
+     * @throws SQLException 
+     */
     @Override
     public CaracterizacaoCT findByCategoriaEGrau(String codigoCategoria,
                                                  int codigoGP) throws SQLException {
@@ -127,6 +141,12 @@ public class RepositorioCaracterizacaoCTDatabase implements RepositorioCaracteri
         return new CaracterizacaoCT();
     }
 
+    /**
+     * Devolve todas as competencias tecnicas caracterizadas de uma categoria
+     * @param codigoCategoria
+     * @return
+     * @throws SQLException 
+     */
     @Override
     public List<CaracterizacaoCT> getAllByCategoria(String codigoCategoria) throws SQLException {
         List<CaracterizacaoCT> caracterizacoesCT = new ArrayList<>();
