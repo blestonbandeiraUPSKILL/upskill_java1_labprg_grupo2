@@ -253,5 +253,6 @@ CREATE TABLE CandidaturaApagada(
     idAnuncio integer,
     emailFreelancer  varchar(20), 
     dataCandidatura date,
-    dataEdicaoCandidatura date 
+    dataEdicaoCandidatura date,
+    dataEliminacao date
 );
