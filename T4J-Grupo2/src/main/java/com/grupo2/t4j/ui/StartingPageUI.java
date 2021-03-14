@@ -138,6 +138,12 @@ public class StartingPageUI implements Initializable {
 
             filtroRole();
         }
+        else {
+            AlertsUI.criarAlerta(Alert.AlertType.ERROR,
+                    MainApp.TITULO_APLICACAO,
+                    "Dados inválidos",
+                    "Não foi possível fazer o login.").show();
+        }
     }
 
     public void loginEnter(KeyEvent keyEvent) {
@@ -156,6 +162,12 @@ public class StartingPageUI implements Initializable {
                         txtPasswordLogin.clear();
 
                         filtroRole();
+                    }
+                    else {
+                        AlertsUI.criarAlerta(Alert.AlertType.ERROR,
+                                MainApp.TITULO_APLICACAO,
+                                "Dados inválidos",
+                                "Não foi possível fazer o login.").show();
                     }
                 }
             });
