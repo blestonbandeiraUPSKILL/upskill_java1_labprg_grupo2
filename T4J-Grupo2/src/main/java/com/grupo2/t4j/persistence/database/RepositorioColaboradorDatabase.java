@@ -1,14 +1,13 @@
 package com.grupo2.t4j.persistence.database;
 
-import com.grupo2.t4j.exception.ColaboradorDuplicadoException;
 import com.grupo2.t4j.domain.Colaborador;
 import com.grupo2.t4j.domain.Password;
+import com.grupo2.t4j.exception.ColaboradorDuplicadoException;
 import com.grupo2.t4j.persistence.RepositorioColaborador;
 import com.grupo2.t4j.utils.DBConnectionHandler;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.Collections;
 
 public class RepositorioColaboradorDatabase implements RepositorioColaborador {
 

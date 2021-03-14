@@ -10,9 +10,10 @@ package com.grupo2.t4j.persistence.database;
  * @author CAD
  */
 
-import com.grupo2.t4j.domain.*;
+import com.grupo2.t4j.domain.ProcessoSeriacao;
 import com.grupo2.t4j.persistence.RepositorioSeriacao;
 import com.grupo2.t4j.utils.DBConnectionHandler;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;

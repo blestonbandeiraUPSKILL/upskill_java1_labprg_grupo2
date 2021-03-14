@@ -10,17 +10,14 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 import javafx.stage.WindowEvent;
-//import java.awt.event.KeyEvent;
-import javafx.scene.input.KeyEvent;
-
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 /**
@@ -239,6 +236,7 @@ public class StartingPageUI implements Initializable {
             adicionarStage.setTitle("T4J - Administrativo");
             adicionarStage.show();
             btnLogin.getScene().getWindow().hide();
+
         } catch (IOException exception) {
             exception.printStackTrace();
             AlertsUI.criarAlerta(Alert.AlertType.ERROR,
@@ -265,6 +263,7 @@ public class StartingPageUI implements Initializable {
             adicionarStage.show();
 
             btnLogin.getScene().getWindow().hide();
+
         } catch (IOException exception) {
             exception.printStackTrace();
             AlertsUI.criarAlerta(Alert.AlertType.ERROR,
@@ -291,6 +290,7 @@ public class StartingPageUI implements Initializable {
             adicionarStage.show();
 
             btnLogin.getScene().getWindow().hide();
+
         } catch (IOException exception) {
             exception.printStackTrace();
             AlertsUI.criarAlerta(Alert.AlertType.ERROR,
@@ -316,6 +316,7 @@ public class StartingPageUI implements Initializable {
             adicionarStage.setTitle("T4J - Freelancer");
             adicionarStage.show();
             btnLogin.getScene().getWindow().hide();
+
         } catch (IOException exception) {
             exception.printStackTrace();
             AlertsUI.criarAlerta(Alert.AlertType.ERROR,

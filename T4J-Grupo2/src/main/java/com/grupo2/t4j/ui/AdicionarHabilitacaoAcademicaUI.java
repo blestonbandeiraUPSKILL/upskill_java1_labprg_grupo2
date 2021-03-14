@@ -9,6 +9,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.Window;
@@ -17,7 +18,6 @@ import javafx.stage.WindowEvent;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
-import javafx.scene.control.cell.PropertyValueFactory;
 
 /**
  * FXML Controller class

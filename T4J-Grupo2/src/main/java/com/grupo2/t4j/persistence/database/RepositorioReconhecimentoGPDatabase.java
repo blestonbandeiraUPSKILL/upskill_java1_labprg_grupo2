@@ -10,9 +10,8 @@ package com.grupo2.t4j.persistence.database;
  * @author CAD
  */
 
-import com.grupo2.t4j.exception.ReconhecimentoDuplicadoException;
-import com.grupo2.t4j.domain.Email;
 import com.grupo2.t4j.domain.ReconhecimentoGP;
+import com.grupo2.t4j.exception.ReconhecimentoDuplicadoException;
 import com.grupo2.t4j.persistence.RepositorioReconhecimentoGP;
 import com.grupo2.t4j.utils.DBConnectionHandler;
 

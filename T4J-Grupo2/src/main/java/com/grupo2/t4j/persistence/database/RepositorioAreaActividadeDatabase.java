@@ -10,8 +10,8 @@ package com.grupo2.t4j.persistence.database;
  * @author CAD
  */
 
-import com.grupo2.t4j.exception.AreaActividadeDuplicadaException;
 import com.grupo2.t4j.domain.AreaActividade;
+import com.grupo2.t4j.exception.AreaActividadeDuplicadaException;
 import com.grupo2.t4j.persistence.RepositorioAreaActividade;
 import com.grupo2.t4j.utils.DBConnectionHandler;
 
