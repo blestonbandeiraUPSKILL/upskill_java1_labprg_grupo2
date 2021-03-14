@@ -41,7 +41,7 @@ public interface RepositorioTarefa {
 
     List<Tarefa> findByColaboradorENif(String email, String nifOrganizacao) throws SQLException;
 
-    List<Tarefa> findTarefasPublicadas(String nifOrganizacao, String emailColaborador)throws SQLException;
+    List<Tarefa> findTarefasPublicadas(String nifOrganizacao)throws SQLException;
 
     List<String> findReferenciaTarefa(String nifOrganizacao) throws SQLException;
 

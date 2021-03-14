@@ -34,6 +34,18 @@ import java.util.ResourceBundle;
 
 public class SeriacaoManualGestorUI implements Initializable{
 
+    private GestorLogadoUI gestorLogadoUI;
+    private SeriarAnuncioController seriarAnuncioController;
+    private Stage adicionarStage;
+
+    private int idAnuncio;
+    private int idSeriacao;
+    private int qtdCand;
+    private String emailColaborador;
+    private String nifOrganizacao;
+    private List<Integer> classificacoes = new ArrayList<>();
+    private ArrayList<String> colaboradoresParticipantes = new ArrayList<>();
+
     @FXML TextField txtIdAnuncio;
     @FXML Button btnAdicionarColaborador;
     @FXML Button btnVoltar;
@@ -51,19 +63,6 @@ public class SeriacaoManualGestorUI implements Initializable{
     @FXML TableColumn<Object, Object> colunaColaborador;
     @FXML TableColumn<Object, Object> colunaParticipante;
 
-
-    private GestorLogadoUI gestorLogadoUI;
-    private SeriarAnuncioController seriarAnuncioController;
-    private Stage adicionarStage;
-        
-    private int idAnuncio;
-    private int idSeriacao;
-    private int qtdCand;
-    private String emailColaborador;
-    private String nifOrganizacao;
-    private List<Integer> classificacoes = new ArrayList<>();
-    private ArrayList<String> colaboradoresParticipantes = new ArrayList<>();
-    
     
     public void associarParentUI(GestorLogadoUI gestorLogadoUI) {
         this.gestorLogadoUI = gestorLogadoUI;
@@ -204,23 +203,23 @@ public class SeriacaoManualGestorUI implements Initializable{
     }
     
     @FXML
-    public void voltar(ActionEvent event) {
-        if(classificacoes.size() == 0){
+    public void voltar(ActionEvent event) throws SQLException{
+        if(classificacoes.size() != 0){
             Window window = btnVoltar.getScene().getWindow();
             window.setOnCloseRequest(new EventHandler<WindowEvent>() {
                 @Override
                 public void handle(WindowEvent windowEvent) {
                     Alert alerta = AlertsUI.criarAlerta(Alert.AlertType.CONFIRMATION,
-                        MainApp.TITULO_APLICACAO,
-                        "A seriação ainda não está concluída.",
-                        "Por favor, termine de classificar as candidaturas!");
+                            MainApp.TITULO_APLICACAO,
+                            "A seriação ainda não está concluída.",
+                            "Por favor, termine de classificar as candidaturas!");
                     windowEvent.consume();
                 }
             });
         }
         else{
+            gestorLogadoUI.updateDataSeriacao();
             btnVoltar.getScene().getWindow().hide();
         }
-        
     }
 }

@@ -77,12 +77,11 @@ public class RegistarTarefaController {
     /**
      * Devolve uma lista de tarefas publicadas
      * @param nifOrganizacao
-     * @param emailColaborador
      * @return
      * @throws SQLException 
      */
-    public List<Tarefa> findTarefasPublicadas(String nifOrganizacao, String emailColaborador) throws SQLException{
-        return repositorioTarefa.findTarefasPublicadas(nifOrganizacao, emailColaborador);
+    public List<Tarefa> findTarefasPublicadas(String nifOrganizacao) throws SQLException{
+        return repositorioTarefa.findTarefasPublicadas(nifOrganizacao);
     }
     
     /**
@@ -170,13 +169,13 @@ public class RegistarTarefaController {
         List<GrauProficiencia> grausFreelancer = getAllGrausFreelancer(emailFreelancer);
 
        for (Tarefa tarefa : tarefasComGraus) {
-           for (GrauProficiencia grauTarefa : tarefa.getGrauProficiencia()) {
-               for (GrauProficiencia grauFreelancer : grausFreelancer) {
-                   if(grauFreelancer.getGrau() >= grauTarefa.getGrau() && grauFreelancer.getCodigoCompetenciaTecnica().equals(grauTarefa.getCodigoCompetenciaTecnica())) {
-                       if (!tarefasCompativeis.contains(tarefa)) {
-                           if(!isAnuncioNaoValido(emailFreelancer)) {
-                                tarefasCompativeis.add(tarefa);
-                            }
+           if (isAnuncioValido(emailFreelancer, tarefa.getReferencia())) {
+               for (GrauProficiencia grauTarefa : tarefa.getGrauProficiencia()) {
+                   for (GrauProficiencia grauFreelancer : grausFreelancer) {
+                       if(grauFreelancer.getGrau() >= grauTarefa.getGrau() && grauFreelancer.getCodigoCompetenciaTecnica().equals(grauTarefa.getCodigoCompetenciaTecnica())) {
+                           if (!tarefasCompativeis.contains(tarefa)) {
+                               tarefasCompativeis.add(tarefa);
+                           }
                        }
                    }
                }
@@ -191,8 +190,8 @@ public class RegistarTarefaController {
         return tarefasElegiveis;
     }
 
-    public boolean isAnuncioNaoValido(String emailFreelancer) throws SQLException {
-        return repositorioAnuncio.findAnuncioByEmailFreelancer(emailFreelancer);
+    public boolean isAnuncioValido(String emailFreelancer, String referenciaTarefa) throws SQLException {
+        return repositorioAnuncio.findAnuncioByEmailFreelancer(emailFreelancer, referenciaTarefa);
     }
 
     /**

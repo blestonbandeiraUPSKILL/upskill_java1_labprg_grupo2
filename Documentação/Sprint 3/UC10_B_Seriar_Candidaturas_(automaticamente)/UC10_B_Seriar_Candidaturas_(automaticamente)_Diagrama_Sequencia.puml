@@ -18,14 +18,17 @@ SeriarCandidaturasUI -> SeriarCandidaturasCtrl: listaAnunciosASeriar\n(emailCola
 activate SeriarCandidaturasCtrl
 SeriarCandidaturasCtrl -> RepositorioAnuncio: listaAnunciosASeriar\n(emailColaborador, nifOrganizacao)
 activate RepositorioAnuncio
-RepositorioAnuncio --> SeriarCandidaturasCtrl: listaAnunciosASeriar\n(emailColaborador, nifOrganizacao)
-deactivate RepositorioAnuncio
-SeriarCandidaturasCtrl --> SeriarCandidaturasUI: listaAnunciosASeriar\n(emailColaborador, nifOrganizacao)
-deactivate SeriarCandidaturasCtrl
+
 alt (Não existem anúncios a seriar)
+RepositorioAnuncio --> SeriarCandidaturasCtrl: listaAnunciosASeriar\n(emailColaborador, \nnifOrganizacao) = null
+SeriarCandidaturasCtrl --> SeriarCandidaturasUI: listaAnunciosASeriar\n(emailColaborador, \nnifOrganizacao) = null
 SeriarCandidaturasUI --> Colaborador: Não existem anúncios \ndisponiveis
 
 else Existem anúncios a seriar 
+RepositorioAnuncio --> SeriarCandidaturasCtrl: listaAnunciosASeriar\n(emailColaborador, \nnifOrganizacao) 
+deactivate RepositorioAnuncio
+SeriarCandidaturasCtrl --> SeriarCandidaturasUI: listaAnunciosASeriar\n(emailColaborador, \nnifOrganizacao)
+deactivate SeriarCandidaturasCtrl
 SeriarCandidaturasUI --> Colaborador: Mostra a lista das referências \nde Tarefa dos Anúncios a \nseriar 
 deactivate SeriarCandidaturasUI
 
@@ -36,6 +39,13 @@ SeriarCandidaturasUI -> SeriarCandidaturasCtrl: getAllByIdAnuncio(idAnuncio)
 activate SeriarCandidaturasCtrl
 SeriarCandidaturasCtrl -> RepositorioCandidatura: getAllByIdAnuncio(idAnuncio)
 activate RepositorioCandidatura
+
+alt  Não existem candidaturas ao anúncio selecionado
+RepositorioCandidatura --> SeriarCandidaturasCtrl: candidaturas(idAnuncio) = null
+SeriarCandidaturasCtrl --> SeriarCandidaturasUI: candidaturas(idAnuncio) = null
+SeriarCandidaturasUI --> Colaborador: Não existem candidaturas disponíveis
+
+else Existem candidaturas ao anúncio selecionado
 RepositorioCandidatura --> SeriarCandidaturasCtrl: candidaturas(idAnuncio)
 deactivate RepositorioCandidatura
 SeriarCandidaturasCtrl --> SeriarCandidaturasUI: candidaturas(idAnuncio)
@@ -54,7 +64,7 @@ deactivate RepositorioCandidatura
 SeriarCandidaturasUI -> SeriarCandidaturasCtrl: saveSeriacao(idAnuncio)
 SeriarCandidaturasCtrl -> RepositorioSeriacao : saveSeriacao(idAnuncio)
 activate RepositorioSeriacao
-RepositorioSeriacao -> RepositorioSeriacao: saveSeriacao(idAnuncio)
+RepositorioSeriacao -> RepositorioSeriacao: save(idAnuncio)
 RepositorioSeriacao --> SeriarCandidaturasCtrl: Seriação criada com sucesso
 deactivate RepositorioSeriacao
 SeriarCandidaturasCtrl --> SeriarCandidaturasUI: Seriação criada com sucesso
@@ -77,6 +87,7 @@ SeriarCandidaturasCtrl --> SeriarCandidaturasUI: Classificação salva com suces
 deactivate SeriarCandidaturasCtrl
 SeriarCandidaturasUI --> Colaborador: Mostra a lista seriada \nde candidaturas \ne informa o sucesso no \nprocesso de seriação
 deactivate SeriarCandidaturasUI
+end alt 
 end alt
 deactivate Colaborador
 @enduml

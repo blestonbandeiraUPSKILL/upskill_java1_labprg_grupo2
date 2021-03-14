@@ -113,25 +113,28 @@ public class RepositorioAnuncioDataBase implements RepositorioAnuncio {
         Connection connection = DBConnectionHandler.getInstance().openConnection();
 
         try {
-            CallableStatement callableStatement = connection.prepareCall(
-                    "{CALL createAnuncio(?, ?, ?, ?, ?, ?, ?, ?, ?)}");
+            if(findAnuncioByIdTarefa(anuncio.getReferenciaTarefa(), anuncio.getNifOrganizacao()) == null) {
+                CallableStatement callableStatement = connection.prepareCall(
+                        "{CALL createAnuncio(?, ?, ?, ?, ?, ?, ?, ?, ?)}");
 
-            connection.setAutoCommit(false);
+                connection.setAutoCommit(false);
 
-            callableStatement.setString(1, anuncio.getReferenciaTarefa());
-            callableStatement.setString(2, anuncio.getNifOrganizacao());
-            callableStatement.setDate(3, Date.valueOf(anuncio.getDtInicioPub()));
-            callableStatement.setDate(4, Date.valueOf(anuncio.getDtFimPub()));
-            callableStatement.setDate(5, Date.valueOf(anuncio.getDtInicioCand()));
-            callableStatement.setDate(6, Date.valueOf(anuncio.getDtFimCand()));
-            callableStatement.setDate(7, Date.valueOf(anuncio.getDtInicioSeriacao()));
-            callableStatement.setDate(8, Date.valueOf(anuncio.getDtFimSeriacao()));
-            callableStatement.setInt(9, anuncio.getIdTipoRegimento());
+                callableStatement.setString(1, anuncio.getReferenciaTarefa());
+                callableStatement.setString(2, anuncio.getNifOrganizacao());
+                callableStatement.setDate(3, Date.valueOf(anuncio.getDtInicioPub()));
+                callableStatement.setDate(4, Date.valueOf(anuncio.getDtFimPub()));
+                callableStatement.setDate(5, Date.valueOf(anuncio.getDtInicioCand()));
+                callableStatement.setDate(6, Date.valueOf(anuncio.getDtFimCand()));
+                callableStatement.setDate(7, Date.valueOf(anuncio.getDtInicioSeriacao()));
+                callableStatement.setDate(8, Date.valueOf(anuncio.getDtFimSeriacao()));
+                callableStatement.setInt(9, anuncio.getIdTipoRegimento());
 
-            callableStatement.executeQuery();
+                callableStatement.executeQuery();
 
-            connection.commit();
-            return true;
+                connection.commit();
+                return true;
+            }
+
 
         } catch (SQLException exception) {
             exception.printStackTrace();
@@ -288,7 +291,7 @@ public class RepositorioAnuncioDataBase implements RepositorioAnuncio {
     }
 
     @Override
-    public boolean findAnuncioByEmailFreelancer(String emailFreelancer) throws SQLException {
+    public boolean findAnuncioByEmailFreelancer(String emailFreelancer, String referenciaTarefa ) throws SQLException {
 
         Connection connection = DBConnectionHandler.getInstance().openConnection();
 
@@ -298,14 +301,15 @@ public class RepositorioAnuncioDataBase implements RepositorioAnuncio {
                             "LEFT JOIN Candidatura " +
                             "ON Anuncio.idAnuncio = Candidatura.idAnuncio " +
                             "WHERE Candidatura.emailFreelancer LIKE ? " +
-                            "AND candidatura.idCandidatura IS NULL"
+                            "AND Anuncio.referenciaTarefa LIKE ?"
             );
 
             preparedStatement.setString(1, emailFreelancer);
+            preparedStatement.setString(2, referenciaTarefa);
 
             ResultSet resultSet = preparedStatement.executeQuery();
 
-            if (resultSet != null) {
+            if (resultSet.next()) {
 
                 return false;
             }

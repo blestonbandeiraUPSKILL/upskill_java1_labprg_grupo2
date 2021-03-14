@@ -143,6 +143,7 @@ public class GestorLogadoUI implements Initializable {
             @Override
             public void handle(ActionEvent event) {
                 try {
+                    txtDataSeriacao.clear();
                     btnConsultarAnuncio.setDisable(false);
                     if(existeCandidatura()){
                         criarTabelaClassificacao();
@@ -229,12 +230,12 @@ public class GestorLogadoUI implements Initializable {
         List<Candidatura> candidaturas = new ArrayList<>();
         idAnuncio = getIdAnuncio();
         candidaturas = seriarAnuncioController.getAllByIdAnuncio(idAnuncio);
-        tabelaCandidaturasFreelancers.getItems().clear();
-        //limpaTabelaCandidaturas();
+        limpaTabelaCandidaturas();
         if(candidaturas.size() > 0){
             btnConsultarCandidaturaFreelancer.setDisable(false);
             return true;
         }
+
         btnConsultarCandidaturaFreelancer.setDisable(true);
         return false;
     }
@@ -245,22 +246,9 @@ public class GestorLogadoUI implements Initializable {
      */
     public void updateTableViewTarefas() throws SQLException {
         tabelaTarefas.getItems().clear();
-        //cmbFiltroTarefas.getSelectionModel().clearSelection();
+
         tabelaTarefas.getItems().setAll(registarTarefaController.getAllOrganizacao(
                 getNifOrganizacao()));
-
-    }
-
-    /**
-     * Preenche a tabela de tarefas com tarefas adicionadas pelo gestor logado
-     * @throws SQLException
-     */
-    public void updateTableViewTarefasGestor() throws SQLException {
-        tabelaTarefas.getItems().clear();
-        String email = getEmailColaborador();
-        String nifOrganizacao = registarColaboradorController.getNifOrganizacao(email);
-        tabelaTarefas.getItems().setAll(registarTarefaController.findByColaboradorENif(email, nifOrganizacao));
-        preencherTabela();
     }
 
     /**
@@ -269,10 +257,10 @@ public class GestorLogadoUI implements Initializable {
      */
     public void updateTableViewTarefasPublicadas() throws SQLException {
         tabelaTarefas.getItems().clear();
-        String email = getEmailColaborador();
+
         String nifOrganizacao = getNifOrganizacao();
-        //List<String> referenciasTarefa = registarTarefaController.findRefenciaTarefa(nifOrganizacao);
-        tabelaTarefas.getItems().setAll(registarTarefaController.findTarefasPublicadas(nifOrganizacao, email));
+
+        tabelaTarefas.getItems().setAll(registarTarefaController.findTarefasPublicadas(nifOrganizacao));
         preencherTabela();
     }
 
@@ -282,9 +270,10 @@ public class GestorLogadoUI implements Initializable {
      */
     public void updateTableViewTarefasNaoPublicadas() throws SQLException {
         tabelaTarefas.getItems().clear();
+
         String email = getEmailColaborador();
         String nifOrganizacao = getNifOrganizacao();
-        //List<String> referenciasTarefa = registarTarefaController.findRefenciaTarefa(nifOrganizacao);
+
         tabelaTarefas.getItems().setAll(registarTarefaController.findTarefasNaoPublicadas(nifOrganizacao, email));
         preencherTabela();
     }
@@ -344,12 +333,18 @@ public class GestorLogadoUI implements Initializable {
      * @throws SQLException
      */
     public void updateTabelaClassificacao(int idSeriacao)throws SQLException{
-        tabelaCandidaturasFreelancers.getItems().clear();
+        limpaTabelaCandidaturas();
+        idAnuncio = getIdAnuncio();
+        List<Candidatura> candidaturas = seriarAnuncioController.getAllByIdAnuncio(idAnuncio);
         List<Classificacao> listaClassificada = seriarAnuncioController.getAllBySeriacao(idSeriacao);
-        for(int i = 0; i < listaCandidaturasAnuncio.size(); i++){
+        for(int i = 0; i <candidaturas.size(); i++){
             for(int j = 0; j < listaClassificada.size(); j++){
-                if(listaCandidaturasAnuncio.get(i).getIdCandidatura() == listaClassificada.get(j).getIdCandidatura()){
-                    listaCandidaturasAnuncio.get(i).setClassificacao(listaClassificada.get(j).getPosicaoFreelancer());
+                if(candidaturas.get(i).getIdCandidatura() == listaClassificada.get(j).getIdCandidatura()){
+                    TabelaCandidaturasAnuncio cellCandidatura = new TabelaCandidaturasAnuncio(
+                            listaClassificada.get(j).getPosicaoFreelancer(), candidaturas.get(i).getIdCandidatura(),
+                            candidaturas.get(i).getEmailFreelancer(), candidaturas.get(i).getNumeroDias(),
+                            candidaturas.get(i).getValorPretendido());
+                    listaCandidaturasAnuncio.add(cellCandidatura);
                 }
             }
         }
@@ -364,8 +359,7 @@ public class GestorLogadoUI implements Initializable {
         txtDataSeriacao.clear();
         idAnuncio = getIdAnuncio();
 
-        List<ProcessoSeriacao> processos = new ArrayList<>();
-        processos = seriarAnuncioController.getAllPSByIdAnuncio(idAnuncio);
+        List<ProcessoSeriacao> processos = seriarAnuncioController.getAllPSByIdAnuncio(idAnuncio);
 
         txtDataSeriacao.setText(processos.get(0).getDataSeriacao());
         btnSeriacaoAutomatica.setDisable(true);
@@ -407,10 +401,6 @@ public class GestorLogadoUI implements Initializable {
                 updateTableViewTarefas();
                 btnPublicarTarefa.setDisable(true);
                 break;
-            case AS_MINHAS_TAREFAS:
-                updateTableViewTarefasGestor();
-                btnPublicarTarefa.setDisable(true);
-                break;
             case TAREFAS_PUBLICADAS:
                 updateTableViewTarefasPublicadas();
                 btnPublicarTarefa.setDisable(true);
@@ -418,9 +408,6 @@ public class GestorLogadoUI implements Initializable {
             case TAREFAS_PARA_PUBLICAR:
                 updateTableViewTarefasNaoPublicadas();
                 btnPublicarTarefa.setDisable(false);
-            default:
-                //updateTableViewTarefas();
-
         }
     }
 
