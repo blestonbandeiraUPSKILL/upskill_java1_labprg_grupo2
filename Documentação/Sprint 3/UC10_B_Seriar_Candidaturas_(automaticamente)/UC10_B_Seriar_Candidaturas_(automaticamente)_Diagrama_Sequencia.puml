@@ -12,65 +12,82 @@ participant RepositorioSeriacao
 
 
 activate Colaborador
-Colaborador -> SeriarCandidaturasUI: Consulta anúncios com regime \nde seriação automática, em periodo \nde seriação, ainda não seriados
+Colaborador -> SeriarCandidaturasUI: Consulta anúncios em periodo \nde seriação
 activate SeriarCandidaturasUI
-SeriarCandidaturasUI -> SeriarCandidaturasCtrl: getAllAnunciosASeriar\n(emailColaborador, idRegimentoAutomatico)
+SeriarCandidaturasUI -> SeriarCandidaturasCtrl: listaAnunciosASeriar\n(emailColaborador, nifOrganizacao)
 activate SeriarCandidaturasCtrl
-SeriarCandidaturasCtrl -> RepositorioAnuncio: getAllAnunciosASeriar\n(emailColaborador, idRegimentoAutomatico)
+SeriarCandidaturasCtrl -> RepositorioAnuncio: listaAnunciosASeriar\n(emailColaborador, nifOrganizacao)
 activate RepositorioAnuncio
-RepositorioAnuncio --> SeriarCandidaturasCtrl: listaAnunciosASeriar\n(emailColaborador, idRegimentoAutomatico)
-deactivate RepositorioAnuncio
-SeriarCandidaturasCtrl --> SeriarCandidaturasUI: listaAnunciosASeriar\n(emailColaborador, idRegimentoAutomatico)
-deactivate SeriarCandidaturasCtrl
-alt (Não existem anúncios a seriar manualmente)
+
+alt (Não existem anúncios a seriar)
+RepositorioAnuncio --> SeriarCandidaturasCtrl: listaAnunciosASeriar\n(emailColaborador, \nnifOrganizacao) = null
+SeriarCandidaturasCtrl --> SeriarCandidaturasUI: listaAnunciosASeriar\n(emailColaborador, \nnifOrganizacao) = null
 SeriarCandidaturasUI --> Colaborador: Não existem anúncios \ndisponiveis
 
-else Existem anúncios a seriar manualmente 
-SeriarCandidaturasUI --> Colaborador: Mostra a lista dos Anúncios a \nseriar automaticamente
+else Existem anúncios a seriar 
+RepositorioAnuncio --> SeriarCandidaturasCtrl: listaAnunciosASeriar\n(emailColaborador, \nnifOrganizacao) 
+deactivate RepositorioAnuncio
+SeriarCandidaturasCtrl --> SeriarCandidaturasUI: listaAnunciosASeriar\n(emailColaborador, \nnifOrganizacao)
+deactivate SeriarCandidaturasCtrl
+SeriarCandidaturasUI --> Colaborador: Mostra a lista das referências \nde Tarefa dos Anúncios a \nseriar 
 deactivate SeriarCandidaturasUI
 
 
-Colaborador -> SeriarCandidaturasUI: Seleciona um anúncio a seriar 
+Colaborador -> SeriarCandidaturasUI: Seleciona um anúncio de \nregimento Automático a seriar 
 activate SeriarCandidaturasUI
-SeriarCandidaturasUI -> SeriarCandidaturasCtrl: getAllCandidaturas(idAnuncio)
+SeriarCandidaturasUI -> SeriarCandidaturasCtrl: getAllByIdAnuncio(idAnuncio)
 activate SeriarCandidaturasCtrl
-SeriarCandidaturasCtrl -> RepositorioCandidatura: getAllCandidaturas(idAnuncio)
+SeriarCandidaturasCtrl -> RepositorioCandidatura: getAllByIdAnuncio(idAnuncio)
 activate RepositorioCandidatura
-RepositorioCandidatura --> SeriarCandidaturasCtrl: listaCandidaturas(idAnuncio)
+
+alt  Não existem candidaturas ao anúncio selecionado
+RepositorioCandidatura --> SeriarCandidaturasCtrl: candidaturas(idAnuncio) = null
+SeriarCandidaturasCtrl --> SeriarCandidaturasUI: candidaturas(idAnuncio) = null
+SeriarCandidaturasUI --> Colaborador: Não existem candidaturas disponíveis
+
+else Existem candidaturas ao anúncio selecionado
+RepositorioCandidatura --> SeriarCandidaturasCtrl: candidaturas(idAnuncio)
 deactivate RepositorioCandidatura
-SeriarCandidaturasCtrl --> SeriarCandidaturasUI: listaCandidaturas(idAnuncio)
+SeriarCandidaturasCtrl --> SeriarCandidaturasUI: candidaturas(idAnuncio)
 deactivate SeriarCandidaturasCtrl
 SeriarCandidaturasUI --> Colaborador: Mostra a lista de candidaturas \nao anúncio e solicita \ninformar se deseja prosseguir \nna classificação automática \ndas candidaturas
 deactivate SeriarCandidaturasUI
 
 Colaborador -> SeriarCandidaturasUI: O colaborador confirmar o \nprosseguimento da operação
 activate SeriarCandidaturasUI
-SeriarCandidaturasUI -> SeriarCandidaturasCtrl: saveClassificacaoAutomatica\n(idAnuncio)
+SeriarCandidaturasUI -> SeriarCandidaturasCtrl: ordenarByValor(candidaturas)
 activate SeriarCandidaturasCtrl
-SeriarCandidaturasCtrl -> RepositorioClassificacao: saveClassificacaoAutomatica\n(idAnuncio)
-activate RepositorioClassificacao
-RepositorioClassificacao --> SeriarCandidaturasCtrl: listaCandidaturasSeriada(idAnuncio)
-deactivate RepositorioClassificacao
-SeriarCandidaturasCtrl --> SeriarCandidaturasUI: listaCandidaturasSeriadas\n(idAnuncio)
-deactivate SeriarCandidaturasCtrl
-SeriarCandidaturasUI --> Colaborador: Mostra a lista seriada \nde candidatura e solicita \ninformar se deseja concluir \na seriação
-deactivate SeriarCandidaturasUI
-
-Colaborador -> SeriarCandidaturasUI: Confirma a conclusão da Seriação
-activate SeriarCandidaturasUI
-SeriarCandidaturasUI -> SeriarCandidaturasCtrl: saveSeriacao(idAnuncio, \ndataSeriacao, \nlistaCandidaturasSeriada(idAnuncio)
-activate SeriarCandidaturasCtrl
-SeriarCandidaturasCtrl -> RepositorioSeriacao: saveSeriacao(idAnuncio, \ndataSeriacao, \nlistaCandidaturasSeriada(idAnuncio))
+SeriarCandidaturasCtrl -> RepositorioCandidatura: ordenarByValor(candidaturas)
+activate RepositorioCandidatura
+RepositorioCandidatura --> SeriarCandidaturasCtrl: candidaturasOrdenadas(candidaturas)
+deactivate RepositorioCandidatura
+SeriarCandidaturasUI -> SeriarCandidaturasCtrl: saveSeriacao(idAnuncio)
+SeriarCandidaturasCtrl -> RepositorioSeriacao : saveSeriacao(idAnuncio)
 activate RepositorioSeriacao
-RepositorioSeriacao -> RepositorioSeriacao: saveSeriacao(idAnuncio, \ndataSeriacao, \nlistaCandidaturasSeriada(idAnuncio)
-RepositorioSeriacao --> SeriarCandidaturasCtrl: Seriação salva com sucesso
+RepositorioSeriacao -> RepositorioSeriacao: save(idAnuncio)
+RepositorioSeriacao --> SeriarCandidaturasCtrl: Seriação criada com sucesso
 deactivate RepositorioSeriacao
-SeriarCandidaturasCtrl --> SeriarCandidaturasUI: Seriação salva com sucesso
+SeriarCandidaturasCtrl --> SeriarCandidaturasUI: Seriação criada com sucesso
+SeriarCandidaturasUI -> SeriarCandidaturasCtrl: getIdSeriacao(idAnuncio)
+SeriarCandidaturasCtrl -> RepositorioSeriacao: getIdSeriacao(idAnuncio)
+activate RepositorioSeriacao
+RepositorioSeriacao -> RepositorioSeriacao: getProcessoSeriacaoByAnuncio(idAnuncio).getIdSeriacao()
+RepositorioSeriacao --> SeriarCandidaturasCtrl: idSeriacao
+deactivate RepositorioSeriacao
+SeriarCandidaturasCtrl --> SeriarCandidaturasUI: idSeriacao
+SeriarCandidaturasUI -> SeriarCandidaturasCtrl: saveClassificacaoAutomatica\n(candidaturasOrdenadas, idSeriacao)
+SeriarCandidaturasCtrl -> RepositorioClassificacao: saveClassificacaoAutomatica\n(candidaturasOrdenadas, idSeriacao)
+activate RepositorioClassificacao
+loop
+RepositorioClassificacao -> RepositorioClassificacao: (posicao, idSeriacao, idCandidatura)
+end loop
+RepositorioClassificacao --> SeriarCandidaturasCtrl: Classificação salva com sucesso
+deactivate RepositorioClassificacao
+SeriarCandidaturasCtrl --> SeriarCandidaturasUI: Classificação salva com sucesso
 deactivate SeriarCandidaturasCtrl
-SeriarCandidaturasUI --> Colaborador: Informa o sucesso da operação
+SeriarCandidaturasUI --> Colaborador: Mostra a lista seriada \nde candidaturas \ne informa o sucesso no \nprocesso de seriação
 deactivate SeriarCandidaturasUI
-
-
+end alt 
 end alt
 deactivate Colaborador
 @enduml
