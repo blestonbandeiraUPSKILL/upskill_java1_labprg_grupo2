@@ -231,22 +231,9 @@ public class ColaboradorLogadoUI implements Initializable {
      */
     public void updateTableViewTarefas() throws SQLException {
         tabelaTarefas.getItems().clear();
-        //cmbFiltroTarefas.getSelectionModel().clearSelection();
+
         tabelaTarefas.getItems().setAll(registarTarefaController.getAllOrganizacao(
                 getNifOrganizacao()));
-
-    }
-
-    /**
-     * Preenche a tabela de tarefas com tarefas adicionadas pelo colaborador logado
-     * @throws SQLException 
-     */
-    public void updateTableViewTarefasColaborador() throws SQLException {
-        tabelaTarefas.getItems().clear();
-        String email = getEmailColaborador();
-        String nifOrganizacao = registarColaboradorController.getNifOrganizacao(email);
-        tabelaTarefas.getItems().setAll(registarTarefaController.findByColaboradorENif(email, nifOrganizacao));
-        preencherTabela();
     }
 
     /**
@@ -357,8 +344,7 @@ public class ColaboradorLogadoUI implements Initializable {
         txtDataSeriacao.clear();
         idAnuncio = getIdAnuncio();
         
-        List<ProcessoSeriacao> processos = new ArrayList<>();
-        processos = seriarAnuncioController.getAllPSByIdAnuncio(idAnuncio);
+        List<ProcessoSeriacao> processos = seriarAnuncioController.getAllPSByIdAnuncio(idAnuncio);
         
         txtDataSeriacao.setText(processos.get(0).getDataSeriacao());
         btnSeriacaoAutomatica.setDisable(true);
@@ -400,10 +386,6 @@ public class ColaboradorLogadoUI implements Initializable {
                 updateTableViewTarefas();
                 btnPublicarTarefa.setDisable(true);
                 break;
-         /*   case AS_MINHAS_TAREFAS:
-                updateTableViewTarefasColaborador();
-                btnPublicarTarefa.setDisable(true);
-                break;*/
             case TAREFAS_PUBLICADAS:
                 updateTableViewTarefasPublicadas();
                 btnPublicarTarefa.setDisable(true);
@@ -411,9 +393,6 @@ public class ColaboradorLogadoUI implements Initializable {
             case TAREFAS_PARA_PUBLICAR:
                 updateTableViewTarefasNaoPublicadas();
                 btnPublicarTarefa.setDisable(false);
-            default:
-                //updateTableViewTarefas();
-
         }
     }
     
