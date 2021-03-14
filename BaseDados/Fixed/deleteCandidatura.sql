@@ -23,10 +23,10 @@ BEGIN
     
     INSERT INTO CandidaturaApagada
     (idCandidatura, valorpretendido, numeroDias, txtApresentacao, txtMotivacao,
-    idAnuncio, emailFreelancer, dataCandidatura, dataEdicaoCandidatura)
+    idAnuncio, emailFreelancer, dataCandidatura, dataEdicaoCandidatura, dataEliminacao)
     VALUES
     (p_idCandidatura, v_valorPretendido, v_numeroDias, v_txtApresentacao, v_txtMotivacao, 
-    v_idAnuncio, v_emailFreelancer, v_dataCandidatura, v_dataEdicaoCandidatura);
+    v_idAnuncio, v_emailFreelancer, v_dataCandidatura, v_dataEdicaoCandidatura, sysdate);
     
     DELETE 
     FROM Candidatura
