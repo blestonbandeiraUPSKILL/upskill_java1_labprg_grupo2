@@ -62,18 +62,16 @@ public class RepositorioColaboradorSeriacaoDatabase implements RepositorioColabo
                 "{CALL createColaboradorSeriacao(?, ?)}"
             );
 
-            if(findByEmailId(emaiColaborador, idSeriacao) == false) {
+            connection.setAutoCommit(false);
 
-                connection.setAutoCommit(false);
+            callableStatement.setString(1, emaiColaborador);
+            callableStatement.setInt(2, idSeriacao);
+            callableStatement.executeQuery();
 
-                callableStatement.setString(1, emaiColaborador);
-                callableStatement.setInt(2, idSeriacao);
-                callableStatement.executeQuery();
+            connection.commit();
+            return true;
 
-                connection.commit();
-                return true;
 
-            }
         }
         catch (SQLException exception) {
             exception.printStackTrace();

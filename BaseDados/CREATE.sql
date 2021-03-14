@@ -241,3 +241,17 @@ CREATE TABLE AppContext(
     timestamp timestamp,
 );
 
+CREATE TABLE CandidaturaApagada(
+    idCandidatura integer 
+        CONSTRAINT pk_CandidaturaApagada_idCandidatura PRIMARY KEY,
+    valorPretendido numeric
+        CONSTRAINT nn_CandidaturaApagada_valorPretendido NOT NULL,
+    numeroDias integer
+        CONSTRAINT nn_CandidaturaApagada_numeroDias NOT NULL,
+    txtApresentacao varchar(250),
+    txtMotivacao varchar(250),
+    idAnuncio integer,
+    emailFreelancer  varchar(20), 
+    dataCandidatura date,
+    dataEdicaoCandidatura date 
+);

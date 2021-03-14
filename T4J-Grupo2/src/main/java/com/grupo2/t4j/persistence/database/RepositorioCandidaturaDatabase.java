@@ -389,12 +389,16 @@ public class RepositorioCandidaturaDatabase implements RepositorioCandidatura{
         Connection connection = DBConnectionHandler.getInstance().openConnection();
 
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement(
-                    "DELETE FROM Candidatura WHERE idCandidatura = ?"
+            CallableStatement callableStatement = connection.prepareCall(
+                    "{ CALL deleteCandidatura (?) }"
             );
 
-            preparedStatement.setInt(1, idCandidatura);
-            preparedStatement.executeQuery();
+            connection.setAutoCommit(false );
+
+            callableStatement.setInt(1, idCandidatura);
+            callableStatement.executeQuery();
+
+            connection.commit();
             return true;
 
         } catch (SQLException exception) {
