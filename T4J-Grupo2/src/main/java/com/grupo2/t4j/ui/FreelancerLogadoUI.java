@@ -246,6 +246,7 @@ public class FreelancerLogadoUI implements Initializable {
 
             if (apaga) {
                 updateTableViewCandidaturas();
+                updateTableViewAnuncio();
 
                 AlertsUI.criarAlerta(Alert.AlertType.INFORMATION,
                         MainApp.TITULO_APLICACAO,
