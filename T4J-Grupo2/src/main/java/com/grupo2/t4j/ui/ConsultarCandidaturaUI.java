@@ -123,6 +123,7 @@ public class ConsultarCandidaturaUI implements Initializable {
             if (editou) {
 
                 freelancerLogadoUI.updateTableViewCandidaturas();
+                freelancerLogadoUI.updateTableViewAnuncio();
                 btnVoltar.setText("Voltar");
 
                 AlertsUI.criarAlerta(Alert.AlertType.INFORMATION,

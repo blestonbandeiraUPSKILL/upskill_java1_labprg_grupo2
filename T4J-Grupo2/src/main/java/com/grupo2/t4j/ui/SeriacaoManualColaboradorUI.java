@@ -205,22 +205,23 @@ public class SeriacaoManualColaboradorUI implements Initializable{
     
     @FXML
     public void voltar(ActionEvent event) throws SQLException{
-        if(classificacoes.size() != 0){
+        if(classificacoes.size() == 0){
+            colaboradorLogadoUI.updateDataSeriacao();
+            btnVoltar.getScene().getWindow().hide();
+        }
+        else{
             Window window = btnVoltar.getScene().getWindow();
             window.setOnCloseRequest(new EventHandler<WindowEvent>() {
                 @Override
                 public void handle(WindowEvent windowEvent) {
                     Alert alerta = AlertsUI.criarAlerta(Alert.AlertType.CONFIRMATION,
-                        MainApp.TITULO_APLICACAO,
-                        "A seriação ainda não está concluída.",
-                        "Por favor, termine de classificar as candidaturas!");
+                            MainApp.TITULO_APLICACAO,
+                            "A seriação ainda não está concluída.",
+                            "Por favor, termine de classificar as candidaturas!");
                     windowEvent.consume();
                 }
             });
-        }
-        else{
-            colaboradorLogadoUI.updateDataSeriacao();
-            btnVoltar.getScene().getWindow().hide();
+
         }
     }
 }
