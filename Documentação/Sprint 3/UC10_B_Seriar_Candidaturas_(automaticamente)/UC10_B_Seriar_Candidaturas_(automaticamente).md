@@ -69,6 +69,6 @@ dessas candidaturas.
 ![UC10_B_Seriar_Candidaturas_(automaticamente)_Diagrama_Classes.png](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Documenta%C3%A7%C3%A3o/Sprint%203/UC10_B_Seriar_Candidaturas_(automaticamente)/UC10_B_Seriar_Candidaturas_(automaticamente)_Diagrama_Classes.png)
 
 ## Plano de Testes <br/>
-[UC10_B_Seriar_Candidaturas_(automaticamente) - Plano de Testes](UC10_Seriação_(Não_Automática)_de_Candidaturas_PlanoTestes.md)
+[UC10_B_Seriar_Candidaturas_(automaticamente) - Plano de Testes](UC10_B_Seriar_Candidaturas_(automaticamente).md)
 
 ##### [Voltar ao início](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/tree/main/README.md)
