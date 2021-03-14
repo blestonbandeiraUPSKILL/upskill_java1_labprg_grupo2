@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RegistarHabilitacaoAcademicaController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">T4J-Grupo2</a> &gt; <a href="index.source.html" class="el_package">com.grupo2.t4j.controller</a> &gt; <span class="el_source">RegistarHabilitacaoAcademicaController.java</span></div><h1>RegistarHabilitacaoAcademicaController.java</h1><pre class="source lang-java linenums">package com.grupo2.t4j.controller;
+
+import com.grupo2.t4j.files.FicheiroRepositorioHabilitacaoAcademica;
+import com.grupo2.t4j.model.HabilitacaoAcademica;
+import com.grupo2.t4j.model.ReconhecimentoGP;
+import com.grupo2.t4j.persistence.FabricaRepositorios;
+import com.grupo2.t4j.persistence.RepositorioHabilitacaoAcademica;
+import com.grupo2.t4j.persistence.database.FabricaRepositoriosDatabase;
+import com.grupo2.t4j.persistence.inmemory.RepositorioHabilitacaoAcademicaInMemory;
+
+import java.io.File;
+import java.sql.SQLException;
+import java.util.List;
+public class RegistarHabilitacaoAcademicaController {
+    
+    //private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosInMemory();
+<span class="nc" id="L17">    private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosDatabase();</span>
+<span class="nc" id="L18">    private RepositorioHabilitacaoAcademica repositorioHabilitacaoAcademica = fabricaRepositorios.getRepositorioHabilitacaoAcademica();</span>
+   
+    private RepositorioHabilitacaoAcademicaInMemory repositorioHabilitacaoAcademicaInMemory;
+    private FicheiroRepositorioHabilitacaoAcademica ficheiroHA;
+
+   /**
+     * Registar habilitação académica boolean
+     *
+     * @param grau as grau atribuído pela habilitação académica
+     * @param designacaoCurso as designação do curso
+     * @param nomeInstituicao as nome da instituição académica
+     * @param mediaCurso as média de final de curso em valores
+     * @param emailFreelancer as email do freelancer
+     * @return boolean
+     */     
+    public boolean registarHabilitacaoAcademica(String grau, String designacaoCurso,
+           String nomeInstituicao, double mediaCurso, String emailFreelancer) throws SQLException {
+
+<span class="nc" id="L36">        HabilitacaoAcademica habilitacao = new HabilitacaoAcademica(grau, designacaoCurso, nomeInstituicao, mediaCurso);</span>
+
+
+<span class="nc" id="L39">        return repositorioHabilitacaoAcademica.save(habilitacao, emailFreelancer);</span>
+    }
+
+
+
+    public List&lt;HabilitacaoAcademica&gt; getAll(String emailFreelancer) throws SQLException{
+<span class="nc" id="L45">        return repositorioHabilitacaoAcademica.getAll(emailFreelancer);</span>
+    }
+        
+    public HabilitacaoAcademica findById(int idHabilitacao) throws SQLException{
+<span class="nc" id="L49">        return repositorioHabilitacaoAcademica.findById(idHabilitacao);</span>
+    }
+    
+    public HabilitacaoAcademica findByGrauDesigInst(String grau, String designacaoCurso,
+                                                String nomeInstituicao, String emailFreelancer) throws SQLException{
+<span class="nc" id="L54">        return repositorioHabilitacaoAcademica.findByGrauDesigInst(grau, designacaoCurso,</span>
+           nomeInstituicao, emailFreelancer);
+    }
+
+
+    
+     //////FICHEIROS////////
+<span class="nc" id="L61">    public RegistarHabilitacaoAcademicaController() {</span>
+<span class="nc" id="L62">        ficheiroHA = new FicheiroRepositorioHabilitacaoAcademica();</span>
+        
+<span class="nc" id="L64">        desserializar();</span>
+<span class="nc" id="L65">    }</span>
+    public boolean serializar() {
+<span class="nc" id="L67">        return ficheiroHA.serializar(repositorioHabilitacaoAcademicaInMemory);</span>
+    }
+
+    public boolean serializar(File ficheiroExportar) {
+<span class="nc" id="L71">        return ficheiroHA.serializar(ficheiroExportar, repositorioHabilitacaoAcademicaInMemory);</span>
+    }
+
+    public void desserializar() {
+<span class="nc" id="L75">        repositorioHabilitacaoAcademicaInMemory = ficheiroHA.desserializar();</span>
+<span class="nc" id="L76">    }</span>
+
+    public int desserializar(File ficheiroImportar) {
+<span class="nc" id="L79">        RepositorioHabilitacaoAcademicaInMemory listaHabilitacaoImportada = ficheiroHA.desserializar(ficheiroImportar);</span>
+
+<span class="nc" id="L81">        return repositorioHabilitacaoAcademicaInMemory.adicionarListaHabilitacao(listaHabilitacaoImportada);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>

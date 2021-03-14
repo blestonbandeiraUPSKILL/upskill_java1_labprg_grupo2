@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>TipoRegimento.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">T4J-Grupo2</a> &gt; <a href="index.source.html" class="el_package">com.grupo2.t4j.model</a> &gt; <span class="el_source">TipoRegimento.java</span></div><h1>TipoRegimento.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.grupo2.t4j.model;
+
+import com.grupo2.t4j.exception.DescricaoInvalidaException;
+import com.grupo2.t4j.exception.IdInvalidoException;
+import com.grupo2.t4j.exception.NomeInvalidoException;
+
+/**
+ *
+ * @author CAD
+ */
+public class TipoRegimento {
+    
+    /**
+     * O Id do Tipo de Regimento.
+     */
+    private int idTipoRegimento;
+    
+    /**
+     * A designação do tipo de seriação adotado para este tipo de regimento.
+     */
+    private String designacao;
+    
+    /**
+     * As regras aplicáveis a este tipo de regimento.
+     */
+    private String descricaoRegras;
+
+<span class="nc" id="L33">    public TipoRegimento(){}</span>
+    
+    /**
+     * Construtor completo da classe Tipo de Regimento
+     * @param idTipoRegimento - Id do Tipo de Regimento.
+     * @param designacao - a designação do tipo de seriação adotado para este tipo de regimento.
+     * @param descricaoRegras - as regras aplicáveis a este tipo de regimento.
+     */
+    public TipoRegimento(int idTipoRegimento, String designacao,
+<span class="nc" id="L42">            String descricaoRegras){</span>
+<span class="nc" id="L43">        setIdTipoRegimento(idTipoRegimento);</span>
+<span class="nc" id="L44">        setDesignacao(designacao);</span>
+<span class="nc" id="L45">        setDescricaoRegras(descricaoRegras);</span>
+<span class="nc" id="L46">    }</span>
+    
+    /**
+     * Define o Id do Tipo de Regimento.
+     * @param tipoRegimento
+     */
+<span class="nc" id="L52">    public TipoRegimento (TipoRegimento tipoRegimento){</span>
+<span class="nc" id="L53">        setIdTipoRegimento(tipoRegimento.idTipoRegimento);</span>
+<span class="nc" id="L54">        setDesignacao(tipoRegimento.designacao);</span>
+<span class="nc" id="L55">        setDescricaoRegras(tipoRegimento.descricaoRegras);</span>
+<span class="nc" id="L56">    }</span>
+    
+    /**
+     *
+     * @param idTipoRegimento
+     */
+    public void setIdTipoRegimento(int idTipoRegimento){
+<span class="nc bnc" id="L63" title="All 2 branches missed.">        if(idTipoRegimento &gt; 0 ) {</span>
+<span class="nc" id="L64">            this.idTipoRegimento = idTipoRegimento;</span>
+        }
+        else {
+<span class="nc" id="L67">            throw new IdInvalidoException(&quot;O id do tipo de regimento não é válido.&quot;);</span>
+        }
+<span class="nc" id="L69">    }</span>
+    
+    /**
+     * Define a designação do tipo de seriação adotado para este tipo de regimento.
+     * @param designacao
+     */
+    public void setDesignacao(String designacao){
+<span class="nc bnc" id="L76" title="All 4 branches missed.">        if (designacao == null || designacao.trim().isEmpty()) {</span>
+<span class="nc" id="L77">            throw new DescricaoInvalidaException(&quot;A designação tem de ser preenchida.&quot;);</span>
+        }
+<span class="nc" id="L79">        this.designacao = designacao;</span>
+<span class="nc" id="L80">    }</span>
+    
+    /**
+     * Define as regras aplicáveis a este tipo de regimento.
+     * @param descricaoRegras
+     */
+    public void setDescricaoRegras(String descricaoRegras){
+<span class="nc bnc" id="L87" title="All 4 branches missed.">        if (descricaoRegras == null || descricaoRegras.trim().isEmpty()) {</span>
+<span class="nc" id="L88">            throw new NomeInvalidoException(&quot;A descrição informada para as regras é inválida!&quot;);</span>
+        }
+<span class="nc" id="L90">        this.descricaoRegras = descricaoRegras;</span>
+<span class="nc" id="L91">    }</span>
+    
+    /**
+     * Devolve o Id do Tipo de Regimento.
+     * @return idTipoRegimento
+     */
+    public int getIdTipoRegimento(){
+<span class="nc" id="L98">        return idTipoRegimento;</span>
+    }
+    
+    /**
+     * Devolve a designação do tipo de seriação adotado para este tipo de regimento.
+     * @return designacao
+     */
+    public String getDesignacao(){
+<span class="nc" id="L106">        return designacao;</span>
+    }
+    
+    /**
+     * Devolve as regras aplicáveis a este tipo de regimento.
+     * @return descricaoRegras
+     */
+    public String getDescricaoRegras(){
+<span class="nc" id="L114">        return descricaoRegras;</span>
+    }
+    
+    /**
+     * Representação textual da classe Tipo de Regimento em formato de exibição
+     * @return o Id do tipo de regimento, a designação do tipo de seriação adotado
+     * deste tipo de regimento
+     */
+    @Override
+    public String toString(){
+<span class="nc" id="L124">        return String.format(&quot;ID: %-12s |Designação: %-20s&quot;, idTipoRegimento,</span>
+                  designacao);
+    }
+    
+    /**
+     * Representação textual da classe Tipo de Regimento
+     * @return o Id do tipo de regimento, a designação do tipo de seriação adotado
+     * e a descrição das regras deste tipo de regimento
+     */
+    public String toStringCompleto(){
+<span class="nc" id="L134">        return String.format(&quot;Id do Tipo de Regimento: %s %nDesignação do tipo de&quot;</span>
+<span class="nc" id="L135">                + &quot;Seriação adotado:%s %nDescrição das regras: %s&quot;, idTipoRegimento,</span>
+<span class="nc" id="L136">                designacao.toString(), descricaoRegras);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>

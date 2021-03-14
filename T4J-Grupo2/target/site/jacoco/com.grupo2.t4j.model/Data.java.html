@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Data.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">T4J-Grupo2</a> &gt; <a href="index.source.html" class="el_package">com.grupo2.t4j.model</a> &gt; <span class="el_source">Data.java</span></div><h1>Data.java</h1><pre class="source lang-java linenums">package com.grupo2.t4j.model;
+
+
+import com.grupo2.t4j.exception.DataInvalidaException;
+import com.grupo2.t4j.exception.DiaInvalidoException;
+import com.grupo2.t4j.exception.MesInvalidoException;
+
+import java.time.LocalDate;
+import java.util.Calendar;
+
+public class Data implements Comparable&lt;Data&gt;{
+
+    /**
+     * O ano da data
+     */
+    private int ano;
+    /**
+     * O mes da data
+     */
+    private Mes mes;
+    /**
+     * O dia da data
+     */
+    private int dia;
+
+    /**
+     * O ano da data por omissao
+     */
+    private static final int ANO_POR_OMISSAO = 1;
+    
+    /**
+     * O mes da data por omissao
+     */
+<span class="nc" id="L34">    private static final Mes MES_POR_OMISSAO = Mes.JANEIRO;</span>
+    
+    /**
+     * O dia da data por omissao
+     */
+    private static final int DIA_POR_OMISSAO = 1;
+
+    /**
+     * Construtor data por omissao
+     */
+<span class="nc" id="L44">    public Data() {</span>
+<span class="nc" id="L45">        this.ano = ANO_POR_OMISSAO;</span>
+<span class="nc" id="L46">        this.mes = MES_POR_OMISSAO;</span>
+<span class="nc" id="L47">        this.dia = DIA_POR_OMISSAO;</span>
+<span class="nc" id="L48">    }</span>
+    
+    
+/**
+ * Construtor data apenas com ano
+ * @param ano 
+ */
+<span class="nc" id="L55">    public Data(int ano) {</span>
+<span class="nc" id="L56">        this.ano = ano;</span>
+<span class="nc" id="L57">    }</span>
+/**
+ * Construtor com data local
+ * @param localDate 
+ */
+    public Data(LocalDate localDate) {
+<span class="nc" id="L63">        this(localDate.getYear(), localDate.getMonth().getValue(), localDate.getDayOfMonth());</span>
+<span class="nc" id="L64">    }</span>
+
+    /**
+     * Construtor completo data
+     * @param ano
+     * @param mes
+     * @param dia 
+     */
+<span class="nc" id="L72">    public Data(int ano, int mes, int dia) {</span>
+<span class="nc" id="L73">        setData(ano, mes, dia);</span>
+<span class="nc" id="L74">    }</span>
+
+    /**
+     * Construtor copia
+     * @param outraData 
+     */
+<span class="nc" id="L80">    public Data(Data outraData) {</span>
+       /* ano = outraData.ano;
+        mes = outraData.mes;
+        dia = outraData.dia;*/
+
+<span class="nc" id="L85">        setData(outraData.ano, outraData.getMes(), outraData.dia);</span>
+<span class="nc" id="L86">    }</span>
+    
+    /**
+     * Transforma uma data inserida como texto no formato Data
+     * @param dataTexto - data em formato aaaa/mm/dd
+     * @return a dataTexto em formato da classe Data
+     */
+<span class="nc" id="L93">    public Data (String dataTexto){</span>
+         try{
+<span class="nc" id="L95">            int dia = Integer.parseInt(dataTexto.substring(8,10));</span>
+<span class="nc" id="L96">            int mes = Integer.parseInt(dataTexto.substring(5,7));</span>
+<span class="nc" id="L97">            int ano = Integer.parseInt(dataTexto.substring(0,4));</span>
+<span class="nc" id="L98">            setData(ano, mes, dia);</span>
+        }
+<span class="nc" id="L100">        catch(IllegalArgumentException iae){</span>
+<span class="nc" id="L101">            throw new DataInvalidaException(&quot;A data informada é inválida!&quot;);</span>
+<span class="nc" id="L102">        }</span>
+<span class="nc" id="L103">    }</span>
+
+    /**
+     * Devolve o ano da data
+     * @return ano
+     */
+    public int getAno() {
+<span class="nc" id="L110">        return ano;</span>
+    }
+/**
+ * Devolve o mes da data
+ * @return numero do mes
+ */
+    public int getMes() {
+<span class="nc" id="L117">        return mes.ordinal() + 1;</span>
+    }
+/**
+ * Devolve o dia da data
+ * @return 
+ */
+    public int getDia() {
+<span class="nc" id="L124">        return dia;</span>
+    }
+/**
+ * Atualiza e valida uma data
+ * @param ano
+ * @param mes
+ * @param dia 
+ */
+    public final void setData(int ano, int mes, int dia) {
+<span class="nc" id="L133">        this.ano = ano;</span>
+
+<span class="nc bnc" id="L135" title="All 4 branches missed.">        if (mes &lt; 1 || mes &gt; 12) {</span>
+<span class="nc" id="L136">            throw new MesInvalidoException();</span>
+        }
+<span class="nc" id="L138">        this.mes = Mes.obterMes(mes);</span>
+
+<span class="nc bnc" id="L140" title="All 4 branches missed.">        if (dia &lt; 1 || dia &gt; Mes.obterMes(mes).numeroDeDias(ano)) {</span>
+<span class="nc" id="L141">            throw new DiaInvalidoException();</span>
+        }
+
+<span class="nc" id="L144">        this.dia = dia;</span>
+<span class="nc" id="L145">    }</span>
+
+    /**
+     * Representacao textual da data no com dia da semana
+     * @return 
+     */
+    @Override
+    public String toString() {
+<span class="nc" id="L153">        return String.format(&quot;%s, %d de %s de %d&quot;, diaDaSemana(), dia, mes, ano);</span>
+    }
+
+    /**
+     * Representacao textual da data com formato aaaa/mm/dd
+     * @return 
+     */
+    public String toAnoMesDiaString() {
+<span class="nc" id="L161">        return String.format(&quot;%04d/%02d/%02d&quot;, ano, mes.ordinal() + 1, dia);</span>
+    }
+
+    /**
+     * Verifica se duas datas são iguais
+     * @param outroObjecto
+     * @return 
+     */
+    @Override
+    public boolean equals(Object outroObjecto) {
+<span class="nc bnc" id="L171" title="All 2 branches missed.">        if (this == outroObjecto) {</span>
+<span class="nc" id="L172">            return true;</span>
+        }
+<span class="nc bnc" id="L174" title="All 4 branches missed.">        if (outroObjecto == null || getClass() != outroObjecto.getClass()) {</span>
+<span class="nc" id="L175">            return false;</span>
+        }
+<span class="nc" id="L177">        Data outraData = (Data) outroObjecto;</span>
+<span class="nc bnc" id="L178" title="All 2 branches missed.">        return (ano == outraData.ano) &amp;&amp;</span>
+<span class="nc bnc" id="L179" title="All 4 branches missed.">                mes.equals(outraData.mes) &amp;&amp;</span>
+                (dia == outraData.dia);
+    }
+
+    /**
+     * compara duas datas
+     * @param outraData
+     * @return 
+     */
+    @Override
+    public int compareTo(Data outraData) {
+<span class="nc bnc" id="L190" title="All 4 branches missed.">        return (outraData.isMaior(this)) ? -1 : (isMaior(outraData)) ? 1 : 0;</span>
+    }
+
+    /**
+     * Devolve o dia da semana a que se refere uma determinada data
+     * @return 
+     */
+    public String diaDaSemana() {
+<span class="nc" id="L198">        int totalDias = contaDias();</span>
+<span class="nc" id="L199">        totalDias = totalDias % 7;</span>
+
+<span class="nc" id="L201">        return DiaDaSemana.designacaoDiaDaSemana(totalDias);</span>
+    }
+
+    /**
+     * verifica se uma data e mais recente que outra
+     * @param outraData
+     * @return 
+     */
+    public boolean isMaior(Data outraData) {
+<span class="nc" id="L210">        int totalDias = contaDias();</span>
+<span class="nc" id="L211">        int totalDias1 = outraData.contaDias();</span>
+
+<span class="nc bnc" id="L213" title="All 2 branches missed.">        return totalDias &gt; totalDias1;</span>
+    }
+
+    /**
+     * devolve a diferenca de dias entre duas datas
+     * @param outraData
+     * @return 
+     */
+    public int diferenca(Data outraData) {
+<span class="nc" id="L222">        int totalDias = contaDias();</span>
+<span class="nc" id="L223">        int totalDias1 = outraData.contaDias();</span>
+
+<span class="nc" id="L225">        return Math.abs(totalDias - totalDias1);</span>
+    }
+    
+    /**
+     * devolve a diferenca de dias entre duas datas
+     * @param outraData
+     * @return 
+     */
+    public int diferenca(int ano, int mes, int dia) {
+<span class="nc" id="L234">        int totalDias = contaDias();</span>
+<span class="nc" id="L235">        Data outraData = new Data(ano, mes, dia);</span>
+<span class="nc" id="L236">        int totalDias1 = outraData.contaDias();</span>
+
+<span class="nc" id="L238">        return Math.abs(totalDias - totalDias1);</span>
+    }
+    
+    /**
+     * verifica se um dado ano e bissexto
+     * @param ano
+     * @return 
+     */
+    public static boolean isAnoBissexto(int ano) {
+<span class="nc bnc" id="L247" title="All 6 branches missed.">        return ano % 4 == 0 &amp;&amp;</span>
+                ano % 100 != 0 ||
+                ano % 400 == 0;
+    }
+
+    /**
+     * Devolve a data actual
+     * @return 
+     */
+    public static Data dataActual() {
+<span class="nc" id="L257">        Calendar hoje = Calendar.getInstance();</span>
+<span class="nc" id="L258">        int ano = hoje.get(Calendar.YEAR);</span>
+<span class="nc" id="L259">        int mes = hoje.get(Calendar.MONTH) + 1;</span>
+<span class="nc" id="L260">        int dia = hoje.get(Calendar.DAY_OF_MONTH);</span>
+
+<span class="nc" id="L262">        return new Data(ano, mes, dia);</span>
+    }
+    
+    /**
+     * conta o númerp de dias desde o ano 1
+     * @return 
+     */
+    public int contaDias() {
+<span class="nc" id="L270">        int totalDias = 0;</span>
+
+<span class="nc bnc" id="L272" title="All 2 branches missed.">        for (int i = 1; i &lt; ano; i++) {</span>
+<span class="nc bnc" id="L273" title="All 2 branches missed.">            totalDias += isAnoBissexto(i) ? 366 : 365;</span>
+        }
+
+<span class="nc bnc" id="L276" title="All 2 branches missed.">        for (int i = 1; i &lt; mes.ordinal() + 1; i++) {</span>
+<span class="nc" id="L277">            totalDias += Mes.obterMes(i).numeroDeDias(ano);</span>
+        }
+
+<span class="nc" id="L280">        totalDias += dia;</span>
+
+<span class="nc" id="L282">        return totalDias;</span>
+    }
+
+    /**
+     * Determina uma idade de acordo com a data de nascimento
+     * @param dataNascimento
+     * @return 
+     */
+    public int getIdade(Data dataNascimento) {
+<span class="nc" id="L291">        int idade = Data.dataActual().getAno() - dataNascimento.getAno();</span>
+<span class="nc bnc" id="L292" title="All 2 branches missed.">        if (Data.dataActual().getMes() &lt; dataNascimento.getMes()</span>
+<span class="nc bnc" id="L293" title="All 2 branches missed.">                || ((Data.dataActual().getMes() == dataNascimento.getMes())</span>
+<span class="nc bnc" id="L294" title="All 2 branches missed.">                &amp;&amp; Data.dataActual().getDia() &lt; dataNascimento.getDia())) {</span>
+<span class="nc" id="L295">            return idade - 1;</span>
+        }
+<span class="nc" id="L297">        return idade;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>

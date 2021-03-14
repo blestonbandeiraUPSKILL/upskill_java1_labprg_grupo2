@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Website.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">T4J-Grupo2</a> &gt; <a href="index.source.html" class="el_package">com.grupo2.t4j.model</a> &gt; <span class="el_source">Website.java</span></div><h1>Website.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.grupo2.t4j.model;
+
+import com.grupo2.t4j.exception.WebsiteInvalidoException;
+import org.apache.commons.validator.UrlValidator;
+
+/**
+ *
+ * @author CAD
+ */
+public class Website {
+    
+    private String website;
+    
+<span class="nc" id="L19">    public Website (String website){</span>
+<span class="nc" id="L20">        setWebsite(website);</span>
+<span class="nc" id="L21">    }</span>
+    
+<span class="nc" id="L23">    public Website (Website website){</span>
+<span class="nc" id="L24">        setWebsite(website.website);</span>
+<span class="nc" id="L25">    }</span>
+    
+    public void setWebsite(String website){
+<span class="nc bnc" id="L28" title="All 2 branches missed.">        if(eURL(website)){</span>
+<span class="nc" id="L29">            this.website = String.valueOf(website);</span>
+        }
+        else{
+<span class="nc" id="L32">            throw new WebsiteInvalidoException(&quot;O endereço do website é inválido!&quot;);</span>
+        }
+<span class="nc" id="L34">    }</span>
+    
+    public String getWebsiteText(){
+<span class="nc" id="L37">        return website;</span>
+    }
+    
+    public boolean eURL(String url) {
+<span class="nc" id="L41">        UrlValidator urlValidator = new UrlValidator();</span>
+<span class="nc" id="L42">        return urlValidator.isValid(url);</span>
+
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>

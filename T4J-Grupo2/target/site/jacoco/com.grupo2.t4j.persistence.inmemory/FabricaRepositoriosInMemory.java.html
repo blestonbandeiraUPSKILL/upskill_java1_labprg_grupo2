@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>FabricaRepositoriosInMemory.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">T4J-Grupo2</a> &gt; <a href="index.source.html" class="el_package">com.grupo2.t4j.persistence.inmemory</a> &gt; <span class="el_source">FabricaRepositoriosInMemory.java</span></div><h1>FabricaRepositoriosInMemory.java</h1><pre class="source lang-java linenums">package com.grupo2.t4j.persistence.inmemory;
+
+import com.grupo2.t4j.persistence.*;
+
+
+<span class="nc" id="L6">public class FabricaRepositoriosInMemory implements FabricaRepositorios {</span>
+
+    @Override
+    public RepositorioAdministrativoInMemory getRepositorioAdministrativo() {
+<span class="nc" id="L10">        return RepositorioAdministrativoInMemory.getInstance();</span>
+    }
+
+    @Override
+    public RepositorioAnuncio getRepositorioAnuncio() {
+<span class="nc" id="L15">        return null;</span>
+    }
+
+    @Override
+    public RepositorioAreaActividade getRepositorioAreaActividade() {
+<span class="nc" id="L20">        return RepositorioAreaActividadeInMemory.getInstance();</span>
+    }
+    
+    @Override
+    public RepositorioCandidatura getRepositorioCandidatura() {
+<span class="nc" id="L25">        return RepositorioCandidaturaInMemory.getInstance();</span>
+    }
+
+    @Override
+    public RepositorioCaracterizacaoCT getRepositorioCaracterizacaoCT() {
+<span class="nc" id="L30">        return RepositorioCaracterizacaoCTInMemory.getInstance();</span>
+    }
+
+    @Override
+    public RepositorioCategoriaTarefa getRepositorioCategoriaTarefa() {
+<span class="nc" id="L35">        return RepositorioCategoriaTarefaInMemory.getInstance();</span>
+    }
+    
+    @Override
+    public RepositorioClassificacao getRepositorioClassificacao() {
+<span class="nc" id="L40">        return null;</span>
+    }
+
+    @Override
+    public RepositorioColaborador getRepositorioColaborador() {
+<span class="nc" id="L45">        return RepositorioColaboradorInMemory.getInstance();</span>
+    }
+
+    @Override
+    public RepositorioCompetenciaTecnica getRepositorioCompetenciaTecnica() {
+<span class="nc" id="L50">        return RepositorioCompetenciaTecnicaInMemory.getInstance();</span>
+    }
+
+    @Override
+    public RepositorioEnderecoPostal getRepositorioEnderecoPostal() {
+<span class="nc" id="L55">        return RepositorioEnderecoPostalInMemory.getInstance();</span>
+    }
+
+    @Override
+    public RepositorioFreelancer getRepositorioFreelancer() {
+<span class="nc" id="L60">        return RepositorioFreelancerInMemory.getInstance();</span>
+    }
+    
+    @Override
+    public RepositorioHabilitacaoAcademica getRepositorioHabilitacaoAcademica() {
+<span class="nc" id="L65">        return RepositorioHabilitacaoAcademicaInMemory.getInstance();</span>
+    }
+
+    @Override
+    public RepositorioGrauProficiencia getRepositorioGrauProficiencia() {
+<span class="nc" id="L70">        return RepositorioGrauProficienciaInMemory.getInstance();</span>
+    }
+
+    @Override
+    public RepositorioOrganizacao getRepositorioOrganizacao() {
+<span class="nc" id="L75">        return RepositorioOrganizacaoInMemory.getInstance();</span>
+    }
+    
+    @Override
+    public RepositorioReconhecimentoGP getRepositorioReconhecimentoGP() {
+<span class="nc" id="L80">        return RepositorioReconhecimentoGPInMemory.getInstance();</span>
+    }
+    
+    @Override
+    public RepositorioTarefa getRepositorioTarefa() {
+<span class="nc" id="L85">        return null;</span>
+    }
+
+    @Override
+    public RepositorioUtilizador getRepositorioUtilizador() {
+<span class="nc" id="L90">        return null;</span>
+    } 
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>

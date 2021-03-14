@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ConsultarFreelancerUI.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">T4J-Grupo2</a> &gt; <a href="index.source.html" class="el_package">com.grupo2.t4j.ui</a> &gt; <span class="el_source">ConsultarFreelancerUI.java</span></div><h1>ConsultarFreelancerUI.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.grupo2.t4j.ui;
+
+import com.grupo2.t4j.controller.RegistarFreelancerController;
+import com.grupo2.t4j.model.HabilitacaoAcademica;
+import com.grupo2.t4j.model.ReconhecimentoGP;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+
+import java.net.URL;
+import java.sql.SQLException;
+import java.util.ResourceBundle;
+
+/**
+ * FXML Controller class
+ */
+<span class="nc" id="L27">public class ConsultarFreelancerUI implements Initializable {</span>
+
+    private AdministrativoLogadoUI administrativoLogadoUI;
+    private Stage adicionarStage;
+    private RegistarFreelancerController registarFreelancerController;
+
+    @FXML TextField txtPorta;
+    @FXML TextField txtNif;
+    @FXML TextField txtNome;
+    @FXML TextField txtEmail;
+    @FXML TextField txtCodigoPostal;
+    @FXML TextField txtLocalidade;
+    @FXML TextField txtArruamento;
+    @FXML ListView&lt;ReconhecimentoGP&gt; listViewCompTec;
+    @FXML ListView&lt;HabilitacaoAcademica&gt; listViewHabAcad;
+    @FXML Button btnVoltar;
+
+    public void associarParentUI(AdministrativoLogadoUI administrativoLogadoUI) {
+<span class="nc" id="L45">        this.administrativoLogadoUI = administrativoLogadoUI;</span>
+<span class="nc" id="L46">    }</span>
+    
+    /**
+    * Initializes the controller (UI) class.
+    */
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+
+<span class="nc" id="L54">        registarFreelancerController = new RegistarFreelancerController();</span>
+
+<span class="nc" id="L56">        adicionarStage = new Stage();</span>
+<span class="nc" id="L57">        adicionarStage.initModality(Modality.APPLICATION_MODAL);;</span>
+<span class="nc" id="L58">        adicionarStage.setResizable(false);</span>
+<span class="nc" id="L59">    }   </span>
+
+    public void transferData() throws SQLException {
+<span class="nc" id="L62">        String emailFreelancer = administrativoLogadoUI.tableViewFreelancer.getSelectionModel().getSelectedItem().getEmail().getEmailText();</span>
+
+<span class="nc" id="L64">        String arruamento = registarFreelancerController.getEnderecoPostal(emailFreelancer).getArruamento();</span>
+<span class="nc" id="L65">        String numeroPorta = registarFreelancerController.getEnderecoPostal(emailFreelancer).getPorta();</span>
+<span class="nc" id="L66">        String localidade = registarFreelancerController.getEnderecoPostal(emailFreelancer).getLocalidade();</span>
+<span class="nc" id="L67">        String codPostal = registarFreelancerController.getEnderecoPostal(emailFreelancer).getCodigoPostal();</span>
+
+<span class="nc" id="L69">        txtNome.setText(administrativoLogadoUI.tableViewFreelancer.getSelectionModel().getSelectedItem().getNome());</span>
+<span class="nc" id="L70">        txtNif.setText(administrativoLogadoUI.tableViewFreelancer.getSelectionModel().getSelectedItem().getNif());</span>
+<span class="nc" id="L71">        txtEmail.setText(administrativoLogadoUI.tableViewFreelancer.getSelectionModel().getSelectedItem().getEmail().getEmailText());</span>
+<span class="nc" id="L72">        txtArruamento.setText(arruamento);</span>
+<span class="nc" id="L73">        txtPorta.setText(numeroPorta);</span>
+<span class="nc" id="L74">        txtLocalidade.setText(localidade);</span>
+<span class="nc" id="L75">        txtCodigoPostal.setText(codPostal);</span>
+<span class="nc" id="L76">        listViewCompTec.getItems().setAll(registarFreelancerController.getAllReconhecimentoGP(emailFreelancer));</span>
+<span class="nc" id="L77">        listViewHabAcad.getItems().setAll(registarFreelancerController.getAllHabsAcademicas(emailFreelancer));</span>
+        
+<span class="nc" id="L79">    }</span>
+    
+    @FXML
+    void voltarAtras(ActionEvent event) {
+<span class="nc" id="L83">        btnVoltar.getScene().getWindow().hide();</span>
+<span class="nc" id="L84">    }</span>
+    
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>

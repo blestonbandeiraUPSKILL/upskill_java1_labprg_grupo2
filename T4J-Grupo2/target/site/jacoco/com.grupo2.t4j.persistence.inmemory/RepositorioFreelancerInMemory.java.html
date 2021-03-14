@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RepositorioFreelancerInMemory.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">T4J-Grupo2</a> &gt; <a href="index.source.html" class="el_package">com.grupo2.t4j.persistence.inmemory</a> &gt; <span class="el_source">RepositorioFreelancerInMemory.java</span></div><h1>RepositorioFreelancerInMemory.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.grupo2.t4j.persistence.inmemory;
+
+/**
+ *
+ * @author CAD
+ */
+
+import com.grupo2.t4j.exception.FreelancerDuplicadoException;
+import com.grupo2.t4j.model.*;
+import com.grupo2.t4j.persistence.RepositorioFreelancer;
+
+import java.io.Serializable;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+public class RepositorioFreelancerInMemory implements Serializable, RepositorioFreelancer {
+        
+    /**
+     * Define uma instância do Repositório em que estão registados todos
+     * os freelancers registados na plataforma
+     */
+    private static RepositorioFreelancerInMemory repositorioFreelancerInMemory;
+    
+    /**
+     * Define o atributo da classe RepositorioFreelancer como uma lista de
+     * tipos da classe Freelancer
+     */
+    private List&lt;Freelancer&gt; listaFreelancers;
+    
+    /**
+     * Inicializa o Repositório de Freelancers de uma plataforma
+     *
+     */
+<span class="nc" id="L40">    public RepositorioFreelancerInMemory(){</span>
+<span class="nc" id="L41">        listaFreelancers = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L42">    }</span>
+    
+    /**
+     * Garante que existe apenas um repositorio para os freelancers
+     * @return repositório dos freelancers na memória
+     */
+    public static RepositorioFreelancerInMemory getInstance(){
+<span class="nc bnc" id="L49" title="All 2 branches missed.">        if (repositorioFreelancerInMemory == null){</span>
+<span class="nc" id="L50">            repositorioFreelancerInMemory = new RepositorioFreelancerInMemory();</span>
+        }
+<span class="nc" id="L52">        return repositorioFreelancerInMemory;</span>
+    }
+    
+
+    public boolean save(String emailFree, String nome, String passwordFree, String nif, 
+            String telefone, String arruamento, String numeroPorta, String localidade, String codPostal) throws FreelancerDuplicadoException {
+<span class="nc" id="L58">        Freelancer f1 = findByNif(nif);</span>
+<span class="nc" id="L59">        Freelancer f2 = findByEmail(emailFree);</span>
+<span class="nc bnc" id="L60" title="All 4 branches missed.">        if (f1 == null &amp;&amp; f2 == null) {</span>
+<span class="nc" id="L61">            EnderecoPostal endereco = new EnderecoPostal(arruamento, numeroPorta, localidade, codPostal);</span>
+<span class="nc" id="L62">            Freelancer freel = new Freelancer(new Email(emailFree), nome, new Password(passwordFree), nif, telefone, endereco.getIdEnderecoPostal());</span>
+<span class="nc" id="L63">            this.listaFreelancers.add(freel);</span>
+<span class="nc" id="L64">            return true;</span>
+        } else {
+<span class="nc" id="L66">            throw new FreelancerDuplicadoException(&quot;Freelancer já registado!&quot;);</span>
+        }
+    }
+
+
+    @Override
+    public boolean save(Freelancer freelancer) throws FreelancerDuplicadoException {
+<span class="nc" id="L73">        Freelancer f1 = findByNif(freelancer.getNif());</span>
+<span class="nc" id="L74">        Freelancer f2 = findByEmail(freelancer.getEmail().getEmailText());</span>
+<span class="nc bnc" id="L75" title="All 4 branches missed.">        if (f1 == null &amp;&amp; f2 == null) {</span>
+<span class="nc" id="L76">            Freelancer freel = new Freelancer(freelancer);</span>
+<span class="nc" id="L77">            this.listaFreelancers.add(freel);</span>
+<span class="nc" id="L78">            return true;</span>
+        } else {
+<span class="nc" id="L80">            throw new FreelancerDuplicadoException(&quot;Freelancer já registado!&quot;);</span>
+        }        
+    }
+
+    @Override
+    public Freelancer findByNif(String nif) {
+<span class="nc bnc" id="L86" title="All 2 branches missed.">        for (int i = 0; i &lt; this.listaFreelancers.size(); i++) {</span>
+<span class="nc" id="L87">            Freelancer freelancer = this.listaFreelancers.get(i);</span>
+<span class="nc bnc" id="L88" title="All 2 branches missed.">            if (freelancer.getNif().equals(nif)) {</span>
+<span class="nc" id="L89">                return freelancer;</span>
+            }
+        }
+<span class="nc" id="L92">        return null;</span>
+    }
+
+    @Override
+    public Password findPassword(String email) throws SQLException {
+<span class="nc" id="L97">        return null;</span>
+    }
+
+    @Override
+    public Freelancer findByEmail(String emailFree) {
+<span class="nc bnc" id="L102" title="All 2 branches missed.">        for (int i = 0; i &lt; this.listaFreelancers.size(); i++) {</span>
+<span class="nc" id="L103">            Freelancer freelancer = this.listaFreelancers.get(i);</span>
+<span class="nc bnc" id="L104" title="All 2 branches missed.">            if (freelancer.getEmail().getEmailText().equals(emailFree)) {</span>
+<span class="nc" id="L105">                return freelancer;</span>
+            }
+        }
+<span class="nc" id="L108">        return null;</span>
+    }
+
+    @Override
+    public ArrayList&lt;Freelancer&gt; getAll() {
+<span class="nc" id="L113">        return new ArrayList&lt;Freelancer&gt;(listaFreelancers);</span>
+    }
+    
+    @Override
+    public ArrayList&lt;String&gt; getAllEmails() {
+        
+<span class="nc" id="L119">        ArrayList&lt;String&gt; listaEmailFreelancers = new ArrayList&lt;&gt;();</span>
+<span class="nc bnc" id="L120" title="All 2 branches missed.">        for(int i = 0; i &lt; listaFreelancers.size();i++){</span>
+<span class="nc" id="L121">            Freelancer freelancer = this.listaFreelancers.get(i);</span>
+<span class="nc" id="L122">            listaEmailFreelancers.add(freelancer.getEmail().getEmailText());</span>
+        }
+<span class="nc" id="L124">        return listaEmailFreelancers;</span>
+    }
+
+    @Override
+    public List&lt;ReconhecimentoGP&gt; getAllReconhecimentoGP(String emailFreelancer) throws SQLException {
+<span class="nc" id="L129">        return null;</span>
+    }
+
+    @Override
+    public List&lt;HabilitacaoAcademica&gt; getAllHabsAcademicas(String emailFreelancer) throws SQLException {
+<span class="nc" id="L134">        return null;</span>
+    }
+
+    @Override
+    public EnderecoPostal getEnderecoPostal(String emailFreelancer) {
+<span class="nc" id="L139">        return null;</span>
+    }
+
+    @Override
+    public List&lt;GrauProficiencia&gt; getAllGrausFreelancer(String emailFreelancer) throws SQLException {
+<span class="nc" id="L144">        return null;</span>
+    }
+
+    public int adicionarListaFreelancer(RepositorioFreelancerInMemory outraListaFreelancer) {
+<span class="nc" id="L148">        int totalFreelancersAdicionados = 0;</span>
+
+<span class="nc bnc" id="L150" title="All 2 branches missed.">        for (Freelancer freelancer : outraListaFreelancer.listaFreelancers) {</span>
+<span class="nc" id="L151">            boolean freelancerAdicionado = save(freelancer);</span>
+<span class="nc bnc" id="L152" title="All 2 branches missed.">            if (freelancerAdicionado) {</span>
+<span class="nc" id="L153">                totalFreelancersAdicionados++;</span>
+            }
+<span class="nc" id="L155">        }</span>
+<span class="nc" id="L156">        return totalFreelancersAdicionados;</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>
