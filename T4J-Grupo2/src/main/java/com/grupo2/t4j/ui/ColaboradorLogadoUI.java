@@ -79,6 +79,8 @@ public class ColaboradorLogadoUI implements Initializable {
 
     /**
      * Initializes the controller (UI) class.
+     * @param location
+     * @param resources
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -290,6 +292,9 @@ public class ColaboradorLogadoUI implements Initializable {
 
     }
 
+    /**
+     * Limpa a tabela de candidauras
+     */
     public void limpaTabelaCandidaturas(){
         listaCandidaturasAnuncio.clear();
         preencherTabelaCandidaturas();
