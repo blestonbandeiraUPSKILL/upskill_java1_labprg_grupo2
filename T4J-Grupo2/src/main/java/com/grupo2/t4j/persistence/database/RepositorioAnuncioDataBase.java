@@ -4,10 +4,11 @@ package com.grupo2.t4j.persistence.database;
  *
  * @author CAD
  */
-import com.grupo2.t4j.exception.AnuncioDuplicadoException;
+
 import com.grupo2.t4j.domain.Anuncio;
 import com.grupo2.t4j.domain.Tarefa;
 import com.grupo2.t4j.domain.TipoRegimento;
+import com.grupo2.t4j.exception.AnuncioDuplicadoException;
 import com.grupo2.t4j.persistence.RepositorioAnuncio;
 import com.grupo2.t4j.utils.DBConnectionHandler;
 

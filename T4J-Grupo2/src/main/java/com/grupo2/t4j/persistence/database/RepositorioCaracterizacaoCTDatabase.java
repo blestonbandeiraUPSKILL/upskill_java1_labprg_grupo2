@@ -1,12 +1,15 @@
 package com.grupo2.t4j.persistence.database;
 
-import com.grupo2.t4j.exception.CaracterizacaoCTDuplicadaException;
 import com.grupo2.t4j.domain.CaracterizacaoCT;
 import com.grupo2.t4j.domain.Obrigatoriedade;
+import com.grupo2.t4j.exception.CaracterizacaoCTDuplicadaException;
 import com.grupo2.t4j.persistence.RepositorioCaracterizacaoCT;
 import com.grupo2.t4j.utils.DBConnectionHandler;
 
-import java.sql.*;
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 

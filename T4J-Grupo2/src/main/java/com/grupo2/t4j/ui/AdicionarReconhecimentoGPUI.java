@@ -4,12 +4,16 @@ import com.grupo2.t4j.controller.RegistarCompetenciaTecnicaController;
 import com.grupo2.t4j.controller.RegistarFreelancerController;
 import com.grupo2.t4j.controller.RegistarGrauProficienciaController;
 import com.grupo2.t4j.controller.RegistarReconhecimentoGPController;
-import com.grupo2.t4j.domain.*;
+import com.grupo2.t4j.domain.CompetenciaTecnica;
+import com.grupo2.t4j.domain.Freelancer;
+import com.grupo2.t4j.domain.GrauProficiencia;
+import com.grupo2.t4j.domain.ReconhecimentoGP;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.Window;
@@ -18,7 +22,6 @@ import javafx.stage.WindowEvent;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
-import javafx.scene.control.cell.PropertyValueFactory;
 
 /**
  * FXML Controller class

@@ -10,9 +10,9 @@ package com.grupo2.t4j.persistence;
  * @author CAD
  */
 
-import com.grupo2.t4j.exception.ColaboradorDuplicadoException;
 import com.grupo2.t4j.domain.Colaborador;
 import com.grupo2.t4j.domain.Password;
+import com.grupo2.t4j.exception.ColaboradorDuplicadoException;
 
 import java.sql.SQLException;
 import java.util.ArrayList;

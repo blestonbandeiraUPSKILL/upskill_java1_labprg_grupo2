@@ -10,12 +10,14 @@ package com.grupo2.t4j.persistence.database;
  * @author CAD
  */
 
-import com.grupo2.t4j.domain.*;
+import com.grupo2.t4j.domain.TipoRegimento;
 import com.grupo2.t4j.persistence.RepositorioTipoRegimento;
-import com.grupo2.t4j.persistence.RepositorioAnuncio;
 import com.grupo2.t4j.utils.DBConnectionHandler;
-import java.sql.*;
-import java.util.ArrayList;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 
 public class RepositorioTipoRegimentoDatabase implements RepositorioTipoRegimento {

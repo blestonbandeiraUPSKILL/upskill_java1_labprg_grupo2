@@ -10,7 +10,8 @@ package com.grupo2.t4j.persistence;
  * @author CAD
  */
 
-import com.grupo2.t4j.domain.*;
+import com.grupo2.t4j.domain.ProcessoSeriacao;
+
 import java.sql.SQLException;
 import java.util.List;
 public interface RepositorioSeriacao {

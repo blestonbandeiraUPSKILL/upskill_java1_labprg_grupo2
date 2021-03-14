@@ -15,10 +15,7 @@ import javafx.stage.WindowEvent;
 
 import java.net.URL;
 import java.sql.SQLException;
-import java.util.List;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * FXML Controller class

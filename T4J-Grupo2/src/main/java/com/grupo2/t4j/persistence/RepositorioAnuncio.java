@@ -10,7 +10,9 @@ package com.grupo2.t4j.persistence;
  * @author CAD
  */
 
-import com.grupo2.t4j.domain.*;
+import com.grupo2.t4j.domain.Anuncio;
+import com.grupo2.t4j.domain.Tarefa;
+import com.grupo2.t4j.domain.TipoRegimento;
 import com.grupo2.t4j.exception.AnuncioDuplicadoException;
 
 import java.sql.SQLException;

@@ -1,8 +1,7 @@
 package com.grupo2.t4j.persistence.database;
 
-import com.grupo2.t4j.exception.FreelancerDuplicadoException;
-import com.grupo2.t4j.domain.ReconhecimentoGP;
 import com.grupo2.t4j.domain.*;
+import com.grupo2.t4j.exception.FreelancerDuplicadoException;
 import com.grupo2.t4j.persistence.RepositorioFreelancer;
 import com.grupo2.t4j.utils.DBConnectionHandler;
 
