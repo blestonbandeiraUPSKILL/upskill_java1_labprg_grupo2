@@ -3,12 +3,6 @@ package com.grupo2.t4j.ui;
 import com.grupo2.t4j.controller.EditarCandidaturaController;
 import com.grupo2.t4j.controller.GestaoUtilizadoresController;
 import com.grupo2.t4j.controller.RegistarTarefaController;
-import java.net.URL;
-import java.sql.SQLException;
-import java.util.List;
-import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -19,6 +13,13 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+
+import java.net.URL;
+import java.sql.SQLException;
+import java.util.List;
+import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * FXML Controller class
@@ -122,6 +123,7 @@ public class ConsultarCandidaturaUI implements Initializable {
             if (editou) {
 
                 freelancerLogadoUI.updateTableViewCandidaturas();
+                freelancerLogadoUI.updateTableViewAnuncio();
                 btnVoltar.setText("Voltar");
 
                 AlertsUI.criarAlerta(Alert.AlertType.INFORMATION,

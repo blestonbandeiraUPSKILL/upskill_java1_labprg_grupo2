@@ -9,24 +9,28 @@ package com.grupo2.t4j.ui;
  *
  * @author CAD
  */
-import com.grupo2.t4j.controller.RegistarTarefaController;
+
 import com.grupo2.t4j.controller.SeriarAnuncioController;
-import com.grupo2.t4j.domain.*;
-import java.net.URL;
-import java.util.ResourceBundle;
-import javafx.fxml.FXML;
+import com.grupo2.t4j.domain.Candidatura;
+import com.grupo2.t4j.domain.Colaborador;
+import com.grupo2.t4j.domain.TabelaColaboradorAdicional;
+import com.grupo2.t4j.domain.TabelaFreelancerClassificacao;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Window;
 import javafx.stage.WindowEvent;
+
+import java.net.URL;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.ResourceBundle;
 
 public class SeriacaoManualColaboradorUI implements Initializable{
 
@@ -201,22 +205,23 @@ public class SeriacaoManualColaboradorUI implements Initializable{
     
     @FXML
     public void voltar(ActionEvent event) throws SQLException{
-        if(classificacoes.size() != 0){
+        if(classificacoes.size() == 0){
+            colaboradorLogadoUI.updateDataSeriacao();
+            btnVoltar.getScene().getWindow().hide();
+        }
+        else{
             Window window = btnVoltar.getScene().getWindow();
             window.setOnCloseRequest(new EventHandler<WindowEvent>() {
                 @Override
                 public void handle(WindowEvent windowEvent) {
                     Alert alerta = AlertsUI.criarAlerta(Alert.AlertType.CONFIRMATION,
-                        MainApp.TITULO_APLICACAO,
-                        "A seriação ainda não está concluída.",
-                        "Por favor, termine de classificar as candidaturas!");
+                            MainApp.TITULO_APLICACAO,
+                            "A seriação ainda não está concluída.",
+                            "Por favor, termine de classificar as candidaturas!");
                     windowEvent.consume();
                 }
             });
-        }
-        else{
-            colaboradorLogadoUI.updateDataSeriacao();
-            btnVoltar.getScene().getWindow().hide();
+
         }
     }
 }

@@ -10,17 +10,14 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 import javafx.stage.WindowEvent;
-//import java.awt.event.KeyEvent;
-import javafx.scene.input.KeyEvent;
-
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 /**
@@ -123,10 +120,8 @@ public class StartingPageUI implements Initializable {
     /**
      * Faz o login do utilizador e navega para a pagina indicada de acordo com o papel do utilizador
      * @param event
-     * @throws IOException
-     * @throws SQLException 
      */
-    public void login(ActionEvent event) throws IOException, SQLException {
+    public void login(ActionEvent event) {
 
         boolean login = gestaoUtilizadoresController.login(
                 txtEmailLogin.getText(),
@@ -138,8 +133,18 @@ public class StartingPageUI implements Initializable {
 
             filtroRole();
         }
+        else {
+            AlertsUI.criarAlerta(Alert.AlertType.ERROR,
+                    MainApp.TITULO_APLICACAO,
+                    "Dados inválidos",
+                    "Não foi possível fazer o login.").show();
+        }
     }
 
+    /**
+     * Faz o login do utilizador e navega para a pagina indicada de acordo com o papel do utilizador
+     * @param keyEvent
+     */
     public void loginEnter(KeyEvent keyEvent) {
         if (keyEvent.getCode().equals(KeyCode.ENTER)) {
             txtPasswordLogin.setOnKeyPressed(new EventHandler<KeyEvent>() {
@@ -156,6 +161,12 @@ public class StartingPageUI implements Initializable {
                         txtPasswordLogin.clear();
 
                         filtroRole();
+                    }
+                    else {
+                        AlertsUI.criarAlerta(Alert.AlertType.ERROR,
+                                MainApp.TITULO_APLICACAO,
+                                "Dados inválidos",
+                                "Não foi possível fazer o login.").show();
                     }
                 }
             });
@@ -183,7 +194,7 @@ public class StartingPageUI implements Initializable {
             AlertsUI.criarAlerta(Alert.AlertType.ERROR,
                     MainApp.TITULO_APLICACAO,
                     "Erro ao validar os dados",
-                    exception.getMessage());
+                    exception.getMessage()).show();
         }
     }
 
@@ -211,7 +222,6 @@ public class StartingPageUI implements Initializable {
 
     /**
      * Navega para a pagina AdministrativoLogadoUI
-
      * @throws IOException
      */
     public void navigateAdministrativoLogado() throws IOException {
@@ -226,20 +236,21 @@ public class StartingPageUI implements Initializable {
             adicionarStage.setTitle("T4J - Administrativo");
             adicionarStage.show();
             btnLogin.getScene().getWindow().hide();
+
         } catch (IOException exception) {
             exception.printStackTrace();
             AlertsUI.criarAlerta(Alert.AlertType.ERROR,
                     MainApp.TITULO_APLICACAO,
                     "Erro",
-                    exception.getMessage());
+                    exception.getMessage()).show();
         }
     }
 
     /** 
      * Navega para a pagina GestorLogadoUI
-
+     * @throws IOException
      */
-    public void navigateGestorLogado() {
+    public void navigateGestorLogado() throws IOException {
         try {
             FXMLLoader loaderGestor = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/GestorLogadoScene.fxml"));
             Parent rootGestor = loaderGestor.load();
@@ -252,19 +263,21 @@ public class StartingPageUI implements Initializable {
             adicionarStage.show();
 
             btnLogin.getScene().getWindow().hide();
+
         } catch (IOException exception) {
             exception.printStackTrace();
             AlertsUI.criarAlerta(Alert.AlertType.ERROR,
                     MainApp.TITULO_APLICACAO,
                     "Erro",
-                    exception.getMessage());
+                    exception.getMessage()).show();
         }
     }
 
     /**
      * Navega para a pagina ColaboradorLogadoUI
+     * @throws IOException
      */
-    public void navigateColaboradorLogado() {
+    public void navigateColaboradorLogado() throws IOException {
         try {
             FXMLLoader loaderColaborador = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/ColaboradorLogadoScene.fxml"));
             Parent rootColaborador = loaderColaborador.load();
@@ -277,12 +290,13 @@ public class StartingPageUI implements Initializable {
             adicionarStage.show();
 
             btnLogin.getScene().getWindow().hide();
+
         } catch (IOException exception) {
             exception.printStackTrace();
             AlertsUI.criarAlerta(Alert.AlertType.ERROR,
                     MainApp.TITULO_APLICACAO,
                     "Erro",
-                    exception.getMessage());
+                    exception.getMessage()).show();
         }
     }
 
@@ -302,12 +316,13 @@ public class StartingPageUI implements Initializable {
             adicionarStage.setTitle("T4J - Freelancer");
             adicionarStage.show();
             btnLogin.getScene().getWindow().hide();
+
         } catch (IOException exception) {
             exception.printStackTrace();
             AlertsUI.criarAlerta(Alert.AlertType.ERROR,
                     MainApp.TITULO_APLICACAO,
                     "Erro",
-                    exception.getMessage());
+                    exception.getMessage()).show();
         }
     }
 

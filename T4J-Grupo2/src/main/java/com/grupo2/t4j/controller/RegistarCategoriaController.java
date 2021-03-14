@@ -7,7 +7,6 @@ import com.grupo2.t4j.persistence.RepositorioAreaActividade;
 import com.grupo2.t4j.persistence.RepositorioCategoriaTarefa;
 import com.grupo2.t4j.persistence.database.FabricaRepositoriosDatabase;
 
-import java.io.File;
 import java.sql.SQLException;
 import java.util.List;
 

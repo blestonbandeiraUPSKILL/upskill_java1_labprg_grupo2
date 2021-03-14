@@ -10,13 +10,14 @@ package com.grupo2.t4j.persistence.database;
  * @author CAD
  */
 
-import com.grupo2.t4j.domain.*;
+import com.grupo2.t4j.domain.Classificacao;
 import com.grupo2.t4j.persistence.RepositorioClassificacao;
 import com.grupo2.t4j.utils.DBConnectionHandler;
+
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Collections;
+import java.util.List;
 
 public class RepositorioClassificacaoDatabase implements RepositorioClassificacao{
     

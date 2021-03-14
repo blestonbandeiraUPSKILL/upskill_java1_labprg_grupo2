@@ -1,7 +1,11 @@
 package com.grupo2.t4j.ui;
 
-import com.grupo2.t4j.controller.*;
-import com.grupo2.t4j.domain.*;
+import com.grupo2.t4j.controller.EfectuarCandidaturaController;
+import com.grupo2.t4j.controller.EliminarCandidaturaController;
+import com.grupo2.t4j.controller.GestaoUtilizadoresController;
+import com.grupo2.t4j.controller.RegistarTarefaController;
+import com.grupo2.t4j.domain.Candidatura;
+import com.grupo2.t4j.domain.Tarefa;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -242,6 +246,7 @@ public class FreelancerLogadoUI implements Initializable {
 
             if (apaga) {
                 updateTableViewCandidaturas();
+                updateTableViewAnuncio();
 
                 AlertsUI.criarAlerta(Alert.AlertType.INFORMATION,
                         MainApp.TITULO_APLICACAO,

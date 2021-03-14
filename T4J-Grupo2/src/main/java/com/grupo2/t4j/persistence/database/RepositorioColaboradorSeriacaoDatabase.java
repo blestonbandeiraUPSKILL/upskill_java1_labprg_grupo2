@@ -10,15 +10,11 @@ package com.grupo2.t4j.persistence.database;
  * @author CAD
  */
 
-import com.grupo2.t4j.domain.Colaborador;
-import com.grupo2.t4j.domain.Password;
 import com.grupo2.t4j.persistence.RepositorioColaboradorSeriacao;
 import com.grupo2.t4j.utils.DBConnectionHandler;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 public class RepositorioColaboradorSeriacaoDatabase implements RepositorioColaboradorSeriacao{
     
     /**

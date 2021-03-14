@@ -10,8 +10,8 @@ package com.grupo2.t4j.persistence;
  * @author acris
  */
 
-import com.grupo2.t4j.exception.CandidaturaDuplicadaException;
 import com.grupo2.t4j.domain.Candidatura;
+import com.grupo2.t4j.exception.CandidaturaDuplicadaException;
 
 import java.sql.SQLException;
 import java.util.ArrayList;

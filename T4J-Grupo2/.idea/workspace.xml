@@ -5,11 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8ca9f66f-f143-4134-afe5-eb7245bd0a9c" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../Documentação/Sprint 3/UC10_A_Seriar_Candidaturas_(não_automaticamente)/UC10_A_Seriar_Candidaturas_(nao_automaticamente)_Diagrama_Sequencia.puml" beforeDir="false" afterPath="$PROJECT_DIR$/../Documentação/Sprint 3/UC10_A_Seriar_Candidaturas_(não_automaticamente)/UC10_A_Seriar_Candidaturas_(nao_automaticamente)_Diagrama_Sequencia.puml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/persistence/database/RepositorioAnuncioDataBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/persistence/database/RepositorioAnuncioDataBase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/ColaboradorLogadoUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/ColaboradorLogadoUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/GestorLogadoUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/GestorLogadoUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/FreelancerLogadoUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/FreelancerLogadoUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/SeriacaoManualColaboradorUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/SeriacaoManualColaboradorUI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/SeriacaoManualGestorUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/SeriacaoManualGestorUI.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -305,7 +302,7 @@
         </line-breakpoint>
         <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/grupo2/t4j/persistence/database/RepositorioOrganizacaoDatabase.java</url>
-          <line>101</line>
+          <line>100</line>
           <option name="timeStamp" value="263" />
         </line-breakpoint>
         <line-breakpoint type="java-line">
@@ -319,18 +316,13 @@
           <option name="timeStamp" value="361" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/AdicionarFreelancerUI.java</url>
-          <line>73</line>
-          <option name="timeStamp" value="400" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/grupo2/t4j/controller/EfectuarCandidaturaController.java</url>
-          <line>46</line>
+          <line>45</line>
           <option name="timeStamp" value="441" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/SeriacaoManualColaboradorUI.java</url>
-          <line>203</line>
+          <line>207</line>
           <option name="timeStamp" value="455" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">

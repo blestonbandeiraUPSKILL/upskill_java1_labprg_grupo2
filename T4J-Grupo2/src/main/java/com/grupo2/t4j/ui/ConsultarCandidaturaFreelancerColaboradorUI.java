@@ -1,21 +1,25 @@
 package com.grupo2.t4j.ui;
 
-import com.grupo2.t4j.controller.*;
-import com.grupo2.t4j.domain.*;
-import javafx.fxml.FXML;
+import com.grupo2.t4j.controller.RegistarFreelancerController;
+import com.grupo2.t4j.controller.RegistarReconhecimentoGPController;
+import com.grupo2.t4j.controller.RegistarTarefaController;
+import com.grupo2.t4j.controller.SeriarAnuncioController;
+import com.grupo2.t4j.domain.HabilitacaoAcademica;
+import com.grupo2.t4j.domain.ReconhecimentoGP;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
-import java.net.URL;
-import java.sql.SQLException;
-import java.util.ResourceBundle;
 import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+
+import java.net.URL;
+import java.sql.SQLException;
+import java.util.ResourceBundle;
 
 public class ConsultarCandidaturaFreelancerColaboradorUI implements Initializable {
 

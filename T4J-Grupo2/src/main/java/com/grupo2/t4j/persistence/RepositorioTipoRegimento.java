@@ -6,6 +6,7 @@
 package com.grupo2.t4j.persistence;
 
 import com.grupo2.t4j.domain.TipoRegimento;
+
 import java.sql.SQLException;
 import java.util.List;
 

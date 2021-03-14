@@ -18,7 +18,6 @@ import com.grupo2.t4j.utils.DBConnectionHandler;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 public class RepositorioOrganizacaoDatabase implements RepositorioOrganizacao {
 

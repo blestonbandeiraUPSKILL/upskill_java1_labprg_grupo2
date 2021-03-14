@@ -12,7 +12,6 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import javafx.stage.Window;
 import javafx.stage.WindowEvent;
-import javafx.scene.Scene;
 
 import java.io.IOException;
 import java.net.URL;

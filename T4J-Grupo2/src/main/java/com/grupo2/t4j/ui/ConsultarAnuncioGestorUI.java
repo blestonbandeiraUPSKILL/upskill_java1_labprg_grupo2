@@ -2,8 +2,6 @@ package com.grupo2.t4j.ui;
 
 import com.grupo2.t4j.controller.RegistarTarefaController;
 import com.grupo2.t4j.controller.SeriarAnuncioController;
-import com.grupo2.t4j.domain.Anuncio;
-import com.grupo2.t4j.domain.Tarefa;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;

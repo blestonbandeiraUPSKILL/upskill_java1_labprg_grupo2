@@ -5,7 +5,6 @@
  */
 package com.grupo2.t4j.controller;
 
-import com.grupo2.t4j.domain.Anuncio;
 import com.grupo2.t4j.domain.GrauProficiencia;
 import com.grupo2.t4j.domain.Tarefa;
 import com.grupo2.t4j.persistence.*;

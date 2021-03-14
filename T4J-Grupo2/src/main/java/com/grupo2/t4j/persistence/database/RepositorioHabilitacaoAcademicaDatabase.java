@@ -5,9 +5,8 @@ package com.grupo2.t4j.persistence.database;
  * @author CAD
  */
 
-import com.grupo2.t4j.exception.HabilitacaoAcademicaDuplicadaException;
 import com.grupo2.t4j.domain.HabilitacaoAcademica;
-import com.grupo2.t4j.domain.ReconhecimentoGP;
+import com.grupo2.t4j.exception.HabilitacaoAcademicaDuplicadaException;
 import com.grupo2.t4j.persistence.RepositorioHabilitacaoAcademica;
 import com.grupo2.t4j.utils.DBConnectionHandler;
 
