@@ -1,0 +1,10 @@
+com.grupo2.t4j.api
+com.grupo2.t4j.controller
+com.grupo2.t4j.domain
+com.grupo2.t4j.dto
+com.grupo2.t4j.exception
+com.grupo2.t4j.network
+com.grupo2.t4j.persistence
+com.grupo2.t4j.persistence.database
+com.grupo2.t4j.ui
+com.grupo2.t4j.utils

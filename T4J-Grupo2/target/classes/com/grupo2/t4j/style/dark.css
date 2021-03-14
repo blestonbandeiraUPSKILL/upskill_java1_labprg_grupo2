@@ -1,0 +1,111 @@
+.BorderPane {
+    -font-family: Calibri;
+    -fx-background-color: #a4a4a4;
+}
+
+.btnGoDark {
+    -fx-background-color: #000000;
+    -fx-text-fill: #ffffff;
+    -fx-cursor: hand;
+}
+
+.btnGoLight {
+    -fx-background-color: #ffffff;
+    -fx-text-fill: #000000;
+    -fx-cursor: hand;
+}
+
+.btnLogin {
+    -fx-background-color: #34515e;
+    -fx-text-fill: #ffffff;
+    -fx-cursor: hand;
+}
+
+.btnLogin:hover {
+    -fx-background-color: #8eacbb;
+        -fx-text-fill: #000000;
+    -fx-scale-y: 0.9;
+}
+
+.btnLogin:pressed {
+    -fx-scale-y: 0.9;
+    -fx-scale-x: 0.9;
+}
+
+.btnRegistarOrganizacao {
+    -fx-background-color: #34515e;
+    -fx-text-fill: #ffffff;
+    -fx-cursor: hand;
+}
+
+.btnRegistarOrganizacao:hover {
+    -fx-background-color: #8eacbb;
+    -fx-text-fill: #000000;
+    -fx-scale-y: 0.9;
+}
+
+.btnRegistarOrganizacao:pressed {
+    -fx-scale-y: 0.9;
+    -fx-scale-x: 0.9;
+}
+
+.btnSair {
+    -fx-font-family: Calibri;
+    -fx-font-size: 14px;
+    -fx-background-color: #AF4448;
+    -fx-text-fill: #ffffff;
+    -fx-cursor: hand;
+}
+
+.btnSair:hover {
+    -fx-background-color: #E57373;
+    -fx-text-fill: #000000;
+    -fx-scale-y: 0.9;
+}
+
+.btnSair:pressed {
+    -fx-scale-y: 0.9;
+    -fx-scale-x: 0.9;
+}
+
+.lblLogin {
+    -fx-text-fill: #ff0000;
+}
+
+.cmbAreaActividadeListaTarefas {
+    
+}
+
+.lblUser {
+    -fx-background-color: #34515e;
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size:16;  
+}
+
+.AnchorPane {
+    -fx-background-color: #a4a4a4;
+}
+
+.FlowPane {
+    -fx-background-color: #a4a4a4;
+}
+
+
+.btnConfirmar {
+    -fx-font-family: Calibri;
+    -fx-font-size: 14px;
+    -fx-background-color: #4db6ac;
+    -fx-text-fill: #ffffff;
+    -fx-cursor: hand;    
+}
+
+.btnConfirmar:hover {
+   -fx-background-color: #82e9de;
+   -fx-text-fill: #000000;
+    -fx-scale-y: 0.9;
+}
+
+.btnConfirmar:pressed {
+    -fx-scale-y: 0.9;
+    -fx-scale-x: 0.9;
+}

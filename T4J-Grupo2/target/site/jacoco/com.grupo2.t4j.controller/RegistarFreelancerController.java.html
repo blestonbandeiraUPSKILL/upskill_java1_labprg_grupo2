@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RegistarFreelancerController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">T4J-Grupo2</a> &gt; <a href="index.source.html" class="el_package">com.grupo2.t4j.controller</a> &gt; <span class="el_source">RegistarFreelancerController.java</span></div><h1>RegistarFreelancerController.java</h1><pre class="source lang-java linenums">package com.grupo2.t4j.controller;
+
+import com.grupo2.t4j.api.UsersAPI;
+import com.grupo2.t4j.files.FicheiroRepositorioFreelancer;
+import com.grupo2.t4j.model.ReconhecimentoGP;
+import com.grupo2.t4j.model.*;
+import com.grupo2.t4j.persistence.FabricaRepositorios;
+import com.grupo2.t4j.persistence.RepositorioFreelancer;
+import com.grupo2.t4j.persistence.RepositorioUtilizador;
+import com.grupo2.t4j.persistence.database.FabricaRepositoriosDatabase;
+import com.grupo2.t4j.persistence.inmemory.RepositorioFreelancerInMemory;
+
+import java.io.File;
+import java.sql.SQLException;
+import java.util.List;
+public class RegistarFreelancerController {
+    
+    //private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosInMemory();
+<span class="nc" id="L19">    private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosDatabase();</span>
+<span class="nc" id="L20">    private RepositorioFreelancer repositorioFreelancer = fabricaRepositorios.getRepositorioFreelancer();</span>
+<span class="nc" id="L21">    private RepositorioUtilizador repositorioUtilizador = fabricaRepositorios.getRepositorioUtilizador();</span>
+
+    private RepositorioFreelancerInMemory repositorioFreelancerInMemory;
+    private FicheiroRepositorioFreelancer ficheiroF;
+
+   /**
+     * Publicar tarefa boolean
+     *
+     * @param emailFree as email do freelancer
+     * @param nome as nome do freelancer
+     * @param nif as nif do freelancer
+     * @param telefone as telefone do freelancer
+     * @param arruamento as nome da rua onde mora o freelancer
+     * @param numeroPorta as número da porta onde mora o freelancer
+     * @param localidade as localidade onde mora o freelancer
+     * @param codPostal as código postal onde mora o freelancer
+     * @return boolean
+     */    
+    public boolean registarFreelancer(String emailFree, String nome, String nif, 
+            String telefone, String arruamento, String numeroPorta, String localidade, String codPostal) throws SQLException {
+
+<span class="nc" id="L42">        AlgoritmoGeradorPasswords algoritmoGeradorPasswords = new AlgoritmoGeradorPasswords();</span>
+<span class="nc" id="L43">        String password = algoritmoGeradorPasswords.geraPassword();</span>
+
+<span class="nc" id="L45">        Freelancer freelancer = new Freelancer(emailFree, nome, nif, telefone, password, arruamento, numeroPorta, localidade, codPostal);</span>
+
+<span class="nc" id="L47">        registarFreelancerComoUtilizador(freelancer);</span>
+
+<span class="nc" id="L49">        return repositorioFreelancer.save(emailFree, nome, nif, telefone, password, arruamento, numeroPorta, localidade, codPostal);</span>
+    }
+
+    public List&lt;Freelancer&gt; getAll() throws SQLException{
+<span class="nc" id="L53">        return repositorioFreelancer.getAll();</span>
+    }
+    
+    public List&lt;String&gt; getAllEmails() throws SQLException{
+<span class="nc" id="L57">        return repositorioFreelancer.getAllEmails();</span>
+    }
+   
+    public Freelancer findByNif(String NIF) throws SQLException{
+<span class="nc" id="L61">        return repositorioFreelancer.findByNif(NIF);</span>
+    }
+    
+    public Freelancer findByEmail(String emailFree) throws SQLException{
+<span class="nc" id="L65">        return repositorioFreelancer.findByEmail(emailFree);</span>
+    }
+
+    ///////API
+    public boolean registarFreelancerComoUtilizador(Freelancer freelancer) throws SQLException {
+<span class="nc" id="L70">        String nome = freelancer.getNome();</span>
+<span class="nc" id="L71">        Email email = freelancer.getEmail();</span>
+<span class="nc" id="L72">        Password password = freelancer.getPassword();</span>
+
+<span class="nc" id="L74">        return UsersAPI.getInstance().registerUserWithRoles(email, nome, password, &quot;freelancer&quot;);</span>
+    }
+    
+     //////FICHEIROS////////
+<span class="nc" id="L78">    public RegistarFreelancerController() {</span>
+<span class="nc" id="L79">        ficheiroF = new FicheiroRepositorioFreelancer();</span>
+        
+<span class="nc" id="L81">        desserializar();</span>
+<span class="nc" id="L82">    }</span>
+    public boolean serializar() {
+<span class="nc" id="L84">        return ficheiroF.serializar(repositorioFreelancerInMemory);</span>
+    }
+
+    public boolean serializar(File ficheiroExportar) {
+<span class="nc" id="L88">        return ficheiroF.serializar(ficheiroExportar, repositorioFreelancerInMemory);</span>
+    }
+
+    public void desserializar() {
+<span class="nc" id="L92">        repositorioFreelancerInMemory = ficheiroF.desserializar();</span>
+<span class="nc" id="L93">    }</span>
+
+    public int desserializar(File ficheiroImportar) {
+<span class="nc" id="L96">        RepositorioFreelancerInMemory listaFreelancerImportada = ficheiroF.desserializar(ficheiroImportar);</span>
+
+<span class="nc" id="L98">        return repositorioFreelancerInMemory.adicionarListaFreelancer(listaFreelancerImportada);</span>
+    }
+
+    public Password findPassword(String email) throws SQLException {
+<span class="nc" id="L102">        return  repositorioFreelancer.findPassword(email);</span>
+    }
+
+    public List&lt;ReconhecimentoGP&gt; getAllReconhecimentoGP(String emailFreelancer) throws SQLException {
+<span class="nc" id="L106">        return repositorioFreelancer.getAllReconhecimentoGP(emailFreelancer);</span>
+    }
+
+    public List&lt;HabilitacaoAcademica&gt; getAllHabsAcademicas(String emailFreelancer) throws SQLException {
+<span class="nc" id="L110">        return repositorioFreelancer.getAllHabsAcademicas(emailFreelancer);</span>
+    }
+
+    public EnderecoPostal getEnderecoPostal(String emailFreelancer) throws SQLException {
+<span class="nc" id="L114">        return repositorioFreelancer.getEnderecoPostal(emailFreelancer);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>

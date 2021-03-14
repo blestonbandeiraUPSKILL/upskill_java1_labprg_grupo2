@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AdicionarCategoriaTarefaUI.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">T4J-Grupo2</a> &gt; <a href="index.source.html" class="el_package">com.grupo2.t4j.ui</a> &gt; <span class="el_source">AdicionarCategoriaTarefaUI.java</span></div><h1>AdicionarCategoriaTarefaUI.java</h1><pre class="source lang-java linenums">package com.grupo2.t4j.ui;
+
+import com.grupo2.t4j.controller.*;
+import com.grupo2.t4j.model.*;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.stage.Window;
+import javafx.stage.WindowEvent;
+
+import java.net.URL;
+import java.sql.SQLException;
+import java.util.List;
+import java.util.ResourceBundle;
+
+/**
+ * FXML Controller class
+ */
+<span class="nc" id="L25">public class AdicionarCategoriaTarefaUI implements Initializable {</span>
+
+    private AdministrativoLogadoUI administrativoLogadoUI;
+    private Scene sceneCaracterizarCompetenciaTecnica;
+    private Stage adicionarStage;
+    private Scene sceneStartingPage;
+    private RegistarCategoriaController registarCategoriaController;
+    private RegistarAreaActividadeController registarAreaActividadeController;
+    private RegistarCompetenciaTecnicaController registarCompetenciaTecnicaController;
+    private RegistarGrauProficienciaController registarGrauProficienciaController;
+    private RegistarCaracterizacaoCTController registarCaracterizacaoCTController;
+    private List&lt;CaracterizacaoCT&gt; caracterizacaoCTS;
+
+    @FXML TextField txtDescricaoBreve;
+    @FXML TextField txtCodigoCategoria;
+    @FXML TextField txtCodigoCCT;
+    @FXML TextArea txtDescricaoDetalhada;
+    @FXML Button btnConfirmar;
+    @FXML Button btnCancelar;
+    @FXML Button btnAddCompTecCat;
+    @FXML ComboBox&lt;AreaActividade&gt; cmbAreaActividade;
+    @FXML ComboBox&lt;GrauProficiencia&gt; cmbGrauProficiencia;
+    @FXML ComboBox&lt;Obrigatoriedade&gt; cmbObrigatoriedade;
+    @FXML ComboBox&lt;CompetenciaTecnica&gt; cmbCompetenciaTecnica;
+    @FXML ListView&lt;CaracterizacaoCT&gt; listViewCompTecCat;
+
+    public void associarParentUI(AdministrativoLogadoUI administrativoLogadoUI) {
+<span class="nc" id="L52">        this.administrativoLogadoUI = administrativoLogadoUI;</span>
+<span class="nc" id="L53">    }</span>
+
+    /**
+     * Initializes the controller (UI) class.
+     */
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+
+<span class="nc" id="L61">        registarAreaActividadeController = new RegistarAreaActividadeController();</span>
+<span class="nc" id="L62">        registarCategoriaController = new RegistarCategoriaController();</span>
+<span class="nc" id="L63">        registarCompetenciaTecnicaController = new RegistarCompetenciaTecnicaController();</span>
+        try {
+<span class="nc" id="L65">            registarGrauProficienciaController = new RegistarGrauProficienciaController();</span>
+<span class="nc" id="L66">        } catch (SQLException exception) {</span>
+<span class="nc" id="L67">            exception.printStackTrace();</span>
+<span class="nc" id="L68">        }</span>
+<span class="nc" id="L69">        registarCaracterizacaoCTController = new RegistarCaracterizacaoCTController();</span>
+
+<span class="nc" id="L71">        adicionarStage = new Stage();</span>
+<span class="nc" id="L72">        adicionarStage.initModality(Modality.APPLICATION_MODAL);;</span>
+<span class="nc" id="L73">        adicionarStage.setResizable(false);</span>
+
+<span class="nc" id="L75">        cmbObrigatoriedade.getItems().setAll(Obrigatoriedade.values());</span>
+
+        try {
+<span class="nc" id="L78">            cmbAreaActividade.getItems().addAll(registarAreaActividadeController.getAll());</span>
+<span class="nc" id="L79">        } catch (SQLException exception) {</span>
+<span class="nc" id="L80">            exception.printStackTrace();</span>
+<span class="nc" id="L81">        }</span>
+
+<span class="nc" id="L83">        cmbAreaActividade.setOnAction(new EventHandler&lt;ActionEvent&gt;() {</span>
+           @Override
+           public void handle(ActionEvent event) {
+               try {
+<span class="nc" id="L87">                   updateCmbCompetenciasTecnicas(event);</span>
+<span class="nc" id="L88">               } catch (SQLException exception) {</span>
+<span class="nc" id="L89">                   exception.printStackTrace();</span>
+<span class="nc" id="L90">               }</span>
+
+<span class="nc" id="L92">           }</span>
+        });
+        
+<span class="nc" id="L95">        cmbCompetenciaTecnica.setOnAction(new EventHandler&lt;ActionEvent&gt;(){</span>
+            @Override
+            public void handle(ActionEvent event) {
+                try {
+<span class="nc" id="L99">                    updateCmbGrauProficiencia(event);</span>
+<span class="nc" id="L100">                } catch (SQLException exception) {</span>
+<span class="nc" id="L101">                    exception.printStackTrace();</span>
+<span class="nc" id="L102">                }</span>
+<span class="nc" id="L103">            }</span>
+        });
+
+
+<span class="nc" id="L107">    }</span>
+
+    public void updateCmbCompetenciasTecnicas(ActionEvent actionEvent) throws SQLException {
+<span class="nc" id="L110">        String codigoAreaActividade = cmbAreaActividade.getSelectionModel().getSelectedItem().getCodigo();</span>
+<span class="nc" id="L111">        cmbCompetenciaTecnica.getItems().setAll(</span>
+<span class="nc" id="L112">                registarCompetenciaTecnicaController.findByAreaActividade(codigoAreaActividade));</span>
+<span class="nc" id="L113">    }</span>
+    
+    public void updateCmbGrauProficiencia(ActionEvent actionEvent) throws SQLException {
+<span class="nc" id="L116">        String codigoCompetenciaTecnica = cmbCompetenciaTecnica.getSelectionModel().getSelectedItem().getCodigo();</span>
+<span class="nc" id="L117">        cmbGrauProficiencia.getItems().setAll(</span>
+<span class="nc" id="L118">                registarGrauProficienciaController.findByCompetenciaTecnica(codigoCompetenciaTecnica));</span>
+<span class="nc" id="L119">    }</span>
+    
+    
+
+    public void cancelarAction(ActionEvent event) {
+<span class="nc" id="L124">        Window window = btnCancelar.getScene().getWindow();</span>
+<span class="nc" id="L125">        window.setOnCloseRequest(new EventHandler&lt;WindowEvent&gt;() {</span>
+            @Override
+            public void handle(WindowEvent windowEvent) {
+<span class="nc" id="L128">                Alert alerta = AlertsUI.criarAlerta(Alert.AlertType.CONFIRMATION,</span>
+                        MainApp.TITULO_APLICACAO,
+                        &quot;Confirmação da acção&quot;,
+                        &quot;Tem a certeza que quer voltar à página anterior, cancelando o actual registo?&quot;);
+
+<span class="nc bnc" id="L133" title="All 2 branches missed.">                if (alerta.showAndWait().get() == ButtonType.CANCEL) {</span>
+<span class="nc" id="L134">                    windowEvent.consume();</span>
+                }
+<span class="nc" id="L136">            }</span>
+        });
+<span class="nc" id="L138">        window.fireEvent(new WindowEvent(window, WindowEvent.WINDOW_CLOSE_REQUEST));</span>
+<span class="nc" id="L139">    }</span>
+
+    private void closeAddCatgoriaTarefa(ActionEvent actionEvent) {
+<span class="nc" id="L142">        this.txtDescricaoBreve.clear();</span>
+<span class="nc" id="L143">        this.txtDescricaoDetalhada.clear();</span>
+<span class="nc" id="L144">        this.listViewCompTecCat.getItems().removeAll();</span>
+
+<span class="nc" id="L146">        ((Node) actionEvent.getSource()).getScene().getWindow().hide();</span>
+<span class="nc" id="L147">    }</span>
+
+    @FXML
+    public void addCompetenciaTecnica2CCTS(ActionEvent actionEvent) throws SQLException {
+
+        try {
+<span class="nc" id="L153">            boolean adicionou = registarCaracterizacaoCTController.registarCaracterizacaoCTS(</span>
+<span class="nc" id="L154">                    txtCodigoCategoria.getText(),</span>
+<span class="nc" id="L155">                    cmbGrauProficiencia.getValue().getIdGrauProficiencia(),</span>
+<span class="nc" id="L156">                    cmbObrigatoriedade.getValue());</span>
+
+<span class="nc bnc" id="L158" title="All 2 branches missed.">            if(adicionou){</span>
+<span class="nc" id="L159">                updateListViewCompTecCat(actionEvent);</span>
+<span class="nc" id="L160">                cmbCompetenciaTecnica.getSelectionModel().clearSelection();</span>
+<span class="nc" id="L161">                cmbGrauProficiencia.getSelectionModel().clearSelection();</span>
+<span class="nc" id="L162">                cmbGrauProficiencia.getItems().clear();</span>
+<span class="nc" id="L163">                cmbObrigatoriedade.getSelectionModel().clearSelection();</span>
+
+<span class="nc" id="L165">                AlertsUI.criarAlerta(Alert.AlertType.INFORMATION,</span>
+                    MainApp.TITULO_APLICACAO,
+                    &quot;Registar Caracterização de Competencia.&quot;,
+<span class="nc" id="L168">                    &quot;Caracterização efectuada com sucesso. Pode regressar à página anterior.&quot;).show();</span>
+            }
+        }
+<span class="nc" id="L171">        catch (IllegalArgumentException | SQLException iae) {</span>
+<span class="nc" id="L172">            AlertsUI.criarAlerta(Alert.AlertType.ERROR,</span>
+                MainApp.TITULO_APLICACAO,
+                &quot;Registar Caracterização de Competencia - Erro nos dados.&quot;,
+<span class="nc" id="L175">                &quot;Não foi possível registar a caracterização: &quot; + iae.getMessage()).show();</span>
+<span class="nc" id="L176">        }</span>
+
+
+<span class="nc" id="L179">    }</span>
+    
+    public void updateListViewCompTecCat(ActionEvent actionEvent) throws SQLException {
+<span class="nc" id="L182">        listViewCompTecCat.getItems().add(</span>
+<span class="nc" id="L183">                registarCaracterizacaoCTController.findByCategoriaEGrau(</span>
+<span class="nc" id="L184">                    txtCodigoCategoria.getText(),</span>
+<span class="nc" id="L185">                    cmbGrauProficiencia.getValue().getIdGrauProficiencia()));</span>
+
+
+<span class="nc" id="L188">    }</span>
+
+    public void addCategoria(ActionEvent actionEvent) {
+        try {
+<span class="nc" id="L192">            boolean adicionou = registarCategoriaController.registarCategoria(</span>
+<span class="nc" id="L193">                    txtCodigoCategoria.getText().trim(),</span>
+<span class="nc" id="L194">                    txtDescricaoBreve.getText().trim(),</span>
+<span class="nc" id="L195">                    txtDescricaoDetalhada.getText().trim(),</span>
+<span class="nc" id="L196">                    cmbAreaActividade.getSelectionModel().getSelectedItem().getCodigo());</span>
+
+<span class="nc bnc" id="L198" title="All 2 branches missed.">            if(adicionou) {</span>
+<span class="nc" id="L199">                administrativoLogadoUI.updateTableViewCategoriasTarefa();</span>
+<span class="nc" id="L200">                cmbAreaActividade.setDisable(true);</span>
+
+
+<span class="nc" id="L203">            AlertsUI.criarAlerta(Alert.AlertType.INFORMATION,</span>
+                MainApp.TITULO_APLICACAO,
+                &quot;Registar Categoria de Tarefa.&quot;,
+<span class="nc" id="L206">                &quot;Categoria de Tarefa registada com sucesso. Pode adicionar os Graus de Proficiência aplicáveis.&quot;).show();</span>
+
+            }
+        }
+<span class="nc" id="L210">        catch (IllegalArgumentException | SQLException exception) {</span>
+<span class="nc" id="L211">            AlertsUI.criarAlerta(Alert.AlertType.ERROR,</span>
+                MainApp.TITULO_APLICACAO,
+                &quot;Registar Categoria de Tarefa - Erro nos dados.&quot;,
+<span class="nc" id="L214">                &quot;Não foi possível registar a Categoria de Tarefa: &quot; + exception.getMessage()).show();</span>
+
+<span class="nc" id="L216">        }</span>
+<span class="nc" id="L217">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>

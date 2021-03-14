@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane maxHeight="500.0" maxWidth="700.0" minHeight="-Infinity" minWidth="-Infinity" styleClass="BorderPane" stylesheets="@../style/app.css" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.AdicionarFreelancerUI">
+   <center>
+      <BorderPane maxHeight="500.0" styleClass="BorderPane" BorderPane.alignment="CENTER">
+         <top>
+            <TabPane maxHeight="500.0" style="-fx-background-color: #c4c4c4;" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+              <tabs>
+                <Tab disable="true" text="Áreas de Atividade" />
+                <Tab disable="true" text="Categorias de Tarefa">
+                     <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="253.0" prefWidth="700.0" styleClass="AnchorPane">
+                           <children>
+                              <BorderPane prefHeight="200.0" prefWidth="200.0" styleClass="BorderPane" />
+                              <FlowPane alignment="TOP_RIGHT" layoutX="486.0" layoutY="160.0" prefHeight="154.0" prefWidth="200.0" styleClass="FlowPane" />
+                           </children>
+                        </AnchorPane>
+                     </content>
+                </Tab>
+                  <Tab disable="true" text="Competências Técnicas">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="401.0" prefWidth="700.0" styleClass="AnchorPane">
+                           <children>
+                              <BorderPane prefHeight="200.0" prefWidth="200.0" styleClass="BorderPane" />
+                              <FlowPane prefHeight="200.0" prefWidth="200.0" styleClass="FlowPane" />
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </Tab>
+                  <Tab text="Freelancer">
+                     <content>
+                        <AnchorPane maxHeight="500.0" maxWidth="700.0" minHeight="0.0" minWidth="0.0" styleClass="AnchorPane">
+                           <children>
+                              <VBox layoutX="14.0" layoutY="63.0" prefHeight="282.0" prefWidth="274.0">
+                                 <children>
+                                    <Label text="Nome">
+                                       <font>
+                                          <Font name="Calibri" size="14.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets bottom="10.0" />
+                                       </VBox.margin></Label>
+                                    <TextField fx:id="txtNomeFreelancer" prefHeight="25.0" prefWidth="481.0" promptText="nome do Freelancer">
+                                       <VBox.margin>
+                                          <Insets bottom="10.0" />
+                                       </VBox.margin>
+                                       <font>
+                                          <Font name="Calibri" size="14.0" />
+                                       </font>
+                                    </TextField>
+                                    <Label text="Email">
+                                       <font>
+                                          <Font name="Calibri" size="14.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets bottom="10.0" />
+                                       </VBox.margin></Label>
+                                    <TextField fx:id="txtEmailFreelancer" promptText="email@dominio.pt">
+                                       <VBox.margin>
+                                          <Insets bottom="10.0" />
+                                       </VBox.margin>
+                                       <font>
+                                          <Font name="Calibri" size="14.0" />
+                                       </font>
+                                    </TextField>
+                                    <Label text="Número de Identificação Fiscal">
+                                       <font>
+                                          <Font name="Calibri" size="14.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets bottom="10.0" />
+                                       </VBox.margin></Label>
+                                    <TextField fx:id="txtNIFFreelancer" promptText="NIF do Freelancer (999999999)">
+                                       <VBox.margin>
+                                          <Insets bottom="10.0" />
+                                       </VBox.margin>
+                                       <font>
+                                          <Font name="Calibri" size="14.0" />
+                                       </font>
+                                    </TextField>
+                                    <Label text="Telefone">
+                                       <font>
+                                          <Font name="Calibri" size="14.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets bottom="10.0" />
+                                       </VBox.margin></Label>
+                                    <TextField fx:id="txtTelefoneFreelancer" promptText="telefone do Freelancer (999999999)">
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
+                                       <font>
+                                          <Font name="Calibri" size="14.0" />
+                                       </font>
+                                    </TextField>
+                                 </children>
+                                 <padding>
+                                    <Insets left="20.0" />
+                                 </padding>
+                              </VBox>
+                              <VBox layoutX="321.0" layoutY="63.0" prefHeight="303.0" prefWidth="365.0">
+                                 <children>
+                                    <Label text="Endereço">
+                                       <font>
+                                          <Font name="Calibri" size="14.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets bottom="10.0" />
+                                       </VBox.margin></Label>
+                                    <TextField fx:id="txtArruamentoFreelancer" promptText="arruamento">
+                                       <VBox.margin>
+                                          <Insets bottom="5.0" left="10.0" top="5.0" />
+                                       </VBox.margin>
+                                       <font>
+                                          <Font name="Calibri" size="14.0" />
+                                       </font>
+                                    </TextField>
+                                    <TextField fx:id="txtPortaFreelancer" promptText="número de porta ">
+                                       <VBox.margin>
+                                          <Insets bottom="5.0" left="10.0" top="5.0" />
+                                       </VBox.margin>
+                                       <font>
+                                          <Font name="Calibri" size="14.0" />
+                                       </font>
+                                    </TextField>
+                                    <TextField fx:id="txtLocalidadeFreelancer" promptText="localidade">
+                                       <VBox.margin>
+                                          <Insets bottom="5.0" left="10.0" top="5.0" />
+                                       </VBox.margin>
+                                       <font>
+                                          <Font name="Calibri" size="14.0" />
+                                       </font>
+                                    </TextField>
+                                    <TextField fx:id="txtCodPostalFreelancer" promptText="código postal (XXXX-XXX)">
+                                       <VBox.margin>
+                                          <Insets bottom="15.0" left="10.0" top="5.0" />
+                                       </VBox.margin>
+                                       <font>
+                                          <Font name="Calibri" size="14.0" />
+                                       </font>
+                                    </TextField>
+                                    <Label text="Password Sugerida">
+                                       <font>
+                                          <Font name="Calibri" size="14.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets bottom="10.0" />
+                                       </VBox.margin></Label>
+                                    <TextField fx:id="txtPassFreelancer" editable="false" promptText="(password inicial de 10 caracteres)">
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
+                                       <font>
+                                          <Font name="Calibri" size="14.0" />
+                                       </font>
+                                    </TextField>
+                                 </children>
+                                 <padding>
+                                    <Insets left="20.0" right="20.0" />
+                                 </padding>
+                              </VBox>
+                              <Button fx:id="btnCancelar" layoutX="575.0" layoutY="364.0" mnemonicParsing="false" onAction="#cancelarAction" styleClass="btnCancelar" text="Limpar Campos">
+                                 <font>
+                                    <Font name="Calibri" size="14.0" />
+                                 </font>
+                            <tooltip>
+                                <Tooltip text="Cancelar">
+                                    <font>
+                                        <Font name="Calibri Italic" size="12.0" />
+                                    </font>
+                                </Tooltip>
+                            </tooltip>
+                              </Button>
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </Tab>
+              </tabs>
+            </TabPane>
+         </top>
+         <bottom>
+            <FlowPane alignment="CENTER_RIGHT" prefHeight="55.0" prefWidth="700.0" styleClass="FlowPane" BorderPane.alignment="CENTER">
+               <children>
+                  <Button fx:id="btnAddFreelancer" defaultButton="true" mnemonicParsing="false" onAction="#addFreelancer" styleClass="btnConfirmar" text="Registar">
+                     <font>
+                        <Font name="Calibri" size="14.0" />
+                     </font>
+                     <FlowPane.margin>
+                        <Insets />
+                     </FlowPane.margin>
+                            <tooltip>
+                                <Tooltip text="Registar">
+                                    <font>
+                                        <Font name="Calibri Italic" size="12.0" />
+                                    </font>
+                                </Tooltip>
+                            </tooltip>
+                  </Button>
+                  <Button fx:id="btnSair" mnemonicParsing="false" onAction="#sairAction" styleClass="btnSair" text="Cancelar">
+                     <font>
+                        <Font name="Calibri" size="14.0" />
+                     </font>
+                     <FlowPane.margin>
+                        <Insets left="10.0" right="10.0" />
+                     </FlowPane.margin>
+                            <tooltip>
+                                <Tooltip text="Sair">
+                                    <font>
+                                        <Font name="Calibri Italic" size="12.0" />
+                                    </font>
+                                </Tooltip>
+                            </tooltip>
+                  </Button>
+               </children>
+            </FlowPane>
+         </bottom></BorderPane>
+   </center>
+   <top>
+      <Label styleClass="lblUser" text="Área do Administrativo :::&gt; Adicionar Freelancer" textFill="WHITE" BorderPane.alignment="CENTER_RIGHT">
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+         <font>
+            <Font name="Calibri" size="18.0" />
+         </font>
+      </Label>
+   </top>
+</BorderPane>

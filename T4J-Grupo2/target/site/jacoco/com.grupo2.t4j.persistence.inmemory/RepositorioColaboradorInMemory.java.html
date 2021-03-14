@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RepositorioColaboradorInMemory.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">T4J-Grupo2</a> &gt; <a href="index.source.html" class="el_package">com.grupo2.t4j.persistence.inmemory</a> &gt; <span class="el_source">RepositorioColaboradorInMemory.java</span></div><h1>RepositorioColaboradorInMemory.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+package com.grupo2.t4j.persistence.inmemory;
+/**
+ *
+ * @author CAD
+ */
+
+import com.grupo2.t4j.exception.ColaboradorDuplicadoException;
+import com.grupo2.t4j.model.Colaborador;
+import com.grupo2.t4j.model.Password;
+import com.grupo2.t4j.persistence.RepositorioColaborador;
+
+import java.io.Serializable;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+public class RepositorioColaboradorInMemory implements Serializable, RepositorioColaborador {
+    
+    /**
+     * Define uma instância estática do Repositório em que estão registados todos
+     * os Colaboradores da plataforma
+     */
+    private static RepositorioColaboradorInMemory repositorioColaboradorInMemory;
+    
+    /**
+     * Define o atributo da classe RepositorioColaborador como uma lista de
+     * tipos da classe Colaborador
+     */
+    private List&lt;Colaborador&gt; listaColaboradores;
+    
+    /**
+     * Inicializa o Repositório de Colaboradores
+     */
+<span class="nc" id="L40">    RepositorioColaboradorInMemory(){</span>
+<span class="nc" id="L41">        listaColaboradores = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L42">    }</span>
+
+    /**
+     * Devolve uma instância estática do Repositório de Colaboradores
+     * @return RepositorioColaborador
+     */
+    public static RepositorioColaboradorInMemory getInstance(){
+<span class="nc bnc" id="L49" title="All 2 branches missed.">        if (repositorioColaboradorInMemory == null){</span>
+<span class="nc" id="L50">            repositorioColaboradorInMemory = new RepositorioColaboradorInMemory();</span>
+        }
+<span class="nc" id="L52">        return repositorioColaboradorInMemory;</span>
+    }
+
+    /**
+     * Adiciona um Colaborador à lista de Colaboradores
+     * @param colaborador do tipo da classe Colaborador
+     * @throws ColaboradorDuplicadoException
+     */
+    public boolean addColaborador(Colaborador colaborador) throws ColaboradorDuplicadoException {
+<span class="nc" id="L61">        Colaborador c = findByEmail(colaborador.getEmail().getEmailText());</span>
+<span class="nc bnc" id="L62" title="All 2 branches missed.">        if (c == null) {</span>
+<span class="nc" id="L63">            this.listaColaboradores.add(colaborador);</span>
+<span class="nc" id="L64">            return true;</span>
+        } else {
+<span class="nc" id="L66">            throw new ColaboradorDuplicadoException(c.getEmail().getEmailText()</span>
+                    + &quot;: Colaborador já registado!&quot;);
+        }
+    }
+
+    @Override
+    public void save(String email, String nome, String password, String funcao, String telefone) throws ColaboradorDuplicadoException {
+<span class="nc" id="L73">        Colaborador c = findByEmail(email);</span>
+<span class="nc bnc" id="L74" title="All 2 branches missed.">        if (c == null) {</span>
+<span class="nc" id="L75">            Colaborador colaborador = new Colaborador(email, nome, password, funcao, telefone);</span>
+<span class="nc" id="L76">            this.listaColaboradores.add(colaborador);</span>
+
+<span class="nc" id="L78">        } else {</span>
+<span class="nc" id="L79">            throw new ColaboradorDuplicadoException(c.getEmail().getEmailText()</span>
+                    + &quot;: Colaborador já registado!&quot;);
+        }
+<span class="nc" id="L82">    }</span>
+
+    @Override
+    public boolean save(Colaborador colaborador) {
+<span class="nc" id="L86">        Colaborador c = findByEmail(colaborador.getEmail().getEmailText());</span>
+<span class="nc bnc" id="L87" title="All 2 branches missed.">        if (c == null) {</span>
+<span class="nc" id="L88">            Colaborador colab = new Colaborador(colaborador);</span>
+<span class="nc" id="L89">            this.listaColaboradores.add(colab);</span>
+
+<span class="nc" id="L91">        } else {</span>
+<span class="nc" id="L92">            throw new ColaboradorDuplicadoException(c.getEmail().getEmailText()</span>
+                    + &quot;: Colaborador já registado!&quot;);
+        }
+<span class="nc" id="L95">        return false;</span>
+    }
+
+    @Override
+    public Colaborador findByEmail(String emailCol) {
+<span class="nc bnc" id="L100" title="All 2 branches missed.">        for (int i = 0; i &lt; this.listaColaboradores.size(); i++) {</span>
+<span class="nc" id="L101">            Colaborador colaborador = this.listaColaboradores.get(i);</span>
+<span class="nc bnc" id="L102" title="All 2 branches missed.">            if (colaborador.getEmail().getEmailText().equals(emailCol)) {</span>
+<span class="nc" id="L103">                return colaborador;</span>
+            }
+        }
+<span class="nc" id="L106">        return null;</span>
+    }
+
+    @Override
+    public ArrayList&lt;Colaborador&gt; getAll() {
+<span class="nc" id="L111">        return new ArrayList&lt;Colaborador&gt;(listaColaboradores);</span>
+    }
+
+    @Override
+    public String getNifOrganizacao(String email) throws SQLException {
+<span class="nc" id="L116">        return null;</span>
+    }
+
+    @Override
+    public Password findPassword(String email) throws SQLException {
+<span class="nc" id="L121">        return null;</span>
+    }
+
+    public int adicionarListaColaborador(RepositorioColaboradorInMemory outraListaColaborador) {
+<span class="nc" id="L125">        int totalColaboradoresAdicionados = 0;</span>
+
+<span class="nc bnc" id="L127" title="All 2 branches missed.">        for (Colaborador colaborador : outraListaColaborador.listaColaboradores) {</span>
+<span class="nc" id="L128">            boolean colaboradorAdicionado = addColaborador(colaborador);</span>
+<span class="nc bnc" id="L129" title="All 2 branches missed.">            if (colaboradorAdicionado) {</span>
+<span class="nc" id="L130">                totalColaboradoresAdicionados++;</span>
+            }
+<span class="nc" id="L132">        }</span>
+<span class="nc" id="L133">        return totalColaboradoresAdicionados;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>

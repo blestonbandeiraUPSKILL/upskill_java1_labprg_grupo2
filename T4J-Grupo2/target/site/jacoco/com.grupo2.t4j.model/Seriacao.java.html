@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Seriacao.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">T4J-Grupo2</a> &gt; <a href="index.source.html" class="el_package">com.grupo2.t4j.model</a> &gt; <span class="el_source">Seriacao.java</span></div><h1>Seriacao.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.grupo2.t4j.model;
+
+/**
+ *
+ * @author CAD
+ */
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Seriacao {
+
+    /**
+     * O id da Seriação.
+     */
+    private int idSeriacao;
+    
+    /**
+     * O id do Anúncio.
+     */
+    private int idAnuncio;
+    
+    /**
+     * A data da realização da seriação
+     */
+    private String dataSeriacao;
+    
+    /**
+     * A lista de candidaturas ao anúncio já seriadas.
+     */
+    private ArrayList&lt;Classificacao&gt; listaCandidaturasSeriadas;
+    
+    /**
+     * O construtor vazio da classe Seriação
+     */
+<span class="nc" id="L41">    public Seriacao(){</span>
+        
+<span class="nc" id="L43">    }</span>
+    
+    /**
+     * O construtor completo da classe Seriação
+     * @param idSeriacao - o id da Seriação.
+     * @param idAnuncio - o id do Anúncio.
+     * @param dataSeriacao - a data da realização da seriação
+     * @param listaCandidaturasSeriadas - a lista de candidaturas ao anúncio já seriadas.
+     */
+    public Seriacao(int idSeriacao, int idAnuncio, String dataSeriacao, ArrayList&lt;Classificacao&gt; 
+<span class="nc" id="L53">            listaCandidaturasSeriadas){</span>
+<span class="nc" id="L54">        setIdSeriacao(idSeriacao);</span>
+<span class="nc" id="L55">        setIdAnuncio(idAnuncio);</span>
+<span class="nc" id="L56">        setData(dataSeriacao);</span>
+<span class="nc" id="L57">        setListaSeriada(listaCandidaturasSeriadas);        </span>
+<span class="nc" id="L58">    }</span>
+    
+    /**
+     *  O construtor da classe Seriação com id ainda a ser atribuído na BD
+     * @param idAnuncio - o id do Anúncio.
+     * @param dataSeriacao - a data da realização da seriação
+     * @param listaCandidaturasSeriadas - a lista de candidaturas ao anúncio já seriadas.
+     */
+    public Seriacao(int idAnuncio, String dataSeriacao, ArrayList&lt;Classificacao&gt; 
+<span class="nc" id="L67">            listaCandidaturasSeriadas){</span>
+<span class="nc" id="L68">        setIdAnuncio(idAnuncio);</span>
+<span class="nc" id="L69">        setData(dataSeriacao);</span>
+<span class="nc" id="L70">        setListaSeriada(listaCandidaturasSeriadas);        </span>
+<span class="nc" id="L71">    }</span>
+    
+    /**
+     * Construtor da classe Seriação que recebe como 
+     * parâmetro um tipo da mesma classe
+     * @param seriacao 
+     */
+<span class="nc" id="L78">    public Seriacao(Seriacao seriacao){</span>
+<span class="nc" id="L79">        setIdSeriacao(seriacao.idSeriacao);</span>
+<span class="nc" id="L80">        setIdAnuncio(seriacao.idAnuncio);</span>
+<span class="nc" id="L81">        setData(seriacao.dataSeriacao);</span>
+<span class="nc" id="L82">        setListaSeriada(seriacao.listaCandidaturasSeriadas);        </span>
+<span class="nc" id="L83">    }    </span>
+    
+    /**
+     * Define o id da Seriação.
+     * @param idSeriacao 
+     */
+    public void setIdSeriacao(int idSeriacao){
+<span class="nc" id="L90">        this.idSeriacao = idSeriacao;</span>
+<span class="nc" id="L91">    }</span>
+    
+    /**
+     * Define o id do Anúncio.
+     * @param idAnuncio 
+     */
+    public void setIdAnuncio(int idAnuncio){
+<span class="nc" id="L98">        this.idAnuncio = idAnuncio;</span>
+<span class="nc" id="L99">    }</span>
+    
+    /**
+     * Define a data da realização da seriação
+     * @param dataSeriacao 
+     */
+    public void setData(String dataSeriacao){
+<span class="nc" id="L106">        this.dataSeriacao = dataSeriacao;</span>
+<span class="nc" id="L107">    }</span>
+    
+    /**
+     * Define a lista de candidaturas ao anúncio já seriadas.
+     * @param listaCandidaturasSeriada 
+     */
+    public void setListaSeriada(ArrayList&lt;Classificacao&gt; listaCandidaturasSeriada){
+<span class="nc" id="L114">        this.listaCandidaturasSeriadas = listaCandidaturasSeriadas;</span>
+<span class="nc" id="L115">    }</span>
+    
+    /**
+     * Devolve o id da Seriação.
+     * @return 
+     */
+    public int getIdSeriacao(){
+<span class="nc" id="L122">        return idSeriacao;</span>
+    }
+    
+    /**
+     * Devolve o id do Anúncio.
+     * @return 
+     */
+    public int getIdAnuncio(){
+<span class="nc" id="L130">        return idAnuncio;</span>
+    }
+    
+    /**
+     * Devolve a data da realização da seriação
+     * @return 
+     */
+    public String dataSeriacao(){
+<span class="nc" id="L138">        return dataSeriacao;</span>
+    }
+    
+    /**
+     * Devolve a lista de candidaturas ao anúncio já seriadas.
+     * @return 
+     */
+    public ArrayList&lt;Classificacao&gt; getListaSeriada(){
+<span class="nc" id="L146">        return listaCandidaturasSeriadas;</span>
+    }
+ 
+    
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>

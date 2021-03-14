@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RegistarTarefaController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">T4J-Grupo2</a> &gt; <a href="index.source.html" class="el_package">com.grupo2.t4j.controller</a> &gt; <span class="el_source">RegistarTarefaController.java</span></div><h1>RegistarTarefaController.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.grupo2.t4j.controller;
+
+import com.grupo2.t4j.model.CaracterizacaoCT;
+import com.grupo2.t4j.model.GrauProficiencia;
+import com.grupo2.t4j.model.Tarefa;
+import com.grupo2.t4j.persistence.*;
+import com.grupo2.t4j.persistence.database.FabricaRepositoriosDatabase;
+
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+public class RegistarTarefaController {
+
+    //private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosInMemory();
+<span class="nc" id="L21">    private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosDatabase();</span>
+<span class="nc" id="L22">    private RepositorioTarefa repositorioTarefa = fabricaRepositorios.getRepositorioTarefa();</span>
+<span class="nc" id="L23">    private RepositorioGrauProficiencia repositorioGrauProficiencia = fabricaRepositorios.getRepositorioGrauProficiencia();</span>
+<span class="nc" id="L24">    private RepositorioFreelancer repositorioFreelancer = fabricaRepositorios.getRepositorioFreelancer();</span>
+<span class="nc" id="L25">    private RepositorioCaracterizacaoCT repositorioCaracterizacaoCT = fabricaRepositorios.getRepositorioCaracterizacaoCT();</span>
+
+<span class="nc" id="L27">    public RegistarTarefaController() throws SQLException {</span>
+<span class="nc" id="L28">    }</span>
+
+    public List&lt;Tarefa&gt; getAllOrganizacao(String nifOrganizacao) throws SQLException {
+<span class="nc" id="L31">        return repositorioTarefa.getAllOrganizacao(nifOrganizacao);</span>
+    }
+
+    /**
+    * Regista nova tarefa boolean
+    *
+    * @param codigoCategoriaTarefa as código da categoria da tarefa
+    * @param referencia as referência da tarefa
+    * @param designacao as designação da tarefa
+    * @param descInformal as descrição informal
+    * @param descTecnica as descrição técnica
+    * @param duracao as tempo estimado de realização da tarefa em horas
+    * @param custo as preço pela tarefa
+    * @param nifOrganizacao as nif da organização
+    * @param emailColaborador  as email do colaborador
+    * @return boolean
+    */
+    public boolean registarTarefa( String codigoCategoriaTarefa,
+                             String referencia, String designacao,
+                             String descInformal, String descTecnica,
+                             int duracao, double custo, String nifOrganizacao, String emailColaborador) throws SQLException{
+
+<span class="nc" id="L53">        Tarefa tarefa = new Tarefa(nifOrganizacao, referencia, designacao, descInformal,</span>
+                descTecnica, duracao, custo,
+                codigoCategoriaTarefa,  emailColaborador);
+
+<span class="nc" id="L57">        return repositorioTarefa.save(tarefa);</span>
+    }
+
+    public List&lt;Tarefa&gt; findByCategoria(String codigoCategoria) throws SQLException {
+<span class="nc" id="L61">        return repositorioTarefa.findByCategoria(codigoCategoria);</span>
+    }
+
+    public List&lt;Tarefa&gt; findByColaboradorENif(String email, String nifOrganizacao) throws SQLException{
+<span class="nc" id="L65">        return repositorioTarefa.findByColaboradorENif(email, nifOrganizacao);</span>
+    }
+    
+    public List&lt;Tarefa&gt; findTarefasPublicadas(List&lt;String&gt; referenciasTarefa, String nifOrganizacao, String emailColaborador) throws SQLException{
+<span class="nc" id="L69">        return repositorioTarefa.findTarefasPublicadas(referenciasTarefa, nifOrganizacao, emailColaborador);</span>
+    }
+    
+    public List&lt;Tarefa&gt; findTarefasNaoPublicadas(List&lt;String&gt; referenciasTarefa, String email, String nifOrganizacao) throws SQLException{
+<span class="nc" id="L73">        return repositorioTarefa.findTarefasNaoPublicadas(referenciasTarefa, email, nifOrganizacao);</span>
+    }
+
+    public List&lt;String&gt; findRefenciaTarefa(String nifOrganizacao) throws SQLException {
+<span class="nc" id="L77">        return repositorioTarefa.findReferenciaTarefa(nifOrganizacao);</span>
+    }
+
+    public Tarefa findTarefa(int idAnuncio) throws SQLException {
+<span class="nc" id="L81">        return repositorioTarefa.findTarefa(idAnuncio);</span>
+    }
+
+    public List&lt;GrauProficiencia&gt; getAllGrausTarefa(Tarefa tarefa) throws SQLException {
+<span class="nc" id="L85">        return repositorioGrauProficiencia.getAllGrausTarefa(tarefa);</span>
+    }
+
+    public List&lt;Tarefa&gt; getAllTarefasElegíveis(String emailFreelancer) throws SQLException {
+<span class="nc" id="L89">       return repositorioTarefa.getAllTarefasElegíveis(emailFreelancer);</span>
+    }
+
+
+    public List&lt;Tarefa&gt; getAllTarefasPublicadas() throws SQLException {
+<span class="nc" id="L94">        return repositorioTarefa.getAllTarefasPublicadas();</span>
+    }
+
+    //findListGPsTarefasPublicadas(List&lt;Tarefa&gt;)
+    public int findIdAnuncio(String nifOrganizacao, String referenciaTarefa) throws SQLException {
+<span class="nc" id="L99">        return repositorioTarefa.findIdAnuncio(nifOrganizacao, referenciaTarefa);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>

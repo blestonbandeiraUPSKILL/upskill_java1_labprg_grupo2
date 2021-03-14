@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RepositorioCandidaturaDatabase.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">T4J-Grupo2</a> &gt; <a href="index.source.html" class="el_package">com.grupo2.t4j.persistence.database</a> &gt; <span class="el_source">RepositorioCandidaturaDatabase.java</span></div><h1>RepositorioCandidaturaDatabase.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.grupo2.t4j.persistence.database;
+
+import com.grupo2.t4j.exception.CandidaturaDuplicadaException;
+import com.grupo2.t4j.model.Candidatura;
+import com.grupo2.t4j.persistence.RepositorioCandidatura;
+import com.grupo2.t4j.utils.DBConnectionHandler;
+
+import java.sql.*;
+import java.util.ArrayList;
+
+/**
+ *
+ * @author CAD
+ */
+public class RepositorioCandidaturaDatabase implements RepositorioCandidatura{
+    
+    /**
+     * Define uma instância estática do Repositório em que estão
+     * registados todas as Candidaturas
+     */
+    private static RepositorioCandidaturaDatabase repositorioCandidaturaDatabase;
+    
+    /**
+     * Inicializa o Repositório de Candidaturas
+     */
+<span class="nc" id="L31">    private RepositorioCandidaturaDatabase(){    }</span>
+
+    /**
+     * Devolve uma instância estática do Repositório dos Candidaturas
+     *
+     * @return RepositorioCandidaturaDatabase
+     */
+    public static RepositorioCandidaturaDatabase getInstance(){
+<span class="nc bnc" id="L39" title="All 2 branches missed.">        if(repositorioCandidaturaDatabase == null) {</span>
+<span class="nc" id="L40">            repositorioCandidaturaDatabase = new RepositorioCandidaturaDatabase();</span>
+        }
+<span class="nc" id="L42">        return repositorioCandidaturaDatabase;</span>
+    }
+    
+    @Override
+    public boolean save(String idCandidatura, String emailFreelancer, double valorPretendido, 
+            int numeroDias, String txtApresentacao,String txtMotivacao) throws CandidaturaDuplicadaException, SQLException{
+
+<span class="nc" id="L49">        Connection connection = DBConnectionHandler.getInstance().openConnection();</span>
+
+        try {
+<span class="nc" id="L52">            CallableStatement callableStatement = connection.prepareCall(</span>
+                &quot;{CALL createCandidatura(?, ?, ?, ?, ?, ?) } &quot;);
+
+<span class="nc bnc" id="L55" title="All 4 branches missed.">            if (findById(idCandidatura) == null &amp;&amp; findByEmail(emailFreelancer) == null){</span>
+
+<span class="nc" id="L57">                connection.setAutoCommit(false);</span>
+
+<span class="nc" id="L59">                callableStatement.setString(1, idCandidatura);</span>
+<span class="nc" id="L60">                callableStatement.setString(2, emailFreelancer);</span>
+<span class="nc" id="L61">                callableStatement.setString(3, Double.toString(valorPretendido));</span>
+<span class="nc" id="L62">                callableStatement.setString(4, Integer.toString(numeroDias));</span>
+<span class="nc" id="L63">                callableStatement.setString(5, txtApresentacao);</span>
+<span class="nc" id="L64">                callableStatement.setString(6, txtMotivacao);</span>
+<span class="nc" id="L65">                callableStatement.executeQuery();</span>
+
+<span class="nc" id="L67">                connection.commit();</span>
+<span class="nc" id="L68">                return true;</span>
+            }
+        }
+<span class="nc" id="L71">        catch (SQLException exception) {</span>
+<span class="nc" id="L72">            exception.printStackTrace();</span>
+<span class="nc" id="L73">            exception.getSQLState();</span>
+            try {
+<span class="nc" id="L75">                System.err.print(&quot;Transaction is being rolled back&quot;);</span>
+<span class="nc" id="L76">                connection.rollback();</span>
+            }
+<span class="nc" id="L78">            catch (SQLException sqlException) {</span>
+<span class="nc" id="L79">                sqlException.getErrorCode();</span>
+<span class="nc" id="L80">            }</span>
+        }
+
+        finally {
+<span class="nc" id="L84">            DBConnectionHandler.getInstance().closeAll();</span>
+<span class="nc" id="L85">        }</span>
+<span class="nc" id="L86">        return false;</span>
+    }
+    
+    @Override
+    public boolean save(Candidatura candidatura) throws SQLException{
+
+<span class="nc" id="L92">        Connection connection = DBConnectionHandler.getInstance().openConnection();</span>
+
+        try {
+<span class="nc" id="L95">            CallableStatement callableStatement = connection.prepareCall(</span>
+                    &quot;{CALL createCandidatura(?, ?, ?, ?, ?, ?) } &quot;);
+<span class="nc" id="L97">            connection.setAutoCommit(false);</span>
+
+<span class="nc" id="L99">            callableStatement.setDouble(1, candidatura.getValorPretendido());</span>
+<span class="nc" id="L100">            callableStatement.setInt(2, candidatura.getNumeroDias());</span>
+<span class="nc" id="L101">            callableStatement.setString(3, candidatura.getApresentacao());</span>
+<span class="nc" id="L102">            callableStatement.setString(4, candidatura.getMotivacao());</span>
+<span class="nc" id="L103">            callableStatement.setInt(5, candidatura.getIdAnuncio());</span>
+<span class="nc" id="L104">            callableStatement.setString(6, candidatura.getEmailFreelancer());</span>
+
+<span class="nc" id="L106">            callableStatement.executeQuery();</span>
+
+<span class="nc" id="L108">            connection.commit();</span>
+<span class="nc" id="L109">            return true;</span>
+        }
+<span class="nc" id="L111">        catch (SQLException exception) {</span>
+<span class="nc" id="L112">            exception.printStackTrace();</span>
+<span class="nc" id="L113">            exception.getSQLState();</span>
+            try {
+<span class="nc" id="L115">                System.err.print(&quot;Transaction is being rolled back&quot;);</span>
+<span class="nc" id="L116">                connection.rollback();</span>
+            }
+<span class="nc" id="L118">            catch (SQLException sqlException) {</span>
+<span class="nc" id="L119">                sqlException.getErrorCode();</span>
+<span class="nc" id="L120">            }</span>
+        }
+
+        finally {
+<span class="nc" id="L124">            DBConnectionHandler.getInstance().closeAll();</span>
+<span class="nc" id="L125">        }</span>
+
+<span class="nc" id="L127">        return false;</span>
+
+    }
+
+    @Override
+    public Candidatura findById(String idCandidatura) throws SQLException{
+
+<span class="nc" id="L134">        Connection connection = DBConnectionHandler.getInstance().openConnection();</span>
+
+        try {
+<span class="nc" id="L137">            CallableStatement callableStatementOrg = connection.prepareCall(</span>
+                    &quot;{CALL findCandidaturaById(?)}&quot;);
+
+<span class="nc" id="L140">            connection.setAutoCommit(false);</span>
+
+<span class="nc" id="L142">            callableStatementOrg.setString(1, idCandidatura);</span>
+<span class="nc" id="L143">            callableStatementOrg.executeQuery();</span>
+
+<span class="nc" id="L145">            return null;</span>
+
+<span class="nc" id="L147">        } catch (SQLException exceptionOrg) {</span>
+<span class="nc" id="L148">            exceptionOrg.printStackTrace();</span>
+<span class="nc" id="L149">            exceptionOrg.getSQLState();</span>
+        }
+        finally {
+<span class="nc" id="L152">            DBConnectionHandler.getInstance().closeAll();</span>
+<span class="nc" id="L153">        }</span>
+
+<span class="nc" id="L155">        return new Candidatura();        </span>
+        
+    }
+    
+    @Override
+    public Candidatura findByEmail (String emailFreelancer) throws SQLException{
+<span class="nc" id="L161">        Candidatura candidatura = new Candidatura();</span>
+
+<span class="nc" id="L163">        Connection connection = DBConnectionHandler.getInstance().openConnection();</span>
+
+        try {
+<span class="nc" id="L166">            CallableStatement callableStatementOrg = connection.prepareCall(</span>
+                    &quot;SELECT idCandidatura, valorPretendido, numeroDias, txtApresentacao, &quot; +
+                            &quot;txtMotivacao, idAnuncio, TO_CHAR(dataCandidatura, 'yyyy-mm-dd') &quot; +
+                            &quot;FROM Candidatura &quot; +
+                            &quot;WHERE emailFreelancer LIKE ?&quot;
+            );
+
+<span class="nc" id="L173">            connection.setAutoCommit(false);</span>
+
+<span class="nc" id="L175">            callableStatementOrg.setString(1, emailFreelancer);</span>
+<span class="nc" id="L176">            callableStatementOrg.executeQuery();</span>
+
+<span class="nc" id="L178">            ResultSet resultSet = callableStatementOrg.getResultSet();</span>
+
+<span class="nc bnc" id="L180" title="All 2 branches missed.">            while(resultSet.next()) {</span>
+<span class="nc" id="L181">                candidatura.setIdCandidatura(resultSet.getInt(1));</span>
+<span class="nc" id="L182">                candidatura.setValor(resultSet.getDouble(2));</span>
+<span class="nc" id="L183">                candidatura.setDias(resultSet.getInt(3));</span>
+<span class="nc" id="L184">                candidatura.setApresentacao(resultSet.getString(4));</span>
+<span class="nc" id="L185">                candidatura.setMotivacao(resultSet.getString(5));</span>
+<span class="nc" id="L186">                candidatura.setIdAnuncio(resultSet.getInt(6));</span>
+<span class="nc" id="L187">                candidatura.setEmailFreelancer(emailFreelancer);</span>
+<span class="nc" id="L188">                candidatura.setData(resultSet.getString(7));</span>
+            }
+
+<span class="nc" id="L191">        } catch (SQLException exceptionOrg) {</span>
+<span class="nc" id="L192">            exceptionOrg.printStackTrace();</span>
+<span class="nc" id="L193">            exceptionOrg.getSQLState();</span>
+        }
+        finally {
+<span class="nc" id="L196">            DBConnectionHandler.getInstance().closeAll();</span>
+<span class="nc" id="L197">        }</span>
+
+<span class="nc" id="L199">        return candidatura;</span>
+    }
+    
+    @Override
+    public ArrayList&lt;Candidatura&gt; getAll() throws SQLException{
+        
+<span class="nc" id="L205">        ArrayList&lt;Candidatura&gt; candidaturas = new ArrayList&lt;&gt;();</span>
+
+<span class="nc" id="L207">        Connection connection = DBConnectionHandler.getInstance().openConnection();</span>
+
+        try {
+<span class="nc" id="L210">            PreparedStatement preparedStatement = connection.prepareStatement(</span>
+                    &quot;SELECT * FROM Candidatura&quot;
+            );
+
+<span class="nc" id="L214">            ResultSet resultSet = preparedStatement.executeQuery();</span>
+
+<span class="nc bnc" id="L216" title="All 2 branches missed.">            while (resultSet.next()) {</span>
+<span class="nc" id="L217">                int idCandidatura = resultSet.getInt(1);</span>
+<span class="nc" id="L218">                String valorPretendido = resultSet.getString(2);</span>
+<span class="nc" id="L219">                String numeroDias = resultSet.getString(3);</span>
+<span class="nc" id="L220">                String txtApresentacao = resultSet.getString(4);</span>
+<span class="nc" id="L221">                String txtMotivacao = resultSet.getString(5);</span>
+<span class="nc" id="L222">                int idAnuncio = resultSet.getInt(6);</span>
+<span class="nc" id="L223">                String emailFreelancer = resultSet.getString(7);</span>
+<span class="nc" id="L224">                String dataCandidatura = resultSet.getDate(8).toString();</span>
+
+<span class="nc" id="L226">                candidaturas.add(new Candidatura(idCandidatura, idAnuncio, emailFreelancer,</span>
+<span class="nc" id="L227">                        Double.parseDouble(valorPretendido),Integer.parseInt(numeroDias),</span>
+                txtApresentacao, txtMotivacao, dataCandidatura));
+<span class="nc" id="L229">            }</span>
+
+        }
+<span class="nc" id="L232">        catch (SQLException exception) {</span>
+<span class="nc" id="L233">            exception.printStackTrace();</span>
+<span class="nc" id="L234">            exception.getSQLState();</span>
+            try {
+<span class="nc" id="L236">                System.err.print(&quot;Transaction is being rolled back&quot;);</span>
+<span class="nc" id="L237">                connection.rollback();</span>
+            }
+<span class="nc" id="L239">            catch (SQLException sqlException) {</span>
+<span class="nc" id="L240">                sqlException.getErrorCode();</span>
+<span class="nc" id="L241">            }</span>
+
+        }
+        finally {
+<span class="nc" id="L245">            DBConnectionHandler.getInstance().closeAll();</span>
+<span class="nc" id="L246">        }    </span>
+<span class="nc" id="L247">        return candidaturas;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>
