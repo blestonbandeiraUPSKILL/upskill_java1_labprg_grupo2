@@ -315,11 +315,6 @@
           <option name="timeStamp" value="361" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/AdicionarFreelancerUI.java</url>
-          <line>73</line>
-          <option name="timeStamp" value="400" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/grupo2/t4j/controller/EfectuarCandidaturaController.java</url>
           <line>46</line>
           <option name="timeStamp" value="441" />
