@@ -70,7 +70,7 @@ public class SeriacaoManualColaboradorUI implements Initializable{
     @FXML TableColumn<Object, Object> colunaParticipante;
 
     /**
-     *
+     * Associa a interface raiz desta nova janela
      * @param colaboradorLogadoUI
      */
     public void associarParentUI(ColaboradorLogadoUI colaboradorLogadoUI) {
@@ -78,7 +78,7 @@ public class SeriacaoManualColaboradorUI implements Initializable{
     }
     
     /**
-     * 
+     * Inicializa a interface
      * @param url
      * @param rb
      */
@@ -94,7 +94,8 @@ public class SeriacaoManualColaboradorUI implements Initializable{
     }
     
     /**
-     * Tranfere as informações da 
+     * Tranfere as informações da janela anterior necessárias para a inicialização
+     * desta janela
      * @throws SQLException
      */
     public void transferData() throws SQLException {
@@ -147,7 +148,7 @@ public class SeriacaoManualColaboradorUI implements Initializable{
     }
     
     /**
-     *  Faz a atualização da tabela de candidaturas após a atribuição de uma classificação
+     * Faz a atualização da tabela de candidaturas após a atribuição de uma classificação
      * @param idCandidatura
      * @param posicao
      */
