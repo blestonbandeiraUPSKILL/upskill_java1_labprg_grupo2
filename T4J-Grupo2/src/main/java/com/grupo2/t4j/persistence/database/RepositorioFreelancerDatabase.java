@@ -35,6 +35,21 @@ public class RepositorioFreelancerDatabase implements RepositorioFreelancer{
     }
 
 
+    /**
+     * Regista um Freelancer
+     * @param emailFree
+     * @param nome
+     * @param nif
+     * @param telefone
+     * @param password
+     * @param arruamento
+     * @param numeroPorta
+     * @param localidade
+     * @param codPostal
+     * @return
+     * @throws FreelancerDuplicadoException
+     * @throws SQLException 
+     */
     @Override
     public boolean save(String emailFree, String nome, String nif, String telefone, String password, String arruamento,
                         String numeroPorta, String localidade, String codPostal) throws FreelancerDuplicadoException,
@@ -89,6 +104,12 @@ public class RepositorioFreelancerDatabase implements RepositorioFreelancer{
         return false;
     }
 
+    /**
+     * Devolve um freelancer a partir do seu nif
+     * @param nif
+     * @return
+     * @throws SQLException 
+     */
     @Override
     public Freelancer findByNif(String nif) throws SQLException{
 
@@ -118,6 +139,12 @@ public class RepositorioFreelancerDatabase implements RepositorioFreelancer{
         return new Freelancer();
     }
 
+    /**
+     * Devolve a password de um freelancer
+     * @param email
+     * @return
+     * @throws SQLException 
+     */
     @Override
     public Password findPassword(String email) throws SQLException {
 
@@ -152,6 +179,12 @@ public class RepositorioFreelancerDatabase implements RepositorioFreelancer{
         return null;
     }
 
+    /**
+     * Devolve um Freelancer a partir do seu email
+     * @param emailFree
+     * @return
+     * @throws SQLException 
+     */
     @Override
     public Freelancer findByEmail(String emailFree) throws SQLException {
 
@@ -194,6 +227,11 @@ public class RepositorioFreelancerDatabase implements RepositorioFreelancer{
 
     }
 
+    /**
+     * Devolve uma lista de todos os Freelancers
+     * @return
+     * @throws SQLException 
+     */
     @Override
     public ArrayList<Freelancer> getAll() throws SQLException {
         
@@ -237,6 +275,12 @@ public class RepositorioFreelancerDatabase implements RepositorioFreelancer{
         return freelancers;
     }
 
+    /**
+     * Devolve todos os reconhecimentos de um freelancer
+     * @param emailFreelancer
+     * @return
+     * @throws SQLException 
+     */
     @Override
     public List<ReconhecimentoGP> getAllReconhecimentoGP(String emailFreelancer) throws SQLException {
         ArrayList<ReconhecimentoGP> reconhecimentosGP = new ArrayList<>();
@@ -283,6 +327,12 @@ public class RepositorioFreelancerDatabase implements RepositorioFreelancer{
 
     }
 
+    /**
+     * Devolve todas as habilitacoes academicas de um freelancer
+     * @param emailFreelancer
+     * @return
+     * @throws SQLException 
+     */
     @Override
     public List<HabilitacaoAcademica> getAllHabsAcademicas(String emailFreelancer) throws SQLException {
         ArrayList<HabilitacaoAcademica> habsAcademicas = new ArrayList<>();
@@ -331,6 +381,12 @@ public class RepositorioFreelancerDatabase implements RepositorioFreelancer{
         return habsAcademicas;
     }
 
+    /**
+     * Devolve o endereco postal de um freelancer a partir do seu email
+     * @param emailFreelancer
+     * @return
+     * @throws SQLException 
+     */
     @Override
     public EnderecoPostal getEnderecoPostal(String emailFreelancer) throws SQLException {
         EnderecoPostal enderecoPostal = new EnderecoPostal();

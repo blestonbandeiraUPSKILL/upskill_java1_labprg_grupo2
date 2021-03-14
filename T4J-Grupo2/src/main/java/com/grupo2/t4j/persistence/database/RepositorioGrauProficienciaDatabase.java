@@ -13,10 +13,18 @@ public class RepositorioGrauProficienciaDatabase implements RepositorioGrauProfi
 
     private static RepositorioGrauProficienciaDatabase repositorioGrauProficienciaDatabase;
 
+    /**
+     * Inicializa o Repositório de Graus de Proficiencia
+     */
     private RepositorioGrauProficienciaDatabase() throws SQLException {
 
     }
 
+     /**
+     * Devolve uma instância estática do Repositório dos Graus de Proficiencia
+     *
+     * @return RepositorioFreelancerDatabase
+     */
     public static RepositorioGrauProficienciaDatabase getInstance() throws SQLException {
         if (repositorioGrauProficienciaDatabase == null) {
             repositorioGrauProficienciaDatabase = new RepositorioGrauProficienciaDatabase();
@@ -29,6 +37,12 @@ public class RepositorioGrauProficienciaDatabase implements RepositorioGrauProfi
 
     }
 
+    /**
+     * Regista um grau de proficiencia
+     * @param grauProficiencia
+     * @return
+     * @throws SQLException 
+     */
     @Override
     public boolean save(GrauProficiencia grauProficiencia) throws SQLException {
 
@@ -75,6 +89,13 @@ public class RepositorioGrauProficienciaDatabase implements RepositorioGrauProfi
     }
 
 
+    /**
+     * Devolve o grau de proficiencia de acordo com o seu grau e a competencia tecnica a que se refere
+     * @param grau
+     * @param codigoCompetenciaTecnica
+     * @return
+     * @throws SQLException 
+     */
     public GrauProficiencia findByGrauECompetencia(int grau, String codigoCompetenciaTecnica) throws SQLException {
 
         Connection connection = DBConnectionHandler.getInstance().openConnection();
@@ -105,6 +126,12 @@ public class RepositorioGrauProficienciaDatabase implements RepositorioGrauProfi
         return new GrauProficiencia();
     }
 
+    /**
+     * Devolve uma lista de todos os graus de proficiencia
+     * @param codigoCompetenciaTecnica
+     * @return
+     * @throws SQLException 
+     */
     public List<GrauProficiencia> getAll(String codigoCompetenciaTecnica) throws SQLException {
         ArrayList<GrauProficiencia> grausProficiencia = new ArrayList<>();
 
@@ -146,6 +173,13 @@ public class RepositorioGrauProficienciaDatabase implements RepositorioGrauProfi
 
     }
 
+    
+    /**
+     * Devolve uma lista de graus de proficiencia aplicaveis a uma competencia tecnica
+     * @param codigoCompetenciaTecnica
+     * @return
+     * @throws SQLException 
+     */
     @Override
     public ArrayList<GrauProficiencia> findByCompetenciaTecnica(String codigoCompetenciaTecnica) throws SQLException {
         ArrayList<GrauProficiencia> grausProficiencia = new ArrayList<>();
@@ -191,6 +225,12 @@ public class RepositorioGrauProficienciaDatabase implements RepositorioGrauProfi
     }
 
 
+    /**
+     * Devolve uma lista de graus de proficiencia aplicaveis a uma competencia tecnica
+     * @param codigoCompetenciaTecnica
+     * @return
+     * @throws SQLException 
+     */
     @Override
     public List<GrauProficiencia> getAllByCompetenciaTecnica(String codigoCompetenciaTecnica) throws SQLException {
         List<GrauProficiencia> grausProficiencia = new ArrayList<>();
@@ -228,6 +268,12 @@ public class RepositorioGrauProficienciaDatabase implements RepositorioGrauProfi
         return grausProficiencia;
     }
 
+    /**
+     * Devolve todos os graus de proficiencia de um freelancer
+     * @param emailFreelancer
+     * @return
+     * @throws SQLException 
+     */
     @Override
     public List<GrauProficiencia> getAllGrausFreelancer(String emailFreelancer) throws SQLException {
         List<GrauProficiencia> grausFreelancer = new ArrayList<>();
@@ -270,6 +316,12 @@ public class RepositorioGrauProficienciaDatabase implements RepositorioGrauProfi
         return grausFreelancer;
     }
 
+    /**
+     * Devolve os graus de proficiencia das tarefas publicadas
+     * @param tarefasPublicadas
+     * @return
+     * @throws SQLException 
+     */
     @Override
     public List<Tarefa> getAllGrausTarefasPublicadas(List<Tarefa> tarefasPublicadas) throws SQLException {
         List<Tarefa> tarefasComGraus = new ArrayList<>();

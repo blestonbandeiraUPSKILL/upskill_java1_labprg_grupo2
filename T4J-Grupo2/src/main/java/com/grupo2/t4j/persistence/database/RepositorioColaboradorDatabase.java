@@ -39,6 +39,12 @@ public class RepositorioColaboradorDatabase implements RepositorioColaborador {
 
     }
 
+    /**
+     * Regista um  colaborador
+     * @param colaborador
+     * @return
+     * @throws SQLException 
+     */
     @Override
     public boolean save(Colaborador colaborador) throws SQLException {
 
@@ -80,6 +86,12 @@ public class RepositorioColaboradorDatabase implements RepositorioColaborador {
         return false;
     }
 
+    /**
+     * Devolve um colaborador a partir do seu email
+     * @param email
+     * @return
+     * @throws SQLException 
+     */
     @Override
     public Colaborador findByEmail(String email) throws SQLException {
 
@@ -110,6 +122,12 @@ public class RepositorioColaboradorDatabase implements RepositorioColaborador {
 
     }
 
+    /**
+     * Devolve uma lista de todos os colaboradores de uma organizacao
+     * @param nifOrganizacacao
+     * @return
+     * @throws SQLException 
+     */
     @Override
     public ArrayList<Colaborador> getAll(String nifOrganizacacao) throws SQLException {
 
@@ -187,6 +205,12 @@ public class RepositorioColaboradorDatabase implements RepositorioColaborador {
         return null;
     }
 
+    /**
+     * Devolve o nif da organizacao de um colaborador
+     * @param email
+     * @return
+     * @throws SQLException 
+     */
     @Override
     public String getNifOrganizacao(String email) throws SQLException {
 
@@ -226,6 +250,12 @@ public class RepositorioColaboradorDatabase implements RepositorioColaborador {
         return null;
     }
 
+    /**
+     * Devolve a password de um colaborador
+     * @param email
+     * @return
+     * @throws SQLException 
+     */
     @Override
     public Password findPassword(String email) throws SQLException {
 

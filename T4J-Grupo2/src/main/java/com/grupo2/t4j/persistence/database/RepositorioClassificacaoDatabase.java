@@ -44,6 +44,14 @@ public class RepositorioClassificacaoDatabase implements RepositorioClassificaca
         return repositorioClassificacaoDatabase;
     }
     
+    /**
+     * Regista uma classificacao
+     * @param posicao
+     * @param idSeriacao
+     * @param idCandidatura
+     * @return
+     * @throws SQLException 
+     */
     @Override
     public boolean save(int posicao, int idSeriacao, int idCandidatura) throws SQLException{
 
@@ -85,6 +93,12 @@ public class RepositorioClassificacaoDatabase implements RepositorioClassificaca
         return false;
     }
     
+    /**
+     * Regista uma classificacao
+     * @param classificacao
+     * @return
+     * @throws SQLException 
+     */
     @Override
     public boolean save(Classificacao classificacao) throws SQLException{
 
@@ -125,6 +139,12 @@ public class RepositorioClassificacaoDatabase implements RepositorioClassificaca
         return false;
     }
 
+    /**
+     * Devolve uma classificacao a partir do seu id
+     * @param idClassificacao
+     * @return
+     * @throws SQLException 
+     */
     @Override
     public Classificacao findById(int idClassificacao) throws SQLException{
 
@@ -151,6 +171,12 @@ public class RepositorioClassificacaoDatabase implements RepositorioClassificaca
         return new Classificacao();                
     }
     
+    /**
+     * Devolve uma classificacao a partir do id de uma candidatura
+     * @param idCandidatura
+     * @return
+     * @throws SQLException 
+     */
     @Override
     public Classificacao findByCandidatura (int idCandidatura) throws SQLException{
          Connection connection = DBConnectionHandler.getInstance().openConnection();
@@ -176,6 +202,12 @@ public class RepositorioClassificacaoDatabase implements RepositorioClassificaca
         return null;
     }
           
+    /**
+     * Devolve uma classificacao a partir do id da seriacao
+     * @param idSeriacao
+     * @return
+     * @throws SQLException 
+     */
     @Override
     public Classificacao findBySeriacao (int idSeriacao) throws SQLException{
         
@@ -202,6 +234,12 @@ public class RepositorioClassificacaoDatabase implements RepositorioClassificaca
         return new Classificacao();
     }
     
+    /**
+     * Devolve todas as classificacoes de uma seriacao
+     * @param idSeriacao
+     * @return
+     * @throws SQLException 
+     */
     @Override
     public ArrayList<Classificacao> getAllBySeriacao(int idSeriacao) throws SQLException{
         
@@ -246,6 +284,12 @@ public class RepositorioClassificacaoDatabase implements RepositorioClassificaca
         return classificacoes;
     }
     
+    /**
+     * Ordena as classificacoes por id da candidatura
+     * @param classificacoes
+     * @return
+     * @throws SQLException 
+     */
     @Override
     public List<Classificacao> ordenarByIdCandidatura(List<Classificacao> classificacoes) throws SQLException{
         
