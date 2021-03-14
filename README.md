@@ -52,15 +52,3 @@
 #### Administrativo:
 * email: admingrp2@upskill.pt
 * pass: teste123
-
-#### Gestor:
-* email: gestorgrp2@upskill.pt
-* pass: teste123
-
-#### Colaborador:
-* email: colabgrp2@upskill.pt
-* pass: teste123
-
-#### Freelancer:
-* email: freelancergrp2@upskill.pt
-* pass: teste123
