@@ -41,11 +41,13 @@
 - [UC11 - Editar Candidatura](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Documenta%C3%A7%C3%A3o/Sprint%204/UC11_Editar_Candidatura/UC11.md)
 - [UC12 - Eliminar Candidatura](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Documenta%C3%A7%C3%A3o/Sprint%204/UC12_Eliminar_Candidatura/UC12.md)
 
+##### Sprint 5
+- [UC13 - Atribuição de Tarefa]
 
 ## Links úteis
 
 - [Plataforma TRELLO usada para a gestão Agile do projeto usando a framework Scrum (Sprints 2 e 3)](https://trello.com/b/atvb02FQ)
-- [Dashboard para a gestão Agile do projeto usando a framework Scrum (Sprint 4)](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Documenta%C3%A7%C3%A3o/Sprint%204/Dashboard%20-%20Scrum%20-%20Sprint%204.xlsx)
+- [Dashboard para a gestão Agile do projeto usando a framework Scrum (Sprints 4 e 5)](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Documenta%C3%A7%C3%A3o/Sprint%205/Dashboard%20-%20Scrum%20-%20Sprint%205.xlsx)
 
 ## Dados de login
 
