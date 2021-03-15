@@ -4,7 +4,6 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
-
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" styleClass="BorderPane" stylesheets="@../style/app.css" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.EspecificarTarefaGestorUI">
     <top>
         <Label alignment="CENTER_RIGHT" styleClass="lblUser" text="Área do  Gestor :::&gt; Adicionar Nova Tarefa" textFill="WHITE" BorderPane.alignment="CENTER_RIGHT">

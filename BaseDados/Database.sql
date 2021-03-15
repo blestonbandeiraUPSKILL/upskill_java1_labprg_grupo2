@@ -65,3 +65,5 @@ and nifOrganizacao Like '111222888'
 update anuncio
 set dataInicioSeriacao = sysdate
 where idAnuncio = 22
+
+select * from utilizador
