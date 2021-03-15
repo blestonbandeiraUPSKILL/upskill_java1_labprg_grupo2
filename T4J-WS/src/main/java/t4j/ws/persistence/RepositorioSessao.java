@@ -111,13 +111,14 @@ public class RepositorioSessao {
             while(resultSet.next()) {
                 contexto.setIdContexto(resultSet.getInt(1));
                 contexto.setContexto(resultSet.getString(2));
-                int idEstadoContext = resultSet.getInt(3);
+                contexto.setValido(resultSet.getInt(3) != 3);
+                /*int idEstadoContext = resultSet.getInt(3);
                 if(idEstadoContext == 2) {
                     contexto.setValido(true);
                 }
                 else if(idEstadoContext == 3) {
                     contexto.setValido(false);
-                }
+                }*/
             }
         }
         catch (SQLException exception) {
@@ -232,32 +233,18 @@ public class RepositorioSessao {
             connection.setAutoCommit(false);
 
             CallableStatement callableStatement = connection.prepareCall(
-                    "{ ? = call setState(?) }"
+                    "{ ? = call checkState(?) }"
             );
 
             callableStatement.registerOutParameter(1, Types.INTEGER);
             callableStatement.setString(2, contexto.getContexto());
-            callableStatement.executeQuery();
+            callableStatement.execute();
 
             int estado = callableStatement.getInt(1);
 
-            if (estado == 2) {
-                contexto.setValido(true);
-            }
-            else if (estado == 3) {
-                contexto.setValido(false);
-            }
-
-            PreparedStatement preparedStatement = connection.prepareStatement(
-                    "UPDATE AppContext SET idEstadoContext = ? WHERE value = ? "
-            );
-
-            preparedStatement.setInt(1, estado);
-            preparedStatement.setString(2, contexto.getContexto());
-
-            preparedStatement.executeQuery();
-
             connection.commit();
+
+            contexto.setValido(estado != 3);
         }
         catch (SQLException exception) {
             exception.getSQLState();
