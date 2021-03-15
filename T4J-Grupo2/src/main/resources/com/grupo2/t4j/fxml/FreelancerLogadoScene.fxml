@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
+
 <BorderPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" styleClass="BorderPane" stylesheets="@../style/app.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.FreelancerLogadoUI">
     <top>
         <Label styleClass="lblUser" text="Bem-vindo à Área do Freelancer" textFill="WHITE" BorderPane.alignment="CENTER_RIGHT">
@@ -36,7 +38,7 @@
                                     </Label>
                                  </children>
                               </VBox>
-                              <Button fx:id="btnCandidatura" layoutX="546.0" layoutY="269.0" mnemonicParsing="false" onAction="#navigateEfectuarCandidatura" prefHeight="27.0" prefWidth="144.0" styleClass="btnConfirmar" text="Efectuar Candidatura">
+                              <Button fx:id="btnCandidatura" layoutX="551.0" layoutY="285.0" mnemonicParsing="false" onAction="#navigateEfectuarCandidatura" prefHeight="27.0" prefWidth="144.0" styleClass="btnConfirmar" text="Efectuar Candidatura">
                                  <font>
                                     <Font name="Calibri" size="14.0" />
                                  </font>
@@ -57,7 +59,7 @@
                             <content>
                                 <AnchorPane prefHeight="370.0" prefWidth="700.0" styleClass="AnchorPane">
                            <children>
-                              <VBox layoutX="25.0" layoutY="18.0" prefHeight="322.0" prefWidth="509.0" AnchorPane.bottomAnchor="31.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="161.0" AnchorPane.topAnchor="18.0">
+                              <VBox layoutX="25.0" layoutY="18.0" prefHeight="283.0" prefWidth="656.0" AnchorPane.bottomAnchor="70.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="18.0">
                                  <children>
                                     <Label text="Candidaturas Realizadas">
                                        <VBox.margin>
@@ -67,25 +69,34 @@
                                           <Font name="Calibri" size="14.0" />
                                        </font>
                                     </Label>
-                                    <TableView fx:id="tabelaCandidaturas" prefHeight="286.0" prefWidth="494.0">
+                                    <TableView fx:id="tabelaCandidaturas" prefHeight="246.0" prefWidth="617.0">
                                       <columns>
-                                        <TableColumn fx:id="txtIdCandidatura" prefWidth="45.0" text="ID" />
-                                          <TableColumn fx:id="txtValorPretendido" prefWidth="106.0" text="Valor Pretendido" />
-                                          <TableColumn fx:id="txtDuracaoEstimada" prefWidth="116.0" text="Duração Estimada" />
-                                        <TableColumn fx:id="txtDataCandidatura" prefWidth="107.0" text="Data Candidatura" />
-                                          <TableColumn fx:id="txtDataEdicao" prefWidth="134.0" text="Data Última Edição" />
+                                        <TableColumn fx:id="txtIdCandidatura" prefWidth="70.0" text="ID" />
+                                          <TableColumn fx:id="txtValorPretendido" prefWidth="130.0" text="Valor Pretendido" />
+                                          <TableColumn fx:id="txtDuracaoEstimada" prefWidth="141.0" text="Duração Estimada" />
+                                        <TableColumn fx:id="txtDataCandidatura" prefWidth="119.0" text="Data Candidatura" />
+                                          <TableColumn fx:id="txtDataEdicao" prefWidth="128.0" text="Data Última Edição" />
+                                          <TableColumn fx:id="txtResultado" prefWidth="67.0" text="Resultado" />
                                       </columns>
                                     </TableView>
                                  </children>
                               </VBox>
-                              <Button fx:id="btnConsultar" layoutX="555.0" layoutY="226.0" mnemonicParsing="false" onAction="#consultarCandidatura" styleClass="btnConfirmar" text="Consultar">
+                              <Button fx:id="btnConsultar" layoutX="25.0" layoutY="316.0" mnemonicParsing="false" onAction="#consultarCandidatura" prefHeight="27.0" prefWidth="140.0" styleClass="btnConfirmar" text="Consultar Candidatura" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="505.0">
                                  <padding>
                                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                  </padding>
                                  <font>
                                     <Font name="Calibri" size="14.0" />
-                                 </font></Button>
-                              <Button fx:id="btnApagar" layoutX="555.0" layoutY="264.0" mnemonicParsing="false" onAction="#apagarCandidatura" prefHeight="27.0" prefWidth="66.0" styleClass="btnConfirmar" text="Apagar ">
+                                 </font>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets></Button>
+                              <Button fx:id="btnApagar" layoutX="283.0" layoutY="316.0" mnemonicParsing="false" onAction="#apagarCandidatura" prefHeight="27.0" prefWidth="140.0" styleClass="btnConfirmar" text="Apagar Candidatura" AnchorPane.leftAnchor="283.0" AnchorPane.rightAnchor="272.0">
+                                 <font>
+                                    <Font name="Calibri" size="14.0" />
+                                 </font>
+                              </Button>
+                              <Button fx:id="btnResultado" layoutX="541.0" layoutY="316.0" mnemonicParsing="false" onAction="#consultarResultado" prefHeight="27.0" prefWidth="140.0" styleClass="btnConfirmar" text="Consultar Resultado" AnchorPane.leftAnchor="516.0" AnchorPane.rightAnchor="39.0">
                                  <font>
                                     <Font name="Calibri" size="14.0" />
                                  </font>

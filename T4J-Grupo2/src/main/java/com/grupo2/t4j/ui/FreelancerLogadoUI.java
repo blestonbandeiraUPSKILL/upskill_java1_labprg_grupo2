@@ -42,7 +42,11 @@ public class FreelancerLogadoUI implements Initializable {
     private ConsultarCandidaturaUI consultarCandidaturaUI;
     private EliminarCandidaturaController eliminarCandidaturaController;
     private Scene sceneConsultarCandidatura;
-
+    
+    @FXML Button btnCandidatura;
+    @FXML Button btnConsultar;
+    @FXML Button btnApagar;
+    @FXML Button btnResultado;
     @FXML Button btnSair;
 
     ///// Tabela Anuncios //////////////
@@ -61,6 +65,7 @@ public class FreelancerLogadoUI implements Initializable {
     @FXML TableColumn<Object, Object> txtDuracaoEstimada;
     @FXML TableColumn<Object, Object> txtDataCandidatura;
     @FXML TableColumn<Object, Object> txtDataEdicao;
+    @FXML TableColumn<Object, Object> txtResultado;
 
 
     /**
@@ -289,7 +294,11 @@ public class FreelancerLogadoUI implements Initializable {
                     exception.getMessage());
         }
     }
-
+    
+    public void consultarResultado (ActionEvent actionEvent){
+        
+    }
+    
     /**
      * Devolve o id da candidatura selecionada
      * @return
