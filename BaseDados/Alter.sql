@@ -216,3 +216,4 @@ ALTER TABLE UserSession
 ALTER TABLE Candidatura
     ADD CONSTRAINT uk_Candidatura_emailFreelancer_idAnuncio
     UNIQUE (emailFreelancer, idAnuncio);
+    
