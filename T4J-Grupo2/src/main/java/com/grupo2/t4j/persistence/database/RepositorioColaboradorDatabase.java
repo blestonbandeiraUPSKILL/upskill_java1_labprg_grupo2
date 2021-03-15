@@ -1,8 +1,8 @@
 package com.grupo2.t4j.persistence.database;
 
-import com.grupo2.t4j.exception.ColaboradorDuplicadoException;
 import com.grupo2.t4j.domain.Colaborador;
 import com.grupo2.t4j.domain.Password;
+import com.grupo2.t4j.exception.ColaboradorDuplicadoException;
 import com.grupo2.t4j.persistence.RepositorioColaborador;
 import com.grupo2.t4j.utils.DBConnectionHandler;
 
@@ -39,6 +39,12 @@ public class RepositorioColaboradorDatabase implements RepositorioColaborador {
 
     }
 
+    /**
+     * Regista um  colaborador
+     * @param colaborador
+     * @return
+     * @throws SQLException 
+     */
     @Override
     public boolean save(Colaborador colaborador) throws SQLException {
 
@@ -54,8 +60,8 @@ public class RepositorioColaboradorDatabase implements RepositorioColaborador {
                 connection.setAutoCommit(false);
 
                 callableStatement.setString(1, colaborador.getEmail().getEmailText());
-                callableStatement.setString(2, colaborador.getTelefone());
-                callableStatement.setString(3, colaborador.getFuncao());
+                callableStatement.setString(2, colaborador.getFuncao());
+                callableStatement.setString(3, colaborador.getTelefone());
                 callableStatement.setString(4, colaborador.getNifOrganizacao());
                 callableStatement.executeQuery();
 
@@ -80,6 +86,12 @@ public class RepositorioColaboradorDatabase implements RepositorioColaborador {
         return false;
     }
 
+    /**
+     * Devolve um colaborador a partir do seu email
+     * @param email
+     * @return
+     * @throws SQLException 
+     */
     @Override
     public Colaborador findByEmail(String email) throws SQLException {
 
@@ -110,8 +122,14 @@ public class RepositorioColaboradorDatabase implements RepositorioColaborador {
 
     }
 
+    /**
+     * Devolve uma lista de todos os colaboradores de uma organizacao
+     * @param nifOrganizacacao
+     * @return
+     * @throws SQLException 
+     */
     @Override
-    public ArrayList<Colaborador> getAll() throws SQLException {
+    public ArrayList<Colaborador> getAll(String nifOrganizacacao) throws SQLException {
 
         ArrayList<Colaborador> colaboradores = new ArrayList<>();
 
@@ -119,14 +137,19 @@ public class RepositorioColaboradorDatabase implements RepositorioColaborador {
 
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(
-                    "SELECT Colaborador.email, Colaborador.funcao, Colaborador.telefone, Colaborador.nifOrganizacao, Utilizador.nome FROM COLABORADOR " +
+                    "SELECT Colaborador.email, Colaborador.funcao, " +
+                            "Colaborador.telefone, Colaborador.nifOrganizacao, " +
+                            "Utilizador.nome FROM COLABORADOR " +
                             "INNER JOIN Utilizador " +
                             "ON colaborador.email LIKE utilizador.email " +
                             "INNER JOIN Organizacao " +
-                            "ON colaborador.nifOrganizacao LIKE organizacao.nif"
+                            "ON colaborador.nifOrganizacao LIKE organizacao.nif " +
+                            "WHERE organizacao.nif LIKE ?"
             );
 
-            ResultSet resultSet = preparedStatement.executeQuery();
+            preparedStatement.setString(1, nifOrganizacacao);
+            preparedStatement.executeQuery();
+            ResultSet resultSet = preparedStatement.getResultSet();
 
             while(resultSet.next()) {
                 String email = resultSet.getString(1);
@@ -155,8 +178,14 @@ public class RepositorioColaboradorDatabase implements RepositorioColaborador {
         return colaboradores;
     }
     
+    /**
+     * Retorna todos os emails dos colaboradores de uma organização em ordem alfabética
+     * @param nifOrganizacao
+     * @return
+     * @throws SQLException 
+     */
     @Override
-    public ArrayList<String> getAllEmailsByOrganizacao(String nifOrganizacao) throws SQLException{
+    public ArrayList<String> getAllEmailsAlfByOrganizacao(String nifOrganizacao) throws SQLException{
         
         ArrayList<Colaborador> colaboradores = getAll();
         
@@ -167,10 +196,21 @@ public class RepositorioColaboradorDatabase implements RepositorioColaborador {
             if(colaborador.getNifOrganizacao().equals(nifOrganizacao)){
                 colaboradoresOrganizacao.add(colaborador.getEmail().getEmailText());
             }            
-        }   
+        }
+               
         return colaboradoresOrganizacao;
     }
 
+    private ArrayList<Colaborador> getAll() {
+        return null;
+    }
+
+    /**
+     * Devolve o nif da organizacao de um colaborador
+     * @param email
+     * @return
+     * @throws SQLException 
+     */
     @Override
     public String getNifOrganizacao(String email) throws SQLException {
 
@@ -210,6 +250,12 @@ public class RepositorioColaboradorDatabase implements RepositorioColaborador {
         return null;
     }
 
+    /**
+     * Devolve a password de um colaborador
+     * @param email
+     * @return
+     * @throws SQLException 
+     */
     @Override
     public Password findPassword(String email) throws SQLException {
 

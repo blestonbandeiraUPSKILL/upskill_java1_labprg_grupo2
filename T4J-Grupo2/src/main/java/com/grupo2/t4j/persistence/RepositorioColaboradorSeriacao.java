@@ -10,9 +10,6 @@ package com.grupo2.t4j.persistence;
  * @author CAD
  */
 
-import com.grupo2.t4j.domain.Colaborador;
-import com.grupo2.t4j.domain.Password;
-
 import java.sql.SQLException;
 import java.util.ArrayList;
 public interface RepositorioColaboradorSeriacao {
@@ -23,6 +20,6 @@ public interface RepositorioColaboradorSeriacao {
     
     ArrayList<String> getAllColaboresBySeriacao(int idSeriacao) throws SQLException;
     
-    ArrayList getAllIdsSeriacaoByColaborador(String emailColaborador) throws SQLException;
+    ArrayList <Integer> getAllIdsSeriacaoByColaborador(String emailColaborador) throws SQLException;
     
 }

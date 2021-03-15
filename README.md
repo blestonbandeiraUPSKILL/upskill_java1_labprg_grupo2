@@ -12,7 +12,7 @@
 - [Enunciado Sprint 2](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Documenta%C3%A7%C3%A3o/Sprint%202/Enunciado/Enunciado.md)
 - [Glossário](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Documenta%C3%A7%C3%A3o/Sprint%203/Glossario.md)
 - [Modelo de Domínio](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Documenta%C3%A7%C3%A3o/Sprint%203/Modelo_Dom%C3%ADnio.png)
-- [Diagrama de Casos de Uso](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Documenta%C3%A7%C3%A3o/Sprint%203/Diagrama_Casos_Uso/Diagrama_Casos_Uso.png)
+- [Diagrama de Casos de Uso](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Documenta%C3%A7%C3%A3o/Sprint%204/Diagrama_Casos_Uso/Diagrama_Casos_Uso.png)
 - [Requisitos Funcionais e Não Funcionais](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Documenta%C3%A7%C3%A3o/Sprint%203/Requisitos_Funcionais_e_Nao_Funcionais.md)
 - [Modelo Relacional](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/BaseDados/Modelo_Relacional.png)
 
@@ -44,23 +44,11 @@
 
 ## Links úteis
 
-- [Trabalho desenvolvido no módulo PDS](https://github.com/ajorgesantosp/upskill_java1_g1)
-- [Plataforma TRELLO usada para a gestão Agile do projeto usando a framework Scrum](https://trello.com/b/atvb02FQ)
+- [Plataforma TRELLO usada para a gestão Agile do projeto usando a framework Scrum (Sprints 2 e 3)](https://trello.com/b/atvb02FQ)
+- [Dashboard para a gestão Agile do projeto usando a framework Scrum (Sprint 4)](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Documenta%C3%A7%C3%A3o/Sprint%204/Dashboard%20-%20Scrum%20-%20Sprint%204.xlsx)
 
 ## Dados de login
 
 #### Administrativo:
 * email: admingrp2@upskill.pt
-* pass: teste123
-
-#### Gestor:
-* email: gestorgrp2@upskill.pt
-* pass: teste123
-
-#### Colaborador:
-* email: colabgrp2@upskill.pt
-* pass: teste123
-
-#### Freelancer:
-* email: freelancergrp2@upskill.pt
 * pass: teste123

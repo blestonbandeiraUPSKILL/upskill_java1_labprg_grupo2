@@ -33,6 +33,17 @@ public class RepositorioCategoriaTarefaDatabase implements RepositorioCategoriaT
         return repositorioCategoriaTarefaDatabase;
     }
 
+    /**
+     * Regista uma categoria
+     * @param codigoCategoria
+     * @param descBreve
+     * @param descDetalhada
+     * @param codigoAreaActividade
+     * @param idGrauProficiencia
+     * @param obrigatoriedade
+     * @return
+     * @throws SQLException 
+     */
     @Override
     public boolean save(String codigoCategoria, String descBreve,
                      String descDetalhada, String codigoAreaActividade, int idGrauProficiencia,
@@ -77,6 +88,12 @@ public class RepositorioCategoriaTarefaDatabase implements RepositorioCategoriaT
         return false;
     }
 
+    /**
+     * Regista uma categoria
+     * @param categoria
+     * @return
+     * @throws SQLException 
+     */
     @Override
     public boolean save(Categoria categoria) throws SQLException {
 
@@ -118,6 +135,12 @@ public class RepositorioCategoriaTarefaDatabase implements RepositorioCategoriaT
         return false;
     }
 
+    /**
+     * Devolve uma categoria a partir do seu codigo unico
+     * @param codigoCategoria
+     * @return
+     * @throws SQLException 
+     */
     @Override
     public Categoria findByCodigo(String codigoCategoria) throws SQLException {
 
@@ -163,6 +186,12 @@ public class RepositorioCategoriaTarefaDatabase implements RepositorioCategoriaT
         return categoria;
     }
 
+    /**
+     * Devolve todas as categorias de uma area de actividade
+     * @param codigoAreaActividade
+     * @return
+     * @throws SQLException 
+     */
     @Override
     public ArrayList<Categoria> findByAreaActividade(String codigoAreaActividade) throws SQLException {
         ArrayList<Categoria> categoriasTarefa = new ArrayList<>();
@@ -205,6 +234,11 @@ public class RepositorioCategoriaTarefaDatabase implements RepositorioCategoriaT
         return categoriasTarefa;
     }
 
+    /**
+     * Devolve todas as categorias
+     * @return
+     * @throws SQLException 
+     */
     @Override
     public ArrayList<Categoria> getAll() throws SQLException {
         ArrayList<Categoria> categorias = new ArrayList<>();

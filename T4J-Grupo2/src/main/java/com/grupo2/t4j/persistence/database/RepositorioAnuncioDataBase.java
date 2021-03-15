@@ -4,12 +4,11 @@ package com.grupo2.t4j.persistence.database;
  *
  * @author CAD
  */
-import com.grupo2.t4j.exception.AnuncioDuplicadoException;
+
 import com.grupo2.t4j.domain.Anuncio;
-import com.grupo2.t4j.domain.Data;
 import com.grupo2.t4j.domain.Tarefa;
 import com.grupo2.t4j.domain.TipoRegimento;
-import com.grupo2.t4j.domain.TipoStatusAnuncio;
+import com.grupo2.t4j.exception.AnuncioDuplicadoException;
 import com.grupo2.t4j.persistence.RepositorioAnuncio;
 import com.grupo2.t4j.utils.DBConnectionHandler;
 
@@ -43,8 +42,24 @@ public class RepositorioAnuncioDataBase implements RepositorioAnuncio {
         return repositorioAnuncioDataBase;
     }
 
+    /**
+     * Guarda um anuncio na base de dados
+     * @param referenciaTarefa
+     * @param nifOrganizacao
+     * @param dtInicioPublicitacao
+     * @param dtFimPublicitacao
+     * @param dtInicioCandidatura
+     * @param dtFimCandidatura
+     * @param dtInicioSeriacao
+     * @param dtFimSeriacao
+     * @param idTipoRegimento
+     * @return
+     * @throws AnuncioDuplicadoException
+     * @throws SQLException 
+     */
     @Override
-    public boolean save(String referenciaTarefa, String nifOrganizacao, String dtInicioPublicitacao, String dtFimPublicitacao, String dtInicioCandidatura, String dtFimCandidatura, String dtInicioSeriacao,
+    public boolean save(String referenciaTarefa, String nifOrganizacao, String dtInicioPublicitacao,
+                        String dtFimPublicitacao, String dtInicioCandidatura, String dtFimCandidatura, String dtInicioSeriacao,
             String dtFimSeriacao, int idTipoRegimento) throws AnuncioDuplicadoException, SQLException {
 
         Connection connection = DBConnectionHandler.getInstance().openConnection();
@@ -87,31 +102,40 @@ public class RepositorioAnuncioDataBase implements RepositorioAnuncio {
 
     }
 
+    /**
+     * Guarda um anuncio na base de dados
+     * @param anuncio
+     * @return
+     * @throws SQLException 
+     */
     @Override
     public boolean save(Anuncio anuncio) throws SQLException {
 
         Connection connection = DBConnectionHandler.getInstance().openConnection();
 
         try {
-            CallableStatement callableStatement = connection.prepareCall(
-                    "{CALL createAnuncio(?, ?, ?, ?, ?, ?, ?, ?, ?)}");
+            if(findAnuncioByIdTarefa(anuncio.getReferenciaTarefa(), anuncio.getNifOrganizacao()) == null) {
+                CallableStatement callableStatement = connection.prepareCall(
+                        "{CALL createAnuncio(?, ?, ?, ?, ?, ?, ?, ?, ?)}");
 
-            connection.setAutoCommit(false);
+                connection.setAutoCommit(false);
 
-            callableStatement.setString(1, anuncio.getReferenciaTarefa());
-            callableStatement.setString(2, anuncio.getNifOrganizacao());
-            callableStatement.setDate(3, Date.valueOf(anuncio.getDtInicioPub()));
-            callableStatement.setDate(4, Date.valueOf(anuncio.getDtFimPub()));
-            callableStatement.setDate(5, Date.valueOf(anuncio.getDtInicioCand()));
-            callableStatement.setDate(6, Date.valueOf(anuncio.getDtFimCand()));
-            callableStatement.setDate(7, Date.valueOf(anuncio.getDtInicioSeriacao()));
-            callableStatement.setDate(8, Date.valueOf(anuncio.getDtFimSeriacao()));
-            callableStatement.setInt(9, anuncio.getIdTipoRegimento());
+                callableStatement.setString(1, anuncio.getReferenciaTarefa());
+                callableStatement.setString(2, anuncio.getNifOrganizacao());
+                callableStatement.setDate(3, Date.valueOf(anuncio.getDtInicioPub()));
+                callableStatement.setDate(4, Date.valueOf(anuncio.getDtFimPub()));
+                callableStatement.setDate(5, Date.valueOf(anuncio.getDtInicioCand()));
+                callableStatement.setDate(6, Date.valueOf(anuncio.getDtFimCand()));
+                callableStatement.setDate(7, Date.valueOf(anuncio.getDtInicioSeriacao()));
+                callableStatement.setDate(8, Date.valueOf(anuncio.getDtFimSeriacao()));
+                callableStatement.setInt(9, anuncio.getIdTipoRegimento());
 
-            callableStatement.executeQuery();
+                callableStatement.executeQuery();
 
-            connection.commit();
-            return true;
+                connection.commit();
+                return true;
+            }
+
 
         } catch (SQLException exception) {
             exception.printStackTrace();
@@ -135,6 +159,13 @@ public class RepositorioAnuncioDataBase implements RepositorioAnuncio {
     }
 
 
+    /**
+     * Devolve o anuncio que corresponde a uma tarefa 
+     * @param referenciaTarefa
+     * @param nifOrganizacao
+     * @return
+     * @throws SQLException 
+     */
     @Override
     public Anuncio findAnuncioByIdTarefa(String referenciaTarefa, String nifOrganizacao) throws SQLException {
 
@@ -164,6 +195,11 @@ public class RepositorioAnuncioDataBase implements RepositorioAnuncio {
         return new Anuncio();
     }
 
+    /**
+     * Devolve todos os tipos de regimento registados na base de dados
+     * @return
+     * @throws SQLException 
+     */
     @Override
     public ArrayList<TipoRegimento> getAllRegimento() throws SQLException {
 
@@ -202,52 +238,12 @@ public class RepositorioAnuncioDataBase implements RepositorioAnuncio {
         return tiposRegimento;
     }
 
-    @Override
-    public List<Anuncio> findAnunciosElegiveis(String email) throws SQLException {
-        ArrayList<Anuncio> anunciosElegiveis = new ArrayList<>();
-
-        Connection connection = DBConnectionHandler.getInstance().openConnection();
-
-        try {
-            PreparedStatement preparedStatement = connection.prepareStatement(
-                    "SELECT * FROM Anuncio "
-            );
-
-            ResultSet resultSet = preparedStatement.executeQuery();
-
-            while (resultSet.next()) {
-                int idAnuncio = resultSet.getInt(1);
-                String referenciaTarefa = resultSet.getString(2);
-                String nifOrganizacao = resultSet.getString(3);
-                String dtInicioPublicitacao = resultSet.getString(4);
-                String dtFimPublicitacao = resultSet.getString(5);
-                String dtInicioCandidatura = resultSet.getString(6);
-                String dtFimCandidatura = resultSet.getString(7);
-                String dtInicioSeriacao = resultSet.getString(8);
-                String dtFimSeriacao = resultSet.getString(9);
-                int idTipoRegimento = resultSet.getInt(10);
-                anunciosElegiveis.add(new Anuncio(idAnuncio,referenciaTarefa, nifOrganizacao,
-                        dtInicioPublicitacao, dtFimPublicitacao, dtInicioCandidatura,
-                dtFimCandidatura, dtInicioSeriacao, dtFimSeriacao, idTipoRegimento));
-            }
-
-        } catch (SQLException exception) {
-            exception.printStackTrace();
-            exception.getSQLState();
-            try {
-                System.err.print("Transaction is being rolled back");
-                connection.rollback();
-            } catch (SQLException sqlException) {
-                sqlException.getErrorCode();
-            }
-
-        } finally {
-            DBConnectionHandler.getInstance().closeAll();
-        }
-        return anunciosElegiveis;
-    }
-
-    @Override
+    /**
+     * Devolve um anuncio a partir do seu id
+     * @param idAnuncio
+     * @return
+     * @throws SQLException 
+     */
     public Anuncio getAnuncio(int idAnuncio) throws SQLException {
         Anuncio anuncio = new Anuncio();
 
@@ -300,7 +296,62 @@ public class RepositorioAnuncioDataBase implements RepositorioAnuncio {
         }
         return anuncio;
     }
-    
+
+    /**
+     * Devolve o anuncio relativo a uma tarefa a que o freelancer se candidatou
+     * @param emailFreelancer
+     * @param referenciaTarefa
+     * @return
+     * @throws SQLException 
+     */
+    @Override
+    public boolean findAnuncioByEmailFreelancer(String emailFreelancer, String referenciaTarefa ) throws SQLException {
+
+        Connection connection = DBConnectionHandler.getInstance().openConnection();
+
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(
+                    "SELECT * FROM Anuncio " +
+                            "LEFT JOIN Candidatura " +
+                            "ON Anuncio.idAnuncio = Candidatura.idAnuncio " +
+                            "WHERE Candidatura.emailFreelancer LIKE ? " +
+                            "AND Anuncio.referenciaTarefa LIKE ?"
+            );
+
+            preparedStatement.setString(1, emailFreelancer);
+            preparedStatement.setString(2, referenciaTarefa);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+
+                return false;
+            }
+
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+            exception.getSQLState();
+            try {
+                System.err.print("Transaction is being rolled back");
+                connection.rollback();
+            } catch (SQLException sqlException) {
+                sqlException.getErrorCode();
+            }
+
+        } finally {
+            DBConnectionHandler.getInstance().closeAll();
+        }
+        return true;
+    }
+
+    /**
+     * Devolve todas as tarefas de um colaborador e de um dado tipo de regimento
+     * @param referenciasTarefa
+     * @param emailColaborador
+     * @param idTipoRegimento
+     * @return
+     * @throws SQLException 
+     */
     @Override
     public List<String> getAllRefTarefasTipoRegimento(List<String> referenciasTarefa, String emailColaborador, int idTipoRegimento) throws SQLException{
         
@@ -352,15 +403,15 @@ public class RepositorioAnuncioDataBase implements RepositorioAnuncio {
     public List<String> getAllRefTarefasNaoSeriadas(List<String> referenciasTarefa, String nifOrganizacao) throws SQLException{
         
         List<String> refTarefasNaoSeriadas = new ArrayList<>();
-        
+
         Connection connection = DBConnectionHandler.getInstance().openConnection();
 
         try {
             for (String referencia : referenciasTarefa) {
-                int idAnuncio = findAnuncioByIdTarefa(referencia, nifOrganizacao).getIdAnuncio();
                 CallableStatement callableStatement = connection.prepareCall(
-                    "SELECT * FROM Anuncio LEFT JOIN ProcessoSeriacao ON "
-                            + "ProcessoSeriacao.idAnuncio IS NULL"
+                    "SELECT * FROM Anuncio LEFT JOIN ProcessoSeriacao " +
+                            "ON ProcessoSeriacao.idAnuncio = Anuncio.idAnuncio " +
+                            "WHERE ProcessoSeriacao.idAnuncio IS NULL"
                 );
                               
                 callableStatement.executeUpdate();
@@ -393,27 +444,45 @@ public class RepositorioAnuncioDataBase implements RepositorioAnuncio {
      * @throws SQLException
      */
     @Override
-    public List<String> getAllRefTarefasASeriar(List<String> referenciasTarefa) throws SQLException{
-      
-        List<String> refTarefasASeriar = new ArrayList<>();
+    public List<Tarefa> getAllRefTarefasASeriar(List<String> referenciasTarefa, String nifOrganizacao, String emailColaborador) throws SQLException{
+
+        List<Tarefa> refTarefasASeriar = new ArrayList<>();
 
         Connection connection = DBConnectionHandler.getInstance().openConnection();
 
         try {
             for (String referencia : referenciasTarefa) {
                 PreparedStatement preparedStatement = connection.prepareStatement(
-                    "SELECT * FROM Anuncio "
-                    + "INNER JOIN Tarefa "
-                    +"ON Anuncio.referencia LIKE Tarefa.referencia "
-                    + "WHERE sysdate BETWEEN Anuncio.dataInicioSeriacao AND Anuncio.dataFimSeriacao "
+                    "SELECT * FROM Tarefa " +
+                            "INNER JOIN Anuncio  " +
+                            "ON Anuncio.referenciaTarefa LIKE Tarefa.referencia " +
+                            "AND Anuncio.nifOrganizacao LIKE Tarefa.nifOrganizacao " +
+                            "WHERE Tarefa.referencia LIKE ? " +
+                            "AND Tarefa.nifOrganizacao LIKE ?" +
+                            "AND sysdate BETWEEN Anuncio.dataInicioSeriacao AND Anuncio.dataFimSeriacao " +
+                            "AND Tarefa.emailColaborador LIKE ? "
                     );
-            
-                ResultSet resultSet = preparedStatement.executeQuery();
+
+                preparedStatement.setString(1, referencia);
+                preparedStatement.setString(2, nifOrganizacao);
+                preparedStatement.setString(3, emailColaborador);
+
+                preparedStatement.executeQuery();
+
+                ResultSet resultSet = preparedStatement.getResultSet();
 
                 while (resultSet.next()) {
-                    refTarefasASeriar.add(referencia);
+                    String designacao = resultSet.getString(3);
+                    String descInformal = resultSet.getString(4);
+                    String descTecnica = resultSet.getString(5);
+                    int duracaoEstimada = resultSet.getInt(6);
+                    double custoEstimado = resultSet.getDouble(7);
+                    String codigoCategoria = resultSet.getString(8);
+                    refTarefasASeriar.add(new Tarefa(nifOrganizacao, referencia,
+                            designacao, descInformal, descTecnica, duracaoEstimada, custoEstimado, codigoCategoria, emailColaborador));
+
                 }
-                }
+            }
         }
         catch (SQLException exception) {
             exception.printStackTrace();
@@ -423,8 +492,9 @@ public class RepositorioAnuncioDataBase implements RepositorioAnuncio {
         finally {
             DBConnectionHandler.getInstance().closeAll();
         }
+
         return refTarefasASeriar;
-      
+
     } 
     
      

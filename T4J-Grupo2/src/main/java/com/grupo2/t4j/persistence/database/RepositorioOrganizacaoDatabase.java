@@ -18,7 +18,6 @@ import com.grupo2.t4j.utils.DBConnectionHandler;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 public class RepositorioOrganizacaoDatabase implements RepositorioOrganizacao {
 
@@ -47,6 +46,23 @@ public class RepositorioOrganizacaoDatabase implements RepositorioOrganizacao {
     }
 
 
+    /**
+     * Regista uma organizacao
+     * @param arruamento
+     * @param numeroPorta
+     * @param localidade
+     * @param codigoPostal
+     * @param nif
+     * @param nome
+     * @param website
+     * @param telefone
+     * @param emailOrganizacao
+     * @param emailGestor
+     * @param funcaoGestor
+     * @param telefoneGestor
+     * @return
+     * @throws SQLException 
+     */
     @Override
     public boolean save(String arruamento, String numeroPorta, String localidade, String codigoPostal,
                         String nif, String nome, String website, String telefone, String emailOrganizacao,
@@ -101,11 +117,6 @@ public class RepositorioOrganizacaoDatabase implements RepositorioOrganizacao {
     }
 
 
-    @Override
-    public boolean save(Organizacao organizacao) {
-
-        return false;
-    }
 
     /**
      *
@@ -143,10 +154,6 @@ public class RepositorioOrganizacaoDatabase implements RepositorioOrganizacao {
         return new Organizacao();
     }
 
-    @Override
-    public ArrayList<Organizacao> getAll() {
-        return null;
-    }
 
 
 }

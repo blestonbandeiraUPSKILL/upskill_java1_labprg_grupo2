@@ -25,17 +25,16 @@ public class AdicionarAreaAtividadeUI implements Initializable {
     private RegistarAreaActividadeController registarAreaActividadeController;
     private Stage adicionarStage;
 
-    @FXML
-    Button btnCancelar;
-    @FXML
-    Button btnAddAreaAtividade;
-    @FXML
-    TextField txtCodigo;
-    @FXML
-    TextField txtDescricaoBreve;
-    @FXML
-    TextArea areaDescricaoDetalhada;
+    @FXML Button btnCancelar;
+    @FXML Button btnAddAreaAtividade;
+    @FXML TextField txtCodigo;
+    @FXML TextField txtDescricaoBreve;
+    @FXML TextArea areaDescricaoDetalhada;
 
+    /**
+     * Associa a scene AdministrativoLogadoUI como parent desta Scene 
+     * @param administrativoLogadoUI 
+     */
     public void associarParentUI(AdministrativoLogadoUI administrativoLogadoUI) {
         this.administrativoLogadoUI = administrativoLogadoUI;
     }
@@ -53,6 +52,10 @@ public class AdicionarAreaAtividadeUI implements Initializable {
         adicionarStage.setResizable(false);
     }
 
+    /**
+     * Cancela a operacao
+     * @param event 
+     */
     @FXML
     void cancelarAction(ActionEvent event) {
 
@@ -79,6 +82,10 @@ public class AdicionarAreaAtividadeUI implements Initializable {
 
     }
 
+    /**
+     * Regista uma nova Area de Actividade
+     * @param event 
+     */
     @FXML
     public void registarAreaAction(ActionEvent event) {
 
@@ -111,6 +118,10 @@ public class AdicionarAreaAtividadeUI implements Initializable {
 
     }
 
+    /**
+     * Volta para a scene anterior
+     * @param event 
+     */
     private void closeAddAreaActividade(ActionEvent event) {
         this.txtCodigo.clear();
         this.txtDescricaoBreve.clear();

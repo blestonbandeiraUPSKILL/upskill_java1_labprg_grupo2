@@ -15,6 +15,12 @@ public class EliminarCandidaturaController {
     private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosDatabase();
     private RepositorioCandidatura repositorioCandidatura = fabricaRepositorios.getRepositorioCandidatura();
 
+    /**
+     * Elimina uma candidatura a partir do seu id
+     * @param idCandidatura
+     * @return
+     * @throws SQLException 
+     */
     public boolean deleteCandidatura(int idCandidatura) throws SQLException {
         return repositorioCandidatura.deleteCandidatura(idCandidatura);
     }

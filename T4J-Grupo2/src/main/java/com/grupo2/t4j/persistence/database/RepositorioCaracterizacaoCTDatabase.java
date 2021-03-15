@@ -1,12 +1,15 @@
 package com.grupo2.t4j.persistence.database;
 
-import com.grupo2.t4j.exception.CaracterizacaoCTDuplicadaException;
 import com.grupo2.t4j.domain.CaracterizacaoCT;
 import com.grupo2.t4j.domain.Obrigatoriedade;
+import com.grupo2.t4j.exception.CaracterizacaoCTDuplicadaException;
 import com.grupo2.t4j.persistence.RepositorioCaracterizacaoCT;
 import com.grupo2.t4j.utils.DBConnectionHandler;
 
-import java.sql.*;
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,6 +43,12 @@ public class RepositorioCaracterizacaoCTDatabase implements RepositorioCaracteri
 
     }
 
+    /**
+     * Regista a caracterizacao de uma competencia tecnica
+     * @param caracterizacaoCT
+     * @return
+     * @throws SQLException 
+     */
     @Override
     public boolean save(CaracterizacaoCT caracterizacaoCT) throws SQLException {
 
@@ -88,57 +97,18 @@ public class RepositorioCaracterizacaoCTDatabase implements RepositorioCaracteri
     }
 
     @Override
-    public List<CaracterizacaoCT> findByCategoria(String codigoCategoria) throws SQLException{
-        ArrayList<CaracterizacaoCT> listaCaracterizacaoCT = new ArrayList<>();
-
-        Connection connection = DBConnectionHandler.getInstance().openConnection();
-
-        try {
-            PreparedStatement preparedStatement = connection.prepareStatement(
-                    "SELECT * FROM CaracterCT WHERE codigoCategoria LIKE ?"
-            );
-
-            preparedStatement.setString(1, codigoCategoria);
-
-            ResultSet resultSet = preparedStatement.executeQuery();
-
-            while (resultSet.next()) {
-                int idCaracterizacaoCT = resultSet.getInt(1);
-                String codigoCategoriaTarefa = resultSet.getString(2);
-                int codigoGP = resultSet.getInt(3);
-                String obrigatoriedade = resultSet.getString(4);
-                listaCaracterizacaoCT.add(new CaracterizacaoCT(idCaracterizacaoCT,
-                        codigoCategoriaTarefa,
-                        codigoGP,
-                        Obrigatoriedade.valueOf(obrigatoriedade)));
-
-            }
-        }
-
-        catch (SQLException exception) {
-            exception.printStackTrace();
-            exception.getSQLState();
-            try {
-                System.err.print("Transaction is being rolled back");
-                connection.rollback();
-            }
-            catch (SQLException sqlException) {
-                sqlException.getErrorCode();
-            }
-
-        }
-        finally {
-            DBConnectionHandler.getInstance().closeAll();
-        }
-
-        return listaCaracterizacaoCT;
-    }
-
-    @Override
     public CaracterizacaoCT findByCodigo(int codigoCCT) {
         return null;
     }
 
+    /**
+     * Devolve a caracteizacao de uma competencia tecnica a partir do codigo de categoria 
+     * e do codigo do grau de proficiencia
+     * @param codigoCategoria
+     * @param codigoGP
+     * @return
+     * @throws SQLException 
+     */
     @Override
     public CaracterizacaoCT findByCategoriaEGrau(String codigoCategoria,
                                                  int codigoGP) throws SQLException {
@@ -171,6 +141,12 @@ public class RepositorioCaracterizacaoCTDatabase implements RepositorioCaracteri
         return new CaracterizacaoCT();
     }
 
+    /**
+     * Devolve todas as competencias tecnicas caracterizadas de uma categoria
+     * @param codigoCategoria
+     * @return
+     * @throws SQLException 
+     */
     @Override
     public List<CaracterizacaoCT> getAllByCategoria(String codigoCategoria) throws SQLException {
         List<CaracterizacaoCT> caracterizacoesCT = new ArrayList<>();

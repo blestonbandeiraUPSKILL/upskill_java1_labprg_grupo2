@@ -10,11 +10,10 @@ package com.grupo2.t4j.persistence;
  * @author CAD
  */
 
-import com.grupo2.t4j.exception.AnuncioDuplicadoException;
 import com.grupo2.t4j.domain.Anuncio;
-import com.grupo2.t4j.domain.Data;
+import com.grupo2.t4j.domain.Tarefa;
 import com.grupo2.t4j.domain.TipoRegimento;
-import com.grupo2.t4j.domain.TipoStatusAnuncio;
+import com.grupo2.t4j.exception.AnuncioDuplicadoException;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -34,14 +33,14 @@ public interface RepositorioAnuncio {
     Anuncio findAnuncioByIdTarefa(String referenciaTarefa, String nifOrganizacao)throws SQLException;
 
     ArrayList<TipoRegimento> getAllRegimento()throws SQLException;
-
-    List<Anuncio> findAnunciosElegiveis(String email) throws SQLException;
     
     List<String> getAllRefTarefasTipoRegimento(List<String> referenciasTarefa, String emailColaborador, int idTipoRegimento) throws SQLException;
     
     List<String> getAllRefTarefasNaoSeriadas(List<String> referenciasTarefa, String nifOrganizacao) throws SQLException;
     
-    List<String> getAllRefTarefasASeriar(List<String> referenciasTarefa) throws SQLException;
+    List<Tarefa> getAllRefTarefasASeriar(List<String> referenciasTarefa, String nifOrganizacao, String emailColaborador) throws SQLException;
 
     Anuncio getAnuncio(int idAnuncio) throws SQLException;
+
+    boolean findAnuncioByEmailFreelancer(String freelancer, String emailFreelancer) throws SQLException;
 }

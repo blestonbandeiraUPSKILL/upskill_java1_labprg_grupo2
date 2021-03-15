@@ -10,6 +10,7 @@ import com.grupo2.t4j.exception.NomeInvalidoException;
 import com.grupo2.t4j.exception.QuantidadeInvalidaException;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  *
@@ -18,10 +19,13 @@ import java.io.Serializable;
 public class Tarefa implements Serializable{
 
     /**
-     *
+     * O codigo da area de actividade
      */
     private String codigoAreaActividade;
 
+    /**
+     * O codigo da categoria de tarefa
+     */
     private String codigoCategoriaTarefa;
 
     /**
@@ -64,6 +68,8 @@ public class Tarefa implements Serializable{
      */
     private String emailColaborador;
 
+    private List<GrauProficiencia> grausProficiencia;
+
     
     /**
      * Construtor vazio da classe Tarefa.
@@ -72,6 +78,29 @@ public class Tarefa implements Serializable{
         
     }
 
+    /**
+     * O construtor da classe Tarefa
+     * @param referencia
+     * @param nifOrganizacao
+     * @param grausProficiencia 
+     */
+    public Tarefa(String referencia, String nifOrganizacao, List<GrauProficiencia> grausProficiencia) {
+        setReferencia(referencia);
+        setNifOrganizacao(nifOrganizacao);
+        this.grausProficiencia = grausProficiencia;
+    }
+
+    /**
+     * O construtor da classe Tarefa
+     * @param referencia
+     * @param designacao
+     * @param descInformal
+     * @param descTecnica
+     * @param duracao
+     * @param custo
+     * @param codigoAreaActividade
+     * @param codigoCategoriaTarefa 
+     */
     public Tarefa(String referencia, String designacao,
                   String descInformal, String descTecnica, int duracao, double custo,
                   String codigoAreaActividade,
@@ -86,6 +115,18 @@ public class Tarefa implements Serializable{
         setCustoEst(custo);
     }
     
+    /**
+     * O construtor da classe Tarefa
+     * @param nifOrganizacao
+     * @param referencia
+     * @param designacao
+     * @param descInformal
+     * @param descTecnica
+     * @param duracao
+     * @param custo
+     * @param codigoCategoriaTarefa
+     * @param emailColaborador 
+     */
     public Tarefa(String nifOrganizacao, String referencia, String designacao,
                   String descInformal, String descTecnica, int duracao, double custo,
                   String codigoCategoriaTarefa,  String emailColaborador) {
@@ -100,6 +141,10 @@ public class Tarefa implements Serializable{
         this.emailColaborador = emailColaborador;
     }
 
+    /**
+     * O construtor cópia da classe Tarefa
+     * @param outraTarefa 
+     */
     public Tarefa(Tarefa outraTarefa) {
         this.codigoAreaActividade = outraTarefa.getCodigoAreaActividade();
         this.codigoCategoriaTarefa = outraTarefa.getCodigoCategoriaTarefa();
@@ -111,6 +156,10 @@ public class Tarefa implements Serializable{
         this.custoEst = outraTarefa.getCustoEst();
     }
 
+    /**
+     * Atualiza o codigo da area de actividade
+     * @param codigoAreaActividade 
+     */
     public void setCodigoAreaActividade(String codigoAreaActividade) {
         if (codigoAreaActividade == null || codigoAreaActividade.trim().isEmpty()) {
             throw new CodigoInvalidoException("O código da Área de Actividade não é válido!");
@@ -118,6 +167,10 @@ public class Tarefa implements Serializable{
         this.codigoAreaActividade = codigoAreaActividade;
     }
 
+    /**
+     * Atualiza o codigo da categoria de tarefa
+     * @param codigoCategoriaTarefa 
+     */
     public void setCodigoCategoriaTarefa(String codigoCategoriaTarefa) {
         if(codigoCategoriaTarefa == null || codigoCategoriaTarefa.trim().isEmpty()) {
             throw new CodigoInvalidoException("O código da Categoria de Tarefa não é válido");
@@ -247,28 +300,54 @@ public class Tarefa implements Serializable{
         return codigoAreaActividade;
     }
 
+    /**
+     * Devolve o codigo da categoria de tarefa
+     * @return 
+     */
     public String getCodigoCategoriaTarefa() {
         return codigoCategoriaTarefa;
     }
 
+    /**
+     * Devolve o nif da organizacao que requer a tarefa
+     * @return 
+     */
     public String getNifOrganizacao() {
         return nifOrganizacao;
     }
 
+    /**
+     * Atualiza o nif da organizacao que requer a tarefa
+     * @param nifOrganizacao 
+     */
     public void setNifOrganizacao(String nifOrganizacao) {
         this.nifOrganizacao = nifOrganizacao;
     }
 
+    /**
+     * Devolve o email do colaborador que cria a tarefa
+     * @return 
+     */
     public String getEmailColaborador() {
         return emailColaborador;
     }
 
+    /**
+     * Atualiza o email do colaborador que criou a tarefa
+     * @param emailColaborador 
+     */
     public void setEmailColaborador(String emailColaborador) {
         this.emailColaborador = emailColaborador;
     }
-    
-    
-    
+
+    /**
+     * Devolve a lista de graus de proficiencia requeridos
+     * @return 
+     */
+    public List<GrauProficiencia> getGrauProficiencia() {
+        return grausProficiencia;
+    }
+
     /**
      * Representação textual da classe Tarefa em formato de exibição
      * @return referencia, designacao, duracaoEst, custoEst

@@ -26,6 +26,12 @@ public class RepositorioEnderecoPostalDatabase implements RepositorioEnderecoPos
 
     }
 
+    /**
+     * Regista um endereco postal
+     * @param enderecoPostal
+     * @return
+     * @throws SQLException 
+     */
     @Override
     public boolean save(EnderecoPostal enderecoPostal) throws SQLException {
 
@@ -70,6 +76,11 @@ public class RepositorioEnderecoPostalDatabase implements RepositorioEnderecoPos
         return false;
     }
 
+    /**
+     * Devolve todos os enderecos postais
+     * @return
+     * @throws SQLException 
+     */
     @Override
     public List<EnderecoPostal> getAll() throws SQLException {
 
@@ -111,6 +122,12 @@ public class RepositorioEnderecoPostalDatabase implements RepositorioEnderecoPos
         return enderecosPostais;
     }
 
+    /**
+     * Devolve um endereco postal a partir do seu id
+     * @param codigo
+     * @return
+     * @throws SQLException 
+     */
     @Override
     public EnderecoPostal findById(int codigo) throws SQLException {
 

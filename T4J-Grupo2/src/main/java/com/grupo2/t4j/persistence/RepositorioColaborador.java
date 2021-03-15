@@ -10,9 +10,9 @@ package com.grupo2.t4j.persistence;
  * @author CAD
  */
 
-import com.grupo2.t4j.exception.ColaboradorDuplicadoException;
 import com.grupo2.t4j.domain.Colaborador;
 import com.grupo2.t4j.domain.Password;
+import com.grupo2.t4j.exception.ColaboradorDuplicadoException;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -26,10 +26,10 @@ public interface RepositorioColaborador {
 
     Colaborador findByEmail(String emailCol) throws SQLException;
 
-    ArrayList<Colaborador> getAll() throws SQLException;
+    ArrayList<Colaborador> getAll(String nifOrganizacacao) throws SQLException;
     
-    ArrayList<String> getAllEmailsByOrganizacao(String nifOrganizacao) throws SQLException;
-
+    ArrayList<String> getAllEmailsAlfByOrganizacao(String nifOrganizacao) throws SQLException;
+        
     String getNifOrganizacao(String email) throws SQLException;
 
     Password findPassword(String email) throws SQLException;

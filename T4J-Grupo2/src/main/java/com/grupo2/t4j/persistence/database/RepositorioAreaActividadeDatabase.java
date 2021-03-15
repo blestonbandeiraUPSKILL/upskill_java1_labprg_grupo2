@@ -10,8 +10,8 @@ package com.grupo2.t4j.persistence.database;
  * @author CAD
  */
 
-import com.grupo2.t4j.exception.AreaActividadeDuplicadaException;
 import com.grupo2.t4j.domain.AreaActividade;
+import com.grupo2.t4j.exception.AreaActividadeDuplicadaException;
 import com.grupo2.t4j.persistence.RepositorioAreaActividade;
 import com.grupo2.t4j.utils.DBConnectionHandler;
 
@@ -48,6 +48,14 @@ public class RepositorioAreaActividadeDatabase implements RepositorioAreaActivid
         return repositorioAreaActividadeDatabase;
     }
 
+    /**
+     * Guarda uma area de actividade na base de dados
+     * @param codigo
+     * @param descBreve
+     * @param descDetalhada
+     * @throws AreaActividadeDuplicadaException
+     * @throws SQLException 
+     */
     public void save(String codigo, String descBreve, String descDetalhada) throws AreaActividadeDuplicadaException, SQLException {
 
         Connection connection = DBConnectionHandler.getInstance().openConnection();
@@ -86,6 +94,12 @@ public class RepositorioAreaActividadeDatabase implements RepositorioAreaActivid
 
     }
 
+    /**
+     * Guarda uma area de atividade na base de dados
+     * @param areaActividade
+     * @return
+     * @throws SQLException 
+     */
     @Override
     public boolean save(AreaActividade areaActividade) throws SQLException {
 
@@ -128,6 +142,11 @@ public class RepositorioAreaActividadeDatabase implements RepositorioAreaActivid
         return false;
     }
 
+    /**
+     * Devolve todas as areas de atividade registadas na base de dados
+     * @return
+     * @throws SQLException 
+     */
     @Override
     public List<AreaActividade> getAll() throws SQLException {
 
@@ -168,6 +187,12 @@ public class RepositorioAreaActividadeDatabase implements RepositorioAreaActivid
         return areasActividade;
     }
 
+    /**
+     * Devolve uma area de atividade a partir do seu codigo
+     * @param codigo
+     * @return
+     * @throws SQLException 
+     */
     @Override
     public AreaActividade findByCodigo(String codigo) throws SQLException {
 
@@ -196,6 +221,12 @@ public class RepositorioAreaActividadeDatabase implements RepositorioAreaActivid
         return new AreaActividade();
     }
 
+    /**
+     * Devolve uma area de actividade a partir do seu codigo
+     * @param codigoAreaActividade
+     * @return
+     * @throws SQLException 
+     */
     @Override
     public AreaActividade getAreaActividade(String codigoAreaActividade) throws SQLException {
 

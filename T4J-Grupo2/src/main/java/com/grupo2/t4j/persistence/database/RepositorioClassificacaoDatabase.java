@@ -10,13 +10,14 @@ package com.grupo2.t4j.persistence.database;
  * @author CAD
  */
 
-import com.grupo2.t4j.domain.*;
+import com.grupo2.t4j.domain.Classificacao;
 import com.grupo2.t4j.persistence.RepositorioClassificacao;
 import com.grupo2.t4j.utils.DBConnectionHandler;
+
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Collections;
+import java.util.List;
 
 public class RepositorioClassificacaoDatabase implements RepositorioClassificacao{
     
@@ -43,6 +44,14 @@ public class RepositorioClassificacaoDatabase implements RepositorioClassificaca
         return repositorioClassificacaoDatabase;
     }
     
+    /**
+     * Regista uma classificacao
+     * @param posicao
+     * @param idSeriacao
+     * @param idCandidatura
+     * @return
+     * @throws SQLException 
+     */
     @Override
     public boolean save(int posicao, int idSeriacao, int idCandidatura) throws SQLException{
 
@@ -84,6 +93,12 @@ public class RepositorioClassificacaoDatabase implements RepositorioClassificaca
         return false;
     }
     
+    /**
+     * Regista uma classificacao
+     * @param classificacao
+     * @return
+     * @throws SQLException 
+     */
     @Override
     public boolean save(Classificacao classificacao) throws SQLException{
 
@@ -91,15 +106,14 @@ public class RepositorioClassificacaoDatabase implements RepositorioClassificaca
 
         try {
             CallableStatement callableStatement = connection.prepareCall(
-                    "{CALL createClassificacao(?, ?, ?, ?) } ");
+                    "{CALL createClassificacao(?, ?, ?) } ");
             if (findByCandidatura(classificacao.getIdCandidatura()) == null){
 
                 connection.setAutoCommit(false);
 
-                callableStatement.setInt(1, classificacao.getIdClassificacao());
-                callableStatement.setInt(2, classificacao.getPosicaoFreelancer());
-                callableStatement.setInt(3, classificacao.getIdSeriacao()); 
-                callableStatement.setInt(4, classificacao.getIdCandidatura());
+                callableStatement.setInt(1, classificacao.getPosicaoFreelancer());
+                callableStatement.setInt(2, classificacao.getIdSeriacao());
+                callableStatement.setInt(3, classificacao.getIdCandidatura());
                                
                 callableStatement.executeQuery();
 
@@ -125,6 +139,12 @@ public class RepositorioClassificacaoDatabase implements RepositorioClassificaca
         return false;
     }
 
+    /**
+     * Devolve uma classificacao a partir do seu id
+     * @param idClassificacao
+     * @return
+     * @throws SQLException 
+     */
     @Override
     public Classificacao findById(int idClassificacao) throws SQLException{
 
@@ -151,20 +171,26 @@ public class RepositorioClassificacaoDatabase implements RepositorioClassificaca
         return new Classificacao();                
     }
     
+    /**
+     * Devolve uma classificacao a partir do id de uma candidatura
+     * @param idCandidatura
+     * @return
+     * @throws SQLException 
+     */
     @Override
     public Classificacao findByCandidatura (int idCandidatura) throws SQLException{
          Connection connection = DBConnectionHandler.getInstance().openConnection();
 
         try {
             CallableStatement callableStatementOrg = connection.prepareCall(
-                    "{CALL findClassificacaoByCandidatura(?)}");
+                    "{ CALL findClassificacaoByCandidatura(?) }");
 
             connection.setAutoCommit(false);
 
             callableStatementOrg.setInt(1, idCandidatura);
             callableStatementOrg.executeQuery();
 
-            return null;
+            return new Classificacao();
 
         } catch (SQLException exceptionOrg) {
             exceptionOrg.printStackTrace();
@@ -173,9 +199,15 @@ public class RepositorioClassificacaoDatabase implements RepositorioClassificaca
         finally {
             DBConnectionHandler.getInstance().closeAll();
         }
-        return new Classificacao();
+        return null;
     }
           
+    /**
+     * Devolve uma classificacao a partir do id da seriacao
+     * @param idSeriacao
+     * @return
+     * @throws SQLException 
+     */
     @Override
     public Classificacao findBySeriacao (int idSeriacao) throws SQLException{
         
@@ -202,6 +234,12 @@ public class RepositorioClassificacaoDatabase implements RepositorioClassificaca
         return new Classificacao();
     }
     
+    /**
+     * Devolve todas as classificacoes de uma seriacao
+     * @param idSeriacao
+     * @return
+     * @throws SQLException 
+     */
     @Override
     public ArrayList<Classificacao> getAllBySeriacao(int idSeriacao) throws SQLException{
         
@@ -212,7 +250,7 @@ public class RepositorioClassificacaoDatabase implements RepositorioClassificaca
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(
                    "SELECT * FROM Classificacao " +
-                            "WHERE idSeriacao =  ?"
+                            "WHERE idProcessoSeriacao =  ?"
             );
 
             preparedStatement.setInt(1, idSeriacao);
@@ -222,7 +260,7 @@ public class RepositorioClassificacaoDatabase implements RepositorioClassificaca
             while (resultSet.next()) {
                 int idClassificacao = resultSet.getInt(1);
                 int posicao = resultSet.getInt(2);
-                int idCandidatura = resultSet.getInt(3);
+                int idCandidatura = resultSet.getInt(4);
                         
                 classificacoes.add(new Classificacao(idClassificacao,  
                         posicao, idSeriacao, idCandidatura));
@@ -246,6 +284,12 @@ public class RepositorioClassificacaoDatabase implements RepositorioClassificaca
         return classificacoes;
     }
     
+    /**
+     * Ordena as classificacoes por id da candidatura
+     * @param classificacoes
+     * @return
+     * @throws SQLException 
+     */
     @Override
     public List<Classificacao> ordenarByIdCandidatura(List<Classificacao> classificacoes) throws SQLException{
         

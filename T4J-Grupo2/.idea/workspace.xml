@@ -4,12 +4,61 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
+
+    <list default="true" id="8ca9f66f-f143-4134-afe5-eb7245bd0a9c" name="Default Changelist" comment="" />
+
     <list default="true" id="8ca9f66f-f143-4134-afe5-eb7245bd0a9c" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../BaseDados/Database.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../BaseDados/Database.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/domain/ReconhecimentoGP.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/domain/ReconhecimentoGP.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/persistence/database/RepositorioFreelancerDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/persistence/database/RepositorioFreelancerDatabase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/persistence/database/RepositorioReconhecimentoGPDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/persistence/database/RepositorioReconhecimentoGPDatabase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/grupo2/t4j/fxml/AdicionarAreaAtividadeScene.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/grupo2/t4j/fxml/AdicionarAreaAtividadeScene.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/grupo2/t4j/fxml/AdicionarCategoriaTarefa.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/grupo2/t4j/fxml/AdicionarCategoriaTarefa.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/grupo2/t4j/fxml/AdicionarCompetenciaTecnicaScene.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/grupo2/t4j/fxml/AdicionarCompetenciaTecnicaScene.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/grupo2/t4j/fxml/AdicionarFreelancerScene.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/grupo2/t4j/fxml/AdicionarFreelancerScene.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/grupo2/t4j/fxml/AdicionarHabilitacaoAcademicaScene.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/grupo2/t4j/fxml/AdicionarHabilitacaoAcademicaScene.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/grupo2/t4j/fxml/AdicionarReconhecimentoGPScene.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/grupo2/t4j/fxml/AdicionarReconhecimentoGPScene.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/grupo2/t4j/fxml/AdministrativoLogadoScene.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/grupo2/t4j/fxml/AdministrativoLogadoScene.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/grupo2/t4j/fxml/ColaboradorLogadoScene.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/grupo2/t4j/fxml/ColaboradorLogadoScene.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/grupo2/t4j/fxml/ConsultarAnuncioColaboradorScene.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/grupo2/t4j/fxml/ConsultarAnuncioColaboradorScene.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/grupo2/t4j/fxml/ConsultarAnuncioGestorScene.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/grupo2/t4j/fxml/ConsultarAnuncioGestorScene.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/grupo2/t4j/fxml/ConsultarAreaActividadeScene.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/grupo2/t4j/fxml/ConsultarAreaActividadeScene.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/grupo2/t4j/fxml/ConsultarCandidaturaFreelancerScene.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/grupo2/t4j/fxml/ConsultarCandidaturaFreelancerScene.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/grupo2/t4j/fxml/ConsultarCandidaturaScene.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/grupo2/t4j/fxml/ConsultarCandidaturaScene.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/grupo2/t4j/fxml/ConsultarCategoriaScene.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/grupo2/t4j/fxml/ConsultarCategoriaScene.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/grupo2/t4j/fxml/ConsultarCompetenciaTecnicaScene.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/grupo2/t4j/fxml/ConsultarCompetenciaTecnicaScene.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/grupo2/t4j/fxml/ConsultarFreelancerScene.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/grupo2/t4j/fxml/ConsultarFreelancerScene.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/grupo2/t4j/fxml/EfectuarCandidaturaScene.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/grupo2/t4j/fxml/EfectuarCandidaturaScene.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/grupo2/t4j/fxml/EspecificarTarefaColaboradorScene.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/grupo2/t4j/fxml/EspecificarTarefaColaboradorScene.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/grupo2/t4j/fxml/EspecificarTarefaGestorScene.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/grupo2/t4j/fxml/EspecificarTarefaGestorScene.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/grupo2/t4j/fxml/FreelancerLogadoScene.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/grupo2/t4j/fxml/FreelancerLogadoScene.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/grupo2/t4j/fxml/GestorLogadoScene.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/grupo2/t4j/fxml/GestorLogadoScene.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/grupo2/t4j/fxml/PublicarTarefaColaboradorScene.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/grupo2/t4j/fxml/PublicarTarefaColaboradorScene.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/grupo2/t4j/fxml/PublicarTarefaGestorScene.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/grupo2/t4j/fxml/PublicarTarefaGestorScene.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/grupo2/t4j/fxml/RegistarColaboradorScene.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/grupo2/t4j/fxml/RegistarColaboradorScene.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/grupo2/t4j/fxml/RegistarOrgEGestorScene.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/grupo2/t4j/fxml/RegistarOrgEGestorScene.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/grupo2/t4j/fxml/SeriacaoManualColaboradorScene.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/grupo2/t4j/fxml/SeriacaoManualColaboradorScene.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/grupo2/t4j/fxml/SeriacaoManualGestorScene.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/grupo2/t4j/fxml/SeriacaoManualGestorScene.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/grupo2/t4j/style/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/grupo2/t4j/style/app.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/grupo2/t4j/style/dark.css" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/grupo2/t4j/style/dark.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-com.grupo2.t4j.model.AreaActividadeTest.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-com.grupo2.t4j.model.CaracterizacaoCTTest.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-com.grupo2.t4j.model.EmailTest.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-com.grupo2.t4j.model.PasswordTest.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-com.grupo2.t4j.persistence.RepositorioAnuncioTest.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-com.grupo2.t4j.persistence.RepositorioCompetenciaTecnicaInMemoryTest.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/com.grupo2.t4j.model.AreaActividadeTest.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/com.grupo2.t4j.model.CaracterizacaoCTTest.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/com.grupo2.t4j.model.EmailTest.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/com.grupo2.t4j.model.PasswordTest.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/com.grupo2.t4j.persistence.RepositorioAnuncioTest.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/com.grupo2.t4j.persistence.RepositorioCompetenciaTecnicaInMemoryTest.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../T4J-WS/src/main/java/t4j/ws/persistence/RepositorioSessao.java" beforeDir="false" afterPath="$PROJECT_DIR$/../T4J-WS/src/main/java/t4j/ws/persistence/RepositorioSessao.java" afterDir="false" />
     </list>
+
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -130,7 +179,7 @@
       <module name="T4J-Grupo2" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.grupo2.t4j.ui.*" />
+          <option name="PATTERN" value="com.grupo2.t4j.ui.PublicarTarefaUI" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -288,68 +337,28 @@
       <breakpoints>
         <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/grupo2/t4j/domain/Utilizador.java</url>
-          <line>181</line>
+          <line>201</line>
           <option name="timeStamp" value="43" />
         </line-breakpoint>
         <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/grupo2/t4j/controller/RegistarAreaActividadeController.java</url>
-          <line>45</line>
+          <line>49</line>
           <option name="timeStamp" value="167" />
         </line-breakpoint>
         <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/AdicionarCompetenciaTecnicaUI.java</url>
-          <line>155</line>
+          <line>166</line>
           <option name="timeStamp" value="210" />
         </line-breakpoint>
         <line-breakpoint type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/grupo2/t4j/persistence/database/RepositorioOrganizacaoDatabase.java</url>
-          <line>78</line>
-          <option name="timeStamp" value="263" />
-        </line-breakpoint>
-        <line-breakpoint type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/grupo2/t4j/controller/RegistarCaracterizacaoCTController.java</url>
-          <line>41</line>
-          <option name="timeStamp" value="299" />
-        </line-breakpoint>
-        <line-breakpoint type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/AdicionarAreaAtividadeUI.java</url>
-          <line>114</line>
-          <option name="timeStamp" value="352" />
-        </line-breakpoint>
-        <line-breakpoint type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/AdicionarReconhecimentoGPUI.java</url>
-          <line>102</line>
-          <option name="timeStamp" value="354" />
+          <url>file://$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/AdicionarFreelancerUI.java</url>
+          <line>90</line>
+          <option name="timeStamp" value="353" />
         </line-breakpoint>
         <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/ConsultarAreaActividadeUI.java</url>
-          <line>51</line>
+          <line>58</line>
           <option name="timeStamp" value="361" />
-        </line-breakpoint>
-        <line-breakpoint type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/PublicarTarefaUI.java</url>
-          <line>65</line>
-          <option name="timeStamp" value="362" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/FreelancerLogadoUI.java</url>
-          <line>194</line>
-          <option name="timeStamp" value="387" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/grupo2/t4j/controller/RegistarColaboradorController.java</url>
-          <line>39</line>
-          <option name="timeStamp" value="399" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/AdicionarFreelancerUI.java</url>
-          <line>64</line>
-          <option name="timeStamp" value="400" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/grupo2/t4j/controller/RegistarFreelancerController.java</url>
-          <line>37</line>
-          <option name="timeStamp" value="402" />
         </line-breakpoint>
         <breakpoint type="java-exception">
           <properties class="java.lang.IllegalArgumentException" package="java.lang" />
@@ -361,11 +370,6 @@
         </breakpoint>
       </breakpoints>
     </breakpoint-manager>
-    <watches-manager>
-      <configuration name="Application">
-        <watch expression="exceptionOrg" />
-      </configuration>
-    </watches-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

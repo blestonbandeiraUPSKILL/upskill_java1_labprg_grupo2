@@ -10,8 +10,6 @@ package com.grupo2.t4j.persistence.database;
  * @author CAD
  */
 
-import com.grupo2.t4j.domain.Colaborador;
-import com.grupo2.t4j.domain.Password;
 import com.grupo2.t4j.persistence.RepositorioColaboradorSeriacao;
 import com.grupo2.t4j.utils.DBConnectionHandler;
 
@@ -60,18 +58,16 @@ public class RepositorioColaboradorSeriacaoDatabase implements RepositorioColabo
                 "{CALL createColaboradorSeriacao(?, ?)}"
             );
 
-            if(findByEmailId(emaiColaborador, idSeriacao) == false) {
+            connection.setAutoCommit(false);
 
-                connection.setAutoCommit(false);
+            callableStatement.setString(1, emaiColaborador);
+            callableStatement.setInt(2, idSeriacao);
+            callableStatement.executeQuery();
 
-                callableStatement.setString(1, emaiColaborador);
-                callableStatement.setInt(2, idSeriacao);
-                callableStatement.executeQuery();
+            connection.commit();
+            return true;
 
-                connection.commit();
-                return true;
 
-            }
         }
         catch (SQLException exception) {
             exception.printStackTrace();
@@ -181,7 +177,7 @@ public class RepositorioColaboradorSeriacaoDatabase implements RepositorioColabo
      * @throws SQLException 
      */
     @Override
-    public ArrayList getAllIdsSeriacaoByColaborador(String emailColaborador) throws SQLException{
+    public ArrayList<Integer> getAllIdsSeriacaoByColaborador(String emailColaborador) throws SQLException{
         
         ArrayList seriacoesColaborador = new ArrayList();
 
@@ -220,5 +216,6 @@ public class RepositorioColaboradorSeriacaoDatabase implements RepositorioColabo
         }
 
         return seriacoesColaborador;
-    }
+    }  
+    
 }

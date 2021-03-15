@@ -1,133 +1,131 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
-
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" styleClass="FlowPane" stylesheets="@../style/app.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.AdicionarCategoriaTarefaUI">
-   <center>
-      <BorderPane prefHeight="200.0" prefWidth="200.0" styleClass="FlowPane" BorderPane.alignment="CENTER">
-         <top>
-            <TabPane prefHeight="417.0" prefWidth="700.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
-              <tabs>
-                <Tab text="Categorias de Tarefa">
-                     <content>
-                        <BorderPane prefHeight="319.0" prefWidth="700.0">
-                           <left>
-                              <VBox alignment="CENTER" prefHeight="350.0" prefWidth="304.0" BorderPane.alignment="CENTER">
-                                 <children>
-                                    <Label text="Selecionar área de Actividade">
-                                       <VBox.margin>
-                                          <Insets bottom="5.0" />
-                                       </VBox.margin>
-                                    </Label>
-                                    <ComboBox fx:id="cmbAreaActividade" prefHeight="25.0" prefWidth="281.0" promptText="Área de Actividade" VBox.vgrow="NEVER">
-                                       <VBox.margin>
-                                          <Insets bottom="10.0" left="10.0" right="10.0" />
-                                       </VBox.margin>
-                                    </ComboBox>
-                                    <Label text="Código ">
-                                       <VBox.margin>
-                                          <Insets bottom="10.0" />
-                                       </VBox.margin>
-                                    </Label>
-                                    <TextField fx:id="txtCodigoCategoria">
-                                       <VBox.margin>
-                                          <Insets bottom="10.0" left="10.0" right="10.0" />
-                                       </VBox.margin>
-                                    </TextField>
-                                    <Label text="Descrição Breve">
-                                       <VBox.margin>
-                                          <Insets bottom="5.0" />
-                                       </VBox.margin>
-                                    </Label>
-                                    <TextField fx:id="txtDescricaoBreve" prefHeight="25.0" prefWidth="226.0">
-                                       <VBox.margin>
-                                          <Insets bottom="10.0" left="10.0" right="10.0" />
-                                       </VBox.margin>
-                                    </TextField>
-                                    <Label text="Descrição Detalhada">
-                                       <VBox.margin>
-                                          <Insets bottom="5.0" />
-                                       </VBox.margin>
-                                    </Label>
-                                    <TextArea fx:id="txtDescricaoDetalhada" prefHeight="70.0" prefWidth="284.0">
-                                       <VBox.margin>
-                                          <Insets bottom="10.0" left="10.0" right="10.0" />
-                                       </VBox.margin>
-                                    </TextArea>
-                                    <Button fx:id="btnAddCategoria" mnemonicParsing="false" onAction="#addCategoria" styleClass="btnConfirmar" text="Adicionar">
-                                       <VBox.margin>
-                                          <Insets />
-                                       </VBox.margin>
-                                    </Button>
-                                 </children>
-                                 <BorderPane.margin>
-                                    <Insets left="30.0" />
-                                 </BorderPane.margin>
-                              </VBox>
-                           </left>
-                           <right>
-                              <AnchorPane prefHeight="320.0" prefWidth="355.0" BorderPane.alignment="CENTER">
-                                 <children>
-                                    <VBox alignment="CENTER" layoutX="19.0" layoutY="15.0" prefHeight="358.0" prefWidth="335.0">
-                                       <children>
-                                          <Label alignment="CENTER" text="Competências Técnicas Adicionadas">
-                                             <opaqueInsets>
+    <center>
+        <BorderPane prefHeight="200.0" prefWidth="200.0" styleClass="FlowPane" BorderPane.alignment="CENTER">
+            <top>
+                <TabPane prefHeight="417.0" prefWidth="700.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+                    <tabs>
+                        <Tab text="Categorias de Tarefa">
+                            <content>
+                                <BorderPane prefHeight="319.0" prefWidth="700.0">
+                                    <left>
+                                        <VBox alignment="CENTER" prefHeight="350.0" prefWidth="304.0" BorderPane.alignment="CENTER">
+                                            <children>
+                                                <Label text="Selecionar área de Actividade">
+                                                    <VBox.margin>
+                                                        <Insets bottom="5.0" />
+                                                    </VBox.margin>
+                                                </Label>
+                                                <ComboBox fx:id="cmbAreaActividade" prefHeight="25.0" prefWidth="281.0" promptText="Área de Actividade" VBox.vgrow="NEVER">
+                                                    <VBox.margin>
+                                                        <Insets bottom="10.0" left="10.0" right="10.0" />
+                                                    </VBox.margin>
+                                                </ComboBox>
+                                                <Label text="Código ">
+                                                    <VBox.margin>
+                                                        <Insets bottom="10.0" />
+                                                    </VBox.margin>
+                                                </Label>
+                                                <TextField fx:id="txtCodigoCategoria">
+                                                    <VBox.margin>
+                                                        <Insets bottom="10.0" left="10.0" right="10.0" />
+                                                    </VBox.margin>
+                                                </TextField>
+                                                <Label text="Descrição Breve">
+                                                    <VBox.margin>
+                                                        <Insets bottom="5.0" />
+                                                    </VBox.margin>
+                                                </Label>
+                                                <TextField fx:id="txtDescricaoBreve" prefHeight="25.0" prefWidth="226.0">
+                                                    <VBox.margin>
+                                                        <Insets bottom="10.0" left="10.0" right="10.0" />
+                                                    </VBox.margin>
+                                                </TextField>
+                                                <Label text="Descrição Detalhada">
+                                                    <VBox.margin>
+                                                        <Insets bottom="5.0" />
+                                                    </VBox.margin>
+                                                </Label>
+                                                <TextArea fx:id="txtDescricaoDetalhada" prefHeight="70.0" prefWidth="284.0">
+                                                    <VBox.margin>
+                                                        <Insets bottom="10.0" left="10.0" right="10.0" />
+                                                    </VBox.margin>
+                                                </TextArea>
+                                                <Button fx:id="btnAddCategoria" mnemonicParsing="false" onAction="#addCategoria" styleClass="btnConfirmar" text="Adicionar">
+                                                    <VBox.margin>
+                                                        <Insets />
+                                                    </VBox.margin>
+                                                </Button>
+                                            </children>
+                                            <BorderPane.margin>
+                                                <Insets left="30.0" />
+                                            </BorderPane.margin>
+                                        </VBox>
+                                    </left>
+                                    <right>
+                                        <AnchorPane prefHeight="320.0" prefWidth="355.0" BorderPane.alignment="CENTER">
+                                            <children>
+                                                <VBox alignment="CENTER" layoutX="19.0" layoutY="15.0" prefHeight="358.0" prefWidth="335.0">
+                                                    <children>
+                                                        <Label alignment="CENTER" text="Competências Técnicas Adicionadas">
+                                                            <opaqueInsets>
+                                                                <Insets />
+                                                            </opaqueInsets>
+                                                            <VBox.margin>
+                                                                <Insets top="10.0" />
+                                                            </VBox.margin>
+                                                        </Label>
+                                                        <ListView fx:id="listViewCompTecCat" prefHeight="117.0" prefWidth="315.0">
+                                                            <VBox.margin>
+                                                                <Insets bottom="30.0" left="10.0" right="10.0" />
+                                                            </VBox.margin>
+                                                        </ListView>
+                                                        <ComboBox fx:id="cmbCompetenciaTecnica" prefWidth="220.0" promptText="Escolha a Competência Técnica" VBox.vgrow="NEVER">
+                                                            <VBox.margin>
+                                                                <Insets bottom="10.0" />
+                                                            </VBox.margin>
+                                                        </ComboBox>
+                                                        <ComboBox fx:id="cmbGrauProficiencia" prefWidth="220.0" promptText="Escolha o Grau de Proficiência" VBox.vgrow="NEVER">
+                                                            <VBox.margin>
+                                                                <Insets bottom="10.0" />
+                                                            </VBox.margin>
+                                                        </ComboBox>
+                                                        <ComboBox fx:id="cmbObrigatoriedade" prefWidth="220.0" promptText="Escolha uma opção:" VBox.vgrow="NEVER">
+                                                            <VBox.margin>
+                                                                <Insets bottom="10.0" />
+                                                            </VBox.margin>
+                                                        </ComboBox>
+                                                        <Button fx:id="btnAddCompTecCat" mnemonicParsing="false" onAction="#addCompetenciaTecnica2CCTS" styleClass="btnConfirmar" text="Definir" VBox.vgrow="NEVER">
+                                                            <VBox.margin>
+                                                                <Insets bottom="10.0" />
+                                                            </VBox.margin>
+                                                        </Button>
+                                                    </children>
+                                                </VBox>
+                                            </children>
+                                            <BorderPane.margin>
                                                 <Insets />
-                                             </opaqueInsets>
-                                             <VBox.margin>
-                                                <Insets top="10.0" />
-                                             </VBox.margin>
-                                          </Label>
-                                          <ListView fx:id="listViewCompTecCat" prefHeight="117.0" prefWidth="315.0">
-                                             <VBox.margin>
-                                                <Insets bottom="30.0" left="10.0" right="10.0" />
-                                             </VBox.margin>
-                                          </ListView>
-                                          <ComboBox fx:id="cmbCompetenciaTecnica" prefWidth="220.0" promptText="Escolha a Competência Técnica" VBox.vgrow="NEVER">
-                                             <VBox.margin>
-                                                <Insets bottom="10.0" />
-                                             </VBox.margin>
-                                          </ComboBox>
-                                          <ComboBox fx:id="cmbGrauProficiencia" prefWidth="220.0" promptText="Escolha o Grau de Proficiência" VBox.vgrow="NEVER">
-                                             <VBox.margin>
-                                                <Insets bottom="10.0" />
-                                             </VBox.margin>
-                                          </ComboBox>
-                                          <ComboBox fx:id="cmbObrigatoriedade" prefWidth="220.0" promptText="Escolha uma opção:" VBox.vgrow="NEVER">
-                                             <VBox.margin>
-                                                <Insets bottom="10.0" />
-                                             </VBox.margin>
-                                          </ComboBox>
-                                          <Button fx:id="btnAddCompTecCat" mnemonicParsing="false" onAction="#addCompetenciaTecnica2CCTS" styleClass="btnConfirmar" text="Definir" VBox.vgrow="NEVER">
-                                             <VBox.margin>
-                                                <Insets bottom="10.0" />
-                                             </VBox.margin>
-                                          </Button>
-                                       </children>
-                                    </VBox>
-                                 </children>
-                                 <BorderPane.margin>
-                                    <Insets />
-                                 </BorderPane.margin>
-                              </AnchorPane>
-                           </right>
-                        </BorderPane>
-                     </content>
-                </Tab>
-              </tabs>
-            </TabPane>
-         </top>
-         <bottom>
-            <FlowPane alignment="CENTER_RIGHT" prefHeight="22.0" prefWidth="700.0" styleClass="FlowPane" BorderPane.alignment="CENTER">
-               <children>
-                  <Button fx:id="btnConfirmar" defaultButton="true" mnemonicParsing="false" onAction="#confirmarAction" styleClass="btnConfirmar" text="Confirmar">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
+                                            </BorderPane.margin>
+                                        </AnchorPane>
+                                    </right>
+                                </BorderPane>
+                            </content>
+                        </Tab>
+                    </tabs>
+                </TabPane>
+            </top>
+            <bottom>
+                <FlowPane alignment="CENTER_RIGHT" prefHeight="22.0" prefWidth="700.0" styleClass="FlowPane" BorderPane.alignment="CENTER">
+                    <children>
+                        <Button fx:id="btnConfirmar" defaultButton="true" mnemonicParsing="false" onAction="#confirmarAction" styleClass="btnConfirmar" text="Confirmar">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
                             <tooltip>
                                 <Tooltip text="Confirmar">
                                     <font>
@@ -135,14 +133,14 @@
                                     </font>
                                 </Tooltip>
                             </tooltip>
-                  </Button>
-                  <Button fx:id="btnCancelar" mnemonicParsing="false" onAction="#cancelarAction" text="Cancelar">
-                     <FlowPane.margin>
-                        <Insets left="10.0" right="10.0" />
-                     </FlowPane.margin>
-                     <font>
-                        <Font size="14.0" />
-                     </font>
+                        </Button>
+                        <Button fx:id="btnCancelar" mnemonicParsing="false" onAction="#cancelarAction" text="Cancelar">
+                            <FlowPane.margin>
+                                <Insets left="10.0" right="10.0" />
+                            </FlowPane.margin>
+                            <font>
+                                <Font size="14.0" />
+                            </font>
                             <tooltip>
                                 <Tooltip text="Cancelar">
                                     <font>
@@ -150,23 +148,23 @@
                                     </font>
                                 </Tooltip>
                             </tooltip>
-                  </Button>
-               </children>
-               <BorderPane.margin>
-                  <Insets bottom="10.0" />
-               </BorderPane.margin>
-            </FlowPane>
-         </bottom>
-      </BorderPane>
-   </center>
-   <top>
-      <Label styleClass="lblUser" stylesheets="@../style/app.css" text="Bem-vindo á Área do Administrativo" textFill="WHITE" BorderPane.alignment="CENTER_RIGHT">
-         <font>
-            <Font name="Calibri Italic" size="16.0" />
-         </font>
-         <padding>
-            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-         </padding>
-      </Label>
-   </top>
+                        </Button>
+                    </children>
+                    <BorderPane.margin>
+                        <Insets bottom="10.0" />
+                    </BorderPane.margin>
+                </FlowPane>
+            </bottom>
+        </BorderPane>
+    </center>
+    <top>
+        <Label styleClass="lblUser" stylesheets="@../style/app.css" text="Bem-vindo á Área do Administrativo" textFill="WHITE" BorderPane.alignment="CENTER_RIGHT">
+            <font>
+                <Font name="Calibri Italic" size="16.0" />
+            </font>
+            <padding>
+                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+            </padding>
+        </Label>
+    </top>
 </BorderPane>

@@ -10,7 +10,8 @@ package com.grupo2.t4j.persistence;
  * @author CAD
  */
 
-import com.grupo2.t4j.domain.*;
+import com.grupo2.t4j.domain.ProcessoSeriacao;
+
 import java.sql.SQLException;
 import java.util.List;
 public interface RepositorioSeriacao {
@@ -24,6 +25,11 @@ public interface RepositorioSeriacao {
     ProcessoSeriacao findByAnuncio(int idAnuncio) throws SQLException;    
     
     List<ProcessoSeriacao> getAll()throws SQLException;
-    
-    
+
+    List<ProcessoSeriacao> getAllByIdAnuncio(int idAnuncio)throws SQLException;
+
+    ProcessoSeriacao getProcessoSeriacaoByAnuncio(int idAnuncio) throws SQLException;
+
+    ProcessoSeriacao findProcessoSeriacaoByIdAnuncio(int idAnuncio) throws SQLException;
+
 }

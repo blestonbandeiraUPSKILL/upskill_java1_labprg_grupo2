@@ -35,6 +35,10 @@ public class RegistarColaboradorUI implements Initializable {
     @FXML Button btnRegistarColaborador;
     @FXML Button btnSair;
 
+     /**
+     * Associa a scene GestorLogadoUI como parent desta Scene 
+     * @param gestorLogadoUI
+     */
     public void associarParentUI(GestorLogadoUI gestorLogadoUI) {
         this.gestorLogadoUI = gestorLogadoUI;
     }
@@ -53,11 +57,19 @@ public class RegistarColaboradorUI implements Initializable {
 
     }
 
+    /**
+     * Associa o nif da organizacao do gestor ao colaborador
+     * @throws SQLException 
+     */
     void transferNif() throws SQLException {
         txtNifOrganizacao.setText(
                 gestorLogadoUI.getNifOrganizacao());
     }
 
+    /**
+     * Regista um novo colaborador
+     * @param actionEvent 
+     */
     public void registarColaboradorAction(ActionEvent actionEvent) {
 
         try {
@@ -92,6 +104,10 @@ public class RegistarColaboradorUI implements Initializable {
         }
     }
 
+    /**
+     * Cancela o registo de um colaborador
+     * @param actionEvent 
+     */
     public void cancelarRegisto(ActionEvent actionEvent) {
         this.txtNomeColaborador.clear();
         this.txtEmailColaborador.clear();

@@ -10,9 +10,10 @@ package com.grupo2.t4j.persistence.database;
  * @author CAD
  */
 
-import com.grupo2.t4j.domain.*;
+import com.grupo2.t4j.domain.ProcessoSeriacao;
 import com.grupo2.t4j.persistence.RepositorioSeriacao;
 import com.grupo2.t4j.utils.DBConnectionHandler;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -40,6 +41,12 @@ public class RepositorioSeriacaoDatabase implements RepositorioSeriacao{
         return repositorioSeriacaoDatabase;
     }
     
+    /**
+     * Regista a seriacao de um anuncio
+     * @param idAnuncio
+     * @return
+     * @throws SQLException 
+     */
     @Override
     public boolean save(int idAnuncio) throws SQLException{
 
@@ -47,7 +54,7 @@ public class RepositorioSeriacaoDatabase implements RepositorioSeriacao{
 
         try {
             CallableStatement callableStatement = connection.prepareCall(
-                "{CALL createSeriacao(?, ?, ?) } ");
+                "{CALL createSeriacao(?) } ");
 
             if (findByAnuncio(idAnuncio) == null){
 
@@ -78,6 +85,12 @@ public class RepositorioSeriacaoDatabase implements RepositorioSeriacao{
         return false;
     }
     
+    /**
+     * Regista o processo de seriacao de um anuncio
+     * @param seriacao
+     * @return
+     * @throws SQLException 
+     */
     @Override
     public boolean save(ProcessoSeriacao seriacao) throws SQLException{
 
@@ -85,15 +98,13 @@ public class RepositorioSeriacaoDatabase implements RepositorioSeriacao{
 
         try {
             CallableStatement callableStatement = connection.prepareCall(
-                "{CALL createSeriacao(?, ?, ?) } ");
+                "{CALL createSeriacao(?) } ");
 
             if (findByAnuncio(seriacao.getIdAnuncio()) == null){
 
                 connection.setAutoCommit(false);
 
-                callableStatement.setInt(1, seriacao.getIdSeriacao());
-                callableStatement.setInt(2, seriacao.getIdAnuncio());
-                callableStatement.setString(3, seriacao.getDataSeriacao());
+                callableStatement.setInt(1, seriacao.getIdAnuncio());
                 callableStatement.executeQuery();
 
                 connection.commit();
@@ -118,6 +129,12 @@ public class RepositorioSeriacaoDatabase implements RepositorioSeriacao{
         return false;
     }
 
+    /**
+     * Devolve um processo de seriacao a partir do seu id
+     * @param idSeriacao
+     * @return
+     * @throws SQLException 
+     */
     @Override
     public ProcessoSeriacao findById(int idSeriacao) throws SQLException{
 
@@ -144,6 +161,12 @@ public class RepositorioSeriacaoDatabase implements RepositorioSeriacao{
         return new ProcessoSeriacao();      
     }
     
+    /**
+     * Devolve o processo de seriacao de um anuncio
+     * @param idAnuncio
+     * @return
+     * @throws SQLException 
+     */
     @Override
     public ProcessoSeriacao findByAnuncio(int idAnuncio) throws SQLException{
 
@@ -151,14 +174,14 @@ public class RepositorioSeriacaoDatabase implements RepositorioSeriacao{
 
         try {
             CallableStatement callableStatementOrg = connection.prepareCall(
-                    "{CALL findSeriacaoByAnuncio(?)}");
+                    "{ CALL findSeriacaoByAnuncio(?) }");
 
             connection.setAutoCommit(false);
 
             callableStatementOrg.setInt(1, idAnuncio);
             callableStatementOrg.executeQuery();
 
-            return null;
+            return new ProcessoSeriacao();
 
         } catch (SQLException exceptionOrg) {
             exceptionOrg.printStackTrace();
@@ -167,9 +190,15 @@ public class RepositorioSeriacaoDatabase implements RepositorioSeriacao{
         finally {
             DBConnectionHandler.getInstance().closeAll();
         }
-        return new ProcessoSeriacao();      
+
+        return null;
     } 
         
+    /**
+     * Devolve todos os processos de seriacao
+     * @return
+     * @throws SQLException 
+     */
     @Override
     public List<ProcessoSeriacao> getAll() throws SQLException{
         
@@ -207,5 +236,147 @@ public class RepositorioSeriacaoDatabase implements RepositorioSeriacao{
             DBConnectionHandler.getInstance().closeAll();
         }    
         return seriacoes;
+    }
+
+    /**
+     * Devolve todos os processos de seriacao de um anuncio
+     * @param idAnuncio
+     * @return
+     * @throws SQLException 
+     */
+    @Override
+    public List<ProcessoSeriacao> getAllByIdAnuncio(int idAnuncio) throws SQLException {
+        List<ProcessoSeriacao> processosSeriacao = new ArrayList<>();
+
+        Connection connection = DBConnectionHandler.getInstance().openConnection();
+
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(
+                    "SELECT * FROM ProcessoSeriacao "
+                            + "WHERE idAnuncio =  ?"
+            );
+
+            preparedStatement.setInt(1, idAnuncio);
+
+            preparedStatement.executeQuery();
+
+            ResultSet resultSet = preparedStatement.getResultSet();
+
+            while (resultSet.next()) {
+                int idProcessoSeriacao = resultSet.getInt(1);
+                String dataSeriacao =  resultSet.getString(2);
+
+                processosSeriacao.add(new ProcessoSeriacao(idProcessoSeriacao, idAnuncio, dataSeriacao));
+            }
+
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+            exception.getSQLState();
+            try {
+                System.err.print("Transaction is being rolled back");
+                connection.rollback();
+            } catch (SQLException sqlException) {
+                sqlException.getErrorCode();
+            }
+
+        } finally {
+            DBConnectionHandler.getInstance().closeAll();
+        }
+        return processosSeriacao;
+    }
+
+    /**
+     * Devolve o processo de seriacao de um anuncio
+     * @param idAnuncio
+     * @return
+     * @throws SQLException 
+     */
+    @Override
+    public ProcessoSeriacao getProcessoSeriacaoByAnuncio(int idAnuncio) throws SQLException {
+        ProcessoSeriacao processoSeriacao = new ProcessoSeriacao();
+
+        Connection connection = DBConnectionHandler.getInstance().openConnection();
+
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(
+                    "SELECT * FROM ProcessoSeriacao WHERE idAnuncio = ?"
+            );
+
+            preparedStatement.setInt(1, idAnuncio);
+            preparedStatement.executeQuery();
+
+            ResultSet resultSet = preparedStatement.getResultSet();
+
+            while (resultSet.next()) {
+                processoSeriacao.setIdSeriacao(resultSet.getInt(1));
+                processoSeriacao.setIdAnuncio(idAnuncio);
+                processoSeriacao.setData(resultSet.getString(3));
+            }
+        }
+        catch (SQLException exception) {
+            exception.printStackTrace();
+            exception.getSQLState();
+            try {
+                System.err.print("Transaction is being rolled back");
+                connection.rollback();
+            }
+            catch (SQLException sqlException) {
+                sqlException.getErrorCode();
+            }
+
+        }
+        finally {
+            DBConnectionHandler.getInstance().closeAll();
+        }
+
+        return processoSeriacao;
+    }
+
+    /**
+     * Devolve o processo de seriacao de um anuncio
+     * @param idAnuncio
+     * @return
+     * @throws SQLException 
+     */
+    @Override
+    public ProcessoSeriacao findProcessoSeriacaoByIdAnuncio(int idAnuncio) throws SQLException {
+        ProcessoSeriacao processoSeriacao = new ProcessoSeriacao();
+
+        Connection connection = DBConnectionHandler.getInstance().openConnection();
+
+        try {
+            CallableStatement callableStatement = connection.prepareCall(
+                    "{ CALL findProcessoSeriacaoByIdAnuncio(?) := ?}"
+            );
+
+            callableStatement.setInt(1, idAnuncio);
+            callableStatement.registerOutParameter(2, Types.REF_CURSOR);
+            callableStatement.executeQuery();
+
+            ResultSet resultSet = callableStatement.getResultSet();
+
+            while (resultSet.next()) {
+                processoSeriacao.setIdSeriacao(resultSet.getInt(1));
+                processoSeriacao.setIdAnuncio(idAnuncio);
+                processoSeriacao.setData(resultSet.getString(3));
+            }
+        }
+        catch (SQLException exception) {
+            exception.printStackTrace();
+            exception.getSQLState();
+            try {
+                System.err.print("Transaction is being rolled back");
+                connection.rollback();
+            }
+            catch (SQLException sqlException) {
+                sqlException.getErrorCode();
+            }
+
+        }
+        finally {
+            DBConnectionHandler.getInstance().closeAll();
+        }
+
+        return processoSeriacao;
     }
 }

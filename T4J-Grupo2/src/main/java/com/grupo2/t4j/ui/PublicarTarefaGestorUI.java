@@ -1,6 +1,7 @@
 package com.grupo2.t4j.ui;
 
 import com.grupo2.t4j.controller.PublicarTarefaController;
+import com.grupo2.t4j.domain.FiltroTarefas;
 import com.grupo2.t4j.domain.TipoRegimento;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -32,7 +33,10 @@ public class PublicarTarefaGestorUI implements Initializable {
     @FXML Button btnVoltar;
     @FXML ComboBox<TipoRegimento> cmbTipoSeriacao;
 
-    
+     /**
+     * Associa a scene GestorLogadoUI como parent desta Scene 
+     * @param gestorLogadoUI
+     */
     public void associarParentUI(GestorLogadoUI gestorLogadoUI) {
         this.gestorLogadoUI = gestorLogadoUI;
     }
@@ -59,6 +63,12 @@ public class PublicarTarefaGestorUI implements Initializable {
            }
            });
     }    
+    
+    /**
+     * Publica uma tarefa
+     * @param actionEvent
+     * @throws SQLException 
+     */
     @FXML
     void publicarTarefaAction(ActionEvent actionEvent) throws SQLException{
         try {
@@ -83,6 +93,7 @@ public class PublicarTarefaGestorUI implements Initializable {
             }
 
             closePublicarTarefa(actionEvent);
+            gestorLogadoUI.cmbFiltroTarefas.getSelectionModel().select(FiltroTarefas.TAREFAS_DA_ORGANIZACAO);
 
         }
         catch (IllegalArgumentException exception) {
@@ -95,11 +106,19 @@ public class PublicarTarefaGestorUI implements Initializable {
 
     }
     
+    /**
+     * Volta para a scene anterior
+     * @param event 
+     */
     @FXML
     void voltarAtras(ActionEvent event) {
         btnVoltar.getScene().getWindow().hide();
     }
     
+    /**
+     * Termina o registo de uma tarefa
+     * @param actionEvent 
+     */
     private void closePublicarTarefa(ActionEvent actionEvent) {
 
         ((Node) actionEvent.getSource()).getScene().getWindow().hide();

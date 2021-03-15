@@ -38,6 +38,12 @@ public class RepositorioCompetenciaTecnicaDatabase implements RepositorioCompete
 
     }
 
+    /**
+     * Regista uma competencia tecnica
+     * @param competenciaTecnica
+     * @return
+     * @throws SQLException 
+     */
     @Override
     public boolean save(CompetenciaTecnica competenciaTecnica) throws SQLException {
 
@@ -82,6 +88,11 @@ public class RepositorioCompetenciaTecnicaDatabase implements RepositorioCompete
         return false;
     }
 
+    /**
+     * Devolve todas as competencias tecnicas
+     * @return
+     * @throws SQLException 
+     */
     @Override
     public List<CompetenciaTecnica> getAll() throws SQLException {
         ArrayList<CompetenciaTecnica> competenciasTecnicas = new ArrayList<>();
@@ -122,6 +133,12 @@ public class RepositorioCompetenciaTecnicaDatabase implements RepositorioCompete
         return competenciasTecnicas;
     }
 
+    /**
+     * Devolve uma competencia tecnica a partir do seu codigo
+     * @param codigo
+     * @return
+     * @throws SQLException 
+     */
     @Override
     public CompetenciaTecnica findByCodigo(String codigo) throws SQLException {
 
@@ -151,35 +168,12 @@ public class RepositorioCompetenciaTecnicaDatabase implements RepositorioCompete
         return new CompetenciaTecnica();
     }
 
-    @Override
-    public CompetenciaTecnica findCompetenciaByAreaActividade(String codigoAreaActividade) throws SQLException {
-
-        Connection connection = DBConnectionHandler.getInstance().openConnection();
-
-        try {
-            CallableStatement callableStatement = connection.prepareCall(
-                    "{CALL findCompTecnicaByAreaActividade(?) }"
-            );
-
-            connection.setAutoCommit(false);
-
-            callableStatement.setString(1, codigoAreaActividade);
-            callableStatement.executeUpdate();
-
-            return null;
-
-        } catch (SQLException exception) {
-            exception.printStackTrace();
-            exception.getSQLState();
-        }
-        finally {
-            DBConnectionHandler.getInstance().closeAll();
-        }
-
-        return new CompetenciaTecnica();
-    }
-
-
+    /**
+     * Devolve todas as competencias tecnicas de uma area de actividade
+     * @param codigoAreaActividade
+     * @return
+     * @throws SQLException 
+     */
     @Override
     public List<CompetenciaTecnica> findByAreaActividade(String codigoAreaActividade) throws SQLException {
         ArrayList<CompetenciaTecnica> competenciasTecnicas = new ArrayList<>();

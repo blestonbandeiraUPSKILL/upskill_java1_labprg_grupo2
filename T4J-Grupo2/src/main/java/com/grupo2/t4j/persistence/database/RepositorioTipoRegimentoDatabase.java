@@ -10,12 +10,14 @@ package com.grupo2.t4j.persistence.database;
  * @author CAD
  */
 
-import com.grupo2.t4j.domain.*;
+import com.grupo2.t4j.domain.TipoRegimento;
 import com.grupo2.t4j.persistence.RepositorioTipoRegimento;
-import com.grupo2.t4j.persistence.RepositorioAnuncio;
 import com.grupo2.t4j.utils.DBConnectionHandler;
-import java.sql.*;
-import java.util.ArrayList;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 
 public class RepositorioTipoRegimentoDatabase implements RepositorioTipoRegimento {
@@ -53,6 +55,12 @@ public class RepositorioTipoRegimentoDatabase implements RepositorioTipoRegiment
         return false;
     }
 
+    /**
+     * Devolve o tipo de regimento a partir do seu id
+     * @param idTipoRegimento
+     * @return
+     * @throws SQLException 
+     */
     @Override
     public TipoRegimento findById(int idTipoRegimento) throws SQLException{
         
@@ -92,6 +100,11 @@ public class RepositorioTipoRegimentoDatabase implements RepositorioTipoRegiment
         return tipoRegimento;
     }
 
+    /**
+     * Devolve todos os tipos de regimento aplicaveis
+     * @return
+     * @throws SQLException 
+     */
     @Override
     public List<TipoRegimento> getAll()throws SQLException{
         return null;

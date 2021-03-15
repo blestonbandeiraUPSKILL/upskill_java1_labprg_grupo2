@@ -1,8 +1,7 @@
 package com.grupo2.t4j.persistence.database;
 
-import com.grupo2.t4j.exception.FreelancerDuplicadoException;
-import com.grupo2.t4j.domain.ReconhecimentoGP;
 import com.grupo2.t4j.domain.*;
+import com.grupo2.t4j.exception.FreelancerDuplicadoException;
 import com.grupo2.t4j.persistence.RepositorioFreelancer;
 import com.grupo2.t4j.utils.DBConnectionHandler;
 
@@ -36,6 +35,21 @@ public class RepositorioFreelancerDatabase implements RepositorioFreelancer{
     }
 
 
+    /**
+     * Regista um Freelancer
+     * @param emailFree
+     * @param nome
+     * @param nif
+     * @param telefone
+     * @param password
+     * @param arruamento
+     * @param numeroPorta
+     * @param localidade
+     * @param codPostal
+     * @return
+     * @throws FreelancerDuplicadoException
+     * @throws SQLException 
+     */
     @Override
     public boolean save(String emailFree, String nome, String nif, String telefone, String password, String arruamento,
                         String numeroPorta, String localidade, String codPostal) throws FreelancerDuplicadoException,
@@ -90,6 +104,12 @@ public class RepositorioFreelancerDatabase implements RepositorioFreelancer{
         return false;
     }
 
+    /**
+     * Devolve um freelancer a partir do seu nif
+     * @param nif
+     * @return
+     * @throws SQLException 
+     */
     @Override
     public Freelancer findByNif(String nif) throws SQLException{
 
@@ -119,6 +139,12 @@ public class RepositorioFreelancerDatabase implements RepositorioFreelancer{
         return new Freelancer();
     }
 
+    /**
+     * Devolve a password de um freelancer
+     * @param email
+     * @return
+     * @throws SQLException 
+     */
     @Override
     public Password findPassword(String email) throws SQLException {
 
@@ -153,6 +179,12 @@ public class RepositorioFreelancerDatabase implements RepositorioFreelancer{
         return null;
     }
 
+    /**
+     * Devolve um Freelancer a partir do seu email
+     * @param emailFree
+     * @return
+     * @throws SQLException 
+     */
     @Override
     public Freelancer findByEmail(String emailFree) throws SQLException {
 
@@ -195,6 +227,11 @@ public class RepositorioFreelancerDatabase implements RepositorioFreelancer{
 
     }
 
+    /**
+     * Devolve uma lista de todos os Freelancers
+     * @return
+     * @throws SQLException 
+     */
     @Override
     public ArrayList<Freelancer> getAll() throws SQLException {
         
@@ -237,50 +274,13 @@ public class RepositorioFreelancerDatabase implements RepositorioFreelancer{
 
         return freelancers;
     }
-    
-    @Override
-    public ArrayList<String> getAllEmails() throws SQLException {
-        
-        ArrayList<String> listaEmailfreelancers = new ArrayList<>();
 
-        Connection connection = DBConnectionHandler.getInstance().openConnection();
-
-        try {
-            PreparedStatement preparedStatement = connection.prepareStatement(
-                    "SELECT * FROM Freelancer"
-            );
-
-            ResultSet resultSet = preparedStatement.executeQuery();
-
-            while(resultSet.next()) {
-                String email = resultSet.getString(1);
-                String nome = resultSet.getString(2);
-                String password = resultSet.getString(3);
-                String nif = resultSet.getString(4);
-                String telefone = resultSet.getString(5);
-                String codigoEnderecoPostal = resultSet.getString(6);
-                listaEmailfreelancers.add(email);
-            }
-        }
-        catch (SQLException exception) {
-            exception.printStackTrace();
-            exception.getSQLState();
-            try {
-                System.err.print("Transaction is being rolled back");
-                connection.rollback();
-            }
-            catch (SQLException sqlException) {
-                sqlException.getErrorCode();
-            }
-
-        }
-        finally {
-            DBConnectionHandler.getInstance().closeAll();
-        }
-        return listaEmailfreelancers;
-
-    }
-
+    /**
+     * Devolve todos os reconhecimentos de um freelancer
+     * @param emailFreelancer
+     * @return
+     * @throws SQLException 
+     */
     @Override
     public List<ReconhecimentoGP> getAllReconhecimentoGP(String emailFreelancer) throws SQLException {
         ArrayList<ReconhecimentoGP> reconhecimentosGP = new ArrayList<>();
@@ -327,6 +327,12 @@ public class RepositorioFreelancerDatabase implements RepositorioFreelancer{
 
     }
 
+    /**
+     * Devolve todas as habilitacoes academicas de um freelancer
+     * @param emailFreelancer
+     * @return
+     * @throws SQLException 
+     */
     @Override
     public List<HabilitacaoAcademica> getAllHabsAcademicas(String emailFreelancer) throws SQLException {
         ArrayList<HabilitacaoAcademica> habsAcademicas = new ArrayList<>();
@@ -375,6 +381,12 @@ public class RepositorioFreelancerDatabase implements RepositorioFreelancer{
         return habsAcademicas;
     }
 
+    /**
+     * Devolve o endereco postal de um freelancer a partir do seu email
+     * @param emailFreelancer
+     * @return
+     * @throws SQLException 
+     */
     @Override
     public EnderecoPostal getEnderecoPostal(String emailFreelancer) throws SQLException {
         EnderecoPostal enderecoPostal = new EnderecoPostal();
@@ -418,50 +430,5 @@ public class RepositorioFreelancerDatabase implements RepositorioFreelancer{
         return enderecoPostal;
     }
 
-    @Override
-    public List<GrauProficiencia> getAllGrausFreelancer(String emailFreelancer) throws SQLException {
 
-        List<GrauProficiencia> grausFreelancer = new ArrayList<>();
-
-        Connection connection = DBConnectionHandler.getInstance().openConnection();
-
-        try {
-            PreparedStatement preparedStatement = connection.prepareStatement(
-                    "SELECT * FROM GrauProficiencia " +
-                            "INNER JOIN ReconhecimentoGP " +
-                            "ON GrauProficiencia.idGrauProficiencia = ReconhecimentoGP.idGrauProficiencia " +
-                            "INNER JOIN Freelancer " +
-                            "ON ReconhecimentoGP.emailFreelancer LIKE Freelancer.email " +
-                            "WHERE Freelancer.email LIKE ?"
-            );
-
-            preparedStatement.setString(1, emailFreelancer);
-
-            ResultSet resultSet = preparedStatement.executeQuery();
-
-            while(resultSet.next()) {
-                int idGrauProficiencia = resultSet.getInt(1);
-                int grau = resultSet.getInt(2);
-                String designacao = resultSet.getString(3);
-                String codigoCompetenciaTecnica = resultSet.getString(4);
-                grausFreelancer.add(new GrauProficiencia(idGrauProficiencia, grau, designacao, codigoCompetenciaTecnica));
-            }
-        }
-        catch (SQLException exception) {
-            exception.printStackTrace();
-            exception.getSQLState();
-            try {
-                System.err.print("Transaction is being rolled back");
-                connection.rollback();
-            }
-            catch (SQLException sqlException) {
-                sqlException.getErrorCode();
-            }
-        }
-        finally {
-            DBConnectionHandler.getInstance().closeAll();
-        }
-
-        return grausFreelancer;
-    }
 }

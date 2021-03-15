@@ -57,11 +57,21 @@ public class Organizacao implements Serializable{
     private Email emailGestor;
     
     /**
-     * O construtor vazio da classeorganização
+     * O construtor vazio da classe organização
      */
     public Organizacao(){
     }
 
+    /**
+     * Construtor completo da classe Organizacao
+     * @param nif
+     * @param nome
+     * @param websiteOrg
+     * @param telefone
+     * @param emailOrg
+     * @param emailGestor
+     * @param idEnderecoPostal 
+     */
     public Organizacao(String nif, String nome, Website websiteOrg,
                        String telefone, Email emailOrg, Email emailGestor, int idEnderecoPostal){
         setNif(nif);

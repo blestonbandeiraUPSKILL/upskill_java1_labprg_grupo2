@@ -10,9 +10,8 @@ package com.grupo2.t4j.persistence.database;
  * @author CAD
  */
 
-import com.grupo2.t4j.exception.ReconhecimentoDuplicadoException;
-import com.grupo2.t4j.domain.Email;
 import com.grupo2.t4j.domain.ReconhecimentoGP;
+import com.grupo2.t4j.exception.ReconhecimentoDuplicadoException;
 import com.grupo2.t4j.persistence.RepositorioReconhecimentoGP;
 import com.grupo2.t4j.utils.DBConnectionHandler;
 
@@ -47,6 +46,15 @@ public class RepositorioReconhecimentoGPDatabase implements RepositorioReconheci
     }
 
 
+    /**
+     * Regista o reconhecimento de um freelancer
+     * @param idGrauProficiencia
+     * @param emailFreelancer
+     * @param dataReconhecimento
+     * @return
+     * @throws ReconhecimentoDuplicadoException
+     * @throws SQLException 
+     */
     @Override
     public boolean save(int idGrauProficiencia, String emailFreelancer, String dataReconhecimento) throws  ReconhecimentoDuplicadoException,
             SQLException{
@@ -87,6 +95,13 @@ public class RepositorioReconhecimentoGPDatabase implements RepositorioReconheci
 
     }
 
+    /**
+     * Regista o reconhecimento de um freelancer
+     * @param reconhecimentoGP
+     * @return
+     * @throws ReconhecimentoDuplicadoException
+     * @throws SQLException 
+     */
     @Override
     public boolean save(ReconhecimentoGP reconhecimentoGP) throws ReconhecimentoDuplicadoException,
             SQLException {
@@ -126,6 +141,12 @@ public class RepositorioReconhecimentoGPDatabase implements RepositorioReconheci
         return false;
     }
     
+    /**
+     * Devolve todos os reconhecimentos de um freelancer
+     * @param email
+     * @return
+     * @throws SQLException 
+     */
     @Override
     public ArrayList<ReconhecimentoGP> getAll(String email) throws SQLException {
         ArrayList<ReconhecimentoGP> reconhecimentosGP = new ArrayList<>();
@@ -173,57 +194,7 @@ public class RepositorioReconhecimentoGPDatabase implements RepositorioReconheci
         return reconhecimentosGP;
 
     }
-    
-    @Override
-    public ArrayList<ReconhecimentoGP> findByEmail(String email) throws SQLException {
-        return null;
-    }
-    
-    @Override
-    public ReconhecimentoGP findByEmailCompetencia(String email, String idCompetenciaTecnica) throws SQLException{
-        
-        ReconhecimentoGP reconhecimentoGP = null;
 
-        Connection connection = DBConnectionHandler.getInstance().openConnection();
-
-        try {
-            PreparedStatement preparedStatement = connection.prepareStatement(
-                    "SELECT * FROM Tarefa WHERE emailFreelancer LIKE ? AND idCompetenciaTecnica LIKE ?"
-            );
-
-            preparedStatement.setString(1, email);
-            preparedStatement.setString(2, idCompetenciaTecnica);
-            
-            ResultSet resultSet = preparedStatement.executeQuery();
-
-            while (resultSet.next()) {
-
-                int idGrauProficiencia  = resultSet.getInt(1);
-                String dataReconhecimento = resultSet.getString(3);
-                
-                reconhecimentoGP = new ReconhecimentoGP( 
-                        idGrauProficiencia,
-                        new Email(email), dataReconhecimento);
-            }
-        }
-        catch (SQLException exception) {
-            exception.printStackTrace();
-            exception.getSQLState();
-            try {
-                System.err.print("Transaction is being rolled back");
-                connection.rollback();
-            }
-            catch (SQLException sqlException) {
-                sqlException.getErrorCode();
-            }
-
-        }
-        finally {
-            DBConnectionHandler.getInstance().closeAll();
-        }
-
-        return reconhecimentoGP;
-    }
 
     
 }

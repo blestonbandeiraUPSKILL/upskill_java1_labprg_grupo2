@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.geometry.*?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" styleClass="BorderPane" stylesheets="@../style/app.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.ColaboradorLogadoUI">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" styleClass="BorderPane" stylesheets="@../style/app.css" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.ColaboradorLogadoUI">
    <top>
       <Label alignment="CENTER_RIGHT" styleClass="lblUser" text="Bem-vindo à Área do Colaborador" textFill="WHITE" BorderPane.alignment="CENTER_RIGHT">
          <font>
@@ -46,7 +44,7 @@
                             </tooltip>
                               </Button>
                               <ComboBox fx:id="cmbFiltroTarefas" layoutX="308.0" layoutY="46.0" prefHeight="24.0" prefWidth="218.0" promptText="Escolha as Tarefas a Apresentar" AnchorPane.bottomAnchor="307.0" AnchorPane.leftAnchor="308.0" AnchorPane.topAnchor="46.0" />
-                              <Button fx:id="btnPublicarTarefa" layoutX="202.0" layoutY="316.0" mnemonicParsing="false" onAction="#navigatePublicarTarefa" styleClass="btnConfirmar" text="Publicar Tarefa" textFill="WHITE" AnchorPane.bottomAnchor="34.0">
+                              <Button fx:id="btnPublicarTarefa" disable="true" layoutX="202.0" layoutY="316.0" mnemonicParsing="false" onAction="#navigatePublicarTarefa" styleClass="btnConfirmar" text="Publicar Tarefa" textFill="WHITE" AnchorPane.bottomAnchor="34.0">
                                  <font>
                                     <Font name="Calibri" size="14.0" />
                                  </font>
@@ -75,7 +73,7 @@
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="AnchorPane">
                            <children>
                               <VBox alignment="CENTER" layoutX="560.0" layoutY="201.0" AnchorPane.bottomAnchor="100.0" AnchorPane.rightAnchor="32.0" />
-                              <Label layoutX="25.0" layoutY="107.0" prefHeight="27.0" prefWidth="460.0" text="Candidaturas ao Anúncio Selecionado (Freelancers e dados principais)" AnchorPane.bottomAnchor="285.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="220.0" AnchorPane.topAnchor="65.0">
+                              <Label layoutX="25.0" layoutY="107.0" prefHeight="27.0" prefWidth="551.0" text="Candidaturas ao Anúncio Selecionado (Freelancers e dados principais da proposta)" AnchorPane.bottomAnchor="285.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="129.0" AnchorPane.topAnchor="65.0">
                                  <font>
                                     <Font name="Calibri" size="15.0" />
                                  </font>
@@ -97,17 +95,14 @@
                                     <Tooltip text="Seriar Anúncio" />
                                  </tooltip>
                               </Button>
-                              <TableView fx:id="tabelaCandidaturasFreelancers" layoutX="108.0" layoutY="92.0" prefHeight="200.0" prefWidth="572.0" AnchorPane.leftAnchor="108.0" AnchorPane.rightAnchor="20.0">
+                              <TableView fx:id="tabelaCandidaturasFreelancers" layoutX="19.0" layoutY="92.0" prefHeight="200.0" prefWidth="661.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0">
                                  <columns>
-                                    <TableColumn fx:id="colunaEmail" prefWidth="284.0" text="Email do Freelancer" />
-                                    <TableColumn fx:id="colunaDuracaoFree" minWidth="0.0" prefWidth="160.0" text="Duração proposta(dias)" />
-                                    <TableColumn fx:id="colunaCustoFree" prefWidth="127.0" text="Custo proposto (€)" />
+                                    <TableColumn fx:id="colunaClassificacao" prefWidth="85.0" text="Classificacao" />
+                                    <TableColumn fx:id="colunaIdCandidatura" prefWidth="126.0" text="Id da Candidatura" />
+                                    <TableColumn fx:id="colunaEmail" prefWidth="294.0" text="Email do Freelancer" />
+                                    <TableColumn fx:id="colunaDuracaoFree" minWidth="0.0" prefWidth="95.0" text="Duração (dias)" />
+                                    <TableColumn fx:id="colunaCustoFree" prefWidth="59.0" text="Custo (€)" />
                                  </columns>
-                              </TableView>
-                              <TableView fx:id="tabelaClassificacao" layoutX="23.0" layoutY="92.0" prefHeight="200.0" prefWidth="88.0" AnchorPane.leftAnchor="20.0">
-                                <columns>
-                                  <TableColumn fx:id="colunaClassificacao" prefWidth="89.0" text="Classificação" />
-                                </columns>
                               </TableView>
                               <Button fx:id="btnSeriacaoManual" layoutX="154.0" layoutY="335.0" mnemonicParsing="false" onAction="#seriacaoManualAction" text="Seriação Manual">
                                  <tooltip>

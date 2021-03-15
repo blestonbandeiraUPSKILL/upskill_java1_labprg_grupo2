@@ -24,7 +24,15 @@ public class ReconhecimentoGP {
      * O email do freelancer a quem se refere o reconhecimento
      */
     private Email emailFreelancer;
+    
+    /**
+     * A designacao do Grau de Proficiencia
+     */
     private String designacaoGrau;
+    
+    /**
+     * A descricao breve da competencia tecnica
+     */
     private String descBreveCompetencia;
     
     /**
@@ -57,12 +65,24 @@ public class ReconhecimentoGP {
         setEmailFreelancer(reconhecimentoGP.emailFreelancer);
     }
 
+    /**
+     * Construtor da classe ReconhecimentoGP
+     * @param idGrauProficiencia
+     * @param emailFreelancer
+     * @param dataReconhecimento 
+     */
     public ReconhecimentoGP(int idGrauProficiencia, String emailFreelancer, String dataReconhecimento) {
         setIdGrauProficiencia(idGrauProficiencia);
         setEmailFreelancer(new Email(emailFreelancer));
         setDataReconhecimento(dataReconhecimento);
     }
 
+    /**
+     * Construtor da classe ReconhecimentoGP
+     * @param dataReconhecimento
+     * @param designacaoGrau
+     * @param descBreve 
+     */
     public ReconhecimentoGP(String dataReconhecimento, String designacaoGrau, String descBreve) {
         setDataReconhecimento(dataReconhecimento);
         this.designacaoGrau = designacaoGrau;
@@ -117,9 +137,49 @@ public class ReconhecimentoGP {
         this.emailFreelancer = emailFreelancer;
     }
 
+    /**
+     * Devolve a designacao do grau de proficiencia
+     * @return 
+     */
+    public String getDesignacaoGrau() {
+        return designacaoGrau;
+    }
 
+    /**
+     * Atualiza a designacao do grau de proficiencia
+     * @param designacaoGrau 
+     */
+    public void setDesignacaoGrau(String designacaoGrau) {
+        this.designacaoGrau = designacaoGrau;
+    }
+
+    /**
+     * Devolve a descricao breve da competencia tecnica
+     * @return 
+     */
+    public String getDescBreveCompetencia() {
+        return descBreveCompetencia;
+    }
+
+    /**
+     * Atualiza a descricao breve da competencia tecnica
+     * @param descBreveCompetencia 
+     */
+    public void setDescBreveCompetencia(String descBreveCompetencia) {
+        this.descBreveCompetencia = descBreveCompetencia;
+    }
+    
+    
+
+
+    /**
+     * Representacao textual do reconhecimento de uma competencia tecnica
+     * @return 
+     */
     @Override
     public String toString(){
-        return String.format("Competência Técnica: %s%nGrau: %s%n Data Reconhecimento",descBreveCompetencia, idGrauProficiencia, dataReconhecimento);
+        return String.format("Competência Técnica: %s%n" +
+                "Grau: %s%n" +
+                "Data Reconhecimento: %s", descBreveCompetencia, designacaoGrau, dataReconhecimento);
     }    
 }

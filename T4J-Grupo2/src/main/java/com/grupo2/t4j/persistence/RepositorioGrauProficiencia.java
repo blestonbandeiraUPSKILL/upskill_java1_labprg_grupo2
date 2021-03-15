@@ -26,12 +26,12 @@ public interface RepositorioGrauProficiencia {
     List<GrauProficiencia> getAll() throws SQLException;
     
     ArrayList<GrauProficiencia> findByCompetenciaTecnica(String codigoCompetenciaTecnica) throws SQLException;
-    
-    GrauProficiencia findByGrau(int grau) throws SQLException;
 
     GrauProficiencia findByGrauECompetencia(int grau, String codigoCompetenciaTecnica) throws SQLException;
 
-    List<GrauProficiencia> getAllGrausTarefa(Tarefa tarefa) throws SQLException;
-
     List<GrauProficiencia> getAllByCompetenciaTecnica(String codigoCompetenciaTecnica) throws SQLException;
+
+    List<GrauProficiencia> getAllGrausFreelancer(String emailFreelancer) throws SQLException;
+
+    List<Tarefa> getAllGrausTarefasPublicadas(List<Tarefa> tarefasPublicadas) throws SQLException;
 }

@@ -27,16 +27,24 @@ public class CaracterizacaoCT implements Serializable{
      */
     private Obrigatoriedade obrigatoriedade;
     
+    /**
+     * Construtor vazio da classe caracterizacao de uma competencia tecnica
+     */
     public CaracterizacaoCT (){
     }
     
+    /**
+     * Construtor da classe caracterizacao de uma competencia tecnica que recebe
+     * como parâmetro um tipo desta mesma classe
+     * @param cct 
+     */
     public CaracterizacaoCT(CaracterizacaoCT cct){
         setCodigoGP(cct.codigoGP);
         setObrigatoriedade(cct.obrigatoriedade);
     }
 
     /**
-     * Construtor completo para caracterizacao de uma competencia tecnica
+     * Construtor para caracterizacao de uma competencia tecnica
      * @param codigoGP
      * @param obrigatoriedade
      * @param codigoCategoria
@@ -48,6 +56,13 @@ public class CaracterizacaoCT implements Serializable{
         this.obrigatoriedade = obrigatoriedade;
     }
     
+    /**
+     * Construtor para caracterizacao de uma competencia tecnica
+     * @param idCaracterizacao
+     * @param codigoCategoria
+     * @param codigoGP
+     * @param obrigatoriedade 
+     */
     public CaracterizacaoCT(int idCaracterizacao, String codigoCategoria, 
             int codigoGP, Obrigatoriedade obrigatoriedade){
         this.idCaracterizacao = idCaracterizacao;
@@ -56,6 +71,13 @@ public class CaracterizacaoCT implements Serializable{
         setObrigatoriedade(obrigatoriedade);
     }
 
+    /**
+     * Construtor para caracterizacao de uma competencia tecnica
+     * @param idCaracterCT
+     * @param obrigatoria
+     * @param grauProfMinimo
+     * @param codigoCategoria 
+     */
     public CaracterizacaoCT(int idCaracterCT, String obrigatoria, int grauProfMinimo, String codigoCategoria) {
         setIdCaracterizacao(idCaracterCT);
         setObrigatoriedade(Obrigatoriedade.valueOf(obrigatoria.toUpperCase()));
@@ -63,32 +85,62 @@ public class CaracterizacaoCT implements Serializable{
         setCodigoCategoria(codigoCategoria);
     }
 
+    /**
+     * Construtor para caracterizacao de uma competencia tecnica
+     * @param obrigatoria
+     * @param designacaoGrau
+     * @param descBreveCompetencia 
+     */
     public CaracterizacaoCT(String obrigatoria, String designacaoGrau, String descBreveCompetencia) {
         setObrigatoriedade(Obrigatoriedade.valueOf(obrigatoria.toUpperCase()));
         this.designacaoGrau = designacaoGrau;
         this.descBreveCompetencia = descBreveCompetencia;
     }
 
+    /**
+     * Devolve o codigo do Grau de Proficiencia
+     * @return 
+     */
     public int getCodigoGP() {
         return codigoGP;
     }
 
+    /**
+     * Devolve a obrigatoriedade da caracterizacao
+     * @return 
+     */
     public Obrigatoriedade getObrigatoriedade() {
         return obrigatoriedade;
     }
 
+    /**
+     * Devolve o codigo da categoria
+     * @return 
+     */
     public String getCodigoCategoria() {
         return codigoCategoria;
     }
 
+    /**
+     * Atualiza o codigo da categoria
+     * @param codigoCategoria 
+     */
     public void setCodigoCategoria(String codigoCategoria) {
         this.codigoCategoria = codigoCategoria;
     }
 
+    /**
+     * Atualiza o id da caracterizacao
+     * @param idCaracterizacao 
+     */
     public void setIdCaracterizacao(int idCaracterizacao) {
         this.idCaracterizacao = idCaracterizacao;
     }
 
+    /**
+     * Atualiza o codigo do grau de proficiencia
+     * @param codigoGP 
+     */
     public void setCodigoGP(int codigoGP) {
         this.codigoGP = codigoGP;
     }

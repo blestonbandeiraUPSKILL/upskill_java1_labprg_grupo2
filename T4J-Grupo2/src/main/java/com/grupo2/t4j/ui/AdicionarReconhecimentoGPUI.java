@@ -4,12 +4,16 @@ import com.grupo2.t4j.controller.RegistarCompetenciaTecnicaController;
 import com.grupo2.t4j.controller.RegistarFreelancerController;
 import com.grupo2.t4j.controller.RegistarGrauProficienciaController;
 import com.grupo2.t4j.controller.RegistarReconhecimentoGPController;
-import com.grupo2.t4j.domain.*;
+import com.grupo2.t4j.domain.CompetenciaTecnica;
+import com.grupo2.t4j.domain.Freelancer;
+import com.grupo2.t4j.domain.GrauProficiencia;
+import com.grupo2.t4j.domain.ReconhecimentoGP;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.Window;
@@ -33,25 +37,25 @@ public class AdicionarReconhecimentoGPUI implements Initializable {
 
     private Stage adicionarStage;
 
-    @FXML
-    TextField txtNomeFreelancer;
-    @FXML
-    TextField txtIDataValidacao;
-    @FXML
-    ComboBox<Freelancer> cmbEmailFreelancer;
-    @FXML
-    ComboBox<CompetenciaTecnica> cmbCompetencia;
-    @FXML
-    ComboBox<GrauProficiencia> cmbProficiencia;
-    @FXML
-    ListView<ReconhecimentoGP> listReconhecimentoGP;
-    @FXML
-    Button btnAddCompetencia;
-    @FXML
-    Button btnCancelar;
-    @FXML
-    Button btnSair;
+    @FXML TextField txtNomeFreelancer;
+    @FXML TextField txtIDataValidacao;
+    @FXML ComboBox<Freelancer> cmbEmailFreelancer;
+    @FXML ComboBox<CompetenciaTecnica> cmbCompetencia;
+    @FXML ComboBox<GrauProficiencia> cmbProficiencia;
+    @FXML Button btnAddCompetencia;
+    @FXML Button btnCancelar;
+    @FXML Button btnSair;
+    
+    ////Tabela Reconhecimento///////////////////////
+    @FXML TableColumn<Object, Object> txtCompTec;
+    @FXML TableColumn<Object, Object> txtDataReconhecimento;
+    @FXML TableColumn<Object, Object> txtGrau;
+    @FXML TableView<ReconhecimentoGP> tabelaReconhecimento;
 
+    /**
+     * Associa a scene AdministrativoLogadoUI como parent desta Scene 
+     * @param administrativoLogadoUI 
+     */
     public void associarParentUI(AdministrativoLogadoUI administrativoLogadoUI) {
         this.administrativoLogadoUI = administrativoLogadoUI;
     }
@@ -104,43 +108,62 @@ public class AdicionarReconhecimentoGPUI implements Initializable {
             public void handle(ActionEvent event) {
                 try {
                     updateTxtNomeFreelancer(event);
-                    updateListViewReconhecimentoGP();
+                    mostrarCompetencias();
                 } catch (SQLException exception) {
                     exception.printStackTrace();
                 }
             }
         });
-
     }
 
+    /**
+     * Atualiza a combobox de grau de proficiencia de acordo com a competencia tecnica escolhida
+     * @param actionEvent
+     * @throws SQLException 
+     */
     public void updateCmbGrauProficiencia(ActionEvent actionEvent) throws SQLException {
         String codigoCompetenciaTecnica = cmbCompetencia.getSelectionModel().getSelectedItem().getCodigo();
         cmbProficiencia.getItems().setAll(
                 registarGrauProficienciaController.findByCompetenciaTecnica(codigoCompetenciaTecnica));
     }
 
-    public void updateListViewReconhecimentoGP() throws SQLException {
+    /**
+     * Preenche a tabela de competencias do Freelancer
+     * @throws SQLException 
+     */
+    public void mostrarCompetencias () throws SQLException {
         String emailFreelancer = cmbEmailFreelancer.getSelectionModel().getSelectedItem().getEmail().getEmailText();
-        listReconhecimentoGP.getItems().setAll(
-                registarReconhecimentoGPController.getAll(emailFreelancer));
+        tabelaReconhecimento.getItems().setAll(registarReconhecimentoGPController.getAll(emailFreelancer));
+        
+        txtCompTec.setCellValueFactory(new PropertyValueFactory<>("descBreveCompetencia"));
+        txtGrau.setCellValueFactory(new PropertyValueFactory<>("designacaoGrau"));
+        txtDataReconhecimento.setCellValueFactory(new PropertyValueFactory<>("dataReconhecimento"));
     }
 
+    /**
+     * Atualiza o nome do Freelancer de acordo com o escolhido na combobox
+     * @param actionEvent
+     * @throws SQLException 
+     */
     public void updateTxtNomeFreelancer(ActionEvent actionEvent) throws SQLException {
         String emailFreelancer = cmbEmailFreelancer.getSelectionModel().getSelectedItem().getEmail().getEmailText();
         txtNomeFreelancer.setText(registarFreelancerController.findByEmail(emailFreelancer).getNome());
     }
 
+    /**
+     * Adiciona um reconhecimento de competencia tecnica ao Freelancer
+     * @param event 
+     */
     @FXML
     void addCompetencia(ActionEvent event) {
         try {
-
             boolean adicionou = registarReconhecimentoGPController.registarReconhecimentoGP(
                     cmbProficiencia.getSelectionModel().getSelectedItem().getIdGrauProficiencia(),
                     cmbEmailFreelancer.getSelectionModel().getSelectedItem().getEmail().getEmailText(),
                     txtIDataValidacao.getText());
 
             if (adicionou) {
-                updateListViewReconhecimentoGP();
+                mostrarCompetencias();
 
                 AlertsUI.criarAlerta(Alert.AlertType.INFORMATION,
                         MainApp.TITULO_APLICACAO, "Registar Validação de Competência Técnica.",
@@ -151,15 +174,22 @@ public class AdicionarReconhecimentoGPUI implements Initializable {
                     MainApp.TITULO_APLICACAO,
                     "Registar Validação de Competência Técnica - Erro nos dados.",
                     "Não foi possível validar a Competência Técnica." + exception.getMessage()).show();
-
         }
     }
 
+    /**
+     * Cancela a operacao
+     * @param event 
+     */
     @FXML
     public void cancelarAction(ActionEvent event) {
         txtIDataValidacao.clear();
     }
 
+    /**
+     * Volta para a scene anterior
+     * @param event 
+     */
     @FXML
     public void sairAction(ActionEvent event) {
         Window window = btnSair.getScene().getWindow();

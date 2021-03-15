@@ -5,8 +5,8 @@
  */
 package com.grupo2.t4j.persistence;
 
-import com.grupo2.t4j.exception.ReconhecimentoDuplicadoException;
 import com.grupo2.t4j.domain.ReconhecimentoGP;
+import com.grupo2.t4j.exception.ReconhecimentoDuplicadoException;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -24,9 +24,7 @@ public interface RepositorioReconhecimentoGP {
             SQLException;
     
     List<ReconhecimentoGP> getAll(String email) throws SQLException;
-    
-    List<ReconhecimentoGP> findByEmail(String email) throws SQLException;
-    
-    ReconhecimentoGP findByEmailCompetencia(String email, String idCompetenciaTecnica) throws SQLException;
+
+
     
 }

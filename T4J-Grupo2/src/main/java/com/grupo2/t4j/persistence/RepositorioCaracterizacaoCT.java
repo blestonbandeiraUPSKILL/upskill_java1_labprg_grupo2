@@ -1,8 +1,8 @@
 package com.grupo2.t4j.persistence;
 
-import com.grupo2.t4j.exception.CaracterizacaoCTDuplicadaException;
 import com.grupo2.t4j.domain.CaracterizacaoCT;
 import com.grupo2.t4j.domain.Obrigatoriedade;
+import com.grupo2.t4j.exception.CaracterizacaoCTDuplicadaException;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -15,8 +15,6 @@ public interface RepositorioCaracterizacaoCT {
     boolean save(CaracterizacaoCT caracterizacaoCT) throws SQLException;
 
     List<CaracterizacaoCT> getAll();
-
-    List<CaracterizacaoCT> findByCategoria(String codigoCategoria) throws SQLException;
 
     CaracterizacaoCT findByCodigo(int codigoCCT);
     

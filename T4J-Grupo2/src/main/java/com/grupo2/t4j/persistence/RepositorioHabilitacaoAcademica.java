@@ -10,8 +10,8 @@ package com.grupo2.t4j.persistence;
  * @author CAD
  */
 
-import com.grupo2.t4j.exception.HabilitacaoAcademicaDuplicadaException;
 import com.grupo2.t4j.domain.HabilitacaoAcademica;
+import com.grupo2.t4j.exception.HabilitacaoAcademicaDuplicadaException;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -23,10 +23,10 @@ public interface RepositorioHabilitacaoAcademica {
 
     boolean save(HabilitacaoAcademica habilitacaoAcademica, String emailFreelancer) throws HabilitacaoAcademicaDuplicadaException, SQLException;
 
-    HabilitacaoAcademica findById(int idHabilitacao) throws SQLException;
-           
     HabilitacaoAcademica findByGrauDesigInst(String grau, String designacaoCurso,
                                              String nomeInstituicao, String emailFreelancer) throws SQLException;
+
+    HabilitacaoAcademica findById(int idHabilitacao) throws SQLException;
     
     ArrayList<HabilitacaoAcademica> getAll(String emailFreelancer) throws SQLException;
 

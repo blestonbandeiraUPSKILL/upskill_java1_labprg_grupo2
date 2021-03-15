@@ -3,7 +3,6 @@ package com.grupo2.t4j.controller;
 import com.grupo2.t4j.api.UsersAPI;
 import com.grupo2.t4j.domain.AlgoritmoGeradorPasswords;
 import com.grupo2.t4j.domain.Colaborador;
-import com.grupo2.t4j.domain.Organizacao;
 import com.grupo2.t4j.domain.Password;
 import com.grupo2.t4j.persistence.FabricaRepositorios;
 import com.grupo2.t4j.persistence.RepositorioColaborador;
@@ -12,7 +11,6 @@ import com.grupo2.t4j.persistence.RepositorioOrganizacao;
 import com.grupo2.t4j.persistence.database.FabricaRepositoriosDatabase;
 
 import java.sql.SQLException;
-import java.util.List;
 
 public class RegistarOrganizacaoController {
 
@@ -61,17 +59,9 @@ public class RegistarOrganizacaoController {
                 emailGestor, funcaoGestor, telefoneGestor);
     }
 
-    public List<Organizacao> getAll() {
-        return repositorioOrganizacao.getAll();
-    }
 
-    public Organizacao findByNif(String nif) throws SQLException {
-        return repositorioOrganizacao.findByNif(nif);
-    }
 
-    public Colaborador findColaboradorByEmail(String email) throws SQLException {
-        return repositorioColaborador.findByEmail(email);
-    }
+
 
 
 

@@ -7,7 +7,6 @@ import com.grupo2.t4j.persistence.RepositorioAreaActividade;
 import com.grupo2.t4j.persistence.RepositorioCategoriaTarefa;
 import com.grupo2.t4j.persistence.database.FabricaRepositoriosDatabase;
 
-import java.io.File;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -36,14 +35,31 @@ public class RegistarCategoriaController {
         return repositorioCategoriaTarefa.save(categoria);
     }
 
+    /**
+     * Devolve uma lista de todas as categorias
+     * @return
+     * @throws SQLException 
+     */
     public List<Categoria> getAll() throws SQLException {
         return repositorioCategoriaTarefa.getAll();
     }
 
+    /**
+     * Devolve todas as categorias de uma area de actividade
+     * @param codigoAreaActividade
+     * @return
+     * @throws SQLException 
+     */
     public List<Categoria> findByAreaActividade(String codigoAreaActividade) throws SQLException{
         return repositorioCategoriaTarefa.findByAreaActividade(codigoAreaActividade);
     }
 
+    /**
+     * Devolve uma categoria a partir do seu id
+     * @param codigoCategoria
+     * @return
+     * @throws SQLException 
+     */
     public Categoria findByCodigo(String codigoCategoria) throws SQLException {
         return repositorioCategoriaTarefa.findByCodigo(codigoCategoria);
     }

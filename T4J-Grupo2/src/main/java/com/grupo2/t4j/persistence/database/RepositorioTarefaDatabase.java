@@ -42,6 +42,12 @@ public class RepositorioTarefaDatabase implements RepositorioTarefa {
 
     }
 
+    /**
+     * Regista uma tarefa
+     * @param tarefa
+     * @return
+     * @throws SQLException 
+     */
     @Override
     public boolean save(Tarefa tarefa) throws SQLException {
 
@@ -89,6 +95,13 @@ public class RepositorioTarefaDatabase implements RepositorioTarefa {
         return false;
     }
 
+    /**
+     * Devolve uma tarefa a partir da sua referencia e do nif da organizacao que a criou
+     * @param referencia
+     * @param nif
+     * @return
+     * @throws SQLException 
+     */
     @Override
     public Tarefa findByReferenciaENIF(String referencia, String nif) throws SQLException {
 
@@ -119,56 +132,14 @@ public class RepositorioTarefaDatabase implements RepositorioTarefa {
         return new Tarefa();
     }
 
-    @Override
-    public List<Tarefa> findByCategoria(String codigoCategoria) throws SQLException {
-        ArrayList<Tarefa> tarefas = new ArrayList<>();
-
-        Connection connection = DBConnectionHandler.getInstance().openConnection();
-
-        try {
-            PreparedStatement preparedStatement = connection.prepareStatement(
-                    "SELECT * FROM Tarefa WHERE codigoCategoria LIKE ?"
-            );
-
-            preparedStatement.setString(1, codigoCategoria);
-
-            ResultSet resultSet = preparedStatement.executeQuery();
-
-            while (resultSet.next()) {
-                String nifOrganizacao = resultSet.getString(1);
-                String referencia = resultSet.getString(2);
-                String designacao = resultSet.getString(3);
-                String descInformal = resultSet.getString(4);
-                String descTecnica = resultSet.getString(5);
-                int duracaoEstimada = resultSet.getInt(6);
-                double custoEstimado = resultSet.getDouble(7);
-                String emailColaborador = resultSet.getString(9);
 
 
-                tarefas.add(new Tarefa(referencia, nifOrganizacao, designacao, descInformal, descTecnica,
-                        duracaoEstimada, custoEstimado, codigoCategoria, emailColaborador));
-            }
-        }
-
-        catch (SQLException exception) {
-            exception.printStackTrace();
-            exception.getSQLState();
-            try {
-                System.err.print("Transaction is being rolled back");
-                connection.rollback();
-            }
-            catch (SQLException sqlException) {
-                sqlException.getErrorCode();
-            }
-
-        }
-        finally {
-            DBConnectionHandler.getInstance().closeAll();
-        }
-
-        return tarefas;
-    }
-
+    /**
+     * Devolve todas as tarefas de uma organizacao
+     * @param nifOrganizacao
+     * @return
+     * @throws SQLException 
+     */
     @Override
     public ArrayList<Tarefa> getAllOrganizacao(String nifOrganizacao) throws SQLException {
         ArrayList<Tarefa> tarefas = new ArrayList<>();
@@ -219,6 +190,11 @@ public class RepositorioTarefaDatabase implements RepositorioTarefa {
         return tarefas;
     }
 
+    /**
+     * Devolve todas as tarefas
+     * @return
+     * @throws SQLException 
+     */
     @Override
     public ArrayList<Tarefa> getAll() throws SQLException {
         ArrayList<Tarefa> tarefas = new ArrayList<>();
@@ -270,6 +246,13 @@ public class RepositorioTarefaDatabase implements RepositorioTarefa {
     }
     
 
+    /**
+     * Devolve todas as tarefas criadas por um colaborador
+     * @param email
+     * @param nifOrganizacao
+     * @return
+     * @throws SQLException 
+     */
     @Override
     public List<Tarefa> findByColaboradorENif(String email, String nifOrganizacao) throws SQLException {
         ArrayList<Tarefa> tarefas = new ArrayList<>();
@@ -320,46 +303,49 @@ public class RepositorioTarefaDatabase implements RepositorioTarefa {
         return tarefas;
     }
 
+    /**
+     * Devolve todas as tarefas de uma organizacao que estao publicadas
+     * @param nifOrganizacao
+     * @return
+     * @throws SQLException 
+     */
     @Override
-    public List<Tarefa> findTarefasPublicadas(List<String> referenciasTarefa, String nifOrganizacao, String emailColaborador) throws SQLException {
+    public List<Tarefa> findTarefasPublicadas(String nifOrganizacao) throws SQLException {
         List<Tarefa> tarefasComAnuncio = new ArrayList<>();
 
         Connection connection = DBConnectionHandler.getInstance().openConnection();
 
         try {
-            for (String referencia : referenciasTarefa) {
-                CallableStatement callableStatement = connection.prepareCall(
-                        "SELECT * FROM Tarefa " +
-                                "INNER JOIN Anuncio " +
-                                "ON Tarefa.referencia LIKE Anuncio.referenciaTarefa " +
-                                "AND Tarefa.nifOrganizacao LIKE Anuncio.nifOrganizacao " +
-                                "WHERE tarefa.referencia LIKE ? " +
-                                "AND tarefa.nifOrganizacao LIKE ?" +
-                                "AND Tarefa.emailColaborador LIKE ? "
-                );
+            CallableStatement callableStatement = connection.prepareCall(
+                    "SELECT * FROM Tarefa " +
+                            "INNER JOIN Anuncio " +
+                            "ON Tarefa.referencia LIKE Anuncio.referenciaTarefa " +
+                            "AND Tarefa.nifOrganizacao LIKE Anuncio.nifOrganizacao " +
+                            "AND tarefa.nifOrganizacao LIKE ?"
+            );
 
+            callableStatement.setString(1, nifOrganizacao);
 
-                callableStatement.setString(1, referencia);
-                callableStatement.setString(2, nifOrganizacao);
-                callableStatement.setString(3, emailColaborador);
+            callableStatement.executeUpdate();
 
-                callableStatement.executeUpdate();
+            ResultSet resultSet = callableStatement.getResultSet();
 
-                ResultSet resultSet = callableStatement.getResultSet();
+            while (resultSet.next()) {
 
-                while (resultSet.next()) {
+                String referencia = resultSet.getString(2);
+                String designacao = resultSet.getString(3);
+                String descInformal = resultSet.getString(4);
+                String descTecnica = resultSet.getString(5);
+                int duracaoEstimada = resultSet.getInt(6);
+                double custoEstimado = resultSet.getDouble(7);
+                String codigoCategoria = resultSet.getString(8);
+                String emailColaborador = resultSet.getString(9);
 
-                    String designacao = resultSet.getString(3);
-                    String descInformal = resultSet.getString(4);
-                    String descTecnica = resultSet.getString(5);
-                    int duracaoEstimada = resultSet.getInt(6);
-                    double custoEstimado = resultSet.getDouble(7);
-                    String codigoCategoria = resultSet.getString(8);
-                    tarefasComAnuncio.add(new Tarefa(nifOrganizacao, referencia,
-                            designacao, descInformal, descTecnica, duracaoEstimada, custoEstimado, codigoCategoria, emailColaborador));
+                tarefasComAnuncio.add(new Tarefa(nifOrganizacao, referencia,
+                        designacao, descInformal, descTecnica, duracaoEstimada, custoEstimado, codigoCategoria, emailColaborador));
 
-                }
             }
+
         }
         catch (SQLException exception) {
             exception.printStackTrace();
@@ -372,6 +358,13 @@ public class RepositorioTarefaDatabase implements RepositorioTarefa {
         return tarefasComAnuncio;
     }
 
+    /**
+     * Devolve o id do anuncio de uma tarefa
+     * @param nifOrganizacao
+     * @param referenciaTarefa
+     * @return
+     * @throws SQLException 
+     */
     public int findIdAnuncio(String nifOrganizacao, String referenciaTarefa) throws SQLException {
         int idAnuncio = 0;
 
@@ -414,6 +407,12 @@ public class RepositorioTarefaDatabase implements RepositorioTarefa {
 
     }
 
+    /**
+     * Devolve as referencias de todas as tarefas de uma organizacao
+     * @param nifOrganizacao
+     * @return
+     * @throws SQLException 
+     */
     @Override
     public List<String> findReferenciaTarefa(String nifOrganizacao) throws SQLException {
         List<String> referenciasTarefa = new ArrayList<>();
@@ -451,46 +450,52 @@ public class RepositorioTarefaDatabase implements RepositorioTarefa {
         return referenciasTarefa;
     }
 
+    /**
+     * Devolve todas as tarefas de uma organizacao que ainda nao foram publicadas
+     * @param nifOrganizacao
+     * @param email
+     * @return
+     * @throws SQLException 
+     */
     @Override
-    public List<Tarefa> findTarefasNaoPublicadas(List<String> referenciasTarefa, String email, String nifOrganizacao) throws SQLException {
+    public List<Tarefa> findTarefasNaoPublicadas(String nifOrganizacao, String email) throws SQLException {
 
         List<Tarefa> tarefasSemAnuncio = new ArrayList<>();
 
         Connection connection = DBConnectionHandler.getInstance().openConnection();
 
         try {
-            for (String referenciaTarefa : referenciasTarefa) {
-                CallableStatement callableStatement = connection.prepareCall(
-                        "SELECT * FROM Tarefa " +
-                                "LEFT JOIN Anuncio " +
-                                "ON Tarefa.referencia LIKE Anuncio.referenciaTarefa " +
-                                "AND Tarefa.nifOrganizacao LIKE Anuncio.nifOrganizacao " +
-                                "WHERE Anuncio.referenciaTAREFA IS NULL AND Anuncio.nifOrganizacao IS NULL " +
-                                "AND Tarefa.referencia LIKE ? AND Tarefa.nifOrganizacao LIKE ? " +
-                                "AND Tarefa.emailColaborador LIKE ?"
-                );
+            CallableStatement callableStatement = connection.prepareCall(
+                    "SELECT * FROM Tarefa " +
+                            "LEFT JOIN Anuncio " +
+                            "ON Tarefa.referencia LIKE Anuncio.referenciaTarefa " +
+                            "AND Tarefa.nifOrganizacao LIKE Anuncio.nifOrganizacao " +
+                            "WHERE Anuncio.referenciaTAREFA IS NULL AND Anuncio.nifOrganizacao IS NULL " +
+                            "AND Tarefa.nifOrganizacao LIKE ? " +
+                            "AND Tarefa.emailColaborador LIKE ?"
+            );
 
-                callableStatement.setString(1, referenciaTarefa);
-                callableStatement.setString(2, nifOrganizacao);
-                callableStatement.setString(3, email);
+            callableStatement.setString(1, nifOrganizacao);
+            callableStatement.setString(2, email);
 
-                callableStatement.executeUpdate();
+            callableStatement.executeUpdate();
 
-                ResultSet resultSet = callableStatement.getResultSet();
+            ResultSet resultSet = callableStatement.getResultSet();
 
-                while (resultSet.next()) {
+            while (resultSet.next()) {
 
-                    String designacao = resultSet.getString(3);
-                    String descInformal = resultSet.getString(4);
-                    String descTecnica = resultSet.getString(5);
-                    int duracaoEstimada = resultSet.getInt(6);
-                    double custoEstimado = resultSet.getDouble(7);
-                    String codigoCategoria = resultSet.getString(8);
-                    tarefasSemAnuncio.add(new Tarefa(nifOrganizacao, referenciaTarefa,
-                            designacao, descInformal, descTecnica, duracaoEstimada, custoEstimado, codigoCategoria, email));
+                String referenciaTarefa = resultSet.getString(2);
+                String designacao = resultSet.getString(3);
+                String descInformal = resultSet.getString(4);
+                String descTecnica = resultSet.getString(5);
+                int duracaoEstimada = resultSet.getInt(6);
+                double custoEstimado = resultSet.getDouble(7);
+                String codigoCategoria = resultSet.getString(8);
+                tarefasSemAnuncio.add(new Tarefa(nifOrganizacao, referenciaTarefa,
+                        designacao, descInformal, descTecnica, duracaoEstimada, custoEstimado, codigoCategoria, email));
 
-                }
             }
+
         }
         catch (SQLException exception) {
             exception.printStackTrace();
@@ -504,7 +509,13 @@ public class RepositorioTarefaDatabase implements RepositorioTarefa {
 
     }
 
-
+    /**
+     * Devolve o anuncio de uma tarefa
+     * @param referencia
+     * @param nif
+     * @return
+     * @throws SQLException 
+     */
     public List<Anuncio> findAnuncioByTarefa(String referencia, String nif) throws SQLException {
 
         List<Anuncio> tarefasComAnuncio = new ArrayList<>();
@@ -554,6 +565,12 @@ public class RepositorioTarefaDatabase implements RepositorioTarefa {
         return tarefasComAnuncio;
     }
 
+    /**
+     * Devolve uma tarefa
+     * @param idAnuncio
+     * @return
+     * @throws SQLException 
+     */
     @Override
     public Tarefa findTarefa(int idAnuncio) throws SQLException {
         Tarefa tarefa = new Tarefa();
@@ -603,6 +620,11 @@ public class RepositorioTarefaDatabase implements RepositorioTarefa {
         return tarefa;
     }
 
+    /**
+     * Devolve todas as tarefas publicadas
+     * @return
+     * @throws SQLException 
+     */
     public List<Tarefa> getAllTarefasPublicadas() throws SQLException {
         List<Tarefa> tarefas = new ArrayList<>();
 
@@ -612,7 +634,8 @@ public class RepositorioTarefaDatabase implements RepositorioTarefa {
             PreparedStatement preparedStatement = connection.prepareStatement(
                     "SELECT * FROM Tarefa INNER JOIN Anuncio " +
                             "ON Tarefa.referencia LIKE Anuncio.referenciaTarefa " +
-                            "AND Tarefa.nifOrganizacao LIKE Anuncio.nifOrganizacao"
+                            "AND Tarefa.nifOrganizacao LIKE Anuncio.nifOrganizacao " +
+                            "WHERE sysdate BETWEEN Anuncio.dataInicioCandidatura AND Anuncio.dataFimCandidatura"
             );
 
 
@@ -649,62 +672,45 @@ public class RepositorioTarefaDatabase implements RepositorioTarefa {
         return tarefas;
     }
 
-    @Override
-    public List<Tarefa> getAllTarefasElegíveis(String emailFreelancer) throws SQLException {
 
-        List<Tarefa> tarefasElegíveis = new ArrayList<>();
+    /**
+     * Devolve uma tarefa a partir da sua referenca e do nif da organizacao que a criou
+     * @param referencia
+     * @param nifOrganizacao
+     * @return
+     * @throws SQLException 
+     */
+    @Override
+    public Tarefa getTarefaByRefENif(String referencia, String nifOrganizacao) throws SQLException {
+        Tarefa tarefa = new Tarefa();
 
         Connection connection = DBConnectionHandler.getInstance().openConnection();
 
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(
                     "SELECT * FROM Tarefa " +
-                            "INNER JOIN Anuncio " +
-                            "ON Tarefa.referencia LIKE Anuncio.referenciaTarefa " +
-                            "AND Tarefa.nifOrganizacao LIKE Anuncio.nifOrganizacao "+
-                            "INNER JOIN Categoria " +
-                            "ON Categoria.codigoCategoria LIKE Tarefa.codigoCategoria " +
-                            "INNER JOIN CaracterCT " +
-                            "ON CaracterCT.codigoCategoria LIKE Categoria.codigoCategoria " +
-                            "INNER JOIN GrauProficiencia " +
-                            "ON CaracterCT.grauProfMinimo = GrauProficiencia.idGrauProficiencia " +
-                            "INNER JOIN ReconhecimentoGP " +
-                            "ON GrauProficiencia.idGrauProficiencia = ReconhecimentoGP.idGrauProficiencia " +
-                            "INNER JOIN Freelancer " +
-                            "ON ReconhecimentoGP.emailFreelancer LIKE Freelancer.email " +
-                            "WHERE freelancer.email LIKE ? "
-                           /* +
-                            "AND " +
-                                "(SELECT GrauProficiencia.grau " +
-                                "INNER JOIN ReconhecimentoGP " +
-                                "ON ReconhecimentoGP.idGrauProficiencia = GrauProficiencia.idGrauProficiencia) < " +
-                                "(SELECT GrauProficiencia.grau, GrauProficiencia.designacao " +
-                                "INNER JOIN CaracterCT.grauProfMinimo = GrauProficiencia.idGrauProficiencia) " +
+                            "WHERE referencia LIKE ? AND nifOrganizacao LIKE  ?"
 
-                                "(SELECT GrauProficiencia.designacao " +
-                                "INNER JOIN ReconhecimentoGP " +
-                                "ON ReconhecimentoGP.idGrauProficiencia = GrauProficiencia.idGrauProficiencia) = " +
-                                "(SELECT GrauProficiencia.grau, GrauProficiencia.designacao " +
-                                "INNER JOIN CaracterCT.grauProfMinimo = GrauProficiencia.idGrauProficiencia) "*/
             );
 
-            preparedStatement.setString(1, emailFreelancer);
+            preparedStatement.setString(1, referencia);
+            preparedStatement.setString(2, nifOrganizacao);
 
-            ResultSet resultSet = preparedStatement.executeQuery();
+            preparedStatement.executeQuery();
+
+            ResultSet resultSet = preparedStatement.getResultSet();
 
             while (resultSet.next()) {
-                String nifOrganizacao = resultSet.getString(1);
-                String referencia = resultSet.getString(2);
-                String designacao = resultSet.getString(3);
-                String descInformal = resultSet.getString(4);
-                String descTecnica = resultSet.getString(5);
-                int duracaoEstimada = resultSet.getInt(6);
-                double custoEstimado = resultSet.getDouble(7);
-                String codigoCategoria = resultSet.getString(8);
-                String emailColaborador = resultSet.getString(9);
 
-                tarefasElegíveis.add(new Tarefa(nifOrganizacao, referencia, designacao, descInformal,
-                        descTecnica, duracaoEstimada, custoEstimado, codigoCategoria, emailColaborador));
+                tarefa.setNifOrganizacao(resultSet.getString(1));
+                tarefa.setReferencia(resultSet.getString(2));
+                tarefa.setDesignacao(resultSet.getString(3));
+                tarefa.setDescInformal(resultSet.getString(4));
+                tarefa.setDescTecnica(resultSet.getString(5));
+                tarefa.setDuracaoEst(resultSet.getInt(6));
+                tarefa.setCustoEst(resultSet.getDouble(7));
+                tarefa.setCodigoCategoriaTarefa(resultSet.getString(8));
+                tarefa.setEmailColaborador(resultSet.getString(9));
             }
 
         } catch (SQLException exception) {
@@ -720,9 +726,15 @@ public class RepositorioTarefaDatabase implements RepositorioTarefa {
         } finally {
             DBConnectionHandler.getInstance().closeAll();
         }
-        return tarefasElegíveis;
+        return tarefa;
     }
-    
+
+    /**
+     * Devolve todas as referencias de tarefas
+     * @param listaTarefas
+     * @return
+     * @throws SQLException 
+     */
     @Override
     public List<String> getReferenciasTarefas(List<Tarefa> listaTarefas)  throws SQLException{
         List<String> referenciaTarefas = new ArrayList<>();

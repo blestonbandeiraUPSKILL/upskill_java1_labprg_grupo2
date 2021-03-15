@@ -10,8 +10,8 @@ package com.grupo2.t4j.persistence;
  * @author CAD
  */
 
-import com.grupo2.t4j.exception.FreelancerDuplicadoException;
 import com.grupo2.t4j.domain.*;
+import com.grupo2.t4j.exception.FreelancerDuplicadoException;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -33,8 +33,6 @@ public interface RepositorioFreelancer {
     Password findPassword(String email) throws SQLException;
 
     ArrayList<Freelancer> getAll() throws SQLException;
-    
-    ArrayList<String> getAllEmails() throws SQLException;
 
     List<ReconhecimentoGP> getAllReconhecimentoGP(String emailFreelancer) throws SQLException;
 
@@ -42,5 +40,4 @@ public interface RepositorioFreelancer {
 
     EnderecoPostal getEnderecoPostal(String emailFreelancer) throws SQLException;
 
-    List<GrauProficiencia> getAllGrausFreelancer(String emailFreelancer) throws SQLException;
 }
