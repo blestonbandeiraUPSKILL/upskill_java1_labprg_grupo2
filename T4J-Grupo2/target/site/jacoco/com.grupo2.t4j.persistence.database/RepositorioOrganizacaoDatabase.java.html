@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RepositorioOrganizacaoDatabase.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">T4J-Grupo2</a> &gt; <a href="index.source.html" class="el_package">com.grupo2.t4j.persistence.database</a> &gt; <span class="el_source">RepositorioOrganizacaoDatabase.java</span></div><h1>RepositorioOrganizacaoDatabase.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+package com.grupo2.t4j.persistence.database;
+
+/**
+ *
+ * @author CAD
+ */
+
+import com.grupo2.t4j.domain.Organizacao;
+import com.grupo2.t4j.persistence.RepositorioOrganizacao;
+import com.grupo2.t4j.utils.DBConnectionHandler;
+
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+public class RepositorioOrganizacaoDatabase implements RepositorioOrganizacao {
+
+    /**
+     * Atributos da classe Singleton RepositorioOrganizacao
+     */
+    private static RepositorioOrganizacaoDatabase repositorioOrganizacaoDatabase;
+
+    /**
+     * Construtor da classe Singleton RepositorioOrganizacao
+     */
+<span class="nc" id="L33">    private RepositorioOrganizacaoDatabase() throws SQLException {</span>
+
+<span class="nc" id="L35">    }</span>
+
+    /**
+     * Devolve ou cria uma instância estática de RepositorioOrganizacaoDatabase
+     *
+     * @return a instance existente ou criada
+     */
+    public static RepositorioOrganizacaoDatabase getInstance() throws SQLException {
+<span class="nc bnc" id="L43" title="All 2 branches missed.">        if(repositorioOrganizacaoDatabase == null) {</span>
+<span class="nc" id="L44">            repositorioOrganizacaoDatabase = new RepositorioOrganizacaoDatabase();</span>
+        }
+<span class="nc" id="L46">        return repositorioOrganizacaoDatabase;</span>
+    }
+
+
+    @Override
+    public boolean save(String arruamento, String numeroPorta, String localidade, String codigoPostal,
+                        String nif, String nome, String website, String telefone, String emailOrganizacao,
+                        String emailGestor, String funcaoGestor, String telefoneGestor) throws SQLException {
+
+<span class="nc" id="L55">        Connection connection = DBConnectionHandler.getInstance().openConnection();</span>
+
+        try {
+<span class="nc" id="L58">            CallableStatement callableStatement = connection.prepareCall(</span>
+                &quot;{CALL createOrganizacao(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) } &quot;);
+
+
+
+<span class="nc" id="L63">            connection.setAutoCommit(false);</span>
+
+<span class="nc" id="L65">            callableStatement.setString(1, arruamento);</span>
+<span class="nc" id="L66">            callableStatement.setString(2, numeroPorta);</span>
+<span class="nc" id="L67">            callableStatement.setString(3, localidade);</span>
+<span class="nc" id="L68">            callableStatement.setString(4, codigoPostal);</span>
+<span class="nc" id="L69">            callableStatement.setString(5, nif);</span>
+<span class="nc" id="L70">            callableStatement.setString(6, nome);</span>
+<span class="nc" id="L71">            callableStatement.setString(7, website);</span>
+<span class="nc" id="L72">            callableStatement.setString(8, telefone);</span>
+<span class="nc" id="L73">            callableStatement.setString(9, emailOrganizacao);</span>
+<span class="nc" id="L74">            callableStatement.setString(10, emailGestor);</span>
+<span class="nc" id="L75">            callableStatement.setString(11, funcaoGestor);</span>
+<span class="nc" id="L76">            callableStatement.setString(12, telefoneGestor);</span>
+
+<span class="nc" id="L78">            callableStatement.executeQuery();</span>
+
+<span class="nc" id="L80">            connection.commit();</span>
+<span class="nc" id="L81">            return true;</span>
+
+        }
+<span class="nc" id="L84">        catch (SQLException exception) {</span>
+<span class="nc" id="L85">            exception.printStackTrace();</span>
+<span class="nc" id="L86">            exception.getSQLState();</span>
+            try {
+<span class="nc" id="L88">                System.err.print(&quot;Transaction is being rolled back&quot;);</span>
+<span class="nc" id="L89">                connection.rollback();</span>
+            }
+<span class="nc" id="L91">            catch (SQLException sqlException) {</span>
+<span class="nc" id="L92">                sqlException.getErrorCode();</span>
+<span class="nc" id="L93">            }</span>
+        }
+
+        finally {
+<span class="nc" id="L97">            DBConnectionHandler.getInstance().closeAll();</span>
+<span class="nc" id="L98">        }</span>
+
+<span class="nc" id="L100">        return false;</span>
+    }
+
+
+    @Override
+    public boolean save(Organizacao organizacao) {
+
+<span class="nc" id="L107">        return false;</span>
+    }
+
+    /**
+     *
+     * Procura no RepositorioOrganizacao por uma organização através do seu NIF
+     *
+     * @param nif nif da organização a ser procurada
+     *
+     * @return a organização encontrada, caso exista
+     */
+    public Organizacao findByNif(String nif) throws SQLException {
+
+<span class="nc" id="L120">        Connection connection = DBConnectionHandler.getInstance().openConnection();</span>
+
+        try {
+<span class="nc" id="L123">            CallableStatement callableStatementOrg = connection.prepareCall(</span>
+                    &quot;{CALL findByNif(?)}&quot;);
+
+<span class="nc" id="L126">            connection.setAutoCommit(false);</span>
+
+<span class="nc" id="L128">            callableStatementOrg.setString(1, nif);</span>
+<span class="nc" id="L129">            callableStatementOrg.executeQuery();</span>
+
+<span class="nc" id="L131">            return null;</span>
+
+<span class="nc" id="L133">        } catch (SQLException exceptionOrg) {</span>
+<span class="nc" id="L134">            exceptionOrg.printStackTrace();</span>
+<span class="nc" id="L135">            exceptionOrg.getSQLState();</span>
+
+
+        }
+        finally {
+<span class="nc" id="L140">            DBConnectionHandler.getInstance().closeAll();</span>
+<span class="nc" id="L141">        }</span>
+
+<span class="nc" id="L143">        return new Organizacao();</span>
+    }
+
+    @Override
+    public ArrayList&lt;Organizacao&gt; getAll() {
+<span class="nc" id="L148">        return null;</span>
+    }
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>

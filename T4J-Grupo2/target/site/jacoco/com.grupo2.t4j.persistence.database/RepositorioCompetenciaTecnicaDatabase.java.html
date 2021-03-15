@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RepositorioCompetenciaTecnicaDatabase.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">T4J-Grupo2</a> &gt; <a href="index.source.html" class="el_package">com.grupo2.t4j.persistence.database</a> &gt; <span class="el_source">RepositorioCompetenciaTecnicaDatabase.java</span></div><h1>RepositorioCompetenciaTecnicaDatabase.java</h1><pre class="source lang-java linenums">package com.grupo2.t4j.persistence.database;
+
+import com.grupo2.t4j.domain.CompetenciaTecnica;
+import com.grupo2.t4j.persistence.RepositorioCompetenciaTecnica;
+import com.grupo2.t4j.utils.DBConnectionHandler;
+
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+
+public class RepositorioCompetenciaTecnicaDatabase implements RepositorioCompetenciaTecnica {
+
+    /**
+     * Define uma instância estática do Repositório em que estão
+     * registados todos os Colaboradores
+     */
+    private static RepositorioCompetenciaTecnicaDatabase repositorioCompetenciaTecnicaDatabase;
+
+    /**
+     * Inicializa o Repositório de Colaboradores
+     */
+<span class="nc" id="L22">    private RepositorioCompetenciaTecnicaDatabase(){    }</span>
+
+    /**
+     * Devolve uma instância estática do Repositório de Colaboradores
+     *
+     * @return RepositorioCompetenciaTecnicaDatabase
+     */
+    public static RepositorioCompetenciaTecnicaDatabase getInstance(){
+<span class="nc bnc" id="L30" title="All 2 branches missed.">        if(repositorioCompetenciaTecnicaDatabase == null) {</span>
+<span class="nc" id="L31">            repositorioCompetenciaTecnicaDatabase = new RepositorioCompetenciaTecnicaDatabase();</span>
+        }
+<span class="nc" id="L33">        return repositorioCompetenciaTecnicaDatabase;</span>
+    }
+
+    @Override
+    public void save(String codigo, String descBreve, String descDetalhada, String CodigoAreaActividade) {
+
+<span class="nc" id="L39">    }</span>
+
+    @Override
+    public boolean save(CompetenciaTecnica competenciaTecnica) throws SQLException {
+
+<span class="nc" id="L44">        Connection connection = DBConnectionHandler.getInstance().openConnection();</span>
+
+        try {
+<span class="nc" id="L47">            CallableStatement callableStatement = connection.prepareCall(</span>
+                &quot;{CALL createCompetenciaTecnica(?, ?, ?, ?) }&quot;
+            );
+
+<span class="nc bnc" id="L51" title="All 2 branches missed.">            if(findByCodigo(competenciaTecnica.getCodigo()) == null) {</span>
+
+<span class="nc" id="L53">                connection.setAutoCommit(false);</span>
+
+<span class="nc" id="L55">                callableStatement.setString(1, competenciaTecnica.getCodigo());</span>
+<span class="nc" id="L56">                callableStatement.setString(2, competenciaTecnica.getDescricaoBreve());</span>
+<span class="nc" id="L57">                callableStatement.setString(3, competenciaTecnica.getDescricaoDetalhada());</span>
+<span class="nc" id="L58">                callableStatement.setString(4, competenciaTecnica.getCodigoAreaActividade());</span>
+
+<span class="nc" id="L60">                callableStatement.executeQuery();</span>
+
+<span class="nc" id="L62">                connection.commit();</span>
+<span class="nc" id="L63">                return true;</span>
+            }
+
+        }
+
+<span class="nc" id="L68">        catch (SQLException exception) {</span>
+<span class="nc" id="L69">            exception.printStackTrace();</span>
+<span class="nc" id="L70">            exception.getSQLState();</span>
+            try {
+<span class="nc" id="L72">                System.err.print(&quot;Transaction is being rolled back&quot;);</span>
+<span class="nc" id="L73">                connection.rollback();</span>
+            }
+<span class="nc" id="L75">            catch (SQLException sqlException) {</span>
+<span class="nc" id="L76">                sqlException.getErrorCode();</span>
+<span class="nc" id="L77">            }</span>
+        }
+            finally {
+<span class="nc" id="L80">            DBConnectionHandler.getInstance().closeAll();</span>
+<span class="nc" id="L81">        }</span>
+<span class="nc" id="L82">        return false;</span>
+    }
+
+    @Override
+    public List&lt;CompetenciaTecnica&gt; getAll() throws SQLException {
+<span class="nc" id="L87">        ArrayList&lt;CompetenciaTecnica&gt; competenciasTecnicas = new ArrayList&lt;&gt;();</span>
+
+<span class="nc" id="L89">        Connection connection = DBConnectionHandler.getInstance().openConnection();</span>
+
+        try {
+<span class="nc" id="L92">            PreparedStatement preparedStatement = connection.prepareStatement(</span>
+                    &quot;SELECT * FROM CompetenciaTecnica&quot;
+            );
+
+<span class="nc" id="L96">            ResultSet resultSet = preparedStatement.executeQuery();</span>
+
+<span class="nc bnc" id="L98" title="All 2 branches missed.">            while(resultSet.next()) {</span>
+<span class="nc" id="L99">                String codigo = resultSet.getString(1);</span>
+<span class="nc" id="L100">                String descBreve = resultSet.getString(2);</span>
+<span class="nc" id="L101">                String descDetalhada = resultSet.getString(3);</span>
+<span class="nc" id="L102">                String codigoAreaActividade = resultSet.getString(4);</span>
+<span class="nc" id="L103">                competenciasTecnicas.add(new CompetenciaTecnica(codigo, descBreve, descDetalhada, codigoAreaActividade));</span>
+<span class="nc" id="L104">            }</span>
+        }
+<span class="nc" id="L106">        catch (SQLException exception) {</span>
+<span class="nc" id="L107">            exception.printStackTrace();</span>
+<span class="nc" id="L108">            exception.getSQLState();</span>
+            try {
+<span class="nc" id="L110">                System.err.print(&quot;Transaction is being rolled back&quot;);</span>
+<span class="nc" id="L111">                connection.rollback();</span>
+            }
+<span class="nc" id="L113">            catch (SQLException sqlException) {</span>
+<span class="nc" id="L114">                sqlException.getErrorCode();</span>
+<span class="nc" id="L115">            }</span>
+
+        }
+        finally {
+<span class="nc" id="L119">            DBConnectionHandler.getInstance().closeAll();</span>
+<span class="nc" id="L120">        }</span>
+
+<span class="nc" id="L122">        return competenciasTecnicas;</span>
+    }
+
+    @Override
+    public CompetenciaTecnica findByCodigo(String codigo) throws SQLException {
+
+<span class="nc" id="L128">        Connection connection = DBConnectionHandler.getInstance().openConnection();</span>
+
+        try {
+<span class="nc" id="L131">            CallableStatement callableStatement = connection.prepareCall(</span>
+                    &quot;{CALL findByCodigoCompetenciaTecnica(?)}&quot;
+            );
+
+<span class="nc" id="L135">            connection.setAutoCommit(false);</span>
+
+<span class="nc" id="L137">            callableStatement.setString(1, codigo);</span>
+<span class="nc" id="L138">            callableStatement.executeUpdate();</span>
+
+<span class="nc" id="L140">            return null;</span>
+
+        }
+<span class="nc" id="L143">        catch (SQLException exception) {</span>
+<span class="nc" id="L144">            exception.printStackTrace();</span>
+<span class="nc" id="L145">            exception.getSQLState();</span>
+        }
+
+        finally {
+<span class="nc" id="L149">            DBConnectionHandler.getInstance().closeAll();</span>
+<span class="nc" id="L150">        }</span>
+<span class="nc" id="L151">        return new CompetenciaTecnica();</span>
+    }
+
+    @Override
+    public CompetenciaTecnica findCompetenciaByAreaActividade(String codigoAreaActividade) throws SQLException {
+
+<span class="nc" id="L157">        Connection connection = DBConnectionHandler.getInstance().openConnection();</span>
+
+        try {
+<span class="nc" id="L160">            CallableStatement callableStatement = connection.prepareCall(</span>
+                    &quot;{CALL findCompTecnicaByAreaActividade(?) }&quot;
+            );
+
+<span class="nc" id="L164">            connection.setAutoCommit(false);</span>
+
+<span class="nc" id="L166">            callableStatement.setString(1, codigoAreaActividade);</span>
+<span class="nc" id="L167">            callableStatement.executeUpdate();</span>
+
+<span class="nc" id="L169">            return null;</span>
+
+<span class="nc" id="L171">        } catch (SQLException exception) {</span>
+<span class="nc" id="L172">            exception.printStackTrace();</span>
+<span class="nc" id="L173">            exception.getSQLState();</span>
+        }
+        finally {
+<span class="nc" id="L176">            DBConnectionHandler.getInstance().closeAll();</span>
+<span class="nc" id="L177">        }</span>
+
+<span class="nc" id="L179">        return new CompetenciaTecnica();</span>
+    }
+
+
+    @Override
+    public List&lt;CompetenciaTecnica&gt; findByAreaActividade(String codigoAreaActividade) throws SQLException {
+<span class="nc" id="L185">        ArrayList&lt;CompetenciaTecnica&gt; competenciasTecnicas = new ArrayList&lt;&gt;();</span>
+
+<span class="nc" id="L187">        Connection connection = DBConnectionHandler.getInstance().openConnection();</span>
+
+        try {
+<span class="nc" id="L190">            PreparedStatement preparedStatement = connection.prepareStatement(</span>
+                    &quot;SELECT * FROM CompetenciaTecnica WHERE codigoAreaActividade LIKE ?&quot;
+            );
+
+<span class="nc" id="L194">            preparedStatement.setString(1, codigoAreaActividade);</span>
+
+<span class="nc" id="L196">            ResultSet resultSet = preparedStatement.executeQuery();</span>
+
+<span class="nc bnc" id="L198" title="All 2 branches missed.">            while (resultSet.next()) {</span>
+<span class="nc" id="L199">                String codigoCompetencia = resultSet.getString(1);</span>
+<span class="nc" id="L200">                String descBreve = resultSet.getString(2);</span>
+<span class="nc" id="L201">                String descDetalhada = resultSet.getString(3);</span>
+<span class="nc" id="L202">                competenciasTecnicas.add(new CompetenciaTecnica(codigoCompetencia, descBreve, descDetalhada, codigoAreaActividade));</span>
+<span class="nc" id="L203">            }</span>
+        }
+
+<span class="nc" id="L206">        catch (SQLException exception) {</span>
+<span class="nc" id="L207">            exception.printStackTrace();</span>
+<span class="nc" id="L208">            exception.getSQLState();</span>
+            try {
+<span class="nc" id="L210">                System.err.print(&quot;Transaction is being rolled back&quot;);</span>
+<span class="nc" id="L211">                connection.rollback();</span>
+            }
+<span class="nc" id="L213">            catch (SQLException sqlException) {</span>
+<span class="nc" id="L214">                sqlException.getErrorCode();</span>
+<span class="nc" id="L215">            }</span>
+
+        }
+        finally {
+<span class="nc" id="L219">            DBConnectionHandler.getInstance().closeAll();</span>
+<span class="nc" id="L220">        }</span>
+
+<span class="nc" id="L222">        return competenciasTecnicas;</span>
+
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>

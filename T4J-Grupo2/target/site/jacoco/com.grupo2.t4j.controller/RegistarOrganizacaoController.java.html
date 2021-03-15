@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RegistarOrganizacaoController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">T4J-Grupo2</a> &gt; <a href="index.source.html" class="el_package">com.grupo2.t4j.controller</a> &gt; <span class="el_source">RegistarOrganizacaoController.java</span></div><h1>RegistarOrganizacaoController.java</h1><pre class="source lang-java linenums">package com.grupo2.t4j.controller;
+
+import com.grupo2.t4j.api.UsersAPI;
+import com.grupo2.t4j.domain.AlgoritmoGeradorPasswords;
+import com.grupo2.t4j.domain.Colaborador;
+import com.grupo2.t4j.domain.Organizacao;
+import com.grupo2.t4j.domain.Password;
+import com.grupo2.t4j.persistence.FabricaRepositorios;
+import com.grupo2.t4j.persistence.RepositorioColaborador;
+import com.grupo2.t4j.persistence.RepositorioEnderecoPostal;
+import com.grupo2.t4j.persistence.RepositorioOrganizacao;
+import com.grupo2.t4j.persistence.database.FabricaRepositoriosDatabase;
+
+import java.sql.SQLException;
+import java.util.List;
+
+public class RegistarOrganizacaoController {
+
+<span class="nc" id="L19">    private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosDatabase();</span>
+<span class="nc" id="L20">    private RepositorioOrganizacao repositorioOrganizacao = fabricaRepositorios.getRepositorioOrganizacao();</span>
+<span class="nc" id="L21">    private RepositorioColaborador repositorioColaborador = fabricaRepositorios.getRepositorioColaborador();</span>
+<span class="nc" id="L22">    private RepositorioEnderecoPostal repositorioEnderecoPostal = fabricaRepositorios.getRepositorioEnderecoPostal();</span>
+
+<span class="nc" id="L24">    public RegistarOrganizacaoController() throws SQLException {</span>
+<span class="nc" id="L25">    }</span>
+
+    /**
+    * Registar organização boolean
+    *
+    * @param nif as nif da organização
+    * @param nome as nome da organização
+    * @param website as página web da organização
+    * @param telefone as contacto telefónico da organização
+    * @param emailOrganizacao as email da organização
+    * @param emailGestor as email do gestor
+    * @param arruamento as nome de rua da organização
+    * @param numeroPorta as número da porta da da organização
+    * @param localidade as localidade da organização
+    * @param codigoPostal as código postal da organização
+    * @param nomeGestor as nome do gestor da organização
+    * @param telefoneGestor as telefone do gestor da organização
+    * @param funcaoGestor as função do gestor da organização
+    * @return boolean
+    */
+    public boolean registarOrganizacao(String nif, String nome, String website,
+                                       String telefone, String emailOrganizacao, String emailGestor,
+                                       String arruamento, String numeroPorta,
+                                       String localidade, String codigoPostal, String nomeGestor,
+                                       String telefoneGestor, String funcaoGestor) throws SQLException {
+
+<span class="nc" id="L51">        AlgoritmoGeradorPasswords algoritmoGeradorPasswords = new AlgoritmoGeradorPasswords();</span>
+<span class="nc" id="L52">        String pass = algoritmoGeradorPasswords.geraPassword();</span>
+
+<span class="nc" id="L54">        Colaborador gestor = new Colaborador(emailGestor, nomeGestor, pass, funcaoGestor, telefoneGestor, funcaoGestor);</span>
+
+<span class="nc" id="L56">        UsersAPI usersAPI = UsersAPI.getInstance();</span>
+<span class="nc" id="L57">        usersAPI.registerUserWithRoles(gestor.getEmail(), gestor.getNome(), new Password(pass), &quot;gestor&quot;);</span>
+
+<span class="nc" id="L59">        return repositorioOrganizacao.save(arruamento, numeroPorta, localidade, codigoPostal,</span>
+                nif, nome, website, telefone, emailOrganizacao,
+                emailGestor, funcaoGestor, telefoneGestor);
+    }
+
+    public List&lt;Organizacao&gt; getAll() {
+<span class="nc" id="L65">        return repositorioOrganizacao.getAll();</span>
+    }
+
+    public Organizacao findByNif(String nif) throws SQLException {
+<span class="nc" id="L69">        return repositorioOrganizacao.findByNif(nif);</span>
+    }
+
+    public Colaborador findColaboradorByEmail(String email) throws SQLException {
+<span class="nc" id="L73">        return repositorioColaborador.findByEmail(email);</span>
+    }
+
+
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>

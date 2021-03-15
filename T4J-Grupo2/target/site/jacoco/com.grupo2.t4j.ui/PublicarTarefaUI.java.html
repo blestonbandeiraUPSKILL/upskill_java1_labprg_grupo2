@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PublicarTarefaUI.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">T4J-Grupo2</a> &gt; <a href="index.source.html" class="el_package">com.grupo2.t4j.ui</a> &gt; <span class="el_source">PublicarTarefaUI.java</span></div><h1>PublicarTarefaUI.java</h1><pre class="source lang-java linenums">package com.grupo2.t4j.ui;
+
+import com.grupo2.t4j.controller.PublicarTarefaController;
+import com.grupo2.t4j.domain.TipoRegimento;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.control.*;
+
+import java.net.URL;
+import java.sql.SQLException;
+import java.util.ResourceBundle;
+
+/**
+ * FXML Controller class
+ */
+<span class="nc" id="L19">public class PublicarTarefaUI implements Initializable {</span>
+
+    private ColaboradorLogadoUI colaboradorLogadoUI;
+    private PublicarTarefaController publicarTarefaController;
+
+    @FXML TextField dtFimPublicitacao;
+    @FXML TextField dtInicioCandidaturas;
+    @FXML TextField dtFimCandidaturas;
+    @FXML TextField dtInicioPublicitacao;
+    @FXML TextField dtInicioSeriacao;
+    @FXML TextField dtFimSeriacao;
+    @FXML TextArea txtRegrasGerais;
+    @FXML Button btnPublicar;
+    @FXML Button btnVoltar;
+    @FXML ComboBox&lt;TipoRegimento&gt; cmbTipoSeriacao;
+
+    
+    public void associarParentUI(ColaboradorLogadoUI colaboradorLogadoUI) {
+<span class="nc" id="L37">        this.colaboradorLogadoUI = colaboradorLogadoUI;</span>
+<span class="nc" id="L38">    }</span>
+
+    /**
+     * Initializes the controller class.
+     */
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        
+<span class="nc" id="L46">        publicarTarefaController = new PublicarTarefaController();</span>
+        
+        
+        try {
+<span class="nc" id="L50">            cmbTipoSeriacao.getItems().setAll(publicarTarefaController.getAllRegimento());</span>
+<span class="nc" id="L51">        } catch (SQLException exception) {</span>
+<span class="nc" id="L52">           exception.printStackTrace();</span>
+<span class="nc" id="L53">        }</span>
+        
+<span class="nc" id="L55">        cmbTipoSeriacao.setOnAction(new EventHandler&lt;ActionEvent&gt;() {</span>
+           @Override
+           public void handle(ActionEvent event) {
+<span class="nc" id="L58">               txtRegrasGerais.setText(cmbTipoSeriacao.getSelectionModel().getSelectedItem().getDescricaoRegras());</span>
+<span class="nc" id="L59">           }</span>
+           });
+<span class="nc" id="L61">    }    </span>
+    @FXML
+    void publicarTarefaAction(ActionEvent actionEvent) throws SQLException{
+        try {
+<span class="nc" id="L65">            boolean adicionou = publicarTarefaController.publicarTarefa(</span>
+<span class="nc" id="L66">                    colaboradorLogadoUI.tabelaTarefas.getSelectionModel().getSelectedItem().getReferencia(),</span>
+<span class="nc" id="L67">                    colaboradorLogadoUI.tabelaTarefas.getSelectionModel().getSelectedItem().getNifOrganizacao(),</span>
+<span class="nc" id="L68">                    dtInicioPublicitacao.getText(),</span>
+<span class="nc" id="L69">                    dtFimPublicitacao.getText(),</span>
+<span class="nc" id="L70">                    dtInicioCandidaturas.getText(),</span>
+<span class="nc" id="L71">                    dtFimCandidaturas.getText(),</span>
+<span class="nc" id="L72">                    dtInicioSeriacao.getText(),</span>
+<span class="nc" id="L73">                    dtFimSeriacao.getText(),</span>
+<span class="nc" id="L74">                    cmbTipoSeriacao.getSelectionModel().getSelectedItem().getIdTipoRegimento());</span>
+
+<span class="nc bnc" id="L76" title="All 2 branches missed.">            if (adicionou){</span>
+<span class="nc" id="L77">                colaboradorLogadoUI.updateTableViewTarefas();</span>
+
+<span class="nc" id="L79">            AlertsUI.criarAlerta(Alert.AlertType.INFORMATION,</span>
+                    MainApp.TITULO_APLICACAO,
+                    &quot;Publicar Tarefa.&quot;,
+<span class="nc" id="L82">                    &quot;Tarefa publicada com sucesso.&quot;).show();</span>
+            }
+
+<span class="nc" id="L85">            closePublicarTarefa(actionEvent);</span>
+
+        }
+<span class="nc" id="L88">        catch (IllegalArgumentException exception) {</span>
+<span class="nc" id="L89">            AlertsUI.criarAlerta(Alert.AlertType.ERROR,</span>
+                    MainApp.TITULO_APLICACAO,
+                    &quot;Publicar Tarefa - Erro nos dados.&quot;,
+<span class="nc" id="L92">                    &quot;Não foi possível publicar a Tarefa.&quot; + exception.getMessage()).show();</span>
+
+<span class="nc" id="L94">        }</span>
+
+<span class="nc" id="L96">    }</span>
+    
+    @FXML
+    void voltarAtras(ActionEvent event) {
+<span class="nc" id="L100">        btnVoltar.getScene().getWindow().hide();</span>
+<span class="nc" id="L101">    }</span>
+    
+    private void closePublicarTarefa(ActionEvent actionEvent) {
+
+<span class="nc" id="L105">        ((Node) actionEvent.getSource()).getScene().getWindow().hide();</span>
+<span class="nc" id="L106">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>

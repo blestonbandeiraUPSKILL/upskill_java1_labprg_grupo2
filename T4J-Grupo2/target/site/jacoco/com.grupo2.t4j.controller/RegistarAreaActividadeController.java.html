@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RegistarAreaActividadeController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">T4J-Grupo2</a> &gt; <a href="index.source.html" class="el_package">com.grupo2.t4j.controller</a> &gt; <span class="el_source">RegistarAreaActividadeController.java</span></div><h1>RegistarAreaActividadeController.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.grupo2.t4j.controller;
+
+import com.grupo2.t4j.domain.AreaActividade;
+import com.grupo2.t4j.persistence.FabricaRepositorios;
+import com.grupo2.t4j.persistence.RepositorioAreaActividade;
+import com.grupo2.t4j.persistence.database.FabricaRepositoriosDatabase;
+
+import java.sql.SQLException;
+import java.util.List;
+
+/**
+ *
+ * @author acris
+ */
+<span class="nc" id="L20">public class RegistarAreaActividadeController /*implements Serializable*/{</span>
+
+<span class="nc" id="L22">    private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosDatabase();</span>
+<span class="nc" id="L23">    private RepositorioAreaActividade repositorioAreaActividade = fabricaRepositorios.getRepositorioAreaActividade();</span>
+
+    public List&lt;AreaActividade&gt; getAll() throws SQLException {
+<span class="nc" id="L26">        return repositorioAreaActividade.getAll();</span>
+    }
+
+    /**
+    * Sets new area of activity boolean.
+    *
+    * @param codigo as unique code
+    * @param descBreve as description
+    * @param descDetalhada as detailed description
+    * @return boolean
+    */
+    public boolean registarAreaActividade(String codigo, String descBreve, String descDetalhada) throws SQLException {
+
+<span class="nc" id="L39">        AreaActividade areaActividade = new AreaActividade(codigo, descBreve, descDetalhada);</span>
+
+<span class="nc" id="L41">        return repositorioAreaActividade.save(areaActividade);</span>
+    }
+
+    public AreaActividade findByCodigo(String codigo) throws SQLException {
+<span class="nc" id="L45">        return repositorioAreaActividade.findByCodigo(codigo);</span>
+    }
+
+    public AreaActividade getAreaActividade(String codigoAreaActividade) throws SQLException {
+<span class="nc" id="L49">        return repositorioAreaActividade.getAreaActividade(codigoAreaActividade);</span>
+    }
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>

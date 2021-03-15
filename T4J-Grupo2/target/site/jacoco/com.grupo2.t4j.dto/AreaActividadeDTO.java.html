@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AreaActividadeDTO.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">T4J-Grupo2</a> &gt; <a href="index.source.html" class="el_package">com.grupo2.t4j.dto</a> &gt; <span class="el_source">AreaActividadeDTO.java</span></div><h1>AreaActividadeDTO.java</h1><pre class="source lang-java linenums">package com.grupo2.t4j.dto;
+
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
+import com.grupo2.t4j.exception.IdInvalidoException;
+import com.grupo2.t4j.exception.NomeInvalidoException;
+
+@JsonPropertyOrder({&quot;codigo&quot;, &quot;descBreve&quot;, &quot;descDetalhada&quot;})
+
+public class AreaActividadeDTO {
+
+    @JacksonXmlProperty(localName = &quot;codigo&quot;)
+    private String codigo;
+
+    @JacksonXmlProperty(localName = &quot;descBreve&quot;)
+    private String descBreve;
+
+    @JacksonXmlProperty(localName = &quot;descDetalhada&quot;)
+    private String descDetalhada;
+
+<span class="nc" id="L21">    public AreaActividadeDTO(){}</span>
+
+<span class="nc" id="L23">    public AreaActividadeDTO(String codigo, String descBreve, String descDetalhada){</span>
+<span class="nc" id="L24">        setCodigo(codigo);</span>
+<span class="nc" id="L25">        setDescBreve(descBreve);</span>
+<span class="nc" id="L26">        setDescDetalhada(descDetalhada);</span>
+<span class="nc" id="L27">    }</span>
+
+<span class="nc" id="L29">    public AreaActividadeDTO(AreaActividadeDTO areaActividadeDTO){</span>
+<span class="nc" id="L30">        setCodigo(areaActividadeDTO.codigo);</span>
+<span class="nc" id="L31">        setDescBreve(areaActividadeDTO.descBreve);</span>
+<span class="nc" id="L32">        setDescDetalhada(areaActividadeDTO.descDetalhada);</span>
+<span class="nc" id="L33">    }</span>
+
+    public void setCodigo(String codigo) {
+<span class="nc bnc" id="L36" title="All 4 branches missed.">        if (codigo == null || codigo.trim().isEmpty()) {</span>
+<span class="nc" id="L37">            throw new IdInvalidoException(&quot;O Código da Área de Actividade é um campo obrigatório!&quot;);</span>
+        }
+<span class="nc" id="L39">        this.codigo = codigo;</span>
+<span class="nc" id="L40">    }</span>
+
+    public void setDescBreve(String descBreve) {
+<span class="nc bnc" id="L43" title="All 4 branches missed.">        if (descBreve == null || descBreve.trim().isEmpty()) {</span>
+<span class="nc" id="L44">            throw new NomeInvalidoException(&quot;Descrição breve é obrigatória!&quot;);</span>
+        }
+<span class="nc bnc" id="L46" title="All 2 branches missed.">        if (descBreve.length() &lt; 5) {</span>
+<span class="nc" id="L47">            throw new NomeInvalidoException(&quot;Descrição breve tem de ter pelo menos 5 caracteres!&quot;);</span>
+        }
+<span class="nc" id="L49">        this.descBreve = descBreve;</span>
+<span class="nc" id="L50">    }</span>
+
+    public void setDescDetalhada(String descDetalhada) {
+<span class="nc bnc" id="L53" title="All 4 branches missed.">        if (descDetalhada == null || descDetalhada.trim().isEmpty()) {</span>
+<span class="nc" id="L54">            throw new NomeInvalidoException(&quot;Descrição detalhada é obrigatória!&quot;);</span>
+        }
+<span class="nc bnc" id="L56" title="All 2 branches missed.">        if (descDetalhada.length() &lt; 10) {</span>
+<span class="nc" id="L57">            throw new NomeInvalidoException(&quot;Descrição detalhada tem de ter pelo menos 10 caracteres!&quot;);</span>
+        }
+<span class="nc" id="L59">        this.descDetalhada = descDetalhada;</span>
+<span class="nc" id="L60">    }</span>
+
+    public String getCodigo() {
+<span class="nc" id="L63">        return codigo;</span>
+    }
+
+    public String getDescBreve() {
+<span class="nc" id="L67">        return descBreve;</span>
+    }
+
+    public String getDescDetalhada() {
+<span class="nc" id="L71">        return descDetalhada;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>

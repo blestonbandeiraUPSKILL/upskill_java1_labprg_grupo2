@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RepositorioSeriacaoDatabase.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">T4J-Grupo2</a> &gt; <a href="index.source.html" class="el_package">com.grupo2.t4j.persistence.database</a> &gt; <span class="el_source">RepositorioSeriacaoDatabase.java</span></div><h1>RepositorioSeriacaoDatabase.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.grupo2.t4j.persistence.database;
+
+/**
+ *
+ * @author CAD
+ */
+
+import com.grupo2.t4j.domain.*;
+import com.grupo2.t4j.persistence.RepositorioSeriacao;
+import com.grupo2.t4j.utils.DBConnectionHandler;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+public class RepositorioSeriacaoDatabase implements RepositorioSeriacao{
+    /**
+     * Define uma instância estática do Repositório em que estão
+     * registados todas as Seriações
+     */
+    private static RepositorioSeriacaoDatabase repositorioSeriacaoDatabase;
+    
+    /**
+     * Inicializa o Repositório de Seriações
+     */
+<span class="nc" id="L29">    private RepositorioSeriacaoDatabase(){    }</span>
+
+    /**
+     * Devolve uma instância estática do Repositório das Seriações
+     *
+     * @return RepositorioSeriacaoDatabase
+     */
+    public static RepositorioSeriacaoDatabase getInstance(){
+<span class="nc bnc" id="L37" title="All 2 branches missed.">        if(repositorioSeriacaoDatabase == null) {</span>
+<span class="nc" id="L38">            repositorioSeriacaoDatabase = new RepositorioSeriacaoDatabase();</span>
+        }
+<span class="nc" id="L40">        return repositorioSeriacaoDatabase;</span>
+    }
+    
+    @Override
+    public boolean save(int idAnuncio) throws SQLException{
+
+<span class="nc" id="L46">        Connection connection = DBConnectionHandler.getInstance().openConnection();</span>
+
+        try {
+<span class="nc" id="L49">            CallableStatement callableStatement = connection.prepareCall(</span>
+                &quot;{CALL createSeriacao(?, ?, ?) } &quot;);
+
+<span class="nc bnc" id="L52" title="All 2 branches missed.">            if (findByAnuncio(idAnuncio) == null){</span>
+
+<span class="nc" id="L54">                connection.setAutoCommit(false);</span>
+
+<span class="nc" id="L56">                callableStatement.setInt(1, idAnuncio);</span>
+<span class="nc" id="L57">                callableStatement.executeQuery();</span>
+
+<span class="nc" id="L59">                connection.commit();</span>
+<span class="nc" id="L60">                return true;</span>
+            }
+        }
+<span class="nc" id="L63">        catch (SQLException exception) {</span>
+<span class="nc" id="L64">            exception.printStackTrace();</span>
+<span class="nc" id="L65">            exception.getSQLState();</span>
+            try {
+<span class="nc" id="L67">                System.err.print(&quot;Transaction is being rolled back&quot;);</span>
+<span class="nc" id="L68">                connection.rollback();</span>
+            }
+<span class="nc" id="L70">            catch (SQLException sqlException) {</span>
+<span class="nc" id="L71">                sqlException.getErrorCode();</span>
+<span class="nc" id="L72">            }</span>
+        }
+
+        finally {
+<span class="nc" id="L76">            DBConnectionHandler.getInstance().closeAll();</span>
+<span class="nc" id="L77">        }</span>
+<span class="nc" id="L78">        return false;</span>
+    }
+    
+    @Override
+    public boolean save(ProcessoSeriacao seriacao) throws SQLException{
+
+<span class="nc" id="L84">         Connection connection = DBConnectionHandler.getInstance().openConnection();</span>
+
+        try {
+<span class="nc" id="L87">            CallableStatement callableStatement = connection.prepareCall(</span>
+                &quot;{CALL createSeriacao(?, ?, ?) } &quot;);
+
+<span class="nc bnc" id="L90" title="All 2 branches missed.">            if (findByAnuncio(seriacao.getIdAnuncio()) == null){</span>
+
+<span class="nc" id="L92">                connection.setAutoCommit(false);</span>
+
+<span class="nc" id="L94">                callableStatement.setInt(1, seriacao.getIdSeriacao());</span>
+<span class="nc" id="L95">                callableStatement.setInt(2, seriacao.getIdAnuncio());</span>
+<span class="nc" id="L96">                callableStatement.setString(3, seriacao.getDataSeriacao());</span>
+<span class="nc" id="L97">                callableStatement.executeQuery();</span>
+
+<span class="nc" id="L99">                connection.commit();</span>
+<span class="nc" id="L100">                return true;</span>
+            }
+        }
+<span class="nc" id="L103">        catch (SQLException exception) {</span>
+<span class="nc" id="L104">            exception.printStackTrace();</span>
+<span class="nc" id="L105">            exception.getSQLState();</span>
+            try {
+<span class="nc" id="L107">                System.err.print(&quot;Transaction is being rolled back&quot;);</span>
+<span class="nc" id="L108">                connection.rollback();</span>
+            }
+<span class="nc" id="L110">            catch (SQLException sqlException) {</span>
+<span class="nc" id="L111">                sqlException.getErrorCode();</span>
+<span class="nc" id="L112">            }</span>
+        }
+
+        finally {
+<span class="nc" id="L116">            DBConnectionHandler.getInstance().closeAll();</span>
+<span class="nc" id="L117">        }</span>
+<span class="nc" id="L118">        return false;</span>
+    }
+
+    @Override
+    public ProcessoSeriacao findById(int idSeriacao) throws SQLException{
+
+<span class="nc" id="L124">        Connection connection = DBConnectionHandler.getInstance().openConnection();</span>
+
+        try {
+<span class="nc" id="L127">            CallableStatement callableStatementOrg = connection.prepareCall(</span>
+                    &quot;{CALL findSeriacaoById(?)}&quot;);
+
+<span class="nc" id="L130">            connection.setAutoCommit(false);</span>
+
+<span class="nc" id="L132">            callableStatementOrg.setInt(1, idSeriacao);</span>
+<span class="nc" id="L133">            callableStatementOrg.executeQuery();</span>
+
+<span class="nc" id="L135">            return null;</span>
+
+<span class="nc" id="L137">        } catch (SQLException exceptionOrg) {</span>
+<span class="nc" id="L138">            exceptionOrg.printStackTrace();</span>
+<span class="nc" id="L139">            exceptionOrg.getSQLState();</span>
+        }
+        finally {
+<span class="nc" id="L142">            DBConnectionHandler.getInstance().closeAll();</span>
+<span class="nc" id="L143">        }</span>
+<span class="nc" id="L144">        return new ProcessoSeriacao();      </span>
+    }
+    
+    @Override
+    public ProcessoSeriacao findByAnuncio(int idAnuncio) throws SQLException{
+
+<span class="nc" id="L150">        Connection connection = DBConnectionHandler.getInstance().openConnection();</span>
+
+        try {
+<span class="nc" id="L153">            CallableStatement callableStatementOrg = connection.prepareCall(</span>
+                    &quot;{CALL findSeriacaoByAnuncio(?)}&quot;);
+
+<span class="nc" id="L156">            connection.setAutoCommit(false);</span>
+
+<span class="nc" id="L158">            callableStatementOrg.setInt(1, idAnuncio);</span>
+<span class="nc" id="L159">            callableStatementOrg.executeQuery();</span>
+
+<span class="nc" id="L161">            return new ProcessoSeriacao();</span>
+
+<span class="nc" id="L163">        } catch (SQLException exceptionOrg) {</span>
+<span class="nc" id="L164">            exceptionOrg.printStackTrace();</span>
+<span class="nc" id="L165">            exceptionOrg.getSQLState();</span>
+        }
+        finally {
+<span class="nc" id="L168">            DBConnectionHandler.getInstance().closeAll();</span>
+<span class="nc" id="L169">        }</span>
+
+<span class="nc" id="L171">        return null;</span>
+    } 
+        
+    @Override
+    public List&lt;ProcessoSeriacao&gt; getAll() throws SQLException{
+        
+<span class="nc" id="L177">        ArrayList&lt;ProcessoSeriacao&gt; seriacoes = new ArrayList&lt;&gt;();</span>
+
+<span class="nc" id="L179">        Connection connection = DBConnectionHandler.getInstance().openConnection();</span>
+
+        try {
+<span class="nc" id="L182">            PreparedStatement preparedStatement = connection.prepareStatement(</span>
+                    &quot;SELECT * FROM Seriacao&quot;
+            );
+
+<span class="nc" id="L186">            ResultSet resultSet = preparedStatement.executeQuery();</span>
+
+<span class="nc bnc" id="L188" title="All 2 branches missed.">            while (resultSet.next()) {</span>
+<span class="nc" id="L189">                int idSeriacao = resultSet.getInt(1);</span>
+<span class="nc" id="L190">                int idAnuncio = resultSet.getInt(2);</span>
+<span class="nc" id="L191">                String dataSeriacao = resultSet.getString(3);</span>
+<span class="nc" id="L192">                seriacoes.add(new ProcessoSeriacao(idSeriacao, idAnuncio, dataSeriacao));</span>
+<span class="nc" id="L193">            }</span>
+        }
+<span class="nc" id="L195">        catch (SQLException exception) {</span>
+<span class="nc" id="L196">            exception.printStackTrace();</span>
+<span class="nc" id="L197">            exception.getSQLState();</span>
+            try {
+<span class="nc" id="L199">                System.err.print(&quot;Transaction is being rolled back&quot;);</span>
+<span class="nc" id="L200">                connection.rollback();</span>
+            }
+<span class="nc" id="L202">            catch (SQLException sqlException) {</span>
+<span class="nc" id="L203">                sqlException.getErrorCode();</span>
+<span class="nc" id="L204">            }</span>
+
+        }
+        finally {
+<span class="nc" id="L208">            DBConnectionHandler.getInstance().closeAll();</span>
+<span class="nc" id="L209">        }    </span>
+<span class="nc" id="L210">        return seriacoes;</span>
+    }
+
+    @Override
+    public List&lt;ProcessoSeriacao&gt; getAllByIdAnuncio(int idAnuncio) throws SQLException {
+<span class="nc" id="L215">        List&lt;ProcessoSeriacao&gt; processosSeriacao = new ArrayList&lt;&gt;();</span>
+
+<span class="nc" id="L217">        Connection connection = DBConnectionHandler.getInstance().openConnection();</span>
+
+        try {
+<span class="nc" id="L220">            PreparedStatement preparedStatement = connection.prepareStatement(</span>
+                    &quot;SELECT * FROM ProcessoSeriacao &quot;
+                            + &quot;WHERE idAnuncio =  ?&quot;
+            );
+
+<span class="nc" id="L225">            preparedStatement.setInt(1, idAnuncio);</span>
+
+<span class="nc" id="L227">            preparedStatement.executeQuery();</span>
+
+<span class="nc" id="L229">            ResultSet resultSet = preparedStatement.getResultSet();</span>
+
+<span class="nc bnc" id="L231" title="All 2 branches missed.">            while (resultSet.next()) {</span>
+<span class="nc" id="L232">                int idProcessoSeriacao = resultSet.getInt(1);</span>
+<span class="nc" id="L233">                String dataSeriacao =  resultSet.getString(2);</span>
+
+<span class="nc" id="L235">                processosSeriacao.add(new ProcessoSeriacao(idProcessoSeriacao, idAnuncio, dataSeriacao));</span>
+<span class="nc" id="L236">            }</span>
+
+<span class="nc" id="L238">        } catch (SQLException exception) {</span>
+<span class="nc" id="L239">            exception.printStackTrace();</span>
+<span class="nc" id="L240">            exception.getSQLState();</span>
+            try {
+<span class="nc" id="L242">                System.err.print(&quot;Transaction is being rolled back&quot;);</span>
+<span class="nc" id="L243">                connection.rollback();</span>
+<span class="nc" id="L244">            } catch (SQLException sqlException) {</span>
+<span class="nc" id="L245">                sqlException.getErrorCode();</span>
+<span class="nc" id="L246">            }</span>
+
+        } finally {
+<span class="nc" id="L249">            DBConnectionHandler.getInstance().closeAll();</span>
+<span class="nc" id="L250">        }</span>
+<span class="nc" id="L251">        return processosSeriacao;</span>
+    }
+
+    @Override
+    public ProcessoSeriacao getProcessoSeriacaoByAnuncio(int idAnuncio) throws SQLException {
+<span class="nc" id="L256">        ProcessoSeriacao processoSeriacao = new ProcessoSeriacao();</span>
+
+<span class="nc" id="L258">        Connection connection = DBConnectionHandler.getInstance().openConnection();</span>
+
+        try {
+<span class="nc" id="L261">            PreparedStatement preparedStatement = connection.prepareStatement(</span>
+                    &quot;SELECT * FROM ProcessoSeriacao WHERE idAnuncio = ?&quot;
+            );
+
+<span class="nc" id="L265">            preparedStatement.setInt(1, idAnuncio);</span>
+<span class="nc" id="L266">            preparedStatement.executeQuery();</span>
+
+<span class="nc" id="L268">            ResultSet resultSet = preparedStatement.getResultSet();</span>
+
+<span class="nc bnc" id="L270" title="All 2 branches missed.">            while (resultSet.next()) {</span>
+<span class="nc" id="L271">                processoSeriacao.setIdSeriacao(resultSet.getInt(1));</span>
+<span class="nc" id="L272">                processoSeriacao.setIdAnuncio(idAnuncio);</span>
+<span class="nc" id="L273">                processoSeriacao.setData(resultSet.getString(3));</span>
+            }
+        }
+<span class="nc" id="L276">        catch (SQLException exception) {</span>
+<span class="nc" id="L277">            exception.printStackTrace();</span>
+<span class="nc" id="L278">            exception.getSQLState();</span>
+            try {
+<span class="nc" id="L280">                System.err.print(&quot;Transaction is being rolled back&quot;);</span>
+<span class="nc" id="L281">                connection.rollback();</span>
+            }
+<span class="nc" id="L283">            catch (SQLException sqlException) {</span>
+<span class="nc" id="L284">                sqlException.getErrorCode();</span>
+<span class="nc" id="L285">            }</span>
+
+        }
+        finally {
+<span class="nc" id="L289">            DBConnectionHandler.getInstance().closeAll();</span>
+<span class="nc" id="L290">        }</span>
+
+<span class="nc" id="L292">        return processoSeriacao;</span>
+    }
+
+    @Override
+    public ProcessoSeriacao findProcessoSeriacaoByIdAnuncio(int idAnuncio) throws SQLException {
+<span class="nc" id="L297">        ProcessoSeriacao processoSeriacao = new ProcessoSeriacao();</span>
+
+<span class="nc" id="L299">        Connection connection = DBConnectionHandler.getInstance().openConnection();</span>
+
+        try {
+<span class="nc" id="L302">            CallableStatement callableStatement = connection.prepareCall(</span>
+                    &quot;{ CALL findProcessoSeriacaoByIdAnuncio(?) := ?}&quot;
+            );
+
+<span class="nc" id="L306">            callableStatement.setInt(1, idAnuncio);</span>
+<span class="nc" id="L307">            callableStatement.registerOutParameter(2, Types.REF_CURSOR);</span>
+<span class="nc" id="L308">            callableStatement.executeQuery();</span>
+
+<span class="nc" id="L310">            ResultSet resultSet = callableStatement.getResultSet();</span>
+
+<span class="nc bnc" id="L312" title="All 2 branches missed.">            while (resultSet.next()) {</span>
+<span class="nc" id="L313">                processoSeriacao.setIdSeriacao(resultSet.getInt(1));</span>
+<span class="nc" id="L314">                processoSeriacao.setIdAnuncio(idAnuncio);</span>
+<span class="nc" id="L315">                processoSeriacao.setData(resultSet.getString(3));</span>
+            }
+        }
+<span class="nc" id="L318">        catch (SQLException exception) {</span>
+<span class="nc" id="L319">            exception.printStackTrace();</span>
+<span class="nc" id="L320">            exception.getSQLState();</span>
+            try {
+<span class="nc" id="L322">                System.err.print(&quot;Transaction is being rolled back&quot;);</span>
+<span class="nc" id="L323">                connection.rollback();</span>
+            }
+<span class="nc" id="L325">            catch (SQLException sqlException) {</span>
+<span class="nc" id="L326">                sqlException.getErrorCode();</span>
+<span class="nc" id="L327">            }</span>
+
+        }
+        finally {
+<span class="nc" id="L331">            DBConnectionHandler.getInstance().closeAll();</span>
+<span class="nc" id="L332">        }</span>
+
+<span class="nc" id="L334">        return processoSeriacao;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>

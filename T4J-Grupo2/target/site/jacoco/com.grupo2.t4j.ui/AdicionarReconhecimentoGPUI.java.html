@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AdicionarReconhecimentoGPUI.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">T4J-Grupo2</a> &gt; <a href="index.source.html" class="el_package">com.grupo2.t4j.ui</a> &gt; <span class="el_source">AdicionarReconhecimentoGPUI.java</span></div><h1>AdicionarReconhecimentoGPUI.java</h1><pre class="source lang-java linenums">package com.grupo2.t4j.ui;
+
+import com.grupo2.t4j.controller.RegistarCompetenciaTecnicaController;
+import com.grupo2.t4j.controller.RegistarFreelancerController;
+import com.grupo2.t4j.controller.RegistarGrauProficienciaController;
+import com.grupo2.t4j.controller.RegistarReconhecimentoGPController;
+import com.grupo2.t4j.domain.*;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.*;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.stage.Window;
+import javafx.stage.WindowEvent;
+
+import java.net.URL;
+import java.sql.SQLException;
+import java.util.ResourceBundle;
+import javafx.scene.control.cell.PropertyValueFactory;
+
+/**
+ * FXML Controller class
+ */
+<span class="nc" id="L26">public class AdicionarReconhecimentoGPUI implements Initializable {</span>
+
+    private AdministrativoLogadoUI administrativoLogadoUI;
+
+    private RegistarReconhecimentoGPController registarReconhecimentoGPController;
+    private RegistarFreelancerController registarFreelancerController;
+    private RegistarCompetenciaTecnicaController registarCompetenciaTecnicaController;
+    private RegistarGrauProficienciaController registarGrauProficienciaController;
+
+    private Stage adicionarStage;
+
+    @FXML
+    TextField txtNomeFreelancer;
+    @FXML
+    TextField txtIDataValidacao;
+    @FXML
+    ComboBox&lt;Freelancer&gt; cmbEmailFreelancer;
+    @FXML
+    ComboBox&lt;CompetenciaTecnica&gt; cmbCompetencia;
+    @FXML
+    ComboBox&lt;GrauProficiencia&gt; cmbProficiencia;
+    @FXML
+    Button btnAddCompetencia;
+    @FXML
+    Button btnCancelar;
+    @FXML
+    Button btnSair;
+    
+    ////Tabela Reconhecimento///////////////////////
+    @FXML TableColumn&lt;Object, Object&gt; txtCompTec;
+    @FXML TableColumn&lt;Object, Object&gt; txtDataReconhecimento;
+    @FXML TableColumn&lt;Object, Object&gt; txtGrau;
+    @FXML TableView&lt;ReconhecimentoGP&gt; tabelaReconhecimento;
+
+    public void associarParentUI(AdministrativoLogadoUI administrativoLogadoUI) {
+<span class="nc" id="L61">        this.administrativoLogadoUI = administrativoLogadoUI;</span>
+<span class="nc" id="L62">    }</span>
+
+    /**
+     * Initializes the controller (UI) class.
+     */
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+
+<span class="nc" id="L70">        registarReconhecimentoGPController = new RegistarReconhecimentoGPController();</span>
+<span class="nc" id="L71">        registarFreelancerController = new RegistarFreelancerController();</span>
+<span class="nc" id="L72">        registarCompetenciaTecnicaController = new RegistarCompetenciaTecnicaController();</span>
+        try {
+<span class="nc" id="L74">            registarGrauProficienciaController = new RegistarGrauProficienciaController();</span>
+<span class="nc" id="L75">        } catch (SQLException exception) {</span>
+<span class="nc" id="L76">            exception.printStackTrace();</span>
+<span class="nc" id="L77">        }</span>
+
+<span class="nc" id="L79">        adicionarStage = new Stage();</span>
+<span class="nc" id="L80">        adicionarStage.initModality(Modality.APPLICATION_MODAL);;</span>
+<span class="nc" id="L81">        adicionarStage.setResizable(false);</span>
+
+        try {
+<span class="nc" id="L84">            cmbEmailFreelancer.getItems().setAll(registarFreelancerController.getAll());</span>
+<span class="nc" id="L85">        } catch (SQLException exception) {</span>
+<span class="nc" id="L86">            exception.printStackTrace();</span>
+<span class="nc" id="L87">        }</span>
+
+        try {
+<span class="nc" id="L90">            cmbCompetencia.getItems().setAll(registarCompetenciaTecnicaController.getAll());</span>
+<span class="nc" id="L91">        } catch (SQLException exception) {</span>
+<span class="nc" id="L92">            exception.printStackTrace();</span>
+<span class="nc" id="L93">        }</span>
+
+<span class="nc" id="L95">        cmbCompetencia.setOnAction(new EventHandler&lt;ActionEvent&gt;() {</span>
+            @Override
+            public void handle(ActionEvent event) {
+                try {
+<span class="nc" id="L99">                    updateCmbGrauProficiencia(event);</span>
+
+<span class="nc" id="L101">                } catch (SQLException exception) {</span>
+<span class="nc" id="L102">                    exception.printStackTrace();</span>
+<span class="nc" id="L103">                }</span>
+<span class="nc" id="L104">            }</span>
+        });
+
+<span class="nc" id="L107">        cmbEmailFreelancer.setOnAction(new EventHandler&lt;ActionEvent&gt;() {</span>
+            @Override
+            public void handle(ActionEvent event) {
+                try {
+<span class="nc" id="L111">                    updateTxtNomeFreelancer(event);</span>
+<span class="nc" id="L112">                    mostrarCompetencias();</span>
+<span class="nc" id="L113">                } catch (SQLException exception) {</span>
+<span class="nc" id="L114">                    exception.printStackTrace();</span>
+<span class="nc" id="L115">                }</span>
+<span class="nc" id="L116">            }</span>
+        });
+
+<span class="nc" id="L119">    }</span>
+
+    public void updateCmbGrauProficiencia(ActionEvent actionEvent) throws SQLException {
+<span class="nc" id="L122">        String codigoCompetenciaTecnica = cmbCompetencia.getSelectionModel().getSelectedItem().getCodigo();</span>
+<span class="nc" id="L123">        cmbProficiencia.getItems().setAll(</span>
+<span class="nc" id="L124">                registarGrauProficienciaController.findByCompetenciaTecnica(codigoCompetenciaTecnica));</span>
+<span class="nc" id="L125">    }</span>
+
+    
+    public void mostrarCompetencias () throws SQLException {
+<span class="nc" id="L129">        String emailFreelancer = cmbEmailFreelancer.getSelectionModel().getSelectedItem().getEmail().getEmailText();</span>
+<span class="nc" id="L130">        tabelaReconhecimento.getItems().setAll(registarReconhecimentoGPController.getAll(emailFreelancer));</span>
+        
+<span class="nc" id="L132">        txtCompTec.setCellValueFactory(new PropertyValueFactory&lt;&gt;(&quot;descBreveCompetencia&quot;));</span>
+<span class="nc" id="L133">        txtGrau.setCellValueFactory(new PropertyValueFactory&lt;&gt;(&quot;designacaoGrau&quot;));</span>
+<span class="nc" id="L134">        txtDataReconhecimento.setCellValueFactory(new PropertyValueFactory&lt;&gt;(&quot;dataReconhecimento&quot;));</span>
+<span class="nc" id="L135">    }</span>
+
+    public void updateTxtNomeFreelancer(ActionEvent actionEvent) throws SQLException {
+<span class="nc" id="L138">        String emailFreelancer = cmbEmailFreelancer.getSelectionModel().getSelectedItem().getEmail().getEmailText();</span>
+<span class="nc" id="L139">        txtNomeFreelancer.setText(registarFreelancerController.findByEmail(emailFreelancer).getNome());</span>
+<span class="nc" id="L140">    }</span>
+
+    @FXML
+    void addCompetencia(ActionEvent event) {
+        try {
+
+<span class="nc" id="L146">            boolean adicionou = registarReconhecimentoGPController.registarReconhecimentoGP(</span>
+<span class="nc" id="L147">                    cmbProficiencia.getSelectionModel().getSelectedItem().getIdGrauProficiencia(),</span>
+<span class="nc" id="L148">                    cmbEmailFreelancer.getSelectionModel().getSelectedItem().getEmail().getEmailText(),</span>
+<span class="nc" id="L149">                    txtIDataValidacao.getText());</span>
+
+<span class="nc bnc" id="L151" title="All 2 branches missed.">            if (adicionou) {</span>
+<span class="nc" id="L152">                mostrarCompetencias();</span>
+
+<span class="nc" id="L154">                AlertsUI.criarAlerta(Alert.AlertType.INFORMATION,</span>
+                        MainApp.TITULO_APLICACAO, &quot;Registar Validação de Competência Técnica.&quot;,
+<span class="nc" id="L156">                        &quot;Competência Técnica de Freelancer validada com sucesso.&quot;).show();</span>
+            }
+<span class="nc" id="L158">        } catch (IllegalArgumentException | SQLException exception) {</span>
+<span class="nc" id="L159">            AlertsUI.criarAlerta(Alert.AlertType.ERROR,</span>
+                    MainApp.TITULO_APLICACAO,
+                    &quot;Registar Validação de Competência Técnica - Erro nos dados.&quot;,
+<span class="nc" id="L162">                    &quot;Não foi possível validar a Competência Técnica.&quot; + exception.getMessage()).show();</span>
+
+<span class="nc" id="L164">        }</span>
+<span class="nc" id="L165">    }</span>
+
+    @FXML
+    public void cancelarAction(ActionEvent event) {
+<span class="nc" id="L169">        txtIDataValidacao.clear();</span>
+<span class="nc" id="L170">    }</span>
+
+    @FXML
+    public void sairAction(ActionEvent event) {
+<span class="nc" id="L174">        Window window = btnSair.getScene().getWindow();</span>
+<span class="nc" id="L175">        window.setOnCloseRequest(new EventHandler&lt;WindowEvent&gt;() {</span>
+            @Override
+            public void handle(WindowEvent windowEvent) {
+<span class="nc" id="L178">                Alert alerta = AlertsUI.criarAlerta(Alert.AlertType.CONFIRMATION,</span>
+                        MainApp.TITULO_APLICACAO,
+                        &quot;Confirmação da acção&quot;,
+                        &quot;Tem a certeza que quer voltar à página anterior?&quot;);
+
+<span class="nc bnc" id="L183" title="All 2 branches missed.">                if (alerta.showAndWait().get() == ButtonType.CANCEL) {</span>
+<span class="nc" id="L184">                    windowEvent.consume();</span>
+                }
+<span class="nc" id="L186">            }</span>
+        });
+<span class="nc" id="L188">        window.fireEvent(new WindowEvent(window, WindowEvent.WINDOW_CLOSE_REQUEST));</span>
+<span class="nc" id="L189">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>

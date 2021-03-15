@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AdicionarFreelancerUI.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">T4J-Grupo2</a> &gt; <a href="index.source.html" class="el_package">com.grupo2.t4j.ui</a> &gt; <span class="el_source">AdicionarFreelancerUI.java</span></div><h1>AdicionarFreelancerUI.java</h1><pre class="source lang-java linenums">package com.grupo2.t4j.ui;
+
+import com.grupo2.t4j.controller.RegistarFreelancerController;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.TextField;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.stage.Window;
+import javafx.stage.WindowEvent;
+
+import java.net.URL;
+import java.sql.SQLException;
+import java.util.ResourceBundle;
+
+/**
+ * FXML Controller class
+ */
+<span class="nc" id="L24">public class AdicionarFreelancerUI implements Initializable {</span>
+
+    private AdministrativoLogadoUI administrativoLogadoUI;
+    private RegistarFreelancerController registarFreelancerController;
+    private Stage adicionarStage;
+
+    @FXML TextField txtNomeFreelancer;
+    @FXML TextField txtEmailFreelancer;
+    @FXML TextField txtNIFFreelancer;
+    @FXML TextField txtTelefoneFreelancer;
+    @FXML TextField txtArruamentoFreelancer;
+    @FXML TextField txtPortaFreelancer;
+    @FXML TextField txtLocalidadeFreelancer;
+    @FXML TextField txtCodPostalFreelancer;
+    @FXML TextField txtPassFreelancer;
+    @FXML Button btnAddFreelancer;
+    @FXML Button btnCancelar;
+    @FXML Button btnSair;
+
+    public void associarParentUI(AdministrativoLogadoUI administrativoLogadoUI) {
+<span class="nc" id="L44">        this.administrativoLogadoUI = administrativoLogadoUI;</span>
+<span class="nc" id="L45">    }</span>
+
+    /**
+     * Initializes the controller (UI) class.
+     */
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+
+<span class="nc" id="L53">        adicionarStage = new Stage();</span>
+<span class="nc" id="L54">        adicionarStage.initModality(Modality.APPLICATION_MODAL);;</span>
+<span class="nc" id="L55">        adicionarStage.setResizable(false);</span>
+
+<span class="nc" id="L57">        registarFreelancerController = new RegistarFreelancerController();</span>
+
+<span class="nc" id="L59">    }</span>
+
+    @FXML
+    public void addFreelancer(ActionEvent event) throws SQLException {
+
+        try {
+<span class="nc" id="L65">            boolean adicionou = registarFreelancerController.registarFreelancer(</span>
+<span class="nc" id="L66">                    txtEmailFreelancer.getText().trim(),</span>
+<span class="nc" id="L67">                    txtNomeFreelancer.getText().trim(),</span>
+<span class="nc" id="L68">                    txtNIFFreelancer.getText().trim(),</span>
+<span class="nc" id="L69">                    txtTelefoneFreelancer.getText().trim(),</span>
+<span class="nc" id="L70">                    txtArruamentoFreelancer.getText().trim(),</span>
+<span class="nc" id="L71">                    txtPortaFreelancer.getText().trim(),</span>
+<span class="nc" id="L72">                    txtLocalidadeFreelancer.getText().trim(),</span>
+<span class="nc" id="L73">                    txtCodPostalFreelancer.getText().trim());</span>
+
+<span class="nc bnc" id="L75" title="All 2 branches missed.">            if (adicionou) {</span>
+<span class="nc" id="L76">                txtPassFreelancer.setText(</span>
+<span class="nc" id="L77">                        registarFreelancerController.findPassword(</span>
+<span class="nc" id="L78">                                txtEmailFreelancer.getText()).getPasswordText());</span>
+
+<span class="nc" id="L80">                btnAddFreelancer.setDisable(true);</span>
+<span class="nc" id="L81">                btnAddFreelancer.disabledProperty();</span>
+<span class="nc" id="L82">                btnSair.setText(&quot;Voltar&quot;);</span>
+
+<span class="nc" id="L84">                administrativoLogadoUI.updateTableViewFreelancer();</span>
+
+<span class="nc" id="L86">                AlertsUI.criarAlerta(Alert.AlertType.INFORMATION,</span>
+                        MainApp.TITULO_APLICACAO, &quot;Registar Freelancer.&quot;,
+<span class="nc" id="L88">                        &quot;Freelancer registado com sucesso.&quot;).show();</span>
+            }
+<span class="nc" id="L90">        } catch (IllegalArgumentException | SQLException exception) {</span>
+<span class="nc" id="L91">            AlertsUI.criarAlerta(Alert.AlertType.ERROR,</span>
+                    MainApp.TITULO_APLICACAO,
+                    &quot;Registar Freelancer - Erro nos dados.&quot;,
+<span class="nc" id="L94">                    &quot;Não foi possível registar o Freelancer.&quot; + exception.getMessage()).show();</span>
+
+<span class="nc" id="L96">        }</span>
+<span class="nc" id="L97">    }</span>
+
+    @FXML
+    public void cancelarAction(ActionEvent event) {
+<span class="nc" id="L101">        this.txtNomeFreelancer.clear();</span>
+<span class="nc" id="L102">        this.txtEmailFreelancer.clear();</span>
+<span class="nc" id="L103">        this.txtNIFFreelancer.clear();</span>
+<span class="nc" id="L104">        this.txtTelefoneFreelancer.clear();</span>
+<span class="nc" id="L105">        this.txtArruamentoFreelancer.clear();</span>
+<span class="nc" id="L106">        this.txtPortaFreelancer.clear();</span>
+<span class="nc" id="L107">        this.txtLocalidadeFreelancer.clear();</span>
+<span class="nc" id="L108">        this.txtCodPostalFreelancer.clear();</span>
+<span class="nc" id="L109">        this.txtPassFreelancer.clear();</span>
+<span class="nc" id="L110">    }</span>
+
+    @FXML
+    public void sairAction(ActionEvent event) {
+<span class="nc" id="L114">        Window window = btnSair.getScene().getWindow();</span>
+<span class="nc" id="L115">        window.setOnCloseRequest(new EventHandler&lt;WindowEvent&gt;() {</span>
+            @Override
+            public void handle(WindowEvent windowEvent) {
+<span class="nc" id="L118">                Alert alerta = AlertsUI.criarAlerta(Alert.AlertType.CONFIRMATION,</span>
+                        MainApp.TITULO_APLICACAO,
+                        &quot;Confirmação da acção&quot;,
+                        &quot;Tem a certeza que quer voltar à página anterior?&quot;);
+
+<span class="nc bnc" id="L123" title="All 2 branches missed.">                if (alerta.showAndWait().get() == ButtonType.CANCEL) {</span>
+<span class="nc" id="L124">                    windowEvent.consume();</span>
+                }
+<span class="nc" id="L126">            }</span>
+        });
+<span class="nc" id="L128">        window.fireEvent(new WindowEvent(window, WindowEvent.WINDOW_CLOSE_REQUEST));</span>
+<span class="nc" id="L129">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>

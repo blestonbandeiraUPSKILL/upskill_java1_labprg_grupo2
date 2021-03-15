@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RepositorioClassificacaoDatabase.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">T4J-Grupo2</a> &gt; <a href="index.source.html" class="el_package">com.grupo2.t4j.persistence.database</a> &gt; <span class="el_source">RepositorioClassificacaoDatabase.java</span></div><h1>RepositorioClassificacaoDatabase.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.grupo2.t4j.persistence.database;
+
+/**
+ *
+ * @author CAD
+ */
+
+import com.grupo2.t4j.domain.*;
+import com.grupo2.t4j.persistence.RepositorioClassificacao;
+import com.grupo2.t4j.utils.DBConnectionHandler;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Collections;
+
+public class RepositorioClassificacaoDatabase implements RepositorioClassificacao{
+    
+    /**
+     * Define uma instância estática do Repositório em que estão
+     * registados todas as Classificações
+     */
+    private static RepositorioClassificacaoDatabase repositorioClassificacaoDatabase;
+    
+    /**
+     * Inicializa o Repositório de Classificações
+     */
+<span class="nc" id="L32">    private RepositorioClassificacaoDatabase(){    }</span>
+
+    /**
+     * Devolve uma instância estática do Repositório das Classificações
+     *
+     * @return RepositorioClassificacaoDatabase
+     */
+    public static RepositorioClassificacaoDatabase getInstance(){
+<span class="nc bnc" id="L40" title="All 2 branches missed.">        if(repositorioClassificacaoDatabase == null) {</span>
+<span class="nc" id="L41">            repositorioClassificacaoDatabase = new RepositorioClassificacaoDatabase();</span>
+        }
+<span class="nc" id="L43">        return repositorioClassificacaoDatabase;</span>
+    }
+    
+    @Override
+    public boolean save(int posicao, int idSeriacao, int idCandidatura) throws SQLException{
+
+<span class="nc" id="L49">        Connection connection = DBConnectionHandler.getInstance().openConnection();</span>
+
+        try {
+<span class="nc" id="L52">            CallableStatement callableStatement = connection.prepareCall(</span>
+                &quot;{CALL createClassificacao(?, ?, ?) } &quot;);
+
+<span class="nc bnc" id="L55" title="All 2 branches missed.">            if (findByCandidatura(idCandidatura) == null){</span>
+
+<span class="nc" id="L57">                connection.setAutoCommit(false);</span>
+                
+<span class="nc" id="L59">                callableStatement.setInt(1, posicao);</span>
+<span class="nc" id="L60">                callableStatement.setInt(2, idSeriacao); </span>
+<span class="nc" id="L61">                callableStatement.setInt(3, idCandidatura);</span>
+                               
+<span class="nc" id="L63">                callableStatement.executeQuery();</span>
+
+<span class="nc" id="L65">                connection.commit();</span>
+<span class="nc" id="L66">                return true;</span>
+            }
+        }
+<span class="nc" id="L69">        catch (SQLException exception) {</span>
+<span class="nc" id="L70">            exception.printStackTrace();</span>
+<span class="nc" id="L71">            exception.getSQLState();</span>
+            try {
+<span class="nc" id="L73">                System.err.print(&quot;Transaction is being rolled back&quot;);</span>
+<span class="nc" id="L74">                connection.rollback();</span>
+            }
+<span class="nc" id="L76">            catch (SQLException sqlException) {</span>
+<span class="nc" id="L77">                sqlException.getErrorCode();</span>
+<span class="nc" id="L78">            }</span>
+        }
+
+        finally {
+<span class="nc" id="L82">            DBConnectionHandler.getInstance().closeAll();</span>
+<span class="nc" id="L83">        }</span>
+<span class="nc" id="L84">        return false;</span>
+    }
+    
+    @Override
+    public boolean save(Classificacao classificacao) throws SQLException{
+
+<span class="nc" id="L90">        Connection connection = DBConnectionHandler.getInstance().openConnection();</span>
+
+        try {
+<span class="nc" id="L93">            CallableStatement callableStatement = connection.prepareCall(</span>
+                    &quot;{CALL createClassificacao(?, ?, ?, ?) } &quot;);
+<span class="nc bnc" id="L95" title="All 2 branches missed.">            if (findByCandidatura(classificacao.getIdCandidatura()) == null){</span>
+
+<span class="nc" id="L97">                connection.setAutoCommit(false);</span>
+
+<span class="nc" id="L99">                callableStatement.setInt(1, classificacao.getIdClassificacao());</span>
+<span class="nc" id="L100">                callableStatement.setInt(2, classificacao.getPosicaoFreelancer());</span>
+<span class="nc" id="L101">                callableStatement.setInt(3, classificacao.getIdSeriacao()); </span>
+<span class="nc" id="L102">                callableStatement.setInt(4, classificacao.getIdCandidatura());</span>
+                               
+<span class="nc" id="L104">                callableStatement.executeQuery();</span>
+
+<span class="nc" id="L106">                connection.commit();</span>
+<span class="nc" id="L107">                return true;</span>
+            }
+        }
+<span class="nc" id="L110">        catch (SQLException exception) {</span>
+<span class="nc" id="L111">            exception.printStackTrace();</span>
+<span class="nc" id="L112">            exception.getSQLState();</span>
+            try {
+<span class="nc" id="L114">                System.err.print(&quot;Transaction is being rolled back&quot;);</span>
+<span class="nc" id="L115">                connection.rollback();</span>
+            }
+<span class="nc" id="L117">            catch (SQLException sqlException) {</span>
+<span class="nc" id="L118">                sqlException.getErrorCode();</span>
+<span class="nc" id="L119">            }</span>
+        }
+
+        finally {
+<span class="nc" id="L123">            DBConnectionHandler.getInstance().closeAll();</span>
+<span class="nc" id="L124">        }</span>
+<span class="nc" id="L125">        return false;</span>
+    }
+
+    @Override
+    public Classificacao findById(int idClassificacao) throws SQLException{
+
+<span class="nc" id="L131">        Connection connection = DBConnectionHandler.getInstance().openConnection();</span>
+
+        try {
+<span class="nc" id="L134">            CallableStatement callableStatementOrg = connection.prepareCall(</span>
+                    &quot;{CALL findClassificacaoById(?)}&quot;);
+
+<span class="nc" id="L137">            connection.setAutoCommit(false);</span>
+
+<span class="nc" id="L139">            callableStatementOrg.setInt(1, idClassificacao);</span>
+<span class="nc" id="L140">            callableStatementOrg.executeQuery();</span>
+
+<span class="nc" id="L142">            return null;</span>
+
+<span class="nc" id="L144">        } catch (SQLException exceptionOrg) {</span>
+<span class="nc" id="L145">            exceptionOrg.printStackTrace();</span>
+<span class="nc" id="L146">            exceptionOrg.getSQLState();</span>
+        }
+        finally {
+<span class="nc" id="L149">            DBConnectionHandler.getInstance().closeAll();</span>
+<span class="nc" id="L150">        }</span>
+<span class="nc" id="L151">        return new Classificacao();                </span>
+    }
+    
+    @Override
+    public Classificacao findByCandidatura (int idCandidatura) throws SQLException{
+<span class="nc" id="L156">         Connection connection = DBConnectionHandler.getInstance().openConnection();</span>
+
+        try {
+<span class="nc" id="L159">            CallableStatement callableStatementOrg = connection.prepareCall(</span>
+                    &quot;{CALL findClassificacaoByCandidatura(?)}&quot;);
+
+<span class="nc" id="L162">            connection.setAutoCommit(false);</span>
+
+<span class="nc" id="L164">            callableStatementOrg.setInt(1, idCandidatura);</span>
+<span class="nc" id="L165">            callableStatementOrg.executeQuery();</span>
+
+<span class="nc" id="L167">            return null;</span>
+
+<span class="nc" id="L169">        } catch (SQLException exceptionOrg) {</span>
+<span class="nc" id="L170">            exceptionOrg.printStackTrace();</span>
+<span class="nc" id="L171">            exceptionOrg.getSQLState();</span>
+        }
+        finally {
+<span class="nc" id="L174">            DBConnectionHandler.getInstance().closeAll();</span>
+<span class="nc" id="L175">        }</span>
+<span class="nc" id="L176">        return new Classificacao();</span>
+    }
+          
+    @Override
+    public Classificacao findBySeriacao (int idSeriacao) throws SQLException{
+        
+<span class="nc" id="L182">        Connection connection = DBConnectionHandler.getInstance().openConnection();</span>
+
+        try {
+<span class="nc" id="L185">            CallableStatement callableStatementOrg = connection.prepareCall(</span>
+                    &quot;{CALL findClassificacaoBySeriacao(?)}&quot;);
+
+<span class="nc" id="L188">            connection.setAutoCommit(false);</span>
+
+<span class="nc" id="L190">            callableStatementOrg.setInt(1, idSeriacao);</span>
+<span class="nc" id="L191">            callableStatementOrg.executeQuery();</span>
+
+<span class="nc" id="L193">            return null;</span>
+
+<span class="nc" id="L195">        } catch (SQLException exceptionOrg) {</span>
+<span class="nc" id="L196">            exceptionOrg.printStackTrace();</span>
+<span class="nc" id="L197">            exceptionOrg.getSQLState();</span>
+        }
+        finally {
+<span class="nc" id="L200">            DBConnectionHandler.getInstance().closeAll();</span>
+<span class="nc" id="L201">        }</span>
+<span class="nc" id="L202">        return new Classificacao();</span>
+    }
+    
+    @Override
+    public ArrayList&lt;Classificacao&gt; getAllBySeriacao(int idSeriacao) throws SQLException{
+        
+<span class="nc" id="L208">        ArrayList&lt;Classificacao&gt; classificacoes = new ArrayList&lt;&gt;();</span>
+
+<span class="nc" id="L210">        Connection connection = DBConnectionHandler.getInstance().openConnection();</span>
+
+        try {
+<span class="nc" id="L213">            PreparedStatement preparedStatement = connection.prepareStatement(</span>
+                   &quot;SELECT * FROM Classificacao &quot; +
+                            &quot;WHERE idProcessoSeriacao =  ?&quot;
+            );
+
+<span class="nc" id="L218">            preparedStatement.setInt(1, idSeriacao);</span>
+
+<span class="nc" id="L220">            ResultSet resultSet = preparedStatement.executeQuery();</span>
+
+<span class="nc bnc" id="L222" title="All 2 branches missed.">            while (resultSet.next()) {</span>
+<span class="nc" id="L223">                int idClassificacao = resultSet.getInt(1);</span>
+<span class="nc" id="L224">                int posicao = resultSet.getInt(2);</span>
+<span class="nc" id="L225">                int idCandidatura = resultSet.getInt(4);</span>
+                        
+<span class="nc" id="L227">                classificacoes.add(new Classificacao(idClassificacao,  </span>
+                        posicao, idSeriacao, idCandidatura));
+<span class="nc" id="L229">                }</span>
+        }
+<span class="nc" id="L231">        catch (SQLException exception) {</span>
+<span class="nc" id="L232">            exception.printStackTrace();</span>
+<span class="nc" id="L233">            exception.getSQLState();</span>
+            try {
+<span class="nc" id="L235">                System.err.print(&quot;Transaction is being rolled back&quot;);</span>
+<span class="nc" id="L236">                connection.rollback();</span>
+            }
+<span class="nc" id="L238">            catch (SQLException sqlException) {</span>
+<span class="nc" id="L239">                sqlException.getErrorCode();</span>
+<span class="nc" id="L240">            }</span>
+
+        }
+        finally {
+<span class="nc" id="L244">            DBConnectionHandler.getInstance().closeAll();</span>
+<span class="nc" id="L245">        }    </span>
+<span class="nc" id="L246">        return classificacoes;</span>
+    }
+    
+    @Override
+    public List&lt;Classificacao&gt; ordenarByIdCandidatura(List&lt;Classificacao&gt; classificacoes) throws SQLException{
+        
+<span class="nc" id="L252">        Collections.sort(classificacoes);</span>
+        
+<span class="nc" id="L254">        return classificacoes;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>

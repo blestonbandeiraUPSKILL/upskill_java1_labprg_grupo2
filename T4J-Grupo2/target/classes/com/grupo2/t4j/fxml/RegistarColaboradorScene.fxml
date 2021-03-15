@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" styleClass="BorderPane" stylesheets="@../style/app.css" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.RegistarColaboradorUI">
+   <center>
+      <BorderPane styleClass="BorderPane" BorderPane.alignment="CENTER">
+         <center>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="AnchorPane">
+               <children>
+                  <VBox layoutX="164.0" layoutY="31.0" prefHeight="341.0" prefWidth="386.0">
+                     <children>
+                        <Label text="Nome do Colaborador">
+                           <VBox.margin>
+                              <Insets bottom="10.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font name="Calibri" size="14.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="txtNomeColaborador" promptText="nome do colaborador">
+                           <VBox.margin>
+                              <Insets bottom="10.0" right="50.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font name="Calibri" size="12.0" />
+                           </font>
+                        </TextField>
+                        <Label text="NIPC">
+                           <VBox.margin>
+                              <Insets bottom="10.0" />
+                           </VBox.margin>
+                        </Label>
+                        <TextField fx:id="txtNifOrganizacao" editable="false" promptText="número de identificação de pessoa colectiva">
+                           <VBox.margin>
+                              <Insets bottom="10.0" right="10.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font name="Calibri" size="12.0" />
+                           </font>
+                        </TextField>
+                        <Label text="Função">
+                           <VBox.margin>
+                              <Insets bottom="10.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font name="Calibri" size="14.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="txtFuncaoColaborador" promptText="função do colaborador">
+                           <VBox.margin>
+                              <Insets bottom="10.0" right="50.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font name="Calibri" size="12.0" />
+                           </font>
+                        </TextField>
+                        <Label text="Contacto Telefónico">
+                           <VBox.margin>
+                              <Insets bottom="10.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font name="Calibri" size="14.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="txtTelefoneColaborador" promptText="XXXXXXXXX">
+                           <VBox.margin>
+                              <Insets bottom="10.0" right="100.0" />
+                           </VBox.margin>
+                        </TextField>
+                        <Label text="Email do Colaborador">
+                           <VBox.margin>
+                              <Insets bottom="10.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font name="Calibri" size="14.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="txtEmailColaborador" promptText="email@organizacao.pt">
+                           <VBox.margin>
+                              <Insets bottom="10.0" right="10.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font name="Calibri" size="12.0" />
+                           </font>
+                        </TextField>
+                        <Label text="Password do Colaborador">
+                           <font>
+                              <Font name="Calibri" size="14.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="10.0" />
+                           </VBox.margin>
+                        </Label>
+                        <TextField fx:id="txtPasswordColaborador" editable="false" promptText="(password sugerida)">
+                           <VBox.margin>
+                              <Insets bottom="10.0" right="100.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font name="Calibri" size="12.0" />
+                           </font>
+                        </TextField>
+                     </children>
+                     <padding>
+                        <Insets left="60.0" right="60.0" />
+                     </padding>
+                  </VBox>
+               </children>
+            </AnchorPane>
+         </center>
+         <bottom>
+            <FlowPane alignment="CENTER_RIGHT" prefHeight="75.0" prefWidth="605.0" styleClass="FlowPane" BorderPane.alignment="CENTER">
+               <children>
+                  <Button fx:id="btnRegistarColaborador" alignment="CENTER_RIGHT" contentDisplay="CENTER" defaultButton="true" mnemonicParsing="false" onAction="#registarColaboradorAction" prefHeight="27.0" prefWidth="70.0" styleClass="btnRegistarColaborador" text="Registar" textAlignment="CENTER">
+                     <font>
+                        <Font name="Calibri" size="14.0" />
+                     </font>
+                     <FlowPane.margin>
+                        <Insets />
+                     </FlowPane.margin>
+                            <tooltip>
+                                <Tooltip text="Registar Colaborador">
+                                    <font>
+                                        <Font name="Calibri Italic" size="12.0" />
+                                    </font>
+                                </Tooltip>
+                            </tooltip>
+                  </Button>
+                  <Button fx:id="btnCancelarRegisto" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#cancelarRegisto" prefHeight="27.0" prefWidth="70.0" styleClass="btnSair" text="Cancelar" textAlignment="CENTER">
+                     <font>
+                        <Font name="Calibri" size="14.0" />
+                     </font>
+                     <FlowPane.margin>
+                        <Insets left="10.0" right="10.0" />
+                     </FlowPane.margin>
+                            <tooltip>
+                                <Tooltip text="Cancelar">
+                                    <font>
+                                        <Font name="Calibri Italic" size="12.0" />
+                                    </font>
+                                </Tooltip>
+                            </tooltip>
+                  </Button>
+               </children>
+            </FlowPane>
+         </bottom>
+      </BorderPane>
+   </center>
+   <top>
+      <Label fx:id="lblUser" alignment="CENTER_RIGHT" styleClass="lblUser" text="Área do Gestor :::&gt; Registar Colaborador" textFill="WHITE" BorderPane.alignment="CENTER_RIGHT">
+         <font>
+            <Font name="Calibri Italic" size="16.0" />
+         </font>
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+      </Label>
+   </top>
+</BorderPane>

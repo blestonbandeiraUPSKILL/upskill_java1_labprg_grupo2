@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RegistarCategoriaController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">T4J-Grupo2</a> &gt; <a href="index.source.html" class="el_package">com.grupo2.t4j.controller</a> &gt; <span class="el_source">RegistarCategoriaController.java</span></div><h1>RegistarCategoriaController.java</h1><pre class="source lang-java linenums">package com.grupo2.t4j.controller;
+
+
+import com.grupo2.t4j.domain.Categoria;
+import com.grupo2.t4j.persistence.FabricaRepositorios;
+import com.grupo2.t4j.persistence.RepositorioAreaActividade;
+import com.grupo2.t4j.persistence.RepositorioCategoriaTarefa;
+import com.grupo2.t4j.persistence.database.FabricaRepositoriosDatabase;
+
+import java.io.File;
+import java.sql.SQLException;
+import java.util.List;
+
+<span class="nc" id="L14">public class RegistarCategoriaController {</span>
+
+<span class="nc" id="L16">    private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosDatabase();</span>
+<span class="nc" id="L17">    private RepositorioCategoriaTarefa repositorioCategoriaTarefa = fabricaRepositorios.getRepositorioCategoriaTarefa();</span>
+<span class="nc" id="L18">    private RepositorioAreaActividade repositorioAreaActividade = fabricaRepositorios.getRepositorioAreaActividade();</span>
+
+
+    /**
+    * Registar categoria boolean
+    *
+    * @param codigoCategoria as código da categoria
+    * @param descBreve as descrição breve da categoria
+    * @param descDetalhada as descrição detalhada da categoria
+    * @param codigoAreaActividade as código da área da actividade
+    * @return boolean
+    */
+    public boolean registarCategoria(String codigoCategoria, String descBreve,
+                                     String descDetalhada, String codigoAreaActividade
+                                     ) throws SQLException {
+
+<span class="nc" id="L34">        Categoria categoria = new Categoria(codigoCategoria, descBreve, descDetalhada, codigoAreaActividade);</span>
+
+<span class="nc" id="L36">        return repositorioCategoriaTarefa.save(categoria);</span>
+    }
+
+    public List&lt;Categoria&gt; getAll() throws SQLException {
+<span class="nc" id="L40">        return repositorioCategoriaTarefa.getAll();</span>
+    }
+
+    public List&lt;Categoria&gt; findByAreaActividade(String codigoAreaActividade) throws SQLException{
+<span class="nc" id="L44">        return repositorioCategoriaTarefa.findByAreaActividade(codigoAreaActividade);</span>
+    }
+
+    public Categoria findByCodigo(String codigoCategoria) throws SQLException {
+<span class="nc" id="L48">        return repositorioCategoriaTarefa.findByCodigo(codigoCategoria);</span>
+    }
+
+
+
+
+}
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>

@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Freelancer.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">T4J-Grupo2</a> &gt; <a href="index.source.html" class="el_package">com.grupo2.t4j.domain</a> &gt; <span class="el_source">Freelancer.java</span></div><h1>Freelancer.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.grupo2.t4j.domain;
+
+/**
+ *
+ * @author CAD
+ */
+
+import com.grupo2.t4j.exception.NifInvalidoException;
+
+import java.io.Serializable;
+
+/**
+ *
+ * @author carol
+ */
+public class Freelancer extends Utilizador implements Serializable{
+    
+    /**
+     * O NIF do Freelancer
+     */
+    private String nif;
+    
+    /**
+     * O telefone do Freelancer
+     */
+    private String telefone;
+    
+    /**
+     * O endereço postal do Freelancer
+     */
+    private int idEnderecoPostal;
+
+    private EnderecoPostal EnderecoPostal;
+
+    /**
+     * O construtor vazio da classe Freelancer
+     */
+<span class="nc" id="L43">    public Freelancer(){</span>
+<span class="nc" id="L44">    }</span>
+    
+    /**
+     * Construtor completo da classe Freelancer
+     * @param email - o email do Freelancer no formato da classe Email
+     * @param nome - o nome do Freelancer
+     * @param password - a password do Freelancer no formato da classe Password
+     * @param telefone - o telefone do Freelancer
+     * @param nif - o NIF do Freelancer
+     * @param idEnderecoPostal - o iD da classe EnderecoPostal
+     */
+    public Freelancer(Email email, String nome, Password password,
+            String nif, String telefone, int idEnderecoPostal){
+<span class="nc" id="L57">        super(email, nome, password);</span>
+<span class="nc" id="L58">        setNif(nif);</span>
+<span class="nc" id="L59">        setTelefone(telefone);</span>
+<span class="nc" id="L60">        this.idEnderecoPostal = idEnderecoPostal;</span>
+<span class="nc" id="L61">    }    </span>
+       
+    /**
+     * Construtor da classe Freelancer que recebe como parâmetro outra instância 
+     * da classe Freelancer
+     * @param freelancer
+     */
+    public Freelancer(Freelancer freelancer){
+<span class="nc" id="L69">        super(freelancer.getEmail(), freelancer.getNome(), freelancer.getPassword());</span>
+<span class="nc" id="L70">        setNif(freelancer.nif);</span>
+<span class="nc" id="L71">        setTelefone(freelancer.telefone);</span>
+<span class="nc" id="L72">        this.idEnderecoPostal = freelancer.idEnderecoPostal;</span>
+<span class="nc" id="L73">    }</span>
+
+<span class="nc" id="L75">    public Freelancer(String email, String nome, String nif, String telefone, String password, String arruamento, String numeroPorta, String localidade, String codigoPostal) {</span>
+<span class="nc" id="L76">        setEmail(new Email(email));</span>
+<span class="nc" id="L77">        setTelefone(telefone);</span>
+<span class="nc" id="L78">        setNif(nif);</span>
+<span class="nc" id="L79">        setNome(nome);</span>
+<span class="nc" id="L80">        setEnderecoPostal(new EnderecoPostal(arruamento, numeroPorta, localidade, codigoPostal));</span>
+<span class="nc" id="L81">        setPassword(new Password(password));</span>
+<span class="nc" id="L82">    }</span>
+
+<span class="nc" id="L84">    public Freelancer(String email, String nome, String telefone, String nif, String arruamento, String numeroPorta, String localidade, String codigoPostal) {</span>
+<span class="nc" id="L85">        setEmail(new Email(email));</span>
+<span class="nc" id="L86">        setNome(nome);</span>
+<span class="nc" id="L87">        setTelefone(telefone);</span>
+<span class="nc" id="L88">        setNif(nif);</span>
+<span class="nc" id="L89">        setEnderecoPostal(new EnderecoPostal(arruamento, numeroPorta, localidade, codigoPostal));</span>
+<span class="nc" id="L90">    }</span>
+
+<span class="nc" id="L92">    public Freelancer(String email, String nome, String telefone, String nif, int idEnderecoPostal) {</span>
+<span class="nc" id="L93">        setEmail(email);</span>
+<span class="nc" id="L94">        setNome(nome);</span>
+<span class="nc" id="L95">        setTelefone(telefone);</span>
+<span class="nc" id="L96">        setNif(nif);</span>
+<span class="nc" id="L97">        setIdEnderecoPostal(idEnderecoPostal);</span>
+<span class="nc" id="L98">    }</span>
+
+
+    public void setIdEnderecoPostal(int idEnderecoPostal) {
+<span class="nc" id="L102">        this.idEnderecoPostal = idEnderecoPostal;</span>
+<span class="nc" id="L103">    }</span>
+
+    private void setEnderecoPostal(EnderecoPostal enderecoPostal) {
+<span class="nc bnc" id="L106" title="All 2 branches missed.">        if(enderecoPostal != null) {</span>
+<span class="nc" id="L107">            this.EnderecoPostal = enderecoPostal;</span>
+        }
+<span class="nc" id="L109">    }</span>
+
+    /**
+     * Define o NIF do Freelancer
+     * @param nif
+     * @throws NifInvalidoException
+     */
+    public void setNif(String nif)throws NifInvalidoException {
+<span class="nc" id="L117">        long numNif = Long.parseLong(nif);</span>
+<span class="nc bnc" id="L118" title="All 4 branches missed.">        if (numNif &gt;= 100000000 &amp;&amp; numNif &lt;= 999999999) {</span>
+<span class="nc" id="L119">            this.nif = nif;</span>
+        } else {
+<span class="nc" id="L121">            throw new NifInvalidoException(nif + &quot;: NIF inválido!&quot;);</span>
+        }
+<span class="nc" id="L123">    }</span>
+    
+    /**
+     * Verifica a validade do parâmetro recebido e regista o telefone do Freelancer
+     * @param telefone o telefone do Freelancer
+     */
+    public void setTelefone(String telefone) {
+<span class="nc" id="L130">        int numero = Integer.parseInt(telefone);</span>
+<span class="nc bnc" id="L131" title="All 4 branches missed.">        if (numero &lt; 100000000 || numero &gt; 999999999) {</span>
+<span class="nc" id="L132">            throw new IllegalArgumentException(&quot;Número é inválido!&quot;);</span>
+        }
+<span class="nc" id="L134">        this.telefone = telefone;</span>
+<span class="nc" id="L135">    }</span>
+         
+    /**
+     * Devolve o NIF do Freelancer
+     * @return NIF
+     */
+    public String getNif(){
+<span class="nc" id="L142">        return nif;</span>
+    }
+    
+    /**
+     * Devolve o telefone do Freelancer
+     * @return telefone
+     */
+    public String getTelefone(){
+<span class="nc" id="L150">        return telefone;</span>
+    }
+    
+    /**
+     * Devolve o iD doendereço postal do Freelancer
+     * @return codigoEnderecoPostal
+     */
+    public int getEnderecoFreelancer(){
+<span class="nc" id="L158">        return idEnderecoPostal;</span>
+    }
+    
+    /**
+     * Representação textual da classe Freelancer em formato de exibição
+     * @return Nome, email e NIF do Freelancer
+     */   
+    @Override
+    public String toString(){
+<span class="nc" id="L167">        return String.format(&quot;Nome: %-20s |Email: %-20s |NIF: %-10s&quot;, super.getNome(), </span>
+<span class="nc" id="L168">                super.getEmail().getEmailText(), nif);</span>
+    }
+    
+    /**
+     * Representação textual da classe Freelancer
+     * @return Nome, email, NIF, telefone e endereço postal do Freelancer
+     */   
+    
+    public String toStringCompleta(){
+<span class="nc" id="L177">        return String.format(&quot;Nome freelancer: %s  %nEmail: %s&quot;</span>
+                + &quot;%s %nNIF: %s %nTelefone: %s %nEndereço Postal: %d&quot;,
+<span class="nc" id="L179">                super.getNome(), super.getEmail().getEmailText(), </span>
+<span class="nc" id="L180">                nif, telefone, idEnderecoPostal);</span>
+    }
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>

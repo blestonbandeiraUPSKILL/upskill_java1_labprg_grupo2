@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Tarefa.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">T4J-Grupo2</a> &gt; <a href="index.source.html" class="el_package">com.grupo2.t4j.domain</a> &gt; <span class="el_source">Tarefa.java</span></div><h1>Tarefa.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.grupo2.t4j.domain;
+
+import com.grupo2.t4j.exception.CodigoInvalidoException;
+import com.grupo2.t4j.exception.NomeInvalidoException;
+import com.grupo2.t4j.exception.QuantidadeInvalidaException;
+
+import java.io.Serializable;
+
+/**
+ *
+ * @author CAD
+ */
+public class Tarefa implements Serializable{
+
+    /**
+     *
+     */
+    private String codigoAreaActividade;
+
+    private String codigoCategoriaTarefa;
+
+    /**
+     * A referência única de uma tarefa em uma Organização.
+     */
+    private String referencia;
+    
+    /**
+     * A designação da tarefa.
+     */
+    private String designacao;
+    
+    /**
+     * A descrição informal da tarefa.
+     */
+    private String descInformal;
+    
+    /**
+     * A descrição técnica da tarefa.
+     */
+    private String descTecnica;
+    
+    /**
+     * A duração estimada da tarefa em dias.
+     */
+    private int duracaoEst;
+    
+    /**
+     * O custo estimado da tarefa em euros.
+     */
+    private double custoEst;
+    
+    /**
+     * O nif da organização que requer a tarefa
+     */
+    private String nifOrganizacao;
+    
+    /**
+     * O email do colaborador que cria a tarefa
+     */
+    private String emailColaborador;
+
+    
+    /**
+     * Construtor vazio da classe Tarefa.
+     */
+<span class="nc" id="L71">    public Tarefa(){</span>
+        
+<span class="nc" id="L73">    }</span>
+
+    public Tarefa(String referencia, String designacao,
+                  String descInformal, String descTecnica, int duracao, double custo,
+                  String codigoAreaActividade,
+<span class="nc" id="L78">                  String codigoCategoriaTarefa) {</span>
+<span class="nc" id="L79">        setCodigoAreaActividade(codigoAreaActividade);</span>
+<span class="nc" id="L80">        setCodigoCategoriaTarefa(codigoCategoriaTarefa);</span>
+<span class="nc" id="L81">        setReferencia(referencia);</span>
+<span class="nc" id="L82">        setDesignacao(designacao);</span>
+<span class="nc" id="L83">        setDescInformal(descInformal);</span>
+<span class="nc" id="L84">        setDescTecnica(descTecnica);</span>
+<span class="nc" id="L85">        setDuracaoEst(duracao);</span>
+<span class="nc" id="L86">        setCustoEst(custo);</span>
+<span class="nc" id="L87">    }</span>
+    
+    public Tarefa(String nifOrganizacao, String referencia, String designacao,
+                  String descInformal, String descTecnica, int duracao, double custo,
+<span class="nc" id="L91">                  String codigoCategoriaTarefa,  String emailColaborador) {</span>
+<span class="nc" id="L92">        setCodigoCategoriaTarefa(codigoCategoriaTarefa);</span>
+<span class="nc" id="L93">        setReferencia(referencia);</span>
+<span class="nc" id="L94">        setDesignacao(designacao);</span>
+<span class="nc" id="L95">        setDescInformal(descInformal);</span>
+<span class="nc" id="L96">        setDescTecnica(descTecnica);</span>
+<span class="nc" id="L97">        setDuracaoEst(duracao);</span>
+<span class="nc" id="L98">        setCustoEst(custo);</span>
+<span class="nc" id="L99">        this.nifOrganizacao = nifOrganizacao;</span>
+<span class="nc" id="L100">        this.emailColaborador = emailColaborador;</span>
+<span class="nc" id="L101">    }</span>
+
+<span class="nc" id="L103">    public Tarefa(Tarefa outraTarefa) {</span>
+<span class="nc" id="L104">        this.codigoAreaActividade = outraTarefa.getCodigoAreaActividade();</span>
+<span class="nc" id="L105">        this.codigoCategoriaTarefa = outraTarefa.getCodigoCategoriaTarefa();</span>
+<span class="nc" id="L106">        this.referencia = outraTarefa.getReferencia();</span>
+<span class="nc" id="L107">        this.designacao = outraTarefa.getDesignacao();</span>
+<span class="nc" id="L108">        this.descInformal = outraTarefa.getDescInformal();</span>
+<span class="nc" id="L109">        this.descTecnica = outraTarefa.descTecnica;</span>
+<span class="nc" id="L110">        this.duracaoEst = outraTarefa.getDuracaoEst();</span>
+<span class="nc" id="L111">        this.custoEst = outraTarefa.getCustoEst();</span>
+<span class="nc" id="L112">    }</span>
+
+    public void setCodigoAreaActividade(String codigoAreaActividade) {
+<span class="nc bnc" id="L115" title="All 4 branches missed.">        if (codigoAreaActividade == null || codigoAreaActividade.trim().isEmpty()) {</span>
+<span class="nc" id="L116">            throw new CodigoInvalidoException(&quot;O código da Área de Actividade não é válido!&quot;);</span>
+        }
+<span class="nc" id="L118">        this.codigoAreaActividade = codigoAreaActividade;</span>
+<span class="nc" id="L119">    }</span>
+
+    public void setCodigoCategoriaTarefa(String codigoCategoriaTarefa) {
+<span class="nc bnc" id="L122" title="All 4 branches missed.">        if(codigoCategoriaTarefa == null || codigoCategoriaTarefa.trim().isEmpty()) {</span>
+<span class="nc" id="L123">            throw new CodigoInvalidoException(&quot;O código da Categoria de Tarefa não é válido&quot;);</span>
+        }
+<span class="nc" id="L125">        this.codigoCategoriaTarefa = codigoCategoriaTarefa;</span>
+<span class="nc" id="L126">    }</span>
+
+    /**
+     * Verifica a validade do parâmetro recebido e regista a referência da tarefa.
+     * @param referencia a referência única de uma tarefa em uma Organização.
+     */
+    public final void setReferencia(String referencia){
+<span class="nc bnc" id="L133" title="All 4 branches missed.">        if (referencia == null || referencia.trim().isEmpty()) {</span>
+<span class="nc" id="L134">            throw new NomeInvalidoException(&quot;Referência é inválida!&quot;);</span>
+        }
+<span class="nc" id="L136">        this.referencia = referencia;</span>
+<span class="nc" id="L137">    }</span>
+    
+    /**
+     * Verifica a validade do parâmetro recebido e regista a designação de uma tarefa.
+     * @param designacao a designação da tarefa.
+     */
+    public final void setDesignacao(String designacao){
+<span class="nc bnc" id="L144" title="All 4 branches missed.">        if (designacao == null || designacao.trim().isEmpty()) {</span>
+<span class="nc" id="L145">            throw new NomeInvalidoException(&quot;Designação é inválida!&quot;);</span>
+        }
+<span class="nc" id="L147">        this.designacao = designacao;</span>
+<span class="nc" id="L148">    }</span>
+    
+    /**
+     * Verifica a validade do parâmetro recebido e regista a descrição informal da tarefa.
+     * @param descInformal a descrição informal da tarefa.
+     */
+    public final void setDescInformal(String descInformal){
+<span class="nc bnc" id="L155" title="All 4 branches missed.">        if (descInformal == null || descInformal.trim().isEmpty()) {</span>
+<span class="nc" id="L156">            throw new NomeInvalidoException(&quot;Descrição Informal é inválida!&quot;);</span>
+        }
+<span class="nc" id="L158">        this.descInformal = descInformal;</span>
+<span class="nc" id="L159">    }</span>
+    
+    /**
+     * Verifica a validade do parâmetro recebido e regista a descrição técnica da tarefa. 
+     * @param descTecnica a descrição técnica da tarefa.
+     */
+    public final void setDescTecnica(String descTecnica){
+<span class="nc bnc" id="L166" title="All 4 branches missed.">        if (descTecnica == null || descTecnica.trim().isEmpty()) {</span>
+<span class="nc" id="L167">            throw new NomeInvalidoException(&quot;Descrição Técnica é inválida!&quot;);</span>
+        }
+<span class="nc" id="L169">        this.descTecnica = descTecnica;</span>
+<span class="nc" id="L170">    }</span>
+    
+    /**
+     * Verifica a validade do parâmetro recebido e regista a duração estimada da tarefa em dias.
+     * @param duracaoEst a duração estimada da tarefa em dias.
+     */
+    public final void setDuracaoEst(int duracaoEst){
+<span class="nc bnc" id="L177" title="All 2 branches missed.">        if (duracaoEst &lt;= 0) {</span>
+<span class="nc" id="L178">            throw new QuantidadeInvalidaException(&quot;A duração estimada é inválida!&quot;);</span>
+        }
+<span class="nc" id="L180">        this.duracaoEst = duracaoEst;</span>
+<span class="nc" id="L181">    }</span>
+    
+    /**
+     * Verifica a validade do parâmetro recebido e regista o custo estimado da tarefa em euros.
+     * @param custoEst o custo estimado da tarefa em euros.
+     */
+    public final void setCustoEst(double custoEst){
+<span class="nc bnc" id="L188" title="All 2 branches missed.">        if (custoEst &lt;= 0) {</span>
+<span class="nc" id="L189">            throw new QuantidadeInvalidaException(&quot;O custo estimado é inválido!&quot;);</span>
+        }
+<span class="nc" id="L191">        this.custoEst = custoEst;</span>
+<span class="nc" id="L192">    }</span>
+    
+    /**
+     * Devolve a referência única de uma tarefa em uma Organização.
+     * @return referencia
+     */
+    public String getReferencia(){
+<span class="nc" id="L199">        return referencia;</span>
+    }
+    
+    /**
+     * Devolve a designação de uma tarefa.
+     * @return designacao
+     */
+    public String getDesignacao(){
+<span class="nc" id="L207">        return designacao;</span>
+    }
+    
+    /**
+     * Devolve a descrição informal da tarefa.
+     * @return descInformal
+     */
+    public String getDescInformal(){
+<span class="nc" id="L215">        return descInformal;</span>
+    }
+    
+    /**
+     * Devolve a descrição técnica da tarefa.
+     * @return descTecnica
+     */
+    public String getDescTecnica(){
+<span class="nc" id="L223">        return descTecnica;</span>
+    }
+    
+    /**
+     * Devolve a duração estimada da tarefa em dias.
+     * @return duracaoEst
+     */
+    public int getDuracaoEst(){
+<span class="nc" id="L231">        return duracaoEst;</span>
+    }
+    
+    /**
+     * Devolve o custo estimado da tarefa em euros.
+     * @return custoEst
+     */
+    public double getCustoEst(){
+<span class="nc" id="L239">        return custoEst;</span>
+    }
+
+    /**
+     * Devolve o código da área de actividade
+     * @return at
+     */
+    public String getCodigoAreaActividade() {
+<span class="nc" id="L247">        return codigoAreaActividade;</span>
+    }
+
+    public String getCodigoCategoriaTarefa() {
+<span class="nc" id="L251">        return codigoCategoriaTarefa;</span>
+    }
+
+    public String getNifOrganizacao() {
+<span class="nc" id="L255">        return nifOrganizacao;</span>
+    }
+
+    public void setNifOrganizacao(String nifOrganizacao) {
+<span class="nc" id="L259">        this.nifOrganizacao = nifOrganizacao;</span>
+<span class="nc" id="L260">    }</span>
+
+    public String getEmailColaborador() {
+<span class="nc" id="L263">        return emailColaborador;</span>
+    }
+
+    public void setEmailColaborador(String emailColaborador) {
+<span class="nc" id="L267">        this.emailColaborador = emailColaborador;</span>
+<span class="nc" id="L268">    }</span>
+    
+    
+    
+    /**
+     * Representação textual da classe Tarefa em formato de exibição
+     * @return referencia, designacao, duracaoEst, custoEst
+     */  
+    @Override
+    public String toString(){
+<span class="nc" id="L278">        return String.format(&quot;Referência: %-15s |Designação: %-15s&quot;</span>
+                + &quot; |Duração estimada: %-5d dias |Custo estimado: %-5.2f euros |Colaborador: %-15s&quot; , referencia,
+<span class="nc" id="L280">                designacao, duracaoEst, custoEst, emailColaborador);</span>
+    }
+    
+    /**
+     * Representação textual da classe Tarefa
+     * @return referencia, designacao, descInformal, descTecnica, duracaoEst, custoEst
+     */  
+    public String toStringCompleto(){
+<span class="nc" id="L288">        return String.format(&quot;Referência: &quot; +</span>
+                        &quot;%n \t %s &quot; +
+                        &quot;%nDesignação: &quot; +
+                        &quot;%n \t %s&quot; +
+                        &quot;%nDescrição informal: &quot; +
+                        &quot;%n \t %s&quot; +
+                        &quot;%nDescrição Técnica: &quot; +
+                        &quot;%n \t %s&quot; +
+                        &quot;%nDuração estimada: &quot; +
+                        &quot;%n \t %d dias&quot; +
+                        &quot;%nCusto estimado: &quot; +
+                        &quot;%n \t %.2f euros&quot;, referencia,
+<span class="nc" id="L300">                designacao, descInformal, descTecnica, duracaoEst, custoEst);</span>
+    }
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>

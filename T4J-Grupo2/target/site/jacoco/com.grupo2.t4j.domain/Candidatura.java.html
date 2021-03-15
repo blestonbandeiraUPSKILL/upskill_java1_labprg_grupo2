@@ -1,0 +1,436 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Candidatura.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">T4J-Grupo2</a> &gt; <a href="index.source.html" class="el_package">com.grupo2.t4j.domain</a> &gt; <span class="el_source">Candidatura.java</span></div><h1>Candidatura.java</h1><pre class="source lang-java linenums">package com.grupo2.t4j.domain;
+
+import com.grupo2.t4j.exception.IdInvalidoException;
+
+import java.io.Serializable;
+import java.util.Comparator;
+
+public class Candidatura implements Serializable, Comparable&lt;Candidatura&gt;{
+    
+    /**
+     * O id da Candidatura
+     */
+    private int idCandidatura;
+    
+    /**
+     * O id do Anúncio a que se refere a Candidatura
+     */
+    private int idAnuncio;
+    
+    /**
+     * O email do Freelancer que se candidatou ao anúncio
+     */
+    private String emailFreelancer;
+    
+    /**
+     * A data da Candidatura
+     */
+    private String dataCandidatura;
+    
+    /**
+     * A data de edição mais recente da Candidatura
+     */
+    private String dataEdicaoCandidatura;
+    
+    /**
+     * O valor pretendido pelo Freelancer na sua candidatura a uma dada Tarefa
+     */
+    private double valorPretendido;
+    
+    /**
+     * O número de dias que o Freelancer indica para a realização de uma dada Tarefa
+     * a que se candidatou
+     */
+    private int numeroDias;
+    
+    /**
+     * O texto de apresentação do Freelancer para sua candidatura a uma dada Tarefa
+     */
+    private String txtApresentacao;
+    
+    /**
+     * O texto de motivação do Freelancer para sua candidatura a uma dada Tarefa
+     */
+    private String txtMotivacao;
+
+
+    /**
+     * Construtor vazio da classe Candidatura
+     */
+<span class="nc" id="L60">    public Candidatura (){</span>
+        
+<span class="nc" id="L62">    }</span>
+    
+    /**
+     * O construtor completo da classe Candidatura
+     * @param idCandidatura - o id da Candidatura
+     * @param valorPretendido - o valor pretendido pelo Freelancer na sua candidatura a uma dada Tarefa
+     * @param numeroDias - número de dias que o Freelancer indica para a realização de uma dada Tarefa
+     * a que se candidatou
+     * @param txtApresentacao - o texto de apresentação do Freelancer para sua candidatura a uma dada Tarefa
+     * @param txtMotivacao - o texto de motivação do Freelancer para sua candidatura a uma dada Tarefa
+     * @param idAnuncio - o id do Anúncio a que se refere a candidatura
+     * @param emailFreelancer - o email do Freelancer em formato String
+     * @param dataCandidatura - a data de Candidatura (sempre a data atual do calendário)
+     * @param dataEdicaoCandidatura -  a data da edição da Candidatura (sempre a data atual do calendário)
+     */
+    public Candidatura(int idCandidatura, double valorPretendido, int numeroDias, 
+            String txtApresentacao, String txtMotivacao, int idAnuncio, String emailFreelancer,
+<span class="nc" id="L79">             String dataCandidatura, String dataEdicaoCandidatura){</span>
+<span class="nc" id="L80">        setIdCandidatura(idCandidatura);</span>
+<span class="nc" id="L81">        setValor(valorPretendido);</span>
+<span class="nc" id="L82">        setDias(numeroDias);</span>
+<span class="nc" id="L83">        setApresentacao(txtApresentacao);</span>
+<span class="nc" id="L84">        setMotivacao(txtMotivacao);</span>
+<span class="nc" id="L85">        setIdAnuncio(idAnuncio);</span>
+<span class="nc" id="L86">        setEmailFreelancer(emailFreelancer);</span>
+<span class="nc" id="L87">        setData(dataCandidatura);</span>
+<span class="nc" id="L88">        setDataEdicao(dataEdicaoCandidatura);</span>
+<span class="nc" id="L89">    }</span>
+    
+    /**
+     * O construtor da classe Candidatura sem data de edição da candidatura
+     * (a data de edição da candidatura assume a mesma data da criação da candidatura)
+     * @param idCandidatura - o id da Candidatura
+     * @param valorPretendido - o valor pretendido pelo Freelancer na sua candidatura a uma dada Tarefa
+     * @param numeroDias - número de dias que o Freelancer indica para a realização de uma dada Tarefa
+     * a que se candidatou
+     * @param txtApresentacao - o texto de apresentação do Freelancer para sua candidatura a uma dada Tarefa
+     * @param txtMotivacao - o texto de motivação do Freelancer para sua candidatura a uma dada Tarefa
+     * @param idAnuncio - o id do Anúncio a que se refere a candidatura
+     * @param emailFreelancer - o email do Freelancer em formato String
+     * @param dataCandidatura - a data de Candidatura (sempre a data atual do calendário)
+     */
+    public Candidatura(int idCandidatura, double valorPretendido, int numeroDias, 
+            String txtApresentacao, String txtMotivacao, int idAnuncio, String emailFreelancer,
+<span class="nc" id="L106">             String dataCandidatura){</span>
+<span class="nc" id="L107">        setIdCandidatura(idCandidatura);</span>
+<span class="nc" id="L108">        setValor(valorPretendido);</span>
+<span class="nc" id="L109">        setDias(numeroDias);</span>
+<span class="nc" id="L110">        setApresentacao(txtApresentacao);</span>
+<span class="nc" id="L111">        setMotivacao(txtMotivacao);</span>
+<span class="nc" id="L112">        setIdAnuncio(idAnuncio);</span>
+<span class="nc" id="L113">        setEmailFreelancer(emailFreelancer);</span>
+<span class="nc" id="L114">        setData(dataCandidatura);</span>
+
+<span class="nc" id="L116">    }</span>
+    
+    /**
+     * Construtor da classe Candidatura com texto de Apresentação e de Motivação 
+     * com valores por omissão e sem a atribuição de datas (que é automática na BD)
+     * @param idCandidatura - o id da Candidatura
+     * @param valorPretendido - o valor pretendido pelo Freelancer na sua candidatura a uma dada Tarefa
+     * @param numeroDias - número de dias que o Freelancer indica para a realização de uma dada Tarefa
+     * a que se candidatou
+     * @param idAnuncio - o id do Anúncio a que se refere a candidatura
+     * @param emailFreelancer - o email do Freelancer em formato String     
+     */
+    public Candidatura(int idCandidatura, double valorPretendido, int numeroDias, 
+<span class="nc" id="L129">            int idAnuncio, String emailFreelancer){</span>
+<span class="nc" id="L130">        setIdCandidatura(idCandidatura);</span>
+<span class="nc" id="L131">        setValor(valorPretendido);</span>
+<span class="nc" id="L132">        setDias(numeroDias);</span>
+<span class="nc" id="L133">        setApresentacao(&quot; &quot;);</span>
+<span class="nc" id="L134">        setMotivacao(&quot; &quot;);</span>
+<span class="nc" id="L135">        setIdAnuncio(idAnuncio);</span>
+<span class="nc" id="L136">        setEmailFreelancer(emailFreelancer);      </span>
+<span class="nc" id="L137">    }</span>
+    
+    /**
+     * Construtor da classe Candidatura 
+     * @param candidatura é do tipo da classe Candidatura
+     */
+<span class="nc" id="L143">    public Candidatura(Candidatura candidatura){</span>
+<span class="nc" id="L144">        setIdCandidatura(candidatura.idCandidatura);</span>
+<span class="nc" id="L145">        setValor(candidatura.valorPretendido);</span>
+<span class="nc" id="L146">        setDias(candidatura.numeroDias);</span>
+<span class="nc" id="L147">        setApresentacao(candidatura.txtApresentacao);</span>
+<span class="nc" id="L148">        setMotivacao(candidatura.txtMotivacao);</span>
+<span class="nc" id="L149">        setIdAnuncio(candidatura.idAnuncio);</span>
+<span class="nc" id="L150">        setEmailFreelancer(candidatura.emailFreelancer);</span>
+<span class="nc" id="L151">        setData(candidatura.dataCandidatura);</span>
+<span class="nc" id="L152">        setDataEdicao(candidatura.dataEdicaoCandidatura);</span>
+        
+<span class="nc" id="L154">    }</span>
+    
+    /**
+     * Construtor da classe Candidatura sem a atribuição de datas (que é automática 
+     * na BD) e sem o idCandidatura que é criado automaticamente na BD
+     * @param valorPretendido
+     * @param numeroDias
+     * @param txtApresentacao
+     * @param txtMotivacao
+     * @param idAnuncio
+     * @param email
+     */
+    public Candidatura(Double valorPretendido, int numeroDias, String 
+<span class="nc" id="L167">            txtApresentacao, String txtMotivacao, int idAnuncio, String email){</span>
+<span class="nc" id="L168">        setValor(valorPretendido);</span>
+<span class="nc" id="L169">        setDias(numeroDias);</span>
+<span class="nc" id="L170">        setApresentacao(txtApresentacao);</span>
+<span class="nc" id="L171">        setMotivacao(txtMotivacao);</span>
+<span class="nc" id="L172">        setIdAnuncio(idAnuncio);</span>
+<span class="nc" id="L173">        setEmailFreelancer(email);</span>
+<span class="nc" id="L174">    }</span>
+    
+    /**
+     * Define o id do Anúncio
+     * @param idAnuncio 
+     */
+    public void setIdAnuncio(int idAnuncio) {
+<span class="nc bnc" id="L181" title="All 2 branches missed.">        if (idAnuncio &gt; 0) {</span>
+<span class="nc" id="L182">            this.idAnuncio = idAnuncio;</span>
+        }
+        else {
+<span class="nc" id="L185">            throw new IdInvalidoException(&quot;O id não é válido.&quot;);</span>
+        }
+<span class="nc" id="L187">    }</span>
+
+    /**
+     * Define o id da Candidatura
+     * @param idCandidatura - o id da Candidatura
+     */
+    public void setIdCandidatura(int idCandidatura){
+<span class="nc bnc" id="L194" title="All 2 branches missed.">        if (idCandidatura &lt; 0 ) {</span>
+<span class="nc" id="L195">            throw new IdInvalidoException(&quot;Id da Candidatura é inválido!&quot;);</span>
+        }
+<span class="nc" id="L197">        this.idCandidatura = idCandidatura;</span>
+<span class="nc" id="L198">    }</span>
+    
+    /**
+     * Define o email do Freelancer que se candidatou ao anúncio
+     * @param emailFreelancer - o email do Freelancer em formato String
+     */
+    public void setEmailFreelancer(String emailFreelancer){
+<span class="nc" id="L205">        this.emailFreelancer = emailFreelancer;</span>
+<span class="nc" id="L206">    }</span>
+
+    /**
+     * Define a data de Candidatura como sendo sempre a data atual do calendário  
+     */
+    public void setData(String dataCandidatura){
+<span class="nc" id="L212">        this.dataCandidatura = dataCandidatura;</span>
+<span class="nc" id="L213">    }</span>
+    
+    /**
+     * Define a data de edição da Candidatura como sendo sempre a data atual do calendário 
+     * Caso a candidatura não tenha sido editada, a data de edição é igual à 
+     * data de criação da candidatura.
+     */
+    public void setDataEdicao(String dataEdicaoCandidatura){
+<span class="nc" id="L221">        this.dataEdicaoCandidatura = dataEdicaoCandidatura;</span>
+<span class="nc" id="L222">    }</span>
+    
+    /**
+     * Define o valor pretendido pelo Freelancer para realização da Tarefa à qual
+     * se candidatou em euros
+     * @param valorPretendido - o valor pretendido pelo serviço, em euros
+     */
+    public void setValor(double valorPretendido){
+<span class="nc bnc" id="L230" title="All 2 branches missed.">        if (valorPretendido &gt; 0) {</span>
+<span class="nc" id="L231">            this.valorPretendido = valorPretendido;</span>
+        }
+        else{
+<span class="nc" id="L234">            throw new IllegalArgumentException(&quot;O valor prentendido informado não&quot;</span>
+                    + &quot;é válido!&quot;);
+        }
+<span class="nc" id="L237">    }</span>
+    
+    /**
+     * Define o número de dias que o Freelancer indica para a realização de uma dada Tarefa
+     * a que se candidatou
+     * @param numeroDias
+     */
+    public void setDias(int numeroDias){
+<span class="nc bnc" id="L245" title="All 2 branches missed.">        if(numeroDias &gt; 0){</span>
+<span class="nc" id="L246">            this.numeroDias = numeroDias;</span>
+        }
+        else{
+<span class="nc" id="L249">            throw new IllegalArgumentException(&quot;O número de dias informado não&quot;</span>
+                    + &quot;é válido!&quot;);
+        }
+<span class="nc" id="L252">    }</span>
+    
+    /**
+     * Define o texto de apresentação do Freelancer para sua candidatura a uma dada Tarefa
+     * @param txtApresentacao
+     */
+    public void setApresentacao(String txtApresentacao){
+<span class="nc" id="L259">        this.txtApresentacao = txtApresentacao;</span>
+<span class="nc" id="L260">    }</span>
+    
+    /**
+     * Define o texto de motivação do Freelancer para sua candidatura a uma dada Tarefa
+     * @param txtMotivacao
+     */
+    public void setMotivacao(String txtMotivacao){
+<span class="nc" id="L267">        this.txtMotivacao = txtMotivacao;</span>
+<span class="nc" id="L268">    }</span>
+    
+    /**
+     * Devolve o id da Candidatura
+     * @return idCandidatura
+     */
+    public int getIdCandidatura(){
+<span class="nc" id="L275">        return idCandidatura;</span>
+    }
+
+    public int getIdAnuncio() {
+<span class="nc" id="L279">        return idAnuncio;</span>
+    }
+
+    /**
+     * Devolve o email do Freelancer que se candidatou ao anúncio
+     * @return emailFreelancer
+     */
+    public String getEmailFreelancer(){
+<span class="nc" id="L287">        return emailFreelancer;</span>
+    }
+    
+    /**
+     * Devolve a data de Candidatura 
+     */
+    public String getDataCandidatura(){
+<span class="nc" id="L294">        return dataCandidatura;</span>
+    }
+    
+    /**
+     * Devolve a data da edição da Candidatura 
+     * Caso a candidatura não tenha sido editada, a data de edição é igual à 
+     * data de criação da candidatura.
+     * @return dataEdicaoCandidatura
+     */
+    public String getDataEdicaoCandidatura(){
+<span class="nc" id="L304">        return dataEdicaoCandidatura;</span>
+    }
+    
+    /**
+     * Devolve o valor pretendido pelo Freelancer para realização da Tarefa à qual
+     * se candidatou em euros
+     * @return valorPretendido
+     */
+    public double getValorPretendido(){
+<span class="nc" id="L313">        return valorPretendido;</span>
+    }
+    
+    /**
+     * Devolve o número de dias que o Freelancer indica para a realização de uma dada Tarefa
+     * a que se candidatou
+     * @return numeroDias
+     */
+    public int getNumeroDias(){
+<span class="nc" id="L322">        return numeroDias;</span>
+    }
+    
+    /**
+     * Devolve o texto de apresentação do Freelancer para sua candidatura a uma dada Tarefa
+     * @return
+     */
+    public String getApresentacao(){
+<span class="nc" id="L330">        return txtApresentacao;</span>
+    }
+    
+    /**
+     * Devolve o texto de motivação do Freelancer para sua candidatura a uma dada Tarefa
+     * @return
+     */
+    public String getMotivacao(){
+<span class="nc" id="L338">        return txtMotivacao;</span>
+    }
+    
+    /**
+     * Representação textual da classe Candidatura em formato de exibição
+     * @return o id da candidatura, o email do Freelancer candidato, a data da 
+     * candidatura em formato texto, o valor pretendido pelo Freelancer para a 
+     * realização da Tarefa, o número de dias para a realização da Tarefa,
+     * o texto de apresentação da Candidatura e o texto de Motivação para a 
+     * Candidatura
+     */
+
+    @Override
+    public String toString() {
+<span class="nc" id="L352">        return &quot;Candidatura{&quot; +</span>
+                &quot;idCandidatura=&quot; + idCandidatura +
+                &quot;, idAnuncio=&quot; + idAnuncio +
+                &quot;, emailFreelancer='&quot; + emailFreelancer + '\'' +
+                &quot;, dataCandidatura='&quot; + dataCandidatura + '\'' +
+                &quot;, dataEdicaoCandidatura='&quot; + dataEdicaoCandidatura + '\'' +
+                &quot;, valorPretendido=&quot; + valorPretendido +
+                &quot;, numeroDias=&quot; + numeroDias +
+                &quot;, txtApresentacao='&quot; + txtApresentacao + '\'' +
+                &quot;, txtMotivacao='&quot; + txtMotivacao + '\'' +
+                '}';
+    }
+
+    /**
+     * Representação textual da classe Candidatura em formato de exibição simplificado
+     * @return o id do Anúncio, o id da Candidatura e o email do Freelancer
+     */
+    public String toStringIdEmail(){
+<span class="nc" id="L370">        return String.format(&quot;IDAnuncio: %-10s |IDCand: %-10s |Freelancer: %-20s &quot;, </span>
+<span class="nc" id="L371">                idAnuncio, idCandidatura, emailFreelancer);</span>
+    }
+    
+    /**
+     * Representação textual da classe Candidatura Completa
+     * @return o id da candidatura, o email do Freelancer candidato, a data da 
+     * candidatura em formato texto, o valor pretendido pelo Freelancer para a 
+     * realização da Tarefa, o número de dias para a realização da Tarefa,
+     * o texto de apresentação da Candidatura e o texto de Motivação para a 
+     * Candidatura
+     */   
+    public String toStringCompleto(){
+<span class="nc" id="L383">        return String.format(&quot;ID: %s  %nEmail do Freelancer: %s %nData Candidatura: %s&quot;</span>
+                + &quot;%nValor pretendido: %f.2  euros %nNúmero de dias: %&quot;
+<span class="nc" id="L385">                + &quot;%nApresentação: %s %nMotivação: %s&quot;, idCandidatura, emailFreelancer, </span>
+<span class="nc" id="L386">                dataCandidatura, valorPretendido,</span>
+<span class="nc" id="L387">                numeroDias, txtApresentacao, txtMotivacao);</span>
+    }
+    
+    /**
+     * Compara uma candidatura com outra com base no valor pretendido para a 
+     * execução da tarefa
+     * @param outraCandidatura
+     * @return 
+     */
+    @Override
+    public int compareTo(Candidatura outraCandidatura){
+<span class="nc" id="L398">        return CandidaturaComparator.VALOR.compare(this, outraCandidatura);</span>
+    }
+    
+    /**
+     * Estabelece dois tipos de comparativos entre duas candidaturas. Uma com
+     * base no valor pretendido para a execução da tarefa e outro com base no 
+     * id da Candidatura
+     */
+<span class="nc" id="L406">    public static class CandidaturaComparator {</span>
+
+<span class="nc" id="L408">        public static Comparator&lt;Candidatura&gt; VALOR = new Comparator&lt;Candidatura&gt;(){</span>
+            @Override
+            public int compare(Candidatura c1, Candidatura c2) {
+<span class="nc bnc" id="L411" title="All 2 branches missed.">                if(c1.getValorPretendido() &gt; c2.getValorPretendido()){</span>
+<span class="nc" id="L412">                    return 1;</span>
+                }
+<span class="nc bnc" id="L414" title="All 2 branches missed.">                if(c1.getValorPretendido() &lt; c2.getValorPretendido()){</span>
+<span class="nc" id="L415">                    return -1;</span>
+                }
+<span class="nc" id="L417">                return 0; </span>
+            }
+        };
+    
+<span class="nc" id="L421">        public static Comparator&lt;Candidatura&gt; IDCANDIDATURA = new Comparator&lt;Candidatura&gt;(){</span>
+            @Override
+            public int compare(Candidatura c1, Candidatura c2) {
+<span class="nc bnc" id="L424" title="All 2 branches missed.">                if(c1.getIdCandidatura() &gt; c2.getIdCandidatura()){</span>
+<span class="nc" id="L425">                    return 1;</span>
+                }
+<span class="nc bnc" id="L427" title="All 2 branches missed.">                if(c1.getIdCandidatura() &lt; c2.getIdCandidatura()){</span>
+<span class="nc" id="L428">                    return -1;</span>
+                }
+<span class="nc" id="L430">                return 0; </span>
+            }
+        };
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>

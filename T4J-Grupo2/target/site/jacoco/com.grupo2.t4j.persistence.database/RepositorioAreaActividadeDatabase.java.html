@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RepositorioAreaActividadeDatabase.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">T4J-Grupo2</a> &gt; <a href="index.source.html" class="el_package">com.grupo2.t4j.persistence.database</a> &gt; <span class="el_source">RepositorioAreaActividadeDatabase.java</span></div><h1>RepositorioAreaActividadeDatabase.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.grupo2.t4j.persistence.database;
+
+/**
+ *
+ * @author CAD
+ */
+
+import com.grupo2.t4j.exception.AreaActividadeDuplicadaException;
+import com.grupo2.t4j.domain.AreaActividade;
+import com.grupo2.t4j.persistence.RepositorioAreaActividade;
+import com.grupo2.t4j.utils.DBConnectionHandler;
+
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ *
+ * @author Geral
+ */
+public class RepositorioAreaActividadeDatabase implements RepositorioAreaActividade {
+
+    /**
+     * Define uma instância estática do Repositório em que estão registadas todas
+     * as Áreas de Actividade da plataforma
+     */
+    private static RepositorioAreaActividadeDatabase repositorioAreaActividadeDatabase;
+
+    /**
+     * Inicializa o Repositório de Areas de Actividade
+     */
+<span class="nc" id="L37">    private RepositorioAreaActividadeDatabase(){</span>
+<span class="nc" id="L38">    }</span>
+
+    /**
+     * Devolve uma instância estática do Repositório de Áreas de Actividade
+     * @return RepositorioAreaActividade
+     */
+    public static RepositorioAreaActividadeDatabase getInstance(){
+<span class="nc bnc" id="L45" title="All 2 branches missed.">        if(repositorioAreaActividadeDatabase == null) {</span>
+<span class="nc" id="L46">            repositorioAreaActividadeDatabase = new RepositorioAreaActividadeDatabase();</span>
+        }
+<span class="nc" id="L48">        return repositorioAreaActividadeDatabase;</span>
+    }
+
+    public void save(String codigo, String descBreve, String descDetalhada) throws AreaActividadeDuplicadaException, SQLException {
+
+<span class="nc" id="L53">        Connection connection = DBConnectionHandler.getInstance().openConnection();</span>
+
+        try {
+<span class="nc" id="L56">            CallableStatement callableStatement = connection.prepareCall(</span>
+                    &quot;{CALL createAreaActividade(?,?,?)}&quot;);
+
+<span class="nc bnc" id="L59" title="All 2 branches missed.">            if (findByCodigo(codigo) == null) {</span>
+
+<span class="nc" id="L61">                connection.setAutoCommit(false);</span>
+
+<span class="nc" id="L63">                callableStatement.setString(1, codigo);</span>
+<span class="nc" id="L64">                callableStatement.setString(2, descBreve);</span>
+<span class="nc" id="L65">                callableStatement.setString(3, descDetalhada);</span>
+
+<span class="nc" id="L67">                callableStatement.executeQuery();</span>
+
+<span class="nc" id="L69">                connection.commit();</span>
+                }
+        }
+<span class="nc" id="L72">        catch (SQLException exception) {</span>
+<span class="nc" id="L73">            exception.printStackTrace();</span>
+<span class="nc" id="L74">            exception.getSQLState();</span>
+            try {
+<span class="nc" id="L76">                System.err.print(&quot;Transaction is being rolled back&quot;);</span>
+<span class="nc" id="L77">                connection.rollback();</span>
+            }
+<span class="nc" id="L79">            catch (SQLException sqlException) {</span>
+<span class="nc" id="L80">                sqlException.getErrorCode();</span>
+<span class="nc" id="L81">            }</span>
+        }
+        finally {
+<span class="nc" id="L84">            DBConnectionHandler.getInstance().closeAll();</span>
+<span class="nc" id="L85">        }</span>
+
+<span class="nc" id="L87">    }</span>
+
+    @Override
+    public boolean save(AreaActividade areaActividade) throws SQLException {
+
+<span class="nc" id="L92">        Connection connection = DBConnectionHandler.getInstance().openConnection();</span>
+
+        try {
+<span class="nc" id="L95">            CallableStatement callableStatement = connection.prepareCall(</span>
+                &quot;{CALL createAreaActividade(?,?,?)}&quot;);
+
+<span class="nc bnc" id="L98" title="All 2 branches missed.">            if (findByCodigo(areaActividade.getCodigo()) == null) {</span>
+
+<span class="nc" id="L100">                connection.setAutoCommit(false);</span>
+
+<span class="nc" id="L102">                callableStatement.setString(1, areaActividade.getCodigo());</span>
+<span class="nc" id="L103">                callableStatement.setString(2, areaActividade.getDescBreve());</span>
+<span class="nc" id="L104">                callableStatement.setString(3, areaActividade.getDescDetalhada());</span>
+
+<span class="nc" id="L106">                callableStatement.executeQuery();</span>
+
+<span class="nc" id="L108">                connection.commit();</span>
+<span class="nc" id="L109">                return true;</span>
+            }
+
+        }
+<span class="nc" id="L113">        catch (SQLException exception) {</span>
+<span class="nc" id="L114">            exception.printStackTrace();</span>
+<span class="nc" id="L115">            exception.getSQLState();</span>
+            try {
+<span class="nc" id="L117">                System.err.print(&quot;Transaction is being rolled back&quot;);</span>
+<span class="nc" id="L118">                connection.rollback();</span>
+            }
+<span class="nc" id="L120">            catch (SQLException sqlException) {</span>
+<span class="nc" id="L121">                sqlException.getErrorCode();</span>
+<span class="nc" id="L122">            }</span>
+        }
+
+        finally {
+<span class="nc" id="L126">            DBConnectionHandler.getInstance().closeAll();</span>
+<span class="nc" id="L127">        }</span>
+<span class="nc" id="L128">        return false;</span>
+    }
+
+    @Override
+    public List&lt;AreaActividade&gt; getAll() throws SQLException {
+
+<span class="nc" id="L134">        ArrayList&lt;AreaActividade&gt; areasActividade = new ArrayList&lt;&gt;();</span>
+
+<span class="nc" id="L136">        Connection connection = DBConnectionHandler.getInstance().openConnection();</span>
+
+        try {
+<span class="nc" id="L139">            PreparedStatement preparedStatement = connection.prepareStatement(</span>
+                    &quot;SELECT * FROM AreaActividade&quot;
+            );
+
+<span class="nc" id="L143">            ResultSet resultSet = preparedStatement.executeQuery();</span>
+
+<span class="nc bnc" id="L145" title="All 2 branches missed.">            while (resultSet.next()) {</span>
+<span class="nc" id="L146">                String codigo = resultSet.getString(1);</span>
+<span class="nc" id="L147">                String descBreve = resultSet.getString(2);</span>
+<span class="nc" id="L148">                String descDetalhada = resultSet.getString(3);</span>
+<span class="nc" id="L149">                areasActividade.add(new AreaActividade(codigo, descBreve, descDetalhada));</span>
+<span class="nc" id="L150">            }</span>
+
+        }
+<span class="nc" id="L153">        catch (SQLException exception) {</span>
+<span class="nc" id="L154">            exception.printStackTrace();</span>
+<span class="nc" id="L155">            exception.getSQLState();</span>
+            try {
+<span class="nc" id="L157">                System.err.print(&quot;Transaction is being rolled back&quot;);</span>
+<span class="nc" id="L158">                connection.rollback();</span>
+            }
+<span class="nc" id="L160">            catch (SQLException sqlException) {</span>
+<span class="nc" id="L161">                sqlException.getErrorCode();</span>
+<span class="nc" id="L162">            }</span>
+
+        }
+        finally {
+<span class="nc" id="L166">            DBConnectionHandler.getInstance().closeAll();</span>
+<span class="nc" id="L167">        }</span>
+<span class="nc" id="L168">        return areasActividade;</span>
+    }
+
+    @Override
+    public AreaActividade findByCodigo(String codigo) throws SQLException {
+
+<span class="nc" id="L174">        Connection connection = DBConnectionHandler.getInstance().openConnection();</span>
+
+        try {
+<span class="nc" id="L177">            CallableStatement callableStatement = connection.prepareCall(</span>
+                    &quot;{CALL findByCodigoAreaActividade(?)}&quot;
+            );
+
+<span class="nc" id="L181">            connection.setAutoCommit(false);</span>
+
+<span class="nc" id="L183">            callableStatement.setString(1, codigo);</span>
+<span class="nc" id="L184">            callableStatement.executeQuery();</span>
+
+<span class="nc" id="L186">            return null;</span>
+
+<span class="nc" id="L188">        } catch (SQLException exception) {</span>
+<span class="nc" id="L189">            exception.printStackTrace();</span>
+<span class="nc" id="L190">            exception.getSQLState();</span>
+
+        }
+        finally {
+<span class="nc" id="L194">            DBConnectionHandler.getInstance().closeAll();</span>
+<span class="nc" id="L195">        }</span>
+<span class="nc" id="L196">        return new AreaActividade();</span>
+    }
+
+    @Override
+    public AreaActividade getAreaActividade(String codigoAreaActividade) throws SQLException {
+
+<span class="nc" id="L202">        AreaActividade areaActividade = new AreaActividade();</span>
+
+<span class="nc" id="L204">        Connection connection = DBConnectionHandler.getInstance().openConnection();</span>
+
+        try {
+<span class="nc" id="L207">            CallableStatement callableStatement = connection.prepareCall(</span>
+                    &quot;SELECT * FROM AreaActividade WHERE codigoAreaActividade LIKE ?&quot;
+            );
+
+<span class="nc" id="L211">            connection.setAutoCommit(false);</span>
+
+<span class="nc" id="L213">            callableStatement.setString(1, codigoAreaActividade);</span>
+<span class="nc" id="L214">            callableStatement.executeQuery();</span>
+
+<span class="nc" id="L216">            ResultSet resultSet = callableStatement.getResultSet();</span>
+
+<span class="nc bnc" id="L218" title="All 2 branches missed.">            while (resultSet.next()) {</span>
+<span class="nc" id="L219">                areaActividade.setCodigo(codigoAreaActividade);</span>
+<span class="nc" id="L220">                areaActividade.setDescBreve(resultSet.getString(2));</span>
+<span class="nc" id="L221">                areaActividade.setDescDetalhada(resultSet.getString(3));</span>
+            }
+
+<span class="nc" id="L224">        } catch (SQLException exception) {</span>
+<span class="nc" id="L225">            exception.printStackTrace();</span>
+<span class="nc" id="L226">            exception.getSQLState();</span>
+
+        }
+        finally {
+<span class="nc" id="L230">            DBConnectionHandler.getInstance().closeAll();</span>
+<span class="nc" id="L231">        }</span>
+<span class="nc" id="L232">        return areaActividade;</span>
+
+    }
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>

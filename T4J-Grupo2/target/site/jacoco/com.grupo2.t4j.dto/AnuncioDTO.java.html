@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AnuncioDTO.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">T4J-Grupo2</a> &gt; <a href="index.source.html" class="el_package">com.grupo2.t4j.dto</a> &gt; <span class="el_source">AnuncioDTO.java</span></div><h1>AnuncioDTO.java</h1><pre class="source lang-java linenums">package com.grupo2.t4j.dto;
+
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
+import com.grupo2.t4j.exception.DataInvalidaException;
+import com.grupo2.t4j.exception.IdInvalidoException;
+
+@JsonPropertyOrder({&quot;idAnuncio&quot;, &quot;referenciaTarefa&quot;, &quot;nifOrganizacao&quot;, &quot;dataInicioPublicitacao&quot;,
+                    &quot;dataFimPublicitacao&quot;, &quot;dataInicioCandidatura&quot;, &quot;dataFimCandidatura&quot;,
+                    &quot;dataInicioSeriacao&quot;, &quot;dataFimSeriacao&quot;, &quot;idTipoRegimento&quot;, &quot;idProcessoSeriacao&quot;})
+
+
+public class AnuncioDTO {
+
+    @JacksonXmlProperty(localName = &quot;idAnuncio&quot;)
+    private int idAnuncio;
+
+    @JacksonXmlProperty(localName = &quot;referenciaTarefa&quot;)
+    private String referenciaTarefa;
+
+    @JacksonXmlProperty(localName = &quot;nifOrganizacao&quot;)
+    private String nifOrganizacao;
+
+    @JacksonXmlProperty(localName = &quot;dataInicioPublicitacao&quot;)
+    private String dataInicioPublicitacao;
+
+    @JacksonXmlProperty(localName = &quot;dataFimPublicitacao&quot;)
+    private String dataFimPublicitacao;
+
+    @JacksonXmlProperty(localName = &quot;dataInicioCandidatura&quot;)
+    private String dataInicioCandidatura;
+
+    @JacksonXmlProperty(localName = &quot;dataFimCandidatura&quot;)
+    private String dataFimCandidatura;
+
+    @JacksonXmlProperty(localName = &quot;dataInicioSeriacao&quot;)
+    private String dataInicioSeriacao;
+
+    @JacksonXmlProperty(localName = &quot;dataFimsSeriacao&quot;)
+    private String dataFimSeriacao;
+
+    @JacksonXmlProperty(localName = &quot;idTipoRegimento&quot;)
+    private int idTipoRegimento;
+
+    @JacksonXmlProperty(localName = &quot;idProcessoSeriacao&quot;)
+    private int idProcessoSeriacao;
+
+
+    public AnuncioDTO(int idAnuncio, String referenciaTarefa, String nifOrganizacao, String dataInicioPublicitacao, String dataFimPublicitacao, String
+            dataInicioCandidatura, String dataFimCandidatura, String dataInicioSeriacao,
+<span class="nc" id="L51">                   String dataFimSeriacao, int idTipoRegimento) {</span>
+<span class="nc" id="L52">        this.idAnuncio = idAnuncio;</span>
+<span class="nc" id="L53">        setReferenciaTarefa(referenciaTarefa);</span>
+<span class="nc" id="L54">        setNifOrganizacao(nifOrganizacao);</span>
+<span class="nc" id="L55">        setDtInicioPub(AnuncioDTO.this.dataInicioPublicitacao);</span>
+<span class="nc" id="L56">        setDtFimPub(dataFimPublicitacao);</span>
+<span class="nc" id="L57">        setDtInicioCand(dataInicioCandidatura);</span>
+<span class="nc" id="L58">        setDtFimCand(dataFimCandidatura);</span>
+<span class="nc" id="L59">        setdataInicioSeriacao(dataInicioSeriacao);</span>
+<span class="nc" id="L60">        setdataFimSeriacao(dataFimSeriacao);</span>
+<span class="nc" id="L61">        setIdTipoRegimento(idTipoRegimento);</span>
+<span class="nc" id="L62">    }</span>
+
+<span class="nc" id="L64">    public AnuncioDTO (AnuncioDTO anuncioDTO){</span>
+<span class="nc" id="L65">        setIdAnuncio(anuncioDTO.idAnuncio);</span>
+<span class="nc" id="L66">        setReferenciaTarefa(anuncioDTO.referenciaTarefa);</span>
+<span class="nc" id="L67">        setNifOrganizacao(anuncioDTO.nifOrganizacao);</span>
+<span class="nc" id="L68">        setDtInicioPub(anuncioDTO.dataInicioPublicitacao);</span>
+<span class="nc" id="L69">        setDtFimPub(anuncioDTO.dataFimPublicitacao);</span>
+<span class="nc" id="L70">        setDtInicioCand(anuncioDTO.dataInicioCandidatura);</span>
+<span class="nc" id="L71">        setDtFimCand(anuncioDTO.dataFimCandidatura);</span>
+<span class="nc" id="L72">        setdataInicioSeriacao(anuncioDTO.dataInicioSeriacao);</span>
+<span class="nc" id="L73">        setdataFimSeriacao(anuncioDTO.dataFimSeriacao);</span>
+<span class="nc" id="L74">    }</span>
+
+    public AnuncioDTO(int idAnuncio, String referenciaTarefa, String nifOrganizacao, String dataInicioPublicitacao,
+<span class="nc" id="L77">                   String dataFimPublicitacao, String dataInicioCandidatura, String dataFimCandidatura, String dataInicioSeriacao, String dataFimSeriacao) {</span>
+<span class="nc" id="L78">        setIdAnuncio(idAnuncio);</span>
+<span class="nc" id="L79">        setReferenciaTarefa(referenciaTarefa);</span>
+<span class="nc" id="L80">        setNifOrganizacao(nifOrganizacao);</span>
+<span class="nc" id="L81">        setDtInicioPub(dataInicioPublicitacao);</span>
+<span class="nc" id="L82">        setDtFimPub(dataFimPublicitacao);</span>
+<span class="nc" id="L83">        setDtInicioCand(dataInicioCandidatura);</span>
+<span class="nc" id="L84">        setDtFimCand(dataFimCandidatura);</span>
+<span class="nc" id="L85">        setdataInicioSeriacao(dataInicioSeriacao);</span>
+<span class="nc" id="L86">        setdataFimSeriacao(dataFimSeriacao);</span>
+<span class="nc" id="L87">    }</span>
+
+    public AnuncioDTO(String referencia, String nifOrganizacao, String dataInicioPublicitacao, String dataFimPublicitacao, String dataInicioCandidatura,
+<span class="nc" id="L90">                   String dataFimCandidatura, String dataInicioSeriacao, String dataFimSeriacao, int idTipoRegimento) {</span>
+<span class="nc" id="L91">        setReferenciaTarefa(referencia);</span>
+<span class="nc" id="L92">        setNifOrganizacao(nifOrganizacao);</span>
+<span class="nc" id="L93">        setDtInicioPub(dataInicioPublicitacao);</span>
+<span class="nc" id="L94">        setDtFimPub(dataFimPublicitacao);</span>
+<span class="nc" id="L95">        setDtInicioCand(dataInicioCandidatura);</span>
+<span class="nc" id="L96">        setDtFimCand(dataFimCandidatura);</span>
+<span class="nc" id="L97">        setdataInicioSeriacao(dataInicioSeriacao);</span>
+<span class="nc" id="L98">        setdataFimSeriacao(dataFimSeriacao);</span>
+<span class="nc" id="L99">        setIdTipoRegimento(idTipoRegimento);</span>
+<span class="nc" id="L100">    }</span>
+
+    public void setIdAnuncio(int idAnuncio){
+<span class="nc bnc" id="L103" title="All 2 branches missed.">        if (idAnuncio &lt; 0 ) {</span>
+<span class="nc" id="L104">            throw new IdInvalidoException(&quot;Id do anúncio é inválido!&quot;);</span>
+        }
+<span class="nc" id="L106">        this.idAnuncio = idAnuncio;</span>
+<span class="nc" id="L107">    }</span>
+
+    public void setReferenciaTarefa(String referenciaTarefa) {
+<span class="nc" id="L110">        this.referenciaTarefa = referenciaTarefa;</span>
+<span class="nc" id="L111">    }</span>
+
+    public void setNifOrganizacao(String nifOrganizacao) {
+<span class="nc" id="L114">        this.nifOrganizacao = nifOrganizacao;</span>
+<span class="nc" id="L115">    }</span>
+
+    public void setDtInicioPub(String dataInicioPublicitacao) {
+<span class="nc bnc" id="L118" title="All 4 branches missed.">        if(dataInicioPublicitacao == null || dataInicioPublicitacao.trim().isEmpty()){</span>
+<span class="nc" id="L119">            throw new DataInvalidaException(&quot;A data de início de publicitação não é válida.&quot;);</span>
+        }
+<span class="nc" id="L121">        this.dataInicioPublicitacao = dataInicioPublicitacao;</span>
+<span class="nc" id="L122">    }</span>
+
+    public void setDtFimPub(String dataFimPublicitacao) {
+<span class="nc bnc" id="L125" title="All 4 branches missed.">         if(dataFimPublicitacao == null || dataFimPublicitacao.trim().isEmpty()) {</span>
+<span class="nc" id="L126">             throw new DataInvalidaException(&quot;A data de fim de publicitação não é válida.&quot;);</span>
+         }
+<span class="nc" id="L128">        this.dataFimPublicitacao = dataFimPublicitacao;</span>
+<span class="nc" id="L129">    }</span>
+
+    public void setDtInicioCand(String dataInicioCandidatura) {
+<span class="nc bnc" id="L132" title="All 4 branches missed.">        if(dataInicioCandidatura == null || dataInicioCandidatura.trim().isEmpty()){</span>
+<span class="nc" id="L133">            throw new DataInvalidaException(&quot;A data de início de candidatura não é válida.&quot;);</span>
+        }
+<span class="nc" id="L135">        this.dataInicioCandidatura = dataInicioCandidatura;</span>
+<span class="nc" id="L136">    }</span>
+
+    public void setDtFimCand(String dataFimCandidatura) {
+<span class="nc bnc" id="L139" title="All 4 branches missed.">        if(dataFimCandidatura == null || dataFimCandidatura.trim().isEmpty()){</span>
+<span class="nc" id="L140">            throw new DataInvalidaException(&quot;A data de fim de candidatura não é válida.&quot;);</span>
+        }
+<span class="nc" id="L142">        this.dataFimCandidatura = dataFimCandidatura;</span>
+<span class="nc" id="L143">    }</span>
+
+    public void setdataInicioSeriacao(String dataInicioSeriacao) {
+<span class="nc bnc" id="L146" title="All 4 branches missed.">        if(dataInicioSeriacao == null || dataInicioSeriacao.trim().isEmpty()){</span>
+<span class="nc" id="L147">            throw new DataInvalidaException(&quot;A data de início de seriação não é válida.&quot;);</span>
+        }
+<span class="nc" id="L149">        this.dataInicioSeriacao = dataInicioSeriacao;</span>
+<span class="nc" id="L150">    }</span>
+
+    public void setdataFimSeriacao(String dataFimSeriacao) {
+<span class="nc bnc" id="L153" title="All 4 branches missed.">        if(dataFimSeriacao == null || dataFimSeriacao.trim().isEmpty()){</span>
+<span class="nc" id="L154">            throw new DataInvalidaException(&quot;A data de fim de seriação não é válida.&quot;);</span>
+        }
+<span class="nc" id="L156">        this.dataFimSeriacao = dataFimSeriacao;</span>
+<span class="nc" id="L157">    }</span>
+
+    public void setIdTipoRegimento(int idTipoRegimento) {
+<span class="nc" id="L160">        this.idTipoRegimento = idTipoRegimento;</span>
+<span class="nc" id="L161">    }</span>
+
+    public void setIdProcessoSeriacao(int idProcessoSeriacao) {
+<span class="nc" id="L164">        this.idProcessoSeriacao = idProcessoSeriacao;</span>
+<span class="nc" id="L165">    }</span>
+
+    public int getIdAnuncio(){
+<span class="nc" id="L168">        return idAnuncio;</span>
+    }
+
+    public String getDtInicioPub() {
+<span class="nc" id="L172">        return dataInicioPublicitacao;</span>
+    }
+
+    public String getDtFimPub() {
+<span class="nc" id="L176">        return dataFimPublicitacao;</span>
+    }
+
+    public String getDtInicioCand() {
+<span class="nc" id="L180">        return dataInicioCandidatura;</span>
+    }
+
+    public String getDtFimCand() {
+<span class="nc" id="L184">        return dataFimCandidatura;</span>
+    }
+
+    public String getdataInicioSeriacao() {
+<span class="nc" id="L188">        return dataInicioSeriacao;</span>
+    }
+
+    public String getdataFimSeriacao() {
+<span class="nc" id="L192">        return dataFimSeriacao;</span>
+    }
+
+    public String getReferenciaTarefa() {
+<span class="nc" id="L196">        return referenciaTarefa;</span>
+    }
+
+    public String getNifOrganizacao() {
+<span class="nc" id="L200">        return nifOrganizacao;</span>
+    }
+
+    public int getIdTipoRegimento() {
+<span class="nc" id="L204">        return idTipoRegimento;</span>
+    }
+
+    public int getIdProcessoSeriacao() {
+<span class="nc" id="L208">        return idProcessoSeriacao;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>

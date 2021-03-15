@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RepositorioColaboradorSeriacaoDatabase.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">T4J-Grupo2</a> &gt; <a href="index.source.html" class="el_package">com.grupo2.t4j.persistence.database</a> &gt; <span class="el_source">RepositorioColaboradorSeriacaoDatabase.java</span></div><h1>RepositorioColaboradorSeriacaoDatabase.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.grupo2.t4j.persistence.database;
+
+/**
+ *
+ * @author CAD
+ */
+
+import com.grupo2.t4j.domain.Colaborador;
+import com.grupo2.t4j.domain.Password;
+import com.grupo2.t4j.persistence.RepositorioColaboradorSeriacao;
+import com.grupo2.t4j.utils.DBConnectionHandler;
+
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+public class RepositorioColaboradorSeriacaoDatabase implements RepositorioColaboradorSeriacao{
+    
+    /**
+     * Define uma instância estática do Repositório em que estão
+     * registados todos os registos de seriações e colaboradores participantes
+     * nestes processos
+     */
+    private static RepositorioColaboradorSeriacaoDatabase repositorioColaboradorSeriacaoDatabase;
+
+    /**
+     * Inicializa o Repositório de Colaboradores - Processos de Seriação
+     */
+<span class="nc" id="L34">    private RepositorioColaboradorSeriacaoDatabase(){    }</span>
+
+    /**
+     * Devolve uma instância estática do Repositório de Colaboradores - Processos de Seriação
+     *
+     * @return RepositorioColaboradorSeriacaoDatabase
+     */
+    public static RepositorioColaboradorSeriacaoDatabase getInstance(){
+<span class="nc bnc" id="L42" title="All 2 branches missed.">        if(repositorioColaboradorSeriacaoDatabase == null) {</span>
+<span class="nc" id="L43">            repositorioColaboradorSeriacaoDatabase = new RepositorioColaboradorSeriacaoDatabase();</span>
+        }
+<span class="nc" id="L45">        return repositorioColaboradorSeriacaoDatabase;</span>
+    }
+    
+    /**
+     * 
+     * @param emaiColaborador
+     * @param idSeriacao
+     * @return
+     * @throws SQLException 
+     */
+    @Override    
+    public boolean update(String emaiColaborador, int idSeriacao) throws SQLException{
+        
+<span class="nc" id="L58">        Connection connection = DBConnectionHandler.getInstance().openConnection();</span>
+
+        try {
+<span class="nc" id="L61">            CallableStatement callableStatement = connection.prepareCall(</span>
+                &quot;{CALL createColaboradorSeriacao(?, ?)}&quot;
+            );
+
+<span class="nc bnc" id="L65" title="All 2 branches missed.">            if(findByEmailId(emaiColaborador, idSeriacao) == false) {</span>
+
+<span class="nc" id="L67">                connection.setAutoCommit(false);</span>
+
+<span class="nc" id="L69">                callableStatement.setString(1, emaiColaborador);</span>
+<span class="nc" id="L70">                callableStatement.setInt(2, idSeriacao);</span>
+<span class="nc" id="L71">                callableStatement.executeQuery();</span>
+
+<span class="nc" id="L73">                connection.commit();</span>
+<span class="nc" id="L74">                return true;</span>
+
+            }
+        }
+<span class="nc" id="L78">        catch (SQLException exception) {</span>
+<span class="nc" id="L79">            exception.printStackTrace();</span>
+<span class="nc" id="L80">            exception.getSQLState();</span>
+            try {
+<span class="nc" id="L82">                System.err.print(&quot;Transaction is being rolled back&quot;);</span>
+<span class="nc" id="L83">                connection.rollback();</span>
+<span class="nc" id="L84">            } catch (SQLException sqlException) {</span>
+<span class="nc" id="L85">                sqlException.getErrorCode();</span>
+<span class="nc" id="L86">            }</span>
+
+        } finally {
+<span class="nc" id="L89">            DBConnectionHandler.getInstance().closeAll();</span>
+<span class="nc" id="L90">        }</span>
+<span class="nc" id="L91">        return false;</span>
+    }
+    
+    /**
+     * 
+     * @param emaiColaborador
+     * @param idSeriacao
+     * @return
+     * @throws SQLException 
+     */
+    @Override
+    public boolean findByEmailId(String emaiColaborador, int idSeriacao) throws SQLException{
+        
+<span class="nc" id="L104">        Connection connection = DBConnectionHandler.getInstance().openConnection();</span>
+
+        try {
+<span class="nc" id="L107">            CallableStatement callableStatement = connection.prepareCall(</span>
+                    &quot;{CALL findByEmail(?, ?) }&quot;
+            );
+
+<span class="nc" id="L111">            connection.setAutoCommit(false);</span>
+
+<span class="nc" id="L113">            callableStatement.setString(1, emaiColaborador);</span>
+<span class="nc" id="L114">            callableStatement.setInt(1, idSeriacao);</span>
+<span class="nc" id="L115">            callableStatement.executeUpdate();</span>
+
+<span class="nc" id="L117">            return false;</span>
+
+<span class="nc" id="L119">        } catch (SQLException exception) {</span>
+<span class="nc" id="L120">            exception.printStackTrace();</span>
+<span class="nc" id="L121">            exception.getSQLState();</span>
+
+        }
+        finally {
+<span class="nc" id="L125">            DBConnectionHandler.getInstance().closeAll();</span>
+<span class="nc" id="L126">        }</span>
+
+<span class="nc" id="L128">        return true;</span>
+    }
+    
+    /**
+     * 
+     * @param idSeriacao
+     * @return
+     * @throws SQLException 
+     */
+    @Override    
+    public ArrayList&lt;String&gt; getAllColaboresBySeriacao(int idSeriacao) throws SQLException{
+        
+<span class="nc" id="L140">        ArrayList&lt;String&gt; colaboradoresSeriacao = new ArrayList&lt;&gt;();</span>
+
+<span class="nc" id="L142">        Connection connection = DBConnectionHandler.getInstance().openConnection();</span>
+
+        try {
+<span class="nc" id="L145">            PreparedStatement preparedStatement = connection.prepareStatement(</span>
+                    &quot;SELECT * FROM ColaboradorSeriacao WHERE idSeriacao LIKE ?&quot;
+            );
+
+<span class="nc" id="L149">            preparedStatement.setInt(1, idSeriacao);</span>
+            
+<span class="nc" id="L151">            ResultSet resultSet = preparedStatement.executeQuery();</span>
+
+<span class="nc bnc" id="L153" title="All 2 branches missed.">            while (resultSet.next()) {</span>
+
+<span class="nc" id="L155">                String emailColaborador = resultSet.getString(1);</span>
+                
+<span class="nc" id="L157">                colaboradoresSeriacao.add(emailColaborador);</span>
+<span class="nc" id="L158">            }</span>
+        }
+<span class="nc" id="L160">        catch (SQLException exception) {</span>
+<span class="nc" id="L161">            exception.printStackTrace();</span>
+<span class="nc" id="L162">            exception.getSQLState();</span>
+            try {
+<span class="nc" id="L164">                System.err.print(&quot;Transaction is being rolled back&quot;);</span>
+<span class="nc" id="L165">                connection.rollback();</span>
+            }
+<span class="nc" id="L167">            catch (SQLException sqlException) {</span>
+<span class="nc" id="L168">                sqlException.getErrorCode();</span>
+<span class="nc" id="L169">            }</span>
+
+        }
+        finally {
+<span class="nc" id="L173">            DBConnectionHandler.getInstance().closeAll();</span>
+<span class="nc" id="L174">        }</span>
+
+<span class="nc" id="L176">        return colaboradoresSeriacao;  </span>
+    }
+    
+    /**
+     * 
+     * @param emailColaborador
+     * @return
+     * @throws SQLException 
+     */
+    @Override
+    public ArrayList&lt;Integer&gt; getAllIdsSeriacaoByColaborador(String emailColaborador) throws SQLException{
+        
+<span class="nc" id="L188">        ArrayList seriacoesColaborador = new ArrayList();</span>
+
+<span class="nc" id="L190">        Connection connection = DBConnectionHandler.getInstance().openConnection();</span>
+
+        try {
+<span class="nc" id="L193">            PreparedStatement preparedStatement = connection.prepareStatement(</span>
+                    &quot;SELECT * FROM ColaboradorSeriacao WHERE emailColaborador LIKE ?&quot;
+            );
+
+<span class="nc" id="L197">            preparedStatement.setString(1, emailColaborador);</span>
+            
+<span class="nc" id="L199">            ResultSet resultSet = preparedStatement.executeQuery();</span>
+
+<span class="nc bnc" id="L201" title="All 2 branches missed.">            while (resultSet.next()) {</span>
+
+<span class="nc" id="L203">                int idSeriacao = resultSet.getInt(2);</span>
+                
+<span class="nc" id="L205">                seriacoesColaborador.add(idSeriacao);</span>
+<span class="nc" id="L206">            }</span>
+        }
+<span class="nc" id="L208">        catch (SQLException exception) {</span>
+<span class="nc" id="L209">            exception.printStackTrace();</span>
+<span class="nc" id="L210">            exception.getSQLState();</span>
+            try {
+<span class="nc" id="L212">                System.err.print(&quot;Transaction is being rolled back&quot;);</span>
+<span class="nc" id="L213">                connection.rollback();</span>
+            }
+<span class="nc" id="L215">            catch (SQLException sqlException) {</span>
+<span class="nc" id="L216">                sqlException.getErrorCode();</span>
+<span class="nc" id="L217">            }</span>
+
+        }
+        finally {
+<span class="nc" id="L221">            DBConnectionHandler.getInstance().closeAll();</span>
+<span class="nc" id="L222">        }</span>
+
+<span class="nc" id="L224">        return seriacoesColaborador;</span>
+    }  
+    
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>

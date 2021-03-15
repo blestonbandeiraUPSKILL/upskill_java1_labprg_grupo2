@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>UtilizadorDTO.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">T4J-Grupo2</a> &gt; <a href="index.source.html" class="el_package">com.grupo2.t4j.dto</a> &gt; <span class="el_source">UtilizadorDTO.java</span></div><h1>UtilizadorDTO.java</h1><pre class="source lang-java linenums">package com.grupo2.t4j.dto;
+
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
+
+@JsonPropertyOrder({&quot;nome&quot;, &quot;email&quot;, &quot;password&quot;, &quot;rolename&quot;})
+@JacksonXmlRootElement(localName = &quot;utilizador&quot;)
+
+public class UtilizadorDTO {
+
+    @JacksonXmlProperty(localName = &quot;nome&quot;)
+    private String nome;
+
+    @JacksonXmlProperty(localName = &quot;email&quot;)
+    private EmailDTO email;
+
+    @JacksonXmlProperty(localName = &quot;password&quot;)
+    private PasswordDTO passwordDTO;
+
+    @JacksonXmlProperty(localName = &quot;rolename&quot;)
+    private String rolename;
+
+<span class="nc" id="L24">    public UtilizadorDTO() {</span>
+<span class="nc" id="L25">    }</span>
+
+<span class="nc" id="L27">    public UtilizadorDTO(EmailDTO email, String nome, PasswordDTO passwordDTO) {</span>
+<span class="nc" id="L28">        this.nome = nome;</span>
+<span class="nc" id="L29">        setEmail(email);</span>
+<span class="nc" id="L30">        setPassword(passwordDTO);</span>
+<span class="nc" id="L31">    }</span>
+
+
+<span class="nc" id="L34">    public UtilizadorDTO(UtilizadorDTO utilizadorDTO) {</span>
+<span class="nc" id="L35">        this.email = utilizadorDTO.getEmail();</span>
+<span class="nc" id="L36">        this.nome = utilizadorDTO.getNome();</span>
+<span class="nc" id="L37">        this.passwordDTO = utilizadorDTO.getPassword();</span>
+<span class="nc" id="L38">        this.rolename = utilizadorDTO.getRolename();</span>
+<span class="nc" id="L39">    }</span>
+
+<span class="nc" id="L41">    public UtilizadorDTO(String emailUtilizador, String nome, String passwordDTO, String rolename) {</span>
+<span class="nc" id="L42">        setEmail(new EmailDTO(emailUtilizador));</span>
+<span class="nc" id="L43">        setNome(nome);</span>
+<span class="nc" id="L44">        setPassword(new PasswordDTO(passwordDTO));</span>
+<span class="nc" id="L45">        this.rolename = rolename;</span>
+
+<span class="nc" id="L47">    }</span>
+
+<span class="nc" id="L49">    public UtilizadorDTO(String nome, String email) {</span>
+<span class="nc" id="L50">        setNome(nome);</span>
+<span class="nc" id="L51">        setEmail(new EmailDTO(email));</span>
+<span class="nc" id="L52">    }</span>
+
+    public final void setNome(String nome){
+<span class="nc bnc" id="L55" title="All 4 branches missed.">        if (nome == null || nome.trim().isEmpty()) {</span>
+<span class="nc" id="L56">            throw new IllegalArgumentException(&quot;Nome é inválido!&quot;);</span>
+        }
+<span class="nc" id="L58">        this.nome = nome;</span>
+<span class="nc" id="L59">    }</span>
+
+    public final void setEmail(EmailDTO email){
+<span class="nc" id="L62">        this.email = email;</span>
+<span class="nc" id="L63">    }</span>
+
+    public final void setPassword(PasswordDTO passwordDTO){
+<span class="nc" id="L66">        this.passwordDTO = passwordDTO;</span>
+<span class="nc" id="L67">    }</span>
+
+    public void setRolename(String rolename){
+<span class="nc" id="L70">        this.rolename = rolename;</span>
+<span class="nc" id="L71">    }</span>
+
+    public String getNome() {
+<span class="nc" id="L74">        return nome;</span>
+    }
+
+    public EmailDTO getEmail() {
+<span class="nc" id="L78">        return email;</span>
+    }
+
+    public PasswordDTO getPassword() {
+<span class="nc" id="L82">        return passwordDTO;</span>
+    }
+
+    public String getRolename() {
+<span class="nc" id="L86">        return rolename;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>

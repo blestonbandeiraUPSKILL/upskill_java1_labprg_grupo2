@@ -1,0 +1,480 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AdministrativoLogadoUI.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">T4J-Grupo2</a> &gt; <a href="index.source.html" class="el_package">com.grupo2.t4j.ui</a> &gt; <span class="el_source">AdministrativoLogadoUI.java</span></div><h1>AdministrativoLogadoUI.java</h1><pre class="source lang-java linenums">package com.grupo2.t4j.ui;
+
+import com.grupo2.t4j.controller.*;
+import com.grupo2.t4j.domain.AreaActividade;
+import com.grupo2.t4j.domain.Categoria;
+import com.grupo2.t4j.domain.CompetenciaTecnica;
+import com.grupo2.t4j.domain.Freelancer;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.ListView;
+import javafx.stage.*;
+
+import java.io.IOException;
+import java.net.URL;
+import java.sql.SQLException;
+import java.util.ResourceBundle;
+
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
+
+/**
+ * FXML Controller class
+ */
+<span class="nc" id="L33">public class AdministrativoLogadoUI implements Initializable {</span>
+
+    private StartingPageUI startingPageUI;
+    private Stage adicionarStage;
+    private Scene sceneAddAreaActividade;
+    private Scene sceneAddCategoriaTarefa;
+    private Scene sceneAddCompetenciaTecnica;
+    private Scene sceneAddFreelancer;
+    private Scene sceneConsultarCompetenciaTecnica;
+    private Scene sceneConsultarAreaActividade;
+    private Scene sceneConsultarCategoria;
+    private Scene sceneAddHabilitacaoFreelancer;
+    private Scene sceneAddReconhecimentoGP;
+    private Scene sceneStartingPage;
+    private Scene sceneConsultarFreelancer;
+    private RegistarAreaActividadeController registarAreaActividadeController;
+    private RegistarCategoriaController registarCategoriaController;
+    private RegistarCompetenciaTecnicaController registarCompetenciaTecnicaController;
+    private GestaoUtilizadoresController gestaoUtilizadoresController;
+    private RegistarFreelancerController registarFreelancerController;
+    private RegistarHabilitacaoAcademicaController registarHabilitacaoAcademicaController;
+    private RegistarReconhecimentoGPController registarReconhecimentoGPController;
+
+    private static final String CABECALHO_IMPORTAR = &quot;Importar Lista.&quot;;
+    private static final String CABECALHO_EXPORTAR = &quot;Exportar Lista.&quot;;
+
+    @FXML
+    Button btnAddAreaAtividade;
+    @FXML
+    Button btnAddcompetenciaTecnica;
+    @FXML
+    Button btnAddCategoriaTarefa;
+    @FXML
+    Button btnAdicionarFreelancer;
+    @FXML
+    Button btnAdicionarHabilitacao;
+    @FXML
+    Button btnAdicionarReconGP;
+    @FXML
+    Button btnSair;
+    @FXML
+    ListView&lt;AreaActividade&gt; listaAreasActividade;
+    @FXML
+    ListView&lt;Categoria&gt; listaCategorias;
+    @FXML
+    ListView&lt;CompetenciaTecnica&gt; listViewCompetenciasTecnicas;
+    @FXML
+    ListView&lt;Freelancer&gt; listaFreelancer;
+
+    //TableView AreaActividade
+    @FXML
+    TableColumn&lt;Object, Object&gt; colunaDescBreve;
+    @FXML
+    TableColumn&lt;Object, Object&gt; colunaDescDetalhada;
+    @FXML
+    TableColumn&lt;Object, Object&gt; colunaCodigo;
+    @FXML
+    TableView&lt;AreaActividade&gt; tableViewAreaActividade;
+
+    //TableView CompetenciaTecnica
+    @FXML
+    TableColumn&lt;Object, Object&gt; colunaDescBreveCT;
+    @FXML
+    TableColumn&lt;Object, Object&gt; colunaDescDetalhadaCT;
+    @FXML
+    TableColumn&lt;Object, Object&gt; colunaCodigoCT;
+    @FXML
+    TableColumn&lt;Object, Object&gt; colunaCodigoATCT;
+    @FXML
+    TableView&lt;CompetenciaTecnica&gt; tableViewCompetenciaTecnica;
+
+    //TableView Categoria
+    @FXML
+    TableColumn&lt;Object, Object&gt; colunaDescBreveCat;
+    @FXML
+    TableColumn&lt;Object, Object&gt; colunaDescDetalhadaCat;
+    @FXML
+    TableColumn&lt;Object, Object&gt; colunaCodigoCat;
+    @FXML
+    TableColumn&lt;Object, Object&gt; colunaCodigoATCat;
+    @FXML
+    TableView&lt;Categoria&gt; tableViewCategoria;
+
+    //TableView Freelancer
+    @FXML
+    TableColumn&lt;Object, Object&gt; colunaNome;
+    @FXML
+    TableColumn&lt;Object, Object&gt; colunaNif;
+    @FXML
+    TableColumn&lt;Object, Object&gt; colunaTelefone;
+    @FXML
+    TableColumn&lt;Object, Object&gt; colunaEmail;
+    @FXML
+    TableView&lt;Freelancer&gt; tableViewFreelancer;
+
+    public void associarParentUI(StartingPageUI startingPageUI) {
+<span class="nc" id="L129">        this.startingPageUI = startingPageUI;</span>
+<span class="nc" id="L130">    }</span>
+
+    /**
+     * Initializes the controller (UI) class.
+     */
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+
+<span class="nc" id="L138">        adicionarStage = new Stage();</span>
+<span class="nc" id="L139">        adicionarStage.initModality(Modality.APPLICATION_MODAL);;</span>
+<span class="nc" id="L140">        adicionarStage.setResizable(false);</span>
+
+<span class="nc" id="L142">        registarAreaActividadeController = new RegistarAreaActividadeController();</span>
+<span class="nc" id="L143">        registarCategoriaController = new RegistarCategoriaController();</span>
+<span class="nc" id="L144">        registarCompetenciaTecnicaController = new RegistarCompetenciaTecnicaController();</span>
+<span class="nc" id="L145">        registarFreelancerController = new RegistarFreelancerController();</span>
+<span class="nc" id="L146">        registarHabilitacaoAcademicaController = new RegistarHabilitacaoAcademicaController();</span>
+<span class="nc" id="L147">        registarReconhecimentoGPController = new RegistarReconhecimentoGPController();</span>
+<span class="nc" id="L148">        gestaoUtilizadoresController = new GestaoUtilizadoresController();</span>
+
+        try {
+<span class="nc" id="L151">            updateTableViewAreasActividade();</span>
+<span class="nc" id="L152">        } catch (SQLException exception) {</span>
+<span class="nc" id="L153">            exception.printStackTrace();</span>
+<span class="nc" id="L154">        }</span>
+
+        try {
+<span class="nc" id="L157">            updateTableViewCompetenciasTecnicas();</span>
+<span class="nc" id="L158">        } catch (SQLException exception) {</span>
+<span class="nc" id="L159">            exception.printStackTrace();</span>
+<span class="nc" id="L160">        }</span>
+
+        try {
+<span class="nc" id="L163">            updateTableViewCategoriasTarefa();</span>
+<span class="nc" id="L164">        } catch (SQLException exception) {</span>
+<span class="nc" id="L165">            exception.printStackTrace();</span>
+<span class="nc" id="L166">        }</span>
+
+        try {
+<span class="nc" id="L169">            updateTableViewFreelancer();</span>
+<span class="nc" id="L170">        } catch (SQLException exception) {</span>
+<span class="nc" id="L171">            exception.printStackTrace();</span>
+<span class="nc" id="L172">        }</span>
+<span class="nc" id="L173">    }</span>
+
+    public void addAreaActividade(ActionEvent actionEvent) throws IOException {
+        try {
+<span class="nc" id="L177">            FXMLLoader loaderAddAreaActividade = new FXMLLoader(getClass().getResource(&quot;/com/grupo2/t4j/fxml/AdicionarAreaAtividadeScene.fxml&quot;));</span>
+<span class="nc" id="L178">            Parent rootAddAreaActividade = loaderAddAreaActividade.load();</span>
+<span class="nc" id="L179">            sceneAddAreaActividade = new Scene(rootAddAreaActividade);</span>
+<span class="nc" id="L180">            AdicionarAreaAtividadeUI adicionarAreaAtividadeUI = loaderAddAreaActividade.getController();</span>
+<span class="nc" id="L181">            adicionarAreaAtividadeUI.associarParentUI(this);</span>
+
+<span class="nc" id="L183">            adicionarStage.setScene(sceneAddAreaActividade);</span>
+<span class="nc" id="L184">            adicionarStage.setTitle(&quot;Adicionar Área de Actividade&quot;);</span>
+<span class="nc" id="L185">            adicionarStage.show();</span>
+<span class="nc" id="L186">        } catch (IOException exception) {</span>
+<span class="nc" id="L187">            exception.printStackTrace();</span>
+<span class="nc" id="L188">            AlertsUI.criarAlerta(Alert.AlertType.ERROR,</span>
+                    MainApp.TITULO_APLICACAO,
+                    &quot;Erro&quot;,
+<span class="nc" id="L191">                    exception.getMessage());</span>
+<span class="nc" id="L192">        }</span>
+<span class="nc" id="L193">    }</span>
+
+    public void addCategoriaTarefa(ActionEvent actionEvent) {
+        try {
+<span class="nc" id="L197">            FXMLLoader loaderAddCategoriaTarefa = new FXMLLoader(getClass().getResource(&quot;/com/grupo2/t4j/fxml/AdicionarCategoriaTarefa.fxml&quot;));</span>
+<span class="nc" id="L198">            Parent rootAddCategoriaTarefa = loaderAddCategoriaTarefa.load();</span>
+<span class="nc" id="L199">            sceneAddCategoriaTarefa = new Scene(rootAddCategoriaTarefa);</span>
+<span class="nc" id="L200">            AdicionarCategoriaTarefaUI adicionarCategoriaTarefaUI = loaderAddCategoriaTarefa.getController();</span>
+<span class="nc" id="L201">            adicionarCategoriaTarefaUI.associarParentUI(this);</span>
+<span class="nc" id="L202">        } catch (IOException exception) {</span>
+<span class="nc" id="L203">            exception.printStackTrace();</span>
+<span class="nc" id="L204">            AlertsUI.criarAlerta(Alert.AlertType.ERROR,</span>
+                    MainApp.TITULO_APLICACAO,
+                    &quot;Erro&quot;,
+<span class="nc" id="L207">                    exception.getMessage());</span>
+<span class="nc" id="L208">        }</span>
+
+<span class="nc" id="L210">        adicionarStage.setScene(sceneAddCategoriaTarefa);</span>
+<span class="nc" id="L211">        adicionarStage.setTitle(&quot;Adicionar Categoria de Tarefa&quot;);</span>
+<span class="nc" id="L212">        adicionarStage.show();</span>
+<span class="nc" id="L213">    }</span>
+
+    public void addCompetenciaTecnica(ActionEvent actionEvent) {
+        try {
+<span class="nc" id="L217">            FXMLLoader loaderAddCompetenciaTecnica = new FXMLLoader(getClass().getResource(&quot;/com/grupo2/t4j/fxml/AdicionarCompetenciaTecnicaScene.fxml&quot;));</span>
+<span class="nc" id="L218">            Parent rootAddCompetenciaTecnica = loaderAddCompetenciaTecnica.load();</span>
+<span class="nc" id="L219">            sceneAddCompetenciaTecnica = new Scene(rootAddCompetenciaTecnica);</span>
+<span class="nc" id="L220">            AdicionarCompetenciaTecnicaUI adicionarCompetenciaTecnicaUI = loaderAddCompetenciaTecnica.getController();</span>
+<span class="nc" id="L221">            adicionarCompetenciaTecnicaUI.associarParentUI(this);</span>
+
+<span class="nc" id="L223">        } catch (IOException exception) {</span>
+<span class="nc" id="L224">            exception.printStackTrace();</span>
+<span class="nc" id="L225">            AlertsUI.criarAlerta(Alert.AlertType.ERROR,</span>
+                    MainApp.TITULO_APLICACAO,
+                    &quot;Erro&quot;,
+<span class="nc" id="L228">                    exception.getMessage());</span>
+<span class="nc" id="L229">        }</span>
+
+<span class="nc" id="L231">        adicionarStage.setScene(sceneAddCompetenciaTecnica);</span>
+<span class="nc" id="L232">        adicionarStage.setTitle(&quot;Adicionar Competência Técnica&quot;);</span>
+<span class="nc" id="L233">        adicionarStage.show();</span>
+<span class="nc" id="L234">    }</span>
+
+    public void addFreelancer(ActionEvent actionEvent) {
+        try {
+<span class="nc" id="L238">            FXMLLoader loaderAddFreelancer = new FXMLLoader(getClass().getResource(&quot;/com/grupo2/t4j/fxml/AdicionarFreelancerScene.fxml&quot;));</span>
+<span class="nc" id="L239">            Parent rootAddFreelancer = loaderAddFreelancer.load();</span>
+<span class="nc" id="L240">            sceneAddFreelancer = new Scene(rootAddFreelancer);</span>
+<span class="nc" id="L241">            AdicionarFreelancerUI adicionarFreelancerUI = loaderAddFreelancer.getController();</span>
+<span class="nc" id="L242">            adicionarFreelancerUI.associarParentUI(this);</span>
+
+<span class="nc" id="L244">        } catch (IOException exception) {</span>
+<span class="nc" id="L245">            exception.printStackTrace();</span>
+<span class="nc" id="L246">            AlertsUI.criarAlerta(Alert.AlertType.ERROR,</span>
+                    MainApp.TITULO_APLICACAO,
+                    &quot;Erro&quot;,
+<span class="nc" id="L249">                    exception.getMessage());</span>
+<span class="nc" id="L250">        }</span>
+
+<span class="nc" id="L252">        adicionarStage.setScene(sceneAddFreelancer);</span>
+<span class="nc" id="L253">        adicionarStage.setTitle(&quot;Adicionar Freelancer&quot;);</span>
+<span class="nc" id="L254">        adicionarStage.show();</span>
+<span class="nc" id="L255">    }</span>
+
+    public void addHabilitacaoFreelancer(ActionEvent actionEvent) {
+        try {
+<span class="nc" id="L259">            FXMLLoader loaderAddHabilitacaoFreelancer = new FXMLLoader(getClass().getResource(&quot;/com/grupo2/t4j/fxml/AdicionarHabilitacaoAcademicaScene.fxml&quot;));</span>
+<span class="nc" id="L260">            Parent rootAddHabilitacaoFreelancer = loaderAddHabilitacaoFreelancer.load();</span>
+<span class="nc" id="L261">            sceneAddHabilitacaoFreelancer = new Scene(rootAddHabilitacaoFreelancer);</span>
+<span class="nc" id="L262">            AdicionarHabilitacaoAcademicaUI adicionarHabilitacaoFreelancerUI = loaderAddHabilitacaoFreelancer.getController();</span>
+<span class="nc" id="L263">            adicionarHabilitacaoFreelancerUI.associarParentUI(this);</span>
+
+<span class="nc" id="L265">        } catch (IOException exception) {</span>
+<span class="nc" id="L266">            exception.printStackTrace();</span>
+<span class="nc" id="L267">            AlertsUI.criarAlerta(Alert.AlertType.ERROR,</span>
+                    MainApp.TITULO_APLICACAO,
+                    &quot;Erro&quot;,
+<span class="nc" id="L270">                    exception.getMessage());</span>
+<span class="nc" id="L271">        }</span>
+
+<span class="nc" id="L273">        adicionarStage.setScene(sceneAddHabilitacaoFreelancer);</span>
+<span class="nc" id="L274">        adicionarStage.setTitle(&quot;Adicionar Habilitação Académica&quot;);</span>
+<span class="nc" id="L275">        adicionarStage.show();</span>
+
+<span class="nc" id="L277">    }</span>
+
+    public void addReconhecimentoGP(ActionEvent actionEvent) {
+        try {
+<span class="nc" id="L281">            FXMLLoader loaderAddReconhecimentoGP = new FXMLLoader(getClass().getResource(&quot;/com/grupo2/t4j/fxml/AdicionarReconhecimentoGPScene.fxml&quot;));</span>
+<span class="nc" id="L282">            Parent rootAddReconhecimentoGP = loaderAddReconhecimentoGP.load();</span>
+<span class="nc" id="L283">            sceneAddReconhecimentoGP = new Scene(rootAddReconhecimentoGP);</span>
+<span class="nc" id="L284">            AdicionarReconhecimentoGPUI adicionarReconhecimentoGPUI = loaderAddReconhecimentoGP.getController();</span>
+<span class="nc" id="L285">            adicionarReconhecimentoGPUI.associarParentUI(this);</span>
+
+<span class="nc" id="L287">        } catch (IOException exception) {</span>
+<span class="nc" id="L288">            exception.printStackTrace();</span>
+<span class="nc" id="L289">            AlertsUI.criarAlerta(Alert.AlertType.ERROR,</span>
+                    MainApp.TITULO_APLICACAO,
+                    &quot;Erro&quot;,
+<span class="nc" id="L292">                    exception.getMessage());</span>
+<span class="nc" id="L293">        }</span>
+
+<span class="nc" id="L295">        adicionarStage.setScene(sceneAddReconhecimentoGP);</span>
+<span class="nc" id="L296">        adicionarStage.setTitle(&quot;Adicionar Competência Técnica de Freelancer&quot;);</span>
+<span class="nc" id="L297">        adicionarStage.show();</span>
+
+<span class="nc" id="L299">    }</span>
+
+    public void updateTableViewFreelancer() throws SQLException {
+<span class="nc" id="L302">        tableViewFreelancer.getItems().setAll(registarFreelancerController.getAll());</span>
+
+<span class="nc" id="L304">        colunaNome.setCellValueFactory(new PropertyValueFactory&lt;&gt;(&quot;nome&quot;));</span>
+<span class="nc" id="L305">        colunaNif.setCellValueFactory(new PropertyValueFactory&lt;&gt;(&quot;nif&quot;));</span>
+<span class="nc" id="L306">        colunaTelefone.setCellValueFactory(new PropertyValueFactory&lt;&gt;(&quot;telefone&quot;));</span>
+<span class="nc" id="L307">        colunaEmail.setCellValueFactory(new PropertyValueFactory&lt;&gt;(&quot;email&quot;));</span>
+
+<span class="nc" id="L309">    }</span>
+
+    public void updateTableViewAreasActividade() throws SQLException {
+<span class="nc" id="L312">        tableViewAreaActividade.getItems().setAll(registarAreaActividadeController.getAll());</span>
+<span class="nc" id="L313">        colunaCodigo.setCellValueFactory(new PropertyValueFactory&lt;&gt;(&quot;codigo&quot;));</span>
+<span class="nc" id="L314">        colunaDescBreve.setCellValueFactory(new PropertyValueFactory&lt;&gt;(&quot;descBreve&quot;));</span>
+<span class="nc" id="L315">        colunaDescDetalhada.setCellValueFactory(new PropertyValueFactory&lt;&gt;(&quot;descDetalhada&quot;));</span>
+<span class="nc" id="L316">    }</span>
+
+    public void updateTableViewCategoriasTarefa() throws SQLException {
+<span class="nc" id="L319">        tableViewCategoria.getItems().setAll(registarCategoriaController.getAll());</span>
+
+<span class="nc" id="L321">        colunaCodigoCat.setCellValueFactory(new PropertyValueFactory&lt;&gt;(&quot;codigoCategoria&quot;));</span>
+<span class="nc" id="L322">        colunaDescBreveCat.setCellValueFactory(new PropertyValueFactory&lt;&gt;(&quot;descBreve&quot;));</span>
+<span class="nc" id="L323">        colunaDescDetalhadaCat.setCellValueFactory(new PropertyValueFactory&lt;&gt;(&quot;descDetalhada&quot;));</span>
+<span class="nc" id="L324">        colunaCodigoATCat.setCellValueFactory(new PropertyValueFactory&lt;&gt;(&quot;codigoAreaActividade&quot;));</span>
+
+<span class="nc" id="L326">    }</span>
+
+    public void updateTableViewCompetenciasTecnicas() throws SQLException {
+<span class="nc" id="L329">        tableViewCompetenciaTecnica.getItems().setAll(registarCompetenciaTecnicaController.getAll());</span>
+
+<span class="nc" id="L331">        colunaCodigoCT.setCellValueFactory(new PropertyValueFactory&lt;&gt;(&quot;codigo&quot;));</span>
+<span class="nc" id="L332">        colunaDescBreveCT.setCellValueFactory(new PropertyValueFactory&lt;&gt;(&quot;descricaoBreve&quot;));</span>
+<span class="nc" id="L333">        colunaDescDetalhadaCT.setCellValueFactory(new PropertyValueFactory&lt;&gt;(&quot;descricaoDetalhada&quot;));</span>
+<span class="nc" id="L334">        colunaCodigoATCT.setCellValueFactory(new PropertyValueFactory&lt;&gt;(&quot;codigoAreaActividade&quot;));</span>
+<span class="nc" id="L335">    }</span>
+
+    public String getCodigoCompetenciaTecnica() {
+<span class="nc" id="L338">        return listViewCompetenciasTecnicas.getSelectionModel().getSelectedItem().getCodigo();</span>
+    }
+
+    public void consultarCompetenciaTecnicaAction(ActionEvent event) {
+
+        try {
+
+<span class="nc" id="L345">            FXMLLoader loaderConsultarCompetenciaTecnica = new FXMLLoader(getClass().getResource(&quot;/com/grupo2/t4j/fxml/ConsultarCompetenciaTecnicaScene.fxml&quot;));</span>
+<span class="nc" id="L346">            Parent rootConsultarCompetenciaTecnica = loaderConsultarCompetenciaTecnica.load();</span>
+<span class="nc" id="L347">            ConsultarCompetenciaTecnicaUI consultarCompetenciaTecnicaUI = loaderConsultarCompetenciaTecnica.getController();</span>
+<span class="nc" id="L348">            consultarCompetenciaTecnicaUI.associarParentUI(this);</span>
+<span class="nc" id="L349">            consultarCompetenciaTecnicaUI.transferData();</span>
+<span class="nc" id="L350">            sceneConsultarCompetenciaTecnica = new Scene(rootConsultarCompetenciaTecnica);</span>
+
+<span class="nc" id="L352">            adicionarStage.setScene(sceneConsultarCompetenciaTecnica);</span>
+<span class="nc" id="L353">            adicionarStage.setTitle(&quot;Consultar Competência Técnica&quot;);</span>
+<span class="nc" id="L354">            adicionarStage.show();</span>
+
+<span class="nc" id="L356">        } catch (IOException | SQLException exception) {</span>
+<span class="nc" id="L357">            exception.printStackTrace();</span>
+<span class="nc" id="L358">            AlertsUI.criarAlerta(Alert.AlertType.ERROR,</span>
+                    MainApp.TITULO_APLICACAO,
+                    &quot;Erro&quot;,
+<span class="nc" id="L361">                    exception.getMessage());</span>
+<span class="nc" id="L362">        }</span>
+
+<span class="nc" id="L364">    }</span>
+
+    public void consultarAreaActividadeAction(ActionEvent event) {
+
+        try {
+<span class="nc" id="L369">            FXMLLoader loaderConsultarAreaActividade = new FXMLLoader(getClass().getResource(&quot;/com/grupo2/t4j/fxml/ConsultarAreaActividadeScene.fxml&quot;));</span>
+<span class="nc" id="L370">            Parent rootConsultarAreaActividade = loaderConsultarAreaActividade.load();</span>
+<span class="nc" id="L371">            ConsultarAreaActividadeUI consultarAreaActividadeUI = loaderConsultarAreaActividade.getController();</span>
+<span class="nc" id="L372">            consultarAreaActividadeUI.associarParentUI(this);</span>
+<span class="nc" id="L373">            consultarAreaActividadeUI.transferData();</span>
+<span class="nc" id="L374">            sceneConsultarAreaActividade = new Scene(rootConsultarAreaActividade);</span>
+
+<span class="nc" id="L376">            adicionarStage.setScene(sceneConsultarAreaActividade);</span>
+<span class="nc" id="L377">            adicionarStage.setTitle(&quot;Consultar Área de Actividade&quot;);</span>
+<span class="nc" id="L378">            adicionarStage.show();</span>
+
+<span class="nc" id="L380">        } catch (IOException | SQLException exception) {</span>
+<span class="nc" id="L381">            exception.printStackTrace();</span>
+<span class="nc" id="L382">            AlertsUI.criarAlerta(Alert.AlertType.ERROR,</span>
+                    MainApp.TITULO_APLICACAO,
+                    &quot;Erro&quot;,
+<span class="nc" id="L385">                    exception.getMessage());</span>
+<span class="nc" id="L386">        }</span>
+
+<span class="nc" id="L388">    }</span>
+
+    public void consultarCategoriaAction(ActionEvent event) throws SQLException {
+
+        try {
+
+<span class="nc" id="L394">            FXMLLoader loaderConsultarCategoria = new FXMLLoader(getClass().getResource(&quot;/com/grupo2/t4j/fxml/ConsultarCategoriaScene.fxml&quot;));</span>
+<span class="nc" id="L395">            Parent rootConsultarCategoria = loaderConsultarCategoria.load();</span>
+<span class="nc" id="L396">            ConsultarCategoriaUI consultarCategoriaUI = loaderConsultarCategoria.getController();</span>
+<span class="nc" id="L397">            consultarCategoriaUI.associarParentUI(this);</span>
+<span class="nc" id="L398">            consultarCategoriaUI.transferData();</span>
+<span class="nc" id="L399">            sceneConsultarCategoria = new Scene(rootConsultarCategoria);</span>
+
+<span class="nc" id="L401">            adicionarStage.setScene(sceneConsultarCategoria);</span>
+<span class="nc" id="L402">            adicionarStage.setTitle(&quot;Consultar Categoria&quot;);</span>
+<span class="nc" id="L403">            adicionarStage.show();</span>
+
+<span class="nc" id="L405">        } catch (IOException | SQLException exception) {</span>
+<span class="nc" id="L406">            exception.printStackTrace();</span>
+<span class="nc" id="L407">            AlertsUI.criarAlerta(Alert.AlertType.ERROR,</span>
+                    MainApp.TITULO_APLICACAO,
+                    &quot;Erro&quot;,
+<span class="nc" id="L410">                    exception.getMessage());</span>
+<span class="nc" id="L411">        }</span>
+
+<span class="nc" id="L413">    }</span>
+
+    public void consultarFreelancer(ActionEvent actionEvent) {
+        try {
+<span class="nc" id="L417">            FXMLLoader loaderConsultarFreelancer = new FXMLLoader(getClass().getResource(&quot;/com/grupo2/t4j/fxml/ConsultarFreelancerScene.fxml&quot;));</span>
+<span class="nc" id="L418">            Parent rootConsultarFreelancer = loaderConsultarFreelancer.load();</span>
+<span class="nc" id="L419">            ConsultarFreelancerUI consultarFreelancerUI = loaderConsultarFreelancer.getController();</span>
+<span class="nc" id="L420">            consultarFreelancerUI.associarParentUI(this);</span>
+<span class="nc" id="L421">            consultarFreelancerUI.transferData();</span>
+<span class="nc" id="L422">            sceneConsultarFreelancer = new Scene(rootConsultarFreelancer);</span>
+
+<span class="nc" id="L424">            adicionarStage.setScene(sceneConsultarFreelancer);</span>
+<span class="nc" id="L425">            adicionarStage.setTitle(&quot;Consultar Freelancer&quot;);</span>
+<span class="nc" id="L426">            adicionarStage.show();</span>
+
+<span class="nc" id="L428">        } catch (IOException | SQLException exception) {</span>
+<span class="nc" id="L429">            exception.printStackTrace();</span>
+<span class="nc" id="L430">            AlertsUI.criarAlerta(Alert.AlertType.ERROR,</span>
+                    MainApp.TITULO_APLICACAO,
+                    &quot;Erro&quot;,
+<span class="nc" id="L433">                    exception.getMessage());</span>
+<span class="nc" id="L434">        }</span>
+<span class="nc" id="L435">    }</span>
+
+    public void logout(ActionEvent actionEvent) {
+<span class="nc" id="L438">        Window window = btnSair.getScene().getWindow();</span>
+<span class="nc" id="L439">        window.setOnCloseRequest(new EventHandler&lt;WindowEvent&gt;() {</span>
+            @Override
+            public void handle(WindowEvent windowEvent) {
+<span class="nc" id="L442">                Alert alerta = AlertsUI.criarAlerta(Alert.AlertType.CONFIRMATION,</span>
+                        MainApp.TITULO_APLICACAO,
+                        &quot;Confirmação da acção&quot;,
+                        &quot;Tem a certeza que pretende terminar a sessão?&quot;);
+
+<span class="nc bnc" id="L447" title="All 2 branches missed.">                if (alerta.showAndWait().get() == ButtonType.CANCEL) {</span>
+<span class="nc" id="L448">                    windowEvent.consume();</span>
+                } else {
+<span class="nc" id="L450">                    boolean logout = gestaoUtilizadoresController.logout();</span>
+<span class="nc bnc" id="L451" title="All 2 branches missed.">                    if (logout) {</span>
+<span class="nc" id="L452">                        gestaoUtilizadoresController.resetUsersAPI();</span>
+
+<span class="nc" id="L454">                        FXMLLoader loaderStartingPage = new FXMLLoader(getClass().getResource(&quot;/com/grupo2/t4j/fxml/StartingPageScene.fxml&quot;));</span>
+<span class="nc" id="L455">                        Parent rootStartingPage = null;</span>
+                        try {
+<span class="nc" id="L457">                            rootStartingPage = loaderStartingPage.load();</span>
+<span class="nc" id="L458">                        } catch (IOException exception) {</span>
+<span class="nc" id="L459">                            exception.printStackTrace();</span>
+<span class="nc" id="L460">                        }</span>
+<span class="nc" id="L461">                        sceneStartingPage = new Scene(rootStartingPage);</span>
+
+<span class="nc" id="L463">                        adicionarStage.setScene(sceneStartingPage);</span>
+<span class="nc" id="L464">                        adicionarStage.setTitle(MainApp.TITULO_APLICACAO);</span>
+<span class="nc" id="L465">                        adicionarStage.show();</span>
+<span class="nc" id="L466">                    } else {</span>
+<span class="nc" id="L467">                        AlertsUI.criarAlerta(Alert.AlertType.ERROR,</span>
+                                MainApp.TITULO_APLICACAO,
+                                &quot;Erro&quot;,
+                                &quot;Não foi possível terminar a sessão.&quot;);
+                    }
+                }
+<span class="nc" id="L473">            }</span>
+        });
+<span class="nc" id="L475">        window.fireEvent(new WindowEvent(window, WindowEvent.WINDOW_CLOSE_REQUEST));</span>
+
+<span class="nc" id="L477">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>

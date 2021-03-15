@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>FreelancerDTO.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">T4J-Grupo2</a> &gt; <a href="index.source.html" class="el_package">com.grupo2.t4j.dto</a> &gt; <span class="el_source">FreelancerDTO.java</span></div><h1>FreelancerDTO.java</h1><pre class="source lang-java linenums">package com.grupo2.t4j.dto;
+
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
+import com.grupo2.t4j.exception.NifInvalidoException;
+
+@JsonPropertyOrder ({&quot;nif&quot;, &quot;telefone&quot;, &quot;idEnderecoPostal&quot;, &quot;enderecoPostal&quot;})
+
+public class FreelancerDTO extends UtilizadorDTO{
+
+    @JacksonXmlProperty(localName = &quot;nif&quot;)
+    private String nif;
+
+    @JacksonXmlProperty(localName = &quot;telefone&quot;)
+    private String telefone;
+
+    @JacksonXmlProperty(localName = &quot;idEnderecoPostal&quot;)
+    private int idEnderecoPostal;
+
+    @JacksonXmlProperty(localName = &quot;enderecoPostal&quot;)
+    private EnderecoPostalDTO enderecoPostalDTO;
+
+<span class="nc" id="L23">    public FreelancerDTO(){</span>
+<span class="nc" id="L24">    }</span>
+
+    public FreelancerDTO(EmailDTO emailDTO, String nome, PasswordDTO password,
+                      String nif, String telefone, int idEnderecoPostal){
+<span class="nc" id="L28">        super(emailDTO, nome, password);</span>
+<span class="nc" id="L29">        setNif(nif);</span>
+<span class="nc" id="L30">        setTelefone(telefone);</span>
+<span class="nc" id="L31">        this.idEnderecoPostal = idEnderecoPostal;</span>
+<span class="nc" id="L32">    }</span>
+
+    public FreelancerDTO(FreelancerDTO freelancer){
+<span class="nc" id="L35">        super(freelancer.getEmail(), freelancer.getNome(), freelancer.getPassword());</span>
+<span class="nc" id="L36">        setNif(freelancer.nif);</span>
+<span class="nc" id="L37">        setTelefone(freelancer.telefone);</span>
+<span class="nc" id="L38">        this.idEnderecoPostal = freelancer.idEnderecoPostal;</span>
+<span class="nc" id="L39">    }</span>
+
+<span class="nc" id="L41">    public FreelancerDTO(String email, String nome, String nif, String telefone, String password, String arruamento, String numeroPorta, String localidade, String codigoPostal) {</span>
+<span class="nc" id="L42">        setEmail(new EmailDTO(email));</span>
+<span class="nc" id="L43">        setTelefone(telefone);</span>
+<span class="nc" id="L44">        setNif(nif);</span>
+<span class="nc" id="L45">        setNome(nome);</span>
+<span class="nc" id="L46">        setEnderecoPostal(new EnderecoPostalDTO(arruamento, numeroPorta, localidade, codigoPostal));</span>
+<span class="nc" id="L47">        setPassword(new PasswordDTO(password));</span>
+<span class="nc" id="L48">    }</span>
+
+<span class="nc" id="L50">    public FreelancerDTO(String email, String nome, String telefone, String nif, String arruamento, String numeroPorta, String localidade, String codigoPostal) {</span>
+<span class="nc" id="L51">        setEmail(new EmailDTO(email));</span>
+<span class="nc" id="L52">        setNome(nome);</span>
+<span class="nc" id="L53">        setTelefone(telefone);</span>
+<span class="nc" id="L54">        setNif(nif);</span>
+<span class="nc" id="L55">        setEnderecoPostal(new EnderecoPostalDTO(arruamento, numeroPorta, localidade, codigoPostal));</span>
+<span class="nc" id="L56">    }</span>
+
+<span class="nc" id="L58">    public FreelancerDTO(String email, String nome, String telefone, String nif, int idEnderecoPostal) {</span>
+<span class="nc" id="L59">        setEmail(new EmailDTO(email));</span>
+<span class="nc" id="L60">        setNome(nome);</span>
+<span class="nc" id="L61">        setTelefone(telefone);</span>
+<span class="nc" id="L62">        setNif(nif);</span>
+<span class="nc" id="L63">        setIdEnderecoPostal(idEnderecoPostal);</span>
+<span class="nc" id="L64">    }</span>
+
+    public void setNif(String nif)throws NifInvalidoException {
+<span class="nc" id="L67">        long numNif = Long.parseLong(nif);</span>
+<span class="nc bnc" id="L68" title="All 4 branches missed.">        if (numNif &gt;= 100000000 &amp;&amp; numNif &lt;= 999999999) {</span>
+<span class="nc" id="L69">            this.nif = nif;</span>
+        } else {
+<span class="nc" id="L71">            throw new NifInvalidoException(nif + &quot;: NIF inválido!&quot;);</span>
+        }
+<span class="nc" id="L73">    }</span>
+
+    public void setTelefone(String telefone) {
+<span class="nc" id="L76">        int numero = Integer.parseInt(telefone);</span>
+<span class="nc bnc" id="L77" title="All 4 branches missed.">        if (numero &lt; 100000000 || numero &gt; 999999999) {</span>
+<span class="nc" id="L78">            throw new IllegalArgumentException(&quot;Número é inválido!&quot;);</span>
+        }
+<span class="nc" id="L80">        this.telefone = telefone;</span>
+<span class="nc" id="L81">    }</span>
+
+    public void setEnderecoPostal(EnderecoPostalDTO enderecoPostalDTO) {
+<span class="nc bnc" id="L84" title="All 2 branches missed.">        if(enderecoPostalDTO != null) {</span>
+<span class="nc" id="L85">            this.enderecoPostalDTO = enderecoPostalDTO;</span>
+        }
+<span class="nc" id="L87">    }</span>
+
+    public void setIdEnderecoPostal(int idEnderecoPostal) {
+<span class="nc" id="L90">        this.idEnderecoPostal = idEnderecoPostal;</span>
+<span class="nc" id="L91">    }</span>
+
+    public String getNif(){
+<span class="nc" id="L94">        return nif;</span>
+    }
+
+    public String getTelefone(){
+<span class="nc" id="L98">        return telefone;</span>
+    }
+
+    public int getIdEnderecoPostal(){
+<span class="nc" id="L102">        return idEnderecoPostal;</span>
+    }
+
+    public EnderecoPostalDTO getEnderecoPostalDTO() {
+<span class="nc" id="L106">        return enderecoPostalDTO;</span>
+    }
+}
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>

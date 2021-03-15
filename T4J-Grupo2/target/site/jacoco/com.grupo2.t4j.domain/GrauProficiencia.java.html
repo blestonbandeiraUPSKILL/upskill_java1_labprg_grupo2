@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>GrauProficiencia.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">T4J-Grupo2</a> &gt; <a href="index.source.html" class="el_package">com.grupo2.t4j.domain</a> &gt; <span class="el_source">GrauProficiencia.java</span></div><h1>GrauProficiencia.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.grupo2.t4j.domain;
+
+import com.grupo2.t4j.exception.CompetenciaTecnicaInexistenteException;
+import com.grupo2.t4j.exception.DescricaoInvalidaException;
+import com.grupo2.t4j.exception.GrauInvalidoException;
+
+/**
+ *
+ * @author acris
+ */
+
+public class GrauProficiencia {
+
+    private int idGrauProficiencia;
+    private int grau;
+    private String designacao;
+    private String codigoCompetenciaTecnica;
+
+<span class="nc" id="L24">    public GrauProficiencia() {</span>
+<span class="nc" id="L25">    }</span>
+
+<span class="nc" id="L27">    public GrauProficiencia(GrauProficiencia gp) {</span>
+<span class="nc" id="L28">        setGrau(gp.grau);</span>
+<span class="nc" id="L29">        setDesignacao(gp.designacao);</span>
+<span class="nc" id="L30">    }</span>
+    
+<span class="nc" id="L32">    public GrauProficiencia(int grau, String designacao) {</span>
+<span class="nc" id="L33">        setGrau(grau);</span>
+<span class="nc" id="L34">        setDesignacao(designacao);</span>
+        
+<span class="nc" id="L36">    }</span>
+<span class="nc" id="L37">    public GrauProficiencia(int idGrauProficiencia, int grau, String designacao, String codigoCompetenciaTecnica){</span>
+<span class="nc" id="L38">        this.idGrauProficiencia = idGrauProficiencia;</span>
+<span class="nc" id="L39">        setGrau(grau);</span>
+<span class="nc" id="L40">        setDesignacao(designacao);</span>
+<span class="nc" id="L41">        setCodigoCompetenciaTecnica(codigoCompetenciaTecnica);</span>
+<span class="nc" id="L42">    }</span>
+
+<span class="nc" id="L44">    public GrauProficiencia(int grau, String designacao, String codigoCompetenciaTecnica) {</span>
+<span class="nc" id="L45">        setGrau(grau);</span>
+<span class="nc" id="L46">        setDesignacao(designacao);</span>
+<span class="nc" id="L47">        setCodigoCompetenciaTecnica(codigoCompetenciaTecnica);</span>
+<span class="nc" id="L48">    }</span>
+
+    public int getIdGrauProficiencia() {
+<span class="nc" id="L51">        return idGrauProficiencia;</span>
+    }
+
+    public int getGrau() {
+<span class="nc" id="L55">        return grau;</span>
+    }
+
+    public void setGrau(int grau) {
+<span class="nc bnc" id="L59" title="All 2 branches missed.">        if (grau &lt; 0) {</span>
+<span class="nc" id="L60">            throw new GrauInvalidoException(&quot;O valor do grau é inválido.&quot;);</span>
+        }
+<span class="nc" id="L62">        this.grau = grau;</span>
+<span class="nc" id="L63">    }</span>
+
+    public String getDesignacao() {
+<span class="nc" id="L66">        return designacao;</span>
+    }
+
+    public void setDesignacao(String designacao) {
+<span class="nc bnc" id="L70" title="All 4 branches missed.">        if (designacao == null || designacao.trim().isEmpty()) {</span>
+<span class="nc" id="L71">            throw new DescricaoInvalidaException(&quot;A descrição é inválida.&quot;);</span>
+        }
+<span class="nc" id="L73">        this.designacao = designacao;</span>
+<span class="nc" id="L74">    }</span>
+    
+    public String getCodigoCompetenciaTecnica(){
+<span class="nc" id="L77">        return codigoCompetenciaTecnica;</span>
+    }
+
+    private void setCodigoCompetenciaTecnica(String codigoCompetenciaTecnica) {
+<span class="nc bnc" id="L81" title="All 2 branches missed.">        if(codigoCompetenciaTecnica != null) {</span>
+<span class="nc" id="L82">            this.codigoCompetenciaTecnica = codigoCompetenciaTecnica;</span>
+        }
+        else {
+<span class="nc" id="L85">            throw new CompetenciaTecnicaInexistenteException (&quot;A competência técnica não existe&quot;);</span>
+        }
+<span class="nc" id="L87">    }</span>
+
+    /**
+     * Representação textual do Grau de Proficiência no formato de exibição
+     * @return 
+     */
+    @Override
+    public String toString(){
+<span class="nc" id="L95">        return String.format(&quot;%s - %s&quot;, designacao, grau);</span>
+    }
+    
+    
+    public String toStringCompleta() {
+<span class="nc" id="L100">        return &quot;GrauProficiencia{&quot; +</span>
+                &quot;grau='&quot; + grau + '\'' +
+                &quot;, designacao='&quot; + designacao + '\'' +
+                &quot;, codigoCompetenciaTecnica='&quot; + codigoCompetenciaTecnica + '\'' +
+                '}';
+    }
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>

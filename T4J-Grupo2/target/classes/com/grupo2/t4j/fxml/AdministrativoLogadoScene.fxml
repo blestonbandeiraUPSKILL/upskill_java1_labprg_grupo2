@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" styleClass="BorderPane" stylesheets="@../style/app.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.AdministrativoLogadoUI">
+    <center>
+        <BorderPane prefHeight="200.0" prefWidth="200.0" styleClass="BorderPane" BorderPane.alignment="CENTER">
+            <top>
+                <TabPane prefHeight="358.0" prefWidth="700.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+                    <tabs>
+                        <Tab text="Áreas de Atividade">
+                            <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" styleClass="AnchorPane">
+                                    <children>
+                                        <VBox alignment="CENTER" layoutX="585.0" layoutY="260.0" AnchorPane.bottomAnchor="50.00000000000002" AnchorPane.rightAnchor="40.0" />
+                                        <Label layoutX="20.0" layoutY="20.0" prefHeight="22.0" prefWidth="215.0" text="Áreas de Atividade registadas:" AnchorPane.bottomAnchor="285.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="465.0" AnchorPane.topAnchor="20.0">
+                                            <font>
+                                                <Font name="Calibri" size="16.0" />
+                                            </font>
+                                        </Label>
+                                        <Button fx:id="btnConsultarAreaActividade" layoutX="557.0" layoutY="180.0" mnemonicParsing="false" onAction="#consultarAreaActividadeAction" prefHeight="25.0" prefWidth="80.0" styleClass="btnConfirmar" text="Consultar" AnchorPane.bottomAnchor="122.0">
+                                            <tooltip>
+                                                <Tooltip text="Consultar">
+                                                    <font>
+                                                        <Font name="Calibri Italic" size="12.0" />
+                                                    </font>
+                                                </Tooltip>
+                                            </tooltip>
+                                            <font>
+                                                <Font name="Calibri" size="14.0" />
+                                            </font>
+                                        </Button>
+                                        <Button fx:id="btnAddAreaAtividade" alignment="CENTER" layoutX="565.0" layoutY="220.0" mnemonicParsing="false" onAction="#addAreaActividade" styleClass="btnConfirmar" text="Adicionar">
+                                            <font>
+                                                <Font name="Calibri" size="14.0" />
+                                            </font>
+                                            <padding>
+                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                            </padding>
+                                            <tooltip>
+                                                <Tooltip text="Adicionar">
+                                                    <font>
+                                                        <Font name="Calibri Italic" size="12.0" />
+                                                    </font>
+                                                </Tooltip>
+                                            </tooltip>
+                                        </Button>
+                              <TableView fx:id="tableViewAreaActividade" layoutX="20.0" layoutY="55.0" prefHeight="258.0" prefWidth="477.0">
+                                <columns>
+                                  <TableColumn fx:id="colunaCodigo" prefWidth="75.0" text="Código" />
+                                  <TableColumn fx:id="colunaDescBreve" prefWidth="125.0" text="Descrição Breve" />
+                                    <TableColumn fx:id="colunaDescDetalhada" prefWidth="276.0" text="Descrição Detalhada" />
+                                </columns>
+                              </TableView>
+                                    </children>
+                                </AnchorPane>
+                            </content>
+                        </Tab>
+                        <Tab fx:id="listaCompetenciasTecnicas" text="Competências Técnicas">
+                            <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="467.0" prefWidth="700.0" styleClass="AnchorPane">
+                                    <children>
+                                        <Label layoutX="20.0" layoutY="20.0" prefHeight="24.0" prefWidth="255.0" text="Competências Técnicas registadas:" AnchorPane.bottomAnchor="285.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="425.0" AnchorPane.topAnchor="20.0">
+                                            <font>
+                                                <Font name="Calibri" size="16.0" />
+                                            </font>
+                                        </Label>
+                                        <VBox alignment="CENTER" layoutX="586.0" layoutY="260.0" AnchorPane.bottomAnchor="50.0" AnchorPane.rightAnchor="40.0" />
+
+                                        <Button fx:id="btnConsultarCompetenciaTecnica" layoutX="557.0" layoutY="180.0" mnemonicParsing="false" onAction="#consultarCompetenciaTecnicaAction" prefHeight="25.0" prefWidth="80.0" styleClass="btnConfirmar" text="Consultar">
+                                            <font>
+                                                <Font name="Calibri" size="14.0" />
+                                            </font>
+                                            <tooltip>
+                                                <Tooltip text="Consultar">
+                                                    <font>
+                                                        <Font name="Calibri Italic" size="12.0" />
+                                                    </font>
+                                                </Tooltip>
+                                            </tooltip>
+                                        </Button>
+                                        <Button fx:id="btnAddcompetenciaTecnica" alignment="BOTTOM_RIGHT" layoutX="565.0" layoutY="220.0" mnemonicParsing="false" onAction="#addCompetenciaTecnica" styleClass="btnConfirmar" text="Adicionar">
+                                            <font>
+                                                <Font name="Calibri" size="14.0" />
+                                            </font>
+                                            <padding>
+                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                            </padding>
+                                            <tooltip>
+                                                <Tooltip text="Adicionar">
+                                                    <font>
+                                                        <Font name="Calibri Italic" size="12.0" />
+                                                    </font>
+                                                </Tooltip>
+                                            </tooltip>
+                                        </Button>
+                              <TableView fx:id="tableViewCompetenciaTecnica" layoutX="20.0" layoutY="65.0" prefHeight="245.0" prefWidth="518.0">
+                                <columns>
+                                  <TableColumn fx:id="colunaCodigoCT" prefWidth="75.0" text="Código " />
+                                  <TableColumn fx:id="colunaCodigoATCT" prefWidth="75.0" text="Código AT" />
+                                    <TableColumn fx:id="colunaDescBreveCT" prefWidth="103.0" text="Descrição Breve" />
+                                    <TableColumn fx:id="colunaDescDetalhadaCT" prefWidth="264.0" text="Descrição Detalhada" />
+                                </columns>
+                              </TableView>
+
+                                    </children>
+                                </AnchorPane>
+                            </content>
+                        </Tab>
+                        <Tab fx:id="listaCategoriasTarefa" text="Categorias de Tarefa">
+                            <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" styleClass="AnchorPane">
+                                    <children>
+                                        <Label layoutX="20.0" layoutY="23.0" text="Categorias de Tarefa registadas:" AnchorPane.topAnchor="23.0">
+                                            <font>
+                                                <Font name="Calibri" size="16.0" />
+                                            </font>
+                                        </Label>
+                                        <VBox alignment="CENTER" layoutX="585.0" layoutY="260.0" AnchorPane.bottomAnchor="50.0" AnchorPane.rightAnchor="40.0" />
+                                        <Button fx:id="btnConsultarCategoriaTarefa" layoutX="557.0" layoutY="180.0" mnemonicParsing="false" onAction="#consultarCategoriaAction" prefHeight="25.0" prefWidth="80.0" styleClass="btnConfirmar" text="Consultar">
+                                            <font>
+                                                <Font name="Calibri" size="14.0" />
+                                            </font>
+                                            <tooltip>
+                                                <Tooltip text="Consultar">
+                                                    <font>
+                                                        <Font name="Calibri Italic" size="12.0" />
+                                                    </font>
+                                                </Tooltip>
+                                            </tooltip>
+                                        </Button>
+                                        <Button fx:id="btnAddCategoriaTarefa" alignment="BOTTOM_RIGHT" layoutX="565.0" layoutY="220.0" mnemonicParsing="false" onAction="#addCategoriaTarefa" styleClass="btnConfirmar" text="Adicionar">
+                                            <font>
+                                                <Font name="Calibri" size="14.0" />
+                                            </font>
+                                            <padding>
+                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                            </padding>
+                                            <tooltip>
+                                                <Tooltip text="Adicionar">
+                                                    <font>
+                                                        <Font name="Calibri Italic" size="12.0" />
+                                                    </font>
+                                                </Tooltip>
+                                            </tooltip>
+                                        </Button>
+                              <TableView fx:id="tableViewCategoria" layoutX="14.0" layoutY="58.0" prefHeight="245.0" prefWidth="518.0">
+                                 <columns>
+                                    <TableColumn fx:id="colunaCodigoCat" prefWidth="75.0" text="Código " />
+                                    <TableColumn fx:id="colunaCodigoATCat" prefWidth="75.0" text="Código AT" />
+                                    <TableColumn fx:id="colunaDescBreveCat" prefWidth="103.0" text="Descrição Breve" />
+                                    <TableColumn fx:id="colunaDescDetalhadaCat" prefWidth="264.0" text="Descrição Detalhada" />
+                                 </columns>
+                              </TableView>
+                                    </children>
+                                </AnchorPane>
+                            </content>
+                        </Tab>
+                        <Tab text="Freelancer">
+                            <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" styleClass="AnchorPane">
+                                    <children>
+                                        <VBox alignment="CENTER" layoutX="468.0" layoutY="138.0" prefHeight="185.0" prefWidth="234.0" AnchorPane.bottomAnchor="6.0" AnchorPane.rightAnchor="-2.0">
+                                            <children>
+                                                <Button fx:id="btnAdicionarFreelancer" alignment="CENTER" mnemonicParsing="false" onAction="#addFreelancer" styleClass="btnConfirmar" text="Adicionar Freelancer">
+                                                    <font>
+                                                        <Font name="Calibri" size="14.0" />
+                                                    </font>
+                                                    <padding>
+                                                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                    </padding>
+                                                    <tooltip>
+                                                        <Tooltip text="Adicionar Freelancer">
+                                                            <font>
+                                                                <Font name="Calibri Italic" size="12.0" />
+                                                            </font>
+                                                        </Tooltip>
+                                                    </tooltip>
+                                                    <VBox.margin>
+                                                        <Insets bottom="20.0" />
+                                                    </VBox.margin>
+                                                </Button>
+                                                <Button fx:id="btnConsultarFreelancer" mnemonicParsing="false" onAction="#consultarFreelancer" styleClass="btnConfirmar" text="Consultar Freelancer">
+                                                    <VBox.margin>
+                                                        <Insets bottom="20.0" />
+                                                    </VBox.margin>
+                                                    <font>
+                                                        <Font name="Calibri" size="14.0" />
+                                                    </font>
+                                                    <tooltip>
+                                                        <Tooltip text="Consultar Freelancer">
+                                                            <font>
+                                                                <Font name="Calibri Italic" size="12.0" />
+                                                            </font>
+                                                        </Tooltip>
+                                                    </tooltip>
+                                       <padding>
+                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                       </padding>
+                                                </Button>
+                                                <Button fx:id="btnAdicionarReconGP" alignment="CENTER" mnemonicParsing="false" onAction="#addReconhecimentoGP" styleClass="btnConfirmar" text="Adicionar Competência Técnica">
+                                                    <font>
+                                                        <Font name="Calibri" size="14.0" />
+                                                    </font>
+                                                    <padding>
+                                                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                    </padding>
+                                                    <VBox.margin>
+                                                        <Insets bottom="20.0" />
+                                                    </VBox.margin>
+                                                    <tooltip>
+                                                        <Tooltip text="Adicionar Competência Técnica">
+                                                            <font>
+                                                                <Font name="Calibri Italic" size="12.0" />
+                                                            </font>
+                                                        </Tooltip>
+                                                    </tooltip>
+                                                </Button>
+                                                <Button fx:id="btnAdicionarHabilitacao" alignment="CENTER" mnemonicParsing="false" onAction="#addHabilitacaoFreelancer" styleClass="btnConfirmar" text="Adicionar Habilitação Académica">
+                                                    <font>
+                                                        <Font name="Calibri" size="14.0" />
+                                                    </font>
+                                                    <padding>
+                                                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                    </padding>
+                                                    <tooltip>
+                                                        <Tooltip text="Adicionar Habilitação Académica">
+                                                            <font>
+                                                                <Font name="Calibri Italic" size="12.0" />
+                                                            </font>
+                                                        </Tooltip>
+                                                    </tooltip>
+                                       <VBox.margin>
+                                          <Insets bottom="20.0" />
+                                       </VBox.margin>
+                                                </Button>
+                                            </children>
+                                        </VBox>
+                                        <Label layoutX="20.0" layoutY="20.0" prefHeight="22.0" prefWidth="215.0" text="Freelancers registados:" AnchorPane.bottomAnchor="285.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="465.0" AnchorPane.topAnchor="0.0">
+                                            <font>
+                                                <Font name="Calibri" size="16.0" />
+                                            </font>
+                                            <padding>
+                                                <Insets bottom="5.0" top="20.0" />
+                                            </padding>
+                                        </Label>
+                              <TableView fx:id="tableViewFreelancer" layoutX="14.0" layoutY="44.0" prefHeight="275.0" prefWidth="460.0">
+                                <columns>
+                                  <TableColumn fx:id="colunaNome" prefWidth="75.0" text="Nome" />
+                                  <TableColumn fx:id="colunaNif" prefWidth="75.0" text="NIF" />
+                                    <TableColumn fx:id="colunaTelefone" prefWidth="75.0" text="Telefone" />
+                                    <TableColumn fx:id="colunaEmail" prefWidth="234.0" text="Email" />
+                                </columns>
+                              </TableView>
+                                    </children>
+                                </AnchorPane>
+                            </content>
+                        </Tab>
+                    </tabs>
+                </TabPane>
+            </top>
+        </BorderPane>
+    </center>
+    <top>
+        <Label alignment="CENTER_RIGHT" styleClass="lblUser" text="Bem vindo à Área do Administrativo" BorderPane.alignment="CENTER_RIGHT">
+            <padding>
+                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+            </padding>
+            <font>
+                <Font name="Calibri" size="18.0" />
+            </font>
+        </Label>
+    </top>
+    <bottom>
+        <Button fx:id="btnSair" alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#logout" styleClass="btnSair" text="Sair" BorderPane.alignment="CENTER_RIGHT">
+            <font>
+                <Font name="Calibri" size="16.0" />
+            </font>
+            <padding>
+                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+            </padding>
+            <BorderPane.margin>
+                <Insets bottom="20.0" left="20.0" right="20.0" />
+            </BorderPane.margin>
+            <tooltip>
+                <Tooltip text="Sair">
+                    <font>
+                        <Font name="Calibri Italic" size="12.0" />
+                    </font>
+                </Tooltip>
+            </tooltip>
+        </Button>
+    </bottom>
+</BorderPane>

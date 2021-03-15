@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="BorderPane" stylesheets="@../style/app.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.PublicarTarefaGestorUI">
+    <top>
+        <Label styleClass="lblUser" text="Área do Gestor :::&gt; Publicar Tarefa" BorderPane.alignment="CENTER_RIGHT">
+            <font>
+                <Font name="Calibri" size="18.0" />
+            </font>
+            <padding>
+                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+            </padding>
+        </Label>
+    </top>
+    <bottom>
+        <FlowPane alignment="CENTER_RIGHT" prefHeight="55.0" prefWidth="600.0" styleClass="FlowPane" BorderPane.alignment="CENTER">
+            <children>
+                <Button fx:id="btnPublicar" mnemonicParsing="false" onAction="#publicarTarefaAction" styleClass="btnConfirmar" text="Publicar ">
+                    <FlowPane.margin>
+                        <Insets />
+                    </FlowPane.margin>
+                    <tooltip>
+                        <Tooltip text="Publicar Tarefa">
+                            <font>
+                                <Font name="Calibri Italic" size="12.0" />
+                            </font>
+                        </Tooltip>
+                    </tooltip>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+                </Button>
+                <Button fx:id="btnVoltar" mnemonicParsing="false" onAction="#voltarAtras" styleClass="btnSair" text="Cancelar">
+                    <FlowPane.margin>
+                        <Insets left="10.0" right="10.0" />
+                    </FlowPane.margin>
+                    <tooltip>
+                        <Tooltip text="Cancelar">
+                            <font>
+                                <Font name="Calibri Italic" size="12.0" />
+                            </font>
+                        </Tooltip>
+                    </tooltip>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+                </Button>
+            </children>
+        </FlowPane>
+    </bottom>
+   <left>
+        <AnchorPane prefHeight="332.0" prefWidth="600.0" styleClass="AnchorPane" BorderPane.alignment="CENTER">
+            <children>
+                <AnchorPane layoutX="39.0" layoutY="51.0" styleClass="AnchorPane">
+                    <children>
+                        <Label layoutX="15.0" layoutY="80.0" text="Fim" />
+                  <TextField fx:id="dtInicioPublicitacao" layoutY="42.0" text="2021-03-01" />
+                        <Label text="Período de Publicitação">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </Label>
+                  <TextField fx:id="dtFimPublicitacao" layoutY="96.0" text="2021-03-16" />
+                        <Label layoutX="15.0" layoutY="23.0" text="Início" />
+                    </children>
+                </AnchorPane>
+                <AnchorPane layoutX="224.0" layoutY="51.0" styleClass="AnchorPane">
+                    <children>
+                        <Label layoutX="15.0" layoutY="80.0" text="Fim" />
+                        <Label text="Período de Candidaturas">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="15.0" layoutY="23.0" text="Início" />
+                  <TextField fx:id="dtInicioCandidaturas" layoutX="2.0" layoutY="42.0" text="2021-03-02" />
+                  <TextField fx:id="dtFimCandidaturas" layoutX="2.0" layoutY="96.0" text="2021-03-15" />
+                    </children>
+                </AnchorPane>
+                <AnchorPane layoutX="415.0" layoutY="51.0" styleClass="AnchorPane">
+                    <children>
+                        <Label layoutX="15.0" layoutY="80.0" text="Fim" />
+                        <Label text="Período de Seriação">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="15.0" layoutY="23.0" text="Início" />
+                  <TextField fx:id="dtInicioSeriacao" layoutX="-12.0" layoutY="42.0" text="2021-03-17" />
+                  <TextField fx:id="dtFimSeriacao" layoutX="-12.0" layoutY="96.0" text="2021-03-30" />
+                    </children>
+                </AnchorPane>
+                <Label layoutX="33.0" layoutY="195.0" text="Regras Gerais">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                </Label>
+                <TextArea fx:id="txtRegrasGerais" layoutX="33.0" layoutY="218.0" prefHeight="82.0" prefWidth="310.0" />
+                <Label layoutX="363.0" layoutY="199.0" text="Tipo de Seriação">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                </Label>
+                <ComboBox fx:id="cmbTipoSeriacao" layoutX="363.0" layoutY="222.0" prefHeight="25.0" prefWidth="211.0" promptText="Escolha o Tipo de Seriação" />
+            </children>
+        </AnchorPane>
+   </left>
+</BorderPane>

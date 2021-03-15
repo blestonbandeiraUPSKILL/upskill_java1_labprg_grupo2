@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RegistarReconhecimentoGPController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">T4J-Grupo2</a> &gt; <a href="index.source.html" class="el_package">com.grupo2.t4j.controller</a> &gt; <span class="el_source">RegistarReconhecimentoGPController.java</span></div><h1>RegistarReconhecimentoGPController.java</h1><pre class="source lang-java linenums">package com.grupo2.t4j.controller;
+
+import com.grupo2.t4j.domain.ReconhecimentoGP;
+import com.grupo2.t4j.persistence.FabricaRepositorios;
+import com.grupo2.t4j.persistence.RepositorioReconhecimentoGP;
+import com.grupo2.t4j.persistence.database.FabricaRepositoriosDatabase;
+
+import java.sql.SQLException;
+import java.util.List;
+<span class="nc" id="L10">public class RegistarReconhecimentoGPController {</span>
+
+<span class="nc" id="L12">    private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosDatabase();</span>
+<span class="nc" id="L13">    private RepositorioReconhecimentoGP repositorioReconhecimentoGP = fabricaRepositorios.getRepositorioReconhecimentoGP();</span>
+
+   /**
+    * Reconhecer o grau de proficiência boolean
+    *
+    * @param idGrauProficiencia as código do grau de proficiência
+    * @param dataReconhecimento as data de atribuição do grau de proficiência
+    * @param emailFreelancer as email do freelancer
+    * @return boolean
+    */     
+     public boolean registarReconhecimentoGP(int idGrauProficiencia,
+                                             String emailFreelancer, String dataReconhecimento) throws SQLException {
+       
+<span class="nc" id="L26">        return repositorioReconhecimentoGP.save(idGrauProficiencia, emailFreelancer, dataReconhecimento);</span>
+    }
+
+    public List&lt;ReconhecimentoGP&gt; getAll(String email) throws SQLException{
+<span class="nc" id="L30">        return repositorioReconhecimentoGP.getAll(email);</span>
+    }
+   
+    public ReconhecimentoGP findByEmailCompetencia(String email, String idCompetenciaTecnica) throws SQLException{
+<span class="nc" id="L34">        return repositorioReconhecimentoGP.findByEmailCompetencia(email, idCompetenciaTecnica);</span>
+    }
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>

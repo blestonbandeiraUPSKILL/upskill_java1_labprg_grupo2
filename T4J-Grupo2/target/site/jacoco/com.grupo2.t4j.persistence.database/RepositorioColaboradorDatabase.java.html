@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RepositorioColaboradorDatabase.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">T4J-Grupo2</a> &gt; <a href="index.source.html" class="el_package">com.grupo2.t4j.persistence.database</a> &gt; <span class="el_source">RepositorioColaboradorDatabase.java</span></div><h1>RepositorioColaboradorDatabase.java</h1><pre class="source lang-java linenums">package com.grupo2.t4j.persistence.database;
+
+import com.grupo2.t4j.exception.ColaboradorDuplicadoException;
+import com.grupo2.t4j.domain.Colaborador;
+import com.grupo2.t4j.domain.Password;
+import com.grupo2.t4j.persistence.RepositorioColaborador;
+import com.grupo2.t4j.utils.DBConnectionHandler;
+
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+public class RepositorioColaboradorDatabase implements RepositorioColaborador {
+
+    /**
+     * Define uma instância estática do Repositório em que estão
+     * registados todos os Colaboradores
+     */
+    private static RepositorioColaboradorDatabase repositorioColaboradorDatabase;
+
+    /**
+     * Inicializa o Repositório de Colaboradores
+     */
+<span class="nc" id="L25">    private RepositorioColaboradorDatabase(){    }</span>
+
+    /**
+     * Devolve uma instância estática do Repositório de Colaboradores
+     *
+     * @return RepositorioColaboradorDatabase
+     */
+    public static RepositorioColaboradorDatabase getInstance(){
+<span class="nc bnc" id="L33" title="All 2 branches missed.">        if(repositorioColaboradorDatabase == null) {</span>
+<span class="nc" id="L34">            repositorioColaboradorDatabase = new RepositorioColaboradorDatabase();</span>
+        }
+<span class="nc" id="L36">        return repositorioColaboradorDatabase;</span>
+    }
+
+    @Override
+    public void save(String email, String nome, String passowrd, String funcao, String telefone) throws ColaboradorDuplicadoException {
+
+<span class="nc" id="L42">    }</span>
+
+    @Override
+    public boolean save(Colaborador colaborador) throws SQLException {
+
+<span class="nc" id="L47">        Connection connection = DBConnectionHandler.getInstance().openConnection();</span>
+
+        try {
+<span class="nc" id="L50">            CallableStatement callableStatement = connection.prepareCall(</span>
+                &quot;{CALL createUtilizadorColaborador(?, ?, ?, ?)}&quot;
+            );
+
+<span class="nc bnc" id="L54" title="All 2 branches missed.">            if(findByEmail(colaborador.getEmail().getEmailText()) == null) {</span>
+
+<span class="nc" id="L56">                connection.setAutoCommit(false);</span>
+
+<span class="nc" id="L58">                callableStatement.setString(1, colaborador.getEmail().getEmailText());</span>
+<span class="nc" id="L59">                callableStatement.setString(2, colaborador.getTelefone());</span>
+<span class="nc" id="L60">                callableStatement.setString(3, colaborador.getFuncao());</span>
+<span class="nc" id="L61">                callableStatement.setString(4, colaborador.getNifOrganizacao());</span>
+<span class="nc" id="L62">                callableStatement.executeQuery();</span>
+
+<span class="nc" id="L64">                connection.commit();</span>
+<span class="nc" id="L65">                return true;</span>
+
+            }
+        }
+<span class="nc" id="L69">        catch (SQLException exception) {</span>
+<span class="nc" id="L70">            exception.printStackTrace();</span>
+<span class="nc" id="L71">            exception.getSQLState();</span>
+            try {
+<span class="nc" id="L73">                System.err.print(&quot;Transaction is being rolled back&quot;);</span>
+<span class="nc" id="L74">                connection.rollback();</span>
+<span class="nc" id="L75">            } catch (SQLException sqlException) {</span>
+<span class="nc" id="L76">                sqlException.getErrorCode();</span>
+<span class="nc" id="L77">            }</span>
+
+        } finally {
+<span class="nc" id="L80">            DBConnectionHandler.getInstance().closeAll();</span>
+<span class="nc" id="L81">        }</span>
+<span class="nc" id="L82">        return false;</span>
+    }
+
+    @Override
+    public Colaborador findByEmail(String email) throws SQLException {
+
+<span class="nc" id="L88">        Connection connection = DBConnectionHandler.getInstance().openConnection();</span>
+
+        try {
+<span class="nc" id="L91">            CallableStatement callableStatement = connection.prepareCall(</span>
+                    &quot;{CALL findByEmail(?) }&quot;
+            );
+
+<span class="nc" id="L95">            connection.setAutoCommit(false);</span>
+
+<span class="nc" id="L97">            callableStatement.setString(1, email);</span>
+<span class="nc" id="L98">            callableStatement.executeUpdate();</span>
+
+<span class="nc" id="L100">            return null;</span>
+
+<span class="nc" id="L102">        } catch (SQLException exception) {</span>
+<span class="nc" id="L103">            exception.printStackTrace();</span>
+<span class="nc" id="L104">            exception.getSQLState();</span>
+
+        }
+        finally {
+<span class="nc" id="L108">            DBConnectionHandler.getInstance().closeAll();</span>
+<span class="nc" id="L109">        }</span>
+
+<span class="nc" id="L111">        return new Colaborador();</span>
+
+    }
+
+    @Override
+    public ArrayList&lt;Colaborador&gt; getAll() throws SQLException {
+
+<span class="nc" id="L118">        ArrayList&lt;Colaborador&gt; colaboradores = new ArrayList&lt;&gt;();</span>
+
+<span class="nc" id="L120">        Connection connection = DBConnectionHandler.getInstance().openConnection();</span>
+
+        try {
+<span class="nc" id="L123">            PreparedStatement preparedStatement = connection.prepareStatement(</span>
+                    &quot;SELECT Colaborador.email, Colaborador.funcao, Colaborador.telefone, Colaborador.nifOrganizacao, Utilizador.nome FROM COLABORADOR &quot; +
+                            &quot;INNER JOIN Utilizador &quot; +
+                            &quot;ON colaborador.email LIKE utilizador.email &quot; +
+                            &quot;INNER JOIN Organizacao &quot; +
+                            &quot;ON colaborador.nifOrganizacao LIKE organizacao.nif&quot;
+            );
+
+<span class="nc" id="L131">            ResultSet resultSet = preparedStatement.executeQuery();</span>
+
+<span class="nc bnc" id="L133" title="All 2 branches missed.">            while(resultSet.next()) {</span>
+<span class="nc" id="L134">                String email = resultSet.getString(1);</span>
+<span class="nc" id="L135">                String funcao = resultSet.getString(2);</span>
+<span class="nc" id="L136">                String telefone = resultSet.getString(3);</span>
+<span class="nc" id="L137">                String nifOrganizacao = resultSet.getString(4);</span>
+<span class="nc" id="L138">                String nome = resultSet.getString(5);</span>
+<span class="nc" id="L139">                colaboradores.add(new Colaborador(nome, email, funcao, telefone, nifOrganizacao));</span>
+<span class="nc" id="L140">            }</span>
+        }
+<span class="nc" id="L142">        catch (SQLException exception) {</span>
+<span class="nc" id="L143">            exception.printStackTrace();</span>
+<span class="nc" id="L144">            exception.getSQLState();</span>
+            try {
+<span class="nc" id="L146">                System.err.print(&quot;Transaction is being rolled back&quot;);</span>
+<span class="nc" id="L147">                connection.rollback();</span>
+            }
+<span class="nc" id="L149">            catch (SQLException sqlException) {</span>
+<span class="nc" id="L150">                sqlException.getErrorCode();</span>
+<span class="nc" id="L151">            }</span>
+
+        }
+        finally {
+<span class="nc" id="L155">            DBConnectionHandler.getInstance().closeAll();</span>
+<span class="nc" id="L156">        }</span>
+<span class="nc" id="L157">        return colaboradores;</span>
+    }
+    
+    /**
+     * Retorna todos os emails dos colaboradores de uma organização em ordem alfabética
+     * @param nifOrganizacao
+     * @return
+     * @throws SQLException 
+     */
+    @Override
+    public ArrayList&lt;String&gt; getAllEmailsAlfByOrganizacao(String nifOrganizacao) throws SQLException{
+        
+<span class="nc" id="L169">        ArrayList&lt;Colaborador&gt; colaboradores = getAll();</span>
+        
+<span class="nc" id="L171">        ArrayList&lt;String&gt; colaboradoresOrganizacao = new ArrayList&lt;&gt;();</span>
+        
+<span class="nc bnc" id="L173" title="All 2 branches missed.">        for(int i= 0; i &lt; colaboradores.size(); i++){</span>
+<span class="nc" id="L174">            Colaborador colaborador = colaboradores.get(i);</span>
+<span class="nc bnc" id="L175" title="All 2 branches missed.">            if(colaborador.getNifOrganizacao().equals(nifOrganizacao)){</span>
+<span class="nc" id="L176">                colaboradoresOrganizacao.add(colaborador.getEmail().getEmailText());</span>
+            }            
+        }
+        
+<span class="nc" id="L180">        Collections.sort(colaboradoresOrganizacao);</span>
+<span class="nc" id="L181">        return colaboradoresOrganizacao;</span>
+    }
+  
+    @Override
+    public String getNifOrganizacao(String email) throws SQLException {
+
+<span class="nc" id="L187">        String nifOrganizacao = null;</span>
+
+<span class="nc" id="L189">        Connection connection = DBConnectionHandler.getInstance().openConnection();</span>
+
+        try {
+<span class="nc" id="L192">            PreparedStatement preparedStatement = connection.prepareStatement(</span>
+                    &quot;SELECT nifOrganizacao From Colaborador WHERE email LIKE ?&quot;
+            );
+<span class="nc" id="L195">            preparedStatement.setString(1, email);</span>
+
+<span class="nc" id="L197">            ResultSet resultSet = preparedStatement.executeQuery();</span>
+
+<span class="nc bnc" id="L199" title="All 2 branches missed.">            while (resultSet.next()) {</span>
+<span class="nc" id="L200">                nifOrganizacao = resultSet.getString(1);</span>
+            }
+<span class="nc" id="L202">            return  nifOrganizacao;</span>
+        }
+<span class="nc" id="L204">        catch (SQLException exception) {</span>
+<span class="nc" id="L205">            exception.printStackTrace();</span>
+<span class="nc" id="L206">            exception.getSQLState();</span>
+            try {
+<span class="nc" id="L208">                System.err.print(&quot;Transaction is being rolled back&quot;);</span>
+<span class="nc" id="L209">                connection.rollback();</span>
+            }
+<span class="nc" id="L211">            catch (SQLException sqlException) {</span>
+<span class="nc" id="L212">                sqlException.getErrorCode();</span>
+<span class="nc" id="L213">            }</span>
+
+        }
+        finally {
+<span class="nc" id="L217">            DBConnectionHandler.getInstance().closeAll();</span>
+<span class="nc" id="L218">        }</span>
+
+<span class="nc" id="L220">        return null;</span>
+    }
+
+    @Override
+    public Password findPassword(String email) throws SQLException {
+
+<span class="nc" id="L226">        Connection connection = DBConnectionHandler.getInstance().openConnection();</span>
+
+        try {
+<span class="nc" id="L229">            PreparedStatement preparedStatement = connection.prepareStatement(</span>
+                    &quot;SELECT utilizador.password FROM Utilizador &quot; +
+                            &quot;INNER JOIN Colaborador ON colaborador.email LIKE utilizador.email WHERE colaborador.email LIKE ?&quot;
+            );
+
+<span class="nc" id="L234">            connection.setAutoCommit(false);</span>
+
+<span class="nc" id="L236">            preparedStatement.setString(1, email);</span>
+<span class="nc" id="L237">            ResultSet resultSet = preparedStatement.executeQuery();</span>
+
+<span class="nc bnc" id="L239" title="All 2 branches missed.">            while (resultSet.next()) {</span>
+<span class="nc" id="L240">                String password = resultSet.getString(1);</span>
+<span class="nc" id="L241">                return new Password(password);</span>
+            }
+
+<span class="nc" id="L244">        } catch (SQLException exception) {</span>
+<span class="nc" id="L245">            exception.printStackTrace();</span>
+<span class="nc" id="L246">            exception.getSQLState();</span>
+        }
+        finally {
+<span class="nc" id="L249">            DBConnectionHandler.getInstance().closeAll();</span>
+<span class="nc" id="L250">        }</span>
+
+<span class="nc" id="L252">        return null;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>

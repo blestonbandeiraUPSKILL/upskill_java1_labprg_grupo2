@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RegistarOrgEGestorUI.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">T4J-Grupo2</a> &gt; <a href="index.source.html" class="el_package">com.grupo2.t4j.ui</a> &gt; <span class="el_source">RegistarOrgEGestorUI.java</span></div><h1>RegistarOrgEGestorUI.java</h1><pre class="source lang-java linenums">package com.grupo2.t4j.ui;
+
+import com.grupo2.t4j.controller.RegistarColaboradorController;
+import com.grupo2.t4j.controller.RegistarOrganizacaoController;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.TextField;
+import javafx.stage.Window;
+import javafx.stage.WindowEvent;
+import javafx.scene.Scene;
+
+import java.io.IOException;
+import java.net.URL;
+import java.sql.SQLException;
+import java.util.ResourceBundle;
+
+/**
+ * FXML Controller class
+ */
+<span class="nc" id="L25">public class RegistarOrgEGestorUI implements Initializable {</span>
+
+    private RegistarOrganizacaoController registarOrganizacaoController;
+    private RegistarColaboradorController registarColaboradorController;
+    private StartingPageUI startingPageUI;
+
+    @FXML TextField txtNomeOrganizacao;
+    @FXML TextField txtNif;
+    @FXML TextField txtTelefoneOrganizacao;
+    @FXML TextField txtWebsite;
+    @FXML TextField txtEmailOrganizacao;
+    @FXML TextField txtEndArruamento;
+    @FXML TextField txtEndPorta;
+    @FXML TextField txtEndLocalidade;
+    @FXML TextField txtEndCodPostal;
+    @FXML TextField txtNomeGestor;
+    @FXML TextField txtFuncaoGestor;
+    @FXML TextField txtTelefoneGestor;
+    @FXML TextField txtEmailGestor;
+    @FXML TextField txtPassword;
+    @FXML Button btnAvancarRegisto;
+    @FXML Button btnCancelarRegisto;
+
+    public void associarParentUI(StartingPageUI startingPageUI) {
+<span class="nc" id="L49">        this.startingPageUI = startingPageUI;       </span>
+<span class="nc" id="L50">    }</span>
+
+    /**
+    * Initializes the controller (UI) class.
+    */
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        try {
+<span class="nc" id="L58">            registarOrganizacaoController = new RegistarOrganizacaoController();                            </span>
+<span class="nc" id="L59">        } catch (SQLException exception) {</span>
+<span class="nc" id="L60">            exception.printStackTrace();</span>
+<span class="nc" id="L61">        }</span>
+
+<span class="nc" id="L63">        registarColaboradorController = new RegistarColaboradorController();</span>
+<span class="nc" id="L64">    }</span>
+
+    public void cancelarRegisto(ActionEvent actionEvent) {
+<span class="nc" id="L67">        Window window = btnCancelarRegisto.getScene().getWindow();</span>
+<span class="nc" id="L68">        window.setOnCloseRequest(new EventHandler&lt;WindowEvent&gt;() {</span>
+            @Override
+            public void handle(WindowEvent windowEvent) {
+<span class="nc" id="L71">                Alert alerta = AlertsUI.criarAlerta(Alert.AlertType.CONFIRMATION,</span>
+                        MainApp.TITULO_APLICACAO,
+                        &quot;Confirmação da acção&quot;,
+                        &quot;Tem a certeza que quer voltar à página inicial?&quot;);
+
+<span class="nc bnc" id="L76" title="All 2 branches missed.">                if (alerta.showAndWait().get() == ButtonType.CANCEL) {</span>
+<span class="nc" id="L77">                    windowEvent.consume();</span>
+                }
+<span class="nc" id="L79">            }</span>
+        });
+
+<span class="nc" id="L82">        window.fireEvent(new WindowEvent(window, WindowEvent.WINDOW_CLOSE_REQUEST));</span>
+<span class="nc" id="L83">    }</span>
+
+    public void avancarRegistoComDados(ActionEvent actionEvent) throws IOException, SQLException {
+<span class="nc" id="L86">        registarOrganizacaoController = new RegistarOrganizacaoController();</span>
+
+        try {
+<span class="nc" id="L89">            boolean registou = registarOrganizacaoController.registarOrganizacao(</span>
+<span class="nc" id="L90">                    txtNif.getText(),</span>
+<span class="nc" id="L91">                    txtNomeOrganizacao.getText(),</span>
+<span class="nc" id="L92">                    txtWebsite.getText(),</span>
+<span class="nc" id="L93">                    txtTelefoneOrganizacao.getText(),</span>
+<span class="nc" id="L94">                    txtEmailOrganizacao.getText(),</span>
+<span class="nc" id="L95">                    txtEmailGestor.getText(),</span>
+<span class="nc" id="L96">                    txtEndArruamento.getText(),</span>
+<span class="nc" id="L97">                    txtEndPorta.getText(),</span>
+<span class="nc" id="L98">                    txtEndLocalidade.getText(),</span>
+<span class="nc" id="L99">                    txtEndCodPostal.getText(),</span>
+<span class="nc" id="L100">                    txtNomeGestor.getText(),</span>
+<span class="nc" id="L101">                    txtTelefoneGestor.getText(),</span>
+<span class="nc" id="L102">                    txtFuncaoGestor.getText()</span>
+            );
+
+<span class="nc bnc" id="L105" title="All 2 branches missed.">            if(registou) {</span>
+<span class="nc" id="L106">                txtPassword.setText(</span>
+<span class="nc" id="L107">                        registarColaboradorController.findPassword(</span>
+<span class="nc" id="L108">                                txtEmailGestor.getText()).getPasswordText());</span>
+<span class="nc" id="L109">                btnAvancarRegisto.setDisable(true);</span>
+<span class="nc" id="L110">                btnCancelarRegisto.setText(&quot;Voltar&quot;);</span>
+
+<span class="nc" id="L112">                AlertsUI.criarAlerta(Alert.AlertType.INFORMATION,</span>
+                    MainApp.TITULO_APLICACAO,
+                    &quot;Registar Organização.&quot;,
+<span class="nc" id="L115">                    &quot;Organização registada com sucesso.&quot;).show();</span>
+
+<span class="nc" id="L117">                btnAvancarRegisto.disabledProperty();</span>
+
+            }
+        }
+<span class="nc" id="L121">        catch (SQLException exception) {</span>
+<span class="nc" id="L122">            exception.printStackTrace();</span>
+<span class="nc" id="L123">            AlertsUI.criarAlerta(Alert.AlertType.ERROR,</span>
+                    MainApp.TITULO_APLICACAO,
+                    &quot;Registar Organização - Erro nos dados.&quot;,
+<span class="nc" id="L126">                    &quot;Não foi possível registar a Organização.&quot; + exception.getMessage()).show();</span>
+<span class="nc" id="L127">        }</span>
+<span class="nc" id="L128">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>
