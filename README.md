@@ -42,7 +42,7 @@
 - [UC12 - Eliminar Candidatura](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Documenta%C3%A7%C3%A3o/Sprint%204/UC12_Eliminar_Candidatura/UC12.md)
 
 ##### Sprint 5
-- [UC13 - Atribuição de Tarefa]
+- [UC13 - Atribuição de Tarefa](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Documenta%C3%A7%C3%A3o/Sprint%205/UC13_Atribuicao_de_Tarefa/UC13.md)
 
 ## Links úteis
 
