@@ -157,6 +157,6 @@ public class AreaActividade implements Serializable, DTO {
 
     @Override
     public Object toDTO() {
-        return new AreaActividadeDTO();
+        return new AreaActividadeDTO(codigo, descBreve, descDetalhada);
     }
 }

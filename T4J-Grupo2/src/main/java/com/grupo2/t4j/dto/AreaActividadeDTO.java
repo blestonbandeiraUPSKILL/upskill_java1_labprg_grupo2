@@ -20,6 +20,15 @@ public class AreaActividadeDTO {
         this.descDetalhada = descDetalhada;
     }
 
+    public String getCodigo() {
+        return codigo;
+    }
 
+    public String getDescBreve() {
+        return descBreve;
+    }
 
+    public String getDescDetalhada() {
+        return descDetalhada;
+    }
 }
