@@ -15,4 +15,6 @@ public class Atribuicao {
     private Freelancer freelancer;
     
     
+    //Falta acabar
+    
 }
