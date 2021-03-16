@@ -14,4 +14,5 @@ public interface TipoRegimentoStrategy {
     boolean seriar();
 
     boolean atribuir();
+    
 }
