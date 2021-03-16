@@ -77,6 +77,8 @@ public class ConsultarResultadoUI {
      * @throws SQLException 
      */
     public void transferData() {
+
         //txtReferencia.setText(consultarResultadoController.findResultadoById());
+
     }
 }
