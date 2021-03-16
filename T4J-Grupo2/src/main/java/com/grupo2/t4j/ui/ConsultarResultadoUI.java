@@ -10,60 +10,75 @@ package com.grupo2.t4j.ui;
  * @author CAD
  */
 
+import java.net.URL;
+import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 public class ConsultarResultadoUI {
     
-     @FXML
-    private TextField txtReferencia;
-
-    @FXML
-    private TextField txtCusto;
-
-    @FXML
-    private TextField txtDesignacao;
-
-    @FXML
-    private TextField txtIdAtribuicao;
-
-    @FXML
-    private TextField txtDtFimTarefa;
-
-    @FXML
-    private TextField txtDescTecnica;
-
-    @FXML
-    private TextField txtDtInTarefa;
-
-    @FXML
-    private TextField txtNomeOrganizacao;
-
-    @FXML
-    private TextField txtDataSeriacao;
-
-    @FXML
-    private TextField txtDescInformal;
-
-    @FXML
-    private Button btnVoltar;
-
-    @FXML
-    private TextField txtEmailColaborador;
-
-    @FXML
-    private TextField txtIdAnuncio;
-
-    @FXML
-    private TextField txtClassificacao;
-
-    @FXML
-    private TextField txtEmailFreelancer;
+    @FXML TextField txtReferencia;
+    @FXML TextField txtCusto;
+    @FXML TextField txtDesignacao;
+    @FXML TextField txtIdAtribuicao;
+    @FXML TextField txtDtFimTarefa;
+    @FXML TextField txtDescTecnica;
+    @FXML TextField txtDtInTarefa;
+    @FXML TextField txtNomeOrganizacao;
+    @FXML TextField txtDataSeriacao;
+    @FXML TextField txtDescInformal;
+    @FXML Button btnVoltar;
+    @FXML TextField txtEmailColaborador;
+    @FXML TextField txtIdAnuncio;
+    @FXML TextField txtClassificacao;
+    @FXML TextField txtEmailFreelancer;
     
-     @FXML
-    void voltar(ActionEvent event) {
+    private FreelancerLogadoUI freelancerLogadoUI;
+    private Stage adicionarStage;
+    
+    
+    
+    /**
+     * Associa a scene AdministrativoLogadoUI como parent desta Scene 
+     * @param administrativoLogadoUI
+     */
+    public void associarParentUI(FreelancerLogadoUI freelancerLogadoUI) {
+        this.freelancerLogadoUI = freelancerLogadoUI;
+    }
+    
+    /**
+     * Initializes the controller class.
+     */
+    public void initialize(URL url, ResourceBundle rb) {
+
+        adicionarStage = new Stage();
+        adicionarStage.initModality(Modality.APPLICATION_MODAL);
+        adicionarStage.setResizable(false);
+
+        
+
+    }
+    
+    /**
+     * Volta para a scene anterior
+     * @param event 
+     */
+    @FXML
+    public void voltar(ActionEvent event) {
+        btnVoltar.getScene().getWindow().hide();
+    }
+
+    /**
+     * Preenche a scene com a informacao do resultado da candidatura
+     * @throws SQLException 
+     */
+    public void transferData() {
+
+        //txtReferencia.setText(consultarResultadoController.findResultadoById());
 
     }
 }
