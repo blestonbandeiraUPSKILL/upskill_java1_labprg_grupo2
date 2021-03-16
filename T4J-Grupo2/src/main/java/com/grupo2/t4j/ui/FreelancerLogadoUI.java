@@ -42,6 +42,7 @@ public class FreelancerLogadoUI implements Initializable {
     private ConsultarCandidaturaUI consultarCandidaturaUI;
     private EliminarCandidaturaController eliminarCandidaturaController;
     private Scene sceneConsultarCandidatura;
+    private Scene sceneConsultarResultado;
     
     @FXML Button btnCandidatura;
     @FXML Button btnConsultar;
@@ -295,8 +296,31 @@ public class FreelancerLogadoUI implements Initializable {
         }
     }
     
+    /**
+     * Navega para a pagina ConsultarResultadoUI
+     * @param actionEvent 
+     */
     public void consultarResultado (ActionEvent actionEvent){
-        
+        try {
+
+            FXMLLoader loaderConsultarResultado = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/ConsultarResultadoScene.fxml"));
+            Parent rootConsultarResultado = loaderConsultarResultado.load();
+            ConsultarResultadoUI consultarResultadoUI = loaderConsultarResultado.getController();
+            consultarResultadoUI.associarParentUI(this);
+            consultarResultadoUI.transferData();
+            sceneConsultarResultado = new Scene(rootConsultarResultado);
+
+            adicionarStage.setScene(sceneConsultarResultado);
+            adicionarStage.setTitle("Consultar Resultado");
+            adicionarStage.show();
+
+        } catch (IOException /*| SQLException*/ exception) {
+            exception.printStackTrace();
+            AlertsUI.criarAlerta(Alert.AlertType.ERROR,
+                    MainApp.TITULO_APLICACAO,
+                    "Erro",
+                    exception.getMessage());
+        }
     }
     
     /**
