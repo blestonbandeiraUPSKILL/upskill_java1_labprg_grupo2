@@ -10,6 +10,12 @@ package com.grupo2.t4j.domain;
  * @author CAD
  */
 public enum DesignacaoSeriacao {
+    SERIACAO_E_ATRIBUICAO_AUTOMATICA_MENOR_PRECO{
+        @Override
+        public String toString() {
+            return "Seriaação e Atribuição Automática - 2º melhor preço";
+        }
+    },     
     SERIACAO_SUBJETIVA_ATRIBUICAO_OPCIONAL{
         
         @Override
@@ -22,11 +28,5 @@ public enum DesignacaoSeriacao {
         public String toString() {
             return "Seriação Subjetiva com Atribuição Obrigatória";
         }
-    },
-    SERIACAO_E_ATRIBUICAO_AUTOMATICA_MENOR_PRECO{
-        @Override
-        public String toString() {
-            return "Seriaação e Atribuição Automática - 2º melhor preço";
-        }
-    }    
+    }      
 }

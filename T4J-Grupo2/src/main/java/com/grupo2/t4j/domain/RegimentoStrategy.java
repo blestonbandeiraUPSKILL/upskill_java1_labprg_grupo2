@@ -5,14 +5,16 @@
  */
 package com.grupo2.t4j.domain;
 
+import java.sql.SQLException;
+
 /**
  *
  * @author CAD
  */
-public interface TipoRegimentoStrategy {
+public interface RegimentoStrategy {
 
-    boolean seriar();
+    boolean seriar(int idAnuncio) throws SQLException;
 
-    boolean atribuir();
-    
+    boolean atribuir(int idAnuncio);
+
 }
