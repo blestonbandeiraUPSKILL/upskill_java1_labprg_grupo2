@@ -77,6 +77,8 @@ public class ConsultarResultadoUI {
      * @throws SQLException 
      */
     public void transferData() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+        //txtReferencia.setText(consultarResultadoController.findResultadoById());
+
     }
 }
