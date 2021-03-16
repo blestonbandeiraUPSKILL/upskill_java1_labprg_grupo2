@@ -171,7 +171,8 @@ public class RegistarTarefaController {
            if (isAnuncioValido(emailFreelancer, tarefa.getReferencia())) {
                for (GrauProficiencia grauTarefa : tarefa.getGrauProficiencia()) {
                    for (GrauProficiencia grauFreelancer : grausFreelancer) {
-                       if(grauFreelancer.getGrau() >= grauTarefa.getGrau() && grauFreelancer.getCodigoCompetenciaTecnica().equals(grauTarefa.getCodigoCompetenciaTecnica())) {
+                       if(grauFreelancer.getGrau() >= grauTarefa.getGrau() &&
+                               grauFreelancer.getCodigoCompetenciaTecnica().equals(grauTarefa.getCodigoCompetenciaTecnica())) {
                            if (!tarefasCompativeis.contains(tarefa)) {
                                tarefasCompativeis.add(tarefa);
                            }
