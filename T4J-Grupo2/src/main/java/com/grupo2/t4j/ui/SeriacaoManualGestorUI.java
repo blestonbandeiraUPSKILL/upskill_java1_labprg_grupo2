@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.grupo2.t4j.ui;
 
 /**
@@ -16,15 +11,12 @@ import com.grupo2.t4j.domain.Colaborador;
 import com.grupo2.t4j.domain.TabelaColaboradorAdicional;
 import com.grupo2.t4j.domain.TabelaFreelancerClassificacao;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.stage.Window;
-import javafx.stage.WindowEvent;
 
 import java.net.URL;
 import java.sql.SQLException;
@@ -32,10 +24,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-/**
- *
- * @author carol
- */
 public class SeriacaoManualGestorUI implements Initializable{
 
     private GestorLogadoUI gestorLogadoUI;
