@@ -217,3 +217,17 @@ ALTER TABLE Candidatura
     ADD CONSTRAINT uk_Candidatura_emailFreelancer_idAnuncio
     UNIQUE (emailFreelancer, idAnuncio);
     
+ALTER TABLE Atribuicao
+    ADD CONSTRAINT fk_Atribuicao_nifOrganizacao_referenciaTarefa
+        FOREIGN KEY (nifOrganizacao, referenciaTarefa)
+        REFERENCES Tarefa(nifOrganizacao, referencia);
+
+ALTER TABLE Atribuicao
+    ADD CONSTRAINT fk_Atribuicao_emailFreelancer
+        FOREIGN KEY (emailFreelancer)
+        REFERENCES Freelancer (email);
+    
+ALTER TABLE Atribuicao
+    ADD CONSTRAINT fk_Atribuicao_idAnuncio
+        FOREIGN KEY (idAnuncio)
+        REFERENCES Anuncio(idAnuncio);
