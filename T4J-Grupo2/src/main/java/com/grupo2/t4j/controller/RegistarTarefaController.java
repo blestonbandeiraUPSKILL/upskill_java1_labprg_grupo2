@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.grupo2.t4j.controller;
 
 import com.grupo2.t4j.domain.GrauProficiencia;
@@ -27,7 +22,7 @@ public class RegistarTarefaController {
     }
 
     /**
-     * Devolve uma lista de todas as organizacoes
+     * Devolve uma lista de todas as organizações
      * @param nifOrganizacao
      * @return
      * @throws SQLException 
@@ -63,7 +58,7 @@ public class RegistarTarefaController {
     }
 
     /**
-     * Devolve uma lista de tarefas a partir do email do colaborador e do nif da sua organizacao
+     * Devolve uma lista de tarefas a partir do email do colaborador e do nif da sua organização
      * @param email
      * @param nifOrganizacao
      * @return
@@ -171,7 +166,8 @@ public class RegistarTarefaController {
            if (isAnuncioValido(emailFreelancer, tarefa.getReferencia())) {
                for (GrauProficiencia grauTarefa : tarefa.getGrauProficiencia()) {
                    for (GrauProficiencia grauFreelancer : grausFreelancer) {
-                       if(grauFreelancer.getGrau() >= grauTarefa.getGrau() && grauFreelancer.getCodigoCompetenciaTecnica().equals(grauTarefa.getCodigoCompetenciaTecnica())) {
+                       if(grauFreelancer.getGrau() >= grauTarefa.getGrau() &&
+                               grauFreelancer.getCodigoCompetenciaTecnica().equals(grauTarefa.getCodigoCompetenciaTecnica())) {
                            if (!tarefasCompativeis.contains(tarefa)) {
                                tarefasCompativeis.add(tarefa);
                            }
