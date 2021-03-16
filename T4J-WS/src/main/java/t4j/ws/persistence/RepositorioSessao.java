@@ -233,7 +233,7 @@ public class RepositorioSessao {
             connection.setAutoCommit(false);
 
             CallableStatement callableStatement = connection.prepareCall(
-                    "{ ? = call checkState(?) }"
+                    "{ ? = call setState(?) }"
             );
 
             callableStatement.registerOutParameter(1, Types.INTEGER);
