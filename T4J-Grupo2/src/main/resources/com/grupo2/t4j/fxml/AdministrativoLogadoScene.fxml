@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" styleClass="BorderPane" stylesheets="@../style/app.css" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.AdministrativoLogadoUI">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" styleClass="BorderPane" stylesheets="@../style/app.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.AdministrativoLogadoUI">
     <center>
       <BorderPane BorderPane.alignment="CENTER">
          <center>
@@ -267,7 +268,10 @@
               </BorderPane>
          </center>
          <top>
-            <FlowPane prefHeight="39.0" prefWidth="700.0" BorderPane.alignment="CENTER" />
+            <FlowPane prefHeight="39.0" prefWidth="700.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Label fx:id="txt_email" text="emailemailemail@email.pt" />
+               </children></FlowPane>
          </top>
       </BorderPane>
     </center>

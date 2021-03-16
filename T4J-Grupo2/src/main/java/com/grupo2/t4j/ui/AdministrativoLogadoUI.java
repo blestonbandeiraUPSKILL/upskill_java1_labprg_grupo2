@@ -58,6 +58,7 @@ public class AdministrativoLogadoUI implements Initializable {
     @FXML Button btnAdicionarReconGP;
     @FXML Button btnSair;
     @FXML ListView<CompetenciaTecnica> listViewCompetenciasTecnicas;
+    @FXML Label txt_email;
 
     //TableView AreaActividade
     @FXML TableColumn<Object, Object> colunaDescBreve;
@@ -111,6 +112,8 @@ public class AdministrativoLogadoUI implements Initializable {
         registarHabilitacaoAcademicaController = new RegistarHabilitacaoAcademicaController();
         registarReconhecimentoGPController = new RegistarReconhecimentoGPController();
         gestaoUtilizadoresController = new GestaoUtilizadoresController();
+
+        txt_email.setText(gestaoUtilizadoresController.getEmail());
 
         try {
             updateTableViewAreasActividade();
