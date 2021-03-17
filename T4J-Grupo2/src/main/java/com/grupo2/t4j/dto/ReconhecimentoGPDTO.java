@@ -2,6 +2,7 @@ package com.grupo2.t4j.dto;
 
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
+import com.grupo2.t4j.domain.Email;
 
 @JsonPropertyOrder({"idGrauProficiencia", "dataReconhecimento", "emailFreelancer"})
 
@@ -14,13 +15,13 @@ public class ReconhecimentoGPDTO {
     private String dataReconhecimento;
 
     @JacksonXmlProperty(localName = "emailFreelancer")
-    private EmailDTO emailFreelancer;
+    private Email emailFreelancer;
 
     public ReconhecimentoGPDTO(){
     }
 
     public ReconhecimentoGPDTO(int idGrauProficiencia,
-                            EmailDTO emailFreelancer, String dataReconhecimento){
+                               Email emailFreelancer, String dataReconhecimento){
         setIdGrauProficiencia(idGrauProficiencia);
         setDataReconhecimento(dataReconhecimento);
         setEmailFreelancer(emailFreelancer);
@@ -35,7 +36,7 @@ public class ReconhecimentoGPDTO {
 
     public ReconhecimentoGPDTO(int idGrauProficiencia, String emailFreelancer, String dataReconhecimento) {
         setIdGrauProficiencia(idGrauProficiencia);
-        setEmailFreelancer(new EmailDTO(emailFreelancer));
+        setEmailFreelancer(new Email(emailFreelancer));
         setDataReconhecimento(dataReconhecimento);
     }
 
@@ -48,7 +49,7 @@ public class ReconhecimentoGPDTO {
         this.dataReconhecimento = dataReconhecimento;
     }
 
-    public void setEmailFreelancer(EmailDTO emailFreelancer) {
+    public void setEmailFreelancer(Email emailFreelancer) {
         this.emailFreelancer = emailFreelancer;
     }
 
@@ -60,7 +61,7 @@ public class ReconhecimentoGPDTO {
         return dataReconhecimento;
     }
 
-    public EmailDTO getEmailFreelancer() {
+    public Email getEmailFreelancer() {
         return emailFreelancer;
     }
 
