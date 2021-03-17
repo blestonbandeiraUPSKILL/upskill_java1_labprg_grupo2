@@ -140,6 +140,7 @@ public class RepositorioCandidaturaDatabase implements RepositorioCandidatura{
     @Override
     public Candidatura findById(int idCandidatura) throws SQLException {
 
+
         Connection connection = DBConnectionHandler.getInstance().openConnection();
 
         try {
