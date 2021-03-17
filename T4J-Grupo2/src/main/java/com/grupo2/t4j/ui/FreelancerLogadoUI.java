@@ -233,7 +233,7 @@ public class FreelancerLogadoUI implements Initializable {
         //tabelaCandidaturas.getItems().setAll(efectuarCandidaturaController.findByEmail(emailFreelancer));
 
         List<Candidatura> candidaturas = efectuarCandidaturaController.findByEmail(emailFreelancer);
-        TabelaCandidaturaResultado cellCandidatura;
+        TabelaCandidaturaResultado cellCandidatura = null;
         for (int i = 0; i < candidaturas.size(); i++)
              cellCandidatura = new TabelaCandidaturaResultado(candidaturas.get(i).getIdCandidatura(),
                     candidaturas.get(i).getValorPretendido(), candidaturas.get(i).getNumeroDias(),
@@ -244,6 +244,7 @@ public class FreelancerLogadoUI implements Initializable {
         txtDataCandidatura.setCellValueFactory(new PropertyValueFactory<>("dataCandidatura"));
         txtDataEdicao.setCellValueFactory(new PropertyValueFactory<>("dataEdicaoCandidatura"));
         txtResultado.setCellValueFactory(new PropertyValueFactory<>("resultado"));
+        tabelaCandidaturas.getItems().setAll(cellCandidatura);
     }
 
     /**

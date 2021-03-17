@@ -140,6 +140,7 @@ public class RepositorioCandidaturaDatabase implements RepositorioCandidatura{
     @Override
     public Candidatura findById(int idCandidatura) throws SQLException {
 
+        Candidatura candidatura = new Candidatura();
         Connection connection = DBConnectionHandler.getInstance().openConnection();
 
         try {
@@ -151,7 +152,7 @@ public class RepositorioCandidaturaDatabase implements RepositorioCandidatura{
             callableStatement.setInt(1, idCandidatura);
             callableStatement.executeQuery();
 
-            return new Candidatura();
+            return null;
 
         } catch (SQLException exceptionOrg) {
             exceptionOrg.printStackTrace();
@@ -160,7 +161,7 @@ public class RepositorioCandidaturaDatabase implements RepositorioCandidatura{
             DBConnectionHandler.getInstance().closeAll();
         }
 
-        return null;
+        return candidatura;
 
 
     }
