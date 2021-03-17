@@ -16,9 +16,16 @@
             <font>
                 <Font name="Calibri Italic" size="16.0" />
             </font>
+         <graphic>
+            <BorderPane prefHeight="200.0" prefWidth="200.0">
+               <top>
+                  <Label text="emailemailemail@email.pt" BorderPane.alignment="CENTER" />
+               </top>
+            </BorderPane>
+         </graphic>
         </Label>
     </top>
-   <left>
+   <center>
         <BorderPane prefHeight="200.0" prefWidth="200.0" styleClass="BorderPane" BorderPane.alignment="CENTER">
             <top>
                 <TabPane prefHeight="305.0" prefWidth="700.0" style="-fx-background-color: #c4c4c4;" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
@@ -73,12 +80,6 @@
                     </children>
                 </FlowPane>
             </bottom>
-         <left>
-            <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
-         </left>
-         <right>
-            <FlowPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
-         </right>
         </BorderPane>
-   </left>
+   </center>
 </BorderPane>
