@@ -66,6 +66,17 @@ public class Classificacao implements Comparable<Classificacao>{
         setIdSeriacao(idSeriacao);
         setIdCandidatura(idCandidatura);         
     }
+
+    /**
+     * Construtor da classe Classificacao com id ainda a ser atribuído na BD
+     * e seriação ainda a ser registada
+     * @param posicao
+     * @param idCandidatura
+     */
+    public Classificacao(int posicao, int idCandidatura){
+        setPosicaoFreelancer(posicao);
+        setIdCandidatura(idCandidatura);
+    }
     
     
     /**

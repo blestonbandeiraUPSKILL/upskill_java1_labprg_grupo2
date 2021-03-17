@@ -254,6 +254,7 @@ public class SeriacaoManualColaboradorUI implements Initializable{
     public void registarClassificacao(ActionEvent event) throws SQLException{
         int posicao = cmbClassificacao.getSelectionModel().getSelectedItem();
         int idCandidatura = tabelaClassificacao.getSelectionModel().getSelectedItem().getIdCandidatura();
+
         updateOpcoesClassificacao(posicao);
         updateTabelaCandidaturas(idCandidatura, posicao);
 
@@ -277,8 +278,12 @@ public class SeriacaoManualColaboradorUI implements Initializable{
         tabelaColaboradores.requestFocus();
     }
 
-    public TableView<TabelaFreelancerClassificacao> listaClassificada(){
-        return tabelaClassificacao;
+    public void listarClassificacoes(){
+        for(int i = 0; i < listaCandidaturas.size(); i++){
+           Classificacao classificacao = new Classificacao(listaCandidaturas.get(i).getClassificacao(),
+           listaCandidaturas.get(i).getIdCandidatura());
+           classificacoes.add(classificacao);
+        }
     }
     
     /**
