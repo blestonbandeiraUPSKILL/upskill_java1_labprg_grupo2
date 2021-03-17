@@ -439,6 +439,30 @@ public class Candidatura implements Serializable, Comparable<Candidatura>, DTO {
                 return 0; 
             }
         };
+        
+        public static Comparator<Candidatura> NUMDIAS = new Comparator<Candidatura>(){
+            @Override
+            public int compare(Candidatura c1, Candidatura c2) {
+                if(c1.getNumeroDias() > c2.getNumeroDias()){
+                    return 1;
+                }
+                if(c1.getNumeroDias() < c2.getNumeroDias()){
+                    return -1;
+                }
+                return 0; 
+            }
+        };
+        
+         public static Comparator<Candidatura> VALOR_NUMDIAS = new Comparator<Candidatura>(){
+            @Override
+            public int compare(Candidatura c1, Candidatura c2) {
+                int criterio = CandidaturaComparator.VALOR.compare(c1, c2);
+                if(criterio == 0){
+                    criterio = CandidaturaComparator.NUMDIAS.compare(c1, c2);
+                }
+                return criterio;
+            }
+        };
     }
 
 }

@@ -1,6 +1,7 @@
 package com.grupo2.t4j.controller;
 
 import com.grupo2.t4j.domain.*;
+import com.grupo2.t4j.domain.strategy.*;
 import com.grupo2.t4j.persistence.*;
 import com.grupo2.t4j.persistence.database.FabricaRepositoriosDatabase;
 
@@ -23,6 +24,7 @@ public class SeriarAnuncioController {
     private RepositorioClassificacao repositorioClassificacao = fabricaRepositorios.getRepositorioClassificacao();
     private RepositorioSeriacao repositorioSeriacao = fabricaRepositorios.getRepositorioSeriacao();
     private RepositorioTipoRegimento repositorioTipoRegimento = fabricaRepositorios.getRepositorioTipoRegimento();
+    private RegimentoStrategy_1 regimentoStrategy_1;
     
     /**
      * 
@@ -191,6 +193,14 @@ public class SeriarAnuncioController {
         return repositorioClassificacao.save(posicao, idSeriacao, idCandidatura);
     }
     
+    public boolean seriar(int idAnuncio) throws SQLException{
+        boolean sucesso = false;
+        int idRegimento = getAnuncio(idAnuncio).getIdTipoRegimento();
+        if (idRegimento == 1){
+            sucesso = regimentoStrategy_1.seriar(idAnuncio);
+        }
+        return sucesso;
+    }
     /**
      * Salva uma lista de candidaturas ordenadas de um processo de seriação
      * @param candidaturasOrdenadas - lista de candidaturas

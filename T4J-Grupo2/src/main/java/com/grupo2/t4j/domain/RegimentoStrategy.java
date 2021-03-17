@@ -5,17 +5,16 @@
  */
 package com.grupo2.t4j.domain;
 
+import java.sql.SQLException;
+
 /**
  *
- * @author acris
+ * @author CAD
  */
-public class Atribuicao {
-    
-    private String nifOrganizacao;
-    private String refTarefa;
+public interface RegimentoStrategy {
 
-    
-    
-    //Falta acabar
-    
+    boolean seriar(int idAnuncio) throws SQLException;
+
+    boolean atribuir(int idAnuncio);
+
 }
