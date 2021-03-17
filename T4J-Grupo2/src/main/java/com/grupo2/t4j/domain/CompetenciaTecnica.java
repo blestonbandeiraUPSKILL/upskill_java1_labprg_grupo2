@@ -5,6 +5,8 @@
  */
 package com.grupo2.t4j.domain;
 
+import com.grupo2.t4j.dto.CompetenciaTecnicaDTO;
+import com.grupo2.t4j.dto.DTO;
 import com.grupo2.t4j.exception.AreaActividadeInexistenteException;
 import com.grupo2.t4j.exception.CodigoInvalidoException;
 import com.grupo2.t4j.exception.DescricaoInvalidaException;
@@ -16,7 +18,7 @@ import java.util.Objects;
  *
  * @author acris
  */
-public class CompetenciaTecnica implements Serializable {
+public class CompetenciaTecnica implements Serializable, DTO {
 
     /**
      * O codigo da competencia tencica
@@ -203,4 +205,8 @@ public class CompetenciaTecnica implements Serializable {
 
     }
 
+    @Override
+    public Object toDTO() {
+        return new CompetenciaTecnicaDTO(codigo, descricaoBreve, descricaoDetalhada, codigoAreaActividade);
+    }
 }
