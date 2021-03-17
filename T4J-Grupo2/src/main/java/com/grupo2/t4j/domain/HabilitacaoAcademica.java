@@ -10,9 +10,11 @@ package com.grupo2.t4j.domain;
  * @author CAD
  */
 
+import com.grupo2.t4j.dto.DTO;
+import com.grupo2.t4j.dto.HabilitacaoAcademicaDTO;
 import com.grupo2.t4j.exception.NomeInvalidoException;
 
-public class HabilitacaoAcademica {
+public class HabilitacaoAcademica implements DTO {
     
     /**
      * O id da Habilitação Acadêmica do Freelancer
@@ -231,5 +233,11 @@ public class HabilitacaoAcademica {
         return String.format("id Habilitação: %s %nGrau: %s %nDesignação do Curso:%s "
                 + "%nNome da Instituição: %s %nMédia do curso: %d",  idHabilitacao, 
                 grau, designacaoCurso, nomeInstituicao, mediaCurso);
+    }
+
+    @Override
+    public Object toDTO() {
+        return new HabilitacaoAcademicaDTO(idHabilitacao, grau,
+                designacaoCurso, nomeInstituicao, mediaCurso);
     }
 }
