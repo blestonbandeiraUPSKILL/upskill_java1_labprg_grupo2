@@ -10,6 +10,7 @@ package com.grupo2.t4j.domain.strategy;
  * @author CAD
  */
 
+import com.grupo2.t4j.domain.Candidatura;
 import com.grupo2.t4j.domain.RegimentoStrategy;
 import com.grupo2.t4j.persistence.FabricaRepositorios;
 import com.grupo2.t4j.persistence.RepositorioCandidatura;
@@ -17,6 +18,8 @@ import com.grupo2.t4j.persistence.RepositorioClassificacao;
 import com.grupo2.t4j.persistence.RepositorioSeriacao;
 import com.grupo2.t4j.persistence.RepositorioTarefa;
 import com.grupo2.t4j.persistence.database.FabricaRepositoriosDatabase;
+import java.sql.SQLException;
+import java.util.List;
 public class RegimentoStrategy_2 implements RegimentoStrategy{
     
     private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosDatabase();
@@ -26,8 +29,8 @@ public class RegimentoStrategy_2 implements RegimentoStrategy{
     private RepositorioSeriacao repositorioSeriacao = fabricaRepositorios.getRepositorioSeriacao();
     
     @Override
-    public boolean seriar(int idAnuncio){
-        
+    public boolean seriar(int idAnuncio)throws SQLException{
+        List<Candidatura> candidaturas = repositorioCandidatura.getAllByIdAnuncio(idAnuncio);
         
         return false;
     }

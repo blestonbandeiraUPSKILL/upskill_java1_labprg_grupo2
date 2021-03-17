@@ -11,10 +11,7 @@ package com.grupo2.t4j.ui;
  */
 
 import com.grupo2.t4j.controller.SeriarAnuncioController;
-import com.grupo2.t4j.domain.Candidatura;
-import com.grupo2.t4j.domain.Colaborador;
-import com.grupo2.t4j.domain.TabelaColaboradorAdicional;
-import com.grupo2.t4j.domain.TabelaFreelancerClassificacao;
+import com.grupo2.t4j.domain.*;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -48,7 +45,8 @@ public class SeriacaoManualColaboradorUI implements Initializable{
     private boolean terminou = false;
     private String emailColaborador;
     private String nifOrganizacao;
-    private List<Integer> classificacoes = new ArrayList<>();
+    private List<Integer> opcoesClassificacoes = new ArrayList<>();
+    private List<Classificacao> classificacoes = new ArrayList<>();
     private ArrayList<String> colaboradoresParticipantes = new ArrayList<>();
 
     @FXML TextField txtIdAnuncio;
@@ -206,9 +204,9 @@ public class SeriacaoManualColaboradorUI implements Initializable{
      */
     public void criarOpcoesClassificacao(){
         for(int i = 1; i < listaCandidaturas.size() + 1; i++){
-            classificacoes.add(i);
+            opcoesClassificacoes.add(i);
         }
-        cmbClassificacao.getItems().setAll(classificacoes);
+        cmbClassificacao.getItems().setAll(opcoesClassificacoes);
     }
     
     /**
@@ -217,10 +215,10 @@ public class SeriacaoManualColaboradorUI implements Initializable{
      * @param classUsada
      */
     public void updateOpcoesClassificacao(int classUsada){
-        if(classificacoes.size() != 1){
-            classificacoes.remove(classUsada-1);
+        if(opcoesClassificacoes.size() != 1){
+            opcoesClassificacoes.remove(classUsada-1);
             cmbClassificacao.getItems().clear();
-            cmbClassificacao.getItems().setAll(classificacoes);
+            cmbClassificacao.getItems().setAll(opcoesClassificacoes);
         }
         else{
             terminou = true;
@@ -254,14 +252,16 @@ public class SeriacaoManualColaboradorUI implements Initializable{
     public void registarClassificacao(ActionEvent event) throws SQLException{
         int posicao = cmbClassificacao.getSelectionModel().getSelectedItem();
         int idCandidatura = tabelaClassificacao.getSelectionModel().getSelectedItem().getIdCandidatura();
-        boolean registou = seriarAnuncioController.saveClassificacao(posicao, idSeriacao, idCandidatura);
-        if(registou){
-            updateOpcoesClassificacao(posicao);
-            updateTabelaCandidaturas(idCandidatura, posicao);
-        }
+        Classificacao class = new Classificacao((posicao, idSeriacao, idCandidatura);
+        classificacoes.add(class);
+        updateOpcoesClassificacao(posicao);
+        updateTabelaCandidaturas(idCandidatura, posicao);
+        
         tabelaClassificacao.requestFocus();
     }
-    
+
+
+
     /**
      * Regista um colaborador adicional como participante na seriação
      * @param event
