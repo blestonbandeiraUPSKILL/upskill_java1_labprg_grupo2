@@ -24,8 +24,8 @@ public class SeriarAnuncioController {
     private RepositorioClassificacao repositorioClassificacao = fabricaRepositorios.getRepositorioClassificacao();
     private RepositorioSeriacao repositorioSeriacao = fabricaRepositorios.getRepositorioSeriacao();
     private RepositorioTipoRegimento repositorioTipoRegimento = fabricaRepositorios.getRepositorioTipoRegimento();
-    private RegimentoStrategy_1 regimentoStrategy_1;
-    private RegimentoStrategy_2 regimentoStrategy_2;
+    private RegimentoStrategy_1 regimentoStrategy_1 = new RegimentoStrategy_1();
+    private RegimentoStrategy_2 regimentoStrategy_2 = new RegimentoStrategy_2();
 
     /**
      * 
@@ -217,6 +217,9 @@ public class SeriarAnuncioController {
         int idRegimento = getAnuncio(idAnuncio).getIdTipoRegimento();
         if (idRegimento == 2){
             sucesso = regimentoStrategy_2.seriar(idAnuncio, classificacoes, colaboradores);
+        }
+        if(sucesso){
+
         }
         return sucesso;
     }

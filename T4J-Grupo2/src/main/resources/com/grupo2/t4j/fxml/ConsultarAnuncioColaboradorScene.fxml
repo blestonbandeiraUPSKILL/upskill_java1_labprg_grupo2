@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
+
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" styleClass="BorderPane" stylesheets="@../style/app.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.ConsultarAnuncioColaboradorUI">
     <top>
         <Label alignment="CENTER_RIGHT" styleClass="lblUser" text="Área do Colaborador :::&gt; Consultar Anúncio da Tarefa" textFill="WHITE" BorderPane.alignment="CENTER_RIGHT">
@@ -85,7 +88,7 @@
                         <Insets left="10.0" />
                      </GridPane.margin>
                               </Label>
-                              <TextField fx:id="txtDesignacao" disable="true" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                              <TextField fx:id="txtDesignacao" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="3">
                      <GridPane.margin>
                         <Insets left="10.0" right="50.0" />
                      </GridPane.margin>
@@ -95,7 +98,7 @@
                         <Insets left="10.0" />
                      </GridPane.margin>
                               </Label>
-                              <TextField fx:id="txtReferencia" disable="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                              <TextField fx:id="txtReferencia" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <GridPane.margin>
                         <Insets left="10.0" right="50.0" />
                      </GridPane.margin>
@@ -115,7 +118,7 @@
                         <Insets left="10.0" />
                      </GridPane.margin>
                               </Label>
-                              <TextField fx:id="txtDescInformal" disable="true" GridPane.columnIndex="1" GridPane.rowIndex="9">
+                              <TextField fx:id="txtDescInformal" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="9">
                      <GridPane.margin>
                         <Insets left="10.0" right="50.0" />
                      </GridPane.margin>
@@ -125,7 +128,7 @@
                         <Insets left="10.0" />
                      </GridPane.margin>
                               </Label>
-                              <TextField fx:id="txDescTecnica" disable="true" prefHeight="60.0" prefWidth="330.0" GridPane.columnIndex="1" GridPane.rowIndex="11">
+                              <TextField fx:id="txDescTecnica" editable="false" prefHeight="60.0" prefWidth="330.0" GridPane.columnIndex="1" GridPane.rowIndex="11">
                      <GridPane.margin>
                         <Insets left="10.0" right="50.0" />
                      </GridPane.margin>
@@ -135,22 +138,22 @@
                         <Insets left="10.0" />
                      </GridPane.margin>
                   </Label>
-                  <TextField fx:id="txtDuracao" disable="true" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                  <TextField fx:id="txtDuracao" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="5">
                      <GridPane.margin>
                         <Insets left="10.0" right="50.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField fx:id="txtCusto" disable="true" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                  <TextField fx:id="txtCusto" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="7">
                      <GridPane.margin>
                         <Insets left="10.0" right="50.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField fx:id="txtIdAnuncio" disable="true" GridPane.rowIndex="1">
+                  <TextField fx:id="txtIdAnuncio" editable="false" GridPane.rowIndex="1">
                      <GridPane.margin>
                         <Insets left="10.0" right="200.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField fx:id="txtDtInPublicitacao" disable="true" GridPane.rowIndex="3">
+                  <TextField fx:id="txtDtInPublicitacao" editable="false" GridPane.rowIndex="3">
                      <GridPane.margin>
                         <Insets left="10.0" right="220.0" />
                      </GridPane.margin>
@@ -160,12 +163,12 @@
                         <Insets left="150.0" />
                      </GridPane.margin>
                   </Label>
-                  <TextField fx:id="txtDtFimPublicitacao" disable="true" GridPane.rowIndex="3">
+                  <TextField fx:id="txtDtFimPublicitacao" editable="false" GridPane.rowIndex="3">
                      <GridPane.margin>
                         <Insets left="180.0" right="50.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField fx:id="txtDtInCandidatura" disable="true" GridPane.rowIndex="5">
+                  <TextField fx:id="txtDtInCandidatura" editable="false" GridPane.rowIndex="5">
                      <GridPane.margin>
                         <Insets left="10.0" right="220.0" />
                      </GridPane.margin>
@@ -175,7 +178,7 @@
                         <Insets left="150.0" />
                      </GridPane.margin>
                   </Label>
-                  <TextField fx:id="txtDtFimCandidatura" disable="true" GridPane.rowIndex="5">
+                  <TextField fx:id="txtDtFimCandidatura" editable="false" GridPane.rowIndex="5">
                      <GridPane.margin>
                         <Insets left="180.0" right="50.0" />
                      </GridPane.margin>
@@ -185,7 +188,7 @@
                         <Insets left="10.0" />
                      </GridPane.margin>
                   </Label>
-                  <TextField fx:id="txtDtInSeriacao" disable="true" GridPane.rowIndex="7">
+                  <TextField fx:id="txtDtInSeriacao" editable="false" GridPane.rowIndex="7">
                      <GridPane.margin>
                         <Insets left="10.0" right="220.0" />
                      </GridPane.margin>
@@ -195,7 +198,7 @@
                         <Insets left="150.0" />
                      </GridPane.margin>
                   </Label>
-                  <TextField fx:id="txtDtFimSeriacao" disable="true" GridPane.rowIndex="7">
+                  <TextField fx:id="txtDtFimSeriacao" editable="false" GridPane.rowIndex="7">
                      <GridPane.margin>
                         <Insets left="180.0" right="50.0" />
                      </GridPane.margin>
@@ -205,12 +208,12 @@
                         <Insets left="10.0" />
                      </GridPane.margin>
                   </Label>
-                  <TextField fx:id="txtTipoRegDesignacao" disable="true" GridPane.rowIndex="9">
+                  <TextField fx:id="txtTipoRegDesignacao" editable="false" GridPane.rowIndex="9">
                      <GridPane.margin>
                         <Insets left="10.0" right="50.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField fx:id="txtRegras" disable="true" prefHeight="60.0" prefWidth="330.0" GridPane.rowIndex="11">
+                  <TextField fx:id="txtRegras" editable="false" prefHeight="60.0" prefWidth="330.0" GridPane.rowIndex="11">
                      <GridPane.margin>
                         <Insets left="10.0" right="50.0" />
                      </GridPane.margin>
