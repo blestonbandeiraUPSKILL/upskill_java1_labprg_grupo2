@@ -7,20 +7,11 @@ import com.grupo2.t4j.exception.DescricaoInvalidaException;
 import com.grupo2.t4j.exception.GrauInvalidoException;
 import com.grupo2.t4j.exception.IdInvalidoException;
 
-@JsonPropertyOrder({"idGrauProficiencia", "grau", "designacao", "codigoCompetenciaTecnica"})
-
 public class GrauProficienciaDTO {
 
-    @JacksonXmlProperty(localName = "idGrauProficiencia")
     private int idGrauProficiencia;
-
-    @JacksonXmlProperty(localName = "grau")
     private int grau;
-
-    @JacksonXmlProperty(localName = "designacao")
     private String designacao;
-
-    @JacksonXmlProperty(localName = "codigoCompetenciaTecnica")
     private String codigoCompetenciaTecnica;
 
     public GrauProficienciaDTO() {

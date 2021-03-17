@@ -202,7 +202,6 @@ public class CompetenciaTecnica implements Serializable, DTO {
                 && Objects.equals(descricaoBreve, that.descricaoBreve)
                 && Objects.equals(descricaoDetalhada, that.descricaoDetalhada)
                 && Objects.equals(codigoAreaActividade, that.codigoAreaActividade);
-
     }
 
     @Override
