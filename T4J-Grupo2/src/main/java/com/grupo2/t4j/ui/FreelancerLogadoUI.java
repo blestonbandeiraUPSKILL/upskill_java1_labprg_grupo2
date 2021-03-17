@@ -254,10 +254,21 @@ public class FreelancerLogadoUI implements Initializable {
      */
     public void apagarCandidatura(ActionEvent actionEvent) throws SQLException {
         int idCandidatura = getIdCandidatura();
+        boolean apaga = false;
 
         try {
 
-            boolean apaga = eliminarCandidaturaController.deleteCandidatura(idCandidatura);
+            Alert alerta = AlertsUI.criarAlerta(Alert.AlertType.CONFIRMATION,
+                    MainApp.TITULO_APLICACAO,
+                    "Confirmação da acção",
+                    "Tem a certeza que deseja apagar a candidatura?");
+
+            if (alerta.showAndWait().get() == ButtonType.OK) {
+
+                //actionEvent.consume();
+                apaga = eliminarCandidaturaController.deleteCandidatura(idCandidatura);
+
+            }
 
             if (apaga) {
                 updateTableViewCandidaturas();

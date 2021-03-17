@@ -6,6 +6,7 @@
 package com.grupo2.t4j.controller;
 
 import com.grupo2.t4j.domain.AreaActividade;
+import com.grupo2.t4j.dto.AreaActividadeDTO;
 import com.grupo2.t4j.persistence.FabricaRepositorios;
 import com.grupo2.t4j.persistence.RepositorioAreaActividade;
 import com.grupo2.t4j.persistence.database.FabricaRepositoriosDatabase;
@@ -52,8 +53,11 @@ public class RegistarAreaActividadeController /*implements Serializable*/{
      * @return
      * @throws SQLException 
      */
-    public AreaActividade findByCodigo(String codigo) throws SQLException {
-        return repositorioAreaActividade.findByCodigo(codigo);
+    public AreaActividadeDTO findByCodigo(String codigo) throws SQLException {
+        AreaActividade areaActividade =
+                repositorioAreaActividade.findByCodigo(codigo);
+
+        return (AreaActividadeDTO) areaActividade.toDTO();
     }
 
     /**
@@ -62,8 +66,9 @@ public class RegistarAreaActividadeController /*implements Serializable*/{
      * @return
      * @throws SQLException 
      */
-    public AreaActividade getAreaActividade(String codigoAreaActividade) throws SQLException {
-        return repositorioAreaActividade.getAreaActividade(codigoAreaActividade);
+    public AreaActividadeDTO getAreaActividade(String codigoAreaActividade) throws SQLException {
+        AreaActividade areaActividade = repositorioAreaActividade.getAreaActividade(codigoAreaActividade);
+        return (AreaActividadeDTO) areaActividade.toDTO();
     }
 
 

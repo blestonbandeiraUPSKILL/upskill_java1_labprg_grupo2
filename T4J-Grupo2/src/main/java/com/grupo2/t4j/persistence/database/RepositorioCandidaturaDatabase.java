@@ -461,7 +461,8 @@ public class RepositorioCandidaturaDatabase implements RepositorioCandidatura{
     }
     
     /**
-     * Ordena as candidaturas por Valor pretendido
+     * Ordena as candidaturas por Valor pretendido e depois o número de Dias como
+     * critério de desempate
      * @param candidaturas
      * @return
      * @throws SQLException 
@@ -469,8 +470,8 @@ public class RepositorioCandidaturaDatabase implements RepositorioCandidatura{
     @Override
     public List<Candidatura> ordenarByValor(List<Candidatura> candidaturas) throws SQLException{
                
-        Collections.sort(candidaturas, Candidatura.CandidaturaComparator.VALOR);
-        
+        Collections.sort(candidaturas, Candidatura.CandidaturaComparator.VALOR_NUMDIAS);
+                
         return candidaturas;
     }
     
