@@ -5,6 +5,8 @@
  */
 package com.grupo2.t4j.domain;
 
+import com.grupo2.t4j.dto.CategoriaDTO;
+import com.grupo2.t4j.dto.DTO;
 import com.grupo2.t4j.exception.AreaActividadeInexistenteException;
 import com.grupo2.t4j.exception.CodigoInvalidoException;
 import com.grupo2.t4j.exception.DescricaoInvalidaException;
@@ -18,7 +20,7 @@ import java.util.Objects;
  *
  * @author acris
  */
-public class Categoria implements Serializable{
+public class Categoria implements Serializable, DTO {
     
     /**
      * O identificador da Categoria
@@ -237,4 +239,9 @@ public class Categoria implements Serializable{
                 && Objects.equals(caracterizacaoCTS, that.caracterizacaoCTS);
     }
 
+    @Override
+    public Object toDTO() {
+        return new CategoriaDTO(codigoCategoria, descBreve, descDetalhada,
+                codigoAreaActividade);
+    }
 }

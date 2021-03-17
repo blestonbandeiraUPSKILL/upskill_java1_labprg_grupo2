@@ -256,3 +256,17 @@ CREATE TABLE CandidaturaApagada(
     dataEdicaoCandidatura date,
     dataEliminacao date
 );
+
+CREATE TABLE Atribuicao(
+    idAtribuicao integer GENERATED AS IDENTITY
+        CONSTRAINT pk_Atribuicao_idAtribuicao PRIMARY KEY,
+    numeroAnual varchar(10)
+        CONSTRAINT uk_Atribuicao_numeroAnual UNIQUE,
+    nifOrganizacao varchar(9),
+    referenciaTarefa varchar(50),
+    emailFreelancer varchar(50),
+    dataInicioRealizacao date,
+    dataFimRealizacao date,
+    idAnuncio integer,
+    dataAtribuicao date
+);

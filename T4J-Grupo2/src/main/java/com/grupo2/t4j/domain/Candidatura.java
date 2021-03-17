@@ -1,11 +1,13 @@
 package com.grupo2.t4j.domain;
 
+import com.grupo2.t4j.dto.CandidaturaDTO;
+import com.grupo2.t4j.dto.DTO;
 import com.grupo2.t4j.exception.IdInvalidoException;
 
 import java.io.Serializable;
 import java.util.Comparator;
 
-public class Candidatura implements Serializable, Comparable<Candidatura>{
+public class Candidatura implements Serializable, Comparable<Candidatura>, DTO {
     
     /**
      * O id da Candidatura
@@ -397,7 +399,14 @@ public class Candidatura implements Serializable, Comparable<Candidatura>{
     public int compareTo(Candidatura outraCandidatura){
         return CandidaturaComparator.VALOR.compare(this, outraCandidatura);
     }
-    
+
+    @Override
+    public Object toDTO() {
+        return new CandidaturaDTO(idCandidatura, idAnuncio, emailFreelancer, valorPretendido, numeroDias,
+                txtApresentacao, txtMotivacao, dataCandidatura, dataEdicaoCandidatura);
+
+    }
+
     /**
      * Estabelece dois tipos de comparativos entre duas candidaturas. Uma com
      * base no valor pretendido para a execução da tarefa e outro com base no 
