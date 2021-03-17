@@ -3,6 +3,7 @@ package com.grupo2.t4j.ui;
 import com.grupo2.t4j.controller.EditarCandidaturaController;
 import com.grupo2.t4j.controller.GestaoUtilizadoresController;
 import com.grupo2.t4j.controller.RegistarTarefaController;
+import com.grupo2.t4j.domain.Candidatura;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -98,6 +99,7 @@ public class ConsultarCandidaturaUI implements Initializable {
      * @throws SQLException 
      */
     public void transferData() throws SQLException {
+        Candidatura candidatura = new Candidatura()
         txtApresentacao.setText(freelancerLogadoUI.tabelaCandidaturas.getSelectionModel().getSelectedItem().getApresentacao());
         txtMotivacao.setText(freelancerLogadoUI.tabelaCandidaturas.getSelectionModel().getSelectedItem().getMotivacao());
         txtValor.setText(String.valueOf(freelancerLogadoUI.tabelaCandidaturas.getSelectionModel().getSelectedItem().getValorPretendido()));

@@ -5,6 +5,7 @@ import com.grupo2.t4j.controller.EliminarCandidaturaController;
 import com.grupo2.t4j.controller.GestaoUtilizadoresController;
 import com.grupo2.t4j.controller.RegistarTarefaController;
 import com.grupo2.t4j.domain.Candidatura;
+import com.grupo2.t4j.domain.TabelaCandidaturaResultado;
 import com.grupo2.t4j.domain.Tarefa;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -25,6 +26,7 @@ import javafx.stage.WindowEvent;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.ResourceBundle;
 
 /**
@@ -59,7 +61,7 @@ public class FreelancerLogadoUI implements Initializable {
     @FXML TableColumn<Object, Object> colunaCusto;
 
     /////Tabela Candidaturas ////////////
-    @FXML TableView<Candidatura> tabelaCandidaturas;
+    @FXML TableView<TabelaCandidaturaResultado> tabelaCandidaturas;
 
     @FXML TableColumn<Object, Object> txtIdCandidatura;
     @FXML TableColumn<Object, Object> txtValorPretendido;
@@ -228,14 +230,20 @@ public class FreelancerLogadoUI implements Initializable {
     public void updateTableViewCandidaturas() throws SQLException {
 
         String emailFreelancer = gestaoUtilizadoresController.getEmail();
-        tabelaCandidaturas.getItems().setAll(efectuarCandidaturaController.findByEmail(emailFreelancer));
+        //tabelaCandidaturas.getItems().setAll(efectuarCandidaturaController.findByEmail(emailFreelancer));
 
+        List<Candidatura> candidaturas = efectuarCandidaturaController.findByEmail(emailFreelancer);
+        TabelaCandidaturaResultado cellCandidatura;
+        for (int i = 0; i < candidaturas.size(); i++)
+             cellCandidatura = new TabelaCandidaturaResultado(candidaturas.get(i).getIdCandidatura(),
+                    candidaturas.get(i).getValorPretendido(), candidaturas.get(i).getNumeroDias(),
+                    candidaturas.get(i).getDataCandidatura(), candidaturas.get(i).getDataEdicaoCandidatura());
         txtIdCandidatura.setCellValueFactory(new PropertyValueFactory<>("idCandidatura"));
         txtValorPretendido.setCellValueFactory(new PropertyValueFactory<>("valorPretendido"));
-        txtDuracaoEstimada.setCellValueFactory(new PropertyValueFactory<>("numeroDias"));
+        txtDuracaoEstimada.setCellValueFactory(new PropertyValueFactory<>("duracaoEstimada"));
         txtDataCandidatura.setCellValueFactory(new PropertyValueFactory<>("dataCandidatura"));
         txtDataEdicao.setCellValueFactory(new PropertyValueFactory<>("dataEdicaoCandidatura"));
-
+        txtResultado.setCellValueFactory(new PropertyValueFactory<>("resultado"));
     }
 
     /**
