@@ -5,7 +5,11 @@
  */
 package com.grupo2.t4j.domain.strategy;
 
+import com.grupo2.t4j.domain.Classificacao;
 import com.grupo2.t4j.domain.RegimentoStrategy;
+
+import java.sql.SQLException;
+import java.util.List;
 
 /**
  *
@@ -15,6 +19,12 @@ public class RegimentoStrategy_3 implements RegimentoStrategy{
     
     @Override
     public boolean seriar(int idAnuncio){
+
+        return false;
+    }
+
+    @Override
+    public boolean seriar(int idAnuncio, List<Classificacao> classificacoes) throws SQLException {
         return false;
     }
     

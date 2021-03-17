@@ -11,6 +11,7 @@ package com.grupo2.t4j.domain.strategy;
  */
 
 import com.grupo2.t4j.domain.Candidatura;
+import com.grupo2.t4j.domain.Classificacao;
 import com.grupo2.t4j.domain.RegimentoStrategy;
 import com.grupo2.t4j.persistence.FabricaRepositorios;
 import com.grupo2.t4j.persistence.RepositorioCandidatura;
@@ -30,8 +31,17 @@ public class RegimentoStrategy_2 implements RegimentoStrategy{
     
     @Override
     public boolean seriar(int idAnuncio)throws SQLException{
+
+        return false;
+    }
+
+    @Override
+    public boolean seriar(int idAnuncio, List<Classificacao > classificacoes) throws SQLException{
         List<Candidatura> candidaturas = repositorioCandidatura.getAllByIdAnuncio(idAnuncio);
-        
+        boolean seriacaoCriada = repositorioSeriacao.save(idAnuncio);
+        if(seriacaoCriada) {
+            int idSeriacao = repositorioSeriacao.getProcessoSeriacaoByAnuncio(idAnuncio).getIdSeriacao();
+        }
         return false;
     }
     

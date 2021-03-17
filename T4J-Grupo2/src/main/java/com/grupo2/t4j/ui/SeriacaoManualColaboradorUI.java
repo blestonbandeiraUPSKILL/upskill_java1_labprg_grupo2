@@ -222,6 +222,7 @@ public class SeriacaoManualColaboradorUI implements Initializable{
         }
         else{
             terminou = true;
+
             cmbClassificacao.setDisable(true);
             btnConfirmarClassificacao.setDisable(true);
             AlertsUI.criarAlerta(Alert.AlertType.CONFIRMATION,
@@ -240,6 +241,7 @@ public class SeriacaoManualColaboradorUI implements Initializable{
      */
     @FXML
     public void atribuirClassificacao(ActionEvent event) {
+
         btnConfirmarClassificacao.requestFocus();
     }
 
@@ -252,11 +254,9 @@ public class SeriacaoManualColaboradorUI implements Initializable{
     public void registarClassificacao(ActionEvent event) throws SQLException{
         int posicao = cmbClassificacao.getSelectionModel().getSelectedItem();
         int idCandidatura = tabelaClassificacao.getSelectionModel().getSelectedItem().getIdCandidatura();
-        Classificacao class = new Classificacao((posicao, idSeriacao, idCandidatura);
-        classificacoes.add(class);
         updateOpcoesClassificacao(posicao);
         updateTabelaCandidaturas(idCandidatura, posicao);
-        
+
         tabelaClassificacao.requestFocus();
     }
 
@@ -275,6 +275,10 @@ public class SeriacaoManualColaboradorUI implements Initializable{
             updateTabelaColaboradores(emailColabAdd);
         }
         tabelaColaboradores.requestFocus();
+    }
+
+    public TableView<TabelaFreelancerClassificacao> listaClassificada(){
+        return tabelaClassificacao;
     }
     
     /**

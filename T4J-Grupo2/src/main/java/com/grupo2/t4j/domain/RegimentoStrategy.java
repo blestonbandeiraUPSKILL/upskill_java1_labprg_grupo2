@@ -6,6 +6,7 @@
 package com.grupo2.t4j.domain;
 
 import java.sql.SQLException;
+import java.util.List;
 
 /**
  *
@@ -14,6 +15,8 @@ import java.sql.SQLException;
 public interface RegimentoStrategy {
 
     boolean seriar(int idAnuncio) throws SQLException;
+
+    boolean seriar(int idAnuncio, List<Classificacao> classificacoes) throws SQLException;
 
     boolean atribuir(int idAnuncio);
 
