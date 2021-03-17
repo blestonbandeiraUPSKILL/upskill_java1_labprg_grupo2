@@ -56,7 +56,7 @@ public class AreaActividadeTest {
         AreaActividade a1= new AreaActividade("1234", "Area", "AreaActividadeDescDetalhada");
              
     }
-    /*@Test (expected = AreaActividadeDuplicadaException.class)
+/*    @Test (expected = AreaActividadeDuplicadaException.class)
     public void testCriarAreaActividadeDuplicada() {
         
         AreaActividade a1= new AreaActividade("1234", "AreaActividade1", "AreaActividadeDescDetalhada");

@@ -201,6 +201,19 @@ entity "Rolename" {
     designacao: text {NN, UK}
 }
 
+entity "Atribuicao" {
+    idAtribuicao: text {PK}
+    --
+    nifOrganizacao: text {FK}
+    referenciaTarefa: text {FK}
+    emailFreelancer: text {FK}
+    dataInicioRealizacao: date
+    dataFimRealizacao: date
+    valor aceite: number
+    idAnuncio: number {FK}
+    dataAtribuicao: date
+}
+
 
 
 AreaActividade ||--|{ Categoria
@@ -231,5 +244,9 @@ ProcessoSeriacao ||--|{ ColaboradorSeriacao
 Colaborador ||--|{ ColaboradorSeriacao
 Utilizador }|--|| Rolename
 Utilizador ||--o| Session
+Atribuicao }|--|| Freelancer
+Atribuicao ||--o| Tarefa
+Atribuicao ||--o| Anuncio
+Atribuicao }|--|| Organizacao
 
 @enduml

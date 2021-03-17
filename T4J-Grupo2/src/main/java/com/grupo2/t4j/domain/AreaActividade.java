@@ -1,11 +1,13 @@
 package com.grupo2.t4j.domain;
 
+import com.grupo2.t4j.dto.AreaActividadeDTO;
+import com.grupo2.t4j.dto.DTO;
 import com.grupo2.t4j.exception.AreaActividadeDuplicadaException;
 
 import java.io.Serializable;
 import java.util.Objects;
 
-public class AreaActividade implements Serializable{
+public class AreaActividade implements Serializable, DTO {
     
 
 /**
@@ -151,5 +153,10 @@ public class AreaActividade implements Serializable{
     @Override
     public int hashCode() {
         return Objects.hash(codigo, descBreve, descDetalhada);
+    }
+
+    @Override
+    public Object toDTO() {
+        return new AreaActividadeDTO(codigo, descBreve, descDetalhada);
     }
 }

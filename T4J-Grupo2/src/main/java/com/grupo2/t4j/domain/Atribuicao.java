@@ -9,7 +9,12 @@ package com.grupo2.t4j.domain;
  *
  * @author acris
  */
-public class TarefaAtribuida extends Tarefa{
+public class Atribuicao {
     
+    private Tarefa tarefa;
+    private Freelancer freelancer;
+    
+    
+    //Falta acabar
     
 }
