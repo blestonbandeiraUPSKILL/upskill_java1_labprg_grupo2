@@ -30,7 +30,8 @@ public class SeriarAnuncioController {
     private RepositorioSeriacao repositorioSeriacao = fabricaRepositorios.getRepositorioSeriacao();
     private RepositorioTipoRegimento repositorioTipoRegimento = fabricaRepositorios.getRepositorioTipoRegimento();
     private RegimentoStrategy_1 regimentoStrategy_1;
-    
+    private RegimentoStrategy_2 regimentoStrategy_2;
+
     /**
      * 
      */
@@ -206,6 +207,25 @@ public class SeriarAnuncioController {
         }
         return sucesso;
     }
+
+    public boolean seriar(int idAnuncio, List<Classificacao> classificacoes) throws SQLException{
+        boolean sucesso = false;
+        int idRegimento = getAnuncio(idAnuncio).getIdTipoRegimento();
+        if (idRegimento == 2){
+            sucesso = regimentoStrategy_2.seriar(idAnuncio, classificacoes);
+        }
+        return sucesso;
+    }
+
+    public boolean seriar(int idAnuncio, List<Classificacao> classificacoes, List<String> colaboradores) throws SQLException{
+        boolean sucesso = false;
+        int idRegimento = getAnuncio(idAnuncio).getIdTipoRegimento();
+        if (idRegimento == 2){
+            sucesso = regimentoStrategy_2.seriar(idAnuncio, classificacoes, colaboradores);
+        }
+        return sucesso;
+    }
+
     /**
      * Salva uma lista de candidaturas ordenadas de um processo de seriação
      * @param candidaturasOrdenadas - lista de candidaturas

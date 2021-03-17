@@ -18,6 +18,8 @@ public interface RegimentoStrategy {
 
     boolean seriar(int idAnuncio, List<Classificacao> classificacoes) throws SQLException;
 
+    boolean seriar(int idAnuncio, List<Classificacao> classificacoes, List<String> colaboradores) throws SQLException;
+
     boolean atribuir(int idAnuncio);
 
 }
