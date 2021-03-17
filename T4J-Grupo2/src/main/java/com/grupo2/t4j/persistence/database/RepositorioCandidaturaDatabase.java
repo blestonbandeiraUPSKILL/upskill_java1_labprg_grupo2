@@ -163,7 +163,6 @@ public class RepositorioCandidaturaDatabase implements RepositorioCandidatura{
 
         return null;
 
-
     }
 
     /**

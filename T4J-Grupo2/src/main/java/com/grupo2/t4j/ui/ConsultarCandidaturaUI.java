@@ -100,7 +100,7 @@ public class ConsultarCandidaturaUI implements Initializable {
      */
     public void transferData() throws SQLException {
         int idCandidatura = freelancerLogadoUI.tabelaCandidaturas.getSelectionModel().getSelectedItem().getIdCandidatura();
-        Candidatura candidatura = new Candidatura(editarCandidaturaController.findById(idCandidatura));
+        Candidatura candidatura = editarCandidaturaController.findById(idCandidatura);
         txtApresentacao.setText(candidatura.getApresentacao());
         txtMotivacao.setText(candidatura.getMotivacao());
         txtValor.setText(String.valueOf(candidatura.getValorPretendido()));
@@ -194,7 +194,7 @@ public class ConsultarCandidaturaUI implements Initializable {
      */
     public int getIdAnuncio() throws SQLException {
         int idCandidatura = freelancerLogadoUI.tabelaCandidaturas.getSelectionModel().getSelectedItem().getIdCandidatura();
-        Candidatura candidatura = new Candidatura(editarCandidaturaController.findById(idCandidatura));
+        Candidatura candidatura = editarCandidaturaController.findById(idCandidatura);
         int idAnuncio = candidatura.getIdAnuncio();
 
         return idAnuncio;

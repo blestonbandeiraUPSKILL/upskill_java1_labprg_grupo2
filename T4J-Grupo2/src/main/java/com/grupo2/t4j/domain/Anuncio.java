@@ -1,11 +1,13 @@
 package com.grupo2.t4j.domain;
 
+import com.grupo2.t4j.dto.AnuncioDTO;
+import com.grupo2.t4j.dto.DTO;
 import com.grupo2.t4j.exception.DataInvalidaException;
 
 import java.io.Serializable;
 import java.util.Calendar;
 
-public class Anuncio implements Serializable {
+public class Anuncio implements Serializable, DTO {
     
     /**
      * O id do Anúncio
@@ -361,5 +363,12 @@ public class Anuncio implements Serializable {
                 dtFimPublicitacao, dtInicioCandidatura,
                 dtFimCandidatura, dtInicioSeriacao,
                 dtFimSeriacao, idTipoRegimento);
+    }
+
+    @Override
+    public Object toDTO() {
+        return new AnuncioDTO(idAnuncio, referenciaTarefa, nifOrganizacao,
+                dtInicioPublicitacao, dtFimPublicitacao, dtInicioCandidatura,
+                dtFimCandidatura, dtInicioSeriacao, dtFimSeriacao, idTipoRegimento);
     }
 }

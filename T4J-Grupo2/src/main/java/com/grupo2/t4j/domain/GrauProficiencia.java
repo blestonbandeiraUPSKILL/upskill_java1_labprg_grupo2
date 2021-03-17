@@ -5,6 +5,8 @@
  */
 package com.grupo2.t4j.domain;
 
+import com.grupo2.t4j.dto.DTO;
+import com.grupo2.t4j.dto.GrauProficienciaDTO;
 import com.grupo2.t4j.exception.CompetenciaTecnicaInexistenteException;
 import com.grupo2.t4j.exception.DescricaoInvalidaException;
 import com.grupo2.t4j.exception.GrauInvalidoException;
@@ -14,7 +16,7 @@ import com.grupo2.t4j.exception.GrauInvalidoException;
  * @author acris
  */
 
-public class GrauProficiencia {
+public class GrauProficiencia implements DTO {
 
     /**
      * O id do Grau de Proficiencia
@@ -174,4 +176,8 @@ public class GrauProficiencia {
     }
 
 
+    @Override
+    public Object toDTO() {
+        return new GrauProficienciaDTO();
+    }
 }

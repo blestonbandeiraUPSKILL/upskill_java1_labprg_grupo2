@@ -1,11 +1,5 @@
 package com.grupo2.t4j.dto;
 
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
-import com.grupo2.t4j.exception.IdInvalidoException;
-import com.grupo2.t4j.exception.NomeInvalidoException;
-
-
 public class AreaActividadeDTO {
 
     private String codigo;
