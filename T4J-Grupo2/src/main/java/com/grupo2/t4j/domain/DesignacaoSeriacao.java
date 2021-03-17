@@ -17,7 +17,6 @@ public enum DesignacaoSeriacao {
         }
     },     
     SERIACAO_SUBJETIVA_ATRIBUICAO_OPCIONAL{
-        
         @Override
         public String toString() {
             return "Seriação Subjetiva com Atribuição Opcional";

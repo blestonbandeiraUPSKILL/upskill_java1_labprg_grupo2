@@ -13,6 +13,7 @@ package com.grupo2.t4j.dto;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
+import com.grupo2.t4j.domain.Email;
 import com.grupo2.t4j.domain.Website;
 import com.grupo2.t4j.exception.NifInvalidoException;
 
@@ -40,65 +41,29 @@ public class OrganizacaoDTO {
     private String telefone;
     
     @JacksonXmlProperty(localName = "email")
-    private EmailDTO email;
+    private Email email;
 
     @JacksonXmlProperty(localName = "emailGestor")
-    private EmailDTO emailGestor;
+    private Email emailGestor;
 
 
     public OrganizacaoDTO () {
     }
 
     public OrganizacaoDTO(String nif, String nome, Website websiteOrg,
-                       String telefone, EmailDTO emailOrg, EmailDTO emailGestor, int idEnderecoPostal){
-        setNif(nif);
-        setNome(nome);
+                       String telefone, Email emailOrg, Email emailGestor, int idEnderecoPostal){
+        this.nif = nif;
+        this.nome = nome;
         if (websiteOrg instanceof Website) {
             this.website = websiteOrg;
         }
         else {
             this.website = new Website(Objects.requireNonNull(websiteOrg));
         }
-        setTelefone(telefone);
+        this.telefone = telefone;
         this.email = emailOrg;
         this.emailGestor = emailGestor;
         this.idEnderecoPostal = idEnderecoPostal;
-    }
-    
-    public final void setNome(String nome) {
-        if (nome == null || nome.trim().isEmpty()) {
-            throw new IllegalArgumentException("Nome é inválido!");
-        }
-        this.nome = nome;
-    }
-    
-    public void setNif(String nif) throws NifInvalidoException {
-        long numNif = Long.parseLong(nif);
-        if (numNif >= 100000000 && numNif <= 999999999) {
-            this.nif = nif;
-        } else {
-            throw new NifInvalidoException(nif + ": NIF inválido!");
-        }
-    }
-    
-    public void setEnderecoPostal(int idEnderecoPostal){
-        this.idEnderecoPostal = idEnderecoPostal;
-    }
-    
-    public void setWebsite(Website website){
-        this.website = website;
-    }
-    
-    public final void setTelefone(String telefone) {
-        int numero = Integer.parseInt(telefone);
-        if (numero < 100000000 || numero > 999999999) {
-            throw new IllegalArgumentException("Número é inválido!");
-        }
-        this.telefone = telefone;
-    }
-    
-    public final void setEmail(EmailDTO emailOrg){
-        this.email = emailOrg;
     }
 
     public String getNome() {
@@ -121,11 +86,11 @@ public class OrganizacaoDTO {
         return telefone;
     }
 
-    public EmailDTO getEmail() {
+    public Email getEmail() {
         return email;
     }
 
-    public EmailDTO getEmailGestor() {
+    public Email getEmailGestor() {
         return emailGestor;
     }
 }

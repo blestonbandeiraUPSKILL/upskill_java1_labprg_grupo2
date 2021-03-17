@@ -2,62 +2,24 @@ package com.grupo2.t4j.dto;
 
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
-
-@JsonPropertyOrder({"idCaracterizacao", "codigoCategoria", "codigoGP", "obrigatoriedade"})
+import com.grupo2.t4j.domain.Obrigatoriedade;
 
 public class CaracterizacaoCTDTO {
 
-    @JacksonXmlProperty(localName = "idCaracterizacao")
     private int idCaracterizacao;
-
-    @JacksonXmlProperty(localName = "codigoCategoria")
     private String codigoCategoria;
-
-    @JacksonXmlProperty(localName = "codigoGP")
     private int codigoGP;
-
-    @JacksonXmlProperty(localName = "obrigatoriedade")
-    private ObrigatoriedadeDTO obrigatoriedadeDTO;
+    private Obrigatoriedade obrigatoriedade;
 
     public CaracterizacaoCTDTO (){
     }
 
-    public CaracterizacaoCTDTO(CaracterizacaoCTDTO caracterizacaoCTDTO){
-        setIdCaracterizacao(caracterizacaoCTDTO.idCaracterizacao);
-        setCodigoCategoria(caracterizacaoCTDTO.codigoCategoria);
-        setCodigoGP(caracterizacaoCTDTO.codigoGP);
-        setObrigatoriedade(caracterizacaoCTDTO.obrigatoriedadeDTO);
-    }
-
-    public CaracterizacaoCTDTO(String codigoCategoria, int codigoGP,
-                               ObrigatoriedadeDTO obrigatoriedadeDTO) {
-        this.codigoCategoria = codigoCategoria;
-        this.codigoGP = codigoGP;
-        this.obrigatoriedadeDTO = obrigatoriedadeDTO;
-    }
-
     public CaracterizacaoCTDTO(int idCaracterizacao, String codigoCategoria,
-                            int codigoGP, ObrigatoriedadeDTO obrigatoriedadeDTO){
+                            int codigoGP, Obrigatoriedade obrigatoriedade){
         this.idCaracterizacao = idCaracterizacao;
-        setCodigoCategoria(codigoCategoria);
-        setCodigoGP(codigoGP);
-        setObrigatoriedade(obrigatoriedadeDTO);
-    }
-
-    public void setIdCaracterizacao(int idCaracterizacao) {
-        this.idCaracterizacao = idCaracterizacao;
-    }
-
-    public void setCodigoCategoria(String codigoCategoria) {
         this.codigoCategoria = codigoCategoria;
-    }
-
-    public void setCodigoGP(int codigoGP) {
         this.codigoGP = codigoGP;
-    }
-
-    public void setObrigatoriedade(ObrigatoriedadeDTO obrigatoriedadeDTO) {
-        this.obrigatoriedadeDTO = obrigatoriedadeDTO;
+        this.obrigatoriedade = obrigatoriedade;
     }
 
     public int getIdCaracterizacao() {
@@ -68,8 +30,8 @@ public class CaracterizacaoCTDTO {
         return codigoGP;
     }
 
-    public ObrigatoriedadeDTO getObrigatoriedade() {
-        return obrigatoriedadeDTO;
+    public Obrigatoriedade getObrigatoriedade() {
+        return obrigatoriedade;
     }
 
     public String getCodigoCategoria() {

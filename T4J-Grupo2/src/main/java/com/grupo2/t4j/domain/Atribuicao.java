@@ -11,8 +11,9 @@ package com.grupo2.t4j.domain;
  */
 public class Atribuicao {
     
-    private Tarefa tarefa;
-    private Freelancer freelancer;
+    private String nifOrganizacao;
+    private String refTarefa;
+
     
     
     //Falta acabar

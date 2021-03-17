@@ -104,7 +104,8 @@ public class ConsultarCandidaturaFreelancerColaboradorUI implements Initializabl
         String apresentacao = seriarAnuncioController.findById(idCandidatura).getApresentacao();
         String motivacao = seriarAnuncioController.findById(idCandidatura).getMotivacao();
         double custoAnuncio = registarTarefaController.findTarefa(idAnuncio).getCustoEst();
-        int duracaoAnuncio = registarTarefaController.findTarefa(idAnuncio).getDuracaoEst();int duracaoFreelancer = seriarAnuncioController.findById(idCandidatura).getNumeroDias();
+        int duracaoAnuncio = registarTarefaController.findTarefa(idAnuncio).getDuracaoEst();
+        int duracaoFreelancer = seriarAnuncioController.findById(idCandidatura).getNumeroDias();
 
         txtIdAnuncio.setText(Integer.toString(idAnuncio));
         txtIdCandidatura.setText(Integer.toString(idCandidatura));

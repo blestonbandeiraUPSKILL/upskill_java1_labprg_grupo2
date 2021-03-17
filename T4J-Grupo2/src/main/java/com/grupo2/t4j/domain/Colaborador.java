@@ -5,6 +5,9 @@
  */
 package com.grupo2.t4j.domain;
 
+import com.grupo2.t4j.dto.ColaboradorDTO;
+import com.grupo2.t4j.dto.DTO;
+
 import java.io.Serializable;
 import java.util.Comparator;
 
@@ -12,7 +15,7 @@ import java.util.Comparator;
  *
  * @author CAD
  */
-public class Colaborador extends Utilizador implements Serializable, Comparable<Colaborador>{
+public class Colaborador extends Utilizador implements Serializable, Comparable<Colaborador>, DTO {
     
     /**
      * A função do Colaborador da organização
@@ -191,7 +194,12 @@ public class Colaborador extends Utilizador implements Serializable, Comparable<
                 super.getNome(), super.getEmail().getEmailText(), funcao, telefone,
                 super.getRolename().toString());
     }
-    
+
+    @Override
+    public Object toDTO() {
+        return new ColaboradorDTO(email, nome, password, funcao,  telefone, nifOrganizacao);
+    }
+
     /**
      * Compara o email de dois colaboradores
      */

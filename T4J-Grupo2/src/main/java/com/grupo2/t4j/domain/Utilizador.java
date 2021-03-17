@@ -19,7 +19,7 @@ public class Utilizador implements Serializable{
     /**
      * O nome do Utilizador
      */
-    private String nome;
+    String nome;
     
     /**
      * O email do Utilizador
@@ -29,7 +29,7 @@ public class Utilizador implements Serializable{
     /**
      * A password do Utilizador
      */
-    private Password password;
+    Password password;
 
     /**
      * O papel do Utilizador

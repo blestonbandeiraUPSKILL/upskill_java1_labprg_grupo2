@@ -5,11 +5,14 @@
  */
 package com.grupo2.t4j.domain;
 
+import com.grupo2.t4j.dto.ClassificacaoDTO;
+import com.grupo2.t4j.dto.DTO;
+
 /**
  *
  * @author CAD
  */
-public class Classificacao implements Comparable<Classificacao>{
+public class Classificacao implements Comparable<Classificacao>, DTO {
     
     /**
      * O id da Classificação
@@ -180,5 +183,10 @@ public class Classificacao implements Comparable<Classificacao>{
             return -1;
         }
         return 0; 
+    }
+
+    @Override
+    public Object toDTO() {
+        return new ClassificacaoDTO(idClassificacao, posicao, idSeriacao, idCandidatura);
     }
 }
