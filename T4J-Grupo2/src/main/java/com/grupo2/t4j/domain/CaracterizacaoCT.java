@@ -5,13 +5,16 @@
  */
 package com.grupo2.t4j.domain;
 
+import com.grupo2.t4j.dto.CaracterizacaoCTDTO;
+import com.grupo2.t4j.dto.DTO;
+
 import java.io.Serializable;
 
 /**
  *
  * @author acris
  */
-public class CaracterizacaoCT implements Serializable{
+public class CaracterizacaoCT implements Serializable, DTO {
     
     private int idCaracterizacao;
 
@@ -172,5 +175,11 @@ public class CaracterizacaoCT implements Serializable{
         return String.format("Categoria: %s; Grau de Proficiencia: %s; "
                 + "Carácter: %s", codigoCategoria, codigoGP, obrigatoriedade.toString());
 
-    }   
+    }
+
+    @Override
+    public Object toDTO() {
+        return new CaracterizacaoCTDTO(idCaracterizacao, codigoCategoria, codigoGP, obrigatoriedade);
+
+    }
 }

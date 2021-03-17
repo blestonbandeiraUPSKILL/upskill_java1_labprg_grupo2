@@ -3,70 +3,30 @@ package com.grupo2.t4j.dto;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
-
-@JsonPropertyOrder({"nome", "email", "password", "rolename"})
-@JacksonXmlRootElement(localName = "utilizador")
+import com.grupo2.t4j.domain.Email;
+import com.grupo2.t4j.domain.Password;
 
 public class UtilizadorDTO {
 
-    @JacksonXmlProperty(localName = "nome")
     private String nome;
-
-    @JacksonXmlProperty(localName = "email")
-    private EmailDTO email;
-
-    @JacksonXmlProperty(localName = "password")
-    private PasswordDTO passwordDTO;
-
-    @JacksonXmlProperty(localName = "rolename")
+    private Email email;
+    private Password password;
     private String rolename;
 
     public UtilizadorDTO() {
     }
 
-    public UtilizadorDTO(EmailDTO email, String nome, PasswordDTO passwordDTO) {
-        this.nome = nome;
-        setEmail(email);
-        setPassword(passwordDTO);
-    }
-
-
-    public UtilizadorDTO(UtilizadorDTO utilizadorDTO) {
-        this.email = utilizadorDTO.getEmail();
-        this.nome = utilizadorDTO.getNome();
-        this.passwordDTO = utilizadorDTO.getPassword();
-        this.rolename = utilizadorDTO.getRolename();
-    }
-
-    public UtilizadorDTO(String emailUtilizador, String nome, String passwordDTO, String rolename) {
-        setEmail(new EmailDTO(emailUtilizador));
-        setNome(nome);
-        setPassword(new PasswordDTO(passwordDTO));
-        this.rolename = rolename;
-
-    }
-
-    public UtilizadorDTO(String nome, String email) {
-        setNome(nome);
-        setEmail(new EmailDTO(email));
-    }
-
-    public final void setNome(String nome){
-        if (nome == null || nome.trim().isEmpty()) {
-            throw new IllegalArgumentException("Nome é inválido!");
-        }
-        this.nome = nome;
-    }
-
-    public final void setEmail(EmailDTO email){
+    public UtilizadorDTO(Email email, String nome, Password password) {
         this.email = email;
+        this.nome = nome;
+        this.password = password;
     }
 
-    public final void setPassword(PasswordDTO passwordDTO){
-        this.passwordDTO = passwordDTO;
-    }
 
-    public void setRolename(String rolename){
+    public UtilizadorDTO(Email email, String nome, Password password, String rolename) {
+        this.email = email;
+        this.nome = nome;
+        this.password = password;
         this.rolename = rolename;
     }
 
@@ -74,12 +34,12 @@ public class UtilizadorDTO {
         return nome;
     }
 
-    public EmailDTO getEmail() {
+    public Email getEmail() {
         return email;
     }
 
-    public PasswordDTO getPassword() {
-        return passwordDTO;
+    public Password getPassword() {
+        return password;
     }
 
     public String getRolename() {
