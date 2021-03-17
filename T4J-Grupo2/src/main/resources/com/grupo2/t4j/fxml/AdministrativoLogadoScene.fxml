@@ -270,7 +270,10 @@
          <top>
             <FlowPane prefHeight="39.0" prefWidth="700.0" BorderPane.alignment="CENTER">
                <children>
-                  <Label fx:id="txt_email" styleClass="lblEmail" text="emailemailemail@email.pt" />
+                  <Label fx:id="txt_email" styleClass="lblEmail" text="emailemailemail@email.pt">
+                     <font>
+                        <Font name="System Italic" size="18.0" />
+                     </font></Label>
                </children></FlowPane>
          </top>
       </BorderPane>
