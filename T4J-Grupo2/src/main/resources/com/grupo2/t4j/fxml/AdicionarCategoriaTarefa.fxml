@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" styleClass="FlowPane" stylesheets="@../style/app.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.AdicionarCategoriaTarefaUI">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" styleClass="FlowPane" stylesheets="@../style/app.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.AdicionarCategoriaTarefaUI">
     <center>
         <BorderPane prefHeight="200.0" prefWidth="200.0" styleClass="FlowPane" BorderPane.alignment="CENTER">
             <top>
@@ -170,7 +171,7 @@
     </top>
    <left>
       <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-         <top>
+         <left>
             <BorderPane BorderPane.alignment="CENTER">
                <top>
                   <Label styleClass="lblEmail" text="emailemailemail@email.pt" BorderPane.alignment="CENTER">
@@ -180,7 +181,7 @@
                   </Label>
                </top>
             </BorderPane>
-         </top>
+         </left>
       </BorderPane>
    </left>
 </BorderPane>
