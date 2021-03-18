@@ -3,6 +3,7 @@ package com.grupo2.t4j.ui;
 import com.grupo2.t4j.controller.EditarCandidaturaController;
 import com.grupo2.t4j.controller.GestaoUtilizadoresController;
 import com.grupo2.t4j.controller.RegistarTarefaController;
+import com.grupo2.t4j.domain.Candidatura;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -98,12 +99,18 @@ public class ConsultarCandidaturaUI implements Initializable {
      * @throws SQLException 
      */
     public void transferData() throws SQLException {
-        txtApresentacao.setText(freelancerLogadoUI.tabelaCandidaturas.getSelectionModel().getSelectedItem().getApresentacao());
-        txtMotivacao.setText(freelancerLogadoUI.tabelaCandidaturas.getSelectionModel().getSelectedItem().getMotivacao());
-        txtValor.setText(String.valueOf(freelancerLogadoUI.tabelaCandidaturas.getSelectionModel().getSelectedItem().getValorPretendido()));
-        txtDias.setText(String.valueOf(freelancerLogadoUI.tabelaCandidaturas.getSelectionModel().getSelectedItem().getNumeroDias()));
+        int idCandidatura = freelancerLogadoUI.tabelaCandidaturas.getSelectionModel().getSelectedItem().getIdCandidatura();
+        String apresentacao = editarCandidaturaController.findById(idCandidatura).getApresentacao();
+        String motivacao = editarCandidaturaController.findById(idCandidatura).getMotivacao();
+        double valor = editarCandidaturaController.findById(idCandidatura).getValorPretendido();
+        int duracao = editarCandidaturaController.findById(idCandidatura).getNumeroDias();
+        String dataEdicao = editarCandidaturaController.findById(idCandidatura).getDataEdicaoCandidatura();
+        txtApresentacao.setText(apresentacao);
+        txtMotivacao.setText(motivacao);
+        txtValor.setText(String.valueOf(valor));
+        txtDias.setText(String.valueOf(duracao));
         txtAnuncio.setText(registarTarefaController.findTarefa(getIdAnuncio()).toStringCompleto());
-        txtDataEdicao.setText(freelancerLogadoUI.tabelaCandidaturas.getSelectionModel().getSelectedItem().getDataEdicaoCandidatura());
+        txtDataEdicao.setText(dataEdicao);
     }
 
     /**
@@ -190,7 +197,9 @@ public class ConsultarCandidaturaUI implements Initializable {
      * @throws SQLException 
      */
     public int getIdAnuncio() throws SQLException {
-        int idAnuncio = freelancerLogadoUI.tabelaCandidaturas.getSelectionModel().getSelectedItem().getIdAnuncio();
+        int idCandidatura = freelancerLogadoUI.tabelaCandidaturas.getSelectionModel().getSelectedItem().getIdCandidatura();
+        Candidatura candidatura = editarCandidaturaController.findById(idCandidatura);
+        int idAnuncio = candidatura.getIdAnuncio();
 
         return idAnuncio;
     }

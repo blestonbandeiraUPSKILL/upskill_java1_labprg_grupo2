@@ -10,6 +10,8 @@ package com.grupo2.t4j.domain;
  * @author CAD
  */
 
+import com.grupo2.t4j.dto.DTO;
+import com.grupo2.t4j.dto.FreelancerDTO;
 import com.grupo2.t4j.exception.NifInvalidoException;
 
 import java.io.Serializable;
@@ -18,7 +20,7 @@ import java.io.Serializable;
  *
  * @author carol
  */
-public class Freelancer extends Utilizador implements Serializable{
+public class Freelancer extends Utilizador implements Serializable, DTO {
     
     /**
      * O NIF do Freelancer
@@ -220,4 +222,8 @@ public class Freelancer extends Utilizador implements Serializable{
     }
 
 
+    @Override
+    public Object toDTO() {
+        return new FreelancerDTO(email, nome, password, nif, telefone, idEnderecoPostal);
+    }
 }

@@ -30,6 +30,7 @@ public class AdicionarAreaAtividadeUI implements Initializable {
     @FXML TextField txtCodigo;
     @FXML TextField txtDescricaoBreve;
     @FXML TextArea areaDescricaoDetalhada;
+    @FXML Label txt_email;
 
     /**
      * Associa a scene AdministrativoLogadoUI como parent desta Scene 

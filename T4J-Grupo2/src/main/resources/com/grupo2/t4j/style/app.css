@@ -82,6 +82,13 @@
     -fx-font-size:18;
 }
 
+.lblEmail {
+    -fx-background-color: #002f6c;
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size:12;
+    -fx-padding: 5;
+}
+
 .AnchorPane {
     -fx-background-color: #eceff1;
 }

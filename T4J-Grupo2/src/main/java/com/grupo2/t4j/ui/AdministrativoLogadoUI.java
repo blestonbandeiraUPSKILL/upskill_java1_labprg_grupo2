@@ -190,7 +190,7 @@ public class AdministrativoLogadoUI implements Initializable {
     }
 
     /**
-     * Navega para a pagina AdicionarCompetenciaTecnicaUI
+     * Navega para a página AdicionarCompetenciaTecnicaUI
      * @param actionEvent 
      */
     public void addCompetenciaTecnica(ActionEvent actionEvent) {

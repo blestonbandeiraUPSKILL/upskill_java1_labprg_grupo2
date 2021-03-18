@@ -6,12 +6,20 @@
   <component name="ChangeListManager">
     <list default="true" id="3bba2c4a-b637-44ac-9db7-677bd232f142" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documentação/Sprint 4/Dashboard Sprint4.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/Documentação/Sprint 4/Dashboard Sprint4.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/T4J-Grupo2/src/main/java/com/grupo2/t4j/domain/Atribuicao.java" beforeDir="false" afterPath="$PROJECT_DIR$/T4J-Grupo2/src/main/java/com/grupo2/t4j/domain/Atribuicao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/T4J-Grupo2/src/main/java/com/grupo2/t4j/ui/FreelancerLogadoUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/T4J-Grupo2/src/main/java/com/grupo2/t4j/ui/FreelancerLogadoUI.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />

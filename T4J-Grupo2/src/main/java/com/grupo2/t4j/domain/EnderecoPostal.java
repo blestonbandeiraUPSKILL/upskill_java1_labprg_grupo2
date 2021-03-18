@@ -10,13 +10,15 @@ package com.grupo2.t4j.domain;
  * @author CAD
  */
 
+import com.grupo2.t4j.dto.DTO;
+import com.grupo2.t4j.dto.EnderecoPostalDTO;
 import com.grupo2.t4j.exception.NomeInvalidoException;
 
 /**
  *
  * @author Geral
  */
-public class EnderecoPostal {
+public class EnderecoPostal implements DTO {
 
     /**
      * O código que identifica um endereço postal
@@ -229,6 +231,12 @@ public class EnderecoPostal {
             }
         }           
         return (eValidoP1 && eValidoP2);
+    }
+
+    @Override
+    public Object toDTO() {
+        return new EnderecoPostalDTO(idEnderecoPostal, arruamento,
+                numeroPorta, localidade, codigoPostal);
     }
 }
 
