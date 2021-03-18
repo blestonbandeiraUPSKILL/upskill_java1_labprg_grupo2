@@ -1,6 +1,7 @@
 package com.grupo2.t4j.persistence.database;
 
 import com.grupo2.t4j.domain.Candidatura;
+import com.grupo2.t4j.domain.Categoria;
 import com.grupo2.t4j.exception.CandidaturaDuplicadaException;
 import com.grupo2.t4j.persistence.RepositorioCandidatura;
 import com.grupo2.t4j.utils.DBConnectionHandler;
@@ -140,28 +141,41 @@ public class RepositorioCandidaturaDatabase implements RepositorioCandidatura{
     @Override
     public Candidatura findById(int idCandidatura) throws SQLException {
 
-
+        Candidatura candidatura = new Candidatura();
         Connection connection = DBConnectionHandler.getInstance().openConnection();
 
+        
         try {
-            CallableStatement callableStatement = connection.prepareCall(
-                    "{CALL findCandidaturaById(?)}");
+            PreparedStatement preparedStatement = connection.prepareStatement(
+                    "SELECT * FROM Candidatura WHERE idCandidatura LIKE ?"
+            );
 
-            connection.setAutoCommit(false);
+            preparedStatement.setInt(1, idCandidatura);
 
-            callableStatement.setInt(1, idCandidatura);
-            callableStatement.executeQuery();
+            ResultSet resultSet = preparedStatement.executeQuery();
 
-            return new Candidatura();
+            while (resultSet.next()) {
+                double valorPretendido = resultSet.getDouble(2);
+                int numeroDias = resultSet.getInt(3);
+                String apresentacao = resultSet.getString(4);
+                String motivacao = resultSet.getString(5);
+                int idAnuncio = resultSet.getInt(6);
+                String emailFreelancer = resultSet.getString(7);
+                String dataCandidatura = resultSet.getString(8);
+                String dataEdicao = resultSet.getString(9);
 
-        } catch (SQLException exceptionOrg) {
+                candidatura = new Candidatura (idCandidatura, valorPretendido, numeroDias, apresentacao,
+                        motivacao, idAnuncio,emailFreelancer, dataCandidatura, dataEdicao);
+
+            }
+        }catch (SQLException exceptionOrg) {
             exceptionOrg.printStackTrace();
             exceptionOrg.getSQLState();
         } finally {
             DBConnectionHandler.getInstance().closeAll();
         }
 
-        return null;
+        return candidatura;
 
     }
 
