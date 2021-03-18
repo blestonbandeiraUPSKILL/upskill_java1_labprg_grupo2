@@ -39,6 +39,7 @@ public class AdicionarCategoriaTarefaUI implements Initializable {
     private RegistarCaracterizacaoCTController registarCaracterizacaoCTController;
     private GestaoUtilizadoresController gestaoUtilizadoresController;
     private List<CaracterizacaoCT> caracterizacaoCTS;
+    private GestaoUtilizadoresController gestaoUtilizadoresController;
 
     @FXML TextField txtDescricaoBreve;
     @FXML TextField txtCodigoCategoria;
@@ -72,6 +73,7 @@ public class AdicionarCategoriaTarefaUI implements Initializable {
         registarAreaActividadeController = new RegistarAreaActividadeController();
         registarCategoriaController = new RegistarCategoriaController();
         registarCompetenciaTecnicaController = new RegistarCompetenciaTecnicaController();
+        gestaoUtilizadoresController = new GestaoUtilizadoresController();
         try {
             registarGrauProficienciaController = new RegistarGrauProficienciaController();
         } catch (SQLException exception) {

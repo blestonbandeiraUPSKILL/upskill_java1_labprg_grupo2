@@ -144,7 +144,7 @@ public class RepositorioCandidaturaDatabase implements RepositorioCandidatura{
         Candidatura candidatura = new Candidatura();
         Connection connection = DBConnectionHandler.getInstance().openConnection();
 
-        
+
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(
                     "SELECT * FROM Candidatura WHERE idCandidatura LIKE ?"
