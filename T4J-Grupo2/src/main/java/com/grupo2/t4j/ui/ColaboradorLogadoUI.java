@@ -53,6 +53,8 @@ public class ColaboradorLogadoUI implements Initializable {
     @FXML Button btnConsultarCandidaturaFreelancer;    
     @FXML Button btnSeriacaoAutomatica;
     @FXML Button btnSeriacaoManual;
+    @FXML Button btnConsultarAtribuicao;
+
     @FXML TextField txtDataSeriacao;
     
     @FXML TableView<Tarefa> tabelaTarefas;
@@ -68,6 +70,13 @@ public class ColaboradorLogadoUI implements Initializable {
     @FXML TableColumn<Object, Object> colunaEmail;
     @FXML TableColumn<Object, Object> colunaDuracaoFree;
     @FXML TableColumn<Object, Object> colunaCustoFree;
+
+    @FXML TableView<TabelaConsultaAtribuicao>  tabelaAtribuicoes;
+    @FXML TableColumn<Object, Object> colunaRefTarefa;
+    @FXML TableColumn<Object, Object> colunaFreelancer;
+    @FXML TableColumn<Object, Object> colunaCodAtribuicao;
+    @FXML TableColumn<Object, Object> colunaDataAtribuicao;
+
     
     /**
      * Associa a scene StartingPageUI como parent desta Scene 
@@ -566,6 +575,10 @@ public class ColaboradorLogadoUI implements Initializable {
                     "Erro",
                     exception.getMessage());
         }
+    }
+
+    public void consultarAtribuicao(ActionEvent event){
+
     }
 
     /**

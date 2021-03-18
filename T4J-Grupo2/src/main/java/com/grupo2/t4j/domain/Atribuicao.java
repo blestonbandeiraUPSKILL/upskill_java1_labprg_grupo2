@@ -10,18 +10,24 @@ package com.grupo2.t4j.domain;
  * @author CAD
  */
 public class Atribuicao {
-    
+
+    private int idAtribuicao;
     private String nifOrganizacao;
-    private String emailGestor;
     private String refTarefa;
-    private String idAtribuicao;
-    private double valorAceito;
-    private String dataAtribuicao;
-    private String dataInicioTarefa;
-    private int numDiasAceito;
     private int idAnuncio;
     private int idCandidatura;
     private String emailFreelancer;
+    private double valorAceito;
+    private int numDiasAceito;
+    private String codigoAtribuicao;
+    private String dataAtribuicao;
+    private String dataInicioTarefa;
+    private String dataFimTarefa;
+
+
+
+
+
 
 
     
