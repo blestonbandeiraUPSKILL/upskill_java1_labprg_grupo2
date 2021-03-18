@@ -144,19 +144,7 @@ public class RepositorioCandidaturaDatabase implements RepositorioCandidatura{
         Candidatura candidatura = new Candidatura();
         Connection connection = DBConnectionHandler.getInstance().openConnection();
 
-        /*try {
-            CallableStatement callableStatement = connection.prepareCall(
-                    "{CALL findCandidaturaById(?)}");
-
-            connection.setAutoCommit(false);
-
-            callableStatement.setInt(1, idCandidatura);
-            callableStatement.executeQuery();
-
-            return new Candidatura();
-
-        }*/
-
+        
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(
                     "SELECT * FROM Candidatura WHERE idCandidatura LIKE ?"
@@ -167,16 +155,17 @@ public class RepositorioCandidaturaDatabase implements RepositorioCandidatura{
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
-                double valorPretendido = resultSet.getDouble(1);
-                int numeroDias = resultSet.getInt(2);
-                String apresentacao = resultSet.getString(3);
-                String motivacao = resultSet.getString(4);
-                int idAnuncio = resultSet.getInt(5);
-                String emailFreelancer = resultSet.getString(6);
-                String dataCandidatura = resultSet.getString(7);
+                double valorPretendido = resultSet.getDouble(2);
+                int numeroDias = resultSet.getInt(3);
+                String apresentacao = resultSet.getString(4);
+                String motivacao = resultSet.getString(5);
+                int idAnuncio = resultSet.getInt(6);
+                String emailFreelancer = resultSet.getString(7);
+                String dataCandidatura = resultSet.getString(8);
+                String dataEdicao = resultSet.getString(9);
 
                 candidatura = new Candidatura (idCandidatura, valorPretendido, numeroDias, apresentacao,
-                        motivacao, idAnuncio,emailFreelancer, dataCandidatura);
+                        motivacao, idAnuncio,emailFreelancer, dataCandidatura, dataEdicao);
 
             }
         }catch (SQLException exceptionOrg) {
