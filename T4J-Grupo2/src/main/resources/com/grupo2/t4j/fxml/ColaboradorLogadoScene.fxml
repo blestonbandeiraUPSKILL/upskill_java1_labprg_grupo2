@@ -117,17 +117,17 @@
                      <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="AnchorPane">
                            <children>
-                              <VBox alignment="CENTER" layoutX="560.0" layoutY="201.0" prefHeight="342.0" prefWidth="700.0" AnchorPane.bottomAnchor="43.0" AnchorPane.rightAnchor="0.0">
+                              <VBox alignment="CENTER" layoutX="560.0" layoutY="201.0" prefHeight="342.0" prefWidth="700.0" AnchorPane.bottomAnchor="45.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <children>
-                                    <TableView fx:id="tabelaAtribuicoes" prefHeight="267.0" prefWidth="660.0">
+                                    <TableView fx:id="tabelaAtribuicoes" prefHeight="265.0" prefWidth="660.0">
                                       <columns>
-                                        <TableColumn fx:id="colunaRefTarefa" prefWidth="89.0" text="Referência" />
-                                        <TableColumn fx:id="colunaFreelancer" prefWidth="340.0" text="Freelancer selecionado" />
-                                          <TableColumn fx:id="colunaCodAtribuicao" prefWidth="114.0" text="Código Atribuição" />
-                                          <TableColumn fx:id="colunaDataAtribuicao" prefWidth="116.0" text="Data de Atribuição" />
+                                        <TableColumn fx:id="colunaRefTarefa" prefWidth="90.0" text="Referência" />
+                                        <TableColumn fx:id="colunaFreelancer" prefWidth="310.0" text="Freelancer selecionado" />
+                                          <TableColumn fx:id="colunaDataAtribuicao" prefWidth="135.0" text="Data de Atribuição" />
+                                          <TableColumn fx:id="colunaCodAtribuicao" prefWidth="125.0" text="Código da Atribuição" />
                                       </columns>
                                        <VBox.margin>
-                                          <Insets left="20.0" right="20.0" top="60.0" />
+                                          <Insets left="20.0" right="20.0" top="50.0" />
                                        </VBox.margin>
                                     </TableView>
                                  </children>

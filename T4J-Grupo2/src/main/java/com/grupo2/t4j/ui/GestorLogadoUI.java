@@ -55,7 +55,11 @@ public class GestorLogadoUI implements Initializable {
     @FXML Button btnConsultarCandidaturaFreelancer;
     @FXML Button btnSeriacaoAutomatica;
     @FXML Button btnSeriacaoManual;
+    @FXML Button btnAtribuicao;
+    @FXML Button btnMudarData;
+
     @FXML TextField txtDataSeriacao;
+    @FXML TextField txtDataInTarefa;
 
     @FXML TableView<Tarefa> tabelaTarefas;
     @FXML TableColumn<Object, Object> colunaReferencia;
@@ -77,6 +81,15 @@ public class GestorLogadoUI implements Initializable {
     @FXML TableColumn<Object, Object> colunaNome;
     @FXML TableColumn<Object, Object> colunaTelefone;
     @FXML TableColumn<Object, Object> colunaFuncao;
+
+    //TableView Atribuições
+    @FXML TableView<TabelaConsultaAtribuicao> tabelaAtribuicoes;
+    @FXML TableColumn<Object, Object> colunaRefTarefa;
+    @FXML TableColumn<Object, Object> colunaFreelancer;
+    @FXML TableColumn<Object, Object> colunaDataAtribuicao;
+    @FXML TableColumn<Object, Object> colunaCodAtribuicao;
+    @FXML TableColumn<Object, Object> colunaDataInicioTarefa;
+
 
      
     /**
@@ -668,6 +681,16 @@ public class GestorLogadoUI implements Initializable {
                     "Erro",
                     exception.getMessage());
         }
+    }
+
+    @FXML
+    public void mudarData(ActionEvent actionEvent){
+
+    }
+
+    @FXML
+    public void registarAtribuicao (ActionEvent actionEvent) {
+
     }
 
     /**

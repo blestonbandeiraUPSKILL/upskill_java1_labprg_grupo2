@@ -9,7 +9,7 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" styleClass="BorderPane" stylesheets="@../style/app.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.GestorLogadoUI">
     <top>
-        <Label alignment="CENTER_RIGHT" styleClass="lblUser" text="Bem-vindo à Área do Colaborador" textFill="WHITE" BorderPane.alignment="CENTER_RIGHT">
+        <Label alignment="CENTER_RIGHT" styleClass="lblUser" text="Bem-vindo à Área do Gestor" textFill="WHITE" BorderPane.alignment="CENTER_RIGHT">
             <font>
                 <Font name="Calibri" size="18.0" />
             </font>
@@ -140,16 +140,26 @@
                      <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="AnchorPane">
                            <children>
-                              <VBox alignment="CENTER" layoutX="560.0" layoutY="201.0" AnchorPane.bottomAnchor="45.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                              <VBox alignment="CENTER" layoutX="560.0" layoutY="201.0" prefHeight="303.0" prefWidth="700.0" AnchorPane.bottomAnchor="74.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <children>
-                                    <TableView prefHeight="270.0" prefWidth="559.0">
+                                    <TableView fx:id="tabelaAtribuições" prefHeight="260.0" prefWidth="559.0">
                                       <columns>
-                                        <TableColumn prefWidth="75.0" text="C1" />
-                                        <TableColumn prefWidth="483.0" text="C2" />
+                                          <TableColumn fx:id="colunaRefTarefa" prefWidth="90.0" text="Referência" />
+                                          <TableColumn fx:id="colunaFreelancer" prefWidth="221.0" text="Freelancer indicado na seriação" />
+                                        <TableColumn fx:id="colunaDataAtribuicao" prefWidth="115.0" text="Data da Atribuição" />
+                                        <TableColumn fx:id="colunaCodAtribuicao" prefWidth="132.0" text="Código da Atribuição" />
+                                          <TableColumn fx:id="colunaDataInicioTarefa" prefWidth="107.0" text="Início da Tarefa" />
                                       </columns>
+                                       <VBox.margin>
+                                          <Insets bottom="20.0" left="20.0" right="20.0" top="30.0" />
+                                       </VBox.margin>
                                     </TableView>
                                  </children>
                               </VBox>
+                              <Button fx:id="btnAtribuicao" layoutX="14.0" layoutY="336.0" mnemonicParsing="false" onAction="#registarAtribuicao" styleClass="btnConfirmar" text="Realizar Atribuição" />
+                              <Label layoutX="25.0" layoutY="303.0" text="Modificar data de Início da Tarefa:" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="20.0" />
+                              <TextField fx:id="txtDataInTarefa" layoutX="224.0" layoutY="299.0" prefHeight="25.0" prefWidth="120.0" AnchorPane.bottomAnchor="55.0" AnchorPane.leftAnchor="220.0" />
+                              <Button fx:id="btnMudarData" layoutX="377.0" layoutY="295.0" mnemonicParsing="false" onAction="#mudarData" styleClass="btnConfirmar" text="Confirmar data" AnchorPane.bottomAnchor="55.0" />
                            </children>
                         </AnchorPane>
                      </content>
