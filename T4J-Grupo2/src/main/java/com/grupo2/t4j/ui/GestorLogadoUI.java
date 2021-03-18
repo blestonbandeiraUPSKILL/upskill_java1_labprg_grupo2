@@ -43,6 +43,7 @@ public class GestorLogadoUI implements Initializable {
     private Scene sceneConsultarAnuncio;
     private Scene sceneConsultarCandidatura;
     private Scene sceneSeriacaoManual;
+    private Scene sceneConsultarAtribuicaoGestor;
     private int idAnuncio;
 
     @FXML Button btnLogout;
@@ -56,6 +57,7 @@ public class GestorLogadoUI implements Initializable {
     @FXML Button btnSeriacaoAutomatica;
     @FXML Button btnSeriacaoManual;
     @FXML Button btnAtribuicao;
+    @FXML Button btnConsultarAtribuicao;
     @FXML Button btnMudarData;
 
     @FXML TextField txtDataSeriacao;
@@ -691,6 +693,30 @@ public class GestorLogadoUI implements Initializable {
     @FXML
     public void registarAtribuicao (ActionEvent actionEvent) {
 
+    }
+
+    @FXML
+    public void consultarAtribuicao (ActionEvent actionEvent) {
+        try {
+            FXMLLoader loaderConsultarAtribuicaoGestor = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/ConsultarAtribuicaoGestorScene.fxml"));
+            Parent rootConsultarAtribuicaoGestor = loaderConsultarAtribuicaoGestor.load();
+            sceneConsultarAtribuicaoGestor = new Scene(rootConsultarAtribuicaoGestor);
+            ConsultarAtribuicaoGestorUI consultarAtribuicaoGestorUI = loaderConsultarAtribuicaoGestor.getController();
+            consultarAtribuicaoGestorUI.associarParentUI(this);
+            consultarAtribuicaoGestorUI.transferData();
+
+            adicionarStage.setScene(sceneConsultarAtribuicaoGestor);
+            adicionarStage.setTitle("Consultar Atribuição");
+            adicionarStage.show();
+
+        } catch (IOException exception) {
+
+            exception.printStackTrace();
+            AlertsUI.criarAlerta(Alert.AlertType.ERROR,
+                    MainApp.TITULO_APLICACAO,
+                    "Erro",
+                    exception.getMessage());
+        }
     }
 
     /**
