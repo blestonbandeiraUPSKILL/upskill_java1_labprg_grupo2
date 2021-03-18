@@ -42,6 +42,7 @@ public class ColaboradorLogadoUI implements Initializable {
     private Scene sceneConsultarAnuncio;
     private Scene sceneConsultarCandidatura;
     private Scene sceneSeriacaoManual;
+    private Scene sceneConsultarAtribuicao;
     private int idAnuncio;
 
     @FXML Button btnLogout;
@@ -53,6 +54,8 @@ public class ColaboradorLogadoUI implements Initializable {
     @FXML Button btnConsultarCandidaturaFreelancer;    
     @FXML Button btnSeriacaoAutomatica;
     @FXML Button btnSeriacaoManual;
+    @FXML Button btnConsultarAtribuicao;
+
     @FXML TextField txtDataSeriacao;
     
     @FXML TableView<Tarefa> tabelaTarefas;
@@ -68,6 +71,13 @@ public class ColaboradorLogadoUI implements Initializable {
     @FXML TableColumn<Object, Object> colunaEmail;
     @FXML TableColumn<Object, Object> colunaDuracaoFree;
     @FXML TableColumn<Object, Object> colunaCustoFree;
+
+    @FXML TableView<TabelaConsultaAtribuicao>  tabelaAtribuicoes;
+    @FXML TableColumn<Object, Object> colunaRefTarefa;
+    @FXML TableColumn<Object, Object> colunaFreelancer;
+    @FXML TableColumn<Object, Object> colunaCodAtribuicao;
+    @FXML TableColumn<Object, Object> colunaDataAtribuicao;
+
     
     /**
      * Associa a scene StartingPageUI como parent desta Scene 
@@ -559,6 +569,29 @@ public class ColaboradorLogadoUI implements Initializable {
             adicionarStage.show();
 
         } catch (IOException | SQLException exception) {
+
+            exception.printStackTrace();
+            AlertsUI.criarAlerta(Alert.AlertType.ERROR,
+                    MainApp.TITULO_APLICACAO,
+                    "Erro",
+                    exception.getMessage());
+        }
+    }
+
+    public void consultarAtribuicao(ActionEvent event){
+        try {
+            FXMLLoader loaderConsultarAtribuicao = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/ConsultarAtribuicaoColaboradorScene.fxml"));
+            Parent rootConsultarAtribuicao = loaderConsultarAtribuicao.load();
+            sceneConsultarAtribuicao = new Scene(rootConsultarAtribuicao);
+            ConsultarAtribuicaoColaboradorUI consultarAtribuicaoColaboradorUI = loaderConsultarAtribuicao.getController();
+            consultarAtribuicaoColaboradorUI.associarParentUI(this);
+            consultarAtribuicaoColaboradorUI.transferData();
+
+            adicionarStage.setScene(sceneConsultarAtribuicao);
+            adicionarStage.setTitle("Consultar Atribuição");
+            adicionarStage.show();
+
+        } catch (IOException exception) {
 
             exception.printStackTrace();
             AlertsUI.criarAlerta(Alert.AlertType.ERROR,
