@@ -39,6 +39,17 @@ public class RegimentoStrategy_1 implements RegimentoStrategy{
         }
         return false;
     }
+
+    @Override
+    public boolean seriar(int idAnuncio, List<Classificacao> classificacoes) throws SQLException{
+        return false;
+    }
+
+    @Override
+    public boolean seriar(int idAnuncio, List<Classificacao> classificacoes, List<String> colaboradores) throws SQLException{
+        return false;
+    }
+
     
     public boolean saveClassificacaoAutomatica(List<Candidatura> candidaturas, int idSeriacao) throws SQLException{
         int posicao = 1;

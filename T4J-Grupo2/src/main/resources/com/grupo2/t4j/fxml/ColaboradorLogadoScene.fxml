@@ -118,6 +118,30 @@
                         </AnchorPane>
                      </content>
                   </Tab>
+                  <Tab text="Consultar Atribuições">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="AnchorPane">
+                           <children>
+                              <VBox alignment="CENTER" layoutX="560.0" layoutY="201.0" prefHeight="342.0" prefWidth="700.0" AnchorPane.bottomAnchor="43.0" AnchorPane.rightAnchor="0.0">
+                                 <children>
+                                    <TableView fx:id="tabelaAtribuicoes" prefHeight="267.0" prefWidth="660.0">
+                                      <columns>
+                                        <TableColumn fx:id="colunaRefTarefa" prefWidth="89.0" text="Referência" />
+                                        <TableColumn fx:id="colunaFreelancer" prefWidth="340.0" text="Freelancer selecionado" />
+                                          <TableColumn fx:id="colunaCodAtribuicao" prefWidth="114.0" text="Código Atribuição" />
+                                          <TableColumn fx:id="colunaDataAtribuicao" prefWidth="116.0" text="Data de Atribuição" />
+                                      </columns>
+                                       <VBox.margin>
+                                          <Insets left="20.0" right="20.0" top="60.0" />
+                                       </VBox.margin>
+                                    </TableView>
+                                 </children>
+                              </VBox>
+                              <Button fx:id="btnConsultarAtribuicao" layoutX="20.0" layoutY="334.0" mnemonicParsing="false" onAction="#consultarAtribuicao" text="Consultar detalhes da Atribuição" AnchorPane.bottomAnchor="5.0" />
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </Tab>
                </tabs>
             </TabPane>
          </center>
