@@ -2,11 +2,13 @@ package com.grupo2.t4j.controller;
 
 import com.grupo2.t4j.domain.CaracterizacaoCT;
 import com.grupo2.t4j.domain.Obrigatoriedade;
+import com.grupo2.t4j.dto.CaracterizacaoCTDTO;
 import com.grupo2.t4j.persistence.FabricaRepositorios;
 import com.grupo2.t4j.persistence.RepositorioCaracterizacaoCT;
 import com.grupo2.t4j.persistence.database.FabricaRepositoriosDatabase;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class RegistarCaracterizacaoCTController {
@@ -28,8 +30,14 @@ public class RegistarCaracterizacaoCTController {
      * Devolve uma lista de todas as caracterizacoesCT
      * @return 
      */
-    public List<CaracterizacaoCT> getAll() {
-        return repositorioCaracterizacaoCT.getAll();
+    public List<CaracterizacaoCTDTO> getAll() {
+        List<CaracterizacaoCT> caracterizacaoCT = repositorioCaracterizacaoCT.getAll();
+        List<CaracterizacaoCTDTO> caracterizacaoCTDTO = new ArrayList<>();
+
+        for(CaracterizacaoCT cct : caracterizacaoCT) {
+            caracterizacaoCTDTO.add((CaracterizacaoCTDTO) cct.toDTO());
+        }
+        return caracterizacaoCTDTO;
     }
 
        /**
@@ -52,8 +60,9 @@ public class RegistarCaracterizacaoCTController {
      * @param codigoCCT
      * @return 
      */
-    public CaracterizacaoCT findByCodigo(int codigoCCT) {
-        return repositorioCaracterizacaoCT.findByCodigo(codigoCCT);
+    public CaracterizacaoCTDTO findByCodigo(int codigoCCT) {
+        CaracterizacaoCT caracterizacaoCT = repositorioCaracterizacaoCT.findByCodigo(codigoCCT);
+        return (CaracterizacaoCTDTO) caracterizacaoCT.toDTO();
     }
 
     /**
@@ -62,7 +71,13 @@ public class RegistarCaracterizacaoCTController {
      * @return
      * @throws SQLException 
      */
-    public List<CaracterizacaoCT> getAllByCategoria(String codigoCategoria) throws SQLException {
-        return repositorioCaracterizacaoCT.getAllByCategoria(codigoCategoria);
+    public List<CaracterizacaoCTDTO> getAllByCategoria(String codigoCategoria) throws SQLException {
+        List<CaracterizacaoCT> caracterizacaoCT = repositorioCaracterizacaoCT.getAllByCategoria(codigoCategoria);
+        List<CaracterizacaoCTDTO> caracterizacaoCTDTO = new ArrayList<>();
+
+        for (CaracterizacaoCT cct : caracterizacaoCT) {
+            caracterizacaoCTDTO.add((CaracterizacaoCTDTO) cct.toDTO());
+        }
+        return caracterizacaoCTDTO;
     }
 }

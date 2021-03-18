@@ -2,6 +2,8 @@ package com.grupo2.t4j.ui;
 
 import com.grupo2.t4j.controller.*;
 import com.grupo2.t4j.domain.*;
+import com.grupo2.t4j.dto.CaracterizacaoCTDTO;
+import com.grupo2.t4j.dto.CompetenciaTecnicaDTO;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -45,8 +47,8 @@ public class AdicionarCategoriaTarefaUI implements Initializable {
     @FXML ComboBox<AreaActividade> cmbAreaActividade;
     @FXML ComboBox<GrauProficiencia> cmbGrauProficiencia;
     @FXML ComboBox<Obrigatoriedade> cmbObrigatoriedade;
-    @FXML ComboBox<CompetenciaTecnica> cmbCompetenciaTecnica;
-    @FXML ListView<CaracterizacaoCT> listViewCompTecCat;
+    @FXML ComboBox<CompetenciaTecnicaDTO> cmbCompetenciaTecnica;
+    @FXML ListView<CaracterizacaoCTDTO> listViewCompTecCat;
 
     /**
      * Associa a scene AdministrativoLogadoUI como parent desta Scene 

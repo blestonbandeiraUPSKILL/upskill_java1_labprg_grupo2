@@ -82,9 +82,7 @@ public class AdicionarFreelancerUI implements Initializable {
                     txtCodPostalFreelancer.getText().trim());
 
             if (adicionou) {
-                txtPassFreelancer.setText(
-                        registarFreelancerController.findPassword(
-                                txtEmailFreelancer.getText()).getPasswordText());
+                txtPassFreelancer.setText(registarFreelancerController.findPassword(txtEmailFreelancer.getText()).toString());
 
                 btnAddFreelancer.setDisable(true);
                 btnAddFreelancer.disabledProperty();

@@ -10,9 +10,11 @@ package com.grupo2.t4j.domain;
  * @author CAD
  */
 
+import com.grupo2.t4j.dto.DTO;
+import com.grupo2.t4j.dto.PasswordDTO;
 import com.grupo2.t4j.exception.PasswordInvalidaException;
 
-public class  Password {
+public class Password implements DTO {
 
     /**
      * A password
@@ -80,5 +82,10 @@ public class  Password {
         return "Password{" +
                 "password='" + password + '\'' +
                 '}';
+    }
+
+    @Override
+    public Object toDTO() {
+        return new PasswordDTO(password);
     }
 }

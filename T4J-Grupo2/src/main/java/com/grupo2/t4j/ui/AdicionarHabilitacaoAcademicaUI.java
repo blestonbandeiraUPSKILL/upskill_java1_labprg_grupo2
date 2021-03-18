@@ -4,6 +4,8 @@ import com.grupo2.t4j.controller.RegistarFreelancerController;
 import com.grupo2.t4j.controller.RegistarHabilitacaoAcademicaController;
 import com.grupo2.t4j.domain.Freelancer;
 import com.grupo2.t4j.domain.HabilitacaoAcademica;
+import com.grupo2.t4j.dto.FreelancerDTO;
+import com.grupo2.t4j.dto.HabilitacaoAcademicaDTO;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -34,7 +36,7 @@ public class AdicionarHabilitacaoAcademicaUI implements Initializable {
     @FXML TextField txtDesignacao;
     @FXML TextField txtInstituicao;
     @FXML TextField txtMedia;
-    @FXML ComboBox<Freelancer> cmbEmailFreelancer;
+    @FXML ComboBox<FreelancerDTO> cmbEmailFreelancer;
     @FXML Button btnAddHabilitacao;
     @FXML Button btnCancelar;
     @FXML Button btnSair;
@@ -44,7 +46,7 @@ public class AdicionarHabilitacaoAcademicaUI implements Initializable {
     @FXML TableColumn<Object, Object> txtDesignacaoCurso;
     @FXML TableColumn<Object, Object> txtMediaCurso;
     @FXML TableColumn<Object, Object> txtInstituicaoEnsino;
-    @FXML TableView<HabilitacaoAcademica> tabelaHabilitacao;
+    @FXML TableView<HabilitacaoAcademicaDTO> tabelaHabilitacao;
 
     /**
      * Associa a scene AdministrativoLogadoUI como parent desta Scene 

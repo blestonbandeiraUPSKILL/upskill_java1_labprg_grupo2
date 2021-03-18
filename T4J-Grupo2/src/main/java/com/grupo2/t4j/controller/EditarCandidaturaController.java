@@ -1,6 +1,7 @@
 package com.grupo2.t4j.controller;
 
 import com.grupo2.t4j.domain.Candidatura;
+import com.grupo2.t4j.dto.CandidaturaDTO;
 import com.grupo2.t4j.persistence.FabricaRepositorios;
 import com.grupo2.t4j.persistence.RepositorioCandidatura;
 import com.grupo2.t4j.persistence.database.FabricaRepositoriosDatabase;
@@ -45,8 +46,9 @@ public class EditarCandidaturaController {
         return repositorioCandidatura.getAllCandidaturasEditaveis(emailFreelancer);
     }
 
-    public Candidatura findById(int idCandidatura) throws SQLException{
-        return repositorioCandidatura.findById(idCandidatura);
+    public CandidaturaDTO findById(int idCandidatura) throws SQLException{
+        Candidatura candidatura = repositorioCandidatura.findById(idCandidatura);
+        return (CandidaturaDTO) candidatura.toDTO();
     }
 
 }

@@ -6,6 +6,7 @@ import com.grupo2.t4j.controller.RegistarTarefaController;
 import com.grupo2.t4j.controller.SeriarAnuncioController;
 import com.grupo2.t4j.domain.HabilitacaoAcademica;
 import com.grupo2.t4j.domain.ReconhecimentoGP;
+import com.grupo2.t4j.dto.HabilitacaoAcademicaDTO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -55,7 +56,7 @@ public class ConsultarCandidaturaFreelancerColaboradorUI implements Initializabl
     @FXML TableColumn<Object, Object> txtDesignacaoCurso;
     @FXML TableColumn<Object, Object> txtMedia;
     @FXML TableColumn<Object, Object> txtInstituicao;
-    @FXML TableView<HabilitacaoAcademica> tabelaHabilitacao;
+    @FXML TableView<HabilitacaoAcademicaDTO> tabelaHabilitacao;
 
     
     /**

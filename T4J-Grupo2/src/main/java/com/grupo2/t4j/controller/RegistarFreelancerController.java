@@ -2,11 +2,13 @@ package com.grupo2.t4j.controller;
 
 import com.grupo2.t4j.api.UsersAPI;
 import com.grupo2.t4j.domain.*;
+import com.grupo2.t4j.dto.*;
 import com.grupo2.t4j.persistence.FabricaRepositorios;
 import com.grupo2.t4j.persistence.RepositorioFreelancer;
 import com.grupo2.t4j.persistence.database.FabricaRepositoriosDatabase;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 public class RegistarFreelancerController {
 
@@ -44,8 +46,14 @@ public class RegistarFreelancerController {
      * @return
      * @throws SQLException 
      */
-    public List<Freelancer> getAll() throws SQLException{
-        return repositorioFreelancer.getAll();
+    public List<FreelancerDTO> getAll() throws SQLException{
+        List<Freelancer> freelancers = repositorioFreelancer.getAll();
+        List<FreelancerDTO> freelancersDTO = new ArrayList<>();
+
+        for(Freelancer freelancer : freelancers) {
+            freelancersDTO.add((FreelancerDTO) freelancer.toDTO());
+        }
+        return freelancersDTO;
     }
     
     /**
@@ -54,8 +62,9 @@ public class RegistarFreelancerController {
      * @return
      * @throws SQLException 
      */
-    public Freelancer findByEmail(String emailFree) throws SQLException{
-        return repositorioFreelancer.findByEmail(emailFree);
+    public FreelancerDTO findByEmail(String emailFree) throws SQLException{
+        Freelancer freelancer = repositorioFreelancer.findByEmail(emailFree);
+        return (FreelancerDTO) freelancer.toDTO();
     }
 
     /**
@@ -64,8 +73,9 @@ public class RegistarFreelancerController {
      * @return
      * @throws SQLException 
      */
-    public Password findPassword(String email) throws SQLException {
-        return  repositorioFreelancer.findPassword(email);
+    public PasswordDTO findPassword(String email) throws SQLException {
+        Password password = repositorioFreelancer.findPassword(email);
+        return (PasswordDTO) password.toDTO();
     }
 
     /**
@@ -74,8 +84,14 @@ public class RegistarFreelancerController {
      * @return
      * @throws SQLException 
      */
-    public List<ReconhecimentoGP> getAllReconhecimentoGP(String emailFreelancer) throws SQLException {
-        return repositorioFreelancer.getAllReconhecimentoGP(emailFreelancer);
+    public List<ReconhecimentoGPDTO> getAllReconhecimentoGP(String emailFreelancer) throws SQLException {
+        List<ReconhecimentoGPDTO> reconhecimentosGPDTO = new ArrayList<>();
+        List<ReconhecimentoGP> reconhecimentosGP = repositorioFreelancer.getAllReconhecimentoGP(emailFreelancer);
+
+        for (ReconhecimentoGP reconhecimentoGP : reconhecimentosGP) {
+            reconhecimentosGPDTO.add((ReconhecimentoGPDTO) reconhecimentoGP.toDTO());
+        }
+        return reconhecimentosGPDTO;
     }
 
     /**
@@ -84,8 +100,14 @@ public class RegistarFreelancerController {
      * @return
      * @throws SQLException 
      */
-    public List<HabilitacaoAcademica> getAllHabsAcademicas(String emailFreelancer) throws SQLException {
-        return repositorioFreelancer.getAllHabsAcademicas(emailFreelancer);
+    public List<HabilitacaoAcademicaDTO> getAllHabsAcademicas(String emailFreelancer) throws SQLException {
+        List<HabilitacaoAcademica> habilitacoesAcademicas = repositorioFreelancer.getAllHabsAcademicas(emailFreelancer);
+        List<HabilitacaoAcademicaDTO> habilitacoesAcademicasDTO = new ArrayList<>();
+
+        for (HabilitacaoAcademica habilitacaoAcademica : habilitacoesAcademicas) {
+            habilitacoesAcademicasDTO.add((HabilitacaoAcademicaDTO) habilitacaoAcademica.toDTO());
+        }
+        return habilitacoesAcademicasDTO;
     }
 
     /**
@@ -94,8 +116,10 @@ public class RegistarFreelancerController {
      * @return
      * @throws SQLException 
      */
-    public EnderecoPostal getEnderecoPostal(String emailFreelancer) throws SQLException {
-        return repositorioFreelancer.getEnderecoPostal(emailFreelancer);
+    public EnderecoPostalDTO getEnderecoPostal(String emailFreelancer) throws SQLException {
+        EnderecoPostal enderecoPostal = repositorioFreelancer.getEnderecoPostal(emailFreelancer);
+
+        return (EnderecoPostalDTO) enderecoPostal.toDTO();
     }
 
     ///////API
