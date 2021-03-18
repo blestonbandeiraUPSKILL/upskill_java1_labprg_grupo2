@@ -5,6 +5,9 @@ import com.grupo2.t4j.domain.AreaActividade;
 import com.grupo2.t4j.domain.Categoria;
 import com.grupo2.t4j.domain.CompetenciaTecnica;
 import com.grupo2.t4j.domain.Freelancer;
+import com.grupo2.t4j.dto.CategoriaDTO;
+import com.grupo2.t4j.dto.CompetenciaTecnicaDTO;
+import com.grupo2.t4j.dto.FreelancerDTO;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -71,21 +74,21 @@ public class AdministrativoLogadoUI implements Initializable {
     @FXML TableColumn<Object, Object> colunaDescDetalhadaCT;
     @FXML TableColumn<Object, Object> colunaCodigoCT;
     @FXML TableColumn<Object, Object> colunaCodigoATCT;
-    @FXML TableView<CompetenciaTecnica> tableViewCompetenciaTecnica;
+    @FXML TableView<CompetenciaTecnicaDTO> tableViewCompetenciaTecnica;
 
     //TableView Categoria
     @FXML TableColumn<Object, Object> colunaDescBreveCat;
     @FXML TableColumn<Object, Object> colunaDescDetalhadaCat;
     @FXML TableColumn<Object, Object> colunaCodigoCat;
     @FXML TableColumn<Object, Object> colunaCodigoATCat;
-    @FXML TableView<Categoria> tableViewCategoria;
+    @FXML TableView<CategoriaDTO> tableViewCategoria;
 
     //TableView Freelancer
     @FXML TableColumn<Object, Object> colunaNome;
     @FXML TableColumn<Object, Object> colunaNif;
     @FXML TableColumn<Object, Object> colunaTelefone;
     @FXML TableColumn<Object, Object> colunaEmail;
-    @FXML TableView<Freelancer> tableViewFreelancer;
+    @FXML TableView<FreelancerDTO> tableViewFreelancer;
 
     /**
      * Associa a scene StartingPageUI como parent desta Scene 

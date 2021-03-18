@@ -3,6 +3,7 @@ package com.grupo2.t4j.ui;
 import com.grupo2.t4j.controller.*;
 import com.grupo2.t4j.domain.*;
 import com.grupo2.t4j.dto.CandidaturaDTO;
+import com.grupo2.t4j.dto.ColaboradorDTO;
 import com.grupo2.t4j.dto.TarefaDTO;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -74,7 +75,7 @@ public class GestorLogadoUI implements Initializable {
     @FXML TableColumn<Object, Object> colunaCustoFree;
     
     //TableView Colaboradores
-    @FXML TableView<Colaborador> listViewColaboradores;
+    @FXML TableView<ColaboradorDTO> listViewColaboradores;
     @FXML TableColumn<Object, Object> colunaEmailColab;
     @FXML TableColumn<Object, Object> colunaNome;
     @FXML TableColumn<Object, Object> colunaTelefone;
