@@ -166,15 +166,8 @@
             <padding>
                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
             </padding>
-        </Label>
-    </top>
-   <left>
-      <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-         <left>
-            <BorderPane BorderPane.alignment="CENTER" />
-         </left>
-         <top>
-            <BorderPane BorderPane.alignment="CENTER">
+         <graphic>
+            <BorderPane>
                <center>
                   <Label styleClass="lblEmail" text="emailemailemail@email.pt">
                      <font>
@@ -183,7 +176,7 @@
                   </Label>
                </center>
             </BorderPane>
-         </top>
-      </BorderPane>
-   </left>
+         </graphic>
+        </Label>
+    </top>
 </BorderPane>
