@@ -71,8 +71,12 @@ public class ConsultarAtribuicaoColaboradorUI implements Initializable {
 
     }
 
+    /**
+     * Volta para a scene anterior
+     * @param event
+     */
     @FXML
     void voltar(ActionEvent event) {
-
+        btnVoltar.getScene().getWindow().hide();
     }
 }
