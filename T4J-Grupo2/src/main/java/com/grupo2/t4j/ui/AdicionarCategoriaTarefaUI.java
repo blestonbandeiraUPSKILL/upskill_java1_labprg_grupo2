@@ -4,6 +4,7 @@ import com.grupo2.t4j.controller.*;
 import com.grupo2.t4j.domain.*;
 import com.grupo2.t4j.dto.CaracterizacaoCTDTO;
 import com.grupo2.t4j.dto.CompetenciaTecnicaDTO;
+import com.grupo2.t4j.dto.GrauProficienciaDTO;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -45,7 +46,7 @@ public class AdicionarCategoriaTarefaUI implements Initializable {
     @FXML Button btnCancelar;
     @FXML Button btnAddCompTecCat;
     @FXML ComboBox<AreaActividade> cmbAreaActividade;
-    @FXML ComboBox<GrauProficiencia> cmbGrauProficiencia;
+    @FXML ComboBox<GrauProficienciaDTO> cmbGrauProficiencia;
     @FXML ComboBox<Obrigatoriedade> cmbObrigatoriedade;
     @FXML ComboBox<CompetenciaTecnicaDTO> cmbCompetenciaTecnica;
     @FXML ListView<CaracterizacaoCTDTO> listViewCompTecCat;

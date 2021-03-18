@@ -7,6 +7,8 @@ import com.grupo2.t4j.controller.RegistarTarefaController;
 import com.grupo2.t4j.domain.Candidatura;
 import com.grupo2.t4j.domain.TabelaCandidaturaResultado;
 import com.grupo2.t4j.domain.Tarefa;
+import com.grupo2.t4j.dto.CandidaturaDTO;
+import com.grupo2.t4j.dto.TarefaDTO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -53,7 +55,7 @@ public class FreelancerLogadoUI implements Initializable {
     @FXML Button btnSair;
 
     ///// Tabela Anuncios //////////////
-    @FXML TableView<Tarefa> tabelaAnuncios;
+    @FXML TableView<TarefaDTO> tabelaAnuncios;
 
     @FXML TableColumn<Object, Object> colunaReferencia;
     @FXML TableColumn<Object, Object> colunaDesignacao;
@@ -129,7 +131,7 @@ public class FreelancerLogadoUI implements Initializable {
 
     }
 
-    private ObservableList<Tarefa> listaAnuncios() throws SQLException {
+    private ObservableList<TarefaDTO> listaAnuncios() throws SQLException {
         return FXCollections.observableArrayList(registarTarefaController.tarefasElegiveis(
                 gestaoUtilizadoresController.getEmail()));
     }
@@ -232,7 +234,7 @@ public class FreelancerLogadoUI implements Initializable {
         String emailFreelancer = gestaoUtilizadoresController.getEmail();
         //tabelaCandidaturas.getItems().setAll(efectuarCandidaturaController.findByEmail(emailFreelancer));
 
-        List<Candidatura> candidaturas = efectuarCandidaturaController.findByEmail(emailFreelancer);
+        List<CandidaturaDTO> candidaturas = efectuarCandidaturaController.findByEmail(emailFreelancer);
         TabelaCandidaturaResultado cellCandidatura = null;
         for (int i = 0; i < candidaturas.size(); i++)
              cellCandidatura = new TabelaCandidaturaResultado(candidaturas.get(i).getIdCandidatura(),

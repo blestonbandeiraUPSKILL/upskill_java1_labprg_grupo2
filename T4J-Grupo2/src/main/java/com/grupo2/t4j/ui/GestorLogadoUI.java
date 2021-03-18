@@ -2,6 +2,8 @@ package com.grupo2.t4j.ui;
 
 import com.grupo2.t4j.controller.*;
 import com.grupo2.t4j.domain.*;
+import com.grupo2.t4j.dto.CandidaturaDTO;
+import com.grupo2.t4j.dto.TarefaDTO;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -57,7 +59,7 @@ public class GestorLogadoUI implements Initializable {
     @FXML Button btnSeriacaoManual;
     @FXML TextField txtDataSeriacao;
 
-    @FXML TableView<Tarefa> tabelaTarefas;
+    @FXML TableView<TarefaDTO> tabelaTarefas;
     @FXML TableColumn<Object, Object> colunaReferencia;
     @FXML TableColumn<Object, Object> colunaDesignacao;
     @FXML TableColumn<Object, Object> colunaDuracao;
@@ -440,8 +442,8 @@ public class GestorLogadoUI implements Initializable {
     public void seriacaoAutomaticaAction(ActionEvent event) throws SQLException{
         try{
             idAnuncio = getIdAnuncio();
-            List<Candidatura> candidaturas = seriarAnuncioController.getAllByIdAnuncio(idAnuncio);
-            List<Candidatura> candidaturasOrdenadas = seriarAnuncioController.ordenarByValor(candidaturas);
+            List<CandidaturaDTO> candidaturas = seriarAnuncioController.getAllByIdAnuncio(idAnuncio);
+            List<CandidaturaDTO> candidaturasOrdenadas = seriarAnuncioController.ordenarByValor(candidaturas);
             boolean seriacaoCriada = seriarAnuncioController.saveSeriacao(idAnuncio);
             if(seriacaoCriada){
                 int idSeriacao = seriarAnuncioController.getIdSeriacao(idAnuncio);

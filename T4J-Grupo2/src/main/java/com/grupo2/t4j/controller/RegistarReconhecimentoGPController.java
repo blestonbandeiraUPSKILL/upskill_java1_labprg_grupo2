@@ -1,11 +1,13 @@
 package com.grupo2.t4j.controller;
 
 import com.grupo2.t4j.domain.ReconhecimentoGP;
+import com.grupo2.t4j.dto.ReconhecimentoGPDTO;
 import com.grupo2.t4j.persistence.FabricaRepositorios;
 import com.grupo2.t4j.persistence.RepositorioReconhecimentoGP;
 import com.grupo2.t4j.persistence.database.FabricaRepositoriosDatabase;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 public class RegistarReconhecimentoGPController {
 
@@ -32,8 +34,14 @@ public class RegistarReconhecimentoGPController {
       * @return
       * @throws SQLException 
       */
-    public List<ReconhecimentoGP> getAll(String email) throws SQLException{
-        return repositorioReconhecimentoGP.getAll(email);
+    public List<ReconhecimentoGPDTO> getAll(String email) throws SQLException{
+        List<ReconhecimentoGP> reconhecimentosGP = repositorioReconhecimentoGP.getAll(email);
+        List<ReconhecimentoGPDTO> reconhecimentosGPDTO = new ArrayList<>();
+
+        for(ReconhecimentoGP reconhecimentoGP : reconhecimentosGP) {
+            reconhecimentosGPDTO.add((ReconhecimentoGPDTO) reconhecimentoGP.toDTO());
+        }
+        return reconhecimentosGPDTO;
     }
 
 

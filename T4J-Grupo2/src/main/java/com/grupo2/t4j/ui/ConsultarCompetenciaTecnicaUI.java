@@ -3,6 +3,7 @@ package com.grupo2.t4j.ui;
 import com.grupo2.t4j.controller.RegistarAreaActividadeController;
 import com.grupo2.t4j.controller.RegistarGrauProficienciaController;
 import com.grupo2.t4j.domain.GrauProficiencia;
+import com.grupo2.t4j.dto.GrauProficienciaDTO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -29,7 +30,7 @@ public class ConsultarCompetenciaTecnicaUI implements Initializable {
 
     @FXML TextArea txtDescricaoDetalhada;
     @FXML TextField txtAreaActividade;
-    @FXML ListView<GrauProficiencia> listViewGrausAplicaveis;
+    @FXML ListView<GrauProficienciaDTO> listViewGrausAplicaveis;
     @FXML TextField txtDescricaoBreve;
     @FXML TextField txtCodigoCompetenciaTecnica;
     @FXML Button btnVoltar;
