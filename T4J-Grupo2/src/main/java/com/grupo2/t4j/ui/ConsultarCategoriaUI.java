@@ -3,6 +3,7 @@ package com.grupo2.t4j.ui;
 import com.grupo2.t4j.controller.RegistarAreaActividadeController;
 import com.grupo2.t4j.controller.RegistarCaracterizacaoCTController;
 import com.grupo2.t4j.domain.CaracterizacaoCT;
+import com.grupo2.t4j.dto.CaracterizacaoCTDTO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -32,7 +33,7 @@ public class ConsultarCategoriaUI implements Initializable {
     @FXML TextField txtAreaActividade;
     @FXML TextArea txtDescDetalhada;
     @FXML Button btnVoltar;
-    @FXML ListView<CaracterizacaoCT> listViewCaracterizacao;
+    @FXML ListView<CaracterizacaoCTDTO> listViewCaracterizacao;
 
     /**
      * Associa a scene AdministrativoLogadoUI como parent desta Scene 

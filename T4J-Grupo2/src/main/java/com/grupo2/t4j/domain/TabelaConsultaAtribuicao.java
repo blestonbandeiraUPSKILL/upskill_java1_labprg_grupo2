@@ -5,11 +5,14 @@
  */
 package com.grupo2.t4j.domain;
 
+import com.grupo2.t4j.dto.DTO;
+import com.grupo2.t4j.dto.TabelaConsultaAtribuicaoDTO;
+
 /**
  *
  * @author CAD
  */
-public class TabelaConsultaAtribuicao {
+public class TabelaConsultaAtribuicao implements DTO {
 
     private String refTarefa;
     private String emailFreelancer;
@@ -53,5 +56,10 @@ public class TabelaConsultaAtribuicao {
 
     public String getDataAtribuicao(){
         return dataAtribuicao;
+    }
+
+    @Override
+    public Object toDTO() {
+        return new TabelaConsultaAtribuicaoDTO(refTarefa, emailFreelancer, codigoAtribuicao, dataAtribuicao);
     }
 }

@@ -2,6 +2,10 @@ package com.grupo2.t4j.ui;
 
 import com.grupo2.t4j.controller.*;
 import com.grupo2.t4j.domain.*;
+import com.grupo2.t4j.dto.AreaActividadeDTO;
+import com.grupo2.t4j.dto.CaracterizacaoCTDTO;
+import com.grupo2.t4j.dto.CompetenciaTecnicaDTO;
+import com.grupo2.t4j.dto.GrauProficienciaDTO;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -33,6 +37,7 @@ public class AdicionarCategoriaTarefaUI implements Initializable {
     private RegistarCompetenciaTecnicaController registarCompetenciaTecnicaController;
     private RegistarGrauProficienciaController registarGrauProficienciaController;
     private RegistarCaracterizacaoCTController registarCaracterizacaoCTController;
+    private GestaoUtilizadoresController gestaoUtilizadoresController;
     private List<CaracterizacaoCT> caracterizacaoCTS;
     private GestaoUtilizadoresController gestaoUtilizadoresController;
 
@@ -43,11 +48,11 @@ public class AdicionarCategoriaTarefaUI implements Initializable {
     @FXML Button btnConfirmar;
     @FXML Button btnCancelar;
     @FXML Button btnAddCompTecCat;
-    @FXML ComboBox<AreaActividade> cmbAreaActividade;
-    @FXML ComboBox<GrauProficiencia> cmbGrauProficiencia;
+    @FXML ComboBox<AreaActividadeDTO> cmbAreaActividade;
+    @FXML ComboBox<GrauProficienciaDTO> cmbGrauProficiencia;
     @FXML ComboBox<Obrigatoriedade> cmbObrigatoriedade;
-    @FXML ComboBox<CompetenciaTecnica> cmbCompetenciaTecnica;
-    @FXML ListView<CaracterizacaoCT> listViewCompTecCat;
+    @FXML ComboBox<CompetenciaTecnicaDTO> cmbCompetenciaTecnica;
+    @FXML ListView<CaracterizacaoCTDTO> listViewCompTecCat;
     @FXML Label txt_email;
 
     /**
@@ -64,6 +69,7 @@ public class AdicionarCategoriaTarefaUI implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
+        gestaoUtilizadoresController = new GestaoUtilizadoresController();
         registarAreaActividadeController = new RegistarAreaActividadeController();
         registarCategoriaController = new RegistarCategoriaController();
         registarCompetenciaTecnicaController = new RegistarCompetenciaTecnicaController();

@@ -2,11 +2,13 @@ package com.grupo2.t4j.controller;
 
 
 import com.grupo2.t4j.domain.Anuncio;
+import com.grupo2.t4j.dto.AnuncioDTO;
 import com.grupo2.t4j.persistence.FabricaRepositorios;
 import com.grupo2.t4j.persistence.RepositorioAnuncio;
 import com.grupo2.t4j.persistence.database.FabricaRepositoriosDatabase;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 public class RegistarAnuncioController {
 
@@ -43,8 +45,14 @@ public class RegistarAnuncioController {
      * @return
      * @throws SQLException 
      */
-    public List<Anuncio> getAll() throws SQLException {
-        return repositorioAnuncio.getAll();
+    public List<AnuncioDTO> getAll() throws SQLException {
+        List<Anuncio> anuncios = repositorioAnuncio.getAll();
+        List<AnuncioDTO> anunciosDTO = new ArrayList<>();
+
+        for(Anuncio anuncio : anuncios) {
+            anunciosDTO.add((AnuncioDTO) anuncio.toDTO());
+        }
+        return anunciosDTO;
     }
 
 }

@@ -2,6 +2,7 @@ package com.grupo2.t4j.ui;
 
 import com.grupo2.t4j.controller.*;
 import com.grupo2.t4j.domain.*;
+import com.grupo2.t4j.dto.TarefaDTO;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -57,7 +58,7 @@ public class ColaboradorLogadoUI implements Initializable {
 
     @FXML TextField txtDataSeriacao;
     
-    @FXML TableView<Tarefa> tabelaTarefas;
+    @FXML TableView<TarefaDTO> tabelaTarefas;
     @FXML TableColumn<Object, Object> colunaReferencia;
     @FXML TableColumn<Object, Object> colunaDesignacao;
     @FXML TableColumn<Object, Object> colunaDuracao;

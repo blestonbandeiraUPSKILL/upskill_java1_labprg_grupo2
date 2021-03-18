@@ -6,6 +6,8 @@ import com.grupo2.t4j.controller.RegistarCompetenciaTecnicaController;
 import com.grupo2.t4j.controller.RegistarGrauProficienciaController;
 import com.grupo2.t4j.domain.AreaActividade;
 import com.grupo2.t4j.domain.GrauProficiencia;
+import com.grupo2.t4j.dto.AreaActividadeDTO;
+import com.grupo2.t4j.dto.GrauProficienciaDTO;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -39,9 +41,10 @@ public class AdicionarCompetenciaTecnicaUI implements Initializable {
     @FXML TextField txtCodigo;
     @FXML TextField txtDesignacao;
     @FXML TextField txtValor;
-    @FXML ComboBox<AreaActividade> cmbAreaActividade;
-    @FXML ListView<GrauProficiencia> listViewGrausAdicionados;
+    @FXML ComboBox<AreaActividadeDTO> cmbAreaActividade;
+    @FXML ListView<GrauProficienciaDTO> listViewGrausAdicionados;
     @FXML Label txt_email;
+
 
     /**
      * Associa a scene AdministrativoLogadoUI como parent desta Scene 

@@ -19,33 +19,16 @@ import com.grupo2.t4j.exception.NifInvalidoException;
 
 import java.util.Objects;
 
-@JsonPropertyOrder({"nome", "nif",
-        "idEnderecoPostal", "website", "telefone", "email", "emailGestor"})
-@JacksonXmlRootElement(localName = "organizacao")
 
 public class OrganizacaoDTO {
-    
-    @JacksonXmlProperty(localName = "nome")
+
     private String nome;
-
-    @JacksonXmlProperty(localName = "nif")
     private String nif;
-    
-    @JacksonXmlProperty(localName = "idEnderecoPostal")
     private int idEnderecoPostal;
-    
-    @JacksonXmlProperty(localName = "website")
     private Website website;
-    
-    @JacksonXmlProperty(localName = "telefone")
     private String telefone;
-    
-    @JacksonXmlProperty(localName = "email")
     private Email email;
-
-    @JacksonXmlProperty(localName = "emailGestor")
     private Email emailGestor;
-
 
     public OrganizacaoDTO () {
     }

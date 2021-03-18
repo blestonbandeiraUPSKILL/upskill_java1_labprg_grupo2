@@ -5,11 +5,14 @@
  */
 package com.grupo2.t4j.domain;
 
+import com.grupo2.t4j.dto.DTO;
+import com.grupo2.t4j.dto.TabelaCandidaturasAnuncioDTO;
+
 /**
  *
  * @author CAD
  */
-public class TabelaCandidaturasAnuncio {
+public class TabelaCandidaturasAnuncio implements DTO {
 
     private int classificacao;
     private int idCandidatura;
@@ -70,5 +73,11 @@ public class TabelaCandidaturasAnuncio {
     
     public double getCusto(){
         return custo;
+    }
+
+    @Override
+    public Object toDTO() {
+        return new TabelaCandidaturasAnuncioDTO(classificacao, idCandidatura,
+                email, duracao, custo);
     }
 }

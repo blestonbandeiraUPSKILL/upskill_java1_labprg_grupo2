@@ -10,6 +10,8 @@ package com.grupo2.t4j.domain;
  * @author CAD
  */
 
+import com.grupo2.t4j.dto.DTO;
+import com.grupo2.t4j.dto.OrganizacaoDTO;
 import com.grupo2.t4j.exception.NifInvalidoException;
 
 import java.io.Serializable;
@@ -19,7 +21,7 @@ import java.util.Objects;
  *
  * @author Geral
  */
-public class Organizacao implements Serializable{
+public class Organizacao implements Serializable, DTO {
     
     /**
      * O nome da organização
@@ -207,5 +209,11 @@ public class Organizacao implements Serializable{
      */
     public String toString(){
         return String.format("Nome da Organização: %-15s |NIF: %-15s |Email: %-20s",nomeOrg, nif, emailOrg.getEmailText());
+    }
+
+    @Override
+    public Object toDTO() {
+        return new OrganizacaoDTO(nif, nomeOrg, websiteOrg, telefone,
+                emailOrg, emailGestor, idEnderecoOrg);
     }
 }

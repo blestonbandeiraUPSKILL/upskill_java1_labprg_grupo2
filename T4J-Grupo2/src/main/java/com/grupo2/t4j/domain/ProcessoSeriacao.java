@@ -5,6 +5,9 @@
  */
 package com.grupo2.t4j.domain;
 
+import com.grupo2.t4j.dto.DTO;
+import com.grupo2.t4j.dto.ProcessoSeriacaoDTO;
+
 import java.util.Calendar;
 
 /**
@@ -12,7 +15,7 @@ import java.util.Calendar;
  * @author CAD
  */
 
-public class ProcessoSeriacao {
+public class ProcessoSeriacao implements DTO {
 
     /**
      * O id da Seriação.
@@ -29,22 +32,11 @@ public class ProcessoSeriacao {
      */
     private String dataSeriacao;
 
-    /**
-     * A data atual no formato da classe Data
-     */
-    private Calendar cal = Calendar.getInstance();
-    
-    /**
-     * O dia de hoje
-     */
-    private Data hoje = new Data(cal.get(Calendar.YEAR),cal.get(Calendar.MONTH),
-            cal.get(Calendar.DAY_OF_MONTH));
     
     /**
      * O construtor vazio da classe Seriação
      */
     public ProcessoSeriacao(){
-        
     }
     
     /**
@@ -147,4 +139,9 @@ public class ProcessoSeriacao {
         return String.format("ID Seriação: %-12s |ID Anúncio: %-12s |Data da Seriação:"
                 + " %-12s", idSeriacao, idAnuncio, dataSeriacao);                
     }
-   }
+
+    @Override
+    public Object toDTO() {
+        return new ProcessoSeriacaoDTO(idSeriacao, idAnuncio, dataSeriacao);
+    }
+}

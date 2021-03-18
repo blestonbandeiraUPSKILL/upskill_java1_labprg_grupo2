@@ -109,7 +109,7 @@ public class ConsultarCandidaturaUI implements Initializable {
         txtMotivacao.setText(motivacao);
         txtValor.setText(String.valueOf(valor));
         txtDias.setText(String.valueOf(duracao));
-        txtAnuncio.setText(registarTarefaController.findTarefa(getIdAnuncio()).toStringCompleto());
+        txtAnuncio.setText(registarTarefaController.findTarefa(getIdAnuncio()).toString());
         txtDataEdicao.setText(dataEdicao);
     }
 
@@ -198,8 +198,7 @@ public class ConsultarCandidaturaUI implements Initializable {
      */
     public int getIdAnuncio() throws SQLException {
         int idCandidatura = freelancerLogadoUI.tabelaCandidaturas.getSelectionModel().getSelectedItem().getIdCandidatura();
-        Candidatura candidatura = editarCandidaturaController.findById(idCandidatura);
-        int idAnuncio = candidatura.getIdAnuncio();
+        int idAnuncio = editarCandidaturaController.findById(idCandidatura).getIdAnuncio();
 
         return idAnuncio;
     }
