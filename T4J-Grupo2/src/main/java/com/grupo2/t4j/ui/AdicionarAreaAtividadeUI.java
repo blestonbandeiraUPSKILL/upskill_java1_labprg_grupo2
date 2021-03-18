@@ -1,5 +1,6 @@
 package com.grupo2.t4j.ui;
 
+import com.grupo2.t4j.controller.GestaoUtilizadoresController;
 import com.grupo2.t4j.controller.RegistarAreaActividadeController;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -23,6 +24,7 @@ public class AdicionarAreaAtividadeUI implements Initializable {
 
     private AdministrativoLogadoUI administrativoLogadoUI;
     private RegistarAreaActividadeController registarAreaActividadeController;
+    private GestaoUtilizadoresController gestaoUtilizadoresController;
     private Stage adicionarStage;
 
     @FXML Button btnCancelar;
@@ -47,14 +49,16 @@ public class AdicionarAreaAtividadeUI implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
 
         registarAreaActividadeController = new RegistarAreaActividadeController();
-
+        gestaoUtilizadoresController = new GestaoUtilizadoresController();
         adicionarStage = new Stage();
         adicionarStage.initModality(Modality.APPLICATION_MODAL);;
         adicionarStage.setResizable(false);
+        
+        txt_email.setText(gestaoUtilizadoresController.getEmail());
     }
 
     /**
-     * Cancela a operacao
+     * Cancela a operação
      * @param event 
      */
     @FXML

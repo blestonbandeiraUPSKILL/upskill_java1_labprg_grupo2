@@ -6,10 +6,7 @@ package com.grupo2.t4j.ui;
  */
 
 import com.grupo2.t4j.controller.SeriarAnuncioController;
-import com.grupo2.t4j.domain.Candidatura;
-import com.grupo2.t4j.domain.Colaborador;
-import com.grupo2.t4j.domain.TabelaColaboradorAdicional;
-import com.grupo2.t4j.domain.TabelaFreelancerClassificacao;
+import com.grupo2.t4j.domain.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -31,17 +28,21 @@ public class SeriacaoManualGestorUI implements Initializable{
     private Stage adicionarStage;
 
     private int idAnuncio;
-    private int idSeriacao;
     private int qtdCand;
     private boolean terminou = false;
+    private boolean seriacaoConcluida = false;
     private String emailColaborador;
     private String nifOrganizacao;
-    private List<Integer> classificacoes = new ArrayList<>();
-    private ArrayList<String> colaboradoresParticipantes = new ArrayList<>();
+    private List<Integer> opcoesClassificacoes = new ArrayList<>();
+    private List<Classificacao> classificacoes = new ArrayList<>();
+    private List<String> colaboradoresParticipantes = new ArrayList<>();
 
     @FXML TextField txtIdAnuncio;
     @FXML Button btnAdicionarColaborador;
+    @FXML Button btnConfirmarClassificacao;
+    @FXML Button btnSeriacao;
     @FXML Button btnVoltar;
+
 
     @FXML TableView<TabelaFreelancerClassificacao> tabelaClassificacao;
     private List<TabelaFreelancerClassificacao> listaCandidaturas = new ArrayList<>();
@@ -49,7 +50,7 @@ public class SeriacaoManualGestorUI implements Initializable{
     @FXML TableColumn<Object, Object> colunaEmail;
     @FXML TableColumn<Object, Object> colunaClassificacao;
     @FXML ComboBox<Integer> cmbClassificacao;
-    @FXML Button btnConfirmarClassificacao;
+
 
     @FXML TableView<TabelaColaboradorAdicional> tabelaColaboradores;
     private List<TabelaColaboradorAdicional> colaboradoresOpcionais = new ArrayList<>();
@@ -90,14 +91,9 @@ public class SeriacaoManualGestorUI implements Initializable{
         emailColaborador = gestorLogadoUI.getEmailColaborador();
         nifOrganizacao = gestorLogadoUI.getNifOrganizacao();
         idAnuncio = gestorLogadoUI.getIdAnuncio();
-        
-        boolean seriacaoCriada = seriarAnuncioController.saveSeriacao(idAnuncio);
-        if(seriacaoCriada){
-            idSeriacao = seriarAnuncioController.getIdSeriacao(idAnuncio);
-        }
-        
-        txtIdAnuncio.setText(Integer.toString(idAnuncio));  
-        
+
+        txtIdAnuncio.setText(Integer.toString(idAnuncio));
+
         try{
             criaTabelaCandidaturas();
             criaTabelaColaboradoresOpcionais();
@@ -113,7 +109,7 @@ public class SeriacaoManualGestorUI implements Initializable{
      */
     public void criaTabelaCandidaturas() throws SQLException{
         List<Candidatura> candidaturas = seriarAnuncioController.getAllByIdAnuncio(idAnuncio);
-        
+
         qtdCand = candidaturas.size();
         for(int i = 0; i < qtdCand; i++){
             TabelaFreelancerClassificacao cellCandidatura = new TabelaFreelancerClassificacao(
@@ -154,7 +150,7 @@ public class SeriacaoManualGestorUI implements Initializable{
      */
     public void criaTabelaColaboradoresOpcionais() throws SQLException{
         List<Colaborador> colaboradores = seriarAnuncioController.getAll(nifOrganizacao);
-        
+
         for(int i = 0; i < colaboradores.size(); i++){
             if(!colaboradores.get(i).getEmail().getEmailText().equals(emailColaborador)){
                 TabelaColaboradorAdicional cellColaborador = new TabelaColaboradorAdicional(colaboradores.get(i).getEmail().getEmailText(), "N");
@@ -192,9 +188,9 @@ public class SeriacaoManualGestorUI implements Initializable{
      */
     public void criarOpcoesClassificacao(){
         for(int i = 1; i < listaCandidaturas.size() + 1; i++){
-            classificacoes.add(i);
+            opcoesClassificacoes.add(i);
         }
-        cmbClassificacao.getItems().setAll(classificacoes);
+        cmbClassificacao.getItems().setAll(opcoesClassificacoes);
     }
     
     /**
@@ -203,20 +199,20 @@ public class SeriacaoManualGestorUI implements Initializable{
      * @param classUsada
      */
     public void updateOpcoesClassificacao(int classUsada){
-        if(classificacoes.size() != 1){
-            classificacoes.remove(classUsada-1);
+        if(opcoesClassificacoes.size() != 1){
+            opcoesClassificacoes.remove(classUsada-1);
             cmbClassificacao.getItems().clear();
-            cmbClassificacao.getItems().setAll(classificacoes);
+            cmbClassificacao.getItems().setAll(opcoesClassificacoes);
         }
         else{
             terminou = true;
             cmbClassificacao.setDisable(true);
             btnConfirmarClassificacao.setDisable(true);
-            AlertsUI.criarAlerta(Alert.AlertType.CONFIRMATION,
+            tabelaColaboradores.requestFocus();
+            AlertsUI.criarAlerta(Alert.AlertType.WARNING,
                     MainApp.TITULO_APLICACAO,"A seriação está concluída.",
                     "Deseja adicionar colaboradores que tenham participado nesta" +
                             " seriação?").show();
-            tabelaColaboradores.requestFocus();
         }
     }
   
@@ -231,35 +227,82 @@ public class SeriacaoManualGestorUI implements Initializable{
     }
 
     /**
-     * Regista a classificação de uma candidatura na BD
+     * Adiciona a classificação de uma candidatura na tabela
      * @param event
      * @throws SQLException
      */
     @FXML
-    public void registarClassificacao(ActionEvent event) throws SQLException{
+    public void confirmarClassificacao(ActionEvent event) throws SQLException{
         int posicao = cmbClassificacao.getSelectionModel().getSelectedItem();
         int idCandidatura = tabelaClassificacao.getSelectionModel().getSelectedItem().getIdCandidatura();
-        boolean registou = seriarAnuncioController.saveClassificacao(posicao, idSeriacao, idCandidatura);
-        if(registou){
+        if(tabelaClassificacao.getSelectionModel().getSelectedItem().getClassificacao() == 0){
             updateOpcoesClassificacao(posicao);
             updateTabelaCandidaturas(idCandidatura, posicao);
+        }
+        else{
+            AlertsUI.criarAlerta(Alert.AlertType.WARNING,
+                    MainApp.TITULO_APLICACAO,"Classificação já atribuída!",
+                    "Por favor, escolha outra classificação!").show();
         }
         tabelaClassificacao.requestFocus();
     }
     
     /**
-     * Regista um colaborador adicional como participante na seriação
+     * Adiciona um colaborador como participante na seriação
      * @param event
      * @throws SQLException
      */
     @FXML
-    public void registarColaborador (ActionEvent event) throws SQLException{
+    public void adicionarColaborador (ActionEvent event) throws SQLException{
         String emailColabAdd = tabelaColaboradores.getSelectionModel().getSelectedItem().getEmail();
-        boolean adicionouColab = seriarAnuncioController.update(emailColabAdd, idSeriacao);
-        if(adicionouColab){
+        if(tabelaColaboradores.getSelectionModel().getSelectedItem().getSelecao().equals("N")){
             updateTabelaColaboradores(emailColabAdd);
+            colaboradoresParticipantes.add(emailColabAdd);
+        }else{ AlertsUI.criarAlerta(Alert.AlertType.WARNING,
+                MainApp.TITULO_APLICACAO,"Colaborador já selecionado!",
+                "Por favor, escolha outro colaborador!").show();
         }
         tabelaColaboradores.requestFocus();
+    }
+
+    /**
+     * Cria uma lista de classificações conforme o preenchimento da tabela de classificações, que serve como parâmetro
+     * para o registo da seriação
+     */
+    public void listarClassificacoes(){
+        for(int i = 0; i < listaCandidaturas.size(); i++){
+            Classificacao classificacao = new Classificacao(listaCandidaturas.get(i).getClassificacao(),
+                    listaCandidaturas.get(i).getIdCandidatura());
+            classificacoes.add(classificacao);
+        }
+    }
+
+    /**
+     * Faz o registo da seriação
+     * @param event
+     * @throws SQLException
+     */
+    @FXML
+    public void registarSeriacao (ActionEvent event) throws SQLException {
+        if (terminou) {
+            listarClassificacoes();
+            if(colaboradoresParticipantes.size() > 0){
+                seriacaoConcluida = seriarAnuncioController.seriar(idAnuncio, classificacoes, colaboradoresParticipantes);
+            }
+            else{
+                seriacaoConcluida = seriarAnuncioController.seriar(idAnuncio, classificacoes);
+            }
+        }
+        else {
+            AlertsUI.criarAlerta(Alert.AlertType.WARNING,
+                    MainApp.TITULO_APLICACAO,"A seriação ainda não está concluída.",
+                    "Por favor, termine de classificar as candidaturas!").show();
+
+        }
+        if(seriacaoConcluida){
+            btnSeriacao.setDisable(true);
+            btnVoltar.requestFocus();
+        }
     }
     
     /**
@@ -270,16 +313,15 @@ public class SeriacaoManualGestorUI implements Initializable{
      */
     @FXML
     public void voltar(ActionEvent event) throws SQLException{
-        if(terminou){
+        if (seriacaoConcluida) {
             gestorLogadoUI.updateDataSeriacao();
             btnVoltar.getScene().getWindow().hide();
         }
-        else{
-           AlertsUI.criarAlerta(Alert.AlertType.CONFIRMATION,
-           MainApp.TITULO_APLICACAO,"A seriação ainda não está concluída.",
-           "Por favor, termine de classificar as candidaturas!").show();
-
-                }
+        else {
+            AlertsUI.criarAlerta(Alert.AlertType.WARNING,
+                    MainApp.TITULO_APLICACAO,"A seriação não foi registada.",
+                    "Verifique se clasificou todas as candidaturas!").show();
+        }
 
         }
 }

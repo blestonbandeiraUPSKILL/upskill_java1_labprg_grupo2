@@ -44,7 +44,7 @@ public class SeriarAnuncioController {
     public List<String> getReferenciasTarefas(String nifOrganizacao) throws SQLException{
         return repositorioTarefa.findReferenciaTarefa(nifOrganizacao);
     }
-
+            
     /**
      * Retorna as referências das tarefas da lista de tarefas recebida
      * @param listaTarefas - lista de tarefas
@@ -53,8 +53,8 @@ public class SeriarAnuncioController {
      */
     public List<String> getReferenciasTarefas(List<Tarefa> listaTarefas) throws SQLException{
         return repositorioTarefa.getReferenciasTarefas(listaTarefas);
-    }
-
+    }   
+  
     /**
      * Retorna uma lista de tarefas de uma organização, publicadas por um colaborador,
      * que estejam em período de seriação
@@ -118,7 +118,7 @@ public class SeriarAnuncioController {
     public List<Candidatura> getAllByIdAnuncio(int idAnuncio) throws SQLException{
         return repositorioCandidatura.getAllByIdAnuncio(idAnuncio);
     }
-
+  
     /**
      * Retorna o id de seriação para o processo de seriação de um anúncio
      * @param idAnuncio - id do anúncio
@@ -211,7 +211,7 @@ public class SeriarAnuncioController {
     public ArrayList<Colaborador> getAll(String nifOrganizacacao) throws SQLException{
         return repositorioColaborador.getAll(nifOrganizacacao);
     }
-
+   
     /**
      * Retorna uma lista de processos de seriação de um anúncio
      * @param idAnuncio - id do anúncio
