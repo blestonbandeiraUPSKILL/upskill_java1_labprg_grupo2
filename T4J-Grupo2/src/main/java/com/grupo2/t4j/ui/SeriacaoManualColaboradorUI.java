@@ -220,18 +220,17 @@ public class SeriacaoManualColaboradorUI implements Initializable{
             terminou = true;
             cmbClassificacao.setDisable(true);
             btnConfirmarClassificacao.setDisable(true);
+            tabelaColaboradores.requestFocus();
             AlertsUI.criarAlerta(Alert.AlertType.WARNING,
                     MainApp.TITULO_APLICACAO,"A seriação está concluída.",
                     "Deseja adicionar colaboradores que tenham participado nesta" +
                             " seriação?").show();
-            tabelaColaboradores.requestFocus();
         }
-
     }
   
     /**
      * Pede ao usuário confirmar se a classificação dada a uma candidatura pode ser
-     * registada
+     * confirmada
      * @param event
      */
     @FXML
@@ -241,7 +240,7 @@ public class SeriacaoManualColaboradorUI implements Initializable{
     }
 
     /**
-     * Regista a classificação de uma candidatura na BD
+     * Adiciona a classificação de uma candidatura na tabela
      * @param event
      * @throws SQLException
      */
@@ -249,24 +248,40 @@ public class SeriacaoManualColaboradorUI implements Initializable{
     public void confirmarClassificacao(ActionEvent event) throws SQLException{
         int posicao = cmbClassificacao.getSelectionModel().getSelectedItem();
         int idCandidatura = tabelaClassificacao.getSelectionModel().getSelectedItem().getIdCandidatura();
-        updateOpcoesClassificacao(posicao);
-        updateTabelaCandidaturas(idCandidatura, posicao);
+        if(tabelaClassificacao.getSelectionModel().getSelectedItem().getClassificacao() == 0){
+            updateOpcoesClassificacao(posicao);
+            updateTabelaCandidaturas(idCandidatura, posicao);
+        }
+        else{
+            AlertsUI.criarAlerta(Alert.AlertType.WARNING,
+                    MainApp.TITULO_APLICACAO,"Classificação já atribuída!",
+                    "Por favor, escolha outra classificação!").show();
+        }
         tabelaClassificacao.requestFocus();
     }
 
     /**
-     * Regista um colaborador adicional como participante na seriação
+     * Adiciona um colaborador como participante na seriação
      * @param event
      * @throws SQLException
      */
     @FXML
     public void adicionarColaborador (ActionEvent event) throws SQLException{
         String emailColabAdd = tabelaColaboradores.getSelectionModel().getSelectedItem().getEmail();
-        updateTabelaColaboradores(emailColabAdd);
-        colaboradoresParticipantes.add(emailColabAdd);
+        if(tabelaColaboradores.getSelectionModel().getSelectedItem().getSelecao().equals("N")){
+            updateTabelaColaboradores(emailColabAdd);
+            colaboradoresParticipantes.add(emailColabAdd);
+        }else{ AlertsUI.criarAlerta(Alert.AlertType.WARNING,
+                MainApp.TITULO_APLICACAO,"Colaborador já selecionado!",
+                "Por favor, escolha outro colaborador!").show();
+        }
         tabelaColaboradores.requestFocus();
     }
 
+    /**
+     * Cria uma lista de classificações conforme o preenchimento da tabela de classificações, que serve como parâmetro
+     * para o registo da seriação
+     */
     public void listarClassificacoes(){
         for(int i = 0; i < listaCandidaturas.size(); i++){
            Classificacao classificacao = new Classificacao(listaCandidaturas.get(i).getClassificacao(),
@@ -275,6 +290,11 @@ public class SeriacaoManualColaboradorUI implements Initializable{
         }
     }
 
+    /**
+     * Faz o registo da seriação
+     * @param event
+     * @throws SQLException
+     */
     @FXML
     public void registarSeriacao (ActionEvent event) throws SQLException {
         if (terminou) {
@@ -291,6 +311,10 @@ public class SeriacaoManualColaboradorUI implements Initializable{
                     MainApp.TITULO_APLICACAO,"A seriação ainda não está concluída.",
                     "Por favor, termine de classificar as candidaturas!").show();
 
+        }
+        if(seriacaoConcluida){
+            btnSeriacao.setDisable(true);
+            btnVoltar.requestFocus();
         }
     }
 
