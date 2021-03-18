@@ -36,7 +36,7 @@ public class AnuncioTest {
     public void tearDown() {
     }
 
-    /*@Test
+    /* @Test
     public void testCriarAnuncio() {
         
         Anuncio a1 = new Anuncio("Anuncio_001", "2021/03/01", "2021/05/31",
