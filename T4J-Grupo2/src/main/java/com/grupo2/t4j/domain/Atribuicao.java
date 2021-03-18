@@ -53,7 +53,7 @@ public class Atribuicao {
     }
 
     public void setIdCandidatura(int idCandidatura){
-        this.idCandidatura = idCandidatura
+        this.idCandidatura = idCandidatura;
     }
 
     public void setEmailFreelancer(String emailFreelancer){

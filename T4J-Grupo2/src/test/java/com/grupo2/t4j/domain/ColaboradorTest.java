@@ -6,10 +6,13 @@
 
 package com.grupo2.t4j.domain;
 
+import org.junit.Test;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.BeforeAll;
+
+import static org.junit.Assert.assertEquals;
 
 
 /**
@@ -38,18 +41,18 @@ public class ColaboradorTest {
     public void tearDown() {
     }
 
-  /*  @Test
+  @Test
     public void testCriarColaborador() {
         
-        Colaborador c1 = new Colaborador("fulano@upskill.pt", "Fulano","Assistente",
+        /*Colaborador c1 = new Colaborador(new Email("fulano@upskill.pt"), "Fulano","Assistente",
                 "999888777");
 
         assertEquals("Fulano", c1.getNome());
         assertEquals("fulano@upskill.pt", c1.getEmail().getEmailText());
         assertEquals("Assistente", c1.getFuncao());
-        assertEquals("999888777", c1.getTelefone());
+        assertEquals("999888777", c1.getTelefone());*/
     }
-     
+    /*
     @Test (expected = NomeInvalidoException.class)
     public void testCriarColaboradorNomeIncorreto() {
         
