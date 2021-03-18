@@ -52,7 +52,6 @@ public class ColaboradorLogadoUI implements Initializable {
     @FXML Button btnPublicarTarefa;
     @FXML Button btnConsultarAnuncio;
     @FXML Button btnConsultarCandidaturaFreelancer;    
-    @FXML Button btnSeriacaoAutomatica;
     @FXML Button btnSeriacaoManual;
     @FXML Button btnConsultarAtribuicao;
 
@@ -112,7 +111,6 @@ public class ColaboradorLogadoUI implements Initializable {
 
         btnConsultarAnuncio.setDisable(true);
         btnConsultarCandidaturaFreelancer.setDisable(true);
-        btnSeriacaoAutomatica.setDisable(true);
         btnSeriacaoManual.setDisable(true);
 
         cmbFiltroTarefas.getItems().setAll(FiltroTarefas.values());
@@ -211,7 +209,6 @@ public class ColaboradorLogadoUI implements Initializable {
         List<ProcessoSeriacao> processos = new ArrayList<>();
         processos = seriarAnuncioController.getAllPSByIdAnuncio(idAnuncio);
         if(processos.size() > 0){
-            btnSeriacaoAutomatica.setDisable(true);
             btnSeriacaoManual.setDisable(true);
            return true;
         }
@@ -362,7 +359,6 @@ public class ColaboradorLogadoUI implements Initializable {
         List<ProcessoSeriacao> processos = seriarAnuncioController.getAllPSByIdAnuncio(idAnuncio);
         
         txtDataSeriacao.setText(processos.get(0).getDataSeriacao());
-        btnSeriacaoAutomatica.setDisable(true);
         btnSeriacaoManual.setDisable(true);
         updateTabelaClassificacao(processos.get(0).getIdSeriacao());
     }
@@ -419,10 +415,7 @@ public class ColaboradorLogadoUI implements Initializable {
         
         idAnuncio = getIdAnuncio();
         int idRegimento = seriarAnuncioController.getAnuncio(idAnuncio).getIdTipoRegimento();
-        if(idRegimento == 1){
-            btnSeriacaoAutomatica.setDisable(false);
-        }
-        else{
+        if(idRegimento != 1){
             btnSeriacaoManual.setDisable(false);
         }
     }
