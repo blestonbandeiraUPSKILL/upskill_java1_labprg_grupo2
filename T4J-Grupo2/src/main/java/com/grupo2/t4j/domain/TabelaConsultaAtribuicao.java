@@ -13,17 +13,14 @@ public class TabelaConsultaAtribuicao {
 
     private String refTarefa;
     private String emailFreelancer;
-    private String idAtribuicao;
+    private String codigoAtribuicao;
     private String dataAtribuicao;
-    private String emailGestor;
 
-    public TabelaConsultaAtribuicao(String refTarefa, String emailFreelancer, String idAtribuicao, String dataAtribuicao,
-                                    String emailGestor){
+    public TabelaConsultaAtribuicao(String refTarefa, String emailFreelancer, String codigoAtribuicao, String dataAtribuicao){
         setRefTarefa(refTarefa);
         setEmailFreelancer(emailFreelancer);
-        setIdAtribuicao(idAtribuicao);
+        setCodigoAtribuicao(codigoAtribuicao);
         setDataAtribuicao(dataAtribuicao);
-        setEmailGestor(emailGestor);
     }
 
     public void setRefTarefa(String refTarefa){
@@ -34,16 +31,12 @@ public class TabelaConsultaAtribuicao {
         this.emailFreelancer = emailFreelancer;
     }
 
-    public void setIdAtribuicao(String idAtribuicao){
-        this.idAtribuicao = idAtribuicao;
+    public void setCodigoAtribuicao(String codigoAtribuicao){
+        this.codigoAtribuicao = codigoAtribuicao;
     }
 
     public void setDataAtribuicao(String dataAtribuicao){
         this.dataAtribuicao = dataAtribuicao;
-    }
-
-    public void setEmailGestor(String emailGestor){
-        this.emailGestor = emailGestor;
     }
 
     public String getRefTarefa(){
@@ -54,15 +47,11 @@ public class TabelaConsultaAtribuicao {
         return emailFreelancer;
     }
 
-    public String getIdAtribuicao(){
-        return idAtribuicao;
+    public String getCodigoAtribuicao(){
+        return codigoAtribuicao;
     }
 
     public String getDataAtribuicao(){
         return dataAtribuicao;
-    }
-
-    public String getEmailGestor(){
-        return emailGestor;
     }
 }
