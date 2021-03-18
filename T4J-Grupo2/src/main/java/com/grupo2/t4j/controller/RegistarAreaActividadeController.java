@@ -12,6 +12,7 @@ import com.grupo2.t4j.persistence.RepositorioAreaActividade;
 import com.grupo2.t4j.persistence.database.FabricaRepositoriosDatabase;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -28,8 +29,14 @@ public class RegistarAreaActividadeController /*implements Serializable*/{
      * @return
      * @throws SQLException 
      */
-    public List<AreaActividade> getAll() throws SQLException {
-        return repositorioAreaActividade.getAll();
+    public List<AreaActividadeDTO> getAll() throws SQLException {
+        List<AreaActividade> areasActividade = repositorioAreaActividade.getAll();
+        List<AreaActividadeDTO> areasActividadeDTO = new ArrayList<>();
+
+        for(AreaActividade areaActividade : areasActividade) {
+            areasActividadeDTO.add((AreaActividadeDTO) areaActividade.toDTO());
+        }
+        return areasActividadeDTO;
     }
 
     /**

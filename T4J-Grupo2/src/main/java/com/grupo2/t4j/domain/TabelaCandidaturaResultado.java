@@ -83,6 +83,7 @@ public class TabelaCandidaturaResultado implements DTO {
 
     @Override
     public Object toDTO() {
-        return new TabelaCandidaturaResultadoDTO()
+        return new TabelaCandidaturaResultadoDTO(idCandidatura,valorPretendido,
+                duracaoEstimada, dataCandidatura, dataEdicao, resultado);
     }
 }

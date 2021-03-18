@@ -2,6 +2,7 @@ package com.grupo2.t4j.ui;
 
 import com.grupo2.t4j.controller.*;
 import com.grupo2.t4j.domain.*;
+import com.grupo2.t4j.dto.AreaActividadeDTO;
 import com.grupo2.t4j.dto.CaracterizacaoCTDTO;
 import com.grupo2.t4j.dto.CompetenciaTecnicaDTO;
 import com.grupo2.t4j.dto.GrauProficienciaDTO;
@@ -46,7 +47,7 @@ public class AdicionarCategoriaTarefaUI implements Initializable {
     @FXML Button btnConfirmar;
     @FXML Button btnCancelar;
     @FXML Button btnAddCompTecCat;
-    @FXML ComboBox<AreaActividade> cmbAreaActividade;
+    @FXML ComboBox<AreaActividadeDTO> cmbAreaActividade;
     @FXML ComboBox<GrauProficienciaDTO> cmbGrauProficiencia;
     @FXML ComboBox<Obrigatoriedade> cmbObrigatoriedade;
     @FXML ComboBox<CompetenciaTecnicaDTO> cmbCompetenciaTecnica;

@@ -5,6 +5,7 @@ import com.grupo2.t4j.domain.AreaActividade;
 import com.grupo2.t4j.domain.Categoria;
 import com.grupo2.t4j.domain.CompetenciaTecnica;
 import com.grupo2.t4j.domain.Freelancer;
+import com.grupo2.t4j.dto.AreaActividadeDTO;
 import com.grupo2.t4j.dto.CategoriaDTO;
 import com.grupo2.t4j.dto.CompetenciaTecnicaDTO;
 import com.grupo2.t4j.dto.FreelancerDTO;
@@ -67,7 +68,7 @@ public class AdministrativoLogadoUI implements Initializable {
     @FXML TableColumn<Object, Object> colunaDescBreve;
     @FXML TableColumn<Object, Object> colunaDescDetalhada;
     @FXML TableColumn<Object, Object> colunaCodigo;
-    @FXML TableView<AreaActividade> tableViewAreaActividade;
+    @FXML TableView<AreaActividadeDTO> tableViewAreaActividade;
 
     //TableView CompetenciaTecnica
     @FXML TableColumn<Object, Object> colunaDescBreveCT;

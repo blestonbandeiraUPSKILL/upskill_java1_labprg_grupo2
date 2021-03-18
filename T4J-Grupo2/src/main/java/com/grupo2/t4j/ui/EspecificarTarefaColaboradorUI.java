@@ -4,6 +4,7 @@ import com.grupo2.t4j.controller.*;
 import com.grupo2.t4j.domain.AreaActividade;
 import com.grupo2.t4j.domain.CaracterizacaoCT;
 import com.grupo2.t4j.domain.Categoria;
+import com.grupo2.t4j.dto.AreaActividadeDTO;
 import com.grupo2.t4j.dto.CaracterizacaoCTDTO;
 import com.grupo2.t4j.dto.CategoriaDTO;
 import javafx.event.ActionEvent;
@@ -40,7 +41,7 @@ public class EspecificarTarefaColaboradorUI implements Initializable {
     @FXML TextArea txtDescTecnica;
     @FXML ListView<CaracterizacaoCTDTO> listViewCaracterizacaoCT;
     @FXML ComboBox<CategoriaDTO> cmbCategoriaTarefa;
-    @FXML ComboBox<AreaActividade> cmbAreaActividade;
+    @FXML ComboBox<AreaActividadeDTO> cmbAreaActividade;
     @FXML Button btnCancelar;
 
     /**
