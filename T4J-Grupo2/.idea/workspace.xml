@@ -25,13 +25,7 @@
     <list default="true" id="8ca9f66f-f143-4134-afe5-eb7245bd0a9c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/controller/SeriarAnuncioController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/controller/SeriarAnuncioController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/domain/strategy/RegimentoStrategy_3.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/domain/strategy/RegimentoStrategy_3.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/SeriacaoManualColaboradorUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/SeriacaoManualColaboradorUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/SeriacaoManualGestorUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/SeriacaoManualGestorUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/grupo2/t4j/fxml/ConsultarAnuncioColaboradorScene.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/grupo2/t4j/fxml/ConsultarAnuncioColaboradorScene.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/grupo2/t4j/fxml/ConsultarAnuncioGestorScene.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/grupo2/t4j/fxml/ConsultarAnuncioGestorScene.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/grupo2/t4j/fxml/ConsultarCandidaturaFreelancerScene.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/grupo2/t4j/fxml/ConsultarCandidaturaFreelancerScene.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/grupo2/t4j/fxml/SeriacaoManualGestorScene.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/grupo2/t4j/fxml/SeriacaoManualGestorScene.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/GestorLogadoUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/GestorLogadoUI.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -328,11 +322,6 @@
           <url>file://$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/ConsultarAreaActividadeUI.java</url>
           <line>58</line>
           <option name="timeStamp" value="361" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/grupo2/t4j/controller/SeriarAnuncioController.java</url>
-          <line>218</line>
-          <option name="timeStamp" value="371" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/grupo2/t4j/domain/strategy/RegimentoStrategy_2.java</url>
