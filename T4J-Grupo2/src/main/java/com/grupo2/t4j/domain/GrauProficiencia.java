@@ -178,6 +178,6 @@ public class GrauProficiencia implements DTO {
 
     @Override
     public Object toDTO() {
-        return new GrauProficienciaDTO();
+        return new GrauProficienciaDTO(idGrauProficiencia, grau, designacao, codigoCompetenciaTecnica);
     }
 }
