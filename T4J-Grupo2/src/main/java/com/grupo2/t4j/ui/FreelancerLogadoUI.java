@@ -230,19 +230,19 @@ public class FreelancerLogadoUI implements Initializable {
     public void updateTableViewCandidaturas() throws SQLException {
 
         String emailFreelancer = gestaoUtilizadoresController.getEmail();
-        //tabelaCandidaturas.getItems().setAll(efectuarCandidaturaController.findByEmail(emailFreelancer));
+
 
         List<Candidatura> candidaturas = efectuarCandidaturaController.findByEmail(emailFreelancer);
         TabelaCandidaturaResultado cellCandidatura = null;
         for (int i = 0; i < candidaturas.size(); i++)
              cellCandidatura = new TabelaCandidaturaResultado(candidaturas.get(i).getIdCandidatura(),
                     candidaturas.get(i).getValorPretendido(), candidaturas.get(i).getNumeroDias(),
-                    candidaturas.get(i).getDataCandidatura(), candidaturas.get(i).getDataEdicaoCandidatura());
+                    candidaturas.get(i).getDataCandidatura(), candidaturas.get(i).getDataEdicaoCandidatura(),"Sem Resultado");
         txtIdCandidatura.setCellValueFactory(new PropertyValueFactory<>("idCandidatura"));
         txtValorPretendido.setCellValueFactory(new PropertyValueFactory<>("valorPretendido"));
         txtDuracaoEstimada.setCellValueFactory(new PropertyValueFactory<>("duracaoEstimada"));
         txtDataCandidatura.setCellValueFactory(new PropertyValueFactory<>("dataCandidatura"));
-        txtDataEdicao.setCellValueFactory(new PropertyValueFactory<>("dataEdicaoCandidatura"));
+        txtDataEdicao.setCellValueFactory(new PropertyValueFactory<>("dataEdicao"));
         txtResultado.setCellValueFactory(new PropertyValueFactory<>("resultado"));
         tabelaCandidaturas.getItems().setAll(cellCandidatura);
     }

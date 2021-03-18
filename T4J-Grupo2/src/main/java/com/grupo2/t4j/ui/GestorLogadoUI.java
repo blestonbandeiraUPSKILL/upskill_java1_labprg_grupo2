@@ -440,16 +440,11 @@ public class GestorLogadoUI implements Initializable {
     public void seriacaoAutomaticaAction(ActionEvent event) throws SQLException{
         try{
             idAnuncio = getIdAnuncio();
-            List<Candidatura> candidaturas = seriarAnuncioController.getAllByIdAnuncio(idAnuncio);
-            List<Candidatura> candidaturasOrdenadas = seriarAnuncioController.ordenarByValor(candidaturas);
-            boolean seriacaoCriada = seriarAnuncioController.saveSeriacao(idAnuncio);
-            if(seriacaoCriada){
-                int idSeriacao = seriarAnuncioController.getIdSeriacao(idAnuncio);
-                boolean sucesso = seriarAnuncioController.saveClassificacaoAutomatica(candidaturasOrdenadas, idSeriacao);
-                if(sucesso){
-                    updateDataSeriacao();
-                }
+            boolean sucesso = seriarAnuncioController.seriar(idAnuncio);
+            if(sucesso){
+                updateDataSeriacao();
             }
+
         } catch(SQLException exception){
             exception.printStackTrace();
         }

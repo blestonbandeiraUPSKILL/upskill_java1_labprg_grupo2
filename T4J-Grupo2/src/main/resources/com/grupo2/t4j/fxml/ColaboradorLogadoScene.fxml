@@ -118,6 +118,15 @@
                         </AnchorPane>
                      </content>
                   </Tab>
+                  <Tab text="Consultar Atribuições">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="AnchorPane">
+                           <children>
+                              <VBox alignment="CENTER" layoutX="560.0" layoutY="201.0" AnchorPane.bottomAnchor="100.0" AnchorPane.rightAnchor="32.0" />
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </Tab>
                </tabs>
             </TabPane>
          </center>
