@@ -5,6 +5,8 @@
  */
 package com.grupo2.t4j.domain;
 
+import com.grupo2.t4j.dto.DTO;
+import com.grupo2.t4j.dto.TarefaDTO;
 import com.grupo2.t4j.exception.CodigoInvalidoException;
 import com.grupo2.t4j.exception.NomeInvalidoException;
 import com.grupo2.t4j.exception.QuantidadeInvalidaException;
@@ -16,7 +18,7 @@ import java.util.List;
  *
  * @author CAD
  */
-public class Tarefa implements Serializable{
+public class Tarefa implements Serializable, DTO {
 
     /**
      * O codigo da area de actividade
@@ -380,4 +382,9 @@ public class Tarefa implements Serializable{
     }
 
 
+    @Override
+    public Object toDTO() {
+        return new TarefaDTO(nifOrganizacao, referencia, designacao, descInformal,
+                descTecnica, duracaoEst, custoEst, codigoCategoriaTarefa, emailColaborador);
+    }
 }

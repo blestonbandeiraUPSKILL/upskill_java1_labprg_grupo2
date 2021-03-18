@@ -3,12 +3,15 @@ package com.grupo2.t4j.controller;
 import com.grupo2.t4j.domain.Anuncio;
 import com.grupo2.t4j.domain.Data;
 import com.grupo2.t4j.domain.TipoRegimento;
+import com.grupo2.t4j.dto.AnuncioDTO;
+import com.grupo2.t4j.dto.TipoRegimentoDTO;
 import com.grupo2.t4j.persistence.FabricaRepositorios;
 import com.grupo2.t4j.persistence.RepositorioAnuncio;
 import com.grupo2.t4j.persistence.database.FabricaRepositoriosDatabase;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 public class PublicarTarefaController {
@@ -17,7 +20,7 @@ public class PublicarTarefaController {
     private RepositorioAnuncio repositorioAnuncio = fabricaRepositorios.getRepositorioAnuncio();
     
 
-   /**
+    /**
      * Publicar tarefa boolean.
      *
      * @param referencia as referência da tarefa
@@ -57,17 +60,30 @@ public class PublicarTarefaController {
      * @return
      * @throws SQLException 
      */
-    public List<Anuncio> getAll() throws SQLException {
-        return repositorioAnuncio.getAll();
+    public List<AnuncioDTO> getAll() throws SQLException {
+        List<Anuncio> anuncios = repositorioAnuncio.getAll();
+        List<AnuncioDTO> anunciosDTO = new ArrayList<>();
+
+        for (Anuncio anuncio : anuncios) {
+            anunciosDTO.add((AnuncioDTO) anuncio.toDTO());
+        }
+
+        return anunciosDTO;
     }
     
     /**
-     * Devolve uma lista com todos os tipos de regimento
-     * @return
-     * @throws SQLException 
-     */
-    public List<TipoRegimento> getAllRegimento()throws SQLException {
-        return repositorioAnuncio.getAllRegimento();
+    * Devolve uma lista com todos os tipos de regimento
+    * @return
+    * @throws SQLException
+    */
+    public List<TipoRegimentoDTO> getAllRegimento()throws SQLException {
+        List<TipoRegimento> tiposRegimento = repositorioAnuncio.getAllRegimento();
+        List<TipoRegimentoDTO> tiposRegimentoDTO = new ArrayList<>();
+
+        for(TipoRegimento tipoRegimento : tiposRegimento) {
+            tiposRegimentoDTO.add((TipoRegimentoDTO) tipoRegimento.toDTO());
+        }
+        return tiposRegimentoDTO;
     }
     
     

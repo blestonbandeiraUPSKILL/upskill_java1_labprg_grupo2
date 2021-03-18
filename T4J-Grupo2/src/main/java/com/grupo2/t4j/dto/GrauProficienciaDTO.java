@@ -40,5 +40,12 @@ public class GrauProficienciaDTO {
         return codigoCompetenciaTecnica;
     }
 
-
+    @Override
+    public String toString() {
+        return "GrauProficiencia{" +
+                "grau='" + grau + '\'' +
+                ", designacao='" + designacao + '\'' +
+                ", codigoCompetenciaTecnica='" + codigoCompetenciaTecnica + '\'' +
+                '}';
+    }
 }

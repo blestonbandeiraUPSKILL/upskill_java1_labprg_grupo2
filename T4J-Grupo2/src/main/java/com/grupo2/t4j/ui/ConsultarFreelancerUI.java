@@ -4,6 +4,8 @@ import com.grupo2.t4j.controller.RegistarFreelancerController;
 import com.grupo2.t4j.controller.RegistarReconhecimentoGPController;
 import com.grupo2.t4j.domain.HabilitacaoAcademica;
 import com.grupo2.t4j.domain.ReconhecimentoGP;
+import com.grupo2.t4j.dto.HabilitacaoAcademicaDTO;
+import com.grupo2.t4j.dto.ReconhecimentoGPDTO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -42,14 +44,14 @@ public class ConsultarFreelancerUI implements Initializable {
     @FXML TableColumn<Object, Object> txtCompTec;
     @FXML TableColumn<Object, Object> txtDataReconhecimento;
     @FXML TableColumn<Object, Object> txtGrau;
-    @FXML TableView<ReconhecimentoGP> tabelaReconhecimento;
+    @FXML TableView<ReconhecimentoGPDTO> tabelaReconhecimento;
     
     ////Tabela Habilitacoes Academicas//////////////
     @FXML TableColumn<Object, Object> txtGrauHabilitacao;
     @FXML TableColumn<Object, Object> txtDesignacaoCurso;
     @FXML TableColumn<Object, Object> txtMedia;
     @FXML TableColumn<Object, Object> txtInstituicao;
-    @FXML TableView<HabilitacaoAcademica> tabelaHabilitacao;
+    @FXML TableView<HabilitacaoAcademicaDTO> tabelaHabilitacao;
     
     /**
      * Associa a scene AdministrativoLogadoUI como parent desta Scene 

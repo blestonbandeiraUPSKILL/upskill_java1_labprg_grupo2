@@ -5,6 +5,8 @@
  */
 package com.grupo2.t4j.domain;
 
+import com.grupo2.t4j.dto.DTO;
+import com.grupo2.t4j.dto.UtilizadorDTO;
 import com.grupo2.t4j.exception.NomeInvalidoException;
 
 import java.io.Serializable;
@@ -14,7 +16,7 @@ import java.io.Serializable;
  * @author CAD
  */
 
-public class Utilizador implements Serializable{
+public class Utilizador implements Serializable, DTO {
    
     /**
      * O nome do Utilizador
@@ -200,4 +202,8 @@ public class Utilizador implements Serializable{
     }
 
 
+    @Override
+    public Object toDTO() {
+        return new UtilizadorDTO(email, nome, password, rolename);
+    }
 }

@@ -142,7 +142,7 @@ public class EfectuarCandidaturaUI implements Initializable {
      * @throws SQLException 
      */
     public void transferData() throws SQLException {
-        txtAnuncio.setText(registarTarefaController.findTarefa(getIdAnuncio()).toStringCompleto());
+        txtAnuncio.setText(registarTarefaController.findTarefa(getIdAnuncio()).toString());
 
     }
 
