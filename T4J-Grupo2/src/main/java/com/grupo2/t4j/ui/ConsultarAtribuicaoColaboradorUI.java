@@ -65,7 +65,7 @@ public class ConsultarAtribuicaoColaboradorUI implements Initializable {
     }
 
     /**
-     * Preenche a scene com a informacao do anuncio     *
+     * Preenche a scene com a informacão do anuncio     *
      */
     public void transferData() {
 
