@@ -1,6 +1,7 @@
 package com.grupo2.t4j.persistence.database;
 
 import com.grupo2.t4j.domain.Candidatura;
+import com.grupo2.t4j.domain.Categoria;
 import com.grupo2.t4j.exception.CandidaturaDuplicadaException;
 import com.grupo2.t4j.persistence.RepositorioCandidatura;
 import com.grupo2.t4j.utils.DBConnectionHandler;
@@ -140,10 +141,10 @@ public class RepositorioCandidaturaDatabase implements RepositorioCandidatura{
     @Override
     public Candidatura findById(int idCandidatura) throws SQLException {
 
-
+        Candidatura candidatura = new Candidatura();
         Connection connection = DBConnectionHandler.getInstance().openConnection();
 
-        try {
+        /*try {
             CallableStatement callableStatement = connection.prepareCall(
                     "{CALL findCandidaturaById(?)}");
 
@@ -154,14 +155,38 @@ public class RepositorioCandidaturaDatabase implements RepositorioCandidatura{
 
             return new Candidatura();
 
-        } catch (SQLException exceptionOrg) {
+        }*/
+
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(
+                    "SELECT * FROM Candidatura WHERE idCandidatura LIKE ?"
+            );
+
+            preparedStatement.setInt(1, idCandidatura);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                double valorPretendido = resultSet.getDouble(1);
+                int numeroDias = resultSet.getInt(2);
+                String apresentacao = resultSet.getString(3);
+                String motivacao = resultSet.getString(4);
+                int idAnuncio = resultSet.getInt(5);
+                String emailFreelancer = resultSet.getString(6);
+                String dataCandidatura = resultSet.getString(7);
+
+                candidatura = new Candidatura (idCandidatura, valorPretendido, numeroDias, apresentacao,
+                        motivacao, idAnuncio,emailFreelancer, dataCandidatura);
+
+            }
+        }catch (SQLException exceptionOrg) {
             exceptionOrg.printStackTrace();
             exceptionOrg.getSQLState();
         } finally {
             DBConnectionHandler.getInstance().closeAll();
         }
 
-        return null;
+        return candidatura;
 
     }
 
