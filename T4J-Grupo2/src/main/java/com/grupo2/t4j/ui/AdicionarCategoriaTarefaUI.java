@@ -34,6 +34,7 @@ public class AdicionarCategoriaTarefaUI implements Initializable {
     private RegistarGrauProficienciaController registarGrauProficienciaController;
     private RegistarCaracterizacaoCTController registarCaracterizacaoCTController;
     private List<CaracterizacaoCT> caracterizacaoCTS;
+    private GestaoUtilizadoresController gestaoUtilizadoresController;
 
     @FXML TextField txtDescricaoBreve;
     @FXML TextField txtCodigoCategoria;
@@ -47,6 +48,7 @@ public class AdicionarCategoriaTarefaUI implements Initializable {
     @FXML ComboBox<Obrigatoriedade> cmbObrigatoriedade;
     @FXML ComboBox<CompetenciaTecnica> cmbCompetenciaTecnica;
     @FXML ListView<CaracterizacaoCT> listViewCompTecCat;
+    @FXML Label txt_email;
 
     /**
      * Associa a scene AdministrativoLogadoUI como parent desta Scene 
@@ -65,6 +67,7 @@ public class AdicionarCategoriaTarefaUI implements Initializable {
         registarAreaActividadeController = new RegistarAreaActividadeController();
         registarCategoriaController = new RegistarCategoriaController();
         registarCompetenciaTecnicaController = new RegistarCompetenciaTecnicaController();
+        gestaoUtilizadoresController = new GestaoUtilizadoresController();
         try {
             registarGrauProficienciaController = new RegistarGrauProficienciaController();
         } catch (SQLException exception) {
@@ -77,6 +80,8 @@ public class AdicionarCategoriaTarefaUI implements Initializable {
         adicionarStage.setResizable(false);
 
         cmbObrigatoriedade.getItems().setAll(Obrigatoriedade.values());
+        
+        txt_email.setText(gestaoUtilizadoresController.getEmail());
 
         try {
             cmbAreaActividade.getItems().addAll(registarAreaActividadeController.getAll());

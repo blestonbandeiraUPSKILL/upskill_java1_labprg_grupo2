@@ -1,5 +1,6 @@
 package com.grupo2.t4j.ui;
 
+import com.grupo2.t4j.controller.GestaoUtilizadoresController;
 import com.grupo2.t4j.controller.RegistarAreaActividadeController;
 import com.grupo2.t4j.controller.RegistarCompetenciaTecnicaController;
 import com.grupo2.t4j.controller.RegistarGrauProficienciaController;
@@ -28,6 +29,7 @@ public class AdicionarCompetenciaTecnicaUI implements Initializable {
     private RegistarCompetenciaTecnicaController registarCompetenciaTecnicaController;
     private RegistarAreaActividadeController registarAreaActividadeController;
     private RegistarGrauProficienciaController registarGrauProficienciaController;
+    private GestaoUtilizadoresController gestaoUtilizadoresController;
     private Stage adicionarStage;
 
     @FXML Button btnVoltar;
@@ -39,6 +41,7 @@ public class AdicionarCompetenciaTecnicaUI implements Initializable {
     @FXML TextField txtValor;
     @FXML ComboBox<AreaActividade> cmbAreaActividade;
     @FXML ListView<GrauProficiencia> listViewGrausAdicionados;
+    @FXML Label txt_email;
 
     /**
      * Associa a scene AdministrativoLogadoUI como parent desta Scene 
@@ -59,6 +62,10 @@ public class AdicionarCompetenciaTecnicaUI implements Initializable {
 
         registarAreaActividadeController = new RegistarAreaActividadeController();
         registarCompetenciaTecnicaController = new RegistarCompetenciaTecnicaController();
+        gestaoUtilizadoresController = new GestaoUtilizadoresController();
+
+        txt_email.setText(gestaoUtilizadoresController.getEmail());
+
         try {
             registarGrauProficienciaController = new RegistarGrauProficienciaController();
         } catch (SQLException exception) {

@@ -4,7 +4,8 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" styleClass="FlowPane" stylesheets="@../style/app.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.AdicionarCategoriaTarefaUI">
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" styleClass="FlowPane" stylesheets="@../style/app.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.AdicionarCategoriaTarefaUI">
     <center>
         <BorderPane prefHeight="200.0" prefWidth="200.0" styleClass="FlowPane" BorderPane.alignment="CENTER">
             <top>
@@ -158,13 +159,24 @@
         </BorderPane>
     </center>
     <top>
-        <Label styleClass="lblUser" stylesheets="@../style/app.css" text="Bem-vindo á Área do Administrativo" textFill="WHITE" BorderPane.alignment="CENTER_RIGHT">
+        <Label styleClass="lblUser" stylesheets="@../style/app.css" text="Bem-vindo à Área do Administrativo" textFill="WHITE" BorderPane.alignment="CENTER_RIGHT">
             <font>
                 <Font name="Calibri Italic" size="16.0" />
             </font>
             <padding>
                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
             </padding>
+         <graphic>
+            <BorderPane>
+               <center>
+                  <Label styleClass="lblEmail" text="emailemailemail@email.pt">
+                     <font>
+                        <Font name="System Italic" size="18.0" />
+                     </font>
+                  </Label>
+               </center>
+            </BorderPane>
+         </graphic>
         </Label>
     </top>
 </BorderPane>

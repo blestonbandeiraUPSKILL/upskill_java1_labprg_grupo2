@@ -7,6 +7,9 @@ package com.grupo2.t4j.domain;
 
 
 import org.junit.Before;
+import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
 
 /**
  *
@@ -19,6 +22,16 @@ public class CategoriaTest {
 
     @Before
     public void setUp() throws Exception {
+    }
+
+    @Test
+    public void testCriarCategoria(){
+        /*Categoria c1 = new Categoria("AA_003", "CategoriaTeste", "Categoria de Teste", "AA");
+
+        assertEquals("AA_003", c1.getCodigoCategoria());
+        assertEquals("CategoriaTeste", c1.getDescBreve());
+        assertEquals("Categoria de Teste", c1.getDescDetalhada());
+        assertEquals("AA", c1.getCodigoAreaActividade());*/
     }
     
     /*@Test
