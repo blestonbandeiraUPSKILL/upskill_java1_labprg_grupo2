@@ -1,6 +1,9 @@
 package com.grupo2.t4j.domain;
 
-public class TabelaCandidaturaResultado {
+import com.grupo2.t4j.dto.DTO;
+import com.grupo2.t4j.dto.TabelaCandidaturaResultadoDTO;
+
+public class TabelaCandidaturaResultado implements DTO {
 
     private int idCandidatura;
     private double valorPretendido;
@@ -76,5 +79,10 @@ public class TabelaCandidaturaResultado {
 
     public void setResultado(String resultado) {
             this.resultado = resultado;
+    }
+
+    @Override
+    public Object toDTO() {
+        return new TabelaCandidaturaResultadoDTO()
     }
 }

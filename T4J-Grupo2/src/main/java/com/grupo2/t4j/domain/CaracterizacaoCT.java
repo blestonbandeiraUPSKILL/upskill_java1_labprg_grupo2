@@ -179,7 +179,8 @@ public class CaracterizacaoCT implements Serializable, DTO {
 
     @Override
     public Object toDTO() {
-        return new CaracterizacaoCTDTO(idCaracterizacao, codigoCategoria, codigoGP, obrigatoriedade);
+        return new CaracterizacaoCTDTO(idCaracterizacao, codigoCategoria, descBreveCompetencia,
+                designacaoGrau, codigoGP, obrigatoriedade);
 
     }
 }

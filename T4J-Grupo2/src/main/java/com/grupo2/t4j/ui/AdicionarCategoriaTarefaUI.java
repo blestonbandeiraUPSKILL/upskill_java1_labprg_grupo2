@@ -36,6 +36,7 @@ public class AdicionarCategoriaTarefaUI implements Initializable {
     private RegistarCompetenciaTecnicaController registarCompetenciaTecnicaController;
     private RegistarGrauProficienciaController registarGrauProficienciaController;
     private RegistarCaracterizacaoCTController registarCaracterizacaoCTController;
+    private GestaoUtilizadoresController gestaoUtilizadoresController;
     private List<CaracterizacaoCT> caracterizacaoCTS;
 
     @FXML TextField txtDescricaoBreve;
@@ -66,6 +67,7 @@ public class AdicionarCategoriaTarefaUI implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
+        gestaoUtilizadoresController = new GestaoUtilizadoresController();
         registarAreaActividadeController = new RegistarAreaActividadeController();
         registarCategoriaController = new RegistarCategoriaController();
         registarCompetenciaTecnicaController = new RegistarCompetenciaTecnicaController();

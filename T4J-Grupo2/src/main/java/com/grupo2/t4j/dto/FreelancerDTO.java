@@ -40,5 +40,11 @@ public class FreelancerDTO extends UtilizadorDTO{
     public EnderecoPostalDTO getEnderecoPostalDTO() {
         return enderecoPostalDTO;
     }
+
+    @Override
+    public String toString() {
+        return String.format("Nome: %-20s |Email: %-20s |NIF: %-10s", super.getNome(),
+                super.getEmail().getEmailText(), nif);
+    }
 }
 
