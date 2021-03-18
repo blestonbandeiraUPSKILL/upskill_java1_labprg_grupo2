@@ -5,6 +5,7 @@
  */
 package com.grupo2.t4j.domain;
 
+import com.grupo2.t4j.exception.AreaActividadeDuplicadaException;
 import org.junit.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -56,7 +57,7 @@ public class AreaActividadeTest {
         AreaActividade a1= new AreaActividade("1234", "Area", "AreaActividadeDescDetalhada");
              
     }
-/*    @Test (expected = AreaActividadeDuplicadaException.class)
+   /* @Test (expected = AreaActividadeDuplicadaException.class)
     public void testCriarAreaActividadeDuplicada() {
         
         AreaActividade a1= new AreaActividade("1234", "AreaActividade1", "AreaActividadeDescDetalhada");
