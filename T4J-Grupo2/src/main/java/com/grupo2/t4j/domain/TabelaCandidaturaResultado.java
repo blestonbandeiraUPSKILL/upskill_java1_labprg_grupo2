@@ -75,11 +75,6 @@ public class TabelaCandidaturaResultado {
     }
 
     public void setResultado(String resultado) {
-        if (resultado == null ){
-            this.resultado = "Sem resultado";
-        } else {
             this.resultado = resultado;
-        }
-
     }
 }
