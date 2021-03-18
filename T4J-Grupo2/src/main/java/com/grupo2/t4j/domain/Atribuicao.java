@@ -24,6 +24,26 @@ public class Atribuicao {
     private String dataInicioTarefa;
     private String dataFimTarefa;
 
+    public Atribuicao(){
+
+    }
+
+    public void setNifOrganizacao(String nifOrganizacao){
+        this.nifOrganizacao = nifOrganizacao;
+    }
+
+    public void setRefTarefa(String refTarefa){
+        this.refTarefa = refTarefa;
+    }
+
+    public void setIdAnuncio(int idAnuncio){
+        this.idAnuncio = idAnuncio;
+    }
+
+    
+
+
+
 
 
 

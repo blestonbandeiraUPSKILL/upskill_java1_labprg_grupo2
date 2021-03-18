@@ -42,6 +42,7 @@ public class ColaboradorLogadoUI implements Initializable {
     private Scene sceneConsultarAnuncio;
     private Scene sceneConsultarCandidatura;
     private Scene sceneSeriacaoManual;
+    private Scene sceneConsultarAtribuicao;
     private int idAnuncio;
 
     @FXML Button btnLogout;
@@ -578,7 +579,26 @@ public class ColaboradorLogadoUI implements Initializable {
     }
 
     public void consultarAtribuicao(ActionEvent event){
+        try {
+            FXMLLoader loaderConsultarAtribuicao = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/ConsultarAtribuicaoColaboradorScene.fxml"));
+            Parent rootConsultarAtribuicao = loaderConsultarAtribuicao.load();
+            sceneConsultarAtribuicao = new Scene(rootConsultarAtribuicao);
+            ConsultarAtribuicaoColaboradorUI consultarAtribuicaoColaboradorUI = loaderConsultarAtribuicao.getController();
+            consultarAtribuicaoColaboradorUI.associarParentUI(this);
+            consultarAtribuicaoColaboradorUI.transferData();
 
+            adicionarStage.setScene(sceneConsultarAtribuicao);
+            adicionarStage.setTitle("Consultar Atribuição");
+            adicionarStage.show();
+
+        } catch (IOException exception) {
+
+            exception.printStackTrace();
+            AlertsUI.criarAlerta(Alert.AlertType.ERROR,
+                    MainApp.TITULO_APLICACAO,
+                    "Erro",
+                    exception.getMessage());
+        }
     }
 
     /**
