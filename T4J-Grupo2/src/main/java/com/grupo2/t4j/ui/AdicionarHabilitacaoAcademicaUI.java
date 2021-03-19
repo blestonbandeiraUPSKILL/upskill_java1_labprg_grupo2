@@ -1,5 +1,6 @@
 package com.grupo2.t4j.ui;
 
+import com.grupo2.t4j.controller.GestaoUtilizadoresController;
 import com.grupo2.t4j.controller.RegistarFreelancerController;
 import com.grupo2.t4j.controller.RegistarHabilitacaoAcademicaController;
 import com.grupo2.t4j.domain.Freelancer;
@@ -27,6 +28,7 @@ public class AdicionarHabilitacaoAcademicaUI implements Initializable {
     private AdministrativoLogadoUI administrativoLogadoUI;
     private RegistarHabilitacaoAcademicaController registarHabilitacaoAcademicaController;
     private RegistarFreelancerController registarFreelancerController;
+    private GestaoUtilizadoresController gestaoUtilizadoresController;
     private Stage adicionarStage;
 
     @FXML TextField txtNomeFreelancer;
@@ -38,6 +40,7 @@ public class AdicionarHabilitacaoAcademicaUI implements Initializable {
     @FXML Button btnAddHabilitacao;
     @FXML Button btnCancelar;
     @FXML Button btnSair;
+    @FXML Label txt_email;
     
     ////Tabela Habilitacoes Academicas//////////////
     @FXML TableColumn<Object, Object> txtGrauHabilitacao;
@@ -65,6 +68,9 @@ public class AdicionarHabilitacaoAcademicaUI implements Initializable {
         adicionarStage.setResizable(false);
         registarHabilitacaoAcademicaController = new RegistarHabilitacaoAcademicaController();
         registarFreelancerController = new RegistarFreelancerController();
+
+        gestaoUtilizadoresController = new GestaoUtilizadoresController();
+        txt_email.setText(gestaoUtilizadoresController.getEmail());
 
         cmbEmailFreelancer.setOnAction(new EventHandler<ActionEvent>() {
             @Override
