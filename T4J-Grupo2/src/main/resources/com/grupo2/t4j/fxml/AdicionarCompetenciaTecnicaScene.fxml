@@ -14,6 +14,12 @@
             <font>
                 <Font name="Calibri" size="18.0" />
             </font>
+         <graphic>
+            <Label alignment="TOP_LEFT" styleClass="lblEmail" text="emailemailemail@email.pt">
+               <font>
+                  <Font name="System Italic" size="12.0" />
+               </font></Label>
+         </graphic>
         </Label>
     </top>
     <bottom>
@@ -44,12 +50,6 @@
     </bottom>
    <left>
       <BorderPane BorderPane.alignment="CENTER">
-         <top>
-            <Label alignment="TOP_LEFT" styleClass="lblEmail" text="emailemailemail@email.pt" BorderPane.alignment="CENTER">
-               <font>
-                  <Font name="System Italic" size="12.0" />
-               </font></Label>
-         </top>
          <center>
               <TabPane prefHeight="281.0" prefWidth="700.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
                   <tabs>
