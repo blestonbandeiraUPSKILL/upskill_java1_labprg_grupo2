@@ -123,6 +123,54 @@ public class Atribuicao implements DTO {
         this.dataFimTarefa = dataFimTarefa;
     }
 
+    public int getIdAtribuicao(){
+        return idAtribuicao;
+    }
+
+    public String getNifOrganizacao(){
+        return nifOrganizacao;
+    }
+
+    public String getRefTarefa(){
+        return refTarefa;
+    }
+
+    public int getIdAnuncio(){
+        return idAnuncio;
+    }
+
+    public int getIdCandidatura(){
+        return idCandidatura;
+    }
+
+    public String getEmailFreelancer(){
+        return emailFreelancer;
+    }
+
+    public double getValorAceite(){
+        return valorAceite;
+    }
+
+    public int getNumDiasAceite(){
+        return numDiasAceite;
+    }
+
+    public String getCodigoAtribuicao(){
+        return codigoAtribuicao;
+    }
+
+    public String getDataAtribuicao(){
+        return dataAtribuicao;
+    }
+
+    public String getDataInicioTarefa(){
+        return dataInicioTarefa;
+    }
+
+    public String getDataFimTarefa(){
+        return dataFimTarefa;
+    }
+
     @Override
     public Object toDTO() {
         return new AtribuicaoDTO(idAtribuicao, nifOrganizacao, refTarefa, idAnuncio, idCandidatura,
