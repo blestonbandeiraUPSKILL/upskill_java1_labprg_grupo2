@@ -28,7 +28,6 @@ public class ConsultarCompetenciaTecnicaUI implements Initializable {
 
     @FXML TextArea txtDescricaoDetalhada;
     @FXML TextField txtAreaActividade;
-    @FXML ListView<GrauProficienciaDTO> listViewGrausAplicaveis;
     @FXML TextField txtDescricaoBreve;
     @FXML TextField txtCodigoCompetenciaTecnica;
     @FXML Button btnVoltar;
@@ -76,7 +75,6 @@ public class ConsultarCompetenciaTecnicaUI implements Initializable {
         txtCodigoCompetenciaTecnica.setText(codigoCompetenciaTecnica);
         txtDescricaoBreve.setText(administrativoLogadoUI.tableViewCompetenciaTecnica.getSelectionModel().getSelectedItem().getDescricaoBreve());
         txtDescricaoDetalhada.setText(administrativoLogadoUI.tableViewCompetenciaTecnica.getSelectionModel().getSelectedItem().getDescricaoDetalhada());
-        //listViewGrausAplicaveis.getItems().setAll(registarGrauProficienciaController.getAllByCompetenciaTecnica(txtCodigoCompetenciaTecnica.getText()));
         txtAreaActividade.setText(registarAreaActividadeController.getAreaActividade(codigoAreaActividade).getDescBreve());
         tabelaGrausAplicaveis.getItems().setAll(registarGrauProficienciaController.getAllByCompetenciaTecnica(txtCodigoCompetenciaTecnica.getText()));
         txtGrau.setCellValueFactory(new PropertyValueFactory<>("grau"));
