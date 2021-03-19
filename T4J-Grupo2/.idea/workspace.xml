@@ -22,6 +22,8 @@
     <select />
   </component>
   <component name="ChangeListManager">
+
+
     <list default="true" id="8ca9f66f-f143-4134-afe5-eb7245bd0a9c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/controller/AtribuirTarefaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/controller/AtribuirTarefaController.java" afterDir="false" />
@@ -33,6 +35,10 @@
       <change beforePath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/ColaboradorLogadoUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/ColaboradorLogadoUI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/ConsultarAtribuicaoColaboradorUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/ConsultarAtribuicaoColaboradorUI.java" afterDir="false" />
     </list>
+
+    <list default="true" id="8ca9f66f-f143-4134-afe5-eb7245bd0a9c" name="Default Changelist" comment="" />
+
+
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -43,10 +49,10 @@
       <list>
         <option value="JUnit5 Test Class" />
         <option value="CSS File" />
-        <option value="Enum" />
         <option value="FxmlFile" />
         <option value="Interface" />
         <option value="Class" />
+        <option value="Enum" />
       </list>
     </option>
   </component>
@@ -228,10 +234,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.MainApp" />
-        <item itemvalue="JUnit.AnuncioTest.testEformaData" />
-        <item itemvalue="JUnit.CompetenciaTecnicaTest" />
-        <item itemvalue="JUnit.CompetenciaTecnicaTest.testCriarCompetenciaTecnicaSemDescDetalhada" />
-        <item itemvalue="JUnit.CompetenciaTecnicaTest.testCriarCompetenciaTecnicaSemDescBreve" />
+        <item itemvalue="JUnit.ColaboradorTest.testCriarColaborador" />
+        <item itemvalue="JUnit.CategoriaTest.testCriarCategoria" />
+        <item itemvalue="JUnit.CandidaturaTest.testCriarCandidatura" />
+        <item itemvalue="JUnit.AreaActividadeTest.testCriarAreaActividadeDuplicada" />
       </list>
     </recent_temporary>
   </component>

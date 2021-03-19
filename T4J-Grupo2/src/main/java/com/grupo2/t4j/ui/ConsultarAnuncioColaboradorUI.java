@@ -80,8 +80,8 @@ public class ConsultarAnuncioColaboradorUI implements Initializable {
         String dataFimPublicitacao = seriarAnuncioController.getAnuncio(idAnuncio).getDtFimPub();
         String dataInicioCandidatura = seriarAnuncioController.getAnuncio(idAnuncio).getDtInicioCand();
         String dataFimCandidatura = seriarAnuncioController.getAnuncio(idAnuncio).getDtFimCand();
-        String dataInicioSeriacao = seriarAnuncioController.getAnuncio(idAnuncio).getDtInicioSeriacao();
-        String dataFimSeriacao = seriarAnuncioController.getAnuncio(idAnuncio).getDtFimSeriacao();
+        String dataInicioSeriacao = seriarAnuncioController.getAnuncio(idAnuncio).getdataInicioSeriacao();
+        String dataFimSeriacao = seriarAnuncioController.getAnuncio(idAnuncio).getdataFimSeriacao();
         int idRegimento = seriarAnuncioController.getAnuncio(idAnuncio).getIdTipoRegimento();
 
         txtIdAnuncio.setText(Integer.toString(idAnuncio));
