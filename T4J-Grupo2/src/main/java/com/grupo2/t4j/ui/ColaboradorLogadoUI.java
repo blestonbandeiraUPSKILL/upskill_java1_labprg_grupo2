@@ -419,14 +419,16 @@ public class ColaboradorLogadoUI implements Initializable {
         if(idRegimento != 1){
             btnSeriacaoManual.setDisable(false);
         }
+        else{
+            seriacaoAutomatica();
+        }
     }
     
     /**
      * Seria automaticamente as candidaturas a um anuncio
-     * @param event
-     * @throws SQLException 
+     * @throws SQLException
      */
-    public void seriacaoAutomaticaAction(ActionEvent event) throws SQLException{
+    public void seriacaoAutomatica() throws SQLException{
         try{
             idAnuncio = getIdAnuncio();            
             boolean sucesso = seriarAnuncioController.seriar(idAnuncio);
