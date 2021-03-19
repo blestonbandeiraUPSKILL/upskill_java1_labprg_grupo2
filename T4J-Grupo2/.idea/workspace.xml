@@ -22,7 +22,22 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8ca9f66f-f143-4134-afe5-eb7245bd0a9c" name="Default Changelist" comment="" />
+    <list default="true" id="8ca9f66f-f143-4134-afe5-eb7245bd0a9c" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/controller/AtribuirTarefaController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/AdicionarCategoriaTarefaUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/AdicionarCategoriaTarefaUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/AdicionarFreelancerUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/AdicionarFreelancerUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/ColaboradorLogadoUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/ColaboradorLogadoUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/ConsultarCompetenciaTecnicaUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/ConsultarCompetenciaTecnicaUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/GestorLogadoUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/GestorLogadoUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/grupo2/t4j/fxml/AdicionarCompetenciaTecnicaScene.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/grupo2/t4j/fxml/AdicionarCompetenciaTecnicaScene.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/grupo2/t4j/fxml/AdicionarFreelancerScene.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/grupo2/t4j/fxml/AdicionarFreelancerScene.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/grupo2/t4j/fxml/ConsultarCompetenciaTecnicaScene.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/grupo2/t4j/fxml/ConsultarCompetenciaTecnicaScene.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/grupo2/t4j/domain/AnuncioTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/grupo2/t4j/domain/AnuncioTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/grupo2/t4j/domain/CategoriaTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/grupo2/t4j/domain/CategoriaTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/grupo2/t4j/domain/ColaboradorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/grupo2/t4j/domain/ColaboradorTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/grupo2/t4j/domain/CompetenciaTecnicaTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/grupo2/t4j/domain/CompetenciaTecnicaTest.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -144,7 +159,7 @@
       <module name="T4J-Grupo2" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.grupo2.t4j.ui.PublicarTarefaUI" />
+          <option name="PATTERN" value="com.grupo2.t4j.ui.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -152,7 +167,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="AreaActividadeTest.testCriarAreaActividadeDuplicada" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="AnuncioTest.testEformaData" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="T4J-Grupo2" />
       <extension name="coverage">
         <pattern>
@@ -161,14 +176,14 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="com.grupo2.t4j.domain" />
-      <option name="MAIN_CLASS_NAME" value="com.grupo2.t4j.domain.AreaActividadeTest" />
-      <option name="METHOD_NAME" value="testCriarAreaActividadeDuplicada" />
+      <option name="MAIN_CLASS_NAME" value="com.grupo2.t4j.domain.AnuncioTest" />
+      <option name="METHOD_NAME" value="testEformaData" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CandidaturaTest.testCriarCandidatura" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="CompetenciaTecnicaTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="T4J-Grupo2" />
       <extension name="coverage">
         <pattern>
@@ -177,14 +192,13 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="com.grupo2.t4j.domain" />
-      <option name="MAIN_CLASS_NAME" value="com.grupo2.t4j.domain.CandidaturaTest" />
-      <option name="METHOD_NAME" value="testCriarCandidatura" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="MAIN_CLASS_NAME" value="com.grupo2.t4j.domain.CompetenciaTecnicaTest" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CategoriaTest.testCriarCategoria" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="CompetenciaTecnicaTest.testCriarCompetenciaTecnicaSemDescBreve" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="T4J-Grupo2" />
       <extension name="coverage">
         <pattern>
@@ -193,14 +207,14 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="com.grupo2.t4j.domain" />
-      <option name="MAIN_CLASS_NAME" value="com.grupo2.t4j.domain.CategoriaTest" />
-      <option name="METHOD_NAME" value="testCriarCategoria" />
+      <option name="MAIN_CLASS_NAME" value="com.grupo2.t4j.domain.CompetenciaTecnicaTest" />
+      <option name="METHOD_NAME" value="testCriarCompetenciaTecnicaSemDescBreve" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ColaboradorTest.testCriarColaborador" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="CompetenciaTecnicaTest.testCriarCompetenciaTecnicaSemDescDetalhada" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="T4J-Grupo2" />
       <extension name="coverage">
         <pattern>
@@ -209,22 +223,13 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="com.grupo2.t4j.domain" />
-      <option name="MAIN_CLASS_NAME" value="com.grupo2.t4j.domain.ColaboradorTest" />
-      <option name="METHOD_NAME" value="testCriarColaborador" />
+      <option name="MAIN_CLASS_NAME" value="com.grupo2.t4j.domain.CompetenciaTecnicaTest" />
+      <option name="METHOD_NAME" value="testCriarCompetenciaTecnicaSemDescDetalhada" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Application.MainApp" />
-        <item itemvalue="JUnit.ColaboradorTest.testCriarColaborador" />
-        <item itemvalue="JUnit.CategoriaTest.testCriarCategoria" />
-        <item itemvalue="JUnit.CandidaturaTest.testCriarCandidatura" />
-        <item itemvalue="JUnit.AreaActividadeTest.testCriarAreaActividadeDuplicada" />
-      </list>
-    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
