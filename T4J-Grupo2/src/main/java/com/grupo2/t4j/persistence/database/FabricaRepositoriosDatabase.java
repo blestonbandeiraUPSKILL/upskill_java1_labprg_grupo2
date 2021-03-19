@@ -15,6 +15,11 @@ public class FabricaRepositoriosDatabase implements FabricaRepositorios {
     public RepositorioAreaActividade getRepositorioAreaActividade() {
         return RepositorioAreaActividadeDatabase.getInstance();
     }
+
+    @Override
+    public RepositorioAtribuicao getRepositorioAtribuicao() throws SQLException{
+        return RepositorioAtribuicaoDatabase.getInstance();
+    }
     
     @Override
     public RepositorioCandidatura getRepositorioCandidatura() {

@@ -7,6 +7,7 @@ public interface FabricaRepositorios {
 
     RepositorioAnuncio getRepositorioAnuncio();
     RepositorioAreaActividade getRepositorioAreaActividade();
+    RepositorioAtribuicao getRepositorioAtribuicao() throws SQLException;
     RepositorioCandidatura getRepositorioCandidatura();
     RepositorioCaracterizacaoCT getRepositorioCaracterizacaoCT();
     RepositorioCategoriaTarefa getRepositorioCategoriaTarefa();
