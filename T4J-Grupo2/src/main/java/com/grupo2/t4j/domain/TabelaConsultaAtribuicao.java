@@ -16,14 +16,25 @@ public class TabelaConsultaAtribuicao implements DTO {
 
     private String refTarefa;
     private String emailFreelancer;
-    private String codigoAtribuicao;
     private String dataAtribuicao;
+    private String codigoAtribuicao;
+    private String dataInicioTarefa;
 
-    public TabelaConsultaAtribuicao(String refTarefa, String emailFreelancer, String codigoAtribuicao, String dataAtribuicao){
+
+    public TabelaConsultaAtribuicao(String refTarefa, String emailFreelancer, String dataAtribuicao, String codigoAtribuicao){
         setRefTarefa(refTarefa);
         setEmailFreelancer(emailFreelancer);
-        setCodigoAtribuicao(codigoAtribuicao);
         setDataAtribuicao(dataAtribuicao);
+        setCodigoAtribuicao(codigoAtribuicao);
+    }
+
+    public TabelaConsultaAtribuicao(String refTarefa, String emailFreelancer, String dataAtribuicao, String codigoAtribuicao,
+                                    String dataInicioTarefa){
+        setRefTarefa(refTarefa);
+        setEmailFreelancer(emailFreelancer);
+        setDataAtribuicao(dataAtribuicao);
+        setCodigoAtribuicao(codigoAtribuicao);
+        setDataInicioTarefa(dataInicioTarefa);
     }
 
     public void setRefTarefa(String refTarefa){
@@ -34,12 +45,16 @@ public class TabelaConsultaAtribuicao implements DTO {
         this.emailFreelancer = emailFreelancer;
     }
 
+    public void setDataAtribuicao(String dataAtribuicao){
+        this.dataAtribuicao = dataAtribuicao;
+    }
+
     public void setCodigoAtribuicao(String codigoAtribuicao){
         this.codigoAtribuicao = codigoAtribuicao;
     }
 
-    public void setDataAtribuicao(String dataAtribuicao){
-        this.dataAtribuicao = dataAtribuicao;
+    public void setDataInicioTarefa(String dataInicioTarefa){
+        this.dataInicioTarefa = dataInicioTarefa;
     }
 
     public String getRefTarefa(){
@@ -50,12 +65,16 @@ public class TabelaConsultaAtribuicao implements DTO {
         return emailFreelancer;
     }
 
+    public String getDataAtribuicao(){
+        return dataAtribuicao;
+    }
+
     public String getCodigoAtribuicao(){
         return codigoAtribuicao;
     }
 
-    public String getDataAtribuicao(){
-        return dataAtribuicao;
+    public String getDataInicioTarefa(){
+        return dataInicioTarefa;
     }
 
     @Override

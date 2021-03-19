@@ -27,20 +27,56 @@ public class Atribuicao implements DTO {
     private String dataInicioTarefa;
     private String dataFimTarefa;
 
-    public Atribuicao(String nifOrganizacao, String refTarefa, int idAnuncio, int idCandidatura, String emailFreelancer,
-                      double valorAceito, int numDiasAceito, String codigoAtribuicao, String dataAtribuicao, String dataInicioTarefa,
+    public Atribuicao(){
+
+    }
+
+    public Atribuicao(int idAtribuicao, String nifOrganizacao, String refTarefa, int idAnuncio, int idCandidatura, String emailFreelancer,
+                      double valorAceite, int numDiasAceite, String codigoAtribuicao, String dataAtribuicao, String dataInicioTarefa,
                       String dataFimTarefa){
+        setIdAtribuicao(idAtribuicao);
         setNifOrganizacao(nifOrganizacao);
         setRefTarefa(refTarefa);
         setIdAnuncio(idAnuncio);
         setIdCandidatura(idCandidatura);
         setEmailFreelancer(emailFreelancer);
-        setValorAceito(valorAceito);
-        setNumDiasAceito(numDiasAceito);
+        setValorAceite(valorAceite);
+        setNumDiasAceito(numDiasAceite);
         setCodigoAtribuicao(codigoAtribuicao);
         setDataAtribuicao(dataAtribuicao);
         setDataInicioTarefa(dataInicioTarefa);
         setDataFimTarefa(dataFimTarefa);
+    }
+
+    public Atribuicao(String nifOrganizacao, String refTarefa, int idAnuncio, int idCandidatura, String emailFreelancer,
+                      double valorAceite, int numDiasAceite, String codigoAtribuicao, String dataAtribuicao, String dataInicioTarefa){
+        setNifOrganizacao(nifOrganizacao);
+        setRefTarefa(refTarefa);
+        setIdAnuncio(idAnuncio);
+        setIdCandidatura(idCandidatura);
+        setEmailFreelancer(emailFreelancer);
+        setValorAceite(valorAceite);
+        setNumDiasAceito(numDiasAceite);
+        setCodigoAtribuicao(codigoAtribuicao);
+        setDataAtribuicao(dataAtribuicao);
+        setDataInicioTarefa(dataInicioTarefa);
+    }
+
+    public Atribuicao(String nifOrganizacao, String refTarefa, int idAnuncio, int idCandidatura, String emailFreelancer,
+                      double valorAceite, int numDiasAceite, String codigoAtribuicao, String dataInicioTarefa){
+        setNifOrganizacao(nifOrganizacao);
+        setRefTarefa(refTarefa);
+        setIdAnuncio(idAnuncio);
+        setIdCandidatura(idCandidatura);
+        setEmailFreelancer(emailFreelancer);
+        setValorAceite(valorAceite);
+        setNumDiasAceito(numDiasAceite);
+        setCodigoAtribuicao(codigoAtribuicao);
+        setDataInicioTarefa(dataInicioTarefa);
+    }
+
+    public void setIdAtribuicao(int idAtribuicao){
+        this.idAtribuicao = idAtribuicao;
     }
 
     public void setNifOrganizacao(String nifOrganizacao){
@@ -63,8 +99,8 @@ public class Atribuicao implements DTO {
         this.emailFreelancer = emailFreelancer;
     }
 
-    public void setValorAceito(double valorAceito){
-        this.valorAceite = valorAceito;
+    public void setValorAceite(double valorAceite){
+        this.valorAceite = valorAceite;
     }
 
     public void setNumDiasAceito(int numDiasAceito){
