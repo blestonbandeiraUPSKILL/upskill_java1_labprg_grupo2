@@ -17,7 +17,7 @@ public class FabricaRepositoriosDatabase implements FabricaRepositorios {
     }
 
     @Override
-    public RepositorioAtribuicao getRepositorioAtribuicao() throws SQLException{
+    public RepositorioAtribuicao getRepositorioAtribuicao(){
         return RepositorioAtribuicaoDatabase.getInstance();
     }
     

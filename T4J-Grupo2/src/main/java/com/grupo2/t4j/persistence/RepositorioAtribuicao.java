@@ -20,9 +20,9 @@ public interface RepositorioAtribuicao {
     boolean save(String nifOrganizacao, String refTarefa, int idAnuncio, int idCandidatura, String emailFreelancer,
                  double valorAceite, int numDiasAceite, String codigoAtribuicao, String dataInicioTarefa) throws SQLException;
 
-    boolean save(AtribuicaoDTO atribuicao) throws SQLException;
+    boolean save(Atribuicao atribuicao) throws SQLException;
 
-    Atribuicao findAtribuicaoByAnuncio(int idAnuncio) throws SQLException;
+    AtribuicaoDTO findAtribuicaoByTarefa(String refTarefa) throws SQLException;
 
-    List<Atribuicao> getAllByOrganizacao(String nifOrganizacao) throws SQLException;
+    List<AtribuicaoDTO> getAllByOrganizacao(String nifOrganizacao) throws SQLException;
 }

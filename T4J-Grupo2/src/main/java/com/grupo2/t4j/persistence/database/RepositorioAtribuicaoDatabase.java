@@ -42,7 +42,7 @@ public class RepositorioAtribuicaoDatabase implements RepositorioAtribuicao{
             CallableStatement callableStatement = connection.prepareCall(
                     "{CALL createAtribuicao(?, ?, ?, ?, ?, ?, ?, ?) }");
 
-            if(findAtribuicaoByAnuncio(idAnuncio) == null){
+            if(findAtribuicaoByTarefa(refTarefa) == null){
                 connection.setAutoCommit(false);
 
                 callableStatement.setString(1, nifOrganizacao);
@@ -79,7 +79,7 @@ public class RepositorioAtribuicaoDatabase implements RepositorioAtribuicao{
 
 
     @Override
-    public boolean save(AtribuicaoDTO atribuicao) throws SQLException{
+    public boolean save(Atribuicao atribuicao) throws SQLException{
         Connection connection = DBConnectionHandler.getInstance().openConnection();
 
         try {
@@ -87,7 +87,7 @@ public class RepositorioAtribuicaoDatabase implements RepositorioAtribuicao{
             CallableStatement callableStatement = connection.prepareCall(
                     "{CALL createAtribuicao(?, ?, ?, ?, ?, ?, ?, ?) }");
 
-            if(findAtribuicaoByAnuncio(atribuicao.getIdAnuncio()) == null){
+            if(findAtribuicaoByTarefa(atribuicao.getRefTarefa()) == null){
                 connection.setAutoCommit(false);
 
                 callableStatement.setString(1, atribuicao.getNifOrganizacao());
@@ -123,36 +123,52 @@ public class RepositorioAtribuicaoDatabase implements RepositorioAtribuicao{
     }
 
     @Override
-    public Atribuicao findAtribuicaoByAnuncio(int idAnuncio) throws SQLException{
+    public AtribuicaoDTO findAtribuicaoByTarefa(String refTarefa) throws SQLException{
 
+        AtribuicaoDTO atribuicao = new AtribuicaoDTO();
         Connection connection = DBConnectionHandler.getInstance().openConnection();
 
         try {
-            CallableStatement callableStatement = connection.prepareCall(
-                    "{ CALL findAtribuicaoByAnuncio(?) }"
+
+            PreparedStatement preparedStatement = connection.prepareStatement(
+                    "SELECT * FROM Atribuicao WHERE refTarefa LIKE ?"
             );
 
-            connection.setAutoCommit(false);
+            preparedStatement.setString(1, refTarefa);
 
-            callableStatement.setInt(1, idAnuncio);
+            ResultSet resultSet = preparedStatement.executeQuery();
 
-            callableStatement.executeUpdate();
-            return null;
+            while (resultSet.next()) {
+                int idAtribuicao = resultSet.getInt(2);
+                String nifOrganizacao = resultSet.getString(3);
+                int idAnuncio = resultSet.getInt(4);
+                int idCandidatura = resultSet.getInt(5);
+                String emailFreelancer = resultSet.getString(6);
+                double valorAceite = resultSet.getDouble(7);
+                int numeroDias = resultSet.getInt(8);
+                String codigoAtribuicao = resultSet.getString(9);
+                String dataAtribuicao = resultSet.getString(10);
+                String dataInicioTarefa = resultSet.getString(11);
+                String dataFimTarefa = resultSet.getString(12);
 
-        } catch (SQLException exception) {
-            exception.printStackTrace();
-            exception.getSQLState();
+                atribuicao = new AtribuicaoDTO(idAtribuicao, nifOrganizacao, refTarefa, idAnuncio, idCandidatura,
+                        emailFreelancer, valorAceite, numeroDias, codigoAtribuicao, dataAtribuicao, dataInicioTarefa,
+                        dataFimTarefa);
 
-        }
-        finally {
+            }
+        }catch (SQLException exceptionOrg) {
+            exceptionOrg.printStackTrace();
+            exceptionOrg.getSQLState();
+        } finally {
             DBConnectionHandler.getInstance().closeAll();
         }
-        return new Atribuicao();
+
+        return atribuicao;
     }
 
     @Override
-    public List<Atribuicao> getAllByOrganizacao(String nifOrganizacao) throws SQLException{
-        List<Atribuicao> atribuicoes = new ArrayList<>();
+    public List<AtribuicaoDTO> getAllByOrganizacao(String nifOrganizacao) throws SQLException{
+        List<AtribuicaoDTO> atribuicoes = new ArrayList<>();
 
         Connection connection = DBConnectionHandler.getInstance().openConnection();
 
@@ -182,7 +198,7 @@ public class RepositorioAtribuicaoDatabase implements RepositorioAtribuicao{
                 String dataInicioTarefa =  resultSet.getDate(11).toString();
                 String dataFimTarefa =  resultSet.getDate(12).toString();
 
-                atribuicoes.add(new Atribuicao(idAtribuicao, nifOrganizacao, refTarefa, idAnuncio, idCandidatura,
+                atribuicoes.add(new AtribuicaoDTO(idAtribuicao, nifOrganizacao, refTarefa, idAnuncio, idCandidatura,
                         emailFreelancer, valorAceite, numDiasAceite, codigoAtribuicao, dataAtribuicao, dataInicioTarefa,
                         dataFimTarefa));
             }
