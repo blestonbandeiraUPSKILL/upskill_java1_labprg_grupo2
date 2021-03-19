@@ -60,6 +60,9 @@ public class AdicionarFreelancerUI implements Initializable {
 
         registarFreelancerController = new RegistarFreelancerController();
 
+        gestaoUtilizadoresController = new GestaoUtilizadoresController();
+        txt_email.setText(gestaoUtilizadoresController.getEmail());
+
     }
 
     /**
