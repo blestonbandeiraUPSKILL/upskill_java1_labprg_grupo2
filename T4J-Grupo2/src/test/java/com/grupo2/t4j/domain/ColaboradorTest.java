@@ -44,13 +44,14 @@ public class ColaboradorTest {
   @Test
     public void testCriarColaborador() {
         
-        /*Colaborador c1 = new Colaborador(new Email("fulano@upskill.pt"), "Fulano","Assistente",
+        Colaborador c1 = new Colaborador(new Email("fulano@upskill.pt"), "Assistente","912345678",
                 "999888777");
 
-        assertEquals("Fulano", c1.getNome());
+        //assertEquals("Fulano", c1.getNome());
         assertEquals("fulano@upskill.pt", c1.getEmail().getEmailText());
         assertEquals("Assistente", c1.getFuncao());
-        assertEquals("999888777", c1.getTelefone());*/
+        assertEquals("999888777", c1.getNifOrganizacao());
+        assertEquals("912345678", c1.getTelefone());
     }
     /*
     @Test (expected = NomeInvalidoException.class)
