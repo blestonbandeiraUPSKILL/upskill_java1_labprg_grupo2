@@ -1,14 +1,12 @@
 package com.grupo2.t4j.ui;
 
+import com.grupo2.t4j.controller.GestaoUtilizadoresController;
 import com.grupo2.t4j.controller.RegistarFreelancerController;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.Window;
@@ -25,6 +23,7 @@ public class AdicionarFreelancerUI implements Initializable {
 
     private AdministrativoLogadoUI administrativoLogadoUI;
     private RegistarFreelancerController registarFreelancerController;
+    private GestaoUtilizadoresController gestaoUtilizadoresController;
     private Stage adicionarStage;
 
     @FXML TextField txtNomeFreelancer;
@@ -39,6 +38,7 @@ public class AdicionarFreelancerUI implements Initializable {
     @FXML Button btnAddFreelancer;
     @FXML Button btnCancelar;
     @FXML Button btnSair;
+    @FXML Label txt_email;
 
     /**
      * Associa a scene AdministrativoLogadoUI como parent desta Scene 
@@ -59,6 +59,9 @@ public class AdicionarFreelancerUI implements Initializable {
         adicionarStage.setResizable(false);
 
         registarFreelancerController = new RegistarFreelancerController();
+
+        gestaoUtilizadoresController = new GestaoUtilizadoresController();
+        txt_email.setText(gestaoUtilizadoresController.getEmail());
 
     }
 
