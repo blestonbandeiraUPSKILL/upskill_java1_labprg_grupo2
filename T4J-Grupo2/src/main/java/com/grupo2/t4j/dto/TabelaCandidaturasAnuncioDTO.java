@@ -16,7 +16,6 @@ public class TabelaCandidaturasAnuncioDTO {
         this.custo = custo;
     }
 
-
     public int getClassificacao(){
         return classificacao;
     }
