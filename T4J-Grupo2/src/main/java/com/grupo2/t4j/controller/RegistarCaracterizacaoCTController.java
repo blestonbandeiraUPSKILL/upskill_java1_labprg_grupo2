@@ -3,6 +3,7 @@ package com.grupo2.t4j.controller;
 import com.grupo2.t4j.domain.CaracterizacaoCT;
 import com.grupo2.t4j.domain.Obrigatoriedade;
 import com.grupo2.t4j.dto.CaracterizacaoCTDTO;
+import com.grupo2.t4j.dto.ObrigatoriedadeDTO;
 import com.grupo2.t4j.persistence.FabricaRepositorios;
 import com.grupo2.t4j.persistence.RepositorioCaracterizacaoCT;
 import com.grupo2.t4j.persistence.database.FabricaRepositoriosDatabase;
@@ -48,9 +49,11 @@ public class RegistarCaracterizacaoCTController {
      * @param obrigatoriedade as requisito da competência técnica
      * @return boolean
      */
-    public boolean registarCaracterizacaoCTS(String codigoCategoria, int codigoGP, Obrigatoriedade obrigatoriedade) throws SQLException {
+    public boolean registarCaracterizacaoCTS(String codigoCategoria, int codigoGP, ObrigatoriedadeDTO obrigatoriedade) throws SQLException {
 
-        CaracterizacaoCT caracterizacaoCT = new CaracterizacaoCT(codigoCategoria, codigoGP, obrigatoriedade);
+        Obrigatoriedade o = Obrigatoriedade.valueOf(obrigatoriedade.toString());
+
+        CaracterizacaoCT caracterizacaoCT = new CaracterizacaoCT(codigoCategoria, codigoGP, o);
 
         return repositorioCaracterizacaoCT.save(caracterizacaoCT);
     }

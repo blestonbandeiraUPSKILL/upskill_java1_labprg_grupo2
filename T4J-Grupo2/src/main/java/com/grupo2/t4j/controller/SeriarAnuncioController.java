@@ -2,6 +2,8 @@ package com.grupo2.t4j.controller;
 
 import com.grupo2.t4j.domain.*;
 import com.grupo2.t4j.domain.strategy.*;
+import com.grupo2.t4j.dto.CandidaturaDTO;
+import com.grupo2.t4j.dto.ClassificacaoDTO;
 import com.grupo2.t4j.persistence.*;
 import com.grupo2.t4j.persistence.database.FabricaRepositoriosDatabase;
 
@@ -115,8 +117,14 @@ public class SeriarAnuncioController {
      * @return
      * @throws SQLException
      */
-    public List<Candidatura> getAllByIdAnuncio(int idAnuncio) throws SQLException{
-        return repositorioCandidatura.getAllByIdAnuncio(idAnuncio);
+    public List<CandidaturaDTO> getAllByIdAnuncio(int idAnuncio) throws SQLException{
+        List<Candidatura> candidaturas = repositorioCandidatura.getAllByIdAnuncio(idAnuncio);
+        List<CandidaturaDTO> candidaturasDTO = new ArrayList<>();
+
+        for(Candidatura candidatura : candidaturas) {
+            candidaturasDTO.add((CandidaturaDTO) candidatura.toDTO());
+        }
+        return candidaturasDTO;
     }
   
     /**
@@ -178,8 +186,14 @@ public class SeriarAnuncioController {
      * @return
      * @throws SQLException
      */
-    public List<Classificacao> getAllBySeriacao(int idSeriacao)throws SQLException{
-        return repositorioClassificacao.getAllBySeriacao(idSeriacao);
+    public List<ClassificacaoDTO> getAllBySeriacao(int idSeriacao)throws SQLException{
+        List<Classificacao> classificacoes = repositorioClassificacao.getAllBySeriacao(idSeriacao);
+        List<ClassificacaoDTO> classificaoesDTO = new ArrayList<>();
+
+        for (Classificacao classificacao : classificacoes) {
+            classificaoesDTO.add((ClassificacaoDTO) classificacao.toDTO());
+        }
+        return classificaoesDTO;
     }
 
     /**
