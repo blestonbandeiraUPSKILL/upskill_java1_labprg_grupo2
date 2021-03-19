@@ -144,7 +144,7 @@
       <module name="T4J-Grupo2" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.grupo2.t4j.ui.PublicarTarefaUI" />
+          <option name="PATTERN" value="com.grupo2.t4j.ui.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -152,7 +152,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="AreaActividadeTest.testCriarAreaActividadeDuplicada" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="AnuncioTest.testEformaData" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="T4J-Grupo2" />
       <extension name="coverage">
         <pattern>
@@ -161,14 +161,14 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="com.grupo2.t4j.domain" />
-      <option name="MAIN_CLASS_NAME" value="com.grupo2.t4j.domain.AreaActividadeTest" />
-      <option name="METHOD_NAME" value="testCriarAreaActividadeDuplicada" />
+      <option name="MAIN_CLASS_NAME" value="com.grupo2.t4j.domain.AnuncioTest" />
+      <option name="METHOD_NAME" value="testEformaData" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CandidaturaTest.testCriarCandidatura" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="CompetenciaTecnicaTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="T4J-Grupo2" />
       <extension name="coverage">
         <pattern>
@@ -177,14 +177,29 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="com.grupo2.t4j.domain" />
-      <option name="MAIN_CLASS_NAME" value="com.grupo2.t4j.domain.CandidaturaTest" />
-      <option name="METHOD_NAME" value="testCriarCandidatura" />
+      <option name="MAIN_CLASS_NAME" value="com.grupo2.t4j.domain.CompetenciaTecnicaTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CompetenciaTecnicaTest.testCriarCompetenciaTecnicaSemDescBreve" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="T4J-Grupo2" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.grupo2.t4j.domain.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.grupo2.t4j.domain" />
+      <option name="MAIN_CLASS_NAME" value="com.grupo2.t4j.domain.CompetenciaTecnicaTest" />
+      <option name="METHOD_NAME" value="testCriarCompetenciaTecnicaSemDescBreve" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CategoriaTest.testCriarCategoria" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="CompetenciaTecnicaTest.testCriarCompetenciaTecnicaSemDescDetalhada" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="T4J-Grupo2" />
       <extension name="coverage">
         <pattern>
@@ -193,24 +208,8 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="com.grupo2.t4j.domain" />
-      <option name="MAIN_CLASS_NAME" value="com.grupo2.t4j.domain.CategoriaTest" />
-      <option name="METHOD_NAME" value="testCriarCategoria" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ColaboradorTest.testCriarColaborador" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="T4J-Grupo2" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.grupo2.t4j.domain.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.grupo2.t4j.domain" />
-      <option name="MAIN_CLASS_NAME" value="com.grupo2.t4j.domain.ColaboradorTest" />
-      <option name="METHOD_NAME" value="testCriarColaborador" />
+      <option name="MAIN_CLASS_NAME" value="com.grupo2.t4j.domain.CompetenciaTecnicaTest" />
+      <option name="METHOD_NAME" value="testCriarCompetenciaTecnicaSemDescDetalhada" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
