@@ -9,7 +9,7 @@ package com.grupo2.t4j.ui;
  *
  * @author CAD
  */
-
+import com.grupo2.t4j.domain.ProcessoSeriacao;
 import com.grupo2.t4j.dto.AtribuicaoDTO;
 import com.grupo2.t4j.controller.AtribuirTarefaController;
 import com.grupo2.t4j.controller.RegistarTarefaController;
@@ -98,7 +98,7 @@ public class ConsultarAtribuicaoColaboradorUI implements Initializable {
 
             txtRefTarefa.setText(refTarefa);
             txtIdAnuncio.setText(Integer.toString(idAnuncio));
-            txtDataSeriacao.setText(seriarAnuncioController.findSeriacaoByAnuncio(idAnuncio).getDataSeriacao());
+            txtDataSeriacao.setText(seriarAnuncioController.getProcessoSeriacaoByAnuncio(idAnuncio).getDataSeriacao());
             txtDataAtribuicao.setText(atribuicaoDTO.getDataAtribuicao());
             txtDescInformal.setText(registarTarefaController.findTarefa(idAnuncio).getDescInformal());
             txtDescTecnica.setText(registarTarefaController.findTarefa(idAnuncio).getDescTecnica());
