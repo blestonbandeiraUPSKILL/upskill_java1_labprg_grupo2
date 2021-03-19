@@ -29,12 +29,12 @@ public class SeriarAnuncioController {
     private RegimentoStrategy_3 regimentoStrategy_3 = new RegimentoStrategy_3();
 
     /**
-     * 
+     *
      */
     public SeriarAnuncioController(){
-        
+
     }
-    
+
     /**
      * Retorna uma lista de referências de tarefas de uma organização
      * @param nifOrganizacao - nif da organização
@@ -67,7 +67,7 @@ public class SeriarAnuncioController {
     public List<Tarefa> getAllRefTarefasASeriar(List<String> referenciasTarefa, String nifOrganizacao, String emailColaborador) throws SQLException{
         return repositorioAnuncio.getAllRefTarefasASeriar(referenciasTarefa, nifOrganizacao, emailColaborador);
     }
-    
+
     /**
      * Retorna o id do Anúncio referente a uma dada referência de tarefa
      * @param referenciaTarefa - referência da tarefa
@@ -78,7 +78,7 @@ public class SeriarAnuncioController {
     public int getIdAnuncioByIdTarefa(String referenciaTarefa, String nifOrganizacao) throws SQLException{
         return repositorioAnuncio.findAnuncioByIdTarefa(referenciaTarefa, nifOrganizacao).getIdAnuncio();
     }
-    
+
     /**
      * Retorna o anúncio de acordo com o id do anúncio
      * @param idAnuncio - id do anúncio
@@ -88,7 +88,7 @@ public class SeriarAnuncioController {
     public Anuncio getAnuncio(int idAnuncio) throws SQLException {
         return repositorioAnuncio.getAnuncio(idAnuncio);
     }
-    
+
     /**
      * Retorna um tipo de regimento com base no id do Regimento
      * @param idTipoRegimento - id do Regimento de seriação
@@ -98,7 +98,7 @@ public class SeriarAnuncioController {
     public TipoRegimento findRegimentoById(int idTipoRegimento) throws SQLException{
         return repositorioTipoRegimento.findById(idTipoRegimento);
     }
-    
+
     /**
      * Retorna uma candidatura com base no id da candidatura
      * @param idCandidatura - id da candidatura
@@ -108,7 +108,7 @@ public class SeriarAnuncioController {
     public Candidatura findById(int idCandidatura) throws SQLException {
         return repositorioCandidatura.findById(idCandidatura);
     }
-    
+
     /**
      * Retorna uma lista de candidaturas para um dado anúncio
      * @param idAnuncio - id do anúncio
@@ -128,7 +128,7 @@ public class SeriarAnuncioController {
     public int getIdSeriacao(int idAnuncio)throws SQLException{
         return repositorioSeriacao.getProcessoSeriacaoByAnuncio(idAnuncio).getIdSeriacao();
     }
-    
+
     /**
      * Retorna um processo de seriação de um anúncio
      * @param idAnuncio - id do anúncio
@@ -181,7 +181,7 @@ public class SeriarAnuncioController {
     public List<Classificacao> getAllBySeriacao(int idSeriacao)throws SQLException{
         return repositorioClassificacao.getAllBySeriacao(idSeriacao);
     }
-    
+
     /**
      * Retorna uma candidatura com base no seu id
      * @param idCandidatura - id da candidatura
@@ -191,7 +191,7 @@ public class SeriarAnuncioController {
     public Candidatura findCandidaturaById(int idCandidatura) throws SQLException{
         return repositorioCandidatura.findById(idCandidatura);
     }
-    
+
     /**
      * Retorna uma classificação com base no seu id
      * @param idClassificacao - id da classificação
@@ -201,7 +201,7 @@ public class SeriarAnuncioController {
     public Classificacao findClassificacaoById(int idClassificacao) throws SQLException{
         return repositorioClassificacao.findById(idClassificacao);
     }
-    
+
     /**
      * Retorna uma lista de colaboradores de uma organização
      * @param nifOrganizacacao - nif da organização

@@ -5,19 +5,19 @@ import com.grupo2.t4j.domain.AlgoritmoGeradorPasswords;
 import com.grupo2.t4j.domain.Colaborador;
 import com.grupo2.t4j.domain.Email;
 import com.grupo2.t4j.domain.Password;
+import com.grupo2.t4j.dto.ColaboradorDTO;
 import com.grupo2.t4j.persistence.FabricaRepositorios;
 import com.grupo2.t4j.persistence.RepositorioColaborador;
 import com.grupo2.t4j.persistence.database.FabricaRepositoriosDatabase;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class RegistarColaboradorController {
 
     private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosDatabase();
     private RepositorioColaborador repositorioColaborador = fabricaRepositorios.getRepositorioColaborador();
-
-    private AlgoritmoGeradorPasswords algoritmoGeradorPasswords;
 
     /**
      * Registo do Colaborador boolean
@@ -46,8 +46,14 @@ public class RegistarColaboradorController {
      * @return
      * @throws SQLException 
      */
-    public List<Colaborador> getAll(String nifOrganizacacao) throws SQLException {
-        return repositorioColaborador.getAll(nifOrganizacacao);
+    public List<ColaboradorDTO> getAll(String nifOrganizacacao) throws SQLException {
+        List<Colaborador> colaboradores = repositorioColaborador.getAll(nifOrganizacacao);
+        List<ColaboradorDTO> colaboradoresDTO = new ArrayList<>();
+
+        for(Colaborador colaborador : colaboradores) {
+            colaboradoresDTO.add((ColaboradorDTO) colaborador.toDTO());
+        }
+        return colaboradoresDTO;
     }
 
     /**
@@ -66,8 +72,9 @@ public class RegistarColaboradorController {
      * @return
      * @throws SQLException 
      */
-    public Colaborador findByEmail(String email) throws SQLException {
-        return repositorioColaborador.findByEmail(email);
+    public ColaboradorDTO findByEmail(String email) throws SQLException {
+        Colaborador colaborador = repositorioColaborador.findByEmail(email);
+        return (ColaboradorDTO) colaborador.toDTO();
     }
 
     /**

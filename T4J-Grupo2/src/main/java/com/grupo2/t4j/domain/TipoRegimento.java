@@ -5,6 +5,8 @@
  */
 package com.grupo2.t4j.domain;
 
+import com.grupo2.t4j.dto.DTO;
+import com.grupo2.t4j.dto.TipoRegimentoDTO;
 import com.grupo2.t4j.exception.DescricaoInvalidaException;
 import com.grupo2.t4j.exception.IdInvalidoException;
 import com.grupo2.t4j.exception.NomeInvalidoException;
@@ -13,7 +15,7 @@ import com.grupo2.t4j.exception.NomeInvalidoException;
  *
  * @author CAD
  */
-public class TipoRegimento {
+public class TipoRegimento implements DTO {
     
     /**
      * O Id do Tipo de Regimento.
@@ -133,6 +135,11 @@ public class TipoRegimento {
     public String toStringCompleto(){
         return String.format("Id do Tipo de Regimento: %s %nDesignação do tipo de"
                 + "Seriação adotado:%s %nDescrição das regras: %s", idTipoRegimento,
-                designacao.toString(), descricaoRegras);
+                designacao, descricaoRegras);
+    }
+
+    @Override
+    public Object toDTO() {
+        return new TipoRegimentoDTO(idTipoRegimento, designacao, descricaoRegras);
     }
 }

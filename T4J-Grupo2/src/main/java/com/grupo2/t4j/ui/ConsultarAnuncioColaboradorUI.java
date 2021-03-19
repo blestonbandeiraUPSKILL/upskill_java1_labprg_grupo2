@@ -72,7 +72,7 @@ public class ConsultarAnuncioColaboradorUI implements Initializable {
      * @throws SQLException 
      */
     public void transferData() throws SQLException {
-        String referenciaTarefa = colaboradorLogadoUI.cmbAnuncio.getSelectionModel().getSelectedItem();
+        String referenciaTarefa = colaboradorLogadoUI.cmbAnuncio.getSelectionModel().getSelectedItem().toString();
         String nifOrganizacao = colaboradorLogadoUI.getNifOrganizacao();
 
         int idAnuncio = registarTarefaController.findIdAnuncio(nifOrganizacao, referenciaTarefa);

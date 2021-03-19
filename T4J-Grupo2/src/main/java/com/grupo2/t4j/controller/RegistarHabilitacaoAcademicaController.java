@@ -1,11 +1,13 @@
 package com.grupo2.t4j.controller;
 
 import com.grupo2.t4j.domain.HabilitacaoAcademica;
+import com.grupo2.t4j.dto.HabilitacaoAcademicaDTO;
 import com.grupo2.t4j.persistence.FabricaRepositorios;
 import com.grupo2.t4j.persistence.RepositorioHabilitacaoAcademica;
 import com.grupo2.t4j.persistence.database.FabricaRepositoriosDatabase;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 public class RegistarHabilitacaoAcademicaController {
 
@@ -37,8 +39,14 @@ public class RegistarHabilitacaoAcademicaController {
      * @return
      * @throws SQLException 
      */
-    public List<HabilitacaoAcademica> getAll(String emailFreelancer) throws SQLException{
-        return repositorioHabilitacaoAcademica.getAll(emailFreelancer);
+    public List<HabilitacaoAcademicaDTO> getAll(String emailFreelancer) throws SQLException{
+        List<HabilitacaoAcademica> habilitacoesAcademicas = repositorioHabilitacaoAcademica.getAll(emailFreelancer);
+        List<HabilitacaoAcademicaDTO> habilitacoesAcademicasDTO = new ArrayList<>();
+
+        for (HabilitacaoAcademica habilitacaoAcademica : habilitacoesAcademicas) {
+            habilitacoesAcademicasDTO.add((HabilitacaoAcademicaDTO) habilitacaoAcademica.toDTO());
+        }
+        return habilitacoesAcademicasDTO;
     }
        
     /**
@@ -47,8 +55,9 @@ public class RegistarHabilitacaoAcademicaController {
      * @return
      * @throws SQLException 
      */
-    public HabilitacaoAcademica findById(int idHabilitacao) throws SQLException{
-        return repositorioHabilitacaoAcademica.findById(idHabilitacao);
+    public HabilitacaoAcademicaDTO findById(int idHabilitacao) throws SQLException{
+        HabilitacaoAcademica habilitacaoAcademica = repositorioHabilitacaoAcademica.findById(idHabilitacao);
+        return (HabilitacaoAcademicaDTO) habilitacaoAcademica.toDTO();
     }
 
 

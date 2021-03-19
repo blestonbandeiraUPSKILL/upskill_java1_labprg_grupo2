@@ -5,11 +5,14 @@
  */
 package com.grupo2.t4j.domain;
 
+import com.grupo2.t4j.dto.AtribuicaoDTO;
+import com.grupo2.t4j.dto.DTO;
+
 /**
  *
  * @author CAD
  */
-public class Atribuicao {
+public class Atribuicao implements DTO {
 
     private int idAtribuicao;
     private String nifOrganizacao;
@@ -17,8 +20,8 @@ public class Atribuicao {
     private int idAnuncio;
     private int idCandidatura;
     private String emailFreelancer;
-    private double valorAceito;
-    private int numDiasAceito;
+    private double valorAceite;
+    private int numDiasAceite;
     private String codigoAtribuicao;
     private String dataAtribuicao;
     private String dataInicioTarefa;
@@ -61,11 +64,11 @@ public class Atribuicao {
     }
 
     public void setValorAceito(double valorAceito){
-        this.valorAceito = valorAceito;
+        this.valorAceite = valorAceito;
     }
 
     public void setNumDiasAceito(int numDiasAceito){
-        this.numDiasAceito = numDiasAceito;
+        this.numDiasAceite = numDiasAceito;
     }
 
     public void setCodigoAtribuicao(String codigoAtribuicao){
@@ -84,18 +87,13 @@ public class Atribuicao {
         this.dataFimTarefa = dataFimTarefa;
     }
 
+    @Override
+    public Object toDTO() {
+        return new AtribuicaoDTO(idAtribuicao, nifOrganizacao, refTarefa, idAnuncio, idCandidatura,
+                emailFreelancer, valorAceite, numDiasAceite, codigoAtribuicao, dataAtribuicao, dataInicioTarefa, dataFimTarefa);
+    }
 
 
-
-
-
-
-
-
-
-
-    
-    
     //Falta acabar
     
 }

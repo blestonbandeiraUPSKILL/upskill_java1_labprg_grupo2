@@ -8,6 +8,10 @@ import com.grupo2.t4j.domain.CompetenciaTecnica;
 import com.grupo2.t4j.domain.Freelancer;
 import com.grupo2.t4j.domain.GrauProficiencia;
 import com.grupo2.t4j.domain.ReconhecimentoGP;
+import com.grupo2.t4j.dto.CompetenciaTecnicaDTO;
+import com.grupo2.t4j.dto.FreelancerDTO;
+import com.grupo2.t4j.dto.GrauProficienciaDTO;
+import com.grupo2.t4j.dto.ReconhecimentoGPDTO;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -39,9 +43,9 @@ public class AdicionarReconhecimentoGPUI implements Initializable {
 
     @FXML TextField txtNomeFreelancer;
     @FXML TextField txtIDataValidacao;
-    @FXML ComboBox<Freelancer> cmbEmailFreelancer;
-    @FXML ComboBox<CompetenciaTecnica> cmbCompetencia;
-    @FXML ComboBox<GrauProficiencia> cmbProficiencia;
+    @FXML ComboBox<FreelancerDTO> cmbEmailFreelancer;
+    @FXML ComboBox<CompetenciaTecnicaDTO> cmbCompetencia;
+    @FXML ComboBox<GrauProficienciaDTO> cmbProficiencia;
     @FXML Button btnAddCompetencia;
     @FXML Button btnCancelar;
     @FXML Button btnSair;
@@ -50,7 +54,7 @@ public class AdicionarReconhecimentoGPUI implements Initializable {
     @FXML TableColumn<Object, Object> txtCompTec;
     @FXML TableColumn<Object, Object> txtDataReconhecimento;
     @FXML TableColumn<Object, Object> txtGrau;
-    @FXML TableView<ReconhecimentoGP> tabelaReconhecimento;
+    @FXML TableView<ReconhecimentoGPDTO> tabelaReconhecimento;
 
     /**
      * Associa a scene AdministrativoLogadoUI como parent desta Scene 
