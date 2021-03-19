@@ -12,6 +12,8 @@ package com.grupo2.t4j.ui;
 
 import com.grupo2.t4j.controller.SeriarAnuncioController;
 import com.grupo2.t4j.domain.*;
+import com.grupo2.t4j.dto.CandidaturaDTO;
+import com.grupo2.t4j.dto.ColaboradorDTO;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -120,7 +122,7 @@ public class SeriacaoManualColaboradorUI implements Initializable{
      * @throws SQLException
      */
     public void criaTabelaCandidaturas() throws SQLException{
-        List<Candidatura> candidaturas = seriarAnuncioController.getAllByIdAnuncio(idAnuncio);
+        List<CandidaturaDTO> candidaturas = seriarAnuncioController.getAllByIdAnuncio(idAnuncio);
         
         qtdCand = candidaturas.size();
         for(int i = 0; i < qtdCand; i++){
@@ -161,7 +163,7 @@ public class SeriacaoManualColaboradorUI implements Initializable{
      * @throws SQLException
      */
     public void criaTabelaColaboradoresOpcionais() throws SQLException{
-        List<Colaborador> colaboradores = seriarAnuncioController.getAll(nifOrganizacao);
+        List<ColaboradorDTO> colaboradores = seriarAnuncioController.getAll(nifOrganizacao);
         
         for(int i = 0; i < colaboradores.size(); i++){
             if(!colaboradores.get(i).getEmail().getEmailText().equals(emailColaborador)){

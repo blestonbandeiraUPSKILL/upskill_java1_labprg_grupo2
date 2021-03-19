@@ -2,7 +2,7 @@ package com.grupo2.t4j.ui;
 
 import com.grupo2.t4j.controller.*;
 import com.grupo2.t4j.domain.*;
-import com.grupo2.t4j.dto.TarefaDTO;
+import com.grupo2.t4j.dto.*;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -72,7 +72,7 @@ public class ColaboradorLogadoUI implements Initializable {
     @FXML TableColumn<Object, Object> colunaDuracaoFree;
     @FXML TableColumn<Object, Object> colunaCustoFree;
 
-    @FXML TableView<TabelaConsultaAtribuicao>  tabelaAtribuicoes;
+    @FXML TableView<TabelaConsultaAtribuicaoDTO>  tabelaAtribuicoes;
     @FXML TableColumn<Object, Object> colunaRefTarefa;
     @FXML TableColumn<Object, Object> colunaFreelancer;
     @FXML TableColumn<Object, Object> colunaCodAtribuicao;
@@ -207,7 +207,7 @@ public class ColaboradorLogadoUI implements Initializable {
     public boolean existeSeriacao() throws SQLException{
         idAnuncio = getIdAnuncio();
 
-        List<ProcessoSeriacao> processos = new ArrayList<>();
+        List<ProcessoSeriacaoDTO> processos = new ArrayList<>();
         processos = seriarAnuncioController.getAllPSByIdAnuncio(idAnuncio);
         if(processos.size() > 0){
             btnSeriacaoManual.setDisable(true);
@@ -222,7 +222,7 @@ public class ColaboradorLogadoUI implements Initializable {
      * @throws SQLException 
      */
     public boolean existeCandidatura() throws SQLException{
-        List<Candidatura> candidaturas = new ArrayList<>();
+        List<CandidaturaDTO> candidaturas = new ArrayList<>();
         idAnuncio = getIdAnuncio();
         candidaturas = seriarAnuncioController.getAllByIdAnuncio(idAnuncio);
         limpaTabelaCandidaturas();
@@ -314,10 +314,10 @@ public class ColaboradorLogadoUI implements Initializable {
      */
     public void criarTabelaClassificacao() throws SQLException{
         idAnuncio = getIdAnuncio();
-        List<Candidatura> candidaturas = seriarAnuncioController.getAllByIdAnuncio(idAnuncio);
+        List<CandidaturaDTO> candidaturas = seriarAnuncioController.getAllByIdAnuncio(idAnuncio);
         for(int i = 0; i < candidaturas.size(); i++){
-            TabelaCandidaturasAnuncio cellCandidatura = new TabelaCandidaturasAnuncio(
-            candidaturas.get(i).getIdCandidatura(), candidaturas.get(i).getEmailFreelancer(), 
+            TabelaCandidaturasAnuncio cellCandidatura = new TabelaCandidaturasAnuncio
+                    (candidaturas.get(i).getIdCandidatura(), candidaturas.get(i).getEmailFreelancer(),
                     candidaturas.get(i).getNumeroDias(), candidaturas.get(i).getValorPretendido());
             listaCandidaturasAnuncio.add(cellCandidatura);
         }
@@ -333,8 +333,8 @@ public class ColaboradorLogadoUI implements Initializable {
     public void updateTabelaClassificacao(int idSeriacao)throws SQLException{
         limpaTabelaCandidaturas();
         idAnuncio = getIdAnuncio();
-        List<Candidatura> candidaturas = seriarAnuncioController.getAllByIdAnuncio(idAnuncio);
-        List<Classificacao> listaClassificada = seriarAnuncioController.getAllBySeriacao(idSeriacao);
+        List<CandidaturaDTO> candidaturas = seriarAnuncioController.getAllByIdAnuncio(idAnuncio);
+        List<ClassificacaoDTO> listaClassificada = seriarAnuncioController.getAllBySeriacao(idSeriacao);
         for(int i = 0; i <candidaturas.size(); i++){
             for(int j = 0; j < listaClassificada.size(); j++){
                 if(candidaturas.get(i).getIdCandidatura() == listaClassificada.get(j).getIdCandidatura()){
@@ -357,7 +357,7 @@ public class ColaboradorLogadoUI implements Initializable {
         txtDataSeriacao.clear();
         idAnuncio = getIdAnuncio();
         
-        List<ProcessoSeriacao> processos = seriarAnuncioController.getAllPSByIdAnuncio(idAnuncio);
+        List<ProcessoSeriacaoDTO> processos = seriarAnuncioController.getAllPSByIdAnuncio(idAnuncio);
         
         txtDataSeriacao.setText(processos.get(0).getDataSeriacao());
         btnSeriacaoManual.setDisable(true);
