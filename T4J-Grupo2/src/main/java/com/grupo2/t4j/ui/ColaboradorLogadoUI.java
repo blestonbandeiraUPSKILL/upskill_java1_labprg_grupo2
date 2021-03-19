@@ -64,8 +64,8 @@ public class ColaboradorLogadoUI implements Initializable {
     @FXML TableColumn<Object, Object> colunaDuracao;
     @FXML TableColumn<Object, Object> colunaCusto;
 
-    @FXML TableView<TabelaCandidaturasAnuncioDTO> tabelaCandidaturasFreelancers;
-    List<TabelaCandidaturasAnuncioDTO> listaCandidaturasAnuncio = new ArrayList<>();
+    @FXML TableView<TabelaCandidaturasAnuncio> tabelaCandidaturasFreelancers;
+    List<TabelaCandidaturasAnuncio> listaCandidaturasAnuncio = new ArrayList<>();
     @FXML TableColumn<Object, Object> colunaClassificacao;
     @FXML TableColumn<Object, Object> colunaIdCandidatura;
     @FXML TableColumn<Object, Object> colunaEmail;
@@ -207,7 +207,7 @@ public class ColaboradorLogadoUI implements Initializable {
     public boolean existeSeriacao() throws SQLException{
         idAnuncio = getIdAnuncio();
 
-        List<ProcessoSeriacao> processos = new ArrayList<>();
+        List<ProcessoSeriacaoDTO> processos = new ArrayList<>();
         processos = seriarAnuncioController.getAllPSByIdAnuncio(idAnuncio);
         if(processos.size() > 0){
             btnSeriacaoManual.setDisable(true);
@@ -316,7 +316,7 @@ public class ColaboradorLogadoUI implements Initializable {
         idAnuncio = getIdAnuncio();
         List<CandidaturaDTO> candidaturas = seriarAnuncioController.getAllByIdAnuncio(idAnuncio);
         for(int i = 0; i < candidaturas.size(); i++){
-            TabelaCandidaturasAnuncioDTO cellCandidatura = new TabelaCandidaturasAnuncioDTO
+            TabelaCandidaturasAnuncio cellCandidatura = new TabelaCandidaturasAnuncio
                     (candidaturas.get(i).getIdCandidatura(), candidaturas.get(i).getEmailFreelancer(),
                     candidaturas.get(i).getNumeroDias(), candidaturas.get(i).getValorPretendido());
             listaCandidaturasAnuncio.add(cellCandidatura);
@@ -338,7 +338,7 @@ public class ColaboradorLogadoUI implements Initializable {
         for(int i = 0; i <candidaturas.size(); i++){
             for(int j = 0; j < listaClassificada.size(); j++){
                 if(candidaturas.get(i).getIdCandidatura() == listaClassificada.get(j).getIdCandidatura()){
-                    TabelaCandidaturasAnuncioDTO cellCandidatura = new TabelaCandidaturasAnuncioDTO(
+                    TabelaCandidaturasAnuncio cellCandidatura = new TabelaCandidaturasAnuncio(
                     listaClassificada.get(j).getPosicaoFreelancer(), candidaturas.get(i).getIdCandidatura(),
                     candidaturas.get(i).getEmailFreelancer(), candidaturas.get(i).getNumeroDias(),
                     candidaturas.get(i).getValorPretendido());
@@ -357,7 +357,7 @@ public class ColaboradorLogadoUI implements Initializable {
         txtDataSeriacao.clear();
         idAnuncio = getIdAnuncio();
         
-        List<ProcessoSeriacao> processos = seriarAnuncioController.getAllPSByIdAnuncio(idAnuncio);
+        List<ProcessoSeriacaoDTO> processos = seriarAnuncioController.getAllPSByIdAnuncio(idAnuncio);
         
         txtDataSeriacao.setText(processos.get(0).getDataSeriacao());
         btnSeriacaoManual.setDisable(true);
