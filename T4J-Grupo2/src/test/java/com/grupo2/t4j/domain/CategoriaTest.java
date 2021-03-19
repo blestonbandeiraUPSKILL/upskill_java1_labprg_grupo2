@@ -26,12 +26,12 @@ public class CategoriaTest {
 
     @Test
     public void testCriarCategoria(){
-        /*Categoria c1 = new Categoria("AA_003", "CategoriaTeste", "Categoria de Teste", "AA");
+        Categoria c1 = new Categoria("AA_003", "CategoriaTeste", "Categoria de Teste", "AA");
 
         assertEquals("AA_003", c1.getCodigoCategoria());
         assertEquals("CategoriaTeste", c1.getDescBreve());
         assertEquals("Categoria de Teste", c1.getDescDetalhada());
-        assertEquals("AA", c1.getCodigoAreaActividade());*/
+        assertEquals("AA", c1.getCodigoAreaActividade());
     }
     
     /*@Test
