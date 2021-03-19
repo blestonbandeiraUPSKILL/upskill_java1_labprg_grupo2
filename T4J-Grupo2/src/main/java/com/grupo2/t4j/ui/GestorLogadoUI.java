@@ -46,6 +46,7 @@ public class GestorLogadoUI implements Initializable {
     private Scene sceneConsultarAnuncio;
     private Scene sceneConsultarCandidatura;
     private Scene sceneSeriacaoManual;
+    private Scene sceneConsultarAtribuicaoGestor;
     private int idAnuncio;
 
     @FXML Button btnLogout;
@@ -56,9 +57,9 @@ public class GestorLogadoUI implements Initializable {
     @FXML Button btnPublicarTarefa;
     @FXML Button btnConsultarAnuncio;
     @FXML Button btnConsultarCandidaturaFreelancer;
-    @FXML Button btnSeriacaoAutomatica;
     @FXML Button btnSeriacaoManual;
     @FXML Button btnAtribuicao;
+    @FXML Button btnConsultarAtribuicao;
     @FXML Button btnMudarData;
 
     @FXML TextField txtDataSeriacao;
@@ -128,7 +129,6 @@ public class GestorLogadoUI implements Initializable {
 
         btnConsultarAnuncio.setDisable(true);
         btnConsultarCandidaturaFreelancer.setDisable(true);
-        btnSeriacaoAutomatica.setDisable(true);
         btnSeriacaoManual.setDisable(true);
 
         cmbFiltroTarefas.getItems().setAll(FiltroTarefas.values());
@@ -383,7 +383,6 @@ public class GestorLogadoUI implements Initializable {
         List<ProcessoSeriacao> processos = seriarAnuncioController.getAllPSByIdAnuncio(idAnuncio);
 
         txtDataSeriacao.setText(processos.get(0).getDataSeriacao());
-        btnSeriacaoAutomatica.setDisable(true);
         btnSeriacaoManual.setDisable(true);
         updateTabelaClassificacao(processos.get(0).getIdSeriacao());
     }
@@ -440,20 +439,19 @@ public class GestorLogadoUI implements Initializable {
 
         idAnuncio = getIdAnuncio();
         int idRegimento = seriarAnuncioController.getAnuncio(idAnuncio).getIdTipoRegimento();
-        if(idRegimento == 1){
-            btnSeriacaoAutomatica.setDisable(false);
+        if(idRegimento != 1){
+            btnSeriacaoManual.setDisable(false);
         }
         else{
-            btnSeriacaoManual.setDisable(false);
+            seriacaoAutomatica();
         }
     }
 
     /**
      * Seria automaticamente as candidaturas a um anuncio
-     * @param event
      * @throws SQLException
      */
-    public void seriacaoAutomaticaAction(ActionEvent event) throws SQLException{
+    public void seriacaoAutomatica() throws SQLException{
         try{
             idAnuncio = getIdAnuncio();
             boolean sucesso = seriarAnuncioController.seriar(idAnuncio);
@@ -694,6 +692,30 @@ public class GestorLogadoUI implements Initializable {
     @FXML
     public void registarAtribuicao (ActionEvent actionEvent) {
 
+    }
+
+    @FXML
+    public void consultarAtribuicao (ActionEvent actionEvent) {
+        try {
+            FXMLLoader loaderConsultarAtribuicaoGestor = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/ConsultarAtribuicaoGestorScene.fxml"));
+            Parent rootConsultarAtribuicaoGestor = loaderConsultarAtribuicaoGestor.load();
+            sceneConsultarAtribuicaoGestor = new Scene(rootConsultarAtribuicaoGestor);
+            ConsultarAtribuicaoGestorUI consultarAtribuicaoGestorUI = loaderConsultarAtribuicaoGestor.getController();
+            consultarAtribuicaoGestorUI.associarParentUI(this);
+            consultarAtribuicaoGestorUI.transferData();
+
+            adicionarStage.setScene(sceneConsultarAtribuicaoGestor);
+            adicionarStage.setTitle("Consultar Atribuição");
+            adicionarStage.show();
+
+        } catch (IOException exception) {
+
+            exception.printStackTrace();
+            AlertsUI.criarAlerta(Alert.AlertType.ERROR,
+                    MainApp.TITULO_APLICACAO,
+                    "Erro",
+                    exception.getMessage());
+        }
     }
 
     /**
