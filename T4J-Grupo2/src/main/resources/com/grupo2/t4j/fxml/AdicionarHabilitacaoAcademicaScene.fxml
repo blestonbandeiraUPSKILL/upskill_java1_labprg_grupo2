@@ -3,8 +3,9 @@
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.text.Font?>
-<BorderPane maxHeight="500.0" maxWidth="700.0" styleClass="BorderPane" stylesheets="@../style/app.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.AdicionarHabilitacaoAcademicaUI">
+<?import javafx.scene.text.*?>
+
+<BorderPane maxHeight="500.0" maxWidth="700.0" styleClass="BorderPane" stylesheets="@../style/app.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.AdicionarHabilitacaoAcademicaUI">
    <center>
       <BorderPane maxHeight="500.0" maxWidth="700.0" styleClass="BorderPane" BorderPane.alignment="CENTER">
          <left>
@@ -143,4 +144,15 @@
          </children>
       </FlowPane>
    </bottom>
+   <left>
+      <BorderPane BorderPane.alignment="CENTER">
+         <top>
+            <Label styleClass="lblEmail" text="emailemailemail@email.pt">
+               <font>
+                  <Font name="System Italic" size="12.0" />
+               </font>
+            </Label>
+         </top>
+      </BorderPane>
+   </left>
 </BorderPane>
