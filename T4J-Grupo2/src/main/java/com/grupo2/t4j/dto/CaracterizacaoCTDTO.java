@@ -43,6 +43,13 @@ public class CaracterizacaoCTDTO {
         return codigoCategoria;
     }
 
+    public String getDescBreveCompetencia() { return descBreveCompetencia; }
+
+
+    public String getDesignacaoGrau() { return designacaoGrau; }
+
+
+
     @Override
     public String toString() {
         return String.format("Competencia Téncina: %-30s %nGrau de Proficiencia: %-20s "
