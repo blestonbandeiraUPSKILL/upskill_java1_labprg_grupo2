@@ -23,25 +23,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8ca9f66f-f143-4134-afe5-eb7245bd0a9c" name="Default Changelist" comment="">
-<<<<<<< HEAD
       <change afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/controller/AtribuirTarefaController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/ColaboradorLogadoUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/ColaboradorLogadoUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/GestorLogadoUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/GestorLogadoUI.java" afterDir="false" />
-=======
-
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/ConsultarAtribuicaoGestorUI.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/grupo2/t4j/fxml/ConsultarAtribuicaoGestorScene.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/ColaboradorLogadoUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/ColaboradorLogadoUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/GestorLogadoUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/GestorLogadoUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/grupo2/t4j/fxml/ColaboradorLogadoScene.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/grupo2/t4j/fxml/ColaboradorLogadoScene.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/grupo2/t4j/fxml/GestorLogadoScene.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/grupo2/t4j/fxml/GestorLogadoScene.fxml" afterDir="false" />
-
       <change afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/dto/AtribuicaoDTO.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/dto/TabelaColaboradorAdicionalDTO.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/dto/TabelaConsultaAtribuicaoDTO.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/dto/TabelaFreelancerClassificacaoDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/ConsultarAtribuicaoGestorUI.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/grupo2/t4j/fxml/ConsultarAtribuicaoGestorScene.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/controller/RegistarAreaActividadeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/controller/RegistarAreaActividadeController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/domain/Administrativo.java" beforeDir="false" />
@@ -53,17 +41,14 @@
       <change beforePath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/AdicionarCategoriaTarefaUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/AdicionarCategoriaTarefaUI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/AdicionarCompetenciaTecnicaUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/AdicionarCompetenciaTecnicaUI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/AdministrativoLogadoUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/AdministrativoLogadoUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/ColaboradorLogadoUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/ColaboradorLogadoUI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/EspecificarTarefaColaboradorUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/EspecificarTarefaColaboradorUI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/EspecificarTarefaGestorUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/EspecificarTarefaGestorUI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/GestorLogadoUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/GestorLogadoUI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/com/grupo2/t4j/fxml/ColaboradorLogadoScene.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/grupo2/t4j/fxml/ColaboradorLogadoScene.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/com/grupo2/t4j/fxml/GestorLogadoScene.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/grupo2/t4j/fxml/GestorLogadoScene.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/domain/Atribuicao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/grupo2/t4j/domain/Atribuicao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/com/grupo2/t4j/domain/CategoriaTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/grupo2/t4j/domain/CategoriaTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/com/grupo2/t4j/domain/ColaboradorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/grupo2/t4j/domain/ColaboradorTest.java" afterDir="false" />
-
-
->>>>>>> 23f6d537c3d693c62b1ee3e9623f6fa875e09a53
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -350,11 +335,7 @@
         </line-breakpoint>
         <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/grupo2/t4j/ui/AdicionarCompetenciaTecnicaUI.java</url>
-
-          <line>173</line>
-
           <line>168</line>
-
           <option name="timeStamp" value="210" />
         </line-breakpoint>
         <line-breakpoint type="java-line">
