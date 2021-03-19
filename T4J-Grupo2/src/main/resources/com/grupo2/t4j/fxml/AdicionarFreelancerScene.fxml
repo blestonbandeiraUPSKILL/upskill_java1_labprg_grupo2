@@ -233,7 +233,7 @@
    <left>
       <BorderPane BorderPane.alignment="CENTER">
          <top>
-            <Label styleClass="lblEmail" text="emailemailemail@email.pt" BorderPane.alignment="CENTER">
+            <Label text="emailemailemail@email.pt" BorderPane.alignment="CENTER">
                <font>
                   <Font name="System Italic" size="12.0" />
                </font>
