@@ -1,6 +1,6 @@
 ##### [Voltar ao início](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/tree/main/README.md)
 
-# UC13 - Atribuição de Tarefa
+# UC13B - Atribuição de Tarefa (Manual Opcional)
 
 
 ## Formato Breve
@@ -35,18 +35,16 @@ O Colaborador
 1. O 
 
 ## Diagrama de Sequência do Sistema
-![UC13_AtribuicaoTarefa_SSD](UC13_Atribuicao_Tarefa_SSD.png)
+![UC13B_AtribuicaoTarefa_Opcional_SSD](UC13B_AtribuicaoTarefa_Opcional_SSD.png)
 
 ## Excerto do Modelo de Domínio
-![UC13_AtribuicaoTarefa_Modelo_Dominio](UC13_AtribuicaoTarefa_Modelo_Dominio.png)
+![UC13B_AtribuicaoTarefa_Opcional_Modelo_Dominio](UC13B_AtribuicaoTarefa_Opcional_Modelo_Dominio.png)
 
 ## Diagrama de sequência <br/>
-![UC13_AtribuicaoTarefa_Diagrama_Sequencia](UC13_AtribuicaoTarefa_Diagrama_Sequencia.png)
+![UC13B_AtribuicaoTarefa_Opcional_Diagrama_Sequencia](UC13B_AtribuicaoTarefa_Opcional_Diagrama_Sequencia.png)
 
 ## Diagrama de Classes <br/>
-![UC13_AtribuicaoTarefa_Diagrama_Classes](UC13_AtribuicaoTarefa_Diagrama_Classes.png)
-
-## Plano de Testes <br/>
+![UC13B_AtribuicaoTarefa_Opcional_Diagrama_Classes](UC13B_AtribuicaoTarefa_Opcional_Diagrama_Classes.png)
 
 
 ##### [Voltar ao início](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/tree/main/README.md)
