@@ -63,7 +63,7 @@ public class GestorLogadoUI implements Initializable {
 
     @FXML TextField txtDataSeriacao;
     @FXML TextField txtDataInTarefa;
-    @FXML Label txt_email;
+    @FXML Label txtEmail;
 
     @FXML TableView<TarefaDTO> tabelaTarefas;
     @FXML TableColumn<Object, Object> colunaReferencia;
@@ -125,7 +125,7 @@ public class GestorLogadoUI implements Initializable {
         registarColaboradorController = new RegistarColaboradorController();
         seriarAnuncioController = new SeriarAnuncioController();
 
-        txt_email.setText(gestaoUtilizadoresController.getEmail());
+        txtEmail.setText(gestaoUtilizadoresController.getEmail());
 
         adicionarStage = new Stage();
         adicionarStage.initModality(Modality.APPLICATION_MODAL);
@@ -654,7 +654,7 @@ public class GestorLogadoUI implements Initializable {
      */
     public void consultarCandidaturaFreelancer(ActionEvent event) throws SQLException {
         try {
-            FXMLLoader loaderConsultarCandidaturaFreelancer = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/ConsultarCandidaturaFreelancerScene.fxml"));
+            FXMLLoader loaderConsultarCandidaturaFreelancer = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/ConsultarCandidaturaFreelancerColaboradorScene.fxml"));
             Parent rootConsultarCandidaturaFreelancer = loaderConsultarCandidaturaFreelancer.load();
             sceneConsultarCandidatura = new Scene(rootConsultarCandidaturaFreelancer);
             ConsultarCandidaturaFreelancerGestorUI consultarCandidaturaFreelancerGestorUI = loaderConsultarCandidaturaFreelancer.getController();

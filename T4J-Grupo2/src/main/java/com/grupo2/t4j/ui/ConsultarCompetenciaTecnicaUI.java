@@ -36,7 +36,7 @@ public class ConsultarCompetenciaTecnicaUI implements Initializable {
     @FXML TableView<GrauProficienciaDTO> tabelaGrausAplicaveis;
     @FXML TableColumn<Object, Object> txtGrau;
     @FXML TableColumn<Object, Object> txtDesignacao;
-    @FXML Label txt_email;
+    @FXML Label txtEmail;
 
     /**
      * Associa a scene AdministrativoLogadoUI como parent desta Scene 
@@ -53,7 +53,7 @@ public class ConsultarCompetenciaTecnicaUI implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
 
         gestaoUtilizadoresController = new GestaoUtilizadoresController();
-        txt_email.setText(gestaoUtilizadoresController.getEmail());
+        txtEmail.setText(gestaoUtilizadoresController.getEmail());
 
         try {
 

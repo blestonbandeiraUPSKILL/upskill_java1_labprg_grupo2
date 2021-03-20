@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="BorderPane" stylesheets="@../style/app.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.PublicarTarefaColaboradorUI">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="600.0" styleClass="BorderPane" stylesheets="@../style/app.css" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.PublicarTarefaColaboradorUI">
     <top>
         <Label styleClass="lblUser" text="Área do Colaborador :::&gt; Publicar Tarefa" BorderPane.alignment="CENTER_RIGHT">
             <font>
@@ -14,17 +14,6 @@
             <padding>
                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
             </padding>
-         <graphic>
-            <BorderPane>
-               <center>
-                  <Label fx:id="txt_email" styleClass="lblEmail" text="email@email.pt">
-                     <font>
-                        <Font name="System Italic" size="12.0" />
-                     </font>
-                  </Label>
-               </center>
-            </BorderPane>
-         </graphic>
         </Label>
     </top>
     <bottom>
@@ -63,61 +52,72 @@
             </children>
         </FlowPane>
     </bottom>
-   <left>
-        <AnchorPane prefHeight="332.0" prefWidth="600.0" styleClass="AnchorPane" BorderPane.alignment="CENTER">
-            <children>
-                <AnchorPane layoutX="39.0" layoutY="51.0" styleClass="AnchorPane">
-                    <children>
-                        <Label layoutX="15.0" layoutY="80.0" text="Fim" />
-                  <TextField fx:id="dtInicioPublicitacao" layoutY="42.0" text="2021-03-06" />
-                        <Label text="Período de Publicitação">
-                            <font>
-                                <Font size="14.0" />
-                            </font>
-                        </Label>
-                  <TextField fx:id="dtFimPublicitacao" layoutY="96.0" text="2021-03-30" />
-                        <Label layoutX="15.0" layoutY="23.0" text="Início" />
-                    </children>
-                </AnchorPane>
-                <AnchorPane layoutX="224.0" layoutY="51.0" styleClass="AnchorPane">
-                    <children>
-                        <Label layoutX="15.0" layoutY="80.0" text="Fim" />
-                        <Label text="Período de Candidaturas">
-                            <font>
-                                <Font size="14.0" />
-                            </font>
-                        </Label>
-                        <Label layoutX="15.0" layoutY="23.0" text="Início" />
-                  <TextField fx:id="dtInicioCandidaturas" layoutX="2.0" layoutY="42.0" text="2021-03-06" />
-                  <TextField fx:id="dtFimCandidaturas" layoutX="2.0" layoutY="96.0" text="2021-03-20" />
-                    </children>
-                </AnchorPane>
-                <AnchorPane layoutX="415.0" layoutY="51.0" styleClass="AnchorPane">
-                    <children>
-                        <Label layoutX="15.0" layoutY="80.0" text="Fim" />
-                        <Label text="Período de Seriação">
-                            <font>
-                                <Font size="14.0" />
-                            </font>
-                        </Label>
-                        <Label layoutX="15.0" layoutY="23.0" text="Início" />
-                  <TextField fx:id="dtInicioSeriacao" layoutX="-12.0" layoutY="42.0" text="2021-03-21" />
-                  <TextField fx:id="dtFimSeriacao" layoutX="-12.0" layoutY="96.0" text="2021-03-30" />
-                    </children>
-                </AnchorPane>
-                <Label layoutX="33.0" layoutY="195.0" text="Regras Gerais">
-                    <font>
-                        <Font size="14.0" />
-                    </font>
-                </Label>
-                <TextArea fx:id="txtRegrasGerais" layoutX="33.0" layoutY="218.0" prefHeight="82.0" prefWidth="310.0" />
-                <Label layoutX="363.0" layoutY="199.0" text="Tipo de Seriação">
-                    <font>
-                        <Font size="14.0" />
-                    </font>
-                </Label>
-                <ComboBox fx:id="cmbTipoSeriacao" layoutX="363.0" layoutY="222.0" prefHeight="25.0" prefWidth="211.0" promptText="Escolha o Tipo de Seriação" />
-            </children>
-        </AnchorPane>
-   </left>
+   <center>
+      <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <center>
+              <AnchorPane prefHeight="332.0" prefWidth="600.0" styleClass="AnchorPane" BorderPane.alignment="CENTER">
+                  <children>
+                      <AnchorPane layoutX="39.0" layoutY="51.0" styleClass="AnchorPane">
+                          <children>
+                              <Label layoutX="15.0" layoutY="80.0" text="Fim" />
+                        <TextField fx:id="dtInicioPublicitacao" layoutY="42.0" text="2021-03-06" />
+                              <Label text="Período de Publicitação">
+                                  <font>
+                                      <Font size="14.0" />
+                                  </font>
+                              </Label>
+                        <TextField fx:id="dtFimPublicitacao" layoutY="96.0" text="2021-03-30" />
+                              <Label layoutX="15.0" layoutY="23.0" text="Início" />
+                          </children>
+                      </AnchorPane>
+                      <AnchorPane layoutX="224.0" layoutY="51.0" styleClass="AnchorPane">
+                          <children>
+                              <Label layoutX="15.0" layoutY="80.0" text="Fim" />
+                              <Label text="Período de Candidaturas">
+                                  <font>
+                                      <Font size="14.0" />
+                                  </font>
+                              </Label>
+                              <Label layoutX="15.0" layoutY="23.0" text="Início" />
+                        <TextField fx:id="dtInicioCandidaturas" layoutX="2.0" layoutY="42.0" text="2021-03-06" />
+                        <TextField fx:id="dtFimCandidaturas" layoutX="2.0" layoutY="96.0" text="2021-03-20" />
+                          </children>
+                      </AnchorPane>
+                      <AnchorPane layoutX="415.0" layoutY="51.0" styleClass="AnchorPane">
+                          <children>
+                              <Label layoutX="15.0" layoutY="80.0" text="Fim" />
+                              <Label text="Período de Seriação">
+                                  <font>
+                                      <Font size="14.0" />
+                                  </font>
+                              </Label>
+                              <Label layoutX="15.0" layoutY="23.0" text="Início" />
+                        <TextField fx:id="dtInicioSeriacao" layoutX="-12.0" layoutY="42.0" text="2021-03-21" />
+                        <TextField fx:id="dtFimSeriacao" layoutX="-12.0" layoutY="96.0" text="2021-03-30" />
+                          </children>
+                      </AnchorPane>
+                      <Label layoutX="33.0" layoutY="195.0" text="Regras Gerais">
+                          <font>
+                              <Font size="14.0" />
+                          </font>
+                      </Label>
+                      <TextArea fx:id="txtRegrasGerais" layoutX="33.0" layoutY="218.0" prefHeight="82.0" prefWidth="310.0" />
+                      <Label layoutX="363.0" layoutY="199.0" text="Tipo de Seriação">
+                          <font>
+                              <Font size="14.0" />
+                          </font>
+                      </Label>
+                      <ComboBox fx:id="cmbTipoSeriacao" layoutX="363.0" layoutY="222.0" prefHeight="25.0" prefWidth="211.0" promptText="Escolha o Tipo de Seriação" />
+                  </children>
+              </AnchorPane>
+         </center>
+         <top>
+            <Label fx:id="txtEmail" styleClass="lblEmail" BorderPane.alignment="CENTER_LEFT">
+               <font>
+                  <Font name="System Italic" size="12.0" />
+               </font>
+            </Label>
+         </top>
+      </BorderPane>
+   </center>
 </BorderPane>

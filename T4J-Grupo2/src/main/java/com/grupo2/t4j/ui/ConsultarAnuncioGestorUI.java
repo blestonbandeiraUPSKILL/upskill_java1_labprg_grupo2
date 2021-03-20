@@ -34,7 +34,7 @@ public class ConsultarAnuncioGestorUI implements Initializable {
     @FXML TextField txtDescInformal;
     @FXML TextField txDescTecnica;
     @FXML Button btnVoltar;
-    @FXML Label txt_email;
+    @FXML Label txtEmail;
 
     private GestorLogadoUI gestorLogadoUI;
     private SeriarAnuncioController seriarAnuncioController;
@@ -61,7 +61,7 @@ public class ConsultarAnuncioGestorUI implements Initializable {
         seriarAnuncioController = new SeriarAnuncioController();
 
         gestaoUtilizadoresController = new GestaoUtilizadoresController();
-        txt_email.setText(gestaoUtilizadoresController.getEmail());
+        txtEmail.setText(gestaoUtilizadoresController.getEmail());
 
         try {
             registarTarefaController = new RegistarTarefaController();

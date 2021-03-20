@@ -40,7 +40,7 @@ public class ConsultarCandidaturaFreelancerGestorUI implements Initializable {
     @FXML TextField txtDuracaoAnuncio;
     @FXML TextField txtDuracaoFreelancer;
     @FXML Button btnVoltar;
-    @FXML Label txt_email;
+    @FXML Label txtEmailLogado;
 
     ////Tabela Reconhecimento///////////////////////
     @FXML TableColumn<Object, Object> txtCompTec;
@@ -77,7 +77,7 @@ public class ConsultarCandidaturaFreelancerGestorUI implements Initializable {
         registarReconhecimentoGPController = new RegistarReconhecimentoGPController();
 
         gestaoUtilizadoresController = new GestaoUtilizadoresController();
-        txt_email.setText(gestaoUtilizadoresController.getEmail());
+        txtEmailLogado.setText(gestaoUtilizadoresController.getEmail());
 
         try {
             registarTarefaController = new RegistarTarefaController();

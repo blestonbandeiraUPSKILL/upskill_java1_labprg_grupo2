@@ -38,7 +38,7 @@ public class ConsultarFreelancerUI implements Initializable {
     @FXML TextField txtLocalidade;
     @FXML TextField txtArruamento;
     @FXML Button btnVoltar;
-    @FXML Label txt_email;
+    @FXML Label txtEmailLogado;
     
     ////Tabela Reconhecimento///////////////////////
     @FXML TableColumn<Object, Object> txtCompTec;
@@ -71,7 +71,7 @@ public class ConsultarFreelancerUI implements Initializable {
         registarReconhecimentoGPController = new RegistarReconhecimentoGPController() ;
 
         gestaoUtilizadoresController = new GestaoUtilizadoresController();
-        txt_email.setText(gestaoUtilizadoresController.getEmail());
+        txtEmailLogado.setText(gestaoUtilizadoresController.getEmail());
 
         adicionarStage = new Stage();
         adicionarStage.initModality(Modality.APPLICATION_MODAL);

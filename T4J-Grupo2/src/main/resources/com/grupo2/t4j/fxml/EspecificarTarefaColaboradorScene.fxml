@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" styleClass="BorderPane" stylesheets="@../style/app.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.EspecificarTarefaColaboradorUI">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" styleClass="BorderPane" stylesheets="@../style/app.css" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.EspecificarTarefaColaboradorUI">
     <top>
         <Label alignment="CENTER_RIGHT" styleClass="lblUser" text="Área do Colaborador :::&gt; Adicionar Nova Tarefa" textFill="WHITE" BorderPane.alignment="CENTER_RIGHT">
             <font>
@@ -121,49 +121,49 @@
                </BorderPane.margin>
                       </VBox>
          </right>
-         <bottom>
-            <FlowPane alignment="CENTER_RIGHT" prefHeight="52.0" prefWidth="700.0" styleClass="FlowPane" BorderPane.alignment="CENTER_RIGHT">
-               <children>
-                              <Button fx:id="btnRegistarTarefa" alignment="CENTER_RIGHT" defaultButton="true" mnemonicParsing="false" onAction="#registarTarefa" styleClass="btnConfirmar" text="Confirmar">
-                                  <font>
-                                      <Font name="Calibri" size="14.0" />
-                                  </font>
-                            <tooltip>
-                                <Tooltip text="Confirmar">
-                                    <font>
-                                        <Font name="Calibri Italic" size="12.0" />
-                                    </font>
-                                </Tooltip>
-                            </tooltip>
-                              </Button>
-                              <Button fx:id="btnCancelar" mnemonicParsing="false" onAction="#cancelarAction" styleClass="btnSair" text="Cancelar">
-                                  <font>
-                                      <Font name="Calibri" size="14.0" />
-                                  </font>
-                     <FlowPane.margin>
-                        <Insets left="10.0" right="10.0" />
-                     </FlowPane.margin>
-                            <tooltip>
-                                <Tooltip text="Cancelar">
-                                    <font>
-                                        <Font name="Calibri Italic" size="12.0" />
-                                    </font>
-                                </Tooltip>
-                            </tooltip>
-                              </Button>
-               </children>
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-            </FlowPane>
-         </bottom>
+         <top>
+            <Label fx:id="txtEmail" styleClass="lblEmail" BorderPane.alignment="CENTER_LEFT">
+               <font>
+                  <Font name="System Italic" size="12.0" />
+               </font>
+            </Label>
+         </top>
         </BorderPane>
     </center>
-   <left>
-      <Label fx:id="txt_email" styleClass="lblEmail" text="emailemailemail@email.pt" BorderPane.alignment="CENTER">
-         <font>
-            <Font name="System Italic" size="12.0" />
-         </font>
-      </Label>
-   </left>
+   <bottom>
+      <FlowPane alignment="CENTER_RIGHT" prefHeight="52.0" prefWidth="700.0" styleClass="FlowPane" BorderPane.alignment="CENTER">
+         <children>
+                        <Button fx:id="btnRegistarTarefa" alignment="CENTER_RIGHT" defaultButton="true" mnemonicParsing="false" onAction="#registarTarefa" styleClass="btnConfirmar" text="Confirmar">
+                            <font>
+                                <Font name="Calibri" size="14.0" />
+                            </font>
+                      <tooltip>
+                          <Tooltip text="Confirmar">
+                              <font>
+                                  <Font name="Calibri Italic" size="12.0" />
+                              </font>
+                          </Tooltip>
+                      </tooltip>
+                        </Button>
+                        <Button fx:id="btnCancelar" mnemonicParsing="false" onAction="#cancelarAction" styleClass="btnSair" text="Cancelar">
+                            <font>
+                                <Font name="Calibri" size="14.0" />
+                            </font>
+               <FlowPane.margin>
+                  <Insets left="10.0" right="10.0" />
+               </FlowPane.margin>
+                      <tooltip>
+                          <Tooltip text="Cancelar">
+                              <font>
+                                  <Font name="Calibri Italic" size="12.0" />
+                              </font>
+                          </Tooltip>
+                      </tooltip>
+                        </Button>
+         </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </FlowPane>
+   </bottom>
 </BorderPane>

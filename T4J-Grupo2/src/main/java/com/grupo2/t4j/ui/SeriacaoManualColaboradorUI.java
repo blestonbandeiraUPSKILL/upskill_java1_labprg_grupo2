@@ -58,7 +58,7 @@ public class SeriacaoManualColaboradorUI implements Initializable{
     @FXML Button btnConfirmarClassificacao;
     @FXML Button btnSeriacao;
     @FXML Button btnVoltar;
-    @FXML Label txt_email;
+    @FXML Label txtEmail;
 
 
     @FXML TableView<TabelaFreelancerClassificacao> tabelaClassificacao;
@@ -93,7 +93,7 @@ public class SeriacaoManualColaboradorUI implements Initializable{
         seriarAnuncioController = new SeriarAnuncioController();
 
         gestaoUtilizadoresController = new GestaoUtilizadoresController();
-        txt_email.setText(gestaoUtilizadoresController.getEmail());
+        txtEmail.setText(gestaoUtilizadoresController.getEmail());
           
         adicionarStage = new Stage();
         adicionarStage.initModality(Modality.APPLICATION_MODAL);;

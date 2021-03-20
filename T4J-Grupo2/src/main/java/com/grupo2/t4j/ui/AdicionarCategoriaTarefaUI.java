@@ -49,7 +49,7 @@ public class AdicionarCategoriaTarefaUI implements Initializable {
     @FXML ComboBox<ObrigatoriedadeDTO> cmbObrigatoriedade;
     @FXML ComboBox<CompetenciaTecnicaDTO> cmbCompetenciaTecnica;
     @FXML ListView<CaracterizacaoCTDTO> listViewCompTecCat;
-    @FXML Label txt_email;
+    @FXML Label txtEmail;
 
     /**
      * Associa a scene AdministrativoLogadoUI como parent desta Scene 
@@ -83,7 +83,7 @@ public class AdicionarCategoriaTarefaUI implements Initializable {
 
         cmbObrigatoriedade.getItems().setAll(ObrigatoriedadeDTO.values());
         
-        txt_email.setText(gestaoUtilizadoresController.getEmail());
+        txtEmail.setText(gestaoUtilizadoresController.getEmail());
 
         try {
             cmbAreaActividade.getItems().addAll(registarAreaActividadeController.getAll());

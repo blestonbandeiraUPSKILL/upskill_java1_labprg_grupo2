@@ -42,7 +42,7 @@ public class RegistarOrgEGestorUI implements Initializable {
     @FXML TextField txtPassword;
     @FXML Button btnAvancarRegisto;
     @FXML Button btnCancelarRegisto;
-    @FXML Label txt_email;
+    @FXML Label txtEmail;
 
     /**
      * Associa a scene StartingPageUI como parent desta Scene 
@@ -66,7 +66,7 @@ public class RegistarOrgEGestorUI implements Initializable {
         registarColaboradorController = new RegistarColaboradorController();
 
         gestaoUtilizadoresController = new GestaoUtilizadoresController();
-        txt_email.setText(gestaoUtilizadoresController.getEmail());
+        txtEmail.setText(gestaoUtilizadoresController.getEmail());
     }
 
     /**

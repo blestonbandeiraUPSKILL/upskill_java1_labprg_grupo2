@@ -53,7 +53,7 @@ public class FreelancerLogadoUI implements Initializable {
     @FXML Button btnApagar;
     @FXML Button btnResultado;
     @FXML Button btnSair;
-    @FXML Label txt_email;
+    @FXML Label txtEmail;
 
     ///// Tabela Anuncios //////////////
     @FXML TableView<TarefaDTO> tabelaAnuncios;
@@ -95,7 +95,7 @@ public class FreelancerLogadoUI implements Initializable {
         }
 
         gestaoUtilizadoresController = new GestaoUtilizadoresController();
-        txt_email.setText(gestaoUtilizadoresController.getEmail());
+        txtEmail.setText(gestaoUtilizadoresController.getEmail());
 
         try {
             registarTarefaController = new RegistarTarefaController();

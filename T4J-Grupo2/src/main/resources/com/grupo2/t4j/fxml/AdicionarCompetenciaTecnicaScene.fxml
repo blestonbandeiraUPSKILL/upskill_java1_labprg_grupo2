@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" styleClass="BorderPane" stylesheets="@../style/app.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.AdicionarCompetenciaTecnicaUI">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" styleClass="BorderPane" stylesheets="@../style/app.css" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.AdicionarCompetenciaTecnicaUI">
     <top>
         <Label styleClass="lblUser" text="Área do Administrativo :::&gt; Adicionar Competência Técnica" BorderPane.alignment="CENTER_RIGHT">
             <padding>
@@ -42,7 +42,7 @@
             </children>
         </FlowPane>
     </bottom>
-   <left>
+   <center>
       <BorderPane BorderPane.alignment="CENTER">
          <center>
               <TabPane prefHeight="281.0" prefWidth="700.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
@@ -152,12 +152,11 @@
               </TabPane>
          </center>
          <top>
-            <Label fx:id="txt_email" alignment="TOP_LEFT" styleClass="lblEmail" text="emailemailemail@email.pt">
+            <Label fx:id="txtEmail" alignment="TOP_LEFT" styleClass="lblEmail">
                <font>
-                  <Font name="System Italic" size="12.0" />
-               </font>
-            </Label>
+                  <Font name="Calibri" size="12.0" />
+               </font></Label>
          </top>
       </BorderPane>
-   </left>
+   </center>
 </BorderPane>

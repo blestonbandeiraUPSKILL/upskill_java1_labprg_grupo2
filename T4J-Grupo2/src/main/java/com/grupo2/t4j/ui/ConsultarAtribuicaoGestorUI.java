@@ -43,7 +43,7 @@ public class ConsultarAtribuicaoGestorUI implements Initializable{
     @FXML private TextField txtDtFimTarefa;
     @FXML private TextField txtNumDias;
     @FXML private Button btnVoltar;
-    @FXML Label txt_email;
+    @FXML Label txtEmail;
 
     private GestorLogadoUI gestorLogadoUI;
     private GestaoUtilizadoresController gestaoUtilizadoresController;
@@ -73,7 +73,7 @@ public class ConsultarAtribuicaoGestorUI implements Initializable{
         adicionarStage.setResizable(false);
 
         gestaoUtilizadoresController = new GestaoUtilizadoresController();
-        txt_email.setText(gestaoUtilizadoresController.getEmail());
+        txtEmail.setText(gestaoUtilizadoresController.getEmail());
     }
 
     /**

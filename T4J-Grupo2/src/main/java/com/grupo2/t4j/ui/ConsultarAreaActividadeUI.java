@@ -25,7 +25,7 @@ public class ConsultarAreaActividadeUI implements Initializable {
     @FXML Button btnVoltar;
     @FXML TextField txtCodigo;
     @FXML TextArea txtDescDetalhada;
-    @FXML Label txt_email;
+    @FXML Label txtEmail;
 
     private AdministrativoLogadoUI administrativoLogadoUI;
     private RegistarAreaActividadeController registarAreaActividadeController;
@@ -53,7 +53,7 @@ public class ConsultarAreaActividadeUI implements Initializable {
         registarAreaActividadeController = new RegistarAreaActividadeController();
 
         gestaoUtilizadoresController = new GestaoUtilizadoresController();
-        txt_email.setText(gestaoUtilizadoresController.getEmail());
+        txtEmail.setText(gestaoUtilizadoresController.getEmail());
 
     }
 

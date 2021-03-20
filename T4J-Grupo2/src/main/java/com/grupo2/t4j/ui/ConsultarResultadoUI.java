@@ -39,7 +39,7 @@ public class ConsultarResultadoUI {
     @FXML TextField txtIdAnuncio;
     @FXML TextField txtClassificacao;
     @FXML TextField txtEmailFreelancer;
-    @FXML Label txt_email;
+    @FXML Label txtEmail;
     
     private FreelancerLogadoUI freelancerLogadoUI;
     private GestaoUtilizadoresController gestaoUtilizadoresController;
@@ -49,7 +49,7 @@ public class ConsultarResultadoUI {
     
     /**
      * Associa a scene AdministrativoLogadoUI como parent desta Scene 
-     * @param administrativoLogadoUI
+     * @param freelancerLogadoUI
      */
     public void associarParentUI(FreelancerLogadoUI freelancerLogadoUI) {
         this.freelancerLogadoUI = freelancerLogadoUI;
@@ -65,7 +65,7 @@ public class ConsultarResultadoUI {
         adicionarStage.setResizable(false);
 
         gestaoUtilizadoresController = new GestaoUtilizadoresController();
-        txt_email.setText(gestaoUtilizadoresController.getEmail());
+        txtEmail.setText(gestaoUtilizadoresController.getEmail());
 
     }
     

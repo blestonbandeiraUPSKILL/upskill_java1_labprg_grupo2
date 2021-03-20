@@ -43,7 +43,7 @@ public class EspecificarTarefaColaboradorUI implements Initializable {
     @FXML ComboBox<CategoriaDTO> cmbCategoriaTarefa;
     @FXML ComboBox<AreaActividadeDTO> cmbAreaActividade;
     @FXML Button btnCancelar;
-    @FXML Label txt_email;
+    @FXML Label txtEmail;
 
     /**
      * Associa a scene ColaboradorLogadoUI como parent desta Scene 
@@ -69,7 +69,7 @@ public class EspecificarTarefaColaboradorUI implements Initializable {
         registarColaboradorController = new RegistarColaboradorController();
         registarCaracterizacaoCTController = new RegistarCaracterizacaoCTController();
 
-        txt_email.setText(gestaoUtilizadoresController.getEmail());
+        txtEmail.setText(gestaoUtilizadoresController.getEmail());
 
         try {
             cmbAreaActividade.getItems().setAll(registarAreaActividadeController.getAll());

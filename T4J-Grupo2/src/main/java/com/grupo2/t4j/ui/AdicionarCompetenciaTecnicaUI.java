@@ -43,7 +43,7 @@ public class AdicionarCompetenciaTecnicaUI implements Initializable {
     @FXML TextField txtValor;
     @FXML ComboBox<AreaActividadeDTO> cmbAreaActividade;
     @FXML ListView<GrauProficienciaDTO> listViewGrausAdicionados;
-    @FXML Label txt_email;
+    @FXML Label txtEmail;
 
 
     /**
@@ -67,7 +67,7 @@ public class AdicionarCompetenciaTecnicaUI implements Initializable {
         registarCompetenciaTecnicaController = new RegistarCompetenciaTecnicaController();
         gestaoUtilizadoresController = new GestaoUtilizadoresController();
 
-        txt_email.setText(gestaoUtilizadoresController.getEmail());
+        txtEmail.setText(gestaoUtilizadoresController.getEmail());
 
         try {
             registarGrauProficienciaController = new RegistarGrauProficienciaController();

@@ -35,7 +35,7 @@ public class PublicarTarefaGestorUI implements Initializable {
     @FXML Button btnPublicar;
     @FXML Button btnVoltar;
     @FXML ComboBox<TipoRegimentoDTO> cmbTipoSeriacao;
-    @FXML Label txt_email;
+    @FXML Label txtEmail;
 
      /**
      * Associa a scene GestorLogadoUI como parent desta Scene 
@@ -54,7 +54,7 @@ public class PublicarTarefaGestorUI implements Initializable {
         publicarTarefaController = new PublicarTarefaController();
 
         gestaoUtilizadoresController = new GestaoUtilizadoresController();
-        txt_email.setText(gestaoUtilizadoresController.getEmail());
+        txtEmail.setText(gestaoUtilizadoresController.getEmail());
         
         
         try {

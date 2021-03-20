@@ -35,7 +35,7 @@ public class PublicarTarefaColaboradorUI implements Initializable {
     @FXML Button btnPublicar;
     @FXML Button btnVoltar;
     @FXML ComboBox<TipoRegimentoDTO> cmbTipoSeriacao;
-    @FXML Label txt_email;
+    @FXML Label txtEmail;
 
     
     /**
@@ -55,7 +55,7 @@ public class PublicarTarefaColaboradorUI implements Initializable {
         publicarTarefaController = new PublicarTarefaController();
 
         gestaoUtilizadoresController = new GestaoUtilizadoresController();
-        txt_email.setText(gestaoUtilizadoresController.getEmail());
+        txtEmail.setText(gestaoUtilizadoresController.getEmail());
         
         
         try {

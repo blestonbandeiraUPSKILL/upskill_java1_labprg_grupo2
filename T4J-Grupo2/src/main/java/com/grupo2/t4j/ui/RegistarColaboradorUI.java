@@ -35,7 +35,7 @@ public class RegistarColaboradorUI implements Initializable {
     @FXML Button btnCancelarRegisto;
     @FXML Button btnRegistarColaborador;
     @FXML Button btnSair;
-    @FXML Label txt_email;
+    @FXML Label txtEmail;
 
      /**
      * Associa a scene GestorLogadoUI como parent desta Scene 
@@ -58,7 +58,7 @@ public class RegistarColaboradorUI implements Initializable {
         registarColaboradorController = new RegistarColaboradorController();
 
         gestaoUtilizadoresController = new GestaoUtilizadoresController();
-        txt_email.setText(gestaoUtilizadoresController.getEmail());
+        txtEmail.setText(gestaoUtilizadoresController.getEmail());
 
     }
 

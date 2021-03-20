@@ -32,7 +32,7 @@ public class EfectuarCandidaturaUI implements Initializable {
     @FXML TextField txtDias;
     @FXML Button btnCancelar;
     @FXML Button btnAddCandidatura;
-    @FXML Label txt_email;
+    @FXML Label txtEmail;
 
     /**
      * Associa a scene FreelancerLogadoUI como parent desta Scene 
@@ -46,7 +46,7 @@ public class EfectuarCandidaturaUI implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
 
         gestaoUtilizadoresController = new GestaoUtilizadoresController();
-        txt_email.setText(gestaoUtilizadoresController.getEmail());
+        txtEmail.setText(gestaoUtilizadoresController.getEmail());
 
         try {
             efectuarCandidaturaController = new EfectuarCandidaturaController();

@@ -38,7 +38,7 @@ public class AdicionarFreelancerUI implements Initializable {
     @FXML Button btnAddFreelancer;
     @FXML Button btnCancelar;
     @FXML Button btnSair;
-    @FXML Label txt_email;
+    @FXML Label txtEmail;
 
     /**
      * Associa a scene AdministrativoLogadoUI como parent desta Scene 
@@ -61,7 +61,7 @@ public class AdicionarFreelancerUI implements Initializable {
         registarFreelancerController = new RegistarFreelancerController();
 
         gestaoUtilizadoresController = new GestaoUtilizadoresController();
-        txt_email.setText(gestaoUtilizadoresController.getEmail());
+        txtEmail.setText(gestaoUtilizadoresController.getEmail());
 
     }
 

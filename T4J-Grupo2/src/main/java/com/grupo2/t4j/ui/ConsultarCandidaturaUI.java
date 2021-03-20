@@ -37,7 +37,7 @@ public class ConsultarCandidaturaUI implements Initializable {
     @FXML TextField txtValor;
     @FXML TextField txtDias;
     @FXML TextField txtDataEdicao;
-    @FXML Label txt_email;
+    @FXML Label txtEmail;
 
     private Stage adicionarStage;
     private FreelancerLogadoUI freelancerLogadoUI;
@@ -66,7 +66,7 @@ public class ConsultarCandidaturaUI implements Initializable {
         //btnEditarDados.setDisable(true);
         editarCandidaturaController = new EditarCandidaturaController();
         gestaoUtilizadoresController = new GestaoUtilizadoresController();
-        txt_email.setText(gestaoUtilizadoresController.getEmail());
+        txtEmail.setText(gestaoUtilizadoresController.getEmail());
 
         try {
             registarTarefaController = new RegistarTarefaController();

@@ -45,7 +45,7 @@ public class ConsultarAtribuicaoColaboradorUI implements Initializable {
     @FXML private TextField txtDtFimTarefa;
     @FXML private TextField txtNumDias;
     @FXML private Button btnVoltar;
-    @FXML Label txt_email;
+    @FXML Label txtEmail;
 
     private ColaboradorLogadoUI colaboradorLogadoUI;
     private AtribuirTarefaController atribuirTarefaController;
@@ -77,7 +77,7 @@ public class ConsultarAtribuicaoColaboradorUI implements Initializable {
         seriarAnuncioController = new SeriarAnuncioController();
 
         gestaoUtilizadoresController = new GestaoUtilizadoresController();
-        txt_email.setText(gestaoUtilizadoresController.getEmail());
+        txtEmail.setText(gestaoUtilizadoresController.getEmail());
 
         try {
             registarTarefaController = new RegistarTarefaController();

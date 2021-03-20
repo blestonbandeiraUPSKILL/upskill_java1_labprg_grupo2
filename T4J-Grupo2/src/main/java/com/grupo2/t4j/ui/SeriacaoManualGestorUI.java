@@ -46,7 +46,7 @@ public class SeriacaoManualGestorUI implements Initializable{
     @FXML Button btnConfirmarClassificacao;
     @FXML Button btnSeriacao;
     @FXML Button btnVoltar;
-    @FXML Label txt_email;
+    @FXML Label txtEmail;
 
 
     @FXML TableView<TabelaFreelancerClassificacao> tabelaClassificacao;
@@ -85,7 +85,7 @@ public class SeriacaoManualGestorUI implements Initializable{
         adicionarStage.setResizable(false);
 
         gestaoUtilizadoresController = new GestaoUtilizadoresController();
-        txt_email.setText(gestaoUtilizadoresController.getEmail());
+        txtEmail.setText(gestaoUtilizadoresController.getEmail());
         
     }
     
