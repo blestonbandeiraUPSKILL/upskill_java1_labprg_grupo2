@@ -3,13 +3,12 @@ package com.grupo2.t4j.ui;
 import com.grupo2.t4j.controller.RegistarAreaActividadeController;
 import com.grupo2.t4j.controller.RegistarGrauProficienciaController;
 import com.grupo2.t4j.domain.GrauProficiencia;
+import com.grupo2.t4j.dto.GrauProficienciaDTO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -29,10 +28,12 @@ public class ConsultarCompetenciaTecnicaUI implements Initializable {
 
     @FXML TextArea txtDescricaoDetalhada;
     @FXML TextField txtAreaActividade;
-    @FXML ListView<GrauProficiencia> listViewGrausAplicaveis;
     @FXML TextField txtDescricaoBreve;
     @FXML TextField txtCodigoCompetenciaTecnica;
     @FXML Button btnVoltar;
+    @FXML TableView<GrauProficienciaDTO> tabelaGrausAplicaveis;
+    @FXML TableColumn<Object, Object> txtGrau;
+    @FXML TableColumn<Object, Object> txtDesignacao;
 
     /**
      * Associa a scene AdministrativoLogadoUI como parent desta Scene 
@@ -74,8 +75,10 @@ public class ConsultarCompetenciaTecnicaUI implements Initializable {
         txtCodigoCompetenciaTecnica.setText(codigoCompetenciaTecnica);
         txtDescricaoBreve.setText(administrativoLogadoUI.tableViewCompetenciaTecnica.getSelectionModel().getSelectedItem().getDescricaoBreve());
         txtDescricaoDetalhada.setText(administrativoLogadoUI.tableViewCompetenciaTecnica.getSelectionModel().getSelectedItem().getDescricaoDetalhada());
-        listViewGrausAplicaveis.getItems().setAll(registarGrauProficienciaController.getAllByCompetenciaTecnica(txtCodigoCompetenciaTecnica.getText()));
         txtAreaActividade.setText(registarAreaActividadeController.getAreaActividade(codigoAreaActividade).getDescBreve());
+        tabelaGrausAplicaveis.getItems().setAll(registarGrauProficienciaController.getAllByCompetenciaTecnica(txtCodigoCompetenciaTecnica.getText()));
+        txtGrau.setCellValueFactory(new PropertyValueFactory<>("grau"));
+        txtDesignacao.setCellValueFactory(new PropertyValueFactory<>("designacao"));
     }
 
 

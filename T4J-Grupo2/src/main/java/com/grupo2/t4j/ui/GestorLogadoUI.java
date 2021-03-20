@@ -2,6 +2,7 @@ package com.grupo2.t4j.ui;
 
 import com.grupo2.t4j.controller.*;
 import com.grupo2.t4j.domain.*;
+import com.grupo2.t4j.dto.*;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -43,6 +44,7 @@ public class GestorLogadoUI implements Initializable {
     private Scene sceneConsultarAnuncio;
     private Scene sceneConsultarCandidatura;
     private Scene sceneSeriacaoManual;
+    private Scene sceneConsultarAtribuicaoGestor;
     private int idAnuncio;
 
     @FXML Button btnLogout;
@@ -53,11 +55,15 @@ public class GestorLogadoUI implements Initializable {
     @FXML Button btnPublicarTarefa;
     @FXML Button btnConsultarAnuncio;
     @FXML Button btnConsultarCandidaturaFreelancer;
-    @FXML Button btnSeriacaoAutomatica;
     @FXML Button btnSeriacaoManual;
-    @FXML TextField txtDataSeriacao;
+    @FXML Button btnAtribuicao;
+    @FXML Button btnConsultarAtribuicao;
+    @FXML Button btnMudarData;
 
-    @FXML TableView<Tarefa> tabelaTarefas;
+    @FXML TextField txtDataSeriacao;
+    @FXML TextField txtDataInTarefa;
+
+    @FXML TableView<TarefaDTO> tabelaTarefas;
     @FXML TableColumn<Object, Object> colunaReferencia;
     @FXML TableColumn<Object, Object> colunaDesignacao;
     @FXML TableColumn<Object, Object> colunaDuracao;
@@ -72,11 +78,20 @@ public class GestorLogadoUI implements Initializable {
     @FXML TableColumn<Object, Object> colunaCustoFree;
     
     //TableView Colaboradores
-    @FXML TableView<Colaborador> listViewColaboradores;
+    @FXML TableView<ColaboradorDTO> listViewColaboradores;
     @FXML TableColumn<Object, Object> colunaEmailColab;
     @FXML TableColumn<Object, Object> colunaNome;
     @FXML TableColumn<Object, Object> colunaTelefone;
     @FXML TableColumn<Object, Object> colunaFuncao;
+
+    //TableView Atribuições
+    @FXML TableView<TabelaConsultaAtribuicao> tabelaAtribuicoes;
+    @FXML TableColumn<Object, Object> colunaRefTarefa;
+    @FXML TableColumn<Object, Object> colunaFreelancer;
+    @FXML TableColumn<Object, Object> colunaDataAtribuicao;
+    @FXML TableColumn<Object, Object> colunaCodAtribuicao;
+    @FXML TableColumn<Object, Object> colunaDataInicioTarefa;
+
 
      
     /**
@@ -112,7 +127,6 @@ public class GestorLogadoUI implements Initializable {
 
         btnConsultarAnuncio.setDisable(true);
         btnConsultarCandidaturaFreelancer.setDisable(true);
-        btnSeriacaoAutomatica.setDisable(true);
         btnSeriacaoManual.setDisable(true);
 
         cmbFiltroTarefas.getItems().setAll(FiltroTarefas.values());
@@ -215,7 +229,7 @@ public class GestorLogadoUI implements Initializable {
     public boolean existeSeriacao() throws SQLException{
         idAnuncio = getIdAnuncio();
 
-        List<ProcessoSeriacao> processos = new ArrayList<>();
+        List<ProcessoSeriacaoDTO> processos = new ArrayList<>();
         processos = seriarAnuncioController.getAllPSByIdAnuncio(idAnuncio);
         if(processos.size() > 0){
             return true;
@@ -229,7 +243,7 @@ public class GestorLogadoUI implements Initializable {
      * @throws SQLException
      */
     public boolean existeCandidatura() throws SQLException{
-        List<Candidatura> candidaturas = new ArrayList<>();
+        List<CandidaturaDTO> candidaturas = new ArrayList<>();
         idAnuncio = getIdAnuncio();
         candidaturas = seriarAnuncioController.getAllByIdAnuncio(idAnuncio);
         limpaTabelaCandidaturas();
@@ -321,7 +335,7 @@ public class GestorLogadoUI implements Initializable {
      */
     public void criarTabelaClassificacao() throws SQLException{
         idAnuncio = getIdAnuncio();
-        List<Candidatura> candidaturas = seriarAnuncioController.getAllByIdAnuncio(idAnuncio);
+        List<CandidaturaDTO> candidaturas = seriarAnuncioController.getAllByIdAnuncio(idAnuncio);
         for(int i = 0; i < candidaturas.size(); i++){
             TabelaCandidaturasAnuncio cellCandidatura = new TabelaCandidaturasAnuncio(
                     candidaturas.get(i).getIdCandidatura(), candidaturas.get(i).getEmailFreelancer(),
@@ -340,8 +354,8 @@ public class GestorLogadoUI implements Initializable {
     public void updateTabelaClassificacao(int idSeriacao)throws SQLException{
         limpaTabelaCandidaturas();
         idAnuncio = getIdAnuncio();
-        List<Candidatura> candidaturas = seriarAnuncioController.getAllByIdAnuncio(idAnuncio);
-        List<Classificacao> listaClassificada = seriarAnuncioController.getAllBySeriacao(idSeriacao);
+        List<CandidaturaDTO> candidaturas = seriarAnuncioController.getAllByIdAnuncio(idAnuncio);
+        List<ClassificacaoDTO> listaClassificada = seriarAnuncioController.getAllBySeriacao(idSeriacao);
         for(int i = 0; i <candidaturas.size(); i++){
             for(int j = 0; j < listaClassificada.size(); j++){
                 if(candidaturas.get(i).getIdCandidatura() == listaClassificada.get(j).getIdCandidatura()){
@@ -364,10 +378,9 @@ public class GestorLogadoUI implements Initializable {
         txtDataSeriacao.clear();
         idAnuncio = getIdAnuncio();
 
-        List<ProcessoSeriacao> processos = seriarAnuncioController.getAllPSByIdAnuncio(idAnuncio);
+        List<ProcessoSeriacaoDTO> processos = seriarAnuncioController.getAllPSByIdAnuncio(idAnuncio);
 
         txtDataSeriacao.setText(processos.get(0).getDataSeriacao());
-        btnSeriacaoAutomatica.setDisable(true);
         btnSeriacaoManual.setDisable(true);
         updateTabelaClassificacao(processos.get(0).getIdSeriacao());
     }
@@ -424,20 +437,19 @@ public class GestorLogadoUI implements Initializable {
 
         idAnuncio = getIdAnuncio();
         int idRegimento = seriarAnuncioController.getAnuncio(idAnuncio).getIdTipoRegimento();
-        if(idRegimento == 1){
-            btnSeriacaoAutomatica.setDisable(false);
+        if(idRegimento != 1){
+            btnSeriacaoManual.setDisable(false);
         }
         else{
-            btnSeriacaoManual.setDisable(false);
+            seriacaoAutomatica();
         }
     }
 
     /**
      * Seria automaticamente as candidaturas a um anuncio
-     * @param event
      * @throws SQLException
      */
-    public void seriacaoAutomaticaAction(ActionEvent event) throws SQLException{
+    public void seriacaoAutomatica() throws SQLException{
         try{
             idAnuncio = getIdAnuncio();
             boolean sucesso = seriarAnuncioController.seriar(idAnuncio);
@@ -662,6 +674,40 @@ public class GestorLogadoUI implements Initializable {
         }
 
         catch (IOException | SQLException exception) {
+            exception.printStackTrace();
+            AlertsUI.criarAlerta(Alert.AlertType.ERROR,
+                    MainApp.TITULO_APLICACAO,
+                    "Erro",
+                    exception.getMessage());
+        }
+    }
+
+    @FXML
+    public void mudarData(ActionEvent actionEvent){
+
+    }
+
+    @FXML
+    public void registarAtribuicao (ActionEvent actionEvent) {
+
+    }
+
+    @FXML
+    public void consultarAtribuicao (ActionEvent actionEvent) {
+        try {
+            FXMLLoader loaderConsultarAtribuicaoGestor = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/ConsultarAtribuicaoGestorScene.fxml"));
+            Parent rootConsultarAtribuicaoGestor = loaderConsultarAtribuicaoGestor.load();
+            sceneConsultarAtribuicaoGestor = new Scene(rootConsultarAtribuicaoGestor);
+            ConsultarAtribuicaoGestorUI consultarAtribuicaoGestorUI = loaderConsultarAtribuicaoGestor.getController();
+            consultarAtribuicaoGestorUI.associarParentUI(this);
+            consultarAtribuicaoGestorUI.transferData();
+
+            adicionarStage.setScene(sceneConsultarAtribuicaoGestor);
+            adicionarStage.setTitle("Consultar Atribuição");
+            adicionarStage.show();
+
+        } catch (IOException exception) {
+
             exception.printStackTrace();
             AlertsUI.criarAlerta(Alert.AlertType.ERROR,
                     MainApp.TITULO_APLICACAO,

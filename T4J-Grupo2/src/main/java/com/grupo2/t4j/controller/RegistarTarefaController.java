@@ -2,6 +2,8 @@ package com.grupo2.t4j.controller;
 
 import com.grupo2.t4j.domain.GrauProficiencia;
 import com.grupo2.t4j.domain.Tarefa;
+import com.grupo2.t4j.dto.GrauProficienciaDTO;
+import com.grupo2.t4j.dto.TarefaDTO;
 import com.grupo2.t4j.persistence.*;
 import com.grupo2.t4j.persistence.database.FabricaRepositoriosDatabase;
 
@@ -27,8 +29,14 @@ public class RegistarTarefaController {
      * @return
      * @throws SQLException 
      */
-    public List<Tarefa> getAllOrganizacao(String nifOrganizacao) throws SQLException {
-        return repositorioTarefa.getAllOrganizacao(nifOrganizacao);
+    public List<TarefaDTO> getAllOrganizacao(String nifOrganizacao) throws SQLException {
+        List<Tarefa> tarefas = repositorioTarefa.getAllOrganizacao(nifOrganizacao);
+        List<TarefaDTO> tarefasDTO = new ArrayList<>();
+
+        for(Tarefa tarefa : tarefas) {
+            tarefasDTO.add((TarefaDTO) tarefa.toDTO());
+        }
+        return tarefasDTO;
     }
 
     /**
@@ -56,17 +64,6 @@ public class RegistarTarefaController {
 
         return repositorioTarefa.save(tarefa);
     }
-
-    /**
-     * Devolve uma lista de tarefas a partir do email do colaborador e do nif da sua organização
-     * @param email
-     * @param nifOrganizacao
-     * @return
-     * @throws SQLException 
-     */
-    public List<Tarefa> findByColaboradorENif(String email, String nifOrganizacao) throws SQLException{
-        return repositorioTarefa.findByColaboradorENif(email, nifOrganizacao);
-    }
     
     /**
      * Devolve uma lista de tarefas publicadas
@@ -74,8 +71,14 @@ public class RegistarTarefaController {
      * @return
      * @throws SQLException 
      */
-    public List<Tarefa> findTarefasPublicadas(String nifOrganizacao) throws SQLException{
-        return repositorioTarefa.findTarefasPublicadas(nifOrganizacao);
+    public List<TarefaDTO> findTarefasPublicadas(String nifOrganizacao) throws SQLException{
+        List<Tarefa> tarefas = repositorioTarefa.findTarefasPublicadas(nifOrganizacao);
+        List<TarefaDTO> tarefasDTO = new ArrayList<>();
+
+        for(Tarefa tarefa : tarefas) {
+            tarefasDTO.add((TarefaDTO) tarefa.toDTO());
+        }
+        return tarefasDTO;
     }
     
     /**
@@ -85,18 +88,14 @@ public class RegistarTarefaController {
      * @return
      * @throws SQLException 
      */
-    public List<Tarefa> findTarefasNaoPublicadas(String email, String nifOrganizacao) throws SQLException{
-        return repositorioTarefa.findTarefasNaoPublicadas(email, nifOrganizacao);
-    }
+    public List<TarefaDTO> findTarefasNaoPublicadas(String email, String nifOrganizacao) throws SQLException{
+        List<Tarefa> tarefas = repositorioTarefa.findTarefasNaoPublicadas(email, nifOrganizacao);
+        List<TarefaDTO> tarefasDTO = new ArrayList<>();
 
-    /**
-     * Devolve uma lista de referencias de tarefas da organizacao
-     * @param nifOrganizacao
-     * @return
-     * @throws SQLException 
-     */
-    public List<String> findRefenciaTarefa(String nifOrganizacao) throws SQLException {
-        return repositorioTarefa.findReferenciaTarefa(nifOrganizacao);
+        for(Tarefa tarefa : tarefas) {
+            tarefasDTO.add((TarefaDTO) tarefa.toDTO());
+        }
+        return tarefasDTO;
     }
 
     /**
@@ -105,8 +104,9 @@ public class RegistarTarefaController {
      * @return
      * @throws SQLException 
      */
-    public Tarefa findTarefa(int idAnuncio) throws SQLException {
-        return repositorioTarefa.findTarefa(idAnuncio);
+    public TarefaDTO findTarefa(int idAnuncio) throws SQLException {
+        Tarefa tarefa = repositorioTarefa.findTarefa(idAnuncio);
+        return (TarefaDTO) tarefa.toDTO();
     }
 
     /**
@@ -115,6 +115,7 @@ public class RegistarTarefaController {
      * @throws SQLException 
      */
     public List<Tarefa> getAllTarefasPublicadas() throws SQLException {
+
         return repositorioTarefa.getAllTarefasPublicadas();
     }
 
@@ -145,8 +146,10 @@ public class RegistarTarefaController {
      * @throws SQLException 
      */
     public List<Tarefa> getAllGrausTarefasPublicadas() throws SQLException {
+
         List<Tarefa> tarefasPublicadas = getAllTarefasPublicadas();
         return repositorioGrauProficiencia.getAllGrausTarefasPublicadas(tarefasPublicadas);
+
     }
 
     /**
@@ -156,11 +159,11 @@ public class RegistarTarefaController {
      * @return
      * @throws SQLException 
      */
-    public List<Tarefa> tarefasElegiveis(String emailFreelancer) throws SQLException {
-        List<Tarefa> tarefasElegiveis = new ArrayList<>();
+    public List<TarefaDTO> tarefasElegiveis(String emailFreelancer) throws SQLException {
         List<Tarefa> tarefasCompativeis = new ArrayList<>();
         List<Tarefa> tarefasComGraus = getAllGrausTarefasPublicadas();
         List<GrauProficiencia> grausFreelancer = getAllGrausFreelancer(emailFreelancer);
+        List<TarefaDTO> tarefasElegiveisDTO = new ArrayList<>();
 
        for (Tarefa tarefa : tarefasComGraus) {
            if (isAnuncioValido(emailFreelancer, tarefa.getReferencia())) {
@@ -179,10 +182,10 @@ public class RegistarTarefaController {
 
        for(Tarefa tarefa : tarefasCompativeis) {
            Tarefa tarefaCompleta = getTarefaByRefENif( tarefa.getReferencia(), tarefa.getNifOrganizacao());
-           tarefasElegiveis.add(tarefaCompleta);
+           tarefasElegiveisDTO.add((TarefaDTO) tarefaCompleta.toDTO());
        }
 
-        return tarefasElegiveis;
+        return tarefasElegiveisDTO;
     }
 
     public boolean isAnuncioValido(String emailFreelancer, String referenciaTarefa) throws SQLException {

@@ -9,6 +9,12 @@ package com.grupo2.t4j.ui;
  *
  * @author CAD
  */
+import com.grupo2.t4j.domain.ProcessoSeriacao;
+import com.grupo2.t4j.dto.AtribuicaoDTO;
+import com.grupo2.t4j.controller.AtribuirTarefaController;
+import com.grupo2.t4j.controller.RegistarTarefaController;
+import com.grupo2.t4j.controller.RegistarFreelancerController;
+import com.grupo2.t4j.controller.SeriarAnuncioController;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -41,6 +47,10 @@ public class ConsultarAtribuicaoColaboradorUI implements Initializable {
     @FXML private Button btnVoltar;
 
     private ColaboradorLogadoUI colaboradorLogadoUI;
+    private AtribuirTarefaController atribuirTarefaController;
+    private RegistarTarefaController registarTarefaController;
+    private RegistarFreelancerController registarFreelancerController;
+    private SeriarAnuncioController seriarAnuncioController;
     private Stage adicionarStage;
 
     /**
@@ -59,16 +69,50 @@ public class ConsultarAtribuicaoColaboradorUI implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
+        atribuirTarefaController = new AtribuirTarefaController();
+        registarFreelancerController = new RegistarFreelancerController();
+        seriarAnuncioController = new SeriarAnuncioController();
+
+        try {
+            registarTarefaController = new RegistarTarefaController();
+        }catch (SQLException exception) {
+            exception.printStackTrace();
+        }
+
         adicionarStage = new Stage();
         adicionarStage.initModality(Modality.APPLICATION_MODAL);;
         adicionarStage.setResizable(false);
     }
 
     /**
-     * Preenche a scene com a informacao do anuncio     *
+     * Preenche a scene com a informacão do anuncio     *
      */
     public void transferData() {
 
+        String refTarefa = colaboradorLogadoUI.tabelaAtribuicoes.getSelectionModel().getSelectedItem().getRefTarefa();
+        try {
+            AtribuicaoDTO atribuicaoDTO = atribuirTarefaController.findAtribuicaoByTarefa(refTarefa);
+
+            int idAnuncio = atribuicaoDTO.getIdAnuncio();
+            String emailFreelancer = atribuicaoDTO.getEmailFreelancer();
+
+            txtRefTarefa.setText(refTarefa);
+            txtIdAnuncio.setText(Integer.toString(idAnuncio));
+            txtDataSeriacao.setText(seriarAnuncioController.getProcessoSeriacaoByAnuncio(idAnuncio).getDataSeriacao());
+            txtDataAtribuicao.setText(atribuicaoDTO.getDataAtribuicao());
+            txtDescInformal.setText(registarTarefaController.findTarefa(idAnuncio).getDescInformal());
+            txtDescTecnica.setText(registarTarefaController.findTarefa(idAnuncio).getDescTecnica());
+            txtNomeFreelancer.setText(registarFreelancerController.findByEmail(emailFreelancer).getNome());
+            txtEmailFreelancer.setText(emailFreelancer);
+            txtCodigoAtribuicao.setText(atribuicaoDTO.getCodigoAtribuicao());
+            txtCusto.setText(Double.toString(atribuicaoDTO.getValorAceite()));
+            txtDtInTarefa.setText(atribuicaoDTO.getDataInicioTarefa());
+            txtDtFimTarefa.setText(atribuicaoDTO.getDataFimTarefa());
+            txtNumDias.setText(Integer.toString(atribuicaoDTO.getNumDiasAceite()));
+
+        }catch (SQLException exception) {
+                exception.printStackTrace();
+        }
     }
 
     /**

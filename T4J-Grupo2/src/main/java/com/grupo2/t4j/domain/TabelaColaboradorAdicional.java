@@ -5,11 +5,14 @@
  */
 package com.grupo2.t4j.domain;
 
+import com.grupo2.t4j.dto.DTO;
+import com.grupo2.t4j.dto.TabelaColaboradorAdicionalDTO;
+
 /**
  *
  * @author CAD
  */
-public class TabelaColaboradorAdicional {
+public class TabelaColaboradorAdicional implements DTO {
     
     private String email;
     private String selecao;
@@ -33,5 +36,10 @@ public class TabelaColaboradorAdicional {
     
     public String getSelecao(){
         return selecao;
+    }
+
+    @Override
+    public Object toDTO() {
+        return new TabelaColaboradorAdicionalDTO(email, selecao);
     }
 }

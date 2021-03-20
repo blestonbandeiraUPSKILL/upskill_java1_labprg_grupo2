@@ -7,6 +7,7 @@ public interface FabricaRepositorios {
 
     RepositorioAnuncio getRepositorioAnuncio();
     RepositorioAreaActividade getRepositorioAreaActividade();
+    RepositorioAtribuicao getRepositorioAtribuicao();
     RepositorioCandidatura getRepositorioCandidatura();
     RepositorioCaracterizacaoCT getRepositorioCaracterizacaoCT();
     RepositorioCategoriaTarefa getRepositorioCategoriaTarefa();

@@ -1,6 +1,7 @@
 package com.grupo2.t4j.controller;
 
 import com.grupo2.t4j.domain.GrauProficiencia;
+import com.grupo2.t4j.dto.GrauProficienciaDTO;
 import com.grupo2.t4j.persistence.FabricaRepositorios;
 import com.grupo2.t4j.persistence.RepositorioCaracterizacaoCT;
 import com.grupo2.t4j.persistence.RepositorioCompetenciaTecnica;
@@ -8,6 +9,7 @@ import com.grupo2.t4j.persistence.RepositorioGrauProficiencia;
 import com.grupo2.t4j.persistence.database.FabricaRepositoriosDatabase;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class RegistarGrauProficienciaController {
@@ -20,8 +22,14 @@ public class RegistarGrauProficienciaController {
     public RegistarGrauProficienciaController() throws SQLException {
     }
 
-    public List<GrauProficiencia> getAll() throws SQLException {
-        return repositorioGrauProficiencia.getAll();
+    public List<GrauProficienciaDTO> getAll() throws SQLException {
+        List<GrauProficiencia> grausProficiencia = repositorioGrauProficiencia.getAll();
+        List<GrauProficienciaDTO> grausProficienciaDTO = new ArrayList<>();
+
+        for(GrauProficiencia grauProficiencia : grausProficiencia) {
+            grausProficienciaDTO.add((GrauProficienciaDTO) grauProficiencia.toDTO());
+        }
+        return grausProficienciaDTO;
     }
 
    /**
@@ -45,8 +53,14 @@ public class RegistarGrauProficienciaController {
      * @return
      * @throws SQLException 
      */
-    public List<GrauProficiencia> findByCompetenciaTecnica(String codigoCompetenciaTecnica) throws SQLException {
-        return repositorioGrauProficiencia.findByCompetenciaTecnica(codigoCompetenciaTecnica);
+    public List<GrauProficienciaDTO> findByCompetenciaTecnica(String codigoCompetenciaTecnica) throws SQLException {
+        List<GrauProficiencia> grausProficiencia = repositorioGrauProficiencia.findByCompetenciaTecnica(codigoCompetenciaTecnica);
+        List<GrauProficienciaDTO> grausProficienciaDTO = new ArrayList<>();
+
+        for (GrauProficiencia grauProficiencia : grausProficiencia) {
+            grausProficienciaDTO.add((GrauProficienciaDTO) grauProficiencia.toDTO());
+        }
+        return grausProficienciaDTO;
     }
 
     /**
@@ -55,8 +69,14 @@ public class RegistarGrauProficienciaController {
      * @return
      * @throws SQLException 
      */
-    public List<GrauProficiencia> getAllByCompetenciaTecnica(String codigoCompetenciaTecnica) throws SQLException {
-        return repositorioGrauProficiencia.getAllByCompetenciaTecnica(codigoCompetenciaTecnica);
+    public List<GrauProficienciaDTO> getAllByCompetenciaTecnica(String codigoCompetenciaTecnica) throws SQLException {
+        List<GrauProficiencia> grausProficiencia = repositorioGrauProficiencia.getAllByCompetenciaTecnica(codigoCompetenciaTecnica);
+        List<GrauProficienciaDTO> grausProficienciaDTO = new ArrayList<>();
+
+        for(GrauProficiencia grauProficiencia : grausProficiencia) {
+            grausProficienciaDTO.add((GrauProficienciaDTO) grauProficiencia.toDTO());
+        }
+        return grausProficienciaDTO;
     }
 
     /**
@@ -66,8 +86,9 @@ public class RegistarGrauProficienciaController {
      * @return
      * @throws SQLException 
      */
-    public GrauProficiencia findByGrauECompetenciaTecnica(int grau, String codigoCompetenciaTecnica) throws SQLException {
-        return repositorioGrauProficiencia.findByGrauECompetencia(grau, codigoCompetenciaTecnica);
+    public GrauProficienciaDTO findByGrauECompetenciaTecnica(int grau, String codigoCompetenciaTecnica) throws SQLException {
+        GrauProficiencia grauProficiencia = repositorioGrauProficiencia.findByGrauECompetencia(grau, codigoCompetenciaTecnica);
+        return (GrauProficienciaDTO) grauProficiencia.toDTO();
     }
     
 }

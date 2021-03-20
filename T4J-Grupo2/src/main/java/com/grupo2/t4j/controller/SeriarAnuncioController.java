@@ -2,6 +2,7 @@ package com.grupo2.t4j.controller;
 
 import com.grupo2.t4j.domain.*;
 import com.grupo2.t4j.domain.strategy.*;
+import com.grupo2.t4j.dto.*;
 import com.grupo2.t4j.persistence.*;
 import com.grupo2.t4j.persistence.database.FabricaRepositoriosDatabase;
 
@@ -29,12 +30,12 @@ public class SeriarAnuncioController {
     private RegimentoStrategy_3 regimentoStrategy_3 = new RegimentoStrategy_3();
 
     /**
-     * 
+     *
      */
     public SeriarAnuncioController(){
-        
+
     }
-    
+
     /**
      * Retorna uma lista de referências de tarefas de uma organização
      * @param nifOrganizacao - nif da organização
@@ -65,58 +66,63 @@ public class SeriarAnuncioController {
      * @throws SQLException
      */
     public List<Tarefa> getAllRefTarefasASeriar(List<String> referenciasTarefa, String nifOrganizacao, String emailColaborador) throws SQLException{
-        return repositorioAnuncio.getAllRefTarefasASeriar(referenciasTarefa, nifOrganizacao, emailColaborador);
+        List<Tarefa> tarefas = repositorioAnuncio.getAllRefTarefasASeriar(referenciasTarefa, nifOrganizacao, emailColaborador);
+        List<TarefaDTO> tarefasDTO = new ArrayList<>();
+
+        for(Tarefa tarefa : tarefas) {
+            tarefasDTO.add((TarefaDTO) tarefa.toDTO());
+        }
+        return tarefas;
     }
-    
-    /**
-     * Retorna o id do Anúncio referente a uma dada referência de tarefa
-     * @param referenciaTarefa - referência da tarefa
-     * @param nifOrganizacao - nif da organização
-     * @return
-     * @throws SQLException
-     */
-    public int getIdAnuncioByIdTarefa(String referenciaTarefa, String nifOrganizacao) throws SQLException{
-        return repositorioAnuncio.findAnuncioByIdTarefa(referenciaTarefa, nifOrganizacao).getIdAnuncio();
-    }
-    
+
     /**
      * Retorna o anúncio de acordo com o id do anúncio
      * @param idAnuncio - id do anúncio
      * @return
      * @throws SQLException
      */
-    public Anuncio getAnuncio(int idAnuncio) throws SQLException {
-        return repositorioAnuncio.getAnuncio(idAnuncio);
+    public AnuncioDTO getAnuncio(int idAnuncio) throws SQLException {
+        Anuncio anuncio = repositorioAnuncio.getAnuncio(idAnuncio);
+        return (AnuncioDTO) anuncio.toDTO();
     }
-    
+
     /**
      * Retorna um tipo de regimento com base no id do Regimento
      * @param idTipoRegimento - id do Regimento de seriação
      * @return
      * @throws SQLException
      */
-    public TipoRegimento findRegimentoById(int idTipoRegimento) throws SQLException{
-        return repositorioTipoRegimento.findById(idTipoRegimento);
+    public TipoRegimentoDTO findRegimentoById(int idTipoRegimento) throws SQLException{
+        TipoRegimento tipoRegimento = repositorioTipoRegimento.findById(idTipoRegimento);
+        return (TipoRegimentoDTO) tipoRegimento.toDTO();
     }
-    
+
     /**
      * Retorna uma candidatura com base no id da candidatura
      * @param idCandidatura - id da candidatura
      * @return
      * @throws SQLException
      */
-    public Candidatura findById(int idCandidatura) throws SQLException {
-        return repositorioCandidatura.findById(idCandidatura);
+    public CandidaturaDTO findById(int idCandidatura) throws SQLException {
+        Candidatura candidatura = repositorioCandidatura.findById(idCandidatura);
+
+        return (CandidaturaDTO) candidatura.toDTO();
     }
-    
+
     /**
      * Retorna uma lista de candidaturas para um dado anúncio
      * @param idAnuncio - id do anúncio
      * @return
      * @throws SQLException
      */
-    public List<Candidatura> getAllByIdAnuncio(int idAnuncio) throws SQLException{
-        return repositorioCandidatura.getAllByIdAnuncio(idAnuncio);
+    public List<CandidaturaDTO> getAllByIdAnuncio(int idAnuncio) throws SQLException{
+        List<Candidatura> candidaturas = repositorioCandidatura.getAllByIdAnuncio(idAnuncio);
+        List<CandidaturaDTO> candidaturasDTO = new ArrayList<>();
+
+        for(Candidatura candidatura : candidaturas) {
+            candidaturasDTO.add((CandidaturaDTO) candidatura.toDTO());
+        }
+        return candidaturasDTO;
     }
   
     /**
@@ -128,16 +134,11 @@ public class SeriarAnuncioController {
     public int getIdSeriacao(int idAnuncio)throws SQLException{
         return repositorioSeriacao.getProcessoSeriacaoByAnuncio(idAnuncio).getIdSeriacao();
     }
-    
-    /**
-     * Retorna um processo de seriação de um anúncio
-     * @param idAnuncio - id do anúncio
-     * @return
-     * @throws SQLException
-     */
-    public ProcessoSeriacao findSeriacaoByAnuncio(int idAnuncio) throws SQLException{
-        return repositorioSeriacao.findByAnuncio(idAnuncio);
+
+    public ProcessoSeriacao getProcessoSeriacaoByAnuncio (int idAnuncio) throws SQLException{
+        return repositorioSeriacao.getProcessoSeriacaoByAnuncio(idAnuncio);
     }
+
 
     public boolean seriar(int idAnuncio) throws SQLException{
         boolean sucesso = false;
@@ -178,38 +179,43 @@ public class SeriarAnuncioController {
      * @return
      * @throws SQLException
      */
-    public List<Classificacao> getAllBySeriacao(int idSeriacao)throws SQLException{
-        return repositorioClassificacao.getAllBySeriacao(idSeriacao);
+    public List<ClassificacaoDTO> getAllBySeriacao(int idSeriacao)throws SQLException{
+        List<Classificacao> classificacoes = repositorioClassificacao.getAllBySeriacao(idSeriacao);
+        List<ClassificacaoDTO> classificaoesDTO = new ArrayList<>();
+
+        for (Classificacao classificacao : classificacoes) {
+            classificaoesDTO.add((ClassificacaoDTO) classificacao.toDTO());
+        }
+        return classificaoesDTO;
     }
-    
-    /**
-     * Retorna uma candidatura com base no seu id
-     * @param idCandidatura - id da candidatura
-     * @return
-     * @throws SQLException
-     */
-    public Candidatura findCandidaturaById(int idCandidatura) throws SQLException{
-        return repositorioCandidatura.findById(idCandidatura);
-    }
-    
+
+
     /**
      * Retorna uma classificação com base no seu id
      * @param idClassificacao - id da classificação
      * @return
      * @throws SQLException
      */
-    public Classificacao findClassificacaoById(int idClassificacao) throws SQLException{
-        return repositorioClassificacao.findById(idClassificacao);
+    public ClassificacaoDTO findClassificacaoById(int idClassificacao) throws SQLException{
+        Classificacao classificacao = repositorioClassificacao.findById(idClassificacao);
+
+        return (ClassificacaoDTO) classificacao.toDTO();
     }
-    
+
     /**
      * Retorna uma lista de colaboradores de uma organização
      * @param nifOrganizacacao - nif da organização
      * @return
      * @throws SQLException
      */
-    public ArrayList<Colaborador> getAll(String nifOrganizacacao) throws SQLException{
-        return repositorioColaborador.getAll(nifOrganizacacao);
+    public List<ColaboradorDTO> getAll(String nifOrganizacacao) throws SQLException{
+        List<Colaborador> colaboradores = repositorioColaborador.getAll(nifOrganizacacao);
+        List<ColaboradorDTO> colaboradoresDTO = new ArrayList<>();
+
+        for(Colaborador colaborador : colaboradores) {
+            colaboradoresDTO.add((ColaboradorDTO) colaborador.toDTO());
+        }
+        return colaboradoresDTO;
     }
    
     /**
@@ -218,7 +224,13 @@ public class SeriarAnuncioController {
      * @return
      * @throws SQLException
      */
-    public List<ProcessoSeriacao> getAllPSByIdAnuncio(int idAnuncio) throws SQLException {
-        return repositorioSeriacao.getAllByIdAnuncio(idAnuncio);
+    public List<ProcessoSeriacaoDTO> getAllPSByIdAnuncio(int idAnuncio) throws SQLException {
+        List<ProcessoSeriacao> processosSeriacao = repositorioSeriacao.getAllByIdAnuncio(idAnuncio);
+        List<ProcessoSeriacaoDTO> processosSeriacaoDTO = new ArrayList<>();
+
+        for(ProcessoSeriacao processoSeriacao : processosSeriacao) {
+            processosSeriacaoDTO.add((ProcessoSeriacaoDTO) processoSeriacao.toDTO());
+        }
+        return processosSeriacaoDTO;
     }
 }

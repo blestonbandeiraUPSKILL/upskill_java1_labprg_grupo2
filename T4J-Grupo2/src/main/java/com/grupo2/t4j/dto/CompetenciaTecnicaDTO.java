@@ -41,5 +41,8 @@ public class CompetenciaTecnicaDTO {
         return codigoAreaActividade;
     }
 
+    public String toString() {
+        return String.format("%s", descricaoBreve);
+    }
 
 }

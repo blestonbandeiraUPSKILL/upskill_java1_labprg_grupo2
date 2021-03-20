@@ -3,6 +3,7 @@ package com.grupo2.t4j.ui;
 import com.grupo2.t4j.controller.PublicarTarefaController;
 import com.grupo2.t4j.domain.FiltroTarefas;
 import com.grupo2.t4j.domain.TipoRegimento;
+import com.grupo2.t4j.dto.TipoRegimentoDTO;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -31,7 +32,7 @@ public class PublicarTarefaGestorUI implements Initializable {
     @FXML TextArea txtRegrasGerais;
     @FXML Button btnPublicar;
     @FXML Button btnVoltar;
-    @FXML ComboBox<TipoRegimento> cmbTipoSeriacao;
+    @FXML ComboBox<TipoRegimentoDTO> cmbTipoSeriacao;
 
      /**
      * Associa a scene GestorLogadoUI como parent desta Scene 

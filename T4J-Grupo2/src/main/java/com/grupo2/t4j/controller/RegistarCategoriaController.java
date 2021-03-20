@@ -2,12 +2,14 @@ package com.grupo2.t4j.controller;
 
 
 import com.grupo2.t4j.domain.Categoria;
+import com.grupo2.t4j.dto.CategoriaDTO;
 import com.grupo2.t4j.persistence.FabricaRepositorios;
 import com.grupo2.t4j.persistence.RepositorioAreaActividade;
 import com.grupo2.t4j.persistence.RepositorioCategoriaTarefa;
 import com.grupo2.t4j.persistence.database.FabricaRepositoriosDatabase;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class RegistarCategoriaController {
@@ -40,8 +42,14 @@ public class RegistarCategoriaController {
      * @return
      * @throws SQLException 
      */
-    public List<Categoria> getAll() throws SQLException {
-        return repositorioCategoriaTarefa.getAll();
+    public List<CategoriaDTO> getAll() throws SQLException {
+        List<Categoria> categorias = repositorioCategoriaTarefa.getAll();
+        List<CategoriaDTO> categoriasDTO = new ArrayList<>();
+
+        for(Categoria categoria : categorias) {
+            categoriasDTO.add((CategoriaDTO) categoria.toDTO());
+        }
+        return categoriasDTO;
     }
 
     /**
@@ -50,8 +58,14 @@ public class RegistarCategoriaController {
      * @return
      * @throws SQLException 
      */
-    public List<Categoria> findByAreaActividade(String codigoAreaActividade) throws SQLException{
-        return repositorioCategoriaTarefa.findByAreaActividade(codigoAreaActividade);
+    public List<CategoriaDTO> findByAreaActividade(String codigoAreaActividade) throws SQLException{
+        List<Categoria> categorias = repositorioCategoriaTarefa.findByAreaActividade(codigoAreaActividade);
+        List<CategoriaDTO> categoriasDTO = new ArrayList<>();
+
+        for(Categoria categoria : categorias) {
+            categoriasDTO.add((CategoriaDTO) categoria.toDTO());
+        }
+        return categoriasDTO;
     }
 
     /**
@@ -60,8 +74,9 @@ public class RegistarCategoriaController {
      * @return
      * @throws SQLException 
      */
-    public Categoria findByCodigo(String codigoCategoria) throws SQLException {
-        return repositorioCategoriaTarefa.findByCodigo(codigoCategoria);
+    public CategoriaDTO findByCodigo(String codigoCategoria) throws SQLException {
+        Categoria categoria = repositorioCategoriaTarefa.findByCodigo(codigoCategoria);
+        return (CategoriaDTO) categoria.toDTO();
     }
 
 

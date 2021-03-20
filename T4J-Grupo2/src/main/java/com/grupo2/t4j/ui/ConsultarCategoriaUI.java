@@ -3,13 +3,12 @@ package com.grupo2.t4j.ui;
 import com.grupo2.t4j.controller.RegistarAreaActividadeController;
 import com.grupo2.t4j.controller.RegistarCaracterizacaoCTController;
 import com.grupo2.t4j.domain.CaracterizacaoCT;
+import com.grupo2.t4j.dto.CaracterizacaoCTDTO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -32,7 +31,10 @@ public class ConsultarCategoriaUI implements Initializable {
     @FXML TextField txtAreaActividade;
     @FXML TextArea txtDescDetalhada;
     @FXML Button btnVoltar;
-    @FXML ListView<CaracterizacaoCT> listViewCaracterizacao;
+    @FXML TableView<CaracterizacaoCTDTO> tabelaCompetencias;
+    @FXML TableColumn<Object, Object> txtCompetencia;
+    @FXML TableColumn<Object, Object> txtGrau;
+    @FXML TableColumn<Object, Object> txtObrigatoriedade;
 
     /**
      * Associa a scene AdministrativoLogadoUI como parent desta Scene 
@@ -69,8 +71,10 @@ public class ConsultarCategoriaUI implements Initializable {
         txtAreaActividade.setText(registarAreaActividadeController.getAreaActividade(codigoAreaActividade).getDescBreve());
         txtDescBreve.setText(administrativoLogadoUI.tableViewCategoria.getSelectionModel().getSelectedItem().getDescBreve());
         txtDescDetalhada.setText(administrativoLogadoUI.tableViewCategoria.getSelectionModel().getSelectedItem().getDescDetalhada());
-        listViewCaracterizacao.getItems().setAll(
-                registarCaracterizacaoCTController.getAllByCategoria(codigoCategoria));
+        tabelaCompetencias.getItems().setAll(registarCaracterizacaoCTController.getAllByCategoria(codigoCategoria));
+        txtGrau.setCellValueFactory(new PropertyValueFactory<>("designacaoGrau"));
+        txtObrigatoriedade.setCellValueFactory((new PropertyValueFactory<>("obrigatoriedade")));
+        txtCompetencia.setCellValueFactory(new PropertyValueFactory<>("descBreveCompetencia"));
     }
 
     /**

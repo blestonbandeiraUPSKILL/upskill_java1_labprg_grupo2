@@ -1,11 +1,13 @@
 package com.grupo2.t4j.controller;
 
 import com.grupo2.t4j.domain.Candidatura;
+import com.grupo2.t4j.dto.CandidaturaDTO;
 import com.grupo2.t4j.persistence.*;
 import com.grupo2.t4j.persistence.database.FabricaRepositoriosDatabase;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -52,7 +54,15 @@ public class EfectuarCandidaturaController {
      * @return
      * @throws SQLException 
      */
-    public ArrayList<Candidatura> findByEmail(String emailFreelancer) throws SQLException {
-        return repositorioCandidatura.findByEmail(emailFreelancer);
+    public List<CandidaturaDTO> findByEmail(String emailFreelancer) throws SQLException {
+        List<Candidatura> candidaturas = repositorioCandidatura.findByEmail(emailFreelancer);
+        List<CandidaturaDTO> candidaturasDTO = new ArrayList<>();
+
+        for(Candidatura candidatura : candidaturas)
+        {
+            candidaturasDTO.add((CandidaturaDTO) candidatura.toDTO());
+        }
+
+        return candidaturasDTO;
     }
 }

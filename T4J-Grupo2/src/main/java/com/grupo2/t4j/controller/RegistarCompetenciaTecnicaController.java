@@ -1,12 +1,14 @@
 package com.grupo2.t4j.controller;
 
 import com.grupo2.t4j.domain.CompetenciaTecnica;
+import com.grupo2.t4j.dto.CompetenciaTecnicaDTO;
 import com.grupo2.t4j.persistence.FabricaRepositorios;
 import com.grupo2.t4j.persistence.RepositorioAreaActividade;
 import com.grupo2.t4j.persistence.RepositorioCompetenciaTecnica;
 import com.grupo2.t4j.persistence.database.FabricaRepositoriosDatabase;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class RegistarCompetenciaTecnicaController {
@@ -36,8 +38,14 @@ public class RegistarCompetenciaTecnicaController {
      * @return
      * @throws SQLException 
      */
-    public List<CompetenciaTecnica> getAll() throws SQLException {
-        return repositorioCompetenciaTecnica.getAll();
+    public List<CompetenciaTecnicaDTO> getAll() throws SQLException {
+        List<CompetenciaTecnica> competenciasTecnicas = repositorioCompetenciaTecnica.getAll();
+        List<CompetenciaTecnicaDTO> competenciasTecnicasDTO = new ArrayList<>();
+
+        for(CompetenciaTecnica competenciaTecnica : competenciasTecnicas) {
+            competenciasTecnicasDTO.add((CompetenciaTecnicaDTO) competenciaTecnica.toDTO());
+        }
+        return competenciasTecnicasDTO;
     }
 
     /**
@@ -46,8 +54,14 @@ public class RegistarCompetenciaTecnicaController {
      * @return
      * @throws SQLException 
      */
-    public List<CompetenciaTecnica> findByAreaActividade(String codigoAreaActividade) throws SQLException {
-        return repositorioCompetenciaTecnica.findByAreaActividade(codigoAreaActividade);
+    public List<CompetenciaTecnicaDTO> findByAreaActividade(String codigoAreaActividade) throws SQLException {
+        List<CompetenciaTecnica> competenciasTecnicas = repositorioCompetenciaTecnica.findByAreaActividade(codigoAreaActividade);
+        List<CompetenciaTecnicaDTO> competenciasTecnicasDTO = new ArrayList<>();
+
+        for(CompetenciaTecnica competenciaTecnica : competenciasTecnicas) {
+            competenciasTecnicasDTO.add((CompetenciaTecnicaDTO) competenciaTecnica.toDTO());
+        }
+        return competenciasTecnicasDTO;
     }
 
     /**
@@ -56,8 +70,10 @@ public class RegistarCompetenciaTecnicaController {
      * @return
      * @throws SQLException 
      */
-    public CompetenciaTecnica findByCodigo(String codigo) throws SQLException {
-        return repositorioCompetenciaTecnica.findByCodigo(codigo);
+    public CompetenciaTecnicaDTO findByCodigo(String codigo) throws SQLException {
+        CompetenciaTecnica competenciaTecnica = repositorioCompetenciaTecnica.findByCodigo(codigo);
+
+        return (CompetenciaTecnicaDTO) competenciaTecnica.toDTO();
     }
 
 

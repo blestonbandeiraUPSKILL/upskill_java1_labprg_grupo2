@@ -7,17 +7,22 @@ import com.grupo2.t4j.domain.Obrigatoriedade;
 public class CaracterizacaoCTDTO {
 
     private int idCaracterizacao;
+
     private String codigoCategoria;
+    private String descBreveCompetencia;
+    private String designacaoGrau;
     private int codigoGP;
     private Obrigatoriedade obrigatoriedade;
 
     public CaracterizacaoCTDTO (){
     }
 
-    public CaracterizacaoCTDTO(int idCaracterizacao, String codigoCategoria,
-                            int codigoGP, Obrigatoriedade obrigatoriedade){
+    public CaracterizacaoCTDTO(int idCaracterizacao, String codigoCategoria, String descBreveCompetencia,
+                            String designacaoGrau, int codigoGP, Obrigatoriedade obrigatoriedade){
         this.idCaracterizacao = idCaracterizacao;
         this.codigoCategoria = codigoCategoria;
+        this.descBreveCompetencia = descBreveCompetencia;
+        this.designacaoGrau = designacaoGrau;
         this.codigoGP = codigoGP;
         this.obrigatoriedade = obrigatoriedade;
     }
@@ -38,4 +43,17 @@ public class CaracterizacaoCTDTO {
         return codigoCategoria;
     }
 
+    public String getDescBreveCompetencia() { return descBreveCompetencia; }
+
+
+    public String getDesignacaoGrau() { return designacaoGrau; }
+
+
+
+    @Override
+    public String toString() {
+        return String.format("Competencia Téncina: %-30s %nGrau de Proficiencia: %-20s "
+                + "%nCarácter: %-15s", descBreveCompetencia, designacaoGrau, obrigatoriedade.toString());
+
+    }
 }

@@ -5,11 +5,14 @@
  */
 package com.grupo2.t4j.domain;
 
+import com.grupo2.t4j.dto.DTO;
+import com.grupo2.t4j.dto.ReconhecimentoGPDTO;
+
 /**
  *
  * @author acris
  */
-public class ReconhecimentoGP {
+public class ReconhecimentoGP implements DTO {
     /**
      * O id do Grau de Proficiência a que se refere o reconhecimento
      */
@@ -168,9 +171,6 @@ public class ReconhecimentoGP {
     public void setDescBreveCompetencia(String descBreveCompetencia) {
         this.descBreveCompetencia = descBreveCompetencia;
     }
-    
-    
-
 
     /**
      * Representacao textual do reconhecimento de uma competencia tecnica
@@ -181,5 +181,11 @@ public class ReconhecimentoGP {
         return String.format("Competência Técnica: %s%n" +
                 "Grau: %s%n" +
                 "Data Reconhecimento: %s", descBreveCompetencia, designacaoGrau, dataReconhecimento);
-    }    
+    }
+
+    @Override
+    public Object toDTO() {
+        return new ReconhecimentoGPDTO(idGrauProficiencia, emailFreelancer,
+                dataReconhecimento, designacaoGrau, descBreveCompetencia);
+    }
 }

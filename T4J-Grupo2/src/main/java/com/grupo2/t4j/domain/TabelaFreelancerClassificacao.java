@@ -5,11 +5,14 @@
  */
 package com.grupo2.t4j.domain;
 
+import com.grupo2.t4j.dto.DTO;
+import com.grupo2.t4j.dto.TabelaFreelancerClassificacaoDTO;
+
 /**
  *
  * @author CAD
  */
-public class TabelaFreelancerClassificacao {
+public class TabelaFreelancerClassificacao implements DTO {
     
     private int idCandidatura;
     private String emailFreelancer;
@@ -48,5 +51,10 @@ public class TabelaFreelancerClassificacao {
     
     public int getIdCandidatura(){
         return idCandidatura;
+    }
+
+    @Override
+    public Object toDTO() {
+        return new TabelaFreelancerClassificacaoDTO(idCandidatura, emailFreelancer, classificacao);
     }
 }

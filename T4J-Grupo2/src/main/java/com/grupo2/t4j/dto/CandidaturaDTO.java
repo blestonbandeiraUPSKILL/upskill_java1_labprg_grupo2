@@ -30,6 +30,7 @@ public class CandidaturaDTO {
         this.txtApresentacao = txtApresentacao;
         this.txtMotivacao = txtMotivacao;
         this.dataCandidatura = dataCandidatura;
+        this.dataEdicaoCandidatura = dataEdicaoCandidatura;
     }
 
     public int getIdCandidatura(){
@@ -62,5 +63,9 @@ public class CandidaturaDTO {
 
     public String getMotivacao(){
         return txtMotivacao;
+    }
+
+    public String getDataEdicaoCandidatura() {
+        return dataEdicaoCandidatura;
     }
 }

@@ -5,11 +5,14 @@
  */
 package com.grupo2.t4j.domain;
 
+import com.grupo2.t4j.dto.AtribuicaoDTO;
+import com.grupo2.t4j.dto.DTO;
+
 /**
  *
  * @author CAD
  */
-public class Atribuicao {
+public class Atribuicao implements DTO {
 
     private int idAtribuicao;
     private String nifOrganizacao;
@@ -17,27 +20,63 @@ public class Atribuicao {
     private int idAnuncio;
     private int idCandidatura;
     private String emailFreelancer;
-    private double valorAceito;
-    private int numDiasAceito;
+    private double valorAceite;
+    private int numDiasAceite;
     private String codigoAtribuicao;
     private String dataAtribuicao;
     private String dataInicioTarefa;
     private String dataFimTarefa;
 
-    public Atribuicao(String nifOrganizacao, String refTarefa, int idAnuncio, int idCandidatura, String emailFreelancer,
-                      double valorAceito, int numDiasAceito, String codigoAtribuicao, String dataAtribuicao, String dataInicioTarefa,
+    public Atribuicao(){
+
+    }
+
+    public Atribuicao(int idAtribuicao, String nifOrganizacao, String refTarefa, int idAnuncio, int idCandidatura, String emailFreelancer,
+                      double valorAceite, int numDiasAceite, String codigoAtribuicao, String dataAtribuicao, String dataInicioTarefa,
                       String dataFimTarefa){
+        setIdAtribuicao(idAtribuicao);
         setNifOrganizacao(nifOrganizacao);
         setRefTarefa(refTarefa);
         setIdAnuncio(idAnuncio);
         setIdCandidatura(idCandidatura);
         setEmailFreelancer(emailFreelancer);
-        setValorAceito(valorAceito);
-        setNumDiasAceito(numDiasAceito);
+        setValorAceite(valorAceite);
+        setNumDiasAceito(numDiasAceite);
         setCodigoAtribuicao(codigoAtribuicao);
         setDataAtribuicao(dataAtribuicao);
         setDataInicioTarefa(dataInicioTarefa);
         setDataFimTarefa(dataFimTarefa);
+    }
+
+    public Atribuicao(String nifOrganizacao, String refTarefa, int idAnuncio, int idCandidatura, String emailFreelancer,
+                      double valorAceite, int numDiasAceite, String codigoAtribuicao, String dataAtribuicao, String dataInicioTarefa){
+        setNifOrganizacao(nifOrganizacao);
+        setRefTarefa(refTarefa);
+        setIdAnuncio(idAnuncio);
+        setIdCandidatura(idCandidatura);
+        setEmailFreelancer(emailFreelancer);
+        setValorAceite(valorAceite);
+        setNumDiasAceito(numDiasAceite);
+        setCodigoAtribuicao(codigoAtribuicao);
+        setDataAtribuicao(dataAtribuicao);
+        setDataInicioTarefa(dataInicioTarefa);
+    }
+
+    public Atribuicao(String nifOrganizacao, String refTarefa, int idAnuncio, int idCandidatura, String emailFreelancer,
+                      double valorAceite, int numDiasAceite, String codigoAtribuicao, String dataInicioTarefa){
+        setNifOrganizacao(nifOrganizacao);
+        setRefTarefa(refTarefa);
+        setIdAnuncio(idAnuncio);
+        setIdCandidatura(idCandidatura);
+        setEmailFreelancer(emailFreelancer);
+        setValorAceite(valorAceite);
+        setNumDiasAceito(numDiasAceite);
+        setCodigoAtribuicao(codigoAtribuicao);
+        setDataInicioTarefa(dataInicioTarefa);
+    }
+
+    public void setIdAtribuicao(int idAtribuicao){
+        this.idAtribuicao = idAtribuicao;
     }
 
     public void setNifOrganizacao(String nifOrganizacao){
@@ -60,12 +99,12 @@ public class Atribuicao {
         this.emailFreelancer = emailFreelancer;
     }
 
-    public void setValorAceito(double valorAceito){
-        this.valorAceito = valorAceito;
+    public void setValorAceite(double valorAceite){
+        this.valorAceite = valorAceite;
     }
 
     public void setNumDiasAceito(int numDiasAceito){
-        this.numDiasAceito = numDiasAceito;
+        this.numDiasAceite = numDiasAceito;
     }
 
     public void setCodigoAtribuicao(String codigoAtribuicao){
@@ -84,18 +123,61 @@ public class Atribuicao {
         this.dataFimTarefa = dataFimTarefa;
     }
 
+    public int getIdAtribuicao(){
+        return idAtribuicao;
+    }
+
+    public String getNifOrganizacao(){
+        return nifOrganizacao;
+    }
+
+    public String getRefTarefa(){
+        return refTarefa;
+    }
+
+    public int getIdAnuncio(){
+        return idAnuncio;
+    }
+
+    public int getIdCandidatura(){
+        return idCandidatura;
+    }
+
+    public String getEmailFreelancer(){
+        return emailFreelancer;
+    }
+
+    public double getValorAceite(){
+        return valorAceite;
+    }
+
+    public int getNumDiasAceite(){
+        return numDiasAceite;
+    }
+
+    public String getCodigoAtribuicao(){
+        return codigoAtribuicao;
+    }
+
+    public String getDataAtribuicao(){
+        return dataAtribuicao;
+    }
+
+    public String getDataInicioTarefa(){
+        return dataInicioTarefa;
+    }
+
+    public String getDataFimTarefa(){
+        return dataFimTarefa;
+    }
+
+    @Override
+    public Object toDTO() {
+        return new AtribuicaoDTO(idAtribuicao, nifOrganizacao, refTarefa, idAnuncio, idCandidatura,
+                emailFreelancer, valorAceite, numDiasAceite, codigoAtribuicao, dataAtribuicao, dataInicioTarefa, dataFimTarefa);
+    }
 
 
-
-
-
-
-
-
-
-
-    
-    
     //Falta acabar
     
 }
