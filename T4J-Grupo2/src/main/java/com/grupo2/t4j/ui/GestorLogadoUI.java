@@ -276,6 +276,7 @@ public class GestorLogadoUI implements Initializable {
         }
         else{
             btnConsultarAtribuicao.setDisable(true);
+
         }
     }
 
