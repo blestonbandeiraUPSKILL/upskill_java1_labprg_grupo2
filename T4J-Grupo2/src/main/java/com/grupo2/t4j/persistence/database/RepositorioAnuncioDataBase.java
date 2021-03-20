@@ -508,14 +508,16 @@ public class RepositorioAnuncioDataBase implements RepositorioAnuncio {
             PreparedStatement preparedStatement = connection.prepareStatement(
                     "SELECT * FROM Anuncio " +
                             "INNER JOIN ProcessoSeriacao  " +
-                            "ON Anuncio.idAnuncio LIKE ProcessoSeriacao.idAnuncio" +
+                            "ON Anuncio.idAnuncio LIKE ProcessoSeriacao.idAnuncio " +
                             "WHERE Anuncio.nifOrganizacao LIKE ?"
 
             );
 
             preparedStatement.setString(1, nifOrganizacao);
 
-            ResultSet resultSet = preparedStatement.executeQuery();
+            preparedStatement.executeQuery();
+
+            ResultSet resultSet = preparedStatement.getResultSet();
 
             while (resultSet.next()) {
                 int idAnuncio = resultSet.getInt(1);
