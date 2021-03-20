@@ -9,9 +9,11 @@ package com.grupo2.t4j.ui;
  *
  * @author CAD
  */
+
 import com.grupo2.t4j.controller.*;
 import com.grupo2.t4j.domain.ProcessoSeriacao;
 import com.grupo2.t4j.dto.AtribuicaoDTO;
+import com.grupo2.t4j.controller.AtribuirTarefaController;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -51,6 +53,7 @@ public class ConsultarAtribuicaoColaboradorUI implements Initializable {
     private RegistarFreelancerController registarFreelancerController;
     private SeriarAnuncioController seriarAnuncioController;
     private GestaoUtilizadoresController gestaoUtilizadoresController;
+
     private Stage adicionarStage;
 
     /**
@@ -82,6 +85,7 @@ public class ConsultarAtribuicaoColaboradorUI implements Initializable {
             exception.printStackTrace();
         }
 
+
         adicionarStage = new Stage();
         adicionarStage.initModality(Modality.APPLICATION_MODAL);;
         adicionarStage.setResizable(false);
@@ -101,11 +105,11 @@ public class ConsultarAtribuicaoColaboradorUI implements Initializable {
 
             txtRefTarefa.setText(refTarefa);
             txtIdAnuncio.setText(Integer.toString(idAnuncio));
-            txtDataSeriacao.setText(seriarAnuncioController.getProcessoSeriacaoByAnuncio(idAnuncio).getDataSeriacao());
+            txtDataSeriacao.setText(atribuirTarefaController.getProcessoSeriacaoByAnuncio(idAnuncio).getDataSeriacao());
             txtDataAtribuicao.setText(atribuicaoDTO.getDataAtribuicao());
-            txtDescInformal.setText(registarTarefaController.findTarefa(idAnuncio).getDescInformal());
-            txtDescTecnica.setText(registarTarefaController.findTarefa(idAnuncio).getDescTecnica());
-            txtNomeFreelancer.setText(registarFreelancerController.findByEmail(emailFreelancer).getNome());
+            txtDescInformal.setText(atribuirTarefaController.findTarefa(idAnuncio).getDescInformal());
+            txtDescTecnica.setText(atribuirTarefaController.findTarefa(idAnuncio).getDescTecnica());
+            txtNomeFreelancer.setText(atribuirTarefaController.findByEmail(emailFreelancer).getNome());
             txtEmailFreelancer.setText(emailFreelancer);
             txtCodigoAtribuicao.setText(atribuicaoDTO.getCodigoAtribuicao());
             txtCusto.setText(Double.toString(atribuicaoDTO.getValorAceite()));

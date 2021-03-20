@@ -22,4 +22,6 @@ public interface RegimentoStrategy {
 
     boolean atribuir(int idAnuncio);
 
+    boolean atribuir(int idAnuncio, String dataInicioTarefa);
+
 }

@@ -20,10 +20,15 @@ import java.util.List;
 public class RegimentoStrategy_1 implements RegimentoStrategy{
     
     private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosDatabase();
-    private RepositorioTarefa repositorioTarefa = fabricaRepositorios.getRepositorioTarefa();
+    private RepositorioAnuncio repositorioAnuncio = fabricaRepositorios.getRepositorioAnuncio();
+    private RepositorioAtribuicao repositorioAtribuicao = fabricaRepositorios.getRepositorioAtribuicao();
     private RepositorioCandidatura repositorioCandidatura = fabricaRepositorios.getRepositorioCandidatura();
     private RepositorioClassificacao repositorioClassificacao = fabricaRepositorios.getRepositorioClassificacao();
     private RepositorioSeriacao repositorioSeriacao = fabricaRepositorios.getRepositorioSeriacao();
+    private RepositorioTarefa repositorioTarefa = fabricaRepositorios.getRepositorioTarefa();
+
+    private CodigoAtribuicao codigoAtribuicao = new CodigoAtribuicao();
+
     
     @Override
     public boolean seriar(int idAnuncio) throws SQLException{
@@ -63,7 +68,68 @@ public class RegimentoStrategy_1 implements RegimentoStrategy{
     
     @Override
     public boolean atribuir(int idAnuncio){
-        return false;
+        boolean adicionou = false;
+        try {
+
+            Tarefa tarefa = repositorioTarefa.findTarefa(idAnuncio);
+            int idSeriacao = repositorioSeriacao.findProcessoSeriacaoByIdAnuncio(idAnuncio).getIdSeriacao();
+            List<Classificacao> classificacoes = repositorioClassificacao.getAllBySeriacao(idSeriacao);
+            int idCandidatura = 0;
+            if(classificacoes.size() > 1) {
+                for (int i = 0; i < classificacoes.size(); i++) {
+                    if (classificacoes.get(i).getPosicaoFreelancer() == 2) {
+                        idCandidatura = classificacoes.get(i).getIdCandidatura();
+                    }
+                }
+            }
+            else{
+                idCandidatura = classificacoes.get(0).getIdCandidatura();
+                }
+            Candidatura candidatura = repositorioCandidatura.findById(idCandidatura);
+
+            Anuncio anuncio = repositorioAnuncio.getAnuncio(idAnuncio);
+            String codigo = codigoAtribuicao.gerarCodigo();
+
+            adicionou = repositorioAtribuicao.save(tarefa.getNifOrganizacao(), tarefa.getReferencia(), idAnuncio,
+                    idCandidatura,candidatura.getEmailFreelancer(), candidatura.getValorPretendido(), candidatura.getNumeroDias(),
+                    codigo, anuncio.getDtFimPub());
+            return adicionou;
+        }catch (SQLException exception){
+            exception.printStackTrace();
+        }
+        return adicionou;
+    }
+
+    @Override
+    public boolean atribuir(int idAnuncio, String dataInicioTarefa){
+        boolean adicionou = false;
+        try {
+            Tarefa tarefa = repositorioTarefa.findTarefa(idAnuncio);
+            int idSeriacao = repositorioSeriacao.findProcessoSeriacaoByIdAnuncio(idAnuncio).getIdSeriacao();
+            List<Classificacao> classificacoes = repositorioClassificacao.getAllBySeriacao(idSeriacao);
+            int idCandidatura = 0;
+            if(classificacoes.size() > 1) {
+                for (int i = 0; i < classificacoes.size(); i++) {
+                    if (classificacoes.get(i).getPosicaoFreelancer() == 2) {
+                        idCandidatura = classificacoes.get(i).getIdCandidatura();
+                    }
+                }
+            }
+            else{
+                idCandidatura = classificacoes.get(0).getIdCandidatura();
+            }
+            Candidatura candidatura = repositorioCandidatura.findById(idCandidatura);
+
+            String codigo = codigoAtribuicao.gerarCodigo();
+
+            adicionou = repositorioAtribuicao.save(tarefa.getNifOrganizacao(), tarefa.getReferencia(), idAnuncio,
+                    idCandidatura,candidatura.getEmailFreelancer(), candidatura.getValorPretendido(), candidatura.getNumeroDias(),
+                    codigo,dataInicioTarefa);
+            return adicionou;
+        }catch (SQLException exception){
+            exception.printStackTrace();
+        }
+        return adicionou;
     }
     
 }

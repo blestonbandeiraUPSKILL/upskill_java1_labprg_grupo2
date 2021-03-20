@@ -202,16 +202,17 @@ entity "Rolename" {
 }
 
 entity "Atribuicao" {
-    idAtribuicao: text {PK}
+    idAtribuicao: int {PK}
     --
     nifOrganizacao: text {FK}
     referenciaTarefa: text {FK}
     emailFreelancer: text {FK}
     dataInicioRealizacao: date
     dataFimRealizacao: date
-    valor aceite: number
+    valorAceite: number
     idAnuncio: number {FK}
     dataAtribuicao: date
+    numeroAnual: text
 }
 
 

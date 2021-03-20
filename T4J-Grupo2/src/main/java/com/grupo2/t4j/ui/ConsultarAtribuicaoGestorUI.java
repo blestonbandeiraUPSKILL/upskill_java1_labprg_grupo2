@@ -11,6 +11,9 @@ package com.grupo2.t4j.ui;
  */
 
 import com.grupo2.t4j.controller.GestaoUtilizadoresController;
+import com.grupo2.t4j.controller.AtribuirTarefaController;
+import com.grupo2.t4j.dto.AtribuicaoDTO;
+
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -44,6 +47,7 @@ public class ConsultarAtribuicaoGestorUI implements Initializable{
 
     private GestorLogadoUI gestorLogadoUI;
     private GestaoUtilizadoresController gestaoUtilizadoresController;
+    private AtribuirTarefaController atribuirTarefaController;
     private Stage adicionarStage;
 
     /**
@@ -62,6 +66,8 @@ public class ConsultarAtribuicaoGestorUI implements Initializable{
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
+        atribuirTarefaController = new AtribuirTarefaController();
+
         adicionarStage = new Stage();
         adicionarStage.initModality(Modality.APPLICATION_MODAL);;
         adicionarStage.setResizable(false);
@@ -74,7 +80,30 @@ public class ConsultarAtribuicaoGestorUI implements Initializable{
      * Preenche a scene com a informacão do anuncio     *
      */
     public void transferData() {
+        String refTarefa = gestorLogadoUI.tabelaAtribuicoes.getSelectionModel().getSelectedItem().getRefTarefa();
+        try {
+            AtribuicaoDTO atribuicaoDTO = atribuirTarefaController.findAtribuicaoByTarefa(refTarefa);
 
+            int idAnuncio = atribuicaoDTO.getIdAnuncio();
+            String emailFreelancer = atribuicaoDTO.getEmailFreelancer();
+
+            txtRefTarefa.setText(refTarefa);
+            txtIdAnuncio.setText(Integer.toString(idAnuncio));
+            txtDataSeriacao.setText(atribuirTarefaController.getProcessoSeriacaoByAnuncio(idAnuncio).getDataSeriacao());
+            txtDataAtribuicao.setText(atribuicaoDTO.getDataAtribuicao());
+            txtDescInformal.setText(atribuirTarefaController.findTarefa(idAnuncio).getDescInformal());
+            txtDescTecnica.setText(atribuirTarefaController.findTarefa(idAnuncio).getDescTecnica());
+            txtNomeFreelancer.setText(atribuirTarefaController.findByEmail(emailFreelancer).getNome());
+            txtEmailFreelancer.setText(emailFreelancer);
+            txtCodigoAtribuicao.setText(atribuicaoDTO.getCodigoAtribuicao());
+            txtCusto.setText(Double.toString(atribuicaoDTO.getValorAceite()));
+            txtDtInTarefa.setText(atribuicaoDTO.getDataInicioTarefa());
+            txtDtFimTarefa.setText(atribuicaoDTO.getDataFimTarefa());
+            txtNumDias.setText(Integer.toString(atribuicaoDTO.getNumDiasAceite()));
+
+        }catch (SQLException exception) {
+            exception.printStackTrace();
+        }
     }
 
     /**

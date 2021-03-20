@@ -8,6 +8,7 @@
 | ADM  |  Acrónimo para [Administrativo](#Administrativo). |
 | <a name="AreaActividade">Área de Actividade</a>  | Representa a área de negócio/mercado em que se actua como, por exemplo, IT (Information Technologies), Marketing e Design.  |
 | AT  |  Acrónimo para [Área de Actividade](#AreaActividade). |
+| Atribuição (de [Tarefa](#Tarefa))  | Corresponde ao processo de entrega da responsabilidade de execução de uma [tarefa](#Tarefa) ao [Freelancer](#Freelancer) que apresentou o segundo preço mais baixou ou ficou melhor classificado durante o processo de seriação. |
 | Categoria (de [Tarefa](#Tarefa))  | Corresponde a uma descrição usada para catalogar uma ou mais tarefas (semelhantes), caracterizada por um identificador interno atribuído automaticamente, uma descrição, [área de actividade](#AreaActividade) em que se enquadra e uma lista de [competências técnicas](#CompetenciaTecnica) tipicamente requeridas para a realização de tarefas dessa categoria.  |
 |  <a name="ColaboradorOrganizacao">Colaborador de Organização</a> |Pessoa que exerce funções (e.g. especificar [tarefas](#Tarefa)) no âmbito de uma [Organização](#Organizacao).   |
 |  <a name="CompetenciaTecnica">Competência Técnica</a> |  Refere-se a um conjunto de conhecimentos e competências (habilidades) necessárias à execução de tarefas de uma determinada categoria. |

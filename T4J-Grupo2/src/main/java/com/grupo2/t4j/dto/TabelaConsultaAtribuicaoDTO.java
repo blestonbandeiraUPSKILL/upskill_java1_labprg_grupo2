@@ -15,12 +15,42 @@ public class TabelaConsultaAtribuicaoDTO {
     private String emailFreelancer;
     private String codigoAtribuicao;
     private String dataAtribuicao;
+    private String dataInicioTarefa;
 
     public TabelaConsultaAtribuicaoDTO(String refTarefa, String emailFreelancer, String codigoAtribuicao, String dataAtribuicao){
         this.refTarefa = refTarefa;
         this.emailFreelancer = emailFreelancer;
         this.codigoAtribuicao = codigoAtribuicao;
         this.dataAtribuicao = dataAtribuicao;
+    }
+
+    public TabelaConsultaAtribuicaoDTO(String refTarefa, String emailFreelancer, String dataAtribuicao, String codigoAtribuicao,
+                                    String dataInicioTarefa){
+        this.refTarefa = refTarefa;
+        this.emailFreelancer = emailFreelancer;
+        this.codigoAtribuicao = codigoAtribuicao;
+        this.dataAtribuicao = dataAtribuicao;
+        this.dataInicioTarefa = dataInicioTarefa;
+    }
+
+    public void setRefTarefa(String refTarefa){
+        this.refTarefa = refTarefa;
+    }
+
+    public void setEmailFreelancer(String emailFreelancer){
+        this.emailFreelancer = emailFreelancer;
+    }
+
+    public void setDataAtribuicao(String dataAtribuicao){
+        this.dataAtribuicao = dataAtribuicao;
+    }
+
+    public void setCodigoAtribuicao(String codigoAtribuicao){
+        this.codigoAtribuicao = codigoAtribuicao;
+    }
+
+    public void setDataInicioTarefa(String dataInicioTarefa){
+        this.dataInicioTarefa = dataInicioTarefa;
     }
 
     public String getRefTarefa(){
@@ -38,4 +68,9 @@ public class TabelaConsultaAtribuicaoDTO {
     public String getDataAtribuicao(){
         return dataAtribuicao;
     }
+
+    public String getDataInicioTarefa(){
+        return dataInicioTarefa;
+    }
+
 }
