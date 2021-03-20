@@ -152,11 +152,10 @@
               </TabPane>
          </center>
          <top>
-            <Label alignment="TOP_LEFT" styleClass="lblEmail">
+            <Label fx:id="txtEmail" alignment="TOP_LEFT" styleClass="lblEmail">
                <font>
-                  <Font name="System Italic" size="12.0" />
-               </font>
-            </Label>
+                  <Font name="Calibri" size="12.0" />
+               </font></Label>
          </top>
       </BorderPane>
    </center>

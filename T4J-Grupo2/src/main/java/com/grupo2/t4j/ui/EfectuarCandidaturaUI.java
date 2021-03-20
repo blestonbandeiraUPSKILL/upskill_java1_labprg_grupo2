@@ -1,6 +1,7 @@
 package com.grupo2.t4j.ui;
 
 import com.grupo2.t4j.controller.EfectuarCandidaturaController;
+import com.grupo2.t4j.controller.GestaoUtilizadoresController;
 import com.grupo2.t4j.controller.RegistarAnuncioController;
 import com.grupo2.t4j.controller.RegistarTarefaController;
 import javafx.event.ActionEvent;
@@ -22,6 +23,7 @@ public class EfectuarCandidaturaUI implements Initializable {
     private EfectuarCandidaturaController efectuarCandidaturaController;
     private RegistarAnuncioController registarAnuncioController;
     private RegistarTarefaController registarTarefaController;
+    private GestaoUtilizadoresController gestaoUtilizadoresController;
 
     @FXML TextArea txtAnuncio;
     @FXML TextArea txtApresentacao;
@@ -30,6 +32,7 @@ public class EfectuarCandidaturaUI implements Initializable {
     @FXML TextField txtDias;
     @FXML Button btnCancelar;
     @FXML Button btnAddCandidatura;
+    @FXML Label txtEmail;
 
     /**
      * Associa a scene FreelancerLogadoUI como parent desta Scene 
@@ -41,6 +44,10 @@ public class EfectuarCandidaturaUI implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+        gestaoUtilizadoresController = new GestaoUtilizadoresController();
+        txtEmail.setText(gestaoUtilizadoresController.getEmail());
+
         try {
             efectuarCandidaturaController = new EfectuarCandidaturaController();
         } catch (SQLException exception) {

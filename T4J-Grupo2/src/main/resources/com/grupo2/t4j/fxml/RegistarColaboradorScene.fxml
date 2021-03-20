@@ -4,7 +4,8 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" styleClass="BorderPane" stylesheets="@../style/app.css" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.RegistarColaboradorUI">
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="530.0" prefWidth="700.0" styleClass="BorderPane" stylesheets="@../style/app.css" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.RegistarColaboradorUI">
    <center>
       <BorderPane styleClass="BorderPane" BorderPane.alignment="CENTER">
          <center>
@@ -110,42 +111,13 @@
                </children>
             </AnchorPane>
          </center>
-         <bottom>
-            <FlowPane alignment="CENTER_RIGHT" prefHeight="75.0" prefWidth="605.0" styleClass="FlowPane" BorderPane.alignment="CENTER">
-               <children>
-                  <Button fx:id="btnRegistarColaborador" alignment="CENTER_RIGHT" contentDisplay="CENTER" defaultButton="true" mnemonicParsing="false" onAction="#registarColaboradorAction" prefHeight="27.0" prefWidth="70.0" styleClass="btnRegistarColaborador" text="Registar" textAlignment="CENTER">
-                     <font>
-                        <Font name="Calibri" size="14.0" />
-                     </font>
-                     <FlowPane.margin>
-                        <Insets />
-                     </FlowPane.margin>
-                            <tooltip>
-                                <Tooltip text="Registar Colaborador">
-                                    <font>
-                                        <Font name="Calibri Italic" size="12.0" />
-                                    </font>
-                                </Tooltip>
-                            </tooltip>
-                  </Button>
-                  <Button fx:id="btnCancelarRegisto" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#cancelarRegisto" prefHeight="27.0" prefWidth="70.0" styleClass="btnSair" text="Cancelar" textAlignment="CENTER">
-                     <font>
-                        <Font name="Calibri" size="14.0" />
-                     </font>
-                     <FlowPane.margin>
-                        <Insets left="10.0" right="10.0" />
-                     </FlowPane.margin>
-                            <tooltip>
-                                <Tooltip text="Cancelar">
-                                    <font>
-                                        <Font name="Calibri Italic" size="12.0" />
-                                    </font>
-                                </Tooltip>
-                            </tooltip>
-                  </Button>
-               </children>
-            </FlowPane>
-         </bottom>
+         <top>
+            <Label fx:id="txtEmail" styleClass="lblEmail" BorderPane.alignment="CENTER_LEFT">
+               <font>
+                  <Font name="System Italic" size="12.0" />
+               </font>
+            </Label>
+         </top>
       </BorderPane>
    </center>
    <top>
@@ -158,4 +130,40 @@
          </padding>
       </Label>
    </top>
+   <bottom>
+      <FlowPane alignment="CENTER_RIGHT" prefHeight="51.0" prefWidth="700.0" styleClass="FlowPane" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="btnRegistarColaborador" alignment="CENTER_RIGHT" contentDisplay="CENTER" defaultButton="true" mnemonicParsing="false" onAction="#registarColaboradorAction" prefHeight="27.0" prefWidth="70.0" styleClass="btnRegistarColaborador" text="Registar" textAlignment="CENTER">
+               <font>
+                  <Font name="Calibri" size="14.0" />
+               </font>
+               <FlowPane.margin>
+                  <Insets />
+               </FlowPane.margin>
+                      <tooltip>
+                          <Tooltip text="Registar Colaborador">
+                              <font>
+                                  <Font name="Calibri Italic" size="12.0" />
+                              </font>
+                          </Tooltip>
+                      </tooltip>
+            </Button>
+            <Button fx:id="btnCancelarRegisto" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#cancelarRegisto" prefHeight="27.0" prefWidth="70.0" styleClass="btnSair" text="Cancelar" textAlignment="CENTER">
+               <font>
+                  <Font name="Calibri" size="14.0" />
+               </font>
+               <FlowPane.margin>
+                  <Insets left="10.0" right="10.0" />
+               </FlowPane.margin>
+                      <tooltip>
+                          <Tooltip text="Cancelar">
+                              <font>
+                                  <Font name="Calibri Italic" size="12.0" />
+                              </font>
+                          </Tooltip>
+                      </tooltip>
+            </Button>
+         </children>
+      </FlowPane>
+   </bottom>
 </BorderPane>

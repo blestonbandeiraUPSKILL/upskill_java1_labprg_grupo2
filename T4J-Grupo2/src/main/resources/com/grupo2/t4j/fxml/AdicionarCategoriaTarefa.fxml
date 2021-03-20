@@ -121,9 +121,9 @@
                 </TabPane>
          </center>
          <top>
-            <Label styleClass="lblEmail" BorderPane.alignment="CENTER_LEFT">
+            <Label fx:id="txtEmail" styleClass="lblEmail" BorderPane.alignment="CENTER_LEFT">
                <font>
-                  <Font name="System Italic" size="18.0" />
+                  <Font name="Calibri" size="14.0" />
                </font>
             </Label>
          </top>

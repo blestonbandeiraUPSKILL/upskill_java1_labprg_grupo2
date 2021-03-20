@@ -1,5 +1,6 @@
 package com.grupo2.t4j.ui;
 
+import com.grupo2.t4j.controller.GestaoUtilizadoresController;
 import com.grupo2.t4j.controller.PublicarTarefaController;
 import com.grupo2.t4j.domain.FiltroTarefas;
 import com.grupo2.t4j.domain.TipoRegimento;
@@ -22,6 +23,7 @@ public class PublicarTarefaGestorUI implements Initializable {
 
     private GestorLogadoUI gestorLogadoUI;
     private PublicarTarefaController publicarTarefaController;
+    private GestaoUtilizadoresController gestaoUtilizadoresController;
 
     @FXML TextField dtFimPublicitacao;
     @FXML TextField dtInicioCandidaturas;
@@ -33,6 +35,7 @@ public class PublicarTarefaGestorUI implements Initializable {
     @FXML Button btnPublicar;
     @FXML Button btnVoltar;
     @FXML ComboBox<TipoRegimentoDTO> cmbTipoSeriacao;
+    @FXML Label txtEmail;
 
      /**
      * Associa a scene GestorLogadoUI como parent desta Scene 
@@ -49,6 +52,9 @@ public class PublicarTarefaGestorUI implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         
         publicarTarefaController = new PublicarTarefaController();
+
+        gestaoUtilizadoresController = new GestaoUtilizadoresController();
+        txtEmail.setText(gestaoUtilizadoresController.getEmail());
         
         
         try {

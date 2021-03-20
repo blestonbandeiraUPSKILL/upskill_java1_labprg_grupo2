@@ -5,9 +5,6 @@ import com.grupo2.t4j.domain.*;
 import com.grupo2.t4j.dto.AtribuicaoDTO;
 import com.grupo2.t4j.dto.TarefaDTO;
 import com.grupo2.t4j.dto.*;
-import com.grupo2.t4j.dto.AtribuicaoDTO;
-import com.grupo2.t4j.dto.TarefaDTO;
-import com.grupo2.t4j.dto.*;
 
 
 import javafx.event.ActionEvent;
@@ -66,7 +63,7 @@ public class ColaboradorLogadoUI implements Initializable {
 
     @FXML TextField txtDataSeriacao;
 
-    @FXML Label txt_email;
+    @FXML Label txtEmail;
     
     @FXML TableView<TarefaDTO> tabelaTarefas;
     @FXML TableColumn<Object, Object> colunaReferencia;
@@ -129,7 +126,7 @@ public class ColaboradorLogadoUI implements Initializable {
 
         btnConsultarAtribuicao.setDisable(true);
 
-        txt_email.setText(gestaoUtilizadoresController.getEmail());
+        txtEmail.setText(gestaoUtilizadoresController.getEmail());
 
         try {
             existeAtribuicao();
@@ -607,7 +604,7 @@ public class ColaboradorLogadoUI implements Initializable {
      */
     public void consultarCandidaturaFreelancer(ActionEvent event) throws SQLException {
         try {
-            FXMLLoader loaderConsultarCandidaturaFreelancer = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/ConsultarCandidaturaFreelancerScene.fxml"));
+            FXMLLoader loaderConsultarCandidaturaFreelancer = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/ConsultarCandidaturaFreelancerColaboradorScene.fxml"));
             Parent rootConsultarCandidaturaFreelancer = loaderConsultarCandidaturaFreelancer.load();
             sceneConsultarCandidatura = new Scene(rootConsultarCandidaturaFreelancer);
             ConsultarCandidaturaFreelancerColaboradorUI consultarCandidaturaFreelancerUI = loaderConsultarCandidaturaFreelancer.getController();

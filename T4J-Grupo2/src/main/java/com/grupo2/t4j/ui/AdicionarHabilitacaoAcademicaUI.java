@@ -42,8 +42,8 @@ public class AdicionarHabilitacaoAcademicaUI implements Initializable {
     @FXML Button btnAddHabilitacao;
     @FXML Button btnCancelar;
     @FXML Button btnSair;
-    @FXML Label txt_email;
-    
+    @FXML Label txtEmail;
+
     ////Tabela Habilitacoes Academicas//////////////
     @FXML TableColumn<Object, Object> txtGrauHabilitacao;
     @FXML TableColumn<Object, Object> txtDesignacaoCurso;
@@ -72,7 +72,7 @@ public class AdicionarHabilitacaoAcademicaUI implements Initializable {
         registarFreelancerController = new RegistarFreelancerController();
 
         gestaoUtilizadoresController = new GestaoUtilizadoresController();
-        txt_email.setText(gestaoUtilizadoresController.getEmail());
+        txtEmail.setText(gestaoUtilizadoresController.getEmail());
 
         cmbEmailFreelancer.setOnAction(new EventHandler<ActionEvent>() {
             @Override

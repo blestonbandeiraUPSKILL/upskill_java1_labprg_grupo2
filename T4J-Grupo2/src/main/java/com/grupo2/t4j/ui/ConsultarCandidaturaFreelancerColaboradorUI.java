@@ -1,9 +1,6 @@
 package com.grupo2.t4j.ui;
 
-import com.grupo2.t4j.controller.RegistarFreelancerController;
-import com.grupo2.t4j.controller.RegistarReconhecimentoGPController;
-import com.grupo2.t4j.controller.RegistarTarefaController;
-import com.grupo2.t4j.controller.SeriarAnuncioController;
+import com.grupo2.t4j.controller.*;
 import com.grupo2.t4j.domain.HabilitacaoAcademica;
 import com.grupo2.t4j.domain.ReconhecimentoGP;
 import com.grupo2.t4j.dto.HabilitacaoAcademicaDTO;
@@ -11,10 +8,7 @@ import com.grupo2.t4j.dto.ReconhecimentoGPDTO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -31,6 +25,7 @@ public class ConsultarCandidaturaFreelancerColaboradorUI implements Initializabl
     private SeriarAnuncioController seriarAnuncioController;
     private RegistarTarefaController registarTarefaController;
     private RegistarReconhecimentoGPController registarReconhecimentoGPController;
+    private GestaoUtilizadoresController gestaoUtilizadoresController;
     private Stage adicionarStage;
 
     @FXML TextField txtIdAnuncio;
@@ -45,6 +40,7 @@ public class ConsultarCandidaturaFreelancerColaboradorUI implements Initializabl
     @FXML TextField txtDuracaoAnuncio;
     @FXML TextField txtDuracaoFreelancer;
     @FXML Button btnVoltar;
+    @FXML Label txtEmailLogado;
 
     ////Tabela Reconhecimento///////////////////////
     @FXML TableColumn<Object, Object> txtCompTec;
@@ -79,6 +75,10 @@ public class ConsultarCandidaturaFreelancerColaboradorUI implements Initializabl
         registarFreelancerController = new RegistarFreelancerController();
         seriarAnuncioController = new SeriarAnuncioController();
         registarReconhecimentoGPController = new RegistarReconhecimentoGPController();
+
+        gestaoUtilizadoresController = new GestaoUtilizadoresController();
+        txtEmailLogado.setText(gestaoUtilizadoresController.getEmail());
+
         try {
             registarTarefaController = new RegistarTarefaController();
 

@@ -1,5 +1,6 @@
 package com.grupo2.t4j.ui;
 
+import com.grupo2.t4j.controller.GestaoUtilizadoresController;
 import com.grupo2.t4j.controller.RegistarAreaActividadeController;
 import com.grupo2.t4j.controller.RegistarCaracterizacaoCTController;
 import com.grupo2.t4j.domain.CaracterizacaoCT;
@@ -25,6 +26,7 @@ public class ConsultarCategoriaUI implements Initializable {
     private Stage adicionarStage;
     private RegistarAreaActividadeController registarAreaActividadeController;
     private RegistarCaracterizacaoCTController registarCaracterizacaoCTController;
+    private GestaoUtilizadoresController gestaoUtilizadoresController;
 
     @FXML TextField txtDescBreve;
     @FXML TextField txtCodigo;
@@ -35,6 +37,7 @@ public class ConsultarCategoriaUI implements Initializable {
     @FXML TableColumn<Object, Object> txtCompetencia;
     @FXML TableColumn<Object, Object> txtGrau;
     @FXML TableColumn<Object, Object> txtObrigatoriedade;
+    @FXML Label txtEmail;
 
     /**
      * Associa a scene AdministrativoLogadoUI como parent desta Scene 
@@ -56,6 +59,9 @@ public class ConsultarCategoriaUI implements Initializable {
 
         registarAreaActividadeController = new RegistarAreaActividadeController();
         registarCaracterizacaoCTController = new RegistarCaracterizacaoCTController();
+
+        gestaoUtilizadoresController = new GestaoUtilizadoresController();
+        txtEmail.setText(gestaoUtilizadoresController.getEmail());
 
     }
 

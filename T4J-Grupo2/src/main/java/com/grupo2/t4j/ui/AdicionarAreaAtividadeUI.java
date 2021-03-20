@@ -32,7 +32,7 @@ public class AdicionarAreaAtividadeUI implements Initializable {
     @FXML TextField txtCodigo;
     @FXML TextField txtDescricaoBreve;
     @FXML TextArea areaDescricaoDetalhada;
-    @FXML Label txt_email;
+    @FXML Label txtEmail;
 
     /**
      * Associa a scene AdministrativoLogadoUI como parent desta Scene 
@@ -54,7 +54,7 @@ public class AdicionarAreaAtividadeUI implements Initializable {
         adicionarStage.initModality(Modality.APPLICATION_MODAL);;
         adicionarStage.setResizable(false);
         
-        txt_email.setText(gestaoUtilizadoresController.getEmail());
+        txtEmail.setText(gestaoUtilizadoresController.getEmail());
     }
 
     /**

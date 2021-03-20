@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
 <?import javafx.geometry.*?>
-<?import javafx.scene.text.*?>
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="463.0" prefWidth="600.0" styleClass="BorderPane" stylesheets="@../style/app.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.ConsultarCompetenciaTecnicaUI">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="463.0" prefWidth="600.0" styleClass="BorderPane" stylesheets="@../style/app.css" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.ConsultarCompetenciaTecnicaUI">
     <top>
         <Label styleClass="lblUser" text="Área do Administrativo :::&gt; Consultar Competência Técnica" textFill="WHITE" BorderPane.alignment="CENTER_RIGHT">
             <font>
@@ -19,27 +16,6 @@
             </padding>
         </Label>
     </top>
-    <center>
-        <AnchorPane prefHeight="395.0" prefWidth="600.0" styleClass="AnchorPane" BorderPane.alignment="CENTER">
-            <children>
-                <Label layoutX="14.0" layoutY="76.0" text="Área de Actividade:" />
-                <Label layoutX="14.0" layoutY="124.0" text="Código da Competência Técnica:" />
-                <Label layoutX="14.0" layoutY="168.0" text="Descrição Breve:" />
-                <Label layoutX="14.0" layoutY="211.0" text="Descrição Detalhada:" />
-                <Label layoutX="327.0" layoutY="55.0" text="Graus de Proficiência Aplicáveis" />
-                <TextField fx:id="txtAreaActividade" editable="false" layoutX="125.0" layoutY="72.0" />
-                <TextField fx:id="txtCodigoCompetenciaTecnica" editable="false" layoutX="194.0" layoutY="120.0" prefHeight="25.0" prefWidth="80.0" />
-                <TextField fx:id="txtDescricaoBreve" editable="false" layoutX="115.0" layoutY="164.0" prefHeight="25.0" prefWidth="158.0" />
-                <TextArea fx:id="txtDescricaoDetalhada" editable="false" layoutX="14.0" layoutY="235.0" prefHeight="106.0" prefWidth="264.0" />
-            <TableView fx:id="tabelaGrausAplicaveis" layoutX="327.0" layoutY="85.0" prefHeight="256.0" prefWidth="239.0">
-              <columns>
-                <TableColumn fx:id="txtGrau" prefWidth="84.0" text="Grau" />
-                <TableColumn fx:id="txtDesignacao" prefWidth="154.0" text="Designação" />
-              </columns>
-            </TableView>
-            </children>
-        </AnchorPane>
-    </center>
     <bottom>
         <FlowPane alignment="CENTER_RIGHT" prefHeight="77.0" prefWidth="600.0" styleClass="FlowPane" BorderPane.alignment="CENTER">
             <children>
@@ -58,4 +34,36 @@
             </children>
         </FlowPane>
     </bottom>
+   <left>
+      <BorderPane>
+         <top>
+            <Label fx:id="txtEmail" styleClass="lblEmail" BorderPane.alignment="CENTER_LEFT">
+               <font>
+                  <Font name="System Italic" size="12.0" />
+               </font>
+            </Label>
+         </top>
+         <center>
+              <AnchorPane prefHeight="395.0" prefWidth="600.0" styleClass="AnchorPane" BorderPane.alignment="CENTER">
+                  <children>
+                      <Label layoutX="14.0" layoutY="76.0" text="Área de Actividade:" />
+                      <Label layoutX="14.0" layoutY="124.0" text="Código da Competência Técnica:" />
+                      <Label layoutX="14.0" layoutY="168.0" text="Descrição Breve:" />
+                      <Label layoutX="14.0" layoutY="211.0" text="Descrição Detalhada:" />
+                      <Label layoutX="327.0" layoutY="55.0" text="Graus de Proficiência Aplicáveis" />
+                      <TextField fx:id="txtAreaActividade" editable="false" layoutX="125.0" layoutY="72.0" />
+                      <TextField fx:id="txtCodigoCompetenciaTecnica" editable="false" layoutX="194.0" layoutY="120.0" prefHeight="25.0" prefWidth="80.0" />
+                      <TextField fx:id="txtDescricaoBreve" editable="false" layoutX="115.0" layoutY="164.0" prefHeight="25.0" prefWidth="158.0" />
+                      <TextArea fx:id="txtDescricaoDetalhada" editable="false" layoutX="14.0" layoutY="235.0" prefHeight="106.0" prefWidth="264.0" />
+                  <TableView fx:id="tabelaGrausAplicaveis" layoutX="327.0" layoutY="85.0" prefHeight="256.0" prefWidth="239.0">
+                    <columns>
+                      <TableColumn fx:id="txtGrau" prefWidth="84.0" text="Grau" />
+                      <TableColumn fx:id="txtDesignacao" prefWidth="154.0" text="Designação" />
+                    </columns>
+                  </TableView>
+                  </children>
+              </AnchorPane>
+         </center>
+      </BorderPane>
+   </left>
 </BorderPane>

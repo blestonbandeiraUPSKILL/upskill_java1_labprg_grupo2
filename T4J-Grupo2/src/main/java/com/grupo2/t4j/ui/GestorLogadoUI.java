@@ -32,6 +32,7 @@ public class GestorLogadoUI implements Initializable {
     private RegistarCategoriaController registarCategoriaController;
     private RegistarColaboradorController registarColaboradorController;
     private RegistarAreaActividadeController registarAreaActividadeController;
+    private AtribuirTarefaController atribuirTarefaController;
     private RegistarTarefaController registarTarefaController;
     private SeriarAnuncioController seriarAnuncioController;
     private GestaoUtilizadoresController gestaoUtilizadoresController;
@@ -62,6 +63,7 @@ public class GestorLogadoUI implements Initializable {
 
     @FXML TextField txtDataSeriacao;
     @FXML TextField txtDataInTarefa;
+    @FXML Label txtEmail;
 
     @FXML TableView<TarefaDTO> tabelaTarefas;
     @FXML TableColumn<Object, Object> colunaReferencia;
@@ -85,7 +87,8 @@ public class GestorLogadoUI implements Initializable {
     @FXML TableColumn<Object, Object> colunaFuncao;
 
     //TableView Atribuições
-    @FXML TableView<TabelaConsultaAtribuicao> tabelaAtribuicoes;
+    @FXML TableView<TabelaConsultaAtribuicaoDTO> tabelaAtribuicoes;
+    List<TabelaConsultaAtribuicaoDTO> listaAtribuicoesOrganizacao = new ArrayList<>();
     @FXML TableColumn<Object, Object> colunaRefTarefa;
     @FXML TableColumn<Object, Object> colunaFreelancer;
     @FXML TableColumn<Object, Object> colunaDataAtribuicao;
@@ -111,6 +114,7 @@ public class GestorLogadoUI implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
 
         registarAreaActividadeController = new RegistarAreaActividadeController();
+        atribuirTarefaController = new AtribuirTarefaController();
         registarCategoriaController = new RegistarCategoriaController();
         try {
             registarTarefaController = new RegistarTarefaController();
@@ -121,6 +125,8 @@ public class GestorLogadoUI implements Initializable {
         registarColaboradorController = new RegistarColaboradorController();
         seriarAnuncioController = new SeriarAnuncioController();
 
+        txtEmail.setText(gestaoUtilizadoresController.getEmail());
+
         adicionarStage = new Stage();
         adicionarStage.initModality(Modality.APPLICATION_MODAL);
         adicionarStage.setResizable(false);
@@ -128,6 +134,14 @@ public class GestorLogadoUI implements Initializable {
         btnConsultarAnuncio.setDisable(true);
         btnConsultarCandidaturaFreelancer.setDisable(true);
         btnSeriacaoManual.setDisable(true);
+
+        btnConsultarAtribuicao.setDisable(true);
+
+        try {
+            existeAtribuicao();
+        }catch (SQLException exception) {
+            exception.printStackTrace();
+        }
 
         cmbFiltroTarefas.getItems().setAll(FiltroTarefas.values());
 
@@ -256,6 +270,19 @@ public class GestorLogadoUI implements Initializable {
         return false;
     }
 
+    public void existeAtribuicao() throws SQLException{
+        String nifOrganizacao = getNifOrganizacao();
+        List<AtribuicaoDTO> atribuicoes = atribuirTarefaController.getAllByOrganizacao(nifOrganizacao);
+        if(atribuicoes.size() > 0){
+            btnConsultarAtribuicao.setDisable(false);
+            criaTabelaAtribuicao();
+        }
+        else{
+            btnConsultarAtribuicao.setDisable(true);
+
+        }
+    }
+
     /**
      * Preenche a tabela de tarefas com todas as tarefas da organizacao
      * @throws SQLException
@@ -370,6 +397,20 @@ public class GestorLogadoUI implements Initializable {
         preencherTabelaCandidaturas ();
     }
 
+    public void criaTabelaAtribuicao() throws SQLException{
+        String nifOrganizacao = getNifOrganizacao();
+        List<AtribuicaoDTO> atribuicoes = atribuirTarefaController.getAllByOrganizacao(nifOrganizacao);
+        for(int i = 0; i < atribuicoes.size(); i++){
+            TabelaConsultaAtribuicaoDTO cellAtribuicao = new TabelaConsultaAtribuicaoDTO(atribuicoes.get(i).getRefTarefa(),
+                    atribuicoes.get(i).getEmailFreelancer(), atribuicoes.get(i).getDataAtribuicao(),
+            atribuicoes.get(i).getCodigoAtribuicao(), atribuicoes.get(i).getDataInicioTarefa());
+            listaAtribuicoesOrganizacao.add(cellAtribuicao);
+        }
+        preencherTabelaAtribuicoes();
+    }
+
+
+
     /**
      * Atualiza a data de seriacao das candidaturas do anuncio selecionado
      * @throws SQLException
@@ -405,6 +446,15 @@ public class GestorLogadoUI implements Initializable {
         colunaEmailFreelancer.setCellValueFactory( new PropertyValueFactory<>("email"));
         colunaDuracaoFree.setCellValueFactory( new PropertyValueFactory<>("duracao"));
         colunaCustoFree.setCellValueFactory( new PropertyValueFactory<>("custo"));
+    }
+
+    public void preencherTabelaAtribuicoes(){
+        tabelaAtribuicoes.getItems().setAll(listaAtribuicoesOrganizacao);
+        colunaRefTarefa.setCellValueFactory( new PropertyValueFactory<>("refTarefa"));
+        colunaFreelancer.setCellValueFactory( new PropertyValueFactory<>("emailFreelancer"));
+        colunaDataAtribuicao.setCellValueFactory( new PropertyValueFactory<>("dataAtribuicao"));
+        colunaCodAtribuicao.setCellValueFactory( new PropertyValueFactory<>("codigoAtribuicao"));
+        colunaDataInicioTarefa.setCellValueFactory( new PropertyValueFactory<>("dataInicioTarefa"));
     }
 
     /**
@@ -574,7 +624,7 @@ public class GestorLogadoUI implements Initializable {
      */
     public void consultarCandidaturaFreelancer(ActionEvent event) throws SQLException {
         try {
-            FXMLLoader loaderConsultarCandidaturaFreelancer = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/ConsultarCandidaturaFreelancerScene.fxml"));
+            FXMLLoader loaderConsultarCandidaturaFreelancer = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/ConsultarCandidaturaFreelancerColaboradorScene.fxml"));
             Parent rootConsultarCandidaturaFreelancer = loaderConsultarCandidaturaFreelancer.load();
             sceneConsultarCandidatura = new Scene(rootConsultarCandidaturaFreelancer);
             ConsultarCandidaturaFreelancerGestorUI consultarCandidaturaFreelancerGestorUI = loaderConsultarCandidaturaFreelancer.getController();

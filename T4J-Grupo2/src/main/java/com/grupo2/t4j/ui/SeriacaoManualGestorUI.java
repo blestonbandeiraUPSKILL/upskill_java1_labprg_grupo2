@@ -5,6 +5,7 @@ package com.grupo2.t4j.ui;
  * @author CAD
  */
 
+import com.grupo2.t4j.controller.GestaoUtilizadoresController;
 import com.grupo2.t4j.controller.SeriarAnuncioController;
 import com.grupo2.t4j.domain.*;
 import com.grupo2.t4j.dto.CandidaturaDTO;
@@ -27,6 +28,7 @@ public class SeriacaoManualGestorUI implements Initializable{
 
     private GestorLogadoUI gestorLogadoUI;
     private SeriarAnuncioController seriarAnuncioController;
+    private GestaoUtilizadoresController gestaoUtilizadoresController;
     private Stage adicionarStage;
 
     private int idAnuncio;
@@ -44,6 +46,7 @@ public class SeriacaoManualGestorUI implements Initializable{
     @FXML Button btnConfirmarClassificacao;
     @FXML Button btnSeriacao;
     @FXML Button btnVoltar;
+    @FXML Label txtEmail;
 
 
     @FXML TableView<TabelaFreelancerClassificacao> tabelaClassificacao;
@@ -79,7 +82,10 @@ public class SeriacaoManualGestorUI implements Initializable{
           
         adicionarStage = new Stage();
         adicionarStage.initModality(Modality.APPLICATION_MODAL);;
-        adicionarStage.setResizable(false);  
+        adicionarStage.setResizable(false);
+
+        gestaoUtilizadoresController = new GestaoUtilizadoresController();
+        txtEmail.setText(gestaoUtilizadoresController.getEmail());
         
     }
     

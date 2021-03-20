@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -34,6 +35,7 @@ public class RegistarColaboradorUI implements Initializable {
     @FXML Button btnCancelarRegisto;
     @FXML Button btnRegistarColaborador;
     @FXML Button btnSair;
+    @FXML Label txtEmail;
 
      /**
      * Associa a scene GestorLogadoUI como parent desta Scene 
@@ -54,6 +56,9 @@ public class RegistarColaboradorUI implements Initializable {
         adicionarStage.setResizable(false);
 
         registarColaboradorController = new RegistarColaboradorController();
+
+        gestaoUtilizadoresController = new GestaoUtilizadoresController();
+        txtEmail.setText(gestaoUtilizadoresController.getEmail());
 
     }
 

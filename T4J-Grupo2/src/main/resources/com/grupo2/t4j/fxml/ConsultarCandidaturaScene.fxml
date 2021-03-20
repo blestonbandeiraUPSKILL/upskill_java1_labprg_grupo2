@@ -4,91 +4,8 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
-<BorderPane maxHeight="500.0" maxWidth="700.0" prefHeight="400.0" prefWidth="700.0" stylesheets="@../style/app.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.ConsultarCandidaturaUI">
-   <center>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-         <children>
-            <TextArea fx:id="txtAnuncio" disable="true" layoutX="33.0" layoutY="67.0" prefHeight="224.0" prefWidth="200.0" />
-            <Label layoutX="33.0" layoutY="42.0" text="Detalhes da Tarefa :">
-               <font>
-                  <Font name="Calibri" size="14.0" />
-               </font>
-            </Label>
-            <Label layoutX="300.0" layoutY="192.0" text="Apresentação">
-               <VBox.margin>
-                  <Insets bottom="10.0" />
-               </VBox.margin>
-               <font>
-                  <Font name="Calibri" size="14.0" />
-               </font>
-            </Label>
-            <Label layoutX="514.0" layoutY="42.0" text="Motivação">
-               <VBox.margin>
-                  <Insets bottom="10.0" />
-               </VBox.margin>
-               <font>
-                  <Font name="Calibri" size="14.0" />
-               </font>
-            </Label>
-            <TextArea fx:id="txtMotivacao" editable="false" layoutX="457.0" layoutY="67.0" prefHeight="134.0" prefWidth="175.0" />
-            <TextArea fx:id="txtApresentacao" editable="false" layoutX="252.0" layoutY="214.0" prefHeight="76.0" prefWidth="175.0">
-               <font>
-                  <Font name="Calibri" size="14.0" />
-               </font>
-               <VBox.margin>
-                  <Insets bottom="10.0" />
-               </VBox.margin>
-            </TextArea>
-            <VBox alignment="CENTER" layoutX="249.0" layoutY="42.0" prefHeight="150.0" prefWidth="181.0">
-               <children>
-                  <Label text="Valor Pretendido">
-                     <VBox.margin>
-                        <Insets bottom="10.0" />
-                     </VBox.margin>
-                     <font>
-                        <Font name="Calibri" size="14.0" />
-                     </font>
-                  </Label>
-                  <TextField fx:id="txtValor" editable="false" promptText="€">
-                     <VBox.margin>
-                        <Insets bottom="10.0" left="20.0" right="20.0" />
-                     </VBox.margin>
-                  </TextField>
-                  <Label text="Tempo proposto para ">
-                     <VBox.margin>
-                        <Insets />
-                     </VBox.margin>
-                     <font>
-                        <Font name="Calibri" size="14.0" />
-                     </font>
-                  </Label>
-                  <Label text="realização do serviço">
-                     <VBox.margin>
-                        <Insets bottom="10.0" />
-                     </VBox.margin>
-                     <font>
-                        <Font name="Calibri" size="14.0" />
-                     </font>
-                  </Label>
-                  <TextField fx:id="txtDias" alignment="CENTER" editable="false" promptText="(número de dias)">
-                     <VBox.margin>
-                        <Insets bottom="10.0" left="20.0" right="20.0" />
-                     </VBox.margin>
-                     <font>
-                        <Font name="Calibri" size="14.0" />
-                     </font>
-                  </TextField>
-               </children>
-            </VBox>
-            <Label layoutX="482.0" layoutY="214.0" text="Data da Última Edição">
-               <font>
-                  <Font name="Calibri" size="14.0" />
-               </font>
-            </Label>
-            <TextField fx:id="txtDataEdicao" editable="false" layoutX="457.0" layoutY="240.0" prefHeight="25.0" prefWidth="176.0" />
-         </children>
-      </AnchorPane>
-   </center>
+
+<BorderPane maxHeight="500.0" maxWidth="700.0" prefHeight="400.0" prefWidth="700.0" stylesheets="@../style/app.css" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.ConsultarCandidaturaUI">
    <top>
       <Label styleClass="lblUser" text="Área do Freelancer :::&gt; Consultar Candidatura" textFill="WHITE" BorderPane.alignment="CENTER_RIGHT">
          <font>
@@ -134,4 +51,99 @@
          </children>
       </FlowPane>
    </bottom>
+   <left>
+      <BorderPane BorderPane.alignment="CENTER">
+         <top>
+            <Label fx:id="txtEmail" styleClass="lblEmail" BorderPane.alignment="CENTER_LEFT">
+               <font>
+                  <Font name="System Italic" size="12.0" />
+               </font>
+            </Label>
+         </top>
+         <center>
+            <AnchorPane prefHeight="291.0" prefWidth="683.0" BorderPane.alignment="CENTER">
+               <children>
+                  <TextArea fx:id="txtAnuncio" disable="true" layoutX="33.0" layoutY="67.0" prefHeight="224.0" prefWidth="200.0" />
+                  <Label layoutX="33.0" layoutY="42.0" text="Detalhes da Tarefa :">
+                     <font>
+                        <Font name="Calibri" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="300.0" layoutY="192.0" text="Apresentação">
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font name="Calibri" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="514.0" layoutY="42.0" text="Motivação">
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font name="Calibri" size="14.0" />
+                     </font>
+                  </Label>
+                  <TextArea fx:id="txtMotivacao" editable="false" layoutX="457.0" layoutY="67.0" prefHeight="134.0" prefWidth="175.0" />
+                  <TextArea fx:id="txtApresentacao" editable="false" layoutX="252.0" layoutY="214.0" prefHeight="76.0" prefWidth="175.0">
+                     <font>
+                        <Font name="Calibri" size="14.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </TextArea>
+                  <VBox alignment="CENTER" layoutX="249.0" layoutY="42.0" prefHeight="150.0" prefWidth="181.0">
+                     <children>
+                        <Label text="Valor Pretendido">
+                           <VBox.margin>
+                              <Insets bottom="10.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font name="Calibri" size="14.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="txtValor" editable="false" promptText="€">
+                           <VBox.margin>
+                              <Insets bottom="10.0" left="20.0" right="20.0" />
+                           </VBox.margin>
+                        </TextField>
+                        <Label text="Tempo proposto para ">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                           <font>
+                              <Font name="Calibri" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label text="realização do serviço">
+                           <VBox.margin>
+                              <Insets bottom="10.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font name="Calibri" size="14.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="txtDias" alignment="CENTER" editable="false" promptText="(número de dias)">
+                           <VBox.margin>
+                              <Insets bottom="10.0" left="20.0" right="20.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font name="Calibri" size="14.0" />
+                           </font>
+                        </TextField>
+                     </children>
+                  </VBox>
+                  <Label layoutX="482.0" layoutY="214.0" text="Data da Última Edição">
+                     <font>
+                        <Font name="Calibri" size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="txtDataEdicao" editable="false" layoutX="457.0" layoutY="240.0" prefHeight="25.0" prefWidth="176.0" />
+               </children>
+            </AnchorPane>
+         </center>
+      </BorderPane>
+   </left>
 </BorderPane>

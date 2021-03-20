@@ -8,10 +8,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -40,6 +37,7 @@ public class ConsultarCandidaturaUI implements Initializable {
     @FXML TextField txtValor;
     @FXML TextField txtDias;
     @FXML TextField txtDataEdicao;
+    @FXML Label txtEmail;
 
     private Stage adicionarStage;
     private FreelancerLogadoUI freelancerLogadoUI;
@@ -68,6 +66,8 @@ public class ConsultarCandidaturaUI implements Initializable {
         //btnEditarDados.setDisable(true);
         editarCandidaturaController = new EditarCandidaturaController();
         gestaoUtilizadoresController = new GestaoUtilizadoresController();
+        txtEmail.setText(gestaoUtilizadoresController.getEmail());
+
         try {
             registarTarefaController = new RegistarTarefaController();
         } catch (SQLException ex) {

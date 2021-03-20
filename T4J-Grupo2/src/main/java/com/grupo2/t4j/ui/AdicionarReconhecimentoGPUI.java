@@ -47,7 +47,7 @@ public class AdicionarReconhecimentoGPUI implements Initializable {
     @FXML Button btnAddCompetencia;
     @FXML Button btnCancelar;
     @FXML Button btnSair;
-    @FXML Label txt_email;
+    @FXML Label txtEmail;
     
     ////Tabela Reconhecimento///////////////////////
     @FXML TableColumn<Object, Object> txtCompTec;
@@ -74,7 +74,7 @@ public class AdicionarReconhecimentoGPUI implements Initializable {
         registarCompetenciaTecnicaController = new RegistarCompetenciaTecnicaController();
 
         gestaoUtilizadoresController = new GestaoUtilizadoresController();
-        txt_email.setText(gestaoUtilizadoresController.getEmail());
+        txtEmail.setText(gestaoUtilizadoresController.getEmail());
 
         try {
             registarGrauProficienciaController = new RegistarGrauProficienciaController();
