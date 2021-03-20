@@ -80,7 +80,6 @@ public class ConsultarResultadoUI {
 
     /**
      * Preenche a scene com a informacao do resultado da candidatura
-     * @throws SQLException 
      */
     public void transferData() {
 
