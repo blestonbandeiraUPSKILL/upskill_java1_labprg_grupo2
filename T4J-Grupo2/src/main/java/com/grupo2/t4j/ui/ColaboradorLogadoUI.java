@@ -5,6 +5,11 @@ import com.grupo2.t4j.domain.*;
 import com.grupo2.t4j.dto.AtribuicaoDTO;
 import com.grupo2.t4j.dto.TarefaDTO;
 import com.grupo2.t4j.dto.*;
+import com.grupo2.t4j.dto.AtribuicaoDTO;
+import com.grupo2.t4j.dto.TarefaDTO;
+import com.grupo2.t4j.dto.*;
+
+
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;

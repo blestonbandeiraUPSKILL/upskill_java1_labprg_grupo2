@@ -69,4 +69,9 @@ public class RegimentoStrategy_2 implements RegimentoStrategy{
     public boolean atribuir(int idAnuncio){
         return false;
     }
+
+    @Override
+    public boolean atribuir(int idAnuncio, String dataInicioTarefa){
+        return false;
+    }
 }
