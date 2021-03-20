@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.scene.text.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" styleClass="BorderPane" stylesheets="@../style/app.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.ConsultarAtribuicaoGestorUI">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" styleClass="BorderPane" stylesheets="@../style/app.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.ConsultarAtribuicaoGestorUI">
     <top>
         <Label alignment="CENTER_RIGHT" styleClass="lblUser" text="Área do Gestor :::&gt; Consultar Atribuição" textFill="WHITE" BorderPane.alignment="CENTER_RIGHT">
             <font>
@@ -210,4 +208,15 @@
          </top>
         </BorderPane>
     </center>
+   <left>
+      <FlowPane BorderPane.alignment="CENTER">
+         <children>
+            <Label styleClass="lblEmail" text="emailemailemail@email.pt">
+               <font>
+                  <Font name="System Italic" size="12.0" />
+               </font>
+            </Label>
+         </children>
+      </FlowPane>
+   </left>
 </BorderPane>
