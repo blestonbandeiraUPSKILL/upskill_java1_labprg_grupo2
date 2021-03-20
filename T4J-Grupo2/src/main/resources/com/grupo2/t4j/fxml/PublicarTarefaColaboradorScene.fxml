@@ -4,7 +4,8 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="BorderPane" stylesheets="@../style/app.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.PublicarTarefaColaboradorUI">
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="BorderPane" stylesheets="@../style/app.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.PublicarTarefaColaboradorUI">
     <top>
         <Label styleClass="lblUser" text="Área do Colaborador :::&gt; Publicar Tarefa" BorderPane.alignment="CENTER_RIGHT">
             <font>
@@ -13,6 +14,17 @@
             <padding>
                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
             </padding>
+         <graphic>
+            <BorderPane>
+               <center>
+                  <Label fx:id="txt_email" styleClass="lblEmail" text="email@email.pt">
+                     <font>
+                        <Font name="System Italic" size="12.0" />
+                     </font>
+                  </Label>
+               </center>
+            </BorderPane>
+         </graphic>
         </Label>
     </top>
     <bottom>

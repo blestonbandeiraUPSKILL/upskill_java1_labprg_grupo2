@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" styleClass="BorderPane" stylesheets="@../style/app.css" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.FreelancerLogadoUI">
+<BorderPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" styleClass="BorderPane" stylesheets="@../style/app.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.FreelancerLogadoUI">
     <top>
         <Label styleClass="lblUser" text="Bem-vindo à Área do Freelancer" textFill="WHITE" BorderPane.alignment="CENTER_RIGHT">
             <font>
@@ -14,6 +14,13 @@
             <padding>
                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
             </padding>
+         <graphic>
+            <Label fx:id="txt_email" styleClass="lblEmail" text="email@email.pt">
+               <font>
+                  <Font name="System Italic" size="12.0" />
+               </font>
+            </Label>
+         </graphic>
         </Label>
     </top>
     <center>
