@@ -1,9 +1,6 @@
 package com.grupo2.t4j.ui;
 
-import com.grupo2.t4j.controller.RegistarCompetenciaTecnicaController;
-import com.grupo2.t4j.controller.RegistarFreelancerController;
-import com.grupo2.t4j.controller.RegistarGrauProficienciaController;
-import com.grupo2.t4j.controller.RegistarReconhecimentoGPController;
+import com.grupo2.t4j.controller.*;
 import com.grupo2.t4j.domain.CompetenciaTecnica;
 import com.grupo2.t4j.domain.Freelancer;
 import com.grupo2.t4j.domain.GrauProficiencia;
@@ -38,6 +35,7 @@ public class AdicionarReconhecimentoGPUI implements Initializable {
     private RegistarFreelancerController registarFreelancerController;
     private RegistarCompetenciaTecnicaController registarCompetenciaTecnicaController;
     private RegistarGrauProficienciaController registarGrauProficienciaController;
+    private GestaoUtilizadoresController gestaoUtilizadoresController;
 
     private Stage adicionarStage;
 
@@ -49,6 +47,7 @@ public class AdicionarReconhecimentoGPUI implements Initializable {
     @FXML Button btnAddCompetencia;
     @FXML Button btnCancelar;
     @FXML Button btnSair;
+    @FXML Label txt_email;
     
     ////Tabela Reconhecimento///////////////////////
     @FXML TableColumn<Object, Object> txtCompTec;
@@ -73,6 +72,10 @@ public class AdicionarReconhecimentoGPUI implements Initializable {
         registarReconhecimentoGPController = new RegistarReconhecimentoGPController();
         registarFreelancerController = new RegistarFreelancerController();
         registarCompetenciaTecnicaController = new RegistarCompetenciaTecnicaController();
+
+        gestaoUtilizadoresController = new GestaoUtilizadoresController();
+        txt_email.setText(gestaoUtilizadoresController.getEmail());
+
         try {
             registarGrauProficienciaController = new RegistarGrauProficienciaController();
         } catch (SQLException exception) {
