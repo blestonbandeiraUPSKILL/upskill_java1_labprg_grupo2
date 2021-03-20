@@ -75,6 +75,18 @@ class Email {
     String email
 }
 
+class Atribuicao {
+    integer idAtribuicao
+    String  nifOrganizacao
+    String referenciaTarefa
+    String emailFreelancer
+    String dataInicioRealizacao
+    String dataFimRealizacao
+    integer valorAceite
+    integer idAnuncio
+    String dataAtribuicao
+}
+
 Plataforma"1" -- "*"Organizacao: tem registadas >
 Plataforma"1" -- "*"Freelancer: tem/usa >
 Plataforma"1" -- "*"Administrativo: tem >
@@ -95,6 +107,10 @@ Categoria"*" -- CompetenciaTecnica: requer >
 (Categoria, CompetenciaTecnica) . CaracterCT
 Utilizador"1" -- "1"Email: possui >
 Utilizador"1" -- "1"Password: possui >
+Atribuicao"1" -- "1" Tarefa: de >
+Atribuicao"1" -- "1" Freelancer: a >
+Atribuicao"1..*" -- "1" Organizacao
+Colaborador"1" -- "0..*" Atribuicao: por gestor <
 
 
 @enduml
