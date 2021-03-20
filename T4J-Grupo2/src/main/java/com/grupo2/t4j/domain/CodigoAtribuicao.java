@@ -12,5 +12,9 @@ package com.grupo2.t4j.domain;
 
 public class CodigoAtribuicao {
 
-    //private 
+    //private
+
+    public String gerarCodigo(){
+        return "Código";
+    }
 }

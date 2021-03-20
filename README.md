@@ -11,7 +11,7 @@
 
 - [Enunciado Sprint 2](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Documenta%C3%A7%C3%A3o/Sprint%202/Enunciado/Enunciado.md)
 - [Glossário](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Documenta%C3%A7%C3%A3o/Sprint%203/Glossario.md)
-- [Modelo de Domínio](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Documenta%C3%A7%C3%A3o/Sprint%203/Modelo_Dom%C3%ADnio.png)
+- [Modelo de Domínio](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Documenta%C3%A7%C3%A3o/Sprint%202/Modelo_Dom%C3%ADnio.png)
 - [Diagrama de Casos de Uso](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Documenta%C3%A7%C3%A3o/Sprint%205/Diagrama_Casos_Uso/Diagrama_Casos_Uso.png)
 - [Requisitos Funcionais e Não Funcionais](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Documenta%C3%A7%C3%A3o/Sprint%203/Requisitos_Funcionais_e_Nao_Funcionais.md)
 - [Modelo Relacional](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/BaseDados/Modelo_Relacional.png)
@@ -42,7 +42,9 @@
 - [UC12 - Eliminar Candidatura](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Documenta%C3%A7%C3%A3o/Sprint%204/UC12_Eliminar_Candidatura/UC12.md)
 
 ##### Sprint 5
-- [UC13 - Atribuição de Tarefa](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Documenta%C3%A7%C3%A3o/Sprint%205/UC13_Atribuicao_de_Tarefa/UC13.md)
+- [UC13A - Atribuição de Tarefa Automática](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Documenta%C3%A7%C3%A3o/Sprint%205/UC13A_Atribuicao_de_Tarefa_Automatica/UC13A_Automatica.md)
+- [UC13 B- Atribuição de Tarefa Opcional](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Documenta%C3%A7%C3%A3o/Sprint%205/UC13B_Atribuicao_de_Tarefa_MOpcional/UC13B_Manual_Opcional.md)
+- [UC13C - Atribuição de Tarefa Obrigatória](https://github.com/blestonbandeiraUPSKILL/upskill_java1_labprg_grupo2/blob/main/Documenta%C3%A7%C3%A3o/Sprint%205/UC13C_Atribuicao_de_Tarefa_MObrigatoria/UC13C_Manual_Obrigatoria.md)
 
 ## Links úteis
 
