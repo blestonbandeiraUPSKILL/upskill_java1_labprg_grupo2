@@ -377,6 +377,14 @@ public class GestorLogadoUI implements Initializable {
     }
 
     /**
+     * Limpa a tabela de atribuições
+     */
+    public void limpaTabelaAtribuicoes(){
+        listaAtribuicoesOrganizacao.clear();
+        preencherTabelaAtribuicoes();
+    }
+
+    /**
      * Cria uma tabela de classificacao de freelancers no anuncio selecionado
      * @throws SQLException
      */
@@ -439,7 +447,10 @@ public class GestorLogadoUI implements Initializable {
         preencherTabelaAtribuicoes();
     }
 
-
+    public void updateTabelaAtribuicao() throws SQLException{
+        limpaTabelaAtribuicoes();
+        criaTabelaAtribuicao();
+    }
 
     /**
      * Atualiza a data de seriacao das candidaturas do anuncio selecionado
@@ -769,7 +780,25 @@ public class GestorLogadoUI implements Initializable {
 
     @FXML
     public void registarAtribuicao (ActionEvent actionEvent) {
+        String refTarefa = tabelaAtribuicoes.getSelectionModel().getSelectedItem().getRefTarefa();
+        try {
+            String nifOrganizacao = getNifOrganizacao();
+            int idAnuncio = atribuirTarefaController.getIdAnuncioByTarefa(refTarefa, nifOrganizacao);
+            boolean sucesso = atribuirTarefaController.atribuir(idAnuncio);
+            if(sucesso){
+                existeAnuncioSeriado();
+                updateTabelaAtribuicao();
+            }
+            else{
+                AlertsUI.criarAlerta(Alert.AlertType.ERROR,
+                        MainApp.TITULO_APLICACAO,
+                        "Erro",
+                        "A atribuição não foi registada!");
+            }
 
+        }catch (SQLException exception){
+            exception.printStackTrace();
+        }
     }
 
     @FXML

@@ -75,6 +75,10 @@ public class AtribuirTarefaController {
         return (AnuncioDTO) anuncio.toDTO();
     }
 
+    public int getIdAnuncioByTarefa(String refTarefa, String nifOrganizacao) throws SQLException{
+        return repositorioAnuncio.findAnuncioByIdTarefa(refTarefa, nifOrganizacao).getIdAnuncio();
+    }
+
     public boolean atribuir(int idAnuncio) throws SQLException{
         boolean sucesso = false;
         int idRegimento = getAnuncio(idAnuncio).getIdTipoRegimento();
