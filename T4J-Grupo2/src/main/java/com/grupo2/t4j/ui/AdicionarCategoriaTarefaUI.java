@@ -37,6 +37,7 @@ public class AdicionarCategoriaTarefaUI implements Initializable {
     private GestaoUtilizadoresController gestaoUtilizadoresController;
     private List<CaracterizacaoCTDTO> caracterizacaoCTS;
 
+
     @FXML TextField txtDescricaoBreve;
     @FXML TextField txtCodigoCategoria;
     @FXML TextArea txtDescricaoDetalhada;

@@ -27,9 +27,11 @@ public class Atribuicao implements DTO {
     private String dataInicioTarefa;
     private String dataFimTarefa;
 
+    public Atribuicao(){
+
+    }
     public Atribuicao(String nifOrganizacao, String refTarefa, int idAnuncio, int idCandidatura, String emailFreelancer,
-                      double valorAceito, int numDiasAceito, String codigoAtribuicao, String dataAtribuicao, String dataInicioTarefa,
-                      String dataFimTarefa){
+                      double valorAceito, int numDiasAceito, String codigoAtribuicao, String dataAtribuicao, String dataInicioTarefa){
         setNifOrganizacao(nifOrganizacao);
         setRefTarefa(refTarefa);
         setIdAnuncio(idAnuncio);
@@ -40,8 +42,33 @@ public class Atribuicao implements DTO {
         setCodigoAtribuicao(codigoAtribuicao);
         setDataAtribuicao(dataAtribuicao);
         setDataInicioTarefa(dataInicioTarefa);
-        setDataFimTarefa(dataFimTarefa);
     }
+
+    public Atribuicao(String nifOrganizacao, String refTarefa, int idAnuncio, int idCandidatura, String emailFreelancer,
+                      double valorAceito, int numDiasAceito, String codigoAtribuicao, String dataInicioTarefa){
+        setNifOrganizacao(nifOrganizacao);
+        setRefTarefa(refTarefa);
+        setIdAnuncio(idAnuncio);
+        setIdCandidatura(idCandidatura);
+        setEmailFreelancer(emailFreelancer);
+        setValorAceito(valorAceito);
+        setNumDiasAceito(numDiasAceito);
+        setCodigoAtribuicao(codigoAtribuicao);
+        setDataInicioTarefa(dataInicioTarefa);
+    }
+
+    public Atribuicao(String nifOrganizacao, String refTarefa, int idAnuncio, int idCandidatura, String emailFreelancer,
+                      double valorAceito, int numDiasAceito, String codigoAtribuicao){
+        setNifOrganizacao(nifOrganizacao);
+        setRefTarefa(refTarefa);
+        setIdAnuncio(idAnuncio);
+        setIdCandidatura(idCandidatura);
+        setEmailFreelancer(emailFreelancer);
+        setValorAceito(valorAceito);
+        setNumDiasAceito(numDiasAceito);
+        setCodigoAtribuicao(codigoAtribuicao);
+    }
+
 
     public void setNifOrganizacao(String nifOrganizacao){
         this.nifOrganizacao = nifOrganizacao;
