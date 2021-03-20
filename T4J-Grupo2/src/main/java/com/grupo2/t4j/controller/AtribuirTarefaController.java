@@ -22,6 +22,8 @@ public class AtribuirTarefaController {
     private FabricaRepositorios fabricaRepositorios = new FabricaRepositoriosDatabase();
     private RepositorioAnuncio repositorioAnuncio = fabricaRepositorios.getRepositorioAnuncio();
     private RepositorioAtribuicao repositorioAtribuicao = fabricaRepositorios.getRepositorioAtribuicao();
+    private RepositorioCandidatura repositorioCandidatura = fabricaRepositorios.getRepositorioCandidatura();
+    private RepositorioClassificacao repositorioClassificacao = fabricaRepositorios.getRepositorioClassificacao();
     private RepositorioFreelancer repositorioFreelancer = fabricaRepositorios.getRepositorioFreelancer();
     private RepositorioTarefa repositorioTarefa = fabricaRepositorios.getRepositorioTarefa();
     private RepositorioSeriacao repositorioSeriacao = fabricaRepositorios.getRepositorioSeriacao();
@@ -90,5 +92,51 @@ public class AtribuirTarefaController {
         }
         return sucesso;
     }
+
+    public List<Integer> getAnunciosSeriados(String nifOrganizacao) throws SQLException {
+        return repositorioAnuncio.getAnunciosSeriados(nifOrganizacao);
+    }
+
+    public List<AnuncioDTO> getAnunciosSeriadosNaoAtribuidos(String nifOrganizacao) throws SQLException{
+        List<Integer> idsAnunciosSeriados = getAnunciosSeriados(nifOrganizacao);
+
+        List<AnuncioDTO> anunciosSeriadosNaoAtribuidos = new ArrayList<>();
+        for(int i = 0; i < idsAnunciosSeriados.size();i++){
+            String refTarefa = getAnuncio(idsAnunciosSeriados.get(i)).getReferenciaTarefa();
+            if(findAtribuicaoByTarefa(refTarefa) == null){
+                anunciosSeriadosNaoAtribuidos.add(getAnuncio(idsAnunciosSeriados.get(i)));
+            }
+        }
+        return anunciosSeriadosNaoAtribuidos;
+    }
+
+    public String getEmailFreelancer(int idAnuncio) throws SQLException{
+        int tipoRegimento = getAnuncio(idAnuncio).getIdTipoRegimento();
+        int idSeriacao = getProcessoSeriacaoByAnuncio(idAnuncio).getIdSeriacao();
+        List<Classificacao> classificacoes = repositorioClassificacao.getAllBySeriacao(idSeriacao);
+
+        int idCandidatura = 0;
+        if(tipoRegimento == 1){
+            if(classificacoes.size() > 1) {
+                for (int i = 0; i < classificacoes.size(); i++) {
+                    if (classificacoes.get(i).getPosicaoFreelancer() == 2) {
+                        idCandidatura = classificacoes.get(i).getIdCandidatura();
+                    }
+                }
+            }
+            else{
+                idCandidatura = classificacoes.get(0).getIdCandidatura();
+            }
+        }
+        else{
+            for (int i = 0; i < classificacoes.size(); i++) {
+                if (classificacoes.get(i).getPosicaoFreelancer() == 1) {
+                    idCandidatura = classificacoes.get(i).getIdCandidatura();
+                }
+            }
+        }
+        return repositorioCandidatura.findById(idCandidatura).getEmailFreelancer();
+    }
+
 
 }

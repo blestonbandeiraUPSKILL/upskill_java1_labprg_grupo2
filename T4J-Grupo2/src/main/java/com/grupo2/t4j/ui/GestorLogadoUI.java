@@ -138,7 +138,7 @@ public class GestorLogadoUI implements Initializable {
         btnConsultarAtribuicao.setDisable(true);
 
         try {
-            existeAtribuicao();
+            existeAnuncioSeriado();
         }catch (SQLException exception) {
             exception.printStackTrace();
         }
@@ -270,16 +270,36 @@ public class GestorLogadoUI implements Initializable {
         return false;
     }
 
-    public void existeAtribuicao() throws SQLException{
+    public void existeAnuncioSeriado() throws SQLException{
         String nifOrganizacao = getNifOrganizacao();
+        List<Integer> idsAnunciosSeriados = atribuirTarefaController.getAnunciosSeriados(nifOrganizacao);
         List<AtribuicaoDTO> atribuicoes = atribuirTarefaController.getAllByOrganizacao(nifOrganizacao);
-        if(atribuicoes.size() > 0){
-            btnConsultarAtribuicao.setDisable(false);
+        List<AnuncioDTO> anunciosSeriadosNaoAtribuidos = atribuirTarefaController.getAnunciosSeriadosNaoAtribuidos(nifOrganizacao);
+
+        if(idsAnunciosSeriados.size() > 0){
             criaTabelaAtribuicao();
+            if(atribuicoes.size() > 0){
+                btnConsultarAtribuicao.setDisable(false);
+            }
+            else{
+                btnConsultarAtribuicao.setDisable(true);
+            }
+            if(anunciosSeriadosNaoAtribuidos.size() > 0){
+                btnMudarData.setDisable(false);
+                btnAtribuicao.setDisable(false);
+                txtDataInTarefa.setDisable(false);
+            }
+            else{
+                btnMudarData.setDisable(true);
+                btnAtribuicao.setDisable(true);
+                txtDataInTarefa.setDisable(true);
+            }
         }
         else{
             btnConsultarAtribuicao.setDisable(true);
-
+            btnMudarData.setDisable(true);
+            btnAtribuicao.setDisable(true);
+            txtDataInTarefa.setDisable(true);
         }
     }
 
@@ -400,12 +420,22 @@ public class GestorLogadoUI implements Initializable {
     public void criaTabelaAtribuicao() throws SQLException{
         String nifOrganizacao = getNifOrganizacao();
         List<AtribuicaoDTO> atribuicoes = atribuirTarefaController.getAllByOrganizacao(nifOrganizacao);
+        List<AnuncioDTO> anunciosSeriadosNaoAtribuidos = atribuirTarefaController.getAnunciosSeriadosNaoAtribuidos(nifOrganizacao);
+
         for(int i = 0; i < atribuicoes.size(); i++){
             TabelaConsultaAtribuicaoDTO cellAtribuicao = new TabelaConsultaAtribuicaoDTO(atribuicoes.get(i).getRefTarefa(),
                     atribuicoes.get(i).getEmailFreelancer(), atribuicoes.get(i).getDataAtribuicao(),
             atribuicoes.get(i).getCodigoAtribuicao(), atribuicoes.get(i).getDataInicioTarefa());
             listaAtribuicoesOrganizacao.add(cellAtribuicao);
         }
+        for(int i = 0; i < anunciosSeriadosNaoAtribuidos.size(); i++){
+            AnuncioDTO anuncioDTO = anunciosSeriadosNaoAtribuidos.get(i);
+            TabelaConsultaAtribuicaoDTO cellNaoAtribuidos = new TabelaConsultaAtribuicaoDTO(anuncioDTO.getReferenciaTarefa(),
+                    atribuirTarefaController.getEmailFreelancer(anuncioDTO.getIdAnuncio()), "Não Atribuído!",
+                    "Não atribuído!", anuncioDTO.getDtFimPub());
+            listaAtribuicoesOrganizacao.add(cellNaoAtribuidos);
+        }
+
         preencherTabelaAtribuicoes();
     }
 
