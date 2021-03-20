@@ -3,6 +3,7 @@ package com.grupo2.t4j.ui;
 import com.grupo2.t4j.controller.*;
 import com.grupo2.t4j.domain.*;
 import com.grupo2.t4j.dto.*;
+import com.grupo2.t4j.exception.DataInvalidaException;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -275,6 +276,8 @@ public class GestorLogadoUI implements Initializable {
         List<Integer> idsAnunciosSeriados = atribuirTarefaController.getAnunciosSeriados(nifOrganizacao);
         List<AtribuicaoDTO> atribuicoes = atribuirTarefaController.getAllByOrganizacao(nifOrganizacao);
         List<AnuncioDTO> anunciosSeriadosNaoAtribuidos = atribuirTarefaController.getAnunciosSeriadosNaoAtribuidos(nifOrganizacao);
+        btnMudarData.setDisable(true);
+        txtDataInTarefa.setDisable(true);
 
         if(idsAnunciosSeriados.size() > 0){
             criaTabelaAtribuicao();
@@ -285,14 +288,11 @@ public class GestorLogadoUI implements Initializable {
                 btnConsultarAtribuicao.setDisable(true);
             }
             if(anunciosSeriadosNaoAtribuidos.size() > 0){
-                btnMudarData.setDisable(false);
                 btnAtribuicao.setDisable(false);
-                txtDataInTarefa.setDisable(false);
+
             }
             else{
-                btnMudarData.setDisable(true);
                 btnAtribuicao.setDisable(true);
-                txtDataInTarefa.setDisable(true);
             }
         }
         else{
@@ -773,31 +773,67 @@ public class GestorLogadoUI implements Initializable {
         }
     }
 
-    @FXML
-    public void mudarData(ActionEvent actionEvent){
 
+    public boolean mudarData(){
+        if (tabelaAtribuicoes.getSelectionModel().getSelectedItem().getCodigoAtribuicao().equals("Não atribuído!")) {
+            String novaData = txtDataInTarefa.getText();
+            try{
+                Data data = new Data(novaData);
+                tabelaAtribuicoes.getSelectionModel().getSelectedItem().setDataInicioTarefa(novaData);
+                btnAtribuicao.requestFocus();
+                return true;
+            }catch (IllegalArgumentException iae){
+                throw new DataInvalidaException("A data informada é inválida!");
+            }
+        }
+        return false;
     }
 
     @FXML
     public void registarAtribuicao (ActionEvent actionEvent) {
         String refTarefa = tabelaAtribuicoes.getSelectionModel().getSelectedItem().getRefTarefa();
-        try {
-            String nifOrganizacao = getNifOrganizacao();
-            int idAnuncio = atribuirTarefaController.getIdAnuncioByTarefa(refTarefa, nifOrganizacao);
-            boolean sucesso = atribuirTarefaController.atribuir(idAnuncio);
-            if(sucesso){
-                existeAnuncioSeriado();
-                updateTabelaAtribuicao();
+        if (tabelaAtribuicoes.getSelectionModel().getSelectedItem().getCodigoAtribuicao().equals("Não atribuído!")) {
+            AlertsUI.criarAlerta(Alert.AlertType.INFORMATION,
+                    MainApp.TITULO_APLICACAO,
+                    "Deseja modificar a data de início da tarefa?",
+                    "Se sim, realize esta mudança antes de realizar a atribuição!");
+            btnMudarData.requestFocus();
+            if(mudarData()){
+                try {
+                    String nifOrganizacao = getNifOrganizacao();
+                    int idAnuncio = atribuirTarefaController.getIdAnuncioByTarefa(refTarefa, nifOrganizacao);
+                    String dataInicioTarefa = txtDataInTarefa.getText();
+                    boolean sucesso = atribuirTarefaController.atribuir(idAnuncio, dataInicioTarefa);
+                    if (sucesso) {
+                        existeAnuncioSeriado();
+                        updateTabelaAtribuicao();
+                    } else {
+                        AlertsUI.criarAlerta(Alert.AlertType.ERROR,
+                                MainApp.TITULO_APLICACAO,
+                                "Erro",
+                                "A atribuição não foi registada!");
+                    }
+                } catch (SQLException exception) {
+                    exception.printStackTrace();
+                }
+            }else{
+                try {
+                    String nifOrganizacao = getNifOrganizacao();
+                    int idAnuncio = atribuirTarefaController.getIdAnuncioByTarefa(refTarefa, nifOrganizacao);
+                    boolean sucesso = atribuirTarefaController.atribuir(idAnuncio);
+                    if (sucesso) {
+                        existeAnuncioSeriado();
+                        updateTabelaAtribuicao();
+                    } else {
+                        AlertsUI.criarAlerta(Alert.AlertType.ERROR,
+                                MainApp.TITULO_APLICACAO,
+                                "Erro",
+                                "A atribuição não foi registada!");
+                    }
+                } catch (SQLException exception) {
+                    exception.printStackTrace();
+                }
             }
-            else{
-                AlertsUI.criarAlerta(Alert.AlertType.ERROR,
-                        MainApp.TITULO_APLICACAO,
-                        "Erro",
-                        "A atribuição não foi registada!");
-            }
-
-        }catch (SQLException exception){
-            exception.printStackTrace();
         }
     }
 

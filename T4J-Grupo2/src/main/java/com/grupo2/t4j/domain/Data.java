@@ -224,11 +224,13 @@ public class Data implements Comparable<Data>{
 
         return Math.abs(totalDias - totalDias1);
     }
-    
+
     /**
      * devolve a diferenca de dias entre duas datas
-     * @param outraData
-     * @return 
+     * @param ano
+     * @param mes
+     * @param dia
+     * @return
      */
     public int diferenca(int ano, int mes, int dia) {
         int totalDias = contaDias();
