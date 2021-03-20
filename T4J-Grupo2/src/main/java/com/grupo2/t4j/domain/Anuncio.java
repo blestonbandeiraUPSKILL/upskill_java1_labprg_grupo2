@@ -264,7 +264,7 @@ public class Anuncio implements Serializable, DTO {
 
     /**
      * Devolve o nif da organização que requer a tarefa
-     * @param nifOrganizacao 
+     * @return nifOrganizacao
      */
     public String getNifOrganizacao() {
         return nifOrganizacao;
@@ -320,7 +320,7 @@ public class Anuncio implements Serializable, DTO {
  
     /**
      * Devolve o id do tipo de regimento aplicável ao anúncio
-     * @param idTipoRegimento 
+     * @return  idTipoRegimento
      */
     public int getIdTipoRegimento() {
         return idTipoRegimento;

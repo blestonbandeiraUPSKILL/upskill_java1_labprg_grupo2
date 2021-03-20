@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="530.0" prefWidth="700.0" styleClass="BorderPane" stylesheets="@../style/app.css" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.GestorLogadoUI">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="530.0" prefWidth="700.0" styleClass="BorderPane" stylesheets="@../style/app.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.GestorLogadoUI">
     <top>
         <Label alignment="CENTER_RIGHT" styleClass="lblUser" text="Bem-vindo à Área do Gestor" textFill="WHITE" BorderPane.alignment="CENTER_RIGHT">
             <font>
@@ -157,7 +158,7 @@
                                         <Button fx:id="btnAtribuicao" layoutX="519.0" layoutY="274.0" mnemonicParsing="false" onAction="#registarAtribuicao" prefHeight="27.0" prefWidth="141.0" styleClass="btnConfirmar" text="Realizar Atribuição" AnchorPane.bottomAnchor="75.0" AnchorPane.leftAnchor="519.0" AnchorPane.rightAnchor="40.0" />
                                         <Label layoutX="20.0" layoutY="277.0" text="Modificar data de Início da Tarefa:" AnchorPane.bottomAnchor="85.0" AnchorPane.leftAnchor="20.0" />
                                         <TextField fx:id="txtDataInTarefa" layoutX="213.0" layoutY="296.0" prefHeight="25.0" prefWidth="120.0" AnchorPane.bottomAnchor="77.0" AnchorPane.leftAnchor="213.0" />
-                                        <Button fx:id="btnMudarData" layoutX="358.0" layoutY="274.0" mnemonicParsing="false" onAction="#mudarData" styleClass="btnConfirmar" text="Confirmar data" AnchorPane.bottomAnchor="75.0" AnchorPane.leftAnchor="358.0" />
+                                        <Button fx:id="btnMudarData" layoutX="358.0" layoutY="274.0" mnemonicParsing="false" styleClass="btnConfirmar" text="Confirmar data" AnchorPane.bottomAnchor="75.0" AnchorPane.leftAnchor="358.0" />
                                         <Button fx:id="btnConsultarAtribuicao" layoutX="20.0" layoutY="316.0" mnemonicParsing="false" onAction="#consultarAtribuicao" styleClass="btnConfirmar" text="Consultar Atribuição" AnchorPane.bottomAnchor="35.0" AnchorPane.leftAnchor="20.0" />
                                     </children>
                                 </AnchorPane>
