@@ -2,12 +2,9 @@ package com.grupo2.t4j.ui;
 
 import com.grupo2.t4j.controller.*;
 import com.grupo2.t4j.domain.*;
-<<<<<<< HEAD
 import com.grupo2.t4j.dto.AtribuicaoDTO;
 import com.grupo2.t4j.dto.TarefaDTO;
-=======
 import com.grupo2.t4j.dto.*;
->>>>>>> 40ba634a463ef6f7775e912c931c501dd7bec644
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -80,12 +77,9 @@ public class ColaboradorLogadoUI implements Initializable {
     @FXML TableColumn<Object, Object> colunaDuracaoFree;
     @FXML TableColumn<Object, Object> colunaCustoFree;
 
-<<<<<<< HEAD
+
     @FXML TableView<TabelaConsultaAtribuicao>  tabelaAtribuicoes;
     List<TabelaConsultaAtribuicao> listaAtribuicoesOrganizacao = new ArrayList<>();
-=======
-    @FXML TableView<TabelaConsultaAtribuicaoDTO>  tabelaAtribuicoes;
->>>>>>> 40ba634a463ef6f7775e912c931c501dd7bec644
     @FXML TableColumn<Object, Object> colunaRefTarefa;
     @FXML TableColumn<Object, Object> colunaFreelancer;
     @FXML TableColumn<Object, Object> colunaCodAtribuicao;
