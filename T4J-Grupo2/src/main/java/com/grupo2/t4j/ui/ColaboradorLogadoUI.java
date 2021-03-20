@@ -63,6 +63,8 @@ public class ColaboradorLogadoUI implements Initializable {
     @FXML Button btnConsultarAtribuicao;
 
     @FXML TextField txtDataSeriacao;
+
+    @FXML Label txt_email;
     
     @FXML TableView<TarefaDTO> tabelaTarefas;
     @FXML TableColumn<Object, Object> colunaReferencia;
@@ -127,6 +129,9 @@ public class ColaboradorLogadoUI implements Initializable {
         btnSeriacaoManual.setDisable(true);
 
         btnConsultarAtribuicao.setDisable(true);
+
+        txt_email.setText(gestaoUtilizadoresController.getEmail());
+
         try {
             existeAtribuicao();
         }catch (SQLException exception) {
