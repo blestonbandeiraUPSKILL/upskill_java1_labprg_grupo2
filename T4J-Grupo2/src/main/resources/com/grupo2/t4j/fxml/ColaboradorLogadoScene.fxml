@@ -18,157 +18,84 @@
    </top>
    <center>
       <BorderPane BorderPane.alignment="CENTER">
-         <center>
-            <BorderPane prefHeight="200.0" prefWidth="200.0" styleClass="BorderPane">
-               <center>
-                  <TabPane prefHeight="400.0" prefWidth="700.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
-                     <tabs>
-                        <Tab text="Tarefas">
-                           <content>
-                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="AnchorPane">
-                                 <children>
-                                    <VBox alignment="CENTER" layoutX="560.0" layoutY="201.0" AnchorPane.bottomAnchor="100.0" AnchorPane.rightAnchor="32.0" />
-                                    <Label layoutX="173.0" layoutY="53.0" prefHeight="40.0" prefWidth="215.0" text="Tarefas Registadas" AnchorPane.bottomAnchor="307.0" AnchorPane.leftAnchor="173.0" AnchorPane.rightAnchor="297.0" AnchorPane.topAnchor="53.0">
-                                       <font>
-                                          <Font name="Calibri" size="15.0" />
-                                       </font>
-                                    </Label>
-                                    <VBox layoutX="274.0" layoutY="24.0" AnchorPane.bottomAnchor="285.0" AnchorPane.leftAnchor="145.0" AnchorPane.topAnchor="25.0" />
-                                    <Button fx:id="btnNovaTarefa" layoutX="463.0" layoutY="316.0" mnemonicParsing="false" onAction="#navigateEspecificarTarefa" styleClass="btnConfirmar" text="Nova Tarefa" textFill="WHITE" AnchorPane.bottomAnchor="34.0">
-                                       <font>
-                                          <Font name="Calibri" size="14.0" />
-                                       </font>
-                                  <tooltip>
-                                      <Tooltip text="Adicionar Nova Tarefa">
-                                          <font>
-                                              <Font name="Calibri Italic" size="12.0" />
-                                          </font>
-                                      </Tooltip>
-                                  </tooltip>
-                                    </Button>
-                                    <ComboBox fx:id="cmbFiltroTarefas" layoutX="308.0" layoutY="46.0" prefHeight="24.0" prefWidth="218.0" promptText="Escolha as Tarefas a Apresentar" AnchorPane.bottomAnchor="307.0" AnchorPane.leftAnchor="308.0" AnchorPane.topAnchor="46.0" />
-                                    <Button fx:id="btnPublicarTarefa" disable="true" layoutX="202.0" layoutY="316.0" mnemonicParsing="false" onAction="#navigatePublicarTarefa" styleClass="btnConfirmar" text="Publicar Tarefa" textFill="WHITE" AnchorPane.bottomAnchor="34.0">
-                                       <font>
-                                          <Font name="Calibri" size="14.0" />
-                                       </font>
-                                  <tooltip>
-                                      <Tooltip text="Publicar Tarefa">
-                                          <font>
-                                              <Font name="Calibri Italic" size="12.0" />
-                                          </font>
-                                      </Tooltip>
-                                  </tooltip>
-                                    </Button>
-                                    <TableView fx:id="tabelaTarefas" layoutX="38.0" layoutY="92.0" prefHeight="197.0" prefWidth="627.0">
-                                       <columns>
-                                          <TableColumn fx:id="colunaReferencia" prefWidth="83.0" text="Referencia" />
-                                          <TableColumn fx:id="colunaDesignacao" prefWidth="204.0" text="Designação" />
-                                          <TableColumn fx:id="colunaDuracao" prefWidth="163.0" text="Duração Estimada (dias)" />
-                                          <TableColumn fx:id="colunaCusto" prefWidth="176.0" text="Custo Estimado (€)" />
-                                       </columns>
-                                    </TableView>
-                                 </children>
-                              </AnchorPane>
-                           </content>
-                        </Tab>
-                        <Tab text="Seriar Anúncios">
-                           <content>
-                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="AnchorPane">
-                                 <children>
-                                    <VBox alignment="CENTER" layoutX="560.0" layoutY="201.0" AnchorPane.bottomAnchor="100.0" AnchorPane.rightAnchor="32.0" />
-                                    <Label layoutX="25.0" layoutY="107.0" prefHeight="27.0" prefWidth="551.0" text="Candidaturas ao Anúncio Selecionado (Freelancers e dados principais da proposta)" AnchorPane.bottomAnchor="285.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="129.0" AnchorPane.topAnchor="65.0">
-                                       <font>
-                                          <Font name="Calibri" size="15.0" />
-                                       </font>
-                                    </Label>
-                                    <Label alignment="CENTER" layoutX="24.0" layoutY="27.0" text="Anúncio" AnchorPane.bottomAnchor="335.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="25.0">
-                                       <font>
-                                          <Font name="Calibri" size="14.0" />
-                                       </font>
-                                    </Label>
-                                    <ComboBox fx:id="cmbAnuncio" prefHeight="25.0" prefWidth="265.0" promptText="Escolha referência do Anúncio a Seriar" AnchorPane.bottomAnchor="329.0" AnchorPane.leftAnchor="90.0" AnchorPane.topAnchor="23.0" />
-                                    <Button fx:id="btnConsultarAnuncio" layoutX="319.0" layoutY="31.0" mnemonicParsing="false" onAction="#consultarAnuncioAction" prefHeight="25.0" prefWidth="255.0" styleClass="btnConfirmar" text="Consultar Tarefa do Anúncio Selecionado" AnchorPane.bottomAnchor="329.0" AnchorPane.leftAnchor="400.0" AnchorPane.rightAnchor="45.0" AnchorPane.topAnchor="23.0" />
-                                    <Button fx:id="btnConsultarCandidaturaFreelancer" layoutX="20.0" layoutY="301.0" mnemonicParsing="false" onAction="#consultarCandidaturaFreelancer" prefHeight="27.0" prefWidth="244.0" styleClass="btnConfirmar" text="Consultar Candidatura do Freelancer" AnchorPane.topAnchor="301.0">
-                                       <tooltip>
-                                          <Tooltip text="Consultar Frelancer" />
-                                       </tooltip>
-                                    </Button>
-                                    <TableView fx:id="tabelaCandidaturasFreelancers" layoutX="19.0" layoutY="92.0" prefHeight="200.0" prefWidth="661.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0">
-                                       <columns>
-                                          <TableColumn fx:id="colunaClassificacao" prefWidth="85.0" text="Classificacao" />
-                                          <TableColumn fx:id="colunaIdCandidatura" prefWidth="126.0" text="Id da Candidatura" />
-                                          <TableColumn fx:id="colunaEmail" prefWidth="294.0" text="Email do Freelancer" />
-                                          <TableColumn fx:id="colunaDuracaoFree" minWidth="0.0" prefWidth="95.0" text="Duração (dias)" />
-                                          <TableColumn fx:id="colunaCustoFree" prefWidth="59.0" text="Custo (€)" />
-                                       </columns>
-                                    </TableView>
-                                    <Button fx:id="btnSeriacaoManual" layoutX="20.0" layoutY="336.0" mnemonicParsing="false" onAction="#seriacaoManualAction" styleClass="btnConfirmar" text="Seriação Manual" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="565.0">
-                                       <tooltip>
-                                          <Tooltip text="Seriar Anúncio" />
-                                       </tooltip>
-                                    </Button>
-                                    <Label layoutX="324.0" layoutY="306.0" text="Seriação Concluída em:" />
-                                    <TextField fx:id="txtDataSeriacao" disable="true" layoutX="467.0" layoutY="302.0" promptText="(data da seriação)" />
-                                 </children>
-                              </AnchorPane>
-                           </content>
-                        </Tab>
-                        <Tab text="Consultar Atribuições">
-                           <content>
-                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="AnchorPane">
-                                 <children>
-                                    <VBox alignment="CENTER" layoutX="560.0" layoutY="201.0" prefHeight="342.0" prefWidth="700.0" AnchorPane.bottomAnchor="45.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                       <children>
-                                          <TableView fx:id="tabelaAtribuicoes" prefHeight="265.0" prefWidth="660.0">
-                                            <columns>
-                                              <TableColumn fx:id="colunaRefTarefa" prefWidth="90.0" text="Referência" />
-                                              <TableColumn fx:id="colunaFreelancer" prefWidth="310.0" text="Freelancer selecionado" />
-                                                <TableColumn fx:id="colunaDataAtribuicao" prefWidth="129.0" text="Data de Atribuição" />
-                                                <TableColumn fx:id="colunaCodAtribuicao" prefWidth="131.0" text="Código da Atribuição" />
-                                            </columns>
-                                             <VBox.margin>
-                                                <Insets left="20.0" right="20.0" top="50.0" />
-                                             </VBox.margin>
-                                          </TableView>
-                                       </children>
-                                    </VBox>
-                                    <Button fx:id="btnConsultarAtribuicao" layoutX="20.0" layoutY="334.0" mnemonicParsing="false" onAction="#consultarAtribuicao" styleClass="btnConfirmar" text="Consultar detalhes da Atribuição" AnchorPane.bottomAnchor="5.0" />
-                                 </children>
-                              </AnchorPane>
-                           </content>
-                        </Tab>
-                     </tabs>
-                  </TabPane>
-               </center>
-            </BorderPane>
-         </center>
          <top>
-            <Label fx:id="txt_email" styleClass="lblEmail" text="emailemailemail@email.pt" BorderPane.alignment="CENTER_LEFT">
+            <Label fx:id="txt_email" styleClass="lblEmail" BorderPane.alignment="CENTER_LEFT">
                <font>
                   <Font name="System Italic" size="12.0" />
                </font>
             </Label>
          </top>
+         <center>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="AnchorPane" BorderPane.alignment="CENTER">
+               <children>
+                  <TableView fx:id="tabelaTarefas" layoutX="38.0" layoutY="92.0" prefHeight="197.0" prefWidth="627.0">
+                     <columns>
+                        <TableColumn fx:id="colunaReferencia" prefWidth="83.0" text="Referencia" />
+                        <TableColumn fx:id="colunaDesignacao" prefWidth="204.0" text="Designação" />
+                        <TableColumn fx:id="colunaDuracao" prefWidth="163.0" text="Duração Estimada (dias)" />
+                        <TableColumn fx:id="colunaCusto" prefWidth="176.0" text="Custo Estimado (€)" />
+                     </columns>
+                  </TableView>
+                  <Label layoutX="173.0" layoutY="32.0" prefHeight="33.0" prefWidth="230.0" text="Tarefas Registadas" AnchorPane.bottomAnchor="307.0" AnchorPane.leftAnchor="173.0" AnchorPane.rightAnchor="297.0" AnchorPane.topAnchor="32.0">
+                     <font>
+                        <Font name="Calibri" size="15.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="btnNovaTarefa" layoutX="463.0" layoutY="323.0" mnemonicParsing="false" onAction="#navigateEspecificarTarefa" styleClass="btnConfirmar" text="Nova Tarefa" textFill="WHITE" AnchorPane.bottomAnchor="22.0">
+                     <font>
+                        <Font name="Calibri" size="14.0" />
+                     </font>
+                <tooltip>
+                    <Tooltip text="Adicionar Nova Tarefa">
+                        <font>
+                            <Font name="Calibri Italic" size="12.0" />
+                        </font>
+                    </Tooltip>
+                </tooltip>
+                  </Button>
+                  <ComboBox fx:id="cmbFiltroTarefas" layoutX="308.0" layoutY="33.0" prefHeight="32.0" prefWidth="218.0" promptText="Escolha as Tarefas a Apresentar" AnchorPane.bottomAnchor="307.0" AnchorPane.leftAnchor="308.0" AnchorPane.topAnchor="33.0" />
+                  <Button fx:id="btnPublicarTarefa" disable="true" layoutX="202.0" layoutY="323.0" mnemonicParsing="false" onAction="#navigatePublicarTarefa" styleClass="btnConfirmar" text="Publicar Tarefa" textFill="WHITE" AnchorPane.bottomAnchor="22.0">
+                     <font>
+                        <Font name="Calibri" size="14.0" />
+                     </font>
+                <tooltip>
+                    <Tooltip text="Publicar Tarefa">
+                        <font>
+                            <Font name="Calibri Italic" size="12.0" />
+                        </font>
+                    </Tooltip>
+                </tooltip>
+                  </Button>
+               </children>
+            </AnchorPane>
+         </center>
       </BorderPane>
    </center>
    <bottom>
-      <Button fx:id="btnLogout" mnemonicParsing="false" onAction="#logout" styleClass="btnSair" text="Sair" BorderPane.alignment="CENTER_RIGHT">
-         <font>
-            <Font name="Calibri" size="16.0" />
-         </font>
-         <padding>
-            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-         </padding>
+      <FlowPane alignment="CENTER_RIGHT" prefHeight="61.0" prefWidth="700.0" BorderPane.alignment="CENTER_RIGHT">
          <BorderPane.margin>
-            <Insets bottom="20.0" right="20.0" />
+            <Insets />
          </BorderPane.margin>
-                            <tooltip>
-                                <Tooltip text="Sair">
-                                    <font>
-                                        <Font name="Calibri Italic" size="12.0" />
-                                    </font>
-                                </Tooltip>
-                            </tooltip>
-      </Button>
+         <children>
+            <Button fx:id="btnLogout" alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#logout" styleClass="btnSair" text="Sair">
+               <font>
+                  <Font name="Calibri" size="16.0" />
+               </font>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+                                  <tooltip>
+                                      <Tooltip text="Sair">
+                                          <font>
+                                              <Font name="Calibri Italic" size="12.0" />
+                                          </font>
+                                      </Tooltip>
+                                  </tooltip>
+               <FlowPane.margin>
+                  <Insets right="20.0" />
+               </FlowPane.margin>
+            </Button>
+         </children>
+      </FlowPane>
    </bottom>
 </BorderPane>

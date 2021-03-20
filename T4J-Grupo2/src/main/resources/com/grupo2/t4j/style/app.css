@@ -85,8 +85,9 @@
 .lblEmail {
     -fx-background-color: #002f6c;
     -fx-text-fill: #FFFFFF;
-    -fx-font-size:12;
+    -fx-font-size:14;
     -fx-padding: 5;
+    -fx-font-weight: bold;
 }
 
 .AnchorPane {
