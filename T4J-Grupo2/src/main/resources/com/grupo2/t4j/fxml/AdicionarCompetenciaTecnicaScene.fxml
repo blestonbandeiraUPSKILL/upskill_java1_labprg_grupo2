@@ -152,10 +152,11 @@
               </TabPane>
          </center>
          <top>
-            <Label alignment="TOP_LEFT" styleClass="lblEmail" text="emailemailemail@email.pt" BorderPane.alignment="CENTER">
+            <Label alignment="TOP_LEFT" styleClass="lblEmail" text="emailemailemail@email.pt">
                <font>
                   <Font name="System Italic" size="12.0" />
-               </font></Label>
+               </font>
+            </Label>
          </top>
       </BorderPane>
    </left>
