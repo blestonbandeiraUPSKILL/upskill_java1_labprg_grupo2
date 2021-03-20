@@ -2,11 +2,13 @@ package com.grupo2.t4j.ui;
 
 import com.grupo2.t4j.controller.*;
 import com.grupo2.t4j.domain.*;
-
 import com.grupo2.t4j.dto.AtribuicaoDTO;
 import com.grupo2.t4j.dto.TarefaDTO;
-
 import com.grupo2.t4j.dto.*;
+import com.grupo2.t4j.dto.AtribuicaoDTO;
+import com.grupo2.t4j.dto.TarefaDTO;
+import com.grupo2.t4j.dto.*;
+
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -80,8 +82,9 @@ public class ColaboradorLogadoUI implements Initializable {
     @FXML TableColumn<Object, Object> colunaDuracaoFree;
     @FXML TableColumn<Object, Object> colunaCustoFree;
 
-    @FXML TableView<TabelaConsultaAtribuicaoDTO>  tabelaAtribuicoes;
-    List<TabelaConsultaAtribuicaoDTO> listaAtribuicoesOrganizacao = new ArrayList<>();
+
+    @FXML TableView<TabelaConsultaAtribuicao>  tabelaAtribuicoes;
+    List<TabelaConsultaAtribuicao> listaAtribuicoesOrganizacao = new ArrayList<>();
     @FXML TableColumn<Object, Object> colunaRefTarefa;
     @FXML TableColumn<Object, Object> colunaFreelancer;
     @FXML TableColumn<Object, Object> colunaCodAtribuicao;
@@ -384,7 +387,7 @@ public class ColaboradorLogadoUI implements Initializable {
         String nifOrganizacao = getNifOrganizacao();
         List<AtribuicaoDTO> atribuicoes = atribuirTarefaController.getAllByOrganizacao(nifOrganizacao);
         for(int i = 0; i < atribuicoes.size(); i++){
-            TabelaConsultaAtribuicaoDTO cellAtribuicao = new TabelaConsultaAtribuicaoDTO(atribuicoes.get(i).getRefTarefa(),
+            TabelaConsultaAtribuicao cellAtribuicao = new TabelaConsultaAtribuicao(atribuicoes.get(i).getRefTarefa(),
                     atribuicoes.get(i).getEmailFreelancer(), atribuicoes.get(i).getDataAtribuicao(),
                     atribuicoes.get(i).getCodigoAtribuicao());
             listaAtribuicoesOrganizacao.add(cellAtribuicao);
