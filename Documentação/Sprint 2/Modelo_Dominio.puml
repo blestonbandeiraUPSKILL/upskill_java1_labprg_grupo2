@@ -68,23 +68,23 @@ class Utilizador {
 }
 
 class Password {
-    String password
+    -String password
 }
 
 class Email {
-    String email
+    -String email
 }
 
 class Atribuicao {
-    integer idAtribuicao
-    String  nifOrganizacao
-    String referenciaTarefa
-    String emailFreelancer
-    String dataInicioRealizacao
-    String dataFimRealizacao
-    integer valorAceite
-    integer idAnuncio
-    String dataAtribuicao
+    -integer idAtribuicao
+    -String  nifOrganizacao
+    -String referenciaTarefa
+    -String emailFreelancer
+    -String dataInicioRealizacao
+    -String dataFimRealizacao
+    -integer valorAceite
+    -integer idAnuncio
+    -String dataAtribuicao
 }
 
 Plataforma"1" -- "*"Organizacao: tem registadas >

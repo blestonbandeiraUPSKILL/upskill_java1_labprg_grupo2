@@ -34,4 +34,9 @@ public class TipoRegimentoDTO {
         return descricaoRegras;
     }
 
+    @Override
+    public String toString() {
+        return String.format("ID: %-12s |Designação: %-20s", idTipoRegimento,
+                designacao);
+    }
 }
