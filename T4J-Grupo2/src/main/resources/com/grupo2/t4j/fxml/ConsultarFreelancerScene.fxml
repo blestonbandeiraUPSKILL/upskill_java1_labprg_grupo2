@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.text.Font?>
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" styleClass="BorderPane" stylesheets="@../style/app.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.ConsultarFreelancerUI">
+<?import javafx.scene.text.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" styleClass="BorderPane" stylesheets="@../style/app.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.ConsultarFreelancerUI">
     <top>
         <Label styleClass="lblUser" text="Área do Administrativo :::&gt; Consultar Freelancer" textFill="WHITE" BorderPane.alignment="CENTER_RIGHT">
             <font>
@@ -71,4 +72,15 @@
             </children>
         </FlowPane>
     </bottom>
+   <left>
+      <BorderPane BorderPane.alignment="CENTER">
+         <top>
+            <Label fx:id="txt_email" styleClass="lblEmail" text="emailemailemail@email.pt" BorderPane.alignment="CENTER">
+               <font>
+                  <Font name="System Italic" size="12.0" />
+               </font>
+            </Label>
+         </top>
+      </BorderPane>
+   </left>
 </BorderPane>
