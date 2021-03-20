@@ -131,7 +131,7 @@ public class RepositorioAtribuicaoDatabase implements RepositorioAtribuicao{
         try {
 
             PreparedStatement preparedStatement = connection.prepareStatement(
-                    "SELECT * FROM Atribuicao WHERE refTarefa LIKE ?"
+                    "SELECT * FROM Atribuicao WHERE referenciaTarefa LIKE ?"
             );
 
             preparedStatement.setString(1, refTarefa);
