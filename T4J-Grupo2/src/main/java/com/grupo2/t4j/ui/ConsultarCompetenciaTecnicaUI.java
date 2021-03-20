@@ -1,5 +1,6 @@
 package com.grupo2.t4j.ui;
 
+import com.grupo2.t4j.controller.GestaoUtilizadoresController;
 import com.grupo2.t4j.controller.RegistarAreaActividadeController;
 import com.grupo2.t4j.controller.RegistarGrauProficienciaController;
 import com.grupo2.t4j.domain.GrauProficiencia;
@@ -24,6 +25,7 @@ public class ConsultarCompetenciaTecnicaUI implements Initializable {
     private AdministrativoLogadoUI administrativoLogadoUI;
     private RegistarGrauProficienciaController registarGrauProficienciaController;
     private RegistarAreaActividadeController registarAreaActividadeController;
+    private GestaoUtilizadoresController gestaoUtilizadoresController;
     private Stage adicionarStage;
 
     @FXML TextArea txtDescricaoDetalhada;
@@ -34,6 +36,7 @@ public class ConsultarCompetenciaTecnicaUI implements Initializable {
     @FXML TableView<GrauProficienciaDTO> tabelaGrausAplicaveis;
     @FXML TableColumn<Object, Object> txtGrau;
     @FXML TableColumn<Object, Object> txtDesignacao;
+    @FXML Label txt_email;
 
     /**
      * Associa a scene AdministrativoLogadoUI como parent desta Scene 
@@ -48,6 +51,9 @@ public class ConsultarCompetenciaTecnicaUI implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+
+        gestaoUtilizadoresController = new GestaoUtilizadoresController();
+        txt_email.setText(gestaoUtilizadoresController.getEmail());
 
         try {
 

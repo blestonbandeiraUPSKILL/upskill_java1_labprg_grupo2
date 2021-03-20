@@ -10,9 +10,11 @@ package com.grupo2.t4j.ui;
  * @author CAD
  */
 
+import com.grupo2.t4j.controller.GestaoUtilizadoresController;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -38,8 +40,10 @@ public class ConsultarAtribuicaoGestorUI implements Initializable{
     @FXML private TextField txtDtFimTarefa;
     @FXML private TextField txtNumDias;
     @FXML private Button btnVoltar;
+    @FXML Label txt_email;
 
     private GestorLogadoUI gestorLogadoUI;
+    private GestaoUtilizadoresController gestaoUtilizadoresController;
     private Stage adicionarStage;
 
     /**
@@ -61,6 +65,9 @@ public class ConsultarAtribuicaoGestorUI implements Initializable{
         adicionarStage = new Stage();
         adicionarStage.initModality(Modality.APPLICATION_MODAL);;
         adicionarStage.setResizable(false);
+
+        gestaoUtilizadoresController = new GestaoUtilizadoresController();
+        txt_email.setText(gestaoUtilizadoresController.getEmail());
     }
 
     /**

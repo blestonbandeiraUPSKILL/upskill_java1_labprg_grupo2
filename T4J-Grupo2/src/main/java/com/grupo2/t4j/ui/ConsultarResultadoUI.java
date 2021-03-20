@@ -12,10 +12,13 @@ package com.grupo2.t4j.ui;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import com.grupo2.t4j.controller.GestaoUtilizadoresController;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -36,8 +39,10 @@ public class ConsultarResultadoUI {
     @FXML TextField txtIdAnuncio;
     @FXML TextField txtClassificacao;
     @FXML TextField txtEmailFreelancer;
+    @FXML Label txt_email;
     
     private FreelancerLogadoUI freelancerLogadoUI;
+    private GestaoUtilizadoresController gestaoUtilizadoresController;
     private Stage adicionarStage;
     
     
@@ -59,7 +64,8 @@ public class ConsultarResultadoUI {
         adicionarStage.initModality(Modality.APPLICATION_MODAL);
         adicionarStage.setResizable(false);
 
-        
+        gestaoUtilizadoresController = new GestaoUtilizadoresController();
+        txt_email.setText(gestaoUtilizadoresController.getEmail());
 
     }
     

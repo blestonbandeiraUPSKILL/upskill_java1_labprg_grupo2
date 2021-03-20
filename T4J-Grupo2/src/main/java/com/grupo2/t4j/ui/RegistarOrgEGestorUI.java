@@ -1,15 +1,13 @@
 package com.grupo2.t4j.ui;
 
+import com.grupo2.t4j.controller.GestaoUtilizadoresController;
 import com.grupo2.t4j.controller.RegistarColaboradorController;
 import com.grupo2.t4j.controller.RegistarOrganizacaoController;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Window;
 import javafx.stage.WindowEvent;
 
@@ -25,6 +23,7 @@ public class RegistarOrgEGestorUI implements Initializable {
 
     private RegistarOrganizacaoController registarOrganizacaoController;
     private RegistarColaboradorController registarColaboradorController;
+    private GestaoUtilizadoresController gestaoUtilizadoresController;
     private StartingPageUI startingPageUI;
 
     @FXML TextField txtNomeOrganizacao;
@@ -43,6 +42,7 @@ public class RegistarOrgEGestorUI implements Initializable {
     @FXML TextField txtPassword;
     @FXML Button btnAvancarRegisto;
     @FXML Button btnCancelarRegisto;
+    @FXML Label txt_email;
 
     /**
      * Associa a scene StartingPageUI como parent desta Scene 
@@ -64,6 +64,9 @@ public class RegistarOrgEGestorUI implements Initializable {
         }
 
         registarColaboradorController = new RegistarColaboradorController();
+
+        gestaoUtilizadoresController = new GestaoUtilizadoresController();
+        txt_email.setText(gestaoUtilizadoresController.getEmail());
     }
 
     /**

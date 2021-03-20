@@ -1,10 +1,12 @@
 package com.grupo2.t4j.ui;
 
+import com.grupo2.t4j.controller.GestaoUtilizadoresController;
 import com.grupo2.t4j.controller.RegistarAreaActividadeController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Modality;
@@ -23,9 +25,11 @@ public class ConsultarAreaActividadeUI implements Initializable {
     @FXML Button btnVoltar;
     @FXML TextField txtCodigo;
     @FXML TextArea txtDescDetalhada;
+    @FXML Label txt_email;
 
     private AdministrativoLogadoUI administrativoLogadoUI;
     private RegistarAreaActividadeController registarAreaActividadeController;
+    private GestaoUtilizadoresController gestaoUtilizadoresController;
     private Stage adicionarStage;
 
     /**
@@ -47,6 +51,9 @@ public class ConsultarAreaActividadeUI implements Initializable {
         adicionarStage.setResizable(false);
 
         registarAreaActividadeController = new RegistarAreaActividadeController();
+
+        gestaoUtilizadoresController = new GestaoUtilizadoresController();
+        txt_email.setText(gestaoUtilizadoresController.getEmail());
 
     }
 

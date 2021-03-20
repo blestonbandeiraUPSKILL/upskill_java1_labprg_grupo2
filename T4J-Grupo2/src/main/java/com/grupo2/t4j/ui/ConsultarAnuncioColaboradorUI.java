@@ -62,7 +62,7 @@ public class ConsultarAnuncioColaboradorUI implements Initializable {
 
         gestaoUtilizadoresController = new GestaoUtilizadoresController();
         txt_email.setText(gestaoUtilizadoresController.getEmail());
-        
+
         try {
             registarTarefaController = new RegistarTarefaController();
 

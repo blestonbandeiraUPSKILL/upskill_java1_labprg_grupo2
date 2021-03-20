@@ -53,6 +53,7 @@ public class FreelancerLogadoUI implements Initializable {
     @FXML Button btnApagar;
     @FXML Button btnResultado;
     @FXML Button btnSair;
+    @FXML Label txt_email;
 
     ///// Tabela Anuncios //////////////
     @FXML TableView<TarefaDTO> tabelaAnuncios;
@@ -92,7 +93,10 @@ public class FreelancerLogadoUI implements Initializable {
         } catch (SQLException exception) {
             exception.printStackTrace();
         }
+
         gestaoUtilizadoresController = new GestaoUtilizadoresController();
+        txt_email.setText(gestaoUtilizadoresController.getEmail());
+
         try {
             registarTarefaController = new RegistarTarefaController();
         } catch (SQLException exception) {
