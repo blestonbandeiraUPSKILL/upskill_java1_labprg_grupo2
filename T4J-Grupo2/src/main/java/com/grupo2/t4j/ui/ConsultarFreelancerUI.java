@@ -1,5 +1,6 @@
 package com.grupo2.t4j.ui;
 
+import com.grupo2.t4j.controller.GestaoUtilizadoresController;
 import com.grupo2.t4j.controller.RegistarFreelancerController;
 import com.grupo2.t4j.controller.RegistarReconhecimentoGPController;
 import com.grupo2.t4j.domain.HabilitacaoAcademica;
@@ -9,10 +10,7 @@ import com.grupo2.t4j.dto.ReconhecimentoGPDTO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -30,6 +28,7 @@ public class ConsultarFreelancerUI implements Initializable {
     private Stage adicionarStage;
     private RegistarFreelancerController registarFreelancerController;
     private RegistarReconhecimentoGPController registarReconhecimentoGPController;
+    private GestaoUtilizadoresController gestaoUtilizadoresController;
 
     @FXML TextField txtPorta;
     @FXML TextField txtNif;
@@ -39,6 +38,7 @@ public class ConsultarFreelancerUI implements Initializable {
     @FXML TextField txtLocalidade;
     @FXML TextField txtArruamento;
     @FXML Button btnVoltar;
+    @FXML Label txt_email;
     
     ////Tabela Reconhecimento///////////////////////
     @FXML TableColumn<Object, Object> txtCompTec;
@@ -69,6 +69,9 @@ public class ConsultarFreelancerUI implements Initializable {
 
         registarFreelancerController = new RegistarFreelancerController();
         registarReconhecimentoGPController = new RegistarReconhecimentoGPController() ;
+
+        gestaoUtilizadoresController = new GestaoUtilizadoresController();
+        txt_email.setText(gestaoUtilizadoresController.getEmail());
 
         adicionarStage = new Stage();
         adicionarStage.initModality(Modality.APPLICATION_MODAL);

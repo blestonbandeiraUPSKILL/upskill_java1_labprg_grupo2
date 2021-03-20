@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
 <?import javafx.geometry.*?>
-<?import javafx.scene.text.*?>
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="BorderPane" stylesheets="@../style/app.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.ConsultarCategoriaUI">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="BorderPane" stylesheets="@../style/app.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.ConsultarCategoriaUI">
     <center>
         <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="AnchorPane" BorderPane.alignment="CENTER">
             <children>
@@ -28,6 +25,11 @@
                   <TableColumn fx:id="txtObrigatoriedade" prefWidth="102.0" text="Obrigatoriedade" />
               </columns>
             </TableView>
+            <Label fx:id="txt_email" layoutX="-64.0" layoutY="-11.0" styleClass="lblEmail" text="emailemailemail@email.pt">
+               <font>
+                  <Font name="System Italic" size="12.0" />
+               </font>
+            </Label>
             </children>
         </AnchorPane>
     </center>

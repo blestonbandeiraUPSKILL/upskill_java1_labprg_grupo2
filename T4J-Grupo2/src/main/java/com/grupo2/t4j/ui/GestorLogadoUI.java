@@ -63,6 +63,7 @@ public class GestorLogadoUI implements Initializable {
 
     @FXML TextField txtDataSeriacao;
     @FXML TextField txtDataInTarefa;
+    @FXML Label txt_email;
 
     @FXML TableView<TarefaDTO> tabelaTarefas;
     @FXML TableColumn<Object, Object> colunaReferencia;
@@ -123,6 +124,8 @@ public class GestorLogadoUI implements Initializable {
         gestaoUtilizadoresController = new GestaoUtilizadoresController();
         registarColaboradorController = new RegistarColaboradorController();
         seriarAnuncioController = new SeriarAnuncioController();
+
+        txt_email.setText(gestaoUtilizadoresController.getEmail());
 
         adicionarStage = new Stage();
         adicionarStage.initModality(Modality.APPLICATION_MODAL);

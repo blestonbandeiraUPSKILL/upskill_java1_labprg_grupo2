@@ -9,13 +9,16 @@ package com.grupo2.t4j.ui;
  *
  * @author CAD
  */
+
+import com.grupo2.t4j.controller.*;
+import com.grupo2.t4j.domain.ProcessoSeriacao;
 import com.grupo2.t4j.dto.AtribuicaoDTO;
 import com.grupo2.t4j.controller.AtribuirTarefaController;
-
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -42,9 +45,15 @@ public class ConsultarAtribuicaoColaboradorUI implements Initializable {
     @FXML private TextField txtDtFimTarefa;
     @FXML private TextField txtNumDias;
     @FXML private Button btnVoltar;
+    @FXML Label txt_email;
 
     private ColaboradorLogadoUI colaboradorLogadoUI;
     private AtribuirTarefaController atribuirTarefaController;
+    private RegistarTarefaController registarTarefaController;
+    private RegistarFreelancerController registarFreelancerController;
+    private SeriarAnuncioController seriarAnuncioController;
+    private GestaoUtilizadoresController gestaoUtilizadoresController;
+
     private Stage adicionarStage;
 
     /**
@@ -64,6 +73,18 @@ public class ConsultarAtribuicaoColaboradorUI implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
 
         atribuirTarefaController = new AtribuirTarefaController();
+        registarFreelancerController = new RegistarFreelancerController();
+        seriarAnuncioController = new SeriarAnuncioController();
+
+        gestaoUtilizadoresController = new GestaoUtilizadoresController();
+        txt_email.setText(gestaoUtilizadoresController.getEmail());
+
+        try {
+            registarTarefaController = new RegistarTarefaController();
+        }catch (SQLException exception) {
+            exception.printStackTrace();
+        }
+
 
         adicionarStage = new Stage();
         adicionarStage.initModality(Modality.APPLICATION_MODAL);;

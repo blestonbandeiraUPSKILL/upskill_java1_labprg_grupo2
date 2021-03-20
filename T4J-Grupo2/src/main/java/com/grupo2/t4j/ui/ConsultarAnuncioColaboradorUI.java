@@ -1,11 +1,13 @@
 package com.grupo2.t4j.ui;
 
+import com.grupo2.t4j.controller.GestaoUtilizadoresController;
 import com.grupo2.t4j.controller.RegistarTarefaController;
 import com.grupo2.t4j.controller.SeriarAnuncioController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -32,10 +34,12 @@ public class ConsultarAnuncioColaboradorUI implements Initializable {
     @FXML TextField txtDescInformal;
     @FXML TextField txDescTecnica;
     @FXML Button btnVoltar;
+    @FXML Label txt_email;
 
     private ColaboradorLogadoUI colaboradorLogadoUI;
     private SeriarAnuncioController seriarAnuncioController;
     private RegistarTarefaController registarTarefaController;
+    private GestaoUtilizadoresController gestaoUtilizadoresController;
     private Stage adicionarStage;
 
     /**
@@ -55,6 +59,10 @@ public class ConsultarAnuncioColaboradorUI implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
 
         seriarAnuncioController = new SeriarAnuncioController();
+
+        gestaoUtilizadoresController = new GestaoUtilizadoresController();
+        txt_email.setText(gestaoUtilizadoresController.getEmail());
+
         try {
             registarTarefaController = new RegistarTarefaController();
 
