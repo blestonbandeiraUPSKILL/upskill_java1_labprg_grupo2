@@ -49,7 +49,7 @@
    <left>
       <BorderPane>
          <top>
-            <Label styleClass="lblEmail" text="emailemailemail@email.pt" BorderPane.alignment="CENTER">
+            <Label fx:id="txt_email" styleClass="lblEmail" text="emailemailemail@email.pt" BorderPane.alignment="CENTER">
                <font>
                   <Font name="System Italic" size="12.0" />
                </font>

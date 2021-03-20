@@ -169,7 +169,7 @@
          <graphic>
             <BorderPane>
                <center>
-                  <Label styleClass="lblEmail" text="emailemailemail@email.pt">
+                  <Label fx:id="txt_email" styleClass="lblEmail" text="emailemailemail@email.pt">
                      <font>
                         <Font name="System Italic" size="18.0" />
                      </font>
