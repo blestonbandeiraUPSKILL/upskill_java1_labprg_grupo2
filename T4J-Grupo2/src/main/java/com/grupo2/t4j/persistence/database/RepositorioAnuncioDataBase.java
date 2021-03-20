@@ -6,6 +6,7 @@ package com.grupo2.t4j.persistence.database;
  */
 
 import com.grupo2.t4j.domain.Anuncio;
+import com.grupo2.t4j.dto.AnuncioDTO;
 import com.grupo2.t4j.domain.Tarefa;
 import com.grupo2.t4j.domain.TipoRegimento;
 import com.grupo2.t4j.exception.AnuncioDuplicadoException;
@@ -495,7 +496,49 @@ public class RepositorioAnuncioDataBase implements RepositorioAnuncio {
 
         return refTarefasASeriar;
 
-    } 
+    }
+
+    @Override
+    public List<Integer> getAnunciosSeriados(String nifOrganizacao) throws SQLException {
+        List<Integer> idsAnunciosSeriados = new ArrayList<>();
+
+        Connection connection = DBConnectionHandler.getInstance().openConnection();
+
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(
+                    "SELECT * FROM Anuncio " +
+                            "INNER JOIN ProcessoSeriacao  " +
+                            "ON Anuncio.idAnuncio LIKE ProcessoSeriacao.idAnuncio" +
+                            "WHERE Anuncio.nifOrganizacao LIKE ?"
+
+            );
+
+            preparedStatement.setString(1, nifOrganizacao);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                int idAnuncio = resultSet.getInt(1);
+
+                idsAnunciosSeriados.add(idAnuncio);
+
+            }
+
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+            exception.getSQLState();
+            try {
+                System.err.print("Transaction is being rolled back");
+                connection.rollback();
+            } catch (SQLException sqlException) {
+                sqlException.getErrorCode();
+            }
+
+        } finally {
+            DBConnectionHandler.getInstance().closeAll();
+        }
+        return idsAnunciosSeriados;
+    }
     
      
 }
