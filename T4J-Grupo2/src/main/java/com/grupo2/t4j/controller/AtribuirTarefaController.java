@@ -125,6 +125,7 @@ public class AtribuirTarefaController {
                 for (int i = 0; i < classificacoes.size(); i++) {
                     if (classificacoes.get(i).getPosicaoFreelancer() == 2) {
                         idCandidatura = classificacoes.get(i).getIdCandidatura();
+                        i = classificacoes.size();
                     }
                 }
             }
@@ -136,6 +137,7 @@ public class AtribuirTarefaController {
             for (int i = 0; i < classificacoes.size(); i++) {
                 if (classificacoes.get(i).getPosicaoFreelancer() == 1) {
                     idCandidatura = classificacoes.get(i).getIdCandidatura();
+                    i = classificacoes.size();
                 }
             }
         }
