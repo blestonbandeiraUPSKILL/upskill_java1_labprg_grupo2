@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" styleClass="BorderPane" stylesheets="@../style/app.css" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.FreelancerLogadoUI">
+<BorderPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" styleClass="BorderPane" stylesheets="@../style/app.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo2.t4j.ui.FreelancerLogadoUI">
     <top>
         <Label styleClass="lblUser" text="Bem-vindo à Área do Freelancer" textFill="WHITE" BorderPane.alignment="CENTER_RIGHT">
             <font>
@@ -75,12 +76,12 @@
                                           </Label>
                                           <TableView fx:id="tabelaCandidaturas" prefHeight="246.0" prefWidth="617.0">
                                             <columns>
-                                              <TableColumn fx:id="txtIdCandidatura" prefWidth="70.0" text="ID" />
-                                                <TableColumn fx:id="txtValorPretendido" prefWidth="130.0" text="Valor Pretendido" />
-                                                <TableColumn fx:id="txtDuracaoEstimada" prefWidth="141.0" text="Duração Estimada" />
-                                              <TableColumn fx:id="txtDataCandidatura" prefWidth="119.0" text="Data Candidatura" />
-                                                <TableColumn fx:id="txtDataEdicao" prefWidth="128.0" text="Data Última Edição" />
-                                                <TableColumn fx:id="txtResultado" prefWidth="67.0" text="Resultado" />
+                                              <TableColumn fx:id="txtIdCandidatura" prefWidth="57.0" text="ID" />
+                                                <TableColumn fx:id="txtValorPretendido" prefWidth="103.0" text="Valor Pretendido" />
+                                                <TableColumn fx:id="txtDuracaoEstimada" prefWidth="133.0" text="Duração Estimada" />
+                                              <TableColumn fx:id="txtDataCandidatura" prefWidth="118.0" text="Data Candidatura" />
+                                                <TableColumn fx:id="txtDataEdicao" prefWidth="144.0" text="Data Última Edição" />
+                                                <TableColumn fx:id="txtResultado" prefWidth="100.0" text="Resultado" />
                                             </columns>
                                           </TableView>
                                        </children>
