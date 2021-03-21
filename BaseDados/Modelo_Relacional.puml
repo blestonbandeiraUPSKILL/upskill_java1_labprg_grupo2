@@ -213,6 +213,7 @@ entity "Atribuicao" {
     idAnuncio: number {FK}
     dataAtribuicao: date
     numeroAnual: text
+    idCandidatura: number {FK}
 }
 
 
@@ -245,9 +246,8 @@ ProcessoSeriacao ||--|{ ColaboradorSeriacao
 Colaborador ||--|{ ColaboradorSeriacao
 Utilizador }|--|| Rolename
 Utilizador ||--o| Session
-Atribuicao }|--|| Freelancer
 Atribuicao ||--o| Tarefa
 Atribuicao ||--o| Anuncio
-Atribuicao }|--|| Organizacao
+Atribuicao ||--|| Candidatura
 
 @enduml

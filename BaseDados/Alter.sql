@@ -221,13 +221,21 @@ ALTER TABLE Atribuicao
     ADD CONSTRAINT fk_Atribuicao_nifOrganizacao_referenciaTarefa
         FOREIGN KEY (nifOrganizacao, referenciaTarefa)
         REFERENCES Tarefa(nifOrganizacao, referencia);
-
+        
 ALTER TABLE Atribuicao
     ADD CONSTRAINT fk_Atribuicao_emailFreelancer
         FOREIGN KEY (emailFreelancer)
-        REFERENCES Freelancer (email);
+        REFERENCES Freelancer(email);
     
 ALTER TABLE Atribuicao
     ADD CONSTRAINT fk_Atribuicao_idAnuncio
         FOREIGN KEY (idAnuncio)
         REFERENCES Anuncio(idAnuncio);
+        
+ALTER TABLE Atribuicao
+    ADD idCandidatura integer;
+    
+ALTER TABLE Atribuicao
+    ADD CONSTRAINT fk_Atribuicao_idCandidatura
+        FOREIGN KEY (idCandidatura)
+        REFERENCES Candidatura(idCandidatura);
