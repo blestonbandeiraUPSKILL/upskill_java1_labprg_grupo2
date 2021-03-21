@@ -81,7 +81,10 @@ public class TarefaDTO {
         return emailColaborador;
     }
 
-
-
-
+    @Override
+    public String toString(){
+        return String.format("Referência: %-15s |Designação: %-15s"
+                        + " |Duração estimada: %-5d dias |Custo estimado: %-5.2f euros |Colaborador: %-15s" , referencia,
+                designacao, duracaoEstimada, custoEstimado, emailColaborador);
+    }
 }

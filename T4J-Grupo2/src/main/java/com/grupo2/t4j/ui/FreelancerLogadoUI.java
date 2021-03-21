@@ -28,6 +28,7 @@ import javafx.stage.WindowEvent;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -239,18 +240,24 @@ public class FreelancerLogadoUI implements Initializable {
 
 
         List<CandidaturaDTO> candidaturas = efectuarCandidaturaController.findByEmail(emailFreelancer);
+        List<TabelaCandidaturaResultado> cells = new ArrayList<>();
         TabelaCandidaturaResultado cellCandidatura = null;
-        for (int i = 0; i < candidaturas.size(); i++)
-             cellCandidatura = new TabelaCandidaturaResultado(candidaturas.get(i).getIdCandidatura(),
+        for (int i = 0; i < candidaturas.size(); i++) {
+            cellCandidatura = new TabelaCandidaturaResultado(candidaturas.get(i).getIdCandidatura(),
                     candidaturas.get(i).getValorPretendido(), candidaturas.get(i).getNumeroDias(),
-                    candidaturas.get(i).getDataCandidatura(), candidaturas.get(i).getDataEdicaoCandidatura(),"Sem Resultado");
+                    candidaturas.get(i).getDataCandidatura(), candidaturas.get(i).getDataEdicaoCandidatura(), "Sem Resultado");
+
+           cells.add(cellCandidatura);
+
+        }
+
         txtIdCandidatura.setCellValueFactory(new PropertyValueFactory<>("idCandidatura"));
         txtValorPretendido.setCellValueFactory(new PropertyValueFactory<>("valorPretendido"));
         txtDuracaoEstimada.setCellValueFactory(new PropertyValueFactory<>("duracaoEstimada"));
         txtDataCandidatura.setCellValueFactory(new PropertyValueFactory<>("dataCandidatura"));
         txtDataEdicao.setCellValueFactory(new PropertyValueFactory<>("dataEdicao"));
         txtResultado.setCellValueFactory(new PropertyValueFactory<>("resultado"));
-        tabelaCandidaturas.getItems().setAll(cellCandidatura);
+        tabelaCandidaturas.getItems().setAll(cells);
     }
 
     /**
