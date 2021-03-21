@@ -328,6 +328,7 @@ public class SeriacaoManualColaboradorUI implements Initializable{
 
         }
         if(seriacaoConcluida){
+            colaboradorLogadoUI.existeAtribuicao();
             btnSeriacao.setDisable(true);
             btnVoltar.requestFocus();
         }

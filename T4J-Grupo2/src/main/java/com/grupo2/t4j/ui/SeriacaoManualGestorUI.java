@@ -315,6 +315,7 @@ public class SeriacaoManualGestorUI implements Initializable{
 
         }
         if(seriacaoConcluida){
+            gestorLogadoUI.existeAnuncioSeriado();
             btnSeriacao.setDisable(true);
             btnVoltar.requestFocus();
         }

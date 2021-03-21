@@ -233,4 +233,19 @@ public class SeriarAnuncioController {
         }
         return processosSeriacaoDTO;
     }
+
+    /**
+     * Devolve uma lista de referências de tarefas de anúncios em período de seriação
+     * @param nifOrganizacao
+     * @param emailColaborador
+     * @return
+     * @throws SQLException
+     */
+    public List<String> getReferenciasTarefasASeriar(String nifOrganizacao, String emailColaborador) throws SQLException{
+        List<String> tarefasOrg = getReferenciasTarefas(nifOrganizacao);
+        List<Tarefa> refAnunciosASeriar = getAllRefTarefasASeriar(tarefasOrg, nifOrganizacao, emailColaborador);
+        List<String> referenciasASeriar = getReferenciasTarefas(refAnunciosASeriar);
+        return referenciasASeriar;
+    }
+
 }

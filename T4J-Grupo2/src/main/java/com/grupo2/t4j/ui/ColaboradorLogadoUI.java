@@ -312,13 +312,10 @@ public class ColaboradorLogadoUI implements Initializable {
         try{
             String emailColaborador = getEmailColaborador();
             String nifOrganizacao = getNifOrganizacao();
-            List<String> tarefasOrg = seriarAnuncioController.getReferenciasTarefas(nifOrganizacao);
+            List<String> referenciasASeriar = seriarAnuncioController.getReferenciasTarefasASeriar(nifOrganizacao, emailColaborador);
 
-            List<Tarefa> refAnunciosASeriar = seriarAnuncioController.getAllRefTarefasASeriar(
-                        tarefasOrg, nifOrganizacao, emailColaborador);
-
-            if(refAnunciosASeriar.size()>0){
-                cmbAnuncio.getItems().setAll(seriarAnuncioController.getReferenciasTarefas(refAnunciosASeriar));
+            if(referenciasASeriar.size()>0){
+                cmbAnuncio.getItems().setAll(referenciasASeriar);
             }
             else{
                 List<String> listaVazia = new ArrayList<>();
