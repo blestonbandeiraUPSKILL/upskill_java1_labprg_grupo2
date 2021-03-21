@@ -32,28 +32,24 @@ public class RepositorioAtribuicaoDatabase implements RepositorioAtribuicao{
     }
 
     @Override
-    public boolean save(String nifOrganizacao, String refTarefa, int idAnuncio, int idCandidatura, String emailFreelancer,
-                 double valorAceite, int numDiasAceite, String codigoAtribuicao, String dataInicioTarefa) throws SQLException{
+    public boolean save(String nifOrganizacao, String refTarefa, int idAnuncio, String emailFreelancer, String dataInicioTarefa, int idCandidatura) throws SQLException{
 
         Connection connection = DBConnectionHandler.getInstance().openConnection();
 
         try {
 
             CallableStatement callableStatement = connection.prepareCall(
-                    "{CALL createAtribuicao(?, ?, ?, ?, ?, ?, ?, ?) }");
+                    "{CALL createAtribuicao(?, ?, ?, ?, ?, ?) }");
 
             if(findAtribuicaoByTarefa(refTarefa) == null){
                 connection.setAutoCommit(false);
 
                 callableStatement.setString(1, nifOrganizacao);
                 callableStatement.setString(2, refTarefa);
-                callableStatement.setInt(3, idAnuncio);
-                callableStatement.setInt(4, idCandidatura);
-                callableStatement.setString(5, emailFreelancer);
-                callableStatement.setDouble(6, valorAceite);
-                callableStatement.setInt(7, numDiasAceite);
-                callableStatement.setString(8, codigoAtribuicao);
-                callableStatement.setDate(9, Date.valueOf(dataInicioTarefa));
+                callableStatement.setString(3, emailFreelancer);
+                callableStatement.setInt(4, idAnuncio);
+                callableStatement.setDate(5, Date.valueOf(dataInicioTarefa));
+                callableStatement.setInt(6, idCandidatura);
 
                 callableStatement.executeQuery();
 

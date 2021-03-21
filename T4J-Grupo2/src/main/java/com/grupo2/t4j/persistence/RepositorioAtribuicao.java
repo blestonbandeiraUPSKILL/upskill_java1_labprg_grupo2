@@ -17,8 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 public interface RepositorioAtribuicao {
 
-    boolean save(String nifOrganizacao, String refTarefa, int idAnuncio, int idCandidatura, String emailFreelancer,
-                 double valorAceite, int numDiasAceite, String codigoAtribuicao, String dataInicioTarefa) throws SQLException;
+    public boolean save(String nifOrganizacao, String refTarefa, int idAnuncio, String emailFreelancer, String dataInicioTarefa, int idCandidatura) throws SQLException;
 
     boolean save(Atribuicao atribuicao) throws SQLException;
 

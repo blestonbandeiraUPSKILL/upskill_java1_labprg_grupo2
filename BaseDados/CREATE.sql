@@ -268,5 +268,6 @@ CREATE TABLE Atribuicao(
     dataInicioRealizacao date,
     dataFimRealizacao date,
     idAnuncio integer,
-    dataAtribuicao date
+    dataAtribuicao date,
+    idCandidatura integer
 );

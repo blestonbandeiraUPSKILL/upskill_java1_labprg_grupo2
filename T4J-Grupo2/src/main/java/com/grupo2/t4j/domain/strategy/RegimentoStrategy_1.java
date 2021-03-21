@@ -27,7 +27,7 @@ public class RegimentoStrategy_1 implements RegimentoStrategy{
     private RepositorioSeriacao repositorioSeriacao = fabricaRepositorios.getRepositorioSeriacao();
     private RepositorioTarefa repositorioTarefa = fabricaRepositorios.getRepositorioTarefa();
 
-    private CodigoAtribuicao codigoAtribuicao = new CodigoAtribuicao();
+    //private CodigoAtribuicao codigoAtribuicao = new CodigoAtribuicao();
 
     
     @Override
@@ -89,11 +89,10 @@ public class RegimentoStrategy_1 implements RegimentoStrategy{
             Candidatura candidatura = repositorioCandidatura.findById(idCandidatura);
 
             Anuncio anuncio = repositorioAnuncio.getAnuncio(idAnuncio);
-            String codigo = codigoAtribuicao.gerarCodigo();
+            //String codigo = codigoAtribuicao.gerarCodigo();
 
             adicionou = repositorioAtribuicao.save(tarefa.getNifOrganizacao(), tarefa.getReferencia(), idAnuncio,
-                    idCandidatura,candidatura.getEmailFreelancer(), candidatura.getValorPretendido(), candidatura.getNumeroDias(),
-                    codigo, anuncio.getDtFimPub());
+                    candidatura.getEmailFreelancer(), anuncio.getDtFimPub(), idCandidatura);
             return adicionou;
         }catch (SQLException exception){
             exception.printStackTrace();
@@ -122,11 +121,10 @@ public class RegimentoStrategy_1 implements RegimentoStrategy{
             }
             Candidatura candidatura = repositorioCandidatura.findById(idCandidatura);
 
-            String codigo = codigoAtribuicao.gerarCodigo();
+            //String codigo = codigoAtribuicao.gerarCodigo();
 
-            adicionou = repositorioAtribuicao.save(tarefa.getNifOrganizacao(), tarefa.getReferencia(), idAnuncio,
-                    idCandidatura,candidatura.getEmailFreelancer(), candidatura.getValorPretendido(), candidatura.getNumeroDias(),
-                    codigo,dataInicioTarefa);
+            adicionou = repositorioAtribuicao.save(tarefa.getNifOrganizacao(), tarefa.getReferencia(),
+                    idAnuncio, candidatura.getEmailFreelancer(), dataInicioTarefa, idCandidatura);
             return adicionou;
         }catch (SQLException exception){
             exception.printStackTrace();
