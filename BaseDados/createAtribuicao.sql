@@ -7,13 +7,22 @@ CREATE OR REPLACE PROCEDURE createAtribuicao(
 
 IS
     v_idAtribuicao Atribuicao.idAtribuicao%type;
+    v_numeroAnual Atribuicao.numeroAnual%type;
+    v_ano varchar(4);
     
 BEGIN
 
-    select *
-  from ( select a.*, max(pk) over () as max_pk
-           from my_table a
-                )
- where pk = max_pk
+    SELECT *
+    FROM ( 
+        SELECT max(IDATRIBUICAO) over () as max_pk
+        FROM Atribuicao
+        );
+    
+    SELECT to_char(sysdate, 'YYYY') INTO v_ano 
+    FROM dual;
+    
+    CONCAT( v_ano,  max_pk);
+    
+    
 END;
 /
