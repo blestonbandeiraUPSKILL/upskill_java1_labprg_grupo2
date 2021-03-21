@@ -61,6 +61,7 @@ public class GestorLogadoUI implements Initializable {
     @FXML Button btnAtribuicao;
     @FXML Button btnConsultarAtribuicao;
     @FXML Button btnMudarData;
+    @FXML Button btnManterData;
 
     @FXML TextField txtDataSeriacao;
     @FXML TextField txtDataInTarefa;
@@ -138,8 +139,6 @@ public class GestorLogadoUI implements Initializable {
         btnConsultarAnuncio.setDisable(true);
         btnConsultarCandidaturaFreelancer.setDisable(true);
         btnSeriacaoManual.setDisable(true);
-
-        btnConsultarAtribuicao.setDisable(true);
 
         try {
             existeAnuncioSeriado();
@@ -279,7 +278,10 @@ public class GestorLogadoUI implements Initializable {
         List<Integer> idsAnunciosSeriados = atribuirTarefaController.getAnunciosSeriados(nifOrganizacao);
         List<AtribuicaoDTO> atribuicoes = atribuirTarefaController.getAllByOrganizacao(nifOrganizacao);
         List<AnuncioDTO> anunciosSeriadosNaoAtribuidos = atribuirTarefaController.getAnunciosSeriadosNaoAtribuidos(nifOrganizacao);
+        btnAtribuicao.setDisable(true);
+        btnConsultarAtribuicao.setDisable(true);
         btnMudarData.setDisable(true);
+        btnManterData.setDisable(true);
         txtDataInTarefa.setDisable(true);
 
         if(idsAnunciosSeriados.size() > 0){
@@ -299,9 +301,10 @@ public class GestorLogadoUI implements Initializable {
             }
         }
         else{
+            btnAtribuicao.setDisable(true);
             btnConsultarAtribuicao.setDisable(true);
             btnMudarData.setDisable(true);
-            btnAtribuicao.setDisable(true);
+            btnManterData.setDisable(true);
             txtDataInTarefa.setDisable(true);
         }
     }
@@ -352,13 +355,10 @@ public class GestorLogadoUI implements Initializable {
         try{
             String emailColaborador = getEmailColaborador();
             String nifOrganizacao = getNifOrganizacao();
-            List<String> tarefasOrg = seriarAnuncioController.getReferenciasTarefas(nifOrganizacao);
+            List<String> referenciasASeriar = seriarAnuncioController.getReferenciasTarefasASeriar(nifOrganizacao, emailColaborador);
 
-            List<Tarefa> refAnunciosASeriar = seriarAnuncioController.getAllRefTarefasASeriar(
-                    tarefasOrg, nifOrganizacao, emailColaborador);
-
-            if(refAnunciosASeriar.size()>0){
-                cmbAnuncio.getItems().setAll(seriarAnuncioController.getReferenciasTarefas(refAnunciosASeriar));
+            if(referenciasASeriar.size()>0){
+                cmbAnuncio.getItems().setAll(referenciasASeriar);
             }
             else{
                 List<String> listaVazia = new ArrayList<>();
@@ -549,6 +549,7 @@ public class GestorLogadoUI implements Initializable {
             boolean sucesso = seriarAnuncioController.seriar(idAnuncio);
             if(sucesso){
                 updateDataSeriacao();
+                existeAnuncioSeriado();
             }
 
         } catch(SQLException exception){
@@ -786,6 +787,7 @@ public class GestorLogadoUI implements Initializable {
                 mudarMetodo = true;
                 dataModificada = true;
                 btnMudarData.setDisable(true);
+                btnManterData.setDisable(true);
                 txtDataInTarefa.setDisable(true);
                 btnAtribuicao.requestFocus();
                 AlertsUI.criarAlerta(Alert.AlertType.INFORMATION,
@@ -799,6 +801,16 @@ public class GestorLogadoUI implements Initializable {
     }
 
     @FXML
+    public void manterData (ActionEvent actionEvent){
+        mudarMetodo = true;
+        btnMudarData.setDisable(true);
+        btnManterData.setDisable(true);
+        txtDataInTarefa.setDisable(true);
+        btnAtribuicao.requestFocus();
+
+    }
+
+    @FXML
     public void registarAtribuicao (ActionEvent actionEvent) {
         String refTarefa = tabelaAtribuicoes.getSelectionModel().getSelectedItem().getRefTarefa();
         if (tabelaAtribuicoes.getSelectionModel().getSelectedItem().getCodigoAtribuicao().equals("Não atribuído!")) {
@@ -808,6 +820,7 @@ public class GestorLogadoUI implements Initializable {
                         "Deseja modificar a data de início da tarefa?",
                         "Se sim, realize esta mudança antes de realizar a atribuição!");
                 btnMudarData.setDisable(false);
+                btnManterData.setDisable(false);
                 txtDataInTarefa.setDisable(false);
                 txtDataInTarefa.requestFocus();
             } else {

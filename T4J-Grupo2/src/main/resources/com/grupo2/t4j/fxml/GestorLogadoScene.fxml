@@ -155,11 +155,12 @@
                                                 </TableView>
                                             </children>
                                         </VBox>
-                                        <Button fx:id="btnAtribuicao" layoutX="519.0" layoutY="274.0" mnemonicParsing="false" onAction="#registarAtribuicao" prefHeight="27.0" prefWidth="141.0" styleClass="btnConfirmar" text="Realizar Atribuição" AnchorPane.bottomAnchor="75.0" AnchorPane.leftAnchor="519.0" AnchorPane.rightAnchor="40.0" />
+                                        <Button fx:id="btnAtribuicao" layoutX="404.0" layoutY="315.0" mnemonicParsing="false" onAction="#registarAtribuicao" prefHeight="27.0" prefWidth="127.0" styleClass="btnConfirmar" text="Realizar Atribuição" AnchorPane.bottomAnchor="35.0" AnchorPane.leftAnchor="360.0" AnchorPane.rightAnchor="213.0" />
                                         <Label layoutX="20.0" layoutY="277.0" text="Modificar data de Início da Tarefa:" AnchorPane.bottomAnchor="85.0" AnchorPane.leftAnchor="20.0" />
                                         <TextField fx:id="txtDataInTarefa" layoutX="213.0" layoutY="296.0" prefHeight="25.0" prefWidth="120.0" AnchorPane.bottomAnchor="77.0" AnchorPane.leftAnchor="213.0" />
-                                        <Button fx:id="btnMudarData" layoutX="358.0" layoutY="274.0" mnemonicParsing="false" onAction="#mudarData" styleClass="btnConfirmar" text="Confirmar data" AnchorPane.bottomAnchor="75.0" AnchorPane.leftAnchor="358.0" />
+                                        <Button fx:id="btnMudarData" layoutX="358.0" layoutY="274.0" mnemonicParsing="false" onAction="#mudarData" styleClass="btnConfirmar" text="Mudar data" AnchorPane.bottomAnchor="75.0" AnchorPane.leftAnchor="360.0" />
                                         <Button fx:id="btnConsultarAtribuicao" layoutX="20.0" layoutY="316.0" mnemonicParsing="false" onAction="#consultarAtribuicao" styleClass="btnConfirmar" text="Consultar Atribuição" AnchorPane.bottomAnchor="35.0" AnchorPane.leftAnchor="20.0" />
+                              <Button fx:id="btnManterData" layoutX="464.0" layoutY="275.0" mnemonicParsing="false" onAction="#manterData" styleClass="btnConfirmar" text="Manter data" AnchorPane.bottomAnchor="75.0" AnchorPane.leftAnchor="470.0" />
                                     </children>
                                 </AnchorPane>
                             </content>
