@@ -1,7 +1,13 @@
 package com.grupo2.t4j.controller;
 
+import com.grupo2.t4j.domain.Anuncio;
 import com.grupo2.t4j.domain.Candidatura;
+import com.grupo2.t4j.domain.Organizacao;
+import com.grupo2.t4j.domain.Tarefa;
+import com.grupo2.t4j.dto.AnuncioDTO;
 import com.grupo2.t4j.dto.CandidaturaDTO;
+import com.grupo2.t4j.dto.OrganizacaoDTO;
+import com.grupo2.t4j.dto.TarefaDTO;
 import com.grupo2.t4j.persistence.*;
 import com.grupo2.t4j.persistence.database.FabricaRepositoriosDatabase;
 
@@ -24,6 +30,7 @@ public class EfectuarCandidaturaController {
     private RepositorioCaracterizacaoCT repositorioCaracterizacaoCT = fabricaRepositorios.getRepositorioCaracterizacaoCT();
     private RepositorioCategoriaTarefa repositorioCategoriaTarefa = fabricaRepositorios.getRepositorioCategoriaTarefa();
     private RepositorioCandidatura repositorioCandidatura = fabricaRepositorios.getRepositorioCandidatura();
+    private RepositorioOrganizacao repositorioOrganizacao = fabricaRepositorios.getRepositorioOrganizacao();
 
     public EfectuarCandidaturaController() throws SQLException {
     }
@@ -64,5 +71,49 @@ public class EfectuarCandidaturaController {
         }
 
         return candidaturasDTO;
+    }
+
+    /**
+     * Retorna uma candidatura
+     * @param idCandidatura
+     * @return
+     * @throws SQLException
+     */
+    public CandidaturaDTO findById(int idCandidatura) throws SQLException {
+        Candidatura candidatura = repositorioCandidatura.findById(idCandidatura);
+        return (CandidaturaDTO) candidatura.toDTO();
+    }
+
+    /**
+     * Retorna o anúncio de acordo com o id do anúncio
+     * @param idAnuncio - id do anúncio
+     * @return
+     * @throws SQLException
+     */
+    public AnuncioDTO getAnuncio(int idAnuncio) throws SQLException {
+        Anuncio anuncio = repositorioAnuncio.getAnuncio(idAnuncio);
+        return (AnuncioDTO) anuncio.toDTO();
+    }
+
+    /**
+     * Retorna uma tarefa de acordo com o id do Anúncio
+     * @param idAnuncio
+     * @return
+     * @throws SQLException
+     */
+    public TarefaDTO findTarefa(int idAnuncio) throws SQLException {
+        Tarefa tarefa = repositorioTarefa.findTarefa(idAnuncio);
+        return (TarefaDTO) tarefa.toDTO();
+    }
+
+    /**
+     * Retorna uma organização com base em seu nif
+     * @param nif
+     * @return
+     * @throws SQLException
+     */
+    public OrganizacaoDTO findByNif(String nif) throws SQLException{
+        Organizacao organizacao = repositorioOrganizacao.findByNif(nif);
+        return (OrganizacaoDTO) organizacao.toDTO();
     }
 }
