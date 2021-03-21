@@ -87,7 +87,6 @@ public class ColaboradorLogadoUI implements Initializable {
     @FXML TableColumn<Object, Object> colunaCodAtribuicao;
     @FXML TableColumn<Object, Object> colunaDataAtribuicao;
 
-    
     /**
      * Associa a scene StartingPageUI como parent desta Scene 
      * @param startingPageUI
@@ -470,9 +469,9 @@ public class ColaboradorLogadoUI implements Initializable {
         if(idRegimento != 1){
             btnSeriacaoManual.setDisable(false);
         }
-        else{
+        else {
             seriacaoAutomatica();
-        }
+            }
     }
     
     /**
@@ -484,7 +483,7 @@ public class ColaboradorLogadoUI implements Initializable {
             idAnuncio = getIdAnuncio();            
             boolean sucesso = seriarAnuncioController.seriar(idAnuncio);
             if(sucesso){
-                updateDataSeriacao();                    
+                updateDataSeriacao();
             }
                                                
         } catch(SQLException exception){

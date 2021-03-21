@@ -220,7 +220,14 @@ public class SeriacaoManualColaboradorUI implements Initializable{
      */
     public void updateOpcoesClassificacao(int classUsada){
         if(opcoesClassificacoes.size() != 1){
-            opcoesClassificacoes.remove(classUsada-1);
+            List<Integer> novasOpcoes = new ArrayList<>();
+            for(int i = 0; i < opcoesClassificacoes.size(); i++){
+                if(opcoesClassificacoes.get(i) != classUsada){
+                    novasOpcoes.add(opcoesClassificacoes.get(i));
+                }
+            }
+            opcoesClassificacoes.clear();
+            opcoesClassificacoes = novasOpcoes;
             cmbClassificacao.getItems().clear();
             cmbClassificacao.getItems().setAll(opcoesClassificacoes);
         }
