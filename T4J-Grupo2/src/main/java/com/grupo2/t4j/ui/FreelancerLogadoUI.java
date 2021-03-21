@@ -277,10 +277,7 @@ public class FreelancerLogadoUI implements Initializable {
                     "Tem a certeza que deseja apagar a candidatura?");
 
             if (alerta.showAndWait().get() == ButtonType.OK) {
-
-                //actionEvent.consume();
                 apaga = eliminarCandidaturaController.deleteCandidatura(idCandidatura);
-
             }
 
             if (apaga) {
