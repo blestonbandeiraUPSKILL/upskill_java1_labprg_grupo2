@@ -338,10 +338,10 @@ public class FreelancerLogadoUI implements Initializable {
 
             FXMLLoader loaderConsultarResultado = new FXMLLoader(getClass().getResource("/com/grupo2/t4j/fxml/ConsultarResultadoScene.fxml"));
             Parent rootConsultarResultado = loaderConsultarResultado.load();
+            sceneConsultarResultado = new Scene(rootConsultarResultado);
             ConsultarResultadoUI consultarResultadoUI = loaderConsultarResultado.getController();
             consultarResultadoUI.associarParentUI(this);
             consultarResultadoUI.transferData();
-            sceneConsultarResultado = new Scene(rootConsultarResultado);
 
             adicionarStage.setScene(sceneConsultarResultado);
             adicionarStage.setTitle("Consultar Resultado");

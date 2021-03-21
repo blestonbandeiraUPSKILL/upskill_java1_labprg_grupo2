@@ -126,6 +126,7 @@ public class RepositorioOrganizacaoDatabase implements RepositorioOrganizacao {
      *
      * @return a organização encontrada, caso exista
      */
+    @Override
     public Organizacao findByNif(String nif) throws SQLException {
 
         Connection connection = DBConnectionHandler.getInstance().openConnection();
